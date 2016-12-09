@@ -1,0 +1,105 @@
+{
+    "sys": {
+        "type": "Array"
+    },
+    "total": 1,
+    "limit": 1,
+    "skip": 0,
+    "items": [
+        {
+            "sys": {
+                "id": "TZ7GdUzkM6QCce24yGEeY",
+                "type": "Entry",
+                "space": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "2nh7n4rfkw4q"
+                    }
+                },
+                "contentType": {
+                    "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "campaign"
+                    }
+                },
+                "revision": 12,
+                "createdAt": "2016-12-06T19:11:26.239Z",
+                "updatedAt": "2016-12-08T22:44:59.953Z"
+            },
+            "fields": {
+                "title": {
+                    "en-US": "Baby, It's Cold Inside",
+                    "es-MX": "Chicos, Esta Frio Adentro"
+                },
+                "slug": {
+                    "en-US": "baby-its-cold-inside"
+                },
+                "callToAction": {
+                    "en-US": "Decrease your oil dependence by turning off the heat for a day.",
+                    "es-MX": "Disminuya dependencia de aceite apagando el calor durante un d\u00eda."
+                },
+                "status": {
+                    "en-US": "open"
+                },
+                "active": {
+                    "en-US": true
+                },
+                "coverImage": {
+                    "en-US": {
+                        "sys": {
+                            "type": "Link",
+                            "linkType": "Asset",
+                            "id": "13XDOJIsxuSegEMUuqmwWc"
+                        }
+                    }
+                },
+                "problemFact": {
+                    "en-US": {
+                        "sys": {
+                            "type": "Link",
+                            "linkType": "Entry",
+                            "id": "5VRrGizkpam4K0YSSo2w4s"
+                        }
+                    }
+                },
+                "facts": {
+                    "en-US": [
+                        {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Entry",
+                                "id": "68aIj82t8cSogMeK6CcIC"
+                            }
+                        },
+                        {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Entry",
+                                "id": "5HYQyeBMk0wqqAYygk2QS2"
+                            }
+                        },
+                        {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Entry",
+                                "id": "5Lib1A4L4IU0wIaoSIGO20"
+                            }
+                        },
+                        {
+                            "sys": {
+                                "type": "Link",
+                                "linkType": "Entry",
+                                "id": "2UJ2CUCdqg2AIC0cigsgsQ"
+                            }
+                        }
+                    ]
+                },
+                "faqs": {
+                    "en-US": "#### What is oil dependence and why is it bad?\nThe energy that lets us heat our homes and drive our cars comes from oil. Oil is found deep underground and we have to drill into the Earth to get it out. Sometimes things go wrong, and toxic oil is spilled in huge amounts, killing wildlife and destroying natural habitats. Also, a lot of our oil comes from other countries, so relying on them for something that powers our whole country affects our national security. These are just a few reasons why we should all try to use less oil.\n\n#### How can I create my own campaign like Cassandra did??\nHave a unique idea for a way young people around the country can impact on an important issue? Fill out [this form](https:\/\/www.dosomething.org\/campaigns\/submit-your-idea) and if we think it sounds like a DoSomething.org campaign, we'll hit you up!"
+                }
+            }
+        }
+    ]
+}
