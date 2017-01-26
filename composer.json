@@ -11,7 +11,8 @@
         "dosomething/gateway": "^1.0.0-rc15",
         "contentful/contentful": "@beta",
         "contentful/laravel": "@dev",
-        "erusev/parsedown": "^1.6"
+        "erusev/parsedown": "^1.6",
+        "seatgeek/sixpack-php": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
