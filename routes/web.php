@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,7 +49,7 @@ Route::get('sixpack', function() {
 
 
 Route::get('/blue', function() {
-    $sixpack = new SeatGeek\Sixpack\Session\Base;
+    $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
 
     $sixpack->convert('test');
 
@@ -55,10 +57,30 @@ Route::get('/blue', function() {
 });
 
 Route::get('/red', function() {
-    $sixpack = new SeatGeek\Sixpack\Session\Base;
+    $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
 
     $sixpack->convert('test');
 
     return 'Red wins!';
 });
 
+
+Route::get('campaign', function() {
+    $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
+
+    $alternate = $sixpack->participate('scholarship-example', ['without scholarship', 'with scholarship'])->getAlternative();
+
+    if ($alternate === 'without scholarship') {
+        return view('sixpack.scholarship', ['incentive' => 'false']);
+    } else {
+        return view('sixpack.scholarship', ['incentive' => 'true']);
+    }
+});
+
+Route::get('/done', function() {
+    $sixpack = $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
+
+    $sixpack->convert('scholarship-example');
+
+    return 'Thanks for doing it friend!';
+});
