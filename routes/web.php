@@ -34,7 +34,7 @@ Route::get('contentful', function () {
 
 
 Route::get('sixpack', function() {
-    $sixpack = new SeatGeek\Sixpack\Session\Base;
+    $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
 
     $alternate =  $sixpack->participate('test', ['blue', 'red'])->getAlternative();
 
