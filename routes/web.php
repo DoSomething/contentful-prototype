@@ -68,9 +68,9 @@ Route::get('/red', function() {
 Route::get('campaign', function() {
     $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
 
-    $alternate = $sixpack->participate('scholarship-example', ['without scholarship', 'with scholarship'])->getAlternative();
+    $alternate = $sixpack->participate('scholarship', ['without_scholarship', 'with_scholarship'])->getAlternative();
 
-    if ($alternate === 'without scholarship') {
+    if ($alternate === 'without_scholarship') {
         return view('sixpack.scholarship', ['incentive' => 'false']);
     } else {
         return view('sixpack.scholarship', ['incentive' => 'true']);
@@ -80,7 +80,7 @@ Route::get('campaign', function() {
 Route::get('/done', function() {
     $sixpack = $sixpack = new SeatGeek\Sixpack\Session\Base(['baseUrl' => '54.172.54.48:5000']);
 
-    $sixpack->convert('scholarship-example');
+    $sixpack->convert('scholarship');
 
     return 'Thanks for doing it friend!';
 });
