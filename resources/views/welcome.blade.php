@@ -13,7 +13,7 @@
             <div class="container__block -narrow">
                 <p><strong>You're looking at the future of DoSomething.org campaigns.</strong> It's still a work-in-progress
                 so not everything might work the way you expect! Check back frequently for updates!</p>
-
+                <strong>CHOCOLATE</strong>
                 <ul class="list">
                     <li><a href="/campaigns">Campaign Index</a></li>
                 </ul>
