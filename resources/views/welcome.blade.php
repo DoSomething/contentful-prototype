@@ -1,7 +1,7 @@
 @extends('layouts.takeover')
 
 @section('content')
-    <div class="chrome">
+    <div class="chrome -noise">
         <div class="wrapper">
             <section class="container -framed construction">
                 <div class="wrapper">
