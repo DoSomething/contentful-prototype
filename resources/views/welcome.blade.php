@@ -16,7 +16,6 @@
                            <li><input type="text" class="text-field" placeholder="you@gmail.com"></li>
                            <li><input type="submit" class="button" value="Submit"></li>
                        </ul>
-                       <p class="footnote">or just play Tetris while you're waiting</p>
                     </div>
                 </div>
             </section>
