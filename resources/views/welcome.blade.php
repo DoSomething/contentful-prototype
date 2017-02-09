@@ -1,23 +1,25 @@
-@extends('layouts.master')
+@extends('layouts.takeover')
 
 @section('content')
-    <header role="banner" class="header">
+    <div class="chrome">
         <div class="wrapper">
-            <h1 class="header__title">Phoenix Next</h1>
-            <p class="header__subtitle">The new web interface for DoSomething.org.</p>
-        </div>
-    </header>
-
-    <div class="container -padded">
-        <div class="wrapper">
-            <div class="container__block -narrow">
-                <p><strong>You're looking at the future of DoSomething.org campaigns.</strong> It's still a work-in-progress
-                so not everything might work the way you expect! Check back frequently for updates!</p>
-
-                <ul class="list">
-                    <li><a href="/campaigns">Campaign Index</a></li>
-                </ul>
-            </div>
+            <section class="container -framed construction">
+                <div class="wrapper">
+                    <div class="container__block -centered">
+                        <h2 class="heading -alpha">Under Construction</h2>
+                        <h3>We're rebuilding the site!</h3>
+                    </div>
+                    <div class="container__block -centered">
+                        <p>We're hard at work making a new <strong>DoSomething.org</strong> experience that is designed to be a platform which better serves the community.</p>
+                        <p>Enter your email below to be notified when we launch!</p>
+                        <ul class="form-actions -inline">
+                           <li><input type="text" class="text-field" placeholder="you@gmail.com"></li>
+                           <li><input type="submit" class="button" value="Submit"></li>
+                       </ul>
+                       <p class="footnote">or just play Tetris while you're waiting</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 @stop

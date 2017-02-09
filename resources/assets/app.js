@@ -11,3 +11,4 @@
 // Components
 import './components/container.scss';
 import './components/block.scss';
+import './components/construction.scss';

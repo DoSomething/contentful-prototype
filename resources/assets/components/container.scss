@@ -19,3 +19,56 @@
     }
   }
 }
+
+// Copied from Northstar, should be added to Forge
+
+$container-max-width: 560px;
+$soft-box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.2);
+
+.container {
+  &.-framed {
+    background-color: $white;
+    margin-top: $base-spacing;
+    overflow: hidden;
+    padding: $section-spacing 0;
+    position: relative;
+
+    > .wrapper {
+      width: 100%;
+    }
+
+    @include media($tablet) {
+      border-radius: $lg-border-radius;
+      box-shadow: $soft-box-shadow;
+      max-width: $container-max-width;
+      margin: $section-spacing auto;
+
+      > .wrapper {
+        margin-left: 0;
+      }
+    }
+
+    .navigation + & {
+      margin-top: 0;
+    }
+  }
+
+  .container__block {
+    &.-centered {
+      text-align: center;
+
+      .form-item {
+        text-align: left;
+      }
+
+      @include media($tablet) {
+        float: none;
+        max-width: 600px;
+        margin: $base-spacing auto;
+
+        // @TODO: Hacky!
+        .field-label { text-align: left; }
+      }
+    }
+  }
+}
