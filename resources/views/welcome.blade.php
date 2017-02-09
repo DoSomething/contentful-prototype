@@ -3,6 +3,7 @@
 @section('content')
     <div class="chrome -noise">
         <div class="wrapper">
+            <a class="construction__logo" href="http://dosomething.org"></a>
             <section class="container -framed construction">
                 <div class="wrapper">
                     <div class="container__block -centered">

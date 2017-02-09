@@ -1,4 +1,5 @@
 @import '~@dosomething/forge/scss/toolkit';
+$forge-path: "~@dosomething/forge/assets/";
 
 .takeover {
   height: 100%;
@@ -29,7 +30,18 @@
   width: 100%;
 }
 
+.construction__logo {
+  position: absolute;
+  background: forge-asset-url("images/logo.svg");
+  height: 60px;
+  width: 72px;
+  top: -$base-spacing;
+  left: 47%;
+  z-index: 100;
+}
+
 .construction {
+  position: relative;
 
   .heading {
     color: $yellow;
