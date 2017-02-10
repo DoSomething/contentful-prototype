@@ -36,7 +36,9 @@ $forge-path: "~@dosomething/forge/assets/";
   height: 60px;
   width: 72px;
   top: -$base-spacing;
-  left: 47%;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 100;
 }
 
