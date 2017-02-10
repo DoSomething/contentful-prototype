@@ -1,0 +1,29 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex__cell {
+  display: flex;
+  flex: 0 0 100%;
+}
+
+@include media($medium) {
+  .flex__cell {
+    flex: 1;
+  }
+
+  .flex__cell.-full {
+    flex: 0 0 100%;
+  }
+
+  .flex__cell.-one-third {
+    flex: 0 0 33.3333333333333%;
+  }
+
+  .flex__cell.-two-thirds {
+    flex: 0 0 66.6666666666666%;
+  }
+}

@@ -1,0 +1,15 @@
+// HACKZ: Make the header a bit smaller for nice demo.
+.header.-hero {
+  height: 500px;
+  min-height: 300px;
+}
+
+// Blue gradient to fade into Block Container
+.header.-hero:before {
+  background: linear-gradient(
+      transparent 30%,
+      rgba(32, 38, 52, .2) 50%,
+      rgba(32, 38, 52, .5) 75%,
+      rgba(32, 38, 52, 1)
+  );
+}

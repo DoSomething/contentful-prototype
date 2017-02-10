@@ -1,25 +1,5 @@
 @import '~@dosomething/forge/scss/toolkit';
 
-.container > .wrapper {
-  .container__block.-one-third {
-    @include media($tablet) {
-      @include span(4 of 12);
-    }
-  }
-
-  .container__block.-two-thirds {
-    @include media($tablet) {
-      @include span(8 of 12);
-    }
-  }
-
-  .container__block.-full {
-    @include media($tablet) {
-      @include span(100%);
-    }
-  }
-}
-
 // Copied from Northstar, should be added to Forge
 
 $container-max-width: 560px;

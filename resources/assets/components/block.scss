@@ -1,8 +1,24 @@
 @import '~@dosomething/forge/scss/toolkit';
 
+.block-container {
+  background: rgb(32, 38, 52);
+  padding: ($base-spacing / 2) 0;
+
+  @include clearfix;
+}
+
+.block-container > .wrapper {
+  @include media($tablet) {
+    @include span(12 no-gutters);
+    @include push(2);
+  }
+}
+
 .block {
-  background-color: $off-white;
-  border: 1px solid $light-gray;
+  width: 100%;
+  background: #fff;
+  margin: $base-spacing / 2;
+  padding: $base-spacing / 2;
+  box-shadow: $box-shadow;
   border-radius: $sm-border-radius;
-  padding: $base-spacing;
 }

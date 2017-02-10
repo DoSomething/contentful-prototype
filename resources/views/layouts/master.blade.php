@@ -40,14 +40,6 @@
         </div>
 
         @yield('content')
-
-        <div class="container">
-            <div class="wrapper">
-                <div class="container__block">
-                    <p class="footnote">Set Locale: <a href="?locale=en-US">US</a>, <a href="?locale=es-MX">MX</a></p>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <script type="text/javascript" src="https://unpkg.com/jquery@^3.0.0/dist/jquery.min.js"></script>

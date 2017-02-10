@@ -8,14 +8,13 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="wrapper">
+    <div class="block-container">
+        <div class="flex wrapper">
             @foreach ($campaign->activity_feed as $block)
-                <div class="container__block {{ $block->displayOptions->map(function($c) { return '-'.$c; })->implode(' ') }}">
+                <div class="flex__cell {{ $block->displayOptions->map(function($c) { return '-'.$c; })->implode(' ') }}">
                     @includeIf('blocks.'.$block->type, ['block' => $block])
                 </div>
             @endforeach
         </div>
     </div>
-
 @endsection

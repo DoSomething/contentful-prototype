@@ -1,0 +1,9 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $light-gray;
+  min-height: 200px;
+}
