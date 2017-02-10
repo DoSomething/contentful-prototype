@@ -5,7 +5,7 @@
         "build": "npm run clean && npm run modernizr && NODE_ENV=production webpack",
         "clean": "rm -rf public/dist",
         "modernizr": "modernizr -c node_modules/@dosomething/forge/modernizr.json -d public/dist/modernizr.js",
-        "postinstall": "npm run build",
+        "postinstall": "npm run build"
     },
     "babel": {
         "presets": [
