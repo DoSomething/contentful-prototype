@@ -2,7 +2,7 @@
     "private": true,
     "scripts": {
         "start": "npm run clean && npm run modernizr && webpack",
-        "build": "npm run clean && npm run modernizr && NODE_ENV=production webpack",
+        "build": "npm run clean && npm run modernizr && NODE_ENV=production webpack --progress",
         "clean": "rm -rf public/dist",
         "modernizr": "modernizr -c node_modules/@dosomething/forge/modernizr.json -d public/dist/modernizr.js",
         "postinstall": "npm run build"
