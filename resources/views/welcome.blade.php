@@ -19,6 +19,13 @@
                                <li><input type="submit" class="button" value="Submit"></li>
                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             </ul>
+                            @if (count($errors) > 0)
+                                <div class="validation-error">
+                                    @foreach ($errors->all() as $error)
+                                        <p>{{ $error }}</p>
+                                    @endforeach
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>

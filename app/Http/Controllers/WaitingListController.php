@@ -15,7 +15,11 @@ class WaitingListController extends Controller
      * @return Response
      */
     public function store(Request $request) {
-        WaitingListUser::create([
+        $this->validate($request, [
+            'email' => 'required|email'
+        ]);
+
+        WaitingListUser::firstOrCreate([
            'email' => $request->input('email')
         ]);
 
