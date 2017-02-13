@@ -35,3 +35,8 @@ Route::get('contentful', function () {
 
     return $client->getContentType('campaign');
 });
+
+/**
+ * Temporary route for collecting user emails pre-launch.
+ */
+Route::post('waitinglist', 'WaitingListController@store');

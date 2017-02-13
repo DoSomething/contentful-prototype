@@ -13,6 +13,10 @@
 </head>
 
 <body class="takeover">
+    @if (Session::has('flash_message'))
+        <div class="alert">{{ Session::get('flash_message') }}</div>
+    @endif
+
     @yield('content')
     <script type="text/javascript" src="https://unpkg.com/jquery@^3.0.0/dist/jquery.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/@dosomething/forge@^6.7.4/dist/forge.js"></script>

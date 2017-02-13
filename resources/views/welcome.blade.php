@@ -13,10 +13,13 @@
                     <div class="container__block -centered">
                         <p>We're hard at work making a new <strong>DoSomething.org</strong> experience that is designed to be a platform which better serves the community.</p>
                         <p>Enter your email below to be notified when we launch!</p>
-                        <ul class="form-actions -inline">
-                           <li><input type="text" class="text-field" placeholder="you@gmail.com"></li>
-                           <li><input type="submit" class="button" value="Submit"></li>
-                       </ul>
+                        <form action="waitinglist" method="post">
+                            <ul class="form-actions -inline">
+                               <li><input name="email" type="text" class="text-field" placeholder="you@gmail.com"></li>
+                               <li><input type="submit" class="button" value="Submit"></li>
+                               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </section>
