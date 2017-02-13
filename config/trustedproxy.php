@@ -24,13 +24,11 @@ return [
      * how many proxies that client's request has
      * subsequently passed through.
      */
-    'proxies' => [
-        '*',
-    ],
+    'proxies' => '*',
 
     /*
      * Default Header Names
-     *
+     *``
      * Change these if the proxy does
      * not send the default header names.
      *
