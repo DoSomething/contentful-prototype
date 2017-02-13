@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Contentful\Laravel\ContentfulServiceProvider::class,
+        Fideloper\Proxy\TrustedProxyServiceProvider::class,
 
         /**
          * DoSomething Service Providers...
