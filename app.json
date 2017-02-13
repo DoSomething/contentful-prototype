@@ -6,6 +6,7 @@
   },
   "env": {
     "APP_DEBUG": "true",
+    "NPM_CONFIG_PRODUCTION": "false",
     "APP_KEY": {
       "required": true
     },
@@ -41,10 +42,10 @@
   ],
   "buildpacks": [
     {
-      "url": "heroku/php"
+      "url": "heroku/nodejs"
     },
     {
-      "url": "heroku/nodejs"
+      "url": "heroku/php"
     }
   ]
 }
