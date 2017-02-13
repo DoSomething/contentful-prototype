@@ -25,20 +25,8 @@ return [
      * subsequently passed through.
      */
     'proxies' => [
-        '192.168.1.10',
+        '*',
     ],
-
-    /*
-     * Or, to trust all proxies that connect
-     * directly to your server, uncomment this:
-     */
-     # 'proxies' => '*',
-
-    /*
-     * Or, to trust ALL proxies, including those that
-     * are in a chain of fowarding, uncomment this:
-    */
-    # 'proxies' => '**',
 
     /*
      * Default Header Names
@@ -54,7 +42,6 @@ return [
      */
     'headers' => [
         \Illuminate\Http\Request::HEADER_CLIENT_IP    => 'X_FORWARDED_FOR',
-        \Illuminate\Http\Request::HEADER_CLIENT_HOST  => 'X_FORWARDED_HOST',
         \Illuminate\Http\Request::HEADER_CLIENT_PROTO => 'X_FORWARDED_PROTO',
         \Illuminate\Http\Request::HEADER_CLIENT_PORT  => 'X_FORWARDED_PORT',
     ]
