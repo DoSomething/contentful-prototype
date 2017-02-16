@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -27,6 +28,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        User::creating(function($user) {
+            $northstarUser = gateway('northstar')->asClient()->getUser('id', $user->northstar_id);
+            $user->legacy_id = $northstarUser->drupal_id;
+            $user->save();
+        });
     }
 }
