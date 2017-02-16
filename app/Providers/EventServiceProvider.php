@@ -28,7 +28,12 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        User::creating(function($user) {
+        // Went with 'saving' over 'creating' in the event
+        // a request fails & we want to auto-retry next on the authentication / update.
+        User::saving(function($user) {
+            if ($user->legacy_id) return;
+
+            // If the User does not have a legacy Drupal id cached, fetch from Northstar.
             $northstarUser = gateway('northstar')->asClient()->getUser('id', $user->northstar_id);
             $user->legacy_id = $northstarUser->drupal_id;
             $user->save();
