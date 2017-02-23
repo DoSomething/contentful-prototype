@@ -31,8 +31,8 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
-    let feed = this.props.state.campaign.activityFeed;
-    let reportbacks = this.props.state.reportbacks;
+    let feed = this.props.campaign.activityFeed;
+    let reportbacks = this.props.reportbacks;
 
     // @TODO: This should be moved into a separate data normalization layer.
     feed.map((block) => {
@@ -46,7 +46,10 @@ class Feed extends React.Component {
 
         const count = block.fields.additionalContent.count || 3;
         for (let i = 0; i < count; i++) {
-          block.reportbacks.push(reportbacks.shift());
+          let reportback = reportbacks.data.shift();
+          if (reportback) {
+            block.reportbacks.push(reportback);
+          }
         }
       }
 

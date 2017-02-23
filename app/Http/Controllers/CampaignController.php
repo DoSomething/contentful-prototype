@@ -62,6 +62,6 @@ class CampaignController extends Controller
         $reportbacks = $response['data'];
 
         return view('campaigns.show', ['campaign' => $campaign])
-            ->with('state', ['campaign' => $campaign, 'reportbacks' => $reportbacks]);
+            ->with('state', ['campaign' => $campaign, 'reportbacks' => ['isFetching' => false, 'data' => $reportbacks]]);
     }
 }

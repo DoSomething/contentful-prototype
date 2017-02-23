@@ -14,15 +14,25 @@ import { ready } from './helpers';
 import './components/construction.scss';
 import './components/container.scss';
 import './components/header.scss';
-import Feed from './components/Feed';
 
 import React from 'react';
 import ReactDom from 'react-dom';
 
+import { Provider } from 'react-redux'
+import ActionFeed from './containers/ActionFeed';
+import rootReducer from './reducers'
+import configureStore from './store';
+
+// Make action available to demonstrate loading more reportbacks.
+// @TODO: Expose this in the UI!
+import { fetchReportbacks } from './actions';
+window.actions = { fetchReportbacks };
+
 ready(() => {
   const appContainer = document.getElementById('app');
+  const store = configureStore(rootReducer, window.STATE);
 
   if (appContainer) {
-    ReactDom.render(<Feed state={window.STATE}/>, appContainer);
+    ReactDom.render(<Provider store={store}><ActionFeed /></Provider>, appContainer);
   }
 });
