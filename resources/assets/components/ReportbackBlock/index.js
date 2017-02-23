@@ -28,7 +28,7 @@ class ReportbackReaction extends React.Component {
   render() {
     return (
       <div className="reaction" onClick={this.onReact}>
-        <div className={`reaction__button ${this.state.reacted ? '-reacted' : ''}`}></div>
+        <div className={classNames('reaction__button', {'-reacted' : this.state.reacted})}></div>
         <div className="reaction__meta">
           <p>{this.state.total}</p>
         </div>
@@ -39,7 +39,7 @@ class ReportbackReaction extends React.Component {
 
 const ReportbackItem = (props) => {
   const item = props.reportback.reportback_items.data[0];
-  const image = item.media.uri;;
+  const image = item.media.uri;
   const name = props.reportback.user.first_name;
   const impact = `${props.reportback.quantity} jeans`;
   const reactions = item.kudos.data[0];
