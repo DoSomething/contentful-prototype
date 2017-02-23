@@ -2,6 +2,7 @@ import React from 'react';
 import Block from '../Block';
 import { FlexCell } from '../Flex';
 import './reportback.scss';
+import classnames from 'classnames';
 
 class ReportbackReaction extends React.Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class ReportbackReaction extends React.Component {
   render() {
     return (
       <div className="reaction" onClick={this.onReact}>
-        <div className={classNames('reaction__button', {'-reacted' : this.state.reacted})}></div>
+        <div className={classnames('reaction__button', {'-reacted' : this.state.reacted})}></div>
         <div className="reaction__meta">
           <p>{this.state.total}</p>
         </div>
