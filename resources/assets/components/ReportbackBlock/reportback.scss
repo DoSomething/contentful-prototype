@@ -1,0 +1,17 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.reaction {
+  .reaction__button {
+    width: 29px;
+    height: 25px;
+    background-image: url('../../images/heart-empty.svg');
+
+    &.-reacted {
+      background-image: url('../../images/heart-filled.svg');
+    }
+  }
+
+  .reaction__meta {
+    color: $med-gray;
+  }
+}

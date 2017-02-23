@@ -26,4 +26,3 @@ ready(() => {
     ReactDom.render(<Feed state={window.STATE}/>, appContainer);
   }
 });
-
