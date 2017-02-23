@@ -10,13 +10,14 @@ class ReportbackReaction extends React.Component {
 
     this.onReact = this.onReact.bind(this);
 
+    const term = this.props.reactions.term;
+    const currentUser = this.props.reactions.current_user;
+
     this.state = {
-      reacted: false,
-      total: this.props.term ? this.props.term.total : 0,
+      reacted: currentUser ? currentUser.reacted : false,
+      total: term ? term.total : 0,
     }
   }
-
-  //TODO: Fetch state of Reaction for this user on load
 
   onReact() {
     this.setState({
