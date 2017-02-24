@@ -3,12 +3,14 @@ import Block from '../Block';
 import { FlexCell } from '../Flex';
 import './reportback.scss';
 import classnames from 'classnames';
+import { Phoenix } from '@dosomething/gateway';
 
 class ReportbackReaction extends React.Component {
   constructor(props) {
     super(props);
 
     this.onReact = this.onReact.bind(this);
+    this.phoenix = new Phoenix();
 
     const term = this.props.reactions.term;
     const currentUser = this.props.reactions.current_user;
@@ -24,7 +26,12 @@ class ReportbackReaction extends React.Component {
       reacted: !this.state.reacted,
       total: this.state.total + (this.state.reacted ? -1 : 1),
     });
-    //TODO: Make API call to change the Reaction state (POST|DELETE)
+
+    this.phoenix.post('api/v1/reactions', {
+      'reportback_item_id': this.props.itemId,
+      'term_id': this.props.reactions.term.id,
+      'value': this.state.reacted,
+    }).then(console.log);
   }
 
   render() {
@@ -52,7 +59,7 @@ const ReportbackItem = (props) => {
       <div className="padded">
         <h4>{name}</h4>
         <p className="footnote">{impact}</p>
-        <ReportbackReaction reactions={reactions} />
+        <ReportbackReaction reactions={reactions} itemId={item.id} />
       </div>
     </Block>
   );

@@ -132,4 +132,22 @@ class PhoenixLegacy extends RestApiClient
             'source' => $contents['source'],
         ]);
     }
+
+    /**
+     * Store a Reaction on a Reportback on the Druapl site.
+     * @see: https://github.com/DoSomething/phoenix/blob/dev/documentation/endpoints/kudos.md#create-a-kudos
+     *
+     * @param  string $reportback_item_id - Reportback Item ID on the Drupal site
+     * @param  string $term_id            - Reaction term ID on the Drupal site
+     * @param  string $user_id            - Northstar user ID to react on behalf of
+     * @return array - API response
+     */
+    public function storeReaction($reportback_item_id, $term_id, $user_id)
+    {
+        return $this->post('v1/kudos', [
+            'reportback_item_id' => $reportback_item_id,
+            'term_id' => $term_id,
+            'northstar_id' => $user_id,
+        ]);
+    }
 }
