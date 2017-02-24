@@ -47,6 +47,8 @@
 <script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
 
 {{ isset($state) ? scriptify($state) : scriptify() }}
+{{ Auth::check() ? scriptifyAuthDetails(Auth::user()) : '' }}
+
 </body>
 
 </html>
