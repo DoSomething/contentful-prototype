@@ -146,7 +146,7 @@ class PhoenixLegacy extends RestApiClient
     {
         return $this->post('v1/kudos', [
             'reportback_item_id' => $reportback_item_id,
-            'term_id' => $term_id,
+            'term_ids' => $term_id,
             'northstar_id' => $user_id,
         ]);
     }

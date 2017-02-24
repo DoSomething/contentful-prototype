@@ -31,7 +31,9 @@ class ReportbackReaction extends React.Component {
       'reportback_item_id': this.props.itemId,
       'term_id': this.props.reactions.term.id,
       'value': this.state.reacted,
-    }).then(console.log);
+      'northstar_id': window.AUTH.northstar_id || '',
+      'access_token': window.AUTH.access_token || '',
+    });
   }
 
   render() {
