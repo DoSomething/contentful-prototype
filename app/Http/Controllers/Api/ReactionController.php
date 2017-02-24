@@ -32,6 +32,7 @@ class ReactionController extends Controller
             'reportback_item_id' => 'required|string',
             'term_id' => 'required|string',
             'value' => 'required|boolean',
+            'reaction_id' => 'required|string',
         ]);
 
         if (!Auth::check()) {
@@ -40,8 +41,13 @@ class ReactionController extends Controller
 
         $reportbackItemId = $request->input('reportback_item_id');
         $termId = $request->input('term_id');
+        $reactionId = $request->input('reaction_id');
         $userId = Auth::user()->northstar_id;
 
-        return response()->json($this->phoenixLegacy->storeReaction($reportbackItemId, $termId, $userId));
+        if ($request->input('value')) {
+            return response()->json($this->phoenixLegacy->storeReaction($reportbackItemId, $termId, $userId));
+        } else {
+            return response()->json($this->phoenixLegacy->deleteReaction($reactionId));
+        }
     }
 }

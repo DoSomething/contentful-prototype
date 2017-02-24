@@ -150,4 +150,15 @@ class PhoenixLegacy extends RestApiClient
             'northstar_id' => $user_id,
         ]);
     }
+
+    /**
+     * Delete the given Reaction from the Drupal site.
+     *
+     * @param  string $reactionId Reaction ID on the Drupal site.
+     * @return array              Api response.
+     */
+    public function deleteReaction($reactionId)
+    {
+        return $this->delete('v1/kudos'.$reactionId, []);
+    }
 }

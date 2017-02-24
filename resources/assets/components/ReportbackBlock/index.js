@@ -14,10 +14,11 @@ class ReportbackReaction extends React.Component {
 
     const term = this.props.reactions.term;
     const currentUser = this.props.reactions.current_user;
-
+    console.log(currentUser.kudos_id)
     this.state = {
       reacted: currentUser ? currentUser.reacted : false,
       total: term ? term.total : 0,
+      reactionId: currentUser ? currentUser.kudos_id : '',
     }
   }
 
@@ -30,9 +31,13 @@ class ReportbackReaction extends React.Component {
     this.phoenix.post('api/v1/reactions', {
       'reportback_item_id': this.props.itemId,
       'term_id': this.props.reactions.term.id,
-      'value': this.state.reacted,
+      'value': !this.state.reacted,
       'northstar_id': window.AUTH.northstar_id || '',
       'access_token': window.AUTH.access_token || '',
+      'reaction_id': this.state.reactionId,
+    })
+    .then(res => {
+      console.log(res);
     });
   }
 
