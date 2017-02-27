@@ -37,6 +37,7 @@ return [
 
     'phoenix-legacy' => [
         'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
+        'campaign' => env('PHOENIX_LEGACY_CAMPAIGN_NID', '1144'),
         'username' => env('PHOENIX_LEGACY_USERNAME'),
         'password' => env('PHOENIX_LEGACY_PASSWORD'),
     ],

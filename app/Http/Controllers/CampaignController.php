@@ -56,7 +56,7 @@ class CampaignController extends Controller
     public function show($slug)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
-        $phoenixNid = data_get($campaign, 'legacy_campaign_id', '1283');
+        $phoenixNid = data_get($campaign, 'legacy_campaign_id', config('services.phoenix-legacy.campaign'));
 
         $userId = Auth::check() ? Auth::user()->northstar_id : '';
         $response = $this->phoenixLegacy->getAllReportbacks(['campaigns' => $phoenixNid, 'status' => 'promoted', 'load_user' => true, 'as_user' => $userId]);
