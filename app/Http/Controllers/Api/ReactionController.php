@@ -28,13 +28,6 @@ class ReactionController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'reportback_item_id' => 'required|string',
-            'term_id' => 'required|string',
-            'value' => 'required|boolean',
-            'reaction_id' => 'required|string',
-        ]);
-
         if (!Auth::check()) {
             return response()->json(['error' => 'Not authenticated'], 401);
         }

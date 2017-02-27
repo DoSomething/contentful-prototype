@@ -22,7 +22,7 @@ class VerifyToken
         $accessToken = $request->input('access_token');
 
         if ($northstarId && $accessToken) {
-            $user = User::find($northstarId);
+            $user = User::where('northstar_id', $northstarId)->firstOrFail();
             if ($user && $user->access_token === $accessToken) {
                 Auth::setUser($user);
             }

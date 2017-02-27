@@ -14,7 +14,7 @@ class ReportbackReaction extends React.Component {
 
     const term = this.props.reactions.term;
     const currentUser = this.props.reactions.current_user;
-    console.log(currentUser.kudos_id)
+
     this.state = {
       reacted: currentUser ? currentUser.reacted : false,
       total: term ? term.total : 0,
@@ -23,21 +23,27 @@ class ReportbackReaction extends React.Component {
   }
 
   onReact() {
+    const value = !this.state.reacted;
+
     this.setState({
-      reacted: !this.state.reacted,
+      reacted: value,
       total: this.state.total + (this.state.reacted ? -1 : 1),
     });
 
     this.phoenix.post('api/v1/reactions', {
       'reportback_item_id': this.props.itemId,
       'term_id': this.props.reactions.term.id,
-      'value': !this.state.reacted,
+      'value': value,
       'northstar_id': window.AUTH.northstar_id || '',
       'access_token': window.AUTH.access_token || '',
       'reaction_id': this.state.reactionId,
     })
     .then(res => {
-      console.log(res);
+      if (res && res[0]) {
+        this.setState({
+          reactionId: res[0].kid,
+        });
+      }
     });
   }
 

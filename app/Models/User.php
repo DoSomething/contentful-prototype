@@ -11,6 +11,4 @@ use DoSomething\Gateway\Laravel\HasNorthstarToken;
 class User extends Model implements AuthenticatableContract, NorthstarUserContract
 {
     use Authenticatable, HasNorthstarToken;
-
-    public $primaryKey = 'northstar_id';
 }
