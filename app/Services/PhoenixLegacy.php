@@ -157,6 +157,6 @@ class PhoenixLegacy extends RestApiClient
      * @return array               API response
      */
     public function deleteReaction($reaction_id) {
-        return $this->delete('v1/kudos/'.$reaction_id)
+        return $this->delete('v1/kudos/'.$reaction_id);
     }
 }

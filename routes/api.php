@@ -23,4 +23,6 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['api']], 
 
     Route::resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
 
+    Route::post('reactions', 'ReactionController@update')->middleware('auth');
+
 });
