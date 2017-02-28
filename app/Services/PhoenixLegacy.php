@@ -145,8 +145,8 @@ class PhoenixLegacy extends RestApiClient
     public function storeReaction($reportback_item_id, $term_id, $user_id) {
         return $this->post('v1/kudos', [
             'reportback_item_id' => $reportback_item_id,
-            'term_ids' => $term_id,
-            'northstar_id' => $northstar_id,
+            'term_ids' => [$term_id],
+            'northstar_id' => $user_id,
         ]);
     }
 
