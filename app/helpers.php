@@ -20,6 +20,17 @@ function scriptify($json = [], $store = 'STATE')
     return new HtmlString('<script type="text/javascript">window.'.$store.' = '.json_encode($json).'</script>');
 }
 
+
+function scriptifyAuthDetails($user)
+{
+    $json = [
+        'northstar_id' => $user->northstar_id,
+        'access_token' => $user->access_token,
+    ];
+
+    return scriptify($json, 'AUTH');
+}
+
 /**
  * Get an item from the cache, or store the default value.
  *

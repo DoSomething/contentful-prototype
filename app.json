@@ -43,7 +43,8 @@
     },
     "PHOENIX_LEGACY_PASSWORD": {
         "required": true
-    }
+    },
+    "PHOENIX_LEGACY_CAMPAIGN_NID": "1283"
   },
   "formation": {},
   "addons": [
