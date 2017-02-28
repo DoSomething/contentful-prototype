@@ -11,7 +11,7 @@ class ReportbackReaction extends React.Component {
     this.onReact = this.onReact.bind(this);
     this.phoenix = new Phoenix();
 
-    const currentUser = this.props.reactions.currentUser;
+    const currentUser = this.props.reactions.current_user;
 
     this.state = {
       active: currentUser ? currentUser.reacted : false,
@@ -27,6 +27,21 @@ class ReportbackReaction extends React.Component {
       active: newReactionState,
       total: this.state.total + (newReactionState ? 1 : -1),
     });
+
+    this.phoenix.post('api/v1/reactions', {
+      'reportback_item_id': this.props.itemId,
+      'term_id': this.props.reactions.term.id,
+      'value': newReactionState,
+      'reaction_id': this.state.reactionId,
+    })
+    .then((res) => {
+      console.log(res);
+      if (res && res[0] && res[0].created) {
+        this.setState({
+          reactionId: res[0].kid,
+        });
+      }
+    });
   }
 
   render() {
@@ -39,6 +54,7 @@ class ReportbackReaction extends React.Component {
 ReportbackReaction.defaultProps = {
   reactions: {
     term: {
+      id: '',
       total: 0,
     },
     currentUser: {
@@ -46,8 +62,8 @@ ReportbackReaction.defaultProps = {
       kudos_id: '',
     },
   },
-
-}
+  itemId: '',
+};
 
 const ReportbackItem = (props) => {
   const item = props.reportback.reportback_items.data[0];
@@ -62,7 +78,7 @@ const ReportbackItem = (props) => {
       <div className="padded">
         <h4>{name}</h4>
         <p className="footnote">{impact}</p>
-        <ReportbackReaction reactions={reactions} />
+        <ReportbackReaction reactions={reactions} itemId={item.id} />
       </div>
     </Block>
   );
