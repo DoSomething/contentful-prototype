@@ -84,6 +84,9 @@ class Handler extends ExceptionHandler
         elseif ($exception instanceof ValidationException) {
             $code = 422;
         }
+        elseif ($exception instanceof AuthenticationException) {
+            $code = 401;
+        }
         else {
             $code = 500;
         }
