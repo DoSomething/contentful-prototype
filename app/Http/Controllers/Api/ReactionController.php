@@ -18,6 +18,8 @@ class ReactionController extends Controller
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
+
+        // $this->middleware('auth');
     }
 
     /**
@@ -28,10 +30,6 @@ class ReactionController extends Controller
      */
     public function update(Request $request)
     {
-        if (!Auth::check()) {
-            return response()->json(['error' => 'Not authenticated'], 401);
-        }
-
         $reportbackItemId = $request->input('reportback_item_id');
         $termId = $request->input('term_id');
         $reactionId = $request->input('reaction_id');
