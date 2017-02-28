@@ -19,7 +19,7 @@ class ReactionController extends Controller
     {
         $this->phoenixLegacy = $phoenixLegacy;
 
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
