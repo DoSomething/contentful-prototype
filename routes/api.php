@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['api']], function () {
+Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
 
     Route::get('/', function() {
         return 'Phoenix API version 1.0. Check the GitHub docs for available endpoints.';
@@ -23,6 +23,6 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1', 'middleware' => ['api']], 
 
     Route::resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
 
-    Route::post('reactions', 'ReactionController@update')->middleware('auth');
+    Route::post('reactions', 'ReactionController@update');
 
 });
