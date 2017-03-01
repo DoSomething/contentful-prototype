@@ -23,6 +23,4 @@ Route::group(['namespace' => 'Api', 'prefix' => 'v1'], function () {
 
     Route::resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
 
-    Route::post('reactions', 'ReactionController@update');
-
 });

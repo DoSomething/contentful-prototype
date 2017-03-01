@@ -28,17 +28,22 @@ class ReactionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function store(Request $request)
     {
-        $reportbackItemId = $request->input('reportback_item_id');
-        $termId = $request->input('term_id');
-        $reactionId = $request->input('reaction_id');
-        $userId = Auth::user()->northstar_id;
+        $this->validate([
+            'reportback_item_id': 'required|string',
+            'term_id': 'required|string',
+        ]);
 
-        if ($request->input('value')) {
-            return response()->json($this->phoenixLegacy->storeReaction($reportbackItemId, $termId, $userId));
-        } else {
-            return response()->json($this->phoenixLegacy->deleteReaction($reactionId));
-        }
+        return response()->json($this->phoenixLegacy->storeReaction($request->input('reportback_item_id'),
+            $request->input('term_id'), Auth::user()->northstar_id));
+    }
+
+    public function delete(Request $request) {
+        $this->validate([
+            'reaction_id': 'required|string',
+        ]);
+
+        return response()->json($this->phoenixLegacy->deleteReaction($request->input('reaction_id')));
     }
 }

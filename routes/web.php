@@ -40,3 +40,9 @@ Route::get('contentful', function () {
  * Temporary route for collecting user emails pre-launch.
  */
 Route::post('waitinglist', 'WaitingListController@store');
+
+/**
+ * Collect user reactions
+ */
+Route::post('reactions', 'ReactionController@store');
+Route::delete('reactions/{id}', 'ReactionController@delete');
