@@ -35,8 +35,13 @@ class ReactionController extends Controller
             'term_id' => 'required|string',
         ]);
 
-        return response()->json($this->phoenixLegacy->storeReaction($request->input('reportback_item_id'),
-            $request->input('term_id'), Auth::user()->northstar_id));
+        $reaction = $this->phoenixLegacy->storeReaction(
+            $request->input('reportback_item_id'),
+            $request->input('term_id'),
+            Auth::user()->northstar_id
+        );
+
+        return response()->json($reaction);
     }
 
     /**
@@ -46,7 +51,8 @@ class ReactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete(Request $request, $id) {
+    public function delete(Request $request, $id)
+    {
         return response()->json($this->phoenixLegacy->deleteReaction($id));
     }
 }
