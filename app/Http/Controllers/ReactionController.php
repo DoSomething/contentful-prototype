@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use Auth;
 use App\Http\Controllers\Controller;
@@ -23,27 +23,30 @@ class ReactionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a reaction.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->validate([
-            'reportback_item_id': 'required|string',
-            'term_id': 'required|string',
+        $this->validate($request, [
+            'reportback_item_id' => 'required|string',
+            'term_id' => 'required|string',
         ]);
 
         return response()->json($this->phoenixLegacy->storeReaction($request->input('reportback_item_id'),
             $request->input('term_id'), Auth::user()->northstar_id));
     }
 
-    public function delete(Request $request) {
-        $this->validate([
-            'reaction_id': 'required|string',
-        ]);
-
-        return response()->json($this->phoenixLegacy->deleteReaction($request->input('reaction_id')));
+    /**
+     * Delete a reaction.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(Request $request, $id) {
+        return response()->json($this->phoenixLegacy->deleteReaction($id));
     }
 }

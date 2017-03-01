@@ -28,19 +28,21 @@ class ReportbackReaction extends React.Component {
       total: this.state.total + (newReactionState ? 1 : -1),
     });
 
-    this.phoenix.post('api/v1/reactions', {
-      'reportback_item_id': this.props.itemId,
-      'term_id': this.props.reactions.term.id,
-      'value': newReactionState,
-      'reaction_id': this.state.reactionId,
-    })
-    .then((response) => {
-      if (response && response[0] && response[0].created) {
-        this.setState({
-          reactionId: response[0].kid,
-        });
-      }
-    });
+    if (newReactionState) {
+      this.phoenix.post('reactions', {
+        'reportback_item_id': this.props.itemId,
+        'term_id': this.props.reactions.term.id,
+      })
+      .then((response) => {
+        if (response && response[0] && response[0].created) {
+          this.setState({
+            reactionId: response[0].kid,
+          });
+        }
+      });
+    } else {
+      this.phoenix.delete(`reactions/${this.state.reactionId}`);
+    }
   }
 
   render() {
