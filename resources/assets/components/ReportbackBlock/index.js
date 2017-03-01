@@ -34,11 +34,10 @@ class ReportbackReaction extends React.Component {
       'value': newReactionState,
       'reaction_id': this.state.reactionId,
     })
-    .then((res) => {
-      console.log(res);
-      if (res && res[0] && res[0].created) {
+    .then((response) => {
+      if (response && response[0] && response[0].created) {
         this.setState({
-          reactionId: res[0].kid,
+          reactionId: response[0].kid,
         });
       }
     });
