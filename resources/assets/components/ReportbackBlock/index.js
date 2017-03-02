@@ -8,10 +8,10 @@ class ReportbackReaction extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onReact = this.onReact.bind(this);
+    this.onClick = this.onClick.bind(this);
     this.phoenix = new Phoenix();
 
-    // This user might the current user or the Drupal API User
+    // This user might be the current user or the Drupal API User
     const currentUser = this.props.reactions.current_user;
     const userReaction = currentUser ? currentUser.reacted : false;
 
@@ -24,8 +24,8 @@ class ReportbackReaction extends React.Component {
     }
   }
 
-  onReact() {
-    if (!window.USER.authenticated) {
+  onClick() {
+    if (!window.AUTH.authenticated) {
       window.location.href = '/login';
       return;
     }
@@ -56,7 +56,7 @@ class ReportbackReaction extends React.Component {
 
   render() {
     return (
-      <Reaction active={this.state.active} total={this.state.total} onClick={this.onReact}></Reaction>
+      <Reaction active={this.state.active} total={this.state.total} onClick={this.onClick}></Reaction>
     );
   }
 }
