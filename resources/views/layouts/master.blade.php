@@ -48,6 +48,7 @@
 <script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
 
 {{ isset($state) ? scriptify($state) : scriptify() }}
+{{ scriptifyCurrentUser() }}
 </body>
 
 </html>

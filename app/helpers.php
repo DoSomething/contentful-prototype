@@ -20,6 +20,15 @@ function scriptify($json = [], $store = 'STATE')
     return new HtmlString('<script type="text/javascript">window.'.$store.' = '.json_encode($json).'</script>');
 }
 
+function scriptifyCurrentUser()
+{
+    $authenticated = Auth::check();
+    return scriptify([
+        'authenticated' => $authenticated,
+        'northstarId' => $authenticated ? Auth::user()->northstar_id : null,
+    ], 'user');
+}
+
 /**
  * Get an item from the cache, or store the default value.
  *
