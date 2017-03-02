@@ -25,7 +25,7 @@ class ReportbackReaction extends React.Component {
   }
 
   onClick() {
-    if (!window.AUTH.authenticated) {
+    if (!window.USER.authenticated) {
       window.location.href = '/login';
       return;
     }
