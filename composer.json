@@ -12,7 +12,8 @@
         "contentful/laravel": "@dev",
         "erusev/parsedown": "^1.6",
         "predis/predis": "^1.1",
-        "fideloper/proxy": "^3.2"
+        "fideloper/proxy": "^3.2",
+        "embed/embed": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

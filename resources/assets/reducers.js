@@ -29,6 +29,13 @@ const reportbacks = (state = {}, action) => {
   }
 };
 
-const rootReducer = combineReducers({campaign, reportbacks});
+/**
+ * Events reducer:
+ */
+const submission = (state = {}, action) => {
+  return state;
+};
+
+const rootReducer = combineReducers({campaign, submission, reportbacks});
 
 export default rootReducer;

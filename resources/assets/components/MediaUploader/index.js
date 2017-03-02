@@ -7,11 +7,6 @@ class MediaUploader extends React.Component {
     super(props);
 
     this.handleChange = this.handleChange.bind(this);
-
-    this.state = {
-      file: null,
-      filePreviewUrl: null
-    };
   }
 
   handleChange(event) {
@@ -30,7 +25,7 @@ class MediaUploader extends React.Component {
       try {
         blob = processFile(fileReader.result);
 
-        this.setState({
+        this.props.onChange({
           file: blob,
           filePreviewUrl: URL.createObjectURL(blob)
         });
@@ -43,7 +38,7 @@ class MediaUploader extends React.Component {
   }
 
   render() {
-    let { filePreviewUrl } = this.state;
+    let { filePreviewUrl } = this.props.media;
     let content = null;
 
     if (filePreviewUrl) {
@@ -64,11 +59,17 @@ class MediaUploader extends React.Component {
 }
 
 MediaUploader.propTypes = {
-  label: React.PropTypes.string
+  label: React.PropTypes.string,
+  media: React.PropTypes.object,
+  onChange: React.PropTypes.func
 };
 
 MediaUploader.defaultProps = {
-  label: 'Upload Media'
+  label: 'Upload Media',
+  media: {
+    file: null,
+    filePreviewUrl: null,
+  }
 };
 
 export default MediaUploader;

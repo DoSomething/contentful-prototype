@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
   return {
     campaign: state.campaign,
     reportbacks: state.reportbacks,
+    submission: state.submission,
   };
 };
 

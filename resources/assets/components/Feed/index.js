@@ -6,6 +6,7 @@ import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
+import ReportbackUploader from '../ReportbackUploader';
 import './feed.scss';
 
 class Feed extends React.Component {
@@ -61,6 +62,9 @@ class Feed extends React.Component {
         <div className="wrapper">
           <Flex>
             {feed.map((block, index) => this.renderFeedItem(block, index))}
+            <FlexCell key="reportback_uploader">
+              <ReportbackUploader/>
+            </FlexCell>
           </Flex>
         </div>
       </div>

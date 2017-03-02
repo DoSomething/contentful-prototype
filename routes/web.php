@@ -1,48 +1,31 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
+/**
+ * Set web routes for the application.
+ *
+ * @var \Illuminate\Routing\Router $router
+ * @see \App\Providers\RouteServiceProvider
+ */
 
-Route::get('/', function () {
+// Homepage
+$router->get('/', function () {
     return view('welcome');
 });
 
 // Authentication
-Route::get('login', 'AuthController@getLogin');
-Route::get('logout', 'AuthController@getLogout');
+$router->get('login', 'AuthController@getLogin');
+$router->get('logout', 'AuthController@getLogout');
 
-/**
- * Campaigns
- */
-Route::get('campaigns', 'CampaignController@index');
-Route::get('campaigns/{slug}', 'CampaignController@show');
+// Campaigns
+$router->get('campaigns', 'CampaignController@index');
+$router->get('campaigns/{slug}', 'CampaignController@show');
 
-/**
- * Testing
- *
- * Temporary route for testing requests to contentful.
- */
-Route::get('contentful', function () {
-    $client = app('contentful.delivery');
+// Waiting List: for collecting user emails pre-launch.
+$router->post('waitinglist', 'WaitingListController@store');
 
-    return $client->getContentType('campaign');
-});
+// Reactions
+$router->post('reactions', 'ReactionController@store');
+$router->delete('reactions/{id}', 'ReactionController@delete');
 
-/**
- * Temporary route for collecting user emails pre-launch.
- */
-Route::post('waitinglist', 'WaitingListController@store');
-
-/**
- * Collect user reactions
- */
-Route::post('reactions', 'ReactionController@store');
-Route::delete('reactions/{id}', 'ReactionController@delete');
+// Embeds
+$router->get('embed', 'EmbedController@index');
