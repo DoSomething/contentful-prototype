@@ -11,16 +11,25 @@ class ReportbackReaction extends React.Component {
     this.onReact = this.onReact.bind(this);
     this.phoenix = new Phoenix();
 
+    // This user might the current user or the Drupal API User
     const currentUser = this.props.reactions.current_user;
+    const userReaction = currentUser ? currentUser.reacted : false;
+
+    const reacted = window.USER.authenticated ? userReaction : false;
 
     this.state = {
-      active: currentUser ? currentUser.reacted : false,
+      active: reacted,
       total: this.props.reactions.term.total,
       reactionId: currentUser ? currentUser.kudos_id : '',
     }
   }
 
   onReact() {
+    if (!window.USER.authenticated) {
+      window.location.href = '/login';
+      return;
+    }
+
     const newReactionState = !this.state.active;
 
     this.setState({

@@ -26,7 +26,7 @@ function scriptifyCurrentUser()
     return scriptify([
         'authenticated' => $authenticated,
         'northstarId' => $authenticated ? Auth::user()->northstar_id : null,
-    ], 'user');
+    ], 'USER');
 }
 
 /**
