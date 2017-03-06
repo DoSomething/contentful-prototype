@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { toggleTodo } from '../actions'
-import Portal from '../components/Portal'
+import CampaignFeed from '../components/CampaignFeed'
 
 const mapStateToProps = (state) => {
   return {
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 };
 
-const ActivityFeed = connect(
+const Activity = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Portal);
+)(CampaignFeed);
 
-export default ActivityFeed;
+export default Activity;

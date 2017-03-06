@@ -1,7 +1,7 @@
 import React from 'react';
 import Feed from '../Feed';
 
-class Portal extends React.Component {
+class CampaignFeed extends React.Component {
 
   /**
    * Map the given display option to a
@@ -83,7 +83,7 @@ class Portal extends React.Component {
 
 }
 
-Portal.defaultProps = {
+CampaignFeed.defaultProps = {
   rowsPerPage: 3,
   campaign: {
     activityFeed: [],
@@ -93,4 +93,4 @@ Portal.defaultProps = {
   },
 };
 
-export default Portal;
+export default CampaignFeed;
