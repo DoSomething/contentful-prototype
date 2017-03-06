@@ -58,7 +58,7 @@ class CampaignFeed extends React.Component {
       const displayOptions = block.fields.displayOptions;
       blockPoints += this.mapDisplayToPoints(displayOptions);
 
-      if (blockPoints % 3 > this.props.rowsPerPage) {
+      if (blockPoints / 3 > this.props.rowsPerPage) {
         return true;
       }
 
