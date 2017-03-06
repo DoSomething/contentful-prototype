@@ -12,9 +12,9 @@ class CampaignFeed extends React.Component {
    */
   mapDisplayToPoints(displayOption) {
     switch (displayOption[0]) {
-      case 'full': return 3;
       case 'one-third': return 1;
       case 'two-thirds': return 2;
+      case 'full': return 3;
       default: return 0;
     }
   }
@@ -49,6 +49,11 @@ class CampaignFeed extends React.Component {
     }
   }
 
+  /**
+   * Get the blocks fully formatted for rendering in the feed.
+   *
+   * @return Array feed
+   */
   formulateFeed() {
     const feed = [];
     const reportbacks = this.props.reportbacks.data.slice(0);
