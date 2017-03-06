@@ -26,12 +26,22 @@ class Feed extends React.Component {
     return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
   }
 
+  mapDisplayToPoints(displayOption) {
+    switch (displayOption[0]) {
+      case 'full': return 3;
+      case 'one-third': return 1;
+      case 'two-thirds': return 2;
+      default: return 0;
+    }
+  }
+
   /**
    * Render the feed.
    *
    * @returns {XML}
    */
   render() {
+    let blockPoints = 0;
     let feed = this.props.campaign.activityFeed;
     let reportbacks = this.props.reportbacks;
 
@@ -40,6 +50,8 @@ class Feed extends React.Component {
       // Set root-level type property if it's a custom block.
       const type = block.type === 'customBlock' ? block.fields.type : block.type;
       block.type = type;
+
+      blockPoints += this.mapDisplayToPoints(block.fields.displayOptions);
 
       // If it's a reportback block, load in the requested number of reportbacks.
       if (type === 'reportbacks') {
