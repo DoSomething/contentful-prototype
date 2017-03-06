@@ -22,7 +22,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import { Provider } from 'react-redux'
-import ActionFeed from './containers/ActionFeed';
+import ActionPortal from './containers/ActionPortal';
 import rootReducer from './reducers'
 import configureStore from './store';
 
@@ -36,6 +36,6 @@ ready(() => {
   const store = configureStore(rootReducer, window.STATE);
 
   if (appContainer) {
-    ReactDom.render(<Provider store={store}><ActionFeed /></Provider>, appContainer);
+    ReactDom.render(<Provider store={store}><ActionPortal /></Provider>, appContainer);
   }
 });
