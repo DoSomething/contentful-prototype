@@ -7,7 +7,6 @@ import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
 import ReportbackUploader from '../ReportbackUploader';
-import './feed.scss';
 
 class Feed extends React.Component {
   /**
@@ -35,11 +34,9 @@ class Feed extends React.Component {
     return (
       <Flex>
         {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
-
         <FlexCell width={["full"]}>
           <a className="button -secondary" onClick={this.props.viewMore}>view more</a>
         </FlexCell>
-
         <FlexCell key="reportback_uploader">
           <ReportbackUploader/>
         </FlexCell>

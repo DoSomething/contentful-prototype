@@ -8,23 +8,20 @@
  |
  */
 
+import React from 'react';
+import ReactDom from 'react-dom';
 import { ready } from './helpers';
 
 // WHATWG Fetch Polyfill
 import 'whatwg-fetch';
 
-// Components
+// Style Components
 import './components/construction.scss';
 import './components/container.scss';
 import './components/header.scss';
 
-import React from 'react';
-import ReactDom from 'react-dom';
-
-import { Provider } from 'react-redux'
-import Activity from './containers/Activity';
-import rootReducer from './reducers'
-import configureStore from './store';
+// Containers
+import App from './containers/App';
 
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!
@@ -33,9 +30,8 @@ window.actions = { fetchReportbacks };
 
 ready(() => {
   const appContainer = document.getElementById('app');
-  const store = configureStore(rootReducer, window.STATE);
 
   if (appContainer) {
-    ReactDom.render(<Provider store={store}><Activity /></Provider>, appContainer);
+    ReactDom.render(<App />, appContainer);
   }
 });
