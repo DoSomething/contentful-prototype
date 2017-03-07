@@ -36,9 +36,9 @@ class Feed extends React.Component {
       <Flex>
         {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
 
-        <div className="flex_cell -full">
+        <FlexCell width={["full"]}>
           <a className="button -secondary" onClick={this.props.viewMore}>view more</a>
-        </div>
+        </FlexCell>
       </Flex>
     );
   }
