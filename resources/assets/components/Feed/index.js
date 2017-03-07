@@ -39,6 +39,10 @@ class Feed extends React.Component {
         <FlexCell width={["full"]}>
           <a className="button -secondary" onClick={this.props.viewMore}>view more</a>
         </FlexCell>
+
+        <FlexCell key="reportback_uploader">
+          <ReportbackUploader/>
+        </FlexCell>
       </Flex>
     );
   }
