@@ -36,9 +36,9 @@ class Feed extends React.Component {
       <Flex>
         {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
 
-        <FlexCell key="reportback_uploader">
-          <ReportbackUploader/>
-        </FlexCell>
+        <div className="flex_cell -full">
+          <a className="button -secondary" onClick={this.props.viewMore}>view more</a>
+        </div>
       </Flex>
     );
   }
@@ -46,6 +46,7 @@ class Feed extends React.Component {
 
 Feed.defaultProps = {
   blocks: [],
+  viewMore: () => {},
 };
 
 export default Feed;
