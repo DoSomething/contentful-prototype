@@ -3,6 +3,21 @@ import Feed from '../Feed';
 
 class CampaignFeed extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this.formulateFeed = this.formulateFeed.bind(this);
+
+    this.state = {
+      blockIndex: 0,
+      blocks: [],
+    };
+  }
+
+  componentDidMount() {
+    this.formulateFeed();
+  }
+
   /**
    * Map the given display option to a
    * numeric point value.
@@ -33,15 +48,15 @@ class CampaignFeed extends React.Component {
    * If it's a reportback block, load in the requested number of reportbacks.
    *
    * @param Object block
-   * @param Array reportbacks
    */
-  appendReportbacks(block, reportbacks) {
+  appendReportbacks(block) {
     if (block.type === 'reportbacks') {
       block.reportbacks = [];
 
       const count = block.fields.additionalContent.count || 3;
       for (let i = 0; i < count; i++) {
-        let reportback = reportbacks.shift();
+        const reportback = this.props.reportbacks.data.shift();
+
         if (reportback) {
           block.reportbacks.push(reportback);
         }
@@ -50,37 +65,38 @@ class CampaignFeed extends React.Component {
   }
 
   /**
-   * Get the blocks fully formatted for rendering in the feed.
-   *
-   * @return Array feed
+   * Create another page of blocks to render.
    */
   formulateFeed() {
-    const feed = [];
-    const reportbacks = this.props.reportbacks.data.slice(0);
     let blockPoints = 0;
+    const blocks = [];
 
-    this.props.campaign.activityFeed.some((block) => {
+    const feed = this.props.campaign.activityFeed.slice(this.state.blockIndex);
+    feed.some((block) => {
       const displayOptions = block.fields.displayOptions;
       blockPoints += this.mapDisplayToPoints(displayOptions);
 
+      // 3 equals a filled row of block(s)
       if (blockPoints / 3 > this.props.rowsPerPage) {
         return true;
       }
 
       this.setType(block);
-      this.appendReportbacks(block, reportbacks);
-
-      feed.push(block);
+      this.appendReportbacks(block);
+      blocks.push(block);
     });
 
-    return feed;
+    this.setState({
+      blockIndex: this.state.blockIndex + blocks.length,
+      blocks: this.state.blocks.concat(blocks),
+    });
   }
 
   render() {
     return (
       <div className="feed-container">
         <div className="wrapper">
-          <Feed blocks={this.formulateFeed()} />
+          <Feed blocks={this.state.blocks} viewMore={this.formulateFeed} />
         </div>
       </div>
     );
