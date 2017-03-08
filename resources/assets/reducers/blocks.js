@@ -1,4 +1,4 @@
-import { REQUESTED_BLOCKS, RECIEVED_BLOCKS } from '../actions';
+import { RECIEVED_BLOCKS } from '../actions';
 
 /**
  * Block reducer:

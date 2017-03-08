@@ -81,6 +81,9 @@ class CampaignFeed extends React.Component {
       blocks.push(block);
     });
 
+    // TODO: Rename recievedBlocks
+    this.props.recievedBlocks(blocks);
+
     // ! Dispatch an event !
     // this.setState({
     //   blockIndex: this.state.blockIndex + blocks.length,
@@ -90,7 +93,7 @@ class CampaignFeed extends React.Component {
 
   render() {
     return (
-      <Feed blocks={this.state.blocks} viewMore={this.formulateFeed} />
+      <Feed blocks={this.props.blocks} viewMore={this.formulateFeed} />
     );
   }
 

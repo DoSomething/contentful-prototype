@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
+import { recievedBlocks, toggleTodo } from '../actions';
 import CampaignFeed from '../components/CampaignFeed'
 
 const mapStateToProps = (state) => {
@@ -14,7 +14,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    // ...
+    recievedBlocks: (blocks) => {
+      dispatch(recievedBlocks(blocks));
+    },
   }
 };
 
