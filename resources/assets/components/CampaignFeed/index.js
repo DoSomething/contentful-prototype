@@ -82,8 +82,7 @@ class CampaignFeed extends React.Component {
       blocks.push(block);
     });
 
-    // TODO: Rename recievedBlocks
-    this.props.recievedBlocks(blocks);
+    this.props.createdBlocks(blocks);
   }
 
   render() {
