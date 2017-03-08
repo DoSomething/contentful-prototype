@@ -17,10 +17,12 @@ export const RECIEVED_BLOCKS = 'RECIEVED_BLOCKS';
  * to the state tree (either as a result of application logic or user input).
  */
 
+// Action: block fetch initiated.
 export function requestingBlocks() {
   return { type: REQUESTED_BLOCKS };
 }
 
+// Action: block fetch complete.
 export function recievedBlocks(blocks) {
   return { type: RECIEVED_BLOCKS, blocks };
 }
