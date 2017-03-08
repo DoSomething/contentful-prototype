@@ -15,7 +15,10 @@ import NotFound from './NotFound';
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
 const basename = window.location.pathname.split('/').slice(0, 3).join('/');
 
-const store = configureStore({...reducers, routing: routerReducer}, window.STATE);
+const ititialState = window.STATE;
+ititialState.blocks = [];
+
+const store = configureStore({...reducers, routing: routerReducer}, ititialState);
 const routerHistory = useRouterHistory(createBrowserHistory);
 const history = syncHistoryWithStore(routerHistory({basename}), store);
 

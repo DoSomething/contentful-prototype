@@ -9,18 +9,12 @@ export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
 export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
-export const REQUESTED_BLOCKS = 'REQUESTED_BLOCKS';
 export const RECIEVED_BLOCKS = 'RECIEVED_BLOCKS';
 
 /**
  * Action Creators: these functions create actions, which describe changes
  * to the state tree (either as a result of application logic or user input).
  */
-
-// Action: block fetch initiated.
-export function requestingBlocks() {
-  return { type: REQUESTED_BLOCKS };
-}
 
 // Action: block fetch complete.
 export function recievedBlocks(blocks) {

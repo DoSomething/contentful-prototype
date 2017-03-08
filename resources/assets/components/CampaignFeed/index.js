@@ -7,11 +7,6 @@ class CampaignFeed extends React.Component {
     super(props);
 
     this.formulateFeed = this.formulateFeed.bind(this);
-
-    this.state = {
-      blockIndex: 0,
-      blocks: [],
-    };
   }
 
   componentDidMount() {
@@ -71,7 +66,7 @@ class CampaignFeed extends React.Component {
     let blockPoints = 0;
     const blocks = [];
 
-    const feed = this.props.campaign.activityFeed.slice(this.state.blockIndex);
+    const feed = this.props.campaign.activityFeed.slice(this.props.blocks.length);
     feed.some((block) => {
       const displayOptions = block.fields.displayOptions;
       blockPoints += this.mapDisplayToPoints(displayOptions);
@@ -86,10 +81,11 @@ class CampaignFeed extends React.Component {
       blocks.push(block);
     });
 
-    this.setState({
-      blockIndex: this.state.blockIndex + blocks.length,
-      blocks: this.state.blocks.concat(blocks),
-    });
+    // ! Dispatch an event !
+    // this.setState({
+    //   blockIndex: this.state.blockIndex + blocks.length,
+    //   blocks: this.state.blocks.concat(blocks),
+    // });
   }
 
   render() {

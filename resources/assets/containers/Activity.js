@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
     campaign: state.campaign,
     reportbacks: state.reportbacks,
     submissions: state.submissions,
+    blocks: state.blocks,
   };
 };
 
