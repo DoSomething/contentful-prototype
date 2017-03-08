@@ -7,7 +7,7 @@ const blocks = (state = {}, action) => {
   switch (action.type) {
     case RECIEVED_BLOCKS:
       return Object.assign({}, state, {
-        blocks: state.blocks.concat(action.blocks),
+        data: (state.data || []).concat(action.blocks),
       });
 
     default:
