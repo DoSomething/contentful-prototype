@@ -18,6 +18,9 @@ export default function(reducers, preloadedState = {}) {
     blocks: {
       offset: 1,
     },
+    user: {
+      id: false,
+    },
   };
 
   // Log actions to the console in development.

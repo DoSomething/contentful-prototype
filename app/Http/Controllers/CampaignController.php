@@ -73,7 +73,9 @@ class CampaignController extends Controller
             'reportbacks' => [
                 'data' => $reportbacks
             ],
-            'user' => Auth::check() ? Auth::user()->northstar_id : null,
+            'user' => [
+                'id' => Auth::check() ? Auth::user()->northstar_id : null,
+            ],
         ];
 
         return view('campaigns.show', ['campaign' => $campaign])
