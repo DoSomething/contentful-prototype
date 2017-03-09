@@ -67,24 +67,21 @@ class CampaignFeed extends React.Component {
   generateFeed() {
     this.reportbackIndex = 0;
     let blockPoints = 0;
-    const blocks = [];
 
-    this.props.campaign.activityFeed.some((block) => {
+    return this.props.campaign.activityFeed.filter((block) => {
       blockPoints += this.mapDisplayToPoints(block.fields.displayOptions);
 
       const totalRows = blockPoints / BLOCKS_PER_ROW;
       const rowTarget = this.props.blocks.offset * this.props.rowsPerPage;
 
       if (totalRows > rowTarget) {
-        return true;
+        return false;
       }
 
       this.setType(block);
       this.appendReportbacks(block);
-      blocks.push(block);
+      return true;
     });
-
-    return blocks;
   }
 
   render() {
