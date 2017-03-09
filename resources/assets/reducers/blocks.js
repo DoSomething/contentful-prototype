@@ -1,13 +1,13 @@
-import { CREATED_BLOCKS } from '../actions';
+import { CLICKED_VIEW_MORE } from '../actions';
 
 /**
  * Block reducer:
  */
 const blocks = (state = {}, action) => {
   switch (action.type) {
-    case CREATED_BLOCKS:
+    case CLICKED_VIEW_MORE:
       return Object.assign({}, state, {
-        data: state.data.concat(action.blocks),
+        offset: state.offset + 1,
       });
 
     default:

@@ -6,7 +6,9 @@ class CampaignFeed extends React.Component {
   constructor(props) {
     super(props);
 
-    this.formulateFeed = this.formulateFeed.bind(this);
+    this.state = {
+      blocks: [],
+    }
   }
 
   componentDidMount() {
@@ -66,8 +68,8 @@ class CampaignFeed extends React.Component {
     let blockPoints = 0;
     const blocks = [];
 
-    const feedIndex = this.props.blocks.data ? this.props.blocks.data.length : 0;
-    const feed = this.props.campaign.activityFeed.slice(feedIndex);
+    const offset = this.props.blocks.offset;
+    const feed = this.props.campaign.activityFeed.slice(offset);
     feed.some((block) => {
       const displayOptions = block.fields.displayOptions;
       blockPoints += this.mapDisplayToPoints(displayOptions);
@@ -82,12 +84,14 @@ class CampaignFeed extends React.Component {
       blocks.push(block);
     });
 
-    this.props.createdBlocks(blocks);
+    this.setState({
+      blocks: this.state.blocks.concat(blocks),
+    });
   }
 
   render() {
     return (
-      <Feed blocks={this.props.blocks.data} viewMore={this.formulateFeed} />
+      <Feed blocks={this.state.blocks} viewMore={this.props.clickedViewMore} />
     );
   }
 
@@ -95,15 +99,6 @@ class CampaignFeed extends React.Component {
 
 CampaignFeed.defaultProps = {
   rowsPerPage: 3,
-  campaign: {
-    activityFeed: [],
-  },
-  reportbacks: {
-    data: [],
-  },
-  blocks: {
-    data: [],
-  },
 };
 
 export default CampaignFeed;
