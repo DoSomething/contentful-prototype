@@ -11,7 +11,10 @@ export default function(reducers, preloadedState = {}) {
     submissions: {
       isStoring: false,
       data: [],
-    }
+    },
+    blocks: {
+      data: [],
+    },
   };
 
   // Log actions to the console in development.
