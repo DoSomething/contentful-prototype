@@ -1,7 +1,19 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
+import merge from 'lodash/merge';
 
 export default function(reducers, preloadedState = {}) {
+  const initialState = {
+    reportbacks: {
+      isFetching: false,
+      data: [],
+    },
+    submissions: {
+      isStoring: false,
+      data: [],
+    }
+  };
+
   // Log actions to the console in development.
   const middleware = [thunk];
   if (process.env.NODE_ENV === `development`) {
@@ -14,7 +26,7 @@ export default function(reducers, preloadedState = {}) {
 
   return createStore(
     combineReducers(reducers),
-    preloadedState,
+    merge(initialState, preloadedState),
     composeEnhancers(
       applyMiddleware(...middleware)
     )

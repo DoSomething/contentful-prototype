@@ -17,7 +17,7 @@ const submissions = (state = {}, action) => {
 
     case ADD_TO_SUBMISSIONS_LIST:
       return Object.assign({}, state, {
-        data: [...state, action.reportback]
+        data: [...state.data, action.reportback]
       })
 
     default:
