@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
     reportbacks: state.reportbacks,
     submissions: state.submissions,
     blocks: state.blocks,
+    user: state.user,
   };
 };
 
