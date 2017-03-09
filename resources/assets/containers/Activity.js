@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { createdBlocks, toggleTodo } from '../actions';
-import CampaignFeed from '../components/CampaignFeed'
+import CampaignFeed from '../components/CampaignFeed';
 
 const mapStateToProps = (state) => {
   return {
