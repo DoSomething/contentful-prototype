@@ -16,7 +16,7 @@ export default function(reducers, preloadedState = {}) {
       data: [],
     },
     blocks: {
-      offset: 0,
+      offset: 1,
     },
   };
 

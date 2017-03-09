@@ -1,18 +1,16 @@
 import React from 'react';
 import Feed from '../Feed';
 
+const BLOCKS_PER_ROW = 3;
+
 class CampaignFeed extends React.Component {
 
   constructor(props) {
     super(props);
 
-    this.state = {
-      blocks: [],
-    }
-  }
-
-  componentDidMount() {
-    this.formulateFeed();
+    // Intentionally not attached to the component state as
+    // this property should not trigger re-renders.
+    this.reportbackIndex = 0;
   }
 
   /**
@@ -52,11 +50,13 @@ class CampaignFeed extends React.Component {
 
       const count = block.fields.additionalContent.count || 3;
       for (let i = 0; i < count; i++) {
-        const reportback = this.props.reportbacks.data.shift();
+        const reportback = this.props.reportbacks.data[this.reportbackIndex];
 
         if (reportback) {
           block.reportbacks.push(reportback);
         }
+
+        this.reportbackIndex++;
       }
     }
   }
@@ -65,17 +65,17 @@ class CampaignFeed extends React.Component {
    * Create another page of blocks to render.
    */
   formulateFeed() {
+    this.reportbackIndex = 0;
     let blockPoints = 0;
     const blocks = [];
 
-    const offset = this.props.blocks.offset;
-    const feed = this.props.campaign.activityFeed.slice(offset);
-    feed.some((block) => {
-      const displayOptions = block.fields.displayOptions;
-      blockPoints += this.mapDisplayToPoints(displayOptions);
+    this.props.campaign.activityFeed.some((block) => {
+      blockPoints += this.mapDisplayToPoints(block.fields.displayOptions);
 
-      // 3 equals a filled row of block(s)
-      if (blockPoints / 3 > this.props.rowsPerPage) {
+      const totalRows = blockPoints / BLOCKS_PER_ROW;
+      const rowTarget = this.props.blocks.offset * this.props.rowsPerPage;
+
+      if (totalRows > rowTarget) {
         return true;
       }
 
@@ -84,14 +84,12 @@ class CampaignFeed extends React.Component {
       blocks.push(block);
     });
 
-    this.setState({
-      blocks: this.state.blocks.concat(blocks),
-    });
+    return blocks;
   }
 
   render() {
     return (
-      <Feed blocks={this.state.blocks} viewMore={this.props.clickedViewMore} />
+      <Feed blocks={this.formulateFeed()} viewMore={this.props.clickedViewMore} />
     );
   }
 
