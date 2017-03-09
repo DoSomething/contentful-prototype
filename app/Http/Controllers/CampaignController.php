@@ -68,7 +68,15 @@ class CampaignController extends Controller
         ]);
         $reportbacks = $response['data'];
 
+        $state = [
+            'campaign' => $campaign,
+            'reportbacks' => [
+                'data' => $reportbacks
+            ],
+            'user' => Auth::check() ? Auth::user()->northstar_id : null,
+        ];
+
         return view('campaigns.show', ['campaign' => $campaign])
-            ->with('state', ['campaign' => $campaign, 'reportbacks' => ['data' => $reportbacks]]);
+            ->with('state', $state);
     }
 }
