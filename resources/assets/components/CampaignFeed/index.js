@@ -1,5 +1,6 @@
 import React from 'react';
 import Feed from '../Feed';
+import Revealer from '../Revealer';
 
 const BLOCKS_PER_ROW = 3;
 
@@ -84,11 +85,24 @@ class CampaignFeed extends React.Component {
     });
   }
 
+  /**
+   * Build the feed revealer based on the user authentication state.
+   * TODO: Integrate signup logic. (If auth & not signed up)
+   */
+  buildRevealer() {
+    const authenticated = this.props.user.id !== null;
+    const title = authenticated ? 'view more' : 'signup';
+    const onReveal = authenticated ? this.props.clickedViewMore : () => window.location.href = '/login';
+
+    return <Revealer title={title} onReveal={onReveal} />
+  }
+
   render() {
     const blocks = this.generateFeed();
+    const revealer = this.buildRevealer();
 
     return (
-      <Feed blocks={blocks} viewMore={this.props.clickedViewMore} />
+      <Feed blocks={blocks} revealer={revealer} />
     );
   }
 
