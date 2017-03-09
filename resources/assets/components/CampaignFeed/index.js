@@ -62,9 +62,9 @@ class CampaignFeed extends React.Component {
   }
 
   /**
-   * Create another page of blocks to render.
+   * Create the feed.
    */
-  formulateFeed() {
+  generateFeed() {
     this.reportbackIndex = 0;
     let blockPoints = 0;
     const blocks = [];
@@ -88,8 +88,10 @@ class CampaignFeed extends React.Component {
   }
 
   render() {
+    const blocks = this.generateFeed();
+
     return (
-      <Feed blocks={this.formulateFeed()} viewMore={this.props.clickedViewMore} />
+      <Feed blocks={blocks} viewMore={this.props.clickedViewMore} />
     );
   }
 
