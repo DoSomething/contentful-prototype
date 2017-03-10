@@ -1,4 +1,8 @@
-import { USER_LIKED_REPORTBACK, USER_UNLIKED_REPORTBACK } from '../actions';
+import {
+  USER_LIKED_REPORTBACK,
+  USER_UNLIKED_REPORTBACK,
+  REACTION_COMPLETE,
+} from '../actions';
 const update = require('react/lib/update');
 
 /**
@@ -12,7 +16,7 @@ const reactions = (state = {}, action) => {
       return update(state, {
         data: {
           [action.reportbackItemId]: {
-            reacted: {$set: true},
+            reacted: {$set: true}, //TODO: Bump total +1
           }
         }
       });
@@ -21,7 +25,16 @@ const reactions = (state = {}, action) => {
       return update(state, {
         data: {
           [action.reportbackItemId]: {
-            reacted: {$set: false},
+            reacted: {$set: false}, //TODO: Bump total -1
+          }
+        }
+      });
+
+    case REACTION_COMPLETE:
+      return update(state, {
+        data: {
+          [action.reportbackItemId]: {
+            id: {$set: action.reactionId},
           }
         }
       });

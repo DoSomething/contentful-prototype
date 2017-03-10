@@ -16,6 +16,7 @@ export default function(reducers, preloadedState = {}) {
         reacted,
         total: item.kudos.data[0] ? item.kudos.data[0].term.total : 0,
         id: currentUser ? currentUser.kudos_id : null,
+        termId: item.kudos.data[0] ? item.kudos.data[0].term.id : '1274', // This is a hardcoded default because phoenix-ashes is bugged.
       };
     });
   });

@@ -12,6 +12,7 @@ export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 export const USER_LIKED_REPORTBACK = 'USER_LIKED_REPORTBACK';
 export const USER_UNLIKED_REPORTBACK = 'USER_UNLIKED_REPORTBACK';
+export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -65,6 +66,14 @@ export function userUnlikedReportback(reportbackItemId) {
   }
 }
 
+// Action: component got a reaction response back.
+export function reactionComplete(reportbackItemId, reactionId) {
+  return {
+    type: REACTION_COMPLETE,
+    reportbackItemId,
+    reactionId,
+  }
+}
 
 // An async action creator to submit a new reportback and place in submissions gallery.
 export function submitReportback(reportback) {

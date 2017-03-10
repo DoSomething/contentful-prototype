@@ -1,10 +1,15 @@
 import { connect } from 'react-redux';
 import ReportbackBlock from '../components/ReportbackBlock';
-import { userLikedReportback, userUnlikedReportback } from '../actions';
+import {
+  userLikedReportback,
+  userUnlikedReportback,
+  reactionComplete,
+} from '../actions';
 
 const mapStateToProps = (state) => {
   return {
     reactions: state.reactions,
+    user: state.user,
   };
 }
 
@@ -16,7 +21,11 @@ const mapDispatchToProps = (dispatch) => {
 
     userUnlikedReportback: (reportbackItemId) => {
       dispatch(userUnlikedReportback(reportbackItemId));
-    }
+    },
+
+    reactionComplete: (reportbackItemId, reactionId) => {
+      dispatch(reactionComplete(reportbackItemId, reactionId));
+    },
   }
 }
 

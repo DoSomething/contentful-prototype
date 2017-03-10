@@ -27,12 +27,37 @@ const ReportbackBlock = (props) => {
     };
 
     const reactionData = props.reactions.data[item.id];
+
+    const like = () => {
+      if (props.user.id === null) {
+        window.location.href = '/login';
+        return;
+      }
+
+      props.userLikedReportback(item.id);
+
+      (new Phoenix()).post('reactions', {
+        'reportback_item_id': item.id,
+        'term_id': reactionData.termId,
+      })
+      .then((response) => {
+        if (response && response[0] && response[0].created) {
+          props.reactionComplete(item.id, response[0].kid);
+        }
+      });
+    };
+
+    const unlike = () => {
+      props.userUnlikedReportback(item.id);
+      (new Phoenix()).delete(`reactions/${reactionData.id}`);
+    };
+
     const reaction = (
       <Reaction
         active={reactionData.reacted}
         total={reactionData.total}
-        onLike={() => props.userLikedReportback(item.id)}
-        onUnlike={() => props.userUnlikedReportback(item.id)} />
+        onLike={() => like()}
+        onUnlike={() => unlike()} />
     );
 
     return (
