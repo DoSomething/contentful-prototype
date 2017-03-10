@@ -16,7 +16,8 @@ const reactions = (state = {}, action) => {
       return update(state, {
         data: {
           [action.reportbackItemId]: {
-            reacted: {$set: true}, //TODO: Bump total +1
+            reacted: {$set: true},
+            total: {$set: state.data[action.reportbackItemId].total + 1},
           }
         }
       });
@@ -25,7 +26,8 @@ const reactions = (state = {}, action) => {
       return update(state, {
         data: {
           [action.reportbackItemId]: {
-            reacted: {$set: false}, //TODO: Bump total -1
+            reacted: {$set: false},
+            total: {$set: state.data[action.reportbackItemId].total - 1},
           }
         }
       });
