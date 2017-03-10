@@ -10,6 +10,8 @@ export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
 export const STORE_REPORTBACK_SUCESSFUL = 'STORE_REPORTBACK_SUCESSFUL';
 export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
+export const USER_LIKED_REPORTBACK = 'USER_LIKED_REPORTBACK';
+export const USER_UNLIKED_REPORTBACK = 'USER_UNLIKED_REPORTBACK';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -46,6 +48,23 @@ export function addToSubmissionsList(reportback) {
     reportback
   }
 }
+
+// Action: user liked a reportback
+export function userLikedReportback(reportbackItemId) {
+  return {
+    type: USER_LIKED_REPORTBACK,
+    reportbackItemId,
+  }
+}
+
+// Action: user unliked a reportback
+export function userUnlikedReportback(reportbackItemId) {
+  return {
+    type: USER_UNLIKED_REPORTBACK,
+    reportbackItemId,
+  }
+}
+
 
 // An async action creator to submit a new reportback and place in submissions gallery.
 export function submitReportback(reportback) {

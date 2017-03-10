@@ -4,8 +4,8 @@ import { get } from 'lodash';
 import CallToActionBlock from '../CallToActionBlock';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
-import ReportbackBlock from "../ReportbackBlock";
 import { Flex, FlexCell } from '../Flex';
+import ReportbackContainer from '../../containers/ReportbackContainer';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 
 class Feed extends React.Component {
@@ -19,7 +19,7 @@ class Feed extends React.Component {
     const BlockComponent = get({
       'campaign_update': CampaignUpdateBlock,
       'join_cta': CallToActionBlock,
-      'reportbacks': ReportbackBlock,
+      'reportbacks': ReportbackContainer,
     }, block.type, PlaceholderBlock);
 
     return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;

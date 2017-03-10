@@ -5,7 +5,8 @@ import classnames from 'classnames';
 const Reaction = (props) => {
   const active = props.active || false;
   const total = props.total || 0;
-  const onClick = props.onClick || null;
+
+  const onClick = () => active ? props.onUnlike() : props.onLike();
 
   return (
     <div className="reaction" onClick={onClick}>
