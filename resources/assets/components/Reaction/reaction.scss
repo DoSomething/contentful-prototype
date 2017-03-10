@@ -9,6 +9,10 @@
     &.-reacted {
       background-image: url('../../images/heart-filled.svg');
     }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .reaction__meta {
