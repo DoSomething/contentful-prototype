@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import ReportbackBlock from '../components/ReportbackBlock';
 import {
-  userLikedReportback,
-  userUnlikedReportback,
+  userToggledReactionOn,
+  userToggledReactionOff,
   reactionComplete,
 } from '../actions';
 
@@ -15,12 +15,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLikedReportback: (reportbackItemId) => {
-      dispatch(userLikedReportback(reportbackItemId));
+    userToggledReactionOn: (reportbackItemId) => {
+      dispatch(userToggledReactionOn(reportbackItemId));
     },
 
-    userUnlikedReportback: (reportbackItemId) => {
-      dispatch(userUnlikedReportback(reportbackItemId));
+    userToggledReactionOff: (reportbackItemId) => {
+      dispatch(userToggledReactionOff(reportbackItemId));
     },
 
     reactionComplete: (reportbackItemId, reactionId) => {

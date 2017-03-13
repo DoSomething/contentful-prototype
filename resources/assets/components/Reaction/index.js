@@ -6,10 +6,10 @@ const Reaction = (props) => {
   const active = props.active || false;
   const total = props.total || 0;
 
-  const onClick = () => active ? props.onUnlike() : props.onLike();
+  const onToggle = () => !active ? props.onToggleOn() : props.onToggleOff();
 
   return (
-    <div className="reaction" onClick={onClick}>
+    <div className="reaction" onClick={onToggle}>
       <div className={classnames('reaction__button', {'-reacted' : active})}></div>
       <div className="reaction__meta">
         <p>{total}</p>

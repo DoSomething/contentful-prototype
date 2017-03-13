@@ -28,13 +28,13 @@ const ReportbackBlock = (props) => {
 
     const reactionData = props.reactions.data[item.id];
 
-    const like = () => {
+    const toggleOn = () => {
       if (props.user.id === null) {
         window.location.href = '/login';
         return;
       }
 
-      props.userLikedReportback(item.id);
+      props.userToggledReactionOn(item.id);
 
       (new Phoenix()).post('reactions', {
         'reportback_item_id': item.id,
@@ -47,8 +47,8 @@ const ReportbackBlock = (props) => {
       });
     };
 
-    const unlike = () => {
-      props.userUnlikedReportback(item.id);
+    const toggleOff = () => {
+      props.userToggledReactionOff(item.id);
       (new Phoenix()).delete(`reactions/${reactionData.id}`);
     };
 
@@ -56,8 +56,8 @@ const ReportbackBlock = (props) => {
       <Reaction
         active={reactionData.reacted}
         total={reactionData.total}
-        onLike={() => like()}
-        onUnlike={() => unlike()} />
+        onToggleOn={toggleOn}
+        onToggleOff={toggleOff} />
     );
 
     return (
