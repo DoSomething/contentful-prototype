@@ -34,22 +34,11 @@ const ReportbackBlock = (props) => {
         return;
       }
 
-      props.userToggledReactionOn(item.id);
-
-      (new Phoenix()).post('reactions', {
-        'reportback_item_id': item.id,
-        'term_id': reactionData.termId,
-      })
-      .then((response) => {
-        if (response && response[0] && response[0].created) {
-          props.reactionComplete(item.id, response[0].kid);
-        }
-      });
+      props.userToggledReactionOn(item.id, reactionData.termId);
     };
 
     const toggleOff = () => {
-      props.userToggledReactionOff(item.id);
-      (new Phoenix()).delete(`reactions/${reactionData.id}`);
+      props.userToggledReactionOff(item.id, reactionData.id);
     };
 
     const reaction = (

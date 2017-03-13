@@ -15,16 +15,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userToggledReactionOn: (reportbackItemId) => {
-      dispatch(userToggledReactionOn(reportbackItemId));
+    userToggledReactionOn: (reportbackItemId, termId) => {
+      dispatch(userToggledReactionOn(reportbackItemId, termId));
     },
 
-    userToggledReactionOff: (reportbackItemId) => {
-      dispatch(userToggledReactionOff(reportbackItemId));
-    },
-
-    reactionComplete: (reportbackItemId, reactionId) => {
-      dispatch(reactionComplete(reportbackItemId, reactionId));
+    userToggledReactionOff: (reportbackItemId, reactionId) => {
+      dispatch(userToggledReactionOff(reportbackItemId, reactionId));
     },
   }
 }
