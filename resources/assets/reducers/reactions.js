@@ -3,7 +3,7 @@ import {
   USER_TOGGLED_REACTION_OFF,
   REACTION_COMPLETE,
 } from '../actions';
-import update from'react/lib/update';
+import update from 'react/lib/update';
 
 /**
  * Reactions reducer:
