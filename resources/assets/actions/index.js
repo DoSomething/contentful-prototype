@@ -127,16 +127,15 @@ export function setCurrentlySignedUp(status) {
 
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
-  return dispatch => (new Phoenix).get('/')
+  return dispatch => (new Phoenix).get(`activity/${campaignId}`)
     .then(response => {
-      //TODO: Logic to check if you actually are signed up or not.
+      if (!response || !response.sid) return;
+
       dispatch({
         type: SIGNUP_COMPLETE,
         campaignId,
       });
-    })
-    .then(() => {
-      //TODO: Logic to check if you actually are signed up or not.
+
       dispatch({
         type: SET_CURRENTLY_SIGNED_UP,
         status: true,

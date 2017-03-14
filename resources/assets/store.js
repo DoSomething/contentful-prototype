@@ -43,7 +43,7 @@ export default function(reducers, preloadedState = {}) {
       data: initialReactionState,
     },
     signups: {
-      data: (localStorage.getItem('signups') || []).split(','),
+      data: (localStorage.getItem('signups') || '').split(','),
       status: false,
     },
   };
