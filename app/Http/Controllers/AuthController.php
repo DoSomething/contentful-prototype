@@ -31,7 +31,7 @@ class AuthController extends Controller
      */
     public function getLogin(ServerRequestInterface $request, ResponseInterface $response)
     {
-        return gateway('northstar')->usingGrant('authorization_code')->authorize($request, $response, $this->redirectTo);
+        return gateway('northstar')->authorize($request, $response, $this->redirectTo);
     }
 
     /**
@@ -42,6 +42,6 @@ class AuthController extends Controller
      */
     public function getLogout(ResponseInterface $response)
     {
-        return gateway('northstar')->usingGrant('authorization_code')->logout($response, $this->redirectAfterLogout);
+        return gateway('northstar')->logout($response, $this->redirectAfterLogout);
     }
 }
