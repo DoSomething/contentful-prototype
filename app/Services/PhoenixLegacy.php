@@ -171,9 +171,11 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getActivity($user_id, $campaign_id)
     {
-        //TODO: Cache this response.
-        return $this->get('v1/users/' . $user_id . '/activity', [
-            'nid' => $campaign_id,
-        ]);
+        $path = 'v1/users/' . $user_id . '/activity';
+        $query = ['nid' => $campaign_id];
+
+        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 }
