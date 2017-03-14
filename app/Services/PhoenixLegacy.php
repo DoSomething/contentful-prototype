@@ -142,7 +142,8 @@ class PhoenixLegacy extends RestApiClient
      * @param  string $user_id            Northstar ID to react on behalf of
      * @return array                      API response
      */
-    public function storeReaction($reportback_item_id, $term_id, $user_id) {
+    public function storeReaction($reportback_item_id, $term_id, $user_id)
+    {
         return $this->post('v1/kudos', [
             'reportback_item_id' => $reportback_item_id,
             'term_ids' => [$term_id],
@@ -156,7 +157,14 @@ class PhoenixLegacy extends RestApiClient
      * @param  string $reaction_id Reaction ID on the Drupal site.
      * @return array               API response
      */
-    public function deleteReaction($reaction_id) {
+    public function deleteReaction($reaction_id)
+    {
         return $this->delete('v1/kudos/'.$reaction_id);
+    }
+
+    public function getActivity($user_id)
+    {
+        //TODO: Cache this response.
+        return $this->get('v1/users/' . $user_id . '/activity');
     }
 }
