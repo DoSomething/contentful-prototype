@@ -42,3 +42,6 @@ $router->resource('reportbacks', 'ReportbackController', ['except' => ['create',
 
 // Signups
 $router->resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
+
+// Activity
+$router->get('activity/{campaignId}', 'ActivityController@show');

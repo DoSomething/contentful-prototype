@@ -162,9 +162,18 @@ class PhoenixLegacy extends RestApiClient
         return $this->delete('v1/kudos/'.$reaction_id);
     }
 
-    public function getActivity($user_id)
+    /**
+     * Get the activity for the given user and campaign.
+     *
+     * @param  string $user_id      User Northstar ID
+     * @param  string $campaign_id  Legacy drupal campaign id
+     * @return array               API response
+     */
+    public function getActivity($user_id, $campaign_id)
     {
         //TODO: Cache this response.
-        return $this->get('v1/users/' . $user_id . '/activity');
+        return $this->get('v1/users/' . $user_id . '/activity', [
+            'nid' => $campaign_id,
+        ]);
     }
 }

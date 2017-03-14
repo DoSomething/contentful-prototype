@@ -23,13 +23,15 @@ class ActivityController extends Controller
     }
 
     /**
-     * Display the activity for the currently logged in user.
+     * Display the activity for the currently logged in user
+     * and given campaign id.
      *
+     * @param  string  $campaignId
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function show($campaignId)
     {
-        $activity = $this->phoenixLegacy->getActivity($campaignId, auth()->id());
+        $activity = $this->phoenixLegacy->getActivity(auth()->id(), $campaignId);
 
         return response()->json($activity);
     }
