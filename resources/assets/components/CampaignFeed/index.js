@@ -14,6 +14,17 @@ class CampaignFeed extends React.Component {
     this.reportbackIndex = 0;
   }
 
+  componentDidMount() {
+    const campaignId = this.props.campaign.legacyCampaignId.toString();
+    const existingSignups = this.props.signups.data;
+
+    if (existingSignups.indexOf(campaignId) > -1) {
+      this.props.setCurrentlySignedUp(true);
+    } else {
+      this.props.checkForSignup(campaignId);
+    }
+  }
+
   /**
    * Map the given display option to a
    * numeric point value.
@@ -87,13 +98,17 @@ class CampaignFeed extends React.Component {
 
   /**
    * Build the feed revealer based on the user authentication state.
-   * TODO: Integrate signup logic. (If auth & not signed up)
    */
   buildRevealer() {
     const authenticated = this.props.user.id !== null;
-    const title = authenticated ? 'view more' : 'sign up';
-    const callToAction = authenticated ? '' : this.props.campaign.callToAction;
-    const onReveal = authenticated ? this.props.clickedViewMore : () => window.location.href = '/login';
+    const signedUp = this.props.signups.status;
+
+    const title = authenticated && signedUp ? 'view more' : 'sign up';
+    const callToAction = authenticated && signedUp ? '' : this.props.campaign.callToAction;
+
+    const onReveal = authenticated ? (
+      signedUp ? this.props.clickedViewMore : this.props.clickedSignUp
+    ) : () => window.location.href = '/login';
 
     return <Revealer title={title} onReveal={onReveal} callToAction={callToAction} />
   }

@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { clickedViewMore, toggleTodo } from '../actions';
+import {
+  clickedViewMore,
+  clickedSignUp,
+  checkForSignup,
+  setCurrentlySignedUp,
+} from '../actions';
 import CampaignFeed from '../components/CampaignFeed';
 
 const mapStateToProps = (state) => {
@@ -10,6 +15,7 @@ const mapStateToProps = (state) => {
     submissions: state.submissions,
     blocks: state.blocks,
     user: state.user,
+    signups: state.signups,
   };
 };
 
@@ -17,7 +23,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     clickedViewMore: () => {
       dispatch(clickedViewMore());
-    }
+    },
+
+    clickedSignUp: (campaignId) => {
+      dispatch(clickedSignUp(campaignId));
+    },
+
+    checkForSignup: (campaignId) => {
+      dispatch(checkForSignup(campaignId));
+    },
+
+    setCurrentlySignedUp: (status) => {
+      dispatch(setCurrentlySignedUp(status));
+    },
   }
 };
 
