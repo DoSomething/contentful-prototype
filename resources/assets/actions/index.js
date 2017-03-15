@@ -145,19 +145,20 @@ export function checkForSignup(campaignId) {
 
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId) {
-  return dispatch => (new Phoenix).get('/')
-    .then(response => {
-      //TODO: Logic to check if you actually signed up.
-      dispatch({
-        type: SIGNUP_COMPLETE,
-        campaignId,
-      });
-    })
-    .then(() => {
-      //TODO: Logic to check if you actually signed up.
-      dispatch({
-        type: SET_CURRENTLY_SIGNED_UP,
-        status: true,
-      });
+  return dispatch => (new Phoenix).post('signups', {
+    campaignId,
+  })
+  .then(response => {
+    if (!response || !response[0]) return;
+
+    dispatch({
+      type: SIGNUP_COMPLETE,
+      campaignId,
     });
+
+    dispatch({
+      type: SET_CURRENTLY_SIGNED_UP,
+      status: true,
+    });
+  });
 }

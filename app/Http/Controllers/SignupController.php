@@ -16,6 +16,8 @@ class SignupController extends Controller
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
+
+        // $this->middleware('auth', ['only' => 'store']);
     }
 
     /**
@@ -37,15 +39,13 @@ class SignupController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'user_id' => 'required',
-            'campaign_id' => 'required',
-            'source' => 'required'
+            'campaignId' => 'required',
         ]);
 
         return $this->phoenixLegacy->storeSignup(
-            $request->input('user_id'),
-            $request->input('campaign_id'),
-            $request->input('source')
+            auth()->id(),
+            $request->input('campaignId'),
+            'phoenix-next'
         );
     }
 

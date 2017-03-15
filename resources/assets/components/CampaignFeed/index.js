@@ -107,7 +107,7 @@ class CampaignFeed extends React.Component {
     const callToAction = authenticated && signedUp ? '' : this.props.campaign.callToAction;
 
     const onReveal = authenticated ? (
-      signedUp ? this.props.clickedViewMore : this.props.clickedSignUp
+      signedUp ? this.props.clickedViewMore : () => this.props.clickedSignUp(this.props.campaign.legacyCampaignId)
     ) : () => window.location.href = '/login';
 
     return <Revealer title={title} onReveal={onReveal} callToAction={callToAction} />

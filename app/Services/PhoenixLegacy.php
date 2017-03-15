@@ -70,7 +70,7 @@ class PhoenixLegacy extends RestApiClient
     public function storeSignup($user_id, $campaign_id, $source)
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/signup', [
-            'uid' => $user_id,
+            'northstar_id' => $user_id,
             'source' => $source,
         ]);
     }
