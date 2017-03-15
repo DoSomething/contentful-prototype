@@ -101,7 +101,7 @@ class CampaignFeed extends React.Component {
    */
   buildRevealer() {
     const authenticated = this.props.user.id !== null;
-    const signedUp = this.props.signups.status;
+    const signedUp = this.props.signups.thisCampaign;
 
     const title = authenticated && signedUp ? 'view more' : 'sign up';
     const callToAction = authenticated && signedUp ? '' : this.props.campaign.callToAction;
@@ -114,6 +114,7 @@ class CampaignFeed extends React.Component {
   }
 
   render() {
+    console.log(this.props.signups)
     const blocks = this.generateFeed();
     const revealer = this.buildRevealer();
 

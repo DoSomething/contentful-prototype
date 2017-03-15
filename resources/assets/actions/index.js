@@ -13,6 +13,7 @@ export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
 export const USER_TOGGLED_REACTION = 'USER_TOGGLED_REACTION';
 export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 export const SIGNUP_COMPLETE = 'SIGNUP_COMPLETE';
+export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SET_CURRENTLY_SIGNED_UP = 'SET_CURRENTLY_SIGNED_UP';
 
 /**
@@ -123,40 +124,39 @@ export function setCurrentlySignedUp(status) {
   return { type: SET_CURRENTLY_SIGNED_UP, status };
 }
 
+export function signupPending() {
+  return { type: SIGNUP_PENDING };
+}
+
+// Action: set whether the signup completed
+export function signupComplete(campaignId) {
+  return { type: SIGNUP_COMPLETE, campaignId };
+}
+
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   return dispatch => (new Phoenix).get(`activity/${campaignId}`)
     .then(response => {
       if (!response || !response.sid) return;
 
-      dispatch({
-        type: SIGNUP_COMPLETE,
-        campaignId,
-      });
-
-      dispatch({
-        type: SET_CURRENTLY_SIGNED_UP,
-        status: true,
-      });
+      dispatch(signupComplete(campaignId));
+      dispatch(setCurrentlySignedUp(true));
     });
 }
 
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId) {
-  return dispatch => (new Phoenix).post('signups', {
-    campaignId,
-  })
-  .then(response => {
-    if (!response || !response[0]) return;
+  return dispatch => {
+    dispatch(signupPending());
 
-    dispatch({
-      type: SIGNUP_COMPLETE,
+    return (new Phoenix).post('signups', {
       campaignId,
-    });
+    })
+    .then(response => {
+      if (!response || !response[0]) return;
 
-    dispatch({
-      type: SET_CURRENTLY_SIGNED_UP,
-      status: true,
+      dispatch(signupComplete(campaignId));
+      dispatch(setCurrentlySignedUp(true));
     });
-  });
+  }
 }

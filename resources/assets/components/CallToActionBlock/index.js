@@ -3,7 +3,7 @@ import './cta.scss';
 
 const CallToActionBlock = (props) => {
   //TODO: This should probably be editable in contentful
-  const cta = props.signups.status ? 'Reportback' : 'Get Involved';
+  const cta = props.signups.thisCampaign ? 'Reportback' : 'Get Involved';
 
   //TODO: This should take you to the action page if you're signed up
   const onClick = () => props.clickedSignUp(props.campaign.legacyCampaignId);

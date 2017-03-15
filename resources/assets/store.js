@@ -44,7 +44,8 @@ export default function(reducers, preloadedState = {}) {
     },
     signups: {
       data: (localStorage.getItem('signups') || '').split(','),
-      status: false,
+      thisCampaign: false,
+      pending: false,
     },
   };
 

@@ -1,5 +1,6 @@
 import {
   SIGNUP_COMPLETE,
+  SIGNUP_PENDING,
   SET_CURRENTLY_SIGNED_UP
 } from '../actions';
 
@@ -14,10 +15,17 @@ const blocks = (state = {}, action) => {
       signups.push(action.campaignId);
       localStorage.setItem('signups', signups);
 
-      return {...state, data: signups};
+      return { ...state, data: signups };
+
+    case SIGNUP_PENDING:
+      return { ...state, pending: true };
 
     case SET_CURRENTLY_SIGNED_UP:
-      return {...state, status: action.status};
+      return {
+        ...state,
+        thisCampaign: action.status,
+        pending: false
+      };
 
     default:
       return state;
