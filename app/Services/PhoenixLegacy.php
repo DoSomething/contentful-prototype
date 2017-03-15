@@ -174,8 +174,6 @@ class PhoenixLegacy extends RestApiClient
         $path = 'v1/users/' . $user_id . '/activity';
         $query = ['nid' => $campaign_id];
 
-        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
-            return $this->get($path, $query);
-        });
+        return $this->get($path, $query);
     }
 }

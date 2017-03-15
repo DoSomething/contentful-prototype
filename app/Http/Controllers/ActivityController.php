@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 class ActivityController extends Controller
 {
     /**
+     * The legacy Phoenix API.
+     *
+     * @var PhoenixLegacy
+     */
+    protected $phoenixLegacy;
+
+    /**
      * ActivityController constructor.
      *
      * @todo once Rogue is ready, this will all change to request

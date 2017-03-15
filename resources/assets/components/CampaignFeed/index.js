@@ -15,7 +15,7 @@ class CampaignFeed extends React.Component {
   }
 
   componentDidMount() {
-    const campaignId = this.props.campaign.legacyCampaignId.toString();
+    const campaignId = this.props.campaign.legacyCampaignId;
     const existingSignups = this.props.signups.data;
 
     if (existingSignups.indexOf(campaignId) > -1) {
