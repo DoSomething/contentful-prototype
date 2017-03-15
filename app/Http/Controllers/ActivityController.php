@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class ActivityController extends Controller
 {
     /**
-     * ReactionController constructor.
+     * ActivityController constructor.
      *
      * @todo once Rogue is ready, this will all change to request
-     * Reactions from Rogue instead of PhoenixLegacy.
+     * activity from Rogue instead of PhoenixLegacy.
      */
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {

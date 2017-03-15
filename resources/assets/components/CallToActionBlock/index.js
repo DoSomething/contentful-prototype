@@ -6,7 +6,7 @@ const CallToActionBlock = (props) => {
   const cta = props.signups.status ? 'Reportback' : 'Get Involved';
 
   //TODO: This should take you to the action page if you're signed up
-  const onClick = props.clickedSignUp(props.campaign.legacyCampaignId);
+  const onClick = () => props.clickedSignUp(props.campaign.legacyCampaignId);
 
   return (
     <div className="cta">
@@ -14,7 +14,7 @@ const CallToActionBlock = (props) => {
         <p className="cta__message">{ props.fields.title }</p>
       </div>
       <div className="cta__block">
-        <a href="#" className="button" onClick={onClick}>{ cta }</a>
+        <a className="button" onClick={onClick}>{ cta }</a>
       </div>
     </div>
   );
