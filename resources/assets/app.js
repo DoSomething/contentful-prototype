@@ -16,10 +16,9 @@ import { ready } from './helpers';
 import 'whatwg-fetch';
 
 import { init } from '@dosomething/analytics';
-//TODO: Only enable analytics on prod?
 init('track', true, {
-  projectId: '58cbf99954532c1f35f4331f',
-  writeKey: '41DC144FFC06A1C67BFC66161D8FA59438709F211A477A873BE2A07C47D00763F3AA451B0D6F31CCE88EBB6101B723B2CDE1CDAE78A4358CF48768FAA40717A1718D97FB1338B4AA8DF2C82993B6F6749D4CE28197796C012406864974DC6105'
+  projectId: services.KEEN_PROJECT_ID,
+  writeKey: services.KEEN_WRITE_KEY,
 });
 
 // Style Components
