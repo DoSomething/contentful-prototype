@@ -118,7 +118,7 @@ class CampaignFeed extends React.Component {
    * or null.
    */
   buildAffirmation() {
-    // if (!this.props.signups.thisSession) return null;
+    if (!this.props.signups.thisSession) return null;
 
     return (<Affirmation />);
   }
