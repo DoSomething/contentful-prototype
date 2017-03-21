@@ -20,7 +20,7 @@ const routerHistory = useRouterHistory(createBrowserHistory);
 const history = syncHistoryWithStore(routerHistory({basename}), store);
 
 function pageView(path) {
-  if (!ga) return;
+  if (typeof ga === 'undefined') return;
 
   ga('send', 'pageview', path);
 }

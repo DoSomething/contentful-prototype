@@ -16,10 +16,10 @@ import { ready } from './helpers';
 import 'whatwg-fetch';
 
 import { init } from '@dosomething/analytics';
-init('track', true, {
+init('track', true, services.KEEN_PROJECT_ID ? {
   projectId: services.KEEN_PROJECT_ID,
   writeKey: services.KEEN_WRITE_KEY,
-});
+} : null);
 
 // Style Components
 import './scss/construction.scss';
