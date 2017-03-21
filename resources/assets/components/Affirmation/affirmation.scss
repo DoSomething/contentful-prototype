@@ -1,1 +1,22 @@
 @import '~@dosomething/forge/scss/toolkit';
+
+.affirmation {
+  width: 100%;
+  text-align: center;
+  padding: $base-spacing;
+  background: $off-black;
+  color: $white;
+  position: relative;
+
+  a {
+    color: $white;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $base-spacing / 2;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
