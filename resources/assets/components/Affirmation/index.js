@@ -25,7 +25,7 @@ class Affirmation extends React.Component {
         <div className="affirmation">
           <h1>{ this.props.title }</h1>
           <p>{ this.props.description }</p>
-          <a href="#" onClick={this.onClick}>X</a>
+          <a href="#" onClick={this.onClick}>x</a>
         </div>
       </FlexCell>
     );
