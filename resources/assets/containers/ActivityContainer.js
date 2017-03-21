@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
-import CallToActionBlock from '../components/CallToActionBlock';
-import { clickedSignUp } from '../actions';
+import CampaignFeed from '../components/CampaignFeed';
+import {
+  clickedViewMore,
+  clickedSignUp,
+  checkForSignup,
+  setCurrentlySignedUp,
+} from '../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -8,8 +13,11 @@ import { clickedSignUp } from '../actions';
 const mapStateToProps = (state) => {
   return {
     campaign: state.campaign,
-    signups: state.signups,
+    reportbacks: state.reportbacks,
+    submissions: state.submissions,
+    blocks: state.blocks,
     user: state.user,
+    signups: state.signups,
   };
 };
 
@@ -18,8 +26,11 @@ const mapStateToProps = (state) => {
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
+  clickedViewMore,
   clickedSignUp,
+  checkForSignup,
+  setCurrentlySignedUp,
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(CallToActionBlock);
+export default connect(mapStateToProps, actionCreators)(CampaignFeed);

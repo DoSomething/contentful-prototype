@@ -1,13 +1,13 @@
 @import '~@dosomething/forge/scss/toolkit';
 
-.feed-container {
+.feed-enclosure {
   background: rgb(32, 38, 52);
   padding: ($base-spacing / 2) 0;
 
   @include clearfix;
 }
 
-.feed-container > .wrapper {
+.feed-enclosure > .wrapper {
   @include media($tablet) {
     @include span(12 no-gutters);
     @include push(2);

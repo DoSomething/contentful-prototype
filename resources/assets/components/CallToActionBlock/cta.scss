@@ -1,8 +1,66 @@
 @import '~@dosomething/forge/scss/toolkit';
 
 .cta {
-  width: 100%;
-  margin: 12px;
   border: 0;
   border-radius: $sm-border-radius;
+  margin: 12px;
+  width: 100%;
+
+  &.has-photo {
+    @include media($medium) {
+      display: flex;
+
+      .cta__content, .cta__photo {
+        flex: 0 0 50%;
+      }
+    }
+
+    .cta__photo {
+      background-size: cover;
+      background-position: center center;
+      display: none;
+
+      @include media($medium) {
+        display: block;
+      }
+    }
+
+  }
+}
+
+.cta__block {
+  @include media($medium) {
+    .has-photo & {
+      margin: $base-spacing auto;
+      width: 90%;
+    }
+  }
+}
+
+.cta__title {
+  font-size: $font-medium;
+  font-weight: $weight-sbold;
+}
+
+.cta__message {
+  font-size: $font-regular;
+  font-weight: $weight-normal;
+}
+
+.cta__impact {
+  color: $purple;
+  font-weight: $weight-bold;
+
+  span {
+    display: block;
+    line-height: 1.2;
+  }
+}
+
+.cta__impact-prefix {
+  text-transform: uppercase;
+}
+
+.cta__impact-number {
+  font-size: $font-hero;
 }

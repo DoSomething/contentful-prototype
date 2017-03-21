@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import './navigation.scss';
 
 export const Navigation = ({children}) => (
-  <div className="feed-container">
+  <div className="feed-enclosure">
     <div className="wrapper">
       { children }
     </div>

@@ -5,7 +5,7 @@ import './revealer.scss';
 
 const Revealer = (props) => {
   return (
-    <FlexCell width={["full"]}>
+    <FlexCell width="full">
       <div className="revealer">
         <h1>{props.callToAction}</h1>
         <a className="button" onClick={props.onReveal}>{props.title}</a>

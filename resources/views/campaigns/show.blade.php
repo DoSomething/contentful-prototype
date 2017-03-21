@@ -9,7 +9,7 @@
     </header>
 
     <div id="app">
-        <div class="feed-container">
+        <div class="feed-enclosure">
             <div class="flex wrapper">
                 @foreach ($campaign->activity_feed as $block)
                     <div class="flex__cell {{ $block->displayOptions->map(function($c) { return '-'.$c; })->implode(' ') }}">

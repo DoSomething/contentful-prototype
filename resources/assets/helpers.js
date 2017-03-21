@@ -2,6 +2,33 @@ import marked from 'marked';
 import get from 'lodash/get';
 
 /**
+ * Generate a Contentful Image URL with added url parameters.
+ *
+ * @param  {String} url
+ * @param  {String} width
+ * @param  {String} height
+ * @param  {String} fit
+ * @return {String}
+ */
+export function contentfulImageUrl(url, width = null, height = null, fit = null) {
+  let params = [];
+
+  if (width) {
+    params.push(`w=${width}`);
+  }
+
+  if (height) {
+    params.push(`h=${height}`);
+  }
+
+  if (fit) {
+    params.push(`fit=${fit}`);
+  }
+
+  return params.length ? `${url}?${params.join('&')}` : url;
+}
+
+/**
  * Wait until the DOM is ready.
  *
  * @param {Function} fn

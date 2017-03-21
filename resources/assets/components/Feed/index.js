@@ -24,7 +24,7 @@ class Feed extends React.Component {
       'static': StaticBlock,
     }, block.type, PlaceholderBlock);
 
-    return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions}><BlockComponent {...block} /></FlexCell>;
+    return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions[0]}><BlockComponent {...block} /></FlexCell>;
   }
 
   /**
@@ -37,7 +37,7 @@ class Feed extends React.Component {
       <Flex>
         {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
         {this.props.revealer}
-        <FlexCell key="reportback_uploader">
+        <FlexCell key="reportback_uploader" width="full">
           <ReportbackUploaderContainer/>
         </FlexCell>
       </Flex>

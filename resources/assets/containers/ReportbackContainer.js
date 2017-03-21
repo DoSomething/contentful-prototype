@@ -3,31 +3,26 @@ import ReportbackBlock from '../components/ReportbackBlock';
 import {
   userToggledReactionOn,
   userToggledReactionOff,
-  reactionComplete,
 } from '../actions';
 
+/**
+ * Provide state from the Redux store as props for this component.
+ */
 const mapStateToProps = (state) => {
   return {
     reactions: state.reactions,
     user: state.user,
   };
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    userToggledReactionOn: (reportbackItemId, termId) => {
-      dispatch(userToggledReactionOn(reportbackItemId, termId));
-    },
+/**
+ * Provide pre-bound functions that allow the component to dispatch
+ * actions to the Redux store as props for this component.
+ */
+const actionCreators = {
+  userToggledReactionOn,
+  userToggledReactionOff,
+};
 
-    userToggledReactionOff: (reportbackItemId, reactionId) => {
-      dispatch(userToggledReactionOff(reportbackItemId, reactionId));
-    },
-  }
-}
-
-const ReportbackContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReportbackBlock);
-
-export default ReportbackContainer;
+// Export the container component.
+export default connect(mapStateToProps, actionCreators)(ReportbackBlock);

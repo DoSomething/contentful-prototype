@@ -22,12 +22,12 @@ init('track', true, {
 });
 
 // Style Components
-import './components/construction.scss';
-import './components/container.scss';
-import './components/header.scss';
+import './scss/construction.scss';
+import './scss/container.scss';
+import './scss/header.scss';
 
 // Containers
-import App from './containers/App';
+import App from './components/App';
 
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!

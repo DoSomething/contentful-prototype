@@ -8,8 +8,8 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import Chrome from './Chrome';
-import Activity from './Activity';
-import ContentPageContainer from './ContentPageContainer';
+import ActivityContainer from '../containers/ActivityContainer';
+import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
 
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
@@ -32,7 +32,7 @@ const App = (props) => (
   <Provider store={store}>
     <Router history={history}>
       <Route component={Chrome}>
-        <Route path="/" component={Activity}/>
+        <Route path="/" component={ActivityContainer}/>
         <Route path="/pages/:page" component={ContentPageContainer}/>
         <Route path='*' component={NotFound} />
       </Route>

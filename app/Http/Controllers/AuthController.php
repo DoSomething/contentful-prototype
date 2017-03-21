@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class AuthController extends Controller
 {
     /**
-     * Where to redirect users after login.
+     * Where to redirect users after login, if their "intended"
+     * destination can't be guessed.
      *
      * @var string
      */
@@ -20,7 +20,16 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectAfterLogout = '/';
+    protected $redirectAfterLogout;
+
+    /**
+     * Make a new AuthController, inject dependencies,
+     * and set middleware for this controller's methods.
+     */
+    public function __construct()
+    {
+        $this->redirectAfterLogout = config('services.phoenix-legacy.url');
+    }
 
     /**
      * Handle a login request to the application.
@@ -31,7 +40,16 @@ class AuthController extends Controller
      */
     public function getLogin(ServerRequestInterface $request, ResponseInterface $response)
     {
-        return gateway('northstar')->authorize($request, $response, $this->redirectTo);
+        // Save the post-login redirect for when the user completes the flow: either to the intended
+        // page (if logging in to view a page protected by the 'auth' middleware), or the previous
+        // page (if the user clicked "Log In" in the top navigation).
+        if (! array_has($request->getQueryParams(), 'code')) {
+            $intended = session()->pull('url.intended', url()->previous());
+            session(['login.intended' => $intended]);
+        }
+
+        $destination = session('login.intended', $this->redirectTo);
+        return gateway('northstar')->authorize($request, $response, $destination);
     }
 
     /**
