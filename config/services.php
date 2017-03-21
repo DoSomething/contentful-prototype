@@ -53,4 +53,8 @@ return [
         ],
     ],
 
+    'analytics' => [
+        'google_id' => env('GOOGLE_ANALYTICS_ID'),
+        'keen_id' => env('KEEN_PROJECT_ID'),
+    ],
 ];

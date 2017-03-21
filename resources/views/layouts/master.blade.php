@@ -14,40 +14,40 @@
 </head>
 
 <body>
-<div class="chrome">
-    <div class="wrapper">
-        <div class="navigation -floating -white">
-            <a class="navigation__logo" href="{{ url('/') }}"><span>DoSomething.org</span></a>
-            <a class="navigation__toggle js-navigation-toggle" href="#"><span>Show Menu</span></a>
-            <div class="navigation__menu">
-                <ul class="navigation__primary">
-                    <li>
-                        <a href="{{ url('campaigns') }}">
-                            <strong class="navigation__title">Explore Campaigns</strong>
-                            <span class="navigation__subtitle">Any cause, any time, anywhere.</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navigation__secondary">
-                    <li>
-                        @if (Auth::user())
-                            <a href="{{ url('logout') }}">Log Out</a>
-                        @else
-                            <a href="{{ url('login') }}">Log In</a>
-                        @endif
-                    </li>
-                </ul>
+    <div class="chrome">
+        <div class="wrapper">
+            <div class="navigation -floating -white">
+                <a class="navigation__logo" href="{{ url('/') }}"><span>DoSomething.org</span></a>
+                <a class="navigation__toggle js-navigation-toggle" href="#"><span>Show Menu</span></a>
+                <div class="navigation__menu">
+                    <ul class="navigation__primary">
+                        <li>
+                            <a href="{{ url('campaigns') }}">
+                                <strong class="navigation__title">Explore Campaigns</strong>
+                                <span class="navigation__subtitle">Any cause, any time, anywhere.</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navigation__secondary">
+                        <li>
+                            @if (Auth::user())
+                                <a href="{{ url('logout') }}">Log Out</a>
+                            @else
+                                <a href="{{ url('login') }}">Log In</a>
+                            @endif
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+            @yield('content')
         </div>
-
-        @yield('content')
     </div>
-</div>
 
-@include('partials.analytics')
-{{ isset($state) ? scriptify($state) : scriptify() }}
+    @include('partials.analytics')
+    {{ isset($state) ? scriptify($state) : scriptify() }}
 
-<script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
 </body>
 
 </html>
