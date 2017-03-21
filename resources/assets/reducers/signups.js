@@ -15,7 +15,11 @@ const blocks = (state = {}, action) => {
       signups.push(action.campaignId);
       localStorage.setItem('signups', signups);
 
-      return { ...state, data: signups };
+      return {
+        ...state,
+        data: signups
+        thisSession: true,
+      };
 
     case SIGNUP_PENDING:
       return { ...state, pending: true };
