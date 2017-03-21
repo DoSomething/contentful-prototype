@@ -19,6 +19,15 @@ const store = configureStore({...reducers, routing: routerReducer}, window.STATE
 const routerHistory = useRouterHistory(createBrowserHistory);
 const history = syncHistoryWithStore(routerHistory({basename}), store);
 
+function pageView(location) {
+  if (!ga) return;
+  console.log(location)
+  ga('send', 'pageview', location.pathname);
+}
+
+pageView(window.location);
+history.listen(pageView);
+
 const App = (props) => (
   <Provider store={store}>
     <Router history={history}>
