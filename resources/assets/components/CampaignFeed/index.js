@@ -1,6 +1,7 @@
 import React from 'react';
 import Feed from '../Feed';
 import Revealer from '../Revealer';
+import Affirmation from '../Affirmation';
 
 const BLOCKS_PER_ROW = 3;
 
@@ -112,12 +113,23 @@ class CampaignFeed extends React.Component {
     return <Revealer title={title} onReveal={onReveal} callToAction={callToAction} />
   }
 
+  /**
+   * Build the affirmation component for this campaign
+   * or null.
+   */
+  buildAffirmation() {
+    // if (!this.props.signups.thisSession) return null;
+
+    return (<Affirmation />);
+  }
+
   render() {
     const blocks = this.generateFeed();
     const revealer = this.buildRevealer();
+    const affirmation = this.buildAffirmation();
 
     return (
-      <Feed blocks={blocks} revealer={revealer} />
+      <Feed blocks={blocks} revealer={revealer} affirmation={affirmation} />
     );
   }
 }

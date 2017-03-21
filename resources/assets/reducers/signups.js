@@ -17,7 +17,7 @@ const blocks = (state = {}, action) => {
 
       return {
         ...state,
-        data: signups
+        data: signups,
         thisSession: true,
       };
 
