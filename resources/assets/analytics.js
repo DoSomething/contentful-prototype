@@ -59,8 +59,9 @@ function transformState(state) {
 function stateChanged(state) {
   updateSession();
   const transformation = transformState(state);
+
+  analyze('action', transformation);
   console.log(transformation);
-  console.log(JSON.stringify(transformation));
 }
 
 /**
