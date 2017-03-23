@@ -15,12 +15,6 @@ import { ready } from './helpers';
 // WHATWG Fetch Polyfill
 import 'whatwg-fetch';
 
-import { init } from '@dosomething/analytics';
-init('track', true, services.KEEN_PROJECT_ID ? {
-  projectId: services.KEEN_PROJECT_ID,
-  writeKey: services.KEEN_WRITE_KEY,
-} : null);
-
 // Style Components
 import './scss/construction.scss';
 import './scss/container.scss';
