@@ -190,3 +190,39 @@ function stripExifData(image, dataView = null) {
     return new Blob([dataView], {type: 'image/jpeg'});
   }
 }
+
+/**
+ * Update the session to reflect the user is still active.
+ */
+export function updateSession() {
+  localStorage.setItem('sessionUpdatedAt', Date.now());
+}
+
+/**
+ * Generate a new session id.
+ * @return {String}
+ */
+export function generateSessionid() {
+  // Generate the id based on current time and a random 5-digit number
+  const salt = Math.floor(Math.random() * 90000) + 10000;
+  const sessionId = `${Date.now()}${salt}`;
+
+  localStorage.setItem('sessionId', sessionId);
+
+  return sessionId;
+}
+
+/**
+ * Check if the given session id is still valid.
+ *
+ * @return {Boolean}
+ */
+export function isSessionValid() {
+  const sessionId = localStorage.getItem('sessionId');
+  const lastUpdatedAt = localStorage.getItem('lastUpdatedAt');
+
+  if (!sessionId || !lastUpdatedAt) return false;
+
+  // Check if the timestamp is 15 min old
+  return ((new Date) - lastUpdatedAt) < (15 * 60 * 1000);
+}
