@@ -3,6 +3,7 @@ import {
   isSessionValid,
   updateSession,
   getSession,
+  createDeviceId,
 } from './helpers';
 
 import {
@@ -70,6 +71,7 @@ function stateChanged(state) {
  */
 export default function (history, store) {
   // Setup session
+  createDeviceId();
   if (!isSessionValid()) generateSessionid();
 
   // Initialize Analytics
