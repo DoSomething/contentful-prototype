@@ -48,8 +48,9 @@ export default function(reducers, preloadedState = {}) {
       thisSession: false,
       pending: false,
     },
-    analytics: {
-      action: 'INITIAL_PAGE_LOAD', // Don't use this in application logic!
+    analytics: { // Don't use this in application logic!
+      action: 'INITIAL_PAGE_LOAD',
+      data: {},
     },
   };
 

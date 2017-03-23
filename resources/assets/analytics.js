@@ -60,6 +60,7 @@ function stateChanged(state) {
   updateSession();
   const transformation = transformState(state);
   console.log(transformation);
+  console.log(JSON.stringify(transformation));
 }
 
 /**
