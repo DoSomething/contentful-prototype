@@ -42,6 +42,7 @@ function transformState(state) {
       sessionId: sessionStorage.getItem('sessionId'),
       ...state.user,
     },
+    meta: state.analytics,
   };
 
   return transformation;
@@ -87,5 +88,5 @@ export default function (history, store) {
 
   // Track state changes for Keen.io
   store.subscribe(() => stateChanged(store.getState()));
-  stateChange(store.getState());
+  stateChanged(store.getState());
 }

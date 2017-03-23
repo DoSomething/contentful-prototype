@@ -48,6 +48,9 @@ export default function(reducers, preloadedState = {}) {
       thisSession: false,
       pending: false,
     },
+    analytics: {
+      action: 'INITIAL_PAGE_LOAD', // Don't use this in application logic!
+    },
   };
 
   // Log actions to the console in development.
