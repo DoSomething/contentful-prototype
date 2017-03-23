@@ -191,11 +191,21 @@ function stripExifData(image, dataView = null) {
   }
 }
 
+const SESSION_ID = 'SESSION_ID';
+const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
+
+export function getSession() {
+  return {
+    id: localStorage.getItem(SESSION_ID),
+    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT),
+  };
+}
+
 /**
  * Update the session to reflect the user is still active.
  */
 export function updateSession() {
-  localStorage.setItem('sessionUpdatedAt', Date.now());
+  localStorage.setItem(SESSION_LAST_UPDATED_AT, Date.now());
 }
 
 /**
@@ -207,7 +217,8 @@ export function generateSessionid() {
   const salt = Math.floor(Math.random() * 90000) + 10000;
   const sessionId = `${Date.now()}${salt}`;
 
-  localStorage.setItem('sessionId', sessionId);
+  localStorage.setItem(SESSION_ID, sessionId);
+  updateSession();
 
   return sessionId;
 }
@@ -218,11 +229,10 @@ export function generateSessionid() {
  * @return {Boolean}
  */
 export function isSessionValid() {
-  const sessionId = localStorage.getItem('sessionId');
-  const lastUpdatedAt = localStorage.getItem('lastUpdatedAt');
+  const session = getSession();
 
-  if (!sessionId || !lastUpdatedAt) return false;
+  if (!session.id || !session.lastUpdatedAt) return false;
 
   // Check if the timestamp is 15 min old
-  return ((new Date) - lastUpdatedAt) < (15 * 60 * 1000);
+  return (session.lastUpdatedAt + (15 * 60 * 1000)) > Date.now();
 }

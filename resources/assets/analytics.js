@@ -1,7 +1,8 @@
 import {
   generateSessionid,
   isSessionValid,
-  updateSession
+  updateSession,
+  getSession,
 } from './helpers';
 
 import {
@@ -39,7 +40,7 @@ function transformState(state) {
     signups: state.signups,
     submissions: state.submissions,
     user: {
-      sessionId: sessionStorage.getItem('sessionId'),
+      session: getSession(),
       ...state.user,
     },
     meta: state.analytics,
