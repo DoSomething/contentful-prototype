@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlexCell } from '../Flex';
+import classnames from 'classnames';
 
 import './revealer.scss';
 
@@ -8,7 +9,7 @@ const Revealer = (props) => {
     <FlexCell width="full">
       <div className="revealer">
         <h1>{props.callToAction}</h1>
-        <a className="button" onClick={props.onReveal}>{props.title}</a>
+        <button disabled={props.isLoading} className={classnames('button', {'is-loading': props.isLoading})} onClick={props.onReveal}>{props.title}</button>
       </div>
     </FlexCell>
   );

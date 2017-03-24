@@ -1,39 +1,47 @@
 import {
-  SIGNUP_COMPLETE,
+  SIGNUP_CREATED,
+  SIGNUP_FOUND,
   SIGNUP_PENDING,
-  SET_CURRENTLY_SIGNED_UP
+  SIGNUP_NOT_FOUND,
 } from '../actions';
 
 /**
- * Block reducer:
+ * Signup reducer:
  */
-const blocks = (state = {}, action) => {
-  switch (action.type) {
-    case SIGNUP_COMPLETE:
-      const signups = state.data;
+const signupReducer = (state = {}, action) => {
+  const signups = state.data;
 
+  switch (action.type) {
+    case SIGNUP_CREATED:
       signups.push(action.campaignId);
       localStorage.setItem('signups', signups);
 
       return {
         ...state,
         data: signups,
+        isPending: false,
         thisSession: true,
       };
 
-    case SIGNUP_PENDING:
-      return { ...state, pending: true };
+    case SIGNUP_FOUND:
+      signups.push(action.campaignId);
+      localStorage.setItem('signups', signups);
 
-    case SET_CURRENTLY_SIGNED_UP:
       return {
         ...state,
-        thisCampaign: action.status,
-        pending: false
+        data: signups,
+        isPending: false
       };
+
+    case SIGNUP_PENDING:
+      return { ...state, isPending: true };
+
+    case SIGNUP_NOT_FOUND:
+      return { ...state, isPending: false };
 
     default:
       return state;
   }
-}
+};
 
-export default blocks;
+export default signupReducer;

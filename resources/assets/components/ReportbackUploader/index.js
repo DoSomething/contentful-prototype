@@ -23,9 +23,15 @@ class ReportbackUploader extends React.Component {
   defaultMediaState() {
     return {
       file: null,
-      filePreviewUrl: null
+      filePreviewUrl: null,
+      type: null,
+      uri: null
     }
   };
+
+  componentDidMount() {
+    this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
+  }
 
   onChange(media) {
     this.setState({ media })
@@ -35,12 +41,17 @@ class ReportbackUploader extends React.Component {
     event.preventDefault();
 
     const reportback = {
-      photo: this.state.media,
+      media: this.state.media,
       caption: this.caption.value,
       impact: this.impact.value,
       whyParticipated: this.why_participated.value,
-      campaignId: this.props.campaign.legacyCampaignId
+      campaignId: this.props.legacyCampaignId,
+      status: 'pending',
     };
+
+    let fileType = reportback.media.file.type;
+
+    reportback.media.type = fileType.substring(0, fileType.indexOf('/'));
 
     this.props.submitReportback(this.setFormData(reportback));
 
@@ -55,7 +66,7 @@ class ReportbackUploader extends React.Component {
     let formData = new FormData;
 
     Object.keys(reportback).map((item) => {
-      if (item === 'photo') {
+      if (item === 'media') {
         formData.append(item, reportback[item].file);
       }
       else {

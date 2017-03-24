@@ -1,15 +1,28 @@
 import React from 'react';
 import { get } from 'lodash';
+import { ensureAuth } from '../../helpers';
 
+import Affirmation from '../Affirmation';
 import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
+import ReportbackBlock from '../ReportbackBlock';
+import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
+import Revealer from '../Revealer';
 import StaticBlock from '../StaticBlock';
 import { Flex, FlexCell } from '../Flex';
-import ReportbackContainer from '../../containers/ReportbackContainer';
-import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 
 class Feed extends React.Component {
+  /**
+   * Perform actions immediately after mounting component.
+   */
+  componentDidMount() {
+    // If we don't already have a signup, check.
+    if (! this.props.signedUp) {
+      this.props.checkForSignup(this.props.legacyCampaignId);
+    }
+  }
+
   /**
    * Render a single feed item.
    *
@@ -21,7 +34,7 @@ class Feed extends React.Component {
     const BlockComponent = get({
       'campaign_update': CampaignUpdateBlock,
       'join_cta': CallToActionContainer,
-      'reportbacks': ReportbackContainer,
+      'reportbacks': ReportbackBlock,
       'static': StaticBlock,
     }, block.type, PlaceholderBlock);
 
@@ -34,11 +47,19 @@ class Feed extends React.Component {
    * @returns {XML}
    */
   render() {
+    const { blocks, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated } = this.props;
+
+    const viewMoreOrSignup = signedUp ? this.props.clickedViewMore : () => this.props.clickedSignUp(this.props.legacyCampaignId);
+    const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
+                               callToAction={signedUp ? '' : this.props.callToAction}
+                               isLoading={hasPendingSignup}
+                               onReveal={() => ensureAuth(isAuthenticated) && viewMoreOrSignup()} />;
+
     return (
       <Flex>
-        {this.props.affirmation}
-        {this.props.blocks.map((block, index) => this.renderFeedItem(block, index))}
-        {this.props.revealer}
+        {hasNewSignup ? <Affirmation /> : null}
+        {blocks.map((block, index) => this.renderFeedItem(block, index))}
+        {revealer}
         <FlexCell key="reportback_uploader" width="full">
           <ReportbackUploaderContainer/>
         </FlexCell>
@@ -49,8 +70,6 @@ class Feed extends React.Component {
 
 Feed.defaultProps = {
   blocks: [],
-  revealer: null,
-  affirmation: null,
 };
 
 export default Feed;

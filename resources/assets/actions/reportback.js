@@ -5,7 +5,10 @@ import {
   STORE_REPORTBACK_PENDING,
   STORE_REPORTBACK_FAILED,
   STORE_REPORTBACK_SUCCESSFUL,
-  ADD_TO_SUBMISSIONS_LIST
+  ADD_TO_SUBMISSIONS_LIST,
+  REQUESTED_USER_SUBMISSIONS,
+  REQUESTED_USER_SUBMISSIONS_FAILED,
+  RECEIVED_USER_SUBMISSIONS
 } from '../actions';
 
 /**
@@ -39,6 +42,18 @@ export function storeReportbackFailed(reportback) {
 // Action: storing new user submitted reportback was successful.
 export function storeReportbackSuccessful(reportback) {
   return { type: STORE_REPORTBACK_SUCCESSFUL };
+}
+
+export function requestingUserReportbacks() {
+  return { type: REQUESTED_USER_SUBMISSIONS };
+}
+
+export function requestingUserReportbacksFailed() {
+  return { type: REQUESTED_USER_SUBMISSIONS_FAILED };
+}
+
+export function receivedUserReportbacks() {
+  return { type: RECEIVED_USER_SUBMISSIONS };
 }
 
 // Action: add user reportback submission to submissions list.
@@ -81,6 +96,35 @@ export function submitReportback(reportback) {
       })
       .catch(error => console.log(error));
   };
+}
+
+export function fetchUserReportbacks(userId, campaignId) {
+  if (!userId) {
+    return dispatch => {
+      dispatch(requestingUserReportbacksFailed());
+    }
+  }
+
+  return dispatch => {
+    dispatch(requestingUserReportbacks());
+
+    return (new Phoenix).get('signups', { campaigns: campaignId, users: userId })
+      .then(json => {
+        dispatch(receivedUserReportbacks());
+
+        if (json.data.length) {
+          let reportback = json.data.shift().reportback;
+
+          if (!reportback) {
+            return;
+          }
+
+          reportback.reportback_items.data.forEach(reportbackItem => {
+            dispatch(addToSubmissionsList(reportbackItem));
+          });
+        }
+      });
+  }
 }
 
 // Async Action: fetch another page of reportbacks.

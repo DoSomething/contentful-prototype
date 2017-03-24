@@ -31,6 +31,7 @@ export default function(reducers, preloadedState = {}) {
       data: [],
     },
     submissions: {
+      isFetching: false,
       isStoring: false,
       data: [],
     },
@@ -38,7 +39,7 @@ export default function(reducers, preloadedState = {}) {
       offset: 1,
     },
     user: {
-      id: false,
+      id: null,
     },
     reactions: {
       data: initialReactionState,

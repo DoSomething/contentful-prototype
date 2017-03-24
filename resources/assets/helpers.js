@@ -1,6 +1,9 @@
 import marked from 'marked';
 import get from 'lodash/get';
 
+// Helper Constants
+export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
 /**
  * Generate a Contentful Image URL with added url parameters.
  *
