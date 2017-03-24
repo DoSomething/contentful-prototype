@@ -12,6 +12,8 @@ import ActivityContainer from '../containers/ActivityContainer';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
 
+import observe from '../analytics';
+
 // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
 const basename = window.location.pathname.split('/').slice(0, 3).join('/');
 
@@ -19,7 +21,6 @@ const store = configureStore({...reducers, routing: routerReducer}, window.STATE
 const routerHistory = useRouterHistory(createBrowserHistory);
 const history = syncHistoryWithStore(routerHistory({basename}), store);
 
-import observe from '../analytics';
 observe(history, store);
 
 const App = (props) => (
