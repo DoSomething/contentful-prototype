@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
+import { observerMiddleware } from './analytics';
 
 export default function(reducers, preloadedState = {}) {
 
@@ -48,14 +49,10 @@ export default function(reducers, preloadedState = {}) {
       thisSession: false,
       pending: false,
     },
-    analytics: { // Don't use this in application logic!
-      action: 'INITIAL_PAGE_LOAD',
-      data: {},
-    },
   };
 
-  // Log actions to the console in development.
-  const middleware = [thunk];
+  // Log actions to the console in development & track state changes.
+  const middleware = [thunk, observerMiddleware];
   if (process.env.NODE_ENV === `development`) {
     const createLogger = require(`redux-logger`);
     middleware.push(createLogger());

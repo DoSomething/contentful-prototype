@@ -25,10 +25,11 @@ function pageView(path) {
 /**
  * Prepare the state for being sent to Keen.io
  *
- * @param  {Object} state Application state
- * @return {Object}       Object to send
+ * @param  {Object} action Action that fired
+ * @param  {Object} state  Application state
+ * @return {Object}        Object to send
  */
-function transformState(state) {
+function transformState(action, state) {
   const transformation = {
     feed: {
       page: state.blocks.offset,
@@ -44,7 +45,7 @@ function transformState(state) {
       session: getSession(),
       ...state.user,
     },
-    meta: state.analytics,
+    action,
   };
 
   return transformation;
@@ -54,15 +55,29 @@ function transformState(state) {
  * Transform the application state and push to Keen.io
  * Additionally bump the activity marker.
  *
- * @param  {Object} state Application state
+ * @param  {Object} action Action that fired
+ * @param  {Object} state  Application state
  */
-function stateChanged(state) {
+function stateChanged(action, state) {
   updateSession();
-  const transformation = transformState(state);
+  const transformation = transformState(action, state);
 
   analyze('action', transformation);
   console.log(transformation);
 }
+
+/**
+ * Redux middleware for tracking state changes.
+ *
+ * @param  {Object} store Application store
+ * @return {Object}
+ */
+export const observerMiddleware = store => next => action => {
+  const result = next(action);
+  stateChanged(action, store.getState());
+
+  return result;
+};
 
 /**
  * Watch the given parameters for changes in there state
@@ -70,6 +85,7 @@ function stateChanged(state) {
  *
  * @param  {Object} history Instance of React Router history
  * @param  {Object} store   Instance of a React Redux store
+ * @return {Function}
  */
 export default function (history, store) {
   // Setup session
@@ -92,6 +108,5 @@ export default function (history, store) {
   pageView(window.location.pathname);
 
   // Track state changes for Keen.io
-  store.subscribe(() => stateChanged(store.getState()));
-  stateChanged(store.getState());
+  stateChanged({type: 'APPLICATION_INIT'}, store.getState());
 }

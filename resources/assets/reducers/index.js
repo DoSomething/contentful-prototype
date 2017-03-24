@@ -5,4 +5,3 @@ export blocks from './blocks';
 export user from './user';
 export reactions from './reactions';
 export signups from './signups';
-export analytics from './analytics';
