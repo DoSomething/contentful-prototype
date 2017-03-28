@@ -77,7 +77,11 @@ class CampaignController extends Controller
             ],
         ];
 
-        return view('campaigns.show', ['campaign' => $campaign])
-            ->with('state', $state);
+        $shareFields = getShareFields($campaign, $campaign->socialOverrides);
+
+        return view('campaigns.show', [
+            'campaign' => $campaign,
+            'shareFields' => $shareFields,
+        ])->with('state', $state);
     }
 }

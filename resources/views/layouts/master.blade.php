@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@dosomething/forge@^6.7.4/dist/forge.css" media="screen, projection" type="text/css">
     <link rel="stylesheet" href="{{ asset('dist/app.css') }}" media="screen, projection" type="text/css">
 
-    @if(isset($campaign))
+    @if(isset($shareFields))
         @include('partials.social')
     @endif
 </head>

@@ -121,3 +121,39 @@ function get_image_url(Asset $asset, $crop = 'landscape')
 
     return $asset->getFile($locale)->getUrl($options[$crop]);
 }
+
+/**
+ * Return either the field from the override object or the
+ * base object.
+ *
+ * @param  string $field
+ * @param  DynamicEntry $base
+ * @param  DynamicEntry $override
+ * @return mixed
+ */
+function useOverrideIfSet($field, $campaign, $override)
+{
+    $base = $campaign->{$field};
+    if ($override === null) return $base;
+
+    $override = $override->{$field};
+    return $override === null ? $base : $override;
+}
+
+/**
+ * Determine the fields to display in the social share.
+ *
+ * @param  Campaign $campaign
+ * @param  object $shareOverrides
+ * @return array
+ */
+function getShareFields($campaign, $shareOverrides)
+{
+    $coverImage = useOverrideIfSet('coverImage', $campaign, $shareOverrides)->getFile()->getUrl();
+
+    return [
+        'title' => useOverrideIfSet('title', $campaign, $shareOverrides),
+        'callToAction' => useOverrideIfSet('callToAction', $campaign, $shareOverrides),
+        'coverImage' => 'http:' . $coverImage, // Contentful outputs "//" which Facebook cannot parse
+    ];
+}
