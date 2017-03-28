@@ -8,3 +8,5 @@
 {{-- <meta property="og:url" content="https://dosomething.org/campaigns/{{ $campaign->slug }}" /> --}}
 
 <meta property="og:image" content="{{ $shareFields['coverImage'] }}" />
+
+<meta property="fb:app_id" content="{{ $shareFields['facebookAppId'] }}" />
