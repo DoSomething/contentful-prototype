@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import ReportbackItem from '../components/ReportbackItem';
-import find from 'lodash/find';
 import {
   toggleReactionOn,
   toggleReactionOff,
@@ -10,16 +9,19 @@ import {
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, props) => {
-  const reportback = find(state.reportbacks.data, {id: props.id});
-  const reportbackItem = reportback.reportback_items.data[0];
+  const reportback = state.reportbacks.entities[props.id];
+  if (! reportback) {
+    return { isFetching: true };
+  }
 
+  const reportbackItem = state.reportbacks.itemEntities[reportback.reportback_items[0]];
   return {
     isFetching: false,
     id: reportbackItem.id,
     url: reportbackItem.media.uri,
     quantity: reportback.quantity,
     firstName: reportback.user.first_name,
-    reaction: state.reactions.data[reportbackItem.id],
+    reaction: reportbackItem.reaction,
     isAuthenticated: state.user.id !== null,
   };
 };

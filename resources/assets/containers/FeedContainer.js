@@ -4,7 +4,7 @@ import {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
-  setCurrentlySignedUp,
+  fetchReportbacks,
 } from '../actions';
 
 const BLOCKS_PER_ROW = 3;
@@ -32,15 +32,33 @@ const mapDisplayToPoints = (displayOption) => {
  * @param offset
  */
 const filterVisibleBlocks = (blocks, offset) => {
+  const rowTarget = offset * ROWS_PER_PAGE;
+  const pointTarget = rowTarget * BLOCKS_PER_ROW;
   let totalPoints = 0;
 
-  return blocks.filter(block => {
+  // Filter out blocks that don't fit within offset.
+  const filteredBlocks = blocks.filter(block => {
     totalPoints += mapDisplayToPoints(block.fields.displayOptions);
-    const totalRows = totalPoints / BLOCKS_PER_ROW;
-    const rowTarget = offset * ROWS_PER_PAGE;
-
-    return totalRows < rowTarget;
+    return totalPoints < pointTarget;
   });
+
+  // If we weren't able to fill enough rows with blocks, add
+  // enough additional rows of reportbacks.
+  while (totalPoints < pointTarget) {
+    // @TODO: There's gotta be a better way of doing this.
+    filteredBlocks.push({
+      id: String(Math.ceil(Math.random() * 100000)),
+      type: 'customBlock',
+      fields: {
+        type: 'reportbacks',
+        displayOptions: ['full'],
+        additionalContent: { count: BLOCKS_PER_ROW }
+      }
+    });
+    totalPoints += BLOCKS_PER_ROW;
+  }
+
+  return filteredBlocks;
 };
 
 /**
@@ -51,23 +69,11 @@ const filterVisibleBlocks = (blocks, offset) => {
 const appendReportbacks = (reportbacks, blocks) => {
   let reportbackIndex = 0;
   return blocks.map(block => {
-    // Set block type for custom blocks.
-    block.type = block.type === 'customBlock' ? block.fields.type : block.type;
+    if (block.fields.type !== 'reportbacks') return block;
 
-    if (block.type !== 'reportbacks') return block;
-
-    block.reportbacks = [];
-
+    // Attach some unique reportback IDs to each block.
     const count = block.fields.additionalContent.count || 3;
-    for (let i = 0; i < count; i++) {
-      const reportback = reportbacks.data[reportbackIndex];
-
-      if (reportback) {
-        block.reportbacks.push(reportback.id);
-      }
-
-      reportbackIndex++;
-    }
+    block.reportbacks = reportbacks.slice(reportbackIndex, reportbackIndex += count);
 
     return block;
   });
@@ -78,7 +84,7 @@ const appendReportbacks = (reportbacks, blocks) => {
  */
 const mapStateToProps = (state) => {
   return {
-    blocks: appendReportbacks(state.reportbacks, filterVisibleBlocks(state.campaign.activityFeed, state.blocks.offset)),
+    blocks: appendReportbacks(state.reportbacks.ids, filterVisibleBlocks(state.campaign.activityFeed, state.blocks.offset)),
     legacyCampaignId: state.campaign.legacyCampaignId,
     callToAction: state.campaign.callToAction,
     submissions: state.submissions,
@@ -97,6 +103,7 @@ const actionCreators = {
   clickedViewMore,
   clickedSignUp,
   checkForSignup,
+  fetchReportbacks,
 };
 
 // Export the container component.

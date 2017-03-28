@@ -10,6 +10,11 @@
 // Reportback Action Names & Creators
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
+export const REACTION_CHANGED = 'REACTION_CHANGED';
+export const REACTION_COMPLETE = 'REACTION_COMPLETE';
+export * from './reportback';
+
+// Submissions
 export const STORE_REPORTBACK_PENDING = 'STORE_REPORTBACK_PENDING';
 export const STORE_REPORTBACK_FAILED = 'STORE_REPORTBACK_FAILED';
 export const STORE_REPORTBACK_SUCCESSFUL = 'STORE_REPORTBACK_SUCCESSFUL';
@@ -17,16 +22,12 @@ export const ADD_TO_SUBMISSIONS_LIST = 'ADD_TO_SUBMISSIONS_LIST';
 export const REQUESTED_USER_SUBMISSIONS = 'REQUESTED_USER_SUBMISSIONS';
 export const REQUESTED_USER_SUBMISSIONS_FAILED = 'REQUESTED_USER_SUBMISSIONS_FAILED';
 export const RECEIVED_USER_SUBMISSIONS = 'RECEIVED_USER_SUBMISSIONS';
-export * from './reportback';
+// @TODO: Split submission actions & reducers into separate file.
+// export * from './submission';
 
 // Feed Action Names & Creators
-export const CLICKED_VIEW_MORE = 'CLICKED_VIEW_MORE';
+export const FEED_INCREMENT_PAGE = 'FEED_INCREMENT_PAGE';
 export * from './feed';
-
-// Reaction Action Names & Creators
-export const REACTION_CHANGED = 'REACTION_CHANGED';
-export const REACTION_COMPLETE = 'REACTION_COMPLETE';
-export * from './reaction';
 
 // Signup Action Names & Creators
 export const SIGNUP_CREATED = 'SIGNUP_CREATED';

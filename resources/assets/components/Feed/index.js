@@ -21,6 +21,9 @@ class Feed extends React.Component {
     if (! this.props.signedUp) {
       this.props.checkForSignup(this.props.legacyCampaignId);
     }
+
+    // Load the first page of reportbacks.
+    this.props.fetchReportbacks();
   }
 
   /**
@@ -36,7 +39,7 @@ class Feed extends React.Component {
       'join_cta': CallToActionContainer,
       'reportbacks': ReportbackBlock,
       'static': StaticBlock,
-    }, block.type, PlaceholderBlock);
+    }, block.fields.type, PlaceholderBlock);
 
     return <FlexCell key={block.id + '-' + index} width={block.fields.displayOptions[0]}><BlockComponent {...block} /></FlexCell>;
   }
@@ -66,7 +69,7 @@ class Feed extends React.Component {
       </Flex>
     );
   }
-};
+}
 
 Feed.defaultProps = {
   blocks: [],

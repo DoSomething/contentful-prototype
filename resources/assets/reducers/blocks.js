@@ -1,11 +1,11 @@
-import { CLICKED_VIEW_MORE } from '../actions';
+import { FEED_INCREMENT_PAGE } from '../actions';
 
 /**
  * Block reducer:
  */
 const blocks = (state = {}, action) => {
   switch (action.type) {
-    case CLICKED_VIEW_MORE:
+    case FEED_INCREMENT_PAGE:
       return {...state, offset: state.offset + 1};
 
     default:

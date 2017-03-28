@@ -1,7 +1,10 @@
 import { Phoenix } from '@dosomething/gateway';
+import { normalizeReportbacksResponse } from "../normalizers";
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
+  REACTION_CHANGED,
+  REACTION_COMPLETE,
   STORE_REPORTBACK_PENDING,
   STORE_REPORTBACK_FAILED,
   STORE_REPORTBACK_SUCCESSFUL,
@@ -17,13 +20,27 @@ import {
  */
 
 // Action: reportback fetch initiated.
-export function requestingReportbacks(node) {
+export function requestedReportbacks(node) {
   return { type: REQUESTED_REPORTBACKS, node };
 }
 
 // Action: new reportback data received.
-export function receivedReportbacks(node, page, data) {
-  return { type: RECEIVED_REPORTBACKS, node, page, data};
+export function receivedReportbacks(page, { reportbacks, reportbackItems, reactions }) {
+  return { type: RECEIVED_REPORTBACKS, page, reportbacks, reportbackItems, reactions };
+}
+
+// Action: toggled a reaction
+export function reactionChanged(reportbackItemId, value) {
+  return { type: REACTION_CHANGED, reportbackItemId, value };
+}
+
+// Action: component got a reaction response back.
+export function reactionComplete(reportbackItemId, reactionId) {
+  return {
+    type: REACTION_COMPLETE,
+    reportbackItemId,
+    reactionId,
+  }
 }
 
 // Action: store new user submitted reportback.
@@ -61,6 +78,32 @@ export function addToSubmissionsList(reportback) {
   return {
     type: ADD_TO_SUBMISSIONS_LIST,
     reportback
+  }
+}
+
+// Async Action: user reacted to a photo.
+export function toggleReactionOn(reportbackItemId, termId) {
+  return dispatch => {
+    dispatch(reactionChanged(reportbackItemId, true));
+
+    (new Phoenix).post('reactions', {
+      reportback_item_id: reportbackItemId,
+      term_id: termId,
+    })
+      .then(json => {
+        if (json && json[0] && json[0].created) {
+          dispatch(reactionComplete(reportbackItemId, json[0].kid));
+        }
+      });
+  }
+}
+
+// Async Action: user un-reacted to a photo.
+export function toggleReactionOff(reportbackItemId, reactionId) {
+  return dispatch => {
+    dispatch(reactionChanged(reportbackItemId, false));
+
+    (new Phoenix).delete(`reactions/${reactionId}`);
   }
 }
 
@@ -128,13 +171,16 @@ export function fetchUserReportbacks(userId, campaignId) {
 }
 
 // Async Action: fetch another page of reportbacks.
-export function fetchReportbacks(node, page) {
-  return dispatch => {
-    dispatch(requestingReportbacks(node));
+export function fetchReportbacks() {
+  return (dispatch, getState) => {
+    let node = getState().campaign.legacyCampaignId;
+    let page = getState().reportbacks.page;
 
-    return (new Phoenix).get('reportbacks', { campaigns: node, page })
-      .then(json => {
-        dispatch(receivedReportbacks(node, page, json.data))
-      })
+    dispatch(requestedReportbacks(node));
+
+    (new Phoenix).get('reportbacks', { campaigns: node, page }).then(json => {
+      const normalizedData = normalizeReportbacksResponse(json.data);
+      dispatch(receivedReportbacks(json.meta.pagination.current_page, normalizedData))
+    })
   }
 }

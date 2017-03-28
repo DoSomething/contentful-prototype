@@ -4,7 +4,7 @@ import Reaction from '../Reaction';
 import { ensureAuth, EMPTY_IMAGE } from '../../helpers';
 import './reportback-item.scss';
 
-const ReportbackItem = ({id, url, quantity, firstName, reaction, isFetching = false, toggleReactionOn, toggleReactionOff}) => {
+const ReportbackItem = ({id, url, quantity, firstName, reaction, isFetching = false, isAuthenticated, toggleReactionOn, toggleReactionOff}) => {
   const reactionElement = isFetching ? null : (
     <Reaction active={reaction.reacted} total={reaction.total}
               onToggleOn={() => ensureAuth(isAuthenticated) && toggleReactionOn(id, reaction.termId)}
