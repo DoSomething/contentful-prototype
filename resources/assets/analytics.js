@@ -63,7 +63,6 @@ function stateChanged(action, state) {
   const transformation = transformState(action, state);
 
   analyze('action', transformation);
-  console.log(transformation);
 }
 
 /**

@@ -18,6 +18,7 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
     <div class="chrome">
         <div class="wrapper">
             <div class="navigation -floating -white">

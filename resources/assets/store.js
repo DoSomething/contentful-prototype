@@ -31,6 +31,9 @@ const initialState = {
   user: {
     id: null,
   },
+  share: {
+    status: null,
+  },
 };
 
 export default function(reducers, preloadedState = {}) {

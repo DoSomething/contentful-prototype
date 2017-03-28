@@ -19,4 +19,4 @@ const Reaction = (props) => {
   );
 };
 
-module.exports = Reaction;
+export default Reaction;
