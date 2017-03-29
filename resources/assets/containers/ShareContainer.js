@@ -4,7 +4,7 @@ import { clickedShare } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
-    social: status.user,
+    share: status.share,
     user: state.user,
   };
 };
