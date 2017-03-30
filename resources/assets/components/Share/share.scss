@@ -1,5 +1,25 @@
 @import '~@dosomething/forge/scss/toolkit';
 
 .share {
-  // padding: 400%
+  color: $white;
+
+  &.-black {
+    color: $black;
+    background: $white;
+    border: 1px solid $black;
+
+    &:hover {
+      background: $light-gray;
+    }
+  }
+
+  .social-icon {
+    color: inherit;
+
+    &:after {
+      font-size: 22px;
+      font-weight: 800;
+      margin-left: 4px;
+    }
+  }
 }
