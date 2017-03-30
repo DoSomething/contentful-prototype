@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlexCell } from '../Flex';
 import Highlight from '../Highlight';
+import { Figure } from '../Figure';
 import ShareContainer from '../../containers/ShareContainer';
 import { EMPTY_IMAGE } from '../../helpers';
 import './affirmation.scss';
@@ -31,15 +32,10 @@ class Affirmation extends React.Component {
               <Highlight>{ this.props.header }</Highlight>
             </div>
             <div className="affirmation__section affirmation__section-quote">
-              <article className="figure -left">
-                <div className="figure__media">
-                  <img alt="kitten overlords" src={this.props.photo} />
-                </div>
-                <div className="figure__body">
-                  <p>{ this.props.quote }</p>
-                  <span>- { this.props.author }</span>
-                </div>
-              </article>
+              <Figure image={this.props.photo} alt={this.props.author} alignment="left">
+                <p>{ this.props.quote }</p>
+                <span>- { this.props.author }</span>
+              </Figure>
             </div>
             <div className="affirmation__section affirmation__section-share">
               <div className="affirmation__block">
