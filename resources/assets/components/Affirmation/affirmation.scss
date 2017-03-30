@@ -33,6 +33,10 @@
   }
 
   .affirmation__section-quote {
+    .figure {
+      margin-left: $half-spacing;
+    }
+
     p {
       font-style: italic;
     }

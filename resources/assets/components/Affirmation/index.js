@@ -31,13 +31,15 @@ class Affirmation extends React.Component {
               <Highlight>{ this.props.header }</Highlight>
             </div>
             <div className="affirmation__section affirmation__section-quote">
-              <div className="affirmation__block">
-                <img src={this.props.photo} />
-              </div>
-              <div className="affirmation__block">
-                <p>{ this.props.quote }</p>
-                <span>- { this.props.author }</span>
-              </div>
+              <article className="figure -left">
+                <div className="figure__media">
+                  <img alt="kitten overlords" src={this.props.photo} />
+                </div>
+                <div className="figure__body">
+                  <p>{ this.props.quote }</p>
+                  <span>- { this.props.author }</span>
+                </div>
+              </article>
             </div>
             <div className="affirmation__section affirmation__section-share">
               <div className="affirmation__block">
