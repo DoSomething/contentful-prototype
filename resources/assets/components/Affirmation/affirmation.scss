@@ -1,20 +1,70 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
 
 .affirmation {
   width: 100%;
-  text-align: center;
   padding: $base-spacing;
-  background: $off-black;
+  background: $dark-background-color;
   color: $white;
   position: relative;
+
+  .affirmation__container {
+    max-width: 720px;
+    margin: auto;
+  }
+
+  .affirmation__section {
+    margin-bottom: $base-spacing;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .affirmation__block {
+    padding: $half-spacing;
+  }
+
+  .affirmation__section-heading {
+    text-align: center;
+
+    h1 {
+      font-size: 48px;
+      color: $white;
+    }
+  }
+
+  .affirmation__section-quote {
+    p {
+      font-style: italic;
+    }
+
+    span {
+      font-size: 14px;
+    }
+
+    img {
+      width: 128px;
+      height: 128px;
+      display: inline;
+      max-width: none;
+      background: white; // TEMP. No images are actually on the component yet, just so you can visually see where this is.
+    }
+  }
+
+  .affirmation__section-share {
+    justify-content: flex-start;
+
+    h3 {
+      color: $primary-color;
+    }
+  }
 
   .affirmation__exit {
     color: $white;
     position: absolute;
-    top: 0;
-    right: 0;
-    padding: $base-spacing / 2;
-    font-size: 26px;
+    top: 8px;
+    right: 6px;
+    font-size: 36px;
+    line-height: 18px;
 
     &:hover {
       text-decoration: none;
