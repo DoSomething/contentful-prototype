@@ -1,5 +1,6 @@
 import React from 'react';
 import { FlexCell } from '../Flex';
+import ShareContainer from '../../containers/ShareContainer';
 import './affirmation.scss';
 
 class Affirmation extends React.Component {
@@ -25,7 +26,8 @@ class Affirmation extends React.Component {
         <div className="affirmation">
           <h1>{ this.props.title }</h1>
           <p>{ this.props.description }</p>
-          <a href="#" onClick={this.onClick}>&times;</a>
+          <ShareContainer variant="blue" />
+          <a className="affirmation__exit" href="#" onClick={this.onClick}>&times;</a>
         </div>
       </FlexCell>
     );
