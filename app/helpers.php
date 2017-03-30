@@ -156,5 +156,6 @@ function getShareFields($campaign, $shareOverrides)
         'callToAction' => useOverrideIfSet('callToAction', $campaign, $shareOverrides),
         'coverImage' => 'http:' . $coverImage, // Contentful outputs "//" which Facebook cannot parse
         'facebookAppId' => config('services.analytics.facebook_id'),
+        'quote' => $shareOverrides->quote,
     ];
 }

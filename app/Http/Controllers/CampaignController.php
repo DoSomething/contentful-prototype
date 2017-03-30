@@ -63,6 +63,7 @@ class CampaignController extends Controller
             'shareFields' => $shareFields,
         ])->with('state', [
             'campaign' => $campaign,
+            'share' => $shareFields,
             'user' => [
                 'id' => auth()->id(),
             ],

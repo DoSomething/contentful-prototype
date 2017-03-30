@@ -3,11 +3,11 @@ import classnames from 'classnames';
 
 import './share.scss';
 
-const Share = ({ variant, quote, clickedShare }) => {
+const Share = ({ variant, clickedShare }) => {
   const className = classnames('button share', {'-black': variant === 'black'});
 
   return (
-    <a className={className} onClick={() => clickedShare(quote)}>
+    <a className={className} onClick={clickedShare}>
       share on
       <i className="social-icon -facebook"><span>Facebook</span></i>
     </a>
@@ -16,7 +16,6 @@ const Share = ({ variant, quote, clickedShare }) => {
 
 Share.defaultProps = {
   variant: 'black',
-  quote: '',
   clickedShare: () => {},
 }
 

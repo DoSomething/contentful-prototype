@@ -20,13 +20,15 @@ export function facebookShareCancelled() {
 }
 
 // Action: user clicked a share button.
-export function clickedShare(quote) {
+export function clickedShare() {
   return (dispatch, getState) => {
     dispatch(requestedFacebookShare());
 
     const user = getState().user;
     const id = user.id ? `?ns=${user.id}` : '';
     const href = `${window.location.href}${id}`;
+
+    const quote = getState().share.quote || '';
 
     FB.ui({
       method: 'share',
