@@ -60,8 +60,7 @@ class Feed extends React.Component {
 
     return (
       <Flex>
-        <Affirmation />
-        {/*{hasNewSignup ? <Affirmation /> : null}*/}
+        {hasNewSignup ? <Affirmation /> : null}
         {blocks.map((block, index) => this.renderFeedItem(block, index))}
         {revealer}
         <FlexCell key="reportback_uploader" width="full">
