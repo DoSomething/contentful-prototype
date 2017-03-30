@@ -9,7 +9,7 @@ const Share = ({ variant, clickedShare }) => {
   return (
     <a className={className} onClick={clickedShare}>
       share on
-      <a className="social-icon -facebook"><span>Facebook</span></a>
+      <i className="social-icon -facebook"><span>Facebook</span></i>
     </a>
   );
 };
