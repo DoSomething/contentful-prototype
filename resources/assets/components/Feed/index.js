@@ -60,7 +60,6 @@ class Feed extends React.Component {
 
     return (
       <Flex>
-      <Affirmation />
         {hasNewSignup ? <Affirmation /> : null}
         {blocks.map((block, index) => this.renderFeedItem(block, index))}
         {revealer}
