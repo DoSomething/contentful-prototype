@@ -13,12 +13,28 @@ import {
 
 // Action: a new signup was created for a campaign.
 export function signupCreated(campaignId) {
-  return { type: SIGNUP_CREATED, campaignId };
+  return (dispatch, getState) => {
+    const { user } = getState();
+
+    dispatch({
+      type: SIGNUP_CREATED,
+      campaignId,
+      userId: user.id,
+    });
+  }
 }
 
 // Action: an existing signup was found for a campaign.
 export function signupFound(campaignId) {
-  return { type: SIGNUP_FOUND, campaignId };
+  return (dispatch, getState) => {
+    const { user } = getState();
+
+    dispatch({
+      type: SIGNUP_FOUND,
+      campaignId,
+      userId: user.id,
+    });
+  }
 }
 
 // Action: no existing signup was found for the campaign.

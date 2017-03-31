@@ -33,7 +33,7 @@ export function get(id, type) {
  * @param {string} id   Unique id
  * @param {string} type Data type
  */
-export function delete(id, type) {
+export function remove(id, type) {
   localStorage.removeItem(key(id, type));
 }
 
