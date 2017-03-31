@@ -45,5 +45,5 @@ export * from './share';
 
 // Event Queue Names & Creators
 export const QUEUE_EVENT = 'QUEUE_EVENT';
-export const RUN_QUEUE = 'RUN_QUEUE';
+export const COMPLETED_EVENT = 'COMPLETED_EVENT';
 export * from './event';

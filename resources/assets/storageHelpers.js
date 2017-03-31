@@ -1,4 +1,7 @@
 export const SIGNUP_STORAGE_KEY = 'signups';
+export const EVENT_STORAGE_KEY  = 'events';
+
+import { getDeviceId } './helpers';
 
 function key(id, type) {
   return `${id}-${type}`;
@@ -53,6 +56,8 @@ export function append(id, type, data) {
   set(id, type, array);
 }
 
+// TODO: Removed from array helper?
+
 /**
  * Load the state that was last written to storage.
  *
@@ -62,9 +67,14 @@ export function append(id, type, data) {
  */
 export function loadStorage(initialState, preloadedState) {
   const userId = preloadedState.user.id;
-  if (! userId) return;
+  if (userId) {
+    initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY) || [];
+  }
 
-  initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY) || [];
+  const deviceId = getDeviceId();
+  if (deviceId) {
+    initialState.events.queue = get(deviceId, EVENT_STORAGE_KEY) || [];
+  }
 
   return initialState;
 }

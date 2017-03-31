@@ -222,6 +222,20 @@ export function createDeviceId() {
   localStorage.setItem(DEVICE_ID, generateUniqueId());
 }
 
+/**
+ * Get the unique identifier of this device.
+ * If it doesn't have one, create it.
+ *
+ * @return {String}
+ */
+export function getDeviceId() {
+  const id = localStorage.getItem(DEVICE_ID);
+  if (id) return id;
+
+  createDeviceId()
+  return getDeviceId();
+}
+
 const SESSION_ID = 'SESSION_ID';
 const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
 
@@ -249,6 +263,17 @@ export function generateSessionid() {
 }
 
 /**
+ * Check if the given timestamp is still valid.
+ *
+ * @param  {int}  timestamp  Timestamp in milliseconds
+ * @param  {int}  maxTime    Expire time in milliseconds
+ * @return {Boolean}         Whether the timestamp is valid
+ */
+export function isTimestampValid(timestmap, maxTime) {
+  return (timestmap + maxTime) > Date.now();
+}
+
+/**
  * Check if the given session id is still valid.
  *
  * @return {Boolean}
@@ -258,6 +283,6 @@ export function isSessionValid() {
 
   if (!session.id || !session.lastUpdatedAt) return false;
 
-  // Check if the timestamp is 15 min old
-  return (session.lastUpdatedAt + (15 * 60 * 1000)) > Date.now();
+  // Check if the timestamp is 15 min old.
+  return isTimestampValid(session.lastUpdatedAt, (15 * 60 * 1000));
 }

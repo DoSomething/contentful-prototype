@@ -1,7 +1,13 @@
 import {
   QUEUE_EVENT,
-  RUN_QUEUE,
+  COMPLETED_EVENT,
 } from '../actions';
+
+import {
+  append as storageAppend,
+  get as storageGet,
+  EVENT_STORAGE_KEY,
+} from '../storageHelpers';
 
 /**
  * Events reducer:
@@ -9,9 +15,14 @@ import {
 const events = (state = {}, action) => {
   switch (action.type) {
     case QUEUE_EVENT:
+      storageAppend(action.deviceId, EVENT_STORAGE_KEY, {
+        action: action.action,
+        params: action.params,
+      });
+
       return state;
 
-    case RUN_QUEUE:
+    case COMPLETED_EVENT:
       return state;
 
     default:
