@@ -64,7 +64,7 @@ export function loadStorage(initialState, preloadedState) {
   const userId = preloadedState.user.id;
   if (! userId) return;
 
-  initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY);
+  initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY) || [];
 
   return initialState;
 }

@@ -49,11 +49,13 @@ export function signupPending() {
 
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
-  return dispatch => {
-    dispatch(signupPending());
-
-    (new Phoenix).get(`activity/${campaignId}`).then(response => {
-      if (!response || !response.sid) {
+  return (dispatch, getState) => {
+    (new Phoenix).get('signups', {
+      campaigns: campaignId,
+      user: getState().user.id,
+    }).then(response => {
+      console.log(response);
+      if (!response || !response.data || !response.data[0]) {
         return dispatch(signupNotFound());
       }
 
@@ -67,7 +69,7 @@ export function clickedSignUp(campaignId) {
   return dispatch => {
     dispatch(signupPending());
 
-    return (new Phoenix).post('signups', { campaignId }).then(response => {
+    (new Phoenix).post('signups', { campaignId }).then(response => {
       if (!response || !response[0]) return;
 
       dispatch(signupCreated(campaignId));
