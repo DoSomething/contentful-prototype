@@ -54,12 +54,14 @@ export function checkForSignup(campaignId) {
       campaigns: campaignId,
       user: getState().user.id,
     }).then(response => {
-      console.log(response);
       if (!response || !response.data || !response.data[0]) {
-        return dispatch(signupNotFound());
+        throw new Error('no signup found');
       }
 
       dispatch(signupFound(campaignId));
+    })
+    .catch(() => {
+      dispatch(signupNotFound());
     });
   }
 }
