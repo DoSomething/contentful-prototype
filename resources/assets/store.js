@@ -24,9 +24,10 @@ const initialState = {
     itemEntities: {},
   },
   submissions: {
+    reportback: {},
     isFetching: false,
     isStoring: false,
-    data: [],
+    items: [],
   },
   signups: {
     data: (localStorage.getItem('signups') || '').split(','),

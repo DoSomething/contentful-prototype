@@ -1,0 +1,16 @@
+@import '../../scss/next-toolbox.scss';
+
+.highlight {
+  display: inline-block;
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    width: 104%;
+    left: -2%;
+    bottom: -5%;
+    height: 8px;
+    background: $primary-color;
+  }
+}

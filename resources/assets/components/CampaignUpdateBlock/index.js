@@ -7,9 +7,6 @@ import Embed from '../Embed';
 import DEFAULT_AVATAR from './default-avatar.png';
 import './campaign-update.scss';
 
-// TEMP - purley for demo purposes till it has an official home.
-import ShareContainer from '../../containers/ShareContainer';
-
 const Byline = ({author, jobTitle = 'DoSomething.org Staff', avatar = DEFAULT_AVATAR}) => (
   <Figure size="small" alignment="left" verticalAlignment="center" image={avatar} imageClassName="avatar">
     <strong>{author}</strong><br/>
@@ -31,7 +28,6 @@ const CampaignUpdateBlock = (props) => {
       </Markdown>
       { link ? <Embed url={link} /> : null }
       { author ? <Byline author={author} jobTitle={jobTitle} avatar={avatar} />: null}
-      <ShareContainer />
     </Block>
   );
 };

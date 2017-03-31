@@ -4,7 +4,8 @@ import {
   RECEIVED_USER_SUBMISSIONS,
   STORE_REPORTBACK_PENDING,
   STORE_REPORTBACK_SUCCESSFUL,
-  ADD_TO_SUBMISSIONS_LIST
+  ADD_SUBMISSION_METADATA,
+  ADD_SUBMISSION_ITEM_TO_LIST
 } from '../actions';
 
 /**
@@ -28,8 +29,19 @@ const submissions = (state = {}, action) => {
     case STORE_REPORTBACK_SUCCESSFUL:
       return {...state, isStoring: false};
 
-    case ADD_TO_SUBMISSIONS_LIST:
-      return {...state, data: [action.reportback, ...state.data]}
+    case ADD_SUBMISSION_METADATA:
+      return {
+        ...state,
+        reportback: {
+          id: action.id || action.reportback.id,
+          flagged: action.reportback.flagged || null,
+          quantity: parseInt(action.reportback.impact) || parseInt(action.reportback.quantity),
+          whyParticipated: action.reportback.whyParticipated ||action.reportback.why_participated,
+        },
+      };
+
+    case ADD_SUBMISSION_ITEM_TO_LIST:
+      return {...state, items: [action.reportbackItem, ...state.items]}
 
     default:
       return state;

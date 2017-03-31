@@ -37,6 +37,12 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/signups';
 
+        // Avoid caching when requesting signups for sepcific user and campaign.
+        // @Temporary?
+        if (isset($query['campaigns']) && isset($query['users'])) {
+            return $this->get($path, $query);
+        }
+
         return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
             return $this->get($path, $query);
         });

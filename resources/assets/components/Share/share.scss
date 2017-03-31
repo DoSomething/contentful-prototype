@@ -1,15 +1,15 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
 
 .share {
   color: $white;
 
   &.-black {
-    color: $black;
+    color: $dark-background-color;
     background: $white;
-    border: 1px solid $black;
+    border: 1px solid $dark-background-color;
 
     &:hover {
-      background: $light-gray;
+      background: $light-background-color;
     }
   }
 
@@ -17,9 +17,9 @@
     color: inherit;
 
     &:after {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
-      margin-left: 4px;
+      margin-left: 8px;
     }
   }
 }

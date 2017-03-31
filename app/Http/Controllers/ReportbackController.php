@@ -39,13 +39,13 @@ class ReportbackController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'photo' => 'required',
+            'media' => 'required',
             'caption' => 'required',
             'impact' => 'required',
             'whyParticipated' => 'required',
         ]);
 
-        $reportbackPhoto = $request->file('photo');
+        $reportbackPhoto = $request->file('media');
 
         return $this->phoenixLegacy->storeReportback(
             auth()->user()->legacy_id,

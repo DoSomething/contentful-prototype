@@ -2,7 +2,8 @@ import React from 'react';
 import Block from '../Block';
 import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
-import ReportbackSubmissions from '../ReportbackSubmissions';
+import Gallery from '../Gallery';
+import ReportbackItem from '../ReportbackItem';
 import './reportback-uploader.scss';
 
 class ReportbackUploader extends React.Component {
@@ -107,8 +108,9 @@ class ReportbackUploader extends React.Component {
             <button className="button" type="submit">Submit a new photo</button>
           </form>
         </div>
-
-        <ReportbackSubmissions submissions={this.props.submissions}/>
+          <Gallery isFetching={this.props.submissions.isFetching} type="triad">
+            {this.props.submissions.items.map((submission, index) => <ReportbackItem key={Date.now() + index} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
+          </Gallery>
       </Block>
     );
   }

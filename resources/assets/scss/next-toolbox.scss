@@ -1,0 +1,19 @@
+// Import legacy Forge patterns
+@import '~@dosomething/forge/scss/toolkit';
+
+// This is a set of variables specific to Phoenix Next.
+// These values will be in Flux as creative plays with it,
+// but this can be moved to Forge when we're confident with
+// the variables.
+
+$primary-color: #E8263E;
+
+$primary-text-color: #000000;
+$secondary-text-color: #A3A3A3;
+
+$primary-border-color: #DCDCDC;
+
+$light-background-color: #F6F6F6;
+$dark-background-color: #000000;
+
+$half-spacing: $base-spacing / 2;
