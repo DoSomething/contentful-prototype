@@ -37,8 +37,13 @@ export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SIGNUP_NOT_FOUND = 'SIGNUP_NOT_FOUND';
 export * from './signup';
 
-// Social Action Names & Creatirs
+// Social Action Names & Creators
 export const REQUESTED_FACEBOOK_SHARE = 'REQUESTED_FACEBOOK_SHARE';
 export const FACEBOOK_SHARE_COMPLETED = 'FACEBOOK_SHARE_COMPLETED';
 export const FACEBOOK_SHARE_CANCELLED = 'FACEBOOK_SHARE_CANCELLED';
 export * from './share';
+
+// Event Queue Names & Creators
+export const QUEUE_EVENT = 'QUEUE_EVENT';
+export const RUN_QUEUE = 'RUN_QUEUE';
+export * from './event';
