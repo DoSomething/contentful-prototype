@@ -5,6 +5,9 @@ import {
   clickedSignUp,
   checkForSignup,
   fetchReportbacks,
+
+  queueEvent,
+  startQueue,
 } from '../actions';
 
 const BLOCKS_PER_ROW = 3;
@@ -104,6 +107,10 @@ const actionCreators = {
   clickedSignUp,
   checkForSignup,
   fetchReportbacks,
+
+  //TEMP - for testing
+  queueEvent,
+  startQueue,
 };
 
 // Export the container component.

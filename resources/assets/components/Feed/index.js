@@ -24,6 +24,10 @@ class Feed extends React.Component {
 
     // Load the first page of reportbacks.
     this.props.fetchReportbacks();
+
+    // TEMP - for testing
+    this.props.queueEvent({type: 'TEST', boop: 'bop'});
+    this.props.startQueue();
   }
 
   /**

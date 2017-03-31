@@ -15,14 +15,14 @@ import {
 const events = (state = {}, action) => {
   switch (action.type) {
     case QUEUE_EVENT:
-      storageAppend(action.deviceId, EVENT_STORAGE_KEY, {
-        action: action.action,
-        params: action.params,
-      });
-
+      storageAppend(action.deviceId, EVENT_STORAGE_KEY, action);
       return state;
 
     case COMPLETED_EVENT:
+      return state;
+
+    case 'TEST':
+      console.log('EYYYYY');
       return state;
 
     default:
