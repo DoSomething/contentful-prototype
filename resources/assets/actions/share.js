@@ -24,10 +24,7 @@ export function clickedShare() {
   return (dispatch, getState) => {
     dispatch(requestedFacebookShare());
 
-    const user = getState().user;
-    const id = user.id ? `?ns=${user.id}` : '';
-    const href = `${window.location.href}${id}`;
-
+    const href = window.location.href;
     const quote = getState().share.quote || '';
 
     FB.ui({
