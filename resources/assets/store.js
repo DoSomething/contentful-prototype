@@ -42,6 +42,9 @@ const initialState = {
   share: {
     status: null,
   },
+  events: {
+    queue: [],
+  }
 };
 
 /**
