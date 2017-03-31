@@ -5,8 +5,10 @@ import {
   SIGNUP_NOT_FOUND,
 } from '../actions';
 
-import { set as storageSet } from '../storageHelpers';
-const STORAGE_KEY = 'signups';
+import {
+  set as storageSet,
+  SIGNUP_STORAGE_KEY,
+} from '../storageHelpers';
 
 /**
  * Signup reducer:
@@ -17,7 +19,7 @@ const signupReducer = (state = {}, action) => {
   switch (action.type) {
     case SIGNUP_CREATED:
       signups.push(action.campaignId);
-      storageSet(action.userId, STORAGE_KEY, signups);
+      storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
 
       return {
         ...state,
@@ -28,7 +30,7 @@ const signupReducer = (state = {}, action) => {
 
     case SIGNUP_FOUND:
       signups.push(action.campaignId);
-      storageSet(action.userId, STORAGE_KEY, signups);
+      storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
 
       return {
         ...state,

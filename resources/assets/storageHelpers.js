@@ -1,3 +1,5 @@
+export const SIGNUP_STORAGE_KEY = 'signups';
+
 function key(id, type) {
   return `${id}-${type}`;
 }
@@ -49,4 +51,20 @@ export function append(id, type, data) {
   const array = get(id, type) || [];
   array.push(data);
   set(id, type, array);
+}
+
+/**
+ * Load the state that was last written to storage.
+ *
+ * @param  {object} initialState   The barebones default state.
+ * @param  {object} preloadedState The state values passed from the server.
+ * @return {object}                The new initial state
+ */
+export function loadStorage(initialState, preloadedState) {
+  const userId = preloadedState.user.id;
+  if (! userId) return;
+
+  initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY);
+
+  return initialState;
 }

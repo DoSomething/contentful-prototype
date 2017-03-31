@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { observerMiddleware } from './analytics';
+import { loadStorage } from './storageHelpers';
 
 /**
  * Initial state for the Redux store. This is where we
@@ -30,7 +31,7 @@ const initialState = {
     items: [],
   },
   signups: {
-    data: (localStorage.getItem('signups') || '').split(','),
+    data: [],
     thisCampaign: false,
     thisSession: false,
     pending: false,
@@ -63,9 +64,11 @@ export default function(reducers, preloadedState = {}) {
   // If React DevTools are available, use instrumented compose function.
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
+  const transformedState = loadStorage(initialState, preloadedState);
+
   return createStore(
     combineReducers(reducers),
-    merge(initialState, preloadedState),
+    merge(transformedState, preloadedState),
     composeEnhancers(applyMiddleware(...middleware))
   );
 };
