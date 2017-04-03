@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks } from './actions';
 import { observerMiddleware } from './analytics';
-import { loadStorage } from './storageHelpers';
+import { loadStorage } from './helpers/storage';
 
 /**
  * Initial state for the Redux store. This is where we
@@ -97,5 +97,3 @@ export function initializeStore(store) {
     callback();
   }
 }
-
-

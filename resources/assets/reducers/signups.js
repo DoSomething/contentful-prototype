@@ -8,7 +8,7 @@ import {
 import {
   set as storageSet,
   SIGNUP_STORAGE_KEY,
-} from '../storageHelpers';
+} from '../helpers/storage';
 
 /**
  * Signup reducer:
