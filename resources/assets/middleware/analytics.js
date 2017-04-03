@@ -3,7 +3,6 @@ import {
   isSessionValid,
   stateChanged,
   createDeviceId,
-  stateChanged,
 } from '../helpers/analytics';
 
 import { init, pageview } from '@dosomething/analytics';
