@@ -27,10 +27,6 @@ const events = (state = {}, action) => {
       storageSplice(action.deviceId, EVENT_STORAGE_KEY, action.index);
       return state;
 
-    case 'TEST':
-      console.log('EYYYYY');
-      return state;
-
     default:
       return state;
   }
