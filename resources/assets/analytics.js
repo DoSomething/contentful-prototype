@@ -4,7 +4,7 @@ import {
   updateSession,
   getSession,
   createDeviceId,
-} from './helpers';
+} from './helpers/analytics';
 
 import {
   init,
