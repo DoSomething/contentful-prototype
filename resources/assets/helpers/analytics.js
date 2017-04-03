@@ -5,6 +5,35 @@ const SESSION_ID = 'SESSION_ID';
 const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
 
 /**
+ * Prepare the state for being sent to Keen.io
+ *
+ * @param  {Object} action Action that fired
+ * @param  {Object} state  Application state
+ * @return {Object}        Object to send
+ */
+export function transformState(action, state) {
+  const transformation = {
+    feed: {
+      page: state.blocks.offset,
+    },
+    campaign: state.campaign,
+    page: {
+      base: state.routing.locationBeforeTransitions.basename,
+      path: state.routing.locationBeforeTransitions.pathname,
+    },
+    signups: state.signups,
+    submissions: state.submissions,
+    user: {
+      session: getSession(),
+      ...state.user,
+    },
+    action,
+  };
+
+  return transformation;
+}
+
+/**
  * Check if this device has a unique id,
  * if not then create one.
  */

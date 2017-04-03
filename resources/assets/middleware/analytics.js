@@ -4,42 +4,14 @@ import {
   updateSession,
   getSession,
   createDeviceId,
-} from './helpers/analytics';
+  transformState,
+} from '../helpers/analytics';
 
 import {
   init,
   analyze,
   pageview,
 } from '@dosomething/analytics';
-
-/**
- * Prepare the state for being sent to Keen.io
- *
- * @param  {Object} action Action that fired
- * @param  {Object} state  Application state
- * @return {Object}        Object to send
- */
-function transformState(action, state) {
-  const transformation = {
-    feed: {
-      page: state.blocks.offset,
-    },
-    campaign: state.campaign,
-    page: {
-      base: state.routing.locationBeforeTransitions.basename,
-      path: state.routing.locationBeforeTransitions.pathname,
-    },
-    signups: state.signups,
-    submissions: state.submissions,
-    user: {
-      session: getSession(),
-      ...state.user,
-    },
-    action,
-  };
-
-  return transformation;
-}
 
 /**
  * Transform the application state and push to Keen.io

@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks } from './actions';
-import { observerMiddleware } from './analytics';
+import { observerMiddleware } from './middleware/analytics';
 import { loadStorage } from './helpers/storage';
 
 /**
