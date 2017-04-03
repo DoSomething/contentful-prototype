@@ -70,7 +70,7 @@ export function checkForSignup(campaignId) {
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId) {
   return (dispatch, getState) => {
-    // If the user is logged in, handle this action later.
+    // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
       dispatch(queueEvent('clickedSignUp', campaignId));
       return;

@@ -13,7 +13,8 @@ import {
   ADD_SUBMISSION_ITEM_TO_LIST,
   REQUESTED_USER_SUBMISSIONS,
   REQUESTED_USER_SUBMISSIONS_FAILED,
-  RECEIVED_USER_SUBMISSIONS
+  RECEIVED_USER_SUBMISSIONS,
+  queueEvent
 } from '../actions';
 
 /**
@@ -90,7 +91,13 @@ export function addSubmissionItemToList(reportbackItem) {
 
 // Async Action: user reacted to a photo.
 export function toggleReactionOn(reportbackItemId, termId) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    // If the user is not logged in, handle this action later.
+    if (! getState().user.id) {
+      dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
+      return;
+    }
+
     dispatch(reactionChanged(reportbackItemId, true));
 
     (new Phoenix).post('reactions', {
