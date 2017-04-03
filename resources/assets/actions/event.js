@@ -33,7 +33,7 @@ export function startQueue() {
         const args = event.action.args || [];
 
         // If the creator was found, dispatch the action.
-        if (action) dispatch(action.call(action.prototype, ...args));
+        if (action) dispatch(action(...args));
       }
 
       // Always remove the event from storge.
@@ -43,10 +43,7 @@ export function startQueue() {
 }
 
 // Action: add an event to the queue.
-export function queueEvent(actionCreatorName) {
-  const args = [...arguments];
-  args.shift();
-
+export function queueEvent(actionCreatorName, ...args) {
   return {
     type: QUEUE_EVENT,
     deviceId: getDeviceId(),
