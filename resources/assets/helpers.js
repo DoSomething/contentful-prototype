@@ -32,21 +32,6 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
 }
 
 /**
- * Ensure a user is authenticated. If not, redirect them
- * to log in via the OpenID Connect flow.
- * @param isAuthenticated
- * @returns {boolean}
- */
-export function ensureAuth(isAuthenticated) {
-  if (! isAuthenticated) {
-    window.location.href = '/login';
-    return false;
-  }
-
-  return true;
-}
-
-/**
  * Wait until the DOM is ready.
  *
  * @param {Function} fn

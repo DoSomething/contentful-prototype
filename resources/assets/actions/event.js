@@ -3,6 +3,8 @@ import {
   COMPLETED_EVENT,
 } from '../actions';
 
+import * as allActions from '../actions';
+
 import {
   getDeviceId,
   isTimestampValid,
@@ -24,20 +26,35 @@ export function startQueue() {
     const queue = storageGet(getDeviceId(), EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
-      // Check if the event is over 30 min old.
-      if (isTimestampValid(event.createdAt, (30 * 60 * 1000))) dispatch(event.action);
+      // Check if the event is over 30 min old before dispatching.
+      if (isTimestampValid(event.createdAt, (30 * 60 * 1000))) {
+        // Match the action creator from the saved name, load parameters to apply.
+        const action = allActions[event.action.creatorName];
+        const args = event.action.args || [];
 
+        // If the creator was found, dispatch the action.
+        if (action) dispatch(action.call(action.prototype, ...args));
+      }
+
+      // Always remove the event from storge.
       dispatch(completedEvent(index));
     });
   }
 }
 
 // Action: add an event to the queue.
-export function queueEvent(action) {
+export function queueEvent(actionCreatorName) {
+  const args = [...arguments];
+  args.shift();
+
   return {
     type: QUEUE_EVENT,
     deviceId: getDeviceId(),
     createdAt: Date.now(),
-    action: action,
+    redirectToLogin: true, //vLater - Allow more flexibility with events
+    action: {
+      creatorName: actionCreatorName,
+      args,
+    }
   }
 }

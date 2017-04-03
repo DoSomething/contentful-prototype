@@ -16,6 +16,11 @@ const events = (state = {}, action) => {
   switch (action.type) {
     case QUEUE_EVENT:
       storageAppend(action.deviceId, EVENT_STORAGE_KEY, action);
+
+      if (action.redirectToLogin) {
+        window.location.href = '/login';
+      }
+
       return state;
 
     case COMPLETED_EVENT:

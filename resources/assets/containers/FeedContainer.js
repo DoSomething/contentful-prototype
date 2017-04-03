@@ -5,8 +5,6 @@ import {
   clickedSignUp,
   checkForSignup,
   fetchReportbacks,
-
-  queueEvent,
   startQueue,
 } from '../actions';
 
@@ -107,9 +105,6 @@ const actionCreators = {
   clickedSignUp,
   checkForSignup,
   fetchReportbacks,
-
-  //TEMP - for testing
-  queueEvent,
   startQueue,
 };
 

@@ -25,8 +25,7 @@ class Feed extends React.Component {
     // Load the first page of reportbacks.
     this.props.fetchReportbacks();
 
-    // TEMP - for testing
-    this.props.queueEvent({type: 'TEST', boop: 'bop'});
+    // Loop through the event queue
     this.props.startQueue();
   }
 
@@ -55,12 +54,13 @@ class Feed extends React.Component {
    */
   render() {
     const { blocks, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated } = this.props;
+    const affiliated = signedUp && isAuthenticated;
 
-    const viewMoreOrSignup = signedUp ? this.props.clickedViewMore : () => this.props.clickedSignUp(this.props.legacyCampaignId);
-    const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
-                               callToAction={signedUp ? '' : this.props.callToAction}
+    const viewMoreOrSignup = affiliated ? this.props.clickedViewMore : () => this.props.clickedSignUp(this.props.legacyCampaignId);
+    const revealer = <Revealer title={affiliated ? 'view more' : 'sign up'}
+                               callToAction={affiliated ? '' : this.props.callToAction}
                                isLoading={hasPendingSignup}
-                               onReveal={() => ensureAuth(isAuthenticated) && viewMoreOrSignup()} />;
+                               onReveal={() => viewMoreOrSignup()} />;
 
     return (
       <Flex>
