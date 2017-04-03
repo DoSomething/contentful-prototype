@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import * as reducers from '../reducers'
-import configureStore from '../store';
+import { configureStore, initializeStore } from '../store';
 
 import { Router, Route, useRouterHistory } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
@@ -26,7 +26,7 @@ observe(history, store);
 const App = (props) => (
   <Provider store={store}>
     <Router history={history}>
-      <Route component={Chrome}>
+      <Route component={Chrome} onEnter={initializeStore(store)}>
         <Route path="/" component={FeedContainer}/>
         <Route path="/pages/:page" component={ContentPageContainer}/>
         <Route path='*' component={NotFound} />

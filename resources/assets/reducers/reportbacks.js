@@ -23,6 +23,7 @@ const reportbacks = (state = {}, action) => {
         ...state,
         isFetching: false,
         page: action.page + 1,
+        total: action.total,
         ids: state.ids.concat(Object.keys(action.reportbacks)),
         entities: merge(state.entities, action.reportbacks),
         itemEntities: merge(state.itemEntities, action.reportbackItems),

@@ -27,8 +27,8 @@ export function requestedReportbacks(node) {
 }
 
 // Action: new reportback data received.
-export function receivedReportbacks(page, { reportbacks, reportbackItems, reactions }) {
-  return { type: RECEIVED_REPORTBACKS, page, reportbacks, reportbackItems, reactions };
+export function receivedReportbacks({ reportbacks, reportbackItems, reactions }, page, total) {
+  return { type: RECEIVED_REPORTBACKS, reportbacks, reportbackItems, reactions, page, total };
 }
 
 // Action: toggled a reaction
@@ -195,7 +195,7 @@ export function fetchReportbacks() {
 
     (new Phoenix).get('reportbacks', { campaigns: node, page }).then(json => {
       const normalizedData = normalizeReportbacksResponse(json.data);
-      dispatch(receivedReportbacks(json.meta.pagination.current_page, normalizedData))
+      dispatch(receivedReportbacks(normalizedData, json.meta.pagination.current_page, json.meta.pagination.total))
     })
   }
 }

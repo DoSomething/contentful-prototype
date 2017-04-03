@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
+import { checkForSignup, fetchReportbacks, startQueue } from './actions';
 import { observerMiddleware } from './analytics';
 import { loadStorage } from './storageHelpers';
 
@@ -19,6 +20,7 @@ const initialState = {
   },
   reportbacks: {
     isFetching: false,
+    total: 0,
     page: 1,
     ids: [],
     entities: {},
@@ -55,7 +57,7 @@ const initialState = {
  * @param preloadedState
  * @returns {Store<S>}
  */
-export default function(reducers, preloadedState = {}) {
+export function configureStore(reducers, preloadedState = {}) {
   const middleware = [thunk, observerMiddleware];
 
   // Log actions to the console in development & track state changes.
@@ -75,4 +77,29 @@ export default function(reducers, preloadedState = {}) {
     merge(transformedState, preloadedState),
     composeEnhancers(applyMiddleware(...middleware))
   );
-};
+}
+
+/**
+ * Dispatch any actions to lazy-load application state. This
+ * is done exactly once on initial page load.
+ *
+ * @param {Store<S>} store
+ */
+export function initializeStore(store) {
+  return (nextState, replace, callback) => {
+    const state = store.getState();
+
+    // If we don't already have a signup cached in local storage, check.
+    if (! state.signups.data.includes(state.campaign.legacyCampaignId)) {
+      store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
+    }
+
+    // Fetch the first page of reportbacks for the feed.
+    store.dispatch(fetchReportbacks());
+
+    // Start the event queue.
+    store.dispatch(startQueue());
+
+    callback();
+  }
+}

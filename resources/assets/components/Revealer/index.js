@@ -5,6 +5,10 @@ import classnames from 'classnames';
 import './revealer.scss';
 
 const Revealer = (props) => {
+  if (! props.isVisible) {
+    return null;
+  }
+
   return (
     <FlexCell width="full">
       <div className="revealer">
@@ -19,6 +23,7 @@ Revealer.defaultProps = {
   callToAction: '',
   title: 'view more',
   onReveal: () => {},
+  isVisible: true,
 };
 
 export default Revealer;
