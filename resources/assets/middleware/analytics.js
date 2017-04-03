@@ -1,31 +1,12 @@
 import {
   generateSessionid,
   isSessionValid,
-  updateSession,
-  getSession,
+  stateChanged,
   createDeviceId,
-  transformState,
+  stateChanged,
 } from '../helpers/analytics';
 
-import {
-  init,
-  analyze,
-  pageview,
-} from '@dosomething/analytics';
-
-/**
- * Transform the application state and push to Keen.io
- * Additionally bump the activity marker.
- *
- * @param  {Object} action Action that fired
- * @param  {Object} state  Application state
- */
-function stateChanged(action, state) {
-  updateSession();
-  const transformation = transformState(action, state);
-
-  analyze('action', transformation);
-}
+import { init, pageview } from '@dosomething/analytics';
 
 /**
  * Redux middleware for tracking state changes.

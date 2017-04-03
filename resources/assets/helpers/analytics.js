@@ -1,4 +1,5 @@
 import { generateUniqueId } from '../helpers';
+import { analyze } from '@dosomething/analytics';
 
 const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
@@ -78,4 +79,18 @@ export function isSessionValid() {
 
   // Check if the timestamp is 15 min old
   return (session.lastUpdatedAt + (15 * 60 * 1000)) > Date.now();
+}
+
+/**
+ * Transform the application state and push to Keen.io
+ * Additionally bump the activity marker.
+ *
+ * @param  {Object} action Action that fired
+ * @param  {Object} state  Application state
+ */
+export function stateChanged(action, state) {
+  updateSession();
+  const transformation = transformState(action, state);
+
+  analyze('action', transformation);
 }
