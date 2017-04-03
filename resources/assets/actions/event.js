@@ -11,7 +11,7 @@ import {
 } from '../helpers';
 
 import {
-  get as storageGet,
+  getArray,
   EVENT_STORAGE_KEY,
 } from '../storageHelpers';
 
@@ -23,7 +23,7 @@ export function completedEvent(index) {
 // Action: run through all of the events in the queue.
 export function startQueue() {
   return dispatch => {
-    const queue = storageGet(getDeviceId(), EVENT_STORAGE_KEY);
+    const queue = getArray(getDeviceId(), EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
       // Check if the event is over 30 min old before dispatching.
