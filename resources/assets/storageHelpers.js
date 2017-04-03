@@ -43,6 +43,18 @@ export function remove(id, type) {
 }
 
 /**
+ * Get the array in local storage for the given
+ * unique id and data type or an empty array.
+ *
+ * @param  {string} id   Unique id
+ * @param  {string} type Data type
+ * @return {array}
+ */
+export function getArray(id, type) {
+  return get(id, type) || [];
+}
+
+/**
  * Append data to an array in local storage
  * for the given unique id and data type.
  *
@@ -51,12 +63,25 @@ export function remove(id, type) {
  * @param {mixed}  data Data to write
  */
 export function append(id, type, data) {
-  const array = get(id, type) || [];
+  const array = getArray(id, type);
   array.push(data);
   set(id, type, array);
 }
 
-// TODO: Removed from array helper?
+/**
+ * Remove a specific index from an array
+ * in local storage for the given unique
+ * id and data type.
+ *
+ * @param  {string} id    Unique id
+ * @param  {string} type  Data type
+ * @param  {int}    index Index to delete
+ */
+export function splice(id, type, index) {
+  const array = getArray(id, type);
+  array.splice(index, 1);
+  set(id, type, array);
+}
 
 /**
  * Load the state that was last written to storage.

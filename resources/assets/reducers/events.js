@@ -5,7 +5,7 @@ import {
 
 import {
   append as storageAppend,
-  get as storageGet,
+  splice as storageSplice,
   EVENT_STORAGE_KEY,
 } from '../storageHelpers';
 
@@ -19,6 +19,7 @@ const events = (state = {}, action) => {
       return state;
 
     case COMPLETED_EVENT:
+      storageSplice(action.deviceId, EVENT_STORAGE_KEY, action.index);
       return state;
 
     case 'TEST':

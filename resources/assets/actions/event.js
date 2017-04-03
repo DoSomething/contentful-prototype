@@ -15,7 +15,7 @@ import {
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {
-  return { type: COMPLETED_EVENT, index };
+  return { type: COMPLETED_EVENT, index, deviceId: getDeviceId() };
 }
 
 // Action: run through all of the events in the queue.
@@ -24,15 +24,11 @@ export function startQueue() {
     const queue = storageGet(getDeviceId(), EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
-      //TODO: Check if action is valid
-      dispatch(event.action);
+      // Check if the event is over 30 min old.
+      if (isTimestampValid(event.createdAt, (30 * 60 * 1000))) dispatch(event.action);
+
       dispatch(completedEvent(index));
     });
-
-    // Get events
-    // If still valid
-    // Dispatch action
-    // Dispatch completed event
   }
 }
 
