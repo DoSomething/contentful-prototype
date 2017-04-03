@@ -92,7 +92,7 @@ export function addSubmissionItemToList(reportbackItem) {
 // Async Action: user reacted to a photo.
 export function toggleReactionOn(reportbackItemId, termId, component) {
   return dispatch => {
-    dispatch(trackEvent('reaction changed', component));
+    dispatch(trackEvent('reaction toggled on', component));
     dispatch(reactionChanged(reportbackItemId, true));
 
     (new Phoenix).post('reactions', {
@@ -110,7 +110,7 @@ export function toggleReactionOn(reportbackItemId, termId, component) {
 // Async Action: user un-reacted to a photo.
 export function toggleReactionOff(reportbackItemId, reactionId, component) {
   return dispatch => {
-    dispatch(trackEvent('reaction changed', component));
+    dispatch(trackEvent('reaction toggled off', component));
     dispatch(reactionChanged(reportbackItemId, false));
 
     (new Phoenix).delete(`reactions/${reactionId}`)
