@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
   return {
     blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
     canLoadMorePages: getBlockOffset(state) < getMaximumOffset(state),
+    campaignId: state.campaign.legacyCampaignId,
     callToAction: state.campaign.callToAction,
     submissions: state.submissions,
     signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
