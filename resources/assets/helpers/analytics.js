@@ -19,8 +19,9 @@ export function transformState(action, state) {
     },
     campaign: state.campaign,
     page: {
-      base: state.routing.locationBeforeTransitions.basename,
-      path: state.routing.locationBeforeTransitions.pathname,
+      host: location.hostname,
+      path: location.pathname,
+      referer: document.referrer,
     },
     signups: state.signups,
     submissions: state.submissions,

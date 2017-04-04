@@ -7,6 +7,8 @@ import {
 
 import { init, pageview } from '@dosomething/analytics';
 
+import { ANALYTICS_ACTIONS } from '../actions';
+
 /**
  * Redux middleware for tracking state changes.
  *
@@ -14,6 +16,8 @@ import { init, pageview } from '@dosomething/analytics';
  * @return {Object}
  */
 export const observerMiddleware = store => next => action => {
+  if (! ANALYTICS_ACTIONS.includes(action.type)) return;
+
   const result = next(action);
   stateChanged(action, store.getState());
 
