@@ -1,9 +1,6 @@
 {
   "name": "phoenix-next",
   "description": ":sparkles:",
-  "scripts": {
-    "postdeploy": "sh bootstrap/setup.sh"
-  },
   "env": {
     "APP_DEBUG": "true",
     "NPM_CONFIG_PRODUCTION": "false",
