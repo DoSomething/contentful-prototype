@@ -37,7 +37,7 @@
         "required": true
     },
     "GLADIATOR_URL": {
-      "required": true,
+      "required": true
     },
     "GOOGLE_ANALYTICS_ID": {
       "required": true
