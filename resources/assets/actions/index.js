@@ -46,6 +46,8 @@ export * from './share';
 // Analytics Action Names & Creators
 export * from './analytics';
 
+import { LOCATION_CHANGE } from 'react-router-redux';
+
 export const ANALYTICS_ACTIONS = [
   REQUESTED_REPORTBACKS,
   REACTION_CHANGED,
@@ -63,4 +65,5 @@ export const ANALYTICS_ACTIONS = [
   REQUESTED_FACEBOOK_SHARE,
   FACEBOOK_SHARE_COMPLETED,
   FACEBOOK_SHARE_CANCELLED,
+  LOCATION_CHANGE,
 ];
