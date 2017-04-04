@@ -1,7 +1,6 @@
 import React from 'react';
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
-import { ensureAuth } from '../../helpers';
 import './reportback-item.scss';
 
 const ReportbackItem = (props) => {

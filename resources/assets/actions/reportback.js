@@ -15,6 +15,7 @@ import {
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS,
   trackEvent,
+  queueEvent
 } from '../actions';
 
 /**
@@ -91,7 +92,13 @@ export function addSubmissionItemToList(reportbackItem) {
 
 // Async Action: user reacted to a photo.
 export function toggleReactionOn(reportbackItemId, termId, component) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    // If the user is not logged in, handle this action later.
+    if (! getState().user.id) {
+      dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
+      return;
+    }
+
     dispatch(trackEvent('reaction toggled on', component));
     dispatch(reactionChanged(reportbackItemId, true));
 

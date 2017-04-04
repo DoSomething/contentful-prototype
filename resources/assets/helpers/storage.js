@@ -1,4 +1,7 @@
 export const SIGNUP_STORAGE_KEY = 'signups';
+export const EVENT_STORAGE_KEY  = 'events';
+
+import { getDeviceId } from './helpers';
 
 function key(id, type) {
   return `${id}-${type}`;
@@ -40,6 +43,18 @@ export function remove(id, type) {
 }
 
 /**
+ * Get the array in local storage for the given
+ * unique id and data type or an empty array.
+ *
+ * @param  {string} id   Unique id
+ * @param  {string} type Data type
+ * @return {array}
+ */
+export function getArray(id, type) {
+  return get(id, type) || [];
+}
+
+/**
  * Append data to an array in local storage
  * for the given unique id and data type.
  *
@@ -48,8 +63,23 @@ export function remove(id, type) {
  * @param {mixed}  data Data to write
  */
 export function append(id, type, data) {
-  const array = get(id, type) || [];
+  const array = getArray(id, type);
   array.push(data);
+  set(id, type, array);
+}
+
+/**
+ * Remove a specific index from an array
+ * in local storage for the given unique
+ * id and data type.
+ *
+ * @param  {string} id    Unique id
+ * @param  {string} type  Data type
+ * @param  {int}    index Index to delete
+ */
+export function splice(id, type, index) {
+  const array = getArray(id, type);
+  array.splice(index, 1);
   set(id, type, array);
 }
 
@@ -62,9 +92,14 @@ export function append(id, type, data) {
  */
 export function loadStorage(initialState, preloadedState) {
   const userId = preloadedState.user.id;
-  if (! userId) return;
+  if (userId) {
+    initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY) || [];
+  }
 
-  initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY) || [];
+  const deviceId = getDeviceId();
+  if (deviceId) {
+    initialState.events.queue = get(deviceId, EVENT_STORAGE_KEY) || [];
+  }
 
   return initialState;
 }

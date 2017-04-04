@@ -30,6 +30,8 @@ const reportbacks = (state = {}, action) => {
       };
 
     case REACTION_CHANGED:
+      if (!state.itemEntities[action.reportbackItemId]) return state;
+
       return update(state, {
         itemEntities: {
           [action.reportbackItemId]: {

@@ -5,3 +5,4 @@ export blocks from './blocks';
 export user from './user';
 export signups from './signups';
 export share from './share';
+export events from './events';

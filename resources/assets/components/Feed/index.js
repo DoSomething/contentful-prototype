@@ -1,6 +1,5 @@
 import React from 'react';
 import { get } from 'lodash';
-import { ensureAuth } from '../../helpers';
 
 import Affirmation from '../Affirmation';
 import CallToActionContainer from '../../containers/CallToActionContainer';
@@ -39,22 +38,19 @@ const renderFeedItem = (block, index) => {
  *
  * @returns {XML}
  */
-const Feed = ({ blocks, callToAction, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
-  const viewMoreOrSignup = signedUp ? clickedViewMore : clickedSignUp;
+const Feed = ({ blocks, callToAction, campaignId, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
+  const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId);
   const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
                              callToAction={signedUp ? '' : callToAction}
                              isLoading={hasPendingSignup}
                              isVisible={(isAuthenticated && !signedUp) || canLoadMorePages}
-                             onReveal={() => ensureAuth(isAuthenticated) && viewMoreOrSignup()} />;
+                             onReveal={() => viewMoreOrSignup()} />;
 
   return (
     <Flex>
       {hasNewSignup ? <Affirmation /> : null}
       {blocks.map(renderFeedItem)}
       {revealer}
-      <FlexCell key="reportback_uploader" width="full">
-        <ReportbackUploaderContainer/>
-      </FlexCell>
     </Flex>
   );
 };

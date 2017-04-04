@@ -37,11 +37,16 @@ export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SIGNUP_NOT_FOUND = 'SIGNUP_NOT_FOUND';
 export * from './signup';
 
-// Social Action Names & Creatirs
+// Social Action Names & Creators
 export const REQUESTED_FACEBOOK_SHARE = 'REQUESTED_FACEBOOK_SHARE';
 export const FACEBOOK_SHARE_COMPLETED = 'FACEBOOK_SHARE_COMPLETED';
 export const FACEBOOK_SHARE_CANCELLED = 'FACEBOOK_SHARE_CANCELLED';
 export * from './share';
+
+// Event Queue Names & Creators
+export const QUEUE_EVENT = 'QUEUE_EVENT';
+export const COMPLETED_EVENT = 'COMPLETED_EVENT';
+export * from './event';
 
 // Analytics Action Names & Creators
 export * from './analytics';
@@ -66,4 +71,6 @@ export const ANALYTICS_ACTIONS = [
   FACEBOOK_SHARE_COMPLETED,
   FACEBOOK_SHARE_CANCELLED,
   LOCATION_CHANGE,
+  QUEUE_EVENT,
+  COMPLETED_EVENT,
 ];

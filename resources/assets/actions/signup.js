@@ -4,6 +4,7 @@ import {
   SIGNUP_FOUND,
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
+  queueEvent,
 } from '../actions';
 
 /**
@@ -68,13 +69,25 @@ export function checkForSignup(campaignId) {
 
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId) {
-  return dispatch => {
+  return (dispatch, getState) => {
+    // If the user is not logged in, handle this action later.
+    if (! getState().user.id) {
+      dispatch(queueEvent('clickedSignUp', campaignId));
+      return;
+    }
+
+    // Make sure we don't already have a signup cached before making the request.
+    if (getState().signups.data.includes(campaignId)) return;
+
     dispatch(signupPending());
 
     (new Phoenix).post('signups', { campaignId }).then(response => {
-      if (!response || !response[0]) return;
-
-      dispatch(signupCreated(campaignId));
+      // TODO: Handle a bad signup response...
+      if (! response) return;
+      // If Drupal denied our signup request, check if we already had a signup.
+      else if (response[0] === false) dispatch(checkForSignup(campaignId));
+      // Otherwise, mark the signup as a success.
+      else dispatch(signupCreated(campaignId));
     });
   }
 }
