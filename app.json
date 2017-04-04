@@ -2,6 +2,7 @@
   "name": "phoenix-next",
   "description": ":sparkles:",
   "env": {
+    "APP_ENV": "local",
     "APP_DEBUG": "true",
     "NPM_CONFIG_PRODUCTION": "false",
     "APP_KEY": {
@@ -34,6 +35,21 @@
     },
     "PHOENIX_LEGACY_PASSWORD": {
         "required": true
+    },
+    "GLADIATOR_URL": {
+      "required": true,
+    },
+    "GOOGLE_ANALYTICS_ID": {
+      "required": true,
+    },
+    "KEEN_PROJECT_ID": {
+      "required": true,
+    },
+    "KEEN_WRITE_KEY": {
+      "required": true,
+    },
+    "FACEBOOK_APP_ID": {
+      "required": true,
     }
   },
   "formation": {},
