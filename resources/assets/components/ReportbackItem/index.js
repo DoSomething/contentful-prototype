@@ -30,7 +30,7 @@ const ReportbackItem = (props) => {
 
   const reactionElement = reaction && !isFetching ? (
     <Reaction active={reaction.reacted} total={reaction.total}
-              onToggleOn={() => ensureAuth(isAuthenticated) && toggleReactionOn(id, reaction.termId, props)}
+              onToggleOn={() => toggleReactionOn(id, reaction.termId, props)}
               onToggleOff={() => toggleReactionOff(id, reaction.id, props)} />
   ) : null;
 

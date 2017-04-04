@@ -5,15 +5,13 @@ import {
 
 import * as allActions from '../actions';
 
-import {
-  getDeviceId,
-  isTimestampValid,
-} from '../helpers';
+import { isTimestampValid } from '../helpers';
+import { getDeviceId } from '../helpers/analytics';
 
 import {
   getArray,
   EVENT_STORAGE_KEY,
-} from '../storageHelpers';
+} from '../helpers/storage';
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {

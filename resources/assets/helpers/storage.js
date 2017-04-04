@@ -1,7 +1,7 @@
 export const SIGNUP_STORAGE_KEY = 'signups';
 export const EVENT_STORAGE_KEY  = 'events';
 
-import { getDeviceId } from './helpers';
+import { getDeviceId } from './analytics';
 
 function key(id, type) {
   return `${id}-${type}`;

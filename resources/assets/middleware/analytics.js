@@ -16,7 +16,7 @@ import { ANALYTICS_ACTIONS } from '../actions';
  * @return {Object}
  */
 export const observerMiddleware = store => next => action => {
-  if (! ANALYTICS_ACTIONS.includes(action.type)) return;
+  if (! ANALYTICS_ACTIONS.includes(action.type)) return next(action);
 
   const result = next(action);
   stateChanged(action, store.getState());

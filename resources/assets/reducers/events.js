@@ -7,7 +7,7 @@ import {
   append as storageAppend,
   splice as storageSplice,
   EVENT_STORAGE_KEY,
-} from '../storageHelpers';
+} from '../helpers/storage';
 
 /**
  * Events reducer:

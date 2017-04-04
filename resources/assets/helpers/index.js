@@ -208,3 +208,14 @@ export function generateUniqueId() {
   const salt = Math.floor(Math.random() * 90000) + 10000;
   return `${Date.now()}${salt}`;
 }
+
+/**
+ * Check if the given timestamp has exceeded its lifespan of max time.
+ *
+ * @param  {int}  timestamp    Timestamp in milliseconds.
+ * @param  {int}  maxTime      Max life in milliseconds.
+ * @return {Boolean}
+ */
+export function isTimestampValid(timestamp, maxTime) {
+  return (timestamp + maxTime) > Date.now();
+}
