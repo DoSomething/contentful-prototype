@@ -109,3 +109,14 @@ export function stateChanged(action, state) {
 
   analyze('action', transformation);
 }
+
+/**
+ * Merge analytics default & custom metadata together.
+ *
+ * @param  {Object} defaults
+ * @param  {Object} properties
+ * @return {Object}
+ */
+export function mergeMetadata(defaults, properties) {
+  return Object.assign(defaults, properties);
+}

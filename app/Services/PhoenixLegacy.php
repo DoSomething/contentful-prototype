@@ -37,15 +37,7 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/signups';
 
-        // Avoid caching when requesting signups for sepcific user and campaign.
-        // @Temporary?
-        if (isset($query['campaigns']) && isset($query['users'])) {
-            return $this->get($path, $query);
-        }
-
-        return remember(make_cache_key('legacy-'.$path, $query), $this->cacheExpiration, function() use ($path, $query) {
-            return $this->get($path, $query);
-        });
+        return $this->get($path, $query);
     }
 
     /**
@@ -132,11 +124,10 @@ class PhoenixLegacy extends RestApiClient
     {
         return $this->post('v1/campaigns/'.$campaign_id.'/reportback', [
             'uid' => $user_id,
+            'file_url' => $contents['file_url'],
+            'caption' => $contents['caption'],
             'quantity' => $contents['quantity'],
             'why_participated' => $contents['why_participated'],
-            'file' => $contents['file'],
-            'filename' => $contents['filename'],
-            'caption' => $contents['caption'],
             'source' => $contents['source'],
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\InvalidFileUploadException;
 use App\Services\PhoenixLegacy;
 use Illuminate\Http\Request;
 
@@ -47,18 +48,29 @@ class ReportbackController extends Controller
 
         $reportbackPhoto = $request->file('media');
 
-        return $this->phoenixLegacy->storeReportback(
-            auth()->user()->legacy_id,
+        if (!$reportbackPhoto->isValid()) {
+            throw new InvalidFileUploadException;
+        }
+
+        // Store the uploaded file.
+        $path = '/uploads/'.$reportbackPhoto->store('images', 'uploads');
+
+        $response = $this->phoenixLegacy->storeReportback(
+            auth()->id(),
             $request->input('campaignId'),
             [
-                'file' => make_data_uri($reportbackPhoto->getPathname(), $reportbackPhoto->getMimeType()),
-                'filename' => time().'_reportback_photo.'.$reportbackPhoto->guessClientExtension(),
+                'file_url' => config('app.env') !== 'local' ?  asset($path) : 'https://placeimg.com/1000/768/animals',
                 'caption' => $request->input('caption'),
                 'quantity' => $request->input('impact'),
                 'why_participated' => $request->input('whyParticipated'),
                 'source' => 'phoenix-next',
             ]
         );
+
+        // Delete the uploaded file.
+        app('files')->delete(public_path($path));
+
+        return $response;
     }
 
     /**

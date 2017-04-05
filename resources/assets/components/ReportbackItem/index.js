@@ -1,7 +1,18 @@
 import React from 'react';
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
+import { mergeMetadata } from '../../helpers/analytics';
 import './reportback-item.scss';
+
+function getMetadataFromProps(props) {
+  return {
+    itemId: props.id,
+    quantity: props.quantity,
+    totalReactions: props.reaction.total,
+    reportbackId: props.reportback.id,
+    reportbackUser: props.reportback.user,
+  };
+}
 
 const ReportbackItem = (props) => {
   const {
@@ -28,10 +39,12 @@ const ReportbackItem = (props) => {
     );
   }
 
+  const metadata = mergeMetadata(ReportbackItem.defaultMetadata, getMetadataFromProps(props));
+
   const reactionElement = reaction && !isFetching ? (
     <Reaction active={reaction.reacted} total={reaction.total}
-              onToggleOn={() => toggleReactionOn(id, reaction.termId, props)}
-              onToggleOff={() => toggleReactionOff(id, reaction.id, props)} />
+              onToggleOn={() => toggleReactionOn(id, reaction.termId, metadata)}
+              onToggleOff={() => toggleReactionOff(id, reaction.id, metadata)} />
   ) : null;
 
   return (
@@ -44,5 +57,9 @@ const ReportbackItem = (props) => {
     </Figure>
   );
 };
+
+ReportbackItem.defaultMetadata = {
+  source: 'reportback item',
+}
 
 export default ReportbackItem;
