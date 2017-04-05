@@ -2,6 +2,7 @@ import {
   REQUESTED_FACEBOOK_SHARE,
   FACEBOOK_SHARE_COMPLETED,
   FACEBOOK_SHARE_CANCELLED,
+  trackEvent,
 } from '../actions';
 
 // Action: present the user with the share dialog.
@@ -20,7 +21,7 @@ export function facebookShareCancelled() {
 }
 
 // Action: user clicked a share button.
-export function clickedShare() {
+export function clickedShare(metadata) {
   return (dispatch, getState) => {
     dispatch(requestedFacebookShare());
 
@@ -34,8 +35,10 @@ export function clickedShare() {
     }, (response) => {
       if (response) {
         dispatch(facebookShareCompleted());
+        dispatch(trackEvent('facebook share completed', metadata));
       } else {
         dispatch(facebookShareCancelled());
+        dispatch(trackEvent('facebook share cancelled', metadata));
       }
     });
   }

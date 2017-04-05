@@ -43,7 +43,7 @@ class Affirmation extends React.Component {
                 <p>{ this.props.ctaDescription }</p>
               </div>
               <div className="affirmation__block">
-                <ShareContainer variant="blue" />
+                <ShareContainer variant="blue" parentSource="affirmation" />
               </div>
             </div>
           </div>
