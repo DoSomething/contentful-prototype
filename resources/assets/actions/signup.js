@@ -5,6 +5,7 @@ import {
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
   queueEvent,
+  trackEvent,
 } from '../actions';
 
 /**
@@ -68,11 +69,11 @@ export function checkForSignup(campaignId) {
 }
 
 // Async Action: send signup to phoenix.
-export function clickedSignUp(campaignId) {
+export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      dispatch(queueEvent('clickedSignUp', campaignId));
+      dispatch(queueEvent('clickedSignUp', campaignId, metadata));
       return;
     }
 
@@ -87,7 +88,10 @@ export function clickedSignUp(campaignId) {
       // If Drupal denied our signup request, check if we already had a signup.
       else if (response[0] === false) dispatch(checkForSignup(campaignId));
       // Otherwise, mark the signup as a success.
-      else dispatch(signupCreated(campaignId));
+      else {
+        dispatch(signupCreated(campaignId))
+        dispatch(trackEvent('signup created', metadata));
+      };
     });
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
+import { mergeMetadata } from '../../helpers/analytics';
 
 import Affirmation from '../Affirmation';
 import CallToActionContainer from '../../containers/CallToActionContainer';
@@ -39,7 +40,7 @@ const renderFeedItem = (block, index) => {
  * @returns {XML}
  */
 const Feed = ({ blocks, callToAction, campaignId, signedUp, hasNewSignup, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
-  const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId);
+  const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId, mergeMetadata(Feed.defaultMetadata));
   const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
                              callToAction={signedUp ? '' : callToAction}
                              isLoading={hasPendingSignup}
@@ -57,6 +58,10 @@ const Feed = ({ blocks, callToAction, campaignId, signedUp, hasNewSignup, hasPen
 
 Feed.defaultProps = {
   blocks: [],
+};
+
+Feed.defaultMetadata = {
+  source: 'feed',
 };
 
 export default Feed;
