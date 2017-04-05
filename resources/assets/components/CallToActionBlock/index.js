@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { contentfulImageUrl } from '../../helpers';
+import { mergeMetadata } from '../../helpers/analytics';
 import './cta.scss';
 
 const CallToActionBlock = (props) => {
@@ -8,9 +9,6 @@ const CallToActionBlock = (props) => {
 
   //TODO: This should probably be editable in contentful
   const buttonText = props.signups.thisCampaign ? 'Reportback' : 'Get Involved';
-
-  //TODO: This should take you to the action page if you're signed up
-  const onClick = () => props.clickedSignUp(props.campaign.legacyCampaignId);
 
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(props.campaign.coverImage.url, '400', '400', 'fill')})`,
@@ -27,6 +25,14 @@ const CallToActionBlock = (props) => {
       </div>
     );
   }
+
+  const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
+    hasPhoto: additionalContent.hasPhoto,
+    hasImpact: impactContent !== null,
+    hasContent: typeof props.fields.content !== 'undefined',
+  });
+
+  const onClick = () => props.clickedSignUp(props.campaign.legacyCampaignId, metadata);
 
   return (
     <div className={classnames('cta', {'has-photo': additionalContent.hasPhoto})}>
@@ -47,5 +53,9 @@ const CallToActionBlock = (props) => {
     </div>
   );
 };
+
+CallToActionBlock.defaultMetadata = {
+  source: 'call to action block',
+}
 
 export default CallToActionBlock;
