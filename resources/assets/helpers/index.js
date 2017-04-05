@@ -219,3 +219,12 @@ export function generateUniqueId() {
 export function isTimestampValid(timestamp, maxTime) {
   return (timestamp + maxTime) > Date.now();
 }
+
+/**
+ * Get the slug for the current campaign path
+ * @return {String}
+ */
+export function getSlugFromUrl() {
+  const pathname = window.location.pathname;
+  return pathname.split('/')[2] || '';
+}

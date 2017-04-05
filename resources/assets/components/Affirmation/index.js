@@ -27,7 +27,7 @@ class Affirmation extends React.Component {
     return (
       <FlexCell width="full">
         <div className="affirmation">
-          <div className="affirmation__container">
+          <div className="wrapper">
             <div className="affirmation__section affirmation__section-heading">
               <Highlight>{ this.props.header }</Highlight>
             </div>
