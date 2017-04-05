@@ -1,11 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
-<<<<<<< HEAD
-=======
 import { mergeMetadata } from '../../helpers/analytics';
-
-import Affirmation from '../Affirmation';
->>>>>>> 44055be6646ea5dd37c69bfa4f8f34cadf7b8597
 import CallToActionContainer from '../../containers/CallToActionContainer';
 import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
