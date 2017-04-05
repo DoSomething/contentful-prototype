@@ -35,6 +35,7 @@ export const SIGNUP_CREATED = 'SIGNUP_CREATED';
 export const SIGNUP_FOUND = 'SIGNUP_FOUND';
 export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SIGNUP_NOT_FOUND = 'SIGNUP_NOT_FOUND';
+export const HIDE_AFFIRMATION = 'HIDE_AFFIRMATION';
 export * from './signup';
 
 // Social Action Names & Creators
@@ -73,4 +74,5 @@ export const ANALYTICS_ACTIONS = [
   LOCATION_CHANGE,
   QUEUE_EVENT,
   COMPLETED_EVENT,
+  HIDE_AFFIRMATION,
 ];

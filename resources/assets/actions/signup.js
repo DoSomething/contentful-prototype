@@ -1,9 +1,11 @@
 import { Phoenix } from '@dosomething/gateway';
+import { get as historyGet } from '../history';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
+  HIDE_AFFIRMATION,
   queueEvent,
   trackEvent,
 } from '../actions';
@@ -12,6 +14,11 @@ import {
  * Action Creators: these functions create actions, which describe changes
  * to the state tree (either as a result of application logic or user input).
  */
+
+// Action: hide the signup affirmation
+export function hideAffirmation() {
+  return { type: HIDE_AFFIRMATION };
+}
 
 // Action: a new signup was created for a campaign.
 export function signupCreated(campaignId) {
@@ -23,6 +30,9 @@ export function signupCreated(campaignId) {
       campaignId,
       userId: user.id,
     });
+
+    // Take users to the action page after sign up.
+    historyGet().push('/action');
   }
 }
 

@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import * as reducers from '../reducers'
 import { configureStore, initializeStore } from '../store';
 
-import { Router, Route, useRouterHistory } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
+import { Router, Route } from 'react-router';
+import { routerReducer } from 'react-router-redux';
+import { init as historyInit } from '../history';
 
 import ChromeContainer from '../containers/ChromeContainer';
 import FeedContainer from '../containers/FeedContainer';
@@ -15,12 +15,8 @@ import NotFound from './NotFound';
 
 import observe from '../middleware/analytics';
 
-// Set the application "base name" to /campaigns/:slug so all pages are relative to that.
-const basename = window.location.pathname.split('/').slice(0, 3).join('/');
-
 const store = configureStore({...reducers, routing: routerReducer}, window.STATE);
-const routerHistory = useRouterHistory(createBrowserHistory);
-const history = syncHistoryWithStore(routerHistory({basename}), store);
+const history = historyInit(store);
 
 observe(history, store);
 

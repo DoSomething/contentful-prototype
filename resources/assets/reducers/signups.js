@@ -3,6 +3,7 @@ import {
   SIGNUP_FOUND,
   SIGNUP_PENDING,
   SIGNUP_NOT_FOUND,
+  HIDE_AFFIRMATION,
 } from '../actions';
 
 import {
@@ -26,6 +27,7 @@ const signupReducer = (state = {}, action) => {
         data: signups,
         isPending: false,
         thisSession: true,
+        showAffirmation: true,
       };
 
     case SIGNUP_FOUND:
@@ -43,6 +45,9 @@ const signupReducer = (state = {}, action) => {
 
     case SIGNUP_NOT_FOUND:
       return { ...state, isPending: false };
+
+    case HIDE_AFFIRMATION:
+      return { ...state, showAffirmation: false };
 
     default:
       return state;
