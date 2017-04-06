@@ -36,7 +36,7 @@ const initialState = {
     data: [],
     thisCampaign: false,
     thisSession: false,
-    showAffirmation: true,
+    showAffirmation: false,
     pending: false,
   },
   user: {
