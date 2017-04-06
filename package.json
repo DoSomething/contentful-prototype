@@ -18,7 +18,7 @@
     ]
   },
   "dependencies": {
-    "@dosomething/analytics": "^2.0.1",
+    "@dosomething/analytics": "^2.0.2",
     "@dosomething/forge": "^6.7.4",
     "@dosomething/gateway": "^1.0.1",
     "classnames": "^2.2.5",
