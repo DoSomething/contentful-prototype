@@ -8,9 +8,9 @@ function getMetadataFromProps(props) {
   return {
     itemId: props.id,
     quantity: props.quantity,
-    totalReactions: props.reaction.total,
-    reportbackId: props.reportback.id,
-    reportbackUser: props.reportback.user,
+    totalReactions: props.reaction ? props.reaction.total : null,
+    reportbackId: props.reportback ? props.reportback.id : null,
+    reportbackUser: props.reportback ? props.reportback.user : null,
   };
 }
 
