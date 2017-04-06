@@ -17,3 +17,10 @@ $light-background-color: #F6F6F6;
 $dark-background-color: #000000;
 
 $half-spacing: $base-spacing / 2;
+
+.feed-wrapper {
+  @include media($tablet) {
+    @include span(12 no-gutters);
+    @include push(2);
+  }
+}

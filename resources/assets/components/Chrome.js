@@ -6,6 +6,7 @@ import AffirmationContainer from '../containers/AffirmationContainer';
 const Chrome = (props) => (
   <div>
     <AffirmationContainer />
+    <NavigationContainer />
     <FeedEnclosure>
       {props.children}
     </FeedEnclosure>

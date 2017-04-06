@@ -7,9 +7,8 @@
   color: $white;
   position: relative;
 
-  .affirmation__container {
-    max-width: 720px;
-    margin: auto;
+  .wrapper {
+    @extend .feed-wrapper;
   }
 
   .affirmation__section {

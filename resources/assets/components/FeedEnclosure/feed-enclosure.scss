@@ -1,4 +1,4 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
 
 .feed-enclosure {
   background: rgb(32, 38, 52);
@@ -8,8 +8,5 @@
 }
 
 .feed-enclosure > .wrapper {
-  @include media($tablet) {
-    @include span(12 no-gutters);
-    @include push(2);
-  }
+  @extend .feed-wrapper;
 }
