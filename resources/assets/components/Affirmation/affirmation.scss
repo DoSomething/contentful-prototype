@@ -7,10 +7,6 @@
   color: $white;
   position: relative;
 
-  .wrapper {
-    @extend .feed-wrapper;
-  }
-
   .affirmation__section {
     margin-bottom: $base-spacing;
     width: 100%;

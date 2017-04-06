@@ -2,6 +2,7 @@ import React from 'react';
 import { FlexCell } from '../Flex';
 import Highlight from '../Highlight';
 import { Figure } from '../Figure';
+import { Wrapper } from '../Wrapper';
 import ShareContainer from '../../containers/ShareContainer';
 import { EMPTY_IMAGE } from '../../helpers';
 import './affirmation.scss';
@@ -12,7 +13,7 @@ const Affirmation = (props) => {
   return (
     <FlexCell width="full">
       <div className="affirmation">
-        <div className="wrapper">
+        <Wrapper width="feed">
           <div className="affirmation__section affirmation__section-heading">
             <Highlight>{ props.header }</Highlight>
           </div>
@@ -31,7 +32,7 @@ const Affirmation = (props) => {
               <ShareContainer variant="blue" parentSource="affirmation" />
             </div>
           </div>
-        </div>
+        </Wrapper>
         <a className="affirmation__exit" href="#" onClick={props.hideAffirmation}>&times;</a>
       </div>
     </FlexCell>

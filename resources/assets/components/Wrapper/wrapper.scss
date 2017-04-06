@@ -1,0 +1,8 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+.wrapper.-feed {
+  @include media($tablet) {
+    @include span(12 no-gutters);
+    @include push(2);
+  }
+}

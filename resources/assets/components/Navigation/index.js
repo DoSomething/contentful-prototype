@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FeedEnclosure from '../FeedEnclosure';
 import './navigation.scss';
 
 export const Navigation = ({children}) => (
-  <div className="feed-enclosure">
-    <div className="wrapper">
-      { children }
-    </div>
-  </div>
+  <FeedEnclosure>
+    { children }
+  </FeedEnclosure>
 );
 
 export const NavigationLink = props => (
