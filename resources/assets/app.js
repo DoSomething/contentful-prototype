@@ -28,6 +28,18 @@ import App from './components/App';
 import { fetchReportbacks } from './actions';
 window.actions = { fetchReportbacks };
 
+function toggleHandler(button, target, toggleClass) {
+  if (!button || !target) return;
+
+  function clickHandler() {
+    console.log('click handler');
+    target.classList.toggle(toggleClass);
+  }
+
+  button.addEventListener('touchstart', clickHandler, false);
+  button.addEventListener('mousedown', clickHandler, false);
+}
+
 ready(() => {
   const appContainer = document.getElementById('app');
 
@@ -36,17 +48,12 @@ ready(() => {
   }
 
   const navToggle = document.getElementById('js-navigation-toggle');
+  const nav = document.getElementsByClassName('navigation')[0];
+  const chrome = document.getElementsByClassName('chrome')[0];
+  toggleHandler(navToggle, nav, 'is-visible');
+  toggleHandler(navToggle, chrome, 'has-mobile-menu');
 
-  function toggleNav(e) {
-    const nav = document.getElementsByClassName('navigation__menu')[0];
-    if (! nav) return;
-
-    const display = getComputedStyle(nav, null).display;
-    display === 'none' ? nav.style.display = 'block' : nav.style.display = 'none';
-  }
-
-  if (navToggle) {
-    navToggle.addEventListener('touchstart', toggleNav, false);
-    navToggle.addEventListener('mousedown', toggleNav, false);
-  }
+  const accountToggle = document.getElementById('js-account-toggle');
+  const dropdown = document.getElementsByClassName('navigation__dropdown')[0];
+  toggleHandler(accountToggle, dropdown, 'is-visible');
 });

@@ -16,13 +16,22 @@
                 </a>
             </li>
         </ul>
-        <ul class="navigation__secondary">
+        {{-- <ul class="navigation__secondary">
             <li>
                 @if (Auth::user())
                     <a href="{{ url('logout') }}">Log Out</a>
                 @else
                     <a href="{{ url('login') }}">Log In</a>
                 @endif
+            </li>
+        </ul> --}}
+        <ul class="navigation__secondary">
+            <li class="navigation__dropdown">
+                <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
+                <ul>
+                    <li><a href="/us/user/2632038">Profile</a></li>
+                    <li><a href="/us/user/logout" class="secondary-nav-item" id="link--logout">Log Out</a></li>
+                </ul>
             </li>
         </ul>
     </div>
