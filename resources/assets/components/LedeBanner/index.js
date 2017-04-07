@@ -5,8 +5,6 @@ import { contentfulImageUrl } from '../../helpers';
 import './lede-banner.scss';
 
 const LedeBanner = ({title, subtitle, blurb, coverImage}) => {
-  // console.log(props);
-
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
