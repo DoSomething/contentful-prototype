@@ -1,5 +1,5 @@
 import React from 'react';
-import Block from '../Block';
+import { Block, BlockTitle } from '../Block';
 import Markdown from '../Markdown';
 import './static-block.scss';
 
@@ -8,7 +8,7 @@ const StaticBlock = (props) => {
 
   return (
     <Block>
-      <h4 className="static-block__title">{props.fields.title}</h4>
+      <BlockTitle>{ props.fields.title }</BlockTitle>
       <Markdown>{props.fields.content}</Markdown>
       { source ? <div className="static-block__citation"><p className="footnote">Source: {source}</p></div> : null }
     </Block>

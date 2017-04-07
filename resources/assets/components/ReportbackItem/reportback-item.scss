@@ -1,7 +1,7 @@
 @import '~@dosomething/forge/scss/toolkit';
 
 .reportback-item > .figure__media {
-  background-color: $off-white;
+  background-color: $med-gray;
 
   & > img {
     width: 480px; // HACK: Expand smaller images to fit in card.

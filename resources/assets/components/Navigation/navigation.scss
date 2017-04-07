@@ -1,7 +1,8 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox';
 
 .nav-link {
-  color: #fff;
+  color: #9b9b9b;
+  text-transform: uppercase;
   margin: 0 $base-spacing / 2;
 
   &:hover {
@@ -12,5 +13,6 @@
 }
 
 .nav-link.is-active {
-  border-bottom: 4px solid #fff;
+  color: $black;
+  border-bottom: 4px solid $black;
 }

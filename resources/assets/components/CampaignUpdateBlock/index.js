@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
-import Block from '../Block';
+import { Block, BlockTitle } from '../Block';
 import Figure from '../Figure';
 import Embed from '../Embed';
 import DEFAULT_AVATAR from './default-avatar.png';
@@ -22,6 +22,7 @@ const CampaignUpdateBlock = (props) => {
 
   return (
     <Block>
+      <BlockTitle>Campaign Update</BlockTitle>
       { isTweet ? null : <h2>{title}</h2> }
       <Markdown className={classnames('campaign-update__content', {'-tweet': isTweet})}>
         {content}

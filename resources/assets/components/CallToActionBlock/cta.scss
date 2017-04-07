@@ -1,8 +1,10 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox';
 
 .cta {
-  border: 0;
-  border-radius: $sm-border-radius;
+  color: $white;
+  background: $black;
+  border: 1px solid $primary-border-color;
+  border-radius: $lg-border-radius;
   margin: 12px;
   width: 100%;
 
@@ -48,7 +50,8 @@
 }
 
 .cta__impact {
-  color: $purple;
+  color: $white;
+  text-transform: uppercase;
   font-weight: $weight-bold;
 
   span {

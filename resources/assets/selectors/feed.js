@@ -73,7 +73,7 @@ export function getVisibleBlocks(state) {
   // Filter out blocks that don't fit within offset.
   const filteredBlocks = getBlocks(state).filter(block => {
     totalPoints += mapDisplayToPoints(block.fields.displayOptions);
-    return totalPoints < blockOffset;
+    return totalPoints <= blockOffset;
   });
 
   // If we weren't able to fill enough rows with blocks, add

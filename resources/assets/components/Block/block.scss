@@ -1,11 +1,19 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox';
 
 .block {
   width: 100%;
   background: #fff;
   margin: $base-spacing / 2;
   padding: $base-spacing / 2;
-  box-shadow: $box-shadow;
-  border-radius: $sm-border-radius;
+  border: 1px solid $primary-border-color;
+  border-radius: $lg-border-radius;
   overflow: hidden;
+}
+
+.block__title {
+  color: $black;
+  background-color: $primary-color;
+  text-transform: uppercase;
+  margin: (- $base-spacing / 2) (- $base-spacing / 2) $base-spacing;
+  padding: $base-spacing / 2;
 }

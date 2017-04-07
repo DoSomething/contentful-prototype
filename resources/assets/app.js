@@ -16,12 +16,16 @@ import { ready } from './helpers';
 import 'whatwg-fetch';
 
 // Style Components
+import './scss/chrome.scss';
 import './scss/construction.scss';
 import './scss/container.scss';
 import './scss/header.scss';
 
 // Containers
 import App from './components/App';
+
+// Navigation
+import { init as navigationInit } from './helpers/navigation';
 
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!
@@ -34,4 +38,6 @@ ready(() => {
   if (appContainer) {
     ReactDom.render(<App />, appContainer);
   }
+
+  navigationInit();
 });

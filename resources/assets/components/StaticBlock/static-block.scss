@@ -1,13 +1,5 @@
 @import '~@dosomething/forge/scss/toolkit';
 
-.static-block__title {
-  color: #fff;
-  background-color: #e8273e; // red, the color of desire ♬
-  text-transform: uppercase;
-  margin: (- $base-spacing / 2) (- $base-spacing / 2) $base-spacing;
-  padding: $base-spacing / 2;
-}
-
 .static-block__citation {
   margin-top: $base-spacing;
 

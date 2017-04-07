@@ -6,14 +6,21 @@
 // but this can be moved to Forge when we're confident with
 // the variables.
 
-$primary-color: #E8263E;
+
+// overridden colors
+$black: #202020;
+$light-gray: #dcdcdc;
+
+// semantic colors
+$primary-color: #f9dd27;
 
 $primary-text-color: #000000;
 $secondary-text-color: #A3A3A3;
 
-$primary-border-color: #DCDCDC;
+$primary-border-color: $light-gray;
 
 $light-background-color: #F6F6F6;
 $dark-background-color: #000000;
 
+// spacing
 $half-spacing: $base-spacing / 2;

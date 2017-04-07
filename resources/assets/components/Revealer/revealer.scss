@@ -1,4 +1,4 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox';
 
 .revealer {
   text-align: center;
@@ -15,7 +15,7 @@
   &::before {
     content: '';
     display: block;
-    background: linear-gradient(to bottom, rgba(150, 150, 150, 0), rgba(0, 0, 0, 0.6));
+    background: linear-gradient(to bottom, rgba($light-background-color, 0), rgba($light-background-color, 1));
     width: 100%;
     height: 300px;
     left: 0;
