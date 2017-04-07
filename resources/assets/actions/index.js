@@ -43,6 +43,11 @@ export const FACEBOOK_SHARE_COMPLETED = 'FACEBOOK_SHARE_COMPLETED';
 export const FACEBOOK_SHARE_CANCELLED = 'FACEBOOK_SHARE_CANCELLED';
 export * from './share';
 
+// Affirmation Action Names & Creators
+export const AFFIRMATION_OPEN = 'AFFIRMATION_OPEN';
+export const AFFIRMATION_CLOSE = 'AFFIRMATION_CLOSE';
+export * from './affirmation';
+
 // Event Queue Names & Creators
 export const QUEUE_EVENT = 'QUEUE_EVENT';
 export const COMPLETED_EVENT = 'COMPLETED_EVENT';

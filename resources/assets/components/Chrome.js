@@ -5,9 +5,9 @@ import Affirmation from './Affirmation';
 
 const Chrome = (props) => (
   <div>
+    {props.hasNewSignup ? <Affirmation /> : null}
     <NavigationContainer />
     <FeedEnclosure>
-      {props.hasNewSignup ? <Affirmation /> : null}
       {props.children}
     </FeedEnclosure>
   </div>

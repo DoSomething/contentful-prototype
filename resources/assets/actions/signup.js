@@ -1,10 +1,12 @@
 import { Phoenix } from '@dosomething/gateway';
+import { getSlugFromUrl } from '../helpers';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
-  queueEvent,
+  queueAuthEvent,
+  queueUserEvent,
   trackEvent,
 } from '../actions';
 
@@ -23,6 +25,12 @@ export function signupCreated(campaignId) {
       campaignId,
       userId: user.id,
     });
+
+    // Take users to the action page after signup.
+    // We lose the state from the location change, so we queue the action.
+    // Not ideal but we need to make some structural changes to the app in order to do routing through the react router...
+    dispatch(queueUserEvent('openAffirmation'));
+    window.location.href = `/campaigns/${getSlugFromUrl()}/action`;
   }
 }
 
@@ -73,7 +81,7 @@ export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      dispatch(queueEvent('clickedSignUp', campaignId, metadata));
+      dispatch(queueAuthEvent('clickedSignUp', campaignId, metadata));
       return;
     }
 
