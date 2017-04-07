@@ -17,7 +17,7 @@ const events = (state = {}, action) => {
     case QUEUE_EVENT:
       storageAppend(action.deviceId, EVENT_STORAGE_KEY, action);
 
-      if (action.redirectToLogin) {
+      if (action.requiresAuth) {
         window.location.href = '/login';
       }
 

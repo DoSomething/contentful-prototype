@@ -20,12 +20,17 @@ export function completedEvent(index) {
 
 // Action: run through all of the events in the queue.
 export function startQueue() {
-  return dispatch => {
+  return (dispatch, getState) => {
     const queue = getArray(getDeviceId(), EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
       // Check if the event is over 30 min old before dispatching.
-      if (isTimestampValid(event.createdAt, (30 * 60 * 1000))) {
+      const isValidTimestamp = isTimestampValid(event.createdAt, (30 * 60 * 1000));
+
+      // Check if the user successfully authenticated
+      const isAuthenticated = typeof getState().user.id !== 'undefined';
+
+      if (!isValidTimestamp || (event.requiresAuth && !isAuthenticated)) {
         // Match the action creator from the saved name, load parameters to apply.
         const action = allActions[event.action.creatorName];
         const args = event.action.args || [];
@@ -46,7 +51,7 @@ export function queueEvent(actionCreatorName, ...args) {
     type: QUEUE_EVENT,
     deviceId: getDeviceId(),
     createdAt: Date.now(),
-    redirectToLogin: true, //vLater - Allow more flexibility with events
+    requiresAuth: true, //vLater - Allow more flexibility with configuring events
     action: {
       creatorName: actionCreatorName,
       args,
