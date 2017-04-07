@@ -3,6 +3,10 @@
 .flex {
   display: flex;
   flex-wrap: wrap;
+
+  &.-row {
+    flex-direction: row;
+  }
 }
 
 .flex__cell {

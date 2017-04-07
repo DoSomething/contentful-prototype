@@ -22,4 +22,3 @@ export const FlexCell = ({width = [], children}) => {
 FlexCell.propTypes = {
   width: React.PropTypes.oneOf(['full', 'one-third', 'two-thirds']),
 };
-
