@@ -23,21 +23,13 @@ import './scss/header.scss';
 // Containers
 import App from './components/App';
 
+// Navigation
+import { init as navigationInit } from './helpers/navigation';
+
 // Make action available to demonstrate loading more reportbacks.
 // @TODO: Expose this in the UI!
 import { fetchReportbacks } from './actions';
 window.actions = { fetchReportbacks };
-
-function toggleHandler(button, target, toggleClass) {
-  if (!button || !target) return;
-
-  function clickHandler() {
-    target.classList.toggle(toggleClass);
-  }
-
-  button.addEventListener('touchstart', clickHandler, false);
-  button.addEventListener('mousedown', clickHandler, false);
-}
 
 ready(() => {
   const appContainer = document.getElementById('app');
@@ -46,13 +38,5 @@ ready(() => {
     ReactDom.render(<App />, appContainer);
   }
 
-  const navToggle = document.getElementById('js-navigation-toggle');
-  const nav = document.getElementsByClassName('navigation')[0];
-  const chrome = document.getElementsByClassName('chrome')[0];
-  toggleHandler(navToggle, nav, 'is-visible');
-  toggleHandler(navToggle, chrome, 'has-mobile-menu');
-
-  const accountToggle = document.getElementById('js-account-toggle');
-  const dropdown = document.getElementsByClassName('navigation__dropdown')[0];
-  toggleHandler(accountToggle, dropdown, 'is-visible');
+  navigationInit();
 });
