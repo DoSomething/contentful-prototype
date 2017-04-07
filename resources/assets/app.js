@@ -32,7 +32,6 @@ function toggleHandler(button, target, toggleClass) {
   if (!button || !target) return;
 
   function clickHandler() {
-    console.log('click handler');
     target.classList.toggle(toggleClass);
   }
 
