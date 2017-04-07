@@ -16,22 +16,17 @@
                 </a>
             </li>
         </ul>
-        {{-- <ul class="navigation__secondary">
-            <li>
+        <ul class="navigation__secondary">
+            <li class="navigation__dropdown">
                 @if (Auth::user())
-                    <a href="{{ url('logout') }}">Log Out</a>
+                    <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
+                    <ul>
+                        <li><a href="{{ url(config('services.phoenix-legacy.url'). 'northstar/' . Auth::user()->northstar_id) }}">Profile</a></li>
+                        <li><a href="{{ url('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
+                    </ul>
                 @else
                     <a href="{{ url('login') }}">Log In</a>
                 @endif
-            </li>
-        </ul> --}}
-        <ul class="navigation__secondary">
-            <li class="navigation__dropdown">
-                <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
-                <ul>
-                    <li><a href="/us/user/2632038">Profile</a></li>
-                    <li><a href="/us/user/logout" class="secondary-nav-item" id="link--logout">Log Out</a></li>
-                </ul>
             </li>
         </ul>
     </div>
