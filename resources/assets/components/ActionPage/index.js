@@ -10,14 +10,14 @@ import { Flex, FlexCell } from '../Flex';
  *
  * @returns {XML}
  */
-const ActionPage = ({ steps, callToAction, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
+const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
   if (! signedUp) {
     steps = steps.slice(0, 2);
   }
 
   const revealer = <Revealer title="sign up" callToAction={callToAction}
                              isLoading={hasPendingSignup}
-                             onReveal={() => clickedSignUp()} />;
+                             onReveal={() => clickedSignUp(campaignId, ActionPage.defaultMetadata)} />;
 
   const uploader = (
     <FlexCell key="reportback_uploader" width="full">
@@ -39,6 +39,10 @@ const ActionPage = ({ steps, callToAction, signedUp, hasPendingSignup, isAuthent
       {isAuthenticated && signedUp ? uploader : null}
     </Flex>
   );
+};
+
+ActionPage.defaultMetadata = {
+  source: 'action page',
 };
 
 export default ActionPage;

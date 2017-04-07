@@ -8,9 +8,9 @@ let steps = [
   {
     title: 'Step 1: Know It',
     content: `Lorem ipsum labore tempora aut possimus possimus animi eaque voluptatem iste dicta placeat
-    aperiam porro dolor beatae dignissimos animi voluptatem illum ut sint labore voluptatibus blanditiis 
-    doloribus fugit temporibus delectus nemo qui molestiae dolor rem architecto veritatis explicabo qui 
-    sequi et ipsam et rerum quis cupiditate occaecati vel debitis accusantium error in aut quia ut 
+    aperiam porro dolor beatae dignissimos animi voluptatem illum ut sint labore voluptatibus blanditiis
+    doloribus fugit temporibus delectus nemo qui molestiae dolor rem architecto veritatis explicabo qui
+    sequi et ipsam et rerum quis cupiditate occaecati vel debitis accusantium error in aut quia ut
     laborum non explicabo aspernatur vel omnis et`,
   },
   {
@@ -37,6 +37,7 @@ let steps = [
 const mapStateToProps = (state) => {
   return {
     steps: steps,
+    campaignId: state.campaign.legacyCampaignId,
     callToAction: state.campaign.callToAction,
     signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
     hasPendingSignup: state.signups.isPending,
