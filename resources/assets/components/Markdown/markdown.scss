@@ -1,0 +1,24 @@
+@import '../../scss/next-toolbox.scss';
+
+.markdown {
+  word-break: break-all;
+
+  blockquote {
+    position: relative;
+    margin: $base-spacing / 2 0;
+
+    p {
+      margin-left: $base-spacing / 2;
+    }
+
+    &:before {
+      content: '';
+      height: 110%;
+      left: 0;
+      top: -5%;
+      width: 4px;
+      background: $primary-color;
+      position: absolute;
+    }
+  }
+}

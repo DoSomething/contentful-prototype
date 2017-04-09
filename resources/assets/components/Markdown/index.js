@@ -1,7 +1,8 @@
 import React from 'react';
 import { markdown } from "../../helpers";
+import './markdown.scss';
 
-const Markdown = ({className = null, children}) => (
+const Markdown = ({className = 'markdown', children}) => (
   <div className={className} dangerouslySetInnerHTML={markdown(children)} />
 );
 
