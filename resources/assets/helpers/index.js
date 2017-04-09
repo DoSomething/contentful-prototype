@@ -219,3 +219,24 @@ export function generateUniqueId() {
 export function isTimestampValid(timestamp, maxTime) {
   return (timestamp + maxTime) > Date.now();
 }
+
+/**
+ * Convert an int to a string. (Supports 0-10)
+ * @param  {int} number
+ * @return {String}
+ */
+export function convertDigitToWord(number) {
+  switch(number) {
+    case 0: return 'zero';
+    case 1: return 'one';
+    case 2: return 'two';
+    case 3: return 'three';
+    case 4: return 'four';
+    case 5: return 'five';
+    case 6: return 'six';
+    case 7: return 'seven';
+    case 8: return 'eight';
+    case 9: return 'nine';
+    case 10: return 'ten';
+  }
+}

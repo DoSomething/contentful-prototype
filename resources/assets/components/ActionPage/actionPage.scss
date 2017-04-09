@@ -1,7 +1,62 @@
+@import '../../scss/next-toolbox.scss';
+
 .action-step {
-  width: 100%;
+  margin-bottom: $base-spacing;
 
   > .flex {
     width: inherit;
+    margin: 0 $base-spacing / 2;
+
+    > .flex__cell {
+      margin: $base-spacing / 2 0;
+    }
+  }
+
+  h1, h2, h3, p {
+    color: $black;
+  }
+
+  .action-step__header {
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    text-transform: uppercase;
+    padding: $base-spacing;
+
+    span {
+      color: $primary-color;
+      font-size: $font-regular;
+      font-weight: $weight-bold;
+      text-shadow: $text-shadow;
+    }
+
+    h1 {
+      color: $white;
+      font-size: $font-hero;
+      font-weight: $weight-bold;
+      text-shadow: $text-shadow;
+    }
+  }
+
+  .action-step__photos {
+    display: flex;
+    justify-content: center;
+
+    .action-step__photo {
+      padding: $base-spacing / 2;
+    }
+  }
+
+  .action-step__photos.-one-third {
+    flex-direction: column;
+  }
+
+  .action-step__photos.-full {
+    flex-direction: column;
+
+    @include media($medium) {
+      flex-direction: row;
+    }
   }
 }

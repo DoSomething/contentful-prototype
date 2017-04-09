@@ -1,60 +1,53 @@
 import React from 'react';
-import Block from '../Block';
 import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
+import { convertDigitToWord } from '../../helpers';
 import './actionPage.scss';
 
-const renderStep = (step, index) => {
-  const title = `Step ${index + 1}: ${step.fields.title}`;
-  const titleBackground = step.fields.background;
-  console.log(titleBackground)
-  const content = step.fields.content;
+const Stepheader = ({ title, step, background }) => (
+  <FlexCell width="full">
+    <div className="action-step__header" style={{ backgroundImage: background }}>
+      <span>step { convertDigitToWord(step) }</span>
+      <h1>{ title }</h1>
+    </div>
+  </FlexCell>
+);
 
-  const stepWidth = step.fields.displayOptions[0];
+const renderPhoto = (photo, index) => (
+  <div className="action-step__photo" key={index}>
+    <img src={photo} />
+  </div>
+);
+
+const renderStep = (step, index) => {
+  const title = step.title;
+  const background = `url('${step.background}')`;
+
+  const content = step.content;
+
+  const stepWidth = step.displayOptions[0];
   const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
 
   return (
     <FlexCell width="full" key={index}>
       <div className="action-step">
         <Flex>
-          <FlexCell width="full">
-            <div className="action-step__header" style={{backgroundImage: titleBackground}}>
-              <h1>{ title }</h1>
-            </div>
-          </FlexCell>
+          <Stepheader title={title} step={index + 1} background={background} />
           <FlexCell width={stepWidth}>
-            <Block>
-              <Markdown>{ content }</Markdown>
-            </Block>
+            <Markdown>{ content }</Markdown>
           </FlexCell>
           <FlexCell width={photoWidth}>
-            <h1>photo</h1>
+            <div className={`action-step__photos -${photoWidth}`}>
+              {step.photos ? step.photos.map(renderPhoto) : null}
+            </div>
           </FlexCell>
         </Flex>
       </div>
     </FlexCell>
   )
 }
-
-/*
-return (
-  <FlexCell width="full" key={index}>
-    <FlexCell width="full">
-      <h2>{ title }</h2>
-    </FlexCell>
-    <FlexCell width={stepWidth}>
-      <Block>
-        <Markdown>{ content }</Markdown>
-      </Block>
-    </FlexCell>
-    <FlexCell width={photoWidth}>
-      <p>photo here</p>
-    </FlexCell>
-  </FlexCell>
-);
- */
 
 /**
  * Render the feed.
