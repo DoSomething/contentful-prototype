@@ -42,19 +42,14 @@
   .action-step__photos {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 
     .action-step__photo {
       padding: $base-spacing / 2;
     }
   }
 
-  .action-step__photos.-one-third {
-    flex-direction: column;
-  }
-
   .action-step__photos.-full {
-    flex-direction: column;
-
     @include media($medium) {
       flex-direction: row;
     }

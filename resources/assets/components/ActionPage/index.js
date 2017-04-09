@@ -25,8 +25,6 @@ const renderStep = (step, index) => {
   const title = step.title;
   const background = `url('${step.background}')`;
 
-  const content = step.content;
-
   const stepWidth = step.displayOptions[0];
   const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
 
@@ -36,7 +34,7 @@ const renderStep = (step, index) => {
         <Flex>
           <Stepheader title={title} step={index + 1} background={background} />
           <FlexCell width={stepWidth}>
-            <Markdown>{ content }</Markdown>
+            <Markdown>{ step.content }</Markdown>
           </FlexCell>
           <FlexCell width={photoWidth}>
             <div className={`action-step__photos -${photoWidth}`}>
