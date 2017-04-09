@@ -113,6 +113,11 @@ function get_image_url(Asset $asset, $crop = 'landscape')
         ->setHeight(800)
         ->setResizeFit('fill');
 
+    $options['logo'] = (new ImageOptions)
+        ->setFormat('png')
+        ->setHeight(50)
+        ->setResizeFit('scale');
+
     if (! array_key_exists($crop, $options)) {
         throw new \InvalidArgumentException('The specified cover image type of '.$crop.' is not available.');
     }

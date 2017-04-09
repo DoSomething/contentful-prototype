@@ -1,0 +1,16 @@
+@import '~@dosomething/forge/scss/toolkit';
+
+// Temporary override of the page navigation.
+.navigation {
+  background-color: $white;
+  overflow: auto;
+}
+
+.navigation__logo {
+  @include media($mobile) {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: auto;
+  }
+}

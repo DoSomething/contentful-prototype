@@ -1,18 +1,18 @@
 @import '../../scss/next-toolbox';
 
 .nav-link {
-  color: #9b9b9b;
+  color: #9B9B9B;
   text-transform: uppercase;
   margin: 0 $base-spacing / 2;
 
   &:hover {
-    color: #fff;
+    color: $off-black;
     text-decoration: none;
-    border-bottom: 4px solid rgba(#fff, 0.5);
+    border-bottom: 4px solid rgba($off-black, 0.5);
   }
 }
 
 .nav-link.is-active {
   color: $black;
-  border-bottom: 4px solid $black;
+  border-bottom: 4px solid $off-black;
 }
