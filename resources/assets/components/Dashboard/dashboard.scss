@@ -1,0 +1,66 @@
+@import '../../scss/next-toolbox.scss';
+
+.dashboard {
+  width: 100%;
+  background: $white;
+  display: flex;
+  flex-wrap: wrap;
+  padding: $base-spacing / 2 0;
+
+  h1 {
+    color: $black;
+    font-size: $font-larger;
+    line-height: $font-larger;
+    margin-bottom: 0;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    color: $black;
+    font-size: $font-regular;
+    font-weight: $weight-bold;
+    margin-bottom: 0;
+  }
+
+  p {
+    color: $black;
+    font-size: $font-smaller;
+  }
+
+  span {
+    color: $med-gray;
+    font-size: $font-small;
+    text-transform: uppercase;
+    font-weight: $weight-sbold;
+  }
+
+  .dashboard__block {
+    flex: 0 0 100%;
+    padding: 0 $base-spacing;
+  }
+
+  > .dashboard__block {
+    text-align: left;
+    margin-bottom: $base-spacing / 2;
+
+    @include media($medium) {
+      margin-bottom: 0;
+    }
+  }
+
+  .dashboard__block.-quarter {
+    text-align: center;
+
+    @include media($medium) {
+      flex: 0 0 25%;
+      border-right: 1px solid $primary-border-color;
+      text-align: left;
+    }
+  }
+
+  .dashboard__block.-half {
+    @include media($medium) {
+      flex: 0 0 50%;
+    }
+  }
+}
