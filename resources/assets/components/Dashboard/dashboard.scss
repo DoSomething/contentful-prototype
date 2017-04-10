@@ -9,8 +9,9 @@
 
   h1 {
     color: $black;
-    font-size: $font-larger;
-    line-height: $font-larger;
+    font-family: $secondary-font-family;
+    font-size: $font-hero;
+    line-height: $font-hero;
     margin-bottom: 0;
     text-transform: uppercase;
   }
@@ -18,20 +19,22 @@
   h2 {
     color: $black;
     font-size: $font-regular;
-    font-weight: $weight-bold;
+    font-family: $primary-font-family;
     margin-bottom: 0;
   }
 
   p {
     color: $black;
     font-size: $font-smaller;
+    font-family: $primary-font-family;
   }
 
   span {
     color: $med-gray;
-    font-size: $font-small;
-    text-transform: uppercase;
+    font-size: $font-regular;
+    font-family: $primary-font-family;
     font-weight: $weight-sbold;
+    text-transform: uppercase;
   }
 
   .dashboard__block {
@@ -41,10 +44,10 @@
 
   > .dashboard__block {
     text-align: left;
-    margin-bottom: $base-spacing / 2;
+    margin: $base-spacing / 2 0;
 
     @include media($medium) {
-      margin-bottom: 0;
+      margin: 0;
     }
   }
 
