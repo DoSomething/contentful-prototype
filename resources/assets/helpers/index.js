@@ -225,7 +225,7 @@ export function isTimestampValid(timestamp, maxTime) {
  * @param  {int} number
  * @return {String}
  */
-export function convertDigitToWord(number) {
+export function convertNumberToWord(number) {
   switch(number) {
     case 0: return 'zero';
     case 1: return 'one';

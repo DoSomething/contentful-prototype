@@ -3,13 +3,13 @@ import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
-import { convertDigitToWord } from '../../helpers';
+import { convertNumberToWord } from '../../helpers';
 import './actionPage.scss';
 
 const Stepheader = ({ title, step, background }) => (
   <FlexCell width="full">
     <div className="action-step__header" style={{ backgroundImage: background }}>
-      <span>step { convertDigitToWord(step) }</span>
+      <span>step { convertNumberToWord(step) }</span>
       <h1>{ title }</h1>
     </div>
   </FlexCell>
