@@ -10,9 +10,8 @@ const Gallery = ({isFetching, type = null, children}) => {
   if (isFetching) {
     return <div>loading…</div>;
   }
-  else {
-    return children.length ? <ul className={classnames('gallery', modifiers(type))}>{children.map(renderGalleryItem)}</ul> : null;
-  }
+
+  return children.length ? <ul className={classnames('gallery', modifiers(type))}>{children.map(renderGalleryItem)}</ul> : null;
 }
 
 Gallery.propTypes = {

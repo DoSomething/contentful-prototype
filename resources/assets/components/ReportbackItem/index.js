@@ -41,7 +41,7 @@ const ReportbackItem = (props) => {
 
   const metadata = mergeMetadata(ReportbackItem.defaultMetadata, getMetadataFromProps(props));
 
-  const reactionElement = reaction && !isFetching ? (
+  const reactionElement = reaction ? (
     <Reaction active={reaction.reacted} total={reaction.total}
               onToggleOn={() => toggleReactionOn(id, reaction.termId, metadata)}
               onToggleOff={() => toggleReactionOff(id, reaction.id, metadata)} />

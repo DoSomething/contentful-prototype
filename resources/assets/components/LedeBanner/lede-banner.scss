@@ -19,19 +19,21 @@
 }
 
 .lede-banner__content {
-  padding: $section-spacing $half-spacing;
-
-  & > .wrapper {
-    position: relative;
-  }
-
   @include media($medium) {
     flex: 1;
-    min-height: 500px; // temp!
+    min-height: 500px;
   }
 
   @include media($large) {
     @include post(2);
+  }
+
+  & > .wrapper {
+    padding: $section-spacing $half-spacing;
+
+    @include media($large) {
+      padding: $section-spacing $base-spacing;
+    }
   }
 }
 
@@ -43,28 +45,55 @@
   @include media($medium) {
     flex: 1;
   }
+
+  @include media($large) {
+    @include prefix(2);
+  }
 }
 
-.lede-banner__title {
+.lede-banner__headline {
+  position: relative;
+}
+
+.lede-banner__headline-title {
   background-color: $dark-background-color;
   color: $primary-color;
+  font-family: $primary-font-family;
+  font-size: 20px;
   padding-right: $half-spacing;
   position: absolute;
-  top: -$half-spacing;
+  top: -7px;
   text-transform: uppercase;
+
+  @include media($large) {
+    font-size: 28px;
+    top: -$half-spacing;
+  }
 }
 
-.lede-banner__subtitle {
+.lede-banner__headline-subtitle {
   color: $dark-background-contrast-color;
   border-top: 8px solid $primary-color;
   border-bottom: 8px solid $primary-color;
-  font-size: 45px;
+  font-family: $secondary-font-family;
+  font-size: 50px;
+  letter-spacing: 4px;
   line-height: 1.1;
-  padding: $base-spacing 0;
+  margin-bottom: 0;
+  padding: $half-spacing 0;
   text-transform: uppercase;
+
+  @include media($medium) {
+    font-size: 65px;
+  }
+
+  @include media($larger) {
+    font-size: 85px;
+  }
 }
 
 .lede-banner__blurb {
+  font-family: $primary-font-family;
   padding: $base-spacing 0;
 
   strong {

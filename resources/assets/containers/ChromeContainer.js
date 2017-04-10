@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Chrome from '../components/Chrome';
+import { clickedSignUp } from '../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -7,8 +8,8 @@ import Chrome from '../components/Chrome';
 const mapStateToProps = (state, props) => {
   return {
     children: props.children,
-    hasNewSignup: state.signups.thisSession,
-    isSignedUp: state.signups.thisCampagin,
+    legacyCampaignId: state.campaign.legacyCampaignId,
+    isAffiliated: state.signups.thisCampaign,
     title: state.campaign.title,
     subtitle: state.campaign.callToAction,
     blurb: state.campaign.blurb,
@@ -21,7 +22,7 @@ const mapStateToProps = (state, props) => {
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  // ...
+  clickedSignUp,
 };
 
 // Export the container component.

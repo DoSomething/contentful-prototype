@@ -27,6 +27,7 @@ import './scss/chrome.scss';
 import './scss/construction.scss';
 import './scss/container.scss';
 import './scss/navigation.scss';
+import './scss/fonts.scss';
 
 // Elements
 import App from './components/App';

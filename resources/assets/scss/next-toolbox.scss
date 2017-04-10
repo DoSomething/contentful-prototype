@@ -25,3 +25,10 @@ $dark-background-contrast-color: $white;
 
 // spacing
 $half-spacing: $base-spacing / 2;
+
+// Font Stacks
+$font-source-sans: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$font-league-gothic: "League Gothic";
+
+$primary-font-family: $font-source-sans;
+$secondary-font-family: $font-league-gothic;
