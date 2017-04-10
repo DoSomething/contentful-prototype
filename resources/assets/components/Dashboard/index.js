@@ -35,11 +35,3 @@ const Dashboard = (props) => {
 };
 
 export default Dashboard;
-
-/*
-<div className='dashboard__share'>
-  <h2>Share this campaign</h2>
-  <p>On average, each share means 3 more people registering as bone marrow donors.</p>
-</div>
-<ShareContainer variant="black" parentSource="dashboard" />
- */
