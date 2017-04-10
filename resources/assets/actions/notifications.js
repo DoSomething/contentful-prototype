@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION, CLOSE_NOTIFICATION } from '../actions';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../actions';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -11,6 +11,6 @@ export function addNotification(style, message) {
 }
 
 // Action: close a notification
-export function closeNotification(index) {
-  return { type: CLOSE_NOTIFICATION, index };
+export function removeNotification(index) {
+  return { type: REMOVE_NOTIFICATION, index };
 }

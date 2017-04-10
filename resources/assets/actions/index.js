@@ -46,7 +46,7 @@ export * from './share';
 
 // Notification Action Names & Creators
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
-export const CLOSE_NOTIFICATION = 'CLOSE_NOTIFICATION';
+export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';
 export * from './notifications';
 
 // Event Queue Names & Creators
@@ -81,5 +81,5 @@ export const ANALYTICS_ACTIONS = [
   COMPLETED_EVENT,
   HIDE_AFFIRMATION,
   ADD_NOTIFICATION,
-  CLOSE_NOTIFICATION,
+  REMOVE_NOTIFICATION,
 ];

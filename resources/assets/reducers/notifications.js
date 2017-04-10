@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION, CLOSE_NOTIFICATION } from '../actions';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../actions';
 
 /**
  * Notifications reducer:
@@ -19,7 +19,7 @@ const notifications = (state = {}, action) => {
         ],
       };
 
-    case CLOSE_NOTIFICATION:
+    case REMOVE_NOTIFICATION:
       const index = action.index;
 
       return {

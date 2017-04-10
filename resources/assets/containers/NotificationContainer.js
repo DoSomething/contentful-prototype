@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import NotificationList from '../components/Notification';
-import { closeNotification } from '../actions';
+import { removeNotification } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  closeNotification,
+  removeNotification,
 };
 
 // Export the container component.
