@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import './notification.scss';
 
 const Notification = ({ message, style, close }) => (
@@ -14,7 +13,6 @@ const Notification = ({ message, style, close }) => (
 Notification.defaultProps = {
   message: null,
   style: 'error',
-  key: null,
   close: () => {},
 };
 
@@ -24,7 +22,7 @@ export const NotificationList = ({ notifications, closeNotification }) => (
       <Notification
         key={index}
         message={message}
-        type={style}
+        style={style}
         close={() => closeNotification(index)} />
     ))}
   </div>
@@ -32,7 +30,6 @@ export const NotificationList = ({ notifications, closeNotification }) => (
 
 NotificationList.defaultProps = {
   notifications: [],
-  closeNotification: () => {},
 }
 
 export default NotificationList;
