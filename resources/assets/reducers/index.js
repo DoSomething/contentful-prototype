@@ -6,3 +6,4 @@ export user from './user';
 export signups from './signups';
 export share from './share';
 export events from './events';
+export notifications from './notifications';

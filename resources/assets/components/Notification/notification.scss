@@ -1,0 +1,40 @@
+@import '../../scss/next-toolbox.scss';
+
+.notification-list {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+
+  .notification {
+    position: relative;
+    width: 100%;
+    background: $white; // For debugging, just a default.
+
+    &.-error {
+      color: $white;
+      background: $error-color;
+    }
+
+    .notification__content {
+      padding: $base-spacing;
+
+      p {
+        color: inherit;
+      }
+    }
+
+    .notification__close {
+      position: absolute;
+      top: $base-spacing / 2;
+      right: $base-spacing / 2;
+      font-size: 32px;
+      color: inherit;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

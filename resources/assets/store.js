@@ -47,6 +47,9 @@ const initialState = {
   },
   events: {
     queue: [],
+  },
+  notifications: {
+    items: [],
   }
 };
 

@@ -44,6 +44,11 @@ export const FACEBOOK_SHARE_COMPLETED = 'FACEBOOK_SHARE_COMPLETED';
 export const FACEBOOK_SHARE_CANCELLED = 'FACEBOOK_SHARE_CANCELLED';
 export * from './share';
 
+// Notification Action Names & Creators
+export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
+export const CLOSE_NOTIFICATION = 'CLOSE_NOTIFICATION';
+export * from './notifications';
+
 // Event Queue Names & Creators
 export const QUEUE_EVENT = 'QUEUE_EVENT';
 export const COMPLETED_EVENT = 'COMPLETED_EVENT';
@@ -75,4 +80,6 @@ export const ANALYTICS_ACTIONS = [
   QUEUE_EVENT,
   COMPLETED_EVENT,
   HIDE_AFFIRMATION,
+  ADD_NOTIFICATION,
+  CLOSE_NOTIFICATION,
 ];

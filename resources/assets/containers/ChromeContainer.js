@@ -5,8 +5,6 @@ import Chrome from '../components/Chrome';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, props) => {
-  console.log(state);
-  // console.log(props);
   return {
     children: props.children,
     hasNewSignup: state.signups.thisSession,

@@ -8,6 +8,7 @@ import {
   HIDE_AFFIRMATION,
   queueEvent,
   trackEvent,
+  addNotification,
 } from '../actions';
 
 /**
@@ -93,8 +94,8 @@ export function clickedSignUp(campaignId, metadata) {
     dispatch(signupPending());
 
     (new Phoenix).post('signups', { campaignId }).then(response => {
-      // TODO: Handle a bad signup response...
-      if (! response) return;
+      // Handle a bad signup response...
+      if (! response) dispatch(addNotification('error', 'Agh, looks like we had an error. Try again in a few minutes!'));
       // If Drupal denied our signup request, check if we already had a signup.
       else if (response[0] === false) dispatch(checkForSignup(campaignId));
       // Otherwise, mark the signup as a success.
