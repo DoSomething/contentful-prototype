@@ -22,7 +22,7 @@ export const NotificationList = ({ notifications, removeNotification }) => (
         key={index}
         message={message}
         style={style}
-        close={() => removeNotification(index)} />
+        remove={() => removeNotification(index)} />
     ))}
   </div>
 );
