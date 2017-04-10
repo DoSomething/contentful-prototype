@@ -238,5 +238,6 @@ export function convertNumberToWord(number) {
     case 8: return 'eight';
     case 9: return 'nine';
     case 10: return 'ten';
+    default: throw new Error('Number out of range');
   }
 }
