@@ -38,7 +38,8 @@ class SignupController extends Controller
      */
     public function total($campaignId)
     {
-        return response()->json($this->phoenixLegacy->getAllSignupsCached(['campaign' => $campaignId]));
+        // Count = 1 is a hack to make the API actually return something. Don't ask.
+        return response()->json($this->phoenixLegacy->getAllSignupsCached(['campaign' => $campaignId, 'count' => 1]));
     }
 
     /**
