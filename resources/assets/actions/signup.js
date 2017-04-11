@@ -92,7 +92,6 @@ export function getTotalSignups(campaignId) {
       campaigns: campaignId
     }).then(response => {
       if (!response || !response.meta || !response.meta.pagination) {
-        dispatch(addNotification('error'));
         throw new Error('no signup metadata found');
       }
 
