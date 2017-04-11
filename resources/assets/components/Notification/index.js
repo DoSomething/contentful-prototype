@@ -11,7 +11,7 @@ const Notification = ({ message, style, remove }) => (
 );
 
 Notification.defaultProps = {
-  message: null,
+  message: 'Agh, looks like we had an error. Try again in a few minutes!',
   style: 'error',
 };
 

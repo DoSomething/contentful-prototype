@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
-import { checkForSignup, fetchReportbacks, startQueue } from './actions';
+import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
 import { observerMiddleware } from './middleware/analytics';
 import { loadStorage } from './helpers/storage';
 
@@ -38,6 +38,7 @@ const initialState = {
     thisSession: false,
     showAffirmation: false,
     pending: false,
+    total: 0,
   },
   user: {
     id: null,
@@ -97,6 +98,9 @@ export function initializeStore(store) {
     if (! state.signups.data.includes(state.campaign.legacyCampaignId)) {
       store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
     }
+
+    // Check for total signups
+    store.dispatch(getTotalSignups(state.campaign.legacyCampaignId));
 
     // Fetch the first page of reportbacks for the feed.
     store.dispatch(fetchReportbacks());

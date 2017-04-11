@@ -37,7 +37,13 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/signups';
 
-        return $this->get($path, $query);
+        // Use a lower expiration on this.
+        $customCacheExpiration = 10;
+        $cacheKey = 'legacy-' . $path . '-' . implode($query);
+
+        return remember(make_cache_key($cacheKey), $customCacheExpiration, function() use ($path, $query) {
+            return $this->get($path, $query);
+        });
     }
 
     /**

@@ -31,6 +31,17 @@ class SignupController extends Controller
     }
 
     /**
+     * Get the total signups for this campaign.
+     *
+     * @param  int $campaignId
+     * @return \Illuminate\Http\Response
+     */
+    public function total($campaignId)
+    {
+        return response()->json($this->phoenixLegacy->getAllSignups(['campaign' => $campaignId]));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
