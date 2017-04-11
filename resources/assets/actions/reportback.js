@@ -101,7 +101,7 @@ export function toggleReactionOn(reportbackItemId, termId, metadata) {
 
     dispatch(reactionChanged(reportbackItemId, true));
 
-    (new Phoenix).post('reactions', {
+    (new Phoenix).post('next/reactions', {
       reportback_item_id: reportbackItemId,
       term_id: termId,
     }).then(json => {
@@ -120,7 +120,7 @@ export function toggleReactionOff(reportbackItemId, reactionId, metadata) {
   return dispatch => {
     dispatch(reactionChanged(reportbackItemId, false));
 
-    (new Phoenix).delete(`reactions/${reactionId}`)
+    (new Phoenix).delete(`next/reactions/${reactionId}`)
       .then(json => {
         dispatch(reactionComplete(reportbackItemId, null));
         dispatch(trackEvent('reaction toggled off', metadata));
@@ -134,7 +134,7 @@ export function submitReportback(reportback) {
   return dispatch => {
     dispatch(storeReportback(reportback));
 
-    const url = `${window.location.origin}/reportbacks`;
+    const url = `${window.location.origin}/next/reportbacks`;
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
@@ -178,7 +178,7 @@ export function fetchUserReportbacks(userId, campaignId) {
   return dispatch => {
     dispatch(requestingUserReportbacks());
 
-    return (new Phoenix).get('signups', { campaigns: campaignId, users: userId })
+    return (new Phoenix).get('next/signups', { campaigns: campaignId, users: userId })
       .then(json => {
         dispatch(receivedUserReportbacks());
 
@@ -206,7 +206,7 @@ export function fetchReportbacks() {
 
     dispatch(requestedReportbacks(node));
 
-    (new Phoenix).get('reportbacks', { campaigns: node, page }).then(json => {
+    (new Phoenix).get('next/reportbacks', { campaigns: node, page }).then(json => {
       const normalizedData = normalizeReportbacksResponse(json.data);
       dispatch(receivedReportbacks(normalizedData, json.meta.pagination.current_page, json.meta.pagination.total))
     })

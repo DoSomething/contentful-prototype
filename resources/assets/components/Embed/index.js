@@ -13,7 +13,7 @@ class Embed extends React.Component {
   }
 
   componentDidMount() {
-    this.phoenix.get('embed', { url: this.props.url })
+    this.phoenix.get('next/embed', { url: this.props.url })
       .then(json => this.setState(json));
   }
 

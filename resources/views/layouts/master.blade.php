@@ -10,7 +10,7 @@
 
     <link rel="icon" type="image/ico" href="/favicon.ico?v1">
     <link rel="stylesheet" href="https://unpkg.com/@dosomething/forge@^6.7.4/dist/forge.css" media="screen, projection" type="text/css">
-    <link rel="stylesheet" href="{{ asset('dist/app.css') }}" media="screen, projection" type="text/css">
+    <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
     @if(isset($shareFields))
         @include('partials.social')
@@ -30,7 +30,7 @@
     @include('partials.analytics')
     {{ isset($state) ? scriptify($state) : scriptify() }}
 
-    <script type="text/javascript" src="{{ asset('dist/app.js') }}"></script>
+    <script type="text/javascript" src="{{ elixir('app.js', 'next/assets') }}"></script>
 </body>
 
 </html>

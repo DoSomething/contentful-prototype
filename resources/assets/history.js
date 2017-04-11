@@ -19,8 +19,8 @@ export function get() {
  * @return {History}
  */
 export function init(store) {
-  // Set the application "base name" to /campaigns/:slug so all pages are relative to that.
-  const basename = window.location.pathname.split('/').slice(0, 3).join('/');
+  // Set the application "base name" to /us/campaigns/:slug so all pages are relative to that.
+  const basename = window.location.pathname.split('/').slice(0, 4).join('/');
 
   const routerHistory = useRouterHistory(createBrowserHistory);
   history = syncHistoryWithStore(routerHistory({basename}), store);

@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var dotenv = require('dotenv').config();
+var ManifestPlugin = require('webpack-manifest-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var configurator = require('@dosomething/webpack-config');
 
 var config = configurator({
@@ -9,7 +11,8 @@ var config = configurator({
 });
 
 // Override output path.
-config.output.path = './public/dist';
+config.output.filename = '[name]-[hash].js';
+config.output.path = './public/next/assets';
 
 // Expose Service URLs
 config.plugins.push(
@@ -24,5 +27,14 @@ config.plugins.push(
     }
   })
 );
+
+// Add revision hash to extracted CSS files.
+config.plugins = config.plugins.filter(plugin => ! plugin instanceof ExtractTextPlugin);
+config.plugins.push(new ExtractTextPlugin('[name]-[hash].css'));
+
+config.plugins.push(new ManifestPlugin({
+  fileName: 'rev-manifest.json',
+}));
+
 
 module.exports = config;

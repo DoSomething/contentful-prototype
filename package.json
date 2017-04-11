@@ -4,7 +4,7 @@
     "start": "npm run clean && npm run modernizr && NODE_ENV=development webpack",
     "build": "npm run clean && npm run modernizr && NODE_ENV=production webpack",
     "clean": "rm -rf public/dist",
-    "modernizr": "modernizr -c node_modules/@dosomething/forge/modernizr.json -d public/dist/modernizr.js",
+    "modernizr": "modernizr -c node_modules/@dosomething/forge/modernizr.json -d public/next/assets/modernizr.js",
     "heroku-postbuild": "sh bootstrap/setup.sh"
   },
   "babel": {
@@ -49,6 +49,7 @@
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.2.0",
     "webpack": "^1.11.0",
-    "webpack-dev-server": "^1.11.0"
+    "webpack-dev-server": "^1.11.0",
+    "webpack-manifest-plugin": "^1.1.0"
   }
 }

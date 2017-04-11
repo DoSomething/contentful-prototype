@@ -48,6 +48,16 @@ class CampaignController extends Controller
     }
 
     /**
+     * Handle redirects from global paths.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirect($path)
+    {
+        return redirect('us/campaigns/' . $path);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $slug

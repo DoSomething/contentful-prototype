@@ -49,7 +49,7 @@ return [
             'client_id' => env('NORTHSTAR_AUTHORIZATION_ID'),
             'client_secret' => env('NORTHSTAR_AUTHORIZATION_SECRET'),
             'scope' => ['user', 'openid', 'role:staff', 'role:admin'],
-            'redirect_uri' => 'login',
+            'redirect_uri' => 'next/login',
         ],
     ],
 

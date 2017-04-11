@@ -1,5 +1,6 @@
 /node_modules
 /public/dist
+/public/next/assets
 /public/storage
 /vendor
 /.idea
@@ -7,3 +8,5 @@ Homestead.json
 Homestead.yaml
 .env
 .DS_Store
+
+npm-debug.log

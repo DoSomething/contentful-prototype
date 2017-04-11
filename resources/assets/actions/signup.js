@@ -64,7 +64,7 @@ export function signupPending() {
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   return (dispatch, getState) => {
-    (new Phoenix).get('signups', {
+    (new Phoenix).get('next/signups', {
       campaigns: campaignId,
       user: getState().user.id,
     }).then(response => {
@@ -88,9 +88,7 @@ export function setTotalSignups(total) {
 // Async Action: get the total signups for this campaign.
 export function getTotalSignups(campaignId) {
   return (dispatch, getState) => {
-    (new Phoenix).get('signups', {
-      campaigns: campaignId
-    }).then(response => {
+    (new Phoenix).get(`next/signups/total/${campaignId}`).then(response => {
       if (!response || !response.meta || !response.meta.pagination) {
         throw new Error('no signup metadata found');
       }
@@ -118,7 +116,7 @@ export function clickedSignUp(campaignId, metadata) {
 
     dispatch(signupPending());
 
-    (new Phoenix).post('signups', { campaignId }).then(response => {
+    (new Phoenix).post('next/signups', { campaignId }).then(response => {
       // Handle a bad signup response...
       if (! response) dispatch(addNotification('error'));
       // If Drupal denied our signup request, check if we already had a signup.
