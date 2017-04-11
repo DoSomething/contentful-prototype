@@ -37,6 +37,20 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/signups';
 
+        return $this->get($path, $query);
+    }
+
+    /**
+     * Get a cached index of (optionally filtered) campaign signups from Phoenix.
+     * @see: https://github.com/DoSomething/phoenix/wiki/API#retrieve-a-signup-collection
+     *
+     * @param array $query - query string, for filtering results
+     * @return array - JSON response
+     */
+    public function getAllSignupsCached(array $query = [])
+    {
+        $path = 'v1/signups';
+
         // Use a lower expiration on this.
         $customCacheExpiration = 10;
         $cacheKey = 'legacy-' . $path . '-' . implode($query);

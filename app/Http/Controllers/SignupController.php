@@ -38,7 +38,7 @@ class SignupController extends Controller
      */
     public function total($campaignId)
     {
-        return response()->json($this->phoenixLegacy->getAllSignups(['campaign' => $campaignId]));
+        return response()->json($this->phoenixLegacy->getAllSignupsCached(['campaign' => $campaignId]));
     }
 
     /**

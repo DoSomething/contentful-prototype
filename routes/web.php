@@ -41,6 +41,7 @@ $router->delete('reactions/{id}', 'ReactionController@delete');
 $router->resource('reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
 
 // Signups
+$router->get('signups/total/${campaignId}', 'SignupController@total');
 $router->resource('signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
 
 // Activity

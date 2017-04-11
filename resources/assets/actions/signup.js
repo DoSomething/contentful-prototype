@@ -69,7 +69,6 @@ export function checkForSignup(campaignId) {
       user: getState().user.id,
     }).then(response => {
       if (!response || !response.data || !response.data[0]) {
-        dispatch(addNotification('error'));
         throw new Error('no signup found');
       }
 
