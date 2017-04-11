@@ -96,7 +96,7 @@ export function loadStorage(initialState, preloadedState) {
     const signups = get(userId, SIGNUP_STORAGE_KEY) || [];
     initialState.signups.data = signups;
 
-    if (signups.includes(initialState.campaign.legacyCampaignId)) initialState.signups.thisCampaign = true;
+    if (signups.includes(preloadedState.campaign.legacyCampaignId)) initialState.signups.thisCampaign = true;
   }
 
   const deviceId = getDeviceId();
