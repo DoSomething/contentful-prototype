@@ -93,7 +93,10 @@ export function splice(id, type, index) {
 export function loadStorage(initialState, preloadedState) {
   const userId = preloadedState.user.id;
   if (userId) {
-    initialState.signups.data = get(userId, SIGNUP_STORAGE_KEY) || [];
+    const signups = get(userId, SIGNUP_STORAGE_KEY) || [];
+    initialState.signups.data = signups;
+
+    if (signups.includes(initialState.campaign.legacyCampaignId)) initialState.signups.thisCampaign = true;
   }
 
   const deviceId = getDeviceId();
