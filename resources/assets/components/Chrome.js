@@ -1,10 +1,10 @@
 import React from 'react';
+import Dashboard from './Dashboard';
 import FeedEnclosure from './FeedEnclosure';
 import LedeBanner from './LedeBanner';
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
-import DashboardContainer from '../containers/DashboardContainer';
 
 const Chrome = (props) => (
   <div>
@@ -18,7 +18,7 @@ const Chrome = (props) => (
       legacyCampaignId={props.legacyCampaignId}
       clickedSignUp={props.clickedSignUp}
     />
-    <DashboardContainer />
+    <Dashboard />
     <AffirmationContainer />
     <NavigationContainer />
     <FeedEnclosure>

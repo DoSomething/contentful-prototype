@@ -5,7 +5,7 @@
   background: $white;
   display: flex;
   flex-wrap: wrap;
-  padding: $base-spacing / 2 0;
+  padding: $half-spacing 0;
 
   h1 {
     color: $black;
@@ -45,7 +45,7 @@
 
   > .dashboard__block {
     text-align: left;
-    margin: $base-spacing / 2 0;
+    margin: $half-spacing 0;
 
     @include media($medium) {
       margin: 0;
@@ -65,6 +65,7 @@
   .dashboard__block.-half {
     @include media($medium) {
       flex: 0 0 50%;
+      padding-top: 4px;
     }
   }
 }

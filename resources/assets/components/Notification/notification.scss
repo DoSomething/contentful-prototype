@@ -26,8 +26,8 @@
 
     .notification__close {
       position: absolute;
-      top: $base-spacing / 2;
-      right: $base-spacing / 2;
+      top: $half-spacing;
+      right: $half-spacing;
       font-size: 32px;
       color: inherit;
 
