@@ -14,6 +14,7 @@ const mapStateToProps = (state, props) => {
     subtitle: state.campaign.callToAction,
     blurb: state.campaign.blurb,
     coverImage: state.campaign.coverImage,
+    totalSignups: state.signups.total.toLocaleString(),
   };
 };
 
