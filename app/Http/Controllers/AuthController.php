@@ -48,8 +48,9 @@ class AuthController extends Controller
             session(['login.intended' => $intended]);
         }
 
-        $destination = session('login.intended', $this->redirectTo);
-        return gateway('northstar')->authorize($request, $response, $destination);
+        $destination = array_get($request->getQueryParams(), 'destination');
+        $url = session('login.intended', $this->redirectTo);
+        return gateway('northstar')->authorize($request, $response, $url, $destination);
     }
 
     /**

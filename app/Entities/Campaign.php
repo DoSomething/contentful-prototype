@@ -53,6 +53,7 @@ class Campaign extends Entity implements JsonSerializable
             'type' => $this->entry->getContentType()->getId(),
             'title' => $this->title,
             'slug' => $this->slug,
+            'endDate' => $this->endDate,
             'callToAction' => $this->callToAction,
             'blurb' => $this->blurb,
             'coverImage' => [
@@ -64,6 +65,7 @@ class Campaign extends Entity implements JsonSerializable
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->activity_feed,
             'actionSteps' => $actionSteps,
+            'dashboard' => $this->dashboard,
             'pages' => $this->pages,
             'additionalContent' => $this->additionalContent,
         ];

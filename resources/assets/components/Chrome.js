@@ -18,7 +18,11 @@ const Chrome = (props) => (
       legacyCampaignId={props.legacyCampaignId}
       clickedSignUp={props.clickedSignUp}
     />
-    <Dashboard />
+    <Dashboard
+      totalSignups={props.totalSignups}
+      content={props.dashboard}
+      endDate={props.endDate}
+    />
     <AffirmationContainer />
     <NavigationContainer />
     <FeedEnclosure>

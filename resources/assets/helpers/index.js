@@ -39,7 +39,7 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
  */
 export function ensureAuth(isAuthenticated) {
   if (! isAuthenticated) {
-    window.location.href = '/login';
+    window.location.href = '/next/login';
     return false;
   }
 
@@ -259,4 +259,18 @@ export function makeHash(string) {
   });
 
   return Math.abs(hash);
+}
+
+/**
+ * Get the days between two Date objects
+ * @see  http://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates-using-javascript
+ *
+ * @param  {Date} dateOne
+ * @param  {Date} dateTwo
+ * @return {int}
+ */
+export function getDaysBetween(dateOne, dateTwo) {
+  const oneDay = 24*60*60*1000;
+
+  return Math.round(Math.abs((dateOne.getTime() - dateTwo.getTime()) / oneDay));
 }

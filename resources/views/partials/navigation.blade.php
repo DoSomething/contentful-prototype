@@ -22,10 +22,10 @@
                     <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
                     <ul>
                         <li><a href="{{ phoenixLink('/northstar/' . Auth::user()->northstar_id) }}">Profile</a></li>
-                        <li><a href="{{ url('next/logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
+                        <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    <a href="{{ url('next/login') }}">Log In</a>
+                    <a href="{{ route('login', isset($campaign) ? ['destination' => $campaign->title] : null) }}">Log In</a>
                 @endif
             </li>
         </ul>

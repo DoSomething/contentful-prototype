@@ -2,26 +2,40 @@ import React from 'react';
 import { Flex, FlexCell } from '../Flex';
 import ShareContainer from '../../containers/ShareContainer';
 import Markdown from '../Markdown';
+import { getDaysBetween } from '../../helpers';
 import './dashboard.scss';
 
 const Dashboard = (props) => {
+  /**
+   * Replace the given text with variables from the props.
+   *
+   * @param  {String} text
+   * @return {String}
+   */
+  function replaceTemplateVars(text) {
+    text = text.replace('{totalSignups}', props.totalSignups.toLocaleString());
+    text = text.replace('{endDate}', getDaysBetween(new Date(), new Date(props.endDate.date)));
+
+    return text;
+  }
+
   return (
     <Flex>
       <FlexCell width='full'>
         <div className='dashboard'>
           <div className='dashboard__block -quarter'>
-            <h1>45 days</h1>
-            <span>until campaign closes</span>
+            <h1>{ replaceTemplateVars(props.content.fields.firstValue) }</h1>
+            <span>{ replaceTemplateVars(props.content.fields.firstDescription) }</span>
           </div>
           <div className='dashboard__block -quarter'>
-            <h1>24,583</h1>
-            <span>members supporting</span>
+            <h1>{ replaceTemplateVars(props.content.fields.secondValue) }</h1>
+            <span>{ replaceTemplateVars(props.content.fields.secondDescription) }</span>
           </div>
           <div className='dashboard__block -half'>
             <Flex>
               <div className='dashboard__block -half'>
-                <h2>Share this campaign</h2>
-                <p>On average, each share means 3 more people registering as bone marrow donors.</p>
+                <h2>{ replaceTemplateVars(props.content.fields.shareHeader) }</h2>
+                <p>{ replaceTemplateVars(props.content.fields.shareCopy) }</p>
               </div>
               <div className='dashboard__block -half'>
                 <ShareContainer variant="black" parentSource="dashboard" />
