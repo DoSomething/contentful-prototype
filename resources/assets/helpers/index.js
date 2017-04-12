@@ -260,3 +260,17 @@ export function makeHash(string) {
 
   return Math.abs(hash);
 }
+
+/**
+ * Get the days between two Date objects
+ * @see  http://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates-using-javascript
+ *
+ * @param  {Date} dateOne
+ * @param  {Date} dateTwo
+ * @return {int}
+ */
+export function getDaysBetween(dateOne, dateTwo) {
+  const oneDay = 24*60*60*1000;
+
+  return Math.round(Math.abs((dateOne.getTime() - dateTwo.getTime()) / oneDay));
+}

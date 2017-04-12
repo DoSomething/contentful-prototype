@@ -53,6 +53,7 @@ class Campaign extends Entity implements JsonSerializable
             'type' => $this->entry->getContentType()->getId(),
             'title' => $this->title,
             'slug' => $this->slug,
+            'endDate' => $this->endDate,
             'callToAction' => $this->callToAction,
             'blurb' => $this->blurb,
             'coverImage' => [

@@ -21,6 +21,7 @@ const Chrome = (props) => (
     <Dashboard
       totalSignups={props.totalSignups}
       content={props.dashboard}
+      endDate={props.endDate}
     />
     <AffirmationContainer />
     <NavigationContainer />

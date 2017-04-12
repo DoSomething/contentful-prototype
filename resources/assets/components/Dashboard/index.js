@@ -2,6 +2,7 @@ import React from 'react';
 import { Flex, FlexCell } from '../Flex';
 import ShareContainer from '../../containers/ShareContainer';
 import Markdown from '../Markdown';
+import { getDaysBetween } from '../../helpers';
 import './dashboard.scss';
 
 const Dashboard = (props) => {
@@ -12,8 +13,8 @@ const Dashboard = (props) => {
    * @return {String}
    */
   function replaceTemplateVars(text) {
-    text = text.replace('{totalSignups}', props.totalSignups);
-    // text = text.replace('{endDate}', props.campaign.endDate);
+    text = text.replace('{totalSignups}', props.totalSignups.toLocaleString());
+    text = text.replace('{endDate}', getDaysBetween(new Date(), new Date(props.endDate.date)));
 
     return text;
   }
