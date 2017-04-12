@@ -20,6 +20,7 @@ const Chrome = (props) => (
     />
     <Dashboard
       totalSignups={props.totalSignups}
+      content={props.dashboard}
     />
     <AffirmationContainer />
     <NavigationContainer />

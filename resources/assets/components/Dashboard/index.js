@@ -13,7 +13,7 @@ const Dashboard = (props) => {
    */
   function replaceTemplateVars(text) {
     text = text.replace('{totalSignups}', props.totalSignups);
-    text = text.replace('{endDate}', props.campaign.endDate);
+    // text = text.replace('{endDate}', props.campaign.endDate);
 
     return text;
   }
@@ -23,18 +23,18 @@ const Dashboard = (props) => {
       <FlexCell width='full'>
         <div className='dashboard'>
           <div className='dashboard__block -quarter'>
-            <h1>{ replaceTemplateVars('45 days') }</h1>
-            <span>{ replaceTemplateVars('until campaign closes') }</span>
+            <h1>{ replaceTemplateVars(props.content.fields.leftValue) }</h1>
+            <span>{ replaceTemplateVars(props.content.fields.leftDescription) }</span>
           </div>
           <div className='dashboard__block -quarter'>
-            <h1>{ replaceTemplateVars('{totalSignups}') }</h1>
-            <span>{ replaceTemplateVars('members supporting') }</span>
+            <h1>{ replaceTemplateVars(props.content.fields.rightValue) }</h1>
+            <span>{ replaceTemplateVars(props.content.fields.rightDescription) }</span>
           </div>
           <div className='dashboard__block -half'>
             <Flex>
               <div className='dashboard__block -half'>
-                <h2>{ replaceTemplateVars('Share this campaign') }</h2>
-                <p>{ replaceTemplateVars('On average, each share means 3 more people registering as bone marrow donors.') }</p>
+                <h2>{ replaceTemplateVars(props.content.fields.shareHeader) }</h2>
+                <p>{ replaceTemplateVars(props.content.fields.shareCopy) }</p>
               </div>
               <div className='dashboard__block -half'>
                 <ShareContainer variant="black" parentSource="dashboard" />
