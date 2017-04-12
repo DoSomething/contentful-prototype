@@ -17,14 +17,24 @@
   }
 
   .action-step__header {
+    position: relative;
     width: 100%;
-    background-size: cover;
-    background-position: center center;
+    background: $dark-gray;
     text-align: center;
     text-transform: uppercase;
     padding: $base-spacing;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      position: absolute;
+      top: 50%; left: 0;
+      transform: translateY(-50%);
+      filter: grayscale(100%);
+    }
 
     span {
+      position: relative;
       color: $primary-color;
       font-size: $font-regular;
       font-weight: $weight-bold;
@@ -32,6 +42,7 @@
     }
 
     h1 {
+      position: relative;
       color: $white;
       font-size: $font-hero;
       font-weight: $weight-bold;

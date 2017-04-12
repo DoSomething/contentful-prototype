@@ -1,12 +1,19 @@
 @import '../../scss/next-toolbox.scss';
 
 .markdown {
-  blockquote {
-    position: relative;
-    margin: $base-spacing / 2 0;
+  // Code blocks can be used for pre-formatted text.
+  code {
+    font-family: $font-proxima-nova;
+    font-size: $font-regular;
+    display: block;
+  }
 
-    p {
-      margin-left: $base-spacing / 2;
+  pre, blockquote {
+    position: relative;
+    margin: $base-spacing 0;
+
+    p, ul, code {
+      margin-left: $base-spacing;
     }
 
     &:before {

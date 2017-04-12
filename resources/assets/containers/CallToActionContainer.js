@@ -7,9 +7,9 @@ import { clickedSignUp } from '../actions';
  */
 const mapStateToProps = (state) => {
   return {
-    campaign: state.campaign,
-    signups: state.signups,
-    user: state.user,
+    isAffiliated: state.signups.thisCampaign,
+    imageUrl: state.campaign.coverImage.url,
+    legacyCampaignId: state.campaign.legacyCampaignId,
   };
 };
 

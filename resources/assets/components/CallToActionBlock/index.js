@@ -4,52 +4,54 @@ import { contentfulImageUrl } from '../../helpers';
 import { mergeMetadata } from '../../helpers/analytics';
 import './cta.scss';
 
-const CallToActionBlock = (props) => {
-  const additionalContent = props.fields.additionalContent || {};
-
-  //TODO: This should probably be editable in contentful
-  const buttonText = props.signups.thisCampaign ? 'Reportback' : 'Get Involved';
-
-  const backgroundImageStyle = {
-    backgroundImage: `url(${contentfulImageUrl(props.campaign.coverImage.url, '400', '400', 'fill')})`,
-  };
-
-  let impactContent = null;
-
-  if (additionalContent.impactNumber) {
-    impactContent = (
+const renderImpactContent = (data) => {
+  if (data.impactNumber) {
+    return (
       <div className="cta__block cta__impact">
-        {additionalContent.impactPrefix ? <span className="cta__impact-prefix">{additionalContent.impactPrefix}</span> : null}
-        {additionalContent.impactNumber ? <span className="cta__impact-number">{additionalContent.impactNumber}</span> : null}
-        {additionalContent.impactMessage ? <span className="cta__impact-message">{additionalContent.impactMessage}</span> : null}
+        {data.impactPrefix ? <span className="cta__impact-prefix">{data.impactPrefix}</span> : null}
+        {data.impactNumber ? <span className="cta__impact-number">{data.impactNumber}</span> : null}
+        {data.impactMessage ? <span className="cta__impact-message">{data.impactMessage}</span> : null}
       </div>
     );
   }
 
+  return null;
+};
+
+const renderBackgroundImageStyle = (imageUrl) => (
+  { backgroundImage: `url(${contentfulImageUrl(imageUrl, '400', '400', 'fill')})` }
+);
+
+const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, clickedSignUp }) => {
+  const { title, content, additionalContent } = fields;
+  const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
+
+  // @TODO: This should probably be editable in contentful...
+  const buttonText = isAffiliated ? 'Reportback' : 'Get Involved';
+
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
-    hasPhoto: additionalContent.hasPhoto,
-    hasImpact: impactContent !== null,
-    hasContent: typeof props.fields.content !== 'undefined',
+    hasPhoto: hasPhoto,
+    hasImpact: additionalContent !== 'undefined',
+    hasContent: typeof content !== 'undefined',
   });
 
-  const onClick = () => props.clickedSignUp(props.campaign.legacyCampaignId, metadata);
+  const handleOnClickButton = () => clickedSignUp(legacyCampaignId, metadata);
 
   return (
-    <div className={classnames('cta', {'has-photo': additionalContent.hasPhoto})}>
-
+    <div className={classnames('cta', {'has-photo': hasPhoto})}>
       <div className="cta__content">
-        { !props.fields.content ? <div className="cta__block"><p className="cta__title">{props.fields.title}</p></div> : null }
+        { !content ? <div className="cta__block"><p className="cta__title">{title}</p></div> : null }
 
-        {impactContent}
+        { additionalContent ? renderImpactContent(additionalContent) : null}
 
-        { props.fields.content ? <div className="cta__block"><p className="cta__message">{props.fields.content}</p></div> : null }
+        { content ? <div className="cta__block"><p className="cta__message">{content}</p></div> : null }
 
         <div className="cta__block">
-          <a className="button" onClick={onClick}>{ buttonText }</a>
+          <a className="button" onClick={handleOnClickButton}>{buttonText}</a>
         </div>
       </div>
 
-      { additionalContent.hasPhoto ? <div className="cta__photo" style={backgroundImageStyle}></div> : null }
+      { hasPhoto ? <div className="cta__photo" style={renderBackgroundImageStyle(imageUrl)}></div> : null }
     </div>
   );
 };
@@ -59,3 +61,5 @@ CallToActionBlock.defaultMetadata = {
 }
 
 export default CallToActionBlock;
+
+

@@ -2,13 +2,15 @@ import React from 'react';
 import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
+import LazyImage from '../LazyImage';
 import { Flex, FlexCell } from '../Flex';
 import { convertNumberToWord } from '../../helpers';
 import './actionPage.scss';
 
 const Stepheader = ({ title, step, background }) => (
   <FlexCell width="full">
-    <div className="action-step__header" style={{ backgroundImage: background }}>
+    <div className="action-step__header">
+      <LazyImage src={background} />
       <span>step { convertNumberToWord(step) }</span>
       <h1>{ title }</h1>
     </div>
@@ -23,8 +25,7 @@ const renderPhoto = (photo, index) => (
 
 const renderStep = (step, index) => {
   const title = step.title;
-  const background = `url('${step.background}')`;
-
+  const background = step.background;
   const stepWidth = step.displayOptions[0];
   const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
 
