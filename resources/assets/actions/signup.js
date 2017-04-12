@@ -104,21 +104,19 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId, metadata) {
-  console.log('0');
   return (dispatch, getState) => {
-    console.log('1')
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
       dispatch(queueEvent('clickedSignUp', campaignId, metadata));
       return;
     }
-    console.log('2')
+
     // If we already have a signup, just go to the action page.
     if (getState().signups.data.includes(campaignId)) {
       historyGet().push('/action');
       return;
     };
-    console.log('3')
+
     dispatch(signupPending());
 
     (new Phoenix).post('next/signups', { campaignId }).then(response => {
