@@ -25,12 +25,12 @@
     <div class="footer__column -links">
         <h4 class="js-toggle-collapsed is-collapsed is-toggleable">Who We Are</h4>
         <ul>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/who-we-are' }}">What is DoSomething.org?</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/our-people' }}">Our Team</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/sexy-financials' }}">Sexy Financials</a></li>
+          <li><a href="{{ phoenixLink('us/about/who-we-are') }}">What is DoSomething.org?</a></li>
+          <li><a href="{{ phoenixLink('us/about/our-people') }}">Our Team</a></li>
+          <li><a href="{{ phoenixLink('us/about/sexy-financials') }}">Sexy Financials</a></li>
           <li><a href="http://xyzfactor.org/">XYZ Factor</a></li>
           <li><a href="https://app.dosomething.org/">Mobile App</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/our-press' }}">Press</a></li>
+          <li><a href="{{ phoenixLink('us/about/our-press') }}">Press</a></li>
           <li><a href="https://blog.dosomething.org/">Blog</a></li>
          </ul>
     </div>
@@ -38,26 +38,26 @@
         <h4 class="js-toggle-collapsed is-collapsed is-toggleable">Our Friends</h4>
         <ul>
           <li><a href="http://www.tmiagency.org">TMI Agency</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/our-partners' }}">Partners</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/old-people' }}">Old People</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/hotline-list' }}">Crisis Hotlines</a></li>
+          <li><a href="{{ phoenixLink('us/about/our-partners') }}">Partners</a></li>
+          <li><a href="{{ phoenixLink('us/about/old-people') }}">Old People</a></li>
+          <li><a href="{{ phoenixLink('us/about/hotline-list') }}">Crisis Hotlines</a></li>
         </ul>
     </div>
     <div class="footer__column -links">
         <h4 class="js-toggle-collapsed is-collapsed is-toggleable">Get Involved</h4>
         <ul>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/easy-scholarships' }}">Scholarships</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/join-our-team' }}">Jobs</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/internships' }}">Internships</a></li>
-          <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/donate' }}">Donate</a></li>
+          <li><a href="{{ phoenixLink('us/about/easy-scholarships') }}">Scholarships</a></li>
+          <li><a href="{{ phoenixLink('us/about/join-our-team') }}">Jobs</a></li>
+          <li><a href="{{ phoenixLink('us/about/internships') }}">Internships</a></li>
+          <li><a href="{{ phoenixLink('us/about/donate') }}">Donate</a></li>
           <li><a href="https://help.dosomething.org/hc/en-us">Help Center</a></li>
         </ul>
     </div>
   </div>
   <div class="footer__subfooter">
     <ul>
-      <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/terms-service' }}">Terms of Service</a></li>
-      <li><a href="{{ config('services.phoenix-legacy.url') . 'us/about/privacy-policy' }}">Privacy Policy.</a></li>
+      <li><a href="{{ phoenixLink('us/about/terms-service') }}">Terms of Service</a></li>
+      <li><a href="{{ phoenixLink('us/about/privacy-policy') }}">Privacy Policy.</a></li>
     </ul>
   </div>
 </footer>

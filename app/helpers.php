@@ -170,3 +170,19 @@ function getShareFields($campaign, $shareOverrides)
         'quote' => $shareOverrides ? $shareOverrides->quote : null,
     ];
 }
+
+/**
+ * Generate a link to Phoenix Ashes.
+ *
+ * @param  String $path path/to/something
+ * @return String
+ */
+function phoenixLink($path)
+{
+    $base = config('services.phoenix-legacy.url');
+    if (substr($base, -1) !== '/') {
+        $base .= '/';
+    }
+
+    return $base . $path;
+}

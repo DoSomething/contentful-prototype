@@ -4,13 +4,13 @@
     <div class="navigation__menu">
         <ul class="navigation__primary">
             <li>
-                <a href="{{ config('services.phoenix-legacy.url') . 'us/campaigns' }}">
+                <a href="{{ phoenixLink('us/campaigns') }}">
                     <strong class="navigation__title">Explore Campaigns</strong>
                     <span class="navigation__subtitle">Find ways to take action both online and off.</span>
                 </a>
             </li>
             <li>
-                <a href="{{ config('services.phoenix-legacy.url') . 'us/about/who-we-are' }}">
+                <a href="{{ phoenixLink('us/about/who-we-are') }}">
                     <strong class="navigation__title">What is DoSomething.org?</strong>
                     <span class="navigation__subtitle">A global movement for good.</span>
                 </a>
@@ -21,7 +21,7 @@
                 @if (Auth::user())
                     <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
                     <ul>
-                        <li><a href="{{ config('services.phoenix-legacy.url') . '/northstar/' . Auth::user()->northstar_id }}">Profile</a></li>
+                        <li><a href="{{ phoenixLink('/northstar/' . Auth::user()->northstar_id) }}">Profile</a></li>
                         <li><a href="{{ url('next/logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
