@@ -8,7 +8,7 @@ import { EMPTY_IMAGE } from '../../helpers';
 import './affirmation.scss';
 
 const Affirmation = (props) => {
-  if (! props.showAffirmation) return null;
+  // if (! props.showAffirmation) return null;
 
   return (
     <FlexCell width="full">

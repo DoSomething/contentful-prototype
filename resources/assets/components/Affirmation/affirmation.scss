@@ -22,7 +22,10 @@
     text-align: center;
 
     h1 {
-      font-size: 48px;
+      letter-spacing: 1.1px;
+      font-family: $secondary-font-family;
+      font-size: $font-gigantic; // TODO: This needs to be the 65px one
+      font-weight: $weight-normal;
       color: $white;
     }
   }
