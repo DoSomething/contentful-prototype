@@ -24,12 +24,12 @@ const Dashboard = (props) => {
       <FlexCell width='full'>
         <div className='dashboard'>
           <div className='dashboard__block -quarter'>
-            <h1>{ replaceTemplateVars(props.content.fields.leftValue) }</h1>
-            <span>{ replaceTemplateVars(props.content.fields.leftDescription) }</span>
+            <h1>{ replaceTemplateVars(props.content.fields.firstValue) }</h1>
+            <span>{ replaceTemplateVars(props.content.fields.firstDescription) }</span>
           </div>
           <div className='dashboard__block -quarter'>
-            <h1>{ replaceTemplateVars(props.content.fields.rightValue) }</h1>
-            <span>{ replaceTemplateVars(props.content.fields.rightDescription) }</span>
+            <h1>{ replaceTemplateVars(props.content.fields.secondValue) }</h1>
+            <span>{ replaceTemplateVars(props.content.fields.secondDescription) }</span>
           </div>
           <div className='dashboard__block -half'>
             <Flex>
