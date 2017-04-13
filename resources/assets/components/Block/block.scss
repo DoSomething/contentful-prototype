@@ -5,10 +5,16 @@
   margin: $half-spacing;
   width: 100%;
   overflow: hidden;
+
+  h2 {
+    font-family: $primary-font-family;
+    color: $black;
+  }
 }
 
 .block__title {
   color: $black;
+  font-family: $primary-font-family;
   background-color: $primary-color;
   text-transform: uppercase;
   margin: (- $half-spacing) (- $half-spacing) $base-spacing;
