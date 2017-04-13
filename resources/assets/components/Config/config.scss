@@ -1,0 +1,16 @@
+@import '../../scss/next-toolbox.scss';
+
+.config {
+  width: 100%;
+  padding: $base-spacing;
+  background: $dark-background-color;
+
+  h1, p {
+    color: $white;
+  }
+
+  span {
+    color: $primary-color;
+  }
+
+}

@@ -61,7 +61,7 @@ class CampaignController extends Controller
      * Display the specified resource.
      *
      * @param  int  $slug
-     * @return \Illuminate\View\View
+     * @return \Illuminate\View\View ? auth()->user
      */
     public function show($slug)
     {
@@ -76,6 +76,7 @@ class CampaignController extends Controller
             'share' => $shareFields,
             'user' => [
                 'id' => auth()->id(),
+                'role' => auth()->user() ? auth()->user()->role : null,
             ],
         ]);
     }

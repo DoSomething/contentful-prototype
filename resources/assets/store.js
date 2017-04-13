@@ -42,6 +42,7 @@ const initialState = {
   },
   user: {
     id: null,
+    role: null,
   },
   share: {
     status: null,

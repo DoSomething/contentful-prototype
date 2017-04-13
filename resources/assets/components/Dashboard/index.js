@@ -13,7 +13,7 @@ const Dashboard = (props) => {
    * @return {String}
    */
   function replaceTemplateVars(text) {
-    text = text.replace('{totalSignups}', props.totalSignups.toLocaleString());
+    text = text.replace('{totalSignups}', props.totalCampaignSignups.toLocaleString());
     text = text.replace('{endDate}', getDaysBetween(new Date(), new Date(props.endDate.date)));
 
     return text;

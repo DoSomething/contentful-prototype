@@ -1,4 +1,5 @@
 import React from 'react';
+import Config from './Config';
 import Dashboard from './Dashboard';
 import FeedEnclosure from './FeedEnclosure';
 import LedeBanner from './LedeBanner';
@@ -19,7 +20,7 @@ const Chrome = (props) => (
       clickedSignUp={props.clickedSignUp}
     />
     <Dashboard
-      totalSignups={props.totalSignups}
+      totalCampaignSignups={props.totalCampaignSignups}
       content={props.dashboard}
       endDate={props.endDate}
     />
@@ -28,6 +29,10 @@ const Chrome = (props) => (
     <FeedEnclosure>
       {props.children}
     </FeedEnclosure>
+    <Config
+      user={props.user}
+      signups={props.signups}
+    />
   </div>
 );
 
