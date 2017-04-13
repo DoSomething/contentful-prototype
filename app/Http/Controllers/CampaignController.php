@@ -61,7 +61,7 @@ class CampaignController extends Controller
      * Display the specified resource.
      *
      * @param  int  $slug
-     * @return \Illuminate\View\View ? auth()->user
+     * @return \Illuminate\View\View
      */
     public function show($slug)
     {
