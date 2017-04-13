@@ -1,7 +1,6 @@
 import React from 'react';
 import { Flex, FlexCell } from '../Flex';
 import ShareContainer from '../../containers/ShareContainer';
-import Markdown from '../Markdown';
 import { getDaysBetween } from '../../helpers';
 import './dashboard.scss';
 

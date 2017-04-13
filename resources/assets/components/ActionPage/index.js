@@ -34,7 +34,7 @@ const renderStep = (step, index) => {
       <div className="action-step">
         <Flex>
           <Stepheader title={title} step={index + 1} background={background} />
-          <FlexCell width={stepWidth}>
+          <FlexCell width="two-thirds">
             <Markdown>{ step.content }</Markdown>
           </FlexCell>
           <FlexCell width={photoWidth}>

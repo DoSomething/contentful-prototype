@@ -1,6 +1,7 @@
 import { Phoenix } from '@dosomething/gateway';
 import { normalizeReportbacksResponse } from "../normalizers";
 import has from 'lodash/has';
+import get from 'lodash/get';
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
@@ -208,7 +209,10 @@ export function fetchReportbacks() {
 
     (new Phoenix).get('next/reportbacks', { campaigns: node, page }).then(json => {
       const normalizedData = normalizeReportbacksResponse(json.data);
-      dispatch(receivedReportbacks(normalizedData, json.meta.pagination.current_page, json.meta.pagination.total))
+      const currentPage = get(json, 'meta.pagination.current_page', 1);
+      const total = get(json, 'meta.pagination.total', 0);
+
+      dispatch(receivedReportbacks(normalizedData, currentPage, total))
     })
   }
 }

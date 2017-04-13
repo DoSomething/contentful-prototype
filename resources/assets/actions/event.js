@@ -24,13 +24,21 @@ export function startQueue() {
     const queue = getArray(getDeviceId(), EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
+      // Always remove the event from storage.
+      dispatch(completedEvent(index));
+
       // Check if the event is over 30 min old before dispatching.
       const isValidTimestamp = isTimestampValid(event.createdAt, (30 * 60 * 1000));
 
       // Check if the user successfully authenticated
       const isAuthenticated = typeof getState().user.id !== 'undefined';
 
-      if (!isValidTimestamp || (event.requiresAuth && !isAuthenticated)) {
+      let shouldFireEvent = isValidTimestamp;
+      if (shouldFireEvent && event.requiresAuth) {
+        shouldFireEvent = isAuthenticated;
+      }
+
+      if (shouldFireEvent) {
         // Match the action creator from the saved name, load parameters to apply.
         const action = allActions[event.action.creatorName];
         const args = event.action.args || [];
@@ -38,9 +46,6 @@ export function startQueue() {
         // If the creator was found, dispatch the action.
         if (action) dispatch(action(...args));
       }
-
-      // Always remove the event from storge.
-      dispatch(completedEvent(index));
     });
   }
 }

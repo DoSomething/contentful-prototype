@@ -4,7 +4,7 @@ import Markdown from '../Markdown';
 import './static-block.scss';
 
 const StaticBlock = (props) => {
-  const source = props.fields.additionalContent.source;
+  const { source } = props.fields.additionalContent;
 
   return (
     <Block>

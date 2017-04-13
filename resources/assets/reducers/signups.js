@@ -16,11 +16,15 @@ import {
  * Signup reducer:
  */
 const signupReducer = (state = {}, action) => {
-  const signups = state.data;
+  let signups = [];
 
   switch (action.type) {
     case SIGNUP_CREATED:
-      signups.push(action.campaignId);
+      signups = [
+        ...state.data,
+        action.campaignId,
+      ];
+
       storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
 
       return {
@@ -28,18 +32,24 @@ const signupReducer = (state = {}, action) => {
         data: signups,
         isPending: false,
         thisSession: true,
+        thisCampaign: true,
         showAffirmation: true,
         total: state.total + 1,
       };
 
     case SIGNUP_FOUND:
-      signups.push(action.campaignId);
+      signups = [
+        ...state.data,
+        action.campaignId,
+      ];
+
       storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
 
       return {
         ...state,
         data: signups,
-        isPending: false
+        isPending: false,
+        thisCampaign: true,
       };
 
     case SIGNUP_PENDING:

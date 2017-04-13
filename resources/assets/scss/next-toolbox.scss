@@ -32,3 +32,10 @@ $font-league-gothic: "League Gothic";
 
 $primary-font-family: $font-source-sans;
 $secondary-font-family: $font-league-gothic;
+
+%block {
+  background-color: $white;
+  border: 1px solid $primary-border-color;
+  border-radius: $lg-border-radius;
+  padding: $base-spacing / 2;
+}

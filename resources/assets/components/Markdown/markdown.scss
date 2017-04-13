@@ -26,4 +26,13 @@
       position: absolute;
     }
   }
+
+  strong, a {
+    font-weight: 700;
+  }
+
+  h3 {
+    font-family: $primary-font-family;
+    font-size: 22px;
+  }
 }

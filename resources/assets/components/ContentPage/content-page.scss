@@ -1,0 +1,55 @@
+@import '../../scss/next-toolbox';
+
+.content-page {
+  padding: 0 $half-spacing;
+
+  @include clearfix;
+  padding-top: $half-spacing;
+  font-family: $primary-font-family;
+  font-size: $font-regular;
+  line-height: 1.4;
+
+  .primary {
+    margin: 0 0 $base-spacing;
+
+    @include media($large) {
+      float: left;
+      padding-right: $half-spacing;
+      width: 66.6666666666666%;
+    }
+  }
+
+  .secondary {
+    margin: 0 0 $base-spacing;
+
+    @include visually-hidden();
+
+    @include media($large) {
+      @include visually-restored();
+      float: right;
+      padding-left: $half-spacing;
+      width: 33.3333333333333%
+    }
+  }
+
+  > div {
+    margin: $base-spacing 0;
+  }
+
+  article {
+    @extend %block;
+  }
+
+  .cta {
+    clear: both;
+    margin: 0;
+  }
+
+  // @TODO: Upcoming PR with work specifically on CTA will address having some classes to
+  // allow for transparent vs filled-in CTAs @_@
+  > .cta {
+    background-color: transparent;
+    border: 0 none;
+    color: $off-black;
+  }
+}

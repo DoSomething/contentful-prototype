@@ -65,7 +65,7 @@ export function ready(fn) {
  * @param {String} source - Markdown source
  * @returns {{__html}} - Prepared object for React's dangerouslySetInnerHtml
  */
-export function markdown(source) {
+export function markdown(source = '') {
   // Markdown options <https://github.com/chjj/marked#options-1>
   const options = {
     sanitize: true

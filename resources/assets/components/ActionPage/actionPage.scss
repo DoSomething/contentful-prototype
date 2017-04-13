@@ -14,6 +14,7 @@
 
   h1, h2, h3, p {
     color: $black;
+    font-family: $primary-font-family;
   }
 
   .action-step__header {
@@ -36,7 +37,7 @@
     span {
       position: relative;
       color: $primary-color;
-      font-size: $font-regular;
+      font-size: $font-large; // TODO: This needs to be the 28px one
       font-weight: $weight-bold;
       text-shadow: $text-shadow;
     }
@@ -44,8 +45,10 @@
     h1 {
       position: relative;
       color: $white;
-      font-size: $font-hero;
-      font-weight: $weight-bold;
+      letter-spacing: 1.1px;
+      font-family: $secondary-font-family;
+      font-size: $font-gigantic; // TODO: This needs to be the 65px one
+      font-weight: $weight-normal;
       text-shadow: $text-shadow;
     }
   }
@@ -57,6 +60,10 @@
 
     .action-step__photo {
       padding: $base-spacing / 2;
+
+      img {
+        min-height: 200px;
+      }
     }
   }
 

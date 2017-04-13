@@ -8,7 +8,7 @@ const Markdown = ({className = 'markdown', children}) => (
 );
 
 Markdown.propTypes = {
-  children: React.PropTypes.string.isRequired,
+  children: React.PropTypes.string,
   className: React.PropTypes.string,
 };
 
