@@ -1,5 +1,5 @@
 const BLOCKS_PER_ROW = 3;
-const ROWS_PER_PAGE = 3;
+const ROWS_PER_PAGE = 5;
 
 /**
  * Map the given display option to a numeric point value.
