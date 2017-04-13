@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
@@ -28,10 +29,11 @@ const renderStep = (step, index) => {
   const background = step.background;
   const stepWidth = step.displayOptions[0];
   const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
+  const shouldHide = step.hide;
 
   return (
     <FlexCell width="full" key={index}>
-      <div className="action-step">
+      <div className={classnames('action-step', {'-hide': shouldHide})}>
         <Flex>
           <Stepheader title={title} step={index + 1} background={background} />
           <FlexCell width="two-thirds">
@@ -56,6 +58,7 @@ const renderStep = (step, index) => {
 const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
   if (! signedUp) {
     steps = steps.slice(0, 2);
+    steps[steps.length - 1].hide = true;
   }
 
   const revealer = <Revealer title="sign up" callToAction={callToAction}
