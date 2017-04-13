@@ -5,7 +5,9 @@ import './navigation.scss';
 
 export const Navigation = ({children}) => (
   <FeedEnclosure>
-    { children }
+    <div className="nav">
+      { children }
+    </div>
   </FeedEnclosure>
 );
 
