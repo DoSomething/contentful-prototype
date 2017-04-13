@@ -41,7 +41,7 @@ const Affirmation = (props) => {
 
 //TODO: Replace these default strings with content from Contentful
 Affirmation.defaultProps = {
-  header: '🙌 THANKS FOR JOINING! 🙌',
+  header: 'THANKS FOR JOINING!',
   quote: `You doing this means so much to my community. Thank you so much for doing this simple action. Ramadan is a special time for us and this just makes it even more special.`,
   author: 'Usra, Maryland',
   photo: 'https://static.dosomething.org/img/sincerely-us-member-quote.jpg',
