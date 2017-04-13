@@ -39,7 +39,7 @@ const renderFeedItem = (block, index) => {
  */
 const Feed = ({ blocks, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp }) => {
   const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId, mergeMetadata(Feed.defaultMetadata));
-  const revealer = <Revealer title={signedUp ? 'view more' : 'sign up'}
+  const revealer = <Revealer title={signedUp ? 'view more' : 'join us'}
                              callToAction={signedUp ? '' : callToAction}
                              isLoading={hasPendingSignup}
                              isVisible={(isAuthenticated && !signedUp) || canLoadMorePages}
