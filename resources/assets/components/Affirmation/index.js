@@ -8,7 +8,7 @@ import { EMPTY_IMAGE } from '../../helpers';
 import './affirmation.scss';
 
 const Affirmation = (props) => {
-  if (! props.showAffirmation) return null;
+  // if (! props.showAffirmation) return null;
 
   return (
     <FlexCell width="full">
@@ -41,12 +41,12 @@ const Affirmation = (props) => {
 
 //TODO: Replace these default strings with content from Contentful
 Affirmation.defaultProps = {
-  header: 'THANKS SO MUCH!',
-  quote: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
-  author: 'Puppet Sloth, 29',
-  photo: EMPTY_IMAGE,
-  ctaHeader: 'Rally your friends',
-  ctaDescription: 'Every share can make a difference.',
+  header: '🙌 THANKS FOR JOINING!🙌',
+  quote: `You doing this means so much to my community. Thank you so much for doing this simple action. Ramadan is a special time for us and this just makes it even more special.`,
+  author: 'Usra, Maryland',
+  photo: 'https://static.dosomething.org/img/sincerely-us-member-quote.jpg',
+  ctaHeader: 'Rally your friends!',
+  ctaDescription: 'To send a card to every mosque in the US, we’ll need their help. Share this campaign now!',
 };
 
 export default Affirmation;
