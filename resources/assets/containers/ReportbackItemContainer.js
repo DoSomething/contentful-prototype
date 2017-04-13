@@ -22,6 +22,7 @@ const mapStateToProps = (state, props) => {
     quantity: reportback.quantity,
     firstName: reportback.user.first_name,
     reaction: reportbackItem.reaction,
+    caption: reportbackItem.caption,
     isAuthenticated: state.user.id !== null,
     reportback,
   };

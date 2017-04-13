@@ -1,14 +1,26 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
 
-.reportback-item > .figure__media {
-  background-color: $med-gray;
+.reportback-item {
+  font-family: $primary-font-family;
 
-  & > img {
-    width: 480px; // HACK: Expand smaller images to fit in card.
+  h4 {
+    font-size: $font-regular;
+    font-weight: $weight-bold;
+  }
+
+  p {
+    color: $med-gray;
+  }
+
+  > .figure__media {
+    background-color: $med-gray;
+
+    & > img {
+      width: 480px; // HACK: Expand smaller images to fit in card.
+    }
   }
 }
 
 .padded {
   padding: $base-spacing / 2;
 }
-

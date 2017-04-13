@@ -10,7 +10,7 @@ const StaticBlock = (props) => {
     <Block>
       <BlockTitle>{ props.fields.title }</BlockTitle>
       <Markdown>{props.fields.content}</Markdown>
-      { source ? <div className="static-block__citation"><p className="footnote">Source: {source}</p></div> : null }
+      { source ? <div className="static-block__citation"><p className="footnote">{source}</p></div> : null }
     </Block>
   );
 };
