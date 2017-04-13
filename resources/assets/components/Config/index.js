@@ -26,7 +26,7 @@ const Config = (props) => {
           <div>
             <h1>signups storage</h1>
             <p>local storage signups: <span>{ storageGetArray(props.user.id, SIGNUP_STORAGE_KEY).join(',') }</span></p>
-            <p>redux store signups: <span>{ (props.cachedSignups || []).join(',') }</span></p>
+            <p>redux store signups: <span>{ (props.signups || []).join(',') }</span></p>
             <button className="button" onClick={() => storageRemove(props.user.id, SIGNUP_STORAGE_KEY)}>clear signup cache</button>
           </div>
         </FlexCell>
