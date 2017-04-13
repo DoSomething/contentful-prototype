@@ -46,12 +46,12 @@ const ReportbackItem = (props) => {
               onToggleOn={() => toggleReactionOn(id, reaction.termId, metadata)}
               onToggleOff={() => toggleReactionOff(id, reaction.id, metadata)} />
   ) : null;
-
+  // TODO: Don't hardcode cards
   return (
     <Figure className="reportback-item" image={url}>
       <BaseFigure media={reactionElement} alignment="right" className="padded">
         {firstName ? <h4>{firstName}</h4> : null }
-        {quantity ? <p className="footnote">{quantity} jeans</p> : null }
+        {quantity ? <p className="footnote">{quantity} cards</p> : null }
         {caption ?  <p>{caption}</p> : null }
       </BaseFigure>
     </Figure>
