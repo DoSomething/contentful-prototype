@@ -24,9 +24,13 @@
     h1 {
       letter-spacing: 1.1px;
       font-family: $secondary-font-family;
-      font-size: $font-gigantic; // TODO: This needs to be the 65px one
+      font-size: $font-hero;
       font-weight: $weight-normal;
       color: $white;
+
+      @include media($medium) {
+        font-size: $font-gigantic;
+      }
     }
   }
 
