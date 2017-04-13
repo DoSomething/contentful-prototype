@@ -28,7 +28,7 @@ const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, c
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
   // @TODO: This should probably be editable in contentful...
-  const buttonText = isAffiliated ? 'Join Us' : 'Make Cards';
+  const buttonText = isAffiliated ? 'Make Cards' : 'Join Us';
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto: hasPhoto,
