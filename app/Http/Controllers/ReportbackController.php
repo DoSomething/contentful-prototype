@@ -59,7 +59,7 @@ class ReportbackController extends Controller
             auth()->id(),
             $request->input('campaignId'),
             [
-                'file_url' => config('app.env') !== 'local' ?  config('url').'/next'.$path : 'https://placeimg.com/1000/768/animals',
+                'file_url' => config('app.env') !== 'local' ?  config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals',
                 'caption' => $request->input('caption'),
                 'quantity' => $request->input('impact'),
                 'why_participated' => $request->input('whyParticipated'),
