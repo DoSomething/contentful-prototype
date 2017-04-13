@@ -13,7 +13,6 @@ export function toggleHandler(button, target, toggleClass) {
     target.classList.toggle(toggleClass);
   }
 
-  // button.addEventListener('touchstart', clickHandler, false);
   button.addEventListener('mousedown', clickHandler, false);
 }
 
