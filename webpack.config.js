@@ -29,7 +29,7 @@ config.plugins.push(
 );
 
 // Add revision hash to extracted CSS files.
-config.plugins = config.plugins.filter(plugin => ! plugin instanceof ExtractTextPlugin);
+config.plugins = config.plugins.filter(plugin => !(plugin instanceof ExtractTextPlugin));
 config.plugins.push(new ExtractTextPlugin('[name]-[hash].css'));
 
 config.plugins.push(new ManifestPlugin({

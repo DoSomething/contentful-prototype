@@ -1,7 +1,9 @@
 @import '../../scss/next-toolbox';
 
 .nav {
-  overflow-x: scroll;
+  @include media($mobile) {
+    overflow-x: scroll;
+  }
 }
 
 .nav-link {
