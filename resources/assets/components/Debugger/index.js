@@ -6,13 +6,15 @@ import {
   SIGNUP_STORAGE_KEY
 } from '../../helpers/storage';
 import { getSession } from '../../helpers/analytics';
-import './config.scss';
+import './debugger.scss';
 
-const Config = (props) => {
-  if (props.user.role !== 'admin') return null;
+const Debugger = (props) => {
+  if (props.user.role !== 'admin') {
+    return null;
+  }
 
   return (
-    <div className="config">
+    <div className="debugger">
       <Flex>
         <FlexCell width="one-third">
           <div>
@@ -35,4 +37,4 @@ const Config = (props) => {
   );
 };
 
-export default Config;
+export default Debugger;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Config from './Config';
 import Dashboard from './Dashboard';
+import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
 import LedeBanner from './LedeBanner';
 import NavigationContainer from '../containers/NavigationContainer';
@@ -29,7 +29,7 @@ const Chrome = (props) => (
     <FeedEnclosure>
       {props.children}
     </FeedEnclosure>
-    <Config
+    <Debugger
       user={props.user}
       signups={props.signups}
     />
