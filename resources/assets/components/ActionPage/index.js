@@ -56,12 +56,12 @@ const renderStep = (step, index) => {
  * @returns {XML}
  */
 const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
-  let actionSteps = [...steps];
+  let actionSteps = JSON.parse(JSON.stringify(steps));
 
   if (! signedUp) {
-    actionSteps = steps.slice(0, 2);
+    actionSteps = actionSteps.slice(0, 2);
 
-    if (actionSteps[steps.length - 1]) {
+    if (actionSteps[actionSteps.length - 1]) {
       actionSteps[actionSteps.length - 1].truncate = true;
     }
   }
