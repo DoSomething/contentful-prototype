@@ -95,7 +95,7 @@ class PhoenixLegacy extends RestApiClient
 
     /**
      * Get an index of (optionally filtered) campaign reportbacks from Phoenix.
-     * @see: https://github.com/DoSomething/phoenix/wiki/API#retrieve-a-reportback-collection
+     * @see: https://github.com/DoSomething/phoenix/blob/dev/documentation/endpoints/reportbacks.md#retrieve-all-reportbacks
      *
      * @param array|string $query - query string, for filtering results
      * @return array - JSON response
@@ -103,6 +103,24 @@ class PhoenixLegacy extends RestApiClient
     public function getAllReportbacks(array $query = [])
     {
         $path = 'v1/reportbacks';
+        $query['load_user'] = true;
+        if (auth()->id()) {
+            $query['as_user'] = auth()->id();
+        }
+
+        return $this->get($path, $query);
+    }
+
+    /**
+     * Get an index of (optionally filtered) campaign reportback items from Phoenix.
+     * @see: https://github.com/DoSomething/phoenix/blob/dev/documentation/endpoints/reportback-items.md#retrieve-all-reportback-items
+     *
+     * @param array|string $query - query string, for filtering results
+     * @return array - JSON response
+     */
+    public function getAllReportbackItems(array $query = [])
+    {
+        $path = 'v1/reportback-items';
         $query['load_user'] = true;
         if (auth()->id()) {
             $query['as_user'] = auth()->id();

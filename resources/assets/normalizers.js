@@ -29,3 +29,48 @@ export function normalizeReportbacksResponse(data) {
 
   return {reportbacks, reportbackItems};
 }
+
+/**
+ * Create normalized entities from the reportback item response.
+ * @param  {Object} data
+ * @return {Object}
+ */
+export function normalizeReportbackItemResponse(data) {
+  let reportbacks = {};
+  let reportbackItems = {};
+
+  data.forEach((reportbackItem) => {
+    const kudos = reportbackItem.kudos.data[0];
+    const currentUser = kudos ? kudos.current_user : false;
+
+    reportbackItem.reaction = {
+      id: currentUser ? currentUser.kudos_id : null,
+      reacted: !!(currentUser && currentUser.kudos_id),
+      total: kudos ? kudos.term.total : 0,
+      termId: kudos ? kudos.term.id : '1274', // This is a hardcoded default because phoenix-ashes is bugged.
+    }
+
+    const reportback = reportbackItem.reportback;
+    let existingReportback = reportbacks[reportback.id];
+
+    if (! existingReportback) {
+      existingReportback = reportback;
+      reportbacks[reportback.id] = existingReportback;
+    }
+
+    if (! existingReportback.reportback_items) {
+      existingReportback.reportback_items = []; // Underscore naming b/c of old data format.
+    }
+
+    existingReportback.reportback_items.push(reportbackItem.id);
+
+    if (! existingReportback.user) {
+      existingReportback.user = reportbackItem.user;
+    }
+
+    delete reportbackItem.campaign;
+    reportbackItems[reportbackItem.id] = reportbackItem;
+  });
+
+  return { reportbacks, reportbackItems };
+}
