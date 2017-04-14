@@ -11,11 +11,11 @@ export function trackEvent(collection, metadata) {
       return;
     }
 
-    const state = transformState(collection, appState);
+    const transformedState = transformState(collection, appState);
 
     analyze(collection, {
       metadata,
-      state,
+      transformedState,
     });
   }
 }
