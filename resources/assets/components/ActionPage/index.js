@@ -56,11 +56,13 @@ const renderStep = (step, index) => {
  * @returns {XML}
  */
 const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
-  if (! signedUp) {
-    steps = steps.slice(0, 2);
+  let actionSteps = [...steps];
 
-    if (steps[steps.length - 1]) {
-      steps[steps.length - 1].truncate = true;
+  if (! signedUp) {
+    actionSteps = steps.slice(0, 2);
+
+    if (actionSteps[steps.length - 1]) {
+      actionSteps[actionSteps.length - 1].truncate = true;
     }
   }
 
@@ -76,7 +78,7 @@ const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignu
 
   return (
     <Flex>
-      {steps.map(renderStep)}
+      {actionSteps.map(renderStep)}
       {isAuthenticated && signedUp ? null : revealer}
       {isAuthenticated && signedUp ? uploader : null}
     </Flex>
