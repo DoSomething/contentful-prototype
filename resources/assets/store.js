@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
-import { observerMiddleware } from './middleware/analytics';
+import { start, observerMiddleware } from './middleware/analytics';
 import { loadStorage } from './helpers/storage';
 
 /**
@@ -109,6 +109,9 @@ export function initializeStore(store) {
 
     // Start the event queue.
     store.dispatch(startQueue());
+
+    // Start watching for store changes.
+    start(store);
 
     callback();
   }

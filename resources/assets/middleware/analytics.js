@@ -4,10 +4,9 @@ import {
   stateChanged,
   createDeviceId,
 } from '../helpers/analytics';
-
 import { init, pageview } from '@dosomething/analytics';
-
 import { ANALYTICS_ACTIONS } from '../actions';
+import { get as getHistory } from '../history';
 
 /**
  * Redux middleware for tracking state changes.
@@ -28,14 +27,16 @@ export const observerMiddleware = store => next => action => {
  * Watch the given parameters for changes in there state
  * and record it to the appropiate service.
  *
- * @param  {Object} history Instance of React Router history
  * @param  {Object} store   Instance of a React Redux store
  * @return {Function}
  */
-export default function (history, store) {
+export function start(store) {
   // Setup session
   createDeviceId();
-  if (!isSessionValid()) generateSessionid();
+
+  if (!isSessionValid()) {
+    generateSessionid();
+  }
 
   // Initialize Analytics
   init('track', true, services.KEEN_PROJECT_ID ? {
@@ -44,7 +45,7 @@ export default function (history, store) {
   } : null);
 
   // Track page changes for Google Analytics
-  history.listen(({ basename, pathname }) => {
+  getHistory().listen(({ basename, pathname }) => {
     let path = basename;
     if (pathname) path += pathname;
 
