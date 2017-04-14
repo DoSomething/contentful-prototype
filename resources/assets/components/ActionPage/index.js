@@ -6,6 +6,7 @@ import Revealer from '../Revealer';
 import LazyImage from '../LazyImage';
 import { Flex, FlexCell } from '../Flex';
 import { convertNumberToWord } from '../../helpers';
+import cloneDeep from 'lodash/cloneDeep';
 import './actionPage.scss';
 
 const Stepheader = ({ title, step, background }) => (
@@ -56,7 +57,7 @@ const renderStep = (step, index) => {
  * @returns {XML}
  */
 const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
-  let actionSteps = JSON.parse(JSON.stringify(steps));
+  let actionSteps = cloneDeep(steps);
 
   if (! signedUp) {
     actionSteps = actionSteps.slice(0, 2);
