@@ -61,7 +61,7 @@ export function storeReportbackFailed(error) {
 }
 
 // Action: storing new user submitted reportback was successful.
-export function storeReportbackSuccessful(reportback) {
+export function storeReportbackSuccessful() {
   return { type: STORE_REPORTBACK_SUCCESSFUL };
 }
 

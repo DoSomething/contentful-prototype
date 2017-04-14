@@ -1,4 +1,5 @@
 import React from 'react';
+import { has } from 'lodash';
 import Block from '../Block';
 import { Flex } from '../Flex';
 import MediaUploader from '../MediaUploader';
@@ -59,6 +60,8 @@ class ReportbackUploader extends React.Component {
     this.props.submitReportback(this.setFormData(reportback));
 
     // @TODO: only reset form AFTER successful RB submission.
+    // We'll make this a lot better once we switch to storing all the state
+    // in the Redux store @_@
     this.form.reset();
     this.setState({
       media: this.defaultMediaState()
@@ -83,12 +86,14 @@ class ReportbackUploader extends React.Component {
   }
 
   render() {
+    const submissions = this.props.submissions;
+
     return (
       <Block>
         <div className="reportback-uploader">
           <h2 className="heading">Upload your photos</h2>
 
-          { this.props.submissions.messaging ? <FormMessage messaging={this.props.submissions.messaging} /> : null }
+          { submissions.messaging ? <FormMessage messaging={submissions.messaging} /> : null }
 
           <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={(form) => this.form = form}>
             <MediaUploader label="Send us your photo" media={this.state.media} onChange={this.handleOnFileUpload} />
@@ -110,12 +115,12 @@ class ReportbackUploader extends React.Component {
               <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={(input) => this.why_participated = input}></textarea>
             </div>
 
-            <button className="button" type="submit">Submit a new photo</button>
+            <button className="button" type="submit" disabled={submissions.isStoring ? true : false }>Submit a new photo</button>
           </form>
         </div>
-          <Gallery isFetching={this.props.submissions.isFetching} type="triad">
+          <Gallery isFetching={submissions.isFetching} type="triad">
             {/* @TODO: Need to normalize data for uploaded RBs vs API retrieved RBs earlier in process if possible... */}
-            {this.props.submissions.items.map((submission, index) => <ReportbackItem key={makeHash(submission.media.uri || submission.media.filePreviewUrl)} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
+            {submissions.items.map((submission, index) => <ReportbackItem key={makeHash(submission.media.uri || submission.media.filePreviewUrl)} {...submission} url={submission.media.uri || submission.media.filePreviewUrl} reaction={null} />)}
           </Gallery>
       </Block>
     );
