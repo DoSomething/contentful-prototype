@@ -7,11 +7,7 @@ import * as allActions from '../actions';
 
 import { isTimestampValid } from '../helpers';
 import { getDeviceId } from '../helpers/analytics';
-import {
-  getArray,
-  splice as storageSplice,
-  EVENT_STORAGE_KEY
-} from '../helpers/storage';
+import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {
