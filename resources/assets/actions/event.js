@@ -7,10 +7,10 @@ import * as allActions from '../actions';
 
 import { isTimestampValid } from '../helpers';
 import { getDeviceId } from '../helpers/analytics';
-
 import {
   getArray,
-  EVENT_STORAGE_KEY,
+  splice as storageSplice,
+  EVENT_STORAGE_KEY
 } from '../helpers/storage';
 
 // Action: remove completed event from storage.
@@ -31,7 +31,7 @@ export function startQueue() {
       const isValidTimestamp = isTimestampValid(event.createdAt, (30 * 60 * 1000));
 
       // Check if the user successfully authenticated
-      const isAuthenticated = typeof getState().user.id !== 'undefined';
+      const isAuthenticated = getState().user.id !== null;
 
       let shouldFireEvent = isValidTimestamp;
       if (shouldFireEvent && event.requiresAuth) {
