@@ -7,14 +7,6 @@ const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
 const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
 
-export function getSession() {
-  return {
-    id: localStorage.getItem(SESSION_ID),
-    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT),
-    deviceId: localStorage.getItem(DEVICE_ID),
-  };
-}
-
 /**
  * Prepare the state for being sent to Keen.io
  *
