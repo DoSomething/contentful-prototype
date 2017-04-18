@@ -69,8 +69,6 @@ export function getDeviceId() {
   return getDeviceId();
 }
 
-<<<<<<< Updated upstream
-=======
 export function getSession() {
   return {
     id: localStorage.getItem(SESSION_ID),
@@ -79,7 +77,6 @@ export function getSession() {
   };
 }
 
->>>>>>> Stashed changes
 /**
  * Update the session to reflect the user is still active.
  */
