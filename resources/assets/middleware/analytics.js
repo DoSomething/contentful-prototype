@@ -4,7 +4,7 @@ import { init, pageview } from '@dosomething/analytics';
 import { ANALYTICS_ACTIONS } from '../actions';
 import { get as getHistory } from '../history';
 import {
-  generateSessionid,
+  generateSessionId,
   isSessionValid,
   stateChanged,
   createDeviceId,
@@ -15,7 +15,7 @@ import {
  */
 function checkSession() {
   if (!isSessionValid()) {
-    generateSessionid();
+    generateSessionId();
   }
 }
 
