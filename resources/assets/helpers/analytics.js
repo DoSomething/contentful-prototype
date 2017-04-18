@@ -69,6 +69,17 @@ export function getDeviceId() {
   return getDeviceId();
 }
 
+<<<<<<< Updated upstream
+=======
+export function getSession() {
+  return {
+    id: localStorage.getItem(SESSION_ID),
+    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT) * 1,
+    deviceId: localStorage.getItem(DEVICE_ID),
+  };
+}
+
+>>>>>>> Stashed changes
 /**
  * Update the session to reflect the user is still active.
  */
@@ -79,7 +90,7 @@ export function updateSession() {
 /**
  * Generate a new session id.
  */
-export function generateSessionid() {
+export function generateSessionId() {
   localStorage.setItem(SESSION_ID, generateUniqueId());
   updateSession();
 }

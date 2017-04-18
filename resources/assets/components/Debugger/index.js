@@ -21,7 +21,7 @@ const Debugger = (props) => {
             <h1>analytics debug</h1>
             <p>Device Id: <span>{ getSession().deviceId }</span></p>
             <p>Session Id: <span>{ getSession().id }</span></p>
-            <p>Last Updated: <span>{ new Date(getSession().lastUpdatedAt * 1).toString() }</span></p>
+            <p>Last Updated: <span>{ new Date(getSession().lastUpdatedAt).toString() }</span></p>
           </div>
         </FlexCell>
         <FlexCell width="one-third">

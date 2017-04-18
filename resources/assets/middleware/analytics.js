@@ -11,12 +11,23 @@ import {
 } from '../helpers/analytics';
 
 /**
+ * Check if the session is valid, if not update it.
+ */
+function checkSession() {
+  if (!isSessionValid()) {
+    generateSessionid();
+  }
+}
+
+/**
  * Redux middleware for tracking state changes.
  *
  * @param  {Object} store Application store
  * @return {Object}
  */
 export const observerMiddleware = store => next => action => {
+  checkSession();
+
   if (!ANALYTICS_ACTIONS.includes(action.type)) return next(action);
 
   const result = next(action);
@@ -36,9 +47,7 @@ export function start(store) {
   // Setup session
   createDeviceId();
 
-  if (!isSessionValid()) {
-    generateSessionid();
-  }
+  checkSession();
 
   // Initialize Analytics
   init('track', true, services.KEEN_PROJECT_ID ? {
