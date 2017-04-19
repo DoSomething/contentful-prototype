@@ -68,7 +68,7 @@ CallToActionBlock.propTypes = {
   imageUrl: React.PropTypes.string.isRequired,
   campaignId: React.PropTypes.string.isRequired,
   clickedSignUp: React.PropTypes.func.isRequired,
-  modifierClasses: React.PropTypes.arrayOf(React.PropTypes.string),
+  modifierClasses: React.PropTypes.string, // @TODO: Should this be an array?
 };
 
 CallToActionBlock.defaultMetadata = {

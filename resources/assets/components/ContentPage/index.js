@@ -1,17 +1,15 @@
 import React from 'react';
-import Block from '../Block';
 import Markdown from '../Markdown';
 import CallToActionContainer from '../../containers/CallToActionContainer';
-import { Flex, FlexCell } from '../Flex';
 
 import './content-page.scss';
 
 const ContentPage = ({ pages, route }) => {
-  const page = pages.find(page => page.fields.slug === route.page);
+  const page = pages.find(item => item.fields.slug === route.page);
 
   // @TODO: temporary variables until these CTAs are no longer hardcoded.
-  const ctaText1 = 'Help us send letters of support to every mosque in the US.\n\n__Join hundreds of members members making cards!__';
-  const ctaText2 = 'Help us send letters of support to every mosque in the United States.';
+  const ctaText1 = { content: 'aHelp us send letters of support to every mosque in the US.\n\n__Join hundreds of members members making cards!__' };
+  const ctaText2 = { content: 'Help us send letters of support to every mosque in the United States.' };
 
   return (
     <div className="content-page">
@@ -22,12 +20,27 @@ const ContentPage = ({ pages, route }) => {
         </article>
       </div>
       <div className="secondary">
-        <CallToActionContainer fields={ {content: ctaText1} } />
+        <CallToActionContainer fields={ctaText1} />
       </div>
 
-      <CallToActionContainer fields={ {title: ctaText2} } modifierClasses="transparent" />
+      <CallToActionContainer fields={ctaText2} modifierClasses="transparent" />
     </div>
   );
+};
+
+ContentPage.propTypes = {
+  pages: React.PropTypes.arrayOf(React.PropTypes.shape({
+    fields: React.PropTypes.shape({
+      title: React.PropTypes.string.isRequired,
+      slug: React.PropTypes.string.isRequired,
+      content: React.PropTypes.string.isRequired,
+    }),
+  })),
+  route: React.PropTypes.instanceOf(Object).isRequired,
+};
+
+ContentPage.defaultProps = {
+  pages: [],
 };
 
 export default ContentPage;
