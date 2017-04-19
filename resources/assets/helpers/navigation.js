@@ -9,7 +9,7 @@
  * @param  {String} toggleClass
  */
 export function toggleHandler(button, target, toggleClass) {
-  if (!button || !target) return;
+  if (! button || ! target) return;
 
   function clickHandler() {
     target.classList.toggle(toggleClass);

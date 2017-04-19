@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "lint": "eslint resources/assets/**/*.js || exit 0",
+    "lint": "eslint resources/assets/**/*.js",
     "start": "npm run clean && npm run modernizr && NODE_ENV=development webpack",
     "build": "npm run clean && npm run modernizr && NODE_ENV=production webpack",
     "clean": "rm -rf public/next/assets",
@@ -42,6 +42,7 @@
   "devDependencies": {
     "@dosomething/eslint-config": "^2.0.0",
     "@dosomething/webpack-config": "^1.1.1",
+    "babel-eslint": "^7.2.2",
     "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",

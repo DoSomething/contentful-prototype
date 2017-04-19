@@ -1,3 +1,4 @@
+/* eslint import/prefer-default-export: "off" */
 import { analyze } from '@dosomething/analytics';
 import { transformState } from '../helpers/analytics';
 

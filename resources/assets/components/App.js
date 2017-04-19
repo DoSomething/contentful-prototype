@@ -23,4 +23,9 @@ const App = ({ store, history }) => (
   </Provider>
 );
 
+App.propTypes = {
+  store: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  history: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
+
 export default App;

@@ -1,8 +1,7 @@
 /* global window, document */
 
 import { Phoenix } from '@dosomething/gateway';
-import has from 'lodash/has';
-import get from 'lodash/get';
+import { has, get } from 'lodash';
 import { normalizeReportbackItemResponse } from '../normalizers';
 import {
   REQUESTED_REPORTBACKS,
@@ -100,7 +99,7 @@ export function addSubmissionItemToList(reportbackItem) {
 export function toggleReactionOn(reportbackItemId, termId, metadata) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
-    if (!getState().user.id) {
+    if (! getState().user.id) {
       dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
       return;
     }
@@ -111,7 +110,9 @@ export function toggleReactionOn(reportbackItemId, termId, metadata) {
       reportback_item_id: reportbackItemId,
       term_id: termId,
     }).then((json) => {
-      if (!has(json, '[0].created')) throw 'Could not create reaction.';
+      if (! has(json, '[0].created')) {
+        throw new Error('Could not create reaction.');
+      }
 
       dispatch(reactionComplete(reportbackItemId, json[0].kid));
       dispatch(trackEvent('reaction toggled on', metadata));
@@ -160,8 +161,7 @@ export function submitReportback(reportback) {
           response.json().then((json) => {
             dispatch(storeReportbackFailed(json));
           });
-        }
-        else {
+        } else {
           dispatch(storeReportbackSuccessful());
 
           response.json().then((json) => {
@@ -175,7 +175,7 @@ export function submitReportback(reportback) {
 }
 
 export function fetchUserReportbacks(userId, campaignId) {
-  if (!userId) {
+  if (! userId) {
     return (dispatch) => {
       dispatch(requestingUserReportbacksFailed());
     };
@@ -191,7 +191,7 @@ export function fetchUserReportbacks(userId, campaignId) {
         if (json.data.length) {
           const reportback = json.data.shift().reportback;
 
-          if (!reportback) {
+          if (! reportback) {
             return;
           }
 

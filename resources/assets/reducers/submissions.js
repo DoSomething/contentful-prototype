@@ -1,3 +1,4 @@
+/* global Number */
 import {
   REQUESTED_USER_SUBMISSIONS,
   REQUESTED_USER_SUBMISSIONS_FAILED,
@@ -38,7 +39,9 @@ const submissions = (state = {}, action) => {
       return {
         ...state,
         messaging: {
-          success: { message: 'Thanks! We got your photo and you\'re entered to win the scholarship!' },
+          success: {
+            message: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
+          },
         },
         isStoring: false,
       };
@@ -49,7 +52,7 @@ const submissions = (state = {}, action) => {
         reportback: {
           id: action.id || action.reportback.id,
           flagged: action.reportback.flagged || null,
-          quantity: parseInt(action.reportback.impact, 10) || parseInt(action.reportback.quantity, 10),
+          quantity: Number(action.reportback.impact) || Number(action.reportback.quantity),
           whyParticipated: action.reportback.whyParticipated || action.reportback.why_participated,
         },
       };

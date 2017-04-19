@@ -1,9 +1,4 @@
-import {
-  QUEUE_EVENT,
-  COMPLETED_EVENT,
-} from '../actions';
-
-import * as allActions from '../actions';
+import * as actions from '../actions';
 
 import { isTimestampValid } from '../helpers';
 import { getDeviceId } from '../helpers/analytics';
@@ -11,7 +6,7 @@ import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {
-  return { type: COMPLETED_EVENT, index, deviceId: getDeviceId() };
+  return { type: actions.COMPLETED_EVENT, index, deviceId: getDeviceId() };
 }
 
 // Action: run through all of the events in the queue.
@@ -36,7 +31,7 @@ export function startQueue() {
 
       if (shouldFireEvent) {
         // Match the action creator from the saved name, load parameters to apply.
-        const action = allActions[event.action.creatorName];
+        const action = actions[event.action.creatorName];
         const args = event.action.args || [];
 
         // If the creator was found, dispatch the action.
@@ -49,7 +44,7 @@ export function startQueue() {
 // Action: add an event to the queue.
 export function queueEvent(actionCreatorName, ...args) {
   return {
-    type: QUEUE_EVENT,
+    type: actions.QUEUE_EVENT,
     deviceId: getDeviceId(),
     createdAt: Date.now(),
     requiresAuth: true, // vLater - Allow more flexibility with configuring events

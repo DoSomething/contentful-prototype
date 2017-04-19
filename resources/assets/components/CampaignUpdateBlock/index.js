@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
-import { Block, BlockTitle } from '../Block';
+import Block, { BlockTitle } from '../Block';
 import Figure from '../Figure';
 import Embed from '../Embed';
 import DEFAULT_AVATAR from './default-avatar.png';

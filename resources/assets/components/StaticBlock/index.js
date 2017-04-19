@@ -1,5 +1,5 @@
 import React from 'react';
-import { Block, BlockTitle } from '../Block';
+import Block, { BlockTitle } from '../Block';
 import Markdown from '../Markdown';
 import './static-block.scss';
 

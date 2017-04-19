@@ -93,18 +93,22 @@ export function splice(id, type, index) {
  * @return {object}                The new initial state
  */
 export function loadStorage(initialState, preloadedState) {
+  const state = initialState;
+
   const userId = preloadedState.user.id;
   if (userId) {
     const signups = get(userId, SIGNUP_STORAGE_KEY) || [];
-    initialState.signups.data = signups;
+    state.signups.data = signups;
 
-    if (signups.includes(preloadedState.campaign.legacyCampaignId)) initialState.signups.thisCampaign = true;
+    if (signups.includes(preloadedState.campaign.legacyCampaignId)) {
+      state.signups.thisCampaign = true;
+    }
   }
 
   const deviceId = getDeviceId();
   if (deviceId) {
-    initialState.events.queue = get(deviceId, EVENT_STORAGE_KEY) || [];
+    state.events.queue = get(deviceId, EVENT_STORAGE_KEY) || [];
   }
 
-  return initialState;
+  return state;
 }

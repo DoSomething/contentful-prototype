@@ -14,7 +14,7 @@ import {
  * Check if the session is valid, if not update it.
  */
 function checkSession() {
-  if (!isSessionValid()) {
+  if (! isSessionValid()) {
     generateSessionId();
   }
 }
@@ -25,10 +25,10 @@ function checkSession() {
  * @param  {Object} store Application store
  * @return {Object}
  */
-export const observerMiddleware = store => next => action => {
+export const observerMiddleware = store => next => (action) => {
   checkSession();
 
-  if (!ANALYTICS_ACTIONS.includes(action.type)) return next(action);
+  if (! ANALYTICS_ACTIONS.includes(action.type)) return next(action);
 
   const result = next(action);
   stateChanged(action, store.getState());

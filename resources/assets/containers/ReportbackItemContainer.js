@@ -10,7 +10,7 @@ import {
  */
 const mapStateToProps = (state, props) => {
   const reportback = state.reportbacks.entities[props.id];
-  if (!reportback) {
+  if (! reportback) {
     return { isFetching: true };
   }
 

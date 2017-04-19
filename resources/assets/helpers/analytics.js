@@ -7,6 +7,14 @@ const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
 const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
 
+export function getSession() {
+  return {
+    id: localStorage.getItem(SESSION_ID),
+    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT) * 1,
+    deviceId: localStorage.getItem(DEVICE_ID),
+  };
+}
+
 /**
  * Prepare the state for being sent to Keen.io
  *
@@ -61,14 +69,6 @@ export function getDeviceId() {
   return getDeviceId();
 }
 
-export function getSession() {
-  return {
-    id: localStorage.getItem(SESSION_ID),
-    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT) * 1,
-    deviceId: localStorage.getItem(DEVICE_ID),
-  };
-}
-
 /**
  * Update the session to reflect the user is still active.
  */
@@ -92,7 +92,7 @@ export function generateSessionId() {
 export function isSessionValid() {
   const session = getSession();
 
-  if (!session.id || !session.lastUpdatedAt) return false;
+  if (! session.id || ! session.lastUpdatedAt) return false;
 
   // Check if the timestamp is 15 min old
   return isTimestampValid(session.lastUpdatedAt, (15 * 60 * 1000));

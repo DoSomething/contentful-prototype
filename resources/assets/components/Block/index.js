@@ -10,10 +10,14 @@ BlockTitle.PropTypes = {
   children: React.PropTypes.string,
 };
 
-export const Block = (props) => (
+const Block = (props) => (
   <div className={classNames('block', props.className)}>
     {props.children}
   </div>
 );
+
+Block.propTypes = {
+  className: React.PropTypes.string,
+};
 
 export default Block;

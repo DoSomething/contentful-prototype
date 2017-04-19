@@ -36,4 +36,34 @@ const Chrome = props => (
   </div>
 );
 
+Chrome.propTypes = {
+  isAffiliated: React.PropTypes.bool,
+  title: React.PropTypes.string.isRequired,
+  subtitle: React.PropTypes.string.isRequired,
+  blurb: React.PropTypes.string.isRequired,
+  coverImage: React.PropTypes.shape({
+    description: React.PropTypes.string,
+    url: React.PropTypes.string,
+  }).isRequired,
+  legacyCampaignId: React.PropTypes.string.isRequired,
+  clickedSignUp: React.PropTypes.func.isRequired,
+  totalCampaignSignups: React.PropTypes.number.isRequired,
+  dashboard: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  endDate: React.PropTypes.shape({
+    date: React.PropTypes.string,
+    timezone: React.PropTypes.string,
+    timezone_type: React.PropTypes.number,
+  }).isRequired,
+  children: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  user: React.PropTypes.shape({
+    id: React.PropTypes.string,
+    role: React.PropTypes.string,
+  }).isRequired,
+  signups: React.PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+};
+
+Chrome.defaultProps = {
+  isAffiliated: false,
+};
+
 export default Chrome;

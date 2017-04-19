@@ -68,7 +68,7 @@ export function checkForSignup(campaignId) {
       campaigns: campaignId,
       user: getState().user.id,
     }).then((response) => {
-      if (!response || !response.data || !response.data[0]) {
+      if (! response || ! response.data || ! response.data[0]) {
         throw new Error('no signup found');
       }
 
@@ -89,12 +89,12 @@ export function setTotalSignups(total) {
 export function getTotalSignups(campaignId) {
   return (dispatch, getState) => {
     (new Phoenix()).get(`next/signups/total/${campaignId}`).then((response) => {
-      if (!response || !response.meta || !response.meta.pagination) {
+      if (! response || ! response.meta || ! response.meta.pagination) {
         throw new Error('no signup metadata found');
       }
 
       let total = response.meta.pagination.total;
-      // TODO: This isn't ideal, but the browser doesn't know if this is an old cached response or not.
+      // @TODO: Not ideal, but the browser doesn't know if this is an old cached response or not.
       if (getState().signups.thisCampaign) total += 1;
 
       dispatch(setTotalSignups(total));
@@ -106,7 +106,7 @@ export function getTotalSignups(campaignId) {
 export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
-    if (!getState().user.id) {
+    if (! getState().user.id) {
       dispatch(queueEvent('clickedSignUp', campaignId, metadata));
       return;
     }
@@ -121,7 +121,7 @@ export function clickedSignUp(campaignId, metadata) {
 
     (new Phoenix()).post('next/signups', { campaignId }).then((response) => {
       // Handle a bad signup response...
-      if (!response) dispatch(addNotification('error'));
+      if (! response) dispatch(addNotification('error'));
       // If Drupal denied our signup request, check if we already had a signup.
       else if (response[0] === false) dispatch(checkForSignup(campaignId));
       // Otherwise, mark the signup as a success.

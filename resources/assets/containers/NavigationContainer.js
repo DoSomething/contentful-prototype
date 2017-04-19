@@ -6,9 +6,9 @@ const mapStateToProps = state => ({
   pages: state.campaign.pages,
 });
 
-const NavigationContainer = (props) => {
+const NavigationContainer = ({ pages }) => {
   // Create links for additional "content" pages on this campaign in Contentful.
-  const additionalPages = props.pages.map(page => (
+  const additionalPages = pages.map(page => (
     <NavigationLink key={page.id} to={`/pages/${page.fields.slug}`}>
       {page.fields.title}
     </NavigationLink>
@@ -21,6 +21,14 @@ const NavigationContainer = (props) => {
       { additionalPages }
     </Navigation>
   );
+};
+
+NavigationContainer.propTypes = {
+  pages: React.PropTypes.array,  // eslint-disable-line react/forbid-prop-types
+};
+
+NavigationContainer.defaultProps = {
+  pages: [],
 };
 
 export default connect(mapStateToProps)(NavigationContainer);
