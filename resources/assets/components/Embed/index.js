@@ -22,7 +22,8 @@ class Embed extends React.Component {
 
     // If an <iframe> code snippet is provided, use that. Otherwise, build preview card.
     if (this.state.code) {
-      embed = <div className="media-video" dangerouslySetInnerHTML={{__html: this.state.code }} />;
+      const embedHtml = { __html: this.state.code };
+      embed = <div className="media-video" dangerouslySetInnerHTML={embedHtml} />; // eslint-disable-line react/no-danger
     } else if (this.state.title && this.state.url) {
       embed = (
         <a href={this.state.url} target="_blank" rel="noopener noreferrer">
