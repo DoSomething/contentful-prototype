@@ -6,11 +6,11 @@ export const BlockTitle = ({ children }) => (
   <h4 className="block__title">{children}</h4>
 );
 
-BlockTitle.PropTypes = {
-  children: React.PropTypes.string,
+BlockTitle.propTypes = {
+  children: React.PropTypes.string.isRequired,
 };
 
-const Block = (props) => (
+const Block = props => (
   <div className={classNames('block', props.className)}>
     {props.children}
   </div>
@@ -18,6 +18,11 @@ const Block = (props) => (
 
 Block.propTypes = {
   className: React.PropTypes.string,
+  children: React.PropTypes.node.isRequired,
+};
+
+Block.defaultProps = {
+  className: null,
 };
 
 export default Block;

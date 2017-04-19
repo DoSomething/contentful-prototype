@@ -19,11 +19,12 @@ const renderImpactContent = (data) => {
   return null;
 };
 
-const renderBackgroundImageStyle = (imageUrl) => (
+const renderBackgroundImageStyle = imageUrl => (
   { backgroundImage: `url(${contentfulImageUrl(imageUrl, '400', '400', 'fill')})` }
 );
 
-const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, clickedSignUp, modifierClasses = [] }) => {
+const CallToActionBlock = (props) => {
+  const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses } = props;
   const { title, content, additionalContent } = fields;
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
@@ -31,34 +32,48 @@ const CallToActionBlock = ({ isAffiliated, fields, imageUrl, legacyCampaignId, c
   const buttonText = isAffiliated ? 'Make Cards' : 'Join Us';
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
-    hasPhoto: hasPhoto,
+    hasPhoto,
     hasImpact: additionalContent !== 'undefined',
     hasContent: typeof content !== 'undefined',
   });
 
-  const handleOnClickButton = () => clickedSignUp(legacyCampaignId, metadata);
+  const handleOnClickButton = () => clickedSignUp(campaignId, metadata);
 
   return (
-    <div className={classnames('cta', modifiers(modifierClasses), {'has-photo': hasPhoto})}>
+    <div className={classnames('cta', modifiers(modifierClasses), { 'has-photo': hasPhoto })}>
       <div className="cta__content">
-        { !content ? <div className="cta__block"><p className="cta__title">{title}</p></div> : null }
+        { ! content ? <div className="cta__block"><p className="cta__title">{title}</p></div> : null }
 
         { additionalContent ? renderImpactContent(additionalContent) : null}
 
         { content ? <div className="cta__block"><Markdown className="cta__message">{content}</Markdown></div> : null }
 
         <div className="cta__block">
-          <a className="button" onClick={handleOnClickButton}>{buttonText}</a>
+          <button className="button" onClick={handleOnClickButton}>{buttonText}</button>
         </div>
       </div>
 
-      { hasPhoto ? <div className="cta__photo" style={renderBackgroundImageStyle(imageUrl)}></div> : null }
+      { hasPhoto ? <div className="cta__photo" style={renderBackgroundImageStyle(imageUrl)} /> : null }
     </div>
   );
 };
 
+CallToActionBlock.propTypes = {
+  isAffiliated: React.PropTypes.bool,
+  fields: React.PropTypes.shape({
+    title: React.PropTypes.string,
+    content: React.PropTypes.string,
+    additionalContent: React.PropTypes.instanceOf(Object),
+  }),
+  imageUrl: React.PropTypes.string.isRequired,
+  campaignId: React.PropTypes.string.isRequired,
+  clickedSignUp: React.PropTypes.func.isRequired,
+  modifierClasses: React.PropTypes.arrayOf(React.PropTypes.string),
+};
+
 CallToActionBlock.defaultMetadata = {
   source: 'call to action block',
-}
+  modifierClasses: [],
+};
 
 export default CallToActionBlock;

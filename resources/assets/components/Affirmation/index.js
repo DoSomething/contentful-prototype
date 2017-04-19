@@ -4,7 +4,6 @@ import Highlight from '../Highlight';
 import { Figure } from '../Figure';
 import { Wrapper } from '../Wrapper';
 import ShareContainer from '../../containers/ShareContainer';
-import { EMPTY_IMAGE } from '../../helpers';
 import './affirmation.scss';
 
 const Affirmation = (props) => {
@@ -33,16 +32,27 @@ const Affirmation = (props) => {
             </div>
           </div>
         </Wrapper>
-        <a className="affirmation__exit" href="#" onClick={props.hideAffirmation}>&times;</a>
+        <button className="affirmation__exit" onClick={props.hideAffirmation}>&times;</button>
       </div>
     </FlexCell>
   );
-}
+};
 
-//TODO: Replace these default strings with content from Contentful
+Affirmation.propTypes = {
+  header: React.PropTypes.string.isRequired,
+  photo: React.PropTypes.string,
+  author: React.PropTypes.string,
+  quote: React.PropTypes.string,
+  ctaHeader: React.PropTypes.string,
+  ctaDescription: React.PropTypes.string,
+  showAffirmation: React.PropTypes.func.isRequired,
+  hideAffirmation: React.PropTypes.func.isRequired,
+};
+
+// @TODO: Replace these default strings with content from Contentful
 Affirmation.defaultProps = {
   header: 'THANKS FOR JOINING!',
-  quote: `You doing this means so much to my community. Thank you so much for doing this simple action. Ramadan is a special time for us and this just makes it even more special.`,
+  quote: 'You doing this means so much to my community. Thank you so much for doing this simple action. Ramadan is a special time for us and this just makes it even more special.',
   author: 'Usra, Maryland',
   photo: 'https://static.dosomething.org/img/sincerely-us-member-quote.jpg',
   ctaHeader: 'Rally your friends!',

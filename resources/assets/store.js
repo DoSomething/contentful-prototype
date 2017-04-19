@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
@@ -38,7 +38,7 @@ const initialState = {
     thisCampaign: false,
     thisSession: false,
     showAffirmation: false,
-    pending: false,
+    isPending: false,
     total: 0,
   },
   user: {
@@ -53,7 +53,7 @@ const initialState = {
   },
   notifications: {
     items: [],
-  }
+  },
 };
 
 /**
@@ -69,20 +69,20 @@ export function configureStore(reducers, preloadedState = {}) {
 
   // Log actions to the console in development & track state changes.
   if (process.env.NODE_ENV !== 'production') {
-    const createLogger = require(`redux-logger`);
-    middleware.push(createLogger({collapsed: true}));
+    const createLogger = require('redux-logger'); // eslint-disable-line global-require
+    middleware.push(createLogger({ collapsed: true }));
   }
 
   // If React DevTools are available, use instrumented compose function.
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
-  //TODO: Let's just merge all 3 states at once
+  // @TODO: Let's just merge all 3 states at once
   const transformedState = loadStorage(initialState, preloadedState);
 
   return createStore(
     combineReducers(reducers),
     merge(transformedState, preloadedState),
-    composeEnhancers(applyMiddleware(...middleware))
+    composeEnhancers(applyMiddleware(...middleware)),
   );
 }
 
@@ -114,5 +114,5 @@ export function initializeStore(store) {
     start(store);
 
     callback();
-  }
+  };
 }

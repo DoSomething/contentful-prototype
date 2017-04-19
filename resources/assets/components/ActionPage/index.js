@@ -1,15 +1,16 @@
 import React from 'react';
 import classnames from 'classnames';
+import { cloneDeep } from 'lodash';
+
+import LazyImage from '../LazyImage';
 import Markdown from '../Markdown';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
-import LazyImage from '../LazyImage';
 import { Flex, FlexCell } from '../Flex';
 import { convertNumberToWord } from '../../helpers';
-import cloneDeep from 'lodash/cloneDeep';
 import './actionPage.scss';
 
-const Stepheader = ({ title, step, background }) => (
+const StepHeader = ({ title, step, background }) => (
   <FlexCell width="full">
     <div className="action-step__header">
       <LazyImage src={background} />
@@ -19,12 +20,32 @@ const Stepheader = ({ title, step, background }) => (
   </FlexCell>
 );
 
+StepHeader.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  step: React.PropTypes.number.isRequired,
+  background: React.PropTypes.string.isRequired,
+};
+
+/**
+ * Render a photo on the action page.
+ *
+ * @param step
+ * @param index
+ * @returns {XML}
+ */
 const renderPhoto = (photo, index) => (
   <div className="action-step__photo" key={index}>
     <img src={photo} />
   </div>
 );
 
+/**
+ * Render a single step on the action page.
+ *
+ * @param step
+ * @param index
+ * @returns {XML}
+ */
 const renderStep = (step, index) => {
   const title = step.title;
   const background = step.background;
@@ -34,9 +55,9 @@ const renderStep = (step, index) => {
 
   return (
     <FlexCell width="full" key={index}>
-      <div className={classnames('action-step', {'-truncate': shouldTruncate})}>
+      <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
         <Flex>
-          <Stepheader title={title} step={index + 1} background={background} />
+          <StepHeader title={title} step={index + 1} background={background} />
           <FlexCell width="two-thirds">
             <Markdown>{ step.content }</Markdown>
           </FlexCell>
@@ -48,17 +69,22 @@ const renderStep = (step, index) => {
         </Flex>
       </div>
     </FlexCell>
-  )
-}
+  );
+};
 
 /**
  * Render the feed.
  *
  * @returns {XML}
  */
-const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated, clickedSignUp }) => {
-  let actionSteps = cloneDeep(steps);
+const ActionPage = (props) => {
+  const {
+    steps, callToAction, campaignId, isAuthenticated,
+    signedUp, hasPendingSignup, clickedSignUp,
+  } = props;
 
+  // Truncate steps if user isn't signed up.
+  let actionSteps = cloneDeep(steps);
   if (! signedUp) {
     actionSteps = actionSteps.slice(0, 2);
 
@@ -67,13 +93,18 @@ const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignu
     }
   }
 
-  const revealer = <Revealer title='join us' callToAction={callToAction}
-                             isLoading={hasPendingSignup}
-                             onReveal={() => clickedSignUp(campaignId, ActionPage.defaultMetadata)} />;
+  const revealer = (
+    <Revealer
+      title="Join Us"
+      callToAction={callToAction}
+      isLoading={hasPendingSignup}
+      onReveal={() => clickedSignUp(campaignId, ActionPage.defaultMetadata)}
+    />
+  );
 
   const uploader = (
     <FlexCell key="reportback_uploader" width="full">
-      <ReportbackUploaderContainer/>
+      <ReportbackUploaderContainer />
     </FlexCell>
   );
 
@@ -86,7 +117,23 @@ const ActionPage = ({ steps, callToAction, campaignId, signedUp, hasPendingSignu
   );
 };
 
+ActionPage.propTypes = {
+  steps: React.PropTypes.arrayOf(React.PropTypes.shape({
+    title: React.PropTypes.string.isRequired,
+    content: React.PropTypes.string.isRequired,
+    background: React.PropTypes.string.isRequired,
+    photos: React.PropTypes.array,
+  })),
+  callToAction: React.PropTypes.string.isRequired,
+  campaignId: React.PropTypes.string.isRequired,
+  hasPendingSignup: React.PropTypes.bool.isRequired,
+  isAuthenticated: React.PropTypes.bool.isRequired,
+  signedUp: React.PropTypes.bool.isRequired,
+  clickedSignUp: React.PropTypes.func.isRequired,
+};
+
 ActionPage.defaultMetadata = {
+  steps: [],
   source: 'action page',
 };
 
