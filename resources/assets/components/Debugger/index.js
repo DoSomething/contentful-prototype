@@ -40,13 +40,17 @@ const Debugger = (props) => {
 Debugger.propTypes = {
   signups: React.PropTypes.arrayOf(React.PropTypes.string),
   user: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    role: React.PropTypes.string.isRequired,
+    id: React.PropTypes.string,
+    role: React.PropTypes.string,
   }).isRequired,
 };
 
 Debugger.defaultProps = {
   signups: [],
+  user: {
+    id: null,
+    role: 'anonymous',
+  },
 };
 
 export default Debugger;
