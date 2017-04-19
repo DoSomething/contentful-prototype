@@ -17,6 +17,9 @@ build:
             npm config set cache $WERCKER_CACHE_DIR/wercker/npm
             npm install
       - script:
+          name: check code style
+          code: npm run lint
+      - script:
           name: build front-end assets
           code: npm run build
 
