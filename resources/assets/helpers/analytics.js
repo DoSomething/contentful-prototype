@@ -11,7 +11,7 @@ export function getSession() {
   return {
     id: localStorage.getItem(SESSION_ID),
     // Local storage converts everything to Strings, but this needs to be a number for the Date api.
-    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT) * 1,
+    lastUpdatedAt: Number(localStorage.getItem(SESSION_LAST_UPDATED_AT)),
     deviceId: localStorage.getItem(DEVICE_ID),
   };
 }
