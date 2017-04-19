@@ -10,7 +10,8 @@ const SESSION_LAST_UPDATED_AT = 'SESSION_LAST_UPDATED_AT';
 export function getSession() {
   return {
     id: localStorage.getItem(SESSION_ID),
-    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT) * 1, // Local storage converts everything to Strings, but this needs to be a number for the Date api.
+    // Local storage converts everything to Strings, but this needs to be a number for the Date api.
+    lastUpdatedAt: localStorage.getItem(SESSION_LAST_UPDATED_AT) * 1,
     deviceId: localStorage.getItem(DEVICE_ID),
   };
 }
