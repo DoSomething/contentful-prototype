@@ -15,4 +15,12 @@ const StaticBlock = (props) => {
   );
 };
 
+StaticBlock.propTypes = {
+  fields: React.PropTypes.shape({
+    title: React.PropTypes.string,
+    content: React.PropTypes.string,
+    additionalContent: React.PropTypes.object,
+  }).isRequired,
+};
+
 export default StaticBlock;
