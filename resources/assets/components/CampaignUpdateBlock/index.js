@@ -50,8 +50,8 @@ CampaignUpdateBlock.propTypes = {
     content: React.PropTypes.string,
     additionalContent: React.PropTypes.shape({
       author: React.PropTypes.string.isRequired,
-      jobTitle: React.PropTypes.string.isRequired,
-      avatar: React.PropTypes.string.isRequired,
+      jobTitle: React.PropTypes.string,
+      avatar: React.PropTypes.string,
     }),
   }).isRequired,
 };
