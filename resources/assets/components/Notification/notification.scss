@@ -25,11 +25,17 @@
     }
 
     .notification__close {
-      position: absolute;
-      top: $half-spacing;
-      right: $half-spacing;
-      font-size: 32px;
+      background-color: transparent;
+      border: 0 none;
       color: inherit;
+      font-size: 32px;
+      position: absolute;
+      right: $half-spacing;
+      top: $half-spacing;
+
+      &:focus {
+        outline: transparent 0 none;
+      }
 
       &:hover {
         cursor: pointer;
