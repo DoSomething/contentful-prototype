@@ -2,7 +2,7 @@ import React from 'react';
 import { FlexCell } from '../Flex';
 import Highlight from '../Highlight';
 import { Figure } from '../Figure';
-import { Wrapper } from '../Wrapper';
+import Wrapper from '../Wrapper';
 import ShareContainer from '../../containers/ShareContainer';
 import './affirmation.scss';
 

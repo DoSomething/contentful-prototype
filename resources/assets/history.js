@@ -1,3 +1,5 @@
+/* global window */
+
 import { useRouterHistory } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { syncHistoryWithStore } from 'react-router-redux';
@@ -23,7 +25,7 @@ export function init(store) {
   const basename = window.location.pathname.split('/').slice(0, 4).join('/');
 
   const routerHistory = useRouterHistory(createBrowserHistory);
-  history = syncHistoryWithStore(routerHistory({basename}), store);
+  history = syncHistoryWithStore(routerHistory({ basename }), store);
 
   return history;
 }

@@ -1,3 +1,5 @@
+/* global window, document */
+
 /*
  |--------------------------------------------------------------------------
  | Phoenix Next
@@ -9,15 +11,15 @@
  |
  */
 
-import React from 'react';
-import ReactDom from 'react-dom';
-import { ready } from './helpers';
-import { configureStore } from './store';
-import * as reducers from './reducers'
-import { routerReducer } from 'react-router-redux';
-
 // WHATWG Fetch Polyfill
 import 'whatwg-fetch';
+
+import React from 'react';
+import ReactDom from 'react-dom';
+import { routerReducer } from 'react-router-redux';
+import { ready } from './helpers';
+import { configureStore } from './store';
+import * as reducers from './reducers';
 
 // Style Components
 import './scss/base.scss';
@@ -35,7 +37,7 @@ import { init as navigationInit } from './helpers/navigation';
 import { init as historyInit } from './history';
 
 // Configure store & history.
-const store = configureStore({...reducers, routing: routerReducer}, window.STATE);
+const store = configureStore({ ...reducers, routing: routerReducer }, window.STATE);
 const history = historyInit(store);
 
 ready(() => {
