@@ -73,8 +73,8 @@ ReportbackItem.propTypes = {
     termId: React.PropTypes.string,
     total: React.PropTypes.number,
   }),
-  toggleReactionOff: React.PropTypes.func.isRequired,
-  toggleReactionOn: React.PropTypes.func.isRequired,
+  toggleReactionOff: React.PropTypes.func,
+  toggleReactionOn: React.PropTypes.func,
   url: React.PropTypes.string,
 };
 
@@ -86,6 +86,8 @@ ReportbackItem.defaultProps = {
   quantity: undefined,
   reaction: null,
   url: undefined,
+  toggleReactionOff: () => {},
+  toggleReactionOn: () => {},
 };
 
 ReportbackItem.defaultMetadata = {
