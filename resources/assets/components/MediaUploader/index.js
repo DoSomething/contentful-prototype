@@ -62,7 +62,7 @@ class MediaUploader extends React.Component {
 
 MediaUploader.propTypes = {
   label: React.PropTypes.string,
-  media: React.PropTypes.scope({
+  media: React.PropTypes.shape({
     file: React.PropTypes.instanceOf(Blob),
     filePreviewUrl: React.PropTypes.string,
   }),

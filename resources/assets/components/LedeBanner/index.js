@@ -4,16 +4,24 @@ import { contentfulImageUrl } from '../../helpers';
 
 import './lede-banner.scss';
 
-const LedeBanner = ({title, subtitle, blurb, coverImage, isAffiliated, legacyCampaignId, clickedSignUp}) => {
+const LedeBanner = ({
+    title,
+    subtitle,
+    blurb,
+    coverImage,
+    isAffiliated,
+    legacyCampaignId,
+    clickedSignUp,
+  }) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
-  const onClick = () => clickedSignUp(legacyCampaignId, {source: 'lede banner'});
+  const onClick = () => clickedSignUp(legacyCampaignId, { source: 'lede banner' });
 
   return (
     <header role="banner" className="lede-banner">
-      <div className="lede-banner__image" style={backgroundImageStyle}></div>
+      <div className="lede-banner__image" style={backgroundImageStyle} />
       <div className="lede-banner__content">
         <div className="wrapper">
           <div className="lede-banner__headline">
@@ -27,7 +35,20 @@ const LedeBanner = ({title, subtitle, blurb, coverImage, isAffiliated, legacyCam
         </div>
       </div>
     </header>
-  )
+  );
+};
+
+LedeBanner.propTypes = {
+  blurb: React.PropTypes.string.isRequired,
+  clickedSignUp: React.PropTypes.func.isRequired,
+  coverImage: React.PropTypes.shape({
+    description: React.PropTypes.string,
+    url: React.PropTypes.string,
+  }).isRequired,
+  isAffiliated: React.PropTypes.bool.isRequired,
+  legacyCampaignId: React.PropTypes.string.isRequired,
+  subtitle: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired,
 };
 
 export default LedeBanner;
