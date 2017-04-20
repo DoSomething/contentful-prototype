@@ -45,7 +45,7 @@ Affirmation.propTypes = {
   quote: React.PropTypes.string,
   ctaHeader: React.PropTypes.string,
   ctaDescription: React.PropTypes.string,
-  showAffirmation: React.PropTypes.func.isRequired,
+  showAffirmation: React.PropTypes.bool.isRequired, // @TODO: This is confusingly named!
   hideAffirmation: React.PropTypes.func.isRequired,
 };
 

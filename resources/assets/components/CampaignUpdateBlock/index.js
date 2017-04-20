@@ -35,7 +35,7 @@ const CampaignUpdateBlock = (props) => {
     <Block>
       <BlockTitle>Campaign Update</BlockTitle>
       { isTweet ? null : <h2>{title}</h2> }
-      <Markdown className={classnames('campaign-update__content', {'-tweet': isTweet})}>
+      <Markdown className={classnames('campaign-update__content', { '-tweet': isTweet })}>
         {content}
       </Markdown>
       { link ? <Embed url={link} /> : null }
