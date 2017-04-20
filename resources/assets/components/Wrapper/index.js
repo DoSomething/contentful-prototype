@@ -10,7 +10,7 @@ const Wrapper = ({ width = '', children }) => (
 );
 
 Wrapper.propTypes = {
-  children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired,
+  children: React.PropTypes.element.isRequired,
   width: React.PropTypes.oneOf(['default', 'feed']),
 };
 
