@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import { modifiers } from '../../helpers';
@@ -10,8 +11,8 @@ const Wrapper = ({ width = '', children }) => (
 );
 
 Wrapper.propTypes = {
-  children: React.PropTypes.element.isRequired,
-  width: React.PropTypes.oneOf(['default', 'feed']),
+  children: PropTypes.element.isRequired,
+  width: PropTypes.oneOf(['default', 'feed']),
 };
 
 Wrapper.defaultProps = {

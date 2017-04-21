@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { FlexCell } from '../Flex';
 import Highlight from '../Highlight';
@@ -39,14 +40,14 @@ const Affirmation = (props) => {
 };
 
 Affirmation.propTypes = {
-  header: React.PropTypes.string.isRequired,
-  photo: React.PropTypes.string,
-  author: React.PropTypes.string,
-  quote: React.PropTypes.string,
-  ctaHeader: React.PropTypes.string,
-  ctaDescription: React.PropTypes.string,
-  showAffirmation: React.PropTypes.bool.isRequired, // @TODO: This is confusingly named!
-  hideAffirmation: React.PropTypes.func.isRequired,
+  header: PropTypes.string.isRequired,
+  photo: PropTypes.string,
+  author: PropTypes.string,
+  quote: PropTypes.string,
+  ctaHeader: PropTypes.string,
+  ctaDescription: PropTypes.string,
+  showAffirmation: PropTypes.bool.isRequired, // @TODO: This is confusingly named!
+  hideAffirmation: PropTypes.func.isRequired,
 };
 
 // @TODO: Replace these default strings with content from Contentful

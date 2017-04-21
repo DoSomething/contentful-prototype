@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Wrapper from '../Wrapper';
 import './feed-enclosure.scss';
@@ -11,7 +12,7 @@ const FeedEnclosure = ({ children }) => (
 );
 
 FeedEnclosure.propTypes = {
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 };
 
 FeedEnclosure.defaultProps = {

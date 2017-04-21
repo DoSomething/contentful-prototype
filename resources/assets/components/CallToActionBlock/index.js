@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
@@ -59,16 +60,16 @@ const CallToActionBlock = (props) => {
 };
 
 CallToActionBlock.propTypes = {
-  isAffiliated: React.PropTypes.bool,
-  fields: React.PropTypes.shape({
-    title: React.PropTypes.string,
-    content: React.PropTypes.string,
-    additionalContent: React.PropTypes.instanceOf(Object),
+  isAffiliated: PropTypes.bool,
+  fields: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string,
+    additionalContent: PropTypes.instanceOf(Object),
   }),
-  imageUrl: React.PropTypes.string.isRequired,
-  campaignId: React.PropTypes.string.isRequired,
-  clickedSignUp: React.PropTypes.func.isRequired,
-  modifierClasses: React.PropTypes.string, // @TODO: Should this be an array?
+  imageUrl: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  modifierClasses: PropTypes.string, // @TODO: Should this be an array?
 };
 
 CallToActionBlock.defaultMetadata = {

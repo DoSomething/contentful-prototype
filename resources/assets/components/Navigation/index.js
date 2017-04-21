@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router';
 import FeedEnclosure from '../FeedEnclosure';
@@ -13,7 +14,7 @@ export const Navigation = ({ children }) => (
 );
 
 Navigation.propTypes = {
-  children: React.PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export const NavigationLink = props => (

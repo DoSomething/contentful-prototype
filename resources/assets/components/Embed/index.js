@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { Phoenix } from '@dosomething/gateway';
@@ -27,7 +28,7 @@ class Embed extends React.Component {
     } else if (this.state.title && this.state.url) {
       embed = (
         <a href={this.state.url} target="_blank" rel="noopener noreferrer">
-          <Figure className="embed__preview" image={this.state.image || this.state.provider.icon} alignment="left-collapse" size="large">
+          <Figure className="embed__preview" image={this.state.image || this.state.provider.icon} alt={this.state.provider.name} alignment="left-collapse" size="large">
             <h3>{ this.state.title }</h3>
             { this.state.description ? <p>{ this.state.description }</p> : null }
             <p className="footnote">{ this.state.provider.name }</p>
@@ -45,7 +46,7 @@ class Embed extends React.Component {
 }
 
 Embed.propTypes = {
-  url: React.PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default Embed;

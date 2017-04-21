@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /* global Image */
 
 import React from 'react';
@@ -38,7 +39,7 @@ class LazyImage extends React.Component {
 }
 
 LazyImage.propTypes = {
-  src: React.PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
 };
 
 export default LazyImage;

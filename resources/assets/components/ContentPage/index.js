@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Markdown from '../Markdown';
 import CallToActionContainer from '../../containers/CallToActionContainer';
@@ -29,14 +30,14 @@ const ContentPage = ({ pages, route }) => {
 };
 
 ContentPage.propTypes = {
-  pages: React.PropTypes.arrayOf(React.PropTypes.shape({
-    fields: React.PropTypes.shape({
-      title: React.PropTypes.string.isRequired,
-      slug: React.PropTypes.string.isRequired,
-      content: React.PropTypes.string.isRequired,
+  pages: PropTypes.arrayOf(PropTypes.shape({
+    fields: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
     }),
   })),
-  route: React.PropTypes.instanceOf(Object).isRequired,
+  route: PropTypes.instanceOf(Object).isRequired,
 };
 
 ContentPage.defaultProps = {

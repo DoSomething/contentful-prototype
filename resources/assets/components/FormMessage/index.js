@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { has } from 'lodash';
@@ -54,7 +55,7 @@ const FormMessage = ({ messaging }) => {
 };
 
 FormMessage.propTypes = {
-  messaging: React.PropTypes.objectOf(React.PropTypes.object),
+  messaging: PropTypes.objectOf(PropTypes.object),
 };
 
 export default FormMessage;

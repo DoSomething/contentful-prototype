@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { markdown } from '../../helpers';
@@ -9,8 +10,8 @@ const Markdown = ({ className = null, children }) => (
 );
 
 Markdown.propTypes = {
-  children: React.PropTypes.string.isRequired,
-  className: React.PropTypes.string,
+  children: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 Markdown.defaultProps = {

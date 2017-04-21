@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import LazyImage from '../LazyImage';
@@ -12,12 +13,12 @@ export const BaseFigure = ({ alignment, verticalAlignment, media, size, classNam
 );
 
 BaseFigure.propTypes = {
-  className: React.PropTypes.string,
-  children: React.PropTypes.node,
-  alignment: React.PropTypes.oneOf(['left', 'right', 'left-collapse']),
-  verticalAlignment: React.PropTypes.oneOf(['center']),
-  size: React.PropTypes.oneOf(['small', 'medium', 'large']),
-  media: React.PropTypes.node.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  alignment: PropTypes.oneOf(['left', 'right', 'left-collapse']),
+  verticalAlignment: PropTypes.oneOf(['center']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  media: PropTypes.node,
 };
 
 BaseFigure.defaultProps = {
@@ -26,6 +27,7 @@ BaseFigure.defaultProps = {
   children: null,
   verticalAlignment: null,
   size: null,
+  media: null,
 };
 
 export const Figure = (props) => {
@@ -35,9 +37,9 @@ export const Figure = (props) => {
 };
 
 Figure.propTypes = {
-  imageClassName: React.PropTypes.string,
-  image: React.PropTypes.string,
-  alt: React.PropTypes.string.isRequired,
+  imageClassName: PropTypes.string,
+  image: PropTypes.string,
+  alt: PropTypes.string.isRequired,
 };
 
 Figure.defaultProps = {

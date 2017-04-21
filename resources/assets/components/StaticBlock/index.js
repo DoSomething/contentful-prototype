@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Block, { BlockTitle } from '../Block';
 import Markdown from '../Markdown';
@@ -16,10 +17,10 @@ const StaticBlock = (props) => {
 };
 
 StaticBlock.propTypes = {
-  fields: React.PropTypes.shape({
-    title: React.PropTypes.string,
-    content: React.PropTypes.string,
-    additionalContent: React.PropTypes.object,
+  fields: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string,
+    additionalContent: PropTypes.object,
   }).isRequired,
 };
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
@@ -40,7 +41,7 @@ const ReportbackItem = (props) => {
 
   if (isFetching) {
     return (
-      <Figure className="reportback-item" image="">
+      <Figure className="reportback-item" image="" alt="Loading...">
         <BaseFigure media={reactionElement} alignment="right" className="padded">
           <h4>Loading…</h4>
           <p className="footnote">…</p>
@@ -51,7 +52,7 @@ const ReportbackItem = (props) => {
 
   // TODO: Don't hardcode cards
   return (
-    <Figure className="reportback-item" image={url}>
+    <Figure className="reportback-item" image={url} alt={`${firstName}'s photo`}>
       <BaseFigure media={reactionElement} alignment="right" className="padded">
         {firstName ? <h4>{firstName}</h4> : null }
         {quantity ? <p className="footnote">{quantity} cards</p> : null }
@@ -62,20 +63,20 @@ const ReportbackItem = (props) => {
 };
 
 ReportbackItem.propTypes = {
-  id: React.PropTypes.string,
-  caption: React.PropTypes.string,
-  firstName: React.PropTypes.string,
-  isFetching: React.PropTypes.bool,
-  quantity: React.PropTypes.number,
-  reaction: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    reacted: React.PropTypes.bool,
-    termId: React.PropTypes.string,
-    total: React.PropTypes.number,
+  id: PropTypes.string,
+  caption: PropTypes.string,
+  firstName: PropTypes.string,
+  isFetching: PropTypes.bool,
+  quantity: PropTypes.number,
+  reaction: PropTypes.shape({
+    id: PropTypes.string,
+    reacted: PropTypes.bool,
+    termId: PropTypes.string,
+    total: PropTypes.number,
   }),
-  toggleReactionOff: React.PropTypes.func,
-  toggleReactionOn: React.PropTypes.func,
-  url: React.PropTypes.string,
+  toggleReactionOff: PropTypes.func,
+  toggleReactionOn: PropTypes.func,
+  url: PropTypes.string,
 };
 
 ReportbackItem.defaultProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Flex, FlexCell } from '../Flex';
 import {
@@ -38,10 +39,10 @@ const Debugger = (props) => {
 };
 
 Debugger.propTypes = {
-  signups: React.PropTypes.arrayOf(React.PropTypes.string),
-  user: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    role: React.PropTypes.string,
+  signups: PropTypes.arrayOf(PropTypes.string),
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    role: PropTypes.string,
   }).isRequired,
 };
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../Block';
 import { FlexCell } from '../Flex';
@@ -24,10 +25,10 @@ const ReportbackBlock = (props) => {
 };
 
 ReportbackBlock.propTypes = {
-  fields: React.PropTypes.shape({
-    displayOptions: React.PropTypes.array,
+  fields: PropTypes.shape({
+    displayOptions: PropTypes.array,
   }).isRequired,
-  reportbacks: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  reportbacks: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default ReportbackBlock;

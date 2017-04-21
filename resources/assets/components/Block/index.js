@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
 import './block.scss';
@@ -7,7 +8,7 @@ export const BlockTitle = ({ children }) => (
 );
 
 BlockTitle.propTypes = {
-  children: React.PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
 };
 
 const Block = props => (
@@ -17,8 +18,8 @@ const Block = props => (
 );
 
 Block.propTypes = {
-  className: React.PropTypes.string,
-  children: React.PropTypes.node.isRequired,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 Block.defaultProps = {

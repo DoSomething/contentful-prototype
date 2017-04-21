@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { cloneDeep } from 'lodash';
@@ -21,9 +22,9 @@ const StepHeader = ({ title, step, background }) => (
 );
 
 StepHeader.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  step: React.PropTypes.number.isRequired,
-  background: React.PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  step: PropTypes.number.isRequired,
+  background: PropTypes.string.isRequired,
 };
 
 /**
@@ -118,18 +119,18 @@ const ActionPage = (props) => {
 };
 
 ActionPage.propTypes = {
-  steps: React.PropTypes.arrayOf(React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired,
-    background: React.PropTypes.string.isRequired,
-    photos: React.PropTypes.array,
+  steps: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+    background: PropTypes.string.isRequired,
+    photos: PropTypes.array,
   })),
-  callToAction: React.PropTypes.string.isRequired,
-  campaignId: React.PropTypes.string.isRequired,
-  hasPendingSignup: React.PropTypes.bool.isRequired,
-  isAuthenticated: React.PropTypes.bool.isRequired,
-  signedUp: React.PropTypes.bool.isRequired,
-  clickedSignUp: React.PropTypes.func.isRequired,
+  callToAction: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  hasPendingSignup: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  signedUp: PropTypes.bool.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
 };
 
 ActionPage.defaultMetadata = {

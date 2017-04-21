@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { modifiers } from '../../helpers';
@@ -10,10 +11,10 @@ export const Flex = ({ className = null, children }) => (
 );
 
 Flex.propTypes = {
-  className: React.PropTypes.string,
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.array,
+  className: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array,
   ]).isRequired,
 };
 
@@ -28,10 +29,10 @@ export const FlexCell = ({ width = [], children }) => (
 );
 
 FlexCell.propTypes = {
-  width: React.PropTypes.oneOf(['full', 'one-third', 'two-thirds']),
-  children: React.PropTypes.node.isRequired,
+  width: PropTypes.oneOf(['full', 'one-third', 'two-thirds']),
+  children: PropTypes.node.isRequired,
 };
 
 FlexCell.defaultProps = {
-  width: [],
+  width: null,
 };

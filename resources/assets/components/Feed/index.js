@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { get } from 'lodash';
 import { mergeMetadata } from '../../helpers/analytics';
@@ -64,20 +65,20 @@ const Feed = (props) => {
 };
 
 Feed.propTypes = {
-  blocks: React.PropTypes.arrayOf(React.PropType.shape({
-    id: React.PropTypes.string.isRequired,
-    type: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string,
-    additionalContent: React.PropTypes.instanceOf(Object).isRequired,
+  blocks: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    additionalContent: PropTypes.instanceOf(Object),
   })),
-  callToAction: React.PropTypes.string.isRequired,
-  campaignId: React.PropTypes.string.isRequired,
-  signedUp: React.PropTypes.bool.isRequired,
-  hasPendingSignup: React.PropTypes.bool.isRequired,
-  isAuthenticated: React.PropTypes.bool.isRequired,
-  canLoadMorePages: React.PropTypes.bool.isRequired,
-  clickedViewMore: React.PropTypes.func.isRequired,
-  clickedSignUp: React.PropTypes.func.isRequired,
+  callToAction: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  signedUp: PropTypes.bool.isRequired,
+  hasPendingSignup: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  canLoadMorePages: PropTypes.bool.isRequired,
+  clickedViewMore: PropTypes.func.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
 };
 
 Feed.defaultProps = {

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
@@ -37,29 +38,29 @@ const Chrome = props => (
 );
 
 Chrome.propTypes = {
-  isAffiliated: React.PropTypes.bool,
-  title: React.PropTypes.string.isRequired,
-  subtitle: React.PropTypes.string.isRequired,
-  blurb: React.PropTypes.string.isRequired,
-  coverImage: React.PropTypes.shape({
-    description: React.PropTypes.string,
-    url: React.PropTypes.string,
+  isAffiliated: PropTypes.bool,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  blurb: PropTypes.string.isRequired,
+  coverImage: PropTypes.shape({
+    description: PropTypes.string,
+    url: PropTypes.string,
   }).isRequired,
-  legacyCampaignId: React.PropTypes.string.isRequired,
-  clickedSignUp: React.PropTypes.func.isRequired,
-  totalCampaignSignups: React.PropTypes.number.isRequired,
-  dashboard: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  endDate: React.PropTypes.shape({
-    date: React.PropTypes.string,
-    timezone: React.PropTypes.string,
-    timezone_type: React.PropTypes.number,
+  legacyCampaignId: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  totalCampaignSignups: PropTypes.number.isRequired,
+  dashboard: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  endDate: PropTypes.shape({
+    date: PropTypes.string,
+    timezone: PropTypes.string,
+    timezone_type: PropTypes.number,
   }).isRequired,
-  children: React.PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  user: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    role: React.PropTypes.string,
+  children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  user: PropTypes.shape({
+    id: PropTypes.string,
+    role: PropTypes.string,
   }).isRequired,
-  signups: React.PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  signups: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 Chrome.defaultProps = {

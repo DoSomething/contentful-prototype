@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { BaseFigure } from '../Figure';
@@ -23,10 +24,10 @@ const Reaction = (props) => {
 };
 
 Reaction.propTypes = {
-  active: React.PropTypes.bool,
-  onToggleOff: React.PropTypes.func.isRequired,
-  onToggleOn: React.PropTypes.func.isRequired,
-  total: React.PropTypes.number,
+  active: PropTypes.bool,
+  onToggleOff: PropTypes.func.isRequired,
+  onToggleOn: PropTypes.func.isRequired,
+  total: PropTypes.number,
 };
 
 Reaction.defaultProps = {

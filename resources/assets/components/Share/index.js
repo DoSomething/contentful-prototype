@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { mergeMetadata } from '../../helpers/analytics';
@@ -20,9 +21,9 @@ const Share = ({ variant, clickedShare, parentSource }) => {
 };
 
 Share.propTypes = {
-  clickedShare: React.PropTypes.func,
-  parentSource: React.PropTypes.string,
-  variant: React.PropTypes.string,
+  clickedShare: PropTypes.func,
+  parentSource: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 Share.defaultProps = {

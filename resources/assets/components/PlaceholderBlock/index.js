@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Block from '../Block/index';
 import './placeholder.scss';
@@ -9,8 +10,8 @@ const PlaceholderBlock = props => (
 );
 
 PlaceholderBlock.propTypes = {
-  fields: React.PropTypes.shape({
-    title: React.PropTypes.string.isRequired,
+  fields: PropTypes.shape({
+    title: PropTypes.string.isRequired,
   }).isRequired,
 };
 

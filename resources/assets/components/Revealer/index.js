@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { FlexCell } from '../Flex';
@@ -20,11 +21,11 @@ const Revealer = (props) => {
 };
 
 Revealer.propTypes = {
-  callToAction: React.PropTypes.string,
-  isLoading: React.PropTypes.bool,
-  isVisible: React.PropTypes.bool,
-  onReveal: React.PropTypes.func,
-  title: React.PropTypes.string,
+  callToAction: PropTypes.string,
+  isLoading: PropTypes.bool,
+  isVisible: PropTypes.bool,
+  onReveal: PropTypes.func,
+  title: PropTypes.string,
 };
 
 Revealer.defaultProps = {

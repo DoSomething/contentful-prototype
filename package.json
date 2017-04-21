@@ -24,6 +24,7 @@
     "history": "^3.0.0",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
+    "prop-types": "^15.5.8",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.2",
@@ -36,9 +37,9 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
+    "@dosomething/babel-config": "^1.0",
     "@dosomething/eslint-config": "^2.0.0",
     "@dosomething/webpack-config": "^2.0.0",
-    "@dosomething/babel-config": "^1.0",
     "babel-eslint": "^7.2.2",
     "dotenv": "^4.0.0",
     "modernizr": "^3.3.1",

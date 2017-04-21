@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 /* global FormData */
 
 import React from 'react';
@@ -134,17 +135,17 @@ class ReportbackUploader extends React.Component {
 }
 
 ReportbackUploader.propTypes = {
-  fetchUserReportbacks: React.PropTypes.func.isRequired,
-  legacyCampaignId: React.PropTypes.string.isRequired,
-  submissions: React.PropTypes.shape({
-    isFetching: React.PropTypes.bool,
-    isStoring: React.PropTypes.bool,
-    items: React.PropTypes.array,
-    messaging: React.PropTypes.object,
-    reportback: React.PropTypes.object,
+  fetchUserReportbacks: PropTypes.func.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
+  submissions: PropTypes.shape({
+    isFetching: PropTypes.bool,
+    isStoring: PropTypes.bool,
+    items: PropTypes.array,
+    messaging: PropTypes.object,
+    reportback: PropTypes.object,
   }).isRequired,
-  submitReportback: React.PropTypes.func.isRequired,
-  userId: React.PropTypes.string.isRequired,
+  submitReportback: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default ReportbackUploader;

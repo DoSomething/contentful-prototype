@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import { modifiers } from '../../helpers';
@@ -13,9 +14,9 @@ const Gallery = ({ isFetching, type = null, children }) => {
 };
 
 Gallery.propTypes = {
-  children: React.PropTypes.arrayOf(React.PropTypes.element),
-  isFetching: React.PropTypes.bool,
-  type: React.PropTypes.oneOf(['triad', 'quartet']),
+  children: PropTypes.arrayOf(PropTypes.element),
+  isFetching: PropTypes.bool,
+  type: PropTypes.oneOf(['triad', 'quartet']),
 };
 
 Gallery.defaultProps = {

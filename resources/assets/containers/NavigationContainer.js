@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigation, NavigationLink } from '../components/Navigation';
@@ -24,7 +25,7 @@ const NavigationContainer = ({ pages }) => {
 };
 
 NavigationContainer.propTypes = {
-  pages: React.PropTypes.array,  // eslint-disable-line react/forbid-prop-types
+  pages: PropTypes.array,  // eslint-disable-line react/forbid-prop-types
 };
 
 NavigationContainer.defaultProps = {

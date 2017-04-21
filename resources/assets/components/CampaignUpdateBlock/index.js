@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
@@ -8,16 +9,16 @@ import DEFAULT_AVATAR from './default-avatar.png';
 import './campaign-update.scss';
 
 const Byline = ({ author, jobTitle, avatar }) => (
-  <Figure size="small" alignment="left" verticalAlignment="center" image={avatar} imageClassName="avatar">
+  <Figure size="small" alignment="left" verticalAlignment="center" image={avatar} alt={`picture of ${author}`} imageClassName="avatar">
     <strong>{author}</strong><br />
     <p className="footnote">{jobTitle}</p>
   </Figure>
 );
 
 Byline.propTypes = {
-  author: React.PropTypes.string.isRequired,
-  jobTitle: React.PropTypes.string,
-  avatar: React.PropTypes.string,
+  author: PropTypes.string.isRequired,
+  jobTitle: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
 Byline.defaultProps = {
@@ -45,13 +46,13 @@ const CampaignUpdateBlock = (props) => {
 };
 
 CampaignUpdateBlock.propTypes = {
-  fields: React.PropTypes.shape({
-    title: React.PropTypes.string,
-    content: React.PropTypes.string,
-    additionalContent: React.PropTypes.shape({
-      author: React.PropTypes.string.isRequired,
-      jobTitle: React.PropTypes.string,
-      avatar: React.PropTypes.string,
+  fields: PropTypes.shape({
+    title: PropTypes.string,
+    content: PropTypes.string,
+    additionalContent: PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      jobTitle: PropTypes.string,
+      avatar: PropTypes.string,
     }),
   }).isRequired,
 };

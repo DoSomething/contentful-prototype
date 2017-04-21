@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Flex, FlexCell } from '../Flex';
 import ShareContainer from '../../containers/ShareContainer';
@@ -54,18 +55,18 @@ const Dashboard = (props) => {
 };
 
 Dashboard.propTypes = {
-  totalCampaignSignups: React.PropTypes.number.isRequired,
-  endDate: React.PropTypes.shape({
-    date: React.PropTypes.string,
+  totalCampaignSignups: PropTypes.number.isRequired,
+  endDate: PropTypes.shape({
+    date: PropTypes.string,
   }).isRequired,
-  content: React.PropTypes.shape({
-    fields: React.PropTypes.shape({
-      firstValue: React.PropTypes.string.isRequired,
-      firstDescription: React.PropTypes.string.isRequired,
-      secondValue: React.PropTypes.string.isRequired,
-      secondDescription: React.PropTypes.string.isRequired,
-      shareHeader: React.PropTypes.string.isRequired,
-      shareCopy: React.PropTypes.string.isRequired,
+  content: PropTypes.shape({
+    fields: PropTypes.shape({
+      firstValue: PropTypes.string.isRequired,
+      firstDescription: PropTypes.string.isRequired,
+      secondValue: PropTypes.string.isRequired,
+      secondDescription: PropTypes.string.isRequired,
+      shareHeader: PropTypes.string.isRequired,
+      shareCopy: PropTypes.string.isRequired,
     }),
   }),
 };

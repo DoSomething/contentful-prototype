@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { makeHash } from '../../helpers';
 
@@ -13,9 +14,9 @@ const Notification = ({ message, style, remove }) => (
 );
 
 Notification.propTypes = {
-  message: React.PropTypes.string,
-  style: React.PropTypes.string,
-  remove: React.PropTypes.func.isRequired,
+  message: PropTypes.string,
+  style: PropTypes.string,
+  remove: PropTypes.func.isRequired,
 };
 
 Notification.defaultProps = {
@@ -37,8 +38,8 @@ const NotificationList = ({ notifications, removeNotification }) => (
 );
 
 NotificationList.propTypes = {
-  notifications: React.PropTypes.arrayOf(React.PropTypes.object),
-  removeNotification: React.PropTypes.func.isRequired,
+  notifications: PropTypes.arrayOf(PropTypes.object),
+  removeNotification: PropTypes.func.isRequired,
 };
 
 NotificationList.defaultProps = {

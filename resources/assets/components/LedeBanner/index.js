@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Markdown from '../Markdown';
 import { contentfulImageUrl } from '../../helpers';
@@ -39,16 +40,16 @@ const LedeBanner = ({
 };
 
 LedeBanner.propTypes = {
-  blurb: React.PropTypes.string.isRequired,
-  clickedSignUp: React.PropTypes.func.isRequired,
-  coverImage: React.PropTypes.shape({
-    description: React.PropTypes.string,
-    url: React.PropTypes.string,
+  blurb: PropTypes.string.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  coverImage: PropTypes.shape({
+    description: PropTypes.string,
+    url: PropTypes.string,
   }).isRequired,
-  isAffiliated: React.PropTypes.bool.isRequired,
-  legacyCampaignId: React.PropTypes.string.isRequired,
-  subtitle: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired,
+  isAffiliated: PropTypes.bool.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default LedeBanner;
