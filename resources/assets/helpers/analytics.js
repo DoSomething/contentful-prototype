@@ -95,8 +95,8 @@ export function isSessionValid() {
 
   if (! session.id || ! session.lastUpdatedAt) return false;
 
-  // Check if the timestamp is 15 min old
-  return isTimestampValid(session.lastUpdatedAt, (15 * 60 * 1000));
+  // Check if the timestamp is 30 min old
+  return isTimestampValid(session.lastUpdatedAt, (30 * 60 * 1000));
 }
 
 /**
