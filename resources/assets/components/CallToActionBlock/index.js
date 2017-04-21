@@ -72,9 +72,12 @@ CallToActionBlock.propTypes = {
   modifierClasses: PropTypes.string, // @TODO: Should this be an array?
 };
 
+CallToActionBlock.defaultProps = {
+  modifierClasses: [],
+};
+
 CallToActionBlock.defaultMetadata = {
   source: 'call to action block',
-  modifierClasses: [],
 };
 
 export default CallToActionBlock;
