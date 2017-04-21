@@ -79,6 +79,10 @@ ReportbackItem.propTypes = {
   url: PropTypes.string,
 };
 
+// @TODO: The following props needed to be defined as undefined likely due to how we are
+// implementing this component as a lazy loaded item. The props could not be set as required which
+// thus meant we needed default props. However, setting the default props as null would cause the
+// app to crash. Something to look into...
 ReportbackItem.defaultProps = {
   id: undefined,
   caption: undefined,
