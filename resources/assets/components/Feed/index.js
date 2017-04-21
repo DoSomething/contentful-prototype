@@ -65,7 +65,10 @@ const Feed = (props) => {
 
 Feed.propTypes = {
   blocks: React.PropTypes.arrayOf(React.PropType.shape({
-     // ...
+    id: React.PropTypes.string.isRequired,
+    type: React.PropTypes.string.isRequired,
+    content: React.PropTypes.string,
+    additionalContent: React.PropTypes.instanceOf(Object).isRequired,
   })),
   callToAction: React.PropTypes.string.isRequired,
   campaignId: React.PropTypes.string.isRequired,
