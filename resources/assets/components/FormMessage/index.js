@@ -1,29 +1,28 @@
 import React from 'react';
 import classnames from 'classnames';
 import { has } from 'lodash';
-import { modifiers } from '../../helpers';
+import { makeHash, modifiers } from '../../helpers';
 
 import './form-message.scss';
 
-const renderMessage = (message) => {
-  return <p>{message}</p>;
-}
+const renderMessage = message => (
+  <p>{message}</p>
+);
 
-const renderValidationMessage = (error) => {
-  return (
-    <div>
-      <h3>Hmm, there were some issues with your submission.</h3>
-      <ul className="list -compacted">
-        {error.fields.map((field, index) => {
-          return <li key={index}>{field}</li>;
-        })}
-      </ul>
-    </div>
-  );
-}
+const renderValidationMessage = error => (
+  <div>
+    <h3>Hmm, there were some issues with your submission.</h3>
+    <ul className="list -compacted">
+      {error.fields.map(field => (
+        <li key={makeHash(field)}>{field}</li>
+      ))}
+    </ul>
+  </div>
+);
 
 const FormMessage = ({ messaging }) => {
-  let message, modifierClasses;
+  let message;
+  let modifierClasses;
 
   // Error
   if (has(messaging, 'error')) {
@@ -35,8 +34,7 @@ const FormMessage = ({ messaging }) => {
     // has items. Something to debate in the future.
     if (messaging.error.code === 422) {
       message = renderValidationMessage(messaging.error);
-    }
-    else {
+    } else {
       message = renderMessage(messaging.error.message);
     }
   }
@@ -53,6 +51,10 @@ const FormMessage = ({ messaging }) => {
   }
 
   return null;
+};
+
+FormMessage.propTypes = {
+  messaging: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 export default FormMessage;
