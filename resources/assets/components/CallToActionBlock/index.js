@@ -69,7 +69,7 @@ CallToActionBlock.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
-  modifierClasses: PropTypes.string, // @TODO: Should this be an array?
+  modifierClasses: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 CallToActionBlock.defaultProps = {
