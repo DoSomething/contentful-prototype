@@ -9,7 +9,7 @@ const ContentPage = ({ pages, route }) => {
   const page = pages.find(item => item.fields.slug === route.page);
 
   // @TODO: temporary variables until these CTAs are no longer hardcoded.
-  const ctaText1 = { content: 'aHelp us send letters of support to every mosque in the US.\n\n__Join hundreds of members members making cards!__' };
+  const ctaText1 = { content: 'Help us send letters of support to every mosque in the US.\n\n__Join hundreds of members members making cards!__' };
   const ctaText2 = { content: 'Help us send letters of support to every mosque in the United States.' };
 
   return (
