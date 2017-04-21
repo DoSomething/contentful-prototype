@@ -5,7 +5,7 @@ import { markdown } from '../../helpers';
 import './markdown.scss';
 
 const Markdown = ({ className = null, children }) => (
-  <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(children)} />
+  <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(children)} /> // eslint-disable-line react/no-danger
 );
 
 Markdown.propTypes = {
