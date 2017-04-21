@@ -133,8 +133,11 @@ ActionPage.propTypes = {
   clickedSignUp: PropTypes.func.isRequired,
 };
 
-ActionPage.defaultMetadata = {
+ActionPage.defaultProps = {
   steps: [],
+};
+
+ActionPage.defaultMetadata = {
   source: 'action page',
 };
 
