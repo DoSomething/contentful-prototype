@@ -9,8 +9,7 @@ import CompetitionContainer from '../../containers/CompetitionContainer';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
-import { convertNumberToWord } from '../../helpers';
-import { makeHash } from '../../helpers';
+import { makeHash, convertNumberToWord } from '../../helpers';
 import './actionPage.scss';
 
 const StepHeader = ({ title, step, background }) => (
@@ -52,7 +51,7 @@ const renderPhoto = (photo, index) => (
 const renderSteps = (steps) => {
   let stepIndex = 0;
 
-  return steps.map(step => {
+  return steps.map((step) => {
     const title = step.title;
     const key = makeHash(title);
     const type = step.customType[0];
@@ -65,11 +64,18 @@ const renderSteps = (steps) => {
     // Handle custom steps
     // @TODO: I think it would make sense to handle the Reportback Uploader here as well?
     if (type === 'competition') {
-      return <CompetitionContainer key={key} content={step.content} photo={step.photos[0]} byline={additionalContent}/>;
+      return (
+        <CompetitionContainer
+          key={key}
+          content={step.content}
+          photo={step.photos[0]}
+          byline={additionalContent}
+        />
+      );
     }
 
     // Have a seperate count for regular steps.
-    stepIndex++;
+    stepIndex += 1;
 
     return (
       <FlexCell width="full" key={key}>
@@ -112,7 +118,7 @@ const ActionPage = (props) => {
     if (actionSteps[actionSteps.length - 1]) {
       actionSteps[actionSteps.length - 1].truncate = true;
     }
-  } else if (!showCompetition) {
+  } else if (! showCompetition) {
     // Filter out any steps that have a competition type.
     actionSteps = actionSteps.filter(step => step.customType[0] !== 'competition');
   }
@@ -154,6 +160,7 @@ ActionPage.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   signedUp: PropTypes.bool.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
+  showCompetition: PropTypes.bool.isRequired,
 };
 
 ActionPage.defaultProps = {

@@ -5,7 +5,7 @@ import { joinCompetition } from '../actions';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = state => ({
   campaignId: state.campaign.legacyCampaignId,
   hasJoinedCompetition: state.competitions.thisCampaign,
   hasPendingJoin: state.competitions.isPending,

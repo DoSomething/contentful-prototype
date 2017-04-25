@@ -51,6 +51,7 @@ const Debugger = (props) => {
 
 Debugger.propTypes = {
   signups: PropTypes.arrayOf(PropTypes.string),
+  competitions: PropTypes.arrayOf(PropTypes.string),
   user: PropTypes.shape({
     id: PropTypes.string,
     role: PropTypes.string,
@@ -59,6 +60,7 @@ Debugger.propTypes = {
 
 Debugger.defaultProps = {
   signups: [],
+  competitions: [],
   user: {
     id: null,
     role: 'anonymous',

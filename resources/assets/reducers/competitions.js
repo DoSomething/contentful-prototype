@@ -6,47 +6,47 @@ import {
 
 import {
   set as storageSet,
-  COMPETITION_STORAGE_KEY
+  COMPETITION_STORAGE_KEY,
 } from '../helpers/storage';
 
 /**
  * Competitions reducer:
  */
- const competitions = (state = {}, action) => {
-   let competitions = [];
+const competitions = (state = {}, action) => {
+  let joinedCompetitions = [];
 
-   switch (action.type) {
-     case JOINED_COMPETITION:
-      competitions = [
+  switch (action.type) {
+    case JOINED_COMPETITION:
+      joinedCompetitions = [
         ...state.data,
         action.campaignId,
       ];
 
-      storageSet(action.userId, COMPETITION_STORAGE_KEY, competitions);
+      storageSet(action.userId, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
       return {
         ...state,
-        data: competitions,
+        data: joinedCompetitions,
         isPending: false,
         thisCampaign: true,
         showConfirmation: true,
       };
 
-     case COMPETITION_FOUND:
-       competitions = [
-         ...state,data,
-         action.campaignId,
-       ];
+    case COMPETITION_FOUND:
+      joinedCompetitions = [
+        ...state.data,
+        action.campaignId,
+      ];
 
-       storageSet(action.userId, COMPETITION_STORAGE_KEY, competitions);
+      storageSet(action.userId, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
-       return {
-         ...state,
-         data: competitions,
-         isPending: false,
-         thisCampaign: true,
-         showConfirmation: false,
-       };
+      return {
+        ...state,
+        data: joinedCompetitions,
+        isPending: false,
+        thisCampaign: true,
+        showConfirmation: false,
+      };
 
     case COMPETITION_PENDING:
       return {
@@ -54,9 +54,9 @@ import {
         isPending: true,
       };
 
-     default:
-       return state;
-   }
- };
+    default:
+      return state;
+  }
+};
 
 export default competitions;

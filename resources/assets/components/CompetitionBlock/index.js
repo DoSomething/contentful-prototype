@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Markdown from '../Markdown';
 import classnames from 'classnames';
+
+import Markdown from '../Markdown';
 import Block, { BlockTitle } from '../Block';
 import { Flex, FlexCell } from '../Flex';
 import { Byline } from '../CampaignUpdateBlock';
@@ -9,11 +10,12 @@ import LazyImage from '../LazyImage';
 import './competitionBlock.scss';
 
 const CompetitionBlock = (props) => {
-  const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin, showConfirmation, campaignId } = props;
+  const { content, photo, byline, joinCompetition, hasJoinedCompetition,
+    hasPendingJoin, showConfirmation, campaignId } = props;
 
-  if (!showConfirmation && hasJoinedCompetition) return null;
+  if (! showConfirmation && hasJoinedCompetition) return null;
 
-  const confirmation = `# You're signed up!\nYou should recieve an email shortly with more instructions. You can keep working on the campaign for now. I'm so excited to have you onboard!`;
+  const confirmation = '# You\'re signed up!\nYou should recieve an email shortly with more instructions. You can keep working on the campaign for now. I\'m so excited to have you onboard!';
   const button = showConfirmation ? null : <button disabled={hasPendingJoin} className={classnames('button', { 'is-loading': hasPendingJoin })} onClick={() => joinCompetition(campaignId)}>join competition</button>;
 
   return (
@@ -35,16 +37,21 @@ const CompetitionBlock = (props) => {
       </Flex>
     </Block>
   );
-}
+};
 
 CompetitionBlock.propTypes = {
   content: PropTypes.string.isRequired,
-  photo: PropTypes.string,
+  photo: PropTypes.string.isRequired,
   byline: PropTypes.shape({
     author: PropTypes.string.isRequired,
-    jobTitle: PropTypes.string,
-    avatar: PropTypes.string,
-  }),
+    jobTitle: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }).isRequired,
+  joinCompetition: PropTypes.func.isRequired,
+  hasJoinedCompetition: PropTypes.bool.isRequired,
+  hasPendingJoin: PropTypes.bool.isRequired,
+  showConfirmation: PropTypes.bool.isRequired,
+  campaignId: PropTypes.string.isRequired,
 };
 
 export default CompetitionBlock;
