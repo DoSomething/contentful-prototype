@@ -43,8 +43,8 @@ export function normalizeReportbackItemResponse(data) {
   const reportbacks = {};
   const reportbackItems = {};
 
-  data.forEach((reprotbackItemRecord) => {
-    const reportbackItem = reprotbackItemRecord;
+  data.forEach((reportbackItemRecord) => {
+    const reportbackItem = reportbackItemRecord;
     const kudos = reportbackItem.kudos.data[0];
     const currentUser = kudos ? kudos.current_user : false;
 
