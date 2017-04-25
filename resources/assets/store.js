@@ -41,6 +41,12 @@ const initialState = {
     isPending: false,
     total: 0,
   },
+  competitions: {
+    data: [],
+    thisCampaign: false,
+    showConfirmation: false,
+    isPending: false,
+  },
   user: {
     id: null,
     role: null,

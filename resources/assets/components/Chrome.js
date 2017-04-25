@@ -33,6 +33,7 @@ const Chrome = props => (
     <Debugger
       user={props.user}
       signups={props.signups}
+      competitions={props.competitions}
     />
   </div>
 );

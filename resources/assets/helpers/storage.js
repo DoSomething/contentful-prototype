@@ -3,6 +3,7 @@
 import { getDeviceId } from './analytics';
 
 export const SIGNUP_STORAGE_KEY = 'signups';
+export const COMPETITION_STORAGE_KEY = 'competitions';
 export const EVENT_STORAGE_KEY = 'events';
 
 function key(id, type) {
@@ -97,11 +98,18 @@ export function loadStorage(initialState, preloadedState) {
 
   const userId = preloadedState.user.id;
   if (userId) {
-    const signups = get(userId, SIGNUP_STORAGE_KEY) || [];
+    const signups = getArray(userId, SIGNUP_STORAGE_KEY);
     state.signups.data = signups;
 
     if (signups.includes(preloadedState.campaign.legacyCampaignId)) {
       state.signups.thisCampaign = true;
+    }
+
+    const competitions = getArray(userId, COMPETITION_STORAGE_KEY);
+    state.competitions.data = competitions;
+
+    if (competitions.includes(preloadedState.campaign.legacyCampaignId)) {
+      state.competitions.thisCampaign = true;
     }
   }
 

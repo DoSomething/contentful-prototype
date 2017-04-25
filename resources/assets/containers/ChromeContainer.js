@@ -18,6 +18,7 @@ const mapStateToProps = (state, props) => ({
   endDate: state.campaign.endDate,
   user: state.user,
   signups: state.signups.data,
+  competitions: state.competitions.data,
 });
 
 /**

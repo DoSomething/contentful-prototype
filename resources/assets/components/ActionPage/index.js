@@ -5,10 +5,12 @@ import { cloneDeep } from 'lodash';
 
 import LazyImage from '../LazyImage';
 import Markdown from '../Markdown';
+import CompetitionContainer from '../../containers/CompetitionContainer';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
 import { convertNumberToWord } from '../../helpers';
+import { makeHash } from '../../helpers';
 import './actionPage.scss';
 
 const StepHeader = ({ title, step, background }) => (
@@ -47,30 +49,46 @@ const renderPhoto = (photo, index) => (
  * @param index
  * @returns {XML}
  */
-const renderStep = (step, index) => {
-  const title = step.title;
-  const background = step.background;
-  const stepWidth = step.displayOptions[0];
-  const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
-  const shouldTruncate = step.truncate;
+const renderSteps = (steps) => {
+  let stepIndex = 0;
 
-  return (
-    <FlexCell width="full" key={index}>
-      <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
-        <Flex>
-          <StepHeader title={title} step={index + 1} background={background} />
-          <FlexCell width="two-thirds">
-            <Markdown>{ step.content }</Markdown>
-          </FlexCell>
-          <FlexCell width={photoWidth}>
-            <div className={`action-step__photos -${photoWidth}`}>
-              {step.photos ? step.photos.map(renderPhoto) : null}
-            </div>
-          </FlexCell>
-        </Flex>
-      </div>
-    </FlexCell>
-  );
+  return steps.map(step => {
+    const title = step.title;
+    const key = makeHash(title);
+    const type = step.customType[0];
+    const background = step.background;
+    const stepWidth = step.displayOptions[0];
+    const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
+    const shouldTruncate = step.truncate;
+    const additionalContent = step.additionalContent;
+
+    // Handle custom steps
+    // TODO: I think it would make sense to handle the Reportback Uploader here as well?
+    if (type === 'competition') {
+      return <CompetitionContainer key={key} content={step.content} photo={step.photos[0]} byline={additionalContent}/>;
+    }
+
+    // Have a seperate count for regular steps.
+    stepIndex++;
+
+    return (
+      <FlexCell width="full" key={key}>
+        <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
+          <Flex>
+            <StepHeader title={title} step={stepIndex} background={background} />
+            <FlexCell width="two-thirds">
+              <Markdown>{ step.content }</Markdown>
+            </FlexCell>
+            <FlexCell width={photoWidth}>
+              <div className={`action-step__photos -${photoWidth}`}>
+                {step.photos ? step.photos.map(renderPhoto) : null}
+              </div>
+            </FlexCell>
+          </Flex>
+        </div>
+      </FlexCell>
+    );
+  });
 };
 
 /**
@@ -81,17 +99,23 @@ const renderStep = (step, index) => {
 const ActionPage = (props) => {
   const {
     steps, callToAction, campaignId, isAuthenticated,
-    signedUp, hasPendingSignup, clickedSignUp,
+    signedUp, hasPendingSignup, clickedSignUp, showCompetition,
   } = props;
 
-  // Truncate steps if user isn't signed up.
+
   let actionSteps = cloneDeep(steps);
+
   if (! signedUp) {
-    actionSteps = actionSteps.slice(0, 2);
+    // Truncate steps if user isn't signed up & remove any custom steps.
+    actionSteps = actionSteps.filter(step => ! step.customType[0]).slice(0, 2);
 
     if (actionSteps[actionSteps.length - 1]) {
       actionSteps[actionSteps.length - 1].truncate = true;
     }
+  } else if (!showCompetition) {
+    console.log(actionSteps[0])
+    // Filter out any steps that have a competition type.
+    actionSteps = actionSteps.filter(step => step.customType[0] !== 'competition');
   }
 
   const revealer = (
@@ -111,7 +135,7 @@ const ActionPage = (props) => {
 
   return (
     <Flex>
-      {actionSteps.map(renderStep)}
+      {renderSteps(actionSteps)}
       {isAuthenticated && signedUp ? null : revealer}
       {isAuthenticated && signedUp ? uploader : null}
     </Flex>

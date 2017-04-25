@@ -1,0 +1,32 @@
+@import '../../scss/next-toolbox';
+
+.competition-block {
+  flex-direction: column-reverse;
+
+  @include media($medium) {
+    flex-direction: row;
+  }
+
+  .competition-block__content {
+    &.is-confirmation > .markdown {
+      margin-bottom: $base-spacing;
+
+      h1, p {
+        color: $success-color;
+      }
+    }
+
+    button {
+      margin: $base-spacing 0;
+    }
+  }
+
+  .competition-block__photo {
+    margin-bottom: $half-spacing;
+
+    @include media($medium) {
+      margin-bottom: 0;
+      margin-left: $half-spacing;
+    }
+  }
+}
