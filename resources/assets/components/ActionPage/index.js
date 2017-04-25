@@ -63,7 +63,7 @@ const renderSteps = (steps) => {
     const additionalContent = step.additionalContent;
 
     // Handle custom steps
-    // TODO: I think it would make sense to handle the Reportback Uploader here as well?
+    // @TODO: I think it would make sense to handle the Reportback Uploader here as well?
     if (type === 'competition') {
       return <CompetitionContainer key={key} content={step.content} photo={step.photos[0]} byline={additionalContent}/>;
     }
@@ -113,7 +113,6 @@ const ActionPage = (props) => {
       actionSteps[actionSteps.length - 1].truncate = true;
     }
   } else if (!showCompetition) {
-    console.log(actionSteps[0])
     // Filter out any steps that have a competition type.
     actionSteps = actionSteps.filter(step => step.customType[0] !== 'competition');
   }

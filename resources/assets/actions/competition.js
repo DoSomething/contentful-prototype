@@ -1,6 +1,6 @@
 import {
   JOINED_COMPETITION,
-  FOUND_COMPETITION,
+  COMPETITION_FOUND,
   COMPETITION_PENDING,
 } from '../actions';
 
@@ -28,6 +28,6 @@ export function checkForCompetition(campaignId) {
     const userId = getState().user.id;
 
     //TODO: make api call
-    dispatch({ type: FOUND_COMPETITION, campaignId, userId });
+    dispatch({ type: COMPETITION_FOUND, campaignId, userId });
   }
 }

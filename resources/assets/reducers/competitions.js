@@ -1,5 +1,5 @@
 import {
-  FOUND_COMPETITION,
+  COMPETITION_FOUND,
   JOINED_COMPETITION,
   COMPETITION_PENDING,
 } from '../actions';
@@ -32,7 +32,7 @@ import {
         showConfirmation: true,
       };
 
-     case FOUND_COMPETITION:
+     case COMPETITION_FOUND:
        competitions = [
          ...state,data,
          action.campaignId,
@@ -44,7 +44,7 @@ import {
          ...state,
          data: competitions,
          isPending: false,
-         thisCampaign: false,
+         thisCampaign: true,
          showConfirmation: false,
        };
 
