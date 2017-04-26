@@ -1,6 +1,6 @@
 # Phoenix
 
-This is __Phoenix__, the new web interface for [DoSomething.org](https://www.dosomething.org)! It's built using [Laravel 5.3](https://laravel.com/docs/5.3) and [Contentful](https://www.contentful.com), and plays nicely with the rest of our team ([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.)
+This is __Phoenix__, the new web interface for [DoSomething.org](https://www.dosomething.org)! It's built using [Laravel 5.3](https://laravel.com/docs/5.3), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org) and plays nicely with the rest of our team ([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.)
 
 ### Contributing
 
@@ -17,12 +17,9 @@ $ cp .env.example .env
 $ php artisan migrate
 ```
 
-You can seed the database with test data:
+You may run unit tests locally using PHPUnit & Jest:
 
-    $ php artisan db:seed
-
-You may run unit tests locally using PHPUnit:
-
+    $ npm test
     $ vendor/bin/phpunit
     
 We follow [Laravel's code style](http://laravel.com/docs/5.3/contributions#coding-style) and automatically
