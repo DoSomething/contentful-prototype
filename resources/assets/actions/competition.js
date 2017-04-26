@@ -14,7 +14,7 @@ export function joinCompetition(campaignId) {
   return (dispatch, getState) => {
     dispatch({ type: COMPETITION_PENDING });
 
-    // TODO: Obviously, replace this with an api call.
+    // @TODO: Obviously, replace this with an api call.
     setTimeout(() => {
       const userId = getState().user.id;
       dispatch({ type: JOINED_COMPETITION, campaignId, userId });

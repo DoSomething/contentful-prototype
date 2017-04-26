@@ -41,6 +41,40 @@ const renderPhoto = (photo, index) => (
   </div>
 );
 
+const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth, shouldTruncate }) => ( // eslint-disable-line max-len
+  <FlexCell width="full">
+    <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
+      <Flex>
+        <StepHeader title={title} step={stepIndex} background={background} />
+        <FlexCell width="two-thirds">
+          <Markdown>{ content }</Markdown>
+        </FlexCell>
+        <FlexCell width={photoWidth}>
+          <div className={`action-step__photos -${photoWidth}`}>
+            { photos ? photos.map(renderPhoto) : null }
+          </div>
+        </FlexCell>
+      </Flex>
+    </div>
+  </FlexCell>
+);
+
+ActionStep.propTypes = {
+  title: PropTypes.string.isRequired,
+  stepIndex: PropTypes.number.isRequired,
+  content: PropTypes.string.isRequired,
+  background: PropTypes.string,
+  photos: PropTypes.arrayOf(PropTypes.string),
+  photoWidth: PropTypes.string.isRequired,
+  shouldTruncate: PropTypes.boolean,
+};
+
+ActionStep.defaultProps = {
+  background: '',
+  photos: [],
+  truncate: false,
+};
+
 /**
  * Render a single step on the action page.
  *
@@ -54,46 +88,39 @@ const renderSteps = (steps) => {
   return steps.map((step) => {
     const title = step.title;
     const key = makeHash(title);
-    const type = step.customType[0];
+    const type = step.customType[0] || 'default';
+    const content = step.content;
     const background = step.background;
-    const stepWidth = step.displayOptions[0];
-    const photoWidth = stepWidth === 'full' ? 'full' : 'one-third';
+    const photos = step.photos;
+    const photoWidth = step.displayOptions[0] === 'full' ? 'full' : 'one-third';
     const shouldTruncate = step.truncate;
     const additionalContent = step.additionalContent;
 
-    // Handle custom steps
-    // @TODO: I think it would make sense to handle the Reportback Uploader here as well?
-    if (type === 'competition') {
-      return (
-        <CompetitionContainer
-          key={key}
-          content={step.content}
-          photo={step.photos[0]}
-          byline={additionalContent}
-        />
-      );
+    switch (type) {
+      case 'competition':
+        return (
+          <CompetitionContainer
+            key={key}
+            content={content}
+            photo={photos[0]}
+            byline={additionalContent}
+          />
+        );
+      default:
+        stepIndex += 1;
+        return (
+          <ActionStep
+            key={key}
+            title={title}
+            stepIndex={stepIndex}
+            content={content}
+            background={background}
+            photos={photos}
+            photoWidth={photoWidth}
+            shouldTruncate={shouldTruncate}
+          />
+        );
     }
-
-    // Have a seperate count for regular steps.
-    stepIndex += 1;
-
-    return (
-      <FlexCell width="full" key={key}>
-        <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
-          <Flex>
-            <StepHeader title={title} step={stepIndex} background={background} />
-            <FlexCell width="two-thirds">
-              <Markdown>{ step.content }</Markdown>
-            </FlexCell>
-            <FlexCell width={photoWidth}>
-              <div className={`action-step__photos -${photoWidth}`}>
-                {step.photos ? step.photos.map(renderPhoto) : null}
-              </div>
-            </FlexCell>
-          </Flex>
-        </div>
-      </FlexCell>
-    );
   });
 };
 
@@ -105,7 +132,7 @@ const renderSteps = (steps) => {
 const ActionPage = (props) => {
   const {
     steps, callToAction, campaignId, isAuthenticated,
-    signedUp, hasPendingSignup, clickedSignUp, showCompetition,
+    signedUp, hasPendingSignup, clickedSignUp,
   } = props;
 
 
@@ -118,9 +145,6 @@ const ActionPage = (props) => {
     if (actionSteps[actionSteps.length - 1]) {
       actionSteps[actionSteps.length - 1].truncate = true;
     }
-  } else if (! showCompetition) {
-    // Filter out any steps that have a competition type.
-    actionSteps = actionSteps.filter(step => step.customType[0] !== 'competition');
   }
 
   const revealer = (
@@ -160,7 +184,6 @@ ActionPage.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   signedUp: PropTypes.bool.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
-  showCompetition: PropTypes.bool.isRequired,
 };
 
 ActionPage.defaultProps = {

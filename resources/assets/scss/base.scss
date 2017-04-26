@@ -3,4 +3,12 @@
 body, html {
   font-family: $primary-font-family;
   line-height: 1.4;
+
+  h1, h2, h3, p {
+    color: $black;
+  }
+
+  .success-color {
+    color: $success-color;
+  }
 }

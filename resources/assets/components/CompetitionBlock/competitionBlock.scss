@@ -10,10 +10,6 @@
   .competition-block__content {
     &.is-confirmation > .markdown {
       margin-bottom: $base-spacing;
-
-      h1, p {
-        color: $success-color;
-      }
     }
 
     button {

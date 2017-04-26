@@ -12,7 +12,6 @@ const mapStateToProps = state => ({
   signedUp: state.signups.thisCampaign,
   hasPendingSignup: state.signups.isPending,
   isAuthenticated: state.user.id !== null,
-  showCompetition: ! state.competitions.thisCampaign || state.competitions.showConfirmation,
 });
 
 /**
