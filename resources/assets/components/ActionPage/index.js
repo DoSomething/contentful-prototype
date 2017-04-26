@@ -66,13 +66,13 @@ ActionStep.propTypes = {
   background: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.string),
   photoWidth: PropTypes.string.isRequired,
-  shouldTruncate: PropTypes.boolean,
+  shouldTruncate: PropTypes.bool,
 };
 
 ActionStep.defaultProps = {
   background: '',
   photos: [],
-  truncate: false,
+  shouldTruncate: false,
 };
 
 /**

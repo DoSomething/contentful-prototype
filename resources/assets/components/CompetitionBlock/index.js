@@ -9,13 +9,18 @@ import { Byline } from '../CampaignUpdateBlock';
 import LazyImage from '../LazyImage';
 import './competitionBlock.scss';
 
+const DEFAULT_CONFIRMATION = `
+# You're signed up!
+
+You should recieve an email shortly with more instructions. You can keep working on the campaign for now. I'm so excited to have you onboard!
+`;
+
 const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition,
     hasPendingJoin, showConfirmation, campaignId } = props;
 
   if (! showConfirmation && hasJoinedCompetition) return null;
 
-  const confirmation = '# You\'re signed up!\nYou should recieve an email shortly with more instructions. You can keep working on the campaign for now. I\'m so excited to have you onboard!';
   const button = showConfirmation ? null : <button disabled={hasPendingJoin} className={classnames('button', { 'is-loading': hasPendingJoin })} onClick={() => joinCompetition(campaignId)}>join competition</button>;
 
   return (
@@ -24,7 +29,7 @@ const CompetitionBlock = (props) => {
       <Flex className="competition-block">
         <FlexCell width="two-thirds">
           <div className={classnames('competition-block__content', { 'is-confirmation': showConfirmation })}>
-            <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? confirmation : content }</Markdown>
+            <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
             { button }
             <Byline {...byline} />
           </div>
