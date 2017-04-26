@@ -12,7 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        'next/reportbacks',
-        'next/signups',
+        // ...
     ];
 }
