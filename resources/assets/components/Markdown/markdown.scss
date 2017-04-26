@@ -1,6 +1,15 @@
 @import '../../scss/next-toolbox.scss';
 
 .markdown {
+
+  h1, h2, h3, p {
+    color: inherit;
+  }
+
+  &.is-success {
+    color: $success-color;
+  }
+
   // Code blocks can be used for pre-formatted text.
   code {
     font-family: $font-proxima-nova;

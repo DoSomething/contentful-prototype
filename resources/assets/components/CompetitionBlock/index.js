@@ -24,7 +24,7 @@ const CompetitionBlock = (props) => {
       <Flex className="competition-block">
         <FlexCell width="two-thirds">
           <div className={classnames('competition-block__content', { 'is-confirmation': showConfirmation })}>
-            <Markdown>{ showConfirmation ? confirmation : content }</Markdown>
+            <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? confirmation : content }</Markdown>
             { button }
             <Byline {...byline} />
           </div>
