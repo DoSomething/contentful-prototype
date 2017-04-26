@@ -12,7 +12,8 @@ import './competitionBlock.scss';
 const DEFAULT_CONFIRMATION = `
 # You're signed up!
 
-You should recieve an email shortly with more instructions. You can keep working on the campaign for now. I'm so excited to have you onboard!
+You should recieve an email shortly with more instructions.
+You can keep working on the campaign for now. I'm so excited to have you onboard!
 `;
 
 const CompetitionBlock = (props) => {
