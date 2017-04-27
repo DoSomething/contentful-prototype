@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "test": "npm run jest",
-    "jest": "NODE_ENV=test && node --harmony ./node_modules/jest/bin/jest.js",
+    "test": "NODE_ENV=test && node --harmony ./node_modules/jest/bin/jest.js --watch",
+    "test:ci": "NODE_ENV=test && node --harmony ./node_modules/jest/bin/jest.js",
     "lint": "eslint --ext .js resources/assets",
     "start": "npm run clean && NODE_ENV=development webpack --watch",
     "build:dev": "npm run clean && NODE_ENV=development webpack",

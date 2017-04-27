@@ -26,7 +26,7 @@ build:
           code: npm run lint
       - script:
           name: test javascript code
-          code: npm run jest
+          code: npm run test:ci
       - script:
           name: build front-end assets
           code: npm run build
