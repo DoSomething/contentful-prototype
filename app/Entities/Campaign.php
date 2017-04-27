@@ -42,7 +42,7 @@ class Campaign extends Entity implements JsonSerializable
                 'title' => $step->title,
                 'content' => $step->content,
                 'displayOptions' => $step->displayOptions,
-                'background' => $step->background ? $step->background->getFile()->getUrl() : '',
+                'background' => get_image_url($step->background, 'landscape'),
                 'photos' => $photos,
                 'customType' => $step->customType,
                 'additionalContent' => $step->additionalContent,
