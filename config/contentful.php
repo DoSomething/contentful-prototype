@@ -20,7 +20,7 @@ return [
      */
     'delivery.preview' => false,
 
-    /**
+    /*
      * Sets the locale in which to fetch content by default. NULL means the space'd default locale will be used
      */
     'delivery.defaultLocale' => 'en-US',
