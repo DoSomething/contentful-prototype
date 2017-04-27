@@ -135,16 +135,11 @@ class Entity implements ArrayAccess, JsonSerializable
     public function jsonSerialize()
     {
         $json = $this->entry->jsonSerialize();
-        $locale = $this->entry->getLocale();
-
-        $fields = collect($json->fields)->map(function ($field) use ($locale) {
-            return data_get($field, $locale);
-        });
 
         return (object) [
             'id' => $this->entry->getId(),
             'type' => $this->entry->getContentType()->getId(),
-            'fields' => $fields,
+            'fields' => $json->fields,
         ];
     }
 }

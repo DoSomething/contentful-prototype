@@ -5,7 +5,7 @@ use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
 use Contentful\Delivery\DynamicEntry;
-use Contentful\Delivery\ImageOptions;
+use Contentful\ImageOptions;
 
 /**
  * App helper functions.
