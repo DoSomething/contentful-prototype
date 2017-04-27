@@ -97,12 +97,23 @@ function markdown($source)
  * Get image URL for a specified asset by the crop type.
  *
  * @param Asset $asset
- * @param  string $crop
+ * @param  string $style
  * @return string|null
  */
-function get_image_url($asset, $crop = 'landscape')
+function get_image_url($asset, $style = null)
 {
     if (! $asset) {
+        return null;
+    }
+
+    /** @var \Contentful\ImageFile $file */
+    $file = $asset->getFile();
+
+    if (! $file instanceof \Contentful\ImageFile) {
+        throw new \InvalidArgumentException('Cannot use file ' . $file->getFileName() . ' as an image.');
+    }
+
+    if (! $file) {
         return null;
     }
 
@@ -125,13 +136,11 @@ function get_image_url($asset, $crop = 'landscape')
         ->setHeight(50)
         ->setResizeFit('scale');
 
-    if (! array_key_exists($crop, $options)) {
-        throw new \InvalidArgumentException('The specified cover image type of '.$crop.' is not available.');
-    }
+    // Provide cropped image if specified, or just the original image by default.
+    $crop = isset($options[$style]) ? $options[$style] : null;
 
-    $locale = app()->getLocale();
-
-    return $asset->getFile($locale)->getUrl($options[$crop]);
+    // Force HTTPS. Contentful outputs protocol-relative "//".
+    return 'https:' . $file->getUrl($crop);
 }
 
 /**
@@ -157,7 +166,7 @@ function get_legacy_campaign_data($id, $key = null)
  * base object.
  *
  * @param  string $field
- * @param  DynamicEntry $campaign
+ * @param  Campaign $campaign
  * @param  DynamicEntry $override
  * @return mixed
  */
@@ -182,12 +191,12 @@ function useOverrideIfSet($field, $campaign, $override)
  */
 function getShareFields($campaign, $shareOverrides)
 {
-    $coverImage = get_image_url(useOverrideIfSet('coverImage', $campaign, $shareOverrides), 'landscape');
+    $coverImage = useOverrideIfSet('coverImage', $campaign, $shareOverrides);
 
     return [
         'title' => useOverrideIfSet('title', $campaign, $shareOverrides),
         'callToAction' => useOverrideIfSet('callToAction', $campaign, $shareOverrides),
-        'coverImage' => 'http:' . $coverImage, // Contentful outputs "//" which Facebook cannot parse
+        'coverImage' => get_image_url($coverImage, 'landscape'),
         'facebookAppId' => config('services.analytics.facebook_id'),
         'quote' => $shareOverrides ? $shareOverrides->quote : null,
     ];
