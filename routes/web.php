@@ -8,23 +8,17 @@
  */
 
 // Homepage
-$router->get('/', function () {
-    return view('welcome');
-});
+$router->get('/', 'CampaignController@index');
 
 // Authentication
 $router->get('next/login', 'AuthController@getLogin')->name('login');
 $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 
 // Campaigns
-$router->get('campaigns', 'CampaignController@index');
 $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
 $router->get('campaigns/{path}', 'CampaignController@redirect')
     ->where('path', '.*');
-
-// Waiting List: for collecting user emails pre-launch.
-$router->post('waitinglist', 'WaitingListController@store');
 
 // Embeds
 $router->get('next/embed', 'EmbedController@index');

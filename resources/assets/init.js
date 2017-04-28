@@ -24,7 +24,6 @@ import * as reducers from './reducers';
 // Style Components
 import './scss/base.scss';
 import './scss/chrome.scss';
-import './scss/construction.scss';
 import './scss/container.scss';
 import './scss/navigation.scss';
 import './scss/fonts.scss';
