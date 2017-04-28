@@ -45,4 +45,14 @@ class User extends Model implements AuthenticatableContract, NorthstarUserContra
     {
         return $this->getAttribute($this->getAuthIdentifierName());
     }
+
+    /**
+     * Is this user a staff member?
+     *
+     * @return bool
+     */
+    public function isStaff()
+    {
+        return in_array($this->role, ['staff', 'admin']);
+    }
 }
