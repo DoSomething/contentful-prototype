@@ -2,6 +2,7 @@ import {
   makeHash,
   modifiers,
   contentfulImageUrl,
+  pluralize,
 } from './index';
 
 /**
@@ -54,4 +55,13 @@ test('prefix a series of class names', () => {
 
 test('prefix a series of class names, ignoring undefined or null values', () => {
   expect(modifiers('danger', undefined, 'will', null, 'robinson')).toEqual(expect.arrayContaining(['-danger', '-will', '-robinson']));
+});
+
+/**
+ * Test pluralize()
+ */
+test('pluralizes words', () => {
+  expect(pluralize(0, 'item', 'items')).toEqual('items');
+  expect(pluralize(1, 'item', 'items')).toEqual('item');
+  expect(pluralize(2, 'item', 'items')).toEqual('items');
 });

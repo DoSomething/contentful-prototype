@@ -37,7 +37,7 @@ const initialState = {
     data: [],
     thisCampaign: false,
     thisSession: false,
-    showAffirmation: false,
+    shouldShowAffirmation: false,
     isPending: false,
     total: 0,
   },

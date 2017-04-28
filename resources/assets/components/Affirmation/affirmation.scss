@@ -52,7 +52,6 @@
       height: 128px;
       display: inline;
       max-width: none;
-      background: white; // TEMP. No images are actually on the component yet, just so you can visually see where this is.
     }
   }
 
@@ -71,6 +70,8 @@
     right: 6px;
     font-size: 36px;
     line-height: 18px;
+    background: none;
+    border: none;
 
     &:hover {
       cursor: pointer;

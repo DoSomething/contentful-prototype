@@ -91,6 +91,17 @@ export function modifiers(...names) {
 }
 
 /**
+ * Pluralize a noun.
+ *
+ * @param {Number} quantity
+ * @param {String} singular
+ * @param {String} plural
+ */
+export function pluralize(quantity, singular, plural) {
+  return quantity === 1 ? singular : plural;
+}
+
+/**
  * Get the type for a specified file.
  *
  * @param  {ArrayBuffer} file

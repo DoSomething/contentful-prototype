@@ -13,17 +13,7 @@ class Gladiator extends RestApiClient
     {
         $base_url = config('services.gladiator.url').'/api/';
 
-        $overrides = [
-            'defaults' => [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                    'X-DS-Gladiator-API-Key' => config('services.gladiator.key'),
-                ],
-            ],
-        ];
-
-        parent::__construct($base_url, $overrides);
+        parent::__construct($base_url);
     }
 
     /**
@@ -34,19 +24,7 @@ class Gladiator extends RestApiClient
      */
     public function getAllUsers(array $query = [])
     {
-        $path = 'v1/users';
-
-        if (isset($query['current_user'])) {
-            $useCurrentUser = filter_var($query['current_user'], FILTER_VALIDATE_BOOLEAN);
-
-            if ($useCurrentUser && auth()->id()) {
-                $query['user'] = auth()->id();
-            }
-
-            unset($query['current_user']);
-        }
-
-        return $this->get($path, $query);
+        return $this->get('v1/users', $query);
     }
 
     /**
@@ -65,5 +43,25 @@ class Gladiator extends RestApiClient
             'campaign_id' => $legacyCampaignId,
             'campaign_run_id' => $legacyCampaignRunId,
         ]);
+    }
+
+    /**
+     * Send a raw API request, without attempting to handle error responses.
+     *
+     * @param $method
+     * @param $path
+     * @param array $options
+     * @param bool $withAuthorization
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function raw($method, $path, $options, $withAuthorization = true)
+    {
+        $options['headers'] = $this->defaultHeaders;
+
+        if ($withAuthorization) {
+            $options['headers']['X-DS-Gladiator-API-Key'] = config('services.gladiator.key');
+        }
+
+        return parent::raw($method, $path, $options, $withAuthorization);
     }
 }
