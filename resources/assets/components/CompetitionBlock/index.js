@@ -20,8 +20,7 @@ const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition,
     hasPendingJoin, showConfirmation, campaignId } = props;
 
-  if (! showConfirmation && hasJoinedCompetition) return null;
-
+  // if (! showConfirmation && hasJoinedCompetition) return null;
   const button = showConfirmation ? null : <button disabled={hasPendingJoin} className={classnames('button', { 'is-loading': hasPendingJoin })} onClick={() => joinCompetition(campaignId)}>join competition</button>;
 
   return (

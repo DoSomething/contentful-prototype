@@ -1,7 +1,9 @@
+import { Phoenix } from '@dosomething/gateway';
 import {
   JOINED_COMPETITION,
   COMPETITION_FOUND,
   COMPETITION_PENDING,
+  addNotification
 } from '../actions';
 
 /**
@@ -14,11 +16,22 @@ export function joinCompetition(campaignId) {
   return (dispatch, getState) => {
     dispatch({ type: COMPETITION_PENDING });
 
+    (new Phoenix()).post('next/contests/users', {
+      legacyCampaignId: campaignId,
+      legacyCampaignRunId: getState().campaign.legacyCampaignRunId,
+    }).then((response) => {
+      if (! response) throw new Error('competition signup failed');
+      console.log(response);
+    }).catch((err) => {
+      console.error(err);
+      dispatch(addNotification('error'));
+    });
+
     // @TODO: Obviously, replace this with an api call.
-    setTimeout(() => {
-      const userId = getState().user.id;
-      dispatch({ type: JOINED_COMPETITION, campaignId, userId });
-    }, 2000);
+    // setTimeout(() => {
+    //   const userId = getState().user.id;
+    //   dispatch({ type: JOINED_COMPETITION, campaignId, userId });
+    // }, 2000);
   };
 }
 

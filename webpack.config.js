@@ -17,7 +17,7 @@ module.exports = configure({
 
   module: {
     loaders: [
-      { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/ }
+      // { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', exclude: /node_modules/ }
     ],
   },
 

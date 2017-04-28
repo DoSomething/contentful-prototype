@@ -172,12 +172,7 @@ const ActionPage = (props) => {
 };
 
 ActionPage.propTypes = {
-  steps: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-    background: PropTypes.string.isRequired,
-    photos: PropTypes.array,
-  })),
+  steps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   hasPendingSignup: PropTypes.bool.isRequired,

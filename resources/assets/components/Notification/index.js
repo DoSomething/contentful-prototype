@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { makeHash } from '../../helpers';
 
 import './notification.scss';
 
@@ -28,7 +27,7 @@ const NotificationList = ({ notifications, removeNotification }) => (
   <div className="notification-list">
     {notifications.map(({ message, style }, index) => (
       <Notification
-        key={makeHash(message)}
+        key={index}
         message={message}
         style={style}
         remove={() => removeNotification(index)}
