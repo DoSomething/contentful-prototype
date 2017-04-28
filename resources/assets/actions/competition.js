@@ -24,7 +24,6 @@ export function joinCompetition(campaignId, campaignRunId) {
       if (! response) throw new Error('competition signup failed');
       if (response.data) dispatch({ type: JOINED_COMPETITION, campaignId, userId });
     }).catch((err) => {
-      console.error(err);
       dispatch(addNotification('error'));
     });
   };
@@ -42,7 +41,6 @@ export function checkForCompetition(campaignId, campaignRunId) {
       if (! response) throw new Error('competition get failed');
       if (response.data) dispatch({ type: COMPETITION_FOUND, campaignId, userId });
     }).catch((err) => {
-      console.error(err);
       dispatch(addNotification('error'));
     });
   };
