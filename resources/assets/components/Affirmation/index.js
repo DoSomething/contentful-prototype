@@ -12,7 +12,7 @@ const Affirmation = ({ content, shouldShowAffirmation, hideAffirmation }) => {
 
   return (
     <FlexCell width="full">
-      <div className="affirmation -inverted">
+      <div className="affirmation inverted">
         <Wrapper width="feed">
           <div className="affirmation__section affirmation__section-heading">
             <Highlight>{ content.header }</Highlight>

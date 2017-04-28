@@ -71,7 +71,7 @@ class Campaign extends Entity implements JsonSerializable
             'dashboard' => $this->dashboard,
             'affirmation' => [
                 'header' => $this->affirmation->header,
-                'photo' => get_image_url($this->affirmation->photo),
+                'photo' => get_image_url($this->affirmation->photo, 'square'),
                 'quote' => $this->affirmation->quote,
                 'author' => $this->affirmation->author,
                 'callToActionHeader' => $this->affirmation->callToActionHeader,
