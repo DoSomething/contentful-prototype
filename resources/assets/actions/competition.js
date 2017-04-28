@@ -23,7 +23,7 @@ export function joinCompetition(campaignId, campaignRunId) {
     }).then((response) => {
       if (! response) throw new Error('competition signup failed');
       if (response.data) dispatch({ type: JOINED_COMPETITION, campaignId, userId });
-    }).catch((err) => {
+    }).catch(() => {
       dispatch(addNotification('error'));
     });
   };
@@ -34,13 +34,13 @@ export function checkForCompetition(campaignId, campaignRunId) {
   return (dispatch, getState) => {
     const userId = getState().user.id;
 
-    (new Phoenix()).post('next/contests/users', {
-      legacyCampaignId: campaignId,
-      legacyCampaignRunId: campaignRunId,
+    (new Phoenix()).get('next/contests/users', {
+      campaign_id: campaignId,
+      campaign_run_id: campaignRunId,
     }).then((response) => {
       if (! response) throw new Error('competition get failed');
       if (response.data) dispatch({ type: COMPETITION_FOUND, campaignId, userId });
-    }).catch((err) => {
+    }).catch(() => {
       dispatch(addNotification('error'));
     });
   };
