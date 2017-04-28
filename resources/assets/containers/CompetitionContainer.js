@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   joinCompetition,
-  checkForCompetition
+  checkForCompetition,
 };
 
 // Export the container component.

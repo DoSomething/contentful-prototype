@@ -3,7 +3,7 @@ import {
   JOINED_COMPETITION,
   COMPETITION_FOUND,
   COMPETITION_PENDING,
-  addNotification
+  addNotification,
 } from '../actions';
 
 /**

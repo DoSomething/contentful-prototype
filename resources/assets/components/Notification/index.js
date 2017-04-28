@@ -27,7 +27,7 @@ const NotificationList = ({ notifications, removeNotification }) => (
   <div className="notification-list">
     {notifications.map(({ message, style }, index) => (
       <Notification
-        key={index}
+        key={index} // eslint-disable-line react/no-array-index-key
         message={message}
         style={style}
         remove={() => removeNotification(index)}

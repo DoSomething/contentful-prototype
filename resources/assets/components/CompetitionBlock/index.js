@@ -28,7 +28,7 @@ const CompetitionBlock = (props) => {
 
   // If we haven't joined a competition yet or clicked the join button,
   // check for existing competition join.
-  if (! showConfirmation && !hasJoinedCompetition) {
+  if (! showConfirmation && ! hasJoinedCompetition) {
     checkForCompetition(campaignId, campaignRunId);
   }
 
@@ -70,10 +70,12 @@ CompetitionBlock.propTypes = {
     avatar: PropTypes.string.isRequired,
   }).isRequired,
   joinCompetition: PropTypes.func.isRequired,
+  checkForCompetition: PropTypes.func.isRequired,
   hasJoinedCompetition: PropTypes.bool.isRequired,
   hasPendingJoin: PropTypes.bool.isRequired,
   showConfirmation: PropTypes.bool.isRequired,
   campaignId: PropTypes.string.isRequired,
+  campaignRunId: PropTypes.string.isRequired,
 };
 
 export default CompetitionBlock;
