@@ -61,7 +61,7 @@ class UserContestController extends Controller
             'legacyCampaignId' => 'required',
             'legacyCampaignRunId' => 'required',
         ]);
-        dd($request->input('legacyCampaignId', 'legacyCampaignRunId'));
+
         return $this->gladiator->storeUserInContest(
             auth()->id(),
             $request->input('legacyCampaignId'),
