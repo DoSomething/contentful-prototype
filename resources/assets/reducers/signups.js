@@ -33,7 +33,7 @@ const signupReducer = (state = {}, action) => {
         isPending: false,
         thisSession: true,
         thisCampaign: true,
-        showAffirmation: true,
+        shouldShowAffirmation: true,
         total: state.total + 1,
       };
 
@@ -59,7 +59,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: false };
 
     case HIDE_AFFIRMATION:
-      return { ...state, showAffirmation: false };
+      return { ...state, shouldShowAffirmation: false };
 
     case SET_TOTAL_SIGNUPS:
       return { ...state, total: action.total };

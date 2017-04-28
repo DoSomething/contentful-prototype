@@ -69,6 +69,14 @@ class Campaign extends Entity implements JsonSerializable
             'activityFeed' => $this->activity_feed,
             'actionSteps' => $actionSteps,
             'dashboard' => $this->dashboard,
+            'affirmation' => [
+                'header' => $this->affirmation->header,
+                'photo' => get_image_url($this->affirmation->photo),
+                'quote' => $this->affirmation->quote,
+                'author' => $this->affirmation->author,
+                'callToActionHeader' => $this->affirmation->callToActionHeader,
+                'callToActionDescription'=> $this->affirmation->callToActionDescription,
+            ],
             'pages' => $this->pages,
             'additionalContent' => $this->additionalContent,
         ];
