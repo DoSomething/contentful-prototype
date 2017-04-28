@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import ReportbackItem from '../components/ReportbackItem';
 import {
   toggleReactionOn,
@@ -20,6 +21,7 @@ const mapStateToProps = (state, props) => {
     id: reportbackItem.id,
     url: reportbackItem.media.uri,
     quantity: reportback.quantity,
+    noun: get(state.campaign.additionalContent, 'noun.plural'),
     firstName: reportback.user.first_name,
     reaction: reportbackItem.reaction,
     caption: reportbackItem.caption,

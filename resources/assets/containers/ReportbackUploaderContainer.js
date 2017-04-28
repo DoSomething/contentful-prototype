@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import ReportbackUploader from '../components/ReportbackUploader';
 import { submitReportback, addToSubmissionsList, fetchUserReportbacks } from '../actions';
 
@@ -9,6 +10,7 @@ const mapStateToProps = state => ({
   campaignId: state.campaign.id,
   legacyCampaignId: state.campaign.legacyCampaignId,
   submissions: state.submissions,
+  noun: get(state.campaign.additionalContent, 'noun.plural'),
   userId: state.user.id,
 });
 
