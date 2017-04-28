@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
   campaignId: state.campaign.id,
   legacyCampaignId: state.campaign.legacyCampaignId,
   submissions: state.submissions,
-  noun: get(state.campaign.additionalContent, 'noun.plural'),
+  noun: get(state.campaign.additionalContent, 'noun'),
   userId: state.user.id,
 });
 

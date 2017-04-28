@@ -113,7 +113,7 @@ class ReportbackUploader extends React.Component {
               </div>
 
               <div>
-                <label className="field-label" htmlFor="impact">How many {this.props.noun} are in this photo?</label>
+                <label className="field-label" htmlFor="impact">How many {this.props.noun.plural} are in this photo?</label>
                 <input className="text-field" id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
               </div>
             </div>
@@ -146,11 +146,17 @@ ReportbackUploader.propTypes = {
   }).isRequired,
   submitReportback: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
-  noun: PropTypes.string,
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
 };
 
 ReportbackUploader.defaultProps = {
-  noun: 'items',
+  noun: {
+    singular: 'item',
+    plural: 'items',
+  },
 };
 
 export default ReportbackUploader;

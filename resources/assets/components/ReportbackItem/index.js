@@ -3,6 +3,7 @@ import React from 'react';
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
 import { mergeMetadata } from '../../helpers/analytics';
+import { pluralize } from '../../helpers';
 import './reportback-item.scss';
 
 function getMetadataFromProps(props) {
@@ -45,7 +46,7 @@ const ReportbackItem = (props) => {
     <Figure className="reportback-item" image={url} alt={`${firstName}'s photo`}>
       <BaseFigure media={reactionElement} alignment="right" className="padded">
         {firstName ? <h4>{firstName}</h4> : null }
-        {quantity ? <p className="footnote">{quantity} {noun}</p> : null }
+        {quantity ? <p className="footnote">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
         {caption ? <p>{caption}</p> : null }
       </BaseFigure>
     </Figure>
@@ -57,7 +58,10 @@ ReportbackItem.propTypes = {
   caption: PropTypes.string,
   firstName: PropTypes.string,
   isFetching: PropTypes.bool,
-  noun: PropTypes.string,
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
   quantity: PropTypes.number,
   reaction: PropTypes.shape({
     id: PropTypes.string,
@@ -79,7 +83,10 @@ ReportbackItem.defaultProps = {
   caption: undefined,
   firstName: undefined,
   isFetching: false,
-  noun: 'items',
+  noun: {
+    singular: 'item',
+    plural: 'items',
+  },
   quantity: undefined,
   reaction: null,
   url: undefined,

@@ -21,7 +21,7 @@ const mapStateToProps = (state, props) => {
     id: reportbackItem.id,
     url: reportbackItem.media.uri,
     quantity: reportback.quantity,
-    noun: get(state.campaign.additionalContent, 'noun.plural'),
+    noun: get(state.campaign.additionalContent, 'noun'),
     firstName: reportback.user.first_name,
     reaction: reportbackItem.reaction,
     caption: reportbackItem.caption,
