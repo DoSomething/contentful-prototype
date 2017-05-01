@@ -13,16 +13,11 @@ import {
  * Competitions reducer:
  */
 const competitions = (state = {}, action) => {
-  let joinedCompetitions = [];
+  const key = `${action.userId}-${action.campaignId}-${action.campaignRunId}`;
+  const joinedCompetitions = [...(state.data || []), action.campaignId];
 
   switch (action.type) {
     case JOINED_COMPETITION:
-      joinedCompetitions = [
-        ...state.data,
-        action.campaignId,
-      ];
-
-      const key = `${action.userId}-${action.campaignId}-${action.campaignRunId}`;
       storageSet(key, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
       return {
@@ -34,12 +29,6 @@ const competitions = (state = {}, action) => {
       };
 
     case COMPETITION_FOUND:
-      joinedCompetitions = [
-        ...state.data,
-        action.campaignId,
-      ];
-
-      const key = `${action.userId}-${action.campaignId}-${action.campaignRunId}`;
       storageSet(key, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
       return {
