@@ -19,7 +19,7 @@ You can keep working on the campaign for now. I'm so excited to have you onboard
 const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition,
     hasPendingJoin, showConfirmation, campaignId, campaignRunId, checkForCompetition } = props;
-  console.log(showConfirmation, hasJoinedCompetition);
+
   // If we already joined the competition & saw the confirmation message,
   // display nothing.
   if (! showConfirmation && hasJoinedCompetition) {
@@ -53,7 +53,7 @@ const CompetitionBlock = (props) => {
         </FlexCell>
         <FlexCell width="one-third">
           <div className="competition-block__photo">
-            <LazyImage alt="competition" src={photo} />
+            { photo ? <LazyImage alt="competition" src={photo} /> : null }
           </div>
         </FlexCell>
       </Flex>
@@ -63,7 +63,7 @@ const CompetitionBlock = (props) => {
 
 CompetitionBlock.propTypes = {
   content: PropTypes.string.isRequired,
-  photo: PropTypes.string.isRequired,
+  photo: PropTypes.string,
   byline: PropTypes.shape({
     author: PropTypes.string.isRequired,
     jobTitle: PropTypes.string.isRequired,
@@ -76,6 +76,10 @@ CompetitionBlock.propTypes = {
   showConfirmation: PropTypes.bool.isRequired,
   campaignId: PropTypes.string.isRequired,
   campaignRunId: PropTypes.string.isRequired,
+};
+
+CompetitionBlock.defaultProps = {
+  photo: null,
 };
 
 export default CompetitionBlock;

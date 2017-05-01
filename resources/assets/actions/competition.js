@@ -39,7 +39,11 @@ export function checkForCompetition(campaignId, campaignRunId) {
       campaign_run_id: campaignRunId,
     }).then((response) => {
       if (! response) throw new Error('competition get failed');
-      if (response.data) dispatch({ type: COMPETITION_FOUND, campaignId, userId });
+
+      const joinedCompetition = response.data &&
+        (response.data.waitingRoom || response.data.competition);
+
+      if (joinedCompetition) dispatch({ type: COMPETITION_FOUND, campaignId, userId });
     }).catch(() => {
       dispatch(addNotification('error'));
     });
