@@ -22,7 +22,8 @@ const competitions = (state = {}, action) => {
         action.campaignId,
       ];
 
-      storageSet(action.userId, COMPETITION_STORAGE_KEY, joinedCompetitions);
+      const key = `${action.userId}-${action.campaignId}-${action.campaignRunId}`;
+      storageSet(key, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
       return {
         ...state,
@@ -38,7 +39,8 @@ const competitions = (state = {}, action) => {
         action.campaignId,
       ];
 
-      storageSet(action.userId, COMPETITION_STORAGE_KEY, joinedCompetitions);
+      const key = `${action.userId}-${action.campaignId}-${action.campaignRunId}`;
+      storageSet(key, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
       return {
         ...state,
