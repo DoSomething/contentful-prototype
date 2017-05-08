@@ -42,7 +42,7 @@ const CompetitionBlock = (props) => {
 
   return (
     <Block>
-      <BlockTitle>join a competition</BlockTitle>
+      <BlockTitle>Go above beyond!</BlockTitle>
       <Flex className="competition-block">
         <FlexCell width="two-thirds">
           <div className={classnames('competition-block__content', { 'is-confirmation': showConfirmation })}>
