@@ -6,6 +6,10 @@
   @include media($medium) {
     flex-direction: row;
   }
+  
+  > .flex__cell {
+    flex: 0 0 auto;  
+  }
 
   .competition-block__content {
     &.is-confirmation > .markdown {
