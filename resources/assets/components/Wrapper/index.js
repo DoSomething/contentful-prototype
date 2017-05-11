@@ -11,7 +11,7 @@ const Wrapper = ({ width = '', children }) => (
 );
 
 Wrapper.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   width: PropTypes.oneOf(['default', 'feed']),
 };
 

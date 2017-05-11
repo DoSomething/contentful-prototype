@@ -1,7 +1,6 @@
 /* global window */
 
-import { useRouterHistory } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import createHistory from 'history/createBrowserHistory';
 
 let history = null;
 
@@ -21,9 +20,7 @@ export function get() {
 export function init() {
   // Set the application "base name" to /us/campaigns/:slug so all pages are relative to that.
   const basename = window.location.pathname.split('/').slice(0, 4).join('/');
-
-  const routerHistory = useRouterHistory(createBrowserHistory);
-  history = routerHistory({ basename });
+  history = createHistory({ basename });
 
   return history;
 }
