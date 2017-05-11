@@ -16,6 +16,7 @@ import 'whatwg-fetch';
 
 import React from 'react';
 import ReactDom from 'react-dom';
+import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { ready } from './helpers';
 import { configureStore } from './store';
@@ -34,10 +35,11 @@ import App from './components/App';
 // Things
 import { init as navigationInit } from './helpers/navigation';
 import { init as historyInit } from './history';
+import { observerMiddleware } from './middleware/analytics';
 
 // Configure store & history.
 const history = historyInit();
-const middleware = [routerMiddleware(history)];
+const middleware = [thunk, routerMiddleware(history), observerMiddleware];
 const store = configureStore({ ...reducers, routing: routerReducer }, middleware, window.STATE);
 
 ready(() => {

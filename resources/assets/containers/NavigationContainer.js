@@ -10,8 +10,8 @@ const mapStateToProps = state => ({
 
 const NavigationContainer = ({ pages, pathname }) => {
   // Create links for additional "content" pages on this campaign in Contentful.
-  const additionalPages = pages.map(page => {
-    const path = `/pages/${page.fields.slug}`
+  const additionalPages = pages.map((page) => {
+    const path = `/pages/${page.fields.slug}`;
     return (
       <NavigationLink key={page.id} to={path} active={path === pathname}>
         {page.fields.title}
@@ -21,8 +21,8 @@ const NavigationContainer = ({ pages, pathname }) => {
 
   return (
     <Navigation>
-      <NavigationLink to="/" active={'/' === pathname}>Community</NavigationLink>
-      <NavigationLink to="/action" active={'/action' === pathname}>Action</NavigationLink>
+      <NavigationLink to="/" active={pathname === '/'}>Community</NavigationLink>
+      <NavigationLink to="/action" active={pathname === '/action'}>Action</NavigationLink>
       { additionalPages }
     </Navigation>
   );
@@ -30,6 +30,7 @@ const NavigationContainer = ({ pages, pathname }) => {
 
 NavigationContainer.propTypes = {
   pages: PropTypes.array,  // eslint-disable-line react/forbid-prop-types
+  pathname: PropTypes.string.isRequired,
 };
 
 NavigationContainer.defaultProps = {

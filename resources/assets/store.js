@@ -1,8 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
-import { start, observerMiddleware } from './middleware/analytics';
+import { start } from './middleware/analytics';
 import { loadStorage } from './helpers/storage';
 
 /**
@@ -70,9 +69,7 @@ const initialState = {
  * @param preloadedState
  * @returns {Store<S>}
  */
-export function configureStore(reducers, initialMiddleware, preloadedState = {}) {
-  const middleware = [thunk, observerMiddleware, ...initialMiddleware];
-
+export function configureStore(reducers, middleware, preloadedState = {}) {
   // Log actions to the console in development & track state changes.
   if (process.env.NODE_ENV !== 'production') {
     const createLogger = require('redux-logger'); // eslint-disable-line global-require
