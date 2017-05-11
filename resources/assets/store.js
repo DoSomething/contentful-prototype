@@ -70,8 +70,8 @@ const initialState = {
  * @param preloadedState
  * @returns {Store<S>}
  */
-export function configureStore(reducers, preloadedState = {}) {
-  const middleware = [thunk, observerMiddleware];
+export function configureStore(reducers, initialMiddleware, preloadedState = {}) {
+  const middleware = [thunk, observerMiddleware, ...initialMiddleware];
 
   // Log actions to the console in development & track state changes.
   if (process.env.NODE_ENV !== 'production') {

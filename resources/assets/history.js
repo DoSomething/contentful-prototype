@@ -2,7 +2,6 @@
 
 import { useRouterHistory } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import { syncHistoryWithStore } from 'react-router-redux';
 
 let history = null;
 
@@ -17,15 +16,14 @@ export function get() {
 /**
  *  Initialize the history.
  *
- * @param  {Object} store
  * @return {History}
  */
-export function init(store) {
+export function init() {
   // Set the application "base name" to /us/campaigns/:slug so all pages are relative to that.
   const basename = window.location.pathname.split('/').slice(0, 4).join('/');
 
   const routerHistory = useRouterHistory(createBrowserHistory);
-  history = syncHistoryWithStore(routerHistory({ basename }), store);
+  history = routerHistory({ basename });
 
   return history;
 }
