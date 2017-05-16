@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   pathname: state.routing.location.pathname,
 });
 
-const NavigationContainer = ({ pages, pathname }) => {
+const NavigationContainer = ({ pages }) => {
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
     const path = `/pages/${page.fields.slug}`;
@@ -26,7 +26,6 @@ const NavigationContainer = ({ pages, pathname }) => {
 
 NavigationContainer.propTypes = {
   pages: PropTypes.array,  // eslint-disable-line react/forbid-prop-types
-  pathname: PropTypes.string.isRequired,
 };
 
 NavigationContainer.defaultProps = {
