@@ -24,6 +24,11 @@ export function getSession() {
  * @return {Object}        Object to send
  */
 export function transformState(action, state) {
+  const experiments = {
+    tests: Object.keys(state.experiments),
+    variants: Object.keys(state.experiments).reduce((acc, key) => [...acc, key], []),
+  };
+
   const transformation = {
     feed: {
       page: state.blocks.offset,
@@ -40,6 +45,7 @@ export function transformState(action, state) {
       session: getSession(),
       ...state.user,
     },
+    experiments,
     action,
   };
 
