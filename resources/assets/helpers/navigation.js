@@ -22,6 +22,9 @@ export function getRouteName(route) {
   if (! match) return 'undefined route';
 
   // Find the display name for the matched path value.
+  // This is a bit crazy because we need to find the index
+  // in the `paths` object and the `pathValues` array is in
+  // a different order.
   let name = Object.keys(paths)[Object.values(paths).findIndex(path => path === match)];
   if (name === 'pages') {
     // Remove /pages/ from /pages/faq
