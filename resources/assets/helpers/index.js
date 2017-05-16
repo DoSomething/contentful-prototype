@@ -304,15 +304,15 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
   const breakpoints = [
     {
       name: 'small',
-      test: width => width <= 759,
+      test: width => (width <= 759),
     },
     {
       name: 'medium',
-      test: width => width >= 760 && width <= 959,
+      test: width => (width >= 760 && width <= 959),
     },
     {
       name: 'large',
-      test: width => width >= 960,
+      test: width => (width >= 960),
     },
   ];
 

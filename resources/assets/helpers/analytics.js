@@ -46,7 +46,7 @@ export function transformState(action, state) {
       ...state.user,
     },
     experiments,
-    _browser: { // Just in case we ever need a store item named "browser", prefixing with _
+    browser: { // Just in case we ever need a store item named "browser", prefixing with _
       size: getFormattedScreenSize(),
     },
     action,
