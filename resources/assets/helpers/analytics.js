@@ -24,10 +24,9 @@ export function getSession() {
  * @return {Object}        Object to send
  */
 export function transformState(action, state) {
-  const experimentKeys = state.experiments ? Object.keys(state.experiments) : [];
   const experiments = {
-    tests: experimentKeys,
-    variants: experimentKeys.reduce((acc, key) => [...acc, state.experiments[key]], []),
+    tests: state.experiments ? Object.keys(state.experiments) : [],
+    variants: state.experiments ? Object.values(state.experiments) : [],
   };
 
   const transformation = {
