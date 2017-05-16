@@ -292,3 +292,29 @@ export function getDaysBetween(dateOne, dateTwo) {
 
   return Math.round(Math.abs((dateOne.getTime() - dateTwo.getTime()) / oneDay));
 }
+
+/**
+ * Get a formatted name (small, medium, large)
+ * of the current display size.
+ *
+ * @param  {int} width - Defaults to the screen width
+ * @return {String}
+ */
+export function getFormattedScreenSize(screenWidth = window.innerWidth) {
+  const breakpoints = [
+    {
+      name: 'small',
+      test: width => width <= 759,
+    },
+    {
+      name: 'medium',
+      test: width => width >= 760 && width <= 959,
+    },
+    {
+      name: 'large',
+      test: width => width >= 960,
+    },
+  ];
+
+  return breakpoints.find(breakpoint => breakpoint.test(screenWidth)).name;
+}
