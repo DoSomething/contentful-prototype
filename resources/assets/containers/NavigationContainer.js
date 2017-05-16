@@ -12,17 +12,13 @@ const NavigationContainer = ({ pages, pathname }) => {
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
     const path = `/pages/${page.fields.slug}`;
-    return (
-      <NavigationLink key={page.id} to={path} active={path === pathname}>
-        {page.fields.title}
-      </NavigationLink>
-    );
+    return <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>;
   });
 
   return (
     <Navigation>
-      <NavigationLink to="/" active={pathname === '/'}>Community</NavigationLink>
-      <NavigationLink to="/action" active={pathname === '/action'}>Action</NavigationLink>
+      <NavigationLink to="/">Community</NavigationLink>
+      <NavigationLink to="/action">Action</NavigationLink>
       { additionalPages }
     </Navigation>
   );
