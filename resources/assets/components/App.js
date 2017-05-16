@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { initializeStore } from '../store';
 
@@ -15,10 +15,12 @@ const App = ({ store, history }) => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ChromeContainer onEnter={initializeStore(store)}>
-        <Route path="/" exact component={FeedContainer} />
-        <Route path="/action" component={ActionPageContainer} />
-        <Route path="/pages/:page" component={ContentPageContainer} />
-        <Route path="*" component={NotFound} />
+        <Switch>
+          <Route path="/" exact component={FeedContainer} />
+          <Route path="/action" component={ActionPageContainer} />
+          <Route path="/pages/:page" component={ContentPageContainer} />
+          <Route component={NotFound} />
+        </Switch>
       </ChromeContainer>
     </ConnectedRouter>
   </Provider>
