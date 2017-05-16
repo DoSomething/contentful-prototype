@@ -17,7 +17,7 @@ const NavigationContainer = ({ pages }) => {
 
   return (
     <Navigation>
-      <NavigationLink to="/">Community</NavigationLink>
+      <NavigationLink to="/" exact>Community</NavigationLink>
       <NavigationLink to="/action">Action</NavigationLink>
       { additionalPages }
     </Navigation>
