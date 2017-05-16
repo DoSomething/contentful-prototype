@@ -1,5 +1,38 @@
 /* global document */
 
+export const paths = {
+  community: '/',
+  action: '/action',
+  pages: '/pages/',
+};
+
+/**
+ * Get the display name of the given route,
+ *
+ * @param  {String} route
+ * @return {String}
+ */
+export function getRouteName(route) {
+  // When doing path comparisons, we want the least specific
+  // (eg: '/') paths at the end of the array.
+  const pathValues = Object.values(paths).sort((a, b) => b.length - a.length);
+
+  // Check if /pages/faq starts with /pages/.
+  const match = pathValues.find(path => route.startsWith(path));
+  if (! match) return 'undefined route';
+
+  // Find the path name for the matched path value.
+  // We reversed the pathValues array so we can't do this by index.
+  let name = Object.keys(paths)[Object.values(paths).findIndex(path => path === match)];
+  if (name === 'pages') {
+    // Remove /pages/ from /pages/faq
+    // Not the most fullproof solution in the world but should suffice.
+    name = route.replace(match, '');
+  }
+
+  return name;
+}
+
 /**
  * Toggle the specified class on the given target element
  * when the button element is clicked or touched.

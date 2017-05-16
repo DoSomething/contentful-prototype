@@ -1,7 +1,8 @@
-/* global document, location, localStorage */
+/* global document, localStorage */
 
 import { analyze } from '@dosomething/analytics';
 import { generateUniqueId, isTimestampValid, getFormattedScreenSize } from '../helpers';
+import { getRouteName } from '../helpers/navigation';
 
 const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
@@ -29,11 +30,6 @@ export function transformState(action, state) {
       page: state.blocks.offset,
     },
     campaign: state.campaign,
-    page: {
-      host: location.hostname,
-      path: location.pathname,
-      referer: document.referrer,
-    },
     signups: state.signups,
     submissions: state.submissions,
     user: {
@@ -45,9 +41,11 @@ export function transformState(action, state) {
       variants: state.experiments ? Object.values(state.experiments) : [],
     },
     routing: {
+      referer: document.referrer,
       base: state.routing.locationBeforeTransitions.basename,
       path: state.routing.locationBeforeTransitions.pathname,
-      // TODO: Might be worth pulling in locationBeforeTransitions.query
+      page: getRouteName(state.routing.locationBeforeTransitions.pathname),
+      // TODO: Might be worth pulling in locationBeforeTransitions.query & getting an array of query items...
     },
     browser: {
       size: getFormattedScreenSize(),
