@@ -24,11 +24,6 @@ export function getSession() {
  * @return {Object}        Object to send
  */
 export function transformState(action, state) {
-  const experiments = {
-    tests: state.experiments ? Object.keys(state.experiments) : [],
-    variants: state.experiments ? Object.values(state.experiments) : [],
-  };
-
   const transformation = {
     feed: {
       page: state.blocks.offset,
@@ -45,7 +40,15 @@ export function transformState(action, state) {
       session: getSession(),
       ...state.user,
     },
-    experiments,
+    experiments: {
+      tests: state.experiments ? Object.keys(state.experiments) : [],
+      variants: state.experiments ? Object.values(state.experiments) : [],
+    },
+    routing: {
+      base: state.routing.locationBeforeTransitions.basename,
+      path: state.routing.locationBeforeTransitions.pathname,
+      // TODO: Might be worth pulling in locationBeforeTransitions.query
+    },
     browser: {
       size: getFormattedScreenSize(),
     },
