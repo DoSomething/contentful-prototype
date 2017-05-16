@@ -1,7 +1,7 @@
 /* global document, location, localStorage */
 
 import { analyze } from '@dosomething/analytics';
-import { generateUniqueId, isTimestampValid } from '../helpers';
+import { generateUniqueId, isTimestampValid, getFormattedScreenSize } from '../helpers';
 
 const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
@@ -24,11 +24,6 @@ export function getSession() {
  * @return {Object}        Object to send
  */
 export function transformState(action, state) {
-  const experiments = {
-    tests: state.experiments ? Object.keys(state.experiments) : [],
-    variants: state.experiments ? Object.values(state.experiments) : [],
-  };
-
   const transformation = {
     feed: {
       page: state.blocks.offset,
@@ -45,7 +40,13 @@ export function transformState(action, state) {
       session: getSession(),
       ...state.user,
     },
-    experiments,
+    experiments: {
+      tests: state.experiments ? Object.keys(state.experiments) : [],
+      variants: state.experiments ? Object.values(state.experiments) : [],
+    },
+    _browser: { // Just in case we ever need a store item named "browser", prefixing with _
+      size: getFormattedScreenSize(),
+    },
     action,
   };
 
