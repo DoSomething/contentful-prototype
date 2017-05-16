@@ -27,7 +27,7 @@ export function transformState(action, state) {
   const experimentKeys = state.experiments ? Object.keys(state.experiments) : [];
   const experiments = {
     tests: experimentKeys,
-    variants: experimentKeys.reduce((acc, key) => [...acc, key], []),
+    variants: experimentKeys.reduce((acc, key) => [...acc, state.experiments[key]], []),
   };
 
   const transformation = {
