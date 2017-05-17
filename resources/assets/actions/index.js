@@ -62,9 +62,11 @@ export const COMPLETED_EVENT = 'COMPLETED_EVENT';
 export * from './event';
 
 // Analytics Action Names & Creators
+export const APPLICATION_INIT = 'APPLICATION_INIT';
 export * from './analytics';
 
 export const ANALYTICS_ACTIONS = [
+  APPLICATION_INIT,
   REQUESTED_REPORTBACKS,
   REACTION_CHANGED,
   REACTION_COMPLETE,

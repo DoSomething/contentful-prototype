@@ -1,6 +1,11 @@
 /* eslint import/prefer-default-export: "off" */
 import { analyze } from '@dosomething/analytics';
+import { APPLICATION_INIT } from './';
 import { transformState } from '../helpers/analytics';
+
+export function appInit() {
+  return { type: APPLICATION_INIT };
+}
 
 // Action: Track a custom event
 export function trackEvent(collection, metadata) {

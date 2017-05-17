@@ -43,7 +43,7 @@ export const observerMiddleware = store => next => (action) => {
  * @param  {Object} store   Instance of a React Redux store
  * @return {Function}
  */
-export function start(store) {
+export function start() {
   // Setup session
   createDeviceId();
 
@@ -63,7 +63,4 @@ export function start(store) {
     pageview(path);
   });
   pageview(window.location.pathname);
-
-  // Track state changes for Keen.io
-  stateChanged({ type: 'APPLICATION_INIT' }, store.getState());
 }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
@@ -10,6 +11,7 @@ import NotificationContainer from '../containers/NotificationContainer';
 
 const Chrome = props => (
   <div>
+    <AppInit />
     <NotificationContainer />
     <LedeBanner
       isAffiliated={props.isAffiliated}
