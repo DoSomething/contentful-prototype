@@ -7,3 +7,9 @@
 .campaign-update__content.-tweet p {
   font-size: $font-large;
 }
+
+.campaign-update__content p img {
+  float: left;
+  margin-right: $base-spacing/2;
+  margin-bottom: $base-spacing;
+}
