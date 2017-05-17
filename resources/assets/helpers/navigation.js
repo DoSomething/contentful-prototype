@@ -1,5 +1,7 @@
 /* global document */
 
+import { findKey } from 'lodash';
+
 export const paths = {
   community: '/',
   action: '/action',
@@ -25,7 +27,7 @@ export function getRouteName(route) {
   // This is a bit crazy because we need to find the index
   // in the `paths` object and the `pathValues` array is in
   // a different order.
-  let name = Object.keys(paths)[Object.values(paths).findIndex(path => path === match)];
+  let name = findKey(paths, path => path === match);
   if (name === 'pages') {
     // Remove /pages/ from /pages/faq
     // Not the most fullproof solution in the world but should suffice.
