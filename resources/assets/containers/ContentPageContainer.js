@@ -7,7 +7,7 @@ import ContentPage from '../components/ContentPage';
  */
 const mapStateToProps = (state, ownProps) => ({
   pages: state.campaign.pages,
-  route: ownProps.params,
+  route: ownProps.match.params,
   noun: get(state.campaign.additionalContent, 'noun'),
   verb: get(state.campaign.additionalContent, 'verb'),
   tagline: get(state.campaign.additionalContent, 'tagline'),

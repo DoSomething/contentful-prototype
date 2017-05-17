@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import Chrome from '../components/Chrome';
 import { clickedSignUp } from '../actions';
 
@@ -30,4 +31,4 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(Chrome);
+export default withRouter(connect(mapStateToProps, actionCreators)(Chrome));
