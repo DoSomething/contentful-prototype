@@ -1,7 +1,8 @@
-/* global document, location, localStorage */
+/* global document, localStorage */
 
 import { analyze } from '@dosomething/analytics';
 import { generateUniqueId, isTimestampValid, getFormattedScreenSize } from '../helpers';
+import { getRouteName } from '../helpers/navigation';
 
 const DEVICE_ID = 'DEVICE_ID';
 const SESSION_ID = 'SESSION_ID';
@@ -24,21 +25,11 @@ export function getSession() {
  * @return {Object}        Object to send
  */
 export function transformState(action, state) {
-  const experiments = {
-    tests: state.experiments ? Object.keys(state.experiments) : [],
-    variants: state.experiments ? Object.values(state.experiments) : [],
-  };
-
   const transformation = {
     feed: {
       page: state.blocks.offset,
     },
     campaign: state.campaign,
-    page: {
-      host: location.hostname,
-      path: location.pathname,
-      referer: document.referrer,
-    },
     signups: state.signups,
     submissions: state.submissions,
     user: {

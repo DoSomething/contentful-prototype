@@ -1,0 +1,10 @@
+{
+  "competitions_prompt_style": {
+    "a": "default_block",
+    "b": "colorful_block"
+  },
+  "lede_banner_number_of_buttons": {
+    "a": "one_button",
+    "b": "two_buttons"
+  }
+}

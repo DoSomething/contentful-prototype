@@ -59,6 +59,11 @@ return [
             'root' => public_path('next/uploads'),
         ],
 
+        'resources' => [
+            'driver' => 'local',
+            'root' => resource_path(),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

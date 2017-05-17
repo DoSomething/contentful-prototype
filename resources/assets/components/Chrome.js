@@ -56,7 +56,7 @@ Chrome.propTypes = {
     timezone: PropTypes.string,
     timezone_type: PropTypes.number,
   }).isRequired,
-  children: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  children: PropTypes.node.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string,
     role: PropTypes.string,

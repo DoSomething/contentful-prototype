@@ -24,7 +24,7 @@ class SixpackServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(Sixpack::class, function ($app) {
+        $this->app->singleton(Sixpack::class, function ($app) {
             return new Sixpack([
                 'baseUrl' => config('services.sixpack.url'),
                 'cookiePrefix' => config('services.sixpack.prefix'),

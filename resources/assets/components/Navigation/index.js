@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import classnames from 'classnames';
 import FeedEnclosure from '../FeedEnclosure';
-
 import './navigation.scss';
 
 export const Navigation = ({ children }) => (
@@ -18,5 +18,15 @@ Navigation.propTypes = {
 };
 
 export const NavigationLink = props => (
-  <Link {...props} className="nav-link" activeClassName="is-active" />
+  <NavLink {...props} className={classnames('nav-link', props.className)} activeClassName="is-active">{ props.children }</NavLink>
 );
+
+NavigationLink.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+NavigationLink.defaultProps = {
+  className: null,
+  active: false,
+};
