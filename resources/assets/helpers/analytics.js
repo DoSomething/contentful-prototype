@@ -45,7 +45,17 @@ export function transformState(action, state) {
       session: getSession(),
       ...state.user,
     },
-    experiments,
+    experiments: {
+      tests: state.experiments ? Object.keys(state.experiments) : [],
+      alternatives: state.experiments ? Object.values(state.experiments) : [],
+    },
+    routing: {
+      referer: document.referrer,
+      path: state.routing.location ? state.routing.location.pathname : '',
+      page: state.routing.location ? getRouteName(state.routing.location.pathname) : '',
+      // TODO: Might be worth pulling in locationBeforeTransitions.query
+      // & getting an array of query items...
+    },
     browser: {
       size: getFormattedScreenSize(),
     },

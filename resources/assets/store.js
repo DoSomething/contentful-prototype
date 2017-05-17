@@ -100,26 +100,22 @@ export function configureStore(reducers, preloadedState = {}) {
  * @param {Store<S>} store
  */
 export function initializeStore(store) {
-  return (nextState, replace, callback) => {
-    const state = store.getState();
+  const state = store.getState();
 
-    // If we don't already have a signup cached in local storage, check.
-    if (! state.signups.data.includes(state.campaign.legacyCampaignId)) {
-      store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
-    }
+  // If we don't already have a signup cached in local storage, check.
+  if (! state.signups.data.includes(state.campaign.legacyCampaignId)) {
+    store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
+  }
 
-    // Check for total signups
-    store.dispatch(getTotalSignups(state.campaign.legacyCampaignId));
+  // Check for total signups
+  store.dispatch(getTotalSignups(state.campaign.legacyCampaignId));
 
-    // Fetch the first page of reportbacks for the feed.
-    store.dispatch(fetchReportbacks());
+  // Fetch the first page of reportbacks for the feed.
+  store.dispatch(fetchReportbacks());
 
-    // Start the event queue.
-    store.dispatch(startQueue());
+  // Start the event queue.
+  store.dispatch(startQueue());
 
-    // Start watching for store changes.
-    start(store);
-
-    callback();
-  };
+  // Start watching for store changes.
+  start(store);
 }
