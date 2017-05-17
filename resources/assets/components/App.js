@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { initializeStore } from '../store';
 
+import { paths } from '../helpers/navigation';
 import ChromeContainer from '../containers/ChromeContainer';
 import FeedContainer from '../containers/FeedContainer';
 import ActionPageContainer from '../containers/ActionPageContainer';
@@ -16,9 +17,9 @@ const App = ({ store, history }) => (
     <ConnectedRouter history={history}>
       <ChromeContainer onEnter={initializeStore(store)}>
         <Switch>
-          <Route path="/" exact component={FeedContainer} />
-          <Route path="/action" component={ActionPageContainer} />
-          <Route path="/pages/:page" component={ContentPageContainer} />
+          <Route path={paths.community} exact component={FeedContainer} />
+          <Route path={paths.action} component={ActionPageContainer} />
+          <Route path={`${paths.pages}:page`} component={ContentPageContainer} />
           <Route component={NotFound} />
         </Switch>
       </ChromeContainer>

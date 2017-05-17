@@ -15,7 +15,7 @@ export const paths = {
 export function getRouteName(route) {
   // When doing path comparisons, we want the least specific
   // (eg: '/') paths at the end of the array.
-  const pathValues = Object.values(paths).sort((a, b) => b.length - a.length);
+  const pathValues = Object.values(paths).sort((pathA, pathB) => pathB.length - pathA.length);
 
   // Check if /pages/faq starts with /pages/.
   const match = pathValues.find(path => route.startsWith(path));

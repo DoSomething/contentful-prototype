@@ -42,10 +42,10 @@ export function transformState(action, state) {
     },
     routing: {
       referer: document.referrer,
-      base: state.routing.locationBeforeTransitions.basename,
-      path: state.routing.locationBeforeTransitions.pathname,
-      page: getRouteName(state.routing.locationBeforeTransitions.pathname),
-      // TODO: Might be worth pulling in locationBeforeTransitions.query & getting an array of query items...
+      path: state.routing.location.pathname,
+      page: getRouteName(state.routing.location.pathname),
+      // TODO: Might be worth pulling in locationBeforeTransitions.query
+      // & getting an array of query items...
     },
     browser: {
       size: getFormattedScreenSize(),
