@@ -37,11 +37,8 @@ export const observerMiddleware = store => next => (action) => {
 };
 
 /**
- * Watch the given parameters for changes in there state
- * and record it to the appropiate service.
- *
- * @param  {Object} store   Instance of a React Redux store
- * @return {Function}
+ * Watch the given parameters for changes in their state
+ * and record it to the appropriate service.
  */
 export function start() {
   // Setup session
