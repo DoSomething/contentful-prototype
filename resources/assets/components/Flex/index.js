@@ -29,7 +29,7 @@ export const FlexCell = ({ width = [], children }) => (
 );
 
 FlexCell.propTypes = {
-  width: PropTypes.oneOf(['full', 'one-third', 'two-thirds']),
+  width: PropTypes.oneOf(['full', 'half', 'one-third', 'two-thirds']),
   children: PropTypes.node.isRequired,
 };
 
