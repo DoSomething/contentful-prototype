@@ -13,6 +13,7 @@
 
 // WHATWG Fetch Polyfill
 import 'whatwg-fetch';
+import 'babel-polyfill';
 
 import React from 'react';
 import ReactDom from 'react-dom';

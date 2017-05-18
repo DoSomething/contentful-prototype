@@ -26,6 +26,7 @@
     "@dosomething/analytics": "^2.0.2",
     "@dosomething/forge": "^6.7.4",
     "@dosomething/gateway": "^1.0.1",
+    "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
     "dom-delegate": "^2.0.3",
     "dosomething-modal": "^0.3.0",
