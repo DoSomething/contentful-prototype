@@ -56,11 +56,9 @@ export function start() {
   } : null);
 
   // Track page changes for Google Analytics
-  getHistory().listen(({ basename, pathname }) => {
-    let path = basename;
-    if (pathname) path += pathname;
-
-    pageview(path);
+  getHistory().listen(() => {
+    pageview(window.location.pathname);
   });
+
   pageview(window.location.pathname);
 }
