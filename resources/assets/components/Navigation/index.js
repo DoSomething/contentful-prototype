@@ -28,5 +28,4 @@ NavigationLink.propTypes = {
 
 NavigationLink.defaultProps = {
   className: null,
-  active: false,
 };
