@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Markdown from '../Markdown';
 import CallToActionContainer from '../../containers/CallToActionContainer';
+import ScrollConcierge from '../ScrollConcierge';
 
 import './content-page.scss';
 
@@ -11,6 +12,7 @@ const ContentPage = ({ pages, route, tagline, noun, verb }) => {
   return (
     <div className="content-page">
       <div className="primary">
+        <ScrollConcierge />
         <article>
           <h2 className="visually-hidden">{page.fields.title}</h2>
           <Markdown>{page.fields.content}</Markdown>
