@@ -83,7 +83,7 @@ CompetitionBlock.propTypes = {
     jobTitle: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
-  experiments: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  experiments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   joinCompetition: PropTypes.func.isRequired,
   checkForCompetition: PropTypes.func.isRequired,
   hasJoinedCompetition: PropTypes.bool.isRequired,

@@ -68,7 +68,7 @@ LedeBanner.propTypes = {
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  experiments: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  experiments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   noun: PropTypes.shape({
