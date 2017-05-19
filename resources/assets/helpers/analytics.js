@@ -29,7 +29,9 @@ export function transformState(action, state) {
     feed: {
       page: state.blocks.offset,
     },
-    campaign: state.campaign,
+    campaign: {
+      legacyCampaignId: state.campaign.legacyCampaignId,
+    },
     signups: state.signups,
     submissions: state.submissions,
     user: {
