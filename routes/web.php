@@ -8,17 +8,20 @@
  */
 
 // Homepage
-$router->get('/', 'CampaignController@index');
+$router->redirect('/', 'us/campaigns/sincerely-us');
+$router->redirect('/us', 'us/campaigns/sincerely-us');
 
 // Authentication
 $router->get('next/login', 'AuthController@getLogin')->name('login');
 $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 
 // Campaigns
+$router->get('us/campaigns', 'CampaignController@index');
+$router->redirect('campaigns', 'us/campaigns');
+
 $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
-$router->get('campaigns/{path}', 'CampaignController@redirect')
-    ->where('path', '.*');
+$router->redirect('campaigns/{slug}', 'us/campaigns/{slug}');
 
 // Embeds
 $router->get('next/embed', 'EmbedController@index');
