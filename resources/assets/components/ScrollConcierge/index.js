@@ -1,6 +1,7 @@
 /* global window, document */
 
 import React from 'react';
+import FontFaceObserver from 'fontfaceobserver';
 
 /**
  * Scroll to the given offset on the page.
@@ -35,8 +36,14 @@ const scrollTo = (target = 0, duration = 500) => {
  */
 class ScrollConcierge extends React.Component {
   componentDidMount() {
-    const VISUAL_OFFSET = 150;
-    scrollTo(this.node.offsetTop - VISUAL_OFFSET);
+    const font = new FontFaceObserver('League Gothic');
+
+    // Wait for headline font to load so we don't scroll to
+    // the wrong place when the page reflows & offset changes.
+    font.load().then(() => {
+      const VISUAL_OFFSET = 150;
+      scrollTo(this.node.offsetTop - VISUAL_OFFSET);
+    });
   }
 
   render() {
