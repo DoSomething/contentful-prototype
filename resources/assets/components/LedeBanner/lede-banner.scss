@@ -6,7 +6,7 @@
   color: $dark-background-contrast-color;
 
   @include media($medium) {
-    display: flex;
+    display: table;
   }
 
   .button {
@@ -51,8 +51,9 @@
 
 .lede-banner__content {
   @include media($medium) {
-    flex: 1;
+    display: table-cell;
     min-height: 500px;
+    width: 50%;
   }
 
   & > .wrapper {
@@ -70,7 +71,8 @@
   min-height: 300px;
 
   @include media($medium) {
-    flex: 1;
+    display: table-cell;
+    width: 50%;
   }
 }
 
