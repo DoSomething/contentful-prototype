@@ -14,12 +14,17 @@ const scrollTo = (target = 0, duration = 500) => {
   const distance = target - initialOffset;
   const beginning = +Date.now();
 
+  // Allow the user to interrupt the scroll animation.
+  let interrupted = false;
+  document.addEventListener('mousewheel', () => (interrupted = true));
+  document.addEventListener('touchmove', () => (interrupted = true));
+
   // Render a frame of the animation.
   const scroller = () => {
     const elapsed = Date.now() - beginning;
 
     // If we've reached the target or got interrupted, stop.
-    if (window.scrollY > target) return;
+    if (window.scrollY > target || interrupted) return;
 
     // Scroll to wherever we should be at this point in the animation.
     window.scrollTo(0, initialOffset + Math.floor(distance * (elapsed / duration)));
