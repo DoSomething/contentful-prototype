@@ -9,8 +9,9 @@ module.exports = {
 
   'rules': {
     // Allow `console.log` so we can include logging
-    // in development builds.
+    // in development builds. Warn on `debugger`.
     'no-console': 'off',
+    'no-debugger': 'warn',
 
     // For now, only warn on missing alt tags.
     'jsx-a11y/img-has-alt': 'warn',
