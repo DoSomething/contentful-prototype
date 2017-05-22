@@ -1,33 +1,46 @@
-/* global window */
+/* global window, document */
 
 import React from 'react';
 
 /**
  * Scroll to the given offset on the page.
  *
- * @param {Number} offset - vertical offset
- * @param {Number} scrollDuration - time in ms
+ * @param {Number} target - vertical offset
+ * @param {Number} duration - time in ms
  */
-const scrollTo = (offset = 0, scrollDuration = 100) => {
-  const distance = Math.abs(offset - window.scrollY);
-  const scrollStep = distance / (scrollDuration / 15);
+const scrollTo = (target = 0, duration = 500) => {
+  const initialOffset = window.scrollY;
+  const distance = target - initialOffset;
+  const beginning = +Date.now();
 
-  const scrollInterval = setInterval(() => {
-    if (window.scrollY > offset) {
-      clearInterval(scrollInterval);
-    }
+  // Render a frame of the animation.
+  const scroller = () => {
+    const elapsed = Date.now() - beginning;
 
-    window.scrollBy(0, scrollStep);
-  }, 15);
+    // If we've reached the target or got interrupted, stop.
+    if (window.scrollY > target) return;
+
+    // Scroll to wherever we should be at this point in the animation.
+    window.scrollTo(0, initialOffset + Math.floor(distance * (elapsed / duration)));
+    window.requestAnimationFrame(scroller);
+  };
+
+  // Render the first frame.
+  window.requestAnimationFrame(scroller);
 };
 
+/**
+ * Component which scrolls the browser to itself when
+ * it appears on the page.
+ */
 class ScrollConcierge extends React.Component {
   componentDidMount() {
-    setTimeout(() => scrollTo(this.node.offsetTop - 150), 0);
+    const VISUAL_OFFSET = 150;
+    scrollTo(this.node.offsetTop - VISUAL_OFFSET);
   }
 
   render() {
-    return <div ref={node => this.node = node} />; // eslint-disable-line
+    return <div ref={node => (this.node = node)} />;
   }
 }
 
