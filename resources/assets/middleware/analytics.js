@@ -47,7 +47,7 @@ export function start() {
   checkSession();
 
   // Initialize Analytics
-  const env = window.env || {};
+  const env = window.ENV || {};
   init('track', true, env.KEEN_PROJECT_ID ? {
     projectId: env.KEEN_PROJECT_ID,
     writeKey: env.KEEN_WRITE_KEY,
