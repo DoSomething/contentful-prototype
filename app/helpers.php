@@ -270,7 +270,8 @@ function phoenixLink($path)
  *
  * @return array
  */
-function getClientEnvironmentVars() {
+function getClientEnvironmentVars()
+{
     return [
         'KEEN_PROJECT_ID' => config('services.analytics.keen_id'),
         'KEEN_WRITE_KEY' => config('services.analytics.keen_key'),
