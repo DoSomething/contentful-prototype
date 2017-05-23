@@ -47,9 +47,10 @@ export function start() {
   checkSession();
 
   // Initialize Analytics
-  init('track', true, services.KEEN_PROJECT_ID ? {
-    projectId: services.KEEN_PROJECT_ID,
-    writeKey: services.KEEN_WRITE_KEY,
+  const env = window.env || {};
+  init('track', true, env.KEEN_PROJECT_ID ? {
+    projectId: env.KEEN_PROJECT_ID,
+    writeKey: env.KEEN_WRITE_KEY,
   } : null);
 
   // Track page changes for Google Analytics
