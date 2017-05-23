@@ -57,10 +57,12 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
         $shareFields = getShareFields($campaign, $campaign->socialOverrides);
+        $env = getClientEnvironmentVars();
 
         return view('campaigns.show', [
             'campaign' => $campaign,
             'shareFields' => $shareFields,
+            'env' => $env,
         ])->with('state', [
             'campaign' => $campaign,
             'experiments' => get_experiment_alternatives_selection(),

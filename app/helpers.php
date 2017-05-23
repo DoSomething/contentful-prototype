@@ -264,3 +264,15 @@ function phoenixLink($path)
 
     return $base . $path;
 }
+
+/**
+ * Get the env vars which are safe for client usage.
+ *
+ * @return array
+ */
+function getClientEnvironmentVars() {
+    return [
+        'KEEN_PROJECT_ID' => config('services.analytics.keen_id'),
+        'KEEN_WRITE_KEY' => config('services.analytics.keen_key'),
+    ];
+}
