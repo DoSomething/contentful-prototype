@@ -1,7 +1,7 @@
 /* global window */
 
 import client from 'sixpack-client';
-import experiments from '../experiments_v2.json';
+import experiments from '../experiments.json';
 
 export function sixpack() {
   const env = window.ENV || {};

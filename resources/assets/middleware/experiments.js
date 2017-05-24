@@ -3,7 +3,7 @@ import {
   PARTICIPATE_IN_EXPERIMENT,
   addToStore,
 } from '../actions';
-import experimentsDefinitions from '../experiments_v2.json';
+import experimentsDefinitions from '../experiments.json';
 import { assertConditionPasses } from '../helpers/experiments';
 
 const experimentsMiddleware = ({ getState, dispatch }) => next => (action) => {

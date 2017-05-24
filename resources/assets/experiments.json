@@ -1,10 +1,27 @@
 {
   "competitions_prompt_style": {
-    "a": "default_block",
-    "b": "colorful_block"
+    "meta": {
+      "preTest": {
+        "signups.thisCampaignn": true,
+        "competitions.thisCampaign": false
+      },
+      "condition": "affiliated"
+    },
+    "alternatives": {
+      "a": "default_block",
+      "b": "colorful_block"
+    }
   },
   "lede_banner_number_of_buttons": {
-    "a": "one_button",
-    "b": "two_buttons"
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false
+      },
+      "condition": "unaffiliated"
+    },
+    "alternatives": {
+      "a": "one_button",
+      "b": "two_buttons"
+    }
   }
 }

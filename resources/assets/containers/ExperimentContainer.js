@@ -7,6 +7,7 @@ import { participateInExperiment } from '../actions';
  */
 const mapStateToProps = state => ({
   experiments: state.experiments,
+  app: state,
 });
 
 /**
