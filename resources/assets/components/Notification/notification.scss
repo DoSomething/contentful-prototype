@@ -1,45 +1,37 @@
 @import '../../scss/next-toolbox.scss';
 
-.notification-list {
-  position: fixed;
-  top: 0;
-  left: 0;
+.notification {
+  position: relative;
   width: 100%;
-  z-index: 100;
 
-  .notification {
-    position: relative;
-    width: 100%;
+  &.-error {
+    color: $white;
+    background: $error-color;
+  }
 
-    &.-error {
-      color: $white;
-      background: $error-color;
-    }
+  .notification__content {
+    padding: $base-spacing;
 
-    .notification__content {
-      padding: $base-spacing;
-
-      p {
-        color: inherit;
-      }
-    }
-
-    .notification__close {
-      background-color: transparent;
-      border: 0 none;
+    p {
       color: inherit;
-      font-size: 32px;
-      position: absolute;
-      right: $half-spacing;
-      top: $half-spacing;
+    }
+  }
 
-      &:focus {
-        outline: transparent 0 none;
-      }
+  .notification__close {
+    background-color: transparent;
+    border: 0 none;
+    color: inherit;
+    font-size: 32px;
+    position: absolute;
+    right: $half-spacing;
+    top: $half-spacing;
 
-      &:hover {
-        cursor: pointer;
-      }
+    &:focus {
+      outline: transparent 0 none;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }

@@ -5,6 +5,7 @@ import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
 import LedeBanner from './LedeBanner';
+import Overlay from './Overlay';
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
@@ -12,7 +13,9 @@ import NotificationContainer from '../containers/NotificationContainer';
 const Chrome = props => (
   <div>
     <AppInit />
-    <NotificationContainer />
+    <Overlay>
+      <NotificationContainer />
+    </Overlay>
     <LedeBanner
       isAffiliated={props.isAffiliated}
       title={props.title}

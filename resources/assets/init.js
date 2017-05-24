@@ -42,7 +42,7 @@ import { observerMiddleware } from './middleware/analytics';
 const history = historyInit();
 const middleware = [thunk, routerMiddleware(history), observerMiddleware];
 const store = configureStore({ ...reducers, routing: routerReducer }, middleware, window.STATE);
-
+store.dispatch({ type: 'ADD_NOTIFICATION' });
 ready(() => {
   const appElement = document.getElementById('app');
 
