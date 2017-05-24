@@ -5,7 +5,6 @@
         "signups.thisCampaign": true,
         "competitions.thisCampaign": false
       },
-      "condition": "affiliated"
     },
     "alternatives": {
       "a": "default_block",
@@ -17,7 +16,6 @@
       "preTest": {
         "signups.thisCampaign": false
       },
-      "condition": "unaffiliated"
     },
     "alternatives": {
       "a": "one_button",

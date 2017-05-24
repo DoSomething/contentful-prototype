@@ -45,6 +45,14 @@ export function participate(name) {
 export function convert(name) {
   return new Promise((resolve, reject) => {
     sixpack().convert(name, (error, response) => {
+      console.groupCollapsed('%c Analytics: %c Triggered event "%s"',
+        'background-color: #e2ccff; display: block; font-weight: bold; line-height: 1.5;',
+        'background-color: transparent; font-weight: normal; line-height: 1.5;',
+      );
+      console.log('Error:', error);
+      console.log('Response:', response);
+      console.groupEnd();
+
       if (error) {
         reject(error);
       }

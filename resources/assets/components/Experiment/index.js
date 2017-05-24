@@ -3,13 +3,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { assertPreTestPasses } from '../../helpers/experiments';
+import { assertTestPasses } from '../../helpers/experiments';
 
 class Experiment extends React.Component {
   componentWillMount() {
     const { name } = this.props;
 
-    if (assertPreTestPasses(name, this.props.app)) {
+    if (assertTestPasses(name, this.props.app)) {
       this.props.participateInExperiment(name);
     }
   }

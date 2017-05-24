@@ -11,7 +11,7 @@ const experiments = (state = {}, action) => {
     case ADD_TO_EXPERIMENTS_STORE: {
       const experimentsState = {};
 
-      experimentsState[action.name] = null;
+      experimentsState[action.name] = {};
 
       return Object.assign({}, state, experimentsState);
     }
