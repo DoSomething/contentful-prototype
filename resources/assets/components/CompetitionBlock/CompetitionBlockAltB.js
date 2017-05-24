@@ -15,7 +15,7 @@ You should recieve an email shortly with more instructions.
 You can keep working on the campaign for now. I'm so excited to have you onboard!
 `;
 
-const CompetitionBlock = (props) => {
+const CompetitionBlockAltB = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin,
     showConfirmation, campaignId, campaignRunId, checkForCompetition, experiment, convert } = props;
 
@@ -49,7 +49,7 @@ const CompetitionBlock = (props) => {
   ) : null;
 
   return (
-    <Block className={classnames('-default')}>
+    <Block className={classnames('-colorful')}>
       <BlockTitle>Go above and beyond!</BlockTitle>
       <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
         <div className="clearfix">
@@ -63,7 +63,7 @@ const CompetitionBlock = (props) => {
   );
 };
 
-CompetitionBlock.propTypes = {
+CompetitionBlockAltB.propTypes = {
   content: PropTypes.string.isRequired,
   convert: PropTypes.func.isRequired,
   photo: PropTypes.string,
@@ -82,8 +82,8 @@ CompetitionBlock.propTypes = {
   campaignRunId: PropTypes.string.isRequired,
 };
 
-CompetitionBlock.defaultProps = {
+CompetitionBlockAltB.defaultProps = {
   photo: null,
 };
 
-export default CompetitionBlock;
+export default CompetitionBlockAltB;

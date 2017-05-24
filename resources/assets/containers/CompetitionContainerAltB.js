@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import CompetitionBlock from '../components/CompetitionBlock';
+import CompetitionBlockAltB from '../components/CompetitionBlock/CompetitionBlockAltB';
 import { joinCompetition, checkForCompetition } from '../actions';
 
 /**
@@ -23,4 +23,4 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(CompetitionBlock);
+export default connect(mapStateToProps, actionCreators)(CompetitionBlockAltB);

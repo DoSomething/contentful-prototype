@@ -101,7 +101,6 @@ Chrome.propTypes = {
 };
 
 Chrome.defaultProps = {
-  experiments: null,
   isAffiliated: false,
   noun: { singular: 'action', plural: 'action' },
   verb: { singular: 'take', plural: 'take' },

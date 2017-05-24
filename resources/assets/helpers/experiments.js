@@ -12,6 +12,10 @@ export function assertConditionPasses(condition, state) {
     return ! state.signups.thisCampaign;
   }
 
+  if (condition === 'affiliated') {
+    return state.signups.thisCampaign;
+  }
+
   // @TODO: Add additional conditions. Maybe break this function out into other file.
   return false;
 }

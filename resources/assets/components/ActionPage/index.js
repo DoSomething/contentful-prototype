@@ -6,6 +6,8 @@ import { cloneDeep } from 'lodash';
 import LazyImage from '../LazyImage';
 import Markdown from '../Markdown';
 import CompetitionContainer from '../../containers/CompetitionContainer';
+import CompetitionContainerAltB from '../../containers/CompetitionContainerAltB';
+import ExperimentContainer from '../../containers/ExperimentContainer';
 import ReportbackUploaderContainer from '../../containers/ReportbackUploaderContainer';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
@@ -82,7 +84,7 @@ ActionStep.defaultProps = {
  * @param index
  * @returns {XML}
  */
-const renderSteps = (steps) => {
+const renderSteps = (steps, props) => {
   let stepIndex = 0;
 
   return steps.map((step) => {
@@ -95,16 +97,31 @@ const renderSteps = (steps) => {
     const photoWidth = step.displayOptions[0] === 'full' ? 'full' : 'one-third';
     const shouldTruncate = step.truncate;
     const additionalContent = step.additionalContent;
+    const COMPETITIONS_PROMPT_STYLE = 'competitions_prompt_style';
 
     switch (type) {
       case 'competition':
         return (
-          <CompetitionContainer
-            key={key}
-            content={content}
-            photo={photos[0]}
-            byline={additionalContent}
-          />
+          <ExperimentContainer key={key} name={COMPETITIONS_PROMPT_STYLE}>
+            <CompetitionContainerAltB
+              experiment={COMPETITIONS_PROMPT_STYLE}
+              alternative="colorful_block"
+              convert={props.convertExperiment}
+              key={key}
+              content={content}
+              photo={photos[0]}
+              byline={additionalContent}
+            />
+            <CompetitionContainer
+              experiment={COMPETITIONS_PROMPT_STYLE}
+              alternative="default_block"
+              convert={props.convertExperiment}
+              key={key}
+              content={content}
+              photo={photos[0]}
+              byline={additionalContent}
+            />
+          </ExperimentContainer>
         );
       default:
         stepIndex += 1;
@@ -164,7 +181,7 @@ const ActionPage = (props) => {
 
   return (
     <Flex>
-      {renderSteps(actionSteps)}
+      {renderSteps(actionSteps, props)}
       {isAuthenticated && signedUp ? null : revealer}
       {isAuthenticated && signedUp ? uploader : null}
     </Flex>

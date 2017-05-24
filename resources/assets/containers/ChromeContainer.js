@@ -23,7 +23,6 @@ const mapStateToProps = (state, props) => ({
   competitions: state.competitions.data,
   noun: get(state.campaign.additionalContent, 'noun'),
   verb: get(state.campaign.additionalContent, 'verb'),
-  experiments: state.experiments,
 });
 
 /**
