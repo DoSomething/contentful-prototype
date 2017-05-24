@@ -2,7 +2,7 @@
   "competitions_prompt_style": {
     "meta": {
       "preTest": {
-        "signups.thisCampaignn": true,
+        "signups.thisCampaign": true,
         "competitions.thisCampaign": false
       },
       "condition": "affiliated"
