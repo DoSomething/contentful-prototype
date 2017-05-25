@@ -4,7 +4,7 @@
       "preTest": {
         "signups.thisCampaign": true,
         "competitions.thisCampaign": false
-      },
+      }
     },
     "alternatives": {
       "a": "default_block",
@@ -15,7 +15,7 @@
     "meta": {
       "preTest": {
         "signups.thisCampaign": false
-      },
+      }
     },
     "alternatives": {
       "a": "one_button",
