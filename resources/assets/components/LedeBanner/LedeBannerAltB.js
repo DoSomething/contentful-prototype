@@ -5,7 +5,8 @@ import { contentfulImageUrl } from '../../helpers';
 
 import './lede-banner.scss';
 
-const LedeBannerAltB = ({
+const LedeBannerAltB = (props) => {
+  const {
     title,
     subtitle,
     blurb,
@@ -13,11 +14,12 @@ const LedeBannerAltB = ({
     isAffiliated,
     legacyCampaignId,
     clickedSignUp,
-    noun,
-    verb,
     experiment,
     convert,
-  }) => {
+    noun,
+    verb,
+  } = props;
+
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
@@ -39,12 +41,7 @@ const LedeBannerAltB = ({
 
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-          { isAffiliated ? null : (
-            <ul className="button-group">
-              <li><button className="button" onClick={() => onClick({ source: 'lede banner|text: Support the cause' })}>Support the cause</button></li>
-              <li><button className="button" onClick={() => onClick({ source: 'lede banner|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button></li>
-            </ul>
-          ) }
+          { isAffiliated ? null : <button className="button" onClick={() => onClick({ source: 'lede banner|A2|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button> }
         </div>
       </div>
     </header>

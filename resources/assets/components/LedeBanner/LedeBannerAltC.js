@@ -5,8 +5,7 @@ import { contentfulImageUrl } from '../../helpers';
 
 import './lede-banner.scss';
 
-const LedeBanner = (props) => {
-  const {
+const LedeBannerAltC = ({
     title,
     subtitle,
     blurb,
@@ -14,10 +13,11 @@ const LedeBanner = (props) => {
     isAffiliated,
     legacyCampaignId,
     clickedSignUp,
+    noun,
+    verb,
     experiment,
     convert,
-  } = props;
-
+  }) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
@@ -39,14 +39,19 @@ const LedeBanner = (props) => {
 
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-          { isAffiliated ? null : <button className="button" onClick={() => onClick({ source: 'lede banner|A1|text: Join us' })}>Join us</button> }
+          { isAffiliated ? null : (
+            <ul className="button-group">
+              <li><button className="button" onClick={() => onClick({ source: 'lede banner|A3|text: Stand with us' })}>Stand with us</button></li>
+              <li><button className="button" onClick={() => onClick({ source: 'lede banner|A3|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button></li>
+            </ul>
+          ) }
         </div>
       </div>
     </header>
   );
 };
 
-LedeBanner.propTypes = {
+LedeBannerAltC.propTypes = {
   blurb: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   convert: PropTypes.func.isRequired,
@@ -57,9 +62,21 @@ LedeBanner.propTypes = {
   experiment: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  verb: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
 };
 
+LedeBannerAltC.defaultProps = {
+  noun: { singular: 'action', plural: 'action' },
+  verb: { singular: 'take', plural: 'take' },
+};
 
-export default LedeBanner;
+export default LedeBannerAltC;

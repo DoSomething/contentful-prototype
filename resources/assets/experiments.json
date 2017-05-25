@@ -11,15 +11,17 @@
       "b": "colorful_block"
     }
   },
-  "lede_banner_number_of_buttons": {
+  "lede_banner_quad_buttons": {
     "meta": {
       "preTest": {
         "signups.thisCampaign": false
       }
     },
     "alternatives": {
-      "a": "one_button",
-      "b": "two_buttons"
+      "a": "one_button_join",
+      "b": "one_button_make",
+      "c": "two_button_stand",
+      "d": "two_button_sign"
     }
   }
 }
