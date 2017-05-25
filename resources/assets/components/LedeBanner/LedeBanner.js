@@ -5,7 +5,8 @@ import { contentfulImageUrl } from '../../helpers';
 
 import './lede-banner.scss';
 
-const LedeBanner = ({
+const LedeBanner = (props) => {
+  const {
     title,
     subtitle,
     blurb,
@@ -15,7 +16,8 @@ const LedeBanner = ({
     clickedSignUp,
     experiment,
     convert,
-  }) => {
+  } = props;
+
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };

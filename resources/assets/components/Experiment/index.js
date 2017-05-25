@@ -3,10 +3,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import { assertTestPasses } from '../../helpers/experiments';
 
 class Experiment extends React.Component {
   componentWillMount() {
-    this.props.participateInExperiment(this.props.name);
+    const { name } = this.props;
+
+    if (assertTestPasses(name, this.props.app)) {
+      this.props.participateInExperiment(name);
+    }
   }
 
   render() {
@@ -44,6 +49,7 @@ class Experiment extends React.Component {
 export default Experiment;
 
 Experiment.propTypes = {
+  app: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   children: PropTypes.node.isRequired,
   experiments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   name: PropTypes.string.isRequired,
