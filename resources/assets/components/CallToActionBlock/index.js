@@ -26,14 +26,13 @@ const renderBackgroundImageStyle = imageUrl => (
 
 const CallToActionBlock = (props) => {
   const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses,
-    noun, verb, buttonOverride } = props;
+    noun, verb, buttonOverride, experiment, convertExperiment } = props;
   const { title, content, additionalContent } = fields;
 
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
   const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
   const buttonText = buttonOverride ? buttonOverride : defaultText;
-  console.log({ buttonOverride, defaultText, buttonText });
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto,
@@ -41,7 +40,10 @@ const CallToActionBlock = (props) => {
     hasContent: typeof content !== 'undefined',
   });
 
-  const handleOnClickButton = () => clickedSignUp(campaignId, metadata);
+  const handleOnClickButton = () => {
+    clickedSignUp(campaignId, metadata);
+    if (experiment) convertExperiment(experiment);
+  }
 
   return (
     <div className={classnames('cta', modifiers(modifierClasses), { 'has-photo': hasPhoto })}>

@@ -9,7 +9,7 @@ import './content-page.scss';
 
 const SCHOLARSHIP_CTA_COPY = 'scholarship_cta_copy';
 
-const Page = ({ header, markdown, ctaContent, ctaTitle, buttonOverride }) => (
+const Page = ({ header, markdown, ctaContent, ctaTitle, buttonOverride, experiment }) => (
   <div className="content-page">
     <div className="primary">
       <ScrollConcierge />
@@ -20,12 +20,14 @@ const Page = ({ header, markdown, ctaContent, ctaTitle, buttonOverride }) => (
     </div>
     <div className="secondary">
       <CallToActionContainer
+        experiment={experiment}
         buttonOverride={buttonOverride}
         fields={{ content: ctaContent }}
       />
     </div>
 
     <CallToActionContainer
+      experiment={experiment}
       buttonOverride={buttonOverride}
       fields={{ title: ctaTitle }}
       modifierClasses="transparent"
@@ -47,7 +49,6 @@ const ContentPage = (props) => {
         <Page
           experiment={SCHOLARSHIP_CTA_COPY}
           alternative="default"
-          convert={convertExperiment}
           header={header}
           ctaTitle={tagline}
           markdown={markdown}
@@ -56,7 +57,6 @@ const ContentPage = (props) => {
         <Page
           experiment={SCHOLARSHIP_CTA_COPY}
           alternative="get_started"
-          convert={convertExperiment}
           header={header}
           ctaTitle={tagline}
           markdown={markdown}
@@ -66,7 +66,6 @@ const ContentPage = (props) => {
         <Page
           experiment={SCHOLARSHIP_CTA_COPY}
           alternative="apply_now"
-          convert={convertExperiment}
           header={header}
           ctaTitle={tagline}
           markdown={markdown}

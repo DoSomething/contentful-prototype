@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import ContentPage from '../components/ContentPage';
-import { convertExperiment } from '../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -14,9 +13,5 @@ const mapStateToProps = (state, ownProps) => ({
   tagline: get(state.campaign.additionalContent, 'tagline'),
 });
 
-const actionCreators = {
-  convertExperiment,
-};
-
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(ContentPage);
+export default connect(mapStateToProps)(ContentPage);
