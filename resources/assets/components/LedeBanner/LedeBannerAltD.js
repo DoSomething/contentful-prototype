@@ -41,7 +41,7 @@ const LedeBannerAltD = ({
 
           { isAffiliated ? null : (
             <ul className="button-group">
-              <li><button className="button" onClick={() => onClick({ source: 'lede banner|A4|text: Sign the pledge' })}>Sign the pledge</button></li>
+              <li><button className="button" onClick={() => onClick({ source: 'lede banner|A4|text: Remind me later' })}>Remind me later</button></li>
               <li><button className="button" onClick={() => onClick({ source: 'lede banner|A4|text: Custom noun & verb' })}>{verb.plural} {noun.plural}</button></li>
             </ul>
           ) }

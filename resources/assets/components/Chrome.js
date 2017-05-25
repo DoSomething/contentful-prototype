@@ -63,7 +63,7 @@ const Chrome = props => (
       />
       <LedeBannerAltD
         experiment={LEDE_BANNER_QUAD_BUTTONS}
-        alternative="two_button_sign"
+        alternative="two_button_remind"
         convert={props.convertExperiment}
         isAffiliated={props.isAffiliated}
         title={props.title}
