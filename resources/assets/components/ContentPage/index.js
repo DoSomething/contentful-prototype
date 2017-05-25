@@ -1,29 +1,89 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Markdown from '../Markdown';
-import CallToActionContainer from '../../containers/CallToActionContainer';
 import ScrollConcierge from '../ScrollConcierge';
+import CallToActionContainer from '../../containers/CallToActionContainer';
+import ExperimentContainer from '../../containers/ExperimentContainer';
 
 import './content-page.scss';
 
-const ContentPage = ({ pages, route, tagline, noun, verb }) => {
+const SCHOLARSHIP_CTA_COPY = 'scholarship_cta_copy';
+
+const Page = ({ header, markdown, ctaContent, ctaTitle, buttonOverride }) => (
+  <div className="content-page">
+    <div className="primary">
+      <ScrollConcierge />
+      <article>
+        <h2 className="visually-hidden">{ header }</h2>
+        <Markdown>{ markdown }</Markdown>
+      </article>
+    </div>
+    <div className="secondary">
+      <CallToActionContainer
+        buttonOverride={buttonOverride}
+        fields={{ content: ctaContent }}
+      />
+    </div>
+
+    <CallToActionContainer
+      buttonOverride={buttonOverride}
+      fields={{ title: ctaTitle }}
+      modifierClasses="transparent"
+    />
+  </div>
+);
+
+const ContentPage = (props) => {
+  const { pages, route, tagline, noun, verb, convertExperiment } = props;
   const page = pages.find(item => item.fields.slug === route.page);
 
-  return (
-    <div className="content-page">
-      <div className="primary">
-        <ScrollConcierge />
-        <article>
-          <h2 className="visually-hidden">{page.fields.title}</h2>
-          <Markdown>{page.fields.content}</Markdown>
-        </article>
-      </div>
-      <div className="secondary">
-        <CallToActionContainer fields={{ content: `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__` }} />
-      </div>
+  const header = page.fields.title;
+  const markdown = page.fields.content;
+  const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
 
-      <CallToActionContainer fields={{ title: tagline }} modifierClasses="transparent" />
-    </div>
+  if (route.page.includes('scholarship')) {
+    return (
+      <ExperimentContainer name={SCHOLARSHIP_CTA_COPY}>
+        <Page
+          experiment={SCHOLARSHIP_CTA_COPY}
+          alternative="default"
+          convert={convertExperiment}
+          header={header}
+          ctaTitle={tagline}
+          markdown={markdown}
+          ctaContent={ctaContent}
+        />
+        <Page
+          experiment={SCHOLARSHIP_CTA_COPY}
+          alternative="get_started"
+          convert={convertExperiment}
+          header={header}
+          ctaTitle={tagline}
+          markdown={markdown}
+          ctaContent={ctaContent}
+          buttonOverride="GET STARTED"
+        />
+        <Page
+          experiment={SCHOLARSHIP_CTA_COPY}
+          alternative="apply_now"
+          convert={convertExperiment}
+          header={header}
+          ctaTitle={tagline}
+          markdown={markdown}
+          ctaContent={ctaContent}
+          buttonOverride="APPLY NOW"
+        />
+      </ExperimentContainer>
+    );
+  }
+
+  return (
+    <Page
+      header={header}
+      ctaTitle={tagline}
+      markdown={markdown}
+      ctaContent={ctaContent}
+    />
   );
 };
 

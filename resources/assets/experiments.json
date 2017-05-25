@@ -21,5 +21,17 @@
       "a": "one_button",
       "b": "two_buttons"
     }
+  },
+  "scholarship_cta_copy": {
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false
+      }
+    },
+    "alternatives": {
+      "a": "default",
+      "b": "get_started",
+      "c": "apply_now"
+    }
   }
 }

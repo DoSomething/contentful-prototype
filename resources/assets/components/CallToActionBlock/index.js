@@ -26,12 +26,14 @@ const renderBackgroundImageStyle = imageUrl => (
 
 const CallToActionBlock = (props) => {
   const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses,
-    noun, verb } = props;
+    noun, verb, buttonOverride } = props;
   const { title, content, additionalContent } = fields;
 
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
-  const buttonText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
+  const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
+  const buttonText = buttonOverride ? buttonOverride : defaultText;
+  console.log({ buttonOverride, defaultText, buttonText });
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto,
