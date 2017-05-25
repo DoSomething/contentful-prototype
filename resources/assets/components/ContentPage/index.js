@@ -9,34 +9,54 @@ import './content-page.scss';
 
 const SCHOLARSHIP_CTA_COPY = 'scholarship_cta_copy';
 
-const Page = ({ header, markdown, ctaContent, ctaTitle, buttonOverride, experiment }) => (
-  <div className="content-page">
-    <div className="primary">
-      <ScrollConcierge />
-      <article>
-        <h2 className="visually-hidden">{ header }</h2>
-        <Markdown>{ markdown }</Markdown>
-      </article>
-    </div>
-    <div className="secondary">
+const Page = ({ header, markdown, ctaContent, ctaTitle,
+  buttonOverride, experiment, alternative }) => (
+
+    <div className="content-page">
+      <div className="primary">
+        <ScrollConcierge />
+        <article>
+          <h2 className="visually-hidden">{ header }</h2>
+          <Markdown>{ markdown }</Markdown>
+        </article>
+      </div>
+      <div className="secondary">
+        <CallToActionContainer
+          experiment={experiment}
+          alternative={alternative}
+          buttonOverride={buttonOverride}
+          fields={{ content: ctaContent }}
+        />
+      </div>
+
       <CallToActionContainer
         experiment={experiment}
+        alternative={alternative}
         buttonOverride={buttonOverride}
-        fields={{ content: ctaContent }}
+        fields={{ title: ctaTitle }}
+        modifierClasses="transparent"
       />
     </div>
-
-    <CallToActionContainer
-      experiment={experiment}
-      buttonOverride={buttonOverride}
-      fields={{ title: ctaTitle }}
-      modifierClasses="transparent"
-    />
-  </div>
 );
 
+Page.propTypes = {
+  header: PropTypes.string.isRequired,
+  markdown: PropTypes.string.isRequired,
+  ctaContent: PropTypes.string.isRequired,
+  ctaTitle: PropTypes.string.isRequired,
+  alternative: PropTypes.string,
+  buttonOverride: PropTypes.string,
+  experiment: PropTypes.string,
+};
+
+Page.defaultProps = {
+  alternative: null,
+  buttonOverride: null,
+  experiment: null,
+};
+
 const ContentPage = (props) => {
-  const { pages, route, tagline, noun, verb, convertExperiment } = props;
+  const { pages, route, tagline, noun, verb } = props;
   const page = pages.find(item => item.fields.slug === route.page);
 
   const header = page.fields.title;
