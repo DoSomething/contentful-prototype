@@ -78,18 +78,18 @@ const ContentPage = (props) => {
           experiment={SCHOLARSHIP_CTA_COPY}
           alternative="get_started"
           header={header}
-          ctaTitle={tagline}
+          ctaTitle="Make a card to qualify for a $3000 scholarship."
           markdown={markdown}
-          ctaContent={ctaContent}
+          ctaContent="__Make a card to qualify for a $3000 scholarship.__"
           buttonOverride="GET STARTED"
         />
         <Page
           experiment={SCHOLARSHIP_CTA_COPY}
           alternative="apply_now"
           header={header}
-          ctaTitle={tagline}
+          ctaTitle="Make a card to qualify for a $3000 scholarship."
           markdown={markdown}
-          ctaContent={ctaContent}
+          ctaContent="__Make a card to qualify for a $3000 scholarship.__"
           buttonOverride="APPLY NOW"
         />
       </ExperimentContainer>
