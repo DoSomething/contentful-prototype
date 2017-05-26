@@ -14,7 +14,7 @@ build:
           sudo apt-get install -y nodejs
       - script:
           name: update npm
-          code: npm install -g npm@3.x-latest
+          code: npm install -g npm@4.6.1
       - script:
           name: npm install
           code: |-
