@@ -30,6 +30,7 @@
     "classnames": "^2.2.5",
     "dom-delegate": "^2.0.3",
     "dosomething-modal": "^0.3.0",
+    "easy-container": "^1.0.0",
     "enzyme": "^2.8.2",
     "enzyme-to-json": "^1.5.1",
     "fontfaceobserver": "^2.0.9",
