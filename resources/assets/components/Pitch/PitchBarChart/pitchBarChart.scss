@@ -4,15 +4,19 @@
   height: 100%;
 
   text {
-    font-size: 14px;
+    font-size: 24px;
     font-family: $primary-font-family;
 
     &.-bold {
       font-weight: 800;
     }
 
+    &.-small {
+      font-size: 24px;
+    }
+
     @include media($medium) {
-      font-size: 18px;
+      font-size: 48px;
     }
   }
 }

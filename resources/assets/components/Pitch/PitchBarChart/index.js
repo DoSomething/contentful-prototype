@@ -31,6 +31,7 @@ const PitchBarChart = ({ foreground, background, dataset }) => {
           y={percentify(titlePosition)}
           textAnchor="middle"
           fill={foreground}
+          className="-small"
         >{ meta.title }</text>
 
         {data.map(({ value, label }, index) => (

@@ -3,6 +3,12 @@
 .pitch-header {
   height: 100%;
 
+  p {
+    margin-top: $base-spacing * 2;
+    font-family: $primary-font-family;
+    color: inherit;
+  }
+
   h1 {
     font-family: $primary-font-family;
     text-transform: uppercase;
@@ -11,13 +17,22 @@
 
     span {
       padding: 0 $half-spacing;
-      filter: invert(100%);
-      background: inherit;
+      background: $white;
+      color: $black;
     }
   }
 
   > div {
     background: inherit;
+  }
+
+  .button {
+    margin-top: $base-spacing;
+
+    &.-inverted {
+      background: $white;
+      color: #222;
+    }
   }
 
   &.-center {

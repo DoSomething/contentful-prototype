@@ -48,7 +48,7 @@ PitchContainerVideo.defaultProps = {
   },
 };
 
-const PitchContainer = ({ children, padding, background }) => (
+const PitchContainer = ({ children, padding, background, scrollHint }) => (
   <article
     className="pitch-container"
     style={getContainerStyle(background)}
@@ -59,6 +59,7 @@ const PitchContainer = ({ children, padding, background }) => (
         { children }
       </div>
     </div>
+    { scrollHint ? <span className="pitch-container__scroll-hint" /> : null }
   </article>
 );
 
@@ -66,6 +67,7 @@ PitchContainer.propTypes = {
   children: PropTypes.node.isRequired,
   background: backgroundPropTypes,
   padding: PropTypes.bool,
+  scrollHint: PropTypes.bool,
 };
 
 PitchContainer.defaultProps = {
@@ -74,6 +76,7 @@ PitchContainer.defaultProps = {
     data: '#111',
   },
   padding: true,
+  scrollHint: false,
 };
 
 export default PitchContainer;

@@ -23,6 +23,18 @@
     }
   }
 
+  .pitch-container__scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: 20%;
+    width: 64px;
+    height: 64px;
+    display: block;
+    background: url('./scroll.svg') no-repeat;
+    background-size: contain;
+    animation: bounce 4s infinite alternate;
+  }
+
   > video {
     position: absolute;
     top: 0;
@@ -30,5 +42,15 @@
     width: 100%;
     height: 100%;
     object-fit: fill;
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(20px);
   }
 }
