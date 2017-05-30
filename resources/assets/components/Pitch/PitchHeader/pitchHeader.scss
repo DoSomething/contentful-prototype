@@ -1,0 +1,81 @@
+@import '../pitchToolbox';
+
+.pitch-header {
+  height: 100%;
+
+  h1 {
+    font-family: $primary-font-family;
+    text-transform: uppercase;
+    color: inherit;
+    background-color: inherit;
+
+    span {
+      padding: 0 $half-spacing;
+      filter: invert(100%);
+      background: inherit;
+    }
+  }
+
+  > div {
+    background: inherit;
+  }
+
+  &.-center {
+    > div {
+      text-align: center;
+    }
+  }
+
+  &.-middle {
+    > div {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &.-bottom {
+    position: relative;
+
+    h1 {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  &.-medium {
+    h1 {
+      font-size: 40px;
+
+      @include media($medium) {
+        font-size: 50px;
+      }
+
+      @include media($large) {
+        font-size: 60px;
+      }
+
+      @include media($larger) {
+        font-size: 70px;
+      }
+    }
+  }
+
+  &.-large {
+    h1 {
+      font-size: 50px;
+
+      @include media($medium) {
+        font-size: 65px;
+      }
+
+      @include media($large) {
+        font-size: 75px;
+      }
+
+      @include media($larger) {
+        font-size: 85px;
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "Incidents Against Muslims"
+  },
+  "data": [
+    {
+      "value": 481,
+      "label": "2001"
+    },
+    {
+      "value": 155,
+      "label": "2002"
+    },
+    {
+      "value": 149,
+      "label": "2003"
+    },
+    {
+      "value": 156,
+      "label": "2004"
+    },
+    {
+      "value": 128,
+      "label": "2005"
+    },
+    {
+      "value": 156,
+      "label": "2006"
+    },
+    {
+      "value": 115,
+      "label": "2007"
+    },
+    {
+      "value": 105,
+      "label": "2008"
+    },
+    {
+      "value": 107,
+      "label": "2009"
+    },
+    {
+      "value": 160,
+      "label": "2010"
+    },
+    {
+      "value": 157,
+      "label": "2011"
+    },
+    {
+      "value": 130,
+      "label": "2012"
+    },
+    {
+      "value": 135,
+      "label": "2013"
+    },
+    {
+      "value": 154,
+      "label": "2014"
+    },
+    {
+      "value": 256,
+      "label": "2015"
+    }
+  ]
+}

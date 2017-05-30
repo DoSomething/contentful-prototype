@@ -1,0 +1,34 @@
+@import '../pitchToolbox';
+
+.pitch-container {
+  width: 100%;
+  display: block;
+  position: relative;
+  height: 100vh;
+
+  .pitch-container__absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pitch-container__content {
+    position: relative;
+    height: 100%;
+
+    &.-padding {
+      padding: $base-spacing;
+    }
+  }
+
+  > video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+}
