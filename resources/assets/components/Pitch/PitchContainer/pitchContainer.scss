@@ -6,6 +6,10 @@
   position: relative;
   height: 100vh;
 
+  &.-half-height {
+    height: 50vh;
+  }
+
   .pitch-container__absolute {
     position: absolute;
     top: 0;
@@ -19,7 +23,11 @@
     height: 100%;
 
     &.-padding {
-      padding: $base-spacing;
+      padding: $base-spacing * 2;
+
+      @include media($medium) {
+        padding: $base-spacing * 4;
+      }
     }
   }
 
@@ -29,6 +37,7 @@
     bottom: 20%;
     width: 64px;
     height: 64px;
+    margin-left: -32px;
     display: block;
     background: url('./scroll.svg') no-repeat;
     background-size: contain;
@@ -39,9 +48,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%;
     height: 100%;
     object-fit: fill;
+
+    @include media($medium) {
+      width: 100%;
+    }
   }
 }
 

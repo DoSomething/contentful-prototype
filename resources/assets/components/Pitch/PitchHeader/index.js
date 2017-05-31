@@ -13,7 +13,7 @@ const PitchHeader = ({ children, color, type, align, position, background }) => 
 
 PitchHeader.propTypes = {
   children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['large', 'medium']),
+  type: PropTypes.oneOf(['extra-large', 'large', 'medium']),
   color: PropTypes.string,
   background: PropTypes.string,
   align: PropTypes.oneOf(['left', 'bottom', 'center']),

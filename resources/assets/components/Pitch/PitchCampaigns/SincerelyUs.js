@@ -75,27 +75,8 @@ const PitchSincerelyUs = () => (
         { headerThree }
       </PitchHeader>
     </PitchContainer>
-    <PitchContainer padding={false}>
-      <PitchFlex>
-        <PitchFlexCell width="one-third" padding>
-          <PitchHeader position="middle" align="center" color="#FFF" type="medium">
-            <h1>Make cards</h1>
-          </PitchHeader>
-        </PitchFlexCell>
-        <PitchFlexCell width="one-third" padding>
-          <PitchHeader position="middle" align="center" color="#FFF" type="medium">
-            <h1>Mail them</h1>
-          </PitchHeader>
-        </PitchFlexCell>
-        <PitchFlexCell width="one-third" padding>
-          <PitchHeader position="middle" align="center" color="#FFF" type="medium">
-            <h1>Join us</h1>
-          </PitchHeader>
-        </PitchFlexCell>
-      </PitchFlex>
-    </PitchContainer>
-    <PitchContainer background={whiteAndBlack}>
-      <PitchHeader position="middle" align="center" color="#222" background="#FFF">
+    <PitchContainer background={whiteAndBlack} halfHeight>
+      <PitchHeader type="extra-large" position="middle" align="center" color="#222" background="#FFF">
         { headerFour }
       </PitchHeader>
     </PitchContainer>

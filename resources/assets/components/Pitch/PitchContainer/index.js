@@ -48,9 +48,9 @@ PitchContainerVideo.defaultProps = {
   },
 };
 
-const PitchContainer = ({ children, padding, background, scrollHint }) => (
+const PitchContainer = ({ children, padding, background, scrollHint, halfHeight }) => (
   <article
-    className="pitch-container"
+    className={`pitch-container ${halfHeight ? '-half-height' : ''}`}
     style={getContainerStyle(background)}
   >
     <PitchContainerVideo background={background} />
@@ -68,6 +68,7 @@ PitchContainer.propTypes = {
   background: backgroundPropTypes,
   padding: PropTypes.bool,
   scrollHint: PropTypes.bool,
+  halfHeight: PropTypes.bool,
 };
 
 PitchContainer.defaultProps = {
@@ -77,6 +78,7 @@ PitchContainer.defaultProps = {
   },
   padding: true,
   scrollHint: false,
+  halfHeight: false,
 };
 
 export default PitchContainer;
