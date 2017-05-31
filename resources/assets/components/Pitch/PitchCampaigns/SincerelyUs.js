@@ -3,7 +3,7 @@ import React from 'react';
 import PitchHeader from '../PitchHeader';
 import PitchContainer from '../PitchContainer';
 import { PitchFlex, PitchFlexCell } from '../PitchFlex';
-import PitchBarChart from '../PitchBarChart';
+import PitchLineChart from '../PitchLineChart';
 
 // TODO: Better way of loading data sets so we dont have all of them in the JS bundle.
 import IncidentsAgainstMuslims from './data/IncidentsAgainstMuslims.json';
@@ -66,7 +66,7 @@ const PitchSincerelyUs = () => (
           </PitchHeader>
         </PitchFlexCell>
         <PitchFlexCell width="half">
-          <PitchBarChart foreground="#222" background="#FFF" dataset={IncidentsAgainstMuslims} />
+          <PitchLineChart color={{ primary: '#222', secondary: '#ddd' }} dataset={IncidentsAgainstMuslims} />
         </PitchFlexCell>
       </PitchFlex>
     </PitchContainer>

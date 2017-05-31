@@ -1,6 +1,10 @@
 {
   "meta": {
-    "title": "Incidents Against Muslims"
+    "title": "Incidents Against Muslims",
+    "axis": {
+      "x": "Year",
+      "y": "Incidents"
+    }
   },
   "data": [
     {
