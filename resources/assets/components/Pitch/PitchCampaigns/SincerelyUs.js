@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import PitchHeader from '../PitchHeader';
 import PitchContainer from '../PitchContainer';
@@ -43,44 +44,72 @@ const headerOne = (
 
 const headerTwo = (<h1>HATE CRIMES AGAINST MUSLIMS SPIKED 67% IN 2015, AND THINGS LOOK LIKE THEY’RE GETTING WORSE.</h1>); // eslint-disable-line max-len
 const headerThree = (<h1>THAT’S WHY THIS SUMMER, WE’RE SENDING HANDMADE HAPPY RAMADAN CARDS TO EVERY SINGLE MOSQUE IN THE COUNTRY.</h1>); // eslint-disable-line max-len
-const headerFour = (
-  <div>
-    <h1>JOIN 38,522 PEOPLE SENDING LETTERS OF SUPPORT.</h1>
-    <p>TOGETHER, WE’RE SENDING A BEAUTIFUL MESSAGE OF SUPPORT TO EVERY MOSQUE IN AMERICA.</p>
-    <button className="button">GET STARTED</button>
-  </div>
-);
 
-const PitchSincerelyUs = () => (
-  <div className="pitch-sincerely-us">
-    <PitchContainer background={blackAndWhite} scrollHint>
-      <PitchHeader position="middle" align="center" color="#FFF" background="#222">
-        { headerOne }
-      </PitchHeader>
-    </PitchContainer>
-    <PitchContainer background={whiteAndBlack} padding={false}>
-      <PitchFlex>
-        <PitchFlexCell width="half" padding>
-          <PitchHeader position="middle" type="medium" color="#222" background="#FFF">
-            { headerTwo }
-          </PitchHeader>
-        </PitchFlexCell>
-        <PitchFlexCell width="half">
-          <PitchLineChart color={{ primary: '#222', secondary: '#ddd' }} dataset={IncidentsAgainstMuslims} />
-        </PitchFlexCell>
-      </PitchFlex>
-    </PitchContainer>
-    <PitchContainer background={cardVideo}>
-      <PitchHeader type="medium" position="middle" align="center" color="#FFF" background="transparent">
-        { headerThree }
-      </PitchHeader>
-    </PitchContainer>
-    <PitchContainer background={whiteAndBlack} halfHeight>
-      <PitchHeader type="medium" position="middle" align="center" color="#222" background="#FFF">
-        { headerFour }
-      </PitchHeader>
-    </PitchContainer>
-  </div>
-);
+const PitchSincerelyUs = (props) => {
+  const {
+    campaignId,
+    totalCampaignSignups,
+    clickedSignUp,
+    convertExperiment,
+    experiment,
+  } = props;
+
+  const onClick = () => {
+    clickedSignUp(campaignId, { source: 'pitch page' });
+    convertExperiment(experiment);
+  };
+
+  const headerFour = (
+    <div>
+      <h1>JOIN {totalCampaignSignups} PEOPLE SENDING LETTERS OF SUPPORT.</h1>
+      <p>TOGETHER, WE’RE SENDING A BEAUTIFUL MESSAGE OF SUPPORT TO EVERY MOSQUE IN AMERICA.</p>
+      <button className="button" onClick={onClick}>GET STARTED</button>
+    </div>
+  );
+
+  return (
+    <div className="pitch-sincerely-us">
+      <PitchContainer background={blackAndWhite} scrollHint>
+        <PitchHeader position="middle" align="center" color="#FFF" background="#222">
+          { headerOne }
+        </PitchHeader>
+      </PitchContainer>
+      <PitchContainer background={whiteAndBlack} padding={false}>
+        <PitchFlex>
+          <PitchFlexCell width="half" padding>
+            <PitchHeader position="middle" type="medium" color="#222" background="#FFF">
+              { headerTwo }
+            </PitchHeader>
+          </PitchFlexCell>
+          <PitchFlexCell width="half">
+            <PitchLineChart color={{ primary: '#222', secondary: '#ddd' }} dataset={IncidentsAgainstMuslims} />
+          </PitchFlexCell>
+        </PitchFlex>
+      </PitchContainer>
+      <PitchContainer background={cardVideo}>
+        <PitchHeader type="medium" position="middle" align="center" color="#FFF" background="transparent">
+          { headerThree }
+        </PitchHeader>
+      </PitchContainer>
+      <PitchContainer background={whiteAndBlack} halfHeight>
+        <PitchHeader type="medium" position="middle" align="center" color="#222" background="#FFF">
+          { headerFour }
+        </PitchHeader>
+      </PitchContainer>
+    </div>
+  );
+};
+
+PitchSincerelyUs.propTypes = {
+  campaignId: PropTypes.string.isRequired,
+  totalCampaignSignups: PropTypes.number.isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
+  convertExperiment: PropTypes.func.isRequired,
+  experiment: PropTypes.string,
+};
+
+PitchSincerelyUs.defaultProps = {
+  experiment: null,
+};
 
 export default PitchSincerelyUs;

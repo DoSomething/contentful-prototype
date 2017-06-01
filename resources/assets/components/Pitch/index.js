@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import PitchSincerelyUs from './PitchCampaigns/SincerelyUs';
 
-const Pitch = ({ campaignId }) => {
-  if (campaignId !== '7656') return null;
+const Pitch = (props) => {
+  if (props.campaignId !== '7656') return null;
 
-  return (<PitchSincerelyUs />);
+  return (<PitchSincerelyUs {...props} />);
 };
 
 Pitch.propTypes = {
