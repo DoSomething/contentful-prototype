@@ -8,6 +8,11 @@
 
   text {
     transform-origin: 50% 50%;
+    font-size: 14px;
+
+    @include media($medium) {
+      font-size: 18px;
+    }
   }
 
   @include media($medium) {

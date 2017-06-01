@@ -52,8 +52,8 @@ const PitchLineChart = ({ color, dataset }) => {
     );
   }
 
-  for (let gridRow = 0; gridRow <= max / 100; gridRow += 1) {
-    const interval = gridRow * 100;
+  for (let gridRow = 0; gridRow <= max / 50; gridRow += 1) {
+    const interval = gridRow * 50;
     const gridY = percentify(getPointY(interval));
 
     gridLines.push(

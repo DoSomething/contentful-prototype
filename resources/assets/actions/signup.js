@@ -10,6 +10,7 @@ import {
   queueEvent,
   trackEvent,
   addNotification,
+  convertExperiment,
 } from '../actions';
 
 /**
@@ -102,6 +103,10 @@ export function getTotalSignups(campaignId) {
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
+    if (getState().experiments.pitch_page) {
+      convertExperiment('pitch_page');
+    }
+
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
       dispatch(queueEvent('clickedSignUp', campaignId, metadata));
@@ -112,10 +117,6 @@ export function clickedSignUp(campaignId, metadata) {
     if (getState().signups.data.includes(campaignId)) {
       dispatch(push('/action'));
       return;
-    }
-
-    if (getState().experiments.pitch_page) {
-
     }
 
     dispatch(signupPending());

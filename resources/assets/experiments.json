@@ -39,13 +39,11 @@
   "pitch_page": {
     "meta": {
       "preTest": {
-        "signups.thisCampaign": false,
-        "routing.location.pathname": "",
-        "campaign.legacyCampaignId": 7565
+        "signups.thisCampaign": false
       }
     },
     "alternatives": {
-      "a": "community",
+      "a": "default",
       "b": "pitch"
     }
   }

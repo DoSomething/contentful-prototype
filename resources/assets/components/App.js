@@ -15,8 +15,6 @@ import PitchContainer from '../containers/PitchContainer';
 import ExperimentContainer from '../containers/ExperimentContainer';
 import NotFound from './NotFound';
 
-const PITCH_PAGE = 'pitch_page';
-
 const wrap = (Container, Component) => props => (
   <Container><Component {...props} /></Container>
 );
@@ -24,22 +22,35 @@ const wrap = (Container, Component) => props => (
 const experience = component => wrap(Experience, component);
 const chrome = component => wrap(ChromeContainer, component);
 
-const community = () => (
-  <ExperimentContainer name={PITCH_PAGE}>
-    { chrome(FeedContainer)() }
-    { experience(PitchContainer)() }
-  </ExperimentContainer>
-);
-
 const App = ({ store, history }) => {
   initializeStore(store);
+
+  const PitchTest = (props) => {
+    const PitchRedirect = () => {
+      history.push(`${paths.pitch}`);
+      return null;
+    };
+
+    const Community = () => (
+      <ChromeContainer>
+        <FeedContainer {...props} />
+      </ChromeContainer>
+    );
+
+    return (
+      <ExperimentContainer name="pitch_page">
+        <Community alternative="default" experiment="pitch_page" />
+        <PitchRedirect alternative="pitch" redirect experiment="pitch_page" />
+      </ExperimentContainer>
+    );
+  };
 
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Switch>
           {/* Base user experience */}
-          <Route path={paths.community} exact component={community} />
+          <Route path={paths.community} exact component={PitchTest} />
           <Route path={paths.action} component={chrome(ActionPageContainer)} />
           <Route path={`${paths.pages}:page`} component={chrome(ContentPageContainer)} />
           {/* * */}

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import Pitch from '../components/Pitch';
-import { clickedSignUp, convertExperiment } from '../actions';
+import { clickedSignUp } from '../actions';
 
 const mapStateToProps = state => ({
   campaignId: state.campaign.legacyCampaignId,
@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
 
 const actionCreators = {
   clickedSignUp,
-  convertExperiment,
 };
 
 export default withRouter(connect(mapStateToProps, actionCreators)(Pitch));
