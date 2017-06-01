@@ -27,7 +27,7 @@ const App = ({ store, history }) => {
 
   const PitchTest = (props) => {
     const PitchRedirect = () => {
-      history.push(`${paths.pitch}`);
+      history.push(`${paths.background}`);
       return null;
     };
 
@@ -40,7 +40,7 @@ const App = ({ store, history }) => {
     return (
       <ExperimentContainer name="pitch_page">
         <Community alternative="default" experiment="pitch_page" />
-        <PitchRedirect alternative="pitch" redirect experiment="pitch_page" />
+        <PitchRedirect alternative="pitch" experiment="pitch_page" />
       </ExperimentContainer>
     );
   };
@@ -56,7 +56,7 @@ const App = ({ store, history }) => {
           {/* * */}
 
           {/* Custom user experiences */}
-          <Route path={paths.pitch} component={experience(PitchContainer)} />
+          <Route path={paths.background} component={experience(PitchContainer)} />
           {/* * */}
 
           <Route component={chrome(NotFound)} />
