@@ -32,22 +32,22 @@ const cardVideo = {
 const blackAndWhite = { type: 'color', data: '#222' };
 const whiteAndBlack = { type: 'color', data: '#FFF' };
 
+/* eslint-disable max-len */
 const headerOne = (
   <div>
     <h1>It’s a tough time to be <span>Muslim</span> in America.</h1>
-    <p>“Our muslim community not only in the US, but all across the globe is being marginalized
-    and hated simply because of their religion. By participating in this project I am trying
-    to show that not all Americans feel this way towards the Muslim community and I hope it
-    helps spread awareness that we are all the human beings and all deserve the same human
-    rights.” - Ryan, 16</p>
+    <p>Hate crimes against Muslim Americans have reached frightening levels in the past couple of years.</p>
   </div>
 );
-const headerTwo = (<h1>Hate crimes against Muslims spiked 67% in 2015, and things have’t gotten much better since then.</h1>); // eslint-disable-line max-len
-const headerThree = (<h1>That’s why this summer, we’re sending handmade Happy Ramadan cards to every single mosque in the country.</h1>); // eslint-disable-line max-len
+/* eslint-enable */
+
+const headerTwo = (<h1>HATE CRIMES AGAINST MUSLIMS SPIKED 67% IN 2015, AND THINGS LOOK LIKE THEY’RE GETTING WORSE.</h1>); // eslint-disable-line max-len
+const headerThree = (<h1>THAT’S WHY THIS SUMMER, WE’RE SENDING HANDMADE HAPPY RAMADAN CARDS TO EVERY SINGLE MOSQUE IN THE COUNTRY.</h1>); // eslint-disable-line max-len
 const headerFour = (
   <div>
-    <h1>Let’s do this.</h1>
-    <button className="button">Make Cards</button>
+    <h1>JOIN 38,522 PEOPLE SENDING LETTERS OF SUPPORT.</h1>
+    <p>TOGETHER, WE’RE SENDING A BEAUTIFUL MESSAGE OF SUPPORT TO EVERY MOSQUE IN AMERICA.</p>
+    <button className="button">GET STARTED</button>
   </div>
 );
 
@@ -71,12 +71,12 @@ const PitchSincerelyUs = () => (
       </PitchFlex>
     </PitchContainer>
     <PitchContainer background={cardVideo}>
-      <PitchHeader position="middle" align="center" color="#FFF" background="transparent">
+      <PitchHeader type="medium" position="middle" align="center" color="#FFF" background="transparent">
         { headerThree }
       </PitchHeader>
     </PitchContainer>
     <PitchContainer background={whiteAndBlack} halfHeight>
-      <PitchHeader type="extra-large" position="middle" align="center" color="#222" background="#FFF">
+      <PitchHeader type="medium" position="middle" align="center" color="#222" background="#FFF">
         { headerFour }
       </PitchHeader>
     </PitchContainer>

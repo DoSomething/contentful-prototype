@@ -4,7 +4,8 @@
   width: 100%;
   display: block;
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  overflow-x: hidden;
 
   &.-half-height {
     height: 50vh;
@@ -32,16 +33,18 @@
   }
 
   .pitch-container__scroll-hint {
-    position: absolute;
-    left: 50%;
-    bottom: 20%;
-    width: 64px;
-    height: 64px;
-    margin-left: -32px;
-    display: block;
-    background: url('./scroll.svg') no-repeat;
-    background-size: contain;
-    animation: bounce 4s infinite alternate;
+    @include media($medium) {
+      position: absolute;
+      left: 50%;
+      bottom: 20%;
+      width: 64px;
+      height: 64px;
+      margin-left: -32px;
+      display: block;
+      background: url('./scroll.svg') no-repeat;
+      background-size: contain;
+      animation: bounce 4s infinite alternate;
+    }
   }
 
   > video {

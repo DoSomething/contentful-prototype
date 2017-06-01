@@ -7,6 +7,11 @@
     margin-top: $base-spacing * 2;
     font-family: $primary-font-family;
     color: inherit;
+    font-size: 18px;
+
+    @include media($medium) {
+      font-size: 24px;
+    }
   }
 
   h1 {
@@ -19,6 +24,7 @@
       padding: 0 $half-spacing;
       background: $white;
       color: $black;
+      line-height: 70px;
     }
   }
 
