@@ -19,6 +19,7 @@ return [
         'keen_id' => env('KEEN_PROJECT_ID'),
         'keen_key' => env('KEEN_WRITE_KEY'),
         'facebook_id' => env('FACEBOOK_APP_ID'),
+        'customer_io_id' => env('CUSTOMER_IO_ID'),
     ],
 
     'gladiator' => [
