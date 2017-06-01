@@ -117,6 +117,10 @@ export function clickedSignUp(campaignId, metadata) {
       return;
     }
 
+    if (getState().experiments.pitch_page) {
+
+    }
+
     dispatch(signupPending());
 
     (new Phoenix()).post('next/signups', { campaignId }).then((response) => {

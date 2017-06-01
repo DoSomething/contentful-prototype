@@ -35,5 +35,18 @@
       "b": "get_started",
       "c": "apply_now"
     }
+  },
+  "pitch_page": {
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false,
+        "routing.location.pathname": "",
+        "campaign.legacyCampaignId": 7565
+      }
+    },
+    "alternatives": {
+      "a": "community",
+      "b": "pitch"
+    }
   }
 }
