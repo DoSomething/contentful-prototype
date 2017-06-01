@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/*
-do we need this
- */
-
 import './pitchFlex.scss';
 
 export const PitchFlex = ({ children }) => (

@@ -26,29 +26,6 @@ const PitchLineChart = ({ color, dataset }) => {
   const getPointX = index => ((columnWidth * index) * 2) + yAxisWidth;
   const getPointY = value => chartHeight - ((value / max) * 100);
 
-  // TODO: Need a better way of positioning these for dynamic width
-  //
-  // const xAxisLabel = (
-  //   <text
-  //     x={percentify((chartWidth / 2) - yAxisWidth)}
-  //     y={percentify(100)}
-  //     textAnchor="middle"
-  //     fill={color.secondary}
-  //     className="-small"
-  //   >{ meta.axis.x }</text>
-  // );
-  //
-  // const yAxisLabel = (
-  //   <text
-  //     x={percentify(-45)}
-  //     y={percentify(yAxisWidth / 2)}
-  //     transform="rotate(270)"
-  //     textAnchor="middle"
-  //     fill={color.secondary}
-  //     className="-small"
-  //   >{ meta.axis.y }</text>
-  // );
-
   const gridLines = [];
 
   for (let gridCol = 0; gridCol < totalPoints; gridCol += 1) {

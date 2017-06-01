@@ -8,7 +8,7 @@ import PitchLineChart from '../PitchLineChart';
 // TODO: Better way of loading data sets so we dont have all of them in the JS bundle.
 import IncidentsAgainstMuslims from './data/IncidentsAgainstMuslims.json';
 
-const testVideo = {
+const cardVideo = {
   type: 'video',
   data: {
     poster: 'https://static.dosomething.org/onboarding/Screen%20Shot%202017-05-30%20at%209.55.17%20AM.png',
@@ -70,7 +70,7 @@ const PitchSincerelyUs = () => (
         </PitchFlexCell>
       </PitchFlex>
     </PitchContainer>
-    <PitchContainer background={testVideo}>
+    <PitchContainer background={cardVideo}>
       <PitchHeader position="middle" align="center" color="#FFF" background="transparent">
         { headerThree }
       </PitchHeader>
