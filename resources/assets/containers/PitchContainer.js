@@ -4,7 +4,7 @@ import Pitch from '../components/Pitch';
 import { clickedSignUp } from '../actions';
 
 const mapStateToProps = state => ({
-  contentfulId: state.campaign.id,
+  enableBackgroundTest: state.campaign.additionalContent.enableBackgroundTest,
   campaignId: state.campaign.legacyCampaignId,
   totalCampaignSignups: state.signups.total,
 });

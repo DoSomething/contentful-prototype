@@ -40,7 +40,7 @@
     "meta": {
       "preTest": {
         "signups.thisCampaign": false,
-        "campaign.id": "40rU2q930sWewsUGiuwyOk"
+        "campaign.additionalContent.enableBackgroundTest": true
       }
     },
     "alternatives": {
