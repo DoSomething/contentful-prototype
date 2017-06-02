@@ -39,7 +39,8 @@
   "pitch_page": {
     "meta": {
       "preTest": {
-        "signups.thisCampaign": false
+        "signups.thisCampaign": false,
+        "campaign.id": "40rU2q930sWewsUGiuwyOk"
       }
     },
     "alternatives": {
