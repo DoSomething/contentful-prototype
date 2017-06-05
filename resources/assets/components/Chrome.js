@@ -4,7 +4,6 @@ import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
-import LedeBanner from './LedeBanner';
 import Overlay from './Overlay';
 import LedeBanner from './LedeBanner/LedeBanner';
 import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
