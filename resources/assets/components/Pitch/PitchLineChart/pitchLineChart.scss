@@ -1,0 +1,21 @@
+@import '../pitchToolbox';
+
+.pitch-line-chart {
+  height: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  text {
+    transform-origin: 50% 50%;
+    font-size: 14px;
+
+    @include media($medium) {
+      font-size: 18px;
+    }
+  }
+
+  @include media($medium) {
+    height: 50%;
+  }
+}

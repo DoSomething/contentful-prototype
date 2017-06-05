@@ -1,10 +1,9 @@
 @import '../../scss/next-toolbox';
 
 .content-page {
-  padding: 0 $half-spacing;
-
   @include clearfix;
-  padding-top: $half-spacing;
+
+  padding: $half-spacing;
   font-family: $primary-font-family;
   font-size: $font-regular;
   line-height: 1.4;
@@ -20,14 +19,13 @@
   }
 
   .secondary {
-    margin: 0 0 $base-spacing;
-
-    @include visually-hidden();
+    display: none;
 
     @include media($large) {
-      @include visually-restored();
+      display: block;
       float: right;
       padding-left: $half-spacing;
+      margin: 0 0 $base-spacing;
       width: 33.3333333333333%
     }
   }

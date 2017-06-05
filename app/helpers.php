@@ -270,10 +270,14 @@ function phoenixLink($path)
  *
  * @return array
  */
-function getClientEnvironmentVars()
+function get_client_environment_vars()
 {
     return [
         'KEEN_PROJECT_ID' => config('services.analytics.keen_id'),
         'KEEN_WRITE_KEY' => config('services.analytics.keen_key'),
+        'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
+        'SIXPACK_BASE_URL' => config('services.sixpack.url'),
+        'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
+        'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
     ];
 }

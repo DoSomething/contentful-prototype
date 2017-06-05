@@ -11,7 +11,7 @@
  |
  */
 
-// WHATWG Fetch Polyfill
+// Polyfills
 import 'whatwg-fetch';
 import 'babel-polyfill';
 
@@ -19,7 +19,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
-import { ready } from './helpers';
 import { configureStore } from './store';
 import * as reducers from './reducers';
 
@@ -34,21 +33,20 @@ import './scss/fonts.scss';
 import App from './components/App';
 
 // Things
-import { init as navigationInit } from './helpers/navigation';
 import { init as historyInit } from './history';
+import { bindNavigationEvents } from './helpers/navigation';
 import { observerMiddleware } from './middleware/analytics';
 
 // Configure store & history.
 const history = historyInit();
 const middleware = [thunk, routerMiddleware(history), observerMiddleware];
 const store = configureStore({ ...reducers, routing: routerReducer }, middleware, window.STATE);
-store.dispatch({ type: 'ADD_NOTIFICATION' });
-ready(() => {
-  const appElement = document.getElementById('app');
 
-  if (appElement) {
-    ReactDom.render(<App store={store} history={history} />, appElement);
-  }
+// Add event listeners for top-level navigation.
+bindNavigationEvents();
 
-  navigationInit();
-});
+// Render the application!
+const appElement = document.getElementById('app');
+if (appElement) {
+  ReactDom.render(<App store={store} history={history} />, appElement);
+}

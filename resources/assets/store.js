@@ -2,6 +2,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
 import { start } from './middleware/analytics';
+import experimentsMiddleware from './middleware/experiments';
+import experimentsApiMiddleware from './middleware/experimentsApi';
 import { loadStorage } from './helpers/storage';
 
 /**
@@ -67,6 +69,7 @@ const initialState = {
  * reducers & preloaded state from the server.
  *
  * @param reducers
+ * @param middleware
  * @param preloadedState
  * @returns {Store<S>}
  */
@@ -76,6 +79,12 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
     const createLogger = require('redux-logger'); // eslint-disable-line global-require
     middleware.push(createLogger({ collapsed: true }));
   }
+
+  // Experiments middleware
+  middleware.push(
+    experimentsMiddleware,
+    experimentsApiMiddleware,
+  );
 
   // If React DevTools are available, use instrumented compose function.
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line

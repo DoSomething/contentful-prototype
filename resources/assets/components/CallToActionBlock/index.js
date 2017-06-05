@@ -26,12 +26,13 @@ const renderBackgroundImageStyle = imageUrl => (
 
 const CallToActionBlock = (props) => {
   const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses,
-    noun, verb } = props;
+    noun, verb, buttonOverride, experiment, convertExperiment, alternative } = props;
   const { title, content, additionalContent } = fields;
 
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
 
-  const buttonText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
+  const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
+  const buttonText = buttonOverride || defaultText;
 
   const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
     hasPhoto,
@@ -39,7 +40,15 @@ const CallToActionBlock = (props) => {
     hasContent: typeof content !== 'undefined',
   });
 
-  const handleOnClickButton = () => clickedSignUp(campaignId, metadata);
+  if (experiment) {
+    metadata.experiment = experiment;
+    metadata.alternative = alternative;
+  }
+
+  const handleOnClickButton = () => {
+    clickedSignUp(campaignId, metadata);
+    if (experiment) convertExperiment(experiment);
+  };
 
   return (
     <div className={classnames('cta', modifiers(modifierClasses), { 'has-photo': hasPhoto })}>
@@ -61,8 +70,12 @@ const CallToActionBlock = (props) => {
 };
 
 CallToActionBlock.propTypes = {
+  alternative: PropTypes.string,
+  buttonOverride: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
+  convertExperiment: PropTypes.func.isRequired,
+  experiment: PropTypes.string,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
@@ -82,6 +95,8 @@ CallToActionBlock.propTypes = {
 };
 
 CallToActionBlock.defaultProps = {
+  alternative: null,
+  buttonOverride: null,
   fields: {
     title: 'Ready to start?',
   },

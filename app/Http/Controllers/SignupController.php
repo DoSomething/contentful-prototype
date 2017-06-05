@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
-use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 class SignupController extends Controller
 {
@@ -54,10 +53,6 @@ class SignupController extends Controller
         $this->validate($request, [
             'campaignId' => 'required',
         ]);
-
-        // @TEST 2017-05-17 lede_banner_number_of_buttons
-        $sixpack = app(Sixpack::class);
-        $sixpack->convert('lede_banner_number_of_buttons');
 
         return $this->phoenixLegacy->storeSignup(
             auth()->id(),

@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
   hasJoinedCompetition: state.competitions.thisCampaign,
   hasPendingJoin: state.competitions.isPending,
   showConfirmation: state.competitions.showConfirmation,
-  experiments: state.experiments,
 });
 
 /**

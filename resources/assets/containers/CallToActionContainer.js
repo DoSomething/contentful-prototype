@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import CallToActionBlock from '../components/CallToActionBlock';
-import { clickedSignUp } from '../actions';
+import { clickedSignUp, convertExperiment } from '../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -20,6 +20,7 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   clickedSignUp,
+  convertExperiment,
 };
 
 // Export the container component.

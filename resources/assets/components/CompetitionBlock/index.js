@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { get } from 'lodash';
 
 import Markdown from '../Markdown';
 import Block, { BlockTitle } from '../Block';
@@ -17,22 +16,8 @@ You can keep working on the campaign for now. I'm so excited to have you onboard
 `;
 
 const CompetitionBlock = (props) => {
-  const { content, photo, byline, joinCompetition, hasJoinedCompetition,
-    hasPendingJoin, showConfirmation, campaignId, campaignRunId, checkForCompetition } = props;
-
-  // @TEST 2017-05-17 competitions_prompt_style
-  const experiments = props.experiments;
-  const experimentAlternative = get(experiments, 'competitions_prompt_style', null);
-  const experimentClasses = [];
-
-  switch (experimentAlternative) {
-    case 'colorful_block':
-      experimentClasses.push('-colorful');
-      break;
-    default:
-      experimentClasses.push('-default');
-      break;
-  }
+  const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin,
+    showConfirmation, campaignId, campaignRunId, checkForCompetition, experiment, convert } = props;
 
   // If we already joined the competition & saw the confirmation message,
   // display nothing.
@@ -50,7 +35,10 @@ const CompetitionBlock = (props) => {
     <button
       disabled={hasPendingJoin}
       className={classnames('button', { 'is-loading': hasPendingJoin })}
-      onClick={() => joinCompetition(campaignId, campaignRunId)}
+      onClick={() => {
+        convert(experiment);
+        joinCompetition(campaignId, campaignRunId);
+      }}
     >join competition</button>
   );
 
@@ -61,7 +49,7 @@ const CompetitionBlock = (props) => {
   ) : null;
 
   return (
-    <Block className={classnames(experimentClasses)}>
+    <Block className={classnames('-default')}>
       <BlockTitle>Go above and beyond!</BlockTitle>
       <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
         <div className="clearfix">
@@ -77,13 +65,14 @@ const CompetitionBlock = (props) => {
 
 CompetitionBlock.propTypes = {
   content: PropTypes.string.isRequired,
+  convert: PropTypes.func.isRequired,
   photo: PropTypes.string,
   byline: PropTypes.shape({
     author: PropTypes.string.isRequired,
     jobTitle: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
-  experiments: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  experiment: PropTypes.string.isRequired,
   joinCompetition: PropTypes.func.isRequired,
   checkForCompetition: PropTypes.func.isRequired,
   hasJoinedCompetition: PropTypes.bool.isRequired,
@@ -94,7 +83,6 @@ CompetitionBlock.propTypes = {
 };
 
 CompetitionBlock.defaultProps = {
-  experiments: null,
   photo: null,
 };
 

@@ -1,10 +1,51 @@
 {
   "competitions_prompt_style": {
-    "a": "default_block",
-    "b": "colorful_block"
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": true,
+        "competitions.thisCampaign": false
+      }
+    },
+    "alternatives": {
+      "a": "default_block",
+      "b": "colorful_block"
+    }
   },
-  "lede_banner_number_of_buttons": {
-    "a": "one_button",
-    "b": "two_buttons"
+  "lede_banner_quad_buttons": {
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false
+      }
+    },
+    "alternatives": {
+      "a": "one_button_join",
+      "b": "one_button_make",
+      "c": "two_button_stand",
+      "d": "two_button_remind"
+    }
+  },
+  "scholarship_cta_copy": {
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false
+      }
+    },
+    "alternatives": {
+      "a": "default",
+      "b": "get_started",
+      "c": "apply_now"
+    }
+  },
+  "pitch_page": {
+    "meta": {
+      "preTest": {
+        "signups.thisCampaign": false,
+        "campaign.additionalContent.enableBackgroundTest": true
+      }
+    },
+    "alternatives": {
+      "a": "default",
+      "b": "pitch"
+    }
   }
 }

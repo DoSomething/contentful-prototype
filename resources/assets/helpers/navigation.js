@@ -6,6 +6,7 @@ export const paths = {
   community: '/',
   action: '/action',
   pages: '/pages/',
+  background: '/background',
 };
 
 /**
@@ -56,9 +57,10 @@ export function toggleHandler(button, target, toggleClass) {
 }
 
 /**
- * Setup event listeners for the nav bar
+ * Setup event listeners for the top-level navigation
+ * in the site chrome.
  */
-export function init() {
+export function bindNavigationEvents() {
   const navToggle = document.getElementById('js-navigation-toggle');
   const nav = document.getElementsByClassName('navigation')[0];
   const chrome = document.getElementsByClassName('chrome')[0];

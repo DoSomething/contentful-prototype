@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Navigation, NavigationLink } from '../components/Navigation';
 import { paths } from '../helpers/navigation';
 
@@ -33,4 +34,4 @@ NavigationContainer.defaultProps = {
   pages: [],
 };
 
-export default connect(mapStateToProps)(NavigationContainer);
+export default withRouter(connect(mapStateToProps)(NavigationContainer));

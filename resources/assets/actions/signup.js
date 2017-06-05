@@ -1,5 +1,5 @@
 import { Phoenix } from '@dosomething/gateway';
-import { get as historyGet } from '../history';
+import { push } from 'react-router-redux';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -10,6 +10,7 @@ import {
   queueEvent,
   trackEvent,
   addNotification,
+  convertExperiment,
 } from '../actions';
 
 /**
@@ -32,9 +33,6 @@ export function signupCreated(campaignId) {
       campaignId,
       userId: user.id,
     });
-
-    // Take users to the action page after sign up.
-    historyGet().push('/action');
   };
 }
 
@@ -105,6 +103,10 @@ export function getTotalSignups(campaignId) {
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
+    if (getState().experiments.pitch_page) {
+      dispatch(convertExperiment('pitch_page'));
+    }
+
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
       dispatch(queueEvent('clickedSignUp', campaignId, metadata));
@@ -113,7 +115,7 @@ export function clickedSignUp(campaignId, metadata) {
 
     // If we already have a signup, just go to the action page.
     if (getState().signups.data.includes(campaignId)) {
-      historyGet().push('/action');
+      dispatch(push('/action'));
       return;
     }
 
@@ -126,7 +128,11 @@ export function clickedSignUp(campaignId, metadata) {
       else if (response[0] === false) dispatch(checkForSignup(campaignId));
       // Otherwise, mark the signup as a success.
       else {
+        // Take users to the action page after sign up.
+        dispatch(push('/action'));
+
         dispatch(signupCreated(campaignId));
+
         dispatch(trackEvent('signup created', metadata));
       }
     });

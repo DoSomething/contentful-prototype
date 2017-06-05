@@ -1,29 +1,114 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Markdown from '../Markdown';
-import CallToActionContainer from '../../containers/CallToActionContainer';
 import ScrollConcierge from '../ScrollConcierge';
+import CallToActionContainer from '../../containers/CallToActionContainer';
+import ExperimentContainer from '../../containers/ExperimentContainer';
 
 import './content-page.scss';
 
-const ContentPage = ({ pages, route, tagline, noun, verb }) => {
-  const page = pages.find(item => item.fields.slug === route.page);
+const SCHOLARSHIP_CTA_COPY = 'scholarship_cta_copy';
 
-  return (
+const Page = ({ header, markdown, ctaContent, ctaTitle,
+  buttonOverride, experiment, alternative }) => (
+
     <div className="content-page">
       <div className="primary">
         <ScrollConcierge />
         <article>
-          <h2 className="visually-hidden">{page.fields.title}</h2>
-          <Markdown>{page.fields.content}</Markdown>
+          <h2 className="visually-hidden">{ header }</h2>
+          <Markdown>{ markdown }</Markdown>
         </article>
       </div>
       <div className="secondary">
-        <CallToActionContainer fields={{ content: `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__` }} />
+        <CallToActionContainer
+          experiment={experiment}
+          alternative={alternative}
+          buttonOverride={buttonOverride}
+          fields={{ content: ctaContent }}
+        />
       </div>
 
-      <CallToActionContainer fields={{ title: tagline }} modifierClasses="transparent" />
+      <CallToActionContainer
+        experiment={experiment}
+        alternative={alternative}
+        buttonOverride={buttonOverride}
+        fields={{ title: ctaTitle }}
+        modifierClasses="transparent"
+      />
     </div>
+);
+
+Page.propTypes = {
+  header: PropTypes.string.isRequired,
+  markdown: PropTypes.string.isRequired,
+  ctaContent: PropTypes.string.isRequired,
+  ctaTitle: PropTypes.string.isRequired,
+  alternative: PropTypes.string,
+  buttonOverride: PropTypes.string,
+  experiment: PropTypes.string,
+};
+
+Page.defaultProps = {
+  alternative: null,
+  buttonOverride: null,
+  experiment: null,
+};
+
+const ContentPage = (props) => {
+  const { pages, route, tagline, noun, verb } = props;
+  const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
+
+  // Load the page by the slug, or return a 404 page.
+  const page = pages.find(item => item.fields.slug === route.page);
+  if (! page) {
+    const copy = 'That page could not be found. Try choosing from the links above!';
+    return <Page header="Not Found" markdown={copy} ctaTitle={tagline} ctaContent={ctaContent} />;
+  }
+
+  const header = page.fields.title;
+  const markdown = page.fields.content;
+
+  if (route.page.includes('scholarship')) {
+    return (
+      <ExperimentContainer name={SCHOLARSHIP_CTA_COPY}>
+        <Page
+          experiment={SCHOLARSHIP_CTA_COPY}
+          alternative="default"
+          header={header}
+          ctaTitle={tagline}
+          markdown={markdown}
+          ctaContent={ctaContent}
+        />
+        <Page
+          experiment={SCHOLARSHIP_CTA_COPY}
+          alternative="get_started"
+          header={header}
+          ctaTitle="Make a card to qualify for a $3000 scholarship."
+          markdown={markdown}
+          ctaContent="__Make a card to qualify for a $3000 scholarship.__"
+          buttonOverride="GET STARTED"
+        />
+        <Page
+          experiment={SCHOLARSHIP_CTA_COPY}
+          alternative="apply_now"
+          header={header}
+          ctaTitle="Make a card to qualify for a $3000 scholarship."
+          markdown={markdown}
+          ctaContent="__Make a card to qualify for a $3000 scholarship.__"
+          buttonOverride="APPLY NOW"
+        />
+      </ExperimentContainer>
+    );
+  }
+
+  return (
+    <Page
+      header={header}
+      ctaTitle={tagline}
+      markdown={markdown}
+      ctaContent={ctaContent}
+    />
   );
 };
 
