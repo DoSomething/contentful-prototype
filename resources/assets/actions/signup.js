@@ -103,8 +103,10 @@ export function getTotalSignups(campaignId) {
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
+    console.log('hi');
     if (getState().experiments.pitch_page) {
-      convertExperiment('pitch_page');
+      console.log('test');
+      dispatch(convertExperiment('pitch_page'));
     }
 
     // If the user is not logged in, handle this action later.
