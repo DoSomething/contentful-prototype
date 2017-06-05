@@ -4,16 +4,13 @@ import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
-<<<<<<< HEAD
 import LedeBanner from './LedeBanner';
 import Overlay from './Overlay';
-=======
 import LedeBanner from './LedeBanner/LedeBanner';
 import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
 import LedeBannerAltC from './LedeBanner/LedeBannerAltC';
 import LedeBannerAltD from './LedeBanner/LedeBannerAltD';
 import ExperimentContainer from '../containers/ExperimentContainer';
->>>>>>> db3c3a6c9e87d11b39804a1e45f3dd9b8054a64c
 import NavigationContainer from '../containers/NavigationContainer';
 import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
