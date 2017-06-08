@@ -26,4 +26,14 @@
       margin: 0;
     }
   }
+
+  .modal__exit {
+    position: absolute;
+    top: $base-spacing;
+    left: $base-spacing; // TODO: Move this to the right.
+    font-size: 34px;
+    line-height: 34px;
+    color: $white;
+    cursor: pointer;
+  }
 }

@@ -33,6 +33,7 @@ const Modal = (props) => {
               byline={competitionStep.additionalContent}
             />
           </div>
+          <div className="modal__exit" onClick={props.closeModal}>&times;</div>
         </div>
       </div>
     </RenderModalInBody>
