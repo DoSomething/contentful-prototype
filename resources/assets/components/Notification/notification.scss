@@ -6,8 +6,6 @@
   left: 0;
   width: 25%;
   min-width: 300px;
-  display: flex;
-  flex-direction: column;
 }
 
 .notification {
@@ -21,7 +19,8 @@
   }
 
   .notification__content {
-    padding: $base-spacing;
+    padding: $half-spacing $base-spacing;
+    margin-right: $half-spacing;
 
     p {
       color: inherit;
