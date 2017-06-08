@@ -19,6 +19,8 @@ const CompetitionBlock = (props) => {
   const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin,
     showConfirmation, campaignId, campaignRunId, checkForCompetition, experiment, convert } = props;
 
+  if (! content) return null;
+
   // If we already joined the competition & saw the confirmation message,
   // display nothing.
   if (! showConfirmation && hasJoinedCompetition) {

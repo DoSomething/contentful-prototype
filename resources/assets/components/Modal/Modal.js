@@ -18,6 +18,14 @@ const Modal = (props) => {
     if (event.target.id === MODAL_ID) props.closeModal();
   };
 
+  const competition = competitionStep ? (
+    <CompetitionContainer
+      content={competitionStep.content}
+      photo={competitionStep.photos[0]}
+      byline={competitionStep.additionalContent}
+    />
+  ) : null;
+
   /* eslint-disable jsx-a11y/no-static-element-interactions */
   return (
     <RenderModalInBody shouldShowModal={shouldShowModal}>
@@ -27,11 +35,7 @@ const Modal = (props) => {
             <AffirmationContainer />
           </div>
           <div className="modal__slide">
-            <CompetitionContainer
-              content={competitionStep.content}
-              photo={competitionStep.photos[0]}
-              byline={competitionStep.additionalContent}
-            />
+            { competition }
           </div>
           <div className="modal__exit" onClick={props.closeModal}>&times;</div>
         </div>
@@ -51,14 +55,13 @@ Modal.propTypes = {
       jobTitle: PropTypes.string.isRequired,
       avatar: PropTypes.string.isRequired,
     }).isRequired,
-  }).isRequired,
+  }),
 };
 
 Modal.defaultProps = {
-  competitionStep: {
-    photo: null,
-  },
+  competitionStep: null,
 };
+
 
 Modal.mapStateToProps = state => ({
   shouldShowModal: state.modal.shouldShowModal,
