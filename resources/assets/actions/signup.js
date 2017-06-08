@@ -6,11 +6,11 @@ import {
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
   SET_TOTAL_SIGNUPS,
-  HIDE_AFFIRMATION,
   queueEvent,
   trackEvent,
   addNotification,
   convertExperiment,
+  openModal,
 } from '../actions';
 
 /**
@@ -18,15 +18,12 @@ import {
  * to the state tree (either as a result of application logic or user input).
  */
 
-// Action: hide the signup affirmation
-export function hideAffirmation() {
-  return { type: HIDE_AFFIRMATION };
-}
-
 // Action: a new signup was created for a campaign.
 export function signupCreated(campaignId) {
   return (dispatch, getState) => {
     const { user } = getState();
+
+    dispatch(openModal());
 
     dispatch({
       type: SIGNUP_CREATED,

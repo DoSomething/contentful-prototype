@@ -36,7 +36,7 @@ const CompetitionBlock = (props) => {
       disabled={hasPendingJoin}
       className={classnames('button', { 'is-loading': hasPendingJoin })}
       onClick={() => {
-        convert(experiment);
+        if (experiment) convert(experiment);
         joinCompetition(campaignId, campaignRunId);
       }}
     >join competition</button>
@@ -65,14 +65,14 @@ const CompetitionBlock = (props) => {
 
 CompetitionBlock.propTypes = {
   content: PropTypes.string.isRequired,
-  convert: PropTypes.func.isRequired,
+  convert: PropTypes.func,
   photo: PropTypes.string,
   byline: PropTypes.shape({
     author: PropTypes.string.isRequired,
     jobTitle: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
-  experiment: PropTypes.string.isRequired,
+  experiment: PropTypes.string,
   joinCompetition: PropTypes.func.isRequired,
   checkForCompetition: PropTypes.func.isRequired,
   hasJoinedCompetition: PropTypes.bool.isRequired,
@@ -84,6 +84,8 @@ CompetitionBlock.propTypes = {
 
 CompetitionBlock.defaultProps = {
   photo: null,
+  experiment: null,
+  convert: () => {},
 };
 
 export default CompetitionBlock;

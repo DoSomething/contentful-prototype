@@ -1,8 +1,19 @@
 @import '../../scss/next-toolbox.scss';
 
+.notification-list {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
 .notification {
   position: relative;
   width: 100%;
+  margin: $half-spacing;
 
   &.-error {
     color: $white;

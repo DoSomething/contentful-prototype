@@ -38,7 +38,6 @@ const initialState = {
     data: [],
     thisCampaign: false,
     thisSession: false,
-    shouldShowAffirmation: false,
     isPending: false,
     total: 0,
   },
@@ -62,6 +61,9 @@ const initialState = {
     items: [],
   },
   experiments: {},
+  modal: {
+    shouldShowModal: false,
+  },
 };
 
 /**

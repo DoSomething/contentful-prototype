@@ -1,28 +1,27 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
 import AppInit from './AppInit';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
-import Overlay from './Overlay';
+import Modal from './Modal';
 import LedeBanner from './LedeBanner/LedeBanner';
 import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
 import LedeBannerAltC from './LedeBanner/LedeBannerAltC';
 import LedeBannerAltD from './LedeBanner/LedeBannerAltD';
 import ExperimentContainer from '../containers/ExperimentContainer';
 import NavigationContainer from '../containers/NavigationContainer';
-import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
 
 // @TODO: Might be useful to have a separate file of constants?
 const LEDE_BANNER_QUAD_BUTTONS = 'lede_banner_quad_buttons';
 
 const Chrome = props => (
-  <div>
+  <div className={classnames({ '-lock': props.shouldShowModal })}>
     <AppInit />
-    <Overlay>
-      <NotificationContainer />
-    </Overlay>
+    <NotificationContainer />
+    <Modal />
     <ExperimentContainer name={LEDE_BANNER_QUAD_BUTTONS}>
       <LedeBanner
         experiment={LEDE_BANNER_QUAD_BUTTONS}
@@ -84,7 +83,6 @@ const Chrome = props => (
       content={props.dashboard}
       endDate={props.endDate}
     />
-    <AffirmationContainer />
     <NavigationContainer />
     <FeedEnclosure>
       {props.children}
@@ -131,6 +129,7 @@ Chrome.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
+  shouldShowModal: PropTypes.bool.isRequired,
 };
 
 Chrome.defaultProps = {

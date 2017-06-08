@@ -3,7 +3,6 @@ import {
   SIGNUP_FOUND,
   SIGNUP_PENDING,
   SIGNUP_NOT_FOUND,
-  HIDE_AFFIRMATION,
   SET_TOTAL_SIGNUPS,
 } from '../actions';
 
@@ -57,9 +56,6 @@ const signupReducer = (state = {}, action) => {
 
     case SIGNUP_NOT_FOUND:
       return { ...state, isPending: false };
-
-    case HIDE_AFFIRMATION:
-      return { ...state, shouldShowAffirmation: false };
 
     case SET_TOTAL_SIGNUPS:
       return { ...state, total: action.total };

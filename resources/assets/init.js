@@ -41,6 +41,7 @@ import { observerMiddleware } from './middleware/analytics';
 const history = historyInit();
 const middleware = [thunk, routerMiddleware(history), observerMiddleware];
 const store = configureStore({ ...reducers, routing: routerReducer }, middleware, window.STATE);
+window.reduxStore = store; // This doesn't feel right, importing the init.js also felt weird...
 
 // Add event listeners for top-level navigation.
 bindNavigationEvents();

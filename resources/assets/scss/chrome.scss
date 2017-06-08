@@ -2,4 +2,8 @@
 
 .chrome > .wrapper {
   background: $light-background-color;
+
+  .-lock {
+    position: fixed;
+  }
 }

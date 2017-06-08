@@ -1,0 +1,29 @@
+@import '../../scss/next-toolbox.scss';
+
+.modal {
+  position: fixed;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: $dark-background-color-transparent;
+
+  .modal__container {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .modal__slide {
+    margin-bottom: $base-spacing * 2;
+
+    &:first-of-type {
+      margin-top: 30%;
+    }
+
+    // Override any child components
+    > div {
+      margin: 0;
+    }
+  }
+}

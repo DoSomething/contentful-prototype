@@ -71,6 +71,10 @@ export * from './event';
 export const APPLICATION_INIT = 'APPLICATION_INIT';
 export * from './analytics';
 
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export * from './modal';
+
 export const ANALYTICS_ACTIONS = [
   ADD_NOTIFICATION,
   ADD_SUBMISSION_ITEM_TO_LIST,
@@ -98,4 +102,6 @@ export const ANALYTICS_ACTIONS = [
   STORE_REPORTBACK_FAILED,
   STORE_REPORTBACK_PENDING,
   STORE_REPORTBACK_SUCCESSFUL,
+  OPEN_MODAL,
+  CLOSE_MODAL,
 ];

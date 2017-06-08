@@ -9,3 +9,4 @@ export events from './events';
 export notifications from './notifications';
 export competitions from './competitions';
 export experiments from './experiments';
+export modal from './modal';
