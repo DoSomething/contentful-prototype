@@ -2,25 +2,9 @@ box: dosomething/ds-docker-php
 build:
     # The steps that will be executed on build
     steps:
-      - script:
-          name: start mysql
-          code: sudo service mysql start
       - leipert/composer-install@0.9.1
       - wercker/bundle-install@1.1.1
-      - script:
-        name: upgrade nodejs
-        code: |-
-          curl -sL https://deb.nodesource.com/setup_6.x | sudo bash -
-          sudo apt-get install -y nodejs
-      - script:
-          name: update npm
-          code: npm install -g npm@4.6.1
-      - script:
-          name: npm install
-          code: |-
-            mkdir -p $WERCKER_CACHE_DIR/wercker/npm
-            npm config set cache $WERCKER_CACHE_DIR/wercker/npm
-            npm install
+      - wercker/npm-install
       - script:
           name: check code style
           code: npm run lint

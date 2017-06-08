@@ -11,16 +11,15 @@
  |
  */
 
-// Polyfills
-import 'whatwg-fetch';
-import 'babel-polyfill';
-
 import React from 'react';
 import ReactDom from 'react-dom';
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 import { configureStore } from './store';
 import * as reducers from './reducers';
+
+// Browser polyfills
+import './polyfills';
 
 // Style Components
 import './scss/base.scss';
