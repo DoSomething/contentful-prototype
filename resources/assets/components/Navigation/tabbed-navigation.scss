@@ -1,0 +1,66 @@
+@import '../../scss/next-toolbox';
+
+.tabbed-navigation {
+  @include clearfix;
+
+  margin: 12px 0 (-$half-spacing);
+  position: relative;
+
+  @include media($tablet) {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  &::before {
+    content: '';
+    background: linear-gradient(to right, rgba($light-background-color, 0) 0%, rgba($light-background-color, 1) 75%);
+    height: 100%;
+    display: block;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    width: 35px;
+    z-index: 10;
+
+    @include media($tablet) {
+      display: none;
+    }
+  }
+
+  &.is-stuck {
+    background-color: $white;
+    border-bottom: 1px solid $primary-border-color;
+  }
+
+  > .wrapper {
+    overflow-x: auto;
+    padding: $half-spacing;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+
+    @include media($tablet) {
+      @include span(12 no-gutters);
+      @include push(2);
+    }
+  }
+
+  .nav-link {
+    color: #9B9B9B;
+    color: #9B9B9B;
+    display: inline-block;
+    margin: 10px $half-spacing;
+    text-transform: uppercase;
+
+    &:hover {
+      color: $off-black;
+      text-decoration: none;
+      border-bottom: 4px solid rgba($off-black, 0.5);
+    }
+
+    &.is-active {
+      color: $black;
+      border-bottom: 4px solid $off-black;
+    }
+  }
+}

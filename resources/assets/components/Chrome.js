@@ -11,7 +11,8 @@ import LedeBannerAltB from './LedeBanner/LedeBannerAltB';
 import LedeBannerAltC from './LedeBanner/LedeBannerAltC';
 import LedeBannerAltD from './LedeBanner/LedeBannerAltD';
 import ExperimentContainer from '../containers/ExperimentContainer';
-import NavigationContainer from '../containers/NavigationContainer';
+import TabbedNavigationContainer from '../containers/TabbedNavigationContainer';
+import AffirmationContainer from '../containers/AffirmationContainer';
 import NotificationContainer from '../containers/NotificationContainer';
 
 // @TODO: Might be useful to have a separate file of constants?
@@ -83,7 +84,8 @@ const Chrome = props => (
       content={props.dashboard}
       endDate={props.endDate}
     />
-    <NavigationContainer />
+    <AffirmationContainer />
+    <TabbedNavigationContainer />
     <FeedEnclosure>
       {props.children}
     </FeedEnclosure>

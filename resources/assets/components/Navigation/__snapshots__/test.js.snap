@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabbedNavigation snapshot test 1`] = `
+<div
+  className="tabbed-navigation"
+  id="tabbed-navigation"
+>
+  <div
+    className="wrapper"
+  >
+    <NavigationLink
+      className={null}
+    >
+      Awesome Link
+    </NavigationLink>
+  </div>
+</div>
+`;
