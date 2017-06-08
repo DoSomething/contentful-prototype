@@ -39,6 +39,9 @@ export function checkForCompetition(campaignId, campaignRunId) {
   return (dispatch, getState) => {
     const userId = getState().user.id;
 
+    // If already signed up don't check again.
+    if (getState().competitions.thisCampaign) return;
+
     (new Phoenix()).get('next/contests/users', {
       campaign_id: campaignId,
       campaign_run_id: campaignRunId,
