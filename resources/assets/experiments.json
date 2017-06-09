@@ -36,7 +36,7 @@
       "c": "apply_now"
     }
   },
-  "pitch_page": {
+  "pitch_page_connected": {
     "meta": {
       "preTest": {
         "signups.thisCampaign": false,

@@ -26,21 +26,28 @@ const App = ({ store, history }) => {
   initializeStore(store);
 
   const PitchTest = (props) => {
-    const PitchRedirect = () => {
-      history.push(`${paths.background}`);
-      return null;
-    };
-
-    const Community = () => (
+    const Control = () => (
       <ChromeContainer>
         <FeedContainer {...props} />
       </ChromeContainer>
     );
 
+    const Test = () => (
+      <div>
+        <Experience>
+          <PitchContainer />
+        </Experience>
+        <ChromeContainer>
+          <FeedContainer {...props} />
+        </ChromeContainer>
+      </div>
+    );
+
+
     return (
-      <ExperimentContainer name="pitch_page">
-        <Community alternative="default" experiment="pitch_page" />
-        <PitchRedirect alternative="pitch" experiment="pitch_page" />
+      <ExperimentContainer name="pitch_page_connected">
+        <Control alternative="default" experiment="pitch_page_connected" />
+        <Test alternative="pitch" experiment="pitch_page_connected" />
       </ExperimentContainer>
     );
   };
