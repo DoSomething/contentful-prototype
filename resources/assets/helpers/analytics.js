@@ -39,7 +39,7 @@ export function transformState(action, state) {
       ...state.user,
     },
     experiments: {
-      tests: Object.keys(state.experiments),
+      tests: state.experiments ? Object.keys(state.experiments) : [],
     },
     routing: {
       referer: document.referrer,
