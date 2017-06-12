@@ -35,6 +35,10 @@ class TabbedNavigation extends React.Component {
     window.addEventListener('scroll', this.onScroll, false);
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+  }
+
   /**
    * Method called when the page is scrolled.
    */
@@ -62,8 +66,6 @@ class TabbedNavigation extends React.Component {
    */
   updateState() {
     this.isAnimatingFrame = false;
-
-    if (! this.node) return;
 
     const tabbedNavRect = this.node.getBoundingClientRect();
 
