@@ -102,8 +102,8 @@ export function getTotalSignups(campaignId) {
 // Async Action: send signup to phoenix.
 export function clickedSignUp(campaignId, metadata) {
   return (dispatch, getState) => {
-    if (getState().experiments.pitch_page) {
-      dispatch(convertExperiment('pitch_page'));
+    if (getState().experiments.pitch_page_connected) {
+      dispatch(convertExperiment('pitch_page_connected'));
     }
 
     // If the user is not logged in, handle this action later.
