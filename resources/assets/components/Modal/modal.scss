@@ -30,8 +30,8 @@
 
   .modal__exit {
     position: absolute;
-    top: 2%;
-    right: 4%;
+    top: $half-spacing;
+    right: $half-spacing;
     font-size: 34px;
     line-height: 34px;
     color: $white;
@@ -41,7 +41,7 @@
     }
 
     @include media($medium) {
-      right: 2%;
+      right: $base-spacing;
     }
   }
 }
