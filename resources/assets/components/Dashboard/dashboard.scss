@@ -19,15 +19,23 @@
 
   h2 {
     color: $black;
-    font-size: $font-regular;
+    font-size: $font-medium;
     font-family: $primary-font-family;
     margin-bottom: 0;
+
+    @include media($medium) {
+      font-size: $font-regular;
+    }
   }
 
   p {
     color: $black;
-    font-size: $font-smaller;
+    font-size: $font-regular;
     font-family: $primary-font-family;
+
+    @include media($medium) {
+      font-size: $font-small;
+    }
   }
 
   span {
@@ -38,9 +46,22 @@
     text-transform: uppercase;
   }
 
+  .share {
+    margin-top: $half-spacing;
+
+    @include media($medium) {
+      margin-top: 0;
+    }
+  }
+
   .dashboard__block {
     flex: 0 0 100%;
-    padding: 0 $base-spacing;
+    padding: 0 $half-spacing;
+
+    @include media($medium) {
+      padding-left: $half-spacing;
+      padding-right: $base-spacing;
+    }
   }
 
   > .dashboard__block {
