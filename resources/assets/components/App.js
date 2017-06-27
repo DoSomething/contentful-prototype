@@ -7,68 +7,42 @@ import { initializeStore } from '../store';
 
 import { paths } from '../helpers/navigation';
 import ChromeContainer from '../containers/ChromeContainer';
-import Experience from '../components/Experience';
 import FeedContainer from '../containers/FeedContainer';
-import ActionPageContainer from '../containers/ActionPageContainer';
+import { ActionPageContainer } from './ActionPage';
 import { BlockContainer } from './Block';
 import ContentPageContainer from '../containers/ContentPageContainer';
-import PitchContainer from '../containers/PitchContainer';
-import ExperimentContainer from '../containers/ExperimentContainer';
 import NotFound from './NotFound';
 
 const wrap = (Container, Component) => props => (
   <Container><Component {...props} /></Container>
 );
 
-const experience = component => wrap(Experience, component);
 const chrome = component => wrap(ChromeContainer, component);
 
 const App = ({ store, history }) => {
   initializeStore(store);
 
-  const PitchTest = (props) => {
-    const Control = () => (
-      <ChromeContainer>
-        <FeedContainer {...props} />
-      </ChromeContainer>
-    );
-
-    const Test = () => (
-      <div>
-        <Experience>
-          <PitchContainer />
-        </Experience>
-        <ChromeContainer>
-          <FeedContainer {...props} />
-        </ChromeContainer>
-      </div>
-    );
-
-
-    return (
-      <ExperimentContainer name="pitch_page_connected">
-        <Control alternative="default" experiment="pitch_page_connected" />
-        <Test alternative="pitch" experiment="pitch_page_connected" />
-      </ExperimentContainer>
-    );
-  };
+  const campaignClosed = new Date(store.getState().campaign.endDate.date) - new Date() < 0;
+  const ActionPage = campaignClosed ? null : (
+    <Route path={paths.action} component={chrome(ActionPageContainer)} />
+  );
 
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Switch>
           {/* Base user experience */}
-          <Route path={paths.community} exact component={PitchTest} />
-          <Route path={paths.action} component={chrome(ActionPageContainer)} />
+          <Route path={paths.community} exact component={chrome(FeedContainer)} />
+          { ActionPage }
           <Route path={`${paths.pages}:page`} component={chrome(ContentPageContainer)} />
           <Route path={`${paths.blocks}:id`} component={chrome(BlockContainer)} />
           {/* * */}
 
-          {/* Custom user experiences */}
-          <Route path={paths.background} component={experience(PitchContainer)} />
-          {/* * */}
+          {/* Custom user experiences... */}
 
+          {/* 404 default */}
           <Route component={chrome(NotFound)} />
+          {/* * */}
         </Switch>
       </ConnectedRouter>
     </Provider>

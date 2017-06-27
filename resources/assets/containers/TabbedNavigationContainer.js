@@ -13,6 +13,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
+  campaignClosed: new Date(state.campaign.endDate.date) - new Date() < 0,
 });
 
 const mapDispatchToProps = {
@@ -20,7 +21,12 @@ const mapDispatchToProps = {
 };
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages } = props;
+  const { isAffiliated, legacyCampaignId, pages, campaignClosed } = props;
+
+  // Action page should be conditional
+  const ActionLink = campaignClosed ? null : (
+    <NavigationLink to={paths.action}>Action</NavigationLink>
+  );
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
@@ -34,7 +40,7 @@ const TabbedNavigationContainer = (props) => {
     <TabbedNavigation>
       <div className="nav-items">
         <NavigationLink to={paths.community} exact>Community</NavigationLink>
-        <NavigationLink to={paths.action}>Action</NavigationLink>
+        { ActionLink }
         { additionalPages }
       </div>
       { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
@@ -43,6 +49,7 @@ const TabbedNavigationContainer = (props) => {
 };
 
 TabbedNavigationContainer.propTypes = {
+  campaignClosed: PropTypes.bool.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,

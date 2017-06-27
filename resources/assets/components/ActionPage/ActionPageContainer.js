@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import ActionPage from '../components/ActionPage';
-import { clickedSignUp, convertExperiment } from '../actions';
+import ActionPage from './ActionPage';
+import { clickedSignUp, convertExperiment } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.

@@ -7,7 +7,6 @@ export const paths = {
   action: '/action',
   blocks: '/blocks/',
   pages: '/pages/',
-  background: '/background',
 };
 
 /**
