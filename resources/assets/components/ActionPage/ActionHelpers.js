@@ -35,6 +35,7 @@ export const renderSteps = (steps, props) => {
       callToAction={props.callToAction}
       isLoading={props.hasPendingSignup}
       onReveal={() => clickedSignUp(props.campaignId, { source: 'action page revealer' })}
+      isAuthenticated={isAuthenticated}
     />
   );
 

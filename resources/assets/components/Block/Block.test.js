@@ -4,7 +4,7 @@ import Block from './Block';
 
 // Mock Redux containers so we don't need Provider context.
 jest.mock('./BlockContainer', () => 'BlockContainer');
-jest.mock('../../containers/CallToActionContainer', () => 'CallToActionContainer');
+jest.mock('../../containers/CallToActionBlockContainer', () => 'CallToActionBlockContainer');
 
 test('it can display a campaign update', () => {
   const wrapper = shallow(<Block json={{ id: '12345', fields: { type: 'campaign_update' } }} />);
@@ -13,7 +13,7 @@ test('it can display a campaign update', () => {
 
 test('it can display a CTA block', () => {
   const wrapper = shallow(<Block json={{ id: '12345', fields: { type: 'join_cta' } }} />);
-  expect(wrapper.find('CallToActionContainer')).toHaveLength(1);
+  expect(wrapper.find('CallToActionBlockContainer')).toHaveLength(1);
 });
 
 test('it can display a static block', () => {

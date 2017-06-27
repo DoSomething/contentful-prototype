@@ -41,3 +41,7 @@ $secondary-font-family: $font-league-gothic;
   border-radius: $lg-border-radius;
   padding: $base-spacing / 2;
 }
+
+// Z-Indexes used
+$tabbed-navigation-zindex: 100;
+$sticky-cta-zindex: 200;

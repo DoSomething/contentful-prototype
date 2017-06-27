@@ -1,0 +1,21 @@
+@import '../../scss/next-toolbox';
+
+.call-to-action {
+  background-color: $white;
+  border-top: 1px solid $primary-border-color;
+  padding: $half-spacing;
+
+  &.-sticky {
+    bottom: -1px;
+    position: sticky;
+    z-index: $sticky-cta-zindex;
+
+    @include media($medium) {
+      display: none;
+    }
+
+    > .button {
+      width: 100%;
+    }
+  }
+}

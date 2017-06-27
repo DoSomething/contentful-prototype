@@ -9,7 +9,7 @@
   @include media($tablet) {
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: $tabbed-navigation-zindex;
   }
 
   &::before {

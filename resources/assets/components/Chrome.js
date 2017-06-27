@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
+
 import AppInit from './AppInit';
+import { CallToActionContainer } from './CallToAction';
 import Dashboard from './Dashboard';
 import Debugger from './Debugger';
 import FeedEnclosure from './FeedEnclosure';
@@ -24,20 +26,23 @@ const Chrome = props => (
       legacyCampaignId={props.legacyCampaignId}
       clickedSignUp={props.clickedSignUp}
     />
-    <Dashboard
-      totalCampaignSignups={props.totalCampaignSignups}
-      content={props.dashboard}
-      endDate={props.endDate}
-    />
-    <TabbedNavigationContainer />
-    <FeedEnclosure>
-      {props.children}
-    </FeedEnclosure>
-    <Debugger
-      user={props.user}
-      signups={props.signups}
-      competitions={props.competitions}
-    />
+    <div className="main">
+      <Dashboard
+        totalCampaignSignups={props.totalCampaignSignups}
+        content={props.dashboard}
+        endDate={props.endDate}
+      />
+      <TabbedNavigationContainer />
+      <FeedEnclosure>
+        {props.children}
+      </FeedEnclosure>
+      { props.isAffiliated ? null : <CallToActionContainer classNames="-sticky" /> }
+      <Debugger
+        user={props.user}
+        signups={props.signups}
+        competitions={props.competitions}
+      />
+    </div>
   </div>
 );
 

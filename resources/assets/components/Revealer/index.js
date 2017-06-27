@@ -12,13 +12,14 @@ const Revealer = (props) => {
   return (
     <div className="revealer">
       { props.callToAction ? <h1>{props.callToAction}</h1> : null }
-      <button disabled={props.isLoading} className={classnames('button', { 'is-loading': props.isLoading })} onClick={props.onReveal}>{props.title}</button>
+      <button disabled={props.isLoading} className={classnames('button', { 'is-loading': props.isLoading, 'is-cta': ! props.isAuthenticated })} onClick={props.onReveal}>{props.title}</button>
     </div>
   );
 };
 
 Revealer.propTypes = {
   callToAction: PropTypes.string,
+  isAuthenticated: PropTypes.bool,
   isLoading: PropTypes.bool,
   isVisible: PropTypes.bool,
   onReveal: PropTypes.func,
@@ -27,6 +28,7 @@ Revealer.propTypes = {
 
 Revealer.defaultProps = {
   callToAction: null,
+  isAuthenticated: false,
   isLoading: false,
   isVisible: true,
   onReveal: () => {},

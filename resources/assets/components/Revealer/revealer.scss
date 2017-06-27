@@ -3,9 +3,14 @@
 .revealer {
   text-align: center;
   width: 100%;
-  margin: $base-spacing 0;
-  padding: $base-spacing $half-spacing;
+  margin-top: $base-spacing;
+  padding: $base-spacing $half-spacing 0;
   position: relative;
+
+  @include media($medium) {
+    margin-bottom: $base-spacing;
+    padding-bottom: $base-spacing;
+  }
 
   &::before {
     background: linear-gradient(to bottom, rgba($light-background-color, 0) 0%, rgba($light-background-color, 1) 93%);
@@ -23,5 +28,13 @@
     color: $black;
     font-size: type-scale(1);
     margin-bottom: $base-spacing;
+  }
+
+  .button.is-cta {
+    display: none;
+
+    @include media($medium) {
+      display: inline-block;
+    }
   }
 }

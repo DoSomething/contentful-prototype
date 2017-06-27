@@ -5,7 +5,7 @@ import CampaignUpdateBlock from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
-import CallToActionContainer from '../../containers/CallToActionContainer';
+import CallToActionBlockContainer from '../../containers/CallToActionBlockContainer';
 import { BlockJson } from '../../types';
 
 // If no block is passed, just render an empty "placeholder".
@@ -17,7 +17,7 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
       return <CampaignUpdateBlock id={json.id} fields={json.fields} />;
 
     case 'join_cta':
-      return <CallToActionContainer />;
+      return <CallToActionBlockContainer />;
 
     case 'reportbacks':
       return <ReportbackBlock fields={json.fields} reportbacks={json.reportbacks} />;

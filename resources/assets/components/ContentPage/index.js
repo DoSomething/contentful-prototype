@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Markdown from '../Markdown';
 import ScrollConcierge from '../ScrollConcierge';
-import CallToActionContainer from '../../containers/CallToActionContainer';
+import CallToActionBlockContainer from '../../containers/CallToActionBlockContainer';
 import ExperimentContainer from '../../containers/ExperimentContainer';
 
 import './content-page.scss';
@@ -21,7 +21,7 @@ const Page = ({ header, markdown, ctaContent, ctaTitle,
         </article>
       </div>
       <div className="secondary">
-        <CallToActionContainer
+        <CallToActionBlockContainer
           experiment={experiment}
           alternative={alternative}
           buttonOverride={buttonOverride}
@@ -29,7 +29,7 @@ const Page = ({ header, markdown, ctaContent, ctaTitle,
         />
       </div>
 
-      <CallToActionContainer
+      <CallToActionBlockContainer
         experiment={experiment}
         alternative={alternative}
         buttonOverride={buttonOverride}
