@@ -22,7 +22,7 @@ const chrome = component => wrap(ChromeContainer, component);
 const App = ({ store, history }) => {
   initializeStore(store);
 
-  const campaignClosed = new Date(store.getState().campaign.endDate.date) - new Date() < 0;
+  const campaignClosed = store.getState().campaign.isClosed;
   const ActionPage = campaignClosed ? null : (
     <Route path={paths.action} component={chrome(ActionPageContainer)} />
   );

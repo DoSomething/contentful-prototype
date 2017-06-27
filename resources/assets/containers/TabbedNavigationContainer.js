@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
-  campaignClosed: new Date(state.campaign.endDate.date) - new Date() < 0,
+  campaignClosed: state.campaign.isClosed,
 });
 
 const mapDispatchToProps = {

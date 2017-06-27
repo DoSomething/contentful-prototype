@@ -18,6 +18,7 @@ const initialState = {
   },
   campaign: {
     activityFeed: [],
+    isClosed: false,
   },
   reportbacks: {
     isFetching: false,
@@ -90,6 +91,9 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 
   // If React DevTools are available, use instrumented compose function.
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
+
+  // Set initial variables based on the data given to us.
+  initialState.campaign.isClosed = new Date(preloadedState.campaign.endDate.date) - new Date() < 0;
 
   // @TODO: Let's just merge all 3 states at once
   const transformedState = loadStorage(initialState, preloadedState);
