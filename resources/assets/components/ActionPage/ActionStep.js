@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import StepHeader from './StepHeader';
-import { renderPhoto } from './ActionHelpers';
+import { renderPhoto } from './ActionRenders';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 

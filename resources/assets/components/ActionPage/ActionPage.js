@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
 
-import { renderSteps } from './ActionHelpers';
+import { renderSteps } from './ActionRenders';
 import { Flex } from '../Flex';
 import './actionPage.scss';
 
