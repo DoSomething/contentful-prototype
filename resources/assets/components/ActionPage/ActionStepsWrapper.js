@@ -12,7 +12,7 @@ import { clickedSignUp as clickedSignUpAction } from '../../actions';
 
 const ActionStepsWrapper = (props) => {
   const { callToAction, campaignId, hasPendingSignup,
-    isSignedUp, clickedSignUp, actionSteps } = props;
+    isSignedUp, isAuthenticated, clickedSignUp, actionSteps } = props;
 
   const uploader = (
     <FlexCell key="reportback_uploader" width="full">
@@ -27,7 +27,7 @@ const ActionStepsWrapper = (props) => {
       callToAction={callToAction}
       isLoading={hasPendingSignup}
       onReveal={() => clickedSignUp(campaignId, { source: 'action page revealer' })}
-      isAuthenticated={isSignedUp}
+      isAuthenticated={isAuthenticated}
     />
   );
 
@@ -93,6 +93,7 @@ ActionStepsWrapper.propTypes = {
   campaignId: PropTypes.string.isRequired,
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
 };
 
@@ -101,6 +102,7 @@ ActionStepsWrapper.mapStateToProps = state => ({
   callToAction: state.campaign.callToAction,
   hasPendingSignup: state.signups.isPending,
   isSignedUp: state.signups.thisCampaign,
+  isAuthenticated: state.user.id !== null,
 });
 
 ActionStepsWrapper.actionCreators = {

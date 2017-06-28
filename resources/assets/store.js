@@ -18,7 +18,6 @@ const initialState = {
   },
   campaign: {
     activityFeed: [],
-    isClosed: false,
   },
   reportbacks: {
     isFetching: false,
