@@ -22,13 +22,13 @@ export const renderPhoto = (photo, index) => (
 export const renderSteps = (steps, props) => {
   const { isAuthenticated, clickedSignUp } = props;
 
-  const Uploader = (
+  const uploader = (
     <FlexCell key="reportback_uploader" width="full">
       <ReportbackUploaderContainer />
     </FlexCell>
   );
 
-  const ActionRevealer = (
+  const actionRevealer = (
     <Revealer
       key="revealer"
       title="Join Us"
@@ -39,12 +39,12 @@ export const renderSteps = (steps, props) => {
     />
   );
 
-  const RevealerOrUploader = isAuthenticated ? Uploader : ActionRevealer;
+  const revealerOrUploader = isAuthenticated ? uploader : actionRevealer;
 
   let stepIndex = 0;
   let appendUploader = true; // TODO: Remove this after content updates.
 
-  const map = steps.map((step) => {
+  const stepComponents = steps.map((step) => {
     const title = step.title;
     const type = step.customType[0] || 'default';
 
@@ -65,7 +65,7 @@ export const renderSteps = (steps, props) => {
 
       case 'photo-uploader':
         appendUploader = false; // TODO: Remove this flag after content updates post deploy.
-        return RevealerOrUploader;
+        return revealerOrUploader;
 
       default:
         stepIndex += 1;
@@ -86,7 +86,7 @@ export const renderSteps = (steps, props) => {
 
   // TODO: Remove this conditional post deploy / content updates.
   if (appendUploader) {
-    map.push(RevealerOrUploader);
+    stepComponents.push(revealerOrUploader);
   }
 
   return map;
