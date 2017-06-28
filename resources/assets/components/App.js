@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { initializeStore } from '../store';
+import { isCampaignClosed } from '../helpers';
 
 import { paths } from '../helpers/navigation';
 import ChromeContainer from '../containers/ChromeContainer';
@@ -22,8 +23,7 @@ const chrome = component => wrap(ChromeContainer, component);
 const App = ({ store, history }) => {
   initializeStore(store);
 
-  const campaignClosed = store.getState().campaign.isClosed;
-  const ActionPage = campaignClosed ? null : (
+  const actionPage = isCampaignClosed(store.getState().campaign) ? null : (
     <Route path={paths.action} component={chrome(ActionPageContainer)} />
   );
 
@@ -33,7 +33,7 @@ const App = ({ store, history }) => {
         <Switch>
           {/* Base user experience */}
           <Route path={paths.community} exact component={chrome(FeedContainer)} />
-          { ActionPage }
+          { actionPage }
           <Route path={`${paths.pages}:page`} component={chrome(ContentPageContainer)} />
           <Route path={`${paths.blocks}:id`} component={chrome(BlockContainer)} />
           {/* * */}

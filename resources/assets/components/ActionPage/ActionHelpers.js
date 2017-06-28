@@ -89,5 +89,5 @@ export const renderSteps = (steps, props) => {
     stepComponents.push(revealerOrUploader);
   }
 
-  return map;
+  return stepComponents;
 };

@@ -7,13 +7,14 @@ import NavigationLink from '../components/Navigation/NavigationLink';
 import TabbedNavigation from '../components/Navigation/TabbedNavigation';
 import { clickedSignUp } from '../actions';
 import { paths } from '../helpers/navigation';
+import { isCampaignClosed } from '../helpers';
 
 const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
-  campaignClosed: state.campaign.isClosed,
+  campaign: state.campaign,
 });
 
 const mapDispatchToProps = {
@@ -21,12 +22,9 @@ const mapDispatchToProps = {
 };
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages, campaignClosed } = props;
+  const { isAffiliated, legacyCampaignId, pages, campaign } = props;
 
-  // Action page should be conditional
-  const ActionLink = campaignClosed ? null : (
-    <NavigationLink to={paths.action}>Action</NavigationLink>
-  );
+  const isClosed = isCampaignClosed(campaign);
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
@@ -40,7 +38,7 @@ const TabbedNavigationContainer = (props) => {
     <TabbedNavigation>
       <div className="nav-items">
         <NavigationLink to={paths.community} exact>Community</NavigationLink>
-        { ActionLink }
+        { isClosed ? null : <NavigationLink to={paths.action}>Action</NavigationLink> }
         { additionalPages }
       </div>
       { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
@@ -49,7 +47,7 @@ const TabbedNavigationContainer = (props) => {
 };
 
 TabbedNavigationContainer.propTypes = {
-  campaignClosed: PropTypes.bool.isRequired,
+  campaign: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
