@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import StepHeader from './StepHeader';
-import { renderPhoto } from './ActionRenders';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
+
+const renderPhoto = (photo, index) => (
+  <div className="action-step__photo" key={index}>
+    <img src={photo} alt="action step example" />
+  </div>
+);
 
 const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth, shouldTruncate }) => ( // eslint-disable-line max-len
   <FlexCell width="full">

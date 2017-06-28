@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
 
-import { renderSteps } from './ActionRenders';
-import { Flex } from '../Flex';
+import ActionStepsWrapper from './ActionStepsWrapper';
 import './actionPage.scss';
 
 /**
@@ -26,26 +25,13 @@ const ActionPage = (props) => {
   }
 
   return (
-    <Flex>
-      { renderSteps(actionSteps, props) }
-    </Flex>
+    <ActionStepsWrapper actionSteps={actionSteps} />
   );
 };
 
 ActionPage.propTypes = {
   steps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  /* eslint-disable  react/no-unused-prop-types */
-  callToAction: PropTypes.string.isRequired,
-  campaignId: PropTypes.string.isRequired,
-  hasPendingSignup: PropTypes.bool.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
   signedUp: PropTypes.bool.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
-  /* eslint-enable */
-};
-
-ActionPage.defaultProps = {
-  steps: [],
 };
 
 export default ActionPage;
