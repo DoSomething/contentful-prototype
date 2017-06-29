@@ -24,7 +24,7 @@ const mapDispatchToProps = {
 const TabbedNavigationContainer = (props) => {
   const { isAffiliated, legacyCampaignId, pages, campaign } = props;
 
-  const isClosed = isCampaignClosed(campaign);
+  const isClosed = isCampaignClosed(campaign.endDate.date);
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
