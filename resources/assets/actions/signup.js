@@ -1,5 +1,6 @@
 import { Phoenix } from '@dosomething/gateway';
 import { push } from 'react-router-redux';
+import { isCampaignClosed } from '../helpers';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -128,8 +129,11 @@ export function clickedSignUp(campaignId, metadata) {
         // If Drupal denied our signup request, check if we already had a signup.
         dispatch(checkForSignup(campaignId));
       } else {
-        // Otherwise, mark the signup as a success & take user to the action page.
-        dispatch(push('/action'));
+        // Otherwise, mark the signup as a success and
+        // take user to the action page if campaign is open.
+        if (! isCampaignClosed(getState().campaign.endDate.date)) {
+          dispatch(push('/action'));
+        }
 
         dispatch(signupCreated(campaignId));
 
