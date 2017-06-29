@@ -14,7 +14,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
-  campaign: state.campaign,
+  campaignEndDate: state.campaign.endDate.date,
 });
 
 const mapDispatchToProps = {
@@ -22,9 +22,9 @@ const mapDispatchToProps = {
 };
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages, campaign } = props;
+  const { isAffiliated, legacyCampaignId, pages, campaignEndDate } = props;
 
-  const isClosed = isCampaignClosed(campaign.endDate.date);
+  const isClosed = isCampaignClosed(campaignEndDate);
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
@@ -47,7 +47,7 @@ const TabbedNavigationContainer = (props) => {
 };
 
 TabbedNavigationContainer.propTypes = {
-  campaign: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  campaignEndDate: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
