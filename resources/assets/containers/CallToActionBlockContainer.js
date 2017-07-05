@@ -6,12 +6,13 @@ import { clickedSignUp, convertExperiment } from '../actions';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   isAffiliated: state.signups.thisCampaign,
   imageUrl: state.campaign.coverImage.url,
   campaignId: state.campaign.legacyCampaignId,
   noun: get(state.campaign.additionalContent, 'noun'),
   verb: get(state.campaign.additionalContent, 'verb'),
+  fields: props.fields,
 });
 
 /**
