@@ -4,7 +4,7 @@ import Portal from 'react-portal';
 import { closeModal } from '../../actions';
 import './modal.scss';
 
-import AffirmationContainer from '../../containers/AffirmationContainer';
+import { AffirmationContainer } from '../Affirmation';
 import CompetitionContainer from '../../containers/CompetitionContainer';
 
 class Modal extends React.Component {

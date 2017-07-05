@@ -35,13 +35,10 @@
   }
 
   .affirmation__section-quote {
+    color: $primary-text-color;
+
     .figure {
       margin-left: $half-spacing;
-    }
-
-    p {
-      font-style: italic;
-      color: $primary-text-color;
     }
 
     span {
@@ -60,6 +57,7 @@
     justify-content: flex-start;
 
     h3 {
+      font-family: $primary-font-family;
       color: $primary-color;
     }
   }
