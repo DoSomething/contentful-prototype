@@ -7,13 +7,7 @@
   }
 
   .share {
-    margin-top: $half-spacing;
-
-    @include media($large) {
-      margin-top: 0;
-      float: right;
-      vertical-align: top;
-      width: auto;
-    }
+    vertical-align: top;
+    float: right;
   }
 }

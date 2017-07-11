@@ -8,7 +8,7 @@ import { mergeMetadata } from '../../helpers/analytics';
 import './share.scss';
 
 const Share = ({ variant, clickedShare, parentSource, link }) => {
-  const className = classnames('button share', { '-black': variant === 'black' });
+  const className = classnames('button share', { '-black': variant === 'black', '-icon': variant === 'icon' });
 
   const metadata = mergeMetadata(Share.defaultMetadata, {
     parentSource,
@@ -17,7 +17,8 @@ const Share = ({ variant, clickedShare, parentSource, link }) => {
 
   return (
     <button className={className} onClick={() => clickedShare(link, metadata)}>
-      share on <i className="social-icon -facebook"><span>Facebook</span></i>
+      {variant === 'icon' ? null : 'share on'}
+      <i className="social-icon -facebook"><span>Facebook</span></i>
     </button>
   );
 };
@@ -25,7 +26,7 @@ const Share = ({ variant, clickedShare, parentSource, link }) => {
 Share.propTypes = {
   clickedShare: PropTypes.func,
   parentSource: PropTypes.string,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(['black', 'blue', 'icon']),
   link: PropTypes.string,
 };
 

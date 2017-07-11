@@ -16,7 +16,7 @@ const CampaignUpdateBlock = (props) => {
   const share = (
     <ShareContainer
       link={link}
-      variant="blue"
+      variant="icon"
       parentSource="campaign-update"
     />
   );
