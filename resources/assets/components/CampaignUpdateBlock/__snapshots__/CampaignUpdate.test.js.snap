@@ -14,6 +14,13 @@ exports[`Campaign Update Block with additional content as tweet snapshot test 1`
     author="Braümhilda Snosages"
     avatar={Object {}}
     jobTitle="DoSomething.org Staff"
+    share={
+      <Connect(Share)
+        link="http://"
+        parentSource="campaign-update"
+        variant="icon"
+      />
+    }
   />
 </BlockWrapper>
 `;
@@ -35,6 +42,13 @@ exports[`Campaign Update Block with additional content snapshot test 1`] = `
     author="Braümhilda Snosages"
     avatar={Object {}}
     jobTitle="DoSomething.org Staff"
+    share={
+      <Connect(Share)
+        link="http://"
+        parentSource="campaign-update"
+        variant="icon"
+      />
+    }
   />
 </BlockWrapper>
 `;
