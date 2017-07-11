@@ -15,7 +15,7 @@ export const BaseFigure = ({ alignment, verticalAlignment, media, size, classNam
 BaseFigure.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  alignment: PropTypes.oneOf(['left', 'right', 'left-collapse']),
+  alignment: PropTypes.oneOf(['left', 'right', 'left-collapse', 'left-inline']),
   verticalAlignment: PropTypes.oneOf(['center']),
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   media: PropTypes.node,
