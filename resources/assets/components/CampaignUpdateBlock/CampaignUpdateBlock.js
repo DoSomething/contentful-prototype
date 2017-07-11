@@ -15,7 +15,7 @@ const CampaignUpdateBlock = (props) => {
 
   const share = (
     <ShareContainer
-      link={link}
+      link={props.updateShareLink}
       variant="icon"
       parentSource="campaign-update"
     />
@@ -45,6 +45,7 @@ const CampaignUpdateBlock = (props) => {
 
 CampaignUpdateBlock.propTypes = {
   id: PropTypes.string.isRequired,
+  updateShareLink: PropTypes.string.isRequired,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,

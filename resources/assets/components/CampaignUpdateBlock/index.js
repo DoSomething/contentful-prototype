@@ -3,3 +3,5 @@
  * contentful fields.
  */
 export default from './CampaignUpdateBlock';
+
+export CampaignUpdateBlockContainer from './CampaignUpdateBlockContainer';
