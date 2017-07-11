@@ -5,12 +5,20 @@ import Markdown from '../Markdown';
 import { BlockWrapper } from '../Block';
 import Embed from '../Embed';
 import Byline from '../Byline';
+import { ShareContainer } from '../Share';
 import './campaign-update.scss';
 
 const CampaignUpdateBlock = (props) => {
   const { title, content = 'Let\'s Do This!', link, additionalContent = null } = props.fields;
 
   const isTweet = content.length < 144;
+
+  const share = (
+    <ShareContainer
+      link={link}
+      parentSource="campaign-update"
+    />
+  );
 
   return (
     <BlockWrapper title="Campaign Update" id={props.id}>
@@ -27,6 +35,7 @@ const CampaignUpdateBlock = (props) => {
           author={additionalContent.author}
           jobTitle={additionalContent.jobTitle}
           avatar={additionalContent.avatar}
+          share={share}
         />
         : null }
     </BlockWrapper>
