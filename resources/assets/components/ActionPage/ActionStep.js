@@ -7,11 +7,9 @@ import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 
 const renderPhoto = (photo, index) => (
-  <div
-    className="action-step__photo"
-    key={index}
-    style={{ backgroundImage: `url(${photo})` }}
-  />
+  <div className="action-step__photo" key={index}>
+    <img src={photo} />
+  </div>
 );
 
 const ActionStep = ({ title, stepIndex, content, background, photos, photoWidth, shouldTruncate }) => ( // eslint-disable-line max-len
