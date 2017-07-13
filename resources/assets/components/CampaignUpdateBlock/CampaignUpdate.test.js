@@ -7,6 +7,7 @@ test('Campaign Update Block with no additional content snapshot test', () => {
   const component = shallow(
     <CampaignUpdateBlock
       id="1234512345"
+      shareLink="http://"
       fields={{
         title: 'Heyo!',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
@@ -21,6 +22,7 @@ test('Campaign Update Block with additional content snapshot test', () => {
   const component = shallow(
     <CampaignUpdateBlock
       id="1234512345"
+      shareLink="http://"
       fields={{
         title: 'Heyo!',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.',
@@ -38,6 +40,7 @@ test('Campaign Update Block with additional content as tweet snapshot test', () 
   const component = shallow(
     <CampaignUpdateBlock
       id="1234512345"
+      shareLink="http://"
       fields={{
         title: 'Heyo!',
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus vestibulum.',

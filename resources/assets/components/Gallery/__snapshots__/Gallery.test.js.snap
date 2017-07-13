@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders correctly with children 1`] = `
+<ul
+  className="gallery -quartet"
+>
+  <li>
+    <div>
+      item one
+    </div>
+  </li>
+  <li>
+    <div>
+      item two
+    </div>
+  </li>
+  <li>
+    <div>
+      item three
+    </div>
+  </li>
+  <li>
+    <div>
+      item four
+    </div>
+  </li>
+</ul>
+`;

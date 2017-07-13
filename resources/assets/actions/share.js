@@ -1,4 +1,4 @@
-/* global window, FB */
+/* global FB */
 
 import {
   REQUESTED_FACEBOOK_SHARE,
@@ -23,16 +23,14 @@ export function facebookShareCancelled() {
 }
 
 // Action: user clicked a share button.
-export function clickedShare(metadata) {
+export function clickedShare(link, metadata) {
   return (dispatch, getState) => {
     dispatch(requestedFacebookShare());
-
-    const href = window.location.href;
     const quote = getState().share.quote || '';
 
     FB.ui({
       method: 'share',
-      href,
+      href: link,
       quote,
     }, (response) => {
       if (response) {

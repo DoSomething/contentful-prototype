@@ -4,21 +4,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { BlockWrapper } from '../Block';
 import MediaUploader from '../MediaUploader';
-import Gallery from '../Gallery';
-import ReportbackItem from '../ReportbackItem';
 import FormMessage from '../FormMessage';
-import { makeHash } from '../../helpers';
 import './reportback-uploader.scss';
 
 class ReportbackUploader extends React.Component {
-  static renderReportbackItem(submission) {
-    // @TODO: Normalize data for uploaded RBs vs API retrieved RBs if possible...
-    const key = makeHash(submission.media.uri || submission.media.filePreviewUrl);
-    const url = submission.media.uri || submission.media.filePreviewUrl;
-
-    return <ReportbackItem key={key} {...submission} url={url} reaction={null} basicDisplay />;
-  }
-
   static setFormData(container) {
     const reportback = container;
     const formData = new FormData();
@@ -125,9 +114,6 @@ class ReportbackUploader extends React.Component {
             <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
           </form>
         </div>
-        <Gallery isFetching={submissions.isFetching} type="triad">
-          {submissions.items.map(submission => ReportbackUploader.renderReportbackItem(submission))}
-        </Gallery>
       </BlockWrapper>
     );
   }

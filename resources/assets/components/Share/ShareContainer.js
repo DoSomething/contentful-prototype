@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Share from '../components/Share';
-import { clickedShare } from '../actions';
+import Share from './Share';
+import { clickedShare } from '../../actions';
 
 const mapStateToProps = state => ({
   share: state.share,

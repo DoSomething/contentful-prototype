@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
 
-import ActionStepsWrapper from './ActionStepsWrapper';
+import ActionStepsWrapperContainer from './ActionStepsWrapperContainer';
 import './actionPage.scss';
 
 /**
@@ -25,7 +25,7 @@ const ActionPage = (props) => {
   }
 
   return (
-    <ActionStepsWrapper actionSteps={actionSteps} />
+    <ActionStepsWrapperContainer actionSteps={actionSteps} />
   );
 };
 

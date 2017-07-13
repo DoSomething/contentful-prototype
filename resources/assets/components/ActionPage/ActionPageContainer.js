@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import ActionPage from './ActionPage';
 
 /**
@@ -7,6 +8,7 @@ import ActionPage from './ActionPage';
 const mapStateToProps = state => ({
   steps: state.campaign.actionSteps,
   signedUp: state.signups.thisCampaign,
+  featureFlags: get(state.campaign.additionalContent, 'featureFlags'),
 });
 
 // Export the container component.

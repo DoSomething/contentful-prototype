@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import CampaignUpdateBlock from '../CampaignUpdateBlock';
+import { CampaignUpdateBlockContainer } from '../CampaignUpdateBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
@@ -14,7 +14,7 @@ const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
 const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
   switch (json.fields.type) {
     case 'campaign_update':
-      return <CampaignUpdateBlock id={json.id} fields={json.fields} />;
+      return <CampaignUpdateBlockContainer id={json.id} fields={json.fields} />;
 
     case 'join_cta':
       return <CallToActionBlockContainer fields={json.fields} />;

@@ -1,0 +1,13 @@
+@import '../../scss/next-toolbox';
+
+.byline {
+  .figure {
+    width: auto;
+    display: inline-block;
+  }
+
+  .share {
+    vertical-align: top;
+    float: right;
+  }
+}

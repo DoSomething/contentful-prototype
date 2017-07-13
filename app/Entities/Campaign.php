@@ -29,26 +29,42 @@ class Campaign extends Entity implements JsonSerializable
         return $this->active;
     }
 
+    /**
+     * Parse and extract photo data for action steps.
+     *
+     * @param  array $photos
+     * @return array
+     */
+    public function parseActionStepPhotos($photos)
+    {
+        return collect($photos)->map(function ($photo) {
+            return get_image_url($photo, 'square');
+        });
+    }
+
+    /**
+     * Parse and extract data for action steps.
+     *
+     * @param  array $actionSteps
+     * @return array
+     */
+    public function parseActionSteps($actionSteps)
+    {
+        return collect($actionSteps)->map(function ($step) {
+            $data = [];
+            $data['title'] = $step->title;
+            $data['displayOptions'] = $step->displayOptions->first();
+            $step->content ? $data['content'] = $step->content : null;
+            $step->background ? $data['background'] = get_image_url($step->background, 'landscape') : null;
+            $step->photos ? $data['photos'] = $this->parseActionStepPhotos($step->photos) : null;
+            $step->customType ? $data['customType'] = $step->customType->first() : null;
+            $step->additionalContent ? $data['additionalContent'] = $step->additionalContent : null;
+            return $data;
+        });
+    }
+
     public function jsonSerialize()
     {
-        $actionSteps = [];
-        foreach ($this->actionSteps as $step) {
-            $photos = [];
-            foreach ($step->photos as $photo) {
-                $photos[] = get_image_url($photo, 'landscape');
-            }
-
-            $actionSteps[] = [
-                'title' => $step->title,
-                'content' => $step->content,
-                'displayOptions' => $step->displayOptions,
-                'background' => get_image_url($step->background, 'square'),
-                'photos' => $photos,
-                'customType' => $step->customType,
-                'additionalContent' => $step->additionalContent,
-            ];
-        }
-
         return [
             'id' => $this->entry->getId(),
             'legacyCampaignId' => $this->legacyCampaignId,
@@ -67,7 +83,7 @@ class Campaign extends Entity implements JsonSerializable
             'affiliatePartners' => $this->affiliatePartners,
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->activity_feed,
-            'actionSteps' => $actionSteps,
+            'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'dashboard' => $this->dashboard,
             'affirmation' => [
                 'header' => $this->affirmation->header,

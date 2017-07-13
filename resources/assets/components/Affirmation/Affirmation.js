@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Highlight from '../Highlight';
 import Markdown from '../Markdown';
 import { Figure } from '../Figure';
-import ShareContainer from '../../containers/ShareContainer';
+import { ShareContainer } from '../Share';
 
 import './affirmation.scss';
 

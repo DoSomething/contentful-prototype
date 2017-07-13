@@ -1,43 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Byline default snapshot test 1`] = `
-<Figure
-  alignment="left"
-  alt="picture of Puppet Sloth"
-  image={Object {}}
-  imageClassName="avatar"
-  size="small"
-  verticalAlignment="center"
+<div
+  className="byline"
 >
-  <strong>
-    Puppet Sloth
-  </strong>
-  <br />
-  <p
-    className="footnote"
+  <Figure
+    alignment="left"
+    alt="picture of Puppet Sloth"
+    image={Object {}}
+    imageClassName="avatar"
+    size="small"
+    verticalAlignment="center"
   >
-    DoSomething.org Staff
-  </p>
-</Figure>
+    <strong>
+      Puppet Sloth
+    </strong>
+    <br />
+    <p
+      className="footnote"
+    >
+      DoSomething.org Staff
+    </p>
+  </Figure>
+</div>
 `;
 
 exports[`Byline with props snapshot test 1`] = `
-<Figure
-  alignment="left"
-  alt="picture of Braümhilda Snosages"
-  image="http://placeimg.com/150/150/people"
-  imageClassName="avatar"
-  size="small"
-  verticalAlignment="center"
+<div
+  className="byline"
 >
-  <strong>
-    Braümhilda Snosages
-  </strong>
-  <br />
-  <p
-    className="footnote"
+  <Figure
+    alignment="left"
+    alt="picture of Braümhilda Snosages"
+    image="http://placeimg.com/150/150/people"
+    imageClassName="avatar"
+    size="small"
+    verticalAlignment="center"
   >
-    Campaign Tester
-  </p>
-</Figure>
+    <strong>
+      Braümhilda Snosages
+    </strong>
+    <br />
+    <p
+      className="footnote"
+    >
+      Campaign Tester
+    </p>
+  </Figure>
+</div>
 `;

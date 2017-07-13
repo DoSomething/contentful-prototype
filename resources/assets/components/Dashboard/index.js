@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Flex, FlexCell } from '../Flex';
-import ShareContainer from '../../containers/ShareContainer';
+import { ShareContainer } from '../Share';
 import { getDaysBetween } from '../../helpers';
 import './dashboard.scss';
 
