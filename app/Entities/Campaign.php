@@ -52,13 +52,16 @@ class Campaign extends Entity implements JsonSerializable
     {
         return collect($actionSteps)->map(function ($step) {
             $data = [];
+
             $data['title'] = $step->title;
             $data['displayOptions'] = $step->displayOptions->first();
+
             $step->content ? $data['content'] = $step->content : null;
             $step->background ? $data['background'] = get_image_url($step->background, 'landscape') : null;
             $step->photos ? $data['photos'] = $this->parseActionStepPhotos($step->photos) : null;
             $step->customType ? $data['customType'] = $step->customType->first() : null;
             $step->additionalContent ? $data['additionalContent'] = $step->additionalContent : null;
+
             return $data;
         });
     }
