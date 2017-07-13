@@ -37,9 +37,6 @@ const ActionStepsWrapper = (props) => {
     />
   );
 
-  const renderPhotoUploader = isSignedUp ? photoUploader : actionRevealer;
-  const renderSubmissionGallery = isSignedUp ? submissionGallery : null;
-
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map((step) => {
@@ -60,10 +57,10 @@ const ActionStepsWrapper = (props) => {
         );
 
       case 'photo-uploader':
-        return (renderPhotoUploader);
+        return isSignedUp ? photoUploader : null;
 
       case 'submission-gallery':
-        return (renderSubmissionGallery);
+        return isSignedUp ? submissionGallery : null;
 
       default:
         stepIndex += 1;
@@ -83,8 +80,12 @@ const ActionStepsWrapper = (props) => {
     }
   });
 
-  if (! get(props.featureFlags, 'useComponentActions')) {
-    stepComponents.push(renderSubmissionGallery);
+  if (! isSignedUp) {
+    stepComponents.push(actionRevealer);
+  }
+
+  if (isSignedUp && ! get(props.featureFlags, 'useComponentActions')) {
+    stepComponents.push(submissionGallery);
   }
 
   return (
