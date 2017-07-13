@@ -6,6 +6,7 @@
   left: 0;
   width: 25%;
   min-width: 300px;
+  z-index: $notification-zindex;
 }
 
 .notification {
