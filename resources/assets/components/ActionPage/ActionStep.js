@@ -8,7 +8,7 @@ import { Flex, FlexCell } from '../Flex';
 
 const renderPhoto = (photo, index) => (
   <div className="action-step__photo" key={index}>
-    <img src={photo} />
+    <img alt="Action step photo" src={photo} />
   </div>
 );
 
