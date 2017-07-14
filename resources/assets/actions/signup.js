@@ -129,15 +129,14 @@ export function clickedSignUp(campaignId, metadata) {
         // If Drupal denied our signup request, check if we already had a signup.
         dispatch(checkForSignup(campaignId));
       } else {
-        // Otherwise, mark the signup as a success and
-        // take user to the action page if campaign is open.
+        // Create signup and track any data before redirects.
+        dispatch(signupCreated(campaignId));
+        dispatch(trackEvent('signup created', metadata));
+
+        // Take user to the action page if campaign is open.
         if (! isCampaignClosed(getState().campaign.endDate.date)) {
           dispatch(push('/action'));
         }
-
-        dispatch(signupCreated(campaignId));
-
-        dispatch(trackEvent('signup created', metadata));
       }
     });
   };
