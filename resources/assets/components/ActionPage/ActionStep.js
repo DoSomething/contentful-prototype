@@ -6,6 +6,7 @@ import StepHeader from './StepHeader';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 
+// TODO: Replace alt with better description.
 const renderPhoto = (photo, index) => (
   <div className="action-step__photo" key={index}>
     <img alt="Action step" src={photo} />
