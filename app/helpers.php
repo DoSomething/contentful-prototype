@@ -285,10 +285,12 @@ function get_client_environment_vars()
 function get_login_query($campaign = null)
 {
     $isSet = isset($campaign);
+    $title = $isSet ? $campaign->title : null;
 
     return [
+        'destination' => $title,
         'options' => [
-            'title' => $isSet ? $campaign->title : null,
+            'title' => $title,
             'coverImage' => $isSet ? get_image_url($campaign->coverImage) : null,
             'callToAction' => $isSet ? $campaign->callToAction : null,
         ],
