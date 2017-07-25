@@ -281,3 +281,16 @@ function get_client_environment_vars()
         'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
     ];
 }
+
+function get_login_query($campaign = null)
+{
+    $isSet = isset($campaign);
+
+    return [
+        'options' => [
+            'title' => $isSet ? $campaign->title : null,
+            'coverImage' => $isSet ? get_image_url($campaign->coverImage) : null,
+            'callToAction' => $isSet ? $campaign->callToAction : null,
+        ],
+    ];
+}
