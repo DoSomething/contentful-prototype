@@ -5,11 +5,11 @@ import { FlexCell } from '../Flex';
 import LazyImage from '../LazyImage';
 import { convertNumberToWord } from '../../helpers';
 
-const StepHeader = ({ title, step, background }) => (
+const StepHeader = ({ title, step, background, hideStepNumber }) => (
   <FlexCell width="full">
     <div className="action-step__header">
       { background ? <LazyImage src={background} /> : null }
-      <span>step { convertNumberToWord(step) }</span>
+      { hideStepNumber ? null : <span>step { convertNumberToWord(step) }</span> }
       <h1>{ title }</h1>
     </div>
   </FlexCell>
@@ -18,6 +18,7 @@ const StepHeader = ({ title, step, background }) => (
 StepHeader.propTypes = {
   title: PropTypes.string.isRequired,
   step: PropTypes.number.isRequired,
+  hideStepNumber: PropTypes.bool.isRequired,
   background: PropTypes.string,
 };
 
