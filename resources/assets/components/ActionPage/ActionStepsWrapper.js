@@ -42,7 +42,7 @@ const ActionStepsWrapper = (props) => {
     const type = step.customType || 'default';
     const title = step.title;
     const content = step.content || null;
-    const additionalContent = step.additionalContent;
+    const additionalContent = step.additionalContent || {};
     const key = makeHash(title);
 
     switch (type) {
