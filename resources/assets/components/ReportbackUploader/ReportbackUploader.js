@@ -56,7 +56,7 @@ class ReportbackUploader extends React.Component {
     const reportback = {
       media: this.state.media,
       caption: this.caption.value,
-      impact: this.impact.value,
+      impact: this.props.quantityOverride || this.impact.value,
       whyParticipated: this.why_participated.value,
       campaignId: this.props.legacyCampaignId,
       status: 'pending',
@@ -79,6 +79,12 @@ class ReportbackUploader extends React.Component {
 
   render() {
     const submissions = this.props.submissions;
+    const impactInput = (
+      <div>
+        <label className="field-label" htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
+        <input className="text-field" id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
+      </div>
+    );
 
     return (
       <BlockWrapper>
@@ -96,10 +102,7 @@ class ReportbackUploader extends React.Component {
                 <input className="text-field" id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
               </div>
 
-              <div>
-                <label className="field-label" htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
-                <input className="text-field" id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
-              </div>
+              { this.props.quantityOverride ? null : impactInput }
             </div>
 
             <div className="form-item">
@@ -129,6 +132,7 @@ ReportbackUploader.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
+  quantityOverride: PropTypes.number,
 };
 
 ReportbackUploader.defaultProps = {
@@ -136,6 +140,7 @@ ReportbackUploader.defaultProps = {
     singular: 'item',
     plural: 'items',
   },
+  quantityOverride: null,
 };
 
 export default ReportbackUploader;
