@@ -76,7 +76,7 @@ const ActionStepsWrapper = (props) => {
             background={step.background}
             photos={step.photos}
             photoWidth={step.displayOptions === 'full' ? 'full' : 'one-third'}
-            hideStepNumber={step.hideStepNumber}
+            hideStepNumber={additionalContent.hideStepNumber || false}
             shouldTruncate={step.truncate}
           />
         );
