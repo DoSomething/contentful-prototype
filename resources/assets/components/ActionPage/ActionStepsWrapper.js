@@ -13,7 +13,7 @@ const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
     hasPendingSignup, isAuthenticated, isSignedUp } = props;
 
-  const photoUploader = photoUploaderProps => (
+  const renderPhotoUploader = photoUploaderProps => (
     <FlexCell key="reportback_uploader" width="full">
       <ReportbackUploaderContainer {...photoUploaderProps} />
     </FlexCell>
@@ -57,7 +57,7 @@ const ActionStepsWrapper = (props) => {
         );
 
       case 'photo-uploader':
-        return isSignedUp ? photoUploader({
+        return isSignedUp ? renderPhotoUploader({
           quantityOverride: additionalContent.quantityOverride || null,
         }) : null;
 
