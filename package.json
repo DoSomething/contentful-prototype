@@ -31,7 +31,7 @@
   "dependencies": {
     "@dosomething/analytics": "^2.0.2",
     "@dosomething/forge": "^6.7.10",
-    "@dosomething/gateway": "^1.0.1",
+    "@dosomething/gateway": "^1.0.3",
     "@publica/url-polyfill": "^0.5.8",
     "babel-jest": "^20.0.3",
     "babel-polyfill": "^6.23.0",
