@@ -30,7 +30,7 @@ const LedeBanner = (props) => {
             <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
           </div>
 
-          <Markdown className="lede-banner__blurb">{blurb}</Markdown>
+          <Markdown classNames="lede-banner__blurb">{blurb}</Markdown>
 
           { isAffiliated ? null : <button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'lede banner|text: Join us' })}>Join us</button> }
         </div>

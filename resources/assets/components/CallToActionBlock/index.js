@@ -59,7 +59,7 @@ const CallToActionBlock = (props) => {
 
         { additionalContent ? renderImpactContent(additionalContent) : null}
 
-        { content ? <div className="cta__block"><Markdown className="cta__message">{content}</Markdown></div> : null }
+        { content ? <div className="cta__block"><Markdown classNames="cta__message">{content}</Markdown></div> : null }
 
         <div className="cta__block">
           <button className="button" onClick={handleOnClickButton}>{buttonText}</button>

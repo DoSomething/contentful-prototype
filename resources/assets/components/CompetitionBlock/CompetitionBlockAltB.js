@@ -53,7 +53,7 @@ const CompetitionBlockAltB = (props) => {
       <BlockTitle>Go above and beyond!</BlockTitle>
       <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
         <div className="clearfix">
-          <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
+          <Markdown classNames={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
           { competitionPhoto }
         </div>
         { button }
