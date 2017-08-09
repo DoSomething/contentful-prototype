@@ -6,6 +6,7 @@ import { CampaignUpdate } from '../CampaignUpdate';
 import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
+import Quiz from '../Quiz';
 import CallToActionBlockContainer from '../../containers/CallToActionBlockContainer';
 import { BlockJson } from '../../types';
 
@@ -23,6 +24,9 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
           author={json.fields.author}
         />
       );
+
+    case 'quiz':
+      return <Quiz />;
 
     case 'campaign_update':
       return <CampaignUpdateBlockContainer id={json.id} fields={json.fields} />;
