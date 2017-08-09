@@ -11,3 +11,4 @@ export signups from './signups';
 export submissions from './submissions';
 export uploads from './uploads';
 export user from './user';
+export quizzes from './quizzes';

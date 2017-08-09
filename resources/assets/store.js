@@ -65,6 +65,9 @@ const initialState = {
     shouldShowModal: false,
   },
   uploads: {},
+  quizzes: {
+    items: [],
+  },
 };
 
 /**

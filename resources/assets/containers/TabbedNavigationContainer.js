@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
   campaignEndDate: state.campaign.endDate.date,
+  hasQuiz: state.quizzes.items.length,
 });
 
 const mapDispatchToProps = {
@@ -22,7 +23,7 @@ const mapDispatchToProps = {
 };
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages, campaignEndDate } = props;
+  const { isAffiliated, legacyCampaignId, pages, campaignEndDate, hasQuiz } = props;
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
@@ -39,6 +40,7 @@ const TabbedNavigationContainer = (props) => {
       <div className="nav-items">
         <NavigationLink to={paths.community} exact>Community</NavigationLink>
         { isClosed ? null : <NavigationLink to={paths.action}>Action</NavigationLink> }
+        { hasQuiz ? <NavigationLink to={paths.quizzes}>Quiz</NavigationLink> : null }
         { additionalPages }
       </div>
       { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
@@ -54,6 +56,7 @@ TabbedNavigationContainer.propTypes = {
   pages: PropTypes.oneOfType([
     PropTypes.array,
   ]),
+  hasQuiz: PropTypes.bool.isRequired,
 };
 
 TabbedNavigationContainer.defaultProps = {
