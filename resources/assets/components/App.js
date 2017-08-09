@@ -10,6 +10,7 @@ import { paths } from '../helpers/navigation';
 import ChromeContainer from '../containers/ChromeContainer';
 import { FeedContainer } from './Feed';
 import { ActionPageContainer } from './ActionPage';
+import { QuizPageContainer } from './QuizPage';
 import { BlockContainer } from './Block';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
@@ -28,6 +29,15 @@ const App = ({ store, history }) => {
     <Route path={paths.action} component={chrome(ActionPageContainer)} />
   );
 
+  const hasQuiz = store.getState().quizzes.items.length;
+  const quizzesPage = hasQuiz ? (
+    <Route path={paths.quiz} component={chrome(QuizPageContainer)} />
+  ) : null;
+
+  const quizPage = hasQuiz ? (
+    <Route path={`${paths.quiz}/:id`} component={chrome(QuizPageContainer)} />
+  ) : null;
+
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
@@ -35,6 +45,8 @@ const App = ({ store, history }) => {
           {/* Base user experience */}
           <Route path={paths.community} exact component={chrome(FeedContainer)} />
           { actionPage }
+          { quizPage }
+          { quizzesPage }
           <Route path={`${paths.pages}:page`} component={chrome(ContentPageContainer)} />
           <Route path={`${paths.blocks}:id`} component={chrome(BlockContainer)} />
           {/* * */}
