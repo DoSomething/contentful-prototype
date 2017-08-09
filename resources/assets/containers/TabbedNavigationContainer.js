@@ -40,7 +40,7 @@ const TabbedNavigationContainer = (props) => {
       <div className="nav-items">
         <NavigationLink to={paths.community} exact>Community</NavigationLink>
         { isClosed ? null : <NavigationLink to={paths.action}>Action</NavigationLink> }
-        { hasQuiz ? <NavigationLink to={paths.quiz}>Quiz</NavigationLink> : null }
+        { hasQuiz ? <NavigationLink to={paths.quizzes}>Quiz</NavigationLink> : null }
         { additionalPages }
       </div>
       { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }

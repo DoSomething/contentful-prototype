@@ -5,7 +5,8 @@ import { findKey } from 'lodash';
 export const paths = {
   community: '/',
   action: '/action',
-  quiz: '/quiz',
+  quizzes: '/quiz',
+  quiz: '/quiz/',
   blocks: '/blocks/',
   pages: '/pages/',
 };

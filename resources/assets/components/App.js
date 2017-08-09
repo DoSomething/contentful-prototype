@@ -31,11 +31,11 @@ const App = ({ store, history }) => {
 
   const hasQuiz = store.getState().quizzes.items.length;
   const quizzesPage = hasQuiz ? (
-    <Route path={paths.quiz} component={chrome(QuizPageContainer)} />
+    <Route path={paths.quizzes} component={chrome(QuizPageContainer)} />
   ) : null;
 
   const quizPage = hasQuiz ? (
-    <Route path={`${paths.quiz}/:id`} component={chrome(QuizPageContainer)} />
+    <Route path={`${paths.quiz}:id`} component={chrome(QuizPageContainer)} />
   ) : null;
 
   return (
