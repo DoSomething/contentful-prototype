@@ -2,18 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './quiz-page.scss';
 
-const QuizPage = ({ quizId }) => (
-  <article className="quiz">
-    <h1>{ quizId }</h1>
+const QuizPage = ({ quizzes }) => (
+  <article className="quiz-page">
+    {quizzes.map(quiz => (
+      <h1 key={quiz}>{quiz}</h1>
+    ))}
   </article>
 );
 
 QuizPage.propTypes = {
-  quizId: PropTypes.string,
-};
-
-QuizPage.defaultProps = {
-  quizId: null,
+  quizzes: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default QuizPage;

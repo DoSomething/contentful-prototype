@@ -11,6 +11,7 @@ import ChromeContainer from '../containers/ChromeContainer';
 import { FeedContainer } from './Feed';
 import { ActionPageContainer } from './ActionPage';
 import { QuizPageContainer } from './QuizPage';
+import { QuizContainer } from './Quiz';
 import { BlockContainer } from './Block';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
@@ -35,7 +36,7 @@ const App = ({ store, history }) => {
   ) : null;
 
   const quizPage = hasQuiz ? (
-    <Route path={`${paths.quiz}:id`} component={chrome(QuizPageContainer)} />
+    <Route path={`${paths.quiz}:id`} component={chrome(QuizContainer)} />
   ) : null;
 
   return (

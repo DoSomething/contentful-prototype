@@ -1,4 +1,4 @@
-// Fully constructed Quizk Page.
+// Fully constructed Quiz Page.
 export QuizPageContainer from './QuizPageContainer';
 
 // Pure React component without Redux data.
