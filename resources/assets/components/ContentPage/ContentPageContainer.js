@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
-import ContentPage from '../components/ContentPage';
+import ContentPage from './ContentPage';
+import { isCampaignClosed as isCampaignClosedHelper } from '../../helpers';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -11,6 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
   noun: get(state.campaign.additionalContent, 'noun'),
   verb: get(state.campaign.additionalContent, 'verb'),
   tagline: get(state.campaign.additionalContent, 'tagline'),
+  isCampaignClosed: isCampaignClosedHelper(state.campaign.endDate.date),
 });
 
 // Export the container component.

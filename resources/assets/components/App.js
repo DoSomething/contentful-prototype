@@ -11,7 +11,7 @@ import ChromeContainer from '../containers/ChromeContainer';
 import { FeedContainer } from './Feed';
 import { ActionPageContainer } from './ActionPage';
 import { BlockContainer } from './Block';
-import ContentPageContainer from '../containers/ContentPageContainer';
+import { ContentPageContainer } from './ContentPage';
 import NotFound from './NotFound';
 
 const wrap = (Container, Component) => props => (
