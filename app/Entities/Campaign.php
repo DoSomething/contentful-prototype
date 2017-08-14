@@ -132,12 +132,7 @@ class Campaign extends Entity implements JsonSerializable
     public function parseQuizzes($quizzes)
     {
         return collect($quizzes)->map(function ($quiz) {
-            $data = [];
-
-            $data['title'] = $quiz->title;
-            $data['slug'] = $quiz->slug;
-
-            return $data;
+            return new Quiz($quiz->entry);
         });
     }
 
