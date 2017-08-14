@@ -124,6 +124,24 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse and extract data for quizzes.
+     *
+     * @param  array $quizzes
+     * @return array
+     */
+    public function parseQuizzes($quizzes)
+    {
+        return collect($quizzes)->map(function ($quiz) {
+            $data = [];
+
+            $data['title'] = $quiz->title;
+            $data['slug'] = $quiz->slug;
+
+            return $data;
+        });
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -149,6 +167,7 @@ class Campaign extends Entity implements JsonSerializable
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->parseActivityFeed($this->activity_feed),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
+            'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
             'affirmation' => [
                 'header' => $this->affirmation->header,

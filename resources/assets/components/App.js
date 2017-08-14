@@ -11,6 +11,7 @@ import ChromeContainer from '../containers/ChromeContainer';
 import { FeedContainer } from './Feed';
 import { ActionPageContainer } from './ActionPage';
 import { BlockContainer } from './Block';
+import { QuizContainer } from './Quiz';
 import ContentPageContainer from '../containers/ContentPageContainer';
 import NotFound from './NotFound';
 
@@ -37,6 +38,7 @@ const App = ({ store, history }) => {
           { actionPage }
           <Route path={`${paths.pages}:page`} component={chrome(ContentPageContainer)} />
           <Route path={`${paths.blocks}:id`} component={chrome(BlockContainer)} />
+          <Route path={`${paths.quiz}:slug`} component={chrome(QuizContainer)} />
           {/* * */}
 
           {/* Custom user experiences... */}

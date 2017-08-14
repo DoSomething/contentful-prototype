@@ -1,15 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Card from '../Card';
-import Markdown from '../Markdown';
 
-const copy = "# Look it's a quiz!";
-
-const Quiz = () => (
-  <Card classNames="rounded bordered" title="Quiz">
+const Quiz = ({ content }) => (
+  <Card>
     <div className="quiz">
-      <Markdown>{copy}</Markdown>
+      <h1>{content.title}</h1>
     </div>
   </Card>
 );
+
+Quiz.propTypes = {
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    slug: PropTypes.string,
+  }).isRequired,
+};
 
 export default Quiz;
