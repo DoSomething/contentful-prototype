@@ -8,7 +8,7 @@ const Answer = ({ title }) => (
 );
 
 Answer.propTypes = {
-  title: PropTypes.string,.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Answer;
