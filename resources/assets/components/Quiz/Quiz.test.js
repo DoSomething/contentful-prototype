@@ -6,6 +6,6 @@ import Quiz from './Quiz';
 jest.mock('./QuizContainer', () => 'QuizContainer');
 
 test('it should display a placeholder quiz', () => {
-  const wrapper = shallow(<Quiz quiz={{ title: 'test title', json: { questions: [] } }} />);
+  const wrapper = shallow(<Quiz fields={{ title: 'test title', json: { questions: [] } }} />);
   expect(wrapper.find('div.quiz')).toHaveLength(1);
 });
