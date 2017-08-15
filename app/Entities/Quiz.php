@@ -19,6 +19,8 @@ class Quiz extends Entity implements JsonSerializable
             'fields' => [
                 'title' => $this->title,
                 'slug' => $this->slug,
+                'introduction' => $this->introduction,
+                'conclusion' => $this->conclusion,
                 'json' => $this->json,
             ],
         ];
