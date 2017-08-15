@@ -230,27 +230,6 @@ function useOverrideIfSet($field, $campaign, $override)
 }
 
 /**
- * Copy values into new array using the keys given
- * if the source has the same key set.
- *
- * @param  array $keys
- * @param  array $source
- * @return array
- */
-function copyFieldIfSet($keys, $source)
-{
-    $data = [];
-
-    foreach ($keys as $key) {
-        if (isset($source[$key])) {
-            $data[$key] = $source[$key];
-        }
-    }
-
-    return $data;
-}
-
-/**
  * Determine the fields to display in the social share.
  *
  * @param  Campaign $campaign

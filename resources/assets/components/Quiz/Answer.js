@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Answer = ({ answer }) => (
+const Answer = ({ title }) => (
   <div className="answer">
-    <p>{ answer.title }</p>
+    <p>{ title }</p>
   </div>
 );
 
 Answer.propTypes = {
-  answer: PropTypes.shape({
-    title: PropTypes.string,
-  }).isRequired,
+  title: PropTypes.string,.isRequired,
 };
 
 export default Answer;

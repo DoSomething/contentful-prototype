@@ -2,20 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer';
 
-const Question = ({ question }) => (
+const Question = ({ title, answers }) => (
   <div className="question">
-    <h2>{ question.title }</h2>
-    {question.answers.map(answer => (
-      <Answer key={answer.id} answer={answer} />
+    <h2>{ title }</h2>
+    {answers.map(answer => (
+      <Answer key={answer.id} answer={...answer} />
     ))}
   </div>
 );
 
 Question.propTypes = {
-  question: PropTypes.shape({
-    title: PropTypes.string,
-    answers: PropTypes.array,
-  }).isRequired,
+  title: PropTypes.string.isRequired,
+  answers: PropTypes.array.isRequired,
 };
 
 export default Question;

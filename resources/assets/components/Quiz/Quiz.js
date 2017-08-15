@@ -8,7 +8,7 @@ const Quiz = ({ fields }) => (
     <h1 className="quiz__title">{fields.title}</h1>
     <Markdown>{fields.introduction || ''}</Markdown>
     {(fields.questions || []).map(question => (
-      <Question key={question.id} question={question} />
+      <Question key={question.id} {...question} />
     ))}
     <Markdown>{fields.conclusion || ''}</Markdown>
   </div>

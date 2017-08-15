@@ -18,9 +18,9 @@ class Quiz extends Entity implements JsonSerializable
             return [];
         }
 
-        return collect($question['answers'])->map(function ($answer) {
-            $data = copyFieldIfSet(['title', 'award'], $answer);
-            $data['id'] = uniqid();
+        return collect($question['answers'])->map(function ($answer, $index) {
+            $data = array_only($answer, ['title', 'award']);
+            $data['id'] = $index;
 
             return $data;
         });
@@ -38,9 +38,9 @@ class Quiz extends Entity implements JsonSerializable
             return [];
         }
 
-        return collect($questions)->map(function ($question) {
-            $data = copyFieldIfSet(['title', 'background'], $question);
-            $data['id'] = uniqid();
+        return collect($questions)->map(function ($question, $index) {
+            $data = array_only($question, ['title', 'background']);
+            $data['id'] = $index;
             $data['answers'] = $this->parseAnswersFromQuestion($question);
 
             return $data;
