@@ -29,7 +29,7 @@ class Quiz extends Entity implements JsonSerializable
     /**
      * Parse out the questions from the json data.
      *
-     * @return Array
+     * @return array
      */
     private function parseQuestionsFromJson()
     {
