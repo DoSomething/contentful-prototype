@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoHeader snapshot test 1`] = `
+<div
+  className="photo-header"
+  style={
+    Object {
+      "backgroundImage": "url(https://fake-image.com/img.png)",
+    }
+  }
+>
+  <h1>
+    title
+  </h1>
+</div>
+`;
