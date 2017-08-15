@@ -4,19 +4,19 @@ import Markdown from '../Markdown';
 import Question from './Question';
 import { makeHash } from '../../helpers';
 
-const Quiz = ({ quiz }) => (
+const Quiz = ({ fields }) => (
   <div className="quiz">
-    <h1 className="quiz__title">{quiz.title}</h1>
-    { quiz.introduction ? <Markdown>{quiz.introduction}</Markdown> : null }
-    { quiz.json.questions.map(question => (
+    <h1 className="quiz__title">{fields.title}</h1>
+    { fields.introduction ? <Markdown>{fields.introduction}</Markdown> : null }
+    { fields.json.questions.map(question => (
       <Question key={makeHash(question.title)} question={question} />
     )) }
-    { quiz.conclusion ? <Markdown>{quiz.conclusion}</Markdown> : null }
+    { fields.conclusion ? <Markdown>{fields.conclusion}</Markdown> : null }
   </div>
 );
 
 Quiz.propTypes = {
-  quiz: PropTypes.shape({
+  fields: PropTypes.shape({
     title: PropTypes.string,
     slug: PropTypes.string,
     introduction: PropTypes.string,
