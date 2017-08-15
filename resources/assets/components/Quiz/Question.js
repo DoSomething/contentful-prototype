@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Question = ({ question }) => (
   <div className="question">
-    <h1>{ question.title }</h1>
+    <h2>{ question.title }</h2>
   </div>
 );
 

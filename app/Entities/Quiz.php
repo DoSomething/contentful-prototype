@@ -14,9 +14,13 @@ class Quiz extends Entity implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'json' => $this->json,
+            'id' => $this->entry->getId(),
+            'type' => $this->getContentType(),
+            'fields' => [
+                'title' => $this->title,
+                'slug' => $this->slug,
+                'json' => $this->json,
+            ],
         ];
     }
 }

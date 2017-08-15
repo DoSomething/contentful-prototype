@@ -7,9 +7,9 @@ import Quiz from './Quiz';
  */
 const mapStateToProps = (state, ownProps) => {
   const { slug } = ownProps.match.params;
-  const quiz = find(state.campaign.quizzes, { slug });
+  const quiz = find(state.campaign.quizzes, { fields: { slug } });
 
-  return { quiz };
+  return { quiz: quiz.fields };
 };
 
 // Export the container component.
