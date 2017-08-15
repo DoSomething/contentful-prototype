@@ -6,11 +6,11 @@ import Question from './Question';
 const Quiz = ({ fields }) => (
   <div className="quiz">
     <h1 className="quiz__title">{fields.title}</h1>
-    <Markdown>{fields.introduction}</Markdown>
-    {fields.questions.map(question => (
+    <Markdown>{fields.introduction || ''}</Markdown>
+    {(fields.questions || []).map(question => (
       <Question key={question.id} question={question} />
     ))}
-    <Markdown>{fields.conclusion}</Markdown>
+    <Markdown>{fields.conclusion || ''}</Markdown>
   </div>
 );
 
@@ -21,7 +21,7 @@ Quiz.propTypes = {
     slug: PropTypes.string,
     introduction: PropTypes.string,
     conclusion: PropTypes.string,
-    questions: PropTypes.object,
+    questions: PropTypes.array,
   }).isRequired,
 };
 
