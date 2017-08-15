@@ -7,11 +7,9 @@ import { convertNumberToWord } from '../../helpers';
 
 const StepHeader = ({ title, step, background, hideStepNumber }) => (
   <FlexCell width="full">
-    <PhotoHeader backgroundImage={background}>
-      <div className="action-step__header">
-        { hideStepNumber ? null : <span>step { convertNumberToWord(step) }</span> }
-        <h1>{ title }</h1>
-      </div>
+    <PhotoHeader className="action-step__header" backgroundImage={background}>
+      { hideStepNumber ? null : <span>step { convertNumberToWord(step) }</span> }
+      <h1>{ title }</h1>
     </PhotoHeader>
   </FlexCell>
 );

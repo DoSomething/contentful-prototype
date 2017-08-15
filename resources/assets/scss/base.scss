@@ -62,10 +62,24 @@ h1, h2, h3, p {
   float: right;
 }
 
+// TODO: Remove this.
 .padded {
   padding: $half-spacing;
 }
 
+.padded-md {
+  padding: $half-spacing;
+}
+
+.padded-lg {
+  padding: $base-spacing;
+}
+
 .rounded {
   border-radius: $lg-border-radius;
+}
+
+.background-image-centered {
+  background-position: center;
+  background-size: cover;
 }
