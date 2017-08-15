@@ -2,7 +2,7 @@
 
 exports[`PhotoHeader snapshot test 1`] = `
 <div
-  className="photo-header"
+  className="photo-header background-image-centered padded-lg"
   style={
     Object {
       "backgroundImage": "url(https://fake-image.com/img.png)",
