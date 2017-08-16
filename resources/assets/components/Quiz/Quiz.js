@@ -4,14 +4,13 @@ import QuizInitializr from './QuizInitializr';
 import Markdown from '../Markdown';
 import Question from './Question';
 
-const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, quizInit }) => (
+const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer }) => (
   <div className="quiz">
-    <QuizInitializr quizId={id} quizInit={quizInit} />
     <h1 className="quiz__title">{fields.title}</h1>
     {data.shouldSeeResult ? null : (
-      <Markdown>{fields.introduction || ''}</Markdown>
+      <Markdown>{fields.introduction}</Markdown>
     )}
-    {data.shouldSeeResult ? null : (fields.questions || []).map(question => (
+    {data.shouldSeeResult ? null : (fields.questions).map(question => (
       <Question
         key={question.id}
         pickQuizAnswer={pickQuizAnswer}
@@ -23,7 +22,7 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, quizInit }) =>
     {data.shouldSeeResult ? null : (
       <button onClick={() => viewQuizResult(id)}>get my results</button>
     )}
-    { data.shouldSeeResult ? <Markdown>{fields.conclusion || ''}</Markdown> : null }
+    { data.shouldSeeResult ? <Markdown>{fields.conclusion}</Markdown> : null }
   </div>
 );
 
@@ -45,7 +44,6 @@ Quiz.propTypes = {
   }).isRequired,
   viewQuizResult: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
-  quizInit: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
@@ -55,6 +53,26 @@ Quiz.defaultProps = {
     questions: {},
     error: null,
   },
+  fields: {
+    introduction: '',
+    questions: [],
+    conclusion: '',
+  },
 };
 
-export default Quiz;
+class QuizLoader extends React.Component {
+  componentDidMount() {
+    this.props.startQuiz(this.props.questionId);
+  }
+
+  render() {
+    <Quiz {...this.props} />
+  }
+}
+
+QuizLoader.propTypes = {
+  id: PropTypes.string.isRequired,
+  startQuiz: PropTypes.func.isRequired,
+};
+
+export default QuizLoader;

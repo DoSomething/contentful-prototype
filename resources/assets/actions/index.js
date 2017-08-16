@@ -75,7 +75,7 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export * from './modal';
 
-export const QUIZ_INIT = 'QUIZ_INIT';
+export const START_QUIZ = 'START_QUIZ';
 export const PICK_QUIZ_ANSWER = 'PICK_QUIZ_ANSWER';
 export const VIEW_QUIZ_RESULT = 'VIEW_QUIZ_RESULT';
 export const COMPARE_QUIZ_ANSWER = 'COMPARE_QUIZ_ANSWER';

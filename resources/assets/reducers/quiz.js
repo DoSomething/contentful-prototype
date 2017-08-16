@@ -2,13 +2,13 @@ import {
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
-  QUIZ_INIT,
+  START_QUIZ,
   QUIZ_ERROR,
 } from '../actions';
 
 const quiz = (state = {}, action) => {
   switch (action.type) {
-    case QUIZ_INIT:
+    case START_QUIZ:
       // TODO: Load in data from action if exists. Will need this for the conversion work.
       return {
         ...state,

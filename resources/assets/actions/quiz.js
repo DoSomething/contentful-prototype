@@ -3,12 +3,12 @@ import {
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
-  QUIZ_INIT,
+  START_QUIZ,
   QUIZ_ERROR,
 } from '../actions';
 
-export function quizInit(quizId) {
-  return { type: QUIZ_INIT, quizId };
+export function startQuiz(quizId) {
+  return { type: START_QUIZ, quizId };
 }
 
 export function pickQuizAnswer(quizId, questionId, award) {
