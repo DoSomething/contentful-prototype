@@ -27,7 +27,7 @@ export function viewQuizResult(quizId) {
     const totalAnswers = Object.values(quizData.questions).length;
     const totalQuestions = quizContent.fields.questions.length;
 
-    if (quizData && totalAnswers < totalQuestions) {
+    if (totalAnswers < totalQuestions) {
       return dispatch(quizError(quizId, 'You\'re missing a question!'));
     }
 
