@@ -8,6 +8,7 @@ const Quiz = ({ id, fields, data, compareQuizAnswer, pickQuizAnswer, quizInit })
   <div className="quiz">
     <QuizInitializr quizId={id} quizInit={quizInit} />
     <h1 className="quiz__title">{fields.title}</h1>
+<<<<<<< HEAD
     {data.shouldCompare ? null : (
       <Markdown>{fields.introduction || ''}</Markdown>
     )}
@@ -24,17 +25,25 @@ const Quiz = ({ id, fields, data, compareQuizAnswer, pickQuizAnswer, quizInit })
       <button onClick={() => compareQuizAnswer(id)}>get my results</button>
     )}
     { data.shouldCompare ? <Markdown>{fields.conclusion || ''}</Markdown> : null }
+=======
+    <Markdown>{fields.introduction || ''}</Markdown>
+    {(fields.questions || []).map(question => (
+      <Question key={question.id} {...question} />
+    ))}
+    <Markdown>{fields.conclusion || ''}</Markdown>
+>>>>>>> be05cd7ab22ede17b025785c6967cd9678dbc847
   </div>
 );
 
 Quiz.propTypes = {
   id: PropTypes.string.isRequired,
   fields: PropTypes.shape({
+    id: PropTypes.string,
     title: PropTypes.string,
     slug: PropTypes.string,
     introduction: PropTypes.string,
     conclusion: PropTypes.string,
-    json: PropTypes.object,
+    questions: PropTypes.array,
   }).isRequired,
   data: PropTypes.shape({
     shouldCompare: PropTypes.bool,

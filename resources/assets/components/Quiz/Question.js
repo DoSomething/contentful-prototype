@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Answer from './Answer';
 
 const Question = ({ title, id, quizId, answers, pickQuizAnswer }) => (
   <div className="question">

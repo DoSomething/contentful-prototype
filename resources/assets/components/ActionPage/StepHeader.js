@@ -2,16 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { FlexCell } from '../Flex';
-import LazyImage from '../LazyImage';
+import PhotoHeader from '../PhotoHeader';
 import { convertNumberToWord } from '../../helpers';
 
 const StepHeader = ({ title, step, background, hideStepNumber }) => (
   <FlexCell width="full">
-    <div className="action-step__header">
-      { background ? <LazyImage src={background} /> : null }
+    <PhotoHeader className="action-step__header" backgroundImage={background}>
       { hideStepNumber ? null : <span>step { convertNumberToWord(step) }</span> }
       <h1>{ title }</h1>
-    </div>
+    </PhotoHeader>
   </FlexCell>
 );
 
