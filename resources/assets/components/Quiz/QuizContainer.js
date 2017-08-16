@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import { find } from 'lodash';
 import Quiz from './Quiz';
-import { pickQuizAnswer, compareQuizAnswer, quizInit } from '../../actions';
+import {
+  pickQuizAnswer,
+  compareQuizAnswer,
+  quizInit,
+  viewQuizResult,
+} from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -21,7 +26,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const actions = {
-  pickQuizAnswer, compareQuizAnswer, quizInit,
+  pickQuizAnswer, compareQuizAnswer, quizInit, viewQuizResult,
 };
 
 // Export the container component.

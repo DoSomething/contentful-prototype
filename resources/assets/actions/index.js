@@ -77,6 +77,7 @@ export * from './modal';
 
 export const QUIZ_INIT = 'QUIZ_INIT';
 export const PICK_QUIZ_ANSWER = 'PICK_QUIZ_ANSWER';
+export const VIEW_QUIZ_RESULT = 'VIEW_QUIZ_RESULT';
 export const COMPARE_QUIZ_ANSWER = 'COMPARE_QUIZ_ANSWER';
 export const QUIZ_ERROR = 'QUIZ_ERROR';
 export * from './quiz';
@@ -113,4 +114,5 @@ export const ANALYTICS_ACTIONS = [
   QUIZ_INIT,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
+  VIEW_QUIZ_RESULT,
 ];

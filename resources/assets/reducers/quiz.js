@@ -1,6 +1,7 @@
 import {
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
+  VIEW_QUIZ_RESULT,
   QUIZ_INIT,
   QUIZ_ERROR,
 } from '../actions';
@@ -8,6 +9,7 @@ import {
 const quiz = (state = {}, action) => {
   switch (action.type) {
     case QUIZ_INIT:
+      // TODO: Load in data from action if exists. Will need this for the conversion work.
       return {
         ...state,
         [action.quizId]: {
@@ -28,11 +30,20 @@ const quiz = (state = {}, action) => {
           },
         },
       };
+    case VIEW_QUIZ_RESULT:
+      return {
+        ...state,
+        [action.quizId]: {
+          ...state[action.quizId],
+          shouldSeeResult: true,
+        },
+      };
     case COMPARE_QUIZ_ANSWER:
       return {
         ...state,
         [action.quizId]: {
           ...state[action.quizId],
+          shouldSeeResult: true,
           shouldCompare: true,
         },
       };

@@ -4,14 +4,14 @@ import QuizInitializr from './QuizInitializr';
 import Markdown from '../Markdown';
 import Question from './Question';
 
-const Quiz = ({ id, fields, data, compareQuizAnswer, pickQuizAnswer, quizInit }) => (
+const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, quizInit }) => (
   <div className="quiz">
     <QuizInitializr quizId={id} quizInit={quizInit} />
     <h1 className="quiz__title">{fields.title}</h1>
-    {data.shouldCompare ? null : (
+    {data.shouldSeeResult ? null : (
       <Markdown>{fields.introduction || ''}</Markdown>
     )}
-    {data.shouldCompare ? null : (fields.questions || []).map(question => (
+    {data.shouldSeeResult ? null : (fields.questions || []).map(question => (
       <Question
         key={question.id}
         pickQuizAnswer={pickQuizAnswer}
@@ -20,13 +20,10 @@ const Quiz = ({ id, fields, data, compareQuizAnswer, pickQuizAnswer, quizInit })
       />
     ))}
     { data.error ? <p className="quiz__error">{data.error}</p> : null }
-    {data.shouldCompare ? null : (
-      <button onClick={() => compareQuizAnswer(id)}>get my results</button>
+    {data.shouldSeeResult ? null : (
+      <button onClick={() => viewQuizResult(id)}>get my results</button>
     )}
-    { data.shouldCompare ? <Markdown>{fields.conclusion || ''}</Markdown> : null }
-    {(fields.questions || []).map(question => (
-      <Question key={question.id} {...question} />
-    ))}
+    { data.shouldSeeResult ? <Markdown>{fields.conclusion || ''}</Markdown> : null }
   </div>
 );
 
@@ -42,10 +39,11 @@ Quiz.propTypes = {
   }).isRequired,
   data: PropTypes.shape({
     shouldCompare: PropTypes.bool,
+    shouldSeeResult: PropTypes.bool,
     questions: PropTypes.object,
     error: PropTypes.string,
   }).isRequired,
-  compareQuizAnswer: PropTypes.func.isRequired,
+  viewQuizResult: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
   quizInit: PropTypes.func.isRequired,
 };
@@ -53,6 +51,7 @@ Quiz.propTypes = {
 Quiz.defaultProps = {
   data: {
     shouldCompare: false,
+    shouldSeeResult: false,
     questions: {},
     error: null,
   },

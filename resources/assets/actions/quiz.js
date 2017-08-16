@@ -2,6 +2,7 @@ import { find } from 'lodash';
 import {
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
+  VIEW_QUIZ_RESULT,
   QUIZ_INIT,
   QUIZ_ERROR,
 } from '../actions';
@@ -18,7 +19,7 @@ export function quizError(quizId, error) {
   return { type: QUIZ_ERROR, quizId, error };
 }
 
-export function compareQuizAnswer(quizId) {
+export function viewQuizResult(quizId) {
   return ((dispatch, getState) => {
     const quizData = getState().quiz[quizId];
     const quizContent = find(getState().campaign.quizzes, { id: quizId });
@@ -30,6 +31,10 @@ export function compareQuizAnswer(quizId) {
       return dispatch(quizError(quizId, 'You\'re missing a question!'));
     }
 
-    return dispatch({ type: COMPARE_QUIZ_ANSWER, quizId });
+    return dispatch({ type: VIEW_QUIZ_RESULT, quizId });
   });
+}
+
+export function compareQuizAnswer(quizId) {
+  return { type: COMPARE_QUIZ_ANSWER, quizId }; // TODO
 }
