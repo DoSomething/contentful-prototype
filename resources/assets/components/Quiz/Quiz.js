@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import QuizInitializr from './QuizInitializr';
 import Markdown from '../Markdown';
 import Question from './Question';
 
@@ -62,11 +61,11 @@ Quiz.defaultProps = {
 
 class QuizLoader extends React.Component {
   componentDidMount() {
-    this.props.startQuiz(this.props.questionId);
+    this.props.startQuiz(this.props.id);
   }
 
   render() {
-    <Quiz {...this.props} />
+    return <Quiz {...this.props} />;
   }
 }
 
