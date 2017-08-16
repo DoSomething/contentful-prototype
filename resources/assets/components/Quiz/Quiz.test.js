@@ -13,7 +13,7 @@ test('it should display a placeholder quiz', () => {
       startQuiz={() => {}}
       viewQuizResult={() => {}}
       pickQuizAnswer={() => {}}
-    />
+    />,
   );
 
   expect(wrapper.find(Quiz)).toHaveLength(1);
