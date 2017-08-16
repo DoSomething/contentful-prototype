@@ -75,6 +75,12 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export * from './modal';
 
+export const QUIZ_INIT = 'QUIZ_INIT';
+export const PICK_QUIZ_ANSWER = 'PICK_QUIZ_ANSWER';
+export const COMPARE_QUIZ_ANSWER = 'COMPARE_QUIZ_ANSWER';
+export const QUIZ_ERROR = 'QUIZ_ERROR';
+export * from './quiz';
+
 export const ANALYTICS_ACTIONS = [
   ADD_NOTIFICATION,
   ADD_SUBMISSION_ITEM_TO_LIST,
@@ -104,4 +110,7 @@ export const ANALYTICS_ACTIONS = [
   STORE_REPORTBACK_SUCCESSFUL,
   OPEN_MODAL,
   CLOSE_MODAL,
+  QUIZ_INIT,
+  PICK_QUIZ_ANSWER,
+  COMPARE_QUIZ_ANSWER,
 ];
