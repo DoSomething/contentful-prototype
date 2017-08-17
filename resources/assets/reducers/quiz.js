@@ -37,7 +37,7 @@ const quiz = (state = {}, action) => {
           error: null,
           questions: {
             ...safeState[quizId].questions,
-            [action.questionId]: action.award,
+            [action.questionId]: action.answerId,
           },
         },
       };

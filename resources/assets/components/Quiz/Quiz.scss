@@ -1,0 +1,40 @@
+@import '../../scss/next-toolbox.scss';
+
+.quiz {
+  margin: 0 $base-spacing;
+
+  .quiz__submit {
+    width: 100%;
+  }
+
+  .question {
+    margin: $base-spacing 0;
+
+    h2 {
+      color: $white;
+    }
+  }
+
+  .question__choices {
+    margin-top: $base-spacing;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .answer {
+    margin-bottom: $base-spacing;
+
+    @include media($medium) {
+      flex: 0 0 48%;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.-active {
+      border-color: $blue;
+    }
+  }
+}

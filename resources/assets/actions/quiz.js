@@ -14,8 +14,8 @@ export function loadPreviousQuizState(quizId, questions) {
   return { type: LOAD_PREVIOUS_QUIZ_STATE, quizId, questions };
 }
 
-export function pickQuizAnswer(quizId, questionId, award) {
-  return { type: PICK_QUIZ_ANSWER, quizId, questionId, award };
+export function pickQuizAnswer(quizId, questionId, answerId) {
+  return { type: PICK_QUIZ_ANSWER, quizId, questionId, answerId };
 }
 
 export function quizError(quizId, error) {

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import Question from './Question';
+import './quiz.scss';
 
 const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAnswer }) => (
   <div className="quiz">
@@ -14,16 +15,23 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
         key={question.id}
         pickQuizAnswer={pickQuizAnswer}
         quizId={id}
+        activeAnswer={data.questions[question.id]}
         {...question}
       />
     ))}
     { data.error ? <p className="quiz__error">{data.error}</p> : null }
     {data.shouldSeeResult ? null : (
-      <button onClick={() => viewQuizResult(id)}>get my results</button>
+      <button
+        onClick={() => viewQuizResult(id)}
+        className="button quiz__submit"
+      >get my results</button>
     )}
     { data.shouldSeeResult ? <Markdown>{fields.conclusion}</Markdown> : null }
     { data.shouldSeeResult && ! data.shouldCompare ? (
-      <button onClick={() => compareQuizAnswer(id)}>compare your results</button>
+      <button
+        onClick={() => compareQuizAnswer(id)}
+        className="button quiz__submit"
+      >compare your results</button>
     ) : null }
     { data.shouldCompare ? <p>TODO, pretend its the comparison</p> : null }
   </div>
