@@ -98,7 +98,7 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
-export function clickedSignUp(campaignId, metadata, shouldUpdateExperience = true) {
+export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
@@ -107,7 +107,7 @@ export function clickedSignUp(campaignId, metadata, shouldUpdateExperience = tru
 
     // If we already have a signup, just go to the action page.
     if (getState().signups.data.includes(campaignId)) {
-      return shouldUpdateExperience ? dispatch(push('/action')) : null;
+      return shouldRedirectToActionTab ? dispatch(push('/action')) : null;
     }
 
     dispatch(signupPending());
@@ -126,7 +126,7 @@ export function clickedSignUp(campaignId, metadata, shouldUpdateExperience = tru
 
         // Take user to the action page if campaign is open.
         const isClosed = isCampaignClosed(getState().campaign.endDate.date);
-        if (shouldUpdateExperience && ! isClosed) {
+        if (shouldRedirectToActionTab && ! isClosed) {
           dispatch(openModal());
           dispatch(push('/action'));
         }
