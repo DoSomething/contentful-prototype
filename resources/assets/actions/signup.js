@@ -107,7 +107,6 @@ export function clickedSignUp(campaignId, metadata, shouldUpdateExperience = tru
 
     // If we already have a signup, just go to the action page.
     if (getState().signups.data.includes(campaignId)) {
-      console.log(shouldUpdateExperience);
       return shouldUpdateExperience ? dispatch(push('/action')) : null;
     }
 
