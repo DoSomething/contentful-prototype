@@ -1,5 +1,6 @@
 import { find } from 'lodash';
 import {
+  clickedSignUp,
   queueEvent,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
@@ -52,6 +53,9 @@ export function compareQuizAnswer(quizId) {
       dispatch(loadPreviousQuizState(quizId, questions));
       remove(quizId, QUIZ_STORAGE_KEY);
     }
+
+    const campaignId = getState().campaign.legacyCampaignId;
+    dispatch(clickedSignUp(campaignId, { source: 'quiz' }, false));
 
     return dispatch({ type: COMPARE_QUIZ_ANSWER, quizId });
   };
