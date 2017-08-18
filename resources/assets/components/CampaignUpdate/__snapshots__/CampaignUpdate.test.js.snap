@@ -5,7 +5,6 @@ exports[`it generates a campaign update snapshot 1`] = `
   className="rounded bordered"
   id="1234567890"
   link="http://example.com/link-to-content"
-  onClick={[Function]}
   title="Campaign Update"
 >
   <Markdown
