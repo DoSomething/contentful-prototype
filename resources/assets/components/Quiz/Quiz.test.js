@@ -13,6 +13,7 @@ test('it should display a placeholder quiz', () => {
       startQuiz={() => {}}
       viewQuizResult={() => {}}
       pickQuizAnswer={() => {}}
+      compareQuizAnswer={() => {}}
     />,
   );
 

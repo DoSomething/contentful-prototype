@@ -3,6 +3,7 @@
 exports[`it generates a card snapshot 1`] = `
 <article
   className="card bordered padded rounded"
+  onClick={[Function]}
 >
   <header
     className="card__title"
