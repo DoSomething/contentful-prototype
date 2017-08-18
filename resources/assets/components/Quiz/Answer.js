@@ -4,12 +4,16 @@ import classnames from 'classnames';
 import Card from '../Card';
 
 const Answer = ({ id, title, quizId, questionId, pickQuizAnswer, active }) => (
-  <Card
-    className={classnames('answer bordered rounded padded-lg', { '-active': active })}
+  <a
+    className="answer"
     onClick={() => pickQuizAnswer(quizId, questionId, id)}
+    role="button"
+    tabIndex={0}
   >
-    <p>{ title }</p>
-  </Card>
+    <Card className={classnames('bordered rounded padded-lg', { '-active': active })}>
+      <p>{ title }</p>
+    </Card>
+  </a>
 );
 
 Answer.propTypes = {

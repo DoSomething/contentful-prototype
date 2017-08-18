@@ -24,6 +24,9 @@
 
   .answer {
     margin-bottom: $base-spacing;
+    font-weight: normal;
+    text-decoration: none;
+    outline: 0;
 
     @include media($medium) {
       flex: 0 0 48%;
@@ -33,7 +36,7 @@
       cursor: pointer;
     }
 
-    &.-active {
+    .-active {
       border-color: $blue;
     }
   }

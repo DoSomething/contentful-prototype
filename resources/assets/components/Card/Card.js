@@ -10,9 +10,8 @@ const renderHeader = (title, link) => (
   </header>
 );
 
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-const Card = ({ children, className = '', link = null, title = null, onClick }) => (
-  <article className={classnames('card', className)} onClick={onClick}>
+const Card = ({ children, className = '', link = null, title = null }) => (
+  <article className={classnames('card', className)}>
     { title ? renderHeader(title, link) : null }
 
     { children }
@@ -28,13 +27,11 @@ Card.propTypes = {
   className: PropTypes.string,
   link: PropTypes.string,
   title: PropTypes.string,
-  onClick: PropTypes.func,
 };
 
 Card.defaultProps = {
   className: null,
   link: null,
-  onClick: () => {},
 };
 
 export default Card;
