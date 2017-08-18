@@ -19,9 +19,10 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
       return (
         <CampaignUpdateContainer
           id={json.id}
-          displayOptions={json.fields.displayOptions}
-          content={json.fields.content}
           author={json.fields.author}
+          content={json.fields.content}
+          displayOptions={json.fields.displayOptions}
+          link={json.fields.link}
         />
       );
 

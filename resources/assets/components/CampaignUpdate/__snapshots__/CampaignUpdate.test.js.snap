@@ -10,7 +10,7 @@ exports[`it generates a campaign update snapshot 1`] = `
   <Markdown
     className="padded"
   >
-    Donec id elit non mi porta gravida at eget metus.
+    Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum.
   </Markdown>
   <footer
     className="padded clearfix"

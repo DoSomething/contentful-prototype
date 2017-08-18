@@ -17,9 +17,10 @@ class CampaignUpdate extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $this->getContentType(),
             'fields' => [
-                'displayOptions' => $this->displayOptions->first(),
-                'content' => $this->content,
                 'author' => new Staff($this->author->entry),
+                'content' => $this->content,
+                'displayOptions' => $this->displayOptions->first(),
+                'link' => $this->link,
             ],
         ];
     }

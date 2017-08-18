@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import './photo-header.scss';
 
-const photoHeaderClasses = 'photo-header background-image-centered padded-lg';
+const photoHeaderClasses = 'photo-header background-image-centered padding-lg';
 
 const PhotoHeader = ({ children, className, backgroundImage }) => (
   <div
