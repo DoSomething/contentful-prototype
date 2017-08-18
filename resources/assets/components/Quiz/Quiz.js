@@ -26,14 +26,16 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
         className="button quiz__submit"
       >get my results</button>
     )}
-    { data.shouldSeeResult ? <Markdown>{fields.conclusion}</Markdown> : null }
+    { data.shouldSeeResult ? (
+      <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
+    ) : null }
     { data.shouldSeeResult && ! data.shouldCompare ? (
       <button
         onClick={() => compareQuizAnswer(id)}
         className="button quiz__submit"
       >compare your results</button>
     ) : null }
-    { data.shouldCompare ? <p>TODO, pretend its the comparison</p> : null }
+    { data.shouldCompare ? <Markdown>{fields.comparison}</Markdown> : null }
   </div>
 );
 
@@ -45,6 +47,7 @@ Quiz.propTypes = {
     slug: PropTypes.string,
     introduction: PropTypes.string,
     conclusion: PropTypes.string,
+    comparison: PropTypes.string,
     questions: PropTypes.array,
   }).isRequired,
   data: PropTypes.shape({
@@ -69,6 +72,7 @@ Quiz.defaultProps = {
     introduction: '',
     questions: [],
     conclusion: '',
+    comparison: '',
   },
 };
 

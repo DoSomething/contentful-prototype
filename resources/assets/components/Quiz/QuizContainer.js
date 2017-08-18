@@ -2,6 +2,11 @@ import { connect } from 'react-redux';
 import { find } from 'lodash';
 import Quiz from './Quiz';
 import {
+  pickWinner,
+  replaceStringWithWinner,
+  replaceStringWithPercent,
+} from './QuizHelpers';
+import {
   pickQuizAnswer,
   compareQuizAnswer,
   viewQuizResult,
@@ -16,10 +21,22 @@ const mapStateToProps = (state, ownProps) => {
   const quizContent = find(state.campaign.quizzes, { fields: { slug } });
   const quizId = quizContent.id;
   const quizData = state.quiz[quizId];
+  let quizFields = quizContent.fields;
+
+  const winner = pickWinner(quizData ? quizData.questions : {}, quizFields.questions);
+  if (winner) {
+    quizFields = {
+      ...quizFields,
+      conclusion: replaceStringWithWinner(quizFields.conclusion, winner),
+      comparison: replaceStringWithPercent(
+        replaceStringWithWinner(quizFields.comparison, winner),
+      ),
+    };
+  }
 
   return {
     id: quizId,
-    fields: quizContent.fields,
+    fields: quizFields,
     data: quizData,
   };
 };

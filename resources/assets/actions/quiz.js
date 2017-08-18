@@ -1,3 +1,5 @@
+/* global document */
+
 import { find } from 'lodash';
 import {
   clickedSignUp,
@@ -34,6 +36,7 @@ export function viewQuizResult(quizId) {
       return dispatch(quizError(quizId, 'You\'re missing a question!'));
     }
 
+    document.querySelector('.main').scrollIntoView(true);
     return dispatch({ type: VIEW_QUIZ_RESULT, quizId });
   });
 }

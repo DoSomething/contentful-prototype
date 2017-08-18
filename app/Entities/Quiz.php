@@ -19,7 +19,7 @@ class Quiz extends Entity implements JsonSerializable
         }
 
         return collect($question['answers'])->map(function ($answer, $index) {
-            $data = array_only($answer, ['title', 'award']);
+            $data = array_only($answer, ['title', 'awards']);
             $data['id'] = (string) $index;
 
             return $data;
@@ -62,6 +62,7 @@ class Quiz extends Entity implements JsonSerializable
                 'slug' => $this->slug,
                 'introduction' => $this->introduction,
                 'conclusion' => $this->conclusion,
+                'comparison' => $this->comparison,
                 'questions' => $this->parseQuestionsFromJson(),
             ],
         ];
