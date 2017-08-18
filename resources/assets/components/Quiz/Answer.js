@@ -10,7 +10,7 @@ const Answer = ({ id, title, quizId, questionId, pickQuizAnswer, active }) => (
     role="button"
     tabIndex={0}
   >
-    <Card className={classnames('bordered rounded padded-lg', { '-active': active })}>
+    <Card className={classnames('bordered rounded padding-lg', { '-active': active })}>
       <p>{ title }</p>
     </Card>
   </a>
