@@ -3,7 +3,7 @@ import React from 'react';
 import { contentfulImageUrl } from '../../helpers';
 
 const ContentfulImage = ({ url, width, height, fit }) => (
-  <img src={contentfulImageUrl(url, width, height, fit)} />
+  <img alt="" src={contentfulImageUrl(url, width, height, fit)} />
 );
 
 ContentfulImage.propTypes = {

@@ -32,6 +32,7 @@ Card.propTypes = {
 Card.defaultProps = {
   className: null,
   link: null,
+  title: null,
 };
 
 export default Card;
