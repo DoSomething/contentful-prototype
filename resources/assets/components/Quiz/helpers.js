@@ -1,16 +1,15 @@
-import { random } from 'lodash';
-import { findById } from '../../helpers';
+import { find, random } from 'lodash';
 
 export const pickWinner = (responses, questions) => {
   const finalTallies = Object.keys(responses).reduce((currentTallies, questionId) => {
-    const { answers } = findById(questions, questionId);
+    const { answers } = find(questions, { id: questionId });
     if (! answers) {
       return currentTallies;
     }
 
     const answerId = responses[questionId];
 
-    let { awards } = findById(answers, answerId);
+    let { awards } = find(answers, { id: answerId });
     if (! awards) {
       return currentTallies;
     }

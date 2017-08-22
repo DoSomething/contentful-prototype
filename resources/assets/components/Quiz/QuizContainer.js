@@ -5,7 +5,7 @@ import {
   pickWinner,
   replaceStringWithWinner,
   replaceStringWithPercent,
-} from './QuizHelpers';
+} from './helpers';
 import {
   pickQuizAnswer,
   compareQuizAnswer,
