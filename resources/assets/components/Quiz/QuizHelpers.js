@@ -23,7 +23,7 @@ export const pickWinner = (responses, questions) => {
     const newTallies = { ...currentTallies };
 
     awards.forEach(award => (
-      newTallies[award] = newTallies[award] ? newTallies[award] + 1 : 1
+      newTallies[award] = (newTallies[award] || 0) + 1
     ));
 
     return newTallies;
