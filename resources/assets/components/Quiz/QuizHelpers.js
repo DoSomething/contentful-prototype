@@ -1,20 +1,18 @@
-import { findById, getRandomInt } from '../../helpers';
+import { random } from 'lodash';
+import { findById } from '../../helpers';
 
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-continue */
 export const pickWinner = (responses, questions) => {
-  const tallies = {};
-
-  for (const questionId of Object.keys(responses)) {
+  const finalTallies = Object.keys(responses).reduce((currentTallies, questionId) => {
     const { answers } = findById(questions, questionId);
     if (! answers) {
-      continue;
+      return currentTallies;
     }
 
     const answerId = responses[questionId];
+
     let { awards } = findById(answers, answerId);
     if (! awards) {
-      continue;
+      return currentTallies;
     }
 
     // Handle single award string.
@@ -22,18 +20,17 @@ export const pickWinner = (responses, questions) => {
       awards = [awards];
     }
 
-    // Increment tally for this award
-    for (const value of awards) {
-      if (! tallies[value]) {
-        tallies[value] = 0;
-      }
+    const newTallies = { ...currentTallies };
 
-      tallies[value] += 1;
-    }
-  }
+    awards.forEach(award => (
+      newTallies[award] = newTallies[award] ? newTallies[award] + 1 : 1
+    ));
 
-  return Object.keys(tallies).sort((a, b) => ( // eslint-disable-line id-length
-    tallies[a] - tallies[b]
+    return newTallies;
+  }, {});
+
+  return Object.keys(finalTallies).sort((alpha, beta) => (
+    finalTallies[alpha] - finalTallies[beta]
   ))[0];
 };
 
@@ -42,5 +39,5 @@ export const replaceStringWithWinner = (string, winner) => (
 );
 
 export const replaceStringWithPercent = string => (
-  string.replace(/{{percent}}/g, `${getRandomInt(25, 34)}%`)
+  string.replace(/{{percent}}/g, `${random(25, 34)}%`)
 );

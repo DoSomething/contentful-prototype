@@ -360,15 +360,3 @@ export function isCampaignClosed(endDate) {
 export function findById(array, compareId) {
   return array.find(({ id }) => id === compareId);
 }
-
-/**
- * Get a random number in a range.
- * @see https://stackoverflow.com/a/24152886/2129670
- *
- * @param  {int} min
- * @param  {int} max
- * @return {int}
- */
-export function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min; // eslint-disable-line
-}
