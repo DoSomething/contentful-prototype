@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import Answer from './Answer';
 import PhotoHeader from '../PhotoHeader';
 
+const isActive = (answer, activeAnswer) => answer.id === activeAnswer;
+const shouldHide = (answer, activeAnswer) => (
+  activeAnswer !== null && ! isActive(answer, activeAnswer)
+);
+
 const Question = ({ title, id, quizId, answers, pickQuizAnswer, activeAnswer }) => (
   <div className="question">
     <PhotoHeader>
@@ -16,7 +21,8 @@ const Question = ({ title, id, quizId, answers, pickQuizAnswer, activeAnswer }) 
           pickQuizAnswer={pickQuizAnswer}
           questionId={id}
           quizId={quizId}
-          active={answer.id === activeAnswer}
+          isActive={isActive(answer, activeAnswer)}
+          shouldHide={shouldHide(answer, activeAnswer)}
         />
       ))}
     </div>
