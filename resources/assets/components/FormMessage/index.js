@@ -58,4 +58,8 @@ FormMessage.propTypes = {
   messaging: PropTypes.objectOf(PropTypes.object),
 };
 
+FormMessage.defaultProps = {
+  messaging: null,
+};
+
 export default FormMessage;

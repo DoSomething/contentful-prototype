@@ -33,6 +33,7 @@ class LazyImage extends React.Component {
     return (
       <img
         {...this.props}
+        alt=""
         src={this.state.loaded && this.props.src ? this.props.src : EMPTY_IMAGE}
         style={{ transition: 'opacity 0.5s', opacity: this.state.loaded ? 1 : 0 }}
       />

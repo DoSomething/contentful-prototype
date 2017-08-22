@@ -99,9 +99,11 @@ CallToActionBlock.propTypes = {
 CallToActionBlock.defaultProps = {
   alternative: null,
   buttonOverride: null,
+  experiment: null,
   fields: {
     title: 'Ready to start?',
   },
+  isAffiliated: false,
   modifierClasses: [],
   noun: { singular: 'item', plural: 'items' },
   verb: { singular: 'make an', plural: 'make' },
