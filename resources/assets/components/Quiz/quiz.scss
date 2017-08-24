@@ -3,6 +3,11 @@
 .quiz {
   margin: 0 $base-spacing;
 
+  .quiz__share, .quiz__submit {
+    max-width: 400px;
+    display: block;
+  }
+
   .quiz__submit {
     width: 100%;
   }

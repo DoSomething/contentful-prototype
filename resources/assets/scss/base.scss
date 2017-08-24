@@ -103,6 +103,19 @@ h1, h2, h3, p {
   padding: $base-spacing;
 }
 
+.margin-bottom-md {
+  margin-bottom: $half-spacing;
+}
+
+.margin-bottom-lg {
+  margin-bottom: $base-spacing;
+}
+
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .rounded {
   border-radius: $lg-border-radius;
 }
