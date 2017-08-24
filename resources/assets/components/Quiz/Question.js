@@ -22,7 +22,7 @@ const Question = ({ title, id, quizId, answers, pickQuizAnswer, activeAnswer }) 
           questionId={id}
           quizId={quizId}
           isActive={isActive(answer, activeAnswer)}
-          shouldFade={shouldFade(answer, activeAnswer)}
+          isFaded={shouldFade(answer, activeAnswer)}
         />
       ))}
     </div>
