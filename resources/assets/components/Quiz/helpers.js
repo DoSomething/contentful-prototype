@@ -29,7 +29,7 @@ export const pickWinner = (responses, questions) => {
   }, {});
 
   return Object.keys(finalTallies).sort((alpha, beta) => (
-    finalTallies[alpha] - finalTallies[beta]
+    finalTallies[beta] - finalTallies[alpha]
   ))[0];
 };
 
