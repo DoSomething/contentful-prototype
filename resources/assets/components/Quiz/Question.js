@@ -4,7 +4,7 @@ import Answer from './Answer';
 import PhotoHeader from '../PhotoHeader';
 
 const isActive = (answer, activeAnswer) => answer.id === activeAnswer;
-const shouldHide = (answer, activeAnswer) => (
+const shouldFade = (answer, activeAnswer) => (
   activeAnswer !== null && ! isActive(answer, activeAnswer)
 );
 
@@ -22,7 +22,7 @@ const Question = ({ title, id, quizId, answers, pickQuizAnswer, activeAnswer }) 
           questionId={id}
           quizId={quizId}
           isActive={isActive(answer, activeAnswer)}
-          shouldHide={shouldHide(answer, activeAnswer)}
+          shouldFade={shouldFade(answer, activeAnswer)}
         />
       ))}
     </div>

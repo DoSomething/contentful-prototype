@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Card from '../Card';
 
-const Answer = ({ id, title, quizId, questionId, pickQuizAnswer, isActive, shouldHide }) => (
+const Answer = ({ id, title, quizId, questionId, pickQuizAnswer, isActive, shouldFade }) => (
   <a
     className="answer"
     onClick={() => pickQuizAnswer(quizId, questionId, id)}
@@ -13,7 +13,7 @@ const Answer = ({ id, title, quizId, questionId, pickQuizAnswer, isActive, shoul
     <Card
       className={classnames('bordered rounded padding-lg', {
         '-active': isActive,
-        '-hide': shouldHide,
+        fade: shouldFade,
       })}
     >
       <p>{ title }</p>
@@ -28,7 +28,7 @@ Answer.propTypes = {
   questionId: PropTypes.string.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
   isActive: PropTypes.bool.isRequired,
-  shouldHide: PropTypes.bool.isRequired,
+  shouldFade: PropTypes.bool.isRequired,
 };
 
 export default Answer;
