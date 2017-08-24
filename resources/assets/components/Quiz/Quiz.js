@@ -16,7 +16,7 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
         key={question.id}
         pickQuizAnswer={pickQuizAnswer}
         quizId={id}
-        activeAnswer={data.questions[question.id]}
+        activeAnswer={data.questions ? data.questions[question.id] : null}
         {...question}
       />
     ))}
@@ -24,7 +24,7 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
     {data.shouldSeeResult ? null : (
       <button
         onClick={() => viewQuizResult(id)}
-        className="button quiz__submit center-block"
+        className="button quiz__submit"
       >get my results</button>
     )}
     { data.shouldSeeResult ? (
@@ -32,14 +32,14 @@ const Quiz = ({ id, fields, data, viewQuizResult, pickQuizAnswer, compareQuizAns
     ) : null }
     { data.shouldSeeResult ? (
       <Share
-        className="quiz__share center-block margin-bottom-lg"
+        className="quiz__share"
         parentSource="quiz"
       />
     ) : null }
     { data.shouldSeeResult && ! data.shouldCompare ? (
       <button
         onClick={() => compareQuizAnswer(id)}
-        className="button quiz__submit center-block"
+        className="button quiz__submit margin-lg"
       >compare your results</button>
     ) : null }
     { data.shouldCompare ? <Markdown>{fields.comparison}</Markdown> : null }

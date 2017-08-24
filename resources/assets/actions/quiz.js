@@ -29,7 +29,8 @@ export function viewQuizResult(quizId) {
     const quizData = getState().quiz[quizId];
     const quizContent = find(getState().campaign.quizzes, { id: quizId });
 
-    const totalAnswers = quizData ? Object.values(quizData.questions).length : 0;
+    const totalAnswers = (quizData && quizData.questions) ?
+      Object.values(quizData.questions).length : 0;
     const totalQuestions = quizContent.fields.questions.length;
 
     if (totalAnswers < totalQuestions) {

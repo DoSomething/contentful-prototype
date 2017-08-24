@@ -103,17 +103,12 @@ h1, h2, h3, p {
   padding: $base-spacing;
 }
 
-.margin-bottom-md {
-  margin-bottom: $half-spacing;
+.margin-md {
+  margin: $half-spacing;
 }
 
-.margin-bottom-lg {
-  margin-bottom: $base-spacing;
-}
-
-.center-block {
-  margin-left: auto;
-  margin-right: auto;
+.margin-lg {
+  margin: $base-spacing;
 }
 
 .rounded {

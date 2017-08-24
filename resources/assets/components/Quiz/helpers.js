@@ -1,6 +1,10 @@
 import { find, random } from 'lodash';
 
 export const pickWinner = (responses, questions) => {
+  if (! responses) {
+    return null;
+  }
+
   const finalTallies = Object.keys(responses).reduce((currentTallies, questionId) => {
     const { answers } = find(questions, { id: questionId });
     if (! answers) {
