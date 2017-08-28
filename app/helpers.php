@@ -287,7 +287,7 @@ function get_client_environment_vars()
  * Northstar authorization requests.
  *
  * @param  Campaign $campaign
- * @return Array
+ * @return array
  */
 function get_login_query($campaign = null)
 {
