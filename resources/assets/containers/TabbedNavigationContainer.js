@@ -1,12 +1,14 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+
 import Button from '../components/Button/Button';
 import NavigationLink from '../components/Navigation/NavigationLink';
 import TabbedNavigation from '../components/Navigation/TabbedNavigation';
-import { clickedSignUp } from '../actions';
 import { paths } from '../helpers/navigation';
+import { clickedSignUp } from '../actions';
 import { isCampaignClosed } from '../helpers';
 
 const mapStateToProps = state => ({
@@ -14,7 +16,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
-  campaignEndDate: state.campaign.endDate.date,
+  campaignEndDate: get(state.campaign.endDate, 'date', null),
 });
 
 const mapDispatchToProps = {
@@ -41,7 +43,7 @@ const TabbedNavigationContainer = (props) => {
         { isClosed ? null : <NavigationLink to={paths.action}>Action</NavigationLink> }
         { additionalPages }
       </div>
-      { isAffiliated ? null : <Button classNames="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
+      { isAffiliated ? null : <Button className="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
     </TabbedNavigation>
   );
 };

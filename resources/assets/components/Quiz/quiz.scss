@@ -1,0 +1,47 @@
+@import '../../scss/next-toolbox.scss';
+
+.quiz {
+  margin: 0 $base-spacing;
+
+  .quiz__share, .quiz__submit {
+    display: inline;
+    width: inherit;
+  }
+
+  .question {
+    margin: $base-spacing 0;
+
+    h2 {
+      color: $white;
+    }
+  }
+
+  .question__choices {
+    margin-top: $base-spacing;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .answer {
+    margin-bottom: $base-spacing;
+    font-weight: $weight-bold;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    outline: 0;
+
+    @include media($medium) {
+      flex: 0 0 33%;
+      padding: 0 $half-spacing $half-spacing $half-spacing;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .-active {
+      border-color: $blue;
+      border-width: 2px;
+    }
+  }
+}

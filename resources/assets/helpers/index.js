@@ -282,6 +282,25 @@ export function makeHash(string) {
 }
 
 /**
+ * Make a shareable link to a content item.
+ *
+ * @param  {Object} state
+ * @param  {String} key  An id or a slug for the content.
+ * @param  {String} type
+ * @return {String}
+ * @flow
+ */
+export function makeShareLink(type, options: { domain: string, slug?: string, key: string }) {
+  switch (type) {
+    case 'campaigns':
+      return `${options.domain}/us/campaigns/${options.slug}/blocks/${options.key}`;
+
+    default:
+      throw new Error('Please provide an expected section type for generating the link.');
+  }
+}
+
+/**
  * Get the days between two Date objects
  * @see  http://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates-using-javascript
  *
@@ -328,5 +347,20 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  * @return {Boolean}
  */
 export function isCampaignClosed(endDate) {
+  if (! endDate) {
+    return false;
+  }
+
   return new Date(endDate) - new Date() < 0;
+}
+
+/**
+ * Search an array of objects for the given id.
+ *
+ * @param  {Array}  array
+ * @param  {String} compareId
+ * @return {Object}
+ */
+export function findById(array, compareId) {
+  return array.find(({ id }) => id === compareId);
 }

@@ -13,9 +13,9 @@ const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
     hasPendingSignup, isAuthenticated, isSignedUp } = props;
 
-  const photoUploader = (
+  const renderPhotoUploader = photoUploaderProps => (
     <FlexCell key="reportback_uploader" width="full">
-      <ReportbackUploaderContainer />
+      <ReportbackUploaderContainer {...photoUploaderProps} />
     </FlexCell>
   );
 
@@ -42,6 +42,7 @@ const ActionStepsWrapper = (props) => {
     const type = step.customType || 'default';
     const title = step.title;
     const content = step.content || null;
+    const additionalContent = step.additionalContent || {};
     const key = makeHash(title);
 
     switch (type) {
@@ -51,12 +52,14 @@ const ActionStepsWrapper = (props) => {
             key={key}
             content={content}
             photo={step.photos[0]}
-            byline={step.additionalContent}
+            byline={additionalContent}
           />
         );
 
       case 'photo-uploader':
-        return isSignedUp ? photoUploader : null;
+        return isSignedUp ? renderPhotoUploader({
+          quantityOverride: additionalContent.quantityOverride || null,
+        }) : null;
 
       case 'submission-gallery':
         return isSignedUp ? submissionGallery : null;
@@ -73,6 +76,7 @@ const ActionStepsWrapper = (props) => {
             background={step.background}
             photos={step.photos}
             photoWidth={step.displayOptions === 'full' ? 'full' : 'one-third'}
+            hideStepNumber={additionalContent.hideStepNumber || false}
             shouldTruncate={step.truncate}
           />
         );

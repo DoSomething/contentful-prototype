@@ -48,6 +48,7 @@ class CampaignRepository
         $query = (new Query)
             ->setContentType('campaign')
             ->where('fields.slug', $slug)
+            ->setInclude(3)
             ->setLimit(1);
 
         $campaigns = $this->makeRequest($query);

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import Feed from '../components/Feed';
-import { clickedViewMore, clickedSignUp } from '../actions';
+import Feed from './Feed';
+import { clickedViewMore, clickedSignUp } from '../../actions';
 import {
   getBlocksWithReportbacks,
   getVisibleBlocks,
   getBlockOffset,
   getMaximumOffset,
-} from '../selectors/feed';
+} from '../../selectors/feed';
 
 /**
  * Provide state from the Redux store as props for this component.

@@ -14,12 +14,13 @@ class SubmissionGallery extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUserReportbacks(this.props.userId, this.props.legacyCampaignId);
+    const { userId, legacyCampaignId } = this.props;
+
+    this.props.fetchUserReportbacks(userId, legacyCampaignId);
   }
 
   render() {
-    const isFetching = this.props.submissions.isFetching;
-    const items = this.props.submissions.items;
+    const { isFetching, items } = this.props.submissions;
 
     return isFetching
       ? <div className="spinner -centered" />

@@ -1,8 +1,9 @@
 import {
   makeHash,
   modifiers,
-  contentfulImageUrl,
   pluralize,
+  makeShareLink,
+  contentfulImageUrl,
 } from './index';
 
 /**
@@ -41,6 +42,30 @@ test('cannot hash undefined or null value', () => {
   expect(() => makeHash(undefined)).toThrow();
   expect(() => makeHash(null)).toThrow();
 });
+
+/**
+ * Test makeShareLink()
+ */
+test('it makes the expected share link for a content item and app section type', () => {
+  const options = {
+    domain: 'http://awesome.com',
+    slug: 'seriously-awesome-campaign',
+    key: '123',
+  };
+
+  expect(makeShareLink('campaigns', options)).toBe('http://awesome.com/us/campaigns/seriously-awesome-campaign/blocks/123');
+});
+
+test('it cannot make share link with an unknown app section type', () => {
+  const options = {
+    domain: 'http://awesome.com',
+    slug: 'seriously-awesome-campaign',
+    key: '123',
+  };
+
+  expect(() => makeShareLink('unknown', options)).toThrow();
+});
+
 
 /**
  * Test modifiers()

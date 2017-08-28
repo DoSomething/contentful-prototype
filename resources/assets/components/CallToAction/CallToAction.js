@@ -8,17 +8,17 @@ import './cta.scss';
 type CallToActionProps = {
   clickedSignUp: (campaignId: string, metadata: ?{}) => mixed,
   legacyCampaignId: string,
-  classNames?: string,
+  className: ?string,
 };
 
-const CallToAction = ({ clickedSignUp, legacyCampaignId, classNames = '' }: CallToActionProps) => (
-  <div className={classnames('call-to-action', classNames)}>
+const CallToAction = ({ clickedSignUp, legacyCampaignId, className }: CallToActionProps) => (
+  <div className={classnames('call-to-action', className)}>
     <Button onClick={() => clickedSignUp(legacyCampaignId, { source: 'small screen sticky cta|text: Join us' })} />
   </div>
 );
 
 CallToAction.defaultProps = {
-  classNames: '',
+  className: null,
 };
 
 export default CallToAction;

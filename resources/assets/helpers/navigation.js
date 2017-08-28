@@ -6,6 +6,7 @@ export const paths = {
   community: '/',
   action: '/action',
   blocks: '/blocks/',
+  quiz: '/quiz/',
   pages: '/pages/',
 };
 

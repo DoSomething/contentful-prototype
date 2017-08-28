@@ -1,5 +1,6 @@
-import { Phoenix } from '@dosomething/gateway';
+import { get } from 'lodash';
 import { push } from 'react-router-redux';
+import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
 import {
   SIGNUP_CREATED,
@@ -10,7 +11,6 @@ import {
   queueEvent,
   trackEvent,
   addNotification,
-  convertExperiment,
   openModal,
 } from '../actions';
 
@@ -23,8 +23,6 @@ import {
 export function signupCreated(campaignId) {
   return (dispatch, getState) => {
     const { user } = getState();
-
-    dispatch(openModal());
 
     dispatch({
       type: SIGNUP_CREATED,
@@ -69,8 +67,7 @@ export function checkForSignup(campaignId) {
       }
 
       dispatch(signupFound(campaignId));
-    })
-    .catch(() => {
+    }).catch(() => {
       dispatch(signupNotFound());
     });
   };
@@ -100,28 +97,23 @@ export function getTotalSignups(campaignId) {
   };
 }
 
-// Async Action: send signup to phoenix.
-export function clickedSignUp(campaignId, metadata) {
+// Async Action: send signup to phoenix and
+// check if the user is logged in or has an existing signup.
+export function clickedSignUp(campaignId, metadata, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
-    if (getState().experiments.pitch_page_connected) {
-      dispatch(convertExperiment('pitch_page_connected'));
-    }
-
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      dispatch(queueEvent('clickedSignUp', campaignId, metadata));
-      return;
+      return dispatch(queueEvent('clickedSignUp', campaignId, metadata));
     }
 
     // If we already have a signup, just go to the action page.
     if (getState().signups.data.includes(campaignId)) {
-      dispatch(push('/action'));
-      return;
+      return shouldRedirectToActionTab ? dispatch(push('/action')) : null;
     }
 
     dispatch(signupPending());
 
-    (new Phoenix()).post('next/signups', { campaignId }).then((response) => {
+    return (new Phoenix()).post('next/signups', { campaignId }).then((response) => {
       // Handle a bad signup response...
       if (! response) {
         dispatch(addNotification('error'));
@@ -134,7 +126,10 @@ export function clickedSignUp(campaignId, metadata) {
         dispatch(trackEvent('signup created', metadata));
 
         // Take user to the action page if campaign is open.
-        if (! isCampaignClosed(getState().campaign.endDate.date)) {
+        const endDate = get(getState().campaign.endDate, 'date', null);
+        const isClosed = isCampaignClosed(endDate);
+        if (shouldRedirectToActionTab && ! isClosed) {
+          dispatch(openModal());
           dispatch(push('/action'));
         }
       }

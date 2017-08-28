@@ -27,16 +27,18 @@ const Chrome = props => (
       clickedSignUp={props.clickedSignUp}
     />
     <div className="main">
-      <Dashboard
-        totalCampaignSignups={props.totalCampaignSignups}
-        content={props.dashboard}
-        endDate={props.endDate}
-      />
+      { props.dashboard ?
+        <Dashboard
+          totalCampaignSignups={props.totalCampaignSignups}
+          content={props.dashboard}
+          endDate={props.endDate}
+        />
+        : null }
       <TabbedNavigationContainer />
       <FeedEnclosure>
         {props.children}
       </FeedEnclosure>
-      { props.isAffiliated ? null : <CallToActionContainer classNames="-sticky" /> }
+      { props.isAffiliated ? null : <CallToActionContainer className="-sticky" /> }
       <Debugger
         user={props.user}
         signups={props.signups}
@@ -55,7 +57,11 @@ Chrome.propTypes = {
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  dashboard: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,
@@ -75,6 +81,7 @@ Chrome.propTypes = {
 };
 
 Chrome.defaultProps = {
+  dashboard: null,
   isAffiliated: false,
 };
 

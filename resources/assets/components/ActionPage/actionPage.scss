@@ -27,22 +27,6 @@
   }
 
   .action-step__header {
-    position: relative;
-    width: 100%;
-    background: $dark-gray;
-    text-align: center;
-    text-transform: uppercase;
-    padding: $base-spacing;
-    overflow: hidden;
-
-    img {
-      width: 100%;
-      position: absolute;
-      top: 50%; left: 0;
-      transform: translateY(-50%);
-      filter: grayscale(100%);
-    }
-
     span {
       position: relative;
       color: $primary-color;

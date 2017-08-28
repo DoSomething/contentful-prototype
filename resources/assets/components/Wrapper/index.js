@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { modifiers } from '../../helpers';
 import './wrapper.scss';
 
 const Wrapper = ({ width = '', children }) => (
-  <div className={classNames('wrapper', modifiers(width))}>
+  <div className={classnames('wrapper', modifiers(width))}>
     { children }
   </div>
 );

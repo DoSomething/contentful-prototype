@@ -1,6 +1,6 @@
 /* global window */
 
-import { init, pageview } from '@dosomething/analytics';
+import { dimensionByCookie, init, pageview } from '@dosomething/analytics';
 import { ANALYTICS_ACTIONS } from '../actions';
 import { get as getHistory } from '../history';
 import {
@@ -54,6 +54,8 @@ export function start() {
     projectId: env.KEEN_PROJECT_ID,
     writeKey: env.KEEN_WRITE_KEY,
   } : null);
+
+  dimensionByCookie('platform');
 
   // Track page changes for Google Analytics
   getHistory().listen(() => {

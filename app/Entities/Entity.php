@@ -75,6 +75,16 @@ class Entity implements ArrayAccess, JsonSerializable
     }
 
     /**
+     * Get the ContentType for the DynamicEntry.
+     *
+     * @return string
+     */
+    public function getContentType()
+    {
+        return $this->entry->getContentType()->getId();
+    }
+
+    /**
      * Offset to retrieve
      * @link http://php.net/manual/en/arrayaccess.offsetget.php
      *

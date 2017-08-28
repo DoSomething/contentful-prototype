@@ -4,7 +4,7 @@ import Button from './Button';
 
 test('Button snapshot test', () => {
   const tree = renderer.create(
-    <Button classNames="-modifier" onClick={() => {}} />,
+    <Button className="-modifier" onClick={() => {}} />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

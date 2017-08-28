@@ -2,7 +2,6 @@
 
 .block-wrapper {
   @extend %block;
-  margin: $half-spacing;
   overflow: hidden;
 
   @include media($medium) {

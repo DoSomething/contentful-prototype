@@ -26,7 +26,7 @@ const ReportbackBlock = (props) => {
 
 ReportbackBlock.propTypes = {
   fields: PropTypes.shape({
-    displayOptions: PropTypes.array,
+    displayOptions: PropTypes.string,
   }).isRequired,
   reportbacks: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

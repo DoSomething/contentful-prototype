@@ -11,10 +11,14 @@ const mediaItem = {
 
 test('it renders correctly with required props', () => {
   const component = shallow(
-    <SubmissionGallery submissions={{
-      isFetching: false,
-      items: [mediaItem],
-    }}
+    <SubmissionGallery
+      fetchUserReportbacks={() => {}}
+      legacyCampaignId="1234"
+      submissions={{
+        isFetching: false,
+        items: [mediaItem],
+      }}
+      userId="12345randomid6789"
     />,
   );
 
@@ -24,10 +28,14 @@ test('it renders correctly with required props', () => {
 
 test('it renders loader while fetching', () => {
   const component = shallow(
-    <SubmissionGallery submissions={{
-      isFetching: true,
-      items: [mediaItem],
-    }}
+    <SubmissionGallery
+      fetchUserReportbacks={() => {}}
+      legacyCampaignId="1234"
+      submissions={{
+        isFetching: true,
+        items: [mediaItem],
+      }}
+      userId="12345randomid6789"
     />,
   );
 

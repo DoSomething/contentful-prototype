@@ -8,28 +8,28 @@ jest.mock('../../containers/CallToActionBlockContainer', () => 'CallToActionBloc
 jest.mock('../CampaignUpdateBlock/CampaignUpdateBlockContainer', () => 'CampaignUpdateBlockContainer');
 
 test('it can display a campaign update', () => {
-  const wrapper = shallow(<Block json={{ id: '12345', fields: { type: 'campaign_update' } }} />);
+  const wrapper = shallow(<Block json={{ id: '12345', type: 'campaign_update' }} />);
   expect(wrapper.find('CampaignUpdateBlockContainer')).toHaveLength(1);
 });
 
 test('it can display a CTA block', () => {
-  const wrapper = shallow(<Block json={{ id: '12345', fields: { type: 'join_cta' } }} />);
+  const wrapper = shallow(<Block json={{ id: '12345', type: 'join_cta' }} />);
   expect(wrapper.find('CallToActionBlockContainer')).toHaveLength(1);
 });
 
 test('it can display a static block', () => {
-  const wrapper = shallow(<Block json={{ id: '12345', fields: { type: 'static' } }} />);
+  const wrapper = shallow(<Block json={{ id: '12345', type: 'static', fields: {} }} />);
   expect(wrapper.find('StaticBlock')).toHaveLength(1);
 });
 
 test('it can display a reportback block', () => {
-  const json = { id: '12345', fields: { type: 'reportbacks' }, reportbacks: [] };
+  const json = { id: '12345', type: 'reportbacks', fields: {}, reportbacks: [] };
   const wrapper = shallow(<Block json={json} />);
   expect(wrapper.find('ReportbackBlock')).toHaveLength(1);
 });
 
 test('it should display a placeholder for an unknown block type', () => {
-  const wrapper = shallow(<Block json={{ id: '12345', fields: { type: 'tongue_cat' } }} />);
+  const wrapper = shallow(<Block json={{ id: '12345', type: 'tongue_cat' }} />);
   expect(wrapper.find('PlaceholderBlock')).toHaveLength(1);
 });
 

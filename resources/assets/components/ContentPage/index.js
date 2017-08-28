@@ -10,8 +10,8 @@ import './content-page.scss';
 const SCHOLARSHIP_CTA_COPY = 'scholarship_cta_copy';
 
 const Page = ({ header, markdown, ctaContent, ctaTitle,
-  buttonOverride, experiment, alternative }) => (
-
+  buttonOverride, experiment, alternative }) =>
+  (
     <div className="content-page">
       <div className="primary">
         <ScrollConcierge />
@@ -37,7 +37,7 @@ const Page = ({ header, markdown, ctaContent, ctaTitle,
         modifierClasses="transparent"
       />
     </div>
-);
+  );
 
 Page.propTypes = {
   header: PropTypes.string.isRequired,

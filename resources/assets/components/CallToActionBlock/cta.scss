@@ -5,7 +5,6 @@
   background: $black;
   border: 1px solid $primary-border-color;
   border-radius: $lg-border-radius;
-  margin: 12px;
 
   @include media($medium) {
     width: 100%;

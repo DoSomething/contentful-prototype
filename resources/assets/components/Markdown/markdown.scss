@@ -59,8 +59,15 @@
     font-weight: 700;
   }
 
-  h3 {
+  h2, h3 {
     font-family: $primary-font-family;
+  }
+
+  h2 {
+    font-size: 28px;
+  }
+
+  h3 {
     font-size: 22px;
   }
 

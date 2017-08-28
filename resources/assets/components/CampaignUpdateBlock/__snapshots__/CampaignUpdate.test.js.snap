@@ -13,14 +13,15 @@ exports[`Campaign Update Block with additional content as tweet snapshot test 1`
   <Byline
     author="Braümhilda Snosages"
     avatar={Object {}}
+    className="float-left"
     jobTitle="DoSomething.org Staff"
-    share={
-      <Connect(Share)
-        link="http://"
-        parentSource="campaign-update"
-        variant="icon"
-      />
-    }
+    share={null}
+  />
+  <Connect(Share)
+    className="float-right clear-none"
+    link="http://example.com/link-to-content"
+    parentSource="campaign-update"
+    variant="icon"
   />
 </BlockWrapper>
 `;
@@ -41,14 +42,15 @@ exports[`Campaign Update Block with additional content snapshot test 1`] = `
   <Byline
     author="Braümhilda Snosages"
     avatar={Object {}}
+    className="float-left"
     jobTitle="DoSomething.org Staff"
-    share={
-      <Connect(Share)
-        link="http://"
-        parentSource="campaign-update"
-        variant="icon"
-      />
-    }
+    share={null}
+  />
+  <Connect(Share)
+    className="float-right clear-none"
+    link="http://example.com/link-to-content"
+    parentSource="campaign-update"
+    variant="icon"
   />
 </BlockWrapper>
 `;
@@ -66,5 +68,11 @@ exports[`Campaign Update Block with no additional content snapshot test 1`] = `
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
   </Markdown>
+  <Connect(Share)
+    className="float-right clear-none"
+    link="http://example.com/link-to-content"
+    parentSource="campaign-update"
+    variant="icon"
+  />
 </BlockWrapper>
 `;

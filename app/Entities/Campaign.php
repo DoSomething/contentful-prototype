@@ -20,13 +20,44 @@ use Contentful\Delivery\Asset;
 class Campaign extends Entity implements JsonSerializable
 {
     /**
-     * Return the state of the campaign.
+     * Fill with specified number of Reportback Post items.
      *
-     * @return bool
+     * @param  \Contentful\Delivery\DynamicEntry $entry
+     * @return array
+     *
+     * @todo Temporary reportback post item filler based on
+     * desired layout display option. Eventually, we'll be
+     * using a different system to fill in reportback post
+     * items. May eventually use a ReportbackPost entity.
      */
-    public function isActive()
+    public function fillReportbackPosts($entry)
     {
-        return $this->active;
+        $posts = [];
+
+        switch ($entry->getType()) {
+            case 'one-third':
+                $count = 1;
+                break;
+
+            case 'two-thirds':
+                $count = 2;
+                break;
+
+            default:
+                $count = 3;
+        }
+
+        for ($i = 0; $i < $count; $i++) {
+            $posts[] = [
+                'id' => str_random(22),
+                'type' => 'reportbacks', // @TODO: reporbackPost?
+                'fields' => [
+                    'displayOptions' => 'one-third',
+                ],
+            ];
+        }
+
+        return $posts;
     }
 
     /**
@@ -40,6 +71,32 @@ class Campaign extends Entity implements JsonSerializable
         return collect($photos)->map(function ($photo) {
             return get_image_url($photo, 'square');
         });
+    }
+
+    /**
+     * Parse and extract activity feed item data based on content type.
+     *
+     * @param  array $activityItems
+     * @return array
+     */
+    public function parseActivityFeed($activityItems)
+    {
+        return collect($activityItems)->map(function ($item) {
+            switch ($item->getContentType()) {
+                case 'campaignUpdate':
+                    return new CampaignUpdate($item->entry);
+
+                case 'customBlock':
+                    if ($item->entry->getType() === 'reportbacks') {
+                        return  $this->fillReportbackPosts($item->entry);
+                    }
+
+                    return new CustomBlock($item->entry);
+
+                default:
+                    return $item;
+            }
+        })->flatten(1);
     }
 
     /**
@@ -66,6 +123,24 @@ class Campaign extends Entity implements JsonSerializable
         });
     }
 
+    /**
+     * Parse and extract data for quizzes.
+     *
+     * @param  array $quizzes
+     * @return array
+     */
+    public function parseQuizzes($quizzes)
+    {
+        return collect($quizzes)->map(function ($quiz) {
+            return new Quiz($quiz->entry);
+        });
+    }
+
+    /**
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         return [
@@ -73,6 +148,7 @@ class Campaign extends Entity implements JsonSerializable
             'legacyCampaignId' => $this->legacyCampaignId,
             'legacyCampaignRunId' => get_legacy_campaign_data($this->legacyCampaignId, 'campaign_runs.current.en.id'),
             'type' => $this->entry->getContentType()->getId(),
+            'template' => $this->template->first() ?: 'community',
             'title' => $this->title,
             'slug' => $this->slug,
             'endDate' => $this->endDate,
@@ -85,8 +161,9 @@ class Campaign extends Entity implements JsonSerializable
             'affiliateSponsors' => $this->affiliateSponsors,
             'affiliatePartners' => $this->affiliatePartners,
             // @TODO: Why is it 'activity_feed' oy? ;/
-            'activityFeed' => $this->activity_feed,
+            'activityFeed' => $this->parseActivityFeed($this->activity_feed),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
+            'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
             'affirmation' => [
                 'header' => $this->affirmation->header,

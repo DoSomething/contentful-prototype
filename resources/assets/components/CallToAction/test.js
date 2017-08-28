@@ -4,7 +4,7 @@ import CallToAction from './CallToAction';
 
 test('CallToAction snapshot test', () => {
   const tree = renderer.create(
-    <CallToAction classNames="sample-class" onClick={() => {}} />,
+    <CallToAction className="sample-class" onClick={() => {}} />,
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

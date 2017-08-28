@@ -32,3 +32,89 @@ h1, h2, h3, p {
     width: 100%;
   }
 }
+
+// Utility classes.
+// @TODO: Move over to Forge 7 soon!
+.background-image-centered {
+  background-position: center;
+  background-size: cover;
+}
+
+.bordered {
+  border: 1px solid $primary-border-color;
+}
+
+.clear-both {
+  clear: both;
+}
+
+.clear-left {
+  clear: left;
+}
+
+.clear-right {
+  clear: right;
+}
+
+.clear-none {
+  clear: none;
+}
+
+.flex-center-xy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.font-size-lg {
+  font-size: $font-large;
+
+  p {
+    font-size: $font-large;
+  }
+}
+
+// TODO: Remove this.
+.padded {
+  padding: $half-spacing;
+}
+
+.padding-bottom-md {
+  padding-bottom: $half-spacing;
+}
+
+.padding-bottom-lg {
+  padding-bottom: $base-spacing;
+}
+
+.padding-md {
+  padding: $half-spacing;
+}
+
+.padding-lg {
+  padding: $base-spacing;
+}
+
+.margin-md {
+  margin: $half-spacing;
+}
+
+.margin-lg {
+  margin: $base-spacing;
+}
+
+.rounded {
+  border-radius: $lg-border-radius;
+}
+
+.faded {
+  opacity: 0.5;
+}
