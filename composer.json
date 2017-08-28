@@ -16,7 +16,7 @@
         "embed/embed": "^3.0",
         "barryvdh/laravel-debugbar": "^2.3",
         "seatgeek/sixpack-php": "^2.1",
-        "doctrine/dbal": "~2.5.13"
+        "doctrine/dbal": "^2.5"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
