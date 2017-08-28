@@ -282,17 +282,23 @@ function get_client_environment_vars()
     ];
 }
 
+/**
+ * Get the presentation values we should package with our
+ * Northstar authorization requests.
+ *
+ * @param  Campaign $campaign
+ * @return Array
+ */
 function get_login_query($campaign = null)
 {
-    $isSet = isset($campaign);
-    $title = $isSet ? $campaign->title : null;
+    $title = $campaign ? $campaign->title : null;
 
     return [
         'destination' => $title,
         'options' => [
             'title' => $title,
-            'coverImage' => $isSet ? get_image_url($campaign->coverImage) : null,
-            'callToAction' => $isSet ? $campaign->callToAction : null,
+            'coverImage' => $campaign ? get_image_url($campaign->coverImage) : null,
+            'callToAction' => $campaign ? $campaign->callToAction : null,
         ],
     ];
 }
