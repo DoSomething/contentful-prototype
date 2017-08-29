@@ -25,6 +25,35 @@ export function quizError(quizId, error) {
 }
 
 export function viewQuizResult(quizId) {
+  return { type: VIEW_QUIZ_RESULT, quizId };
+}
+
+export function quizConvert(quizId) {
+  return ((dispatch, getState) => {
+    // If the user is not logged in, handle this action later.
+    if (! getState().user.id) {
+      const quizData = getState().quiz[quizId];
+      set(quizId, QUIZ_STORAGE_KEY, quizData.questions);
+
+      return dispatch(queueEvent('quizConvert', quizId));
+    }
+
+    // Load questions from previous state if available
+    const questions = get(quizId, QUIZ_STORAGE_KEY);
+    if (questions) {
+      dispatch(loadPreviousQuizState(quizId, questions));
+      remove(quizId, QUIZ_STORAGE_KEY);
+    }
+
+    const campaignId = getState().campaign.legacyCampaignId;
+    dispatch(clickedSignUp(campaignId, { source: 'quiz' }, false));
+
+    document.querySelector('.main').scrollIntoView(true);
+    return dispatch(viewQuizResult(quizId));
+  });
+}
+
+export function completeQuiz(quizId) {
   return ((dispatch, getState) => {
     const quizData = getState().quiz[quizId];
     const quizContent = find(getState().campaign.quizzes, { id: quizId });
@@ -37,30 +66,11 @@ export function viewQuizResult(quizId) {
       return dispatch(quizError(quizId, 'You\'re missing a question!'));
     }
 
-    document.querySelector('.main').scrollIntoView(true);
-    return dispatch({ type: VIEW_QUIZ_RESULT, quizId });
+    return dispatch(quizConvert(quizId));
   });
 }
 
+// TODO: Refactor based on A/B test.
 export function compareQuizAnswer(quizId) {
-  return (dispatch, getState) => {
-    // If the user is not logged in, handle this action later.
-    if (! getState().user.id) {
-      const quizData = getState().quiz[quizId];
-      set(quizId, QUIZ_STORAGE_KEY, quizData.questions);
-
-      return dispatch(queueEvent('compareQuizAnswer', quizId));
-    }
-
-    const questions = get(quizId, QUIZ_STORAGE_KEY);
-    if (questions) {
-      dispatch(loadPreviousQuizState(quizId, questions));
-      remove(quizId, QUIZ_STORAGE_KEY);
-    }
-
-    const campaignId = getState().campaign.legacyCampaignId;
-    dispatch(clickedSignUp(campaignId, { source: 'quiz' }, false));
-
-    return dispatch({ type: COMPARE_QUIZ_ANSWER, quizId });
-  };
+  return { type: COMPARE_QUIZ_ANSWER, quizId };
 }

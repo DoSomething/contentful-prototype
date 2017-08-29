@@ -6,11 +6,7 @@ import {
   replaceStringWithWinner,
   replaceStringWithPercent,
 } from './helpers';
-import {
-  pickQuizAnswer,
-  compareQuizAnswer,
-  viewQuizResult,
-} from '../../actions';
+import { pickQuizAnswer, completeQuiz } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -42,7 +38,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const actions = {
-  pickQuizAnswer, compareQuizAnswer, viewQuizResult,
+  pickQuizAnswer, completeQuiz,
 };
 
 // Export the container component.
