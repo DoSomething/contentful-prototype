@@ -58,7 +58,11 @@ export function signupPending() {
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   return (dispatch, getState) => {
-    (new Phoenix()).get('next/signups', {
+    if (getState().user.id === null) {
+      return dispatch(signupNotFound());
+    }
+
+    return (new Phoenix()).get('next/signups', {
       campaigns: campaignId,
       user: getState().user.id,
     }).then((response) => {
