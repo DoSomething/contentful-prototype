@@ -28,11 +28,13 @@ const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
       >get my results</button>
     ) : null}
     { data.shouldSeeResult ? (
-      <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
-      <Share
-        className="quiz__share"
-        parentSource="quiz"
-      />
+      <div>
+        <Markdown className="padding-bottom-lg">{fields.conclusion}</Markdown>
+        <Share
+          className="quiz__share"
+          parentSource="quiz"
+        />
+      </div>
     ) : null }
   </div>
 );
