@@ -48,7 +48,7 @@ class AuthController extends Controller
             session(['login.intended' => $intended]);
         }
 
-        $options = array_get($request->getQueryParams(), 'options') ?? [];
+        $options = array_get($request->getQueryParams(), 'options') ?: [];
         $destination = array_get($request->getQueryParams(), 'destination');
         $url = session('login.intended', $this->redirectTo);
 
