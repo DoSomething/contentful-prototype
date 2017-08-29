@@ -1,5 +1,3 @@
-/* global document */
-
 import { find } from 'lodash';
 import {
   clickedSignUp,
@@ -48,7 +46,6 @@ export function quizConvert(quizId) {
     const campaignId = getState().campaign.legacyCampaignId;
     dispatch(clickedSignUp(campaignId, { source: 'quiz' }, false));
 
-    document.querySelector('.main').scrollIntoView(true);
     return dispatch(viewQuizResult(quizId));
   });
 }

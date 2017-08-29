@@ -3,9 +3,8 @@
 .quiz {
   margin: 0 $base-spacing;
 
-  .quiz__share, .quiz__submit {
-    display: inline;
-    width: inherit;
+  .quiz__submit {
+    width: 100%;
   }
 
   .question {
