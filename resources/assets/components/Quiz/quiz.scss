@@ -35,10 +35,10 @@
       font-size: $font-larger;
       font-weight: normal;
       letter-spacing: 2px;
-      padding: $base-spacing;
 
       @include media($medium) {
         font-size: $font-hero;
+        padding: $base-spacing;
       }
     }
   }
