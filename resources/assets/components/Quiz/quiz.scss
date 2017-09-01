@@ -9,7 +9,7 @@
 
   .quiz__title {
     color: $primary-color;
-    font-size: $font-hero;
+    font-size: $font-large;
     font-weight: $weight-bold;
     font-weight: normal;
     text-transform: uppercase;
@@ -36,6 +36,10 @@
       font-size: $font-larger;
       letter-spacing: 2px;
       padding: $base-spacing;
+
+      @include media($medium) {
+        font-size: $font-hero;
+      }
     }
   }
 
