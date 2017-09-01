@@ -11,7 +11,6 @@
     color: $primary-color;
     font-size: $font-large;
     font-weight: $weight-bold;
-    font-weight: normal;
     text-transform: uppercase;
   }
 
@@ -34,6 +33,7 @@
       color: $white;
       font-family: $secondary-font-family;
       font-size: $font-larger;
+      font-weight: normal;
       letter-spacing: 2px;
       padding: $base-spacing;
 
