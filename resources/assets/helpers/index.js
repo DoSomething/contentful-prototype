@@ -117,7 +117,7 @@ function getFileType(file) {
   const hex = byte1.toString(16) + byte2.toString(16);
 
   return get({
-    '8950': 'image/png', // eslint-disable-line quote-props
+    8950: 'image/png',
     '4749': 'image/gif', // eslint-disable-line quote-props
     '424d': 'image/bmp', // eslint-disable-line quote-props
     'ffd8': 'image/jpeg', // eslint-disable-line quote-props
