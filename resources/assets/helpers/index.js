@@ -364,3 +364,13 @@ export function isCampaignClosed(endDate) {
 export function findById(array, compareId) {
   return array.find(({ id }) => id === compareId);
 }
+
+/**
+ * Get a value from the window.ENV
+ *
+ * @param  {String} key
+ * @return {String}
+ */
+export function env(key) {
+  return (window.ENV || {})[key];
+}

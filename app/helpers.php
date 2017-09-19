@@ -277,7 +277,7 @@ function get_client_environment_vars()
         'SIXPACK_BASE_URL' => config('services.sixpack.url'),
         'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
         'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-        'PUCK_URL' => config('services.puck_url'),
+        'PUCK_URL' => config('services.analytics.puck_url'),
     ];
 }
 

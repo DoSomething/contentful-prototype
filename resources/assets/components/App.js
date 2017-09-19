@@ -7,6 +7,7 @@ import { PuckProvider } from '@dosomething/puck-client';
 
 import { CampaignContainer } from './Campaign';
 import { initializeStore } from '../store';
+import { env } from '../helpers';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -17,6 +18,7 @@ const App = ({ store, history }) => {
         source="phoenix-next"
         getUser={() => store.getState().user.id}
         getHistory={() => history}
+        puckUrl={env('keen_url')}
       >
         <ConnectedRouter history={history}>
           <Route path="/us/campaigns/:slug" component={CampaignContainer} />
