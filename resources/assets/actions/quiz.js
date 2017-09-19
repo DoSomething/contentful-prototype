@@ -3,7 +3,7 @@
 import { find } from 'lodash';
 import {
   clickedSignUp,
-  queueEvent,
+  queueGenericAuthEvent,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
@@ -35,7 +35,7 @@ export function quizConvert(quizId) {
       const quizData = getState().quiz[quizId];
       set(quizId, QUIZ_STORAGE_KEY, quizData.questions);
 
-      return dispatch(queueEvent('quizConvert', quizId));
+      return dispatch(queueGenericAuthEvent('quizConvert', quizId));
     }
 
     // Load questions from previous state if available

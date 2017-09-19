@@ -20,7 +20,7 @@ const events = (state = {}, action) => {
       storageAppend(action.deviceId, EVENT_STORAGE_KEY, action);
 
       if (action.requiresAuth) {
-        window.location.href = '/next/login';
+        window.location.href = action.auth.url;
       }
 
       return state;

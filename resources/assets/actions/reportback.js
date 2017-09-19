@@ -17,7 +17,7 @@ import {
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS,
   trackEvent,
-  queueEvent,
+  queueGenericAuthEvent,
 } from '../actions';
 
 /**
@@ -100,7 +100,7 @@ export function toggleReactionOn(reportbackItemId, termId, metadata) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     if (! getState().user.id) {
-      dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
+      dispatch(queueGenericAuthEvent('toggleReactionOn', reportbackItemId, termId));
       return;
     }
 

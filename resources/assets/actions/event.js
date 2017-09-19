@@ -21,15 +21,9 @@ export function startQueue() {
       // Check if the event is over 30 min old before dispatching.
       const isValidTimestamp = isTimestampValid(event.createdAt, (30 * 60 * 1000));
 
-      // Check if the user successfully authenticated
       const isAuthenticated = getState().user.id !== null;
 
-      let shouldFireEvent = isValidTimestamp;
-      if (shouldFireEvent && event.requiresAuth) {
-        shouldFireEvent = isAuthenticated;
-      }
-
-      if (shouldFireEvent) {
+      if (isValidTimestamp && isAuthenticated) {
         // Match the action creator from the saved name, load parameters to apply.
         const action = actions[event.action.creatorName];
         const args = event.action.args || [];
@@ -44,15 +38,29 @@ export function startQueue() {
 }
 
 // Action: add an event to the queue.
-export function queueEvent(actionCreatorName, ...args) {
+export function queueEvent(action, auth) {
   return {
     type: actions.QUEUE_EVENT,
     deviceId: getDeviceId(),
     createdAt: Date.now(),
-    requiresAuth: true, // vLater - Allow more flexibility with configuring events
-    action: {
-      creatorName: actionCreatorName,
-      args,
-    },
+    auth,
+    action,
   };
+}
+
+// Action: add a generic authentication event to the queue.
+export function queueGenericAuthEvent(creatorName, ...args) {
+  const auth = { url: '/next/login' };
+  const action = { creatorName, args };
+
+  return queueEvent(action, auth);
+}
+
+// Action: add a facebook authentication event to the queue.
+export function queueFacebookAuthEvent(creatorName, ...args) {
+  const env = window.ENV || {};
+  const auth = { url: `${env.NORTHSTAR_URL}/facebook/continue` };
+  const action = { creatorName, args };
+
+  return queueEvent(action, auth);
 }
