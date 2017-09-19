@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import merge from 'lodash/merge';
 import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
-import { start } from './middleware/analytics';
+import googleAnalytics from './middleware/googleAnalytics';
 import experimentsMiddleware from './middleware/experiments';
 import experimentsApiMiddleware from './middleware/experimentsApi';
 import { loadStorage } from './helpers/storage';
@@ -86,6 +86,7 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 
   // Experiments middleware
   middleware.push(
+    googleAnalytics,
     experimentsMiddleware,
     experimentsApiMiddleware,
   );
