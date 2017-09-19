@@ -18,6 +18,7 @@ return [
         'google_id' => env('GOOGLE_ANALYTICS_ID'),
         'facebook_id' => env('FACEBOOK_APP_ID'),
         'customer_io_id' => env('CUSTOMER_IO_ID'),
+        'puck_url' => env('PUCK_URL'),
     ],
 
     'gladiator' => [
