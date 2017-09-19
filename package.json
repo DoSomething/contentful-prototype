@@ -32,7 +32,7 @@
     "@dosomething/analytics": "^2.1.1",
     "@dosomething/forge": "^6.7.10",
     "@dosomething/gateway": "^1.1.5",
-    "@dosomething/puck-client": "^1.0.4",
+    "@dosomething/puck-client": "^1.0.5",
     "@publica/url-polyfill": "^0.5.8",
     "babel-jest": "^20.0.3",
     "babel-polyfill": "^6.26.0",
