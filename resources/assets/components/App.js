@@ -18,8 +18,8 @@ const App = ({ store, history }) => {
       <PuckProvider
         source="phoenix-next"
         getUser={() => getUserId(store.getState())}
-        getHistory={() => history}
-        puckUrl={env('keen_url')}
+        history={history}
+        puckUrl={env('PUCK_URL')}
       >
         <ConnectedRouter history={history}>
           <Route path="/us/campaigns/:slug" component={CampaignContainer} />
