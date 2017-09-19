@@ -35,11 +35,10 @@ import App from './components/App';
 import { init as historyInit } from './history';
 import { bindNavigationEvents } from './helpers/navigation';
 import googleAnalytics from './helpers/googleAnalytics';
-import { observerMiddleware } from './middleware/analytics';
 
 // Configure store & history.
 const history = historyInit();
-const middleware = [thunk, routerMiddleware(history), observerMiddleware];
+const middleware = [thunk, routerMiddleware(history)];
 const store = configureStore({ ...reducers, routing: routerReducer }, middleware, window.STATE);
 
 // Add event listeners for top-level navigation.

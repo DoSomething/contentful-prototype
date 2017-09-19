@@ -3,20 +3,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { mergeMetadata } from '../../helpers/analytics';
 
 import './share.scss';
 
 const Share = ({ variant, clickedShare, parentSource, link, className }) => {
-  const metadata = mergeMetadata(Share.defaultMetadata, {
-    parentSource,
-    variant,
-  });
-
   return (
     <button
       className={classnames('button share', className, { '-black': variant === 'black', '-icon': variant === 'icon' })}
-      onClick={() => clickedShare(link, metadata)}
+      onClick={() => clickedShare(link)}
     >
       {variant === 'icon' ? null : 'share on'}
       <i className="social-icon -facebook"><span>Facebook</span></i>
@@ -38,11 +32,6 @@ Share.defaultProps = {
   link: window.location.href,
   parentSource: null,
   variant: 'black',
-};
-
-Share.defaultMetadata = {
-  source: 'share button',
-  platform: 'facebook',
 };
 
 export default Share;

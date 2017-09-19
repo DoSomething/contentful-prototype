@@ -3,7 +3,6 @@ import React from 'react';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
 import { contentfulImageUrl, modifiers } from '../../helpers';
-import { mergeMetadata } from '../../helpers/analytics';
 import './cta.scss';
 
 const renderImpactContent = (data) => {
@@ -26,7 +25,7 @@ const renderBackgroundImageStyle = imageUrl => (
 
 const CallToActionBlock = (props) => {
   const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses,
-    noun, verb, buttonOverride, experiment, convertExperiment, alternative } = props;
+    noun, verb, buttonOverride } = props;
   const { title, content, additionalContent } = fields;
 
   const hasPhoto = additionalContent ? additionalContent.hasPhoto : false;
@@ -34,22 +33,8 @@ const CallToActionBlock = (props) => {
   const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
   const buttonText = buttonOverride || defaultText;
 
-  const metadata = mergeMetadata(CallToActionBlock.defaultMetadata, {
-    hasPhoto,
-    hasImpact: additionalContent !== 'undefined',
-    hasContent: typeof content !== 'undefined',
-  });
-
-  if (experiment) {
-    metadata.experiment = experiment;
-    metadata.alternative = alternative;
-  }
-
   const handleOnClickButton = () => {
-    clickedSignUp(campaignId, metadata);
-    if (experiment) {
-      convertExperiment(experiment);
-    }
+    clickedSignUp(campaignId);
   };
 
   return (
@@ -72,12 +57,9 @@ const CallToActionBlock = (props) => {
 };
 
 CallToActionBlock.propTypes = {
-  alternative: PropTypes.string,
   buttonOverride: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   clickedSignUp: PropTypes.func.isRequired,
-  convertExperiment: PropTypes.func.isRequired,
-  experiment: PropTypes.string,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
@@ -97,9 +79,7 @@ CallToActionBlock.propTypes = {
 };
 
 CallToActionBlock.defaultProps = {
-  alternative: null,
   buttonOverride: null,
-  experiment: null,
   fields: {
     title: 'Ready to start?',
   },
@@ -107,10 +87,6 @@ CallToActionBlock.defaultProps = {
   modifierClasses: [],
   noun: { singular: 'item', plural: 'items' },
   verb: { singular: 'make an', plural: 'make' },
-};
-
-CallToActionBlock.defaultMetadata = {
-  source: 'call to action block',
 };
 
 export default CallToActionBlock;

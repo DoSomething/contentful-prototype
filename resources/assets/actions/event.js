@@ -1,18 +1,17 @@
 import * as actions from '../actions';
 
 import { isTimestampValid } from '../helpers';
-import { getDeviceId } from '../helpers/analytics';
 import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {
-  return { type: actions.COMPLETED_EVENT, index, deviceId: getDeviceId() };
+  return { type: actions.COMPLETED_EVENT, index };
 }
 
 // Action: run through all of the events in the queue.
 export function startQueue() {
   return (dispatch, getState) => {
-    const queue = getArray(getDeviceId(), EVENT_STORAGE_KEY);
+    const queue = getArray('queue', EVENT_STORAGE_KEY);
 
     queue.forEach((event, index) => {
       // Always remove the event from storage.
@@ -47,7 +46,6 @@ export function startQueue() {
 export function queueEvent(actionCreatorName, ...args) {
   return {
     type: actions.QUEUE_EVENT,
-    deviceId: getDeviceId(),
     createdAt: Date.now(),
     requiresAuth: true, // vLater - Allow more flexibility with configuring events
     action: {

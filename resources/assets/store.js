@@ -124,7 +124,4 @@ export function initializeStore(store) {
 
   // Start the event queue.
   store.dispatch(startQueue());
-
-  // Start watching for store changes.
-  start(store);
 }

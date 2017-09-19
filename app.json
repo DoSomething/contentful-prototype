@@ -42,12 +42,6 @@
     "GOOGLE_ANALYTICS_ID": {
       "required": true
     },
-    "KEEN_PROJECT_ID": {
-      "required": true
-    },
-    "KEEN_WRITE_KEY": {
-      "required": true
-    },
     "FACEBOOK_APP_ID": {
       "required": true
     }

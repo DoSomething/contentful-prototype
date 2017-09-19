@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
-import { mergeMetadata } from '../../helpers/analytics';
 import { pluralize } from '../../helpers';
 import './reportback-item.scss';
 
@@ -20,14 +19,12 @@ const ReportbackItem = (props) => {
   const { id, url, quantity, noun, caption, firstName, reaction = null, isFetching = false,
     basicDisplay = false, toggleReactionOn, toggleReactionOff } = props;
 
-  const metadata = mergeMetadata(ReportbackItem.defaultMetadata, getMetadataFromProps(props));
-
   const reactionElement = reaction ? (
     <Reaction
       active={reaction.reacted}
       total={reaction.total}
-      onToggleOn={() => toggleReactionOn(id, reaction.termId, metadata)}
-      onToggleOff={() => toggleReactionOff(id, reaction.id, metadata)}
+      onToggleOn={() => toggleReactionOn(id, reaction.termId)}
+      onToggleOff={() => toggleReactionOff(id, reaction.id)}
     />
   ) : null;
 
@@ -94,10 +91,6 @@ ReportbackItem.defaultProps = {
   url: undefined,
   toggleReactionOff: () => {},
   toggleReactionOn: () => {},
-};
-
-ReportbackItem.defaultMetadata = {
-  source: 'reportback item',
 };
 
 export default ReportbackItem;

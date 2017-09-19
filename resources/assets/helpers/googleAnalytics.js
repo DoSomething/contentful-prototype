@@ -12,7 +12,7 @@ export default function start(history) {
   dimensionByCookie('platform');
 
   // Track page changes for Google Analytics
-  getHistory().listen(() => {
+  history.listen(() => {
     pageview(window.location.pathname);
   });
 

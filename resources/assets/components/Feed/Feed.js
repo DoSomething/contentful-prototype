@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { mergeMetadata } from '../../helpers/analytics';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
 import './feed.scss';
@@ -28,8 +27,7 @@ const Feed = (props) => {
   const { blocks, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated,
     canLoadMorePages, clickedViewMore, clickedSignUp } = props;
 
-  const metadata = mergeMetadata(Feed.defaultMetadata, {});
-  const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId, metadata);
+  const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId);
   const revealer = (
     <Revealer
       title={signedUp ? 'view more' : 'join us'}
@@ -70,10 +68,6 @@ Feed.propTypes = {
 
 Feed.defaultProps = {
   blocks: [],
-};
-
-Feed.defaultMetadata = {
-  source: 'feed',
 };
 
 export default Feed;

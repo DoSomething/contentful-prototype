@@ -17,7 +17,7 @@ import {
 const events = (state = {}, action) => {
   switch (action.type) {
     case QUEUE_EVENT:
-      storageAppend(action.deviceId, EVENT_STORAGE_KEY, action);
+      storageAppend('queue', EVENT_STORAGE_KEY, action);
 
       if (action.requiresAuth) {
         window.location.href = '/next/login';
@@ -26,7 +26,7 @@ const events = (state = {}, action) => {
       return state;
 
     case COMPLETED_EVENT:
-      storageSplice(action.deviceId, EVENT_STORAGE_KEY, action.index);
+      storageSplice('queue', EVENT_STORAGE_KEY, action.index);
       return state;
 
     default:

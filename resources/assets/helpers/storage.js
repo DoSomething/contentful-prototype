@@ -1,7 +1,5 @@
 /* global localStorage */
 
-import { getDeviceId } from './analytics';
-
 export const SIGNUP_STORAGE_KEY = 'signups';
 export const COMPETITION_STORAGE_KEY = 'competitions';
 export const EVENT_STORAGE_KEY = 'events';
@@ -114,10 +112,7 @@ export function loadStorage(initialState, preloadedState) {
     }
   }
 
-  const deviceId = getDeviceId();
-  if (deviceId) {
-    state.events.queue = get(deviceId, EVENT_STORAGE_KEY) || [];
-  }
+  state.events.queue = getArray('queue', EVENT_STORAGE_KEY);
 
   return state;
 }

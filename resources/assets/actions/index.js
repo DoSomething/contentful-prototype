@@ -6,7 +6,6 @@
  * create actions, which describe changes to the state tree (either as a result
  * of application logic or user input).
  */
-import { LOCATION_CHANGE } from 'react-router-redux';
 
 export const PARTICIPATE_IN_EXPERIMENT = 'PARTICIPATE_IN_EXPERIMENT';
 export const ADD_TO_EXPERIMENTS_STORE = 'ADD_TO_EXPERIMENTS_STORE';
