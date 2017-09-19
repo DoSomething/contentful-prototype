@@ -5,15 +5,17 @@ import Reaction from '../Reaction';
 import { pluralize } from '../../helpers';
 import './reportback-item.scss';
 
-function getMetadataFromProps(props) {
-  return {
-    itemId: props.id,
-    quantity: props.quantity,
-    totalReactions: props.reaction ? props.reaction.total : null,
-    reportbackId: props.reportback ? props.reportback.id : null,
-    reportbackUser: props.reportback ? props.reportback.user : null,
-  };
-}
+// TODO: Use this for the puck connection.
+//
+// function getMetadataFromProps(props) {
+//   return {
+//     itemId: props.id,
+//     quantity: props.quantity,
+//     totalReactions: props.reaction ? props.reaction.total : null,
+//     reportbackId: props.reportback ? props.reportback.id : null,
+//     reportbackUser: props.reportback ? props.reportback.user : null,
+//   };
+// }
 
 const ReportbackItem = (props) => {
   const { id, url, quantity, noun, caption, firstName, reaction = null, isFetching = false,

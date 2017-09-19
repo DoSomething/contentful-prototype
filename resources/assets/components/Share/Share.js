@@ -6,7 +6,12 @@ import classnames from 'classnames';
 
 import './share.scss';
 
-const Share = ({ variant, clickedShare, parentSource, link, className }) => {
+const Share = (props) => {
+  // I need `parentSource` for later and don't feel like removing it.
+  const {
+    variant, clickedShare, parentSource, link, className, // eslint-disable-line no-unused-vars
+  } = props;
+
   return (
     <button
       className={classnames('button share', className, { '-black': variant === 'black', '-icon': variant === 'icon' })}
