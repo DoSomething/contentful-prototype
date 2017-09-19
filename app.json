@@ -47,7 +47,7 @@
     },
     "PUCK_URL": {
       "required": true
-    },
+    }
   },
   "formation": {},
   "addons": [
