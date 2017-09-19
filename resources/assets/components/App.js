@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
+import { PuckProvider } from '@dosomething/puck-client';
 
 import { CampaignContainer } from './Campaign';
 import { initializeStore } from '../store';
@@ -12,9 +13,15 @@ const App = ({ store, history }) => {
 
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Route path="/us/campaigns/:slug" component={CampaignContainer} />
-      </ConnectedRouter>
+      <PuckProvider
+        source="phoenix-next"
+        getUser={() => store.getState().user.id}
+        getHistory={() => history}
+      >
+        <ConnectedRouter history={history}>
+          <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+        </ConnectedRouter>
+      </PuckProvider>
     </Provider>
   );
 };
