@@ -7,6 +7,7 @@ import { PuckProvider } from '@dosomething/puck-client';
 
 import { CampaignContainer } from './Campaign';
 import { initializeStore } from '../store';
+import { getUserId } from '../selectors/user';
 import { env } from '../helpers';
 
 const App = ({ store, history }) => {
@@ -16,7 +17,7 @@ const App = ({ store, history }) => {
     <Provider store={store}>
       <PuckProvider
         source="phoenix-next"
-        getUser={() => store.getState().user.id}
+        getUser={() => getUserId(store.getState())}
         getHistory={() => history}
         puckUrl={env('keen_url')}
       >
