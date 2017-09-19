@@ -9,7 +9,6 @@ import {
   SIGNUP_PENDING,
   SET_TOTAL_SIGNUPS,
   queueEvent,
-  trackEvent,
   addNotification,
   openModal,
 } from '../actions';
@@ -127,7 +126,6 @@ export function clickedSignUp(campaignId, shouldRedirectToActionTab = true) {
       } else {
         // Create signup and track any data before redirects.
         dispatch(signupCreated(campaignId));
-        dispatch(trackEvent('signup created'));
 
         // Take user to the action page if campaign is open.
         const endDate = get(getState().campaign.endDate, 'date', null);
