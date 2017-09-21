@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../Modal';
+import ModalSwitch from '../Modal';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import NotificationContainer from '../../containers/NotificationContainer';
 
@@ -11,7 +11,7 @@ const Campaign = (props) => {
   return (
     <div>
       <NotificationContainer />
-      <Modal />
+      <ModalSwitch />
 
       {(! isAffiliated && useLandingPage) ?
         <LandingPageContainer {...props} />
