@@ -61,6 +61,8 @@ const initialState = {
   },
   experiments: {},
   modal: {
+    modalType: null,
+    blockId: null,
     shouldShowModal: false,
   },
   uploads: {},

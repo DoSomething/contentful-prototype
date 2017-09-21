@@ -1,0 +1,28 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Modal, PostSignupModal, POST_SIGNUP_MODAL } from '../Modal';
+
+const ModalSwitch = (props) => {
+  const { modalType } = props;
+  let children = null;
+
+  switch (modalType) {
+    case POST_SIGNUP_MODAL: children = <PostSignupModal />; break;
+    // TODO: <Page Modal>
+    default: break;
+  }
+
+  return (
+    <Modal>{ children }</Modal>
+  );
+};
+
+ModalSwitch.propTypes = {
+  modalType: PropTypes.string,
+};
+
+ModalSwitch.defaultProps = {
+  modalType: null,
+};
+
+export default ModalSwitch;

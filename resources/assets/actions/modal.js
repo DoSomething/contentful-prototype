@@ -1,7 +1,7 @@
 import { OPEN_MODAL, CLOSE_MODAL } from '../actions';
 
-export function openModal() {
-  return { type: OPEN_MODAL };
+export function openModal(modalType, blockId) {
+  return { type: OPEN_MODAL, modalType, blockId };
 }
 
 export function closeModal() {
