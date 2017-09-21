@@ -22,7 +22,7 @@ exports[`it generates a campaign update snapshot 1`] = `
       jobTitle="The Last Airbender"
       share={null}
     />
-    <Connect(Share)
+    <Share
       className="float-right clear-none"
       link="http://example.com/link-to-content"
       parentSource="campaignUpdate"
