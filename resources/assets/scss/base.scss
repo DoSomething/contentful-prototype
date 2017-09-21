@@ -99,6 +99,26 @@ h1, h2, h3, p {
   padding: $base-spacing;
 }
 
+.padding-vertical-md {
+  padding-top: $half-spacing;
+  padding-bottom: $half-spacing
+}
+
+.padding-vertical-lg {
+  padding-top: $base-spacing;
+  padding-bottom: $base-spacing
+}
+
+.padding-horizontal-md {
+  padding-left: $half-spacing;
+  padding-right: $half-spacing;
+}
+
+.padding-horizontal-lg {
+  padding-left: $base-spacing;
+  padding-right: $base-spacing;
+}
+
 .padding-bottom-md {
   padding-bottom: $half-spacing;
 }

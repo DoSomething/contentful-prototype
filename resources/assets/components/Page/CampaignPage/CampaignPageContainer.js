@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
@@ -12,6 +13,9 @@ const mapStateToProps = state => ({
   dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
   isAffiliated: state.signups.thisCampaign,
+  affiliateSponsors: state.campaign.affiliateSponsors,
+  affiliatePartners: state.campaign.affiliatePartners,
+  campaignLead: get(state.campaign.additionalContent, 'campaignLead'),
   legacyCampaignId: state.campaign.legacyCampaignId,
   slug: state.campaign.slug,
   subtitle: state.campaign.callToAction,

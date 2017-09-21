@@ -18,7 +18,7 @@ test('it renders without children', () => {
 
 test('it renders correctly with title', () => {
   const component = shallow((
-    <BlockWrapper title="Lets Do This" id="123abc">
+    <BlockWrapper title="Lets Do This">
       <div id="tongue-cat" />
     </BlockWrapper>
   ));
@@ -29,7 +29,7 @@ test('it renders correctly with title', () => {
 test('it links to a block', () => {
   const wrapper = mount((
     <MemoryRouter>
-      <BlockWrapper title="Lets Do This" id="123abc">
+      <BlockWrapper title="Lets Do This" shareLink="/blocks/123abc">
         <div id="tongue-cat" />
       </BlockWrapper>
     </MemoryRouter>

@@ -137,6 +137,19 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse and extract data for affiliates (either affiliateSponser or affiliatePartner).
+     *
+     * @param  array $affiliates
+     * @return array
+     */
+    public function parseAffiliates($affiliates)
+    {
+        return collect($affiliates)->map(function ($affiliate) {
+            return new Affiliate($affiliate->entry);
+        });
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -158,8 +171,8 @@ class Campaign extends Entity implements JsonSerializable
                 'description' => $this->coverImage ? $this->coverImage->getDescription() : '',
                 'url' => get_image_url($this->coverImage),
             ],
-            'affiliateSponsors' => $this->affiliateSponsors,
-            'affiliatePartners' => $this->affiliatePartners,
+            'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
+            'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             // @TODO: Why is it 'activity_feed' oy? ;/
             'activityFeed' => $this->parseActivityFeed($this->activity_feed),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),

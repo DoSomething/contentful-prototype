@@ -9,11 +9,17 @@ test('it should display a placeholder quiz', () => {
   const wrapper = mount(
     <Quiz
       id="1"
-      fields={{ title: 'test title', introduction: 'introduction', questions: [] }}
-      startQuiz={() => {}}
+      fields={{
+        callToAction: 'do it',
+        conclusion: 'conclusion',
+        introduction: 'introduction',
+        title: 'test title',
+        questions: [],
+      }}
+      completeQuiz={() => {}}
       viewQuizResult={() => {}}
+      startQuiz={() => {}}
       pickQuizAnswer={() => {}}
-      compareQuizAnswer={() => {}}
     />,
   );
 

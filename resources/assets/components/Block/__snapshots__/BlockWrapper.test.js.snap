@@ -15,7 +15,6 @@ exports[`it renders correctly with title 1`] = `
   className="block-wrapper"
 >
   <BlockTitle
-    id="123abc"
     title="Lets Do This"
   />
   <div

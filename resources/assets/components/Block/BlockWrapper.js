@@ -6,26 +6,26 @@ import { Link } from 'react-router-dom';
 import './block-wrapper.scss';
 
 type BlockTitleProps = {
-  id: ?string,
+  shareLink: ?string,
   title: ?string,
 };
 
-const BlockTitle = ({ id, title }: BlockTitleProps) => {
-  const titleElement = id ? <Link to={`/blocks/${id}`}>{title}</Link> : title;
+const BlockTitle = ({ title, shareLink }: BlockTitleProps) => {
+  const titleElement = shareLink ? <Link to={shareLink}>{title}</Link> : title;
 
   return <h4 className="block-wrapper__title">{titleElement}</h4>;
 };
 
 type BlockWrapperProps = {
+  children: ?Element<any>,
   className: ?string,
+  shareLink: ?string,
   title: ?string,
-  id: ?string,
-  children: ?Element<any>
-}
+};
 
-const BlockWrapper = ({ id, title, className, children }: BlockWrapperProps) => (
+const BlockWrapper = ({ title, className, children, shareLink }: BlockWrapperProps) => (
   <article className={classnames('block-wrapper', className)}>
-    { title ? <BlockTitle title={title} id={id} /> : null }
+    { title ? <BlockTitle title={title} shareLink={shareLink} /> : null }
     { children }
   </article>
 );

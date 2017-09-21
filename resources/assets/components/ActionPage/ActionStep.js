@@ -29,9 +29,13 @@ const ActionStep = (props) => {
             hideStepNumber={hideStepNumber}
             template={template}
           />
-          <FlexCell width="two-thirds">
-            <Markdown>{ content }</Markdown>
-          </FlexCell>
+          { content ?
+            <FlexCell width="two-thirds">
+              <Markdown>{ content }</Markdown>
+            </FlexCell>
+            :
+            null
+          }
           <FlexCell width={photoWidth}>
             <div className={`action-step__photos -${photoWidth}`}>
               { photos ? photos.map(renderPhoto) : null }
@@ -46,7 +50,7 @@ const ActionStep = (props) => {
 ActionStep.propTypes = {
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
   background: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.string),
   photoWidth: PropTypes.string.isRequired,
@@ -57,6 +61,7 @@ ActionStep.propTypes = {
 
 ActionStep.defaultProps = {
   background: '',
+  content: null,
   photos: [],
   shouldTruncate: false,
   hideStepNumber: false,

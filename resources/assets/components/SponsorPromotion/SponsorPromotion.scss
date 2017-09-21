@@ -1,0 +1,173 @@
+@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
+
+$btw-mobile-and-tablet: "(min-width: 860px)";
+$btw-tablet-and-desktop: "(min-width: 960px)";
+
+.header .promotions {
+  // Shift it down so that the "creator" portraits are adjacent to the bottom of the Header
+  position: relative;
+  top: $base-spacing;
+
+  @include media($mobile) {
+    margin-top: $base-spacing;
+  }
+
+  @include media($btw-mobile-and-tablet) {
+    float: right;
+  }
+
+  &.-dual {
+    @include media($btw-mobile-and-tablet) {
+      right: -110px;
+    }
+
+    .promotion--sponsor {
+      @include media($btw-mobile-and-tablet) {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  .promotion--sponsor {
+    padding-bottom: $base-spacing / 2;
+  }
+}
+
+
+// Promotions Grouping
+.promotions {
+  display: table;
+  margin: 0 auto;
+
+  @include media($btw-tablet-and-desktop) {
+    margin: 0;
+  }
+
+  &.-dual {
+
+    .promotion {
+      width: 50%;
+
+      @include media($btw-tablet-and-desktop) {
+        height: 100px;
+        width: auto;
+      }
+
+      &:first-child {
+        padding-right: 20px;
+
+        &:after {
+          background-color: #fff;
+          background-color: rgba(#fff, 0.5);
+          content: "";
+          height: 80%;
+          position: absolute;
+          right: 0;
+          top: 10%;
+          width: 1px;
+
+          @include media($btw-tablet-and-desktop) {
+            right: 10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Promotion Individual
+.promotion {
+  display: table-cell;
+  position: relative;
+
+  > .wrapper {
+    @include media($btw-tablet-and-desktop) {
+      display: table;
+      height: 100%;
+    }
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .__image {
+
+    @include media($btw-tablet-and-desktop) {
+      display: table-cell;
+      padding: 0 0 0 10px;
+      vertical-align: middle;
+    }
+  }
+
+  .__copy {
+    @include rgba(color, #fff, 0.7, #fff);
+
+    font-size: $font-small;
+    font-weight: $weight-bold;
+    line-height: 1;
+    margin: 0;
+    padding: 0 0 9px;
+    text-align: center;
+    text-transform: uppercase;
+
+    @include media($btw-tablet-and-desktop) {
+      display: table-cell;
+      min-width: 85px;  // @TODO: Not ideal.
+      padding: 0;
+      text-align: right;
+      vertical-align: middle;
+    }
+  }
+}
+
+
+// Promotion Specific
+.promotion--sponsor {
+
+  .__image {
+    max-width: 175px;
+  }
+
+  .__image + .__image {
+    margin-top: $base-spacing / 2;
+  }
+
+  img {
+    max-height: 50px;
+  }
+}
+
+
+.promotion--creator {
+
+  @include media($btw-tablet-and-desktop) {
+    vertical-align: bottom;
+  }
+
+  .__image {
+
+    @include media($btw-tablet-and-desktop) {
+      vertical-align: bottom;
+    }
+  }
+
+  img {
+    max-height: 70px;
+
+    @include media($btw-tablet-and-desktop) {
+      max-height: 100px;
+    }
+  }
+}

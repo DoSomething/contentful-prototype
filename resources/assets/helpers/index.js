@@ -284,9 +284,9 @@ export function makeHash(string) {
 /**
  * Make a shareable link to a content item.
  *
- * @param  {Object} state
- * @param  {String} key  An id or a slug for the content.
  * @param  {String} type
+ * @param  {Object} options
+ * @param  {String} key  An id or a slug for the content.
  * @return {String}
  * @flow
  */

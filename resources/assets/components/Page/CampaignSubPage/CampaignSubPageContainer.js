@@ -1,5 +1,6 @@
-import { connect } from 'react-redux';
 import { get } from 'lodash';
+import { connect } from 'react-redux';
+
 import CampaignSubPage from './CampaignSubPage';
 
 /**

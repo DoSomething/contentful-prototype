@@ -5,8 +5,8 @@ import LedeBanner from '../../LedeBanner/LedeBanner';
 
 const LandingPage = (props) => {
   const {
-    blurb, clickedSignUp, coverImage, endDate, isAffiliated,
-    legacyCampaignId, subtitle, template, title,
+    affiliateSponsors, blurb, clickedSignUp, coverImage, endDate,
+    isAffiliated, legacyCampaignId, subtitle, template, title,
   } = props;
 
   return (
@@ -21,6 +21,7 @@ const LandingPage = (props) => {
         clickedSignUp={clickedSignUp}
         endDate={endDate}
         template={template}
+        affiliateSponsors={affiliateSponsors}
       />
       <div>Landing page template output!</div>
     </div>
@@ -40,6 +41,7 @@ LandingPage.propTypes = {
     timezone_type: PropTypes.number,
   }),
   isAffiliated: PropTypes.bool,
+  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   template: PropTypes.string.isRequired,
