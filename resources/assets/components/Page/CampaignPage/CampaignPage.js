@@ -14,11 +14,15 @@ import { ActionPageContainer } from '../../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../../containers/TabbedNavigationContainer';
 import CampaignFooter from '../../CampaignFooter';
+import { PAGE_MODAL } from '../../Modal';
+
+// TODO: If they click a modal link from the action page, this takes them to the root /.
+// We should probably make a solution that lets them stay on the page they were already at.
 
 const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, clickedSignUp, coverImage,
-    dashboard, endDate, isAffiliated, legacyCampaignId, match, slug, subtitle, template,
+    dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal, slug, subtitle, template,
     title, totalCampaignSignups,
   } = props;
 
@@ -66,8 +70,8 @@ const CampaignPage = (props) => {
             <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
             <Route
               path={`${match.url}/modal/:id`}
-              render={() => {
-                console.log(match);
+              render={(routingProps) => {
+                openModal(PAGE_MODAL, routingProps.match.params.id);
                 return <Redirect to={`${match.url}`} />;
               }}
             />
@@ -115,6 +119,7 @@ CampaignPage.propTypes = {
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number,
+  openModal: PropTypes.func.isRequired,
 };
 
 CampaignPage.defaultProps = {
