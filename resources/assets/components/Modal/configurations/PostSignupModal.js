@@ -6,12 +6,11 @@ import CompetitionContainer from '../../../containers/CompetitionContainer';
 const PostSignupModal = ({ competitionStep }) => (
   <article>
     <div className="modal__slide">
-      <AffirmationContainer key="affirmation" />
+      <AffirmationContainer />
     </div>
     <div className="modal__slide">
       { competitionStep ? (
         <CompetitionContainer
-          key="competition"
           content={competitionStep.content}
           photo={competitionStep.photos[0]}
           byline={competitionStep.additionalContent}
