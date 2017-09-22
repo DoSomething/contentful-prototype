@@ -18,6 +18,7 @@ const mapStateToProps = state => ({
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
   campaignEndDate: get(state.campaign.endDate, 'date', null),
+  template: state.campaign.template,
 });
 
 const mapDispatchToProps = {
@@ -25,7 +26,11 @@ const mapDispatchToProps = {
 };
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages, campaignEndDate } = props;
+  const { isAffiliated, legacyCampaignId, pages, campaignEndDate, template } = props;
+
+  if (template === 'legacy') {
+    return null;
+  }
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
@@ -61,10 +66,12 @@ TabbedNavigationContainer.propTypes = {
   pages: PropTypes.oneOfType([
     PropTypes.array,
   ]),
+  template: PropTypes.string,
 };
 
 TabbedNavigationContainer.defaultProps = {
   pages: [],
+  template: null,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TabbedNavigationContainer));
