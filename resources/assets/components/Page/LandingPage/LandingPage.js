@@ -5,7 +5,7 @@ import LedeBanner from '../../LedeBanner/LedeBanner';
 
 const LandingPage = (props) => {
   const {
-    affiliateSponsors, blurb, clickedSignUp, coverImage, endDate,
+    affiliateSponsors, blurb, coverImage, endDate,
     isAffiliated, legacyCampaignId, subtitle, template, title,
   } = props;
 
@@ -18,7 +18,6 @@ const LandingPage = (props) => {
         blurb={blurb}
         coverImage={coverImage}
         legacyCampaignId={legacyCampaignId}
-        clickedSignUp={clickedSignUp}
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
@@ -30,7 +29,6 @@ const LandingPage = (props) => {
 
 LandingPage.propTypes = {
   blurb: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
