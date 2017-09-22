@@ -8,10 +8,17 @@ const mapStateToProps = (state) => {
     return null;
   }
 
-  // TODO: Search other content objects, eg: blocks
-
   const page = find(state.campaign.pages, { id: contentfulId });
-  return page ? { content: page.fields.content } : null;
+  if (! page) {
+    return null;
+  }
+
+  const content = page.fields.content;
+  if (! content) {
+    return null;
+  }
+
+  return { content };
 };
 
 export default connect(mapStateToProps)(PageModal);

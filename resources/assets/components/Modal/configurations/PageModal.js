@@ -10,11 +10,7 @@ const PageModal = ({ content }) => (
 );
 
 PageModal.propTypes = {
-  content: PropTypes.string,
-};
-
-PageModal.defaultProps = {
-  content: '',
+  content: PropTypes.string.isRequired,
 };
 
 export default PageModal;
