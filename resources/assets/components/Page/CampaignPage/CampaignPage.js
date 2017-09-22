@@ -23,7 +23,7 @@ const CampaignPage = (props) => {
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
-
+  console.log(template);
   return (
     <div>
       <LedeBanner
@@ -52,7 +52,15 @@ const CampaignPage = (props) => {
 
         <Enclosure className="margin-top-lg margin-bottom-lg default-container">
           <Switch>
-            <Route path={`${match.url}`} exact component={FeedContainer} />
+            <Route
+              path={`${match.url}`}
+              exact
+              render={() => (template === 'legacy' ?
+                <ActionPageContainer />
+                :
+                <FeedContainer />
+              )}
+            />
             <Route
               path={`${match.url}/action`}
               render={() => (isClosed ?
