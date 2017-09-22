@@ -23,7 +23,7 @@ const CampaignPage = (props) => {
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
-  console.log(template);
+
   return (
     <div>
       <LedeBanner
