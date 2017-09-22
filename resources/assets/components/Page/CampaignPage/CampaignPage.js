@@ -17,7 +17,7 @@ import CampaignFooter from '../../CampaignFooter';
 
 const CampaignPage = (props) => {
   const {
-    affiliatePartners, affiliateSponsors, blurb, campaignLead, clickedSignUp, coverImage,
+    affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
     dashboard, endDate, isAffiliated, legacyCampaignId, match, slug, subtitle, template,
     title, totalCampaignSignups,
   } = props;
@@ -33,7 +33,6 @@ const CampaignPage = (props) => {
         blurb={blurb}
         coverImage={coverImage}
         legacyCampaignId={legacyCampaignId}
-        clickedSignUp={clickedSignUp}
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
@@ -94,7 +93,6 @@ const CampaignPage = (props) => {
 
 CampaignPage.propTypes = {
   blurb: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
