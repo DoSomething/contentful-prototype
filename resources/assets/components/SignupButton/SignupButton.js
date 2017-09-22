@@ -1,23 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PuckConnector } from 'puck-client';
+import { PuckConnector } from '@dosomething/puck-client';
 import SignupButtonContainer from './SignupButtonContainer';
 
-const SignupButtonFactory = (WrappedComponent, source) => {
-  class SignupButton extends React.Component {
-    render() {
-      const { clickedSignUp, trackEvent } = this.props;
+/**
+ * HOC for wrapping signup buttons. Handles tracking
+ * and dispatching the signup action.
+ *
+ * @param {Component} WrappedComponent
+ * @param {String} source
+ * @param {Object} sourceData
+ * @return {Class} <SignupButton />
+ */
+const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null) => {
+  const SignupButton = (props) => {
+    const { clickedSignUp, trackEvent } = props;
 
-      const onSignup = (campaignId) => {
-        clickedSignUp(campaignId);
-        trackEvent('signup', { source, campaignId });
-      };
+    const onSignup = (campaignId) => {
+      clickedSignUp(campaignId);
+      trackEvent('signup', { campaignId, source, sourceData });
+    };
 
-      return (
-        <WrappedComponent {...this.props} clickedSignUp={onSignup} />
-      );
-    }
-  }
+    return (
+      <WrappedComponent {...props} clickedSignUp={onSignup} />
+    );
+  };
 
   SignupButton.propTypes = {
     clickedSignUp: PropTypes.func.isRequired,
@@ -25,6 +32,6 @@ const SignupButtonFactory = (WrappedComponent, source) => {
   };
 
   return SignupButtonContainer(PuckConnector(SignupButton));
-}
+};
 
 export default SignupButtonFactory;
