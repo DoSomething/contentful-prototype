@@ -3,6 +3,7 @@ import React from 'react';
 import classnames from 'classnames';
 import Markdown from '../Markdown';
 import { contentfulImageUrl, modifiers } from '../../helpers';
+import SignupButtonFactory from '../SignupButton';
 import './cta.scss';
 
 const renderImpactContent = (data) => {
@@ -24,7 +25,7 @@ const renderBackgroundImageStyle = imageUrl => (
 );
 
 const CallToActionBlock = (props) => {
-  const { isAffiliated, fields, imageUrl, campaignId, clickedSignUp, modifierClasses,
+  const { isAffiliated, fields, imageUrl, campaignId, modifierClasses,
     noun, verb, buttonOverride } = props;
   const { title, content, additionalContent } = fields;
 
@@ -33,9 +34,9 @@ const CallToActionBlock = (props) => {
   const defaultText = isAffiliated ? `${verb.plural} ${noun.plural}` : 'Join Us';
   const buttonText = buttonOverride || defaultText;
 
-  const handleOnClickButton = () => {
-    clickedSignUp(campaignId);
-  };
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <button className="button" onClick={() => clickedSignUp(campaignId)}>{ buttonText }</button>
+  ), 'call to action block', { text: buttonText });
 
   return (
     <div className={classnames('cta', modifiers(modifierClasses), { 'has-photo': hasPhoto })}>
@@ -47,7 +48,7 @@ const CallToActionBlock = (props) => {
         { content ? <div className="cta__block"><Markdown className="cta__message">{content}</Markdown></div> : null }
 
         <div className="cta__block">
-          <button className="button" onClick={handleOnClickButton}>{buttonText}</button>
+          <SignupButton />
         </div>
       </div>
 
@@ -59,7 +60,6 @@ const CallToActionBlock = (props) => {
 CallToActionBlock.propTypes = {
   buttonOverride: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   fields: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
