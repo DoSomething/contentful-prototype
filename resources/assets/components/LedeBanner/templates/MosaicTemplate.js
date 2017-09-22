@@ -20,7 +20,7 @@ const MosaicTemplate = (props) => {
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Join Us</button>
-  ));
+  ), 'lede banner', { text: 'join us' });
 
   return (
     <header role="banner" className="lede-banner">
@@ -40,10 +40,6 @@ const MosaicTemplate = (props) => {
     </header>
   );
 };
-
-// { isAffiliated ? null : <button className="button" onClick={() => '
-// clickedSignUp(legacyCampaignId, { source: 'mosaic lede banner
-// |text: Join us' })}>Join us</button> }
 
 MosaicTemplate.propTypes = {
   backgroundImageUrl: PropTypes.string.isRequired,
