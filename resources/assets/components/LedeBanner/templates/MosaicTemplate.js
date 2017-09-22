@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Markdown from '../../Markdown';
+import SignupButtonFactory from '../../SignupButton';
 
 const MosaicTemplate = (props) => {
   const {
@@ -11,12 +12,15 @@ const MosaicTemplate = (props) => {
     backgroundImageUrl,
     isAffiliated,
     legacyCampaignId,
-    clickedSignUp,
   } = props;
 
   const backgroundImageStyle = {
     backgroundImage: `url(${backgroundImageUrl})`,
   };
+
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Join Us</button>
+  ));
 
   return (
     <header role="banner" className="lede-banner">
@@ -30,17 +34,20 @@ const MosaicTemplate = (props) => {
 
           <Markdown className="lede-banner__blurb">{blurb}</Markdown>
 
-          { isAffiliated ? null : <button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'mosaic lede banner|text: Join us' })}>Join us</button> }
+          { isAffiliated ? null : <SignupButton /> }
         </div>
       </div>
     </header>
   );
 };
 
+// { isAffiliated ? null : <button className="button" onClick={() => '
+// clickedSignUp(legacyCampaignId, { source: 'mosaic lede banner
+// |text: Join us' })}>Join us</button> }
+
 MosaicTemplate.propTypes = {
   backgroundImageUrl: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
