@@ -11,4 +11,4 @@ const mapStateToProps = state => ({
 /**
  * Export the container component.
  */
-export default connect(mapStateToProps, mapDispatchToProps)(CallToAction);
+export default connect(mapStateToProps)(CallToAction);
