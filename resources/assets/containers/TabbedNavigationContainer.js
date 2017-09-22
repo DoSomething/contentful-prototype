@@ -60,7 +60,6 @@ const TabbedNavigationContainer = (props) => {
 TabbedNavigationContainer.propTypes = {
   campaignEndDate: PropTypes.string.isRequired,
   campaignSlug: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   pages: PropTypes.oneOfType([

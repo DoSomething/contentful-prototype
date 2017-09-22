@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { clickedSignUp } from '../../actions';
+import { clickedSignUp } from '../../actions/signup';
 
 const actionCreators = {
   clickedSignUp,
