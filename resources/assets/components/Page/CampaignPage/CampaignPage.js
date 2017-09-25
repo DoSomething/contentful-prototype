@@ -22,8 +22,8 @@ import { PAGE_MODAL } from '../../Modal';
 const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
-    dashboard, endDate, isAffiliated, legacyCampaignId, match, slug, subtitle, template,
-    title, totalCampaignSignups,
+    dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
+    slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
