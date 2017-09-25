@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CompetitionBlock from '../components/CompetitionBlock';
-import { joinCompetition, checkForCompetition } from '../actions';
+import { joinCompetition, checkForCompetition } from '../actions/competition';
 
 /**
  * Provide state from the Redux store as props for this component.

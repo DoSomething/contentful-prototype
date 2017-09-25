@@ -6,14 +6,14 @@ const modal = (state = {}, action) => {
       ...state,
       shouldShowModal: true,
       modalType: action.modalType,
-      blockId: action.blockId,
+      contentfulId: action.contentfulId,
     };
 
     case CLOSE_MODAL: return {
       ...state,
       shouldShowModal: false,
       modalType: null,
-      blockId: null,
+      contentfulId: null,
     };
 
     default: return state;

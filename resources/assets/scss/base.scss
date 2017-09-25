@@ -40,8 +40,28 @@ h1, h2, h3, p {
   background-size: cover;
 }
 
+.bg-white {
+  background-color: $white;
+}
+
+.bg-light-gray {
+  background-color: $light-gray;
+}
+
 .bordered {
   border: 1px solid $primary-border-color;
+}
+
+.border-none {
+  border: 0 none;
+}
+
+.border-top {
+  border-top: 1px solid $primary-border-color;
+}
+
+.border-radius-none {
+  border-radius: 0;
 }
 
 .clearfix {

@@ -1,12 +1,29 @@
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
+import ColumnizedContent from '../../ColumnizedContent';
+import CallToActionBlockContainer from '../../../containers/CallToActionBlockContainer';
+
+import './landing-page.scss';
+
+const formatToMarkup = data => (
+  data.map((item, dataIndex) => (
+    <div key={dataIndex}>
+      <h3>{item.title}</h3>
+      { item.content.map((paragraph, index) => (<p key={index}>{paragraph}</p>)) }
+    </div>
+  ))
+);
 
 const LandingPage = (props) => {
   const {
     affiliateSponsors, blurb, coverImage, endDate,
-    isAffiliated, legacyCampaignId, subtitle, template, title,
+    isAffiliated, legacyCampaignId, pitchContent, 
+    subtitle, tagline, template, title,
   } = props;
 
   return (
@@ -22,7 +39,22 @@ const LandingPage = (props) => {
         template={template}
         affiliateSponsors={affiliateSponsors}
       />
-      <div>Landing page template output!</div>
+
+      <div className="clearfix bg-white">
+        <Enclosure className="default-container margin-top-lg margin-bottom-lg pitch-landing-page">
+          <ColumnizedContent className="container__block -half" content={formatToMarkup(pitchContent)} />
+        </Enclosure>
+      </div>
+
+      <CallToActionBlockContainer
+        fields={{ title: tagline }}
+        buttonOverride="Sign up"
+        modifierClasses="transparent border-top bg-light-gray border-radius-none"
+      />
+
+      <div className="info-bar -dark">
+        <div className="wrapper">A DoSomething.org campaign. Join over 5.5 million members taking action. Any cause, anytime, anywhere.</div>
+      </div>
     </div>
   );
 };
@@ -41,7 +73,9 @@ LandingPage.propTypes = {
   isAffiliated: PropTypes.bool,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
+  pitchContent: PropTypes.arrayOf(PropTypes.object).isRequired,
   subtitle: PropTypes.string.isRequired,
+  tagline: PropTypes.string,
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -49,6 +83,7 @@ LandingPage.propTypes = {
 LandingPage.defaultProps = {
   endDate: null,
   isAffiliated: false,
+  tagline: 'Ready to start?',
 };
 
 export default LandingPage;
