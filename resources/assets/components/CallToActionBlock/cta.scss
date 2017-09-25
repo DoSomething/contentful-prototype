@@ -2,7 +2,7 @@
 
 .cta {
   color: $white;
-  background: $black;
+  background: $black !important; // Forge override
   border: 1px solid $primary-border-color;
   border-radius: $lg-border-radius;
 
