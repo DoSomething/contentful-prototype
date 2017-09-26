@@ -10,11 +10,11 @@
     @include media($large) {
       float: left;
       padding-right: $base-spacing;
-      width: 66.6666666666666%;
+      width: 66.6%;
     }
   }
 
-  > .figure {
+  .byline {
     margin-top: $base-spacing;
   }
 }
@@ -25,7 +25,7 @@
   @include media($large) {
     float: right;
     margin-top: 0;
-    width: 33.3333333333333%;
+    width: 33.3%;
   }
 }
 
