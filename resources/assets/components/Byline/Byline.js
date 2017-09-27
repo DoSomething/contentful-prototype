@@ -12,7 +12,6 @@ const Byline = ({ author, jobTitle, avatar, share, className }) => (
     <Figure
       size="small"
       alignment="left"
-      verticalAlignment="center"
       image={avatar}
       alt={`picture of ${author}`}
       imageClassName="avatar"
