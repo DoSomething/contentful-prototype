@@ -20,7 +20,7 @@
     border: none;
     color: $light-gray;
 
-    &:hover {
+    &:hover, &:active, &:focus {
       color: $med-gray;
       cursor: pointer;
       background: none;
