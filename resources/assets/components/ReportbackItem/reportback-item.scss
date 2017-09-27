@@ -19,6 +19,10 @@
       width: 480px; // HACK: Expand smaller images to fit in card.
     }
   }
+
+  > .figure__body p {
+    word-break: break-all;
+  }
 }
 
 .padded {
