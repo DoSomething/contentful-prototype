@@ -19,6 +19,10 @@
     }
   }
 
+  &.-dark-bg {
+    background-color: $black;
+  }
+
   &.has-photo {
     @include media($medium) {
       display: flex;
