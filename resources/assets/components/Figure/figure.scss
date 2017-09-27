@@ -31,3 +31,15 @@
     }
   }
 }
+
+.figure.-center .figure__body {
+  width: initial; // Fixes Forge bug where the div goes 100% width
+}
+
+.figure.-reportback {
+  padding-top: 0;
+
+  .figure__meta {
+    margin-top: $half-spacing;
+  }
+}

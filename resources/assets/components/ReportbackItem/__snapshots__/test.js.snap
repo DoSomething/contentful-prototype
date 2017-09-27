@@ -3,32 +3,31 @@
 exports[`Reportback Item basic snapshot test 1`] = `
 <Figure
   alt="A Doer's photo"
-  className="reportback-item"
   image={null}
   imageClassName={null}
 >
-  <BaseFigure
+  <ReportbackFigure
     alignment="right"
     className="padded"
     media={null}
+    meta={null}
     size={null}
     verticalAlignment={null}
   >
     <h4>
       A Doer
     </h4>
-  </BaseFigure>
+  </ReportbackFigure>
 </Figure>
 `;
 
 exports[`Reportback Item snapshot test 1`] = `
 <Figure
   alt="Luke Skywalker's photo"
-  className="reportback-item"
   image="https://static1.comicvine.com/uploads/original/11118/111184078/5124660-6531264806-22292.jpg"
   imageClassName={null}
 >
-  <BaseFigure
+  <ReportbackFigure
     alignment="right"
     className="padded"
     media={
@@ -39,6 +38,13 @@ exports[`Reportback Item snapshot test 1`] = `
         total={30}
       />
     }
+    meta={
+      <p
+        className="italic"
+      >
+        Some awesmome caption
+      </p>
+    }
     size={null}
     verticalAlignment={null}
   >
@@ -46,15 +52,12 @@ exports[`Reportback Item snapshot test 1`] = `
       Luke Skywalker
     </h4>
     <p
-      className="footnote"
+      className="footnote italic"
     >
       20
        
       lightsabers
     </p>
-    <p>
-      Some awesmome caption
-    </p>
-  </BaseFigure>
+  </ReportbackFigure>
 </Figure>
 `;

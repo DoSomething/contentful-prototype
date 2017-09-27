@@ -1,8 +1,13 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
+
+$quarter-spacing: $half-spacing / 2;
+$eighth-spacing: $quarter-spacing / 2;
 
 .reaction {
+  padding: $eighth-spacing $quarter-spacing;
+  border: 1px solid $primary-border-color;
+  border-radius: $border-radius;
   background-color: transparent;
-  border: 0 none;
   float: right;
 
   &:focus {
@@ -13,8 +18,8 @@
     display: inline-block;
     width: 24px;
     height: 24px;
-    background: url('./heart-empty.svg') no-repeat;
-    background-size: contain;
+    background-image: url('./heart-empty.svg');
+    background-size: 100% 100%;
 
     &.-reacted {
       background-image: url('./heart-filled.svg');
@@ -26,8 +31,9 @@
   }
 
   .reaction__meta {
-    color: $med-gray;
+    color: $black;
     vertical-align: top;
     font-size: 16px;
+    font-weight: 900;
   }
 }
