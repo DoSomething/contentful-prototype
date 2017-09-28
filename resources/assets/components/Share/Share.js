@@ -14,17 +14,19 @@ const Share = (props) => {
     trackEvent, variant,
   } = props;
 
+  const metadata = { parentSource, variant, link };
+
   const onClick = () => {
     requestedFacebookShare();
-    trackEvent('clicked facebook share', { parentSource, variant, link });
+    trackEvent('clicked facebook share', metadata);
 
     showFacebookSharePrompt({ link, quote }, (response) => {
       if (response) {
         facebookShareCompleted();
-        trackEvent('facebook share posted', { parentSource, variant, link });
+        trackEvent('facebook share posted', metadata);
       } else {
         facebookShareCancelled();
-        trackEvent('facebook share cancelled', { parentSource, variant, link });
+        trackEvent('facebook share cancelled', metadata);
       }
     });
   };
