@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
+import { PuckConnector } from '@dosomething/puck-client';
 import Share from './Share';
-import { clickedShare } from '../../actions';
+import {
+  facebookShareCancelled,
+  facebookShareCompleted,
+  requestedFacebookShare,
+} from '../../actions/share';
 
 const mapStateToProps = state => ({
   share: state.share,
@@ -12,8 +17,12 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  clickedShare,
+  facebookShareCancelled,
+  facebookShareCompleted,
+  requestedFacebookShare,
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(Share);
+export default connect(mapStateToProps, actionCreators)(
+  PuckConnector(Share),
+);
