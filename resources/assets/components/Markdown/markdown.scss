@@ -92,3 +92,10 @@
     background-color: #f2f2f2;
   }
 }
+
+.footnotes {
+  .footnotes-list, .footnote-item p {
+    font-size: $font-small;
+    color: $med-gray;
+  }
+}

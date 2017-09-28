@@ -79,9 +79,9 @@ class Campaign extends Entity implements JsonSerializable
      * @param  array $activityItems
      * @return array
      */
-    public function parseActivityFeed($activityItems)
+    public function parseActivityFeed($activityItems, $reverseActivityFeedOrder = true)
     {
-        return collect($activityItems)->map(function ($item) {
+        $parsedActivityItems = collect($activityItems)->map(function ($item) {
             switch ($item->getContentType()) {
                 case 'campaignUpdate':
                     return new CampaignUpdate($item->entry);
@@ -96,7 +96,13 @@ class Campaign extends Entity implements JsonSerializable
                 default:
                     return $item;
             }
-        })->flatten(1);
+        });
+
+        if ($reverseActivityFeedOrder) {
+            $parsedActivityItems = $parsedActivityItems->reverse();
+        }
+
+        return $parsedActivityItems->flatten(1);
     }
 
     /**
@@ -174,7 +180,10 @@ class Campaign extends Entity implements JsonSerializable
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             // @TODO: Why is it 'activity_feed' oy? ;/
-            'activityFeed' => $this->parseActivityFeed($this->activity_feed),
+            'activityFeed' => $this->parseActivityFeed(
+                $this->activity_feed,
+                array_get($this->additionalContent, 'reverseActivityFeedOrder', true)
+            ),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,

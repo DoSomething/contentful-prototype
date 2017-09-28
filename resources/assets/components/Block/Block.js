@@ -33,7 +33,7 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
       return <CampaignUpdateBlockContainer id={json.id} fields={json.fields} />;
 
     case 'join_cta':
-      return <CallToActionBlockContainer fields={json.fields} />;
+      return <CallToActionBlockContainer fields={json.fields} modifierClasses="dark-bg" />;
 
     case 'reportbacks':
       return <ReportbackBlock fields={json.fields} reportbacks={json.reportbacks} />;

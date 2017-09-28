@@ -34,6 +34,7 @@ const CampaignSubPage = (props) => {
       <div className="secondary">
         <CallToActionBlockContainer
           fields={{ content: ctaContent }}
+          modifierClasses="dark-bg"
         />
       </div>
 

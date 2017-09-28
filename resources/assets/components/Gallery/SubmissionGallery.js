@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Gallery from './Gallery';
-import ReportbackItem from '../ReportbackItem';
 import { makeHash } from '../../helpers';
+import ReportbackItem from '../ReportbackItem';
 
 class SubmissionGallery extends React.Component {
   static renderReportbackItem(submission) {
