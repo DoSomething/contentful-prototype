@@ -383,7 +383,7 @@ export function env(key) {
  * @param  {Function} callback
  */
 export function showFacebookSharePrompt(share, callback) {
-  const { href, quote = '' } = share;
+  const { href, quote } = share;
 
   FB.ui({
     method: 'share',
