@@ -9,8 +9,8 @@ import Button from '../components/Button/Button';
 import NavigationLink from '../components/Navigation/NavigationLink';
 import TabbedNavigation from '../components/Navigation/TabbedNavigation';
 import { campaignPaths } from '../helpers/navigation';
-import { clickedSignUp } from '../actions';
 import { isCampaignClosed } from '../helpers';
+import SignupButtonFactory from '../components/SignupButton';
 
 const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,
@@ -20,10 +20,6 @@ const mapStateToProps = state => ({
   campaignEndDate: get(state.campaign.endDate, 'date', null),
   template: state.campaign.template,
 });
-
-const mapDispatchToProps = {
-  clickedSignUp,
-};
 
 const TabbedNavigationContainer = (props) => {
   const { isAffiliated, legacyCampaignId, pages, campaignEndDate, template } = props;
@@ -45,6 +41,10 @@ const TabbedNavigationContainer = (props) => {
     );
   });
 
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} />
+  ), 'tabbed navigation', { text: 'join us' });
+
   return (
     <TabbedNavigation>
       <div className="nav-items">
@@ -52,7 +52,7 @@ const TabbedNavigationContainer = (props) => {
         { isClosed ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
         { additionalPages }
       </div>
-      { isAffiliated ? null : <Button className="-inline nav-button" onClick={() => props.clickedSignUp(legacyCampaignId, { source: 'tabbed navigation|text: Join us' })} /> }
+      { isAffiliated ? null : <SignupButton /> }
     </TabbedNavigation>
   );
 };
@@ -60,7 +60,6 @@ const TabbedNavigationContainer = (props) => {
 TabbedNavigationContainer.propTypes = {
   campaignEndDate: PropTypes.string.isRequired,
   campaignSlug: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   pages: PropTypes.oneOfType([
@@ -74,4 +73,4 @@ TabbedNavigationContainer.defaultProps = {
   template: null,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TabbedNavigationContainer));
+export default withRouter(connect(mapStateToProps)(TabbedNavigationContainer));

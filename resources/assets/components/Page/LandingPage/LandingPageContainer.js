@@ -2,7 +2,7 @@ import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
-import { clickedSignUp, convertExperiment } from '../../../actions';
+import { convertExperiment } from '../../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -27,7 +27,6 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const mapActionsToProps = {
-  clickedSignUp,
   convertExperiment,
 };
 

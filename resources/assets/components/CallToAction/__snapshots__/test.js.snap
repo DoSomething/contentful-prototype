@@ -3,12 +3,5 @@
 exports[`CallToAction snapshot test 1`] = `
 <div
   className="call-to-action sample-class"
->
-  <button
-    className="button"
-    onClick={[Function]}
-  >
-    Join Us
-  </button>
-</div>
+/>
 `;

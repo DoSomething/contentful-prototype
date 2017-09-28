@@ -1,6 +1,7 @@
 /* global window, document, Blob, FB */
 
-import marked from 'marked';
+import markdownItFootnote from 'markdown-it-footnote';
+import MarkdownIt from 'markdown-it';
 import get from 'lodash/get';
 
 // Helper Constants
@@ -68,13 +69,11 @@ export function ready(fn) {
  * @returns {{__html}} - Prepared object for React's dangerouslySetInnerHtml
  */
 export function markdown(source = '') {
-  // Markdown options <https://github.com/chjj/marked#options-1>
-  const options = {
-    sanitize: true,
-  };
+  const markdownIt = new MarkdownIt();
+  markdownIt.use(markdownItFootnote);
 
   return {
-    __html: marked(source, options),
+    __html: markdownIt.render(source),
   };
 }
 

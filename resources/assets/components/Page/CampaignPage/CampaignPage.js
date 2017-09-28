@@ -21,9 +21,9 @@ import { PAGE_MODAL } from '../../Modal';
 
 const CampaignPage = (props) => {
   const {
-    affiliatePartners, affiliateSponsors, blurb, campaignLead, clickedSignUp, coverImage,
-    dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal, slug, subtitle, template,
-    title, totalCampaignSignups,
+    affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
+    dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
+    slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -37,7 +37,6 @@ const CampaignPage = (props) => {
         blurb={blurb}
         coverImage={coverImage}
         legacyCampaignId={legacyCampaignId}
-        clickedSignUp={clickedSignUp}
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
@@ -98,7 +97,6 @@ const CampaignPage = (props) => {
 
 CampaignPage.propTypes = {
   blurb: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,

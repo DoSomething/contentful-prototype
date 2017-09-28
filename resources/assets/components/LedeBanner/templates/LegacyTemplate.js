@@ -3,6 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import SponsorPromotion from '../../SponsorPromotion';
+import SignupButtonFactory from '../../SignupButton';
 
 const LegacyTemplate = (props) => {
   const {
@@ -11,7 +12,6 @@ const LegacyTemplate = (props) => {
     backgroundImageUrl,
     isAffiliated,
     legacyCampaignId,
-    clickedSignUp,
     endDate,
     affiliateSponsors,
   } = props;
@@ -24,6 +24,10 @@ const LegacyTemplate = (props) => {
   // whether to grab single entry when transforming in PHP
   const sponsor = affiliateSponsors[0];
 
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Sign Up</button>
+  ), 'legacy lede banner', { text: 'sign up' });
+
   return (
     <header role="banner" className="header -hero header--action has-promotions" style={backgroundImageStyle}>
       <div className="wrapper">
@@ -31,7 +35,11 @@ const LegacyTemplate = (props) => {
         <p className="header__subtitle">{subtitle}</p>
         { endDate ? <p className="header__date">Ends {moment(endDate.date).format('MMMM Do')}</p> : null }
 
-        { isAffiliated ? null : <div className="header__signup"><button className="button" onClick={() => clickedSignUp(legacyCampaignId, { source: 'legacy lede banner|text: Join us' })}>Sign Up</button></div>}
+        { isAffiliated ? null : (
+          <div className="header__signup">
+            <SignupButton />
+          </div>
+        )}
 
         {
           sponsor ?
@@ -48,7 +56,6 @@ const LegacyTemplate = (props) => {
 
 LegacyTemplate.propTypes = {
   backgroundImageUrl: PropTypes.string.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,

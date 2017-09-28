@@ -10,7 +10,6 @@ exports[`Byline default snapshot test 1`] = `
     image={Object {}}
     imageClassName="avatar"
     size="small"
-    verticalAlignment="center"
   >
     <strong>
       Puppet Sloth
@@ -35,7 +34,6 @@ exports[`Byline with props snapshot test 1`] = `
     image="http://placeimg.com/150/150/people"
     imageClassName="avatar"
     size="small"
-    verticalAlignment="center"
   >
     <strong>
       Braümhilda Snosages
