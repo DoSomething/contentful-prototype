@@ -235,13 +235,13 @@ function useOverrideIfSet($field, $campaign, $override)
  * Determine the fields to display in the social share.
  *
  * @param  Campaign $campaign
- * @param  String   $uri
+ * @param  string   $uri
  * @return array
  */
 function get_social_fields($campaign, $uri)
 {
     $campaignFlattened = json_decode(json_encode($campaign));
-    $socialOverride = $campaignFlattened->socialOverride? $campaignFlattened->socialOverride->fields : null;
+    $socialOverride = $campaignFlattened->socialOverride ? $campaignFlattened->socialOverride->fields : null;
     $blockPath = $campaignFlattened->slug . '/blocks';
 
     if (str_contains($uri, $blockPath)) {
