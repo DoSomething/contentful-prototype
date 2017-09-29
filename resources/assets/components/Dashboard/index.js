@@ -57,7 +57,7 @@ const Dashboard = (props) => {
 };
 
 Dashboard.propTypes = {
-  totalCampaignSignups: PropTypes.number.isRequired,
+  totalCampaignSignups: PropTypes.number,
   endDate: PropTypes.shape({
     date: PropTypes.string,
   }).isRequired,
@@ -74,6 +74,7 @@ Dashboard.propTypes = {
 };
 
 Dashboard.defaultProps = {
+  totalCampaignSignups: 0,
   content: {
     fields: {
       // ...!
