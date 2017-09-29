@@ -50,12 +50,6 @@ export const COMPETITION_FOUND = 'COMPETITION_FOUND';
 export const COMPETITION_PENDING = 'COMPETITION_PENDING';
 export * from './competition';
 
-// Social Action Names & Creators
-export const REQUESTED_FACEBOOK_SHARE = 'REQUESTED_FACEBOOK_SHARE';
-export const FACEBOOK_SHARE_COMPLETED = 'FACEBOOK_SHARE_COMPLETED';
-export const FACEBOOK_SHARE_CANCELLED = 'FACEBOOK_SHARE_CANCELLED';
-export * from './share';
-
 // Notification Action Names & Creators
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';

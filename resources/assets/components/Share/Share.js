@@ -9,23 +9,19 @@ import './share.scss';
 
 const Share = (props) => {
   const {
-    className, facebookShareCancelled, facebookShareCompleted,
-    link, parentSource, quote, requestedFacebookShare,
-    trackEvent, variant,
+    className, link, parentSource,
+    quote, trackEvent, variant,
   } = props;
 
   const trackingData = { parentSource, variant, link, quote };
 
   const onClick = () => {
-    requestedFacebookShare();
     trackEvent('clicked facebook share', trackingData);
 
     showFacebookSharePrompt({ link, quote }, (response) => {
       if (response) {
-        facebookShareCompleted();
         trackEvent('facebook share posted', trackingData);
       } else {
-        facebookShareCancelled();
         trackEvent('facebook share cancelled', trackingData);
       }
     });
@@ -44,12 +40,9 @@ const Share = (props) => {
 
 Share.propTypes = {
   className: PropTypes.string,
-  facebookShareCancelled: PropTypes.func.isRequired,
-  facebookShareCompleted: PropTypes.func.isRequired,
   link: PropTypes.string,
   parentSource: PropTypes.string,
   quote: PropTypes.string,
-  requestedFacebookShare: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
   variant: PropTypes.oneOf(['black', 'blue', 'icon']),
 };
