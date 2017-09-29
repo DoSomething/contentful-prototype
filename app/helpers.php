@@ -257,6 +257,8 @@ function get_social_fields($campaign, $uri)
     }
 
     $coverImage = useOverrideIfSet('coverImage', $campaignFlattened, $socialOverride);
+    // If the image is pulled from socialOverride, its going to be a string.
+    // But if its pulled from campaignFlattened, its an object containing a url string.
     if (gettype($coverImage) === 'object') {
         $coverImage = $coverImage->url;
     }
