@@ -241,7 +241,7 @@ function useOverrideIfSet($field, $campaign, $override)
 function get_social_fields($campaign, $uri)
 {
     $campaignFlattened = json_decode(json_encode($campaign));
-    $socialOverride = $campaignFlattened->socialOverride->fields;
+    $socialOverride = $campaignFlattened->socialOverride? $campaignFlattened->socialOverride->fields : null;
     $blockPath = $campaignFlattened->slug . '/blocks';
 
     if (str_contains($uri, $blockPath)) {
