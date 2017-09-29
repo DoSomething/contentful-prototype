@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ModalSwitch from '../Modal';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
-import NotificationContainer from '../../containers/NotificationContainer';
+import NotificationContainer from '../Notification';
 
 const Campaign = (props) => {
   const { isAffiliated, useLandingPage } = props;

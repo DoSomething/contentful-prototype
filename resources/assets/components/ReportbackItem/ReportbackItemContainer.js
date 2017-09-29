@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
-import ReportbackItem from '../components/ReportbackItem';
+import ReportbackItem from './ReportbackItem';
 import {
   toggleReactionOn,
   toggleReactionOff,
-} from '../actions';
+} from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.

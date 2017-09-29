@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Experiment from '../components/Experiment';
-import { participateInExperiment } from '../actions';
+import Experiment from './Experiment';
+import { participateInExperiment } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.

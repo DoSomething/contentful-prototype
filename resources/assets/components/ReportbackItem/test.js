@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import ReportbackItem from './index';
+import ReportbackItem from './ReportbackItem';
 
 test('Reportback Item basic snapshot test', () => {
   const component = shallow(<ReportbackItem />);

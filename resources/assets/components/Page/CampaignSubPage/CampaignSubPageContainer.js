@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => ({
   verb: get(state.campaign.additionalContent, 'verb'),
   tagline: get(state.campaign.additionalContent, 'tagline'),
   title: state.campaign.title,
+  campaignEndDate: get(state.campaign.endDate, 'date', null),
 });
 
 // Export the container component.

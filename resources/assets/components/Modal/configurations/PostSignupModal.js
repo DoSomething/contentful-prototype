@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { AffirmationContainer } from '../../Affirmation';
-import CompetitionContainer from '../../../containers/CompetitionContainer';
+import { CompetitionBlockContainer } from '../../CompetitionBlock';
 
 const PostSignupModal = ({ competitionStep }) => (
   <article>
@@ -10,7 +10,7 @@ const PostSignupModal = ({ competitionStep }) => (
     </div>
     <div className="modal__slide">
       { competitionStep ? (
-        <CompetitionContainer
+        <CompetitionBlockContainer
           content={competitionStep.content}
           photo={competitionStep.photos[0]}
           byline={competitionStep.additionalContent}

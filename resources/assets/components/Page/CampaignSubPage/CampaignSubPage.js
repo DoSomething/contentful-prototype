@@ -5,18 +5,21 @@ import PropTypes from 'prop-types';
 import NotFound from '../../NotFound';
 import Markdown from '../../Markdown';
 import ScrollConcierge from '../../ScrollConcierge';
-import CallToActionBlockContainer from '../../../containers/CallToActionBlockContainer';
+import CallToActionBlockContainer from '../../CallToActionBlock';
+import { isCampaignClosed } from '../../../helpers';
 
 import './campaign-subpage.scss';
 
 const CampaignSubPage = (props) => {
-  const { match, noun, pages, tagline, verb } = props;
+  const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
   const subPage = find(pages, page => page.fields.slug === match.params.slug);
 
   if (! subPage) {
     return <NotFound />;
   }
+
+  const isClosed = isCampaignClosed(campaignEndDate);
 
   const ctaContent = `${tagline}\n\n__Join hundreds of members and ${verb.plural} ${noun.plural}!__`;
 
@@ -31,22 +34,27 @@ const CampaignSubPage = (props) => {
         </article>
       </div>
 
-      <div className="secondary">
-        <CallToActionBlockContainer
-          fields={{ content: ctaContent }}
-          modifierClasses="dark-bg"
-        />
-      </div>
+      { ! isClosed ? (
+        <span>
+          <div className="secondary">
+            <CallToActionBlockContainer
+              fields={{ content: ctaContent }}
+              modifierClasses="dark-bg"
+            />
+          </div>
 
-      <CallToActionBlockContainer
-        fields={{ title: tagline }}
-        modifierClasses="transparent border-none"
-      />
+          <CallToActionBlockContainer
+            fields={{ title: tagline }}
+            modifierClasses="transparent border-none"
+          />
+        </span>
+      ) : null }
     </div>
   );
 };
 
 CampaignSubPage.propTypes = {
+  campaignEndDate: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   noun: PropTypes.shape({
     singular: PropTypes.string,

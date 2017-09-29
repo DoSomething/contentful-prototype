@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import NotificationList from '../components/Notification';
-import { removeNotification } from '../actions';
+import NotificationList from './NotificationList';
+import { removeNotification } from '../../actions';
 
 const mapStateToProps = state => ({
   notifications: state.notifications.items,

@@ -7,7 +7,7 @@ import PlaceholderBlock from '../PlaceholderBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import StaticBlock from '../StaticBlock';
 import Quiz from '../Quiz';
-import CallToActionBlockContainer from '../../containers/CallToActionBlockContainer';
+import CallToActionBlockContainer from '../CallToActionBlock';
 import { BlockJson } from '../../types';
 
 // If no block is passed, just render an empty "placeholder".

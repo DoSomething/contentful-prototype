@@ -12,7 +12,7 @@ import { isCampaignClosed } from '../../../helpers';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import { ActionPageContainer } from '../../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
-import TabbedNavigationContainer from '../../../containers/TabbedNavigationContainer';
+import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 import CampaignFooter from '../../CampaignFooter';
 import { PAGE_MODAL } from '../../Modal';
 

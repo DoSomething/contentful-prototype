@@ -62,12 +62,6 @@
     }
   }
 
-  .legacy-step-header {
-    width: 100%;
-  }
-
-
-
   // Custom overrides for the various layouts on tablet+ devices.
   @include media($medium) {
     .action-step__photos.-one-third {
@@ -81,5 +75,13 @@
         margin-left: $half-spacing;
       }
     }
+  }
+}
+
+.legacy-step-header {
+  width: 100%;
+
+  &.-emphasized {
+    margin: $half-spacing 0;
   }
 }

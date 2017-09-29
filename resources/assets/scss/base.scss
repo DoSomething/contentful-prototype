@@ -84,6 +84,16 @@ h1, h2, h3, p {
   clear: none;
 }
 
+.expand-horizontal-lg {
+  margin-left: -$base-spacing;
+  margin-right: -$base-spacing;
+}
+
+.expand-horizontal-md {
+  margin-left: -$half-spacing;
+  margin-right: -$half-spacing;
+}
+
 .flex-center-xy {
   display: flex;
   justify-content: center;
@@ -163,12 +173,20 @@ h1, h2, h3, p {
   margin-bottom: $base-spacing;
 }
 
+.margin-bottom-xlg {
+  margin-bottom: $section-spacing;
+}
+
 .margin-top-md {
   margin-top: $half-spacing;
 }
 
 .margin-top-lg {
   margin-top: $base-spacing;
+}
+
+.margin-top-xlg {
+  margin-top: $section-spacing;
 }
 
 .rounded {

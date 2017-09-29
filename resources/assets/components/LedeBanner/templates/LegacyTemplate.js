@@ -1,15 +1,16 @@
 import React from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
-import SponsorPromotion from '../../SponsorPromotion';
 import SignupButtonFactory from '../../SignupButton';
+import SponsorPromotion from '../../SponsorPromotion';
+import { contentfulImageUrl } from '../../../helpers';
 
 const LegacyTemplate = (props) => {
   const {
     title,
     subtitle,
-    backgroundImageUrl,
+    coverImage,
     isAffiliated,
     legacyCampaignId,
     endDate,
@@ -17,7 +18,7 @@ const LegacyTemplate = (props) => {
   } = props;
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundImage: `url(${contentfulImageUrl(coverImage.url, '1440', '810', 'fill')})`,
   };
 
   // @TODO: consider whether there can be more than one affiliate, or
@@ -33,7 +34,7 @@ const LegacyTemplate = (props) => {
       <div className="wrapper">
         <h1 className="header__title">{title}</h1>
         <p className="header__subtitle">{subtitle}</p>
-        { endDate ? <p className="header__date">Ends {moment(endDate.date).format('MMMM Do')}</p> : null }
+        { endDate ? <p className="header__date">Ends {format(endDate.date, 'MMMM Do')}</p> : null }
 
         { isAffiliated ? null : (
           <div className="header__signup">
@@ -55,14 +56,17 @@ const LegacyTemplate = (props) => {
 };
 
 LegacyTemplate.propTypes = {
-  backgroundImageUrl: PropTypes.string.isRequired,
+  coverImage: PropTypes.shape({
+    description: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,
     timezone_type: PropTypes.int,
   }),
   isAffiliated: PropTypes.bool.isRequired,
-  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

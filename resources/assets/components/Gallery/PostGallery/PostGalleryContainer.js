@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+
 import PostGallery from './PostGallery';
-import { fetchReportbacks } from '../../actions';
+import { fetchReportbacks } from '../../../actions';
 
 const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,

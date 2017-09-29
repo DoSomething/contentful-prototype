@@ -5,9 +5,10 @@ import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
+import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
-import CompetitionContainer from '../../containers/CompetitionContainer';
-import { PostGalleryContainer, SubmissionGalleryContainer } from '../Gallery';
+import { CompetitionBlockContainer } from '../CompetitionBlock';
+import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
@@ -20,7 +21,7 @@ const ActionStepsWrapper = (props) => {
   );
 
   const postGallery = (
-    <PostGalleryContainer key="post_gallery" />
+    <PostGalleryContainer key="post_gallery" type="reportback" />
   );
 
   const submissionGallery = (
@@ -52,7 +53,7 @@ const ActionStepsWrapper = (props) => {
     switch (type) {
       case 'competition':
         return (
-          <CompetitionContainer
+          <CompetitionBlockContainer
             key={key}
             content={content}
             photo={step.photos[0]}
@@ -93,7 +94,14 @@ const ActionStepsWrapper = (props) => {
   }
 
   if (template === 'legacy') {
-    stepComponents.push(postGallery);
+    stepComponents.push(
+      <div key="user_gallery" className="margin-top-xlg margin-bottom-xlg">
+        <h2 className="heading -emphasized legacy-step-header margin-top-md margin-bottom-md">
+          <span>User Gallery</span>
+        </h2>
+        {postGallery}
+      </div>,
+    );
   }
 
   return (

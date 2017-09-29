@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+
 import SubmissionGallery from './SubmissionGallery';
-import { fetchUserReportbacks } from '../../actions';
+import { fetchUserReportbacks } from '../../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.

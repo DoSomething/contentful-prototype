@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 
 import Markdown from '../../Markdown';
 import SignupButtonFactory from '../../SignupButton';
+import { contentfulImageUrl } from '../../../helpers';
 
 const MosaicTemplate = (props) => {
   const {
     title,
     subtitle,
     blurb,
-    backgroundImageUrl,
+    coverImage,
     isAffiliated,
     legacyCampaignId,
   } = props;
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${backgroundImageUrl})`,
+    backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
@@ -42,8 +43,11 @@ const MosaicTemplate = (props) => {
 };
 
 MosaicTemplate.propTypes = {
-  backgroundImageUrl: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
+  coverImage: PropTypes.shape({
+    description: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,

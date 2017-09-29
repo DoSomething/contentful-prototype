@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import BlockWrapper from '../Block/BlockWrapper';
 import { FlexCell } from '../Flex';
-import ReportbackItemContainer from '../../containers/ReportbackItemContainer';
+import ReportbackItemContainer from '../ReportbackItem';
 import { mapDisplayToPoints } from '../../selectors/feed';
 import './reportback-block.scss';
 
