@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
-import CallToActionBlock from '../components/CallToActionBlock';
+import CallToActionBlock from './CallToActionBlock';
 
 /**
  * Provide state from the Redux store as props for this component.

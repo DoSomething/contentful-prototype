@@ -1,4 +1,4 @@
-/* global window, document, Blob */
+/* global window, document, Blob, FB */
 
 import markdownItFootnote from 'markdown-it-footnote';
 import MarkdownIt from 'markdown-it';
@@ -372,4 +372,21 @@ export function findById(array, compareId) {
  */
 export function env(key) {
   return (window.ENV || {})[key];
+}
+
+/**
+ * Share a link by generating a Facebook share prompt.
+ * Get a callback if the share is successful or not.
+ *
+ * @param  {Object}   share
+ * @param  {Function} callback
+ */
+export function showFacebookSharePrompt(share, callback) {
+  const { href, quote } = share;
+
+  FB.ui({
+    method: 'share',
+    href,
+    quote,
+  }, callback);
 }

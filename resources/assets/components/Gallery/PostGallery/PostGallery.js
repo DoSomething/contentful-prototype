@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../../Card';
 import Gallery from '../Gallery';
-import ReportbackItemContainer from '../../../containers/ReportbackItemContainer';
+import ReportbackItemContainer from '../../ReportbackItem';
 
 class PostGallery extends React.Component {
   constructor() {

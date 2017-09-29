@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Button from '../components/Button/Button';
-import NavigationLink from '../components/Navigation/NavigationLink';
-import TabbedNavigation from '../components/Navigation/TabbedNavigation';
-import { campaignPaths } from '../helpers/navigation';
-import { isCampaignClosed } from '../helpers';
-import SignupButtonFactory from '../components/SignupButton';
+import Button from '../Button/Button';
+import NavigationLink from '../Navigation/NavigationLink';
+import TabbedNavigation from './TabbedNavigation';
+import { campaignPaths } from '../../helpers/navigation';
+import { isCampaignClosed } from '../../helpers';
+import SignupButtonFactory from '../SignupButton';
 
 const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,

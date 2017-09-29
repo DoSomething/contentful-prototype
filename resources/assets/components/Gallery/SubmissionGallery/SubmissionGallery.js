@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Gallery from '../Gallery';
 import { makeHash } from '../../../helpers';
-import ReportbackItem from '../../ReportbackItem';
+import ReportbackItem from '../../ReportbackItem/ReportbackItem';
 
 class SubmissionGallery extends React.Component {
   static renderReportbackItem(submission) {

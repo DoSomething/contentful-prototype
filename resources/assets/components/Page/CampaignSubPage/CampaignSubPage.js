@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import NotFound from '../../NotFound';
 import Markdown from '../../Markdown';
 import ScrollConcierge from '../../ScrollConcierge';
-import CallToActionBlockContainer from '../../../containers/CallToActionBlockContainer';
+import CallToActionBlockContainer from '../../CallToActionBlock';
 import { isCampaignClosed } from '../../../helpers';
 
 import './campaign-subpage.scss';

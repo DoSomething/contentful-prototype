@@ -7,7 +7,7 @@ import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
-import CompetitionContainer from '../../containers/CompetitionContainer';
+import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 
 const ActionStepsWrapper = (props) => {
@@ -53,7 +53,7 @@ const ActionStepsWrapper = (props) => {
     switch (type) {
       case 'competition':
         return (
-          <CompetitionContainer
+          <CompetitionBlockContainer
             key={key}
             content={content}
             photo={step.photos[0]}
