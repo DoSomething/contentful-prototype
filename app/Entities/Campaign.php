@@ -197,6 +197,7 @@ class Campaign extends Entity implements JsonSerializable
             ],
             'pages' => $this->pages,
             'landingPage' => $this->landingPage,
+            'socialOverride' => new SocialOverride($this->socialOverride->entry),
             'additionalContent' => $this->additionalContent,
         ];
     }

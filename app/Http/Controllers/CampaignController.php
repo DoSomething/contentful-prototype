@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Request;
 use App\Services\PhoenixLegacy;
 use App\Repositories\CampaignRepository;
 
@@ -56,16 +57,19 @@ class CampaignController extends Controller
     public function show($slug)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
-        $shareFields = getShareFields($campaign, $campaign->socialOverrides);
         $env = get_client_environment_vars();
+
+        // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
+        // $socialFields = get_social_fields($campaign->jsonSerialize(), Request::url());
+        $socialFields = get_social_fields($campaign, Request::url());
 
         return view('campaigns.show', [
             'campaign' => $campaign,
-            'shareFields' => $shareFields,
+            'socialFields' => $socialFields,
             'env' => $env,
         ])->with('state', [
             'campaign' => $campaign,
-            'share' => $shareFields,
+            'share' => $socialFields,
             'user' => [
                 'id' => auth()->id(),
                 'role' => auth()->user() ? auth()->user()->role : null,

@@ -11,7 +11,7 @@
     <link rel="icon" type="image/ico" href="/favicon.ico?v1">
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
-    @if(isset($shareFields))
+    @if(isset($socialFields))
         @include('partials.social')
     @endif
 </head>

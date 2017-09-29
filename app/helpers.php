@@ -224,28 +224,49 @@ function useOverrideIfSet($field, $campaign, $override)
         return $base;
     }
 
-    $override = $override->{$field};
+    if (isset($override->{$field})) {
+        return $override->{$field};
+    }
 
-    return $override === null ? $base : $override;
+    return $base;
 }
 
 /**
  * Determine the fields to display in the social share.
  *
  * @param  Campaign $campaign
- * @param  DynamicEntry $shareOverrides
+ * @param  String   $uri
  * @return array
  */
-function getShareFields($campaign, $shareOverrides)
+function get_social_fields($campaign, $uri)
 {
-    $coverImage = useOverrideIfSet('coverImage', $campaign, $shareOverrides);
+    $campaignFlattened = json_decode(json_encode($campaign));
+    $socialOverride = $campaignFlattened->socialOverride;
+    $blockPath = $campaignFlattened->slug . '/blocks';
+
+    if (str_contains($uri, $blockPath)) {
+        $blockId = last(explode('/', $uri));
+
+        $block = array_first($campaignFlattened->activityFeed, function ($value) use ($blockId) {
+            return $value->id === $blockId;
+        });
+
+        if ($block && isset($block->fields->socialOverride)) {
+            $socialOverride = $block->fields->socialOverride->fields;
+        }
+    }
+
+    $coverImage = useOverrideIfSet('coverImage', $campaignFlattened, $socialOverride);
+    if (gettype($coverImage) === 'object') {
+        $coverImage = $coverImage->url;
+    }
 
     return [
-        'title' => useOverrideIfSet('title', $campaign, $shareOverrides),
-        'callToAction' => useOverrideIfSet('callToAction', $campaign, $shareOverrides),
-        'coverImage' => get_image_url($coverImage, 'landscape'),
+        'title' => useOverrideIfSet('title', $campaign, $socialOverride),
+        'callToAction' => useOverrideIfSet('callToAction', $campaign, $socialOverride),
+        'coverImage' => $coverImage,
         'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => $shareOverrides ? $shareOverrides->quote : null,
+        'quote' => useOverrideIfSet('quote', $campaign, $socialOverride),
     ];
 }
 

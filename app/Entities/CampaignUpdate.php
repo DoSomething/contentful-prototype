@@ -21,6 +21,7 @@ class CampaignUpdate extends Entity implements JsonSerializable
                 'content' => $this->content,
                 'displayOptions' => $this->displayOptions->first(),
                 'link' => $this->link,
+                'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             ],
         ];
     }

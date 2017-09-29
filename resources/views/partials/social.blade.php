@@ -1,21 +1,21 @@
-<meta property="og:title" content="{{ $shareFields['title'] }}" />
+<meta property="og:title" content="{{ $socialFields['title'] }}" />
 <meta property="og:type"  content="article" />
-<meta property="og:description" content="{{ $shareFields['callToAction'] }}" />
+<meta property="og:description" content="{{ $socialFields['callToAction'] }}" />
 
 
 {{-- Exposing the URL in our current setup causes funky side effects because of redirect rules
      and Facebook seems capable of working without it. --}}
 {{-- <meta property="og:url" content="https://dosomething.org/campaigns/{{ $campaign->slug }}" /> --}}
 
-<meta property="og:image" content="{{ $shareFields['coverImage'] }}" />
+<meta property="og:image" content="{{ $socialFields['coverImage'] }}" />
 
-<meta property="fb:app_id" content="{{ $shareFields['facebookAppId'] }}" />
+<meta property="fb:app_id" content="{{ $socialFields['facebookAppId'] }}" />
 
 {{-- This is a non-blocking script --}}
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId: '{{ $shareFields['facebookAppId'] }}',
+      appId: '{{ $socialFields['facebookAppId'] }}',
       xfbml: true,
       version: 'v2.8'
     });
