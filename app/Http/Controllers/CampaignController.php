@@ -60,7 +60,6 @@ class CampaignController extends Controller
         $env = get_client_environment_vars();
 
         // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
-        // $socialFields = get_social_fields($campaign->jsonSerialize(), Request::url());
         $socialFields = get_social_fields($campaign, Request::url());
 
         return view('campaigns.show', [
