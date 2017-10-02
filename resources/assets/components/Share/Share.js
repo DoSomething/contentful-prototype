@@ -18,7 +18,7 @@ const Share = (props) => {
   const onClick = () => {
     trackEvent('clicked facebook share', trackingData);
 
-    showFacebookSharePrompt({ link, quote }, (response) => {
+    showFacebookSharePrompt({ href: link, quote }, (response) => {
       if (response) {
         trackEvent('facebook share posted', trackingData);
       } else {
