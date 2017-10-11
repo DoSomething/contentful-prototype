@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Card from '../../Card';
 import Markdown from '../../Markdown';
 
-const PageModal = ({ content }) => (
+const ContentModal = ({ content }) => (
   <Card className="bordered padded modal__slide">
     <Markdown>{ content }</Markdown>
   </Card>
 );
 
-PageModal.propTypes = {
+ContentModal.propTypes = {
   content: PropTypes.string.isRequired,
 };
 
-export default PageModal;
+export default ContentModal;

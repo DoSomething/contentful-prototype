@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Modal, PostSignupModal, PageModal,
-  POST_SIGNUP_MODAL, PAGE_MODAL,
+  Modal, PostSignupModal, ContentModal,
+  POST_SIGNUP_MODAL, CONTENT_MODAL,
 } from '../Modal';
 
 const ModalSwitch = (props) => {
@@ -11,7 +11,7 @@ const ModalSwitch = (props) => {
 
   switch (modalType) {
     case POST_SIGNUP_MODAL: children = <PostSignupModal />; break;
-    case PAGE_MODAL: children = <PageModal />; break;
+    case CONTENT_MODAL: children = <ContentModal />; break;
     default: break;
   }
 

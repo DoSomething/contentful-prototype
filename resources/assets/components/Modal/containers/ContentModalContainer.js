@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { find } from 'lodash';
-import PageModal from '../configurations/PageModal';
+import ContentModal from '../configurations/ContentModal';
 
 const mapStateToProps = (state) => {
   const contentfulId = state.modal.contentfulId;
@@ -21,4 +21,4 @@ const mapStateToProps = (state) => {
   return { content };
 };
 
-export default connect(mapStateToProps)(PageModal);
+export default connect(mapStateToProps)(ContentModal);
