@@ -9,7 +9,7 @@ const ContentModal = (props) => {
 
   const campaignUpdate = (
     <div className="modal__slide">
-      <CampaignUpdateContainer id={contentfulId} />
+      <CampaignUpdateContainer id={contentfulId} bordered={false} />
     </div>
   );
 

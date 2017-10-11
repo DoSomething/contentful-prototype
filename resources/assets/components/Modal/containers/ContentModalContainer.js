@@ -34,18 +34,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(ContentModal);
-
-/*
-{
-type: 'OPEN_MODAL',
-modalType: 'CONTENT_MODAL',
-contentfulId: '4i2roHr1VSUu8Io6OiWyE8'
-}
-
-{
-type: 'OPEN_MODAL',
-modalType: 'CONTENT_MODAL',
-contentfulId: '24tJwKV9WgMoSmIcg2IgcE'
-}
-
- */
