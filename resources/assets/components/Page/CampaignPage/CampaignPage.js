@@ -14,7 +14,7 @@ import { ActionPageContainer } from '../../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 import CampaignFooter from '../../CampaignFooter';
-import { PAGE_MODAL } from '../../Modal';
+import { CONTENT_MODAL } from '../../Modal';
 
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
@@ -25,7 +25,8 @@ const CampaignPage = (props) => {
     dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
     slug, subtitle, template, title, totalCampaignSignups,
   } = props;
-
+  // console.log(props.history);
+  // use the goBack after you trigger the content modal
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
 
   return (
@@ -78,7 +79,7 @@ const CampaignPage = (props) => {
             <Route
               path={`${match.url}/modal/:id`}
               render={(routingProps) => {
-                openModal(PAGE_MODAL, routingProps.match.params.id);
+                openModal(CONTENT_MODAL, routingProps.match.params.id);
                 return <Redirect to={`${match.url}`} />;
               }}
             />
