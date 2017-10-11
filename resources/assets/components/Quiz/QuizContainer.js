@@ -6,7 +6,7 @@ import {
   replaceStringWithWinner,
   replaceStringWithPercent,
 } from './helpers';
-import { pickQuizAnswer, completeQuiz } from '../../actions';
+import { pickQuizAnswer, completeQuiz } from '../../actions/quiz';
 
 /**
  * Provide state from the Redux store as props for this component.
