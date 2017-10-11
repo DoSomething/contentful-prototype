@@ -8,22 +8,44 @@ const mapStateToProps = (state) => {
     return null;
   }
 
-  const database = {
+  const database = [
     ...state.campaign.pages,
     ...state.campaign.activityFeed,
-  };
+  ];
 
-  const page = find(database, { id: contentfulId });
-  if (! page) {
+  const item = find(database, { id: contentfulId });
+  if (! item) {
     return null;
   }
 
-  const content = page.fields.content;
+  const content = item.fields.content;
   if (! content) {
     return null;
   }
 
-  return { content };
+  const type = item.type;
+  if (! type) {
+    return null;
+  }
+
+  const title = item.fields.title || null;
+
+  return { content, title, type, contentfulId };
 };
 
 export default connect(mapStateToProps)(ContentModal);
+
+/*
+{
+type: 'OPEN_MODAL',
+modalType: 'CONTENT_MODAL',
+contentfulId: '4i2roHr1VSUu8Io6OiWyE8'
+}
+
+{
+type: 'OPEN_MODAL',
+modalType: 'CONTENT_MODAL',
+contentfulId: '24tJwKV9WgMoSmIcg2IgcE'
+}
+
+ */

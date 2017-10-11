@@ -25,8 +25,10 @@ const CampaignPage = (props) => {
     dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
     slug, subtitle, template, title, totalCampaignSignups,
   } = props;
+
   // console.log(props.history);
-  // use the goBack after you trigger the content modal
+  // TODO: if the history.length > 0, use the history.goBack after you trigger the content modal
+
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
 
   return (
