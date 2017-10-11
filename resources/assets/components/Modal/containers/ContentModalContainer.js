@@ -8,7 +8,12 @@ const mapStateToProps = (state) => {
     return null;
   }
 
-  const page = find(state.campaign.pages, { id: contentfulId });
+  const database = {
+    ...state.campaign.pages,
+    ...state.campaign.activityFeed,
+  };
+
+  const page = find(database, { id: contentfulId });
   if (! page) {
     return null;
   }
