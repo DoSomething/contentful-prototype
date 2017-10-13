@@ -20,8 +20,10 @@ const ContentModal = (props) => {
   );
 
   switch (type) {
-    case 'campaignUpdate': return campaignUpdate;
-    default: return card;
+    case 'campaignUpdate':
+      return campaignUpdate;
+    default:
+      return card;
   }
 };
 
