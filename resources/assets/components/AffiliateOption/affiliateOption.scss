@@ -19,10 +19,10 @@
   }
 
   .footnote-details {
-    visibility: hidden;
+    display: none;
 
     &.is-expanded {
-      visibility: visible;
+      display: block;
     }
   }
 }
