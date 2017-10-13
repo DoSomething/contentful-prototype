@@ -19,7 +19,7 @@ class SocialOverride extends Entity implements JsonSerializable
             'fields' => [
                 'title' => $this->title,
                 'callToAction' => $this->callToAction,
-                'coverImage' => get_image_url($this->coverImage),
+                'coverImage' => get_image_url($this->coverImage, 'landscape'),
                 'quote' => $this->quote,
             ],
         ];

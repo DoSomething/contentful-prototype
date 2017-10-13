@@ -260,7 +260,7 @@ function get_social_fields($campaign, $uri)
     // If the image is pulled from socialOverride, its going to be a string.
     // But if its pulled from campaignFlattened, its an object containing a url string.
     if (gettype($coverImage) === 'object') {
-        $coverImage = $coverImage->url;
+        $coverImage = $coverImage->landscape_url;
     }
 
     return [
