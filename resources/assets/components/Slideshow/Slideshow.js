@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './slideshow.scss';
 
 // TODO: Investigate why the `no-confusing-arrow` rule isn't working in this file.
 /* eslint-disable no-confusing-arrow */
@@ -9,7 +10,7 @@ const Slideshow = ({ isFinalSlide, nextSlide, onComplete, slide, slideshowId }) 
       { slide }
     </div>
     <button
-      className="button slideshow__button"
+      className="button slideshow__button margin-top-lg"
       onClick={() => isFinalSlide ? onComplete() : nextSlide(slideshowId)}
     >{ isFinalSlide ? 'Close' : 'Next' }</button>
   </div>
