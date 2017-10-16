@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AffirmationContainer } from '../../Affirmation';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
-import Slideshow from '../../Slideshow';
+import SlideshowContainer from '../../Slideshow';
 
-const PostSignupModal = ({ competitionStep }) => (
+const PostSignupModal = ({ competitionStep, closeModal }) => (
   <div className="modal__slide">
-    <Slideshow slideshowId="post signup modal">
+    <SlideshowContainer slideshowId="post signup modal" onComplete={closeModal}>
       { competitionStep ? (
         <CompetitionBlockContainer
           content={competitionStep.content}
@@ -15,11 +15,12 @@ const PostSignupModal = ({ competitionStep }) => (
         />
       ) : null }
       <AffirmationContainer />
-    </Slideshow>
+    </SlideshowContainer>
   </div>
 );
 
 PostSignupModal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
   competitionStep: PropTypes.shape({
     content: PropTypes.string.isRequired,
     photo: PropTypes.string,

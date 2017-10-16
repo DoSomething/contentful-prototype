@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PostSignupModal from '../configurations/PostSignupModal';
+import { closeModal } from '../../../actions/modal';
 
 const mapStateToProps = state => ({
   competitionStep: state.campaign.actionSteps.find(step => (
@@ -7,4 +8,8 @@ const mapStateToProps = state => ({
   )),
 });
 
-export default connect(mapStateToProps)(PostSignupModal);
+const actionCreators = {
+  closeModal,
+};
+
+export default connect(mapStateToProps, actionCreators)(PostSignupModal);

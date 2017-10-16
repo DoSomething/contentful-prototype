@@ -1,22 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { closeModal, nextSlide } from '../../actions';
+import { nextSlide } from '../../actions/slideshow';
 import Slideshow from './Slideshow';
 
 const mapStateToOwnProps = (state, ownProps) => {
   const slideIndex = state.slideshow[ownProps.slideshowId] || 0;
   const children = React.Children.toArray(ownProps.children);
-  console.log(children);
+  const slide = children[slideIndex] || null;
 
   return {
-    slideIndex,
-    isFinalSlide: false,
-    slide: null,
+    isFinalSlide: slideIndex >= children.length - 1,
+    slide,
   };
 };
 
 const actionCreators = {
-  closeModal, nextSlide,
+  nextSlide,
 };
 
 export default connect(mapStateToOwnProps, actionCreators)(Slideshow);

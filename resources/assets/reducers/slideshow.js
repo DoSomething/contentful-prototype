@@ -7,7 +7,7 @@ const slideshowReducer = (state = {}, action) => {
 
       return {
         ...state,
-        [slideshowId]: slideshowId in state ? state[slideshowId] + 1 : 0,
+        [slideshowId]: slideshowId in state ? state[slideshowId] + 1 : 1,
       };
     }
 
