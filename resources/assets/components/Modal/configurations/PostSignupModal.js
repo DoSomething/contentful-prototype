@@ -6,7 +6,7 @@ import SlideshowContainer from '../../Slideshow';
 
 const PostSignupModal = ({ competitionStep, closeModal }) => (
   <div className="modal__slide">
-    <SlideshowContainer slideshowId="post signup modal" onComplete={closeModal}>
+    <SlideshowContainer slideshowId="post-signup-modal" onComplete={closeModal}>
       { competitionStep ? (
         <CompetitionBlockContainer
           content={competitionStep.content}
