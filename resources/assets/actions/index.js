@@ -71,3 +71,6 @@ export const VIEW_QUIZ_RESULT = 'VIEW_QUIZ_RESULT';
 export const COMPARE_QUIZ_ANSWER = 'COMPARE_QUIZ_ANSWER';
 export const QUIZ_ERROR = 'QUIZ_ERROR';
 export * from './quiz';
+
+export const NEXT_SLIDE = 'NEXT_SLIDE';
+export * from './slideshow';
