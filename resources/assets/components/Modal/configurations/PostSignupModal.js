@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AffirmationContainer } from '../../Affirmation';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
+import Slideshow from '../../Slideshow';
 
 const PostSignupModal = ({ competitionStep }) => (
-  <article>
-    <div className="modal__slide">
-      <AffirmationContainer />
-    </div>
-    <div className="modal__slide">
+  <div className="modal__slide">
+    <Slideshow slideshowId="post signup modal">
       { competitionStep ? (
         <CompetitionBlockContainer
           content={competitionStep.content}
@@ -16,8 +14,9 @@ const PostSignupModal = ({ competitionStep }) => (
           byline={competitionStep.additionalContent}
         />
       ) : null }
-    </div>
-  </article>
+      <AffirmationContainer />
+    </Slideshow>
+  </div>
 );
 
 PostSignupModal.propTypes = {

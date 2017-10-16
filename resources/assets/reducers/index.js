@@ -8,6 +8,7 @@ export notifications from './notifications';
 export reportbacks from './reportbacks';
 export share from './share';
 export signups from './signups';
+export slideshow from './slideshow';
 export submissions from './submissions';
 export uploads from './uploads';
 export user from './user';

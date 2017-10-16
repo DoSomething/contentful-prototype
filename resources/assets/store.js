@@ -66,6 +66,7 @@ const initialState = {
   },
   uploads: {},
   quiz: {},
+  slideshow: {},
 };
 
 /**
