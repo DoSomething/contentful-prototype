@@ -14,7 +14,7 @@ import { ActionPageContainer } from '../../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 import CampaignFooter from '../../CampaignFooter';
-import { CONTENT_MODAL } from '../../Modal';
+import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
@@ -81,7 +81,17 @@ const CampaignPage = (props) => {
             <Route
               path={`${match.url}/modal/:id`}
               render={(routingProps) => {
-                openModal(CONTENT_MODAL, routingProps.match.params.id);
+                const { id } = routingProps.match.params;
+
+                switch (id) {
+                  case 'reportback':
+                    openModal(REPORTBACK_UPLOADER_MODAL);
+                    break;
+                  default:
+                    openModal(CONTENT_MODAL, id);
+                    break;
+                }
+
                 return <Redirect to={`${match.url}`} />;
               }}
             />
