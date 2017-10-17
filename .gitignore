@@ -13,3 +13,5 @@ Homestead.yaml
 .DS_Store
 
 npm-debug.log
+
+/forcing-wercker-to-deploy/ill-delete-this-in-a-sec
