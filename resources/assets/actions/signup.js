@@ -116,7 +116,8 @@ export function clickedSignUp(campaignId, options = null, shouldRedirectToAction
     // If we show an affiliate option, send the value over to Rogue as details
     let details = options;
 
-    if (getState().campaign.additionalContent.displayAffilitateOptOut && ! details) {
+    const additionalContent = getState().campaign.additionalContent || {};
+    if (additionalContent.displayAffilitateOptOut && ! details) {
       details = getState().signups.affiliateMessagingOptOut ? 'affiliate-opt-out' : null;
     }
 
