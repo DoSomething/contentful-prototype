@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 const TabbedNavigationContainer = (props) => {
   const { isAffiliated, legacyCampaignId, pages, campaignEndDate, template } = props;
 
-  if (template === 'legacy') {
+  if (template === 'legacy' && ! isAffiliated) {
     return null;
   }
 

@@ -23,8 +23,8 @@ import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
-    dashboard, endDate, isAffiliated, isAuthenticated, legacyCampaignId, match,
-    openModal, slug, subtitle, template, title, totalCampaignSignups,
+    dashboard, endDate, isAffiliated, legacyCampaignId, match, openModal,
+    slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
   // console.log(props.history);
@@ -64,7 +64,7 @@ const CampaignPage = (props) => {
               exact
               render={() => {
                 if (template === 'legacy') {
-                  return isAuthenticated ? <FeedContainer /> : <ActionPageContainer />;
+                  return isAffiliated ? <FeedContainer /> : <ActionPageContainer />;
                 }
 
                 return <FeedContainer />;
@@ -133,7 +133,6 @@ CampaignPage.propTypes = {
     email: PropTypes.string,
   }),
   isAffiliated: PropTypes.bool,
-  isAuthenticated: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
