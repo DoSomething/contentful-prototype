@@ -64,8 +64,8 @@ const CampaignPage = (props) => {
               exact
               render={() => {
                 if (template === 'legacy') {
-                  const displayFeed = (isAffiliated && hasActivityFeed);
-                  return displayFeed ? <FeedContainer /> : <Redirect to={`${match.url}/action`} />;
+                  const shouldDisplayFeed = (isAffiliated && hasActivityFeed);
+                  return shouldDisplayFeed ? <FeedContainer /> : <Redirect to={`${match.url}/action`} />;
                 }
 
                 return <FeedContainer />;

@@ -53,12 +53,12 @@ const TabbedNavigationContainer = (props) => {
     <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} />
   ), 'tabbed navigation', { text: 'join us' });
 
-  const hideCommunity = (template === 'legacy') && ! hasActivityFeed;
+  const shouldHideCommunity = (template === 'legacy') && ! hasActivityFeed;
 
   return (
     <TabbedNavigation>
       <div className="nav-items">
-        { hideCommunity ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink> }
+        { shouldHideCommunity ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink> }
         { isClosed ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
         { additionalPages }
       </div>
