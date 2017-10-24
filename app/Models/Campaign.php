@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,4 +12,13 @@ class Campaign extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * Returns the links for this Campaign.
+     *
+     * @return Collection
+     */
+    public function links() {
+        return $this->belongsToMany(Link::class);
+    }
 }
