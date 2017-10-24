@@ -64,7 +64,7 @@ const CampaignPage = (props) => {
               exact
               render={() => {
                 if (template === 'legacy') {
-                  return hasActivityFeed ? <FeedContainer /> : <Redirect to={`${match.url}/action`} />;
+                  return hasActivityFeed ? <FeedContainer /> : <ActionPageContainer />;
                 }
 
                 return <FeedContainer />;
