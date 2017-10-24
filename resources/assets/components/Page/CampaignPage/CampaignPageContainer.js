@@ -12,6 +12,7 @@ const mapStateToProps = state => ({
   coverImage: state.campaign.coverImage,
   dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
+  isAuthenticated: state.user.id !== null,
   isAffiliated: state.signups.thisCampaign,
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
