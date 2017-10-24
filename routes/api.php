@@ -11,4 +11,4 @@
 |
 */
 
-// @TBD!
+$router->post('api/webhooks/contentful', 'ContentfulController@webhook');
