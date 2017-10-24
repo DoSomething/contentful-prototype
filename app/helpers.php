@@ -326,3 +326,30 @@ function get_login_query($campaign = null)
         ],
     ];
 }
+
+/**
+ * Do a recursive search through the given array for all link ids.
+ * Returns a list of all link id's.
+ *
+ * @WARNING: Probably shouldn't use this function when responding to a request!
+ * @param  array $container
+ * @return array
+ */
+function find_identifiers_in_array($container) {
+    $links = collect([]);
+
+    foreach ($container as $key => $value) {
+        if ($key === "id") {
+            $links->push($value);
+            continue;
+        }
+
+        $type = gettype($value);
+        if ($type === 'array' || $type === 'object') {
+            $nested = find_identifiers_in_array($value);
+            $links = $links->merge($nested)->unique();
+        }
+    }
+
+    return $links;
+}

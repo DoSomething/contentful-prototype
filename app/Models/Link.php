@@ -14,6 +14,13 @@ class Link extends Model
     public $incrementing = false;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id'];
+
+    /**
      * Returns the campaigns this link belongs too.
      *
      * @return Collection

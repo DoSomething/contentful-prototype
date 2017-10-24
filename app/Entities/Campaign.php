@@ -118,6 +118,7 @@ class Campaign extends Entity implements JsonSerializable
      * @param  array $actionSteps
      * @return array
      */
+    // TODO: Follow same format as other entities (Include ID)
     public function parseActionSteps($actionSteps)
     {
         return collect($actionSteps)->map(function ($step) {
@@ -199,7 +200,7 @@ class Campaign extends Entity implements JsonSerializable
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
-            'affirmation' => [
+            'affirmation' => [ // TODO: This needs the ID / same entity format. As does a lot of this... welp.
                 'header' => $this->affirmation->header,
                 'photo' => get_image_url($this->affirmation->photo, 'square'),
                 'quote' => $this->affirmation->quote,
