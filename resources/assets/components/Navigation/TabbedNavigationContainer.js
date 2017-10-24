@@ -34,6 +34,10 @@ const TabbedNavigationContainer = (props) => {
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
+    if (page.fields.hideFromNavigation) {
+      return null;
+    }
+
     const path = join('/us/campaigns', campaignSlug, campaignPaths.pages, page.fields.slug);
 
     return (
