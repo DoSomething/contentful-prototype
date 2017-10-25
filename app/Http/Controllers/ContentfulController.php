@@ -35,6 +35,7 @@ class ContentfulController extends Controller
     public function webhook(Request $request)
     {
         // TODO: Verify the webhook is of a certain relevant type.
+        // TODO: Verify the request is actually from contentful and not a mean hacker.
         $contentfulId = $request->input('sys.id');
 
         $link = Link::find($contentfulId);
