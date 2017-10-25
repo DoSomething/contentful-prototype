@@ -34,6 +34,7 @@ class ContentfulController extends Controller
      */
     public function webhook(Request $request)
     {
+        // TODO: Verify the webhook is of a certain relevant type.
         $contentfulId = $request->input('sys.id');
 
         $link = Link::find($contentfulId);
@@ -48,7 +49,4 @@ class ContentfulController extends Controller
 
         return 'ok';
     }
-
-    // TODO: Let's make an (authenticated) route for refreshing a specific campaign id's cache.
-    // Let's put that in the campaign controller though.
 }
