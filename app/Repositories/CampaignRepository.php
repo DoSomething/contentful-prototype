@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use Cache;
+use Carbon\Carbon;
 use App\Entities\Campaign as CampaignEntity;
 use App\Models\Campaign as CampaignModel;
 use Contentful\Delivery\Query;
@@ -48,40 +49,47 @@ class CampaignRepository
      */
     public function findBySlug($slug, $skipCache = false)
     {
-        if (! $skipCache) {
-            $cachedCampaign = Cache::get('campaign-' . $slug);
+        $campaignEntry = null;
+        $refreshCache = false;
 
-            if ($cachedCampaign) {
-                return new CampaignEntity($campaigns[0]);
+        if (! $skipCache && Cache::has($slug)) {
+            $campaignEntry = $this->client->reviveJson(Cache::get($slug));
+        }
+
+        if (! $campaignEntry) {
+            $query = (new Query)
+                ->setContentType('campaign')
+                ->where('fields.slug', $slug)
+                ->setInclude(3)
+                ->setLimit(1);
+
+            $campaigns = $this->makeRequest($query);
+
+            if (! $campaigns->count()) {
+                throw new ModelNotFoundException;
             }
+
+            $campaignEntry = $campaigns[0];
+            $refreshCache = true;
         }
 
-        $query = (new Query)
-            ->setContentType('campaign')
-            ->where('fields.slug', $slug)
-            ->setInclude(3)
-            ->setLimit(1);
+        $campaignJson = json_encode($campaignEntry);
 
-        $campaigns = $this->makeRequest($query);
+        if ($refreshCache && config('services.contentful.cache')) {
+            $expiresAt = Carbon::now()->addMinutes(15);
 
-        if (! $campaigns->count()) {
-            throw new ModelNotFoundException;
+            Cache::add($slug, $campaignJson, $expiresAt);
         }
-
-        $campaignEntity = new CampaignEntity($campaigns[0]);
-        $campaignSerialized = json_decode(json_encode($campaignEntity));
-        // TODO: save `$campaignSerialized` to cache. edit: I think Mendel might have handled this already.
 
         $campaignModel = CampaignModel::firstOrCreate([
-            'id' => $campaignSerialized->id,
+            'id' => $campaignEntry->getId(),
             'slug' => $slug,
         ]);
 
         // TODO: This should be a dispatched event, so it's not blocking the HTTP request.
-        $campaignModel->parseCampaignData($campaignSerialized);
+        $campaignModel->parseCampaignData(json_decode($campaignJson));
 
-        // TODO: return $campaignSerialized, update relevant functions. edit: See how Mendel made the CampaignEntity from json.
-        return $campaignEntity;
+        return $campaignEntry;
     }
 
     /**

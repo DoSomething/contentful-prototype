@@ -6,38 +6,20 @@ This is __Phoenix Next__, the new campaign experience for [DoSomething.org](http
 
 ## Installation
 
-Fork and clone this repository to your computer, and then add to your local [Homestead](https://github.com/laravel/homestead) installation. Homestead provides a pre-packaged development environment to help get you up and running quickly! 
+Fork and clone this repository to your computer, and then [add to your local Homestead](https://github.com/DoSomething/communal-docs/tree/master/Homestead) installation. Homestead provides a pre-packaged development environment to help get you up and running quickly! 
 
-For help on getting Homestead setup on your computer, refer to the following [instructions](https://github.com/DoSomething/communal-docs/tree/master/Homestead).
-
-### Step 1: Dependencies & Environment
+We use [Contentful](https://www.contentful.com/) as our content management platform. Please setup an account and request access to the _space_ used for this project.
 
 ```sh
 # Install dependencies:
 $ composer install && npm install
     
-# Copy the default environment variables:
-$ cp .env.example .env
-```
+# Configure application & run migrations:
+$ php artisan phoenix:setup
 
-### Step 2: Migrate Data
-
-```sh
-# Run database migrations:
-$ php artisan migrate
-```
-
-### Step 3: Build Assets
-
-```sh
 # And finally, build the frontend assets:
 $ npm start
 ```
-
-### Step 4: Content Access
-
-We use [Contentful](https://www.contentful.com/) as our content management platform. Please setup an account and request access to the _space_ used for this project. Once you have access, head to the **APIs** section for the space and then you can update your `.env` file with the correct API keys and Space ID for the project, allowing you to make requests to access the data from your local environment.
-
 
 ## Testing
 

@@ -13,6 +13,7 @@ import { isCampaignClosed } from '../../helpers';
 import SignupButtonFactory from '../SignupButton';
 
 const mapStateToProps = state => ({
+  hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   isAffiliated: state.signups.thisCampaign,
   legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
@@ -22,9 +23,12 @@ const mapStateToProps = state => ({
 });
 
 const TabbedNavigationContainer = (props) => {
-  const { isAffiliated, legacyCampaignId, pages, campaignEndDate, template } = props;
+  const {
+    hasActivityFeed, isAffiliated, legacyCampaignId,
+    pages, campaignEndDate, template,
+  } = props;
 
-  if (template === 'legacy') {
+  if (template === 'legacy' && ! isAffiliated) {
     return null;
   }
 
@@ -34,6 +38,10 @@ const TabbedNavigationContainer = (props) => {
 
   // Create links for additional "content" pages on this campaign in Contentful.
   const additionalPages = pages.map((page) => {
+    if (page.fields.hideFromNavigation) {
+      return null;
+    }
+
     const path = join('/us/campaigns', campaignSlug, campaignPaths.pages, page.fields.slug);
 
     return (
@@ -45,10 +53,12 @@ const TabbedNavigationContainer = (props) => {
     <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} />
   ), 'tabbed navigation', { text: 'join us' });
 
+  const shouldHideCommunity = (template === 'legacy') && ! hasActivityFeed;
+
   return (
     <TabbedNavigation>
       <div className="nav-items">
-        <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink>
+        { shouldHideCommunity ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink> }
         { isClosed ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
         { additionalPages }
       </div>
@@ -60,6 +70,7 @@ const TabbedNavigationContainer = (props) => {
 TabbedNavigationContainer.propTypes = {
   campaignEndDate: PropTypes.string.isRequired,
   campaignSlug: PropTypes.string.isRequired,
+  hasActivityFeed: PropTypes.bool.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
   pages: PropTypes.oneOfType([

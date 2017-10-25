@@ -55,4 +55,8 @@ return [
         'prefix' => env('SIXPACK_COOKIE_PREFIX'),
         'timeout' => env('SIXPACK_TIMEOUT'),
     ],
+
+    'contentful' => [
+        'cache' => env('CONTENTFUL_CACHE', true),
+    ],
 ];

@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
-        "dosomething/gateway": "^1.5",
+        "dosomething/gateway": "^1.9.5",
         "contentful/contentful": "1.0.*",
         "contentful/laravel": "1.0.*",
         "erusev/parsedown": "^1.6",
@@ -16,7 +16,8 @@
         "embed/embed": "^3.0",
         "barryvdh/laravel-debugbar": "^2.3",
         "seatgeek/sixpack-php": "^2.1",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "dfurnes/environmentalist": "^0.0.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
