@@ -11,4 +11,4 @@
 |
 */
 
-$router->post('api/webhooks/contentful', 'ContentfulController@webhook');
+$router->post('/v1/webhooks/contentful', 'ContentfulController@webhook');

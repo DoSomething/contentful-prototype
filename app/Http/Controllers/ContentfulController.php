@@ -2,15 +2,53 @@
 
 namespace App\Http\Controllers;
 
-use Request;
+use Illuminate\Http\Request;
+use App\Repositories\CampaignRepository;
+use App\Models\Link;
 
 class ContentfulController extends Controller
 {
+    /**
+     * The campaign repository.
+     *
+     * @var CampaignRepository
+     */
+    protected $campaignRepository;
+
+    /**
+     * Make a new CampaignController, inject dependencies,
+     * and set middleware for this controller's methods.
+     *
+     * @param CampaignRepository $campaignRepository
+     */
+    public function __construct(CampaignRepository $campaignRepository)
+    {
+        $this->campaignRepository = $campaignRepository;
+    }
+
+    /**
+     * Recieve a webhook response.
+     *
+     * @param \Illuminate\Http\Request
+     * @return \Illuminate\Http\Response
+     */
     public function webhook(Request $request)
     {
-        // TODO:
-        // Get the link for the given webhook, load campaigns with it.
-        // Add the CampaignRepository to this class
-        // Call getBySlug for each campaign with skipCache=true
+        $contentfulId = $request->input('sys.id');
+
+        $link = Link::find($contentfulId);
+
+        if ($link) {
+            // TODO: This loop should be a dispatched event.
+            // Imagine updating a campaign lead bio and triggering 10 full campaign updates.
+            foreach ($link->campaigns() as $campaign) {
+                $this->campaignRepository->findBySlug($campaign->slug, true);
+            }
+        }
+
+        return 'ok';
     }
+
+    // TODO: Let's make an (authenticated) route for refreshing a specific campaign id's cache.
+    // Let's put that in the campaign controller though.
 }
