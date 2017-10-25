@@ -37,29 +37,28 @@ const TabbedNavigationContainer = (props) => {
   const campaignSlug = props.campaignSlug;
 
   // Create links for additional "content" pages on this campaign in Contentful.
-  const additionalPages = pages.map((page) => {
-    if (page.fields.hideFromNavigation) {
-      return null;
-    }
+  const additionalPages = pages
+    .filter(page => ! page.fields.hideFromNavigation)
+    .map((page) => {
+      const path = join('/us/campaigns', campaignSlug, campaignPaths.pages, page.fields.slug);
 
-    const path = join('/us/campaigns', campaignSlug, campaignPaths.pages, page.fields.slug);
-
-    return (
-      <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>
-    );
-  });
+      return (
+        <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>
+      );
+    });
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} />
   ), 'tabbed navigation', { text: 'join us' });
 
   const shouldHideCommunity = (template === 'legacy') && ! hasActivityFeed;
+  const shouldHideAction = (isClosed || (shouldHideCommunity && additionalPages.length === 0));
 
   return (
     <TabbedNavigation>
       <div className="nav-items">
         { shouldHideCommunity ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink> }
-        { isClosed ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
+        { shouldHideAction ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
         { additionalPages }
       </div>
       { isAffiliated ? null : <SignupButton /> }
