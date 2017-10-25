@@ -23,6 +23,9 @@ $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
 $router->redirect('campaigns/{slug}', 'us/campaigns/{slug}');
 
+// Campaigns refresh
+$router->get('next/refresh/{slug}', 'CampaignController@refresh');
+
 // Embeds
 $router->get('next/embed', 'EmbedController@index');
 

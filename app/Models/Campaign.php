@@ -56,8 +56,11 @@ class Campaign extends Model
         }
 
         foreach ($linksToRemove as $linkId) {
-            $link = Link::find(['id' => $linkId]);
-            $link->campaigns()->detatch($this->id);
+            $link = Link::find($linkId);
+
+            if ($link) {
+                $link->campaigns()->detach($this->id);
+            }
         }
     }
 }

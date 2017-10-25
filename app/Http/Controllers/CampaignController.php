@@ -87,6 +87,10 @@ class CampaignController extends Controller
      */
     public function refresh($slug)
     {
+        if (! auth()->user() || ! auth()->user()->isStaff()) {
+            return response()->json(['ok' => false]);
+        }
+
         $this->campaignRepository->findBySlug($slug, true);
         return response()->json(['ok' => true]);
     }
