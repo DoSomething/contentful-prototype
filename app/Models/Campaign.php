@@ -35,10 +35,13 @@ class Campaign extends Model
      * for this campaign.
      *
      * @param  stdClass  $campaign
-     * TODO: Add feature flag.
      * TODO: Investigate why $latestLinks is different for sincerely-us (Pagination?)
      */
     public function parseCampaignData($campaign) {
+        if (! config('services.contentful.cache')) {
+            return;
+        }
+
         $latestLinks = find_identifiers_in_array($campaign)->filter(function ($value, $key) {
             return $value !== $this->id;
         });

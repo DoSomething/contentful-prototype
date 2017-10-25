@@ -58,5 +58,6 @@ return [
 
     'contentful' => [
         'cache' => env('CONTENTFUL_CACHE', true),
+        'advanced_cache' => env('ADVANCED_CONTENTFUL_CACHE', false),
     ],
 ];
