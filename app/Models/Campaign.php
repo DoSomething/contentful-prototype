@@ -35,7 +35,6 @@ class Campaign extends Model
      * for this campaign.
      *
      * @param  stdClass  $campaign
-     * TODO: Investigate why $latestLinks is different for sincerely-us (Pagination?)
      */
     public function parseCampaignData($campaign) {
         if (! config('services.contentful.advanced_cache')) {
