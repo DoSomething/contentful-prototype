@@ -38,11 +38,12 @@ class Campaign extends Model
      * TODO: Investigate why $latestLinks is different for sincerely-us (Pagination?)
      */
     public function parseCampaignData($campaign) {
-        if (! config('services.contentful.cache')) {
+        if (! config('services.contentful.advanced_cache')) {
             return;
         }
 
-        $latestLinks = find_identifiers_in_array($campaign)->filter(function ($value, $key) {
+        $allLinks = find_identifiers_in_array($campaign, ['reportbacks']);
+        $latestLinks = $allLinks->filter(function ($value, $key) {
             return $value !== $this->id;
         });
 

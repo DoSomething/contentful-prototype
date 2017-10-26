@@ -333,20 +333,27 @@ function get_login_query($campaign = null)
  *
  * @WARNING: Probably shouldn't use this function when responding to a request!
  * @param  array $container
+ * @param  array $ignoreTypes
  * @return array
  */
-function find_identifiers_in_array($container) {
+function find_identifiers_in_array($container, $ignoreTypes) {
     $links = collect([]);
 
+    $containerType = isset($container->type) ? $container->type : false;
+    $shouldIgnore = $containerType && collect($ignoreTypes)->has($containerType);
+
+    if (isset($container->id) && ! $shouldIgnore) {
+        $links->push($container->id);
+    }
+
     foreach ($container as $key => $value) {
-        if ($key === "id") {
-            $links->push($value);
+        if ($key === 'sys') {
             continue;
         }
 
-        $type = gettype($value);
-        if ($type === 'array' || $type === 'object') {
-            $nested = find_identifiers_in_array($value);
+        $varType = gettype($value);
+        if ($varType === 'array' || $varType === 'object') {
+            $nested = find_identifiers_in_array($value, $ignoreTypes);
             $links = $links->merge($nested)->unique();
         }
     }

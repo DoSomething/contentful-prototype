@@ -73,12 +73,10 @@ class CampaignRepository
             $refreshCache = true;
         }
 
-        $campaignJson = json_encode($campaignEntry);
-
         if ($refreshCache && config('services.contentful.cache')) {
             $expiresAt = Carbon::now()->addMinutes(15);
 
-            Cache::add($slug, $campaignJson, $expiresAt);
+            Cache::add($slug, json_encode($campaignEntry), $expiresAt);
         }
 
         $campaignModel = CampaignModel::firstOrCreate([
@@ -86,10 +84,12 @@ class CampaignRepository
             'slug' => $slug,
         ]);
 
-        // TODO: This should be a dispatched event, so it's not blocking the HTTP request.
-        $campaignModel->parseCampaignData(json_decode($campaignJson));
+        $entity = new CampaignEntity($campaignEntry);
 
-        return $campaignEntry;
+        // TODO: This should be a dispatched event, so it's not blocking the HTTP request.
+        $campaignModel->parseCampaignData(json_decode(json_encode($entity)));
+
+        return $entity;
     }
 
     /**
