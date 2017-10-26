@@ -44,7 +44,7 @@ class Campaign extends Model
         // Flatten the campaign entity for parsing.
         $campaign = json_decode(json_encode($campaign));
 
-        $allLinks = find_identifiers_in_array($campaign, ['reportbacks']);
+        $allLinks = find_identifiers_in_array($campaign, ['reportbacks', 'quizBeta']);
         $latestLinks = $allLinks->filter(function ($value, $key) {
             return $value !== $this->id;
         });

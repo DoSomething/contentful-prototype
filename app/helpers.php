@@ -340,9 +340,13 @@ function find_identifiers_in_array($container, $ignoreTypes) {
     $links = collect([]);
 
     $containerType = isset($container->type) ? $container->type : false;
-    $shouldIgnore = $containerType && collect($ignoreTypes)->has($containerType);
+    $shouldIgnore = $containerType && collect($ignoreTypes)->contains($containerType);
 
     if (isset($container->id) && ! $shouldIgnore) {
+        if ($container->id === '1') {
+            dd($container);
+        }
+
         $links->push($container->id);
     }
 

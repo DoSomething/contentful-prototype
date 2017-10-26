@@ -122,8 +122,7 @@ class Campaign extends Entity implements JsonSerializable
     {
         return collect($actionSteps)->map(function ($step) {
             $data = [];
-
-            $data['id'] = $step->id;
+            $data['id'] = $step->id; //TODO this aint working.
             $data['title'] = $step->title;
             $data['displayOptions'] = $step->displayOptions->first();
 
