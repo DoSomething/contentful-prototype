@@ -79,13 +79,10 @@ class CampaignRepository
             Cache::add($slug, json_encode($campaignEntry), $expiresAt);
         }
 
-        $campaignModel = CampaignModel::firstOrCreate([
-            'id' => $campaignEntry->getId(),
-            'slug' => $slug,
-        ]);
+        $campaignModel = CampaignModel::firstOrCreate(['id' => $campaignEntry->getId()]);
+        $campaignModel->fill(['slug' => $slug])->save();
 
         $entity = new CampaignEntity($campaignEntry);
-
         // TODO: This should be a dispatched event, so it's not blocking the HTTP request.
         $campaignModel->parseCampaignData($entity);
 

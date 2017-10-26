@@ -15,7 +15,7 @@ class CreateCampaignsTable extends Migration
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('slug')->unique(); // TODO: This doesn't have to be an index.
+            $table->string('slug');
             $table->timestamps();
         });
     }
