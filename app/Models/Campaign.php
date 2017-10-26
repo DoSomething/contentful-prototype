@@ -34,12 +34,15 @@ class Campaign extends Model
      * Parse the given campaign data and update any links
      * for this campaign.
      *
-     * @param  stdClass  $campaign
+     * @param  \Entities\Campaign  $campaign
      */
     public function parseCampaignData($campaign) {
         if (! config('services.contentful.advanced_cache')) {
             return;
         }
+
+        // Flatten the campaign entity for parsing.
+        $campaign = json_decode(json_encode($campaign));
 
         $allLinks = find_identifiers_in_array($campaign, ['reportbacks']);
         $latestLinks = $allLinks->filter(function ($value, $key) {

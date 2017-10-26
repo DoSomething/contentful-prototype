@@ -87,7 +87,7 @@ class CampaignRepository
         $entity = new CampaignEntity($campaignEntry);
 
         // TODO: This should be a dispatched event, so it's not blocking the HTTP request.
-        $campaignModel->parseCampaignData(json_decode(json_encode($entity)));
+        $campaignModel->parseCampaignData($entity);
 
         return $entity;
     }
