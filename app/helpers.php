@@ -326,3 +326,41 @@ function get_login_query($campaign = null)
         ],
     ];
 }
+
+/**
+ * Do a recursive search through the given array for all link ids.
+ * Returns a list of all link id's.
+ *
+ * @WARNING: Probably shouldn't use this function when responding to a request!
+ * @param  array $container
+ * @param  array $ignoreTypes
+ * @return array
+ */
+function find_identifiers_in_array($container, $ignoreTypes) {
+    $links = collect([]);
+
+    $containerType = isset($container->type) ? $container->type : false;
+    $shouldIgnore = $containerType && collect($ignoreTypes)->contains($containerType);
+
+    if ($shouldIgnore) {
+        return $links;
+    }
+
+    if (isset($container->id)) {
+        $links->push($container->id);
+    }
+
+    foreach ($container as $key => $value) {
+        if ($key === 'sys') {
+            continue;
+        }
+
+        $varType = gettype($value);
+        if ($varType === 'array' || $varType === 'object') {
+            $nested = find_identifiers_in_array($value, $ignoreTypes);
+            $links = $links->merge($nested)->unique();
+        }
+    }
+
+    return $links;
+}

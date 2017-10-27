@@ -4,7 +4,8 @@ namespace App\Repositories;
 
 use Cache;
 use Carbon\Carbon;
-use App\Entities\Campaign;
+use App\Entities\Campaign as CampaignEntity;
+use App\Models\Campaign as CampaignModel;
 use Contentful\Delivery\Query;
 use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -34,7 +35,7 @@ class CampaignRepository
         $array = iterator_to_array($campaigns);
 
         return collect($array)->map(function ($entity) {
-            return new Campaign($entity);
+            return new CampaignEntity($entity);
         });
     }
 
@@ -42,23 +43,25 @@ class CampaignRepository
      * Find a campaign by its slug.
      *
      * @param  string $slug
+     * @param  bool   $skipCache
      * @return \App\Entities\Campaign
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function findBySlug($slug)
+    public function findBySlug($slug, $skipCache = false)
     {
-        if (Cache::has($slug)) {
-            $cachedCampaignJson = Cache::get($slug);
+        $campaignEntry = null;
+        $refreshCache = false;
 
-            // This turns the JSON into a Contentful Dynamic Entry
-            // so we can create a campaign entity out of the cached data
-            $campaignEntry = $this->client->reviveJson($cachedCampaignJson);
-        } else {
+        if (! $skipCache && Cache::has($slug)) {
+            $campaignEntry = $this->client->reviveJson(Cache::get($slug));
+        }
+
+        if (! $campaignEntry) {
             $query = (new Query)
-            ->setContentType('campaign')
-            ->where('fields.slug', $slug)
-            ->setInclude(3)
-            ->setLimit(1);
+                ->setContentType('campaign')
+                ->where('fields.slug', $slug)
+                ->setInclude(3)
+                ->setLimit(1);
 
             $campaigns = $this->makeRequest($query);
 
@@ -67,15 +70,25 @@ class CampaignRepository
             }
 
             $campaignEntry = $campaigns[0];
-
-            if (config('services.contentful.cache')) {
-                $expiresAt = Carbon::now()->addMinutes(15);
-
-                Cache::add($slug, json_encode($campaignEntry), $expiresAt);
-            }
+            $refreshCache = true;
         }
 
-        return new Campaign($campaignEntry);
+        if ($refreshCache && config('services.contentful.cache')) {
+            $expiresAt = Carbon::now()->addMinutes(15);
+
+            Cache::add($slug, json_encode($campaignEntry), $expiresAt);
+        }
+
+        $campaignModel = CampaignModel::updateOrCreate(
+            ['id' => $campaignEntry->getId()],
+            ['slug' => $slug]
+        );
+
+        $entity = new CampaignEntity($campaignEntry);
+        // TODO: This should be a dispatched event, so it's not blocking the HTTP request.
+        $campaignModel->parseCampaignData($entity);
+
+        return $entity;
     }
 
     /**

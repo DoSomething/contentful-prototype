@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Request;
+use Illuminate\Http\Response;
 use App\Services\PhoenixLegacy;
 use App\Repositories\CampaignRepository;
 
@@ -34,6 +35,8 @@ class CampaignController extends Controller
     {
         $this->campaignRepository = $campaignRepository;
         $this->phoenixLegacy = $phoenixLegacy;
+
+        $this->middleware('auth', ['only' => ['refresh']]);
     }
 
     /**
@@ -51,7 +54,7 @@ class CampaignController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $slug
+     * @param  string  $slug
      * @return \Illuminate\View\View
      */
     public function show($slug)
@@ -74,5 +77,21 @@ class CampaignController extends Controller
                 'role' => auth()->user() ? auth()->user()->role : null,
             ],
         ]);
+    }
+
+    /**
+     * Refresh the campaigns cached data.
+     *
+     * @param  string  $slug
+     * @return \Illuminate\Http\Response
+     */
+    public function refresh($slug)
+    {
+        if (! auth()->user() || ! auth()->user()->isStaff()) {
+            return response()->json(['ok' => false]);
+        }
+
+        $this->campaignRepository->findBySlug($slug, true);
+        return response()->json(['ok' => true]);
     }
 }

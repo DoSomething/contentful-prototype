@@ -122,7 +122,7 @@ class Campaign extends Entity implements JsonSerializable
     {
         return collect($actionSteps)->map(function ($step) {
             $data = [];
-
+            $data['id'] = $step->id; //TODO this aint working.
             $data['title'] = $step->title;
             $data['displayOptions'] = $step->displayOptions->first();
 
@@ -167,6 +167,19 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse and extract data for pages.
+     *
+     * @param  array $pages
+     * @return array
+     */
+    public function parsePages($pages)
+    {
+        return collect($pages)->map(function ($page) {
+            return new Page($page->entry);
+        });
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -198,17 +211,10 @@ class Campaign extends Entity implements JsonSerializable
             ),
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
-            'dashboard' => $this->dashboard,
-            'affirmation' => [
-                'header' => $this->affirmation->header,
-                'photo' => get_image_url($this->affirmation->photo, 'square'),
-                'quote' => $this->affirmation->quote,
-                'author' => $this->affirmation->author,
-                'callToActionHeader' => $this->affirmation->callToActionHeader,
-                'callToActionDescription'=> $this->affirmation->callToActionDescription,
-            ],
-            'pages' => $this->pages,
-            'landingPage' => $this->landingPage,
+            'dashboard' => $this->dashboard ? new Dashboard($this->dashboard->entry) : null,
+            'affirmation' => $this->affirmation ? new Affirmation($this->affirmation->entry) : null,
+            'pages' => $this->parsePages($this->pages),
+            'landingPage' => $this->landingPage ? new Page($this->landingPage->entry) : null,
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,
         ];
