@@ -347,10 +347,6 @@ function find_identifiers_in_array($container, $ignoreTypes) {
     }
 
     if (isset($container->id)) {
-        if ($container->id === '1') {
-            dd($container);
-        }
-
         $links->push($container->id);
     }
 
