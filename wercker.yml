@@ -21,6 +21,9 @@ deploy:
   steps:
     - bundle-install
     - script:
+        name: clear all cache
+        code: php artisan cache:clear
+    - script:
         name: write private key env var
         code: |-
           export CAP_PRIVATE_KEY=`mktemp`
