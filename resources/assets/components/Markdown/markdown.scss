@@ -97,5 +97,6 @@
   .footnotes-list, .footnote-item p {
     font-size: $font-small;
     color: $med-gray;
+    overflow-wrap: break-word;
   }
 }
