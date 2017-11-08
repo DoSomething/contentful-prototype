@@ -14,11 +14,16 @@ import SignupButtonContainer from './SignupButtonContainer';
  */
 const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null) => {
   const SignupButton = (props) => {
-    const { clickedSignUp, trackEvent } = props;
+    const { clickedSignUp, template, trackEvent } = props;
 
     const onSignup = (campaignId) => {
       clickedSignUp(campaignId);
-      trackEvent('signup', { campaignId, source, sourceData });
+      trackEvent('signup', {
+        template,
+        campaignId,
+        source,
+        sourceData,
+      });
     };
 
     return (
@@ -28,7 +33,12 @@ const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null)
 
   SignupButton.propTypes = {
     clickedSignUp: PropTypes.func.isRequired,
+    template: PropTypes.string,
     trackEvent: PropTypes.func.isRequired,
+  };
+
+  SignupButton.defaultProps = {
+    template: null,
   };
 
   return SignupButtonContainer(PuckConnector(SignupButton));
