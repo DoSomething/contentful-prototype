@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AdminDashboard = ({ cacheId, redirectPath }) => {
-  const redirectParam = redirectPath ? `?redirect=${redirectPath}` : '';
-
+const AdminDashboard = ({ cacheId }) => {
   return (
     <div className="bg-purple navigation admin-navigation -white">
       <div className="controls flex-center-xy">
-        <a href={`/next/cache/${cacheId}${redirectParam}`}>Clear Cache</a>
+        <a href={`/next/cache/${cacheId}?redirect=${location.pathname}`}>Clear Cache</a>
       </div>
     </div>
   );
@@ -15,11 +13,6 @@ const AdminDashboard = ({ cacheId, redirectPath }) => {
 
 AdminDashboard.propTypes = {
   cacheId: PropTypes.string.isRequired,
-  redirectPath: PropTypes.string,
-};
-
-AdminDashboard.defaultProps = {
-  redirectPath: null,
 };
 
 export default AdminDashboard;
