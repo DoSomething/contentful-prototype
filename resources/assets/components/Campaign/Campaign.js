@@ -9,8 +9,7 @@ import NotificationContainer from '../Notification';
 import AdminDashboard from '../AdminDashboard';
 
 const Campaign = (props) => {
-  const { isAffiliated, useLandingPage, userRole, slug } = props;
-  const isAdmin = userRole === 'admin';
+  const { isAffiliated, useLandingPage, isAdmin, slug } = props;
 
   return (
     <div>
@@ -36,14 +35,14 @@ const Campaign = (props) => {
 Campaign.propTypes = {
   isAffiliated: PropTypes.bool,
   useLandingPage: PropTypes.bool,
-  userRole: PropTypes.string,
+  isAdmin: PropTypes.bool,
   slug: PropTypes.string.isRequired,
 };
 
 Campaign.defaultProps = {
   isAffiliated: false,
   useLandingPage: false,
-  userRole: null,
+  isAdmin: false,
 };
 
 export default Campaign;
