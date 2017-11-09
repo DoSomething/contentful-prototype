@@ -4,15 +4,22 @@ import PropTypes from 'prop-types';
 import ModalSwitch from '../Modal';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import NotificationContainer from '../Notification';
-import AdminDashboardContainer from '../AdminDashboard';
+import AdminDashboard from '../AdminDashboard';
 
 const Campaign = (props) => {
-  const { isAffiliated, useLandingPage, userRole, location } = props;
+  const { isAffiliated, useLandingPage, userRole, slug } = props;
   const isAdmin = userRole === 'admin';
 
   return (
     <div>
-      { isAdmin ? <AdminDashboardContainer redirectPath={location.pathname} /> : null }
+      { ! isAdmin ?
+        null :
+        <AdminDashboard>
+          <a className="button -secondary" href={`/next/cache/campaign_${slug}?redirect=${location.pathname}`}>
+            Clear Cache
+          </a>
+        </AdminDashboard>
+      }
       <NotificationContainer />
       <ModalSwitch />
 
@@ -28,18 +35,13 @@ Campaign.propTypes = {
   isAffiliated: PropTypes.bool,
   useLandingPage: PropTypes.bool,
   userRole: PropTypes.string,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
+  slug: PropTypes.string.isRequired,
 };
 
 Campaign.defaultProps = {
   isAffiliated: false,
   useLandingPage: false,
   userRole: null,
-  location: {
-    pathname: null,
-  },
 };
 
 export default Campaign;
