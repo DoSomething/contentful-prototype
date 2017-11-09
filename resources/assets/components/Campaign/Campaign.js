@@ -7,12 +7,12 @@ import NotificationContainer from '../Notification';
 import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
-  const { isAffiliated, useLandingPage, userRole } = props;
+  const { isAffiliated, useLandingPage, userRole, location } = props;
   const isAdmin = userRole === 'admin';
 
   return (
     <div>
-      { isAdmin ? <AdminDashboardContainer redirectPath={props.location.pathname} /> : null }
+      { isAdmin ? <AdminDashboardContainer redirectPath={location.pathname} /> : null }
       <NotificationContainer />
       <ModalSwitch />
 
@@ -28,12 +28,18 @@ Campaign.propTypes = {
   isAffiliated: PropTypes.bool,
   useLandingPage: PropTypes.bool,
   userRole: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
 };
 
 Campaign.defaultProps = {
   isAffiliated: false,
   useLandingPage: false,
   userRole: null,
+  location: {
+    pathname: null,
+  },
 };
 
 export default Campaign;
