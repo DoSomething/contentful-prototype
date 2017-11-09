@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AdminDashboard = ({ cacheId }) => {
-  return (
-    <div className="bg-purple navigation admin-navigation -white">
-      <div className="controls flex-center-xy">
-        <a href={`/next/cache/${cacheId}?redirect=${location.pathname}`}>Clear Cache</a>
-      </div>
-    </div>
-  );
-};
+const AdminDashboard = ({ children }) => (
+  <div className="bg-purple navigation -white text-centered">
+    { children }
+  </div>
+);
 
 AdminDashboard.propTypes = {
-  cacheId: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default AdminDashboard;
