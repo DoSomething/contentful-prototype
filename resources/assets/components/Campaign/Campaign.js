@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ModalSwitch from '../Modal';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import NotificationContainer from '../Notification';
-import AdminDashboard from '../AdminDashboard';
+import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
   const { isAffiliated, useLandingPage, userRole } = props;
@@ -12,7 +12,7 @@ const Campaign = (props) => {
 
   return (
     <div>
-      { isAdmin ? <AdminDashboard redirectPath={props.location.pathname} /> : null }
+      { isAdmin ? <AdminDashboardContainer redirectPath={props.location.pathname} /> : null }
       <NotificationContainer />
       <ModalSwitch />
 
