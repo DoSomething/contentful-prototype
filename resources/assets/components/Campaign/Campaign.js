@@ -1,3 +1,5 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -15,7 +17,7 @@ const Campaign = (props) => {
       { ! isAdmin ?
         null :
         <AdminDashboard>
-          <a className="button -secondary" href={`/next/cache/campaign_${slug}?redirect=${location.pathname}`}>
+          <a className="button -secondary" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
             Clear Cache
           </a>
         </AdminDashboard>
