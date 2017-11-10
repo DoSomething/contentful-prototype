@@ -23,19 +23,24 @@ class EmbedController extends Controller
         $info = remember('embed.' . md5($url), 60, function () use ($url) {
             return Embed::create($url);
         });
-        dd($info);
-        return [
-            'type' => $info->type,
-            'provider' => [
-                'name' => $info->providerName,
-                'icon' => $info->providerIcon,
-            ],
-            'title' => $info->title,
-            'description' => $info->description,
-            'url' => $info->url,
-            'image' => $info->image,
-            'code' => $info->type === 'video' ? $info->code : null,
-        ];
+        try {
+            $res = [
+                'type' => $info->type,
+                'provider' => [
+                    'name' => $info->providerName,
+                    'icon' => $info->providerIcon,
+                ],
+                'title' => $info->title,
+                'description' => $info->description,
+                'url' => $info->url,
+                'image' => $info->image,
+                'code' => $info->type === 'video' ? $info->code : null,
+            ];
+        }
+        catch (\Exception $e) {
+            return $e->getMessage();
+        }
+        return $res;
     }
 
     /**
