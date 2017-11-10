@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import AdminDashboard from './AdminDashboard';
 
 const mapStateToProps = state => ({
-  cacheId: `campaign_${state.campaign.slug}`,
+  isAdmin: state.user.role === 'admin',
 });
 
 export default connect(mapStateToProps)(AdminDashboard);
