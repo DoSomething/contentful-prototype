@@ -1,1 +1,3 @@
-export default from './AdminDashboard';
+export default from './AdminDashboardContainer';
+
+export AdminDashboard from './AdminDashboard';
