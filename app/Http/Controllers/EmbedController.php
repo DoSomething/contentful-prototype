@@ -19,22 +19,50 @@ class EmbedController extends Controller
         $this->validate($request, ['url' => 'required|url']);
 
         $url = $request->query('url');
+
         $info = remember('embed.' . md5($url), 60, function () use ($url) {
             return Embed::create($url);
         });
-
-        return [
-            'type' => $info->type,
-            'provider' => [
-                'name' => $info->providerName,
-                'icon' => $info->providerIcon,
-            ],
-            'title' => $info->title,
-            'description' => $info->description,
-            'url' => $info->url,
-            'image' => $info->image,
-            'code' => $info->type === 'video' ? $info->code : null,
-        ];
+        try {
+            $info->providerIcon;
+        } catch (\Exception $e) {
+            return [
+                'message' => $e->getMessage(),
+                'info' => json_encode($info),
+                'type' => 'providerIcon'
+            ];
+        }
+        try {
+            $info->image;
+        } catch (\Exception $e) {
+            return [
+                'message' => $e->getMessage(),
+                'info' => json_encode($info),
+                'type' => 'image',
+            ];
+        }
+        try {
+            $res = [
+                'type' => $info->type,
+                'provider' => [
+                    'name' => $info->providerName,
+                    'icon' => $info->providerIcon,
+                ],
+                'title' => $info->title,
+                'description' => $info->description,
+                'url' => $info->url,
+                'image' => $info->image,
+                'code' => $info->type === 'video' ? $info->code : null,
+            ];
+        }
+        catch (\Exception $e) {
+            return [
+                'message' => $e->getMessage(),
+                'info' => json_encode($info),
+                'type' => 'reg',
+            ];
+        };
+        return json_encode($info);
     }
 
     /**
