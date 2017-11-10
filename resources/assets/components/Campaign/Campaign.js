@@ -17,9 +17,9 @@ const Campaign = (props) => {
         <a className="button -secondary margin-horizontal-md" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
           Clear Cache
         </a>
-        <a className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
+        <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
           Show Affirmation
-        </a>
+        </button>
       </AdminDashboardContainer>
       <NotificationContainer />
       <ModalSwitch />
