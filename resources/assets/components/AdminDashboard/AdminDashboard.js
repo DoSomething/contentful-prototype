@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const AdminDashboard = ({ isAdmin, children }) => (
   isAdmin ?
-    <div className="bg-purple navigation -white text-centered">
+    <div className="bg-light-gray padding-lg -white">
       { children }
     </div>
     : null
