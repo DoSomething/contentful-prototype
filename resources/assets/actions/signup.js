@@ -159,9 +159,7 @@ export function clickedSignUp(campaignId, options = null, shouldRedirectToAction
 // Action: triggers the post signup affirmation modal.
 // This is for admin usage.
 export function clickedShowAffirmation() {
-  return dispatch => (
-    dispatch(openModal(POST_SIGNUP_MODAL))
-  );
+  return openModal(POST_SIGNUP_MODAL);
 }
 
 // Action: sends whether the user opted out of affiliate messaging.
