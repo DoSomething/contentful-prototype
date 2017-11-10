@@ -19,7 +19,7 @@ class EmbedController extends Controller
         $this->validate($request, ['url' => 'required|url']);
 
         $url = $request->query('url');
-        dd(Embed::create($url));
+        dd(cache()->put(Embed::create($url)));
         $info = remember('embed.' . md5($url), 60, function () use ($url) {
             return Embed::create($url);
         });
