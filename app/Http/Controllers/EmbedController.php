@@ -24,6 +24,24 @@ class EmbedController extends Controller
             return Embed::create($url);
         });
         try {
+            $info->providerIcon
+        } catch (\Exception $e) {
+            return [
+                'message' => e->getMessage(),
+                'info' => $info,
+                'type' => 'providerIcon'
+            ];
+        }
+                try {
+            $info->image
+        } catch (\Exception $e) {
+            return [
+                'message' => e->getMessage(),
+                'info' => $info,
+                'type' => 'image',
+            ];
+        }
+        try {
             $res = [
                 'type' => $info->type,
                 'provider' => [
@@ -38,7 +56,11 @@ class EmbedController extends Controller
             ];
         }
         catch (\Exception $e) {
-            return $e->getMessage();
+            return [
+                'message' => e->getMessage(),
+                'info' => $info,
+                'type' => 'reg',
+            ];
         }
         return $res;
     }
