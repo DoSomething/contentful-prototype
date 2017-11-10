@@ -9,14 +9,17 @@ import NotificationContainer from '../Notification';
 import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
-  const { isAffiliated, useLandingPage, slug } = props;
+  const { isAffiliated, useLandingPage, slug, clickedShowAffirmation } = props;
 
   return (
     <div>
       <AdminDashboardContainer>
-        <a className="button -secondary" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
+        <a className="button -secondary margin-horizontal-md" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
           Clear Cache
         </a>
+        <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
+          Show Affirmation
+        </button>
       </AdminDashboardContainer>
       <NotificationContainer />
       <ModalSwitch />
@@ -33,6 +36,7 @@ Campaign.propTypes = {
   isAffiliated: PropTypes.bool,
   useLandingPage: PropTypes.bool,
   slug: PropTypes.string.isRequired,
+  clickedShowAffirmation: PropTypes.func.isRequired,
 };
 
 Campaign.defaultProps = {

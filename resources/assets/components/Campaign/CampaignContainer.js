@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import Campaign from './Campaign';
+import { clickedShowAffirmation } from '../../actions/signup';
 
 const mapStateToProps = state => ({
   isAffiliated: state.signups.thisCampaign,
@@ -8,4 +9,8 @@ const mapStateToProps = state => ({
   slug: state.campaign.slug,
 });
 
-export default connect(mapStateToProps)(Campaign);
+const actionCreators = {
+  clickedShowAffirmation,
+};
+
+export default connect(mapStateToProps, actionCreators)(Campaign);
