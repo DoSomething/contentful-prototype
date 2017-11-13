@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Campaign from './Campaign';
 import { clickedShowAffirmation } from '../../actions/signup';
-import { clickedShowLandingPage } from '../../actions/admin';
+import { clickedShowLandingPage, clickedShowActionPage } from '../../actions/admin';
 
 const mapStateToProps = (state) => {
   const isSignedUp = state.signups.thisCampaign;
@@ -21,6 +21,7 @@ const mapStateToProps = (state) => {
 const actionCreators = {
   clickedShowAffirmation,
   clickedShowLandingPage,
+  clickedShowActionPage,
 };
 
 export default connect(mapStateToProps, actionCreators)(Campaign);
