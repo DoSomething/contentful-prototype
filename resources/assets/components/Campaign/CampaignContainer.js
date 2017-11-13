@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Campaign from './Campaign';
 import { clickedShowAffirmation } from '../../actions/signup';
-import clickedShowLandingPage from '../../actions/admin';
+import { clickedShowLandingPage } from '../../actions/admin';
 
 const mapStateToProps = (state) => {
   const shouldShowLandingPage = ! state.signups.thisCampaign || state.admin.shouldShowLandingPage;

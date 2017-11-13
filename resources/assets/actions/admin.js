@@ -6,6 +6,6 @@ import { SHOW_LANDING_PAGE } from '../actions';
  */
 
 // Action: show the campaigns landing page
-export default function clickedShowLandingPage() {
+export function clickedShowLandingPage() { // eslint-disable-line import/prefer-default-export
   return { type: SHOW_LANDING_PAGE };
 }
