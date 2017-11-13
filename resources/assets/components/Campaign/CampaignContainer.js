@@ -2,15 +2,25 @@ import { connect } from 'react-redux';
 
 import Campaign from './Campaign';
 import { clickedShowAffirmation } from '../../actions/signup';
+import { clickedShowLandingPage } from '../../actions/admin';
 
-const mapStateToProps = state => ({
-  isAffiliated: state.signups.thisCampaign,
-  useLandingPage: state.campaign.landingPage !== null,
-  slug: state.campaign.slug,
-});
+const mapStateToProps = (state) => {
+  const isSignedUp = state.signups.thisCampaign;
+  const hasLandingPage = state.campaign.landingPage !== null;
+
+  const shouldShowLandingPage = hasLandingPage &&
+    (! isSignedUp || state.admin.shouldShowLandingPage);
+
+  return {
+    slug: state.campaign.slug,
+    hasLandingPage,
+    shouldShowLandingPage,
+  };
+};
 
 const actionCreators = {
   clickedShowAffirmation,
+  clickedShowLandingPage,
 };
 
 export default connect(mapStateToProps, actionCreators)(Campaign);

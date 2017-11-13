@@ -1,3 +1,4 @@
+export admin from './admin';
 export blocks from './blocks';
 export campaign from './campaign';
 export competitions from './competitions';

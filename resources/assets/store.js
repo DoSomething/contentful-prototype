@@ -67,6 +67,9 @@ const initialState = {
   uploads: {},
   quiz: {},
   slideshow: {},
+  admin: {
+    shouldShowLandingPage: false,
+  },
 };
 
 /**

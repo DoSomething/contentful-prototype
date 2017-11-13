@@ -74,3 +74,6 @@ export * from './quiz';
 
 export const NEXT_SLIDE = 'NEXT_SLIDE';
 export * from './slideshow';
+
+export const SHOW_LANDING_PAGE = 'SHOW_LANDING_PAGE';
+export * from './admin';

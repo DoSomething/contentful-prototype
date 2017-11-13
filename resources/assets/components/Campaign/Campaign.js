@@ -9,7 +9,8 @@ import NotificationContainer from '../Notification';
 import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
-  const { isAffiliated, useLandingPage, slug, clickedShowAffirmation } = props;
+  const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
+    shouldShowLandingPage } = props;
 
   return (
     <div>
@@ -20,11 +21,16 @@ const Campaign = (props) => {
         <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
           Show Affirmation
         </button>
+        { hasLandingPage ?
+          <button className="button -secondary margin-horizontal-md" onClick={clickedShowLandingPage}>
+            Show Landing Page
+          </button>
+          : null}
       </AdminDashboardContainer>
       <NotificationContainer />
       <ModalSwitch />
 
-      {(! isAffiliated && useLandingPage) ?
+      { shouldShowLandingPage ?
         <LandingPageContainer {...props} />
         :
         <CampaignPageContainer {...props} />}
@@ -33,15 +39,16 @@ const Campaign = (props) => {
 };
 
 Campaign.propTypes = {
-  isAffiliated: PropTypes.bool,
-  useLandingPage: PropTypes.bool,
+  hasLandingPage: PropTypes.bool,
   slug: PropTypes.string.isRequired,
   clickedShowAffirmation: PropTypes.func.isRequired,
+  clickedShowLandingPage: PropTypes.func.isRequired,
+  shouldShowLandingPage: PropTypes.bool,
 };
 
 Campaign.defaultProps = {
-  isAffiliated: false,
-  useLandingPage: false,
+  hasLandingPage: false,
+  shouldShowLandingPage: false,
 };
 
 export default Campaign;
