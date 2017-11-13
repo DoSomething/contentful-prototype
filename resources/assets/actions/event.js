@@ -46,9 +46,11 @@ export function startQueue() {
 export function queueEvent(actionCreatorName, ...args) {
   return (dispatch, getState) => {
     const northstarOptions = {};
-    northstarOptions.title = getState().campaign.title;
-    northstarOptions.coverImage = getState().campaign.coverImage.url;
-    northstarOptions.callToAction = getState().campaign.callToAction;
+    if (getState().campaign) {
+      northstarOptions.title = getState().campaign.title;
+      northstarOptions.coverImage = getState().campaign.coverImage.url;
+      northstarOptions.callToAction = getState().campaign.callToAction;
+    }
 
     dispatch({
       type: actions.QUEUE_EVENT,
