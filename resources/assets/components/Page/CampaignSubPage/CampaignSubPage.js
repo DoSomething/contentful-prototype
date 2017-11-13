@@ -7,13 +7,21 @@ import NotFound from '../../NotFound';
 import { isCampaignClosed } from '../../../helpers';
 import ScrollConcierge from '../../ScrollConcierge';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
+import { hasSlugFix } from '../../../selectors/campaign';
 
 import './campaign-subpage.scss';
 
 const CampaignSubPage = (props) => {
   const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
-  const subPage = find(pages, page => page.fields.slug === match.params.slug);
+  // TODO: Get rid of this slug fix conditional.
+  const subPage = find(pages, page => {
+    return hasSlugFix(page) ? (
+      page.fields.slug.endsWith(match.params.slug)
+    ) : (
+      page.fields.slug === match.params.slug
+    );
+  });
 
   if (! subPage) {
     return <NotFound />;
