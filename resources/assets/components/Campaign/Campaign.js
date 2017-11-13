@@ -9,9 +9,23 @@ import NotificationContainer from '../Notification';
 import AdminDashboardContainer from '../AdminDashboard';
 
 class Campaign extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shouldShowLandingPage: false,
+    };
+
+    this.showLandingPage = this.showLandingPage.bind(this);
+  }
+
+  showLandingPage() {
+    this.setState({ shouldShowLandingPage: true });
+  }
 
   render() {
     const { isAffiliated, useLandingPage, slug, clickedShowAffirmation } = this.props;
+    const showLandingPage = (! isAffiliated && useLandingPage) || this.state.shouldShowLandingPage;
 
     return (
       <div>
@@ -22,12 +36,17 @@ class Campaign extends React.Component {
           <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
             Show Affirmation
           </button>
+          { useLandingPage ?
+            <button className="button -secondary margin-horizontal-md" onClick={this.showLandingPage}>
+              Show Landing Page
+            </button>
+            : null }
         </AdminDashboardContainer>
 
         <NotificationContainer />
         <ModalSwitch />
 
-        { (! isAffiliated && useLandingPage) ?
+        { showLandingPage ?
           <LandingPageContainer {...this.props} />
           :
           <CampaignPageContainer {...this.props} />}
