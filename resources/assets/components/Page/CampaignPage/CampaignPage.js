@@ -24,7 +24,7 @@ const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
     dashboard, endDate, hasActivityFeed, isAffiliated, legacyCampaignId, match,
-    openModal, slug, subtitle, template, title, totalCampaignSignups,
+    openModal, shouldShowActionPage, slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
   // console.log(props.history);
@@ -72,7 +72,7 @@ const CampaignPage = (props) => {
             />
             <Route
               path={`${match.url}/action`}
-              render={() => (isClosed ?
+              render={() => (isClosed && ! shouldShowActionPage ?
                 <Redirect to={`${match.url}`} />
                 :
                 <ActionPageContainer />
@@ -144,6 +144,7 @@ CampaignPage.propTypes = {
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number,
   openModal: PropTypes.func.isRequired,
+  shouldShowActionPage: PropTypes.bool,
 };
 
 CampaignPage.defaultProps = {
@@ -152,6 +153,7 @@ CampaignPage.defaultProps = {
   isAffiliated: false,
   totalCampaignSignups: 0,
   campaignLead: undefined,
+  shouldShowActionPage: false,
 };
 
 export default CampaignPage;
