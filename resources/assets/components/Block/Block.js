@@ -42,11 +42,22 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
     case 'quiz':
       return <Quiz />;
 
+    // @TODO: Will be refactored when switching to Rogue!
     case 'reportbacks':
-      return <ReportbackBlock fields={json.fields} reportbacks={json.reportbacks} />;
+      return (
+        <ReportbackBlock
+          reportbacks={json.reportbacks}
+        />
+      );
 
     case 'static':
-      return <StaticBlock fields={json.fields} />;
+      return (
+        <StaticBlock
+          content={json.fields.content}
+          source={json.fields.source}
+          title={json.fields.title}
+        />
+      );
 
     default:
       return <PlaceholderBlock />;
