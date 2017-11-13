@@ -13,7 +13,7 @@
         "erusev/parsedown": "^1.6",
         "predis/predis": "^1.1",
         "fideloper/proxy": "^3.2",
-        "embed/embed": "^3.0",
+        "embed/embed": "3.2.*",
         "barryvdh/laravel-debugbar": "^2.3",
         "seatgeek/sixpack-php": "^2.1",
         "doctrine/dbal": "^2.5",

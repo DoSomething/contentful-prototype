@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "489e2b71ce2072016ecddb2af477bfa5",
+    "content-hash": "90448f8c76edf320f3897efdb57bc35f",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -844,16 +844,16 @@
         },
         {
             "name": "embed/embed",
-            "version": "v3.2.1",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oscarotero/Embed.git",
-                "reference": "f951eb15872b05fef056f48442efef2dbb5d51ed"
+                "reference": "f772982c26034d3d58cd82c4b18e1410dd74625e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/f951eb15872b05fef056f48442efef2dbb5d51ed",
-                "reference": "f951eb15872b05fef056f48442efef2dbb5d51ed",
+                "url": "https://api.github.com/repos/oscarotero/Embed/zipball/f772982c26034d3d58cd82c4b18e1410dd74625e",
+                "reference": "f772982c26034d3d58cd82c4b18e1410dd74625e",
                 "shasum": ""
             },
             "require": {
@@ -893,7 +893,7 @@
                 "opengraph",
                 "twitter cards"
             ],
-            "time": "2017-09-25T20:57:58+00:00"
+            "time": "2017-11-13T17:56:44+00:00"
         },
         {
             "name": "erusev/parsedown",
