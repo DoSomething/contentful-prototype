@@ -1,4 +1,4 @@
-import { SHOW_LANDING_PAGE } from '../actions';
+import { SHOW_LANDING_PAGE, SHOW_ACTION_PAGE } from '../actions';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -6,6 +6,10 @@ import { SHOW_LANDING_PAGE } from '../actions';
  */
 
 // Action: show the campaigns landing page
-export function clickedShowLandingPage() { // eslint-disable-line import/prefer-default-export
+export function clickedShowLandingPage() {
   return { type: SHOW_LANDING_PAGE };
+}
+
+export function clickedShowActionPage() {
+  return { type: SHOW_ACTION_PAGE };
 }
