@@ -8,29 +8,52 @@ import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import NotificationContainer from '../Notification';
 import AdminDashboardContainer from '../AdminDashboard';
 
-const Campaign = (props) => {
-  const { isAffiliated, useLandingPage, slug, clickedShowAffirmation } = props;
+class Campaign extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div>
-      <AdminDashboardContainer>
-        <a className="button -secondary margin-horizontal-md" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
-          Clear Cache
-        </a>
-        <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
-          Show Affirmation
-        </button>
-      </AdminDashboardContainer>
-      <NotificationContainer />
-      <ModalSwitch />
+    this.state = {
+      shouldShowLandingPage: false,
+    };
 
-      {(! isAffiliated && useLandingPage) ?
-        <LandingPageContainer {...props} />
-        :
-        <CampaignPageContainer {...props} />}
-    </div>
-  );
-};
+    this.showLandingPage = this.showLandingPage.bind(this);
+  }
+
+  showLandingPage() {
+    this.setState({ shouldShowLandingPage: true });
+  }
+
+  render() {
+    const { isAffiliated, useLandingPage, slug, clickedShowAffirmation } = this.props;
+    const showLandingPage = (! isAffiliated && useLandingPage) || this.state.shouldShowLandingPage;
+
+    return (
+      <div>
+        <AdminDashboardContainer>
+          <a className="button -secondary margin-horizontal-md" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
+            Clear Cache
+          </a>
+          <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
+            Show Affirmation
+          </button>
+          { useLandingPage ?
+            <button className="button -secondary margin-horizontal-md" onClick={this.showLandingPage}>
+              Show Landing Page
+            </button>
+            : null }
+        </AdminDashboardContainer>
+
+        <NotificationContainer />
+        <ModalSwitch />
+
+        { showLandingPage ?
+          <LandingPageContainer {...this.props} />
+          :
+          <CampaignPageContainer {...this.props} />}
+      </div>
+    );
+  }
+}
 
 Campaign.propTypes = {
   isAffiliated: PropTypes.bool,
