@@ -18,7 +18,7 @@ test('it can display a CTA block', () => {
 });
 
 test('it can display a static block', () => {
-  const wrapper = shallow(<Block json={{ id: '12345', type: 'static', fields: {} }} />);
+  const wrapper = shallow(<Block json={{ id: '12345', type: 'static', fields: { content: 'Donec ullamcorper fringilla.', title: 'Nibh ornare' } }} />);
   expect(wrapper.find('StaticBlock')).toHaveLength(1);
 });
 
