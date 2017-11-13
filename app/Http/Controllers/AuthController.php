@@ -48,7 +48,19 @@ class AuthController extends Controller
             session(['login.intended' => $intended]);
         }
 
-        $options = array_get($request->getQueryParams(), 'options') ?: [];
+        $options = [];
+        $jsonOptions = array_get($request->getQueryParams(), 'jsonOptions') ?: null;
+
+        // Check if the JS added auth options.
+        if ($jsonOptions) {
+            $options = (array) json_decode($jsonOptions);
+        }
+
+        // As a backup check the Blade template.
+        if (! $options) {
+            $options = array_get($request->getQueryParams(), 'options') ?: [];
+        }
+
         $destination = array_get($request->getQueryParams(), 'destination');
         $url = session('login.intended', $this->redirectTo);
 
