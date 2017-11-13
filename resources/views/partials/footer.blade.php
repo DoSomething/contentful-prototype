@@ -26,7 +26,7 @@
       </ul>
     </div>
     <div class="footer__column -links">
-        <h4 class="js-toggle-collapsed is-collapsed is-toggleable">Who We Are</h4>
+        <h4>Who We Are</h4>
         <ul>
           <li><a href="{{ phoenixLink('us/about/who-we-are') }}">What is DoSomething.org?</a></li>
           <li><a href="{{ phoenixLink('us/about/our-people') }}">Our Team</a></li>
@@ -37,7 +37,7 @@
          </ul>
     </div>
     <div class="footer__column -links">
-        <h4 class="js-toggle-collapsed is-collapsed is-toggleable">Our Friends</h4>
+        <h4>Our Friends</h4>
         <ul>
           <li><a href="http://www.tmiagency.org">TMI Agency</a></li>
           <li><a href="{{ phoenixLink('us/about/our-partners') }}">Partners</a></li>
@@ -46,7 +46,7 @@
         </ul>
     </div>
     <div class="footer__column -links">
-        <h4 class="js-toggle-collapsed is-collapsed is-toggleable">Get Involved</h4>
+        <h4>Get Involved</h4>
         <ul>
           <li><a href="{{ phoenixLink('us/about/easy-scholarships') }}">Scholarships</a></li>
           <li><a href="{{ phoenixLink('us/about/join-our-team') }}">Jobs</a></li>
