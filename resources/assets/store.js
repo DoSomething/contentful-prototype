@@ -69,6 +69,7 @@ const initialState = {
   slideshow: {},
   admin: {
     shouldShowLandingPage: false,
+    shouldShowActionPage: false,
   },
 };
 
