@@ -5,11 +5,15 @@ import { clickedShowAffirmation } from '../../actions/signup';
 import { clickedShowLandingPage } from '../../actions/admin';
 
 const mapStateToProps = (state) => {
-  const shouldShowLandingPage = ! state.signups.thisCampaign || state.admin.shouldShowLandingPage;
+  const isSignedUp = state.signups.thisCampaign;
+  const hasLandingPage = state.campaign.landingPage !== null;
+
+  const shouldShowLandingPage = hasLandingPage &&
+    (! isSignedUp || state.admin.shouldShowLandingPage);
 
   return {
-    useLandingPage: state.campaign.landingPage !== null,
     slug: state.campaign.slug,
+    hasLandingPage,
     shouldShowLandingPage,
   };
 };
