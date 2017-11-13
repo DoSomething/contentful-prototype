@@ -44,13 +44,21 @@ export function startQueue() {
 
 // Action: add an event to the queue.
 export function queueEvent(actionCreatorName, ...args) {
-  return {
-    type: actions.QUEUE_EVENT,
-    createdAt: Date.now(),
-    requiresAuth: true, // vLater - Allow more flexibility with configuring events
-    action: {
-      creatorName: actionCreatorName,
-      args,
-    },
+  return (dispatch, getState) => {
+    const northstarOptions = {};
+    northstarOptions.title = getState().campaign.title;
+    northstarOptions.coverImage = getState().campaign.coverImage.url;
+    northstarOptions.callToAction = getState().campaign.callToAction;
+
+    dispatch({
+      type: actions.QUEUE_EVENT,
+      createdAt: Date.now(),
+      requiresAuth: true, // vLater - Allow more flexibility with configuring events
+      northstarOptions,
+      action: {
+        creatorName: actionCreatorName,
+        args,
+      },
+    });
   };
 }

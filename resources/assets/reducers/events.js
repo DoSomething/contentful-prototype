@@ -20,7 +20,12 @@ const events = (state = {}, action) => {
       storageAppend('queue', EVENT_STORAGE_KEY, action);
 
       if (action.requiresAuth) {
-        window.location.href = '/next/login';
+        let path = '/next/login';
+        if (action.northstarOptions) {
+          path += `?jsonOptions=${JSON.stringify(action.northstarOptions)}`;
+        }
+
+        window.location.href = path;
       }
 
       return state;
