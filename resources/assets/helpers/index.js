@@ -124,69 +124,6 @@ function getFileType(file) {
 }
 
 /**
- * Remove EXIF data on specified file if present.
- *
- * @param  {ArrayBuffer} image
- * @param  {DataView} dv
- * @return {Blob}
- */
-function stripExifData(image, dv = null) {
-  let dataView = dv;
-
-  if (! dataView) {
-    dataView = new DataView(image);
-  }
-
-  const pieces = [];
-  let offset = 0;
-  let recess = 0;
-  let i = 0;
-
-  offset += 2;
-  let app1 = dataView.getUint16(offset);
-  offset += 2;
-
-  // This loop does the acutal reading of the data and creates
-  // an array with only the pieces we want.
-  while (offset < dataView.byteLength) {
-    if (app1 === 0xffe1) {
-      pieces[i] = {
-        recess,
-        offset: offset - 2,
-      };
-
-      recess = offset + dataView.getUint16(offset);
-
-      i += 1;
-    } else if (app1 === 0xffda) {
-      break;
-    }
-
-    offset += dataView.getUint16(offset);
-    app1 = dataView.getUint16(offset);
-    offset += 2;
-  }
-
-  // If the file had EXIF data and it was removed, create a
-  // file blob using the new array of file data.
-  if (pieces.length > 0) {
-    const newPieces = [];
-
-    pieces.forEach((piece) => {
-      newPieces.push(image.slice(piece.recess, piece.offset));
-    }, this);
-
-    newPieces.push(image.slice(recess));
-
-    return new Blob(newPieces, { type: 'image/jpeg' });
-  }
-
-  // If no EXIF data existed on the file, then nothing was done to it.
-  // We can just create a blob with the original data.
-  return new Blob([dataView], { type: 'image/jpeg' });
-}
-
-/**
  * Process file (provided as an ArrayBuffer) depending
  * on its type.
  *
@@ -203,7 +140,7 @@ export function processFile(file) {
   }
 
   if (fileType === 'image/jpeg') {
-    return stripExifData(file, dataView);
+    return new Blob([dataView], { type: 'image/jpeg' });
   }
 
   throw new Error('Unsupported file type.');
