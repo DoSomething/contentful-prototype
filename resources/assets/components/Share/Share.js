@@ -33,9 +33,7 @@ const Share = (props) => {
     showTwitterSharePrompt(link, quote || '');
   };
 
-  const buttonClassName = classnames(
-    'share', className, { '-black': variant === 'black', '-icon': variant === 'icon' },
-  );
+  const buttonClassName = classnames('share', className, `-${variant}`);
 
   return (
     <div>
