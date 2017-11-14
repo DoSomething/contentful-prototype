@@ -11,7 +11,6 @@ import TabbedNavigation from './TabbedNavigation';
 import { campaignPaths } from '../../helpers/navigation';
 import { isCampaignClosed } from '../../helpers';
 import SignupButtonFactory from '../SignupButton';
-import { hasSlugFix } from '../../selectors/campaign';
 
 const mapStateToProps = state => ({
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
@@ -41,12 +40,14 @@ const TabbedNavigationContainer = (props) => {
   const additionalPages = pages
     .filter(page => ! page.fields.hideFromNavigation)
     .map((page) => {
-      // TODO: Get rid of this slug fix conditional.
-      const path = hasSlugFix(page) ? (
-        join('/us/campaigns/', page.fields.slug)
-      ) : (
-        join('/us/campaigns', campaignSlug, campaignPaths.pages, page.fields.slug)
-      );
+      let path = '/us/campaigns';
+
+      // Check if the page slug already contains the campaign slug
+      if (page.fields.slug.indexOf(campaignSlug) >= 0) {
+        path += `/${page.fields.slug}`;
+      } else {
+        path += `/${campaignSlug}/pages/${page.fields.slug}`;
+      }
 
       return (
         <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>
