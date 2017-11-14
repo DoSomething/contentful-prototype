@@ -13,6 +13,11 @@
   .modal__container {
     max-width: 800px;
     margin: auto;
+    padding: $half-spacing;
+
+    @include media($tablet) {
+      padding: $base-spacing;
+    }
   }
 
   .modal__slide {
