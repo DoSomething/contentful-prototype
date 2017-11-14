@@ -13,12 +13,12 @@ return [
     /*
      * An API key for the above specified space
      */
-    'delivery.token' => env('CONTENTFUL_CONTENT_DELIVERY_API_KEY'),
+    'delivery.token' => env('CONTENTFUL_CONTENT_API_KEY'),
 
     /*
      * Controls whether Contentful's Delivery or Preview API is accessed
      */
-    'delivery.preview' => false,
+    'delivery.preview' => env('CONTENTFUL_USE_PREVIEW_API'),
 
     /*
      * Sets the locale in which to fetch content by default. NULL means the space'd default locale will be used
