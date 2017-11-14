@@ -3,7 +3,6 @@
  * @copyright 2016 Contentful GmbH
  * @license   MIT
  */
-
 $shouldUsePreview = config('app.env') === 'staging';
 $tokenType = $shouldUsePreview ? 'PREVIEW' : 'DELIVERY';
 
