@@ -24,8 +24,8 @@ const Affirmation = ({ content }) => (
         <h3>{ content.callToActionHeader }</h3>
         <p>{ content.callToActionDescription }</p>
       </div>
-      <div className="affirmation__block">
-        <ShareContainer variant="blue" parentSource="affirmation" />
+      <div className="affirmation__block margin-horizontal-md">
+        <ShareContainer variant="black" parentSource="affirmation" />
       </div>
     </div>
   </div>

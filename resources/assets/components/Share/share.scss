@@ -45,7 +45,7 @@
     margin-left: $half-spacing / 2;
     margin-right: $half-spacing / 2;
 
-    @include media($tablet) {
+    @include media($medium) {
       margin-left: $half-spacing;
       margin-right: $half-spacing;
     }

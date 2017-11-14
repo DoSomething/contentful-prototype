@@ -15,7 +15,7 @@
     margin: auto;
     padding: $half-spacing;
 
-    @include media($tablet) {
+    @include media($medium) {
       padding: $base-spacing;
     }
   }
