@@ -34,7 +34,7 @@ const Share = (props) => {
   };
 
   const buttonClassName = classnames(
-    'button share padding-horizontal-md', className, { '-black': variant === 'black', '-icon': variant === 'icon' },
+    'share', className, { '-black': variant === 'black', '-icon': variant === 'icon' },
   );
 
   return (
