@@ -66,10 +66,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, affiliateMessagingOptOut: ! state.affiliateMessagingOptOut };
 
     case CLICKED_REMOVE_SIGN_UP:
-      return {
-        ...state,
-        thisCampaign: false,
-      }
+      return { ...state, thisCampaign: false };
 
     default:
       return state;

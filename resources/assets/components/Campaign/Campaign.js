@@ -11,11 +11,10 @@ import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
-    clickedShowActionPage, clickedRemoveSignUp, shouldShowLandingPage, signupCreated, isSignedUp } = props;
+    clickedShowActionPage, clickedRemoveSignUp, shouldShowLandingPage,
+    signupCreated, isSignedUp } = props;
 
-  const onSignUpClick = () => {
-    ! isSignedUp ? signupCreated() : clickedRemoveSignUp();
-  }
+  const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
 
   return (
     <div>
