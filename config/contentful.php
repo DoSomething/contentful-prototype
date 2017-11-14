@@ -4,6 +4,9 @@
  * @license   MIT
  */
 
+$shouldUsePreview = config('app.env') === 'staging';
+$tokenType = $shouldUsePreview ? 'PREVIEW' : 'DELIVERY';
+
 return [
     /*
      * The ID of the space you want to access
@@ -13,12 +16,12 @@ return [
     /*
      * An API key for the above specified space
      */
-    'delivery.token' => env('CONTENTFUL_CONTENT_DELIVERY_API_KEY'),
+    'delivery.token' => env('CONTENTFUL_CONTENT_'.$tokenType.'_API_KEY'),
 
     /*
      * Controls whether Contentful's Delivery or Preview API is accessed
      */
-    'delivery.preview' => false,
+    'delivery.preview' => $shouldUsePreview,
 
     /*
      * Sets the locale in which to fetch content by default. NULL means the space'd default locale will be used
