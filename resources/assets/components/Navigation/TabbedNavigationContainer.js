@@ -40,7 +40,6 @@ const TabbedNavigationContainer = (props) => {
   const additionalPages = pages
     .filter(page => ! page.fields.hideFromNavigation)
     .map((page) => {
-      const baseCampaignsPath = '/us/campaigns';
       const pageHasCampaignSlug = page.fields.slug.indexOf(campaignSlug) >= 0;
       let pageSlug = page.fields.slug;
 
@@ -48,7 +47,7 @@ const TabbedNavigationContainer = (props) => {
         pageSlug = pageSlug.replace(`${campaignSlug}/`, '');
       }
 
-      const path = join(baseCampaignsPath, campaignSlug, campaignPaths.pages, pageSlug);
+      const path = join('/us/campaigns', campaignSlug, campaignPaths.pages, pageSlug);
 
       return (
         <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>
