@@ -12,6 +12,7 @@ import {
   SIGNUP_PENDING,
   SIGNUP_CLICKED_OPT_OUT,
   SET_TOTAL_SIGNUPS,
+  CLICKED_REMOVE_SIGN_UP,
   queueEvent,
   addNotification,
   openModal,
@@ -154,6 +155,12 @@ export function clickedSignUp(campaignId, options = null, shouldRedirectToAction
       }
     });
   };
+}
+
+// Action: removes the current signup from campaign
+// for admin to preview content
+export function clickedRemoveSignUp() {
+  return { type: CLICKED_REMOVE_SIGN_UP };
 }
 
 // Action: triggers the post signup affirmation modal.
