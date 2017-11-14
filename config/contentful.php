@@ -3,8 +3,6 @@
  * @copyright 2016 Contentful GmbH
  * @license   MIT
  */
-$shouldUsePreview = env('CONTENTFUL_USE_PREVIEW_API', false);
-$tokenType = $shouldUsePreview ? 'PREVIEW' : 'DELIVERY';
 
 return [
     /*
@@ -15,12 +13,12 @@ return [
     /*
      * An API key for the above specified space
      */
-    'delivery.token' => env('CONTENTFUL_CONTENT_'.$tokenType.'_API_KEY'),
+    'delivery.token' => env('CONTENTFUL_CONTENT_API_KEY'),
 
     /*
      * Controls whether Contentful's Delivery or Preview API is accessed
      */
-    'delivery.preview' => $shouldUsePreview,
+    'delivery.preview' => env('CONTENTFUL_USE_PREVIEW_API'),
 
     /*
      * Sets the locale in which to fetch content by default. NULL means the space'd default locale will be used
