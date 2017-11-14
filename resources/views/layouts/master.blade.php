@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>DoSomething.org</title>
 
-    <link rel="icon" type="image/ico" href="/favicon.ico?v1">
+    <link rel="icon" type="image/ico" href={{config('app.url') . "/favicon.ico?v1" }}>
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
     @if(isset($socialFields))
