@@ -13,7 +13,7 @@ import './campaign-subpage.scss';
 const CampaignSubPage = (props) => {
   const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
-  const subPage = find(pages, page => page.fields.slug === match.params.slug);
+  const subPage = find(pages, page => page.fields.slug.endsWith(match.params.slug));
 
   if (! subPage) {
     return <NotFound />;
