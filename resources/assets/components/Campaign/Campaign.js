@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import ModalSwitch from '../Modal';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
@@ -10,7 +11,7 @@ import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
-    shouldShowLandingPage } = props;
+    clickedShowActionPage, shouldShowLandingPage } = props;
 
   return (
     <div>
@@ -26,6 +27,9 @@ const Campaign = (props) => {
             Show Landing Page
           </button>
           : null}
+        <Link className="button -secondary margin-horizontal-md" to={`/us/campaigns/${slug}/action`} onClick={clickedShowActionPage}>
+          Show Action Page
+        </Link>
       </AdminDashboardContainer>
       <NotificationContainer />
       <ModalSwitch />
@@ -43,6 +47,7 @@ Campaign.propTypes = {
   slug: PropTypes.string.isRequired,
   clickedShowAffirmation: PropTypes.func.isRequired,
   clickedShowLandingPage: PropTypes.func.isRequired,
+  clickedShowActionPage: PropTypes.func.isRequired,
   shouldShowLandingPage: PropTypes.bool,
 };
 
