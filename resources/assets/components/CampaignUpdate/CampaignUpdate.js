@@ -32,7 +32,7 @@ const CampaignUpdate = ({ id, author, content, link, shareLink, bordered }) => {
           link={shareLink}
           variant="icon"
           parentSource="campaignUpdate"
-          className="float-right clear-none"
+          className="clear-none -right-icon"
         />
       </footer>
     </Card>

@@ -1,5 +1,22 @@
 @import '../../scss/next-toolbox.scss';
 
+.share-tray {
+  margin-top: $base-spacing * 3;
+  text-align: center;
+
+  @media (min-width: 425px) {
+    margin-top: $half-spacing;
+  }
+
+  .-icon {
+    float: none;
+
+    @media (min-width: 425px) {
+      float: right;
+    }
+  }
+}
+
 .share {
   color: $white;
   width: 100%;
@@ -40,8 +57,8 @@
 
   &.-icon {
     width: auto;
+    display: inline-block;
     color: $light-gray;
-    margin-top: $half-spacing;
     margin-left: $half-spacing / 2;
     margin-right: $half-spacing / 2;
 

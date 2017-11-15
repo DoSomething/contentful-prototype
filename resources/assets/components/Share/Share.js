@@ -34,17 +34,18 @@ const Share = (props) => {
   };
 
   const buttonClassName = classnames('share', className, `-${variant}`);
+  const isIcon = variant === 'icon';
 
   return (
-    <div>
-      { variant === 'icon' ? (
+    <div className={classnames({ 'share-tray': isIcon })}>
+      { isIcon ? (
         <button className={buttonClassName} onClick={onTwitterClick}>
           <i className="social-icon -twitter"><span>Twitter</span></i>
         </button>) : null
       }
 
       <button className={buttonClassName} onClick={onFacebookClick}>
-        {variant === 'icon' ? null : 'share on'}
+        {isIcon ? null : 'share on'}
         <i className="social-icon -facebook"><span>Facebook</span></i>
       </button>
     </div>
