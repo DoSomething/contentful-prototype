@@ -9,6 +9,9 @@
       "required": true
     },
     "APP_LOG": "errorlog",
+    "CONTENTFUL_CONTENT_API_KEY": {
+      "required": true
+    },
     "CONTENTFUL_CONTENT_DELIVERY_API_KEY": {
       "required": true
     },
