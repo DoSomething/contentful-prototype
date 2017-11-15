@@ -12,12 +12,6 @@
     "CONTENTFUL_CONTENT_API_KEY": {
       "required": true
     },
-    "CONTENTFUL_CONTENT_DELIVERY_API_KEY": {
-      "required": true
-    },
-    "CONTENTFUL_CONTENT_PREVIEW_API_KEY": {
-      "required": true
-    },
     "CONTENTFUL_SPACE_ID": {
       "required": true
     },
