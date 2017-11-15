@@ -1,29 +1,75 @@
 @import '../../scss/next-toolbox.scss';
 
+.share-tray {
+  margin-top: $base-spacing * 3;
+  text-align: center;
+
+  @media (min-width: 425px) {
+    margin-top: $half-spacing;
+  }
+
+  .-icon {
+    float: none;
+
+    @media (min-width: 425px) {
+      float: right;
+    }
+  }
+}
+
 .share {
   color: $white;
   width: 100%;
+  padding: 0;
+
+  &.-black, &.-blue {
+    line-height: 1.3;
+    padding: 0.55em 1em 0.45em;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: $lg-border-radius;
+    font-family: $primary-font-family;
+    font-weight: $weight-bold;
+    font-size: $font-medium;
+    width: 100%;
+  }
+
+  &.-blue {
+    color: $white;
+    background-color: $blue;
+
+    &:hover {
+      background: lighten($blue, $color-tint);
+    }
+  }
 
   &.-black {
     color: $dark-background-color;
-    background: $white;
+    background-color: $white;
     border: 1px solid $dark-background-color;
 
     &:hover {
-      background: $dark-background-color;
+      color: $white;
+      background-color: $dark-background-color;
     }
   }
 
   &.-icon {
     width: auto;
-    background: none;
-    border: none;
+    display: inline-block;
     color: $light-gray;
+    margin-left: $half-spacing / 2;
+    margin-right: $half-spacing / 2;
+
+    @include media($medium) {
+      margin-left: $half-spacing;
+      margin-right: $half-spacing;
+    }
 
     &:hover, &:active, &:focus {
       color: $med-gray;
       cursor: pointer;
-      background: none;
     }
   }
 

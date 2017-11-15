@@ -23,7 +23,7 @@ exports[`it generates a campaign update snapshot 1`] = `
       share={null}
     />
     <Share
-      className="float-right clear-none"
+      className="clear-none -right-icon"
       link="http://example.com/link-to-content"
       parentSource="campaignUpdate"
       variant="icon"

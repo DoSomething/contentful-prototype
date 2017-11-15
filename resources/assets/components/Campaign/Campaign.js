@@ -16,14 +16,14 @@ const Campaign = (props) => {
   return (
     <div>
       <AdminDashboardContainer>
-        <a className="button -secondary margin-horizontal-md" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
+        <a className="button -secondary margin-md" href={`/next/cache/campaign_${slug}?redirect=${window.location.pathname}`}>
           Clear Cache
         </a>
-        <button className="button -secondary margin-horizontal-md" onClick={clickedShowAffirmation}>
+        <button className="button -secondary margin-md" onClick={clickedShowAffirmation}>
           Show Affirmation
         </button>
         { hasLandingPage ?
-          <button className="button -secondary margin-horizontal-md" onClick={clickedShowLandingPage}>
+          <button className="button -secondary margin-md" onClick={clickedShowLandingPage}>
             Show Landing Page
           </button>
           : null}
