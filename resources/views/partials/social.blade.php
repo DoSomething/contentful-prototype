@@ -1,3 +1,5 @@
+<meta name="twitter:card" content="summary_large_image" />
+
 <meta property="og:title" content="{{ $socialFields['title'] }}" />
 <meta property="og:type"  content="article" />
 <meta property="og:description" content="{{ $socialFields['callToAction'] }}" />
