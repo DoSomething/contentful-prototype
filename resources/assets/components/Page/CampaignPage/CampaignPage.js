@@ -144,7 +144,7 @@ CampaignPage.propTypes = {
   title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number,
   openModal: PropTypes.func.isRequired,
-  shouldShowActionPage: PropTypes.bool,
+  shouldShowActionPage: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {
@@ -153,7 +153,6 @@ CampaignPage.defaultProps = {
   isAffiliated: false,
   totalCampaignSignups: 0,
   campaignLead: undefined,
-  shouldShowActionPage: false,
 };
 
 export default CampaignPage;
