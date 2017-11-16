@@ -54,7 +54,7 @@ class SetupCommand extends Command
             $this->instruction('You can get this API key from Contentful\'s "API" tab.');
             $this->instruction('If you need access, register an account & ask for an invite in #phoenix-next.');
 
-            $this->setEnvironmentVariable('CONTENTFUL_CONTENT_DELIVERY_API_KEY', 'Enter the Contentful Delivery API Key');
+            $this->setEnvironmentVariable('CONTENTFUL_CONTENT_API_KEY', 'Enter the Contentful API Key');
         });
 
         $this->runCommand('key:generate', 'Creating application key');
