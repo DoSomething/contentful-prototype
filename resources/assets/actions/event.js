@@ -49,9 +49,9 @@ export function queueEvent(actionCreatorName, ...args) {
     if (getState().campaign) {
       const { callToAction, coverImage, title } = getState().campaign;
 
-      northstarOptions.title = title;
+      northstarOptions.title = encodeURIComponent(title);
       northstarOptions.coverImage = coverImage.url;
-      northstarOptions.callToAction = callToAction;
+      northstarOptions.callToAction = encodeURIComponent(callToAction);
     }
 
     dispatch({
