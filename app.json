@@ -15,6 +15,9 @@
     "CONTENTFUL_SPACE_ID": {
       "required": true
     },
+    "CONTENTFUL_USE_PREVIEW_API": {
+      "required": true
+    },
     "NORTHSTAR_AUTHORIZATION_ID": {
       "required": true
     },
