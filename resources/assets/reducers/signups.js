@@ -5,6 +5,7 @@ import {
   SIGNUP_NOT_FOUND,
   SIGNUP_CLICKED_OPT_OUT,
   SET_TOTAL_SIGNUPS,
+  CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
 
 import {
@@ -64,6 +65,8 @@ const signupReducer = (state = {}, action) => {
     case SIGNUP_CLICKED_OPT_OUT:
       return { ...state, affiliateMessagingOptOut: ! state.affiliateMessagingOptOut };
 
+    case CLICKED_REMOVE_SIGN_UP:
+      return { ...state, thisCampaign: false };
 
     default:
       return state;

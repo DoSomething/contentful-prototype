@@ -11,7 +11,10 @@ import AdminDashboardContainer from '../AdminDashboard';
 
 const Campaign = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
-    clickedShowActionPage, shouldShowLandingPage } = props;
+    clickedShowActionPage, clickedRemoveSignUp, shouldShowLandingPage,
+    signupCreated, isSignedUp } = props;
+
+  const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
 
   return (
     <div>
@@ -30,6 +33,9 @@ const Campaign = (props) => {
         <Link className="button -secondary margin-horizontal-md" to={`/us/campaigns/${slug}/action`} onClick={clickedShowActionPage}>
           Show Action Page
         </Link>
+        <button className="button -secondary margin-horizontal-md" onClick={onSignUpClick}>
+          {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
+        </button>
       </AdminDashboardContainer>
       <NotificationContainer />
       <ModalSwitch />
@@ -45,9 +51,12 @@ const Campaign = (props) => {
 Campaign.propTypes = {
   hasLandingPage: PropTypes.bool,
   slug: PropTypes.string.isRequired,
+  isSignedUp: PropTypes.bool.isRequired,
   clickedShowAffirmation: PropTypes.func.isRequired,
   clickedShowLandingPage: PropTypes.func.isRequired,
   clickedShowActionPage: PropTypes.func.isRequired,
+  clickedRemoveSignUp: PropTypes.func.isRequired,
+  signupCreated: PropTypes.func.isRequired,
   shouldShowLandingPage: PropTypes.bool,
 };
 
