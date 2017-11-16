@@ -2,17 +2,34 @@
   "name": "phoenix-next",
   "description": ":sparkles:",
   "env": {
-    "APP_ENV": "local",
     "APP_DEBUG": "false",
-    "NPM_CONFIG_PRODUCTION": "false",
+    "APP_ENV": "staging",
     "APP_KEY": {
       "required": true
     },
     "APP_LOG": "errorlog",
+    "APP_URL": "https://ds-phoenix-staging.herokuapp.com/",
+    "CONTENTFUL_CACHE": "false",
     "CONTENTFUL_CONTENT_API_KEY": {
       "required": true
     },
     "CONTENTFUL_SPACE_ID": {
+      "required": true
+    },
+    "CONTENTFUL_USE_PREVIEW_API": "true",
+    "CUSTOMER_IO_ID": {
+      "required": true
+    },
+    "FACEBOOK_APP_ID": {
+      "required": true
+    },
+    "GLADIATOR_URL": {
+      "required": true
+    },
+    "GLADIATOR_API_KEY": {
+      "required": true
+    },
+    "GOOGLE_ANALYTICS_ID": {
       "required": true
     },
     "NORTHSTAR_AUTHORIZATION_ID": {
@@ -24,31 +41,40 @@
     "NORTHSTAR_URL": {
       "required": true
     },
+    "NPM_CONFIG_PRODUCTION": "false",
+    "PHOENIX_LEGACY_PASSWORD": {
+      "required": true
+    },
     "PHOENIX_LEGACY_URL": {
-        "required": true
+      "required": true
     },
     "PHOENIX_LEGACY_USERNAME": {
-        "required": true
-    },
-    "PHOENIX_LEGACY_PASSWORD": {
-        "required": true
-    },
-    "GLADIATOR_URL": {
-      "required": true
-    },
-    "GOOGLE_ANALYTICS_ID": {
-      "required": true
-    },
-    "FACEBOOK_APP_ID": {
       "required": true
     },
     "PUCK_URL": {
+      "required": true
+    },
+    "ROGUE_API_KEY": {
+      "required": true
+    },
+    "ROGUE_URL": {
+      "required": true
+    },
+    "SIXPACK_BASE_URL": {
+      "required": true
+    },
+    "SIXPACK_COOKIE_PREFIX": {
+      "required": true
+    },
+    "SIXPACK_ENABLED": "true",
+    "SIXPACK_TIMEOUT": {
       "required": true
     }
   },
   "formation": {},
   "addons": [
-    "cleardb"
+    "cleardb",
+    "heroku-redis"
   ],
   "buildpacks": [
     {
