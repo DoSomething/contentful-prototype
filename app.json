@@ -1,5 +1,5 @@
 {
-  "name": "phoenix-next",
+  "name": "phoenix",
   "description": ":sparkles:",
   "env": {
     "APP_DEBUG": "false",
