@@ -53,7 +53,7 @@ test('it makes the expected share link for a content item and app section type',
     key: '123',
   };
 
-  expect(makeShareLink('campaigns', options)).toBe('http://awesome.com/us/campaigns/seriously-awesome-campaign/blocks/123');
+  expect(makeShareLink('campaigns', options)).toBe('http://awesome.com/us/campaigns/seriously-awesome-campaign/modal/123');
 });
 
 test('it cannot make share link with an unknown app section type', () => {
