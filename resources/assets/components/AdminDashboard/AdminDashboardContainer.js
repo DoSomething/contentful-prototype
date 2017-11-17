@@ -3,7 +3,7 @@ import AdminDashboard from './AdminDashboard';
 import { userHasRole } from '../../selectors/user';
 
 const mapStateToProps = state => ({
-  isAdmin: userHasRole(state, ['admin', 'staff']),
+  enabled: userHasRole(state, ['admin', 'staff']),
 });
 
 export default connect(mapStateToProps)(AdminDashboard);
