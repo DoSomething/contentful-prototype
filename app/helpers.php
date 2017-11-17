@@ -5,7 +5,6 @@ use Contentful\ImageOptions;
 use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
-use Contentful\Delivery\DynamicEntry;
 use Illuminate\Support\Facades\Storage;
 use SeatGeek\Sixpack\Session\Base as Sixpack;
 
