@@ -61,19 +61,6 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
-     * Parse and extract photo data for action steps.
-     *
-     * @param  array $photos
-     * @return array
-     */
-    public function parseActionStepPhotos($photos)
-    {
-        return collect($photos)->map(function ($photo) {
-            return get_image_url($photo, 'square');
-        });
-    }
-
-    /**
      * Parse and extract activity feed item data based on content type.
      *
      * @param  array $activityItems
@@ -125,22 +112,7 @@ class Campaign extends Entity implements JsonSerializable
     public function parseActionSteps($actionSteps)
     {
         return collect($actionSteps)->map(function ($step) {
-            $data = [];
-
-            $data['title'] = $step->title;
-            $data['displayOptions'] = $step->displayOptions->first();
-
-            $step->content ? $data['content'] = $step->content : null;
-            $step->background ? $data['background'] = get_image_url($step->background, 'landscape') : null;
-            $step->photos ? $data['photos'] = $this->parseActionStepPhotos($step->photos) : null;
-            $step->customType ? $data['customType'] = $step->customType->first() : null;
-            $step->additionalContent ? $data['additionalContent'] = $step->additionalContent : null;
-
-            if ($step->type) {
-                $data['customType'] = $step->type;
-            }
-
-            return $data;
+            return new CampaignActionStep($step->entry);
         });
     }
 
