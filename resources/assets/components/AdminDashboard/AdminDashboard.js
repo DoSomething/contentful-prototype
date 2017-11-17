@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AdminDashboard = ({ isAdmin, children }) => (
-  isAdmin ?
+const AdminDashboard = ({ enabled, children }) => (
+  enabled ?
     <div className="bg-light-gray -white">
       { children }
     </div>
@@ -12,7 +12,7 @@ const AdminDashboard = ({ isAdmin, children }) => (
 
 AdminDashboard.propTypes = {
   children: PropTypes.node.isRequired,
-  isAdmin: PropTypes.bool.isRequired,
+  enabled: PropTypes.bool.isRequired,
 };
 
 export default AdminDashboard;

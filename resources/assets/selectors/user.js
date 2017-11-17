@@ -7,3 +7,14 @@
 export function getUserId(state) { // eslint-disable-line import/prefer-default-export
   return state.user.id;
 }
+
+/**
+ * Find out if the user had one of provided roles.
+ *
+ * @param {object} state
+ * @param {array}  roles
+ * @returns {boolean}
+ */
+export function userHasRole(state, roles) {
+  return roles.includes(state.user.role);
+}
