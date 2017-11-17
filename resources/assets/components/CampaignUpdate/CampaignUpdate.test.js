@@ -20,6 +20,7 @@ const component = shallow(
     author={author}
     content="Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum."
     shareLink="http://example.com/link-to-content"
+    titleLink="http://example.com/link-to-content"
   />,
 );
 
