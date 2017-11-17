@@ -213,27 +213,36 @@ function get_legacy_campaign_data($id, $key = null)
  * base object.
  *
  * @param  string $field
- * @param  stdClass $campaign
- * @param  DynamicEntry $override
+ * @param  mixed $base
+ * @param  mixed $override
  * @return mixed
  */
-function useOverrideIfSet($field, $campaign, $override)
+function useOverrideIfSet($field, $base, $override)
 {
-    if (! isset($campaign->{$field})) {
-        $base = null;
-    } else {
-        $base = $campaign->{$field};
+    $isBaseArray = is_array($base);
+    $isOverrideArray = is_array($override);
+
+    $baseFieldExists = $isBaseArray ? isset($base[$field]) : isset($base->{$field});
+    $overrideFieldExists = $isOverrideArray ? isset($override[$field]) : isset($override->{$field});
+
+    $value = null;
+
+    // Set the default return value.
+    if ($baseFieldExists) {
+        $value = $isBaseArray ? $base[$field] : $base->{$field};
     }
 
+    // If there are no possible overrides, return the default value.
     if ($override === null) {
-        return $base;
+        return $value;
     }
 
-    if (isset($override->{$field})) {
-        return $override->{$field};
+    // If there is an override, return that instead.
+    if ($overrideFieldExists) {
+        return $isOverrideArray ? $override[$field] : $override->{$field};
     }
 
-    return $base;
+    return $value;
 }
 
 /**
