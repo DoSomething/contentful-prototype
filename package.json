@@ -48,6 +48,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.4",
     "markdown-it": "^8.4.0",
+    "markdown-it-attrs": "^1.2.0",
     "markdown-it-footnote": "^3.0.1",
     "prop-types": "^15.5.8",
     "react": "^15.6.1",
