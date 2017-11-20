@@ -22,7 +22,7 @@ const formatMarkdownString = (string) => {
 };
 
 const Markdown = ({ className = null, children }) => (
-  <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(formatImageUrls(children))} /> // eslint-disable-line react/no-danger
+  <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(formatMarkdownString(children))} /> // eslint-disable-line react/no-danger
 );
 
 Markdown.propTypes = {
