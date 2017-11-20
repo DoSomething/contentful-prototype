@@ -227,8 +227,8 @@ export function makeHash(string) {
  * @flow
  */
 export function makeShareLink(
-  options: { domain: string, slug?: string, key: string, type: string },
   resource,
+  options: { domain: string, slug?: string, key: string, type: "blocks" | "modals" },
 ) {
   switch (resource) {
     case 'campaigns':
