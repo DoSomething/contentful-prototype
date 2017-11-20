@@ -11,7 +11,7 @@ const formatImageUrls = string => (string.replace(pattern, contentfulImageFormat
 
 // https://regex101.com/r/kaX9Kd/6 (regex explanation)
 const externalUrlPattern = /\[.+?(?=])]\(http(s)?:\/\/(?!(www\.)?(next\.)?dosomething\.org).+(?=\))\)/g;
-const addAttr = url => (`${url}{target="_blank"}`);
+const addAttr = link => (`${link}{target="_blank"}`);
 const formatExternalLinks = string => (string.replace(externalUrlPattern, addAttr));
 
 const formatMarkdownString = (string) => {
