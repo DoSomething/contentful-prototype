@@ -2,7 +2,8 @@
 
 import markdownItFootnote from 'markdown-it-footnote';
 import MarkdownIt from 'markdown-it';
-import markdownItAttrs from 'markdown-it-attrs';
+// importing browser build so Uglify doesn't crash. https://github.com/arve0/markdown-it-attrs/issues/43
+import markdownItAttrs from 'markdown-it-attrs/markdown-it-attrs.browser';
 import get from 'lodash/get';
 
 // Helper Constants
