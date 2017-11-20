@@ -226,10 +226,13 @@ export function makeHash(string) {
  * @return {String}
  * @flow
  */
-export function makeShareLink(type, options: { domain: string, slug?: string, key: string }) {
-  switch (type) {
+export function makeShareLink(
+  resource,
+  options: { domain: string, slug?: string, key: string, type: "blocks" | "modal" },
+) {
+  switch (resource) {
     case 'campaigns':
-      return `${options.domain}/us/campaigns/${options.slug}/blocks/${options.key}`;
+      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
 
     default:
       throw new Error('Please provide an expected section type for generating the link.');
