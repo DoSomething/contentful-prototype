@@ -15,7 +15,7 @@ class CustomBlock extends Entity implements JsonSerializable
     {
         return [
             'id' => $this->entry->getId(),
-            'type' => is_string($this->type) ? $this->type : $this->type->first(),
+            'type' => (is_string($this->type) || ! $this->type) ? $this->type : $this->type->first(),
             'fields' => [
                 'title' => $this->title,
                 'content' => $this->content,
