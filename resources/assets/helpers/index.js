@@ -2,6 +2,7 @@
 
 import markdownItFootnote from 'markdown-it-footnote';
 import MarkdownIt from 'markdown-it';
+import markdownItAttrs from 'markdown-it-attrs';
 import get from 'lodash/get';
 
 // Helper Constants
@@ -71,6 +72,7 @@ export function ready(fn) {
 export function markdown(source = '') {
   const markdownIt = new MarkdownIt();
   markdownIt.use(markdownItFootnote);
+  markdownIt.use(markdownItAttrs);
 
   return {
     __html: markdownIt.render(source),
