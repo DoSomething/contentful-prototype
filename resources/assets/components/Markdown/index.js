@@ -13,6 +13,14 @@ const formatImageUrls = string => (string.replace(pattern, contentfulImageFormat
 const externalUrlPattern = /\[.+?(?=])]\(http(s)?:\/\/(?!(www\.)?(next\.)?dosomething\.org).+(?=\))\)/g;
 const addAttr = url => (`${url}{target="_blank"}`);
 const formatExternalLinks = string => (string.replace(externalUrlPattern, addAttr));
+
+const formatMarkdownString = (string) => {
+  const stringImagesFormatted = formatImageUrls(string);
+  const stringExternalLinksFormatted = formatExternalLinks(stringImagesFormatted);
+
+  return stringExternalLinksFormatted;
+};
+
 const Markdown = ({ className = null, children }) => (
   <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(formatImageUrls(children))} /> // eslint-disable-line react/no-danger
 );
