@@ -9,7 +9,7 @@ const pattern = /\/\/images\.contentful\.com.+\.(jpg|png)/g;
 const contentfulImageFormat = url => (contentfulImageUrl(url, '1000'));
 const formatImageUrls = string => (string.replace(pattern, contentfulImageFormat));
 
-// https://regex101.com/r/kaX9Kd/6 (regex explanation)
+// https://regex101.com/r/kaX9Kd/8 (regex explanation)
 const externalUrlPattern = /\[.+?(?=])]\(http(s)?:\/\/(?!(www\.)?(next\.)?dosomething\.org).+?(?=\))\)/g;
 const addAttr = link => (`${link}{target="_blank"}`);
 const formatExternalLinks = string => (string.replace(externalUrlPattern, addAttr));
