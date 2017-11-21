@@ -39,9 +39,7 @@ const Share = (props) => {
   return (
     <div className={classnames({ 'share-tray': isIcon })}>
       { isIcon ? (
-        <button className={buttonClassName} onClick={onTwitterClick}>
-          <i className="social-icon -twitter"><span>Twitter</span></i>
-        </button>) : null
+       <a href={`https://twitter.com/intent/tweet?url=${link}`}>Twitter</a>) : null
       }
 
       <button className={buttonClassName} onClick={onFacebookClick}>
