@@ -7,6 +7,11 @@ import get from 'lodash/get';
 // Helper Constants
 export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
+// Internal Helper Functions
+const isExternal = url => (
+  new URL(url, window.location.origin).hostname !== window.location.hostname
+);
+
 /**
  * Generate a Contentful Image URL with added url parameters.
  *
