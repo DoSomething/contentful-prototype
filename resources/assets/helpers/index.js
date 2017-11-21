@@ -2,6 +2,8 @@
 
 import markdownItFootnote from 'markdown-it-footnote';
 import MarkdownIt from 'markdown-it';
+// importing browser build so Uglify doesn't crash. https://github.com/arve0/markdown-it-attrs/issues/43
+import markdownItAttrs from 'markdown-it-attrs/markdown-it-attrs.browser';
 import get from 'lodash/get';
 
 // Helper Constants
@@ -71,6 +73,7 @@ export function ready(fn) {
 export function markdown(source = '') {
   const markdownIt = new MarkdownIt();
   markdownIt.use(markdownItFootnote);
+  markdownIt.use(markdownItAttrs);
 
   return {
     __html: markdownIt.render(source),
