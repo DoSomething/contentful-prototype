@@ -1,11 +1,17 @@
-/* global window, document, Blob, FB */
+/* global window, document, Blob, FB, URL */
 
-import markdownItFootnote from 'markdown-it-footnote';
-import MarkdownIt from 'markdown-it';
 import get from 'lodash/get';
+import MarkdownIt from 'markdown-it';
+import iterator from 'markdown-it-for-inline';
+import markdownItFootnote from 'markdown-it-footnote';
 
 // Helper Constants
 export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+// Internal Helper Functions
+const isExternal = url => (
+  new URL(url, window.location.origin).hostname !== window.location.hostname
+);
 
 /**
  * Generate a Contentful Image URL with added url parameters.
@@ -71,6 +77,16 @@ export function ready(fn) {
 export function markdown(source = '') {
   const markdownIt = new MarkdownIt();
   markdownIt.use(markdownItFootnote);
+
+  markdownIt.use(iterator, 'url_new_win', 'link_open', (tokens, index) => {
+    const token = tokens[index];
+    const hrefIndex = token.attrIndex('href');
+    const url = token.attrs[hrefIndex][1];
+
+    if (isExternal(url)) {
+      token.attrPush(['target', '_blank']);
+    }
+  });
 
   return {
     __html: markdownIt.render(source),
