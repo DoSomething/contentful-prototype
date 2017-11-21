@@ -1,4 +1,4 @@
-/* global window, document, Blob, FB */
+/* global window, document, Blob, FB, URL */
 
 import markdownItFootnote from 'markdown-it-footnote';
 import MarkdownIt from 'markdown-it';
