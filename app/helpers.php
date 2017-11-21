@@ -247,8 +247,9 @@ function get_social_fields($campaign, $uri)
 {
     $socialOverride = $campaign->socialOverride ? $campaign->socialOverride->fields : null;
     $blockPath = $campaign->slug . '/blocks';
+    $modalPath = $campaign->slug . '/modal';
 
-    if (str_contains($uri, $blockPath)) {
+    if (str_contains($uri, [$blockPath, $modalPath])) {
         $blockId = last(explode('/', $uri));
 
         $block = array_first($campaign->activityFeed, function ($value) use ($blockId) {
