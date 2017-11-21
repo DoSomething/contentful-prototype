@@ -3,6 +3,7 @@
 import markdownItFootnote from 'markdown-it-footnote';
 import MarkdownIt from 'markdown-it';
 import get from 'lodash/get';
+import iterator from 'markdown-it-for-inline';
 
 // Helper Constants
 export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -76,6 +77,16 @@ export function ready(fn) {
 export function markdown(source = '') {
   const markdownIt = new MarkdownIt();
   markdownIt.use(markdownItFootnote);
+
+  markdownIt.use(iterator, 'url_new_win', 'link_open', (tokens, index) => {
+    const token = tokens[index];
+    const hrefIndex = token.attrIndex('href');
+    const url = token.attrs[hrefIndex][1];
+
+    if (isExternal(url)) {
+      token.attrPush(['target', '_blank']);
+    }
+  });
 
   return {
     __html: markdownIt.render(source),
