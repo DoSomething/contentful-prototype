@@ -1,9 +1,9 @@
 /* global window, document, Blob, FB, URL */
 
-import markdownItFootnote from 'markdown-it-footnote';
-import MarkdownIt from 'markdown-it';
 import get from 'lodash/get';
+import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
+import markdownItFootnote from 'markdown-it-footnote';
 
 // Helper Constants
 export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
