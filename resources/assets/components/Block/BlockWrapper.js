@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Element } from 'react';
+import React from 'react';
+import type { Element } from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 import './block-wrapper.scss';
