@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
+import { PuckConnector } from '@dosomething/puck-client';
 import ReportbackUploader from './ReportbackUploader';
 import { submitReportback, addSubmissionItemToList } from '../../actions';
 
@@ -25,4 +26,4 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(ReportbackUploader);
+export default connect(mapStateToProps, actionCreators)(PuckConnector(ReportbackUploader));
