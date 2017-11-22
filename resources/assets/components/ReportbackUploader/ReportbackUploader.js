@@ -79,10 +79,10 @@ class ReportbackUploader extends React.Component {
           media: this.defaultMediaState,
         });
 
-        trackingMessage = "Successful Reportback";
+        trackingMessage = 'Successful Reportback';
       } else {
-        trackingMessage = "Unsuccessful Reportback";
-        trackingData['submission_error'] = this.props.submissions.messaging.error;
+        trackingMessage = 'Unsuccessful Reportback';
+        trackingData.submission_error = this.props.submissions.messaging.error;
       }
 
       this.props.trackEvent(trackingMessage, trackingData);
