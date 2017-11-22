@@ -70,12 +70,22 @@ class ReportbackUploader extends React.Component {
       ReportbackUploader.setFormData(reportback),
       this.props.reportbackAffirmation,
     ).then(() => {
+      const trackingData = { campaignId: this.props.legacyCampaignId };
+      let trackingMessage;
+
       if (this.props.submissions.messaging.success) {
         this.form.reset();
         this.setState({
           media: this.defaultMediaState,
         });
+
+        trackingMessage = "Successful Reportback";
+      } else {
+        trackingMessage = "Unsuccessful Reportback";
+        trackingData['submission_error'] = this.props.submissions.messaging.error;
       }
+
+      this.props.trackEvent(trackingMessage, trackingData);
     });
   }
 
@@ -136,6 +146,7 @@ ReportbackUploader.propTypes = {
   }),
   quantityOverride: PropTypes.number,
   reportbackAffirmation: PropTypes.string,
+  trackEvent: PropTypes.func.isRequired,
 };
 
 ReportbackUploader.defaultProps = {
