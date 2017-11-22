@@ -69,14 +69,13 @@ class ReportbackUploader extends React.Component {
     this.props.submitReportback(
       ReportbackUploader.setFormData(reportback),
       this.props.reportbackAffirmation,
-    );
-
-    // @TODO: only reset form AFTER successful RB submission.
-    // We'll make this a lot better once we switch to storing all the state
-    // in the Redux store @_@
-    this.form.reset();
-    this.setState({
-      media: this.defaultMediaState,
+    ).then(() => {
+      if (this.props.submissions.messaging.success) {
+        this.form.reset();
+        this.setState({
+          media: this.defaultMediaState,
+        });
+      }
     });
   }
 
