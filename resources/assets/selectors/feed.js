@@ -91,6 +91,20 @@ export function getVisibleBlocks(state) {
   let totalPoints = 0;
   let blockIndex = 0;
 
+  const appendReportbackBlock = () => {
+    filteredBlocks.push({
+      id: 'dynamic',
+      type: 'reportbacks',
+      fields: {
+        type: 'reportbacks',
+        displayOptions: REPORTBACK_DISPLAY_OPTION,
+        additionalContent: { count: 1 },
+      },
+    });
+
+    totalPoints += getReportbackBlockPoint();
+  }
+
   // Create an array of blocks to fill the page.
   while (totalPoints <= targetPoints) {
     const block = getBlocks(state)[blockIndex];
@@ -103,6 +117,10 @@ export function getVisibleBlocks(state) {
     blockIndex += 1;
 
     totalPoints += mapDisplayToBlockPoints(block.fields.displayOptions);
+
+    // if totalPoints % BLOCKS_PER_ROW !== 0
+    //   if next block points > (BLOCKS_PER_ROW - (totalPoints % BLOCKS_PER_ROW))
+    //     appendReportbackBlock()
   }
 
   // In case we don't have enough reportbacks in our state to fill the
@@ -115,17 +133,7 @@ export function getVisibleBlocks(state) {
   // If we weren't able to fill enough rows with blocks, add
   // additional reportback blocks until we hit the target.
   while (totalPoints < targetPoints && totalPoints < getMaximumBlockPoints(state)) {
-    filteredBlocks.push({
-      id: 'dynamic',
-      type: 'reportbacks',
-      fields: {
-        type: 'reportbacks',
-        displayOptions: REPORTBACK_DISPLAY_OPTION,
-        additionalContent: { count: 1 },
-      },
-    });
-
-    totalPoints += getReportbackBlockPoint();
+    appendReportbackBlock();
   }
 
   return filteredBlocks;
