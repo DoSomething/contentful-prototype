@@ -1,5 +1,3 @@
-import { getReportbacksInState } from './reportbacks';
-
 const BLOCKS_PER_ROW = 3;
 const ROWS_PER_PAGE = 5;
 const REPORTBACK_DISPLAY_OPTION = 'one-third';
@@ -84,10 +82,10 @@ export const getMaximumBlockPoints = state => (
  * @param state
  */
 export function getVisibleBlocks(state) {
+  const allBlocks = getBlocks(state);
   const filteredBlocks = [];
-  const totalReportbackPoints = getReportbacksInState(state) * getReportbackBlockPoint();
+  const targetPoints = getTotalVisibleBlockPoints(state);
 
-  let targetPoints = getTotalVisibleBlockPoints(state);
   let totalPoints = 0;
   let blockIndex = 0;
 
@@ -103,11 +101,11 @@ export function getVisibleBlocks(state) {
     });
 
     totalPoints += getReportbackBlockPoint();
-  }
+  };
 
   // Create an array of blocks to fill the page.
   while (totalPoints <= targetPoints) {
-    const block = getBlocks(state)[blockIndex];
+    const block = allBlocks[blockIndex];
 
     if (! block) {
       break;
@@ -118,16 +116,22 @@ export function getVisibleBlocks(state) {
 
     totalPoints += mapDisplayToBlockPoints(block.fields.displayOptions);
 
-    // if totalPoints % BLOCKS_PER_ROW !== 0
-    //   if next block points > (BLOCKS_PER_ROW - (totalPoints % BLOCKS_PER_ROW))
-    //     appendReportbackBlock()
-  }
+    const nextBlock = allBlocks[blockIndex];
+    if (! nextBlock) {
+      break;
+    }
 
-  // In case we don't have enough reportbacks in our state to fill the
-  // target amount, we'll shave the target number to fit with what we
-  // actually have so we don't churn out blank RBs.
-  if ((totalReportbackPoints + totalPoints) < targetPoints) {
-    targetPoints = totalReportbackPoints + totalPoints;
+    const rowPointsRemaining = totalPoints % BLOCKS_PER_ROW;
+    const nextBlockPoints = mapDisplayToBlockPoints(nextBlock.fields.displayOptions);
+    const remainingRowPoints = BLOCKS_PER_ROW - rowPointsRemaining;
+    const remainingRowReportbacks = remainingRowPoints / getReportbackBlockPoint();
+    const nextBlockStartsNewRow = nextBlockPoints > remainingRowPoints;
+
+    if (rowPointsRemaining !== 0 && nextBlockStartsNewRow) {
+      for (let fillerIndex = 0; fillerIndex < remainingRowReportbacks; fillerIndex += 1) {
+        appendReportbackBlock();
+      }
+    }
   }
 
   // If we weren't able to fill enough rows with blocks, add
