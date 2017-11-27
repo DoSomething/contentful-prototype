@@ -218,30 +218,12 @@ function get_legacy_campaign_data($id, $key = null)
  */
 function useOverrideIfSet($field, $base, $override)
 {
-    $isBaseArray = is_array($base);
-    $isOverrideArray = is_array($override);
+    $baseField = data_get($base, $field);
+    $overrideField = data_get($override, $field);
 
-    $baseFieldExists = $isBaseArray ? isset($base[$field]) : isset($base->{$field});
-    $overrideFieldExists = $isOverrideArray ? isset($override[$field]) : isset($override->{$field});
-
-    $value = null;
-
-    // Set the default return value.
-    if ($baseFieldExists) {
-        $value = $isBaseArray ? $base[$field] : $base->{$field};
-    }
-
-    // If there are no possible overrides, return the default value.
-    if ($override === null) {
-        return $value;
-    }
-
-    // If there is an override, return that instead.
-    if ($overrideFieldExists) {
-        return $isOverrideArray ? $override[$field] : $override->{$field};
-    }
-
-    return $value;
+    // If there is an override value, return the override.
+    // Otherwise, return the base value.
+    return $overrideField !== null ? $overrideField : $baseField;
 }
 
 /**
