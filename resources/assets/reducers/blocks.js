@@ -6,7 +6,7 @@ import { FEED_INCREMENT_PAGE } from '../actions';
 const blocks = (state = {}, action) => {
   switch (action.type) {
     case FEED_INCREMENT_PAGE:
-      return { ...state, offset: state.offset + 1 };
+      return { ...state, page: state.page + 1 };
 
     default:
       return state;
