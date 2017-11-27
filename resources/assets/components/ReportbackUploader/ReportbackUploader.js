@@ -69,14 +69,23 @@ class ReportbackUploader extends React.Component {
     this.props.submitReportback(
       ReportbackUploader.setFormData(reportback),
       this.props.reportbackAffirmation,
-    );
+    ).then(() => {
+      const trackingData = { campaignId: this.props.legacyCampaignId };
+      let trackingMessage;
 
-    // @TODO: only reset form AFTER successful RB submission.
-    // We'll make this a lot better once we switch to storing all the state
-    // in the Redux store @_@
-    this.form.reset();
-    this.setState({
-      media: this.defaultMediaState,
+      if (this.props.submissions.messaging.success) {
+        this.form.reset();
+        this.setState({
+          media: this.defaultMediaState,
+        });
+
+        trackingMessage = 'Successful Reportback';
+      } else {
+        trackingMessage = 'Unsuccessful Reportback';
+        trackingData.submission_error = this.props.submissions.messaging.error;
+      }
+
+      this.props.trackEvent(trackingMessage, trackingData);
     });
   }
 
@@ -137,6 +146,7 @@ ReportbackUploader.propTypes = {
   }),
   quantityOverride: PropTypes.number,
   reportbackAffirmation: PropTypes.string,
+  trackEvent: PropTypes.func.isRequired,
 };
 
 ReportbackUploader.defaultProps = {
