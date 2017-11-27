@@ -45,7 +45,7 @@ CampaignUpdate.propTypes = {
     id: PropTypes.string,
     type: PropTypes.string,
     fields: PropTypes.object,
-  }).isRequired,
+  }),
   content: PropTypes.string.isRequired,
   link: PropTypes.string,
   shareLink: PropTypes.string.isRequired,
@@ -56,6 +56,9 @@ CampaignUpdate.propTypes = {
 CampaignUpdate.defaultProps = {
   link: null,
   bordered: true,
+  author: {
+    fields: {},
+  },
 };
 
 export default CampaignUpdate;
