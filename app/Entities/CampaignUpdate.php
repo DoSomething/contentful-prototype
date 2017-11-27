@@ -16,7 +16,7 @@ class CampaignUpdate extends Entity implements JsonSerializable
         switch ($this->getContentType()) {
             case 'campaignUpdate':
                 $type = $this->getContentType();
-                $author = new Staff($this->author->entry);
+                $author = $this->author ? new Staff($this->author->entry) : null;
                 $content = $this->content;
                 $socialOverride = $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null;
                 break;
