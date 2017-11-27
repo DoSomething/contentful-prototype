@@ -84,17 +84,26 @@ export const getMaximumBlockPoints = state => (
  * @param state
  */
 export function getVisibleBlocks(state) {
+  const filteredBlocks = [];
   const totalReportbackPoints = getReportbacksInState(state) * getReportbackBlockPoint();
 
   let targetPoints = getTotalVisibleBlockPoints(state);
   let totalPoints = 0;
+  let blockIndex = 0;
 
-  // Filter out blocks that don't fit within the page.
-  const filteredBlocks = getBlocks(state).filter((block) => {
+  // Create an array of blocks to fill the page.
+  while (totalPoints <= targetPoints) {
+    const block = getBlocks(state)[blockIndex];
+
+    if (! block) {
+      break;
+    }
+
+    filteredBlocks.push(block);
+    blockIndex += 1;
+
     totalPoints += mapDisplayToBlockPoints(block.fields.displayOptions);
-
-    return totalPoints <= targetPoints;
-  });
+  }
 
   // In case we don't have enough reportbacks in our state to fill the
   // target amount, we'll shave the target number to fit with what we
