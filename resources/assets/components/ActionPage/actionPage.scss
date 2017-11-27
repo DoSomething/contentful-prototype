@@ -66,6 +66,7 @@
   @include media($medium) {
     .action-step__photos.-one-third {
       margin-left: $base-spacing;
+      width: auto;
     }
 
     .action-step__photos.-full {

@@ -51,6 +51,7 @@ test('it makes the expected share link for a content item and app section type',
     domain: 'http://awesome.com',
     slug: 'seriously-awesome-campaign',
     key: '123',
+    type: 'blocks',
   };
 
   expect(makeShareLink('campaigns', options)).toBe('http://awesome.com/us/campaigns/seriously-awesome-campaign/blocks/123');

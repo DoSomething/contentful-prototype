@@ -1,11 +1,17 @@
-/* global window, document, Blob, FB */
+/* global window, document, Blob, FB, URL */
 
-import markdownItFootnote from 'markdown-it-footnote';
-import MarkdownIt from 'markdown-it';
 import get from 'lodash/get';
+import MarkdownIt from 'markdown-it';
+import iterator from 'markdown-it-for-inline';
+import markdownItFootnote from 'markdown-it-footnote';
 
 // Helper Constants
 export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+// Internal Helper Functions
+const isExternal = url => (
+  new URL(url, window.location.origin).hostname !== window.location.hostname
+);
 
 /**
  * Generate a Contentful Image URL with added url parameters.
@@ -71,6 +77,16 @@ export function ready(fn) {
 export function markdown(source = '') {
   const markdownIt = new MarkdownIt();
   markdownIt.use(markdownItFootnote);
+
+  markdownIt.use(iterator, 'url_new_win', 'link_open', (tokens, index) => {
+    const token = tokens[index];
+    const hrefIndex = token.attrIndex('href');
+    const url = token.attrs[hrefIndex][1];
+
+    if (isExternal(url)) {
+      token.attrPush(['target', '_blank']);
+    }
+  });
 
   return {
     __html: markdownIt.render(source),
@@ -226,10 +242,13 @@ export function makeHash(string) {
  * @return {String}
  * @flow
  */
-export function makeShareLink(type, options: { domain: string, slug?: string, key: string }) {
-  switch (type) {
+export function makeShareLink(
+  resource,
+  options: { domain: string, slug?: string, key: string, type: "blocks" | "modal" },
+) {
+  switch (resource) {
     case 'campaigns':
-      return `${options.domain}/us/campaigns/${options.slug}/blocks/${options.key}`;
+      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
 
     default:
       throw new Error('Please provide an expected section type for generating the link.');
