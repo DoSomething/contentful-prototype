@@ -24,6 +24,11 @@
   > .figure__body p {
     word-break: break-word;
   }
+
+  .figure.-right > .figure__body {
+    overflow: unset;
+  }
+
 }
 
 .padded {
