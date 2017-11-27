@@ -1,5 +1,8 @@
+import { getReportbacksInState } from './reportbacks';
+
 const BLOCKS_PER_ROW = 3;
 const ROWS_PER_PAGE = 5;
+const REPORTBACK_DISPLAY_OPTION = 'one-third';
 
 /**
  * Map the given display option to a numeric point value.
@@ -15,6 +18,13 @@ export function mapDisplayToBlockPoints(displayOption) {
     default: return 0;
   }
 }
+
+/**
+ * Get the point value of a reportback block.
+ *
+ * @return {Integer}
+ */
+const getReportbackBlockPoint = () => mapDisplayToBlockPoints(REPORTBACK_DISPLAY_OPTION);
 
 /**
  * Get the blocks from the application state.
@@ -74,37 +84,39 @@ export const getMaximumBlockPoints = state => (
  * @param state
  */
 export function getVisibleBlocks(state) {
-  let blockOffset = getTotalVisibleBlockPoints(state);
+  const totalReportbackPoints = getReportbacksInState(state) * getReportbackBlockPoint();
 
+  let targetPoints = getTotalVisibleBlockPoints(state);
   let totalPoints = 0;
 
   // Filter out blocks that don't fit within the page.
   const filteredBlocks = getBlocks(state).filter((block) => {
     totalPoints += mapDisplayToBlockPoints(block.fields.displayOptions);
 
-    return totalPoints <= blockOffset;
+    return totalPoints <= targetPoints;
   });
 
   // In case we don't have enough reportbacks in our state to fill the
   // target amount, we'll shave the target number to fit with what we
   // actually have so we don't churn out blank RBs.
-  if ((state.reportbacks.ids.length + totalPoints) < blockOffset) {
-    blockOffset = state.reportbacks.ids.length + totalPoints;
+  if ((totalReportbackPoints + totalPoints) < targetPoints) {
+    targetPoints = totalReportbackPoints + totalPoints;
   }
 
   // If we weren't able to fill enough rows with blocks, add
   // additional reportback blocks until we hit the target.
-  while (totalPoints < blockOffset && totalPoints < getMaximumBlockPoints(state)) {
+  while (totalPoints < targetPoints && totalPoints < getMaximumBlockPoints(state)) {
     filteredBlocks.push({
       id: 'dynamic',
       type: 'reportbacks',
       fields: {
         type: 'reportbacks',
-        displayOptions: 'one-third',
+        displayOptions: REPORTBACK_DISPLAY_OPTION,
         additionalContent: { count: 1 },
       },
     });
-    totalPoints += 1;
+
+    totalPoints += getReportbackBlockPoint();
   }
 
   return filteredBlocks;
