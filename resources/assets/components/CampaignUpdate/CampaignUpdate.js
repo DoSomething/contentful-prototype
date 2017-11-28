@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { get } from 'lodash';
 
 import Card from '../Card';
 import Embed from '../Embed';
@@ -9,7 +10,7 @@ import Markdown from '../Markdown';
 import { ShareContainer } from '../Share';
 
 const CampaignUpdate = ({ id, author, content, link, shareLink, bordered, titleLink }) => {
-  const authorFields = (author && author.fields) || {};
+  const authorFields = get(author, 'fields', {});
 
   const isTweet = content.length < 144;
 
