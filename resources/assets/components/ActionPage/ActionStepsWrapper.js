@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
-import { makeHash } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
@@ -45,11 +44,12 @@ const ActionStepsWrapper = (props) => {
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map((step) => {
-    const type = step.customType || 'default';
-    const title = step.title;
-    const content = step.content || null;
-    const additionalContent = step.additionalContent || {};
-    const key = makeHash(title);
+    const type = step.fields.customType || 'default';
+    const title = step.fields.title;
+    const content = step.fields.content || null;
+    const hideStepNumber = step.fields.hideStepNumber || false;
+    const additionalContent = step.fields.additionalContent || {};
+    const key = step.id;
 
     switch (type) {
       case 'competition':
@@ -57,7 +57,7 @@ const ActionStepsWrapper = (props) => {
           <CompetitionBlockContainer
             key={key}
             content={content}
-            photo={step.photos[0]}
+            photo={step.fields.photos[0]}
             byline={additionalContent}
           />
         );
@@ -81,7 +81,7 @@ const ActionStepsWrapper = (props) => {
             content={content}
             stepIndex={stepIndex}
             dynamicLink={additionalContent.dynamicLink || null}
-            hideStepNumber={additionalContent.hideStepNumber || false}
+            hideStepNumber={hideStepNumber}
             dynamicUrlParams={additionalContent.dynamicUrlParams || null}
           />
         );
@@ -95,11 +95,11 @@ const ActionStepsWrapper = (props) => {
             title={title}
             content={content}
             stepIndex={stepIndex}
-            background={step.background}
-            photos={step.photos}
-            photoWidth={step.displayOptions === 'full' ? 'full' : 'one-third'}
-            hideStepNumber={additionalContent.hideStepNumber || false}
-            shouldTruncate={step.truncate}
+            background={step.fields.background}
+            photos={step.fields.photos}
+            photoWidth={step.fields.displayOptions === 'full' ? 'full' : 'one-third'}
+            hideStepNumber={hideStepNumber}
+            shouldTruncate={step.fields.truncate}
             template={template}
           />
         );

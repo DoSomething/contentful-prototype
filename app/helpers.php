@@ -5,7 +5,6 @@ use Contentful\ImageOptions;
 use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
-use Contentful\Delivery\DynamicEntry;
 use Illuminate\Support\Facades\Storage;
 use SeatGeek\Sixpack\Session\Base as Sixpack;
 
@@ -213,27 +212,18 @@ function get_legacy_campaign_data($id, $key = null)
  * base object.
  *
  * @param  string $field
- * @param  stdClass $campaign
- * @param  DynamicEntry $override
+ * @param  mixed $base
+ * @param  mixed $override
  * @return mixed
  */
-function useOverrideIfSet($field, $campaign, $override)
+function useOverrideIfSet($field, $base, $override)
 {
-    if (! isset($campaign->{$field})) {
-        $base = null;
-    } else {
-        $base = $campaign->{$field};
-    }
+    $baseField = data_get($base, $field);
+    $overrideField = data_get($override, $field);
 
-    if ($override === null) {
-        return $base;
-    }
-
-    if (isset($override->{$field})) {
-        return $override->{$field};
-    }
-
-    return $base;
+    // If there is an override value, return the override.
+    // Otherwise, return the base value.
+    return $overrideField !== null ? $overrideField : $baseField;
 }
 
 /**
