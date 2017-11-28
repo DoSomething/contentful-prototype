@@ -12,12 +12,12 @@ import { ShareContainer } from '../Share';
 const CampaignUpdate = ({ id, author, content, link, shareLink, bordered, titleLink }) => {
   const authorFields = get(author, 'fields', {});
 
-  const isTweet = content.length < 144;
+  const isTweet = content && content.length < 144;
 
   return (
     <Card id={id} className={classnames('rounded', { bordered })} link={titleLink} title="Campaign Update">
       <Markdown className={classnames('padded', { 'font-size-lg': isTweet })}>
-        {content}
+        {content || 'Placeholder'}
       </Markdown>
 
       { link ? <Embed className="padded" url={link} /> : null }
@@ -47,7 +47,7 @@ CampaignUpdate.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
   link: PropTypes.string,
   shareLink: PropTypes.string.isRequired,
   titleLink: PropTypes.string.isRequired,
@@ -58,6 +58,7 @@ CampaignUpdate.defaultProps = {
   link: null,
   bordered: true,
   author: null,
+  content: null,
 };
 
 export default CampaignUpdate;
