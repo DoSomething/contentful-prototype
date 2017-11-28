@@ -1,3 +1,5 @@
+import { getTotalReportbacksInState } from './reportbacks';
+
 const BLOCKS_PER_ROW = 3;
 const ROWS_PER_PAGE = 5;
 const REPORTBACK_DISPLAY_OPTION = 'one-third';
@@ -88,17 +90,22 @@ export function getVisibleBlocks(state) {
 
   let totalPoints = 0;
   let blockIndex = 0;
+  let totalReportbacks = 0;
 
   const appendReportbackBlock = () => {
-    filteredBlocks.push({
-      id: 'dynamic',
-      type: 'reportbacks',
-      fields: {
+    if (getTotalReportbacksInState(state) > totalReportbacks) {
+      filteredBlocks.push({
+        id: 'dynamic',
         type: 'reportbacks',
-        displayOptions: REPORTBACK_DISPLAY_OPTION,
-        additionalContent: { count: 1 },
-      },
-    });
+        fields: {
+          type: 'reportbacks',
+          displayOptions: REPORTBACK_DISPLAY_OPTION,
+          additionalContent: { count: 1 },
+        },
+      });
+
+      totalReportbacks += 1;
+    }
 
     totalPoints += getReportbackBlockPoint();
   };
