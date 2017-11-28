@@ -9,7 +9,7 @@ import Markdown from '../Markdown';
 import { ShareContainer } from '../Share';
 
 const CampaignUpdate = ({ id, author, content, link, shareLink, bordered, titleLink }) => {
-  const { avatar, jobTitle, name } = author.fields;
+  const authorFields = (author && author.fields) || {};
 
   const isTweet = content.length < 144;
 
@@ -23,9 +23,9 @@ const CampaignUpdate = ({ id, author, content, link, shareLink, bordered, titleL
 
       <footer className="padded clearfix">
         <Byline
-          author={name}
-          avatar={avatar || undefined}
-          jobTitle={jobTitle || undefined}
+          author={authorFields.name}
+          avatar={authorFields.avatar || undefined}
+          jobTitle={authorFields.jobTitle || undefined}
           className="float-left"
         />
         <ShareContainer
@@ -56,9 +56,7 @@ CampaignUpdate.propTypes = {
 CampaignUpdate.defaultProps = {
   link: null,
   bordered: true,
-  author: {
-    fields: {},
-  },
+  author: null,
 };
 
 export default CampaignUpdate;
