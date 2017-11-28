@@ -24,7 +24,7 @@
     @endif
 
     <div id="fb-root"></div>
-    <div class="chrome">
+    <div id="chrome" class="chrome">
         <div class="wrapper">
             @include('partials.navigation')
             @yield('content')
