@@ -166,6 +166,7 @@ class Campaign extends Entity implements JsonSerializable
                 'url' => get_image_url($this->coverImage),
                 'landscapeUrl' => get_image_url($this->coverImage, 'landscape'),
             ],
+            'campaignLead' => $this->campaignLead ? new Staff($this->campaignLead->entry) : null,
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             // @TODO: Why is it 'activity_feed' oy? ;/

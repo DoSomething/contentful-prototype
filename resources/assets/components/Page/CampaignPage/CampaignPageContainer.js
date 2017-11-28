@@ -1,8 +1,9 @@
-import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
 import { convertExperiment, openModal } from '../../../actions';
+import { getCampaignLead } from '../../../selectors/campaign';
+
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -16,7 +17,7 @@ const mapStateToProps = state => ({
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
-  campaignLead: get(state.campaign.additionalContent, 'campaignLead'),
+  campaignLead: getCampaignLead(state),
   legacyCampaignId: state.campaign.legacyCampaignId,
   shouldShowActionPage: state.admin.shouldShowActionPage,
   slug: state.campaign.slug,
