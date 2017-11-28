@@ -4,7 +4,7 @@
  * @param state
  * @returns {String}
  */
-export function getUserId(state) { // eslint-disable-line import/prefer-default-export
+export function getUserId(state) {
   return state.user.id;
 }
 

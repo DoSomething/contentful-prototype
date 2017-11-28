@@ -1,5 +1,8 @@
+import { getTotalReportbacksInState } from './reportbacks';
+
 const BLOCKS_PER_ROW = 3;
 const ROWS_PER_PAGE = 5;
+const REPORTBACK_DISPLAY_OPTION = 'one-third';
 
 /**
  * Map the given display option to a numeric point value.
@@ -7,7 +10,7 @@ const ROWS_PER_PAGE = 5;
  * @param {Array} displayOption
  * @return int
  */
-export function mapDisplayToPoints(displayOption) {
+export function mapDisplayToBlockPoints(displayOption) {
   switch (displayOption) {
     case 'one-third': return 1;
     case 'two-thirds': return 2;
@@ -15,6 +18,13 @@ export function mapDisplayToPoints(displayOption) {
     default: return 0;
   }
 }
+
+/**
+ * Get the point value of a reportback block.
+ *
+ * @return {Integer}
+ */
+const getReportbackBlockPoint = () => mapDisplayToBlockPoints(REPORTBACK_DISPLAY_OPTION);
 
 /**
  * Get the blocks from the application state.
@@ -27,79 +37,114 @@ export const getBlocks = state => state.campaign.activityFeed;
  * @param state
  * @returns {*}
  */
-export function totalBlocksInFeed(state) {
+export function totalBlockPointsInFeed(state) {
   return getBlocks(state)
     .reduce((total, block) => (
-      total + mapDisplayToPoints(block.fields.displayOptions)
+      total + mapDisplayToBlockPoints(block.fields.displayOptions)
     ), 0);
 }
 
 /**
- * Calculate the total number of reportback "blocks" in the feed.
+ * Calculate the total number of reportback block points in the feed.
  * @param state
  * @returns {*}
  */
-export function totalReportbackBlocksInFeed(state) {
+export function totalReportbackBlockPointsInFeed(state) {
   return getBlocks(state)
     .filter(block => block.type === 'reportbacks')
     .reduce((total, block) => (
-      total + mapDisplayToPoints(block.fields.displayOptions)
+      total + mapDisplayToBlockPoints(block.fields.displayOptions)
     ), 0);
 }
 
 /**
- * Get the number of blocks that are visible in the feed.
+ * Get the total number of block points that could be visible in the feed.
+ *
  * @param state
  * @returns {number}
  */
-export const getBlockOffset = state => state.blocks.offset * BLOCKS_PER_ROW * ROWS_PER_PAGE;
-
-/**
- * Get the number of blocks that are visible in the feed.
- * @param state
- * @returns {number}
- */
-export const getMaximumOffset = state => (
-  totalBlocksInFeed(state) + (state.reportbacks.total - totalReportbackBlocksInFeed(state))
+export const getTotalVisibleBlockPoints = state => (
+  state.blocks.page * BLOCKS_PER_ROW * ROWS_PER_PAGE
 );
 
 /**
- * Filter the blocks based on the page offset.
+ * Get the number of blocks that are visible in the feed.
+ * @param state
+ * @returns {number}
+ */
+export const getMaximumBlockPoints = state => (
+  totalBlockPointsInFeed(state) + (
+    state.reportbacks.total - totalReportbackBlockPointsInFeed(state)
+  )
+);
+
+/**
+ * Filter the blocks based on the page.
  *
  * @param state
  */
 export function getVisibleBlocks(state) {
-  let blockOffset = getBlockOffset(state);
+  const allBlocks = getBlocks(state);
+  const filteredBlocks = [];
+  const targetPoints = getTotalVisibleBlockPoints(state);
 
   let totalPoints = 0;
+  let blockIndex = 0;
+  let totalReportbacks = 0;
 
-  // Filter out blocks that don't fit within offset.
-  const filteredBlocks = getBlocks(state).filter((block) => {
-    totalPoints += mapDisplayToPoints(block.fields.displayOptions);
+  const appendReportbackBlock = () => {
+    if (getTotalReportbacksInState(state) > totalReportbacks) {
+      filteredBlocks.push({
+        id: 'dynamic',
+        type: 'reportbacks',
+        fields: {
+          type: 'reportbacks',
+          displayOptions: REPORTBACK_DISPLAY_OPTION,
+          additionalContent: { count: 1 },
+        },
+      });
 
-    return totalPoints <= blockOffset;
-  });
+      totalReportbacks += 1;
+    }
 
-  // In case we don't have enough reportbacks in our state to fill the
-  // target amount, we'll shave the target number to fit with what we
-  // actually have so we don't churn out blank RBs.
-  if ((state.reportbacks.ids.length + totalPoints) < blockOffset) {
-    blockOffset = state.reportbacks.ids.length + totalPoints;
+    totalPoints += getReportbackBlockPoint();
+  };
+
+  // Create an array of blocks to fill the page.
+  while (totalPoints <= targetPoints) {
+    const block = allBlocks[blockIndex];
+
+    if (! block) {
+      break;
+    }
+
+    filteredBlocks.push(block);
+    blockIndex += 1;
+
+    totalPoints += mapDisplayToBlockPoints(block.fields.displayOptions);
+
+    const nextBlock = allBlocks[blockIndex];
+    if (! nextBlock) {
+      break;
+    }
+
+    const rowPointsRemaining = totalPoints % BLOCKS_PER_ROW;
+    const nextBlockPoints = mapDisplayToBlockPoints(nextBlock.fields.displayOptions);
+    const remainingRowPoints = BLOCKS_PER_ROW - rowPointsRemaining;
+    const remainingRowReportbacks = remainingRowPoints / getReportbackBlockPoint();
+    const nextBlockStartsNewRow = nextBlockPoints > remainingRowPoints;
+
+    if (rowPointsRemaining !== 0 && nextBlockStartsNewRow) {
+      for (let fillerIndex = 0; fillerIndex < remainingRowReportbacks; fillerIndex += 1) {
+        appendReportbackBlock();
+      }
+    }
   }
 
   // If we weren't able to fill enough rows with blocks, add
   // additional reportback blocks until we hit the target.
-  while (totalPoints < blockOffset && totalPoints < getMaximumOffset(state)) {
-    filteredBlocks.push({
-      id: 'dynamic',
-      type: 'reportbacks',
-      fields: {
-        type: 'reportbacks',
-        displayOptions: 'one-third',
-        additionalContent: { count: 1 },
-      },
-    });
-    totalPoints += 1;
+  while (totalPoints < targetPoints && totalPoints < getMaximumBlockPoints(state)) {
+    appendReportbackBlock();
   }
 
   return filteredBlocks;
@@ -122,7 +167,7 @@ export function getBlocksWithReportbacks(blocks, state) {
 
     // Attach some unique reportback IDs to each block.
     const start = reportbackIndex;
-    const count = mapDisplayToPoints(block.fields.displayOptions);
+    const count = mapDisplayToBlockPoints(block.fields.displayOptions);
     reportbackIndex += count;
 
     return {

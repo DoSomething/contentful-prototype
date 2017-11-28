@@ -4,8 +4,8 @@ import { clickedViewMore, clickedSignUp } from '../../actions';
 import {
   getBlocksWithReportbacks,
   getVisibleBlocks,
-  getBlockOffset,
-  getMaximumOffset,
+  getTotalVisibleBlockPoints,
+  getMaximumBlockPoints,
 } from '../../selectors/feed';
 
 /**
@@ -13,7 +13,7 @@ import {
  */
 const mapStateToProps = state => ({
   blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
-  canLoadMorePages: getBlockOffset(state) < getMaximumOffset(state),
+  canLoadMorePages: getTotalVisibleBlockPoints(state) < getMaximumBlockPoints(state),
   campaignId: state.campaign.legacyCampaignId,
   callToAction: state.campaign.callToAction,
   signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),

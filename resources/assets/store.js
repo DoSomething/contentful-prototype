@@ -13,7 +13,7 @@ import { loadStorage } from './helpers/storage';
  */
 const initialState = {
   blocks: {
-    offset: 1,
+    page: 1,
   },
   campaign: {
     activityFeed: [],

@@ -1,5 +1,9 @@
 import { FEED_INCREMENT_PAGE, fetchReportbacks } from '../actions';
-import { totalBlocksInFeed, totalReportbackBlocksInFeed, getBlockOffset } from '../selectors/feed';
+import {
+  totalBlockPointsInFeed,
+  totalReportbackBlockPointsInFeed,
+  getTotalVisibleBlockPoints,
+} from '../selectors/feed';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -18,8 +22,11 @@ export function conditionallyFetchReportbacks() {
 
     // The number of needed reportbacks are the number of reportback blocks in the
     // community feed + any additional offset that hasn't been filled by blocks.
-    const overflowReportbackBlocks = Math.max(0, getBlockOffset(state) - totalBlocksInFeed(state));
-    const neededReportbacks = totalReportbackBlocksInFeed(state) + overflowReportbackBlocks;
+    const overflowReportbackBlocks = Math.max(0, (
+      getTotalVisibleBlockPoints(state) - totalBlockPointsInFeed(state)
+    ));
+
+    const neededReportbacks = totalReportbackBlockPointsInFeed(state) + overflowReportbackBlocks;
 
     // Dispatch an HTTP request if we don't have enough reportbacks in the store.
     if (state.reportbacks.ids.length < neededReportbacks) {
