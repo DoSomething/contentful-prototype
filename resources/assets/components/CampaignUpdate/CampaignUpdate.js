@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { get } from 'lodash';
 
 import Card from '../Card';
 import Embed from '../Embed';
@@ -9,23 +10,23 @@ import Markdown from '../Markdown';
 import { ShareContainer } from '../Share';
 
 const CampaignUpdate = ({ id, author, content, link, shareLink, bordered, titleLink }) => {
-  const { avatar, jobTitle, name } = author.fields;
+  const authorFields = get(author, 'fields', {});
 
-  const isTweet = content.length < 144;
+  const isTweet = content && content.length < 144;
 
   return (
     <Card id={id} className={classnames('rounded', { bordered })} link={titleLink} title="Campaign Update">
       <Markdown className={classnames('padded', { 'font-size-lg': isTweet })}>
-        {content}
+        {content || 'Placeholder'}
       </Markdown>
 
       { link ? <Embed className="padded" url={link} /> : null }
 
       <footer className="padded clearfix">
         <Byline
-          author={name}
-          avatar={avatar || undefined}
-          jobTitle={jobTitle || undefined}
+          author={authorFields.name}
+          avatar={authorFields.avatar || undefined}
+          jobTitle={authorFields.jobTitle || undefined}
           className="float-left"
         />
         <ShareContainer
@@ -45,8 +46,8 @@ CampaignUpdate.propTypes = {
     id: PropTypes.string,
     type: PropTypes.string,
     fields: PropTypes.object,
-  }).isRequired,
-  content: PropTypes.string.isRequired,
+  }),
+  content: PropTypes.string,
   link: PropTypes.string,
   shareLink: PropTypes.string.isRequired,
   titleLink: PropTypes.string.isRequired,
@@ -56,6 +57,8 @@ CampaignUpdate.propTypes = {
 CampaignUpdate.defaultProps = {
   link: null,
   bordered: true,
+  author: null,
+  content: null,
 };
 
 export default CampaignUpdate;
