@@ -9,24 +9,38 @@ use App\Repositories\PostRepository;
 
 class CampaignPostsController extends Controller
 {
-    private $rogue;
-
+    /**
+     * [$rogue description]
+     * @var [type]
+     */
     private $postRepository;
 
-    public function __construct(Rogue $rogue, PostRepository $postRepository)
+    /**
+     * [$rogue description]
+     * @var [type]
+     */
+    public function __construct(PostRepository $postRepository)
     {
-        $this->rogue = $rogue;
+        $this->middleware('auth:api');
 
         $this->postRepository = $postRepository;
     }
 
-    public function index($id)
+    /**
+     * [$rogue description]
+     * @var [type]
+     */
+    public function index($id, Request $request)
     {
-        $data = $this->postRepository->getCampaignPosts($id);
+        $data = $this->postRepository->getCampaignPosts($id, $request->all());
 
         return response()->json($data);
     }
 
+    /**
+     * [$rogue description]
+     * @var [type]
+     */
     public function store($id)
     {
         return response()->json($id);

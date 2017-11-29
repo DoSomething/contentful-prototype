@@ -4,16 +4,33 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\PostRepository;
 
 class PostsController extends Controller
 {
-    public function __construct()
+    /**
+     * Post repository instance.
+     */
+    private $postRepository;
+
+    /**
+     * Create a new PostsController instance.
+     *
+     * @param \App\Repositories\PostRepository $postRepository
+     */
+    public function __construct(PostRepository $postRepository)
     {
-        //
+        $this->postRepository = $postRepository;
     }
 
-    public function index()
+    /**
+     * [index description]
+     * @return [type] [description]
+     */
+    public function index(Request $request)
     {
-        return response()->json('index: Booya! List of all posts!');
+        $data = $this->postRepository->getPosts($request->all());
+
+        return response()->json($data);
     }
 }

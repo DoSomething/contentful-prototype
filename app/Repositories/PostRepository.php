@@ -6,26 +6,48 @@ use App\Services\RogueClient;
 
 class PostRepository
 {
+    /**
+     * [$rogue description]
+     * @var [type]
+     */
     private $rogue;
 
+    /**
+     * Create a new PostRepository instance.
+     *
+     * @param App\Services\RogueClient $client
+     */
     public function __construct(RogueClient $client)
     {
         $this->rogue = $client;
     }
 
-    public function getPosts()
+    /**
+     * Get posts from Rogue.
+     *
+     * @param  array $query
+     * @return array - JSON response
+     */
+    public function getPosts($query = [])
     {
-        //
+        dd($query);
+
+        return $this->rogue->get('v3/posts', $query);
     }
 
-    public function getCampaignPosts($id)
+    /**
+     * Get posts for a specified campaign from Rogue.
+     *
+     * @param  string $id
+     * @param  array $query
+     * @return array - JSON response
+     */
+    public function getCampaignPosts($id, $query = [])
     {
-        dd($this->rogue);
+        $query['filter']['campaign_id'] = $id;
 
-        $response = $this->rogue->get('v1/posts', [
-            'campaign_id' => $id,
-        ]);
+        // dd($query, auth()->id(), token()->role, token()->scopes);
 
-        return ['some', 'things', 'here', $id];
+        return $this->rogue->get('v3/posts', $query);
     }
 }
