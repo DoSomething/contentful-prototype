@@ -69,7 +69,6 @@ class CampaignController extends Controller
             'env' => $env,
         ])->with('state', [
             'campaign' => $campaign,
-            'share' => $socialFields,
             'user' => [
                 'id' => auth()->id(),
                 'role' => auth()->user() ? auth()->user()->role : null,
