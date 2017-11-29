@@ -158,19 +158,19 @@ class Campaign extends Entity implements JsonSerializable
         $email = 'help@dosomething.org';
         $name = 'Us';
 
-        if ($additionalContent && $additionalContent['campaignlead']) {
-            $email = $additionalContent['campaignlead']['email'];
-            $name = $additionalContent['campaignlead']['name'];
+        if ($additionalContent && $additionalContent['campaignLead']) {
+            $email = $additionalContent['campaignLead']['email'];
+            $name = $additionalContent['campaignLead']['name'];
         }
 
-        return new Staff([
+        return [
             'id' => str_random(22),
             'type' => 'staff',
             'fields' => [
                 'email' => $email,
                 'name' => $name,
             ],
-        ]);
+        ];
     }
 
     /**
@@ -197,7 +197,7 @@ class Campaign extends Entity implements JsonSerializable
                 'url' => get_image_url($this->coverImage),
                 'landscapeUrl' => get_image_url($this->coverImage, 'landscape'),
             ],
-            'campaignLead' => $this->campaignLead ? new Staff($this->campaignLead->entry) : null,
+            'campaignLead' => $this->parseCampaignLead($this->campaignLead, $this->additionalContent),
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             // @TODO: Why is it 'activity_feed' oy? ;/
