@@ -143,6 +143,37 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse the campaign lead from other
+     *
+     * @param  DynamicEntry $campaignlead
+     * @param  array $additionalContent
+     * @return array
+     */
+    public function parseCampaignLead($campaignlead, $additionalContent)
+    {
+        if ($campaignlead) {
+            return new Staff($campaignlead->entry);
+        }
+
+        $email = 'help@dosomething.org';
+        $name = 'Us';
+
+        if ($additionalContent && $additionalContent['campaignlead']) {
+            $email = $additionalContent['campaignlead']['email'];
+            $name = $additionalContent['campaignlead']['name'];
+        }
+
+        return new Staff([
+            'id' => str_random(22),
+            'type' => 'staff',
+            'fields' => [
+                'email' => $email,
+                'name' => $name,
+            ],
+        ]);
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
