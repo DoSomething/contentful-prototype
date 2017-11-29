@@ -369,3 +369,10 @@ export function showTwitterSharePrompt(href, quote) {
   window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote}`, 'intent',
     `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`);
 }
+
+/**
+ * Toggle the lock on the app chrome.
+ */
+export function toggleChromeLock() {
+  document.getElementById('chrome').classList.toggle('-lock');
+}

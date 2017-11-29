@@ -1,9 +1,11 @@
 @import './next-toolbox';
 
-.chrome > .wrapper {
-  background: $light-background-color;
+.chrome {
+  > .wrapper {
+    background: $light-background-color;
+  }
 
-  .-lock {
+  &.-lock {
     position: fixed;
   }
 }

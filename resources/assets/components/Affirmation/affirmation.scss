@@ -26,6 +26,8 @@
       font-size: $font-hero;
       font-weight: $weight-normal;
       color: $primary-text-color;
+      margin-left: auto;
+      margin-right: auto;
 
       @include media($medium) {
         font-size: $font-gigantic;
