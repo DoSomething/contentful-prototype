@@ -63,9 +63,7 @@ const ActionStepsWrapper = (props) => {
         );
 
       case 'photo-uploader':
-        return isSignedUp ? renderPhotoUploader({
-          quantityOverride: additionalContent.quantityOverride || null,
-        }) : null;
+        return isSignedUp ? renderPhotoUploader() : null;
 
       case 'submission-gallery':
         return isSignedUp ? submissionGallery : null;

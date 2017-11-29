@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   submissions: state.submissions,
   noun: get(state.campaign.additionalContent, 'noun'),
   uploads: state.uploads,
-  reportbackAffirmation: get(state.campaign.additionalContent, 'reportbackAffirmation'),
+  settings: get(state, 'campaign.reportbackUploaderSettings.fields', null),
 });
 
 /**
