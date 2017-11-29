@@ -14,9 +14,9 @@ const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId, clickedSignUp,
     hasPendingSignup, isSignedUp, template } = props;
 
-  const renderPhotoUploader = photoUploaderProps => (
+  const photoUploader = (
     <FlexCell key="reportback_uploader" width="full">
-      <ReportbackUploaderContainer {...photoUploaderProps} />
+      <ReportbackUploaderContainer />
     </FlexCell>
   );
 
@@ -63,7 +63,7 @@ const ActionStepsWrapper = (props) => {
         );
 
       case 'photo-uploader':
-        return isSignedUp ? renderPhotoUploader() : null;
+        return isSignedUp ? photoUploader : null;
 
       case 'submission-gallery':
         return isSignedUp ? submissionGallery : null;
