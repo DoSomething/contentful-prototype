@@ -155,13 +155,8 @@ class Campaign extends Entity implements JsonSerializable
             return new Staff($campaignlead->entry);
         }
 
-        $email = 'help@dosomething.org';
-        $name = 'Us';
-
-        if ($additionalContent && $additionalContent['campaignLead']) {
-            $email = $additionalContent['campaignLead']['email'];
-            $name = $additionalContent['campaignLead']['name'];
-        }
+        $email = $additionalContent['campaignLead']['email'] ?? 'help@dosomething.org';
+        $name = $additionalContent['campaignLead']['name'] ?? 'Us';
 
         return [
             'id' => str_random(22),
