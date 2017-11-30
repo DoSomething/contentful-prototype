@@ -14,16 +14,13 @@ class Page extends Entity implements JsonSerializable
      */
     public function parseSidebar($sidebarItems)
     {
-        return collect($sidebarItems)->map(function ($sidebarItem) {
+        return collect($sidebarItems)->filter(function ($sidebarItem) {
             switch ($sidebarItem->getContentType()) {
                 case 'callToAction':
                     return new CallToAction($sidebarItem->entry);
 
                 case 'customBlock':
                     return new CustomBlock($sidebarItem->entry);
-
-                default:
-                    return $sidebarItem;
             }
         });
     }
