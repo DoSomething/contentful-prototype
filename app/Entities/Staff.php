@@ -14,7 +14,7 @@ class Staff extends Entity implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'id' => $this->entry->getId(),
+            'id' => $this->getId(),
             'type' => $this->getContentType(),
             'fields' => [
                 'name' => $this->name,
