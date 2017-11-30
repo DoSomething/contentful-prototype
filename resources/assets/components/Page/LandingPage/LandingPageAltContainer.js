@@ -22,8 +22,7 @@ const mapStateToProps = state => ({
   tagline: get(state.campaign.additionalContent, 'tagline'),
   template: state.campaign.template,
   title: state.campaign.title,
-  ctaTitle: get(state.campaign.landingPage.fields.additionalContent, 'ctaTitle', undefined),
-  ctaContent: get(state.campaign.landingPage.fields.additionalContent, 'ctaContent', undefined),
+  sidebar: state.campaign.landingPage.fields.sidebar,
 });
 
 /**
