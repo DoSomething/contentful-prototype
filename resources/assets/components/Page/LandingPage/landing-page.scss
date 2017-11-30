@@ -2,36 +2,40 @@
 
 .pitch-landing-page {
   .container__block {
-      // When inside a container wrapper, increase top/bottom padding
-      // on the container body.
-      padding: 0 gutters();
-      line-height: $comfortable-line-height;
+    // When inside a container wrapper, increase top/bottom padding
+    // on the container body.
+    padding: 0 gutters();
+    line-height: $comfortable-line-height;
 
-      // HACK: Since we use `.container__row` for vertical spacing, but collapse
-      // all "blocks" to stack on mobile, we need to add appropriate margins between
-      // blocks when they're stacked.
-      & + .container__block {
-        @include media($mobile) {
-          margin-top: $base-spacing;
-        }
-      }
-
-      &.-narrow {
-        @include media($tablet) {
-          @include span(9 of 12);
-        }
-      }
-
-      &.-half {
-        line-height: $unitless-line-height; // reset to "base" line height for smaller columns
-
-        @include media($tablet) {
-          @include span(6 of 12);
-        }
-      }
-
-      div + div {
-        margin-top: 48px;
+    // HACK: Since we use `.container__row` for vertical spacing, but collapse
+    // all "blocks" to stack on mobile, we need to add appropriate margins between
+    // blocks when they're stacked.
+    & + .container__block {
+      @include media($mobile) {
+        margin-top: $base-spacing;
       }
     }
+
+    &.-narrow {
+      @include media($tablet) {
+        @include span(9 of 12);
+      }
+    }
+
+    &.-half {
+      line-height: $unitless-line-height; // reset to "base" line height for smaller columns
+
+      @include media($tablet) {
+        @include span(6 of 12);
+      }
+    }
+
+    div + div {
+      margin-top: 48px;
+    }
+  }
+
+  .secondary {
+    display: unset;
+  }
 }
