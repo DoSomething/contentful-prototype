@@ -190,7 +190,7 @@ class Entity implements ArrayAccess, JsonSerializable
      * a Contentful DynamicEntry.
      *
      * @param  stdClass  entity
-     * @return boolean
+     * @return bool
      */
     public function isDynamicEntry()
     {
