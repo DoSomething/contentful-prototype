@@ -42,7 +42,7 @@ const LandingPage = (props) => {
           <Markdown>{ pitchContent }</Markdown>
         </div>
         <div className="secondary">
-          <Card title={sidebarCTA.title} className="rounded" >
+          <Card title={sidebarCTA.title} className="rounded bordered" >
             <Markdown className="padded" >{ sidebarCTA.content }</Markdown>
           </Card>
         </div>
