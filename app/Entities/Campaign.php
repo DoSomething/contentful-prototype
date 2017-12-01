@@ -164,6 +164,8 @@ class Campaign extends Entity implements JsonSerializable
             'fields' => [
                 'email' => $email,
                 'name' => $name,
+                'jobTitle' => null,
+                'avatar' => null,
             ],
         ];
     }
