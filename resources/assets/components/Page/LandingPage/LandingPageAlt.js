@@ -18,11 +18,12 @@ const LandingPage = (props) => {
     signupArrowContent, subtitle, tagline, template, title,
   } = props;
 
+  // Grab the first Sidebar element, assuming here that we only want to be setting one sidebar
   const sidebarCTA = sidebar[0].fields;
 
   const blockJson = {
-    type: 'static',
-    fields: { title: sidebarCTA.title, content: sidebarCTA.content },
+    type: sidebarCTA.type,
+    fields: sidebarCTA,
   };
 
   return (
