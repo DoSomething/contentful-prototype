@@ -25,13 +25,11 @@ class Entity implements ArrayAccess, JsonSerializable
      *
      * @param \Contentful\Delivery\DynamicEntry $entry
      */
-    public function __construct($entry)
+    public function __construct(DynamicEntry $entry)
     {
         $this->entry = $entry;
 
-        if ($this->isDynamicEntry()) {
-            $this->entry->setLocale(app()->getLocale());
-        }
+        $this->entry->setLocale(app()->getLocale());
     }
 
     /**
@@ -44,11 +42,6 @@ class Entity implements ArrayAccess, JsonSerializable
     {
         if (! $this->offsetExists($property)) {
             return null;
-        }
-
-        // Don't apply any fancy logic to a non DynamicEntry.
-        if (! $this->isDynamicEntry()) {
-            return $this->entry[$property];
         }
 
         // @see: DynamicEntry's __call implementation.
@@ -82,31 +75,13 @@ class Entity implements ArrayAccess, JsonSerializable
     }
 
     /**
-     * Get the ID for the Entity.
+     * Get the ContentType for the DynamicEntry.
      *
      * @return string
      */
-    public function getId()
-    {
-        if ($this->isDynamicEntry()) {
-            return $this->entry->getId();
-        }
-
-        return str_random(22);
-    }
-
-    /**
-     * Get the ContentType for the DynamicEntry.
-     *
-     * @return mixed
-     */
     public function getContentType()
     {
-        if ($this->isDynamicEntry()) {
-            return $this->entry->getContentType()->getId();
-        }
-
-        return null;
+        return $this->entry->getContentType()->getId();
     }
 
     /**
@@ -130,11 +105,7 @@ class Entity implements ArrayAccess, JsonSerializable
      */
     public function offsetExists($offset)
     {
-        if ($this->isDynamicEntry()) {
-            $fields = array_keys($this->entry->getContentType()->getFields());
-        } else {
-            $fields = array_keys($this->entry);
-        }
+        $fields = array_keys($this->entry->getContentType()->getFields());
 
         return in_array($offset, $fields);
     }
@@ -173,27 +144,12 @@ class Entity implements ArrayAccess, JsonSerializable
      */
     public function jsonSerialize()
     {
-        $json = (object) ['fields' => []];
-        if ($this->isDynamicEntry()) {
-            $json = $this->entry->jsonSerialize();
-        }
+        $json = $this->entry->jsonSerialize();
 
         return (object) [
-            'id' => $this->getId(),
-            'type' => $this->getContentType(),
+            'id' => $this->entry->getId(),
+            'type' => $this->entry->getContentType()->getId(),
             'fields' => $json->fields,
         ];
-    }
-
-    /**
-     * Check if this entity is an instance of
-     * a Contentful DynamicEntry.
-     *
-     * @param  stdClass  entity
-     * @return bool
-     */
-    public function isDynamicEntry()
-    {
-        return $this->entry instanceof DynamicEntry;
     }
 }

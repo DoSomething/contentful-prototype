@@ -155,10 +155,17 @@ class Campaign extends Entity implements JsonSerializable
             return new Staff($campaignlead->entry);
         }
 
-        return new Staff([
-            'email' => $additionalContent['campaignLead']['email'] ?? 'help@dosomething.org',
-            'name' => $additionalContent['campaignLead']['name'] ?? 'Us',
-        ]);
+        $email = $additionalContent['campaignLead']['email'] ?? 'help@dosomething.org';
+        $name = $additionalContent['campaignLead']['name'] ?? 'Us';
+
+        return [
+            'id' => str_random(22),
+            'type' => 'staff',
+            'fields' => [
+                'email' => $email,
+                'name' => $name,
+            ],
+        ];
     }
 
     /**
