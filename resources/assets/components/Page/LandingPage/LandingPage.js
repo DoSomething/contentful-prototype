@@ -31,6 +31,21 @@ const LandingPage = (props) => {
 
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
 
+  const enclosureContent = isLegacyPitch ?
+    <ColumnizedContent className="container__block -half" content={formatToMarkup(pitchContent)} />
+    : (
+      <div className="campaign-subpage">
+        <div className="primary">
+          <Markdown>{ pitchContent[0] }</Markdown>
+        </div>
+        <div className="secondary">
+          <Card title={sidebarCTA.title} className="rounded bordered" >
+            <Markdown className="padded" >{ sidebarCTA.content }</Markdown>
+          </Card>
+        </div>
+      </div>
+    );
+
   return (
     <div>
       <LedeBanner
@@ -49,19 +64,7 @@ const LandingPage = (props) => {
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          { isLegacyPitch ?
-            <ColumnizedContent className="container__block -half" content={formatToMarkup(pitchContent)} /> :
-            <div className="campaign-subpage">
-              <div className="primary">
-                <Markdown>{ pitchContent[0] }</Markdown>
-              </div>
-              <div className="secondary">
-                <Card title={sidebarCTA.title} className="rounded bordered" >
-                  <Markdown className="padded" >{ sidebarCTA.content }</Markdown>
-                </Card>
-              </div>
-            </div>
-          }
+          { enclosureContent }
         </Enclosure>
       </div>
 
