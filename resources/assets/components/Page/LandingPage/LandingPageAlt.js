@@ -7,7 +7,7 @@ import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 import Markdown from '../../Markdown';
-import Block from '../../Block';
+import Card from '../../Card';
 
 import './landing-page.scss';
 
@@ -20,11 +20,6 @@ const LandingPage = (props) => {
 
   // Grab the first Sidebar element, assuming here that we only want to be setting one sidebar
   const sidebarCTA = sidebar[0].fields;
-
-  const blockJson = {
-    type: sidebarCTA.type,
-    fields: sidebarCTA,
-  };
 
   return (
     <div>
@@ -47,7 +42,9 @@ const LandingPage = (props) => {
           <Markdown>{ pitchContent }</Markdown>
         </div>
         <div className="secondary">
-          <Block json={blockJson} />
+          <Card title={sidebarCTA.title} className="rounded" >
+            <Markdown className="padded" >{ sidebarCTA.content }</Markdown>
+          </Card>
         </div>
       </Enclosure>
 
