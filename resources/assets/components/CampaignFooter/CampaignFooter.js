@@ -5,7 +5,9 @@ import AffiliateCredits from '../AffiliateCredits';
 
 const CampaignFooterContact = ({ email, name }) => (
   <div className="info-bar__secondary">
-    Questions? <a href={`mailto:${email}`}>Contact {name}</a>
+    Questions? <a
+      href={`mailto:${email || CampaignFooterContact.defaultProps.email}`}
+    >Contact {name || CampaignFooterContact.defaultProps.name}</a>
   </div>
 );
 
