@@ -37,8 +37,9 @@ class Page extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'title' => $this->title,
-                'content' => $this->content,
+                'content' => $this->content ? $this->content : $this->additionalContent['pitchContent'],
                 'sidebar' => $this->parseSidebar($this->sidebar),
+                'isLegacyPitch' => array_get($this->additionalContent, 'isLegacyPitch', true),
             ],
         ];
     }
