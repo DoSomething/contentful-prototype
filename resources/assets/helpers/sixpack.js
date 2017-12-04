@@ -20,9 +20,9 @@ export function sixpack() {
  * Check if experiment should be converted when user expresses Signup intent.
  *
  * @param  {String} name
- * @return {Bool}
+ * @return {Boolean}
  */
-export function ConvertOnSignupIntent(name) {
+export function convertOnSignupIntent(name) {
   return experiments[name].meta.convertOnSignupIntent;
 }
 
