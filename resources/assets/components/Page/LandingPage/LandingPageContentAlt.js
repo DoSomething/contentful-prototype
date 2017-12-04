@@ -28,7 +28,7 @@ LandingPageContentAlt.propTypes = {
 LandingPageContentAlt.defaultProps = {
   sidebarCTA: {
     title: 'what you get',
-    content: '*You could win a $5,000 dollar scholarship!',
+    content: '*You could win a $5,000 dollar scholarship!*',
   },
 };
 
