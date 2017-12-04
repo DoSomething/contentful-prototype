@@ -95,7 +95,7 @@ LandingPage.propTypes = {
   isAffiliated: PropTypes.bool,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
-  pitchContent: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  pitchContent: PropTypes.string.isRequired,
   showPartnerMsgOptIn: PropTypes.bool,
   signupArrowContent: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -103,7 +103,8 @@ LandingPage.propTypes = {
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   sidebar: PropTypes.arrayOf(PropTypes.object),
-  isLegacyPitch: PropTypes.bool.isRequired,
+  convertExperiment: PropTypes.func.isRequired,
+  legacyPitchContent: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 LandingPage.defaultProps = {
