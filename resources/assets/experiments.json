@@ -22,5 +22,17 @@
       "b": "get_started",
       "c": "apply_now"
     }
+  },
+  "landing_page": {
+    "meta": {
+      "preTest": {
+        "campign.allowExperiments": true
+      },
+      "convertOnSignupIntent": true
+    },
+    "alternatives": {
+      "a": "legacy_landing_page",
+      "b": "landing_page_alt"
+    }
   }
 }
