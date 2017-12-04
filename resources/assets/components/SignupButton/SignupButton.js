@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { PuckConnector } from '@dosomething/puck-client';
 import SignupButtonContainer from './SignupButtonContainer';
+import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 /**
  * HOC for wrapping signup buttons. Handles tracking
@@ -14,9 +15,18 @@ import SignupButtonContainer from './SignupButtonContainer';
  */
 const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null) => {
   const SignupButton = (props) => {
-    const { clickedSignUp, template, trackEvent } = props;
+    const { clickedSignUp, template, trackEvent, experiments, convertExperiment } = props;
+
+    const afterSignup = () => {
+      Object.keys(experiments).forEach((experiment) => {
+        if (convertOnSignupIntent(experiment)) {
+          convertExperiment(experiment);
+        }
+      });
+    };
 
     const onSignup = (campaignId) => {
+      afterSignup();
       clickedSignUp(campaignId);
       trackEvent('signup', {
         template,
@@ -35,6 +45,8 @@ const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null)
     clickedSignUp: PropTypes.func.isRequired,
     template: PropTypes.string,
     trackEvent: PropTypes.func.isRequired,
+    experiments: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    convertExperiment: PropTypes.func.isRequired,
   };
 
   SignupButton.defaultProps = {
