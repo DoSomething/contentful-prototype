@@ -26,7 +26,7 @@
   "landing_page": {
     "meta": {
       "preTest": {
-        "campign.allowExperiments": true
+        "campaign.allowExperiments": true
       },
       "convertOnSignupIntent": true
     },
