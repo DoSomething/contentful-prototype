@@ -4,11 +4,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
+import ExperimentContainer from '../../Experiment';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import ColumnizedContent from '../../ColumnizedContent';
+import LandingPageContentAlt from './LandingPageContentAlt';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
-import Markdown from '../../Markdown';
-import Card from '../../Card';
 
 import './landing-page.scss';
 
@@ -27,24 +27,12 @@ const LandingPage = (props) => {
     isAffiliated, isLegacyPitch, legacyCampaignId, pitchContent,
     sidebar, showPartnerMsgOptIn, signupArrowContent, subtitle,
     tagline, template, title,
+    isAffiliated, legacyCampaignId, legacyPitchContent,
+    pitchContent, sidebar, showPartnerMsgOptIn, signupArrowContent,
+    subtitle, tagline, template, title,
   } = props;
 
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
-
-  const enclosureContent = isLegacyPitch ?
-    <ColumnizedContent className="container__block -half" content={formatToMarkup(pitchContent)} />
-    : (
-      <div className="campaign-subpage">
-        <div className="primary">
-          <Markdown>{ pitchContent[0] }</Markdown>
-        </div>
-        <div className="secondary">
-          <Card title={sidebarCTA.title} className="rounded bordered" >
-            <Markdown className="padded" >{ sidebarCTA.content }</Markdown>
-          </Card>
-        </div>
-      </div>
-    );
 
   return (
     <div>
@@ -64,7 +52,22 @@ const LandingPage = (props) => {
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          { enclosureContent }
+          <ExperimentContainer name="landing_page">
+            <ColumnizedContent
+              experiment="landing_page"
+              alternative="legacy_landing_page"
+              convert={props.convertExperiment}
+              className="container__block -half"
+              content={formatToMarkup(legacyPitchContent)}
+            />
+            <LandingPageContentAlt
+              experiment="landing_page"
+              alternative="landing_page_alt"
+              convert={props.convertExperiment}
+              pitchContent={pitchContent}
+              sidebarCTA={sidebarCTA}
+            />
+          </ExperimentContainer>
         </Enclosure>
       </div>
 
