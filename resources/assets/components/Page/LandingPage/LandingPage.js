@@ -24,9 +24,6 @@ const formatToMarkup = data => (
 const LandingPage = (props) => {
   const {
     affiliateSponsors, blurb, coverImage, endDate,
-    isAffiliated, isLegacyPitch, legacyCampaignId, pitchContent,
-    sidebar, showPartnerMsgOptIn, signupArrowContent, subtitle,
-    tagline, template, title,
     isAffiliated, legacyCampaignId, legacyPitchContent,
     pitchContent, sidebar, showPartnerMsgOptIn, signupArrowContent,
     subtitle, tagline, template, title,
