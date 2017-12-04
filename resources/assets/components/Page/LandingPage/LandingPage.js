@@ -95,7 +95,7 @@ LandingPage.propTypes = {
   isAffiliated: PropTypes.bool,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
-  pitchContent: PropTypes.string.isRequired,
+  pitchContent: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
   signupArrowContent: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -110,6 +110,7 @@ LandingPage.propTypes = {
 LandingPage.defaultProps = {
   endDate: null,
   isAffiliated: false,
+  pitchContent: null,
   tagline: 'Ready to start?',
   signupArrowContent: null,
   showPartnerMsgOptIn: false,
