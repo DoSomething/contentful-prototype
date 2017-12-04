@@ -23,8 +23,8 @@ const formatToMarkup = data => (
 
 const LandingPage = (props) => {
   const {
-    affiliateSponsors, blurb, coverImage, endDate,
-    isAffiliated, legacyCampaignId, legacyPitchContent,
+    affiliateSponsors, blurb, convertExperiment, coverImage,
+    endDate, isAffiliated, legacyCampaignId, legacyPitchContent,
     pitchContent, sidebar, showPartnerMsgOptIn, signupArrowContent,
     subtitle, tagline, template, title,
   } = props;
@@ -53,14 +53,14 @@ const LandingPage = (props) => {
             <ColumnizedContent
               experiment="landing_page"
               alternative="legacy_landing_page"
-              convert={props.convertExperiment}
+              convert={convertExperiment}
               className="container__block -half"
               content={formatToMarkup(legacyPitchContent)}
             />
             <LandingPageContentAlt
               experiment="landing_page"
               alternative="landing_page_alt"
-              convert={props.convertExperiment}
+              convert={convertExperiment}
               pitchContent={pitchContent}
               sidebarCTA={sidebarCTA}
             />
