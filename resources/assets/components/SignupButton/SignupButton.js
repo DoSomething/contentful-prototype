@@ -17,7 +17,7 @@ const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null)
   const SignupButton = (props) => {
     const { clickedSignUp, template, trackEvent, experiments, convertExperiment } = props;
 
-    const afterSignup = () => {
+    const convertExperiments = () => {
       Object.keys(experiments).forEach((experiment) => {
         if (convertOnSignupIntent(experiment)) {
           convertExperiment(experiment);
@@ -26,7 +26,7 @@ const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null)
     };
 
     const onSignup = (campaignId) => {
-      afterSignup();
+      convertExperiments();
       clickedSignUp(campaignId);
       trackEvent('signup', {
         template,
