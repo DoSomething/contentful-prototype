@@ -214,7 +214,7 @@ class Campaign extends Entity implements JsonSerializable
                 'callToActionDescription'=> $this->affirmation->callToActionDescription,
             ],
             'pages' => $this->pages,
-            'landingPage' => $this->landingPage,
+            'landingPage' => $this->landingPage ? new Page($this->landingPage->entry) : null,
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,
         ];
