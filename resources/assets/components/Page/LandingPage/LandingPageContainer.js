@@ -10,11 +10,9 @@ import { convertExperiment } from '../../../actions';
 const mapStateToProps = (state) => {
   const landingPage = state.campaign.landingPage.fields;
 
-  const pitchContent = landingPage.content instanceof Array ?
-    landingPage.content : [landingPage.content];
-
   return {
-    pitchContent,
+    pitchContent: landingPage.content,
+    legacyPitchContent: landingPage.legacyContent,
     blurb: state.campaign.blurb,
     coverImage: state.campaign.coverImage,
     dashboard: state.campaign.dashboard,
@@ -29,7 +27,6 @@ const mapStateToProps = (state) => {
     template: state.campaign.template,
     title: state.campaign.title,
     sidebar: landingPage.sidebar,
-    isLegacyPitch: landingPage.isLegacyPitch,
   };
 };
 
