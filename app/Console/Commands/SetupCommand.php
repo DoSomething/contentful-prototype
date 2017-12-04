@@ -59,6 +59,8 @@ class SetupCommand extends Command
 
         $this->runCommand('key:generate', 'Creating application key');
 
+        $this->runCommand('gateway:key', 'Fetching public key from Northstar');
+
         $this->runCommand('migrate', 'Running database migrations');
     }
 }
