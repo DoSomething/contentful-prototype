@@ -72,6 +72,7 @@ const initialState = {
     shouldShowLandingPage: false,
     shouldShowActionPage: false,
   },
+  posts: {},
 };
 
 /**
