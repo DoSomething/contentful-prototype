@@ -12,3 +12,33 @@
     width: 300px;
   }
 }
+
+.message-callout.-right {
+
+  @include media($larger) {
+    width: 45%;
+    margin-left: 10px;
+    float: right;
+  }
+
+  @include media($small) {
+    text-align: center;
+  }
+
+  .message-callout__copy {
+    @include media($large) {
+      margin-top: - $base-spacing;
+    }
+
+    margin-bottom: $half-spacing;
+  }
+
+  .message-callout__copy::before {
+    @include media($larger) {
+      transform: none;
+    }
+
+
+    transform: rotate(270deg);
+  }
+}
