@@ -5,6 +5,7 @@ import Markdown from '../../Markdown';
 import AffiliateOptionContainer from '../../AffiliateOption';
 import SignupButtonFactory from '../../SignupButton';
 import { contentfulImageUrl } from '../../../helpers';
+import CampaignSignupArrow from '../../CampaignSignupArrow';
 
 const MosaicTemplate = (props) => {
   const {
@@ -15,14 +16,20 @@ const MosaicTemplate = (props) => {
     isAffiliated,
     legacyCampaignId,
     showPartnerMsgOptIn,
+    signupArrowContent,
   } = props;
 
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
+  const signupArrowComponent = signupArrowContent ? (
+    <CampaignSignupArrow content={signupArrowContent} className="-right" />
+  ) : null;
+
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
+      { signupArrowComponent }
       <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Join Us</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
@@ -58,10 +65,12 @@ MosaicTemplate.propTypes = {
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   showPartnerMsgOptIn: PropTypes.bool.isRequired,
+  signupArrowContent: PropTypes.string,
 };
 
 MosaicTemplate.defaultProps = {
   showPartnerMsgOptIn: false,
+  signupArrowContent: null,
 };
 
 export default MosaicTemplate;
