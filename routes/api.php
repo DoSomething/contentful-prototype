@@ -23,4 +23,3 @@ $router->group(['prefix' => 'v1'], function () {
     $this->get('/campaigns/{id}/posts', 'Api\CampaignPostsController@index');
     $this->post('/campaigns/{id}/posts', 'Api\CampaignPostsController@store');
 });
-
