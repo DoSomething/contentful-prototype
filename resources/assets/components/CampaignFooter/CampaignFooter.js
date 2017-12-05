@@ -3,6 +3,24 @@ import PropTypes from 'prop-types';
 
 import AffiliateCredits from '../AffiliateCredits';
 
+const CampaignFooterContact = ({ email, name }) => (
+  <div className="info-bar__secondary">
+    Questions? <a
+      href={`mailto:${email || CampaignFooterContact.defaultProps.email}`}
+    >Contact {name || CampaignFooterContact.defaultProps.name}</a>
+  </div>
+);
+
+CampaignFooterContact.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+};
+
+CampaignFooterContact.defaultProps = {
+  name: 'Us',
+  email: 'help@dosomething.org',
+};
+
 const CampaignFooter = ({ affiliateSponsors, affiliatePartners, campaignLead }) => (
   <footer className="info-bar">
     <div className="default-container padding-vertical-lg padding-horizontal-md">
@@ -10,9 +28,7 @@ const CampaignFooter = ({ affiliateSponsors, affiliatePartners, campaignLead }) 
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
       />
-      <div className="info-bar__secondary">
-        Questions? <a href={`mailto:${campaignLead.email}`}>Contact {campaignLead.name}</a>
-      </div>
+      <CampaignFooterContact {...campaignLead} />
     </div>
   </footer>
 );
@@ -27,11 +43,7 @@ CampaignFooter.propTypes = {
 };
 
 CampaignFooter.defaultProps = {
-  campaignLead: {
-    name: 'Us',
-    email: 'help@dosomething.org',
-  },
+  campaignLead: null,
 };
-
 
 export default CampaignFooter;

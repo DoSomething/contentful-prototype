@@ -20,6 +20,7 @@ class Staff extends Entity implements JsonSerializable
                 'name' => $this->name,
                 'jobTitle' => $this->jobTitle,
                 'avatar' => get_image_url($this->avatar, 'square'),
+                'email' => $this->email,
             ],
         ];
     }

@@ -152,7 +152,7 @@ CampaignPage.defaultProps = {
   endDate: null,
   isAffiliated: false,
   totalCampaignSignups: 0,
-  campaignLead: undefined,
+  campaignLead: null,
 };
 
 export default CampaignPage;

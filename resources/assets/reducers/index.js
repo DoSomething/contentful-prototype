@@ -7,7 +7,6 @@ export experiments from './experiments';
 export modal from './modal';
 export notifications from './notifications';
 export reportbacks from './reportbacks';
-export share from './share';
 export signups from './signups';
 export slideshow from './slideshow';
 export submissions from './submissions';

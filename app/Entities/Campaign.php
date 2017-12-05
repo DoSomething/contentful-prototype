@@ -143,6 +143,34 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse the campaign lead from other
+     *
+     * @param  DynamicEntry $campaignlead
+     * @param  array $additionalContent
+     * @return array
+     */
+    public function parseCampaignLead($campaignlead, $additionalContent)
+    {
+        if ($campaignlead) {
+            return new Staff($campaignlead->entry);
+        }
+
+        $email = $additionalContent['campaignLead']['email'] ?? 'help@dosomething.org';
+        $name = $additionalContent['campaignLead']['name'] ?? 'Us';
+
+        return [
+            'id' => str_random(22),
+            'type' => 'staff',
+            'fields' => [
+                'email' => $email,
+                'name' => $name,
+                'jobTitle' => null,
+                'avatar' => null,
+            ],
+        ];
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -166,6 +194,7 @@ class Campaign extends Entity implements JsonSerializable
                 'url' => get_image_url($this->coverImage),
                 'landscapeUrl' => get_image_url($this->coverImage, 'landscape'),
             ],
+            'campaignLead' => $this->parseCampaignLead($this->campaignLead, $this->additionalContent),
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             // @TODO: Why is it 'activity_feed' oy? ;/
@@ -185,10 +214,11 @@ class Campaign extends Entity implements JsonSerializable
                 'callToActionDescription'=> $this->affirmation->callToActionDescription,
             ],
             'pages' => $this->pages,
-            'landingPage' => $this->landingPage,
+            'landingPage' => $this->landingPage ? new Page($this->landingPage->entry) : null,
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'reportbackUploaderSettings' => $this->reportbackUploaderSettings ? new ReportbackUploaderSettings($this->reportbackUploaderSettings->entry) : null,
             'additionalContent' => $this->additionalContent,
+            'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,
         ];
     }
 }

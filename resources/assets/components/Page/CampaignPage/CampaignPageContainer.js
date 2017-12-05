@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
-  campaignLead: get(state.campaign.additionalContent, 'campaignLead'),
+  campaignLead: get(state, 'campaign.campaignLead.fields', null),
   legacyCampaignId: state.campaign.legacyCampaignId,
   shouldShowActionPage: state.admin.shouldShowActionPage,
   slug: state.campaign.slug,
