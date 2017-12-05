@@ -2,7 +2,6 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { get } from 'lodash';
 import { BlockWrapper } from '../Block';
 import { Flex, FlexCell } from '../Flex';
 import Markdown from '../Markdown';
@@ -56,16 +55,15 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
 
-    const { settings } = this.props;
-    const quantityOverride = get(settings, 'quantityOverride');
-    const reportbackAffirmation = get(settings, 'reportbackAffirmation') || (
-      ReportbackUploader.defaultProps.settings.reportbackAffirmation
+    const showQuantityField = this.props.showQuantityField || true;
+    const affirmationContent = this.props.affirmationContent || (
+      ReportbackUploader.defaultProps.affirmationContent
     );
 
     const reportback = {
       media: this.state.media,
       caption: this.caption.value,
-      impact: quantityOverride || this.impact.value,
+      impact: showQuantityField ? this.impact.value : 1,
       whyParticipated: this.why_participated.value,
       campaignId: this.props.legacyCampaignId,
       status: 'pending',
@@ -77,7 +75,7 @@ class ReportbackUploader extends React.Component {
 
     this.props.submitReportback(
       ReportbackUploader.setFormData(reportback),
-      reportbackAffirmation,
+      affirmationContent,
     ).then(() => {
       const trackingData = { campaignId: this.props.legacyCampaignId };
       let trackingMessage;
@@ -99,7 +97,9 @@ class ReportbackUploader extends React.Component {
   }
 
   render() {
-    const { submissions, settings } = this.props;
+    const {
+      submissions, showQuantityField, informationTitle, informationContent,
+    } = this.props;
 
     const impactInput = (
       <div>
@@ -126,7 +126,7 @@ class ReportbackUploader extends React.Component {
                     <input className="text-field" id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
                   </div>
 
-                  { (settings && settings.quantityOverride) ? null : impactInput }
+                  { showQuantityField ? impactInput : null }
                 </div>
 
                 <div className="form-item">
@@ -139,10 +139,10 @@ class ReportbackUploader extends React.Component {
             </div>
           </BlockWrapper>
         </FlexCell>
-        { settings && settings.moreInformation ? (
+        { informationContent ? (
           <FlexCell width="one-third">
-            <BlockWrapper title="More Info">
-              <Markdown>{settings.moreInformation}</Markdown>
+            <BlockWrapper title={informationTitle}>
+              <Markdown>{informationContent}</Markdown>
             </BlockWrapper>
           </FlexCell>
         ) : null}
@@ -152,7 +152,15 @@ class ReportbackUploader extends React.Component {
 }
 
 ReportbackUploader.propTypes = {
+  affirmationContent: PropTypes.string,
+  informationContent: PropTypes.string,
+  informationTitle: PropTypes.string,
   legacyCampaignId: PropTypes.string.isRequired,
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
+  showQuantityField: PropTypes.bool,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
     isStoring: PropTypes.bool,
@@ -161,28 +169,18 @@ ReportbackUploader.propTypes = {
     reportback: PropTypes.object,
   }).isRequired,
   submitReportback: PropTypes.func.isRequired,
-  noun: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
-  settings: PropTypes.shape({
-    moreInformation: PropTypes.string,
-    quantityOverride: PropTypes.number,
-    reportbackAffirmation: PropTypes.string,
-  }),
   trackEvent: PropTypes.func.isRequired,
 };
 
 ReportbackUploader.defaultProps = {
+  affirmationContent: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
+  informationContent: null,
+  informationTitle: null,
   noun: {
     singular: 'item',
     plural: 'items',
   },
-  settings: {
-    moreInformation: null,
-    quantityOverride: null,
-    reportbackAffirmation: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
-  },
+  showQuantityField: true,
 };
 
 export default ReportbackUploader;

@@ -4,24 +4,15 @@ import PropTypes from 'prop-types';
 import LegacyStepHeaderTemplate from './templates/LegacyStepHeaderTemplate';
 import MosaicStepHeaderTemplate from './templates/MosaicStepHeaderTemplate';
 
-const StepHeader = ({ title, step, background, hideStepNumber, template }) => {
-  switch (template) {
+const StepHeader = (props) => {
+  switch (props.template) {
     case 'legacy':
       return (
-        <LegacyStepHeaderTemplate
-          title={title}
-          step={step}
-          hideStepNumber={hideStepNumber}
-        />
+        <LegacyStepHeaderTemplate {...props} />
       );
     default:
       return (
-        <MosaicStepHeaderTemplate
-          title={title}
-          step={step}
-          background={background}
-          hideStepNumber={hideStepNumber}
-        />
+        <MosaicStepHeaderTemplate {...props} />
       );
   }
 };
@@ -29,13 +20,14 @@ const StepHeader = ({ title, step, background, hideStepNumber, template }) => {
 StepHeader.propTypes = {
   title: PropTypes.string.isRequired,
   step: PropTypes.number.isRequired,
-  hideStepNumber: PropTypes.bool.isRequired,
+  hideStepNumber: PropTypes.bool,
   background: PropTypes.string,
   template: PropTypes.string.isRequired,
 };
 
 StepHeader.defaultProps = {
   background: null,
+  hideStepNumber: false,
 };
 
 export default StepHeader;

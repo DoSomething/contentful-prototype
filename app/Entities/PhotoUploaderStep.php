@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use JsonSerializable;
 
-class ReportbackUploaderSettings extends Entity implements JsonSerializable
+class PhotoUploaderStep extends Entity implements JsonSerializable
 {
     /**
      * Convert the object into something JSON serializable.
@@ -17,9 +17,10 @@ class ReportbackUploaderSettings extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $this->entry->getContentType(),
             'fields' => [
-                'moreInformation' => $this->moreInformation,
-                'quantityOverride' => $this->quantityOverride,
-                'reportbackAffirmation' => $this->reportbackAffirmation,
+                'informationTitle' => $this->informationTitle,
+                'informationContent' => $this->informationContent,
+                'showQuantityField' => $this->showQuantityField,
+                'affirmationContent' => $this->affirmationContent,
             ],
         ];
     }
