@@ -16,16 +16,20 @@ class PostsController extends Controller
     /**
      * Create a new PostsController instance.
      *
-     * @param \App\Repositories\PostRepository $postRepository
+     * @param PostRepository $postRepository
      */
     public function __construct(PostRepository $postRepository)
     {
+        $this->middleware('auth:api')->except(['index']);
+
         $this->postRepository = $postRepository;
     }
 
     /**
-     * [index description]
-     * @return [type] [description]
+     * Display a listing of the resource.
+     *
+     * @param  Request $request
+     * @return array - JSON response
      */
     public function index(Request $request)
     {

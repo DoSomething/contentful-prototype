@@ -7,15 +7,14 @@ use App\Services\RogueClient;
 class PostRepository
 {
     /**
-     * [$rogue description]
-     * @var [type]
+     * Rogue client instance.
      */
     private $rogue;
 
     /**
      * Create a new PostRepository instance.
      *
-     * @param App\Services\RogueClient $client
+     * @param RogueClient $client
      */
     public function __construct(RogueClient $client)
     {
@@ -30,8 +29,6 @@ class PostRepository
      */
     public function getPosts($query = [])
     {
-        dd($query);
-
         return $this->rogue->get('v3/posts', $query);
     }
 
@@ -45,8 +42,6 @@ class PostRepository
     public function getCampaignPosts($id, $query = [])
     {
         $query['filter']['campaign_id'] = $id;
-
-        // dd($query, auth()->id(), token()->role, token()->scopes);
 
         return $this->rogue->get('v3/posts', $query);
     }

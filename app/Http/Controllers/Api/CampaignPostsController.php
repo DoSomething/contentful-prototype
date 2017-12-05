@@ -10,25 +10,30 @@ use App\Repositories\PostRepository;
 class CampaignPostsController extends Controller
 {
     /**
-     * [$rogue description]
-     * @var [type]
+     * The post repository.
+     *
+     * @var PostRepository
      */
     private $postRepository;
 
     /**
-     * [$rogue description]
-     * @var [type]
+     * Create a new CampaignPostsController instance.
+     *
+     * @var PostRepository $postRepository
      */
     public function __construct(PostRepository $postRepository)
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except(['index']);
 
         $this->postRepository = $postRepository;
     }
 
     /**
-     * [$rogue description]
-     * @var [type]
+     * Display a listing of the resource.
+     *
+     * @param  string  $id
+     * @param  Request $request
+     * @return array - JSON response
      */
     public function index($id, Request $request)
     {
@@ -38,11 +43,14 @@ class CampaignPostsController extends Controller
     }
 
     /**
-     * [$rogue description]
-     * @var [type]
+     * Store a newly created resource.
+     *
+     * @param  string $id
+     * @return object - JSON response
      */
     public function store($id)
     {
-        return response()->json($id);
+        // @TODO inactive for now.
+        return response()->json(false);
     }
 }

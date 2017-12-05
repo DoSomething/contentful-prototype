@@ -7,7 +7,7 @@ use DoSomething\Gateway\Common\RestApiClient;
 class RogueClient extends RestApiClient
 {
     /**
-     * [__construct description]
+     * Create a new RogueClient instance.
      */
     public function __construct()
     {
