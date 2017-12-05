@@ -32,7 +32,7 @@ class CampaignPostsController extends Controller
      *
      * @param  string  $id
      * @param  Request $request
-     * @return array - JSON response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index($id, Request $request)
     {
@@ -45,11 +45,11 @@ class CampaignPostsController extends Controller
      * Store a newly created resource.
      *
      * @param  string $id
-     * @return object - JSON response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store($id)
     {
-        // @TODO inactive for now.
-        return response()->json(false);
+        // @TODO 501 Not Implemented for now.
+        abort(501);
     }
 }

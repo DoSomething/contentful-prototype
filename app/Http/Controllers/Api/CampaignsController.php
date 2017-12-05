@@ -9,11 +9,11 @@ class CampaignsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return array - JSON response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        // @TODO inactive for now.
-        return response()->json();
+        // @TODO 501 Not Implemented for now.
+        abort(501);
     }
 }
