@@ -59,7 +59,7 @@
             "php artisan optimize"
         ],
         "compile": [
-          "php artisan gateway:key"
+            "php artisan gateway:key"
         ]
     },
     "config": {
