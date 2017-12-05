@@ -12,7 +12,7 @@
 */
 
 // v1 Routes
-$router->group(['prefix' => 'v1'], function() {
+$router->group(['prefix' => 'v1'], function () {
     // Posts
     $this->get('/posts', 'Api\PostsController@index');
 

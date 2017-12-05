@@ -62,7 +62,7 @@ class CampaignController extends Controller
 
         // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
         $socialFields = get_social_fields($campaign, Request::url());
-        dd($campaign);
+
         return view('campaigns.show', [
             'campaign' => $campaign,
             'socialFields' => $socialFields,
