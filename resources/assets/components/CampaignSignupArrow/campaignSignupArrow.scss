@@ -13,7 +13,7 @@
   }
 }
 
-.message-callout.-right {
+.message-callout.-mosaic-arrow {
 
   @include media($larger) {
     width: 45%;
@@ -30,7 +30,16 @@
       margin-top: - $base-spacing;
     }
 
+    @include media($medium) {
+      padding-left: 45px;
+    }
+
     margin-bottom: $half-spacing;
+
+    @include media($small) {
+      margin-bottom: $base-spacing;
+      margin-left: - $base-spacing * 2;
+    }
   }
 
   .message-callout__copy::before {
@@ -38,7 +47,22 @@
       transform: none;
     }
 
+    @include media($medium) {
+      background: url("../../../../node_modules/@dosomething/forge/assets/images/callout/arrow-left-black.png") 50% 50% / 35px no-repeat transparent !important;
+      height: 19px;
+      left: 0;
+      margin-top: -9px;
+      right: auto;
+      top: 50%;
+      width: 38px;
+      background-image: url("../../../../node_modules/@dosomething/forge/assets/images/callout/arrow-left-white.png") !important;
 
-    transform: rotate(270deg);
+      transform: rotate(270deg);
+    }
+
+    @include media($small) {
+      right: - $base-spacing;
+    }
+
   }
 }
