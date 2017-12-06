@@ -24,7 +24,7 @@ const MosaicTemplate = (props) => {
   };
 
   const signupArrowComponent = signupArrowContent ? (
-    <CampaignSignupArrow content={signupArrowContent} className="-above -mosaic-arrow" />
+    <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
   ) : null;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
