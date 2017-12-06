@@ -37,12 +37,12 @@ class CampaignActionStep extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'title' => $this->title,
-                'displayOptions' => $this->displayOptions ? $this->displayOptions->first() : 'one-third',
+                'displayOptions' => $this->displayOptions->first(),
                 'hideStepNumber' => $hideStepNumber,
                 'content' => $this->content,
                 'background' => get_image_url($this->background, 'landscape'),
                 'photos' => $this->parseActionStepPhotos($this->photos),
-                'customType' => $this->type ?: ($this->customType ? $this->customType->first() : null),
+                'customType' => $this->type ?: $this->customType->first(),
                 'additionalContent' => $this->additionalContent,
             ],
         ];
