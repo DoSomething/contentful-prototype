@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { SURVEY_DATA_URL } from '../../../constants/nps_survey';
+import { SURVEY_DATA_URL } from '../../../constants/survey';
 
 class SurveyModal extends React.Component {
   componentDidMount() {
