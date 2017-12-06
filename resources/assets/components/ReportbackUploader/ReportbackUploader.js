@@ -32,6 +32,7 @@ class ReportbackUploader extends React.Component {
 
     this.handleOnSubmitForm = this.handleOnSubmitForm.bind(this);
     this.handleOnFileUpload = this.handleOnFileUpload.bind(this);
+    this.getAffirmationContent = this.getAffirmationContent.bind(this);
 
     this.defaultMediaState = {
       file: null,
@@ -48,6 +49,12 @@ class ReportbackUploader extends React.Component {
     };
   }
 
+  getAffirmationContent() {
+    return this.props.affirmationContent || (
+      ReportbackUploader.defaultProps.affirmationContent
+    );
+  }
+
   handleOnFileUpload(media) {
     this.setState({ media });
   }
@@ -56,9 +63,6 @@ class ReportbackUploader extends React.Component {
     event.preventDefault();
 
     const showQuantityField = this.props.showQuantityField || true;
-    const affirmationContent = this.props.affirmationContent || (
-      ReportbackUploader.defaultProps.affirmationContent
-    );
 
     const reportback = {
       media: this.state.media,
@@ -75,7 +79,6 @@ class ReportbackUploader extends React.Component {
 
     this.props.submitReportback(
       ReportbackUploader.setFormData(reportback),
-      affirmationContent,
     ).then(() => {
       const trackingData = { campaignId: this.props.legacyCampaignId };
       let trackingMessage;
@@ -98,8 +101,11 @@ class ReportbackUploader extends React.Component {
 
   render() {
     const {
-      submissions, showQuantityField, informationTitle, informationContent,
+      submissions, showQuantityField, informationTitle,
+      informationContent, shouldShowAffirmation,
     } = this.props;
+
+    const shouldDisplaySubmissionMessaging = submissions.messaging && submissions.messaging.error;
 
     const impactInput = (
       <div>
@@ -115,7 +121,9 @@ class ReportbackUploader extends React.Component {
             <div className="reportback-uploader">
               <h2 className="heading">Upload your photos</h2>
 
-              { submissions.messaging ? <FormMessage messaging={submissions.messaging} /> : null }
+              { shouldDisplaySubmissionMessaging ? (
+                <FormMessage messaging={submissions.messaging} />
+              ) : null }
 
               <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
                 <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} />
@@ -146,6 +154,13 @@ class ReportbackUploader extends React.Component {
             </BlockWrapper>
           </FlexCell>
         ) : null}
+        { shouldShowAffirmation ? (
+          <FlexCell width="two-thirds" className="padding-horizontal-md margin-top-md">
+            <BlockWrapper title="We Got Your Photo">
+              <Markdown>{this.getAffirmationContent()}</Markdown>
+            </BlockWrapper>
+          </FlexCell>
+        ) : null}
       </Flex>
     );
   }
@@ -160,6 +175,7 @@ ReportbackUploader.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
+  shouldShowAffirmation: PropTypes.bool,
   showQuantityField: PropTypes.bool,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
@@ -170,6 +186,7 @@ ReportbackUploader.propTypes = {
   }).isRequired,
   submitReportback: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
+  toggleReportbackAffirmation: PropTypes.func.isRequired,
 };
 
 ReportbackUploader.defaultProps = {
@@ -181,6 +198,7 @@ ReportbackUploader.defaultProps = {
     plural: 'items',
   },
   showQuantityField: true,
+  shouldShowAffirmation: false,
 };
 
 export default ReportbackUploader;

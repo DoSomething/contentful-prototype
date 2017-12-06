@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 const CampaignDashboard = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
-    clickedShowActionPage, clickedRemoveSignUp, signupCreated, isSignedUp } = props;
+    clickedShowActionPage, clickedRemoveSignUp, signupCreated, isSignedUp,
+    toggleReportbackAffirmation,
+  } = props;
 
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
 
@@ -29,6 +31,9 @@ const CampaignDashboard = (props) => {
       <button className="button -secondary margin-md" onClick={onSignUpClick}>
         {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
       </button>
+      <button className="button -secondary margin-md" onClick={() => toggleReportbackAffirmation(true)}>
+        Show Reportback Affirmation
+      </button>
     </div>
   );
 };
@@ -42,6 +47,7 @@ CampaignDashboard.propTypes = {
   clickedShowActionPage: PropTypes.func.isRequired,
   clickedRemoveSignUp: PropTypes.func.isRequired,
   signupCreated: PropTypes.func.isRequired,
+  toggleReportbackAffirmation: PropTypes.func.isRequired,
 };
 
 CampaignDashboard.defaultProps = {

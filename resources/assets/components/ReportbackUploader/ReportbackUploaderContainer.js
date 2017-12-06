@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 import { PuckConnector } from '@dosomething/puck-client';
 import ReportbackUploader from './ReportbackUploader';
-import { submitReportback, addSubmissionItemToList } from '../../actions';
+import {
+  addSubmissionItemToList, submitReportback,
+  toggleReportbackAffirmation,
+} from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -13,6 +16,7 @@ const mapStateToProps = state => ({
   submissions: state.submissions,
   noun: get(state.campaign.additionalContent, 'noun'),
   uploads: state.uploads,
+  shouldShowAffirmation: state.submissions.shouldShowAffirmation,
 });
 
 /**
@@ -20,8 +24,9 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  submitReportback,
   addSubmissionItemToList,
+  submitReportback,
+  toggleReportbackAffirmation,
 };
 
 // Export the container component.

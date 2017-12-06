@@ -8,6 +8,7 @@ import {
   STORE_REPORTBACK_SUCCESSFUL,
   ADD_SUBMISSION_METADATA,
   ADD_SUBMISSION_ITEM_TO_LIST,
+  TOGGLE_REPORTBACK_AFFIRMATION,
 } from '../actions';
 
 /**
@@ -59,6 +60,12 @@ const submissions = (state = {}, action) => {
 
     case ADD_SUBMISSION_ITEM_TO_LIST:
       return { ...state, items: [action.reportbackItem, ...state.items] };
+
+    case TOGGLE_REPORTBACK_AFFIRMATION:
+      return {
+        ...state,
+        shouldShowAffirmation: action.shouldShowAffirmation,
+      };
 
     default:
       return state;
