@@ -114,7 +114,7 @@ class Campaign extends Entity implements JsonSerializable
         return collect($actionSteps)->map(function ($step) {
             switch ($step->getContentType()) {
                 case 'photoUploaderAction':
-                    return new PhotoUploaderStep($step->entry);
+                    return new PhotoUploaderAction($step->entry);
                 default:
                     return new CampaignActionStep($step->entry);
             }
