@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use JsonSerializable;
 
-class PhotoUploaderStep extends Entity implements JsonSerializable
+class PhotoUploaderAction extends Entity implements JsonSerializable
 {
     /**
      * Convert the object into something JSON serializable.
