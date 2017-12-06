@@ -3,6 +3,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { BlockWrapper } from '../Block';
+import { Flex, FlexCell } from '../Flex';
+import Markdown from '../Markdown';
 import MediaUploader from '../MediaUploader';
 import FormMessage from '../FormMessage';
 import './reportback-uploader.scss';
@@ -53,10 +55,15 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
 
+    const showQuantityField = this.props.showQuantityField || true;
+    const affirmationContent = this.props.affirmationContent || (
+      ReportbackUploader.defaultProps.affirmationContent
+    );
+
     const reportback = {
       media: this.state.media,
       caption: this.caption.value,
-      impact: this.props.quantityOverride || this.impact.value,
+      impact: showQuantityField ? this.impact.value : 1,
       whyParticipated: this.why_participated.value,
       campaignId: this.props.legacyCampaignId,
       status: 'pending',
@@ -68,7 +75,7 @@ class ReportbackUploader extends React.Component {
 
     this.props.submitReportback(
       ReportbackUploader.setFormData(reportback),
-      this.props.reportbackAffirmation,
+      affirmationContent,
     ).then(() => {
       const trackingData = { campaignId: this.props.legacyCampaignId };
       let trackingMessage;
@@ -90,7 +97,10 @@ class ReportbackUploader extends React.Component {
   }
 
   render() {
-    const submissions = this.props.submissions;
+    const {
+      submissions, showQuantityField, informationTitle, informationContent,
+    } = this.props;
+
     const impactInput = (
       <div>
         <label className="field-label" htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
@@ -99,39 +109,58 @@ class ReportbackUploader extends React.Component {
     );
 
     return (
-      <BlockWrapper className="margin-horizontal-md">
-        <div className="reportback-uploader">
-          <h2 className="heading">Upload your photos</h2>
+      <Flex>
+        <FlexCell width="two-thirds" className="padding-horizontal-md">
+          <BlockWrapper>
+            <div className="reportback-uploader">
+              <h2 className="heading">Upload your photos</h2>
 
-          { submissions.messaging ? <FormMessage messaging={submissions.messaging} /> : null }
+              { submissions.messaging ? <FormMessage messaging={submissions.messaging} /> : null }
 
-          <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
-            <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} />
+              <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+                <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} />
 
-            <div className="wrapper">
-              <div className="form-item">
-                <label className="field-label" htmlFor="caption">Add a caption to your photo.</label>
-                <input className="text-field" id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
-              </div>
+                <div className="wrapper">
+                  <div className="form-item">
+                    <label className="field-label" htmlFor="caption">Add a caption to your photo.</label>
+                    <input className="text-field" id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+                  </div>
 
-              { this.props.quantityOverride ? null : impactInput }
+                  { showQuantityField ? impactInput : null }
+                </div>
+
+                <div className="form-item">
+                  <label className="field-label" htmlFor="why_participated">Why is this campaign important to you?</label>
+                  <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+                </div>
+
+                <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+              </form>
             </div>
-
-            <div className="form-item">
-              <label className="field-label" htmlFor="why_participated">Why is this campaign important to you?</label>
-              <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
-            </div>
-
-            <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
-          </form>
-        </div>
-      </BlockWrapper>
+          </BlockWrapper>
+        </FlexCell>
+        { informationContent ? (
+          <FlexCell width="one-third">
+            <BlockWrapper title={informationTitle}>
+              <Markdown>{informationContent}</Markdown>
+            </BlockWrapper>
+          </FlexCell>
+        ) : null}
+      </Flex>
     );
   }
 }
 
 ReportbackUploader.propTypes = {
+  affirmationContent: PropTypes.string,
+  informationContent: PropTypes.string,
+  informationTitle: PropTypes.string,
   legacyCampaignId: PropTypes.string.isRequired,
+  noun: PropTypes.shape({
+    singular: PropTypes.string,
+    plural: PropTypes.string,
+  }),
+  showQuantityField: PropTypes.bool,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
     isStoring: PropTypes.bool,
@@ -140,22 +169,18 @@ ReportbackUploader.propTypes = {
     reportback: PropTypes.object,
   }).isRequired,
   submitReportback: PropTypes.func.isRequired,
-  noun: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
-  quantityOverride: PropTypes.number,
-  reportbackAffirmation: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
 };
 
 ReportbackUploader.defaultProps = {
+  affirmationContent: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
+  informationContent: null,
+  informationTitle: null,
   noun: {
     singular: 'item',
     plural: 'items',
   },
-  quantityOverride: null,
-  reportbackAffirmation: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
+  showQuantityField: true,
 };
 
 export default ReportbackUploader;
