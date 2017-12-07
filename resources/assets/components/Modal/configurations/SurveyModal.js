@@ -11,12 +11,12 @@ class SurveyModal extends React.Component {
   }
 
   render() {
-    const { northstarId, campaignId, legacyCampaignId } = this.props;
+    const { dataUrl, northstarId, campaignId, legacyCampaignId } = this.props;
 
     return (
       <div
         className="modal__slide typeform-widget"
-        data-url={`${this.props.dataUrl}?nortstar_id=${northstarId}campaign_id=${campaignId}legacy_campaign_id=${legacyCampaignId}`}
+        data-url={`${dataUrl}?northstar_id=${northstarId}&campaign_id=${campaignId}&legacy_campaign_id=${legacyCampaignId}`}
         style={{ width: '100%', height: '500px' }}
       />
     );
