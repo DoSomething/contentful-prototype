@@ -11,6 +11,8 @@ type BlockTitleLinkProps = {
   title: ?string,
 };
 
+// NOTE: BlockWrapper is being deprectaed in favor of Card.
+
 const BlockTitleLink = ({ title, shareLink }: BlockTitleLinkProps) => (
   shareLink.match(/http/) ?
     <a href={shareLink}>{title}</a>

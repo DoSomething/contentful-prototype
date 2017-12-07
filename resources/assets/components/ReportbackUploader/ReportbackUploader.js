@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { BlockWrapper } from '../Block';
+import Card from '../Card';
 import { Flex, FlexCell } from '../Flex';
 import Markdown from '../Markdown';
 import MediaUploader from '../MediaUploader';
@@ -101,14 +101,14 @@ class ReportbackUploader extends React.Component {
 
   render() {
     const {
-      submissions, showQuantityField, informationTitle,
-      informationContent, shouldShowAffirmation,
+      submissions, showQuantityField, informationTitle, informationContent,
+      shouldShowAffirmation, toggleReportbackAffirmation,
     } = this.props;
 
     const shouldDisplaySubmissionMessaging = submissions.messaging && submissions.messaging.error;
 
     const impactInput = (
-      <div>
+      <div className="form-item">
         <label className="field-label" htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
         <input className="text-field" id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
       </div>
@@ -116,11 +116,9 @@ class ReportbackUploader extends React.Component {
 
     return (
       <Flex>
-        <FlexCell width="two-thirds" className="padding-horizontal-md">
-          <BlockWrapper>
-            <div className="reportback-uploader">
-              <h2 className="heading">Upload your photos</h2>
-
+        <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
+          <Card title="Upload your photos" className="bordered rounded">
+            <div className="reportback-uploader padding-md">
               { shouldDisplaySubmissionMessaging ? (
                 <FormMessage messaging={submissions.messaging} />
               ) : null }
@@ -137,28 +135,26 @@ class ReportbackUploader extends React.Component {
                   { showQuantityField ? impactInput : null }
                 </div>
 
-                <div className="form-item">
-                  <label className="field-label" htmlFor="why_participated">Why is this campaign important to you?</label>
-                  <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
-                </div>
+                <label className="field-label" htmlFor="why_participated">Why is this campaign important to you?</label>
+                <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
 
-                <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+                <button className="button margin-horizontal-auto margin-top-md" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
               </form>
             </div>
-          </BlockWrapper>
+          </Card>
         </FlexCell>
         { informationContent ? (
-          <FlexCell width="one-third">
-            <BlockWrapper title={informationTitle}>
-              <Markdown>{informationContent}</Markdown>
-            </BlockWrapper>
+          <FlexCell width="one-third" className="padding-horizontal-md--mobile margin-vertical-md">
+            <Card title={informationTitle} className="bordered rounded">
+              <Markdown className="padding-md">{informationContent}</Markdown>
+            </Card>
           </FlexCell>
         ) : null}
         { shouldShowAffirmation ? (
-          <FlexCell width="two-thirds" className="padding-horizontal-md margin-top-md">
-            <BlockWrapper title="We Got Your Photo">
-              <Markdown>{this.getAffirmationContent()}</Markdown>
-            </BlockWrapper>
+          <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
+            <Card title="We Got Your Photo" className="bordered rounded" onClose={() => toggleReportbackAffirmation(false)}>
+              <Markdown className="padding-md">{this.getAffirmationContent()}</Markdown>
+            </Card>
           </FlexCell>
         ) : null}
       </Flex>

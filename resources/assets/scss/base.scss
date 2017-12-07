@@ -168,6 +168,16 @@ h1, h2, h3, p {
   padding-right: $half-spacing;
 }
 
+.padding-horizontal-md--mobile {
+  padding-left: $half-spacing;
+  padding-right: $half-spacing;
+
+  @include media($tablet) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .padding-horizontal-lg {
   padding-left: $base-spacing;
   padding-right: $base-spacing;
@@ -191,6 +201,11 @@ h1, h2, h3, p {
 
 .margin-bottom-none {
   margin-bottom: 0 !important;
+}
+
+.margin-horizontal-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .margin-horizontal-lg {
@@ -225,6 +240,11 @@ h1, h2, h3, p {
 
 .margin-top-xlg {
   margin-top: $section-spacing;
+}
+
+.margin-vertical-md {
+  margin-top: $half-spacing;
+  margin-bottom: $half-spacing;
 }
 
 .rounded {
