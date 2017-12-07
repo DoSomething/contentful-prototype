@@ -33,6 +33,7 @@ const initialState = {
     isStoring: false,
     items: [],
     messaging: null,
+    shouldShowAffirmation: false,
   },
   signups: {
     data: [],

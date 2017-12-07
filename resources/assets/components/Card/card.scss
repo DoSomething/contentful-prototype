@@ -15,6 +15,7 @@
     font-family: $primary-font-family;
     font-size: $font-regular;
     text-transform: uppercase;
+    display: inline;
   }
 
   a {
@@ -24,5 +25,15 @@
       color: rgba($black, 0.75);  // @TODO should be a variable
       text-decoration: none;
     }
+  }
+}
+
+.card__exit {
+  float: right;
+  font-size: 26px;
+  margin-top: -6px;
+
+  &:hover {
+    cursor: pointer;
   }
 }
