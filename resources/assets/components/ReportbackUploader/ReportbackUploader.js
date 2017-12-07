@@ -62,12 +62,10 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
 
-    const showQuantityField = this.props.showQuantityField || true;
-
     const reportback = {
       media: this.state.media,
       caption: this.caption.value,
-      impact: showQuantityField ? this.impact.value : 1,
+      impact: this.props.showQuantityField ? this.impact.value : 1,
       whyParticipated: this.why_participated.value,
       campaignId: this.props.legacyCampaignId,
       status: 'pending',
@@ -144,7 +142,7 @@ class ReportbackUploader extends React.Component {
           </Card>
         </FlexCell>
         { informationContent ? (
-          <FlexCell width="one-third" className="padding-horizontal-md--mobile margin-vertical-md">
+          <FlexCell width="one-third" className="reportback-uploader-information margin-vertical-md">
             <Card title={informationTitle} className="bordered rounded">
               <Markdown className="padding-md">{informationContent}</Markdown>
             </Card>

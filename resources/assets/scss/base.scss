@@ -168,16 +168,6 @@ h1, h2, h3, p {
   padding-right: $half-spacing;
 }
 
-.padding-horizontal-md--mobile {
-  padding-left: $half-spacing;
-  padding-right: $half-spacing;
-
-  @include media($tablet) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
 .padding-horizontal-lg {
   padding-left: $base-spacing;
   padding-right: $base-spacing;

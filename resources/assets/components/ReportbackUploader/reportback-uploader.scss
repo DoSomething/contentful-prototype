@@ -22,3 +22,13 @@
     margin-bottom: $base-spacing;
   }
 }
+
+.reportback-uploader-information {
+  padding-left: $half-spacing;
+  padding-right: $half-spacing;
+
+  @include media($tablet) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
