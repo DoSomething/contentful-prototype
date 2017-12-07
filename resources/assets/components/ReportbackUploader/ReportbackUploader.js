@@ -84,7 +84,7 @@ class ReportbackUploader extends React.Component {
     const reportback = {
       campaignId: this.props.legacyCampaignId,
       caption: this.caption.value,
-      impact: this.props.showQuantityField ? this.impact.value : 1,
+      impact: Number(previousImpact) + Number(currentImpact),
       media: this.state.media,
       status: 'pending',
       ...infoFields,
@@ -151,8 +151,8 @@ class ReportbackUploader extends React.Component {
     const impactInput = (
       <div className="form-item-group">
         <div className="padding-md">
-          <label className={inputClassnames.impact.label} htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
-          <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
+          <label className={inputClassnames.impact.label} htmlFor="impact">How many {this.props.noun.plural} are in this photo?</label>
+          <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Quantity # (300)" ref={input => (this.impact = input)} />
         </div>
       </div>
     );
