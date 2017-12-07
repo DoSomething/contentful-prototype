@@ -11,10 +11,12 @@ class SurveyModal extends React.Component {
   }
 
   render() {
+    const { northstarId, campaignId, legacyCampaignId } = this.props;
+
     return (
       <div
         className="modal__slide typeform-widget"
-        data-url={this.props.dataUrl}
+        data-url={`${this.props.dataUrl}?nortstar_id=${northstarId}campaign_id=${campaignId}legacy_campaign_id=${legacyCampaignId}`}
         style={{ width: '100%', height: '500px' }}
       />
     );
@@ -23,10 +25,16 @@ class SurveyModal extends React.Component {
 
 SurveyModal.propTypes = {
   dataUrl: PropTypes.string,
+  northstarId: PropTypes.string,
+  campaignId: PropTypes.string,
+  legacyCampaignId: PropTypes.string,
 };
 
 SurveyModal.defaultProps = {
   dataUrl: SURVEY_DATA_URL,
+  northstarId: null,
+  campaignId: null,
+  legacyCampaignId: null,
 };
 
 export default SurveyModal;
