@@ -31,7 +31,7 @@
     }
 
     @include media($medium) {
-      padding-left: 45px;
+      padding-left: $base-spacing * 2;
     }
 
     margin-bottom: $half-spacing;
