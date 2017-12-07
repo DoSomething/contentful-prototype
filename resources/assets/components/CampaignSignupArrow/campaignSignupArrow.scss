@@ -48,14 +48,14 @@
     }
 
     @include media($medium) {
-      background: url("../../../../node_modules/@dosomething/forge/assets/images/callout/arrow-left-black.png") 50% 50% / 35px no-repeat transparent !important;
+      background: url("~@dosomething/forge/assets/images/callout/arrow-left-black.png") 50% 50% / 35px no-repeat transparent !important;
       height: 19px;
       left: 0;
       margin-top: -9px;
       right: auto;
       top: 50%;
       width: 38px;
-      background-image: url("../../../../node_modules/@dosomething/forge/assets/images/callout/arrow-left-white.png") !important;
+      background-image: url("~@dosomething/forge/assets/images/callout/arrow-left-white.png") !important;
 
       transform: rotate(270deg);
     }
