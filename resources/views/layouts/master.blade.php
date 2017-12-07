@@ -37,6 +37,8 @@
     {{ isset($env) ? scriptify($env, 'ENV') : scriptify() }}
 
     <script type="text/javascript" src="{{ elixir('app.js', 'next/assets') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
