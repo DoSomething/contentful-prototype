@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SurveyContainer from '../Survey';
 import ModalSwitch from '../Modal';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import NotificationContainer from '../Notification';
@@ -15,7 +14,6 @@ const Campaign = props => (
 
     <NotificationContainer />
     <ModalSwitch />
-    <SurveyContainer />
 
     { props.shouldShowLandingPage ?
       <LandingPageContainer {...props} />
