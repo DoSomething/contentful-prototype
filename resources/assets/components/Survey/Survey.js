@@ -8,7 +8,6 @@ import { SURVEY_MODAL } from '../Modal';
 import { get, set } from '../../helpers/storage';
 import { isTimestampValid } from '../../helpers';
 
-// TODO - SURVEY_COUNTDOWN should be set to 60. Set to 5 for testing and sanity.
 const SURVEY_COUNTDOWN = 60;
 
 class Survey extends React.Component {
