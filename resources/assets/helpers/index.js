@@ -1,4 +1,4 @@
-/* global window, document, Blob, FB, URL */
+/* global window, document, Blob, FB, URL, URLSearchParams */
 
 import get from 'lodash/get';
 import MarkdownIt from 'markdown-it';
@@ -375,4 +375,19 @@ export function showTwitterSharePrompt(href, quote) {
  */
 export function toggleChromeLock() {
   document.getElementById('chrome').classList.toggle('-lock');
+}
+
+
+/**
+ * Construct URL with query params
+ *
+ * @param {String} url
+ * @param {object} query
+ * return {URL}
+ */
+export function makeUrl(path, query) {
+  const urlObject = new URL(path);
+  urlObject.search = new URLSearchParams(query);
+
+  return urlObject;
 }

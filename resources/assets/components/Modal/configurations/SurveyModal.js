@@ -3,7 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { SURVEY_DATA_URL } from '../../../constants/survey';
+import { makeUrl } from '../../../helpers';
+
+const SURVEY_DATA_URL = 'https://dosomething.typeform.com/to/Bvcwvm';
 
 class SurveyModal extends React.Component {
   componentDidMount() {
@@ -11,22 +13,26 @@ class SurveyModal extends React.Component {
   }
 
   render() {
+    const { northstarId, campaignId, legacyCampaignId } = this.props;
+
+    const typeformQuery = {
+      northstar_id: northstarId,
+      campaign_id: campaignId,
+      legacy_campaign_id: legacyCampaignId,
+    };
+
+    const typeformUrl = makeUrl(SURVEY_DATA_URL, typeformQuery);
+
     return (
-      <div
-        className="modal__slide typeform-widget"
-        data-url={this.props.dataUrl}
-        style={{ width: '100%', height: '500px' }}
-      />
+      <div className="modal__slide typeform-widget" data-url={typeformUrl.href} style={{ width: '100%', height: '500px' }} />
     );
   }
 }
 
 SurveyModal.propTypes = {
-  dataUrl: PropTypes.string,
-};
-
-SurveyModal.defaultProps = {
-  dataUrl: SURVEY_DATA_URL,
+  northstarId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
 };
 
 export default SurveyModal;
