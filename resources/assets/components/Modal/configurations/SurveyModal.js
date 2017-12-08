@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { SURVEY_DATA_URL } from '../../../constants/survey';
+const SURVEY_DATA_URL = 'https://dosomething.typeform.com/to/Bvcwvm';
 
 class SurveyModal extends React.Component {
   componentDidMount() {
