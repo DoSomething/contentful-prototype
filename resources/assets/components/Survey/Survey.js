@@ -1,9 +1,14 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { SURVEY_MODAL } from '../Modal';
 
-const SURVEY_COUNTDOWN = 5;
+import { get, set } from '../../helpers/storage';
+import { isTimestampValid } from '../../helpers';
+
+const SURVEY_COUNTDOWN = 60;
 
 class Survey extends React.Component {
   constructor() {
@@ -14,10 +19,16 @@ class Survey extends React.Component {
     };
 
     this.incrementOrLaunch = this.incrementOrLaunch.bind(this);
+    this.shouldSeeSurvey = this.shouldSeeSurvey.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.isAuthenticated) {
+    // If the query params indicate a redirect from typeform post survey submission, track
+    if (window.location.search === '?finished_nps=1') {
+      set(`${this.props.userId}_finished_survey`, 'boolean', true);
+    }
+
+    if (this.shouldSeeSurvey()) {
       this.timer = setInterval(this.incrementOrLaunch, 1000);
     }
   }
@@ -26,11 +37,21 @@ class Survey extends React.Component {
     clearInterval(this.timer);
   }
 
+  shouldSeeSurvey() {
+    const userId = this.props.userId;
+
+    const isFinished = get(`${userId}_finished_survey`, 'boolean');
+
+    // @see: SurveyModal.js
+    const dismissalTime = get(`${userId}_dismissed_survey`, 'timestamp');
+    // Check if the survey was dismissed over 30 days ago.
+    const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
+
+    return userId && ! isFinished && ! isDismissed;
+  }
+
   incrementOrLaunch() {
     if (this.state.count < SURVEY_COUNTDOWN) {
-      // For testing and sanity purposes
-      console.log(SURVEY_COUNTDOWN - this.state.count, 'seconds to survey launch');
-
       this.setState(prevState => ({ count: prevState.count + 1 }));
     } else {
       this.props.openModal(SURVEY_MODAL);
@@ -44,8 +65,12 @@ class Survey extends React.Component {
 }
 
 Survey.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
+  userId: PropTypes.string,
   openModal: PropTypes.func.isRequired,
+};
+
+Survey.defaultProps = {
+  userId: null,
 };
 
 export default Survey;
