@@ -13,12 +13,13 @@ class SurveyModal extends React.Component {
   }
 
   render() {
-    const { northstarId, campaignId, legacyCampaignId } = this.props;
+    const { northstarId, campaignId, legacyCampaignId, campaignSlug } = this.props;
 
     const typeformQuery = {
       northstar_id: northstarId,
       campaign_id: campaignId,
       legacy_campaign_id: legacyCampaignId,
+      campaign_slug: campaignSlug,
     };
 
     const typeformUrl = makeUrl(SURVEY_DATA_URL, typeformQuery);
@@ -33,6 +34,7 @@ SurveyModal.propTypes = {
   northstarId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
+  campaignSlug: PropTypes.string.isRequired,
 };
 
 export default SurveyModal;
