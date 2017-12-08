@@ -15,7 +15,13 @@ class SurveyModal extends React.Component {
   render() {
     const { northstarId, campaignId, legacyCampaignId } = this.props;
 
-    const typeformUrl = makeUrl(SURVEY_DATA_URL, { northstar_id: northstarId, campaign_id: campaignId, legacy_campaign_id: legacyCampaignId });
+    const typeformQuery = {
+      northstar_id: northstarId,
+      campaign_id: campaignId,
+      legacy_campaign_id: legacyCampaignId,
+    };
+
+    const typeformUrl = makeUrl(SURVEY_DATA_URL, typeformQuery);
 
     return (
       <div className="modal__slide typeform-widget" data-url={typeformUrl.href} style={{ width: '100%', height: '500px' }} />
