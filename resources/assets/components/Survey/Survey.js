@@ -1,9 +1,12 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { SURVEY_MODAL } from '../Modal';
 
 const SURVEY_COUNTDOWN = 5;
+import { get, set } from '../../helpers/storage';
 
 class Survey extends React.Component {
   constructor() {
@@ -17,7 +20,11 @@ class Survey extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isAuthenticated) {
+    // If the query params indicate a redirect from typeform post survey submission, track
+    if (window.location.search === '?finished_nps=1') {
+      set(`${this.props.userId}_finished_survey`, 'boolean', true);
+    }
+
       this.timer = setInterval(this.incrementOrLaunch, 1000);
     }
   }
