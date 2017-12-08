@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { SURVEY_MODAL } from '../Modal';
-import { SURVEY_COUNTDOWN } from '../../constants/survey';
+const SURVEY_COUNTDOWN = 5;
 
 class Survey extends React.Component {
   constructor() {
