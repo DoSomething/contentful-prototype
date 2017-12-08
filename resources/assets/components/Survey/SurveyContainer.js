@@ -1,14 +1,14 @@
 import { connect } from 'react-redux';
 
 import Survey from './Survey';
-
 import { openModal } from '../../actions';
+import { getUserId } from '../../selectors/user';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  isAuthenticated: state.user.id !== null,
+  userId: getUserId(state),
 });
 
 /**
