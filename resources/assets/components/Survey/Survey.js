@@ -45,7 +45,12 @@ class Survey extends React.Component {
 
 Survey.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  userId: PropTypes.string,
   openModal: PropTypes.func.isRequired,
+};
+
+Survey.defaultProps = {
+  userId: null,
 };
 
 export default Survey;
