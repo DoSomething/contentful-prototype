@@ -46,7 +46,7 @@ class Survey extends React.Component {
     // @see: SurveyModal.js
     const dismissalTime = get(`${userId}_dismissed_survey`, 'timestamp');
     // Check if the survey was dismissed over 30 days ago.
-    const isDismissed = isTimestampValid(dismissalTime, (1440 * 60 * 1000));
+    const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
 
     return userId && ! isFinished && ! isDismissed;
   }
