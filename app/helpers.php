@@ -291,11 +291,12 @@ function phoenixLink($path)
 function get_client_environment_vars()
 {
     return [
-        'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
+        'PUCK_URL' => config('services.analytics.puck_url'),
         'SIXPACK_BASE_URL' => config('services.sixpack.url'),
         'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
+        'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
         'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-        'PUCK_URL' => config('services.analytics.puck_url'),
+        'SURVEY_ENABLED' => config('services.survey.enabled'),
     ];
 }
 
