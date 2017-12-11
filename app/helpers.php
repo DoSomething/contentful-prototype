@@ -297,6 +297,7 @@ function get_client_environment_vars()
         'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
         'PUCK_URL' => config('services.analytics.puck_url'),
         'SURVEY_ACTIVE' => config('services.survey.active'),
+        'SURVEY_ENABLED' => config('services.survey.enabled'),
     ];
 }
 

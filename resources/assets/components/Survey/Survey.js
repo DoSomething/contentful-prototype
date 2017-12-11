@@ -48,7 +48,7 @@ class Survey extends React.Component {
     // Check if the survey was dismissed over 30 days ago.
     const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
 
-    return env.SURVEY_ACTIVE && userId && ! isFinished && ! isDismissed;
+    return env.SURVEY_ENABLED && userId && ! isFinished && ! isDismissed;
   }
 
   incrementOrLaunch() {
