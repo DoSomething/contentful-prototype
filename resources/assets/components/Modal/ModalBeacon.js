@@ -13,6 +13,10 @@ class ModalBeacon extends React.Component {
   }
 }
 
+ModalBeacon.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
 ModalBeacon.childContextTypes = {
   withinModal: PropTypes.bool,
 };

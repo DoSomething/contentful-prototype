@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-portal';
-import ModalBeacon from '../Modal';
+import { ModalBeacon } from '../Modal';
 import './modal.scss';
 
 class Modal extends React.Component {

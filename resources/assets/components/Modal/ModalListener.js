@@ -2,15 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function ModalListenerConnector(WrappedComponent) {
-  class ModalListener extends React.Component {
-    render() {
-      const withinModal = this.context.withinModal;
-
-      return (
-        <WrappedComponent withinModal={withinModal} />
-      );
-    }
-  }
+  const ModalListener = (props, context) => (
+    <WrappedComponent withinModal={context.withinModal} />
+  );
 
   ModalListener.contextTypes = {
     withinModal: PropTypes.bool,
@@ -19,4 +13,4 @@ function ModalListenerConnector(WrappedComponent) {
   return ModalListener;
 }
 
-export default Listener;
+export default ModalListenerConnector;
