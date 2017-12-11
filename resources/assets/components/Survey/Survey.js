@@ -38,6 +38,7 @@ class Survey extends React.Component {
   }
 
   shouldSeeSurvey() {
+    const env = window.ENV || {};
     const userId = this.props.userId;
 
     const isFinished = get(`${userId}_finished_survey`, 'boolean');
@@ -47,7 +48,7 @@ class Survey extends React.Component {
     // Check if the survey was dismissed over 30 days ago.
     const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
 
-    return userId && ! isFinished && ! isDismissed;
+    return env.SURVEY_ACTIVE && userId && ! isFinished && ! isDismissed;
   }
 
   incrementOrLaunch() {
