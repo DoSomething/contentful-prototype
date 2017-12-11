@@ -60,4 +60,7 @@ return [
     'contentful' => [
         'cache' => env('CONTENTFUL_CACHE', true),
     ],
+    'survey' => [
+        'active' => env('SURVEY_ACTIVE', false),
+    ],
 ];
