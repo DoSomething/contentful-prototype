@@ -100,7 +100,7 @@ class ReportbackUploader extends React.Component {
   render() {
     const {
       submissions, showQuantityField, informationTitle, informationContent,
-      shouldShowAffirmation, toggleReportbackAffirmation,
+      shouldShowAffirmation, toggleReportbackAffirmation, closeModal,
     } = this.props;
 
     const shouldDisplaySubmissionMessaging = submissions.messaging && submissions.messaging.error;
@@ -115,7 +115,7 @@ class ReportbackUploader extends React.Component {
     return (
       <Flex>
         <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
-          <Card title="Upload your photos" className="bordered rounded">
+          <Card title="Upload your photos" className="bordered rounded" onClose={closeModal}>
             <div className="reportback-uploader padding-md">
               { shouldDisplaySubmissionMessaging ? (
                 <FormMessage messaging={submissions.messaging} />
@@ -162,6 +162,7 @@ class ReportbackUploader extends React.Component {
 
 ReportbackUploader.propTypes = {
   affirmationContent: PropTypes.string,
+  closeModal: PropTypes.func,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   legacyCampaignId: PropTypes.string.isRequired,
@@ -185,6 +186,7 @@ ReportbackUploader.propTypes = {
 
 ReportbackUploader.defaultProps = {
   affirmationContent: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
+  closeModal: null,
   informationContent: null,
   informationTitle: null,
   noun: {

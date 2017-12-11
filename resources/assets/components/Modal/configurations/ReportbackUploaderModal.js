@@ -4,7 +4,7 @@ import { ReportbackUploaderContainer } from '../../ReportbackUploader';
 
 const ReportbackUploaderModal = ({ closeModal }) => (
   <div className="modal__slide">
-    <ReportbackUploaderContainer modalClose={closeModal} />
+    <ReportbackUploaderContainer closeModal={closeModal} />
   </div>
 );
 
