@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-portal';
+import ModalBeacon from '../Modal';
 import './modal.scss';
 
 class Modal extends React.Component {
@@ -40,12 +41,14 @@ class Modal extends React.Component {
 
     return (
       <Portal closeOnEsc isOpened={shouldShowModal}>
-        <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
-          <div className="modal__container">
-            { children }
-            <button className="modal__exit" onClick={this.props.closeModal}>×</button>
+        <ModalBeacon>
+          <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
+            <div className="modal__container">
+              { children }
+              <button className="modal__exit" onClick={this.props.closeModal}>×</button>
+            </div>
           </div>
-        </div>
+        </ModalBeacon>
       </Portal>
     );
   }

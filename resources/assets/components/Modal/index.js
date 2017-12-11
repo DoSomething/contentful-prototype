@@ -1,6 +1,8 @@
 export default from './containers/ModalSwitchContainer';
 
 export Modal from './containers/ModalContainer';
+export ModalBeacon from './ModalBeacon';
+export ModalListener from './ModalListener';
 export SurveyModalContainer from './containers/SurveyModalContainer';
 export PostSignupModal from './containers/PostSignupModalContainer';
 export ContentModal from './containers/ContentModalContainer';
