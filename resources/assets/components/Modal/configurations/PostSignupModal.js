@@ -14,7 +14,7 @@ const PostSignupModal = ({ competitionStep, closeModal }) => (
           byline={competitionStep.additionalContent}
         />
       ) : null }
-      <AffirmationContainer />
+      <AffirmationContainer modalClose={closeModal} />
     </SlideshowContainer>
   </div>
 );
