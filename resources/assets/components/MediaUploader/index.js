@@ -41,6 +41,7 @@ class MediaUploader extends React.Component {
   }
 
   render() {
+    const { hasError } = this.props;
     const { filePreviewUrl } = this.props.media;
     let content = null;
 
@@ -51,7 +52,7 @@ class MediaUploader extends React.Component {
     }
 
     return (
-      <div className={classnames('media-uploader', { 'has-image': filePreviewUrl })}>
+      <div className={classnames('media-uploader', { 'has-image': filePreviewUrl, 'has-error': hasError })}>
         <label htmlFor="media-uploader">
           {content}
           <input type="file" id="media-uploader" name="media-uploader" onChange={this.handleChange} />
@@ -62,6 +63,7 @@ class MediaUploader extends React.Component {
 }
 
 MediaUploader.propTypes = {
+  hasError: PropTypes.bool,
   label: PropTypes.string,
   media: PropTypes.shape({
     file: PropTypes.instanceOf(Blob),
@@ -71,6 +73,7 @@ MediaUploader.propTypes = {
 };
 
 MediaUploader.defaultProps = {
+  hasError: false,
   label: 'Upload Media',
   media: {
     file: null,
