@@ -1,4 +1,4 @@
-const apiMiddleware = ({ getState, dispatch }) => next => action => {
+const apiMiddleware = () => next => (action) => {
   next(action);
 };
 
