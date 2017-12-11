@@ -41,7 +41,7 @@ Card.propTypes = {
     PropTypes.object,
   ]).isRequired,
   className: PropTypes.string,
-  closeModal: PropTypes.func, // TODO: make this required once everything uses the card container.
+  closeModal: PropTypes.func,
   link: PropTypes.string,
   onClose: PropTypes.func,
   title: PropTypes.string,
@@ -50,7 +50,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   className: null,
-  closeModal: null, // TODO: get rid of this once everything uses the card container.
+  closeModal: null,
   link: null,
   onClose: null,
   title: null,
