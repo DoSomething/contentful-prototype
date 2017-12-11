@@ -8,6 +8,7 @@ import {
 const ModalSwitch = (props) => {
   const { modalType } = props;
   let children = null;
+  let hideCornerClose = true;
 
   switch (modalType) {
     case POST_SIGNUP_MODAL:
@@ -21,12 +22,13 @@ const ModalSwitch = (props) => {
       break;
     case SURVEY_MODAL:
       children = <SurveyModalContainer />;
+      hideCornerClose = false;
       break;
     default: break;
   }
 
   return (
-    <Modal>{ children }</Modal>
+    <Modal hideCornerClose={hideCornerClose}>{ children }</Modal>
   );
 };
 

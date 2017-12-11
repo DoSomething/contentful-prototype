@@ -36,14 +36,14 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { shouldShowModal, children } = this.props;
+    const { children, hideCornerClose, shouldShowModal } = this.props;
 
     return (
       <Portal closeOnEsc isOpened={shouldShowModal}>
         <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
           <div className="modal__container">
             { children }
-            <button className="modal__exit" onClick={this.props.closeModal}>×</button>
+            { hideCornerClose ? null : <button className="modal__exit" onClick={this.props.closeModal}>×</button> }
           </div>
         </div>
       </Portal>
@@ -54,6 +54,7 @@ class Modal extends React.Component {
 Modal.propTypes = {
   children: PropTypes.node,
   closeModal: PropTypes.func.isRequired,
+  hideCornerClose: PropTypes.bool,
   modalType: PropTypes.string,
   shouldShowModal: PropTypes.bool.isRequired,
   trackEvent: PropTypes.func.isRequired,
@@ -61,6 +62,7 @@ Modal.propTypes = {
 
 Modal.defaultProps = {
   children: null,
+  hideCornerClose: true,
   modalType: null,
 };
 
