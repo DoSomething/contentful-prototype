@@ -7,3 +7,5 @@
 export function fetchCampaignPosts($campaignId) {
   console.log($campaignId);
 }
+
+export default {};
