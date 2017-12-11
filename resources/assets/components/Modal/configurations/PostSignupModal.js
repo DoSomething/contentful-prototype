@@ -12,6 +12,7 @@ const PostSignupModal = ({ competitionStep, closeModal }) => (
           content={competitionStep.content}
           photo={competitionStep.photos[0]}
           byline={competitionStep.additionalContent}
+          modalClose={closeModal}
         />
       ) : null }
       <AffirmationContainer modalClose={closeModal} />
