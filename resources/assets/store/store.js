@@ -1,78 +1,10 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import merge from 'lodash/merge';
-import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from './actions';
-import experimentsMiddleware from './middleware/experiments';
-import experimentsApiMiddleware from './middleware/experimentsApi';
-import { loadStorage } from './helpers/storage';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-/**
- * Initial state for the Redux store. This is where we
- * set default values for when the application loads.
- *
- * @type {Object}
- */
-const initialState = {
-  blocks: {
-    page: 1,
-  },
-  campaign: {
-    activityFeed: [],
-  },
-  reportbacks: {
-    currentPage: 0,
-    isFetching: false,
-    total: 0,
-    totalPages: 1,
-    ids: [],
-    entities: {},
-    itemEntities: {},
-  },
-  submissions: {
-    reportback: {},
-    isFetching: false,
-    isStoring: false,
-    items: [],
-    messaging: null,
-    shouldShowAffirmation: false,
-  },
-  signups: {
-    data: [],
-    thisCampaign: false,
-    thisSession: false,
-    isPending: false,
-    total: 0,
-    affiliateMessagingOptOut: false,
-  },
-  competitions: {
-    data: [],
-    thisCampaign: false,
-    showConfirmation: false,
-    isPending: false,
-  },
-  user: {
-    id: null,
-    role: null,
-  },
-  events: {
-    queue: [],
-  },
-  notifications: {
-    items: [],
-  },
-  experiments: {},
-  modal: {
-    modalType: null,
-    contentfulId: null,
-    shouldShowModal: false,
-  },
-  uploads: {},
-  quiz: {},
-  slideshow: {},
-  admin: {
-    shouldShowLandingPage: false,
-    shouldShowActionPage: false,
-  },
-};
+import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from '../actions';
+import { loadStorage } from '../helpers/storage';
+import initialState from './initialState';
+import customMiddlewares from './middlewares';
 
 /**
  * Create a new instance of the Redux store using the given
@@ -90,11 +22,8 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
     middleware.push(createLogger({ collapsed: true }));
   }
 
-  // Experiments middleware
-  middleware.push(
-    experimentsMiddleware,
-    experimentsApiMiddleware,
-  );
+  // Collect Middlewares
+  middleware.push(...customMiddlewares);
 
   // If React DevTools are available, use instrumented compose function.
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line

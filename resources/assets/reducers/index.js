@@ -6,6 +6,7 @@ export events from './events';
 export experiments from './experiments';
 export modal from './modal';
 export notifications from './notifications';
+export posts from './posts';
 export reportbacks from './reportbacks';
 export signups from './signups';
 export slideshow from './slideshow';

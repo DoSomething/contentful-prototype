@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'react-router-redux';
 import { PuckProvider } from '@dosomething/puck-client';
 
 import { CampaignContainer } from './Campaign';
-import { initializeStore } from '../store';
+import { initializeStore } from '../store/store';
 import { getUserId } from '../selectors/user';
 import { env } from '../helpers';
 
