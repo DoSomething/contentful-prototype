@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use App\Services\PhoenixLegacy;
+use Illuminate\Support\Facades\Log;
 use App\Exceptions\InvalidFileUploadException;
 
 class ReportbackController extends Controller
