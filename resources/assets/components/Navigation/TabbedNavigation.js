@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
-import { MEDIA_MEDIUM_SIZE_MIN } from '../../constants/media-sizes';
+import { MEDIA_MEDIUM_SIZE_MIN } from '../../constants';
 import './tabbed-navigation.scss';
 
 class TabbedNavigation extends React.Component {
