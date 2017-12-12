@@ -291,6 +291,10 @@ function phoenixLink($path)
 function get_client_environment_vars()
 {
     return [
+        'GLADIATOR_URL' => config('services.gladiator.url'),
+        'NORTHSTAR_URL' => config('services.northstar.url'),
+        'PHOENIX_URL' => config('services.phoenix.url'),
+        'PHOENIX_LEGACY_URL' => config('services.phoenix-legacy.url'),
         'PUCK_URL' => config('services.analytics.puck_url'),
         'SIXPACK_BASE_URL' => config('services.sixpack.url'),
         'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),

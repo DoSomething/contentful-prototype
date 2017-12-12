@@ -4,5 +4,4 @@
 
 export const MEDIA_MEDIUM_SIZE_MIN = 759;
 
-// @TODO will be updating to pull from ENV. Only temporary!
-export const PHOENIX_BASE_URL = '//phoenix.dev';
+export const PHOENIX_URL = window.ENV.PHOENIX_URL;
