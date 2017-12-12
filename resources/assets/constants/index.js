@@ -1,3 +1,5 @@
+/* global window */
+
 /**
  * Contains general constants for the application.
  */
