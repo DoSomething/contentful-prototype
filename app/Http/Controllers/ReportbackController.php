@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Services\PhoenixLegacy;
 use App\Exceptions\InvalidFileUploadException;
 
@@ -66,6 +67,8 @@ class ReportbackController extends Controller
                 'source' => 'phoenix-next',
             ]
         );
+
+        Log::info('RB Response:', $response);
 
         // Delete the uploaded file.
         app('files')->delete(public_path($path));
