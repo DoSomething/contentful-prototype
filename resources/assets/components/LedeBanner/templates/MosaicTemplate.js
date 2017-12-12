@@ -31,7 +31,7 @@ const MosaicTemplate = (props) => {
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
       { signupArrowComponent }
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{actionText}}</button>
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
   ), 'lede banner', { text: actionText });
