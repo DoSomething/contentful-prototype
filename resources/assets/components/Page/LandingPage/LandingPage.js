@@ -23,7 +23,7 @@ const formatToMarkup = data => (
 
 const LandingPage = (props) => {
   const {
-    affiliateSponsors, blurb, convertExperiment, coverImage,
+    actionText, affiliateSponsors, blurb, convertExperiment, coverImage,
     endDate, isAffiliated, legacyCampaignId, legacyPitchContent,
     pitchContent, sidebar, showPartnerMsgOptIn, signupArrowContent,
     subtitle, tagline, template, title,
@@ -45,6 +45,7 @@ const LandingPage = (props) => {
         affiliateSponsors={affiliateSponsors}
         signupArrowContent={signupArrowContent}
         showPartnerMsgOptIn={showPartnerMsgOptIn}
+        actionText={actionText}
       />
 
       <div className="clearfix bg-white">
@@ -69,7 +70,6 @@ const LandingPage = (props) => {
       </div>
 
       <CallToActionContainer
-        actionText="Sign up"
         className="legacy border-top border-radius-none bg-off-white padding-lg"
         content={tagline}
       />
@@ -82,6 +82,7 @@ const LandingPage = (props) => {
 };
 
 LandingPage.propTypes = {
+  actionText: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,

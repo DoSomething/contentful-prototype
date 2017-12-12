@@ -9,6 +9,7 @@ import CampaignSignupArrow from '../../CampaignSignupArrow';
 
 const MosaicTemplate = (props) => {
   const {
+    actionText,
     title,
     subtitle,
     blurb,
@@ -30,10 +31,10 @@ const MosaicTemplate = (props) => {
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
       { signupArrowComponent }
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Join Us</button>
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{actionText}}</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
-  ), 'lede banner', { text: 'join us' });
+  ), 'lede banner', { text: actionText });
 
   return (
     <header role="banner" className="lede-banner">
@@ -55,6 +56,7 @@ const MosaicTemplate = (props) => {
 };
 
 MosaicTemplate.propTypes = {
+  actionText: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,

@@ -13,6 +13,7 @@ import { isCampaignClosed } from '../../helpers';
 import SignupButtonFactory from '../SignupButton';
 
 const mapStateToProps = state => ({
+  actionText: state.campaign.actionText,
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   isAffiliated: state.signups.thisCampaign,
   legacyCampaignId: state.campaign.legacyCampaignId,
@@ -24,7 +25,7 @@ const mapStateToProps = state => ({
 
 const TabbedNavigationContainer = (props) => {
   const {
-    hasActivityFeed, isAffiliated, legacyCampaignId,
+    actionText, hasActivityFeed, isAffiliated, legacyCampaignId,
     pages, campaignEndDate, template,
   } = props;
 
@@ -55,8 +56,8 @@ const TabbedNavigationContainer = (props) => {
     });
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} />
-  ), 'tabbed navigation', { text: 'join us' });
+    <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} text={actionText} />
+  ), 'tabbed navigation', { text: actionText });
 
   const shouldHideCommunity = (template === 'legacy') && ! hasActivityFeed;
   const shouldHideAction = (isClosed || (shouldHideCommunity && additionalPages.length === 0));
@@ -74,6 +75,7 @@ const TabbedNavigationContainer = (props) => {
 };
 
 TabbedNavigationContainer.propTypes = {
+  actionText: PropTypes.string.isRequired,
   campaignEndDate: PropTypes.string.isRequired,
   campaignSlug: PropTypes.string.isRequired,
   hasActivityFeed: PropTypes.bool.isRequired,
