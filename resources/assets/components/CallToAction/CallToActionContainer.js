@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => ({
   isSignedUp: state.signups.thisCampaign,
   legacyCampaignId: get(state.campaign, 'legacyCampaignId', null),
   tagline: state.campaign.callToAction,
-  actionText: ownProps.actionText || state.campaign.actionText
+  actionText: ownProps.actionText || state.campaign.actionText,
 });
 
 /**
