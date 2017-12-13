@@ -12,6 +12,7 @@ import {
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
+  actionText: state.campaign.actionText,
   blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
   canLoadMorePages: getTotalVisibleBlockPoints(state) < getMaximumBlockPoints(state),
   campaignId: state.campaign.legacyCampaignId,

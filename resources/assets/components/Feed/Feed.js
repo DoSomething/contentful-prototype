@@ -33,13 +33,13 @@ const renderFeedItem = (block, index) => (
  * @returns {XML}
  */
 const Feed = (props) => {
-  const { blocks, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated,
+  const { actionText, blocks, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated,
     canLoadMorePages, clickedViewMore, clickedSignUp } = props;
 
   const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId);
   const revealer = (
     <Revealer
-      title={signedUp ? 'view more' : 'join us'}
+      title={signedUp ? 'view more' : actionText}
       callToAction={signedUp ? '' : callToAction}
       isLoading={hasPendingSignup}
       isVisible={(isAuthenticated && ! signedUp) || canLoadMorePages}
@@ -59,6 +59,7 @@ const Feed = (props) => {
 };
 
 Feed.propTypes = {
+  actionText: PropTypes.string.isRequired,
   blocks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
