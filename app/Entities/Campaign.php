@@ -223,7 +223,7 @@ class Campaign extends Entity implements JsonSerializable
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,
             'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,
-            'actionText' => $this->campaignSettings ? $this->campaignSettings->actionText : 'Join Us',
+            'actionText' => array_get($this->campaignSettings, 'actionText') ?: 'Join Us',
         ];
     }
 }
