@@ -15,7 +15,7 @@ const renderValidationMessage = error => (
     <h3>Hmm, there were some issues with your submission.</h3>
     <ul className="list -compacted">
       {Object.keys(error.fields || {}).map(field => (
-        <li key={makeHash(field)}>{error.fields[field].join('. ')}</li>
+        <li key={makeHash(field)}>{error.fields[field].join(' ')}</li>
       ))}
     </ul>
   </div>
