@@ -133,13 +133,18 @@ class ReportbackUploader extends React.Component {
       </div>
     );
 
+    const modifiedSubmissionsMessaging = { ...submissions.messaging };
+    if (modifiedSubmissionsMessaging.error && modifiedSubmissionsMessaging.error.fields.media) {
+      modifiedSubmissionsMessaging.error.fields.media.push('Try uploading a smaller file.');
+    }
+
     return (
       <Flex>
         <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
           <Card title="Upload your photos" className="bordered rounded">
             <div className="reportback-uploader padding-md">
               { shouldDisplaySubmissionMessaging ? (
-                <FormMessage messaging={submissions.messaging} />
+                <FormMessage messaging={modifiedSubmissionsMessaging} />
               ) : null }
 
               <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
