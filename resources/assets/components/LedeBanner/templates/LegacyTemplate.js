@@ -10,6 +10,7 @@ import { contentfulImageUrl } from '../../../helpers';
 
 const LegacyTemplate = (props) => {
   const {
+    actionText,
     title,
     subtitle,
     coverImage,
@@ -31,10 +32,10 @@ const LegacyTemplate = (props) => {
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div>
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>Sign Up</button>
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{actionText}</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
-  ), 'legacy lede banner', { text: 'sign up' });
+  ), 'legacy lede banner', { text: actionText });
 
   return (
     <header role="banner" className="header -hero header--action has-promotions" style={backgroundImageStyle}>
@@ -64,6 +65,7 @@ const LegacyTemplate = (props) => {
 };
 
 LegacyTemplate.propTypes = {
+  actionText: PropTypes.string.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,

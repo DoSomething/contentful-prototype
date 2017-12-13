@@ -27,6 +27,7 @@ const mapStateToProps = (state) => {
     template: state.campaign.template,
     title: state.campaign.title,
     sidebar: landingPage.sidebar,
+    actionText: state.campaign.actionText,
   };
 };
 

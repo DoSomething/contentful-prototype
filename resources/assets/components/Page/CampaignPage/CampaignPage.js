@@ -22,7 +22,7 @@ import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
 const CampaignPage = (props) => {
   const {
-    affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
+    actionText, affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
     dashboard, endDate, hasActivityFeed, isAffiliated, legacyCampaignId, match,
     openModal, shouldShowActionPage, slug, subtitle, template, title, totalCampaignSignups,
   } = props;
@@ -44,6 +44,7 @@ const CampaignPage = (props) => {
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
+        actionText={actionText}
       />
 
       <div className="main clearfix">
@@ -113,6 +114,7 @@ const CampaignPage = (props) => {
 };
 
 CampaignPage.propTypes = {
+  actionText: PropTypes.string.isRequired,
   blurb: PropTypes.string.isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,

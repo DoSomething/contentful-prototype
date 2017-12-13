@@ -35,7 +35,7 @@ class CallToAction extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $type,
             'fields' => [
-                'actionText' => $this->actionText ?: 'Join us',
+                'actionText' => $this->actionText,
                 'content' => $content,
                 'displayOptions' => $this->displayOptions->first(),
                 'impactPrefix' => $impactPrefix,

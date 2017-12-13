@@ -8,6 +8,7 @@ import { convertExperiment, openModal } from '../../../actions';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
+  actionText: state.campaign.actionText,
   blurb: state.campaign.blurb,
   coverImage: state.campaign.coverImage,
   dashboard: state.campaign.dashboard,
