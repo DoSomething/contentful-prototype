@@ -21,6 +21,10 @@
     clear: both;
     margin-bottom: $base-spacing;
   }
+
+  .field-label.has-error {
+    color: $error-color;
+  }
 }
 
 .reportback-uploader-information {

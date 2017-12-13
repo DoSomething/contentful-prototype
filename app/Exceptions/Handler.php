@@ -85,7 +85,7 @@ class Handler extends ExceptionHandler
         } elseif ($exception instanceof ValidationException) {
             $code = 422;
 
-            $fields = $exception->validator->errors()->all();
+            $fields = $exception->validator->errors()->getMessages();
         } elseif ($exception instanceof AuthenticationException) {
             $code = 401;
         } else {

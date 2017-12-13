@@ -2,6 +2,8 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import classnames from 'classnames';
+import { get } from 'lodash';
 import Card from '../Card';
 import { Flex, FlexCell } from '../Flex';
 import Markdown from '../Markdown';
@@ -105,10 +107,29 @@ class ReportbackUploader extends React.Component {
 
     const shouldDisplaySubmissionMessaging = submissions.messaging && submissions.messaging.error;
 
+    const isInvalidField = name => (
+      Object.keys(get(submissions, 'messaging.error.fields', {}))
+        .indexOf(name) !== -1
+    );
+
+    const inputClassnames = ['impact', 'caption', 'whyParticipated']
+      .reduce((classes, input) => ({
+        ...classes,
+        [input]: {
+          label: classnames('field-label', {
+            'has-error': isInvalidField(input),
+          }),
+          textField: classnames('text-field', {
+            'has-error': isInvalidField(input),
+            shake: isInvalidField(input),
+          }),
+        },
+      }), {});
+
     const impactInput = (
       <div className="form-item">
-        <label className="field-label" htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
-        <input className="text-field" id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
+        <label className={inputClassnames.impact.label} htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
+        <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
       </div>
     );
 
@@ -122,19 +143,19 @@ class ReportbackUploader extends React.Component {
               ) : null }
 
               <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
-                <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} />
+                <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
 
                 <div className="wrapper">
                   <div className="form-item">
-                    <label className="field-label" htmlFor="caption">Add a caption to your photo.</label>
-                    <input className="text-field" id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+                    <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
+                    <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
                   </div>
 
                   { showQuantityField ? impactInput : null }
                 </div>
 
-                <label className="field-label" htmlFor="why_participated">Why is this campaign important to you?</label>
-                <textarea className="text-field" id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+                <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
+                <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
 
                 <button className="button margin-horizontal-auto margin-top-md" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
               </form>
