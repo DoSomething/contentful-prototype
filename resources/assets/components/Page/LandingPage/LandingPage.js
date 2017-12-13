@@ -83,7 +83,7 @@ const LandingPage = (props) => {
 
 LandingPage.propTypes = {
   actionText: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
@@ -109,6 +109,7 @@ LandingPage.propTypes = {
 };
 
 LandingPage.defaultProps = {
+  blurb: null,
   endDate: null,
   isAffiliated: false,
   tagline: 'Ready to start?',

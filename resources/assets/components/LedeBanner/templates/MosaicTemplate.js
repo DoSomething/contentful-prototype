@@ -57,7 +57,7 @@ const MosaicTemplate = (props) => {
 
 MosaicTemplate.propTypes = {
   actionText: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
@@ -71,6 +71,7 @@ MosaicTemplate.propTypes = {
 };
 
 MosaicTemplate.defaultProps = {
+  blurb: null,
   showPartnerMsgOptIn: false,
   signupArrowContent: null,
 };
