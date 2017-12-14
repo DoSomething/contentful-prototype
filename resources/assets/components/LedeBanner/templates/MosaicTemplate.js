@@ -46,7 +46,9 @@ const MosaicTemplate = (props) => {
             <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
           </div>
 
-          { blurb ? <Markdown className="lede-banner__blurb">{blurb}</Markdown> : null }
+          <div className="lede-banner__blurb">
+            { blurb ? <Markdown>{blurb}</Markdown> : null }
+          </div>
 
           { isAffiliated ? null : <SignupButton /> }
         </div>
