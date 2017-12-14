@@ -17,11 +17,13 @@
   }
 
   label {
+    text-align: center;
+    width: 100%;
+
+    // Perfect vertical centering
     position: absolute;
     top: 50%;
     transform: perspective(1px) translateY(-50%);
-    text-align: center;
-    width: 100%;
 
     &::before {
       background: transparent url('../../images/plus_sign.svg');
