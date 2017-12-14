@@ -1,23 +1,29 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
 
 .media-uploader {
+  width: 100%;
   background-color: #eee;
   color: $med-gray;
+  position: relative;
+
+  &:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
 
   &:hover {
     background-color: darken(#eee, 5%);
   }
 
   label {
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    overflow: hidden;
     text-align: center;
     width: 100%;
+
+    // Perfect vertical centering
+    position: absolute;
+    top: 50%;
+    transform: perspective(1px) translateY(-50%);
 
     &::before {
       background: transparent url('../../images/plus_sign.svg');
@@ -25,7 +31,7 @@
       content: '';
       display: block;
       height: 50px;
-      margin-bottom: 10px;
+      margin: $half-spacing auto;
       width: 50px;
     }
 
