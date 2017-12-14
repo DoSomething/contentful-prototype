@@ -115,7 +115,7 @@ const CampaignPage = (props) => {
 
 CampaignPage.propTypes = {
   actionText: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
@@ -150,6 +150,7 @@ CampaignPage.propTypes = {
 };
 
 CampaignPage.defaultProps = {
+  blurb: null,
   dashboard: null,
   endDate: null,
   isAffiliated: false,

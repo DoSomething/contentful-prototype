@@ -46,7 +46,9 @@ const MosaicTemplate = (props) => {
             <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
           </div>
 
-          <Markdown className="lede-banner__blurb">{blurb}</Markdown>
+          <div className="lede-banner__blurb">
+            { blurb ? <Markdown>{blurb}</Markdown> : null }
+          </div>
 
           { isAffiliated ? null : <SignupButton /> }
         </div>
@@ -57,7 +59,7 @@ const MosaicTemplate = (props) => {
 
 MosaicTemplate.propTypes = {
   actionText: PropTypes.string.isRequired,
-  blurb: PropTypes.string.isRequired,
+  blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
@@ -71,6 +73,7 @@ MosaicTemplate.propTypes = {
 };
 
 MosaicTemplate.defaultProps = {
+  blurb: null,
   showPartnerMsgOptIn: false,
   signupArrowContent: null,
 };
