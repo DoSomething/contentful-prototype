@@ -193,7 +193,7 @@ class Campaign extends Entity implements JsonSerializable
             'endDate' => $this->endDate,
             'callToAction' => $this->callToAction, //@TODO: deprecate in favor of tagline.
             'tagline' => $this->callToAction,
-            'blurb' => $this->blurb,
+            'blurb' => trim($this->blurb),
             'coverImage' => [
                 'description' => $this->coverImage ? $this->coverImage->getDescription() : '',
                 'url' => get_image_url($this->coverImage),
