@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 
 import AffiliateCredits from '../AffiliateCredits';
 
-const CampaignFooterContact = ({ email, name }) => (
-  <div className="info-bar__secondary">
-    Questions? <a
-      href={`mailto:${email || CampaignFooterContact.defaultProps.email}`}
-    >Contact {name || CampaignFooterContact.defaultProps.name}</a>
-  </div>
-);
+const CampaignFooterContact = ({ email }) => {
+  const contactEmail = email || CampaignFooterContact.defaultProps.email;
+  return (
+    <div className="info-bar__secondary">
+      Questions? <a href={`mailto:${contactEmail}`}>Contact {contactEmail}</a>
+    </div>
+  );
+};
 
 CampaignFooterContact.propTypes = {
-  name: PropTypes.string,
   email: PropTypes.string,
 };
 
 CampaignFooterContact.defaultProps = {
-  name: 'Us',
   email: 'help@dosomething.org',
 };
 
