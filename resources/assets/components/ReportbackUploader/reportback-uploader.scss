@@ -1,20 +1,20 @@
 @import '../../scss/next-toolbox.scss';
 
-.reportback-uploader {
-  .button {
-    display: block;
-  }
+.reportback-uploader-submit {
+  display: block;
+  width: 100%;
+  border-radius: 0;
 }
 
 .reportback-form {
-  .media-uploader {
-    width: 100%;
-    height: 300px;
-    margin-bottom: $base-spacing;
-
-    @include media($medium) {
-      height: 500px;
+  .reportback-form__uploader {
+    @include media($tablet) {
+      padding-right: $base-spacing;
     }
+  }
+
+  .media-uploader {
+    margin-bottom: $base-spacing;
   }
 
   .form-item {
@@ -24,6 +24,15 @@
 
   .field-label.has-error {
     color: $error-color;
+  }
+
+  // TODO: make this not hardcoded pixel values
+  textarea {
+    min-height: 120px;
+
+    @include media($desktop) {
+      min-height: 180px;
+    }
   }
 }
 

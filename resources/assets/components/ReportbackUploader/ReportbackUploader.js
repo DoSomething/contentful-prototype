@@ -133,33 +133,38 @@ class ReportbackUploader extends React.Component {
       </div>
     );
 
+    const reportbackUploader = (
+      <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+        <Flex>
+          <FlexCell width="full">
+            { shouldDisplaySubmissionMessaging ? (
+              <FormMessage messaging={submissions.messaging} />
+            ) : null }
+          </FlexCell>
+          <FlexCell width="half" className="reportback-form__uploader">
+            <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
+            <div className="form-item">
+              <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
+              <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+            </div>
+          </FlexCell>
+          <FlexCell width="half">
+            { showQuantityField ? impactInput : null }
+            <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
+            <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+          </FlexCell>
+        </Flex>
+      </form>
+    );
+
     return (
       <Flex>
         <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
           <Card title="Upload your photos" className="bordered rounded">
             <div className="reportback-uploader padding-md">
-              { shouldDisplaySubmissionMessaging ? (
-                <FormMessage messaging={submissions.messaging} />
-              ) : null }
-
-              <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
-                <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
-
-                <div className="wrapper">
-                  <div className="form-item">
-                    <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
-                    <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
-                  </div>
-
-                  { showQuantityField ? impactInput : null }
-                </div>
-
-                <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
-                <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
-
-                <button className="button margin-horizontal-auto margin-top-md" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
-              </form>
+              {reportbackUploader}
             </div>
+            <button className="button reportback-uploader-submit" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
           </Card>
         </FlexCell>
         { informationContent ? (
