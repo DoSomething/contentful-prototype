@@ -29,7 +29,7 @@ const MosaicTemplate = (props) => {
   ) : null;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <div>
+    <div className="header__signup">
       { signupArrowComponent }
       <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }

@@ -16,6 +16,10 @@
       width: 50%;
     }
   }
+
+  .header__signup {
+    padding-top: $base-spacing;
+  }
 }
 
 .lede-banner__content {
@@ -85,7 +89,7 @@
 
 .lede-banner__blurb {
   font-family: $primary-font-family;
-  padding: $base-spacing 0;
+  padding-top: $base-spacing;
 
   strong {
     color: $primary-color;
