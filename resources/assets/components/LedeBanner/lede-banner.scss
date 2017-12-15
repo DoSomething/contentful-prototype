@@ -8,6 +8,9 @@
   @include media($medium) {
     display: table;
   }
+  @include media($large) {
+    min-height: 500px;
+  }
 
   .button {
     width: 100%;
