@@ -29,7 +29,7 @@
 .lede-banner__content {
   @include media($medium) {
     display: table-cell;
-    min-height: 500px;
+    vertical-align: middle;
     width: 50%;
   }
 
