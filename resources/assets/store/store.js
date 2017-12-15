@@ -1,7 +1,13 @@
 import merge from 'lodash/merge';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { checkForSignup, fetchReportbacks, startQueue, getTotalSignups } from '../actions';
+import {
+  checkForSignup,
+  fetchCampaignPosts,
+  fetchReportbacks,
+  startQueue,
+  getTotalSignups,
+} from '../actions';
 import { loadStorage } from '../helpers/storage';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
@@ -55,7 +61,11 @@ export function initializeStore(store) {
   // Check for total signups
   store.dispatch(getTotalSignups(state.campaign.legacyCampaignId));
 
+  // Fetch Campaign Posts
+  store.dispatch(fetchCampaignPosts());
+
   // Fetch the first page of reportbacks for the feed.
+  // @TODO: deprecate this in favor of fetchCampaignPosts()
   store.dispatch(fetchReportbacks());
 
   // Start the event queue.
