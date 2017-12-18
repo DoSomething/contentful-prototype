@@ -12,16 +12,13 @@ export function fetchCampaignPosts() {
     // @TODO: for now prefer legacy ID over contentful ID
     const campaignId = legacyId || id;
 
-    dispatch(apiRequest({
-      method: 'GET',
-      payload: {
-        id,
-        legacyId,
-        query: {
-          limit: 24,
-        },
-        url: `api/v1/campaigns/${campaignId}/posts`,
+    dispatch(apiRequest('GET', {
+      id,
+      legacyId,
+      query: {
+        limit: 24,
       },
+      url: `api/v1/campaigns/${campaignId}/posts`,
     }));
   };
 }
