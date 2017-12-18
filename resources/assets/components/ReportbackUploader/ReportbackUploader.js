@@ -134,7 +134,7 @@ class ReportbackUploader extends React.Component {
     );
 
     const reportbackUploader = (
-      <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+      <form className="reportback-form" ref={form => (this.form = form)}>
         <Flex>
           <FlexCell width="full">
             { shouldDisplaySubmissionMessaging ? (
@@ -164,7 +164,7 @@ class ReportbackUploader extends React.Component {
             <div className="reportback-uploader padding-md">
               {reportbackUploader}
             </div>
-            <button className="button reportback-uploader-submit" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+            <button className="button reportback-uploader-submit" type="submit" disabled={submissions.isStoring} onClick={this.handleOnSubmitForm}>Submit a new photo</button>
           </Card>
         </FlexCell>
         { informationContent ? (
