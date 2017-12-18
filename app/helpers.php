@@ -291,6 +291,7 @@ function phoenixLink($path)
 function get_client_environment_vars()
 {
     return [
+        'APP_ENV' => config('app.env'),
         'GLADIATOR_URL' => config('services.gladiator.url'),
         'NORTHSTAR_URL' => config('services.northstar.url'),
         'PHOENIX_URL' => config('services.phoenix.url'),
