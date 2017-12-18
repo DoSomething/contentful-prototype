@@ -1,9 +1,15 @@
+import { API } from '../constants/action-types';
+
 /**
  * API request action creator
  * @param  {Object} data
  * @return {Object}
  */
-export default function apiRequest(data) {
-  // @TODO: check if data is object and has type 'API'
-  return data;
+export default function apiRequest({ method, payload }) {
+  // @TODO: check if supplied arguments are ok!
+  return ({
+    type: API,
+    method,
+    payload,
+  });
 }

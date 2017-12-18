@@ -13,7 +13,6 @@ export function fetchCampaignPosts() {
     const campaignId = legacyId || id;
 
     dispatch(apiRequest({
-      type: 'API',
       method: 'GET',
       payload: {
         id,
