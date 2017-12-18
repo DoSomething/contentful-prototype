@@ -27,7 +27,7 @@
 
   .message-callout__copy {
     @include media($large) {
-      margin-top: - $base-spacing;
+      margin-top: - $half-spacing;
     }
 
     @include media($medium) {

@@ -8,20 +8,28 @@
   @include media($medium) {
     display: table;
   }
+  @include media($large) {
+    min-height: 500px;
+  }
 
   .button {
     width: 100%;
+    height: 70px;
 
     @include media($medium) {
       width: 50%;
     }
+  }
+
+  .header__signup {
+    padding-top: $base-spacing;
   }
 }
 
 .lede-banner__content {
   @include media($medium) {
     display: table-cell;
-    min-height: 500px;
+    vertical-align: middle;
     width: 50%;
   }
 
@@ -85,7 +93,7 @@
 
 .lede-banner__blurb {
   font-family: $primary-font-family;
-  padding: $base-spacing 0;
+  padding-top: $base-spacing;
 
   strong {
     color: $primary-color;
