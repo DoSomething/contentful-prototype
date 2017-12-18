@@ -134,7 +134,7 @@ class ReportbackUploader extends React.Component {
     );
 
     const reportbackUploader = (
-      <form className="reportback-form" ref={form => (this.form = form)}>
+      <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
         <Flex>
           <FlexCell width="full">
             { shouldDisplaySubmissionMessaging ? (
