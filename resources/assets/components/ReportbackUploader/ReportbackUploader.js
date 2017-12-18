@@ -164,7 +164,7 @@ class ReportbackUploader extends React.Component {
             <div className="reportback-uploader padding-md">
               {reportbackUploader}
             </div>
-            <button className="button reportback-uploader-submit" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+            <button className="button reportback-uploader-submit" type="submit" disabled={submissions.isStoring} onClick={this.handleOnSubmitForm}>Submit a new photo</button>
           </Card>
         </FlexCell>
         { informationContent ? (
