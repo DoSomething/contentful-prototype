@@ -111,7 +111,7 @@ class ReportbackUploader extends React.Component {
   render() {
     const {
       submissions, showQuantityField, informationTitle, informationContent,
-      shouldShowAffirmation, toggleReportbackAffirmation,
+      shouldShowAffirmation, toggleReportbackAffirmation, friendReferralRB,
     } = this.props;
 
     const shouldDisplaySubmissionMessaging = submissions.messaging && submissions.messaging.error;
@@ -141,6 +141,23 @@ class ReportbackUploader extends React.Component {
         <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
       </div>
     );
+
+    const friendReferralFields = friendReferralRB ? (
+      <div>
+        <div className="form-item">
+          <label className={inputClassnames.friendName.label} htmlFor="friendName">Friend&#39;s Name</label>
+          <input className={inputClassnames.friendName.textField} id="friendName" name="friendName" type="text" placeholder="Garfield" ref={input => (this.friendName = input)} />
+        </div>
+        <div className="form-item">
+          <label className={inputClassnames.friendEmail.label} htmlFor="friendEmail">{'Friend\'s Email'}</label>
+          <input className={inputClassnames.friendEmail.textField} id="friendEmail" name="friendEmail" type="text" placeholder="garfield@lesagna.com" ref={input => (this.friendEmail = input)} />
+        </div>
+        <div className="form-item">
+          <label className={inputClassnames.friendStory.label} htmlFor="friendStory">{'Friend\'s Story'}</label>
+          <textarea className={inputClassnames.friendStory.textField} id="friendStory" name="friendStory" type="text" placeholder="No need to write an essay, but we'd love to know why your friend deserves the scholarship." ref={input => (this.friendStory = input)} />
+        </div>
+      </div>
+    ) : null;
 
     const reportbackUploader = (
       <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
