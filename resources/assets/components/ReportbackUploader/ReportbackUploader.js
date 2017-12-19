@@ -53,9 +53,9 @@ class ReportbackUploader extends React.Component {
     if (props.referralRB) {
       this.state = {
         ...this.state,
-        referent_name: null,
-        referent_email: null,
-        referent_story: null,
+        friend_name: null,
+        friend_email: null,
+        friend_story: null,
       };
     }
   }
@@ -73,9 +73,9 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
     const infoFields = this.props.referralRB ? ({
-      referentName: this.referent_name.value,
-      referentEmail: this.referent_email.value,
-      referentStory: this.referent_story.value,
+      friendName: this.friend_name.value,
+      friendEmail: this.friend_email.value,
+      friendStory: this.friend_story.value,
     }) : ({
       whyParticipated: this.why_participated.value,
     });
@@ -129,7 +129,7 @@ class ReportbackUploader extends React.Component {
         .indexOf(name) !== -1
     );
 
-    const infoFieldNames = referralRB ? ['referentName', 'referentEmail', 'referentStory'] : ['whyParticipated'];
+    const infoFieldNames = referralRB ? ['friendName', 'friendEmail', 'friendStory'] : ['whyParticipated'];
     const inputClassnames = ['impact', 'caption', ...infoFieldNames]
       .reduce((classes, input) => ({
         ...classes,
@@ -154,16 +154,16 @@ class ReportbackUploader extends React.Component {
     const infoFields = referralRB ? (
       <div>
         <div className="form-item">
-          <label className={inputClassnames.referentName.label} htmlFor="referent_name">Friend&#39;s Name</label>
-          <input className={inputClassnames.referentName.textField} id="referent_name" name="referent_name" type="text" placeholder="Garfield" ref={input => (this.referent_name = input)} />
+          <label className={inputClassnames.friendName.label} htmlFor="friend_name">Friend&#39;s Name</label>
+          <input className={inputClassnames.friendName.textField} id="friend_name" name="friend_name" type="text" placeholder="Garfield" ref={input => (this.friend_name = input)} />
         </div>
         <div className="form-item">
-          <label className={inputClassnames.referentEmail.label} htmlFor="referent_email">Friend&#39;s Email</label>
-          <input className={inputClassnames.referentEmail.textField} id="referent_email" name="referent_email" type="text" placeholder="garfield@lesagna.com" ref={input => (this.referent_email = input)} />
+          <label className={inputClassnames.friendEmail.label} htmlFor="friend_email">Friend&#39;s Email</label>
+          <input className={inputClassnames.friendEmail.textField} id="friend_email" name="friend_email" type="text" placeholder="garfield@lesagna.com" ref={input => (this.friend_email = input)} />
         </div>
         <div className="form-item">
-          <label className={inputClassnames.referentStory.label} htmlFor="referent_story">Friend&#39;s Story</label>
-          <textarea className={inputClassnames.referentStory.textField} id="referent_story" name="referent_story" type="text" placeholder="No need to write an essay, but we'd love to know why your friend deserves the scholarship." ref={input => (this.referent_story = input)} />
+          <label className={inputClassnames.friendStory.label} htmlFor="friend_story">Friend&#39;s Story</label>
+          <textarea className={inputClassnames.friendStory.textField} id="friend_story" name="friend_story" type="text" placeholder="No need to write an essay, but we'd love to know why your friend deserves the scholarship." ref={input => (this.friend_story = input)} />
         </div>
       </div>
     ) : (
