@@ -93,6 +93,7 @@ class ReportbackUploader extends React.Component {
 
     reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
+    // TODO Add specific submission method for ReferralRB.
     this.props.submitReportback(
       ReportbackUploader.setFormData(reportback),
     ).then(() => {
