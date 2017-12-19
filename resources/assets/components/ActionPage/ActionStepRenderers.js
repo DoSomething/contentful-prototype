@@ -2,6 +2,7 @@ import React from 'react';
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
+import VoterRegistrationContainer from '../VoterRegistration';
 import { FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
@@ -161,5 +162,16 @@ export function renderLegacyGallery() {
         <PostGalleryContainer key="post_gallery" type="reportback" />
       </div>
     </div>
+  );
+}
+
+/**
+ * Render the voter registration container.
+ *
+ * @return {Component}
+ */
+export function renderVoterRegistration() {
+  return (
+    <VoterRegistrationContainer key="voter-reg" />
   );
 }
