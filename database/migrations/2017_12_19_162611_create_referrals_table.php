@@ -31,6 +31,6 @@ class CreateReferralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friend_referrals');
+        Schema::dropIfExists('referrals');
     }
 }
