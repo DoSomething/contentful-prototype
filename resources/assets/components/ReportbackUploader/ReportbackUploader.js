@@ -177,8 +177,13 @@ class ReportbackUploader extends React.Component {
           </FlexCell>
           <FlexCell width="half">
             { showQuantityField ? impactInput : null }
-            <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
-            <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+            { ! friendReferralRB ?
+              <div className="form-item">
+                <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
+                <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+              </div>
+              : friendReferralFields
+            }
           </FlexCell>
         </Flex>
       </form>
