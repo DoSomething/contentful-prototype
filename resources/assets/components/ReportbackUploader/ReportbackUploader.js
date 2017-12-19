@@ -188,6 +188,7 @@ class ReportbackUploader extends React.Component {
 
 ReportbackUploader.propTypes = {
   affirmationContent: PropTypes.string,
+  friendReferralRB: PropTypes.bool,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   legacyCampaignId: PropTypes.string.isRequired,
@@ -211,6 +212,7 @@ ReportbackUploader.propTypes = {
 
 ReportbackUploader.defaultProps = {
   affirmationContent: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
+  friendReferralRB: false,
   informationContent: null,
   informationTitle: null,
   noun: {

@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   noun: get(state.campaign.additionalContent, 'noun'),
   uploads: state.uploads,
   shouldShowAffirmation: state.submissions.shouldShowAffirmation,
+  friendReferralRB: get(state.campaign.additionalContent, 'friendReferralRB'),
 });
 
 /**
