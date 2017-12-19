@@ -121,7 +121,8 @@ class ReportbackUploader extends React.Component {
         .indexOf(name) !== -1
     );
 
-    const inputClassnames = ['impact', 'caption', 'whyParticipated']
+    const infoFieldNames = friendReferralRB ? ['friendName', 'friendEmail', 'friendStory'] : ['whyParticipated'];
+    const inputClassnames = ['impact', 'caption', ...infoFieldNames]
       .reduce((classes, input) => ({
         ...classes,
         [input]: {
