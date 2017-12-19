@@ -150,7 +150,7 @@ class ReportbackUploader extends React.Component {
       </div>
     );
 
-    const friendReferralFields = friendReferralRB ? (
+    const infoFields = friendReferralRB ? (
       <div>
         <div className="form-item">
           <label className={inputClassnames.friendName.label} htmlFor="friendName">Friend&#39;s Name</label>
@@ -165,7 +165,12 @@ class ReportbackUploader extends React.Component {
           <textarea className={inputClassnames.friendStory.textField} id="friendStory" name="friendStory" type="text" placeholder="No need to write an essay, but we'd love to know why your friend deserves the scholarship." ref={input => (this.friendStory = input)} />
         </div>
       </div>
-    ) : null;
+    ) : (
+      <div className="form-item">
+        <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
+        <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+      </div>
+    );
 
     const reportbackUploader = (
       <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
@@ -184,13 +189,7 @@ class ReportbackUploader extends React.Component {
           </FlexCell>
           <FlexCell width="half">
             { showQuantityField ? impactInput : null }
-            { ! friendReferralRB ?
-              <div className="form-item">
-                <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
-                <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
-              </div>
-              : friendReferralFields
-            }
+            { infoFields }
           </FlexCell>
         </Flex>
       </form>
