@@ -49,6 +49,15 @@ class ReportbackUploader extends React.Component {
       impact: null,
       why_participated: null,
     };
+
+    if (props.friendReferralRB) {
+      this.state = {
+        ...this.state,
+        friendName: null,
+        friendEmail: null,
+        friendStory: null,
+      };
+    }
   }
 
   getAffirmationContent() {
