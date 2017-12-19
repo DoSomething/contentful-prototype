@@ -16,9 +16,9 @@ class CreateReferralsTable extends Migration
         Schema::create('referrals', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('friend_name');
-            $table->string('friend_email');
-            $table->text('friend_story');
+            $table->string('referent_name');
+            $table->string('referent_email');
+            $table->text('referent_story');
             $table->string('referrer_name');
             $table->string('referrer_northstar_id');
         });
