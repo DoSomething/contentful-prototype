@@ -72,14 +72,21 @@ class ReportbackUploader extends React.Component {
 
   handleOnSubmitForm(event) {
     event.preventDefault();
+    const infoFields = this.props.friendReferralRB ? ({
+      friendName: this.friendName.value,
+      friendEmail: this.friendEmail.value,
+      friendStory: this.friendStory.value,
+    }) : ({
+      whyParticipated: this.why_participated.value,
+    });
 
     const reportback = {
       media: this.state.media,
       caption: this.caption.value,
       impact: this.props.showQuantityField ? this.impact.value : 1,
-      whyParticipated: this.why_participated.value,
       campaignId: this.props.legacyCampaignId,
       status: 'pending',
+      ...infoFields,
     };
 
     const fileType = reportback.media.file ? reportback.media.file.type : null;
