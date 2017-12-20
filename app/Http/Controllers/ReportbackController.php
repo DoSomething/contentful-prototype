@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Referral;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\Facades\Log;
 use App\Exceptions\InvalidFileUploadException;
-use App\Models\Referral;
 
 class ReportbackController extends Controller
 {
