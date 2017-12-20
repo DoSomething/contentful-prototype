@@ -43,21 +43,20 @@ class ReportbackUploader extends React.Component {
       uri: null,
     };
 
+    const infoFields = props.referralRB ? ({
+        friend_name: null,
+        friend_email: null,
+        friend_story: null,
+    }) : ({
+        why_participated: null,
+    });
+
     this.state = {
       media: this.defaultMediaState,
       caption: null,
       impact: null,
-      why_participated: null,
+      ...infoFields,
     };
-
-    if (props.referralRB) {
-      this.state = {
-        ...this.state,
-        friend_name: null,
-        friend_email: null,
-        friend_story: null,
-      };
-    }
   }
 
   getAffirmationContent() {
@@ -72,6 +71,7 @@ class ReportbackUploader extends React.Component {
 
   handleOnSubmitForm(event) {
     event.preventDefault();
+
     const infoFields = this.props.referralRB ? ({
       friendName: this.friend_name.value,
       friendEmail: this.friend_email.value,
