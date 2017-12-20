@@ -46,6 +46,8 @@ $router->delete('next/reactions/{id}', 'ReactionController@delete');
 $router->resource('next/reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
 $router->resource('next/reportbackItems', 'ReportbackItemsController', ['only' => ['index']]);
 
+$router->post('next/reportbacks/friend-referral', 'ReportbackController@friendReferral');
+
 // Signups
 $router->get('next/signups/total/{campaignId}', 'SignupController@total');
 $router->resource('next/signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
