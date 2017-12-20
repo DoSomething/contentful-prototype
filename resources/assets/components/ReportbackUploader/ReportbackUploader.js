@@ -44,11 +44,11 @@ class ReportbackUploader extends React.Component {
     };
 
     const infoFields = props.referralRB ? ({
-        friend_name: null,
-        friend_email: null,
-        friend_story: null,
+      friend_name: null,
+      friend_email: null,
+      friend_story: null,
     }) : ({
-        why_participated: null,
+      why_participated: null,
     });
 
     this.state = {
