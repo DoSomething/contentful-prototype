@@ -1,7 +1,7 @@
 @import '../../scss/next-toolbox.scss';
 
 .photo-header {
-  background-color: $dark-gray;
+  background-color: $black;
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -13,6 +13,7 @@
   filter: grayscale(1);
   height: 100%;
   left: 0;
+  opacity: 0.5;
   position: absolute;
   top: 0;
   width: 100%;
