@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\Facades\Log;
 use App\Exceptions\InvalidFileUploadException;
+use App\Models\Referral;
 
 class ReportbackController extends Controller
 {
@@ -30,6 +31,36 @@ class ReportbackController extends Controller
     public function index(Request $request)
     {
         return response()->json($this->phoenixLegacy->getAllReportbacks($request->query()));
+    }
+
+    /**
+     * Store refer a friend fields locally, then defer to regular store method.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function friendReferral(Request $request)
+    {
+        $this->validate($request, [
+            'friendName' => 'required',
+            'friendEmail' => 'required',
+            'friendStory' => 'required',
+            'media' => 'required|file|image',
+            'caption' => 'required|min:4|max:60',
+            'impact' => 'required|numeric',
+        ]);
+
+        Referral::create([
+            'friend_name' => $request->input('friendName'),
+            'friend_email' => $request->input('friendEmail'),
+            'friend_story' => $request->input('friendStory'),
+            'referrer_northstar_id' => auth()->id(),
+        ]);
+
+        // Static 'why participated' to pass validation.
+        $request['whyParticipated'] = 'Refer-A-Friend';
+
+        return $this->store($request);
     }
 
     /**
