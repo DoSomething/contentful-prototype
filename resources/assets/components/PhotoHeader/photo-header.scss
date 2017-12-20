@@ -1,8 +1,19 @@
 @import '../../scss/next-toolbox.scss';
 
 .photo-header {
-  width: 100%;
   background-color: $dark-gray;
+  position: relative;
   text-align: center;
   text-transform: uppercase;
+  width: 100%;
+}
+
+.photo-header__background-image {
+  background-repeat: no-repeat;
+  filter: grayscale(1);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
