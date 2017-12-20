@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import './photo-header.scss';
 
-const photoHeaderClasses = 'photo-header padding-lg';
-
 const renderBackgroundImage = backgroundImage => (
   backgroundImage ?
     <div
@@ -17,7 +15,7 @@ const renderBackgroundImage = backgroundImage => (
 
 const PhotoHeader = ({ children, className, backgroundImage }) => (
   <div
-    className={classnames(photoHeaderClasses, className)}
+    className={classnames('photo-header padding-lg', className)}
   >
     { renderBackgroundImage(backgroundImage) }
     { children }
