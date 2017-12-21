@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Services\RogueClient;
+use Illuminate\Support\Facades\Log;
+use App\Exceptions\InvalidFileUploadException;
 
 class PostRepository
 {
@@ -44,5 +46,42 @@ class PostRepository
         $query['filter']['campaign_id'] = $id;
 
         return $this->rogue->get('v3/posts', $query);
+    }
+
+    /**
+     * Send reportback to Rogue for storage.
+     *
+     * @param \App\Services\PhoenixLegacy $client
+     * @param \Illuminate\Http\Request    $request
+    */
+    public function storeReportback($client, $request)
+    {
+        $reportbackPhoto = $request->file('media');
+
+        if (! $reportbackPhoto->isValid()) {
+            throw new InvalidFileUploadException;
+        }
+
+        // Store the uploaded file.
+        $path = '/uploads/'.$reportbackPhoto->store('images', 'uploads');
+
+        $response = $client->storeReportback(
+            auth()->id(),
+            $request->input('campaignId'),
+            [
+                'file_url' => config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals',
+                'caption' => $request->input('caption'),
+                'quantity' => $request->input('impact'),
+                'why_participated' => $request->input('whyParticipated'),
+                'source' => 'phoenix-next',
+            ]
+        );
+
+        Log::info('RB Response:', $response);
+
+        // Delete the uploaded file.
+        app('files')->delete(public_path($path));
+
+        return $response;
     }
 }
