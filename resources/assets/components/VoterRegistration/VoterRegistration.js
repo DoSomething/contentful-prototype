@@ -1,4 +1,5 @@
 import React from 'react';
+import { join } from 'path';
 import PropTypes from 'prop-types';
 
 const VoterRegistration = (props) => {
@@ -8,7 +9,7 @@ const VoterRegistration = (props) => {
   const query = `?r=user:${userId},campaign:${campaignRunId},source:web`;
 
   return (
-    <p>{query}</p>
+    <p className="margin-horizontal-md"><a href={join('/', query)}>TurboVote Link example</a></p>
   );
 };
 
