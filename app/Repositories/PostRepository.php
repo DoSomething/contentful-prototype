@@ -53,7 +53,7 @@ class PostRepository
      *
      * @param \App\Services\PhoenixLegacy $client
      * @param \Illuminate\Http\Request    $request
-    */
+     */
     public function storeReportback($client, $request)
     {
         $reportbackPhoto = $request->file('media');
