@@ -13,7 +13,7 @@ const VoterRegistration = (props) => {
 
   const { baseUrl, params, type } = dynamicLink;
 
-  let query = params.reduce((paramsObject, param) => ({
+  const query = params.reduce((paramsObject, param) => ({
     ...paramsObject,
     [param.property]: param.dynamic ? props[param.value] : param.value,
   }), {});
