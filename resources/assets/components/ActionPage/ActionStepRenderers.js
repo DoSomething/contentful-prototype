@@ -171,7 +171,8 @@ export function renderLegacyGallery() {
  * @return {Component}
  */
 export function renderVoterRegistration(step, stepIndex) {
-  const { content, title, template, dynamicLink } = step.fields.additionalContent;
+  const { title, content, additionalContent } = step.fields;
+  const { template, dynamicLink } = additionalContent;
 
   return (
     <VoterRegistrationContainer
