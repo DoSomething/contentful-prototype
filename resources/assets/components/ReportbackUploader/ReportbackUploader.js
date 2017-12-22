@@ -1,14 +1,16 @@
 /* global FormData */
 
-import PropTypes from 'prop-types';
 import React from 'react';
-import classnames from 'classnames';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
 import Card from '../Card';
-import { Flex, FlexCell } from '../Flex';
 import Markdown from '../Markdown';
-import MediaUploader from '../MediaUploader';
+import { Flex, FlexCell } from '../Flex';
 import FormMessage from '../FormMessage';
+import MediaUploader from '../MediaUploader';
+
 import './reportback-uploader.scss';
 
 class ReportbackUploader extends React.Component {
@@ -64,39 +66,41 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
 
-    const reportback = {
-      media: this.state.media,
-      caption: this.caption.value,
-      impact: this.props.showQuantityField ? this.impact.value : 1,
-      whyParticipated: this.why_participated.value,
-      campaignId: this.props.legacyCampaignId,
-      status: 'pending',
-    };
+    console.log('🤡 Clickity click!');
 
-    const fileType = reportback.media.file ? reportback.media.file.type : null;
+    // const reportback = {
+    //   media: this.state.media,
+    //   caption: this.caption.value,
+    //   impact: this.props.showQuantityField ? this.impact.value : 1,
+    //   whyParticipated: this.why_participated.value,
+    //   campaignId: this.props.legacyCampaignId,
+    //   status: 'pending',
+    // };
 
-    reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
+    // const fileType = reportback.media.file ? reportback.media.file.type : null;
 
-    this.props.submitReportback(
-      ReportbackUploader.setFormData(reportback),
-    ).then(() => {
-      const trackingData = { campaignId: this.props.legacyCampaignId };
-      let trackingMessage;
+    // reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
-      if (this.props.submissions.messaging.success) {
-        this.form.reset();
-        this.setState({
-          media: this.defaultMediaState,
-        });
+    // this.props.submitReportback(
+    //   ReportbackUploader.setFormData(reportback),
+    // ).then(() => {
+    //   const trackingData = { campaignId: this.props.legacyCampaignId };
+    //   let trackingMessage;
 
-        trackingMessage = 'Successful Reportback';
-      } else {
-        trackingMessage = 'Unsuccessful Reportback';
-        trackingData.submission_error = this.props.submissions.messaging.error;
-      }
+    //   if (this.props.submissions.messaging.success) {
+    //     this.form.reset();
+    //     this.setState({
+    //       media: this.defaultMediaState,
+    //     });
 
-      this.props.trackEvent(trackingMessage, trackingData);
-    });
+    //     trackingMessage = 'Successful Reportback';
+    //   } else {
+    //     trackingMessage = 'Unsuccessful Reportback';
+    //     trackingData.submission_error = this.props.submissions.messaging.error;
+    //   }
+
+    //   this.props.trackEvent(trackingMessage, trackingData);
+    // });
   }
 
   render() {
@@ -126,62 +130,63 @@ class ReportbackUploader extends React.Component {
         },
       }), {});
 
-    const impactInput = (
-      <div className="form-item">
-        <label className={inputClassnames.impact.label} htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
-        <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
-      </div>
-    );
+    // const impactInput = (
+    //   <div className="form-item">
+    //     <label className={inputClassnames.impact.label} htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
+    //     <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
+    //   </div>
+    // );
 
-    const reportbackUploader = (
-      <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
-        <Flex>
-          <FlexCell width="full">
-            { shouldDisplaySubmissionMessaging ? (
-              <FormMessage messaging={submissions.messaging} />
-            ) : null }
-          </FlexCell>
-          <FlexCell width="half" className="reportback-form__uploader">
-            <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
-            <div className="form-item">
-              <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
-              <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
-            </div>
-          </FlexCell>
-          <FlexCell width="half">
-            { showQuantityField ? impactInput : null }
-            <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
-            <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
-          </FlexCell>
-        </Flex>
-      </form>
-    );
+    // const reportbackUploader = (
+    //   <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+    //     <Flex>
+    //       <FlexCell width="full">
+    //         { shouldDisplaySubmissionMessaging ? (
+    //           <FormMessage messaging={submissions.messaging} />
+    //         ) : null }
+    //       </FlexCell>
+    //       <FlexCell width="half" className="reportback-form__uploader">
+    //         <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
+    //         <div className="form-item">
+    //           <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
+    //           <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+    //         </div>
+    //       </FlexCell>
+    //       <FlexCell width="half">
+    //         { showQuantityField ? impactInput : null }
+    //         <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
+    //         <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+    //       </FlexCell>
+    //     </Flex>
+    //   </form>
+    // );
 
     return (
-      <Flex>
-        <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
-          <Card title="Upload your photos" className="bordered rounded">
-            <div className="reportback-uploader padding-md">
-              {reportbackUploader}
+      <div className="photo-uploader-action">
+        <Card title="Upload your photos" className="bordered rounded">
+          <form className="reportback-post-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+
+            <div className="form-item-group">
+              <div className="padding-md">
+                <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
+
+                <div className="form-item">
+                  <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
+                  <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+                </div>
+              </div>
             </div>
-            <button className="button reportback-uploader-submit" type="submit" disabled={submissions.isStoring} onClick={this.handleOnSubmitForm}>Submit a new photo</button>
-          </Card>
-        </FlexCell>
-        { informationContent ? (
-          <FlexCell width="one-third" className="reportback-uploader-information margin-vertical-md">
-            <Card title={informationTitle} className="bordered rounded">
-              <Markdown className="padding-md">{informationContent}</Markdown>
-            </Card>
-          </FlexCell>
-        ) : null}
-        { shouldShowAffirmation ? (
-          <FlexCell width="two-thirds" className="padding-horizontal-md margin-vertical-md">
-            <Card title="We Got Your Photo" className="bordered rounded" onClose={() => toggleReportbackAffirmation(false)}>
-              <Markdown className="padding-md">{this.getAffirmationContent()}</Markdown>
-            </Card>
-          </FlexCell>
-        ) : null}
-      </Flex>
+
+            <div className="form-item-group">
+              <div className="padding-md">
+                oopa
+              </div>
+            </div>
+
+            <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+          </form>
+        </Card>
+      </div>
     );
   }
 }

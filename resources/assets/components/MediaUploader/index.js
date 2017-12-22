@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types';
 /* global FileReader, URL, Blob */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import { processFile } from '../../helpers';
+
 import './media-uploader.scss';
 
 class MediaUploader extends React.Component {

@@ -41,9 +41,12 @@ export function renderPhotoUploader(step, isSignedUp) {
   if (! isSignedUp) {
     return null;
   }
+
   return (
-    <FlexCell key="reportback_uploader" width="full">
-      <ReportbackUploaderContainer {...step.fields} />
+    <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
+      <div className="margin-horizontal-md">
+        <ReportbackUploaderContainer {...step.fields} />
+      </div>
     </FlexCell>
   );
 }

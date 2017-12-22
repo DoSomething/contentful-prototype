@@ -1,29 +1,44 @@
 @import '../../scss/next-toolbox.scss';
 
 .media-uploader {
-  width: 100%;
+  // width: 100%;
   background-color: #eee;
   color: $med-gray;
-  position: relative;
+  // position: relative;
 
-  &:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
+  // &:after {
+  //   content: "";
+  //   display: block;
+  //   padding-bottom: 100%;
+
+  //   @include media($medium) {
+  //     padding-bottom: 30%;
+  //   }
+
+  //   @include media($large) {
+  //     padding-bottom: 100%;
+  //   }
+  // }
 
   &:hover {
     background-color: darken(#eee, 5%);
   }
 
   label {
+    align-items: center;
+    cursor: pointer;
+    // display: flex;
+    // flex-direction: column;
+    // height: 100%;
+    // justify-content: center;
+    // overflow: hidden;
     text-align: center;
     width: 100%;
 
-    // Perfect vertical centering
-    position: absolute;
-    top: 50%;
-    transform: perspective(1px) translateY(-50%);
+  //   // Perfect vertical centering
+  //   position: absolute;
+  //   top: 50%;
+  //   transform: perspective(1px) translateY(-50%);
 
     &::before {
       background: transparent url('../../images/plus_sign.svg');
@@ -31,13 +46,13 @@
       content: '';
       display: block;
       height: 50px;
-      margin: $half-spacing auto;
+  //     margin: $half-spacing auto;
       width: 50px;
     }
 
-    img {
-      max-height: 100%;
-    }
+  //   img {
+  //     max-height: 100%;
+  //   }
   }
 
   &.has-image {
@@ -48,9 +63,9 @@
     }
   }
 
-  &.has-error {
-    border: 1px solid $error-color;
-  }
+  // &.has-error {
+  //   border: 1px solid $error-color;
+  // }
 
   input {
     @include visually-hidden();
