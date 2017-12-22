@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import Markdown from '../Markdown';
 import { makeUrl } from '../../helpers';
