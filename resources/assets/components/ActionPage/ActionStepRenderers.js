@@ -170,8 +170,17 @@ export function renderLegacyGallery() {
  *
  * @return {Component}
  */
-export function renderVoterRegistration() {
+export function renderVoterRegistration(step, stepIndex) {
+  const { content, title, template, dynamicLink } = step.fields.additionalContent;
+
   return (
-    <VoterRegistrationContainer key="voter-reg" />
+    <VoterRegistrationContainer
+      key="voter-reg"
+      content={content}
+      title={title}
+      template={template}
+      stepIndex={stepIndex}
+      dynamicLink={dynamicLink}
+    />
   );
 }

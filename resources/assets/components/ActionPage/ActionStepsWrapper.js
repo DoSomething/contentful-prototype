@@ -33,7 +33,7 @@ const ActionStepsWrapper = (props) => {
         return renderThirdPartyAction(step, stepIndex);
 
       case 'voterRegistrationAction':
-        return renderVoterRegistration();
+        return renderVoterRegistration(step, stepIndex);
 
       default:
         stepIndex += 1;
