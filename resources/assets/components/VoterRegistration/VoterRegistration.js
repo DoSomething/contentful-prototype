@@ -53,7 +53,7 @@ VoterRegistration.propTypes = {
   stepIndex: PropTypes.number.isRequired,
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  dynamicLink: PropTypes.object.shape({
+  dynamicLink: PropTypes.shape({
     baseUrl: PropTypes.string,
     params: PropTypes.arrayOf(PropTypes.object),
     type: PropTypes.string,
