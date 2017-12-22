@@ -17,6 +17,8 @@ class VoterRegistrationAction extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $this->entry->getContentType(),
             'fields' => [
+                'title' => $this->title,
+                'content' => $this->content,
                 'additionalContent' => $this->additionalContent,
             ],
         ];
