@@ -175,13 +175,17 @@ export function renderVoterRegistration(step, stepIndex) {
   const { template, dynamicLink } = additionalContent;
 
   return (
-    <VoterRegistrationContainer
-      key="voter-reg"
-      content={content}
-      title={title}
-      template={template}
-      stepIndex={stepIndex}
-      dynamicLink={dynamicLink}
-    />
+    <FlexCell>
+      <div className="action-step">
+        <VoterRegistrationContainer
+          key="voter-reg"
+          content={content}
+          title={title}
+          template={template}
+          stepIndex={stepIndex}
+          dynamicLink={dynamicLink}
+        />
+      </div>
+    </FlexCell>
   );
 }

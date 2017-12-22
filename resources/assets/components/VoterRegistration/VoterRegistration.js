@@ -32,21 +32,17 @@ const VoterRegistration = (props) => {
 
 
   return (
-    <FlexCell width="full">
-      <div className={classnames('action-step')}>
-        <Flex>
-          <StepHeader
-            title={title}
-            template={template}
-            hideStepNumber={hideStepNumber}
-            stepIndex={stepIndex}
-          />
-          <FlexCell width="two-thirds">
-            <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, link) }</Markdown>
-          </FlexCell>
-        </Flex>
-      </div>
-    </FlexCell>
+    <Flex>
+      <StepHeader
+        title={title}
+        template={template}
+        hideStepNumber={hideStepNumber}
+        stepIndex={stepIndex}
+      />
+      <FlexCell width="two-thirds">
+        <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, link) }</Markdown>
+      </FlexCell>
+    </Flex>
   );
 };
 
