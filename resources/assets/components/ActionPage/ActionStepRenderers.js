@@ -170,8 +170,22 @@ export function renderLegacyGallery() {
  *
  * @return {Component}
  */
-export function renderVoterRegistration() {
+export function renderVoterRegistration(step, stepIndex) {
+  const { title, content, additionalContent } = step.fields;
+  const { template, dynamicLink } = additionalContent;
+
   return (
-    <VoterRegistrationContainer key="voter-reg" />
+    <FlexCell>
+      <div className="action-step">
+        <VoterRegistrationContainer
+          key="voter-reg"
+          content={content}
+          title={title}
+          template={template}
+          stepIndex={stepIndex}
+          dynamicLink={dynamicLink}
+        />
+      </div>
+    </FlexCell>
   );
 }

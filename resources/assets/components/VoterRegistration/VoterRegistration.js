@@ -1,21 +1,66 @@
 import React from 'react';
-import { join } from 'path';
 import PropTypes from 'prop-types';
 
-const VoterRegistration = (props) => {
-  const { userId, campaignRunId } = props;
+import Markdown from '../Markdown';
+import { makeUrl } from '../../helpers';
+import { Flex, FlexCell } from '../Flex';
+import StepHeader from '../ActionPage/StepHeader';
 
-  // Ignore the weird query format and the mismatching names. Wasn't our decision.
-  const query = `?r=user:${userId},campaign:${campaignRunId},source:web`;
+const VoterRegistration = (props) => {
+  const { content, hideStepNumber, stepIndex,
+    template, title, dynamicLink } = props;
+
+  const { baseUrl, params, type } = dynamicLink;
+
+  const query = params.reduce((paramsObject, param) => ({
+    ...paramsObject,
+    [param.property]: param.dynamic ? props[param.value] : param.value,
+  }), {});
+
+  let link;
+
+  if (type === 'turboVote') {
+    const queryValue = Object.entries(query)
+      .map(([key, value]) => (`${key}:${value}`))
+      .join(',');
+
+    link = `${baseUrl}?r=${queryValue}`;
+  } else {
+    link = makeUrl(baseUrl, query).href;
+  }
+
 
   return (
-    <p className="margin-horizontal-md"><a href={join('/', query)}>TurboVote Link example</a></p>
+    <Flex>
+      <StepHeader
+        title={title}
+        template={template}
+        hideStepNumber={hideStepNumber}
+        stepIndex={stepIndex}
+      />
+      <FlexCell width="two-thirds">
+        <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, link) }</Markdown>
+      </FlexCell>
+    </Flex>
   );
 };
 
 VoterRegistration.propTypes = {
-  userId: PropTypes.string.isRequired,
-  campaignRunId: PropTypes.number.isRequired,
+  content: PropTypes.string,
+  hideStepNumber: PropTypes.bool,
+  stepIndex: PropTypes.number.isRequired,
+  template: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  dynamicLink: PropTypes.shape({
+    baseUrl: PropTypes.string,
+    params: PropTypes.arrayOf(PropTypes.object),
+    type: PropTypes.string,
+  }).isRequired,
+};
+
+VoterRegistration.defaultProps = {
+  content: 'Register to vote!',
+  hideStepNumber: true,
 };
 
 export default VoterRegistration;
