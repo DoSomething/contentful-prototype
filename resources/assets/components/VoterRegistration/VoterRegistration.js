@@ -18,15 +18,18 @@ const VoterRegistration = (props) => {
     [param.property]: param.dynamic ? props[param.value] : param.value,
   }), {});
 
+  let link;
+
   if (type === 'turboVote') {
     const queryValue = Object.entries(query)
       .map(([key, value]) => (`${key}:${value}`))
       .join(',');
 
-    query = { r: queryValue }; // eslint-disable-line id-length
+    link = `${baseUrl}?r=${queryValue}`;
+  } else {
+    link = makeUrl(baseUrl, query).href;
   }
 
-  const link = makeUrl(baseUrl, query);
 
   return (
     <FlexCell width="full">
@@ -39,7 +42,7 @@ const VoterRegistration = (props) => {
             stepIndex={stepIndex}
           />
           <FlexCell width="two-thirds">
-            <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, link.href) }</Markdown>
+            <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, link) }</Markdown>
           </FlexCell>
         </Flex>
       </div>
