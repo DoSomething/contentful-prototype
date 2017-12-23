@@ -6,16 +6,18 @@
     width: 100%;
   }
 
+  .text-field {
+    display: block;
+  }
+
+  textarea {
+    min-height: 100px;
+  }
+
   .form-item-group + .form-item-group {
-    border-top: 2px solid fuchsia;
+    border-top: 2px solid $light-gray;
   }
 }
-
-// .reportback-uploader-submit {
-//   display: block;
-//   width: 100%;
-//   border-radius: 0;
-// }
 
 // .reportback-form {
 //   .reportback-form__uploader {
@@ -56,3 +58,26 @@
 //     padding-right: 0;
 //   }
 // }
+
+.photo-uploader-form {
+  @include media($large) {
+    float: left;
+    padding-right: $half-spacing;
+    width: 66.6666666666666%;
+  }
+}
+
+.photo-uploader-information {
+  margin-top: $base-spacing;
+
+  @include media($large) {
+    float: right;
+    margin-top: 0;
+    padding-left: $half-spacing;
+    width: 33.3333333333333%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font-regular;
+  }
+}

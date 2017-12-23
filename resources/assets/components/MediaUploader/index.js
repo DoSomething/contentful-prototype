@@ -48,9 +48,17 @@ class MediaUploader extends React.Component {
     let content = null;
 
     if (filePreviewUrl) {
-      content = (<img src={filePreviewUrl} alt="uploaded file" />);
+      content = (
+        <div className="media-uploader__content media-uploader--file">
+          <img src={filePreviewUrl} alt="uploaded file" />
+        </div>
+      );
     } else {
-      content = (<span>{this.props.label}</span>);
+      content = (
+        <div className="media-uploader__content media-uploader--action">
+          <span>{this.props.label}</span>
+        </div>
+      );
     }
 
     return (

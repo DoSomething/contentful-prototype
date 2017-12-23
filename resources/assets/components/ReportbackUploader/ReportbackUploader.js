@@ -130,12 +130,14 @@ class ReportbackUploader extends React.Component {
         },
       }), {});
 
-    // const impactInput = (
-    //   <div className="form-item">
-    //     <label className={inputClassnames.impact.label} htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
-    //     <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
-    //   </div>
-    // );
+    const impactInput = (
+      <div className="form-item-group">
+        <div className="padding-md">
+          <label className={inputClassnames.impact.label} htmlFor="impact">Total number of {this.props.noun.plural} made?</label>
+          <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Enter # here -- like '300' or '5'" ref={input => (this.impact = input)} />
+        </div>
+      </div>
+    );
 
     // const reportbackUploader = (
     //   <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
@@ -162,30 +164,39 @@ class ReportbackUploader extends React.Component {
     // );
 
     return (
-      <div className="photo-uploader-action">
-        <Card title="Upload your photos" className="bordered rounded">
-          <form className="reportback-post-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+      <div className="photo-uploader-action clearfix">
+        <div className="photo-uploader-form">
+          <Card title="Upload your photos" className="bordered rounded">
+            <form className="reportback-post-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
 
-            <div className="form-item-group">
-              <div className="padding-md">
-                <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
+              <div className="form-item-group">
+                <div className="padding-md">
+                  <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
 
-                <div className="form-item">
                   <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
                   <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
                 </div>
               </div>
-            </div>
 
-            <div className="form-item-group">
-              <div className="padding-md">
-                oopa
+              { showQuantityField ? impactInput : impactInput }
+
+              <div className="form-item-group">
+                <div className="padding-md">
+                  <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
+                  <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+                </div>
               </div>
-            </div>
 
-            <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
-          </form>
-        </Card>
+              <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+            </form>
+          </Card>
+        </div>
+
+        <div className="photo-uploader-information">
+          <Card title={informationTitle} className="bordered rounded">
+              <Markdown className="padding-md">{informationContent}</Markdown>
+          </Card>
+        </div>
       </div>
     );
   }
