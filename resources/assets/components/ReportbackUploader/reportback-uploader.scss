@@ -3,6 +3,7 @@
 .photo-uploader-action {
   .button {
     border-radius: 0;
+    text-transform: none;
     width: 100%;
   }
 
@@ -16,6 +17,27 @@
 
   .form-item-group + .form-item-group {
     border-top: 2px solid $light-gray;
+  }
+
+  .form-section + .form-section {
+    border-top: 2px solid $light-gray;
+
+    @include media($medium) {
+      border-top: 0 none;
+    }
+  }
+
+  .form-section {
+    @include media($medium) {
+      float: left;
+      width: 50%;
+    }
+
+    &:first-child {
+      @include media($medium) {
+        border-right: 2px solid $light-gray;
+      }
+    }
   }
 }
 
