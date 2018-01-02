@@ -33,7 +33,7 @@ const CampaignPage = (props) => {
 
   const renderActionOrFeed = () => (
     isClosed && ! shouldShowActionPage && hasActivityFeed ?
-      <FeedContainer />
+      <Redirect to={`${match.url}/community`} />
       : <ActionPageContainer />
   );
 
@@ -78,7 +78,7 @@ const CampaignPage = (props) => {
               path={`${match.url}/community`}
               render={() => {
                 if (template === 'legacy') {
-                  return hasActivityFeed ? <FeedContainer /> : <ActionPageContainer />;
+                  return hasActivityFeed ? <FeedContainer /> : <Redirect to={`${match.url}/action`} />;
                 }
 
                 return <FeedContainer />;
