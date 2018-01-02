@@ -105,6 +105,7 @@ const CampaignPage = (props) => {
                 return <Redirect to={`${match.url}`} />;
               }}
             />
+            <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
           </Switch>
         </Enclosure>
         { ! isAffiliated ? <CallToActionContainer key="callToAction" className="-sticky" /> : null }
