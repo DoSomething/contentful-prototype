@@ -31,7 +31,7 @@ const CampaignPage = (props) => {
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
 
-  const renderActionPage = () => (
+  const renderActionOrFeed = () => (
     isClosed && ! shouldShowActionPage && hasActivityFeed ?
       <FeedContainer />
       : <ActionPageContainer />
@@ -68,11 +68,11 @@ const CampaignPage = (props) => {
             <Route
               path={`${match.url}`}
               exact
-              render={renderActionPage}
+              render={renderActionOrFeed}
             />
             <Route
               path={`${match.url}/action`}
-              render={renderActionPage}
+              render={renderActionOrFeed}
             />
             <Route
               path={`${match.url}/community`}
