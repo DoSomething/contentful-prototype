@@ -32,6 +32,12 @@ const CampaignPage = (props) => {
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
 
+  const renderActionPage = () => (
+    isClosed && ! shouldShowActionPage && hasActivityFeed ?
+      <FeedContainer />
+      : <ActionPageContainer />
+  );
+
   return (
     <div>
       <LedeBanner
@@ -63,6 +69,14 @@ const CampaignPage = (props) => {
             <Route
               path={`${match.url}`}
               exact
+              render={renderActionPage}
+            />
+            <Route
+              path={`${match.url}/action`}
+              render={renderActionPage}
+            />
+            <Route
+              path={`${match.url}/community`}
               render={() => {
                 if (template === 'legacy') {
                   return hasActivityFeed ? <FeedContainer /> : <ActionPageContainer />;
@@ -70,14 +84,6 @@ const CampaignPage = (props) => {
 
                 return <FeedContainer />;
               }}
-            />
-            <Route
-              path={`${match.url}/action`}
-              render={() => (isClosed && ! shouldShowActionPage ?
-                <Redirect to={`${match.url}`} />
-                :
-                <ActionPageContainer />
-              )}
             />
             <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
             <Route path={`${match.url}/blocks/:id`} component={BlockContainer} />
