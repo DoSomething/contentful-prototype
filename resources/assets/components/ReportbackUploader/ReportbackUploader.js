@@ -139,30 +139,6 @@ class ReportbackUploader extends React.Component {
       </div>
     );
 
-    // const reportbackUploader = (
-    //   <form className="reportback-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
-    //     <Flex>
-    //       <FlexCell width="full">
-    //         { shouldDisplaySubmissionMessaging ? (
-    //           <FormMessage messaging={submissions.messaging} />
-    //         ) : null }
-    //       </FlexCell>
-    //       <FlexCell width="half" className="reportback-form__uploader">
-    //         <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
-    //         <div className="form-item">
-    //           <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
-    //           <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
-    //         </div>
-    //       </FlexCell>
-    //       <FlexCell width="half">
-    //         { showQuantityField ? impactInput : null }
-    //         <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
-    //         <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
-    //       </FlexCell>
-    //     </Flex>
-    //   </form>
-    // );
-
     return (
       <div className="photo-uploader-action clearfix">
         <div className="photo-uploader-form">
