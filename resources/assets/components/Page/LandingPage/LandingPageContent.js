@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Markdown from '../../Markdown';
 import Card from '../../Card';
 
-const LandingPageContentAlt = ({ pitchContent, sidebarCTA }) => (
+const LandingPageContent = ({ pitchContent, sidebarCTA }) => (
   <div className="campaign-subpage">
     <div className="primary">
       <Markdown>{ pitchContent }</Markdown>
@@ -17,7 +17,7 @@ const LandingPageContentAlt = ({ pitchContent, sidebarCTA }) => (
   </div>
 );
 
-LandingPageContentAlt.propTypes = {
+LandingPageContent.propTypes = {
   pitchContent: PropTypes.string.isRequired,
   sidebarCTA: PropTypes.shape({
     title: PropTypes.string,
@@ -25,12 +25,12 @@ LandingPageContentAlt.propTypes = {
   }).isRequired,
 };
 
-LandingPageContentAlt.defaultProps = {
+LandingPageContent.defaultProps = {
   sidebarCTA: {
     title: 'what you get',
     content: '*You could win a $5,000 dollar scholarship!*',
   },
 };
 
-export default LandingPageContentAlt;
+export default LandingPageContent;
 

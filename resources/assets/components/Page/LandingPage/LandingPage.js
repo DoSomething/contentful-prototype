@@ -7,7 +7,7 @@ import Enclosure from '../../Enclosure';
 import ExperimentContainer from '../../Experiment';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import ColumnizedContent from '../../ColumnizedContent';
-import LandingPageContentAlt from './LandingPageContentAlt';
+import LandingPageContent from './LandingPageContent';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
@@ -58,7 +58,7 @@ const LandingPage = (props) => {
               className="container__block -half"
               content={formatToMarkup(legacyPitchContent)}
             />
-            <LandingPageContentAlt
+            <LandingPageContent
               experiment="landing_page"
               alternative="landing_page_alt"
               convert={convertExperiment}
