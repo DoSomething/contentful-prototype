@@ -5,7 +5,7 @@ import { Flex } from '../Flex';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderActionStep, renderRevealer,
-  renderLegacyGallery, renderVoterRegistration,
+  renderLegacyGallery, renderVoterRegistration, renderShareAction,
 } from './ActionStepRenderers';
 
 const ActionStepsWrapper = (props) => {
@@ -34,6 +34,9 @@ const ActionStepsWrapper = (props) => {
 
       case 'voterRegistrationAction':
         return renderVoterRegistration(step, stepIndex);
+
+      case 'shareAction':
+        return renderShareAction();
 
       default:
         stepIndex += 1;

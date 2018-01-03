@@ -117,6 +117,8 @@ class Campaign extends Entity implements JsonSerializable
                     return new PhotoUploaderAction($step->entry);
                 case 'voterRegistrationAction':
                     return new VoterRegistrationAction($step->entry);
+                case 'shareAction':
+                    return new ShareAction($step->entry);
                 default:
                     return new CampaignActionStep($step->entry);
             }
