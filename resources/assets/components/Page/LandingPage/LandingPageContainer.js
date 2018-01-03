@@ -2,7 +2,6 @@ import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
-import { convertExperiment } from '../../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -12,7 +11,6 @@ const mapStateToProps = (state) => {
 
   return {
     pitchContent: landingPage.content,
-    legacyPitchContent: landingPage.legacyContent,
     blurb: state.campaign.blurb,
     coverImage: state.campaign.coverImage,
     dashboard: state.campaign.dashboard,
@@ -32,14 +30,6 @@ const mapStateToProps = (state) => {
 };
 
 /**
- * Provide pre-bound functions that allow the component to dispatch
- * actions to the Redux store as props for this component.
- */
-const mapActionsToProps = {
-  convertExperiment,
-};
-
-/**
  * Export the container component.
  */
-export default connect(mapStateToProps, mapActionsToProps)(LandingPage);
+export default connect(mapStateToProps)(LandingPage);

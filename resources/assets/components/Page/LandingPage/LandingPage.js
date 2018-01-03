@@ -4,28 +4,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
-import ExperimentContainer from '../../Experiment';
 import LedeBanner from '../../LedeBanner/LedeBanner';
-import ColumnizedContent from '../../ColumnizedContent';
 import LandingPageContent from './LandingPageContent';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
 
-const formatToMarkup = data => (
-  data.map((item, dataIndex) => (
-    <div key={dataIndex}>
-      <h3>{item.title}</h3>
-      { item.content.map((paragraph, index) => (<p key={index}>{paragraph}</p>)) }
-    </div>
-  ))
-);
-
 const LandingPage = (props) => {
   const {
-    actionText, affiliateSponsors, blurb, convertExperiment, coverImage,
-    endDate, isAffiliated, legacyCampaignId, legacyPitchContent,
-    pitchContent, sidebar, showPartnerMsgOptIn, signupArrowContent,
+    actionText, affiliateSponsors, blurb, coverImage,
+    endDate, isAffiliated, legacyCampaignId, pitchContent,
+    sidebar, showPartnerMsgOptIn, signupArrowContent,
     subtitle, tagline, template, title,
   } = props;
 
@@ -50,22 +39,7 @@ const LandingPage = (props) => {
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          <ExperimentContainer name="landing_page">
-            <ColumnizedContent
-              experiment="landing_page"
-              alternative="legacy_landing_page"
-              convert={convertExperiment}
-              className="container__block -half"
-              content={formatToMarkup(legacyPitchContent)}
-            />
-            <LandingPageContent
-              experiment="landing_page"
-              alternative="landing_page_alt"
-              convert={convertExperiment}
-              pitchContent={pitchContent}
-              sidebarCTA={sidebarCTA}
-            />
-          </ExperimentContainer>
+          <LandingPageContent pitchContent={pitchContent} sidebarCTA={sidebarCTA} />
         </Enclosure>
       </div>
 
@@ -104,8 +78,6 @@ LandingPage.propTypes = {
   template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   sidebar: PropTypes.arrayOf(PropTypes.object),
-  convertExperiment: PropTypes.func.isRequired,
-  legacyPitchContent: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 LandingPage.defaultProps = {
