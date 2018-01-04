@@ -113,7 +113,7 @@ class ReportbackUploader extends React.Component {
         .indexOf(name) !== -1
     );
 
-    // @TODO: passing a hardcoded array is not sustainable...
+    // @TODO: using a hardcoded array is not sustainable...
     const inputClassnames = ['impact', 'caption', 'whyParticipated']
       .reduce((classes, input) => ({
         ...classes,
