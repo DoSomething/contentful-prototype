@@ -80,3 +80,10 @@
     font-size: $font-regular;
   }
 }
+
+.photo-uploader-affirmation {
+  @include media($large) {
+    padding-right: $half-spacing;
+    width: 66.6666666666666%;
+  }
+}
