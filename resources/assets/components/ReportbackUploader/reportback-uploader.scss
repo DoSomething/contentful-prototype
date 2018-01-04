@@ -1,47 +1,89 @@
 @import '../../scss/next-toolbox.scss';
 
-.reportback-uploader-submit {
-  display: block;
-  width: 100%;
-  border-radius: 0;
-}
-
-.reportback-form {
-  .reportback-form__uploader {
-    @include media($tablet) {
-      padding-right: $base-spacing;
-    }
+.photo-uploader-action {
+  .button {
+    border-radius: 0;
+    text-transform: none;
+    width: 100%;
   }
 
-  .media-uploader {
-    margin-bottom: $base-spacing;
+  .text-field {
+    display: block;
   }
 
-  .form-item {
-    clear: both;
-    margin-bottom: $base-spacing;
-  }
-
-  .field-label.has-error {
-    color: $error-color;
-  }
-
-  // TODO: make this not hardcoded pixel values
   textarea {
+    // TODO: make this not hardcoded pixel values
+    // and/or use flexbox.
     min-height: 120px;
 
-    @include media($desktop) {
+    @include media($medium) {
       min-height: 180px;
     }
   }
+
+  .form-item-group + .form-item-group {
+    border-top: 2px solid $light-gray;
+  }
+
+  .form-section + .form-section {
+    border-top: 2px solid $light-gray;
+
+    @include media($medium) {
+      border-top: 0 none;
+    }
+  }
+
+  .form-section {
+    @include media($medium) {
+      float: left;
+      width: 50%;
+    }
+
+    &:first-child {
+      @include media($medium) {
+        border-right: 2px solid $light-gray;
+      }
+    }
+  }
 }
 
-.reportback-uploader-information {
-  padding-left: $half-spacing;
-  padding-right: $half-spacing;
+.photo-uploader-form {
+  @include media($large) {
+    float: left;
+    padding-right: $half-spacing;
+    width: 66.6666666666666%;
+  }
 
-  @include media($tablet) {
-    padding-left: 0;
-    padding-right: 0;
+  .form-message {
+    border-bottom: 2px solid $light-gray;
+    padding: $half-spacing;
+  }
+
+  .field-label {
+    &.has-error {
+      color: $error-color;
+    }
+  }
+}
+
+.photo-uploader-information {
+  margin-top: $base-spacing;
+
+  @include media($large) {
+    float: right;
+    margin-top: 0;
+    padding-left: $half-spacing;
+    width: 33.3333333333333%;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font-regular;
+  }
+}
+
+.photo-uploader-affirmation {
+  @include media($large) {
+    padding-right: $half-spacing;
+    width: 66.6666666666666%;
   }
 }
