@@ -8,12 +8,14 @@ const Slideshow = (props) => {
     onComplete, slide, slideshowId,
   } = props;
 
-  const SlideButton = isFinalSlide && hideCloseButton ? null : (
+  const nextFunc = isFinalSlide ? onComplete : () => nextSlide(slideshowId);
+
+  const SlideButton = () => (isFinalSlide && hideCloseButton ? null : (
     <button
       className="button slideshow__button margin-top-lg"
-      onClick={() => isFinalSlide ? onComplete() : nextSlide(slideshowId)}
+      onClick={() => nextFunc()}
     >{ isFinalSlide ? 'Close' : 'Next' }</button>
-  );
+  ));
 
   return (
     <div className="slideshow">

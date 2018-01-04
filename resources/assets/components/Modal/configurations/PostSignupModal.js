@@ -4,7 +4,7 @@ import { AffirmationContainer } from '../../Affirmation';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
 import SlideshowContainer from '../../Slideshow';
 
-const PostSignupModal = ({ competitionStep, closeModal }) => (
+const PostSignupModal = ({ competitionStep }) => (
   <div className="modal__slide">
     <SlideshowContainer slideshowId="post-signup-modal" hideCloseButton>
       { competitionStep ? (
@@ -20,7 +20,6 @@ const PostSignupModal = ({ competitionStep, closeModal }) => (
 );
 
 PostSignupModal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
   competitionStep: PropTypes.shape({
     content: PropTypes.string.isRequired,
     photo: PropTypes.string,
