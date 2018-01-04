@@ -59,7 +59,7 @@ const TabbedNavigationContainer = (props) => {
     <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} text={actionText} />
   ), 'tabbed navigation', { text: actionText });
 
-  const shouldHideCommunity = (template === 'legacy') && ! hasActivityFeed;
+  const shouldHideCommunity = ! hasActivityFeed;
   const shouldHideAction = (isClosed || (shouldHideCommunity && additionalPages.length === 0));
 
   return (
