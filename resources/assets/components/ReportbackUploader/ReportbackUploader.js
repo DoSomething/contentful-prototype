@@ -159,7 +159,7 @@ class ReportbackUploader extends React.Component {
                 </div>
 
                 <div className="form-section">
-                  { showQuantityField ? impactInput : impactInput }
+                  { showQuantityField ? impactInput : null }
 
                   <div className="form-item-group">
                     <div className="padding-md">
