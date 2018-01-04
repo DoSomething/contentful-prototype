@@ -12,7 +12,13 @@
   }
 
   textarea {
-    min-height: 100px;
+    // TODO: make this not hardcoded pixel values
+    // and/or use flexbox.
+    min-height: 120px;
+
+    @include media($medium) {
+      min-height: 180px;
+    }
   }
 
   .form-item-group + .form-item-group {
@@ -41,51 +47,22 @@
   }
 }
 
-// .reportback-form {
-//   .reportback-form__uploader {
-//     @include media($tablet) {
-//       padding-right: $base-spacing;
-//     }
-//   }
-
-//   .media-uploader {
-//     margin-bottom: $base-spacing;
-//   }
-
-//   .form-item {
-//     clear: both;
-//     margin-bottom: $base-spacing;
-//   }
-
-//   .field-label.has-error {
-//     color: $error-color;
-//   }
-
-//   // TODO: make this not hardcoded pixel values
-//   textarea {
-//     min-height: 120px;
-
-//     @include media($desktop) {
-//       min-height: 180px;
-//     }
-//   }
-// }
-
-// .reportback-uploader-information {
-//   padding-left: $half-spacing;
-//   padding-right: $half-spacing;
-
-//   @include media($tablet) {
-//     padding-left: 0;
-//     padding-right: 0;
-//   }
-// }
-
 .photo-uploader-form {
   @include media($large) {
     float: left;
     padding-right: $half-spacing;
     width: 66.6666666666666%;
+  }
+
+  .form-message {
+    border-bottom: 2px solid $light-gray;
+    padding: $half-spacing;
+  }
+
+  .field-label {
+    &.has-error {
+      color: $error-color;
+    }
   }
 }
 

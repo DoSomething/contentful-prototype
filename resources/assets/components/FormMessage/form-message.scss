@@ -4,7 +4,7 @@
   &.-error {
     color: red;
 
-    h3, p {
+    p, .title {
       color: red;
     }
   }
@@ -12,8 +12,12 @@
   &.-success {
     color: green;
 
-    h3, p {
+    p, .title {
       color: green;
     }
+  }
+
+  .title {
+    font-size: $font-regular;
   }
 }

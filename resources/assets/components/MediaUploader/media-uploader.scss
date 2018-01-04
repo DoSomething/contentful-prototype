@@ -3,6 +3,7 @@
 .media-uploader {
   background-color: #eee;
   color: $med-gray;
+  margin-bottom: $half-spacing;
   width: 100%;
 
   &:hover, &:focus {
@@ -13,7 +14,6 @@
     cursor: pointer;
     display: block;
     height: 0;
-    margin-bottom: $half-spacing;
     overflow: hidden;
     position: relative;
     padding-bottom: 100%;
@@ -54,24 +54,10 @@
       }
     }
 
-    &.media-uploader--file {
-
-    }
-
     .has-image & {
       background-color: green;
     }
   }
-
-  // .media-uploader__action {
-  //   background-color: fuchsia;
-  //   height: 100%;
-  //   left: 0;
-  //   position: absolute;
-  //   text-align: center;
-  //   top: 0;
-  //   width: 100%;
-  // }
 
   &.has-image {
     label {
@@ -85,9 +71,9 @@
     }
   }
 
-  // &.has-error {
-  //   border: 1px solid $error-color;
-  // }
+  &.has-error {
+    border: 1px solid $error-color;
+  }
 
   input {
     @include visually-hidden();

@@ -11,14 +11,14 @@ const renderMessage = message => (
 );
 
 const renderValidationMessage = error => (
-  <div>
-    <h3>Hmm, there were some issues with your submission.</h3>
+  <article>
+    <h1 className="title">Hmm, there were some issues with your submission.</h1>
     <ul className="list -compacted">
       {Object.keys(error.fields || {}).map(field => (
         <li key={makeHash(field)}>{error.fields[field].join('. ')}</li>
       ))}
     </ul>
-  </div>
+  </article>
 );
 
 const FormMessage = ({ messaging }) => {
