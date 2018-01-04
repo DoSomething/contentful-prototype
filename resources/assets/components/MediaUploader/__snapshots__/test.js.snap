@@ -7,9 +7,13 @@ exports[`MediaUploader snapshot test 1`] = `
   <label
     htmlFor="media-uploader"
   >
-    <span>
-      Upload Media
-    </span>
+    <div
+      className="media-uploader__content media-uploader--action"
+    >
+      <span>
+        Upload Media
+      </span>
+    </div>
     <input
       id="media-uploader"
       name="media-uploader"
