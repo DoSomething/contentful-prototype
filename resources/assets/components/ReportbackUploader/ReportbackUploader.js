@@ -174,11 +174,13 @@ class ReportbackUploader extends React.Component {
             </Card>
           </div>
 
-          <div className="photo-uploader-information">
-            <Card title={informationTitle} className="bordered rounded">
-              <Markdown className="padding-md">{informationContent}</Markdown>
-            </Card>
-          </div>
+          { informationContent ? (
+            <div className="photo-uploader-information">
+              <Card title={informationTitle} className="bordered rounded">
+                <Markdown className="padding-md">{informationContent}</Markdown>
+              </Card>
+            </div>
+          ) : null }
         </div>
 
         { shouldShowAffirmation ? (
@@ -187,7 +189,7 @@ class ReportbackUploader extends React.Component {
               <Markdown className="padding-md">{this.getAffirmationContent()}</Markdown>
             </Card>
           </div>
-        ) : null}
+        ) : null }
       </div>
     );
   }
