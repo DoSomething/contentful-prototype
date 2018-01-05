@@ -18,7 +18,7 @@ const LandingPageContentAlt = ({ pitchContent, sidebarCTA }) => (
 );
 
 LandingPageContentAlt.propTypes = {
-  pitchContent: PropTypes.string.isRequired,
+  pitchContent: PropTypes.string,
   sidebarCTA: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
@@ -26,6 +26,7 @@ LandingPageContentAlt.propTypes = {
 };
 
 LandingPageContentAlt.defaultProps = {
+  pitchContent: null,
   sidebarCTA: {
     title: 'what you get',
     content: '*You could win a $5,000 dollar scholarship!*',
