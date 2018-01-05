@@ -11,13 +11,28 @@ const renderHeader = (title, link, onClose) => (
   </header>
 );
 
-const Card = ({ children, className = '', link = null, title = null, onClose }) => (
-  <article className={classnames('card', className)}>
-    { title ? renderHeader(title, link, onClose) : null }
+const Card = (props) => {
+  const {
+    children, className, closeModal, link,
+    title, onClose, withinModal,
+  } = props;
 
-    { children }
-  </article>
-);
+  let cardCloseFunction = onClose;
+
+  // If this card is in a modal, and we haven't specified an onClose function already,
+  // set the button to close the modal.
+  if (! onClose && withinModal && closeModal) {
+    cardCloseFunction = closeModal;
+  }
+
+  return (
+    <article className={classnames('card', className)}>
+      { title ? renderHeader(title, link, cardCloseFunction) : null }
+
+      { children }
+    </article>
+  );
+};
 
 Card.propTypes = {
   children: PropTypes.oneOfType([
@@ -26,16 +41,20 @@ Card.propTypes = {
     PropTypes.object,
   ]).isRequired,
   className: PropTypes.string,
+  closeModal: PropTypes.func,
   link: PropTypes.string,
   onClose: PropTypes.func,
   title: PropTypes.string,
+  withinModal: PropTypes.bool,
 };
 
 Card.defaultProps = {
   className: null,
+  closeModal: null,
   link: null,
   onClose: null,
   title: null,
+  withinModal: false,
 };
 
 export default Card;
