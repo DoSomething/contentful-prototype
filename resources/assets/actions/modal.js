@@ -2,7 +2,7 @@ import { OPEN_MODAL, CLOSE_MODAL } from '../actions';
 import { toggleChromeLock } from '../helpers';
 
 export function openModal(modalType, contentfulId) {
-  toggleChromeLock();
+  toggleChromeLock(true);
   return { type: OPEN_MODAL, modalType, contentfulId };
 }
 
