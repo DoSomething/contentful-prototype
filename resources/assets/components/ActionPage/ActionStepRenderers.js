@@ -9,6 +9,7 @@ import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
+import { ShareActionContainer } from '../ShareAction';
 
 /**
  * Render a competition step.
@@ -178,10 +179,9 @@ export function renderVoterRegistration(step, stepIndex) {
   const { template, dynamicLink } = additionalContent;
 
   return (
-    <FlexCell>
+    <FlexCell width="full" key="voter-reg">
       <div className="action-step">
         <VoterRegistrationContainer
-          key="voter-reg"
           content={content}
           title={title}
           template={template}
@@ -189,6 +189,19 @@ export function renderVoterRegistration(step, stepIndex) {
           dynamicLink={dynamicLink}
         />
       </div>
+    </FlexCell>
+  );
+}
+
+/**
+ * Render a share action.
+ *
+ * @return {Component}
+ */
+export function renderShareAction() {
+  return (
+    <FlexCell width="full" key="share-action">
+      <ShareActionContainer />
     </FlexCell>
   );
 }
