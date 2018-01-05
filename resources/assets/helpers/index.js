@@ -373,10 +373,11 @@ export function showTwitterSharePrompt(href, quote) {
 /**
  * Toggle the lock on the app chrome.
  */
-export function toggleChromeLock() {
-  document.getElementById('chrome').classList.toggle('-lock');
-}
+export function toggleChromeLock(lock) {
+  const classList = document.getElementById('chrome').classList;
 
+  return lock ? classList.add('-lock') : classList.remove('-lock');
+}
 
 /**
  * Construct URL with query params
