@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Markdown from '../../Markdown';
-import Card from '../../Card';
+import Markdown from '../../../Markdown';
+import Card from '../../../Card';
 
-const LandingPageContent = ({ pitchContent, sidebarCTA }) => (
+const PitchTemplate = ({ pitchContent, sidebarCTA }) => (
   <div className="campaign-subpage">
     <div className="primary">
       <Markdown>{ pitchContent }</Markdown>
@@ -17,7 +17,7 @@ const LandingPageContent = ({ pitchContent, sidebarCTA }) => (
   </div>
 );
 
-LandingPageContent.propTypes = {
+PitchTemplate.propTypes = {
   pitchContent: PropTypes.string.isRequired,
   sidebarCTA: PropTypes.shape({
     title: PropTypes.string,
@@ -25,12 +25,12 @@ LandingPageContent.propTypes = {
   }).isRequired,
 };
 
-LandingPageContent.defaultProps = {
+PitchTemplate.defaultProps = {
   sidebarCTA: {
     title: 'what you get',
     content: '*You could win a $5,000 dollar scholarship!*',
   },
 };
 
-export default LandingPageContent;
+export default PitchTemplate;
 

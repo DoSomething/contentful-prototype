@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
-import LandingPageContent from './LandingPageContent';
+import PitchTemplate from './templates/PitchTemplate';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
@@ -39,7 +39,7 @@ const LandingPage = (props) => {
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          <LandingPageContent pitchContent={pitchContent} sidebarCTA={sidebarCTA} />
+          <PitchTemplate pitchContent={pitchContent} sidebarCTA={sidebarCTA} />
         </Enclosure>
       </div>
 
