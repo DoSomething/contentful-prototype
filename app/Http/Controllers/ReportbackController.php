@@ -4,21 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
-use App\Repositories\PostRepository;
+use Illuminate\Support\Facades\Log;
+use App\Exceptions\InvalidFileUploadException;
 
 class ReportbackController extends Controller
 {
+    /**
+     * The legacy Phoenix API.
+     *
+     * @var PhoenixLegacy
+     */
+    private $phoenixLegacy;
+
     /**
      * ReportbackController constructor.
      *
      * @todo once Rogue is ready, this will all change to request
      * Reportbacks from Rogue instead of PhoenixLegacy.
      */
-    public function __construct(PhoenixLegacy $phoenixLegacy, PostRepository $postRepository)
+    public function __construct(PhoenixLegacy $phoenixLegacy)
     {
         $this->phoenixLegacy = $phoenixLegacy;
-
-        $this->postRepository = $postRepository;
 
         $this->middleware('auth')->only(['store']);
     }
@@ -48,7 +54,33 @@ class ReportbackController extends Controller
             'whyParticipated' => 'required',
         ]);
 
-        return $this->postRepository->storeReportback($this->phoenixLegacy, $request);
+        $reportbackPhoto = $request->file('media');
+
+        if (! $reportbackPhoto->isValid()) {
+            throw new InvalidFileUploadException;
+        }
+
+        // Store the uploaded file.
+        $path = '/uploads/'.$reportbackPhoto->store('images', 'uploads');
+
+        $response = $this->phoenixLegacy->storeReportback(
+            auth()->id(),
+            $request->input('campaignId'),
+            [
+                'file_url' => config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals',
+                'caption' => $request->input('caption'),
+                'quantity' => $request->input('impact'),
+                'why_participated' => $request->input('whyParticipated'),
+                'source' => 'phoenix-next',
+            ]
+        );
+
+        Log::info('RB Response:', $response);
+
+        // Delete the uploaded file.
+        app('files')->delete(public_path($path));
+
+        return $response;
     }
 
     /**

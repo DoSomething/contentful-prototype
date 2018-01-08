@@ -5,17 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Referral;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
-use App\Repositories\PostRepository;
+use Illuminate\Support\Facades\Log;
+use App\Exceptions\InvalidFileUploadException;
 
 class ReferralController extends Controller
 {
-    /**
-     * The post repository.
-     *
-     * @var PostRepository
-     */
-    private $postRepository;
-
     /**
      * The legacy Phoenix API.
      *
@@ -26,9 +20,8 @@ class ReferralController extends Controller
     /**
      * ReferralController constructor.
      */
-    public function __construct(PostRepository $postRepository, PhoenixLegacy $phoenixLegacy)
+    public function __construct(PhoenixLegacy $phoenixLegacy)
     {
-        $this->postRepository = $postRepository;
         $this->phoenixLegacy = $phoenixLegacy;
 
         $this->middleware('auth')->only(['store']);
@@ -61,6 +54,34 @@ class ReferralController extends Controller
         // Static 'why participated' to pass validation.
         $request['whyParticipated'] = 'Refer-A-Friend';
 
-        return $this->postRepository->storeReportback($this->phoenixLegacy, $request);
+        $reportbackPhoto = $request->file('media');
+
+        if (! $reportbackPhoto->isValid()) {
+            throw new InvalidFileUploadException;
+        }
+
+        // Store the uploaded file.
+        $path = '/uploads/'.$reportbackPhoto->store('images', 'uploads');
+
+        $path = $this->uploadedMedia->store($request->file('media'));
+
+        $response = $this->phoenixLegacy->storeReportback(
+            auth()->id(),
+            $request->input('campaignId'),
+            [
+                'file_url' => config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals',
+                'caption' => $request->input('caption'),
+                'quantity' => $request->input('impact'),
+                'why_participated' => $request->input('whyParticipated'),
+                'source' => 'phoenix-next',
+            ]
+        );
+
+        Log::info('RB Response:', $response);
+
+        // Delete the uploaded file.
+        app('files')->delete(public_path($path));
+
+        return $response;
     }
 }
