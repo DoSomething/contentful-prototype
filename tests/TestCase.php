@@ -34,6 +34,8 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      */
     protected function getCampaign($slug = 'test-teens-for-jeans')
     {
+        return;
+
         // @TODO: set up a mock campaign!
         return app(CampaignRepository::class)->findBySlug($slug);
     }

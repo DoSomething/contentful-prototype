@@ -11,15 +11,19 @@ class ViewCampaignsTest extends TestCase
     // since we ideally shouldn't be connecting to Contentful
     // to grab content for running tests.
 
-    // @TODO: rewrite or review!
-    // /** @test */
-    // public function user_can_view_a_list_of_campaigns()
-    // {
-    //     $this->visit('/campaigns');
+    /** @test */
+    public function user_can_view_a_list_of_campaigns()
+    {
+        $this->markTestIncomplete(
+          'This test has not been implemented yet.'
+        );
 
-    //     $this->seePageIs('/campaigns');
-    //     $this->see('Campaigns');
-    // }
+        // @TODO: use mock instead of requesting from Contentful.
+        $this->visit('/campaigns');
+
+        $this->seePageIs('/campaigns');
+        $this->see('Campaigns');
+    }
 
     /** @test */
     public function user_can_view_a_campaign()
