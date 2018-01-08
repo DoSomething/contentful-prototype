@@ -10,12 +10,26 @@ use App\Repositories\PostRepository;
 class ReferralController extends Controller
 {
     /**
+     * The post repository.
+     *
+     * @var PostRepository
+     */
+    private $postRepository;
+
+    /**
+     * The legacy Phoenix API.
+     *
+     * @var PhoenixLegacy
+     */
+    private $phoenixLegacy;
+
+    /**
      * ReferralController constructor.
      */
     public function __construct(PostRepository $postRepository, PhoenixLegacy $phoenixLegacy)
     {
-        $this->phoenixLegacy = $phoenixLegacy;
         $this->postRepository = $postRepository;
+        $this->phoenixLegacy = $phoenixLegacy;
 
         $this->middleware('auth')->only(['store']);
     }
