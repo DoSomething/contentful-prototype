@@ -163,11 +163,11 @@ export function toggleReportbackAffirmation(shouldShowAffirmation) {
 }
 
 // Async Action: submit a new reportback and place in submissions gallery.
-export function submitReportback(reportback) {
+export function submitReportback(reportback, isReferralRB) {
   return (dispatch) => {
     dispatch(storeReportback(reportback));
 
-    const url = `${window.location.origin}/next/reportbacks`;
+    const url = `${window.location.origin}/next/${isReferralRB ? 'referrals' : 'reportbacks'}`;
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
