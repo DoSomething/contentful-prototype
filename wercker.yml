@@ -5,7 +5,7 @@ build:
       - leipert/composer-install@0.9.1
       - wercker/npm-install
       - script:
-          name: phpunit
+          name: run phpunit test suite
           code: |-
             php artisan key:generate
             php artisan gateway:key
