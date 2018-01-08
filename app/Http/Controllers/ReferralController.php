@@ -17,7 +17,7 @@ class ReferralController extends Controller
         $this->phoenixLegacy = $phoenixLegacy;
         $this->postRepository = $postRepository;
 
-        $this->middleware('auth', ['only' => ['store']]);
+        $this->middleware('auth')->only(['store']);
     }
 
     /**
