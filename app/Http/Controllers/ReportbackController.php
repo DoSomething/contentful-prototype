@@ -20,7 +20,7 @@ class ReportbackController extends Controller
 
         $this->postRepository = $postRepository;
 
-        $this->middleware('auth', ['only' => ['store']]);
+        $this->middleware('auth')->only(['store']);
     }
 
     /**
