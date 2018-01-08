@@ -54,9 +54,9 @@ class ReportbackController extends Controller
             'whyParticipated' => 'required',
         ]);
 
-        return get_class($request->file('media'));
         // Store the uploaded file.
         $path = UploadedMedia::store($request->file('media'));
+
         $response = $this->phoenixLegacy->storeReportback(
             auth()->id(),
             $request->input('campaignId'),
