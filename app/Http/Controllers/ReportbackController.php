@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\Facades\Log;
-use App\Exceptions\InvalidFileUploadException;
+use App\Services\UploadedMedia;
 
 class ReportbackController extends Controller
 {
@@ -54,15 +54,9 @@ class ReportbackController extends Controller
             'whyParticipated' => 'required',
         ]);
 
-        $reportbackPhoto = $request->file('media');
-
-        if (! $reportbackPhoto->isValid()) {
-            throw new InvalidFileUploadException;
-        }
-
+        return get_class($request->file('media'));
         // Store the uploaded file.
-        $path = '/uploads/'.$reportbackPhoto->store('images', 'uploads');
-
+        $path = UploadedMedia::store($request->file('media'));
         $response = $this->phoenixLegacy->storeReportback(
             auth()->id(),
             $request->input('campaignId'),
@@ -77,8 +71,7 @@ class ReportbackController extends Controller
 
         Log::info('RB Response:', $response);
 
-        // Delete the uploaded file.
-        app('files')->delete(public_path($path));
+        UploadedMedia::delete($path);
 
         return $response;
     }

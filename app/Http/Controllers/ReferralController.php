@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Referral;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
+use App\Services\UploadedMedia;
 use Illuminate\Support\Facades\Log;
-use App\Exceptions\InvalidFileUploadException;
 
 class ReferralController extends Controller
 {
@@ -28,7 +28,7 @@ class ReferralController extends Controller
     }
 
     /**
-     * Store 'Refer a Friend' RB fields locally, then defer to regular reportback store method.
+     * Store 'Refer a Friend' RB fields locally, then store regular reportback fields through the PhoenixLegacy API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,16 +54,7 @@ class ReferralController extends Controller
         // Static 'why participated' to pass validation.
         $request['whyParticipated'] = 'Refer-A-Friend';
 
-        $reportbackPhoto = $request->file('media');
-
-        if (! $reportbackPhoto->isValid()) {
-            throw new InvalidFileUploadException;
-        }
-
-        // Store the uploaded file.
-        $path = '/uploads/'.$reportbackPhoto->store('images', 'uploads');
-
-        $path = $this->uploadedMedia->store($request->file('media'));
+        $path = UploadedMedia::store($request->file('media'));
 
         $response = $this->phoenixLegacy->storeReportback(
             auth()->id(),
@@ -80,7 +71,7 @@ class ReferralController extends Controller
         Log::info('RB Response:', $response);
 
         // Delete the uploaded file.
-        app('files')->delete(public_path($path));
+        UploadedMedia::delete($path);
 
         return $response;
     }
