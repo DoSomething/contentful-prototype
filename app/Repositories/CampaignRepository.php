@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use App\Entities\Campaign;
-use Contentful\Delivery\Client as Contentful;
 use Contentful\Delivery\Query;
 use App\Services\PhoenixLegacy;
+use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignRepository
