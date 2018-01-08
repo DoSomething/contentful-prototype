@@ -1,6 +1,9 @@
+/* global document */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-portal';
+
 import './modal.scss';
 
 class Modal extends React.Component {
@@ -37,9 +40,15 @@ class Modal extends React.Component {
 
   render() {
     const { shouldShowModal, children } = this.props;
+    const chrome = document.getElementById('chrome');
 
     return (
-      <Portal closeOnEsc isOpened={shouldShowModal}>
+      <Portal
+        closeOnEsc
+        isOpened={shouldShowModal}
+        onOpen={() => chrome.classList.add('-lock')}
+        onClose={() => chrome.classList.remove('-lock')}
+      >
         <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
           <div className="modal__container">
             { children }

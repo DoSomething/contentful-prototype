@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../../Card';
 import Markdown from '../../Markdown';
+import NotFound from '../../NotFound';
 import { CampaignUpdateContainer } from '../../CampaignUpdate';
 
 const ContentModal = (props) => {
@@ -15,7 +16,12 @@ const ContentModal = (props) => {
 
   const card = (
     <Card title={title} className="modal__slide">
-      <Markdown className="padded">{ content }</Markdown>
+      {
+        content ?
+          <Markdown className="padded">{ content }</Markdown>
+          :
+          <NotFound />
+      }
     </Card>
   );
 
