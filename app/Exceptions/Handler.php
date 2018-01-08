@@ -3,10 +3,13 @@
 namespace App\Exceptions;
 
 use Exception;
+use Contentful\Exception\NotFoundException;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -48,6 +51,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Re-cast to more appropriate exception.
+        if ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundException) {
+            $exception = new NotFoundHttpException('That resource could not be found.');
+        }
+
         if ($request->ajax() || $request->wantsJson()) {
             return $this->buildJsonResponse($request, $exception);
         }

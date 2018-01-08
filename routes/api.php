@@ -18,6 +18,7 @@ $router->group(['prefix' => 'v1'], function () {
 
     // Campaigns
     $this->get('/campaigns', 'Api\CampaignsController@index');
+    $this->get('/campaigns/{id}', 'Api\CampaignsController@show');
 
     // Campaign Posts
     $this->get('/campaigns/{id}/posts', 'Api\CampaignPostsController@index');

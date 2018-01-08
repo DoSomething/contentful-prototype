@@ -13,10 +13,21 @@ use SeatGeek\Sixpack\Session\Base as Sixpack;
  */
 
 /**
+ * Determine if the supplied ID is likely a legacy campaign ID.
+ *
+ * @param  string $id
+ * @return boolean
+ */
+function is_legacy_id($id)
+{
+    return is_numeric($id);
+}
+
+/**
  * Create a script tag to set a global variable.
  *
- * @param $json
- * @param string $store
+ * @param  $json
+ * @param  string $store
  * @return HtmlString
  */
 function scriptify($json = [], $store = 'STATE')
