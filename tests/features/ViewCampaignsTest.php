@@ -11,22 +11,23 @@ class ViewCampaignsTest extends TestCase
     // since we ideally shouldn't be connecting to Contentful
     // to grab content for running tests.
 
-    /** @test */
-    public function user_can_view_a_list_of_campaigns()
-    {
-        $this->visit('/campaigns');
+    // @TODO: rewrite or review!
+    // /** @test */
+    // public function user_can_view_a_list_of_campaigns()
+    // {
+    //     $this->visit('/campaigns');
 
-        $this->seePageIs('/campaigns');
-        $this->see('Campaigns');
-    }
+    //     $this->seePageIs('/campaigns');
+    //     $this->see('Campaigns');
+    // }
 
     /** @test */
     public function user_can_view_a_campaign()
     {
-        $this->visit('/campaigns/baby-its-cold-inside');
+        $this->visit('/campaigns/test-teens-for-jeans');
 
-        $this->seePageIs('/campaigns/baby-its-cold-inside');
-        $this->see('Baby, It\'s Cold Inside');
-        $this->see('Decrease your oil dependence by turning off the heat for a day.');
+        $this->seePageIs('/us/campaigns/test-teens-for-jeans');
+        $this->see('[Test] Teens for Jeans');
+        $this->see('Let\'s collect another million jeans together.');
     }
 }

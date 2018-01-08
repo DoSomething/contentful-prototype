@@ -3,11 +3,10 @@
 class CampaignTest extends TestCase
 {
     /** @test */
-    public function can_check_if_campaign_is_active()
+    public function can_find_specified_campaign()
     {
-        $campaign = $this->getCampaign();
+        $campaign = $this->getCampaign('test-teens-for-jeans');
 
-        $this->assertNotNull($campaign->isActive());
-        $this->assertEquals('boolean', gettype($campaign->isActive()));
+        $this->assertEquals('6LQzMvDNQcYQYwso8qSkQ8', $campaign->id);
     }
 }

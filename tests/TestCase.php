@@ -32,9 +32,9 @@ abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
      *
      * @return \App\Entities\Campaign
      */
-    protected function getCampaign()
+    protected function getCampaign($slug = 'test-teens-for-jeans')
     {
         // @TODO: set up a mock campaign!
-        return app(CampaignRepository::class)->findBySlug('baby-its-cold-inside');
+        return app(CampaignRepository::class)->findBySlug($slug);
     }
 }
