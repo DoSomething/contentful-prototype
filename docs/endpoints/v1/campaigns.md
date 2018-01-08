@@ -15,6 +15,8 @@ https://next.dosomething.org/api/v1/campaigns/6LQzMvDNQcYQYwso8qSkQ8
 
 Example Response:
 
+_Note:_ If supplied Legacy ID returns a campaign from Ashes, then the format below does not apply. Please refer to the [Ashes Retrieve a campaign endpoint response example](https://github.com/DoSomething/phoenix/blob/dev/documentation/endpoints/campaigns.md#retrieve-a-campaign). This is only temporary!
+
 ```
 {
     "id": "6LQzMvDNQcYQYwso8qSkQ8",
