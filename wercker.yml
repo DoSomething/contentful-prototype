@@ -5,6 +5,12 @@ build:
       - leipert/composer-install@0.9.1
       - wercker/npm-install
       - script:
+          name: phpunit
+          code: |-
+            php artisan key:generate
+            php artisan gateway:key
+            vendor/bin/phpunit
+      - script:
           name: check code style
           code: npm run lint
       - script:
