@@ -10,14 +10,21 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignRepository
 {
+    /**
+     * Contentful client instance.
+     */
     private $contentful;
 
+    /**
+     * PhoenixLegacy service instance.
+     */
     private $phoenixLegacy;
 
     /**
      * CampaignRepository constructor.
      *
      * @param Contentful $contentful
+     * @param PhoenixLegacy $phoenixLegacy
      */
     public function __construct(Contentful $contentful, PhoenixLegacy $phoenixLegacy)
     {
