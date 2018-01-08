@@ -70,7 +70,6 @@ class ReferralController extends Controller
 
         Log::info('RB Response:', $response);
 
-        // Delete the uploaded file.
         UploadedMedia::delete($path);
 
         return $response;
