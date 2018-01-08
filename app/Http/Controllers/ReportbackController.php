@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
-use Illuminate\Support\Facades\Log;
 use App\Services\UploadedMedia;
+use Illuminate\Support\Facades\Log;
 
 class ReportbackController extends Controller
 {
