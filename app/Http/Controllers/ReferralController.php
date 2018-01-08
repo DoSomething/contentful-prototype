@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Referral;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use App\Services\UploadedMedia;
 use Illuminate\Support\Facades\Log;
 
-class ReportbackController extends Controller
+class ReferralController extends Controller
 {
     /**
      * The legacy Phoenix API.
@@ -17,10 +18,7 @@ class ReportbackController extends Controller
     private $phoenixLegacy;
 
     /**
-     * ReportbackController constructor.
-     *
-     * @todo once Rogue is ready, this will all change to request
-     * Reportbacks from Rogue instead of PhoenixLegacy.
+     * ReferralController constructor.
      */
     public function __construct(PhoenixLegacy $phoenixLegacy)
     {
@@ -30,17 +28,7 @@ class ReportbackController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        return response()->json($this->phoenixLegacy->getAllReportbacks($request->query()));
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Store 'Refer a Friend' RB fields locally, then store regular reportback fields through the PhoenixLegacy API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -48,11 +36,23 @@ class ReportbackController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'friendName' => 'required',
+            'friendEmail' => 'required',
+            'friendStory' => 'required',
             'media' => 'required|file|image',
             'caption' => 'required|min:4|max:60',
             'impact' => 'required|numeric',
-            'whyParticipated' => 'required',
         ]);
+
+        Referral::create([
+            'friend_name' => $request->input('friendName'),
+            'friend_email' => $request->input('friendEmail'),
+            'friend_story' => $request->input('friendStory'),
+            'referrer_northstar_id' => auth()->id(),
+        ]);
+
+        // Static 'why participated' to pass validation.
+        $request['whyParticipated'] = 'Refer-A-Friend';
 
         $path = UploadedMedia::store($request->file('media'));
 
@@ -73,28 +73,5 @@ class ReportbackController extends Controller
         UploadedMedia::delete($path);
 
         return $response;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return response()->json($this->phoenixLegacy->getReportback($id));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        return '@todo update reportback';
     }
 }

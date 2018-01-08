@@ -4,7 +4,8 @@ import { get } from 'lodash';
 import { Flex } from '../Flex';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
-  renderThirdPartyAction, renderActionStep, renderRevealer, renderLegacyGallery,
+  renderThirdPartyAction, renderActionStep, renderRevealer,
+  renderLegacyGallery, renderVoterRegistration, renderShareAction,
 } from './ActionStepRenderers';
 
 const ActionStepsWrapper = (props) => {
@@ -30,6 +31,12 @@ const ActionStepsWrapper = (props) => {
       case 'third-party-action':
         stepIndex += 1;
         return renderThirdPartyAction(step, stepIndex);
+
+      case 'voterRegistrationAction':
+        return renderVoterRegistration(step, stepIndex);
+
+      case 'shareAction':
+        return renderShareAction();
 
       default:
         stepIndex += 1;

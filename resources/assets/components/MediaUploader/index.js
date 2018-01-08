@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types';
 /* global FileReader, URL, Blob */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
+
 import { processFile } from '../../helpers';
+
 import './media-uploader.scss';
 
 class MediaUploader extends React.Component {
@@ -46,9 +48,17 @@ class MediaUploader extends React.Component {
     let content = null;
 
     if (filePreviewUrl) {
-      content = (<img src={filePreviewUrl} alt="uploaded file" />);
+      content = (
+        <div className="media-uploader__content media-uploader--file">
+          <img src={filePreviewUrl} alt="uploaded file" />
+        </div>
+      );
     } else {
-      content = (<span>{this.props.label}</span>);
+      content = (
+        <div className="media-uploader__content media-uploader--action">
+          <span>{this.props.label}</span>
+        </div>
+      );
     }
 
     return (

@@ -3,13 +3,21 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import './photo-header.scss';
 
-const photoHeaderClasses = 'photo-header background-image-centered padding-lg';
+const renderBackgroundImage = backgroundImage => (
+  backgroundImage ?
+    <div
+      className="photo-header__background-image background-image-centered"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    />
+    :
+    null
+);
 
 const PhotoHeader = ({ children, className, backgroundImage }) => (
   <div
-    className={classnames(photoHeaderClasses, className)}
-    style={{ backgroundImage: `url(${backgroundImage})` }}
+    className={classnames('photo-header padding-lg', className)}
   >
+    { renderBackgroundImage(backgroundImage) }
     { children }
   </div>
 );

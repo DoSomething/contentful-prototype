@@ -2,12 +2,14 @@ import React from 'react';
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
+import VoterRegistrationContainer from '../VoterRegistration';
 import { FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
+import { ShareActionContainer } from '../ShareAction';
 
 /**
  * Render a competition step.
@@ -40,9 +42,12 @@ export function renderPhotoUploader(step, isSignedUp) {
   if (! isSignedUp) {
     return null;
   }
+
   return (
-    <FlexCell key="reportback_uploader" width="full">
-      <ReportbackUploaderContainer {...step.fields} />
+    <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
+      <div className="margin-horizontal-md">
+        <ReportbackUploaderContainer {...step.fields} />
+      </div>
     </FlexCell>
   );
 }
@@ -161,5 +166,42 @@ export function renderLegacyGallery() {
         <PostGalleryContainer key="post_gallery" type="reportback" />
       </div>
     </div>
+  );
+}
+
+/**
+ * Render the voter registration container.
+ *
+ * @return {Component}
+ */
+export function renderVoterRegistration(step, stepIndex) {
+  const { title, content, additionalContent } = step.fields;
+  const { template, dynamicLink } = additionalContent;
+
+  return (
+    <FlexCell width="full" key="voter-reg">
+      <div className="action-step">
+        <VoterRegistrationContainer
+          content={content}
+          title={title}
+          template={template}
+          stepIndex={stepIndex}
+          dynamicLink={dynamicLink}
+        />
+      </div>
+    </FlexCell>
+  );
+}
+
+/**
+ * Render a share action.
+ *
+ * @return {Component}
+ */
+export function renderShareAction() {
+  return (
+    <FlexCell width="full" key="share-action">
+      <ShareActionContainer />
+    </FlexCell>
   );
 }

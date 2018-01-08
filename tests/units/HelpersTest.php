@@ -5,8 +5,12 @@ class HelpersTest extends TestCase
     /** @test */
     public function can_get_a_campaign_cover_image_url()
     {
-        // @TODO: Use a mock!
-        $asset = app('contentful.delivery')->getAsset('13XDOJIsxuSegEMUuqmwWc');
+        $this->markTestIncomplete(
+          'This test has not been implemented yet.'
+        );
+
+        // @TODO: use mock instead of requesting from Contentful.
+        $asset = app('contentful.delivery')->getAsset('4k8rv5sN0kii0AoCawc6UQ');
 
         $url = get_image_url($asset, 'landscape');
 
