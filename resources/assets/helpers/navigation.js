@@ -3,7 +3,7 @@
 import { findKey } from 'lodash';
 
 export const campaignPaths = {
-  community: '/',
+  community: '/community',
   action: '/action',
   blocks: '/blocks/',
   quiz: '/quiz/',

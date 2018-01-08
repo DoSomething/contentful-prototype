@@ -27,10 +27,19 @@ const CampaignPage = (props) => {
     openModal, shouldShowActionPage, slug, subtitle, template, title, totalCampaignSignups,
   } = props;
 
-  // console.log(props.history);
-  // TODO: if the history.length > 0, use the history.goBack after you trigger the content modal
-
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
+
+  /*
+    If the campaign is closed (and an admin has not specifically
+    toggled the show Action Page button), we want to render the ActivityFeed (community page)
+    *if* it's available (meaning the campaign has an activity feed property populated).
+    Otherwise, we render the ActionPage as usual.
+  */
+  const renderActionOrFeed = () => (
+    isClosed && ! shouldShowActionPage && hasActivityFeed ?
+      <Redirect to={`${match.url}/community`} />
+      : <ActionPageContainer />
+  );
 
   return (
     <div>
@@ -63,21 +72,26 @@ const CampaignPage = (props) => {
             <Route
               path={`${match.url}`}
               exact
+              render={renderActionOrFeed}
+            />
+            <Route
+              path={`${match.url}/action`}
+              render={renderActionOrFeed}
+            />
+            <Route
+              path={`${match.url}/community`}
               render={() => {
+                /*
+                  For legacy templates which don't require an ActivityFeed
+                  (community page elements), we first check to ensure
+                  that they indeed have a feed, otherwise we'll just redirect to the action page.
+                */
                 if (template === 'legacy') {
-                  return hasActivityFeed ? <FeedContainer /> : <ActionPageContainer />;
+                  return hasActivityFeed ? <FeedContainer /> : <Redirect to={`${match.url}/action`} />;
                 }
 
                 return <FeedContainer />;
               }}
-            />
-            <Route
-              path={`${match.url}/action`}
-              render={() => (isClosed && ! shouldShowActionPage ?
-                <Redirect to={`${match.url}`} />
-                :
-                <ActionPageContainer />
-              )}
             />
             <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
             <Route path={`${match.url}/blocks/:id`} component={BlockContainer} />
@@ -99,6 +113,9 @@ const CampaignPage = (props) => {
                 return <Redirect to={`${match.url}`} />;
               }}
             />
+            { /* Any random route nested under a campaign will
+              just be redirected to the campaigns root page */ }
+            <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
           </Switch>
         </Enclosure>
         { ! isAffiliated ? <CallToActionContainer key="callToAction" className="-sticky" /> : null }
