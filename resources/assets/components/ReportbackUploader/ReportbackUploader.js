@@ -204,7 +204,7 @@ class ReportbackUploader extends React.Component {
                 <div className="form-section">
                   { showQuantityField ? impactInput : null }
 
-                 { infoFields }
+                  { infoFields }
                 </div>
 
                 <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
