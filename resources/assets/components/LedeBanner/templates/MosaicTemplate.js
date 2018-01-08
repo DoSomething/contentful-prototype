@@ -6,10 +6,12 @@ import AffiliateOptionContainer from '../../AffiliateOption';
 import SignupButtonFactory from '../../SignupButton';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
+import SponsorPromotion from '../../SponsorPromotion';
 
 const MosaicTemplate = (props) => {
   const {
     actionText,
+    affiliateSponsors,
     title,
     subtitle,
     blurb,
@@ -25,14 +27,27 @@ const MosaicTemplate = (props) => {
   };
 
   const signupArrowComponent = signupArrowContent ? (
-    <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
+    <div className="lede-banner__arrow">
+      <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
+    </div>
+  ) : null;
+
+  const sponsor = affiliateSponsors[0];
+  const sponsorComponent = sponsor ? (
+    <div className="padding-top-lg clear-both">
+      <SponsorPromotion
+        imgUrl={sponsor.fields.logo.url}
+        title={sponsor.fields.logo.title}
+      />
+    </div>
   ) : null;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div className="header__signup">
-      { signupArrowComponent }
       <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
+      { signupArrowComponent }
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
+      { sponsorComponent }
     </div>
   ), 'lede banner', { text: actionText });
 
@@ -57,6 +72,7 @@ const MosaicTemplate = (props) => {
 
 MosaicTemplate.propTypes = {
   actionText: PropTypes.string.isRequired,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,

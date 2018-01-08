@@ -4,7 +4,7 @@ import React from 'react';
 import './campaignSignupArrow.scss';
 
 const CampaignSignupArrow = ({ content, className }) => (
-  <div className={`message-callout -above -white ${className}`}>
+  <div className={`message-callout -below -white ${className}`}>
     <div className="message-callout__copy">
       <p>{content}</p>
     </div>
