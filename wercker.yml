@@ -2,6 +2,9 @@ box: dosomething/ds-docker-php
 build:
     # The steps that will be executed on build
     steps:
+      - script:
+          name: configure environment
+          code: cp .env.example .env
       - leipert/composer-install@0.9.1
       - wercker/npm-install
       - script:
