@@ -16,7 +16,7 @@ use SeatGeek\Sixpack\Session\Base as Sixpack;
  * Determine if the supplied ID is likely a legacy campaign ID.
  *
  * @param  string $id
- * @return boolean
+ * @return bool
  */
 function is_legacy_id($id)
 {
