@@ -38,7 +38,6 @@ class Page extends Entity implements JsonSerializable
             'fields' => [
                 'title' => $this->title,
                 'content' => $this->content,
-                'legacyContent' => array_get($this->additionalContent, 'pitchContent', null),
                 'sidebar' => $this->parseSidebar($this->sidebar),
             ],
         ];
