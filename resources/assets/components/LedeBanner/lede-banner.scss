@@ -112,4 +112,14 @@
     clear: none;
     margin-top: 0;
   }
+
+  .message-callout.-white .message-callout__copy p {
+    font-size: 24px;
+  }
+}
+
+.lede-banner__sponsor {
+  .promotion .__copy, .promotion .__image {
+    max-width: 100%;
+  }
 }

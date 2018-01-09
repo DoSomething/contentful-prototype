@@ -34,7 +34,7 @@ const MosaicTemplate = (props) => {
 
   const sponsor = affiliateSponsors[0];
   const sponsorComponent = sponsor ? (
-    <div className="padding-top-lg clear-both">
+    <div className="lede-banner__sponsor padding-top-lg clear-both">
       <SponsorPromotion
         imgUrl={sponsor.fields.logo.url}
         title={sponsor.fields.logo.title}
