@@ -163,11 +163,9 @@ export function toggleReportbackAffirmation(shouldShowAffirmation) {
 }
 
 // Async Action: submit a new reportback and place in submissions gallery.
-export function submitReportback(reportback, isReferralRB) {
+export function submitReportback(url, reportback) {
   return (dispatch) => {
     dispatch(storeReportback(reportback));
-
-    const url = `${window.location.origin}/next/${isReferralRB ? 'referrals' : 'reportbacks'}`;
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
@@ -199,6 +197,16 @@ export function submitReportback(reportback, isReferralRB) {
       })
       .catch(error => console.log(error));
   };
+}
+
+export function submitReferralPost(post) {
+  const url = `${window.location.origin}/next/referrals`;
+  return submitReportback(url, post);
+}
+
+export function submitPhotoPost(post) {
+  const url = `${window.location.origin}/next/reportbacks`;
+  return submitReportback(url, post);
 }
 
 export function fetchUserReportbacks(userId, campaignId) {
