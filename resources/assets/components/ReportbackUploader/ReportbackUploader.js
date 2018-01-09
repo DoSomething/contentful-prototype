@@ -94,27 +94,28 @@ class ReportbackUploader extends React.Component {
 
     reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
 
-    this.props.submitReportback(
-      ReportbackUploader.setFormData(reportback),
-      this.props.referralRB,
-    ).then(() => {
-      const trackingData = { campaignId: this.props.legacyCampaignId };
-      let trackingMessage;
+    const submitReportback = this.props.referralRB ?
+      this.props.submitReferralPost : this.props.submitPhotoPost;
 
-      if (this.props.submissions.messaging.success) {
-        this.form.reset();
-        this.setState({
-          media: this.defaultMediaState,
-        });
+    submitReportback(ReportbackUploader.setFormData(reportback))
+      .then(() => {
+        const trackingData = { campaignId: this.props.legacyCampaignId };
+        let trackingMessage;
 
-        trackingMessage = 'Successful Reportback';
-      } else {
-        trackingMessage = 'Unsuccessful Reportback';
-        trackingData.submission_error = this.props.submissions.messaging.error;
-      }
+        if (this.props.submissions.messaging.success) {
+          this.form.reset();
+          this.setState({
+            media: this.defaultMediaState,
+          });
 
-      this.props.trackEvent(trackingMessage, trackingData);
-    });
+          trackingMessage = 'Successful Reportback';
+        } else {
+          trackingMessage = 'Unsuccessful Reportback';
+          trackingData.submission_error = this.props.submissions.messaging.error;
+        }
+
+        this.props.trackEvent(trackingMessage, trackingData);
+      });
   }
 
   render() {
@@ -252,7 +253,8 @@ ReportbackUploader.propTypes = {
     messaging: PropTypes.object,
     reportback: PropTypes.object,
   }).isRequired,
-  submitReportback: PropTypes.func.isRequired,
+  submitReferralPost: PropTypes.func.isRequired,
+  submitPhotoPost: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
   toggleReportbackAffirmation: PropTypes.func.isRequired,
 };
