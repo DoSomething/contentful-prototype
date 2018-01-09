@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Markdown from '../../Markdown';
 import AffiliateOptionContainer from '../../AffiliateOption';
@@ -42,9 +43,14 @@ const MosaicTemplate = (props) => {
     </div>
   ) : null;
 
+  const buttonClassname = classnames('button', { '-float': sponsor });
+
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div className="header__signup">
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
+      <button
+        className={buttonClassname}
+        onClick={() => clickedSignUp(legacyCampaignId)}
+      >{ actionText }</button>
       { signupArrowComponent }
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
       { sponsorComponent }
