@@ -3,8 +3,8 @@ import { get } from 'lodash';
 import { PuckConnector } from '@dosomething/puck-client';
 import ReportbackUploader from './ReportbackUploader';
 import {
-  addSubmissionItemToList, submitReportback,
-  toggleReportbackAffirmation,
+  addSubmissionItemToList, submitPhotoPost,
+  submitReferralPost, toggleReportbackAffirmation,
 } from '../../actions';
 
 /**
@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
   noun: get(state.campaign.additionalContent, 'noun'),
   uploads: state.uploads,
   shouldShowAffirmation: state.submissions.shouldShowAffirmation,
+  referralRB: get(state.campaign.additionalContent, 'referralRB'),
 });
 
 /**
@@ -25,7 +26,8 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   addSubmissionItemToList,
-  submitReportback,
+  submitPhotoPost,
+  submitReferralPost,
   toggleReportbackAffirmation,
 };
 
