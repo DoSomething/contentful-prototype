@@ -28,7 +28,7 @@ const MosaicTemplate = (props) => {
   };
 
   const signupArrowComponent = signupArrowContent ? (
-    <CampaignSignupArrow content={signupArrowContent} className="lede-banner__arrow -mosaic-arrow" />
+    <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
   ) : null;
 
   const sponsor = affiliateSponsors[0];
