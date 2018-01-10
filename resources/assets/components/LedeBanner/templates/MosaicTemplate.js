@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Markdown from '../../Markdown';
 import AffiliateOptionContainer from '../../AffiliateOption';
 import SignupButtonFactory from '../../SignupButton';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
+import SponsorPromotion from '../../SponsorPromotion';
 
 const MosaicTemplate = (props) => {
   const {
     actionText,
+    affiliateSponsors,
     title,
     subtitle,
     blurb,
@@ -28,11 +31,27 @@ const MosaicTemplate = (props) => {
     <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
   ) : null;
 
+  const sponsor = affiliateSponsors[0];
+  const sponsorComponent = sponsor ? (
+    <div className="lede-banner__sponsor padding-top-lg clear-both">
+      <SponsorPromotion
+        imgUrl={sponsor.fields.logo.url}
+        title={sponsor.fields.logo.title}
+      />
+    </div>
+  ) : null;
+
+  const buttonClassname = classnames('button', { '-float': sponsor });
+
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <div className="header__signup">
+      <button
+        className={buttonClassname}
+        onClick={() => clickedSignUp(legacyCampaignId)}
+      >{ actionText }</button>
       { signupArrowComponent }
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
+      { sponsorComponent }
     </div>
   ), 'lede banner', { text: actionText });
 
@@ -57,6 +76,7 @@ const MosaicTemplate = (props) => {
 
 MosaicTemplate.propTypes = {
   actionText: PropTypes.string.isRequired,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,

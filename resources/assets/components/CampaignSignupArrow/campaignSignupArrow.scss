@@ -1,4 +1,3 @@
-@import '~@dosomething/forge/scss/toolkit';
 @import '../../scss/next-toolbox.scss';
 
 .message-callout.-dynamic-right {
@@ -14,6 +13,7 @@
 }
 
 .message-callout.-mosaic-arrow {
+  transform: none;
 
   @include media($larger) {
     width: 45%;
@@ -34,20 +34,13 @@
       padding-left: $base-spacing * 2;
     }
 
-    margin-bottom: $half-spacing;
-
     @include media($small) {
-      margin-bottom: $base-spacing;
       margin-left: - $base-spacing * 2;
     }
   }
 
   .message-callout__copy::before {
     @include media($larger) {
-      transform: none;
-    }
-
-    @include media($medium) {
       background: url("~@dosomething/forge/assets/images/callout/arrow-left-white.png") 50% 50% / 35px no-repeat transparent !important;
       height: 19px;
       left: 0;
@@ -55,8 +48,6 @@
       right: auto;
       top: 50%;
       width: 38px;
-
-      transform: rotate(270deg);
     }
 
     @include media($small) {
