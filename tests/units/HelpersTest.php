@@ -3,6 +3,18 @@
 class HelpersTest extends TestCase
 {
     /** @test */
+    public function can_check_if_legacy_id()
+    {
+        $legacyId = '1144';
+        $contentfulId = '6LQzMvDNQcYQYwso8qSkQ8';
+        $randomString = 'some-random-string';
+
+        $this->assertTrue(is_legacy_id($legacyId));
+        $this->assertFalse(is_legacy_id($contentfulId));
+        $this->assertFalse(is_legacy_id($randomString));
+    }
+
+    /** @test */
     public function can_get_a_campaign_cover_image_url()
     {
         $this->markTestIncomplete(

@@ -4,19 +4,33 @@ namespace App\Repositories;
 
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
+use App\Services\PhoenixLegacy;
 use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignRepository
 {
     /**
+     * Contentful client instance.
+     */
+    private $contentful;
+
+    /**
+     * PhoenixLegacy service instance.
+     */
+    private $phoenixLegacy;
+
+    /**
      * CampaignRepository constructor.
      *
      * @param Contentful $contentful
+     * @param PhoenixLegacy $phoenixLegacy
      */
-    public function __construct(Contentful $contentful)
+    public function __construct(Contentful $contentful, PhoenixLegacy $phoenixLegacy)
     {
-        $this->client = $contentful;
+        $this->contentful = $contentful;
+
+        $this->phoenixLegacy = $phoenixLegacy;
     }
 
     /**
@@ -28,12 +42,56 @@ class CampaignRepository
     {
         $query = (new Query)->setContentType('campaign');
 
-        $campaigns = $this->makeRequest($query);
+        $campaigns = $this->contentful->getEntries($query);
         $array = iterator_to_array($campaigns);
 
         return collect($array)->map(function ($entity) {
             return new Campaign($entity);
         });
+    }
+
+    /**
+     * Get specified Campaign resource.
+     *
+     * @param  string $id
+     * @return stdClass
+     */
+    public function getCampaign($id)
+    {
+        $campaign = $this->contentful->getEntry($id);
+
+        return new Campaign($campaign);
+    }
+
+    /**
+     * Find a campaign by its legacy ID.
+     *
+     * @param  string $id
+     * @return stdCalss
+     */
+    public function findByLegacyCampaignId($id)
+    {
+        // @TODO let's ignore any caching for now, and eventually provide a solution that
+        // can apply to more methods than just the findBySlug() used for the web app.
+        $query = (new Query)
+            ->setContentType('campaign')
+            ->where('fields.legacyCampaignId', $id)
+            ->setInclude(3)
+            ->setLimit(1);
+
+        $campaigns = $this->contentful->getEntries($query);
+
+        if (! $campaigns->count()) {
+            $legacyCampaign = $this->phoenixLegacy->getCampaign($id);
+
+            if (! $legacyCampaign) {
+                throw new ModelNotFoundException;
+            }
+
+            return $legacyCampaign['data'];
+        }
+
+        return new Campaign($campaigns[0]);
     }
 
     /**
@@ -54,7 +112,7 @@ class CampaignRepository
                 ->setInclude(3)
                 ->setLimit(1);
 
-            $campaigns = $this->makeRequest($query);
+            $campaigns = $this->contentful->getEntries($query);
 
             if (! $campaigns->count()) {
                 return 'not_found';
@@ -72,18 +130,5 @@ class CampaignRepository
         }
 
         return json_decode($flattenedCampaign);
-    }
-
-    /**
-     * Make a request to Contentful's Delivery API.
-     *
-     * @param $query
-     * @return \Contentful\ResourceArray
-     */
-    public function makeRequest($query)
-    {
-        $campaigns = $this->client->getEntries($query);
-
-        return $campaigns;
     }
 }
