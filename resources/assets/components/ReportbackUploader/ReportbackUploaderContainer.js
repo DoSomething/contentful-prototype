@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   submissions: state.submissions,
   noun: get(state.campaign.additionalContent, 'noun'),
+  verb: get(state.campaign.additionalContent, 'verb'),
   uploads: state.uploads,
   shouldShowAffirmation: state.submissions.shouldShowAffirmation,
   referralRB: get(state.campaign.additionalContent, 'referralRB'),

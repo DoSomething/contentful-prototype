@@ -47,12 +47,19 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
+        $messages = [
+            // override messages
+        ];
+
+        Log::info('Submission', $request->input());
+
         $this->validate($request, [
             'media' => 'required|file|image',
             'caption' => 'required|min:4|max:60',
-            'impact' => 'required|integer|min:1',
+            'impact' => 'integer|min:1',  //required|integer|min:1
+            'showImpact' => 'boolean',
             'whyParticipated' => 'required',
-        ]);
+        ], $messages);
 
         $path = UploadedMedia::store($request->file('media'));
 
