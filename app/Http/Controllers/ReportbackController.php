@@ -47,7 +47,7 @@ class ReportbackController extends Controller
      */
     public function store(Request $request)
     {
-        $impactMessage = $request->input('previousImpact') > 0 ? 'The quantity needs to be greater than your previous quantity.' : 'The quantity field needs to be a number greater than 0.';
+        $impactMessage = $request->input('previousImpact') > 0 ? 'The quantity needs to be greater than your previous quantity of '.$request->input('previousImpact').'.' : 'The quantity field needs to be a number greater than 0.';
 
         $messages = [
             'media.required' => 'An uploaded photo is required.',
