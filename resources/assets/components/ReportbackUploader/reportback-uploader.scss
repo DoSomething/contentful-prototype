@@ -98,9 +98,11 @@
     text-transform: uppercase;
   }
 
-  .impact-display__message {
+  .impact-display__help-text {
+    color: $med-gray;
     font-size: $font-small;
-    padding-bottom: $half-spacing;
+    font-style: italic;
+    padding-top: $half-spacing;
   }
 }
 

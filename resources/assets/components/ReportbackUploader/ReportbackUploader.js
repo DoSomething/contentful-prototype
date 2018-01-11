@@ -68,15 +68,16 @@ class ReportbackUploader extends React.Component {
     );
   }
 
+  determineImpact(fieldValue) {
+    return fieldValue ? Number(fieldValue) - Number(this.previousImpact) : '';
+  }
+
   handleOnFileUpload(media) {
     this.setState({ media });
   }
 
   handleOnSubmitForm(event) {
     event.preventDefault();
-
-    // @TODO temp solution until Rogue accepts quantity per post!
-    const currentImpact = this.props.showQuantityField ? this.impact.value : 1;
 
     const infoFields = this.props.referralRB ? ({
       friendName: this.friend_name.value,
@@ -89,10 +90,10 @@ class ReportbackUploader extends React.Component {
     const reportback = {
       campaignId: this.props.legacyCampaignId,
       caption: this.caption.value,
-      impact: Number(currentImpact) - Number(this.previousImpact),
+      impact: this.props.showQuantityField ? this.determineImpact(this.impact.value) : 1,
       media: this.state.media,
       previousImpact: this.previousImpact,
-      showImpact: 1, //this.props.showQuantityField,
+      showImpact: this.props.showQuantityField ? 1 : 0,
       status: 'pending',
       ...infoFields,
     };
@@ -100,8 +101,6 @@ class ReportbackUploader extends React.Component {
     const fileType = reportback.media.file ? reportback.media.file.type : null;
 
     reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
-
-    console.log(reportback);
 
     const submitReportback = this.props.referralRB ?
       this.props.submitReferralPost : this.props.submitPhotoPost;
@@ -157,8 +156,6 @@ class ReportbackUploader extends React.Component {
         },
       }), {});
 
-    // this.previousImpact = 10;
-
     const impactInput = (
       <div className="form-item-group">
         <div className="padding-md">
@@ -172,13 +169,15 @@ class ReportbackUploader extends React.Component {
           }
 
           <label className={inputClassnames.impact.label} htmlFor="impact">
-          { this.previousImpact ?
-            `Got more? Great! You can enter your new total here:`
-            :
-            `How many ${this.props.noun.plural} are in this photo?`
-          }
+            { this.previousImpact ?
+              'Got more items? You can enter your new total here:'
+              :
+              'How many items are in this photo?'
+            }
           </label>
           <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Quantity # (300)" ref={input => (this.impact = input)} />
+
+          { this.previousImpact ? <div className="impact-display__help-text">You will need to upload a new photo to update your collection total.</div> : null }
         </div>
       </div>
     );

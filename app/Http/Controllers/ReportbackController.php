@@ -48,15 +48,19 @@ class ReportbackController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            // override messages
+            'media.required' => 'An uploaded photo is required.',
+            'impact.required_if' => 'The quantity field is required.',
+            'impact.integer' => 'The quantity field needs to be a number.',
+            'impact.min' => 'The quantity field needs to be a number greater than 0.'
         ];
 
+        Log::info('Show Impact', [$request->input('showImpact')]);
         Log::info('Submission', $request->input());
 
         $this->validate($request, [
             'media' => 'required|file|image',
             'caption' => 'required|min:4|max:60',
-            'impact' => 'integer|min:1',  //required|integer|min:1
+            'impact' => 'required_if:showImpact,1|integer|min:1',
             'showImpact' => 'boolean',
             'whyParticipated' => 'required',
         ], $messages);
