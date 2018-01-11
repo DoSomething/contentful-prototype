@@ -18,7 +18,7 @@ export function fetchCampaignPosts() {
       query: {
         limit: 24,
       },
-      url: `api/v1/campaigns/${campaignId}/posts`,
+      url: `api/v2/campaigns/${campaignId}/posts`,
     }));
   };
 }

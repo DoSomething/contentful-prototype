@@ -1,8 +1,8 @@
-# Campaigns (v1)
+# Campaigns (v2)
 
 ## Retrieve a Campaign
 ```
-GET /api/v1/campaigns/{id}
+GET /api/v2/campaigns/{id}
 ```
 
 The `id` can be either a Contentful ID or an Ashes Legacy ID.
@@ -10,7 +10,7 @@ The `id` can be either a Contentful ID or an Ashes Legacy ID.
 Example Request:
 
 ```
-https://next.dosomething.org/api/v1/campaigns/6LQzMvDNQcYQYwso8qSkQ8
+https://next.dosomething.org/api/v2/campaigns/6LQzMvDNQcYQYwso8qSkQ8
 ```
 
 Example Response:
@@ -68,7 +68,7 @@ _Note:_ If supplied Legacy ID returns a campaign from Ashes, then the format bel
 
 ## Retrieve All Posts for a Campaign
 ```
-GET /api/v1/campaigns/{id}/posts
+GET /api/v2/campaigns/{id}/posts
 ```
 
 The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:$id` to the query params.
@@ -78,7 +78,7 @@ The request is proxied to Rogue and automatically adds the `filter[campaign_id]=
 
 ## Create a Post for a Campaign
 ```
-POST /api/v1/campaigns/{id}/posts
+POST /api/v2/campaigns/{id}/posts
 ```
 
 The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:$id` to the query params.

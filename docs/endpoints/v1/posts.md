@@ -1,8 +1,8 @@
-# Posts (v1)
+# Posts (v2)
 
 ## Retrieve All Posts
 ```
-GET /api/v1/posts
+GET /api/v2/posts
 ```
 
 The request is proxied to Rogue.
