@@ -157,8 +157,6 @@ class ReportbackUploader extends React.Component {
         },
       }), {});
 
-    this.previousImpact = 35;
-
     const impactInput = (
       <div className="form-item-group">
         <div className="padding-md">
