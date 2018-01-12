@@ -161,11 +161,11 @@ class ReportbackUploader extends React.Component {
       <div className="form-item-group">
         <div className="padding-md">
           <label className={inputClassnames.friendName.label} htmlFor="friend_name">Friend&#39;s Name</label>
-          <input className={inputClassnames.friendName.textField} id="friend_name" name="friend_name" type="text" placeholder="Garfield" ref={input => (this.friend_name = input)} />
+          <input className={inputClassnames.friendName.textField} id="friend_name" name="friend_name" type="text" placeholder="Friend's name" ref={input => (this.friend_name = input)} />
         </div>
         <div className="padding-md">
           <label className={inputClassnames.friendEmail.label} htmlFor="friend_email">Friend&#39;s Email</label>
-          <input className={inputClassnames.friendEmail.textField} id="friend_email" name="friend_email" type="text" placeholder="garfield@lesagna.com" ref={input => (this.friend_email = input)} />
+          <input className={inputClassnames.friendEmail.textField} id="friend_email" name="friend_email" type="text" placeholder="puppet-sloth@example.com" ref={input => (this.friend_email = input)} />
         </div>
         <div className="padding-md">
           <label className={inputClassnames.friendStory.label} htmlFor="friend_story">Friend&#39;s Story</label>
