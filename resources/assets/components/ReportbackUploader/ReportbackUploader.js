@@ -60,6 +60,8 @@ class ReportbackUploader extends React.Component {
     };
 
     this.previousImpact = get(props.submissions.reportback, 'quantity', 0);
+
+    console.log(props);
   }
 
   getAffirmationContent() {
@@ -79,6 +81,9 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
 
+    console.log('😜');
+    console.log(this.props);
+
     const infoFields = this.props.referralRB ? ({
       friendName: this.friend_name.value,
       friendEmail: this.friend_email.value,
@@ -88,6 +93,7 @@ class ReportbackUploader extends React.Component {
     });
 
     const reportback = {
+      actionType: this.props.referralRB ? 'referralAction' : this.props.actionType,
       campaignId: this.props.legacyCampaignId,
       caption: this.caption.value,
       impact: this.props.showQuantityField ? this.determineImpact(this.impact.value) : 1,
@@ -155,6 +161,8 @@ class ReportbackUploader extends React.Component {
           }),
         },
       }), {});
+
+    this.previousImpact = 35;
 
     const impactInput = (
       <div className="form-item-group">
