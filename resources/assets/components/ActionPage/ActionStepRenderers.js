@@ -42,7 +42,7 @@ export function renderPhotoUploader(step, isSignedUp) {
   if (! isSignedUp) {
     return null;
   }
-  console.log(step);
+
   return (
     <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
       <div className="margin-horizontal-md">
