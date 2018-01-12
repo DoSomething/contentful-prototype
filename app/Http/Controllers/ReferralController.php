@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Referral;
-use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use App\Services\UploadedMedia;
 use Illuminate\Support\Facades\Log;

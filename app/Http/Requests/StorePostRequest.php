@@ -47,15 +47,13 @@ class StorePostRequest extends FormRequest
     {
         $additionalRules = [];
 
-        if ($this->input('actionType') === 'photoUploaderAction')
-        {
+        if ($this->input('actionType') === 'photoUploaderAction') {
             $additionalRules = [
                 'whyParticipated' => 'required',
             ];
         }
 
-        if ($this->input('actionType') === 'referralAction')
-        {
+        if ($this->input('actionType') === 'referralAction') {
             $additionalRules = [
                 'friendEmail' => 'required|email',
                 'friendName' => 'required',
