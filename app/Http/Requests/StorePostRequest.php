@@ -57,7 +57,7 @@ class StorePostRequest extends FormRequest
         if ($this->input('actionType') === 'referralAction')
         {
             $additionalRules = [
-                'friendEmail' => 'required',
+                'friendEmail' => 'required|email',
                 'friendName' => 'required',
                 'friendStory' => 'required',
             ];
