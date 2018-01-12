@@ -51,7 +51,6 @@ const MosaicTemplate = (props) => {
       >{ actionText }</button>
       { signupArrowComponent }
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
-      { sponsorComponent }
     </div>
   ), 'lede banner', { text: actionText });
 
@@ -68,6 +67,7 @@ const MosaicTemplate = (props) => {
           { blurb ? <Markdown className="lede-banner__blurb">{blurb}</Markdown> : null }
 
           { isAffiliated ? null : <SignupButton /> }
+          { sponsorComponent }
         </div>
       </div>
     </header>
