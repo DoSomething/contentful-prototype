@@ -37,7 +37,7 @@ class ReferralController extends Controller
     {
         $this->validate($request, [
             'friendName' => 'required',
-            'friendEmail' => 'required',
+            'friendEmail' => 'required|email',
             'friendStory' => 'required',
             'media' => 'required|file|image',
             'caption' => 'required|min:4|max:60',
