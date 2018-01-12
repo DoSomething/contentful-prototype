@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Answer from './Answer';
-import PhotoHeader from '../PhotoHeader';
+import { PhotoHeader } from '../PhotoHeader';
 
 const isActive = (answer, activeAnswer) => answer.id === activeAnswer;
 const shouldFade = (answer, activeAnswer) => (
