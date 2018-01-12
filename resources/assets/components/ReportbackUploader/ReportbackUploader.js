@@ -266,6 +266,7 @@ class ReportbackUploader extends React.Component {
 }
 
 ReportbackUploader.propTypes = {
+  actionType: PropTypes.string,
   affirmationContent: PropTypes.string,
   referralRB: PropTypes.bool,
   informationContent: PropTypes.string,
@@ -291,6 +292,7 @@ ReportbackUploader.propTypes = {
 };
 
 ReportbackUploader.defaultProps = {
+  actionType: 'photoUploaderAction',
   affirmationContent: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
   referralRB: false,
   informationContent: null,
