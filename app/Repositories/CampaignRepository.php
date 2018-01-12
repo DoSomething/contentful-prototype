@@ -58,9 +58,15 @@ class CampaignRepository
      */
     public function getCampaign($id)
     {
-        $campaign = $this->contentful->getEntry($id);
+        $query = (new Query)
+            ->setContentType('campaign')
+            ->where('sys.id', $id)
+            ->setInclude(3)
+            ->setLimit(1);
 
-        return new Campaign($campaign);
+        $campaigns = $this->contentful->getEntries($query);
+
+        return new Campaign($campaigns[0]);
     }
 
     /**
