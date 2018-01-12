@@ -36,6 +36,10 @@
     display: block;
   }
 
+  blockquote p {
+    font-size: $font-medium;
+  }
+
   pre, blockquote {
     position: relative;
     margin: $base-spacing 0;
