@@ -12,8 +12,7 @@
                     </div>
                     <div class="container__block -centered">
                         <p>
-                            We searched our site, but couldn't find what you were looking for. Try <a href="{{ url('/us/campaigns/sincerely-us') }}">Sincerely Us</a>, our campaign
-                            to send letters of support to every Mosque in the United States, or <a href="{{ url('/') }}">our homepage</a>.
+                            We searched our site, but couldn't find what you were looking for. Try <a href="{{ url('/us/campaigns/grab-mic') }}">Grab the Mic</a> and join our movement to create the most civically active generation ever, <a href="{{ url('/') }}">our homepage</a>, or our <a href="https://help.dosomething.org/hc/en-us">Help Center</a>.
                         </p>
                     </div>
                 </div>
