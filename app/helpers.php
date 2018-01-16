@@ -42,6 +42,7 @@ function array_random($array, $number = null)
     foreach ((array) $keys as $key) {
         $results[] = $array[$key];
     }
+
     return $results;
 }
 
