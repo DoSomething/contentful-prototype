@@ -7,8 +7,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
-    use DatabaseSetup;
-    use WithOAuthTokens;
+    use DatabaseSetup, WithOAuthTokens;
 
     /**
      * The base URL to use while testing the application.
