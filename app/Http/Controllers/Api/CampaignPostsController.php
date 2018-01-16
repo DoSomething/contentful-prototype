@@ -47,9 +47,15 @@ class CampaignPostsController extends Controller
      * @param  string $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store($id)
+    public function store($campaignId)
     {
-        // @TODO 501 Not Implemented for now.
-        abort(501);
+        $this->validate(request(), [
+            'media' => 'required',  //@TODO: add file|image
+            'caption' => 'required|min:4|max:60',
+            'impact' => 'required|integer|min:1',
+            'whyParticipated' => 'required',
+        ]);
+
+        return response()->json([], 201);
     }
 }
