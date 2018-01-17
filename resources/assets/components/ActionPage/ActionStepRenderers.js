@@ -198,10 +198,10 @@ export function renderVoterRegistration(step, stepIndex) {
  *
  * @return {Component}
  */
-export function renderShareAction() {
+export function renderShareAction(step) {
   return (
     <FlexCell width="full" key="share-action">
-      <ShareActionContainer />
+      <ShareActionContainer {...step.fields} />
     </FlexCell>
   );
 }
