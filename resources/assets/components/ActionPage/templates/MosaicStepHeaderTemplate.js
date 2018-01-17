@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 import { FlexCell } from '../../Flex';
 
 import { convertNumberToWord } from '../../../helpers';
-import PhotoHeader from '../../PhotoHeader';
+import PhotoHeader, { PhotoHeaderTitle } from '../../PhotoHeader';
 
 const MosaicStepHeaderTemplate = ({ title, step, background, hideStepNumber }) => (
   <FlexCell width="full">
-    <PhotoHeader className="action-step__header" backgroundImage={background}>
-      { hideStepNumber ? null : <span>step { convertNumberToWord(step) }</span> }
-      <h1>{ title }</h1>
+    <PhotoHeader backgroundImage={background}>
+      <PhotoHeaderTitle
+        primary={title}
+        secondary={hideStepNumber ? null : (
+          `step ${convertNumberToWord(step)}`
+        )}
+      />
     </PhotoHeader>
   </FlexCell>
 );

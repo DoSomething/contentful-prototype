@@ -1,0 +1,25 @@
+@import '../../scss/next-toolbox.scss';
+
+.photo-header__title {
+  .__secondary {
+    position: relative;
+    color: $primary-color;
+    font-size: $font-large; // TODO: This needs to be the 28px one
+    font-weight: $weight-bold;
+    text-shadow: $text-shadow;
+  }
+
+  .__primary {
+    position: relative;
+    color: $white;
+    letter-spacing: 1.1px;
+    font-family: $secondary-font-family;
+    font-size: $font-hero;
+    font-weight: $weight-normal;
+    text-shadow: $text-shadow;
+
+    @include media($medium) {
+      font-size: $font-gigantic;
+    }
+  }
+}
