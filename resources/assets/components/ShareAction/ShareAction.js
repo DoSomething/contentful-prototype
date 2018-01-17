@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { showFacebookSharePrompt } from '../../helpers';
+import './share-action.scss';
 
 const ShareAction = (props) => {
   const { trackEvent } = props;
@@ -23,9 +24,14 @@ const ShareAction = (props) => {
   };
 
   return (
-    <button className="button" onClick={onFacebookClick}>
-      complete the share action
-    </button>
+    <div className="share-action margin-bottom-lg">
+      <ul>
+        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>share this</a></li>
+        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>hi luke</a></li>
+        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>luke hows your essay going</a></li>
+        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>should we include a link to share your essay</a></li>
+      </ul>
+    </div>
   );
 };
 
