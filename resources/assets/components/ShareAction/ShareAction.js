@@ -24,7 +24,7 @@ const ShareAction = (props) => {
   };
 
   return (
-    <div className="share-action margin-bottom-lg">
+    <div className="share-action margin-horizontal-md margin-bottom-lg">
       <ul>
         <li><a role="button" tabIndex="0" onClick={onFacebookClick}>share this</a></li>
         <li><a role="button" tabIndex="0" onClick={onFacebookClick}>hi luke</a></li>
