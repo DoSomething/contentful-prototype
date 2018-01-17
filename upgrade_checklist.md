@@ -4,9 +4,10 @@
 
 
 ## 5.3 to 5.4 
+[Documented upgrade steps](https://laravel.com/docs/5.4/upgrade)
+
 - [x] Updating Dependencies
 - [x] Authorization (not applicable)
-- [ ] Authorization
 - [ ] Blade
 - [ ] Bootstrappers
 - [ ] Broadcasting
