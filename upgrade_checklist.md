@@ -5,7 +5,7 @@
 
 ## 5.3 to 5.4 
 - [x] Updating Dependencies
-- [ ] Authorization
+- [x] Authorization (not applicable)
 - [ ] Authorization
 - [ ] Blade
 - [ ] Bootstrappers
