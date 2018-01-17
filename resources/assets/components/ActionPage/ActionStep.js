@@ -18,6 +18,15 @@ const ActionStep = (props) => {
     title, stepIndex, content, background, photos,
     photoWidth, shouldTruncate, hideStepNumber, template,
   } = props;
+
+  const photoComponent = photos && photos.length ? (
+    <FlexCell width={photoWidth}>
+      <div className={`action-step__photos -${photoWidth}`}>
+        { photos ? photos.map(renderPhoto) : null }
+      </div>
+    </FlexCell>
+  ) : null;
+
   return (
     <FlexCell width="full">
       <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
@@ -36,11 +45,7 @@ const ActionStep = (props) => {
             :
             null
           }
-          <FlexCell width={photoWidth}>
-            <div className={`action-step__photos -${photoWidth}`}>
-              { photos ? photos.map(renderPhoto) : null }
-            </div>
-          </FlexCell>
+          {photoComponent}
         </Flex>
       </div>
     </FlexCell>
