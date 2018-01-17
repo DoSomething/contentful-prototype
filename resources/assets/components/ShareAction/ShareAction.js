@@ -2,7 +2,10 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import PhotoHeader, { PhotoHeaderTitle } from '../PhotoHeader';
+import Markdown from '../Markdown';
 import { showFacebookSharePrompt } from '../../helpers';
+import './share-action.scss';
 
 const ShareAction = (props) => {
   const { trackEvent } = props;
@@ -22,11 +25,22 @@ const ShareAction = (props) => {
     });
   };
 
+  // lint disable is for the Lorem ipsum, will be replaced with actual variable
+  /* eslint-disable max-len */
   return (
-    <button className="button" onClick={onFacebookClick}>
-      complete the share action
-    </button>
+    <div className="share-action margin-horizontal-md">
+      <PhotoHeader className="margin-bottom-lg">
+        <PhotoHeaderTitle primary={'Share all of your darkest secrets'} />
+      </PhotoHeader>
+      <Markdown className="margin-bottom-lg">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </Markdown>
+      <ul className="share-action__list">
+        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>share this</a></li>
+      </ul>
+    </div>
   );
+  /* eslint-enable max-len */
 };
 
 ShareAction.propTypes = {
