@@ -36,7 +36,7 @@ const ActionStepsWrapper = (props) => {
         return renderVoterRegistration(step, stepIndex);
 
       case 'shareAction':
-        return renderShareAction();
+        return renderShareAction(step);
 
       default:
         stepIndex += 1;

@@ -1,17 +1,13 @@
-/* global window */
-
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { showFacebookSharePrompt } from '../../helpers';
 import './share-action.scss';
 
 const ShareAction = (props) => {
-  const { trackEvent } = props;
+  const { additionalContent, trackEvent } = props;
 
-  const link = window.location.href;
-  const trackingData = { link };
-
-  const onFacebookClick = () => {
+  const onFacebookClick = (link) => {
+    const trackingData = { link };
     trackEvent('clicked share action', trackingData);
 
     showFacebookSharePrompt({ href: link }, (response) => {
@@ -23,19 +19,38 @@ const ShareAction = (props) => {
     });
   };
 
+  const hasLinks = additionalContent && additionalContent.links;
+
   return (
-    <div className="share-action margin-bottom-lg">
-      <ul>
-        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>share this</a></li>
-        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>hi luke</a></li>
-        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>luke hows your essay going</a></li>
-        <li><a role="button" tabIndex="0" onClick={onFacebookClick}>should we include a link to share your essay</a></li>
-      </ul>
+    <div className="share-action margin-horizontal-md margin-bottom-lg">
+      {hasLinks ? (
+        <ul>
+          {additionalContent.links.map(({ title, link }) => (
+            <li>
+              <a
+                role="button"
+                tabIndex="0"
+                onClick={() => onFacebookClick(link)}
+              >{ title }</a>
+            </li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 };
 
+ShareAction.defaultProps = {
+  additionalContent: null,
+};
+
 ShareAction.propTypes = {
+  additionalContent: PropTypes.shape({
+    links: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string,
+      link: PropTypes.string,
+    })),
+  }),
   trackEvent: PropTypes.func.isRequired,
 };
 
