@@ -24,7 +24,7 @@ PostShareModal.propTypes = {
 };
 
 PostShareModal.defaultProps = {
-  content: null,
+  content: 'Thanks for rallying your friends on Facebook!',
 };
 
 export default PostShareModal;
