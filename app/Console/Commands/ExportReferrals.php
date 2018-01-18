@@ -12,7 +12,7 @@ class ExportReferrals extends Command
      *
      * @var string
      */
-    protected $signature = 'referrals:export';
+    protected $signature = 'referrals:export {path=referrals.csv}';
 
     /**
      * The console command description.
@@ -44,7 +44,9 @@ class ExportReferrals extends Command
 
         $bar = $this->output->createProgressBar($referrals->count());
 
-        $file = fopen('referrals.csv', 'w');
+        $path = $this->argument('path');
+
+        $file = fopen($path, 'w');
 
         $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id'];
 
