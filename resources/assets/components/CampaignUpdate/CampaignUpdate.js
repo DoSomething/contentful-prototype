@@ -46,12 +46,12 @@ const CampaignUpdate = (props) => {
 };
 
 CampaignUpdate.propTypes = {
+  id: PropTypes.string.isRequired,
   author: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  id: PropTypes.string.isRequired,
   closeModal: PropTypes.func,
   content: PropTypes.string,
   link: PropTypes.string,
