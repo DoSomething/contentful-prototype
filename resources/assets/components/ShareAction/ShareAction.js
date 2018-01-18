@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { POST_SHARE_MODAL } from '../Modal';
 import { showFacebookSharePrompt } from '../../helpers';
 import './share-action.scss';
 
 const ShareAction = (props) => {
-  const { additionalContent, trackEvent } = props;
+  const { additionalContent, openModal, trackEvent } = props;
 
   const onFacebookClick = (link) => {
     const trackingData = { link };
@@ -13,6 +14,7 @@ const ShareAction = (props) => {
     showFacebookSharePrompt({ href: link }, (response) => {
       if (response) {
         trackEvent('share action completed', trackingData);
+        openModal(POST_SHARE_MODAL);
       } else {
         trackEvent('share action cancelled', trackingData);
       }
@@ -26,7 +28,7 @@ const ShareAction = (props) => {
       {hasLinks ? (
         <ul>
           {additionalContent.links.map(({ title, link }) => (
-            <li>
+            <li key={title}>
               <a
                 role="button"
                 tabIndex="0"
@@ -51,6 +53,7 @@ ShareAction.propTypes = {
       link: PropTypes.string,
     })),
   }),
+  openModal: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 
