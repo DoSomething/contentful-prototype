@@ -38,12 +38,11 @@ class ExportReferrals extends Command
      */
     public function handle()
     {
-        // @todo should only be querying for referrals that have not been exported before.
-        $referrals = Referral::all();
+        $referralsEloquentBuilder = Referral::where('exported', false);
 
-        $referralChunks = $referrals->chunk($referrals->count() / 100);
+        $referrals = $referralsEloquentBuilder->get();
 
-        $bar = $this->output->createProgressBar(count($referralChunks));
+        $bar = $this->output->createProgressBar($referrals->count());
 
         $file = fopen('referrals.csv', 'w');
 
@@ -51,15 +50,15 @@ class ExportReferrals extends Command
 
         fputcsv($file, $columns);
 
-        foreach ($referralChunks as $referralChunk) {
-            foreach ($referralChunk as $referral) {
-            }
+        foreach ($referrals as $referral) {
             fputcsv($file, [$referral->id, $referral->created_at, $referral->friend_name, $referral->friend_email, $referral->friend_story, $referral->referrer_northstar_id]);
 
             $bar->advance();
         }
 
         fclose($file);
+
+        $referralsEloquentBuilder->update(['exported' => true]);
 
         $bar->finish();
     }
