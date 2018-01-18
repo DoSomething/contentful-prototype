@@ -1,5 +1,13 @@
 @import '../../scss/next-toolbox.scss';
 
+.reportback-post-form {
+  > .wrapper {
+    @include media($medium) {
+      display: flex;
+    }
+  }
+}
+
 .photo-uploader-action {
   .button {
     border-radius: 0;

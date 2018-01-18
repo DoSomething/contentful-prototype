@@ -190,22 +190,25 @@ class ReportbackUploader extends React.Component {
               { formHasErrors ? <FormMessage messaging={submissions.messaging} /> : null }
 
               <form className="reportback-post-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+                <div className="wrapper">
 
-                <div className="form-section">
-                  <div className="form-item-group">
-                    <div className="padding-md">
-                      <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
+                  <div className="form-section">
+                    <div className="form-item-group">
+                      <div className="padding-md">
+                        <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
 
-                      <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
-                      <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+                        <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
+                        <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="form-section">
-                  { showQuantityField ? impactInput : null }
+                  <div className="form-section">
+                    { showQuantityField ? impactInput : null }
 
-                  { infoFields }
+                    { infoFields }
+                  </div>
+
                 </div>
 
                 <button className="button" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
