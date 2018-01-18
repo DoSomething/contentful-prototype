@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { find } from 'lodash';
 import ContentModal from '../configurations/ContentModal';
+import { closeModal } from '../../../actions/modal';
 
 const mapStateToProps = (state) => {
   const contentfulId = state.modal.contentfulId;
@@ -33,4 +34,8 @@ const mapStateToProps = (state) => {
   return { content, title, type, contentfulId };
 };
 
-export default connect(mapStateToProps)(ContentModal);
+const actionCreators = {
+  closeModal,
+};
+
+export default connect(mapStateToProps, actionCreators)(ContentModal);
