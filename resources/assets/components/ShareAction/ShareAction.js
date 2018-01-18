@@ -28,12 +28,11 @@ const ShareAction = (props) => {
       {hasLinks ? (
         <ul>
           {additionalContent.links.map(({ title, link }) => (
-            <li>
+            <li key={title}>
               <a
                 role="button"
                 tabIndex="0"
                 onClick={() => onFacebookClick(link)}
-                key={title}
               >{ title }</a>
             </li>
           ))}
