@@ -52,8 +52,8 @@ class ExportReferrals extends Command
         fputcsv($file, $columns);
 
         foreach ($referralChunks as $referralChunk) {
-            foreach($referralChunk as $referral) {
-                fputcsv($file, array($referral->friend_name, $referral->friend_email, $referral->friend_story, $referral->referrer_northstar_id));
+            foreach ($referralChunk as $referral) {
+                fputcsv($file, [$referral->friend_name, $referral->friend_email, $referral->friend_story, $referral->referrer_northstar_id]);
             }
 
             $bar->advance();
