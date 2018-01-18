@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use App\Services\PhoenixLegacy;
+use App\Entities\LegacyCampaign;
 use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -94,7 +95,7 @@ class CampaignRepository
                 throw new ModelNotFoundException;
             }
 
-            return $legacyCampaign['data'];
+            return new LegacyCampaign($legacyCampaign);
         }
 
         return new Campaign($campaigns[0]);

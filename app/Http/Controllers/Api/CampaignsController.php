@@ -49,6 +49,6 @@ class CampaignsController extends Controller
             $data = $this->campaignRepository->getCampaign($id);
         }
 
-        return response()->json($data);
+        return response()->json(['data' => $data]);
     }
 }
