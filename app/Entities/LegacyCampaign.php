@@ -45,7 +45,6 @@ class LegacyCampaign implements JsonSerializable
                 'url' => $this->legacyCampaign['cover_image']['default']['uri'],
                 'landscapeUrl' => $this->legacyCampaign['cover_image']['default']['sizes']['landscape']['uri'],
             ],
-
         ];
     }
 }
