@@ -1,4 +1,12 @@
+import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
 import ShareAction from './ShareAction';
+import { openModal } from '../actions/modal';
 
-export default PuckConnector(ShareAction);
+const actionCreators = {
+  openModal,
+};
+
+export default connect(null, actionCreators)(
+  PuckConnector(ShareAction);
+);

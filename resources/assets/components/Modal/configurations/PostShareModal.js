@@ -7,7 +7,7 @@ const PostShareModal = (props) => {
   const { content, closeModal } = props;
 
   return (
-    <Card title="Thanks for sharing!" className="modal__slide" onClose={closeModal}>
+    <Card title="Thanks for sharing!" className="modal__slide bordered rounded" onClose={closeModal}>
       {
         content ?
           <Markdown className="padded">{ content }</Markdown>
