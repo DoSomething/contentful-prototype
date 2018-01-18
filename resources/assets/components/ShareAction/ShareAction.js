@@ -31,6 +31,7 @@ const ShareAction = (props) => {
                 role="button"
                 tabIndex="0"
                 onClick={() => onFacebookClick(link)}
+                key={title}
               >{ title }</a>
             </li>
           ))}

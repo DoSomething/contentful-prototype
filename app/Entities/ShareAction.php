@@ -15,8 +15,9 @@ class ShareAction extends Entity implements JsonSerializable
     {
         return [
             'id' => $this->entry->getId(),
-            'type' => $this->entry->getContentType(),
+            'type' => $this->getContentType(),
             'fields' => [
+                'affirmation' => $this->affirmation,
                 'additionalContent' => $this->additionalContent,
             ],
         ];
