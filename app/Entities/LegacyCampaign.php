@@ -6,6 +6,11 @@ use JsonSerializable;
 
 class LegacyCampaign implements JsonSerializable
 {
+    /**
+     * The data for the legacy campaign.
+     *
+     * @var array
+     */
     protected $legacyCampaign;
 
     /**
