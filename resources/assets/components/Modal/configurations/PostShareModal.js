@@ -8,12 +8,9 @@ const PostShareModal = (props) => {
 
   return (
     <Card title="Thanks for sharing!" className="modal__slide bordered rounded" onClose={closeModal}>
-      {
-        content ?
-          <Markdown className="padded">{ content }</Markdown>
-          :
-          null
-      }
+      <Markdown className="padded">
+        { content || PostShareModal.defaultProps.content }
+      </Markdown>
     </Card>
   );
 };
