@@ -10,7 +10,6 @@ const mapStateToProps = (state) => {
   const isSignedUp = state.signups.thisCampaign;
   const hasLandingPage = state.campaign.landingPage !== null;
   const hasReferralRB = get(state.campaign.additionalContent, 'referralRB', false);
-  debugger
 
   return {
     slug: state.campaign.slug,
