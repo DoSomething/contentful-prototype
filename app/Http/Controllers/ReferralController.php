@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Referral;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
@@ -73,5 +74,46 @@ class ReferralController extends Controller
         UploadedMedia::delete($path);
 
         return $response;
+    }
+
+    public function csvExport()
+    {
+
+        $fileName = 'referrals_export_'.Carbon::now().'.csv';
+
+        $headers = [
+            "Content-type" => "text/csv; charset=utf-8",
+            "Content-Disposition" => "attachment; filename=".$fileName,
+        ];
+
+        $referralsEloquentBuilder = Referral::where('exported', false);
+
+        $referrals = $referralsEloquentBuilder->get();
+
+        $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id'];
+
+        $callback = function() use ($referrals, $columns, $referralsEloquentBuilder)
+        {
+            $file = fopen('php://output', 'w');
+
+            fputcsv($file, $columns);
+
+            foreach ($referrals as $referral) {
+                fputcsv($file, [
+                    $referral->id,
+                    $referral->created_at,
+                    $referral->friend_name,
+                    $referral->friend_email,
+                    $referral->friend_story,
+                    $referral->referrer_northstar_id,
+                ]);
+            }
+
+            fclose($file);
+
+            $referralsEloquentBuilder->update(['exported' => true]);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }
