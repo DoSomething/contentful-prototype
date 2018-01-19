@@ -1,21 +1,31 @@
-# Table of contents
-
-## Getting Started
-- [Glossary](GLOSSARY.md)
-
+# Table of Contents
 ***
 
-## System Overview
-- [Introduction]()
+## Welcome
+- [Introduction](/README.md)
 
-***
+## Development
+- [Installation](development/installation.md)
+- [Architecture](development/architecture.md)
 
-## Content Publishing
-- [Introduction]()
-
-***
 
 ## API Reference
-- [Introduction](api/README.md)
-  + [Version 1.0](api/endpoints/v1/README.md)
-  + [Version 2.0](api/endpoints/v2/README.md)
+- [Introduction](api-reference/README.md)
+- [API v1](api-reference/v1/README.md)
+- [API v2](api-reference/v2/README.md)
+  + [Campaigns Resource](api-reference/v2/campaigns.md)
+  + [Posts Resource](api-reference/v2/posts.md)
+
+
+## Philosophical Overview
+- [Introduction](philosophical-overview/README.md)
+
+
+## Content Publishing
+- [Introduction](content-publishing/README.md)
+
+
+***
+
+
+- [Glossary](GLOSSARY.md)
