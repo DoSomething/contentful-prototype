@@ -6,6 +6,7 @@ stats.json
 /public/storage
 /storage/debugbar
 /vendor
+/_book
 /.idea
 Homestead.json
 Homestead.yaml
