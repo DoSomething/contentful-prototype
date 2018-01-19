@@ -1,5 +1,6 @@
 {
   "gitbook": "3.2.3",
+  "title": "Phoenix Documentation",
   "root": "./docs",
   "structure.glossary": "GLOSSARY.md",
   "structure.readme": "README.md",
