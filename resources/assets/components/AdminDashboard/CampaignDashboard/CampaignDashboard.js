@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 
 const CampaignDashboard = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
-    clickedShowActionPage, clickedRemoveSignUp, signupCreated, isSignedUp,
-    toggleReportbackAffirmation,
+    clickedShowActionPage, clickedRemoveSignUp, hasReferralRB, signupCreated,
+    isSignedUp, toggleReportbackAffirmation,
   } = props;
 
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
@@ -34,6 +34,11 @@ const CampaignDashboard = (props) => {
       <button className="button -secondary margin-md" onClick={() => toggleReportbackAffirmation(true)}>
         Show Reportback Affirmation
       </button>
+      { hasReferralRB ?
+        <a className="button -secondary margin-md" href="/referrals/export">
+          Download Referrals CSV Export
+        </a>
+        : null}
     </div>
   );
 };
@@ -48,6 +53,7 @@ CampaignDashboard.propTypes = {
   clickedRemoveSignUp: PropTypes.func.isRequired,
   signupCreated: PropTypes.func.isRequired,
   toggleReportbackAffirmation: PropTypes.func.isRequired,
+  hasReferralRB: PropTypes.bool.isRequired,
 };
 
 CampaignDashboard.defaultProps = {
