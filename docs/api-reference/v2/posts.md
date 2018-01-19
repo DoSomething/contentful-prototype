@@ -1,6 +1,7 @@
-# Posts (v2)
+# Posts
+***
 
-## Retrieve All Posts
+## Retrieve all Posts
 ```
 GET /api/v2/posts
 ```

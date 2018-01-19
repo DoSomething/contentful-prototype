@@ -1,4 +1,5 @@
-# Campaigns (v2)
+# Campaigns
+***
 
 ## Retrieve a Campaign
 ```
@@ -66,7 +67,7 @@ Example Response:
 ```
 
 
-## Retrieve All Posts for a Campaign
+## Retrieve all Posts for a Campaign
 ```
 GET /api/v2/campaigns/{id}/posts
 ```
