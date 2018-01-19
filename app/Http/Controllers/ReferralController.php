@@ -78,12 +78,11 @@ class ReferralController extends Controller
 
     public function csvExport()
     {
-
         $fileName = 'referrals_export_'.Carbon::now().'.csv';
 
         $headers = [
-            "Content-type" => "text/csv; charset=utf-8",
-            "Content-Disposition" => "attachment; filename=".$fileName,
+            'Content-type' => 'text/csv; charset=utf-8',
+            'Content-Disposition' => 'attachment; filename='.$fileName,
         ];
 
         $referralsEloquentBuilder = Referral::where('exported', false);
@@ -92,8 +91,7 @@ class ReferralController extends Controller
 
         $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id'];
 
-        $callback = function() use ($referrals, $columns, $referralsEloquentBuilder)
-        {
+        $callback = function () use ($referrals, $columns, $referralsEloquentBuilder) {
             $file = fopen('php://output', 'w');
 
             fputcsv($file, $columns);
