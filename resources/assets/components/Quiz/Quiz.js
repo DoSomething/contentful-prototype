@@ -55,7 +55,6 @@ const Quiz = (props) => {
       </div>
       {questions}
       {quizError}
-      {conclusion}
       {submitConclusion}
       {shareConclusion}
     </div>
