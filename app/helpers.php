@@ -353,13 +353,13 @@ function generate_streamed_csv($columns, $records)
     fputcsv($file, $columns);
 
     foreach ($records as $record) {
-        $values = [];
+        $row = [];
 
         foreach ($columns as $column) {
-            array_push($values, $record->{$column});
+            array_push($row, $record->{$column});
         }
 
-        fputcsv($file, $values);
+        fputcsv($file, $row);
     }
 
     return fclose($file);
