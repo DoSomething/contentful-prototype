@@ -49,7 +49,7 @@ const Quiz = (props) => {
   return (
     <div className="quiz">
       <div className="quiz__introduction">
-        <h1 className="quiz__title">{fields.contentTitle || Quiz.defaultProps.contentTitle}</h1>
+        <h1 className="quiz__title">{fields.contentTitle || Quiz.defaultProps.fields.contentTitle}</h1>
         <h2 className="quiz__subtitle">{fields.title}</h2>
         {introduction}
       </div>
