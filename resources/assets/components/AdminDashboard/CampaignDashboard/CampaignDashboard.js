@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const CampaignDashboard = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
     clickedShowActionPage, clickedRemoveSignUp, hasReferralRB, signupCreated,
-    isSignedUp, toggleReportbackAffirmation,
+    isAdmin, isSignedUp, toggleReportbackAffirmation,
   } = props;
 
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
@@ -41,7 +41,7 @@ const CampaignDashboard = (props) => {
       <button className="button -secondary margin-md" onClick={() => toggleReportbackAffirmation(true)}>
         Show Reportback Affirmation
       </button>
-      { hasReferralRB ?
+      { hasReferralRB && isAdmin ?
         <button className="button -secondary margin-md" onClick={onReferralExportClick}>
           Download Referrals CSV Export
         </button>
@@ -53,6 +53,7 @@ const CampaignDashboard = (props) => {
 CampaignDashboard.propTypes = {
   hasLandingPage: PropTypes.bool,
   slug: PropTypes.string.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   clickedShowAffirmation: PropTypes.func.isRequired,
   clickedShowLandingPage: PropTypes.func.isRequired,
