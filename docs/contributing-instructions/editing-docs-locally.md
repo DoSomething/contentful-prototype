@@ -1,0 +1,20 @@
+# Editing Docs Locally
+***
+
+To help facilitate editing the documentation locally, you can install the `gitbook-cli` globally to auto-build and serve a sample version with your edits as you work.
+
+Install the CLI by running:
+
+```shell
+$ npm install gitbook-cli -g
+```
+
+Then within the Phoenix project repository you can serve a local version of the book by running:
+
+```shell
+$ gitbook serve
+```
+
+You can view the local version by heading to `http://localhost:4000`.
+
+Additional instructions can be found in the [GitBook setup instructions](https://toolchain.gitbook.com/setup.html).
