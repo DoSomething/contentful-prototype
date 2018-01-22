@@ -92,24 +92,8 @@ class ReferralController extends Controller
 
         $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id'];
 
-        $callback = function () use ($referrals, $columns, $referralsEloquentBuilder) {
-            $file = fopen('php://output', 'w');
-
-            fputcsv($file, $columns);
-
-            foreach ($referrals as $referral) {
-                fputcsv($file, [
-                    $referral->id,
-                    $referral->created_at,
-                    $referral->friend_name,
-                    $referral->friend_email,
-                    $referral->friend_story,
-                    $referral->referrer_northstar_id,
-                ]);
-            }
-
-            fclose($file);
-
+        $callback = function() use ($referrals, $columns, $referralsEloquentBuilder) {
+            generate_streamed_csv($columns, $referrals);
             $referralsEloquentBuilder->update(['exported' => true]);
         };
 
