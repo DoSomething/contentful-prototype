@@ -12,7 +12,7 @@
 - [x] Bootstrappers (not applicable)
 - [x] Broadcasting
 - [x] Collections (not applicable)
-- [ ] Container
+- [x] Container (not applicable)
 - [ ] Console
 - [ ] Database
 - [ ] Eloquent
