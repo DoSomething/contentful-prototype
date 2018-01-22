@@ -1,4 +1,6 @@
 
+# Phoenix-Next Philosophical Overview
+
 ## Affiliation Flow
 When a visitor lands on a Phoenix-Next campaign, they will see a Landing Page. This page offers a small summary of the campaign action, prize incentives and a couple buttons or call to actions for the user to sign up, of affiliate, with the campaign. This page looks the same whether the visitor is an authenticated member or not.
 
@@ -18,22 +20,22 @@ After closing the Affirmation modal, all campaign content is available to the us
 The “pages” of the Phoenix-Next campaign experience are organized as tabs and all share the same header. I’m using the Page construct here as the Atomic Design term for a fully assembled group of components. You can read more about tab navigation in the Components section.
 The Community and Action tabs are the most flexible tabs. None of these are available until a user successfully signs up for the campaign.
 
-### Action
+#### Action
 The Action tab is the default view of the campaign, seen upon reaching the base campaign url. It contains the information about the campaign action. It is built from Action Step components and can be arranged in whatever order a campaign lead wants. Usually a report back uploader is the final step on the action page but this block can be moved within the page or removed entirely.
 
-### Community
+#### Community
 The purpose of the community tab is to showcase the work of the community and update members about the status of the campaign.
 
 The primary feature of the community tab is the community feed. It’s divided into three main columns and is populated with campaign updates from leads/staffers, reportback photos from members, Calls to Action and  static bits of content like facts or quotes.
 
 The community tab is manually organized by the campaign lead in Contentful. Each item has to be given a defined width and item type.
 
-### Quiz
+#### Quiz
 The Quiz page is an experimental feature that allows a campaign lead to build a series of questions for a user to answer. A user is free to browse and answer all questions before affiliating but needs to affiliate with the campaign to see their results. This page has only been used experimentally and doesn’t show up in the tab navigation.
 
 A user’s quiz results are not stored on their profile or signup currently.
 
-### Static/FAQ/Scholarship
+#### Static/FAQ/Scholarship
 All other pages and tabs that are part of a campaign are static tabs. These tabs do not have the same flexibility of the Community and Action tabs. They accept markdown and display it in a 2/3 width container. The other column contains a CTA that is governed by the campaign wide CTA variables.
 
 The FAQ and Scholarship tab are the most popular example of static tabs and are present on almost all campaigns.
@@ -116,7 +118,7 @@ Technically, the photo uploader component is a action step. If toggled in Conten
 	* Photo Caption*
 	* Quantity
 	* Why
-*= required item
+* = required item
 
 ---
 
@@ -156,7 +158,7 @@ Any campaign update can be placed into a permalink or shared onto a social netwo
 ### Reportback modals
 The reportback uploader card can be placed into a modal, although it is not currently advised and likely to be replaced in the future. These reportback uploader modals are primarily used in messaging to direct users to complete the campaign. They don’t feature any sort of authentication control because they are generally sent to registered campaign signups.
 
-### Content modals
+#### Content modals
 We can present content from other static pages in a modal. The common use for this is the FAQ or Scholarship modal. By providing a structured /modal/ link the the body of an update or action step, we can create a new modal that pulls the content of the linked page.
 
 Templates
