@@ -6,43 +6,61 @@ import { ShareContainer } from '../Share';
 import Conclusion from './Conclusion';
 import './quiz.scss';
 
-const Quiz = ({ id, fields, data, completeQuiz, pickQuizAnswer }) => (
-  <div className="quiz">
-    <div className="quiz__introduction">
-      <h1 className="quiz__title">Quiz</h1>
-      <h2 className="quiz__subtitle">{fields.title}</h2>
-      {data.shouldSeeResult ? null : (
-        <Markdown className="quiz__description">{fields.introduction}</Markdown>
-      )}
-    </div>
-    {data.shouldSeeResult ? null : (fields.questions).map(question => (
-      <Question
-        key={question.id}
-        pickQuizAnswer={pickQuizAnswer}
-        quizId={id}
-        activeAnswer={data.questions ? data.questions[question.id] : null}
-        {...question}
+const Quiz = (props) => {
+  const { id, fields, data, completeQuiz, pickQuizAnswer } = props;
+  const { error, shouldSeeResult } = data;
+
+  const introduction = shouldSeeResult ? null : (
+    <Markdown className="quiz__description">{fields.introduction}</Markdown>
+  );
+
+  const questions = shouldSeeResult ? null : (fields.questions).map(question => (
+    <Question
+      key={question.id}
+      pickQuizAnswer={pickQuizAnswer}
+      quizId={id}
+      activeAnswer={data.questions ? data.questions[question.id] : null}
+      {...question}
+    />
+  ));
+
+  const quizError = error ? (
+    <p className="quiz__error">{data.error}</p>
+  ) : null;
+
+  const submitConclusion = shouldSeeResult ? null : (
+    <Conclusion callToAction={fields.callToAction}>
+      <button
+        onClick={() => completeQuiz(id)}
+        className="button quiz__submit"
+      >get results</button>
+    </Conclusion>
+  );
+
+  const shareConclusion = shouldSeeResult ? (
+    <Conclusion callToAction={fields.conclusion}>
+      <ShareContainer
+        className="quiz__share"
+        parentSource="quiz"
       />
-    ))}
-    { data.error ? <p className="quiz__error">{data.error}</p> : null }
-    { ! data.shouldSeeResult ? (
-      <Conclusion callToAction={fields.callToAction}>
-        <button
-          onClick={() => completeQuiz(id)}
-          className="button quiz__submit"
-        >get results</button>
-      </Conclusion>
-    ) : null}
-    { data.shouldSeeResult ? (
-      <Conclusion callToAction={fields.conclusion}>
-        <ShareContainer
-          className="quiz__share"
-          parentSource="quiz"
-        />
-      </Conclusion>
-    ) : null }
-  </div>
-);
+    </Conclusion>
+  ) : null;
+
+  return (
+    <div className="quiz">
+      <div className="quiz__introduction">
+        <h1 className="quiz__title">Quiz</h1>
+        <h2 className="quiz__subtitle">{fields.title}</h2>
+        {introduction}
+      </div>
+      {questions}
+      {quizError}
+      {conclusion}
+      {submitConclusion}
+      {shareConclusion}
+    </div>
+  );
+};
 
 Quiz.propTypes = {
   id: PropTypes.string.isRequired,
