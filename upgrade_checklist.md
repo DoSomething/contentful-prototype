@@ -8,7 +8,7 @@
 
 - [x] Updating Dependencies
 - [x] Authorization (not applicable)
-- [ ] Blade
+- [X] Blade (not applicable)
 - [ ] Bootstrappers
 - [ ] Broadcasting
 - [ ] Collections
