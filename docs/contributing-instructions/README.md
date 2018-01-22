@@ -7,7 +7,7 @@ You can contribute to editing this documentation either by editing the `/docs` f
 
 So that GitBook generates the documentation properly and converts the markdown to HTML, you need to always ensure that with every new page you add, you include a corresponding entry to the `/docs/SUMMARY.md` file.
 
-Additionally, all links are relative to that file's location in the directory structure.
+Additionally, all links in a file are relative to that file's location in the directory structure.
 
 ## Editing Options
 - [Editing Docs Locally](editing-docs-locally.md)
