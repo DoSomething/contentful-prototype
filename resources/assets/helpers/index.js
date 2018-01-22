@@ -2,6 +2,7 @@
 
 import get from 'lodash/get';
 import MarkdownIt from 'markdown-it';
+import { isPast, parse } from 'date-fns';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 
@@ -306,7 +307,7 @@ export function isCampaignClosed(endDate) {
     return false;
   }
 
-  return new Date(endDate) - new Date() < 0;
+  return isPast(parse(endDate));
 }
 
 /**
