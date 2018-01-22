@@ -7,6 +7,7 @@
 ## Development
 - [Installation](development/installation.md)
 - [Architecture](development/architecture.md)
+- [Heroku Usage](development/heroku.md)
 
 
 ## API Reference
