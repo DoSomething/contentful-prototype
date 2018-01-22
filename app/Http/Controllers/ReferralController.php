@@ -85,6 +85,7 @@ class ReferralController extends Controller
             'Content-Disposition' => 'attachment; filename='.$fileName,
         ];
 
+        // Save the eloquent builder object so that we can efficiently update the records as "exported".
         $referralsEloquentBuilder = Referral::where('exported', false);
 
         $referrals = $referralsEloquentBuilder->get();
