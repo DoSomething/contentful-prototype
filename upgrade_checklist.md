@@ -11,7 +11,7 @@
 - [x] Blade (not applicable)
 - [x] Bootstrappers (not applicable)
 - [x] Broadcasting
-- [ ] Collections
+- [x] Collections (not applicable)
 - [ ] Container
 - [ ] Console
 - [ ] Database
