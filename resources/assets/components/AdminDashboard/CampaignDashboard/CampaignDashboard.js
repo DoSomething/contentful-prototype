@@ -1,4 +1,4 @@
-/* global window */
+/* global window, confirm */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,6 +11,13 @@ const CampaignDashboard = (props) => {
   } = props;
 
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
+
+  const onReferralExportClick = () => {
+    const message = 'Please confirm your intent to export this data. This will permanently mark the exported records and cannot be undone.';
+    if (confirm(message)) { // eslint-disable-line no-alert
+      window.location.href = '/referrals/export';
+    }
+  };
 
   return (
     <div>
@@ -35,9 +42,9 @@ const CampaignDashboard = (props) => {
         Show Reportback Affirmation
       </button>
       { hasReferralRB ?
-        <a className="button -secondary margin-md" href="/referrals/export">
+        <button className="button -secondary margin-md" onClick={onReferralExportClick}>
           Download Referrals CSV Export
-        </a>
+        </button>
         : null}
     </div>
   );
