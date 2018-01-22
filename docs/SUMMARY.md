@@ -28,8 +28,8 @@
 
 ## Contributing Instructions
 - [Getting Started](contributing-instructions/README.md)
-  + [Editing Docs Locally](contributing-instructions/editing-docs-locally.md)
-  + [Editing Docs On GitHub](contributing-instructions/editing-docs-on-github.md)
+- [Editing Docs Locally](contributing-instructions/editing-docs-locally.md)
+- [Editing Docs On GitHub](contributing-instructions/editing-docs-on-github.md)
 
 
 ***
