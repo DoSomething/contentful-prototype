@@ -13,7 +13,7 @@ const CampaignDashboard = (props) => {
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
 
   const onReferralExportClick = () => {
-    const message = 'Please confirm your intent to export this data. This will permanently mark the exported records and cannot be undone.';
+    const message = 'Please confirm your intent to export this data. This will permanently mark the records as already exported and cannot be undone.';
     if (confirm(message)) { // eslint-disable-line no-alert
       window.location.href = '/referrals/export';
     }
