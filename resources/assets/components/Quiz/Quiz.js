@@ -49,8 +49,8 @@ const Quiz = (props) => {
   return (
     <div className="quiz">
       <div className="quiz__introduction">
-        <h1 className="quiz__title">{fields.contentTitle || Quiz.defaultProps.fields.contentTitle}</h1>
-        <h2 className="quiz__subtitle">{fields.title}</h2>
+        <h1 className="quiz__subtitle">{fields.subtitle || Quiz.defaultProps.fields.subtitle}</h1>
+        <h2 className="quiz__title">{fields.title}</h2>
         {introduction}
       </div>
       {questions}
@@ -89,7 +89,7 @@ Quiz.defaultProps = {
     error: null,
   },
   fields: {
-    contentTitle: 'Quiz',
+    subtitle: 'Quiz',
     introduction: '',
     questions: [],
     conclusion: '',
