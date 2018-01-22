@@ -10,7 +10,7 @@
 - [x] Authorization (not applicable)
 - [x] Blade (not applicable)
 - [x] Bootstrappers (not applicable)
-- [ ] Broadcasting
+- [x] Broadcasting
 - [ ] Collections
 - [ ] Container
 - [ ] Console
