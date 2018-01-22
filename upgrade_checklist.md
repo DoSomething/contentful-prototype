@@ -8,8 +8,8 @@
 
 - [x] Updating Dependencies
 - [x] Authorization (not applicable)
-- [X] Blade (not applicable)
-- [ ] Bootstrappers
+- [x] Blade (not applicable)
+- [x] Bootstrappers (not applicable)
 - [ ] Broadcasting
 - [ ] Collections
 - [ ] Container
