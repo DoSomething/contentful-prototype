@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Portal from 'react-portal';
+import { POST_SHARE_MODAL, CONTENT_MODAL } from '../Modal';
 
 import './modal.scss';
 
@@ -39,8 +40,13 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { shouldShowModal, children } = this.props;
+    const { modalType, shouldShowModal, children } = this.props;
     const chrome = document.getElementById('chrome');
+
+    const hideCloseButton = [
+      POST_SHARE_MODAL,
+      CONTENT_MODAL,
+    ].includes(modalType);
 
     return (
       <Portal
@@ -52,7 +58,7 @@ class Modal extends React.Component {
         <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
           <div className="modal__container">
             { children }
-            <button className="modal__exit" onClick={this.props.closeModal}>×</button>
+            { hideCloseButton ? null : <button className="modal__exit" onClick={this.props.closeModal}>×</button> }
           </div>
         </div>
       </Portal>

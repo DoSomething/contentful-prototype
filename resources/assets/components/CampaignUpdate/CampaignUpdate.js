@@ -9,13 +9,18 @@ import Byline from '../Byline';
 import Markdown from '../Markdown';
 import { ShareContainer } from '../Share';
 
-const CampaignUpdate = ({ id, author, content, link, shareLink, bordered, titleLink }) => {
+const CampaignUpdate = (props) => {
+  const {
+    author, id, closeModal, content,
+    link, shareLink, bordered, titleLink,
+  } = props;
+
   const authorFields = get(author, 'fields', {});
 
   const isTweet = content && content.length < 144;
 
   return (
-    <Card id={id} className={classnames('rounded', { bordered })} link={titleLink} title="Campaign Update">
+    <Card id={id} className={classnames('rounded', { bordered })} link={titleLink} title="Campaign Update" onClose={closeModal}>
       <Markdown className={classnames('padded', { 'font-size-lg': isTweet })}>
         {content || 'Placeholder'}
       </Markdown>
@@ -47,6 +52,7 @@ CampaignUpdate.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
+  closeModal: PropTypes.func,
   content: PropTypes.string,
   link: PropTypes.string,
   shareLink: PropTypes.string.isRequired,
@@ -59,6 +65,7 @@ CampaignUpdate.defaultProps = {
   bordered: true,
   author: null,
   content: null,
+  closeModal: null,
 };
 
 export default CampaignUpdate;
