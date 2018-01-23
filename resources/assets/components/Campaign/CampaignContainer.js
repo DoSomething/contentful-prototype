@@ -9,12 +9,12 @@ const mapStateToProps = (state, props) => {
   const { location, match } = props;
   const isQuiz = location.pathname.replace(match.url, '').startsWith('/quiz/');
 
-  const blockLandingPage = state.admin.shouldShowActionPage || isQuiz;
+  const ignoreLandingPage = state.admin.shouldShowActionPage || isQuiz;
   let shouldShowLandingPage = false;
 
   if (state.admin.shouldShowLandingPage) {
     shouldShowLandingPage = true;
-  } else if (hasLandingPage && ! blockLandingPage) {
+  } else if (hasLandingPage && ! ignoreLandingPage) {
     shouldShowLandingPage = ! isSignedUp;
   }
 
