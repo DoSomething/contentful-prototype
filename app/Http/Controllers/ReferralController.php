@@ -78,6 +78,11 @@ class ReferralController extends Controller
 
     public function csvExport()
     {
+        // Only allowing administrators to perform the CSV export.
+        if (! auth()->user()->isAdmin()) {
+            return redirect('/');
+        }
+
         $fileName = 'referrals_export_'.Carbon::now().'.csv';
 
         $headers = [
