@@ -1,4 +1,4 @@
-/* global window */
+/* global window, confirm */
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -6,11 +6,18 @@ import { Link } from 'react-router-dom';
 
 const CampaignDashboard = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
-    clickedShowActionPage, clickedRemoveSignUp, signupCreated, isSignedUp,
-    toggleReportbackAffirmation,
+    clickedShowActionPage, clickedRemoveSignUp, hasReferralRB, signupCreated,
+    isAdmin, isSignedUp, toggleReportbackAffirmation,
   } = props;
 
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
+
+  const onReferralExportClick = () => {
+    const message = 'Please confirm your intent to export this data. This will permanently mark the records as already exported and cannot be undone.';
+    if (confirm(message)) { // eslint-disable-line no-alert
+      window.location.href = '/referrals/export';
+    }
+  };
 
   return (
     <div>
@@ -34,6 +41,11 @@ const CampaignDashboard = (props) => {
       <button className="button -secondary margin-md" onClick={() => toggleReportbackAffirmation(true)}>
         Show Reportback Affirmation
       </button>
+      { hasReferralRB && isAdmin ?
+        <button className="button -secondary margin-md" onClick={onReferralExportClick}>
+          Download Referrals CSV Export
+        </button>
+        : null}
     </div>
   );
 };
@@ -41,6 +53,7 @@ const CampaignDashboard = (props) => {
 CampaignDashboard.propTypes = {
   hasLandingPage: PropTypes.bool,
   slug: PropTypes.string.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   clickedShowAffirmation: PropTypes.func.isRequired,
   clickedShowLandingPage: PropTypes.func.isRequired,
@@ -48,6 +61,7 @@ CampaignDashboard.propTypes = {
   clickedRemoveSignUp: PropTypes.func.isRequired,
   signupCreated: PropTypes.func.isRequired,
   toggleReportbackAffirmation: PropTypes.func.isRequired,
+  hasReferralRB: PropTypes.bool.isRequired,
 };
 
 CampaignDashboard.defaultProps = {

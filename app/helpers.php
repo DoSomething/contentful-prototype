@@ -372,3 +372,29 @@ function get_login_query($campaign = null)
         ],
     ];
 }
+
+/**
+ * Get a CSV from defined columns and records.
+ *
+ * @param  array $columns
+ * @param  array $records
+ * @return string
+ */
+function generate_streamed_csv($columns, $records)
+{
+    $file = fopen('php://output', 'w');
+
+    fputcsv($file, $columns);
+
+    foreach ($records as $record) {
+        $row = [];
+
+        foreach ($columns as $column) {
+            array_push($row, $record->{$column});
+        }
+
+        fputcsv($file, $row);
+    }
+
+    return fclose($file);
+}
