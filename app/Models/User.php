@@ -55,4 +55,14 @@ class User extends Model implements AuthenticatableContract, NorthstarUserContra
     {
         return in_array($this->role, ['staff', 'admin']);
     }
+
+    /**
+     * Is this user an administrator?
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
 }
