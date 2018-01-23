@@ -1,87 +1,9 @@
 @import '../../scss/next-toolbox.scss';
 
 .affirmation {
-  width: 100%;
-  padding: $half-spacing;
-  color: $primary-text-color;
-  background-color: $light-background-color;
-  position: relative;
-
-  @include media($medium) {
-    padding: $base-spacing;
-  }
-
-  .affirmation__section {
-    margin-bottom: $base-spacing;
-    width: 100%;
-    display: inline-flex;
-  }
-
-  .affirmation__section-heading {
-    text-align: center;
-
-    h1 {
-      letter-spacing: 1.1px;
-      font-family: $secondary-font-family;
-      font-size: $font-hero;
-      font-weight: $weight-normal;
-      color: $primary-text-color;
-      margin-left: auto;
-      margin-right: auto;
-
-      @include media($medium) {
-        font-size: $font-gigantic;
-      }
-    }
-  }
-
-  .affirmation__section-quote {
-    color: $primary-text-color;
-
-    .figure {
-      > .figure__media {
-        float: none;
-
-        img {
-          width: 256px;
-          height: 256px;
-        }
-      }
-
-      @media (min-width: 425px) {
-        > .figure__media {
-          float: left;
-
-          img {
-            width: 128px;
-            height: 128px;
-          }
-        }
-      }
-    }
-
-    span {
-      font-size: 14px;
-    }
-
-    img {
-      width: 128px;
-      height: 128px;
-      display: inline;
-      max-width: none;
-    }
-  }
-
-  .affirmation__section-share {
-    flex-direction: column;
-
-    @include media($medium) {
-      flex-direction: row;
-    }
-
+  .affirmation__cta {
     h3 {
-      font-family: $primary-font-family;
-      color: $primary-color;
+      font-weight: 800;
     }
   }
 }

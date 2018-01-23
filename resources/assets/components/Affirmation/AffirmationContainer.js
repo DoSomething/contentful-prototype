@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
 import Affirmation from './Affirmation';
+import { closeModal } from '../../actions/modal';
 
 const mapStateToProps = state => ({
   content: state.campaign.affirmation,
 });
 
-export default connect(mapStateToProps)(Affirmation);
+const actionCreators = {
+  closeModal,
+};
+
+export default connect(mapStateToProps, actionCreators)(Affirmation);
