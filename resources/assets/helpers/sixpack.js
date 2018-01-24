@@ -35,8 +35,9 @@ export function convertOnSignupIntent(name) {
 export function participate(name) {
   return new Promise((resolve, reject) => {
     const alternatives = Object.values(experiments[name].alternatives);
+    const trafficFraction = experiments[name].trafficFraction;
 
-    sixpack().participate(name, alternatives, (error, response) => {
+    sixpack().participate(name, alternatives, trafficFraction, (error, response) => {
       if (error) {
         reject(error);
       }
