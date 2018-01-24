@@ -1,4 +1,4 @@
-# Important Historical Decisions
-
+# Historical Decisions
+***
 
 ## Template Consolidation and Landing Pages

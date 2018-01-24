@@ -20,16 +20,18 @@
 
 ## Philosophical Overview
 - [Introduction](philosophical-overview/README.md)
-- [Overview](philosophical-overview/overview/overview.md)
-  + [Goals](philosophical-overview/overview/goals.md)
-  + [Pages](philosophical-overview/overview/overview.md#pages)
-  + [Components](philosophical-overview/overview/overview.md#components)
-  + [Tabs](philosophical-overview/overview/overview.md#tabs)
-  + [Blocks](philosophical-overview/overview/overview.md#blocks)
-  + [Actions](philosophical-overview/overview/overview.md#actions)
-  + [Contentful](philosophical-overview/overview/overview.md#contentful)
-  + [Sharing](philosophical-overview/overview/overview.md#sharing)
-  + [Decisions](philosophical-overview/overview/decisions.md)
+- [Overview](philosophical-overview/overview.md)
+  + [Affiliation Flow](philosophical-overview/overview.md#affiliation-flow)
+  + [Pages](philosophical-overview/overview.md#pages)
+  + [Components](philosophical-overview/overview.md#components)
+  + [Tabs](philosophical-overview/overview.md#tabs)
+  + [Blocks](philosophical-overview/overview.md#blocks)
+  + [Actions](philosophical-overview/overview.md#actions)
+  + [Contentful](philosophical-overview/overview.md#contentful)
+  + [Sharing](philosophical-overview/overview.md#sharing)
+  + [Modals](philosophical-overview/overview.md#modals)
+- [Goals](philosophical-overview/goals.md)
+- [Decisions](philosophical-overview/historical-decisions.md)
 
 
 ## Content Publishing

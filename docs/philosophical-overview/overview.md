@@ -1,57 +1,69 @@
+# Overview
+***
 
-# Phoenix-Next Philosophical Overview
+## Table Of Contents
+- [Affiliation Flow](overview.md#affiliation-flow)
+- [Pages](overview.md#pages)
+- [Components](overview.md#components)
+- [Tabs](philosophical-overview/overview.md#tabs)
+- [Blocks](philosophical-overview/overview.md#blocks)
+- [Actions](philosophical-overview/overview.md#actions)
+- [Contentful](philosophical-overview/overview.md#contentful)
+- [Sharing](philosophical-overview/overview.md#sharing)
+- [Modals](philosophical-overview/overview.md#modals)
+
 
 ## Affiliation Flow
-When a visitor lands on a Phoenix-Next campaign, they will see a Landing Page. This page offers a small summary of the campaign action, prize incentives and a couple buttons or call to actions for the user to sign up, of affiliate, with the campaign. This page looks the same whether the visitor is an authenticated member or not.
+When a visitor lands on a **Phoenix (next)** campaign, they will see a Landing Page. This page offers a small summary of the campaign action, prize incentives and a couple buttons or call to actions for the user to sign up, or affiliate, with the campaign. This page looks the same whether the visitor is an authenticated member or not.
 
-After the visitor clicks on a signup button, the path branches a little bit. Unauthenticated visitors are taken to Northstar to log in or create a DoSomething account. Upon successfully logging in or creating an account, users are taken to the Action tab.
+After the visitor clicks on a signup button, the path branches a little bit. Unauthenticated visitors are taken to **Northstar** to log in or create a DoSomething account. Upon successfully logging in or creating an account, users are taken to the Action tab.
 
 Users who are already authenticated are taken directly to the Action tab.
 
-When a member first affiliates with a campaign, they will be presented with the Affirmation Modal. This is a modal that appears over the Action tab provides positive messaging, a message of impact from the campaign lead and a chance to share the campaign on Facebook.
+When a member first affiliates with a campaign, they will be presented with the Affirmation Modal. This is a modal that appears over the Action tab and provides positive messaging; a message of impact from the campaign lead and a chance to share the campaign on Facebook.
 
-The affirmation modal content doesn’t exist anywhere on the page and can only been seen on the first viewing of the affiliated campaign page.
+The affirmation modal content does not exist anywhere on the page and can only been seen on the first viewing of the affiliated campaign page.
 
 After closing the Affirmation modal, all campaign content is available to the user. This is the first time they will see the tab navigation controller and they will be placed on the Action tab by default.
 
----
+
 
 ## Pages
-The “pages” of the Phoenix-Next campaign experience are organized as tabs and all share the same header. I’m using the Page construct here as the Atomic Design term for a fully assembled group of components. You can read more about tab navigation in the Components section.
+The “pages” of the **Phoenix (next)** campaign experience are organized as tabs and all share the same header. We are using the _Page_ construct here as the [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) term for a fully assembled group of components. You can read more about tab navigation in the Components section.
 The Community and Action tabs are the most flexible tabs. None of these are available until a user successfully signs up for the campaign.
 
-#### Action
+### Action
 The Action tab is the default view of the campaign, seen upon reaching the base campaign url. It contains the information about the campaign action. It is built from Action Step components and can be arranged in whatever order a campaign lead wants. Usually a report back uploader is the final step on the action page but this block can be moved within the page or removed entirely.
 
-#### Community
+### Community
 The purpose of the community tab is to showcase the work of the community and update members about the status of the campaign.
 
 The primary feature of the community tab is the community feed. It’s divided into three main columns and is populated with campaign updates from leads/staffers, reportback photos from members, Calls to Action and  static bits of content like facts or quotes.
 
 The community tab is manually organized by the campaign lead in Contentful. Each item has to be given a defined width and item type.
 
-#### Quiz
+### Quiz
 The Quiz page is an experimental feature that allows a campaign lead to build a series of questions for a user to answer. A user is free to browse and answer all questions before affiliating but needs to affiliate with the campaign to see their results. This page has only been used experimentally and doesn’t show up in the tab navigation.
 
 A user’s quiz results are not stored on their profile or signup currently.
 
-#### Static/FAQ/Scholarship
+### Static/FAQ/Scholarship
 All other pages and tabs that are part of a campaign are static tabs. These tabs do not have the same flexibility of the Community and Action tabs. They accept markdown and display it in a 2/3 width container. The other column contains a CTA that is governed by the campaign wide CTA variables.
 
 The FAQ and Scholarship tab are the most popular example of static tabs and are present on almost all campaigns.
 
 There are no custom blocks for static tabs right now.
 
----
+
 
 ## Components
-Phoenix-Next pages and tabs are constructed from components, groups of stylistic and functional objects. Each component is composed of specific parts and serves a specific purpose.
+**Phoenix (next)** pages and tabs are constructed from components, groups of stylistic and functional objects. Each component is composed of specific parts and serves a specific purpose.
 
 ### Header
-The Phoenix-Next header was designed to solve a number of problems from the Ashes template. Especially at smaller screen sizes, the overlaid text of the old template prevented a user from reading properly or obscured almost the entire image. Beyond readability issues, the emphasis on the campaign name didn’t strongly register with users compared to information about the campaign action.
+The **Phoenix (next)** header was designed to solve a number of problems from the Ashes template. Especially at smaller screen sizes, the overlaid text of the old template prevented a user from reading properly or obscured almost the entire image. Beyond readability issues, the emphasis on the campaign name didn’t strongly register with users compared to information about the campaign action.
 
 ### Navigation
-From the very top of the page, Phoenix-Next has moved the navigation into it’s own opaque bar, eliminating the awkward overlap of photos and navigation. In all cases the bar is #FFFFFF white and contains the same information.
+From the very top of the page, **Phoenix (next)** has moved the navigation into it’s own opaque bar, eliminating the awkward overlap of photos and navigation. In all cases the bar is #FFFFFF white and contains the same information.
 
 ### Titles and Photos
 The Mosaic template has de-emphasized the importance of the campaign title and enhanced other presentational aspects, namely the Call to Action (CTA) . The photo is isolated to the left side and does not overlap with any text or copy. On small size screens the photo is always presented above the title, CTA and buttons.
@@ -68,7 +80,7 @@ Beneath the photo and campaign title is a full width bar that contains extra qua
 
 This data bar is not required for all campaigns.
 
----
+
 
 ## Tabs
 Beneath the header, the campaign content is distributed between a number of tabbed pages. Each tab can be loaded asynchronously and directly linked to with the following url structure: https://dosomething.org/us/campaigns/campaign-name/tab-name
@@ -87,7 +99,7 @@ On small screens, a footer-cta scrolls with the user after they scroll past the 
 ### Page Concierge
 How does this work right now
 
----
+
 
 ## Blocks
 Blocks are the skeleton of a campaign. We stack blocks of content together to create the feeds, pages and more. There are number of block types that can be created by campaign leads in Contentful to create instances of a block for a feed or page.
@@ -114,20 +126,21 @@ There is a variation of the action step component for competitions. If this togg
 
 ### RB Photo Uploader
 Technically, the photo uploader component is a action step. If toggled in Contentful, this component will allow a user to upload a photo to complete their campaign action. The photo uploader can accept the following items:
-	* Photo*
-	* Photo Caption*
-	* Quantity
-	* Why
-* = required item
+  - Photo*
+  - Photo Caption*
+  - Quantity
+  - Why
 
----
+_* = designates required item_
+
+
 
 ## Actions
 The primary way for a user to complete a DoSomething campaign is to complete a verified social good action.
 
-Actions are structured inside of Phoenix-Next
+Actions are structured inside of **Phoenix (next)**...
 
-Multiple actions
+Multiple actions...
 
 ### Photo Upload Action
 The firstborn and most common type of action on the platform, a Photo Upload Action usually requires a user to go complete an offline activity and then provide photo evidence to verify their work. This could be a photo of a jeans drive collection, a poster hung in a school hallway, an “I Voted” or more. All photos are sent to Rogue, the user activity service, to be reviewed. Each photo submitted is an individual post to Rogue, associated with a specific campaign signup.
@@ -139,27 +152,38 @@ Some photo uploaders require the user to associate an item quantity with their u
 
 Rogue counts the quantity on a per post level. Then this information is given to Quasar and summed up to collect total user impact. This is at odds with how users think about their collection, so we present it differently on the platform. On the front-end, users will tell us the total number of items collected and we do the math to calculate the change in their collection total from their last upload. We pass this information to Rogue so they can collect the per post changes to quantity.
 
----
+
 
 ## Contentful
----
+... More to come...
+
+
 
 ## Sharing
-### Modals
-Phoenix-Next can place specific components into a modal, presented on top of the campaign page with a darkened background. These modals are created through a url structure that includes /modal/.  All modals share the same visual style, a white card with a yellow title bar. The title bar also contains an X in the top right corner to dismiss the modal. Modals can also be dismissed by clicking or tapping the area outside the modal.
+... More to come...
 
-### Affirmation modal
+
+
+## Modals
+**Phoenix (next)** can place specific components into a modal, presented on top of the campaign page with a darkened background. These modals are created through a url structure that includes /modal/.  All modals share the same visual style, a white card with a yellow title bar. The title bar also contains an X in the top right corner to dismiss the modal. Modals can also be dismissed by clicking or tapping the area outside the modal.
+
+### Affirmation Modal
 The affirmation modal appears on every campaign, after a user has affiliated. Immediately following the signup, the user is presented with an affirmation modal that provides positive messaging, a message of impact from the campaign lead and a chance to share the campaign on Facebook.
 The affirmation modal content doesn’t exist anywhere on the page and can only been seen on the first viewing of the affiliated campaign page.
 
-### Campaign update modals
+### Campaign Update Modals
 Any campaign update can be placed into a permalink or shared onto a social network. The link showcases the modal content, regardless of if a visitor has signed up or not.
 
-### Reportback modals
+### Reportback Modals
 The reportback uploader card can be placed into a modal, although it is not currently advised and likely to be replaced in the future. These reportback uploader modals are primarily used in messaging to direct users to complete the campaign. They don’t feature any sort of authentication control because they are generally sent to registered campaign signups.
 
-#### Content modals
+#### Content Modals
 We can present content from other static pages in a modal. The common use for this is the FAQ or Scholarship modal. By providing a structured /modal/ link the the body of an update or action step, we can create a new modal that pulls the content of the linked page.
+
+
+***
+
+... More to come...
 
 Templates
 Legacy
