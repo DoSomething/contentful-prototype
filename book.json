@@ -4,5 +4,21 @@
   "root": "./docs",
   "structure.glossary": "GLOSSARY.md",
   "structure.readme": "README.md",
-  "structure.summary": "SUMMARY.md"
+  "structure.summary": "SUMMARY.md",
+  "plugins": [
+    "-highlight",
+    "anchorjs",
+    "editlink",
+    "github",
+    "prism"
+  ],
+  "pluginsConfig": {
+    "editlink": {
+      "base": "https://github.com/DoSomething/phoenix-next/tree/dev/docs",
+      "label": "Edit This Page"
+    },
+    "github": {
+      "url": "https://github.com/DoSomething/phoenix-next"
+    }
+  }
 }
