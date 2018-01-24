@@ -31,7 +31,7 @@
   + [Sharing](philosophical-overview/overview.md#sharing)
   + [Modals](philosophical-overview/overview.md#modals)
 - [Goals](philosophical-overview/goals.md)
-- [Decisions](philosophical-overview/historical-decisions.md)
+- [Historical Decisions](philosophical-overview/historical-decisions.md)
 
 
 ## Content Publishing

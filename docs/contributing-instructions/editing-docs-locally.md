@@ -5,13 +5,13 @@ To help facilitate editing the documentation locally, you can install the `gitbo
 
 Install the CLI by running:
 
-```shell
+```bash
 $ npm install gitbook-cli -g
 ```
 
 Then within the Phoenix project repository you can serve a local version of the book by running:
 
-```shell
+```bash
 $ gitbook serve
 ```
 

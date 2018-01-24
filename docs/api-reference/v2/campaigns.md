@@ -16,7 +16,7 @@ https://next.dosomething.org/api/v2/campaigns/6LQzMvDNQcYQYwso8qSkQ8
 
 Example Response:
 
-```
+```json
 {
   "data": {
     "id": "6LQzMvDNQcYQYwso8qSkQ8",
