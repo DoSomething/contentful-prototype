@@ -29,6 +29,9 @@ const VoterRegistration = (props) => {
     link = makeUrl(baseUrl, query).href;
   }
 
+  const formattedContent = (
+    content || VoterRegistration.defaultProps.content
+  ).replace(/:::[a-zA-Z]*:::/gi, link);
 
   return (
     <Flex>
@@ -39,7 +42,7 @@ const VoterRegistration = (props) => {
         stepIndex={stepIndex}
       />
       <FlexCell width="two-thirds">
-        <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, link) }</Markdown>
+        <Markdown>{ formattedContent }</Markdown>
       </FlexCell>
     </Flex>
   );
