@@ -4,5 +4,9 @@
   ul {
     padding-left: $base-spacing;
     list-style-type: square;
+
+    a {
+      cursor: pointer;
+    }
   }
 }
