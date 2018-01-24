@@ -7,7 +7,7 @@ import Conclusion from './Conclusion';
 import './quiz.scss';
 
 const Quiz = (props) => {
-  const { id, fields, data, completeQuiz, pickQuizAnswer } = props;
+  const { id, fields, data, completeQuiz, pickQuizAnswer, trackEvent } = props;
   const { error, shouldSeeResult } = data;
 
   const introduction = shouldSeeResult ? null : (
@@ -46,6 +46,12 @@ const Quiz = (props) => {
     </Conclusion>
   ) : null;
 
+  if (shouldSeeResult) {
+    trackEvent('converted on quiz', {
+      responses: data.questions,
+    });
+  }
+
   return (
     <div className="quiz">
       <div className="quiz__introduction">
@@ -80,6 +86,7 @@ Quiz.propTypes = {
   }).isRequired,
   completeQuiz: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
+  trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
