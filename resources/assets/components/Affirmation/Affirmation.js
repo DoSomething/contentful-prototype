@@ -1,37 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Highlight from '../Highlight';
+import Card from '../Card';
+import { Flex, FlexCell } from '../Flex';
 import Markdown from '../Markdown';
-import { Figure } from '../Figure';
 import { ShareContainer } from '../Share';
 
 import './affirmation.scss';
 
-const Affirmation = ({ content }) => (
-  <div className="affirmation">
-    <div className="affirmation__section affirmation__section-heading">
-      <Highlight>{ content.header }</Highlight>
-    </div>
-    <div className="affirmation__section affirmation__section-quote">
-      <Figure className="margin-bottom-none" image={content.photo} alt={content.author} alignment="left">
-        <Markdown>{ content.quote }</Markdown>
-        <span>- { content.author }</span>
-      </Figure>
-    </div>
-    <div className="affirmation__section affirmation__section-share">
-      <div className="affirmation__block">
+/*
+  TODO: waiting on field...
+  import Byline from '../Byline';
+
+  <Byline
+    author={authorFields.name}
+    avatar={authorFields.avatar || undefined}
+    jobTitle={authorFields.jobTitle || undefined}
+    className="float-left"
+  />
+ */
+
+const Affirmation = ({ closeModal, content }) => (
+  <Card className="affirmation rounded" title="Thanks for joining us!" onClose={closeModal}>
+    <Markdown className="padded">{content.quote}</Markdown>
+    <Flex>
+      <FlexCell className="affirmation__cta padded" width="half">
         <h3>{ content.callToActionHeader }</h3>
         <p>{ content.callToActionDescription }</p>
-      </div>
-      <div className="affirmation__block margin-horizontal-md">
-        <ShareContainer variant="black" parentSource="affirmation" />
-      </div>
-    </div>
-  </div>
+      </FlexCell>
+      <FlexCell className="padded" width="half">
+        <ShareContainer variant="blue" parentSource="affirmation" />
+      </FlexCell>
+    </Flex>
+  </Card>
 );
 
 Affirmation.propTypes = {
+  closeModal: PropTypes.func.isRequired,
   content: PropTypes.shape({
     header: PropTypes.string,
     photo: PropTypes.string,
