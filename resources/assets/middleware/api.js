@@ -23,7 +23,7 @@ const apiMiddleware = () => next => (action) => {
         // @TODO: more to come with handling the response!
         if (response.data) {
           console.groupCollapsed('%c API Middleware Response: ',
-            'background-color: rgba(105,157,215,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
+            'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
           );
           console.table(response.data);
           console.groupEnd();
