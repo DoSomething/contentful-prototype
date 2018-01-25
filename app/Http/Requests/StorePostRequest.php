@@ -61,9 +61,11 @@ class StorePostRequest extends FormRequest
             ];
         }
 
+        $minImpact = $this->input('previousImpact') + 1;
+
         return array_merge([
             'caption' => 'required|min:4|max:60',
-            'impact' => 'required_if:showImpact,1|integer|min:1',
+            'impact' => 'required_if:showImpact,1|integer|min:'.$minImpact,
             'media' => 'required|file|image',
             'showImpact' => 'boolean',
         ], $additionalRules);

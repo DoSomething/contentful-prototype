@@ -58,18 +58,12 @@ class ReportbackUploader extends React.Component {
       impact: null,
       ...infoFields,
     };
-
-    this.previousImpact = get(props.submissions.reportback, 'quantity', 0);
   }
 
   getAffirmationContent() {
     return this.props.affirmationContent || (
       ReportbackUploader.defaultProps.affirmationContent
     );
-  }
-
-  determineImpact(fieldValue) {
-    return fieldValue ? Number(fieldValue) - Number(this.previousImpact) : '';
   }
 
   handleOnFileUpload(media) {
@@ -91,9 +85,9 @@ class ReportbackUploader extends React.Component {
       actionType: this.props.referralRB ? 'referralAction' : this.props.actionType,
       campaignId: this.props.legacyCampaignId,
       caption: this.caption.value,
-      impact: this.props.showQuantityField ? this.determineImpact(this.impact.value) : 1,
+      impact: this.props.showQuantityField ? this.impact.value : 1,
       media: this.state.media,
-      previousImpact: this.previousImpact,
+      previousImpact: get(this.props.submissions.reportback, 'quantity', 0),
       showImpact: this.props.showQuantityField ? 1 : 0,
       status: 'pending',
       ...infoFields,
@@ -140,6 +134,7 @@ class ReportbackUploader extends React.Component {
         .indexOf(name) !== -1
     );
 
+    const previousImpact = get(this.props.submissions.reportback, 'quantity', 0);
 
     // @TODO: using a hardcoded array is not sustainable...
     const infoFieldNames = referralRB ? ['friendName', 'friendEmail', 'friendStory'] : ['whyParticipated'];
@@ -160,9 +155,9 @@ class ReportbackUploader extends React.Component {
     const impactInput = (
       <div className="form-item-group">
         <div className="padding-md">
-          { this.previousImpact ?
+          { previousImpact ?
             <div className="impact-display">
-              <span className="impact-display__quantity">{this.previousImpact}</span>
+              <span className="impact-display__quantity">{previousImpact}</span>
               <span className="impact-display__units">{`${this.props.noun.plural} Counted`}</span>
             </div>
             :
@@ -170,7 +165,7 @@ class ReportbackUploader extends React.Component {
           }
 
           <label className={inputClassnames.impact.label} htmlFor="impact">
-            { this.previousImpact ?
+            { previousImpact ?
               'Got more items? You can enter your new total here:'
               :
               'How many items are in this photo?'
@@ -178,7 +173,7 @@ class ReportbackUploader extends React.Component {
           </label>
           <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Quantity # (300)" ref={input => (this.impact = input)} />
 
-          { this.previousImpact ? <div className="impact-display__help-text">You will need to upload a new photo to update your collection total.</div> : null }
+          { previousImpact ? <div className="impact-display__help-text">You will need to upload a new photo to update your collection total.</div> : null }
         </div>
       </div>
     );
