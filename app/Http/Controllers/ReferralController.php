@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Referral;
-use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use App\Services\UploadedMedia;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StorePostRequest;
 
 class ReferralController extends Controller
 {
@@ -31,20 +31,11 @@ class ReferralController extends Controller
     /**
      * Store 'Refer a Friend' RB fields locally, then store regular reportback fields through the PhoenixLegacy API.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $this->validate($request, [
-            'friendName' => 'required',
-            'friendEmail' => 'required|email',
-            'friendStory' => 'required',
-            'media' => 'required|file|image',
-            'caption' => 'required|min:4|max:60',
-            'impact' => 'required|numeric',
-        ]);
-
         Referral::create([
             'friend_name' => $request->input('friendName'),
             'friend_email' => $request->input('friendEmail'),

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use App\Services\UploadedMedia;
 use Illuminate\Support\Facades\Log;
+use App\Http\Requests\StorePostRequest;
 
 class ReportbackController extends Controller
 {
@@ -42,18 +43,11 @@ class ReportbackController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StorePostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $this->validate($request, [
-            'media' => 'required|file|image',
-            'caption' => 'required|min:4|max:60',
-            'impact' => 'required|numeric',
-            'whyParticipated' => 'required',
-        ]);
-
         $path = UploadedMedia::store($request->file('media'));
 
         $response = $this->phoenixLegacy->storeReportback(

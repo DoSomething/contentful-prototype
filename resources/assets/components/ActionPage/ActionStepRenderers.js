@@ -46,7 +46,7 @@ export function renderPhotoUploader(step, isSignedUp) {
   return (
     <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
       <div className="margin-horizontal-md">
-        <ReportbackUploaderContainer {...step.fields} />
+        <ReportbackUploaderContainer actionType={step.type.sys.id} {...step.fields} />
       </div>
     </FlexCell>
   );
