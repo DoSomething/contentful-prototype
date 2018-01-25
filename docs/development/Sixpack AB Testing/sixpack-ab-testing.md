@@ -4,7 +4,13 @@
 When implementing an A/B test using Sixpack in Phoenix-Next on the front-end, there are a few steps for successfully executing an experiment.
 
 ## Step 1
-First, you need to edit the experiments JSON file located in the `/resources/assets` directory, and designate the experiment name, all alternatives, and any additional meta data, such as whether a condition must be met before an experiment can execute:
+First, you need to edit the experiments JSON file located in the `/resources/assets` directory, and designate the relavant data for the experiment.
+The hierarchy is as follows:
+* **Experiment Name**: the name of the experiment. e.g. "lede_banner_number_of_buttons"
+* **Meta-data**:
+  * **preTest**: the condition or conditions that need to be met before an experiment can execute
+* **Alternatives**: all of the alternatives for this AB test
+* **Traffic Fraction** (optional): The amount of traffic you'd like to expose to this AB test (The excluded traffic will receive the control alternative, but will not be counted as test participants.)
 
 ```javascript
 // Example experiments.json
@@ -12,12 +18,15 @@ First, you need to edit the experiments JSON file located in the `/resources/ass
 {
   "lede_banner_number_of_buttons": {
     "meta": {
-      "condition": "unaffiliated"
+      "preTest": {
+        "campaign.allowExperiments": true
+      }
     },
     "alternatives": {
       "a": "one_button",
       "b": "two_buttons"
-    }
+    },
+    "trafficFraction": 0.1
   }
 }
 ```
