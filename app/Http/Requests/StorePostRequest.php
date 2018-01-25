@@ -61,7 +61,14 @@ class StorePostRequest extends FormRequest
             ];
         }
 
-        $minImpact = $this->input('previousImpact') + 1;
+        // If we are showing the Impact Quantity field, then we adjust the minimum impact
+        // based on the previous impact, but if not showing the field, then we default to
+        // minimum impact of "1" since Rogue v2 endpoint still requires a value and we are
+        // defaulting to a value of "1" sent via the React frontend.
+        // @TODO: likely remove entire StorePostRequest once we move to Rogue v3 endpoint.
+        $showImpact = intval($this->input('showImpact'));
+
+        $minImpact = $showImpact ? $this->input('previousImpact') + 1 : 1;
 
         return array_merge([
             'caption' => 'required|min:4|max:60',
