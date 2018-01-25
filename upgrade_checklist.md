@@ -13,7 +13,7 @@
 - [x] Broadcasting
 - [x] Collections (not applicable)
 - [x] Container (not applicable)
-- [ ] Console
+- [x] Console (not applicable)
 - [ ] Database
 - [ ] Eloquent
 - [ ] Events
