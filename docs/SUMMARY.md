@@ -8,6 +8,7 @@
 - [Installation](development/installation.md)
 - [Architecture](development/architecture.md)
 - [Heroku Usage](development/heroku.md)
+- [Sixpack AB Testing](development/sixpack-ab-testing.md)
 
 
 ## API Reference
