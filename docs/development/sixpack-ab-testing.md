@@ -1,6 +1,6 @@
 
-# Implementing Sixpack on the front-end
-
+# Implementing Sixpack On The Front-End
+***
 When implementing an A/B test using Sixpack in Phoenix-Next on the front-end, there are a few steps for successfully executing an experiment.
 
 ## Step 1
@@ -8,7 +8,7 @@ First, you need to edit the experiments JSON file located in the `/resources/ass
 The hierarchy is as follows:
 * **Experiment Name**: the name of the experiment. e.g. "lede_banner_number_of_buttons"
 * **Meta-data**:
-  * **preTest**: the condition or conditions that need to be met before an experiment can execute
+  * **Pre-Test** (`preTest`): the condition or conditions that need to be met before an experiment can execute
 * **Alternatives**: all of the alternatives for this AB test
 * **Traffic Fraction** (optional): The amount of traffic you'd like to expose to this AB test (The excluded traffic will receive the control alternative, but will not be counted as test participants.)
 
