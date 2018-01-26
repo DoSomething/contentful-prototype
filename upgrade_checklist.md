@@ -23,7 +23,7 @@
 - [x] Redis
 - [x] Routing
 - [x] Sessions
-- [ ] Testing
+- [x] Testing
 - [ ] Translation
 - [ ] URL Generation
 - [ ] Validation

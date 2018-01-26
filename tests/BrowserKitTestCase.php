@@ -8,7 +8,7 @@ use Illuminate\Contracts\Console\Kernel;
 use DoSomething\Gateway\Testing\WithOAuthTokens;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 
-abstract class TestCase extends \Illuminate\Foundation\Testing\TestCase
+abstract class BrowserKitTestCase extends \Laravel\BrowserKitTesting\TestCase
 {
     use DatabaseSetup, WithOAuthTokens;
 

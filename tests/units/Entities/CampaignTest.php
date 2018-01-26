@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 class CampaignTest extends TestCase
 {
     /** @test */

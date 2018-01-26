@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests;
+
 class HelpersTest extends TestCase
 {
     /** @test */
