@@ -56,6 +56,6 @@ class PostRepository
      */
     public function storePost($payload = [])
     {
-        return $this->rogue->post('v3/posts', $payload);
+        return $this->rogue->withToken(token())->post('v3/posts', $payload);
     }
 }
