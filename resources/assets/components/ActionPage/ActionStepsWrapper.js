@@ -50,7 +50,7 @@ const ActionStepsWrapper = (props) => {
     ));
   }
 
-  if (template === 'legacy') {
+  if (template === 'legacy' || ! hasActivityFeed) {
     stepComponents.push(renderLegacyGallery());
   }
 
