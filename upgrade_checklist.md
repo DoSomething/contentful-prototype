@@ -14,7 +14,6 @@
 - [x] Collections (not applicable)
 - [x] Container (not applicable)
 - [x] Console (not applicable)
-- [ ] Queue
 - [ ] Redis
 - [ ] Routing
 - [ ] Sessions
@@ -23,6 +22,7 @@
 - [x] Events
 - [x] Exceptions
 - [x] Mail
+- [x] Queue
 - [ ] Testing
 - [ ] Translation
 - [ ] URL Generation
