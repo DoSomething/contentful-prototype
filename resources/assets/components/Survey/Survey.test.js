@@ -50,7 +50,6 @@ const toggleUserCompletion = (value) => {
 }
 
 test('it launches the survey when `ENV`s `SURVEY_ENABLED` is toggled on', () => {
-
   const openModalMock = mountModal();
 
   jest.runAllTimers();
@@ -59,7 +58,6 @@ test('it launches the survey when `ENV`s `SURVEY_ENABLED` is toggled on', () => 
 });
 
 test('it does not launch the survey when `ENV`s `SURVEY_ENABLED` is toggled off', () => {
-
   global.ENV.SURVEY_ENABLED = false;
 
   const openModalMock = mountModal()
@@ -70,7 +68,6 @@ test('it does not launch the survey when `ENV`s `SURVEY_ENABLED` is toggled off'
 });
 
 test('it waits 60 seconds to launch survey', () => {
-
   const openModalMock = mountModal()
 
   jest.runTimersToTime(59000);
@@ -83,7 +80,6 @@ test('it waits 60 seconds to launch survey', () => {
 });
 
 test('it does not launch the survey when there is no userId', () => {
-
   const openModalMock = jest.fn();
 
   mount(<Survey openModal={openModalMock}/>);
@@ -95,7 +91,6 @@ test('it does not launch the survey when there is no userId', () => {
 })
 
 test('it does not launch the survey when the user is marked as finished', () => {
-
   toggleUserCompletion(true);
 
   const openModalMock = mountModal()
@@ -107,7 +102,6 @@ test('it does not launch the survey when the user is marked as finished', () => 
 
 
 test('it marks the user as finished (and does not launch the survey) if the URL params indicate as such', () => {
-
   Object.defineProperty(window.location, 'search', {
     writable: true,
     value: '?finished_nps=1'
@@ -126,7 +120,6 @@ test('it marks the user as finished (and does not launch the survey) if the URL 
 });
 
 test('it does not launch the survey is the user is marked as dismissed less then 30 days ago', () => {
-
   set(`${userId}_dismissed_survey`, 'timestamp', Date.now());
 
   const openModalMock = mountModal()
@@ -137,7 +130,6 @@ test('it does not launch the survey is the user is marked as dismissed less then
 });
 
 test('it launches the survey is the user is marked as dismissed more then 30 days ago', () => {
-
   const time = getTime(Date.now()) - (31 * 1440 * 60 * 1000);
 
   set(`${userId}_dismissed_survey`, 'timestamp', time);
