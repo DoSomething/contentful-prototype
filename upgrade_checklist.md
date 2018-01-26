@@ -14,7 +14,6 @@
 - [x] Collections (not applicable)
 - [x] Container (not applicable)
 - [x] Console (not applicable)
-- [ ] Eloquent
 - [ ] Events
 - [ ] Exceptions
 - [ ] Mail
@@ -23,6 +22,7 @@
 - [ ] Routing
 - [ ] Sessions
 - [x] Database
+- [x] Eloquent
 - [ ] Testing
 - [ ] Translation
 - [ ] URL Generation
