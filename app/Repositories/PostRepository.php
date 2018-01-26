@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Http\Request;
 use App\Services\RogueClient;
 
 class PostRepository
@@ -41,13 +42,20 @@ class PostRepository
      */
     public function getCampaignPosts($id, $query = [])
     {
+        // @TODO: consolidate with getPosts() above.
+        // No reason setting the campaign_id cannot happen in parent call.
         $query['filter']['campaign_id'] = $id;
 
         return $this->rogue->get('v3/posts', $query);
     }
 
-    public function storeCampaignPost()
+    /**
+     * [storePost description]
+     * @param  array  $payload
+     * @return [type]          [description]
+     */
+    public function storePost($payload = [])
     {
-        return response()->json(['data' => ''], 201);
+        return $this->rogue->post('v3/posts', $payload);
     }
 }

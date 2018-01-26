@@ -30,13 +30,13 @@ class CampaignPostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  string  $campaignId
+     * @param  string  $id Campaign ID
      * @param  Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index($campaignId, Request $request)
+    public function index($id, Request $request)
     {
-        $data = $this->postRepository->getCampaignPosts($campaignId, $request->all());
+        $data = $this->postRepository->getCampaignPosts($id, $request->all());
 
         return response()->json($data);
     }
@@ -44,10 +44,10 @@ class CampaignPostsController extends Controller
     /**
      * Store a newly created resource.
      *
-     * @param  string $id
+     * @param  string $id Campaign ID
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store($campaignId, Request $request)
+    public function store($id, Request $request)
     {
         $this->validate($request, [
             'media' => 'required',  //@TODO: add file|image
@@ -56,8 +56,16 @@ class CampaignPostsController extends Controller
             'whyParticipated' => 'required',
         ]);
 
-        // $this->postRepository->storeCampaignPost();
+        $request->merge(['campaign_id' => $id]);
 
-        return response()->json([$campaignId], 201);
+        // @TODO: Probably rename impact to quantity on frontend. Made sense during
+        // discussions of impact being more generic, but other services use quantity
+        // so it just creates extra overhead
+        $request->merge(['quantity' => intval($request->input('impact'))]);
+        $request->offsetUnset('impact');
+
+        $this->postRepository->storePost($request->all());
+
+        return response()->json([$id], 201);
     }
 }
