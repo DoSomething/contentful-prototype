@@ -10,7 +10,7 @@ import {
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId,
-    hasPendingSignup, isSignedUp, template } = props;
+    hasActivityFeed, hasPendingSignup, isSignedUp, template } = props;
 
   let stepIndex = 0;
 
@@ -65,6 +65,7 @@ ActionStepsWrapper.propTypes = {
   actionSteps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
+  hasActivityFeed: PropTypes.bool.isRequired,
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   template: PropTypes.string.isRequired,

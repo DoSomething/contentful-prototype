@@ -7,6 +7,7 @@ import ActionStepsWrapper from './ActionStepsWrapper';
 const mapStateToProps = state => ({
   campaignId: state.campaign.legacyCampaignId,
   callToAction: state.campaign.callToAction,
+  hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   hasPendingSignup: state.signups.isPending,
   isSignedUp: state.signups.thisCampaign,
   template: state.campaign.template,
