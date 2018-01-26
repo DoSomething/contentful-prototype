@@ -1,7 +1,7 @@
 import React from 'react';
 import Survey from './Survey';
 
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { get, set } from '../../helpers/storage';
 import { getTime } from 'date-fns';
