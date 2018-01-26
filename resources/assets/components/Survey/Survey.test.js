@@ -1,10 +1,11 @@
+/* global window */
+
 import React from 'react';
-import Survey from './Survey';
-
 import { mount } from 'enzyme';
-
-import { get, set } from '../../helpers/storage';
 import { getTime } from 'date-fns';
+
+import Survey from './Survey';
+import { get, set } from '../../helpers/storage';
 
 // Faking timers to be able to interact with and mock our timed survey component
 jest.useFakeTimers();
@@ -22,7 +23,7 @@ class LocalStorageMock {
   setItem(key, value) {
     this.store[key] = value.toString();
   }
-};
+}
 
 // Setting random userId for all test
 const userId = '1234';
@@ -30,16 +31,16 @@ const userId = '1234';
 // Before each test, we'll toggle the env survey enabled prop, and set a fresh localStorage mock
 beforeEach(() => {
   global.ENV = {
-    SURVEY_ENABLED: true
-  }
-  global.localStorage = new LocalStorageMock;
-})
+    SURVEY_ENABLED: true,
+  };
+  global.localStorage = new LocalStorageMock();
+});
 
 const mountModal = () => {
   // Using a function mock for the openModal prop
   const openModalMock = jest.fn();
 
-  mount(<Survey  userId={userId} openModal={openModalMock}/>);
+  mount(<Survey userId={userId} openModal={openModalMock}/>);
 
   return openModalMock;
 }
@@ -82,18 +83,17 @@ test('it waits 60 seconds to launch survey', () => {
 test('it does not launch the survey when there is no userId', () => {
   const openModalMock = jest.fn();
 
-  mount(<Survey openModal={openModalMock}/>);
+  mount(<Survey openModal={openModalMock} />);
 
   jest.runAllTimers();
 
   expect(openModalMock).toHaveBeenCalledTimes(0);
-
-})
+});
 
 test('it does not launch the survey when the user is marked as finished', () => {
   toggleUserCompletion(true);
 
-  const openModalMock = mountModal()
+  const openModalMock = mountModal();
 
   jest.runAllTimers();
 
@@ -104,10 +104,10 @@ test('it does not launch the survey when the user is marked as finished', () => 
 test('it marks the user as finished (and does not launch the survey) if the URL params indicate as such', () => {
   Object.defineProperty(window.location, 'search', {
     writable: true,
-    value: '?finished_nps=1'
+    value: '?finished_nps=1',
   });
 
-  const openModalMock = mountModal()
+  const openModalMock = mountModal();
 
   jest.runAllTimers();
 
@@ -115,14 +115,14 @@ test('it marks the user as finished (and does not launch the survey) if the URL 
 
   Object.defineProperty(window.location, 'search', {
     writable: true,
-    value: ''
+    value: '',
   });
 });
 
 test('it does not launch the survey is the user is marked as dismissed less then 30 days ago', () => {
   set(`${userId}_dismissed_survey`, 'timestamp', Date.now());
 
-  const openModalMock = mountModal()
+  const openModalMock = mountModal();
 
   jest.runAllTimers();
 
@@ -134,7 +134,7 @@ test('it launches the survey is the user is marked as dismissed more then 30 day
 
   set(`${userId}_dismissed_survey`, 'timestamp', time);
 
-  const openModalMock = mountModal()
+  const openModalMock = mountModal();
 
   jest.runAllTimers();
 
