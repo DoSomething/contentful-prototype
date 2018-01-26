@@ -3,7 +3,7 @@ import Affirmation from './Affirmation';
 import { closeModal } from '../../actions/modal';
 
 const mapStateToProps = state => ({
-  content: state.campaign.affirmation,
+  content: state.campaign.affirmation.fields,
 });
 
 const actionCreators = {
