@@ -30,13 +30,13 @@ class CampaignPostsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  string  $id
+     * @param  string  $campaignId
      * @param  Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index($id, Request $request)
+    public function index($campaignId, Request $request)
     {
-        $data = $this->postRepository->getCampaignPosts($id, $request->all());
+        $data = $this->postRepository->getCampaignPosts($campaignId, $request->all());
 
         return response()->json($data);
     }
@@ -47,15 +47,17 @@ class CampaignPostsController extends Controller
      * @param  string $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store($campaignId)
+    public function store($campaignId, Request $request)
     {
-        $this->validate(request(), [
+        $this->validate($request, [
             'media' => 'required',  //@TODO: add file|image
             'caption' => 'required|min:4|max:60',
             'impact' => 'required|integer|min:1',
             'whyParticipated' => 'required',
         ]);
 
-        return response()->json([], 201);
+        // $this->postRepository->storeCampaignPost();
+
+        return response()->json([$campaignId], 201);
     }
 }

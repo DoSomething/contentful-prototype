@@ -45,4 +45,9 @@ class PostRepository
 
         return $this->rogue->get('v3/posts', $query);
     }
+
+    public function storeCampaignPost()
+    {
+        return response()->json(['data' => ''], 201);
+    }
 }

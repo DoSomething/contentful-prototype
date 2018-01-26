@@ -163,6 +163,8 @@ class StorePhotoReportbackPostTest extends TestCase
     /** @test */
     public function registered_user_can_submit_photo_post()
     {
+        $this->disableExceptionHandling();
+
         $this->storePhotoPost([
             'caption' => 'Great caption!',
             'impact' => '30',
@@ -171,6 +173,8 @@ class StorePhotoReportbackPostTest extends TestCase
         ]);
 
         $this->assertResponseStatus(201);
+
+        $this->assertArrayHasKey('data', $this->decodeResponseJson());
     }
 
     /** @test */

@@ -31,8 +31,7 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        // @TODO 501 Not Implemented for now.
-        abort(501);
+        abort(501, 'Currently not implemented.');
     }
 
     /**
