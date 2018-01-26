@@ -14,10 +14,10 @@ class Affirmation extends Entity implements JsonSerializable
     public function jsonSerialize()
     {
         $authorValue = $this->newAuthor ?: $this->author;
-        $authorField = null; // TODO: Migrate this field.
+        $author = null; // TODO: Migrate this field.
 
         if (is_string($authorValue)) {
-            $authorField = [
+            $author = [
                 'id' => null,
                 'type' => 'staff',
                 'fields' => [
@@ -27,7 +27,7 @@ class Affirmation extends Entity implements JsonSerializable
                 ],
             ];
         } else {
-            $authorField = new Staff($authorValue->entry);
+            $author = new Staff($authorValue->entry);
         }
 
         return [
@@ -37,7 +37,7 @@ class Affirmation extends Entity implements JsonSerializable
                 'header' => $this->header,
                 'photo' => get_image_url($this->photo, 'square'),
                 'quote' => $this->quote,
-                'author' => $authorField,
+                'author' => $author,
                 'callToActionHeader' => $this->callToActionHeader,
                 'callToActionDescription'=> $this->callToActionDescription,
             ],
