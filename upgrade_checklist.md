@@ -14,7 +14,6 @@
 - [x] Collections (not applicable)
 - [x] Container (not applicable)
 - [x] Console (not applicable)
-- [ ] Routing
 - [ ] Sessions
 - [x] Database
 - [x] Eloquent
@@ -23,6 +22,7 @@
 - [x] Mail
 - [x] Queue
 - [x] Redis
+- [x] Routing
 - [ ] Testing
 - [ ] Translation
 - [ ] URL Generation
