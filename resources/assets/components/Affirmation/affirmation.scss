@@ -1,6 +1,10 @@
 @import '../../scss/next-toolbox.scss';
 
 .affirmation {
+  .markdown {
+    color: $black;
+  }
+
   .affirmation__cta {
     h3 {
       font-weight: 800;
