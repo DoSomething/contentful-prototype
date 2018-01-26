@@ -28,14 +28,6 @@ class LocalStorageMock {
 // Setting random userId for all test
 const userId = '1234';
 
-// Before each test, we'll toggle the env survey enabled prop, and set a fresh localStorage mock
-beforeEach(() => {
-  global.ENV = {
-    SURVEY_ENABLED: true,
-  };
-  global.localStorage = new LocalStorageMock();
-});
-
 const mountModal = () => {
   // Using a function mock for the openModal prop
   const openModalMock = jest.fn();
@@ -44,6 +36,15 @@ const mountModal = () => {
 
   return openModalMock;
 };
+
+// Before each test, we'll toggle the env survey enabled prop, and set a fresh localStorage mock
+beforeEach(() => {
+  global.ENV = {
+    SURVEY_ENABLED: true,
+  };
+
+  global.localStorage = new LocalStorageMock();
+});
 
 // Helper to set the user survey completion status in localstorage
 const toggleUserCompletion = (value) => {
