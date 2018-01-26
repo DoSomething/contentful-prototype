@@ -14,7 +14,6 @@
 - [x] Collections (not applicable)
 - [x] Container (not applicable)
 - [x] Console (not applicable)
-- [ ] Database
 - [ ] Eloquent
 - [ ] Events
 - [ ] Exceptions
@@ -23,6 +22,7 @@
 - [ ] Redis
 - [ ] Routing
 - [ ] Sessions
+- [x] Database
 - [ ] Testing
 - [ ] Translation
 - [ ] URL Generation
