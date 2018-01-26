@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import { getTime } from 'date-fns';
 
 import Survey from './Survey';
-import { get, set } from '../../helpers/storage';
+import { set } from '../../helpers/storage';
 
 // Faking timers to be able to interact with and mock our timed survey component
 jest.useFakeTimers();
@@ -40,15 +40,15 @@ const mountModal = () => {
   // Using a function mock for the openModal prop
   const openModalMock = jest.fn();
 
-  mount(<Survey userId={userId} openModal={openModalMock}/>);
+  mount(<Survey userId={userId} openModal={openModalMock} />);
 
   return openModalMock;
-}
+};
 
-// We'll use this to more easily test the survey launching based on the completion status in localstorage
+// Helper to set the user survey completion status in localstorage
 const toggleUserCompletion = (value) => {
   set(`${userId}_finished_survey`, 'boolean', value);
-}
+};
 
 test('it launches the survey when `ENV`s `SURVEY_ENABLED` is toggled on', () => {
   const openModalMock = mountModal();
@@ -61,7 +61,7 @@ test('it launches the survey when `ENV`s `SURVEY_ENABLED` is toggled on', () => 
 test('it does not launch the survey when `ENV`s `SURVEY_ENABLED` is toggled off', () => {
   global.ENV.SURVEY_ENABLED = false;
 
-  const openModalMock = mountModal()
+  const openModalMock = mountModal();
 
   jest.runAllTimers();
 
@@ -69,7 +69,7 @@ test('it does not launch the survey when `ENV`s `SURVEY_ENABLED` is toggled off'
 });
 
 test('it waits 60 seconds to launch survey', () => {
-  const openModalMock = mountModal()
+  const openModalMock = mountModal();
 
   jest.runTimersToTime(59000);
 
