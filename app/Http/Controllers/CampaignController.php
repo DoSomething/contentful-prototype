@@ -55,10 +55,14 @@ class CampaignController extends Controller
      * @return \Illuminate\View\View
      */
     public function show($slug)
+    public function show(Request $request, $slug)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
         $env = get_client_environment_vars();
+
+        $cookies = Request::cookie();
+        $featureFlags = get_feature_flags($cookies);
 
         // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
         $socialFields = get_social_fields($campaign, Request::url());
@@ -73,6 +77,7 @@ class CampaignController extends Controller
                 'id' => auth()->id(),
                 'role' => auth()->user() ? auth()->user()->role : null,
             ],
+            'featureFlags' => $featureFlags,
         ]);
     }
 }
