@@ -25,7 +25,7 @@
 - [x] Sessions
 - [x] Testing
 - [x] Translation
-- [ ] URL Generation
+- [x] URL Generation
 - [ ] Validation
 - [ ] Miscellaneous
 
