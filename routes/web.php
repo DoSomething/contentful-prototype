@@ -30,7 +30,7 @@ $router->get('next/cache/{cacheId}', 'CacheController');
 $router->get('next/embed', 'EmbedController@index');
 
 // Referrals CSV export
-$router->get('referrals/export', 'ReferralController@csvExport');
+$router->get('next/referrals/export', 'ReferralController@csvExport');
 
 /*
  * The following are API Routes that are currently using the web middleware,
