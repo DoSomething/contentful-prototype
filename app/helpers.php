@@ -398,3 +398,21 @@ function generate_streamed_csv($columns, $records)
 
     return fclose($file);
 }
+
+/**
+ * Get a list of feature flags from provided array.
+ *
+ * @param  array $list
+ * @return array
+ */
+function get_feature_flags($list) {
+    $featureFlags = [];
+
+    foreach ($list as $key => $value) {
+        if (preg_match('/feature_flag_/', $key)) {
+            $featureFlags[str_replace('feature_flag_', '', $key)] = $value;
+        }
+    }
+
+    return $featureFlags;
+}
