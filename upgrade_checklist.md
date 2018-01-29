@@ -24,7 +24,7 @@
 - [x] Routing
 - [x] Sessions
 - [x] Testing
-- [ ] Translation
+- [x] Translation
 - [ ] URL Generation
 - [ ] Validation
 - [ ] Miscellaneous
