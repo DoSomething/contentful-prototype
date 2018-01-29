@@ -1,6 +1,7 @@
 stats.json
 /node_modules
 /public/dist
+/public/hot
 /public/next/assets
 /public/next/uploads
 /public/storage
@@ -8,6 +9,7 @@ stats.json
 /vendor
 /_book
 /.idea
+/.vagrant
 Homestead.json
 Homestead.yaml
 .env

@@ -29,6 +29,7 @@
 - [x] Validation
 - [ ] Miscellaneous
 
+[GitHub diff between laravel/laravel 5.3 -> 5.4](https://github.com/laravel/laravel/compare/5.3...5.4)
 
 
 ## 5.4 to 5.5
