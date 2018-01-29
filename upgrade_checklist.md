@@ -26,7 +26,7 @@
 - [x] Testing
 - [x] Translation
 - [x] URL Generation
-- [ ] Validation
+- [x] Validation
 - [ ] Miscellaneous
 
 
