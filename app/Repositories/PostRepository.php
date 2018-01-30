@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use Illuminate\Http\Request;
 use App\Services\RogueClient;
 
 class PostRepository
