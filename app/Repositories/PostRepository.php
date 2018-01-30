@@ -68,7 +68,7 @@ class PostRepository
         })->values()->toArray();
 
         return $this->rogue->withToken(token())->send('POST', 'v3/posts', [
-            'multipart' => $multipartData
+            'multipart' => $multipartData,
         ]);
     }
 }
