@@ -5,14 +5,14 @@ We use an integration between Pivotal and GitHub to keep track of progress on ou
 
 To utilize this integration effectively, you need to follow a process with how you structure your commit messages.
 
-As you work on your local branch and are ready to add and commit your work you can structure your commit messages in a specific way so that when you push up your branch to GitHub it will "start" or "finish" a ticket.
+As you work on your local branch and are ready to add and commit your work you can structure your commit messages in a specific way so that when you push up your branch to GitHub and it will "start" or "finish" a ticket.
 
-The structure is as follows:
+Use the following commit message structure:
 ```bash
 git commit -m "[#PIVOTALTICKETID] The rest of your commit message here."
 ```
 
-So for example:
+For example:
 ```bash
 git commit -m "[#108041982] Did some awesome bug fixing."
 ```
@@ -24,7 +24,7 @@ If you include a keyword like `Finishes` or `Fixes` within the brackets, then it
 git commit -m "[Finishes #108041982] Fixed that darn bug."
 ```
 
-You can also include more than one ticket ID in the brackets by separated them with a space:
+You can also include more than one ticket ID in the brackets by separating them with a space:
 ```bash
 git commit -m "[Finishes #108041982 #102281987] Fixed all the things."
 ```
