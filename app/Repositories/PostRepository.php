@@ -50,12 +50,25 @@ class PostRepository
     }
 
     /**
-     * [storePost description]
+     * Store post in Rogue.
+     *
      * @param  array  $payload
-     * @return [type]          [description]
+     * @return array - JSON response
      */
     public function storePost($payload = [])
     {
-        return $this->rogue->withToken(token())->post('v3/posts', $payload);
+        unset($payload['media']);
+
+        // Guzzle expects specific file object for multipart form.
+        // @TODO: upadte Gateway to handle multipart form data.
+        $payload['file'] = fopen($payload['file']->getPathname(), 'r');
+
+        $multipartData = collect($payload)->map(function ($value, $key) {
+            return ['name' => $key, 'contents' => $value];
+        })->values()->toArray();
+
+        return $this->rogue->withToken(token())->send('POST', 'v3/posts', [
+            'multipart' => $multipartData
+        ]);
     }
 }
