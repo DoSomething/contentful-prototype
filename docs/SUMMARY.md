@@ -10,6 +10,7 @@
 - [Heroku Usage](development/heroku.md)
 - [Sixpack AB Testing](development/sixpack-ab-testing.md)
 - [Routing](development/routing.md)
+- [Issues &amp; Pull Requests](development/issues-and-pull-requests.md)
 
 
 ## API Reference
