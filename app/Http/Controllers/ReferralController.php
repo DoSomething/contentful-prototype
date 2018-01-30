@@ -86,7 +86,16 @@ class ReferralController extends Controller
 
         $referrals = $referralsEloquentBuilder->get();
 
-        $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id'];
+        // Adding some referrer user details to the referral records, to be able to export them with the CSV.
+        foreach ($referrals as $referral) {
+            $user = gateway('northstar')->getUser('id', $referral->referrer_northstar_id);
+
+            $referral->referrer_first_name = $user->first_name;
+            $referral->referrer_last_name = $user->last_name;
+            $referral->referrer_email = $user->email;
+        }
+
+        $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id', 'referrer_first_name', 'referrer_last_name', 'referrer_email'];
 
         $callback = function () use ($referrals, $columns, $referralsEloquentBuilder) {
             generate_streamed_csv($columns, $referrals);
