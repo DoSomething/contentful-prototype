@@ -30,3 +30,5 @@ git commit -m "[Finishes #108041982 #102281987] Fixed all the things."
 ```
 
 Given the above, it is useful to make a small commit at the start of your work to designate a ticket story as "started" and for the last commit prior to peer review, use the keyword to designate a ticket story as "finished".
+
+While the above can trigger Pivotal to "Start" and "Finish" a story ticket, you will still need to head on over to Pivotal to "Deliver" the finalized story ticket.
