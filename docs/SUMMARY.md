@@ -9,6 +9,7 @@
 - [Architecture](development/architecture.md)
 - [Heroku Usage](development/heroku.md)
 - [Sixpack AB Testing](development/sixpack-ab-testing.md)
+- [Routing](development/routing.md)
 
 
 ## API Reference
