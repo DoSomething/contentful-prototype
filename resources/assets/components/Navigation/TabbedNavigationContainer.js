@@ -82,7 +82,6 @@ const TabbedNavigationContainer = (props) => {
   );
 
   const actionPagePath = join('/us/campaigns', campaignSlug, campaignPaths.action);
-
   const ActionNavigationLink = () => (
     shouldHideAction ? null : (
       <NavigationLink
