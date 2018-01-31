@@ -27,7 +27,7 @@
 - [x] Translation
 - [x] URL Generation
 - [x] Validation
-- [ ] Miscellaneous
+- [x] Miscellaneous
 
 [GitHub diff between laravel/laravel 5.3 -> 5.4](https://github.com/laravel/laravel/compare/5.3...5.4)
 

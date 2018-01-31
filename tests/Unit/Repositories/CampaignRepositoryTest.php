@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Unit\Repositories;
 
 use App\Repositories\CampaignRepository;
 

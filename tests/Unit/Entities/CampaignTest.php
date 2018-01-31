@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Unit\Entities;
 
 class CampaignTest extends TestCase
 {

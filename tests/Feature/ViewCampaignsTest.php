@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests;
+namespace Tests\Feature;
 
 use App\Repositories\CampaignRepository;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
