@@ -65,6 +65,18 @@ const TabbedNavigationContainer = (props) => {
   const shouldHideAction = (isClosed || (shouldHideCommunity && additionalPages.length === 0));
 
   const isDefaultPage = window.location.pathname === join('/us/campaigns', campaignSlug);
+
+  /**
+   * Check if the current page is the campaign root `/`,
+   * if it is, return a function that returns the value of isFirst.
+   *
+   * Used to bypass the default `isActive` function on the react-router-dom
+   * NavLink.
+   *
+   * @param  {Boolean} isFirst value describing if this is
+   *                           the first page in the list.
+   * @return {Function}
+   */
   const defaultPageIsActiveFunction = isFirst => (
     isDefaultPage ? () => isFirst : null
   );
