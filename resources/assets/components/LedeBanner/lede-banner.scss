@@ -49,11 +49,12 @@
 .lede-banner__image {
   background-size: cover;
   background-position: center;
-  min-height: 300px;
+  min-height: 200px;
 
   @include media($medium) {
     display: table-cell;
     width: 50%;
+    min-height: 300px;
   }
 }
 
