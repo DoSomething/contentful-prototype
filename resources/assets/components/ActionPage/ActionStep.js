@@ -16,7 +16,8 @@ const renderPhoto = (photo, index) => (
 const ActionStep = (props) => {
   const {
     title, stepIndex, content, background, photos,
-    photoWidth, shouldTruncate, hideStepNumber, template,
+    photoWidth, shouldTruncate, hideStepNumber,
+    template, preTitle,
   } = props;
 
   const photoComponent = photos && photos.length ? (
@@ -32,6 +33,7 @@ const ActionStep = (props) => {
       <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
         <Flex>
           <StepHeader
+            preTitle={preTitle}
             title={title}
             step={stepIndex}
             background={background}
@@ -53,6 +55,7 @@ const ActionStep = (props) => {
 };
 
 ActionStep.propTypes = {
+  preTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
   content: PropTypes.string,
@@ -65,6 +68,7 @@ ActionStep.propTypes = {
 };
 
 ActionStep.defaultProps = {
+  preTitle: null,
   background: '',
   content: null,
   photos: [],

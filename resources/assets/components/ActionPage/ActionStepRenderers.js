@@ -107,12 +107,15 @@ export function renderActionStep(step, stepIndex, template) {
   const { id, fields } = step;
   const {
     title, content, background, photos,
-    displayOptions, hideStepNumber, truncate,
+    displayOptions, hideStepNumber, truncate, additionalContent,
   } = fields;
+
+  const preTitle = (additionalContent && additionalContent.preTitle);
 
   return (
     <ActionStep
       key={id}
+      preTitle={preTitle}
       title={title}
       content={content}
       stepIndex={stepIndex}
