@@ -106,7 +106,7 @@ test('it marks the user as finished (and does not launch the survey) if the URL 
   });
 });
 
-test('it does not launch the survey is the user is marked as dismissed less then 30 days ago', () => {
+test('it does not launch the survey if the user is marked as dismissed less then 30 days ago', () => {
   set(`${userId}_dismissed_survey`, 'timestamp', Date.now());
 
   const openModalMock = mountModal();
@@ -116,7 +116,7 @@ test('it does not launch the survey is the user is marked as dismissed less then
   expect(openModalMock).toHaveBeenCalledTimes(0);
 });
 
-test('it launches the survey is the user is marked as dismissed more then 30 days ago', () => {
+test('it launches the survey if the user is marked as dismissed more then 30 days ago', () => {
   const time = getTime(Date.now()) - (31 * 1440 * 60 * 1000);
 
   set(`${userId}_dismissed_survey`, 'timestamp', time);
