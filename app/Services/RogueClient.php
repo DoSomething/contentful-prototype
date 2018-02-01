@@ -38,7 +38,6 @@ class RogueClient extends RestApiClient
      */
     public function handleValidationException($endpoint, $response, $method, $path, $options)
     {
-        // Hackily format the "message" string in key-value format.
         $errors = $response['errors'];
 
         throw new ValidationException($errors, $endpoint);
