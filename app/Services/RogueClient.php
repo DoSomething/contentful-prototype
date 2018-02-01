@@ -16,9 +16,9 @@ class RogueClient extends RestApiClient
     public function __construct()
     {
         $this->authorizationServerUri = config('services.northstar.url');
+        $this->bridge = config('services.northstar.bridge');
         $this->grant = config('services.northstar.grant');
         $this->config = config('services.northstar');
-        $this->bridge = \DoSomething\Gateway\Laravel\LaravelOAuthBridge::class;
 
         $base_url = config('services.rogue.url').'/api/';
 
