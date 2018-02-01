@@ -17,7 +17,7 @@ const TrafficDistribution = ({ percentage, feature, children }) => {
   }
 
   return (
-    shouldSeeFeature ? <span>{ children }</span> : null
+    shouldSeeFeature ? <div>{ children }</div> : null
   );
 };
 
