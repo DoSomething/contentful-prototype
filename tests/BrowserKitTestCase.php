@@ -10,28 +10,7 @@ use Illuminate\Contracts\Debug\ExceptionHandler;
 
 abstract class BrowserKitTestCase extends \Laravel\BrowserKitTesting\TestCase
 {
-    use DatabaseSetup, WithOAuthTokens;
-
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
-
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../bootstrap/app.php';
-
-        $app->make(Kernel::class)->bootstrap();
-
-        return $app;
-    }
+    use CreatesApplication, DatabaseSetup, WithOAuthTokens;
 
     /**
      * Helper method to assert validation errors based on error response structure.
