@@ -6,12 +6,12 @@ import { get, set } from '../../helpers/storage';
 const TrafficDistribution = ({ percentage, feature, children }) => {
   let shouldSeeFeature;
 
-  const storedValue = get(feature, 'object');
+  const storedValue = get(`TrafficDistribution_${feature}`, 'object');
 
   if (! storedValue) {
     shouldSeeFeature = (Math.random() * 100) <= percentage;
 
-    set(feature, 'object', { showFeature: shouldSeeFeature });
+    set(`TrafficDistribution_${feature}`, 'object', { showFeature: shouldSeeFeature });
   } else {
     shouldSeeFeature = storedValue.showFeature;
   }
