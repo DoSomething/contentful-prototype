@@ -3,12 +3,17 @@ import PropTypes from 'prop-types';
 
 import LegacyStepHeaderTemplate from './templates/LegacyStepHeaderTemplate';
 import MosaicStepHeaderTemplate from './templates/MosaicStepHeaderTemplate';
+import StepHeaderTemplate from './templates/StepHeaderTemplate';
 
 const StepHeader = (props) => {
   switch (props.template) {
     case 'legacy':
       return (
         <LegacyStepHeaderTemplate {...props} />
+      );
+    case 'new-design':
+      return (
+        <StepHeaderTemplate {...props} />
       );
     default:
       return (
