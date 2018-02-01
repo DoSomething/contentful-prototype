@@ -97,7 +97,7 @@ Example Response
     "media": {
       "url": "https://rogue-thor.dosomething.org/images/123456",
       "original_image_url": "https://ds-rogue-thor.s3.amazonaws.com/uploads/reportback-items/8496508-superlongstringidhere-1234567890.jpeg?time=1517330438",
-      "caption": "Testing using Postman"
+      "caption": "Some awesome caption here!"
     },
     "quantity": "12",
     "tags": [],
