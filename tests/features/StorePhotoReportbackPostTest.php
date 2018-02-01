@@ -10,7 +10,7 @@ class StorePhotoReportbackPostTest extends TestCase
     {
         parent::setUp();
 
-        $this->campaignId = 1; // @TODO temp
+        $this->campaignId = 'XYZStringID123'; // @TODO temp
     }
 
     /**
@@ -163,6 +163,8 @@ class StorePhotoReportbackPostTest extends TestCase
     /** @test */
     public function registered_user_can_submit_photo_post()
     {
+        $this->markTestIncomplete('@TODO: Implement once we upgrade to Laravel 5.4.');
+
         $this->storePhotoPost([
             'caption' => 'Great caption!',
             'impact' => '30',
@@ -171,6 +173,8 @@ class StorePhotoReportbackPostTest extends TestCase
         ]);
 
         $this->assertResponseStatus(201);
+
+        $this->assertArrayHasKey('data', $this->decodeResponseJson());
     }
 
     /** @test */

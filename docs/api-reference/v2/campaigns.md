@@ -9,13 +9,11 @@ GET /api/v2/campaigns/{id}
 The `id` can be either a Contentful ID or an Ashes Legacy ID.
 
 Example Request:
-
 ```
 https://next.dosomething.org/api/v2/campaigns/6LQzMvDNQcYQYwso8qSkQ8
 ```
 
 Example Response:
-
 ```json
 {
   "data": {
@@ -84,4 +82,51 @@ POST /api/v2/campaigns/{id}/posts
 
 The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:$id` to the query params.
 
-// @TODO add link to corresponding body params and response example from Rogue
+Example Request:
+```
+https://next.dosomething.org/api/v2/campaigns/3455/posts
+```
+
+Example Response
+```json
+{
+  "data": {
+    "id": 123456,
+    "signup_id": 9874563,
+    "northstar_id": "551234567890abcdefghijkl",
+    "media": {
+      "url": "https://rogue-thor.dosomething.org/images/123456",
+      "original_image_url": "https://ds-rogue-thor.s3.amazonaws.com/uploads/reportback-items/8496508-superlongstringidhere-1234567890.jpeg?time=1517330438",
+      "caption": "Some awesome caption here!"
+    },
+    "quantity": "12",
+    "tags": [],
+    "reactions": {
+      "reacted": false,
+      "total": null
+    },
+    "status": "pending",
+    "source": "sample-oauth",
+    "remote_addr": "100.00.000.000",
+    "created_at": "2018-01-30T16:40:37+00:00",
+    "updated_at": "2018-01-30T16:40:37+00:00",
+    "signup": {
+      "data": {
+        "id": 8496508,
+        "northstar_id": "551234567890abcdefghijkl",
+        "campaign_id": "3455",
+        "campaign_run_id": 6498,
+        "quantity": 72,
+        "why_participated": null,
+        "source": "sample-oauth",
+        "details": null,
+        "created_at": "2018-01-29T19:37:33+00:00",
+        "updated_at": "2018-01-30T16:40:37+00:00"
+      }
+    }
+  }
+}
+```
+
+Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
+

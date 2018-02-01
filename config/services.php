@@ -35,6 +35,7 @@ return [
         'grant' => 'authorization_code', // Default OAuth grant to use: either 'authorization_code' or 'client_credentials'
         'url' => env('NORTHSTAR_URL'),
         'key' => storage_path('keys/public.key'),
+        'bridge' => \DoSomething\Gateway\Laravel\LaravelOAuthBridge::class,
 
         'authorization_code' => [
             'client_id' => env('NORTHSTAR_AUTHORIZATION_ID'),
