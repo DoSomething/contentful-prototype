@@ -6,24 +6,10 @@ import { getTime } from 'date-fns';
 
 import Survey from './Survey';
 import { set } from '../../helpers/storage';
+import LocalStorageMock from '../../__mocks__/localStorageMock';
 
 // Faking timers to be able to interact with and mock our timed survey component
 jest.useFakeTimers();
-
-// Mocking local storage for tests
-class LocalStorageMock {
-  constructor() {
-    this.store = {};
-  }
-
-  getItem(key) {
-    return this.store[key] || null;
-  }
-
-  setItem(key, value) {
-    this.store[key] = value.toString();
-  }
-}
 
 // Setting random userId for all test
 const userId = '1234';
