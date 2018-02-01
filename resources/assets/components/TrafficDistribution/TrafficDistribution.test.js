@@ -1,5 +1,3 @@
-/* global window */
-
 import React from 'react';
 import { shallow } from 'enzyme';
 
@@ -21,17 +19,17 @@ const withinPool = percentage / 100;
 const outsidePool = (percentage / 100) + 1;
 
 // Fake feature name.
-const feature = "test_feature";
+const feature = 'test_feature';
 
 
-////// HELPER METHODS:
+// HELPER METHODS:
 
 // Sets up a mock Math object, with a mock random() method for testing.
 const setMockMath = (num) => {
   const mockMath = Object.create(global.Math);
   mockMath.random = () => num;
   global.Math = mockMath;
-}
+};
 
 const setWithinPool = () => (setMockMath(withinPool));
 const setOutsidePool = () => (setMockMath(outsidePool));
@@ -40,7 +38,7 @@ const shallowComponent = () => (
   shallow(
     <TrafficDistribution percentage={percentage} feature={feature}>
       <p>Hey there ole chap!</p>
-    </TrafficDistribution>
+    </TrafficDistribution>,
   )
 );
 
@@ -54,11 +52,11 @@ const getFeatureFromStorage = () => (
 );
 
 const setFeatureInStorage = (showFeature) => {
-  set(`TrafficDistribution_${feature}`, 'object', {showFeature});
+  set(`TrafficDistribution_${feature}`, 'object', { showFeature });
 };
 
 
-////// TESTS:
+// TESTS:
 
 test('it displays the child component when inside percentage pool', () => {
   setWithinPool();
