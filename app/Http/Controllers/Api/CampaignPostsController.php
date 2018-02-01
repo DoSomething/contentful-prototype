@@ -47,8 +47,6 @@ class CampaignPostsController extends Controller
     public function index($id, Request $request)
     {
         return $this->postRepository->getCampaignPosts($id, $request->all());
-
-        // return response()->json($data);
     }
 
     /**
