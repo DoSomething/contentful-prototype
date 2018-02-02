@@ -26,30 +26,6 @@
     font-family: $primary-font-family;
   }
 
-  .action-step__header {
-    span {
-      position: relative;
-      color: $primary-color;
-      font-size: $font-large; // TODO: This needs to be the 28px one
-      font-weight: $weight-bold;
-      text-shadow: $text-shadow;
-    }
-
-    h1 {
-      position: relative;
-      color: $white;
-      letter-spacing: 1.1px;
-      font-family: $secondary-font-family;
-      font-size: $font-hero;
-      font-weight: $weight-normal;
-      text-shadow: $text-shadow;
-
-      @include media($medium) {
-        font-size: $font-gigantic;
-      }
-    }
-  }
-
   .action-step__photos {
     display: flex;
     flex-direction: column;
@@ -80,30 +56,5 @@
         margin-left: $half-spacing;
       }
     }
-  }
-}
-
-.legacy-step-header {
-  width: 100%;
-
-  .step-header__pre-title {
-    font-size: $font-medium;
-    font-weight: $weight-bold;
-  }
-
-  .-emphasized {
-    margin: $half-spacing 0;
-  }
-
-  .-emphasized:after {
-    margin-top: -10px;
-    margin-left: 5px;
-  }
-
-  h1.step-header__title {
-    font-family: $secondary-font-family;
-    font-size: $font-hero;
-    font-weight: $weight-normal;
-    margin-top: 5px;
   }
 }
