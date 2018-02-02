@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SurveyContainer from '../Survey';
 import ModalSwitch from '../Modal';
-import { CampaignPageContainer, LandingPageContainer } from '../Page';
+import SurveyContainer from '../Survey';
 import NotificationContainer from '../Notification';
+import TrafficDistribution from '../TrafficDistribution';
+import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import { AdminDashboardContainer, CampaignDashboardContainer } from '../AdminDashboard';
 
 const Campaign = props => (
@@ -15,7 +16,10 @@ const Campaign = props => (
 
     <NotificationContainer />
     <ModalSwitch />
-    <SurveyContainer />
+
+    <TrafficDistribution percentage={100} feature="nps_survey">
+      <SurveyContainer />
+    </TrafficDistribution>
 
     { props.shouldShowLandingPage ?
       <LandingPageContainer {...props} />
