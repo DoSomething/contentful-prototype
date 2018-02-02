@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import StepHeader from './StepHeader';
 import Markdown from '../Markdown';
@@ -48,6 +49,7 @@ const ActionStep = (props) => {
           {photoComponent}
         </Flex>
       </div>
+      <PuckWaypoint name="action-step__bottom" waypointData={{ title }} />
     </FlexCell>
   );
 };
