@@ -1,3 +1,5 @@
+/* global window */
+
 import React from 'react';
 import { join } from 'path';
 import { get } from 'lodash';
@@ -62,11 +64,48 @@ const TabbedNavigationContainer = (props) => {
   const shouldHideCommunity = ! hasActivityFeed;
   const shouldHideAction = (isClosed || (shouldHideCommunity && additionalPages.length === 0));
 
+  const isDefaultPage = window.location.pathname === join('/us/campaigns', campaignSlug);
+
+  /**
+   * Check if the current page is the campaign root `/`,
+   * if it is, return a function that returns the value of isFirst.
+   *
+   * Used to bypass the default `isActive` function on the react-router-dom
+   * NavLink.
+   *
+   * @param  {Boolean} isFirst value describing if this is
+   *                           the first page in the list.
+   * @return {Function}
+   */
+  const defaultPageIsActiveFunction = isFirst => (
+    isDefaultPage ? () => isFirst : null
+  );
+
+  const actionPagePath = join('/us/campaigns', campaignSlug, campaignPaths.action);
+  const ActionNavigationLink = () => (
+    shouldHideAction ? null : (
+      <NavigationLink
+        to={actionPagePath}
+        isActive={defaultPageIsActiveFunction(! shouldHideAction)}
+      >Action</NavigationLink>
+    )
+  );
+
+  const communityPagePath = join('/us/campaigns', campaignSlug, campaignPaths.community);
+  const CommunityNavigationLink = () => (
+    shouldHideCommunity ? null : (
+      <NavigationLink
+        to={communityPagePath}
+        isActive={defaultPageIsActiveFunction(shouldHideAction && ! shouldHideCommunity)}
+      >Community</NavigationLink>
+    )
+  );
+
   return (
     <TabbedNavigation>
       <div className="nav-items">
-        { shouldHideCommunity ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.community)} exact>Community</NavigationLink> }
-        { shouldHideAction ? null : <NavigationLink to={join('/us/campaigns', campaignSlug, campaignPaths.action)}>Action</NavigationLink> }
+        <ActionNavigationLink />
+        <CommunityNavigationLink />
         { additionalPages }
       </div>
       { isAffiliated ? null : <SignupButton /> }
