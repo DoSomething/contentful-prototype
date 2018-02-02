@@ -115,7 +115,7 @@ const TabbedNavigationContainer = (props) => {
 
 TabbedNavigationContainer.propTypes = {
   actionText: PropTypes.string.isRequired,
-  campaignEndDate: PropTypes.string.isRequired,
+  campaignEndDate: PropTypes.string,
   campaignSlug: PropTypes.string.isRequired,
   hasActivityFeed: PropTypes.bool.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
@@ -127,6 +127,7 @@ TabbedNavigationContainer.propTypes = {
 };
 
 TabbedNavigationContainer.defaultProps = {
+  campaignEndDate: null,
   pages: [],
   template: null,
 };
