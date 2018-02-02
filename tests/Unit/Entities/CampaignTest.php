@@ -1,5 +1,9 @@
 <?php
 
+namespace Tests\Unit\Entities;
+
+use Tests\TestCase;
+
 class CampaignTest extends TestCase
 {
     /** @test */

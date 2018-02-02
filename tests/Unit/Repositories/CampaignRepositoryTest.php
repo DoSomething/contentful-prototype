@@ -1,5 +1,8 @@
 <?php
 
+namespace Tests\Unit\Repositories;
+
+use Tests\TestCase;
 use App\Repositories\CampaignRepository;
 
 class CampaignRepositoryTest extends TestCase

@@ -1,11 +1,14 @@
 <?php
 
+namespace Tests\Feature;
+
+use Tests\BrowserKitTestCase;
 use App\Repositories\CampaignRepository;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class ViewCampaignsTest extends TestCase
+class ViewCampaignsTest extends BrowserKitTestCase
 {
     // Probably want some sort of mock or fake for these test,
     // since we ideally shouldn't be connecting to Contentful

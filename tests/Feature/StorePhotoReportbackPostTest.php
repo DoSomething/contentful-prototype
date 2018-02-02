@@ -1,10 +1,13 @@
 <?php
 
+namespace Tests\Feature;
+
+use Tests\BrowserKitTestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
-class StorePhotoReportbackPostTest extends TestCase
+class StorePhotoReportbackPostTest extends BrowserKitTestCase
 {
     protected function setUp()
     {
