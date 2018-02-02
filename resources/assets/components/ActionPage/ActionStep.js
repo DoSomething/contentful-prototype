@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import StepHeader from './StepHeader';
+import SectionHeader from '../SectionHeader';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 
@@ -15,9 +15,8 @@ const renderPhoto = (photo, index) => (
 
 const ActionStep = (props) => {
   const {
-    title, stepIndex, content, background, photos,
-    photoWidth, shouldTruncate, hideStepNumber,
-    template, preTitle,
+    title, stepIndex, content, photos, photoWidth,
+    shouldTruncate, hideStepNumber, preTitle,
   } = props;
 
   const photoComponent = photos && photos.length ? (
@@ -32,13 +31,11 @@ const ActionStep = (props) => {
     <FlexCell width="full">
       <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
         <Flex>
-          <StepHeader
+          <SectionHeader
             preTitle={preTitle}
             title={title}
             step={stepIndex}
-            background={background}
             hideStepNumber={hideStepNumber}
-            template={template}
           />
           { content ?
             <FlexCell width="two-thirds">
@@ -59,17 +56,14 @@ ActionStep.propTypes = {
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
   content: PropTypes.string,
-  background: PropTypes.string,
   photos: PropTypes.arrayOf(PropTypes.string),
   photoWidth: PropTypes.string.isRequired,
   shouldTruncate: PropTypes.bool,
   hideStepNumber: PropTypes.bool,
-  template: PropTypes.string.isRequired,
 };
 
 ActionStep.defaultProps = {
   preTitle: null,
-  background: '',
   content: null,
   photos: [],
   shouldTruncate: false,
