@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "292120e0f16dbbfa25825c74125d5de9",
+    "content-hash": "315740f2496b49966a9623ce8da51a81",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -53,7 +53,7 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2017-07-21T11:56:48+00:01"
+            "time": "2017-07-21T11:56:48+00:00"
         },
         {
             "name": "composer/ca-bundle",
