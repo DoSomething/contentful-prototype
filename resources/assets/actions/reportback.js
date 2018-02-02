@@ -209,7 +209,7 @@ export function submitPhotoPost(post) {
   return submitReportback(url, post);
 }
 
-export function fetchUserReportbacks(userId, campaignId) {
+export function fetchUserReportbacks(userId, campaignId, campaignRunId) {
   if (! userId) {
     return (dispatch) => {
       dispatch(requestingUserReportbacksFailed());
@@ -219,7 +219,7 @@ export function fetchUserReportbacks(userId, campaignId) {
   return (dispatch) => {
     dispatch(requestingUserReportbacks());
 
-    return (new Phoenix()).get('next/signups', { campaigns: campaignId, users: userId })
+    return (new Phoenix()).get('next/signups', { campaigns: campaignId, users: userId, runs: campaignRunId })
       .then((json) => {
         dispatch(receivedUserReportbacks());
 

@@ -15,9 +15,9 @@ class SubmissionGallery extends React.Component {
   }
 
   componentDidMount() {
-    const { userId, legacyCampaignId } = this.props;
+    const { userId, legacyCampaignId, legacyCampaignRunId } = this.props;
 
-    this.props.fetchUserReportbacks(userId, legacyCampaignId);
+    this.props.fetchUserReportbacks(userId, legacyCampaignId, legacyCampaignRunId);
   }
 
   render() {
@@ -34,6 +34,7 @@ class SubmissionGallery extends React.Component {
 SubmissionGallery.propTypes = {
   fetchUserReportbacks: PropTypes.func.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
+  legacyCampaignRunId: PropTypes.string.isRequired,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
     items: PropTypes.array,

@@ -8,6 +8,7 @@ import { fetchUserReportbacks } from '../../../actions';
  */
 const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
+  legacyCampaignRunId: state.campaign.legacyCampaignRunId,
   submissions: state.submissions,
   userId: state.user.id,
 });
