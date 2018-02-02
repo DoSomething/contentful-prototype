@@ -11,7 +11,7 @@ Describe the behavior you are expecting.
 
 #### Additional Information
 _Any other info or references to cards/tickets from other services (Trello, etc)._
-Pivotal ID: #
+Pivotal ID: [#]()
 
 
 ### Steps to Reproduce

@@ -7,7 +7,7 @@ As a ...
 
 #### Additional Information
 _Any other info or references to cards/tickets from other services (Trello, etc)._
-Pivotal ID: #
+Pivotal ID: [#]()
 
 
 ### Why This Matters
