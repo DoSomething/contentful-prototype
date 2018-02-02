@@ -11,7 +11,8 @@
 - [Sixpack AB Testing](development/sixpack-ab-testing.md)
 - [Routing](development/routing.md)
 - [Issues &amp; Pull Requests](development/issues-and-pull-requests.md)
-- [Feature Traffic Distribution](development/feature-traffic-distribution)
+- [Features](development/features/README.md)
+  + [Traffic Distribution](development/features/traffic-distribution.md)
 
 
 ## API Reference
