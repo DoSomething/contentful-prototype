@@ -15,5 +15,10 @@ What is the current behavior?
 Describe the behavior you are expecting.
 
 
+#### Additional Information
+_Any other info or references to cards/tickets from other services (Trello, etc)._
+Pivotal ID: [#]()
+
+
 ### Relevant Screenshots + Links
 Please provide any additional screenshots or links that could help.

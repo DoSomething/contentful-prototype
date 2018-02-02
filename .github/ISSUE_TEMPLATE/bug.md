@@ -9,6 +9,11 @@ What is the current behavior?
 Describe the behavior you are expecting.
 
 
+#### Additional Information
+_Any other info or references to cards/tickets from other services (Trello, etc)._
+Pivotal ID: [#]()
+
+
 ### Steps to Reproduce
 Please provide detailed steps for reproducing the issue.
 
