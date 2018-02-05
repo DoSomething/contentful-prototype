@@ -41,6 +41,7 @@
 
 ## Content Publishing
 - [Introduction](content-publishing/README.md)
+- [General Tips](content-publishing/general-tips.md)
 
 
 ## Contributing Instructions
