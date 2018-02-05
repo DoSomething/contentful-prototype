@@ -6,7 +6,7 @@
             <div class="flex wrapper">
                 <div class="flex__cell">
                     <div id="share-page" class="placeholder -full">
-                        <div class="spinner"></div>
+                        <button class="button">Share This</button>
                     </div>
                 </div>
             </div>
