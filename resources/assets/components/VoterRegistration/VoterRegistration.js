@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import { makeUrl } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
-import StepHeader from '../ActionPage/StepHeader';
+import SectionHeader from '../SectionHeader';
 
 const VoterRegistration = (props) => {
   const { content, hideStepNumber, stepIndex,
-    template, title, dynamicLink } = props;
+    title, dynamicLink } = props;
 
   const { baseUrl, params, type } = dynamicLink;
 
@@ -35,9 +35,8 @@ const VoterRegistration = (props) => {
 
   return (
     <Flex>
-      <StepHeader
+      <SectionHeader
         title={title}
-        template={template}
         hideStepNumber={hideStepNumber}
         stepIndex={stepIndex}
       />
@@ -52,7 +51,6 @@ VoterRegistration.propTypes = {
   content: PropTypes.string,
   hideStepNumber: PropTypes.bool,
   stepIndex: PropTypes.number.isRequired,
-  template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   dynamicLink: PropTypes.shape({
     baseUrl: PropTypes.string,

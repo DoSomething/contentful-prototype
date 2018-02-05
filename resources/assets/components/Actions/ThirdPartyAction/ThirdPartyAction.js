@@ -4,12 +4,12 @@ import classnames from 'classnames';
 
 import Markdown from '../../Markdown';
 import { Flex, FlexCell } from '../../Flex';
-import StepHeader from '../../ActionPage/StepHeader';
+import SectionHeader from '../../SectionHeader';
 
 const ThirdParyAction = (props) => {
   const {
     content, dynamicLink, dynamicUrlParams, hideStepNumber, stepIndex,
-    template, title, userId,
+    title, userId,
   } = props;
 
   let contentLink = '';
@@ -31,10 +31,9 @@ const ThirdParyAction = (props) => {
     <FlexCell width="full">
       <div className={classnames('action-step')}>
         <Flex>
-          <StepHeader
+          <SectionHeader
             title={title}
             step={stepIndex}
-            template={template}
             hideStepNumber={hideStepNumber}
           />
           { content ?
@@ -56,7 +55,6 @@ ThirdParyAction.propTypes = {
   dynamicUrlParams: PropTypes.arrayOf(PropTypes.string),
   hideStepNumber: PropTypes.bool,
   stepIndex: PropTypes.number.isRequired,
-  template: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };

@@ -85,7 +85,6 @@ export function renderThirdPartyAction(step, stepIndex) {
     <ThirdPartyActionContainer
       key={id}
       title={title}
-      template="legacy"
       content={content}
       stepIndex={stepIndex}
       dynamicLink={additionalContent.dynamicLink || null}
@@ -107,12 +106,15 @@ export function renderActionStep(step, stepIndex, template) {
   const { id, fields } = step;
   const {
     title, content, background, photos,
-    displayOptions, hideStepNumber, truncate,
+    displayOptions, hideStepNumber, truncate, additionalContent,
   } = fields;
+
+  const preTitle = (additionalContent && additionalContent.preTitle);
 
   return (
     <ActionStep
       key={id}
+      preTitle={preTitle}
       title={title}
       content={content}
       stepIndex={stepIndex}
@@ -176,7 +178,7 @@ export function renderLegacyGallery() {
  */
 export function renderVoterRegistration(step, stepIndex) {
   const { title, content, additionalContent } = step.fields;
-  const { template, dynamicLink } = additionalContent;
+  const { dynamicLink } = additionalContent;
 
   return (
     <FlexCell width="full" key={`voter-reg-${stepIndex}`}>
@@ -184,7 +186,6 @@ export function renderVoterRegistration(step, stepIndex) {
         <VoterRegistrationContainer
           content={content}
           title={title}
-          template={template}
           stepIndex={stepIndex}
           dynamicLink={dynamicLink}
         />

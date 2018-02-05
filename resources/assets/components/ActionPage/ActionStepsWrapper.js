@@ -40,7 +40,7 @@ const ActionStepsWrapper = (props) => {
 
       default:
         stepIndex += 1;
-        return renderActionStep(step, stepIndex, template);
+        return renderActionStep(step, stepIndex);
     }
   });
 
