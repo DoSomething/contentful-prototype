@@ -42,6 +42,25 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
 }
 
 /**
+ * Return a string with tokens replaced by specified values.
+ *
+ * @param  {String} string
+ * @param  {Object} tokens
+ * @return {String}
+ */
+export function dynamicString(string, tokens = {}) {
+  let updatedString = string;
+
+  Object.keys(tokens).forEach(key => {
+    const regex = new RegExp(`{${key}}`, 'g');
+
+    updatedString = updatedString.replace(regex, tokens[key]);
+  });
+
+  return updatedString;
+}
+
+/**
  * Ensure a user is authenticated. If not, redirect them
  * to log in via the OpenID Connect flow.
  * @param isAuthenticated
