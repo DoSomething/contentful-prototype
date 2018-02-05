@@ -13,11 +13,12 @@
   }
 
   .-emphasized:after {
-    margin-top: -10px;
-    margin-left: 5px;
+    margin-top: -12px;
+    margin-left: 4px;
   }
 
   h1.section-header__title {
+    text-transform: uppercase;
     font-family: $secondary-font-family;
     font-size: $font-hero;
     font-weight: $weight-normal;
