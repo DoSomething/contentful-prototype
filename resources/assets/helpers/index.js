@@ -378,9 +378,23 @@ export function showTwitterSharePrompt(href, quote) {
  * @param {object} query
  * return {URL}
  */
-export function makeUrl(path, query) {
+export function makeUrl(path, queryParameters) {
   const urlObject = new URL(path);
-  urlObject.search = new URLSearchParams(query);
+  urlObject.search = new URLSearchParams(queryParameters);
 
   return urlObject;
+}
+
+/**
+ * Share a link by generating a Facebook share prompt.
+ * Get a callback if the share is successful or not.
+ *
+ * @param  {Object}   share
+ * @param  {Function} callback
+ */
+export function query(key) {
+  // Ensure we have a URL object from the location.
+  const search = new URLSearchParams(window.location.search);
+
+  return search.get(key);
 }
