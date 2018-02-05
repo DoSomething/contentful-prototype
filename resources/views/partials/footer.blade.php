@@ -59,7 +59,7 @@
   <div class="footer__subfooter">
     <ul>
       <li><a href="{{ phoenixLink('us/about/terms-service') }}">Terms of Service</a></li>
-      <li><a href="{{ phoenixLink('us/about/privacy-policy') }}">Privacy Policy.</a></li>
+      <li><a href="{{ phoenixLink('us/about/privacy-policy') }}">Privacy Policy</a></li>
     </ul>
   </div>
 </footer>
