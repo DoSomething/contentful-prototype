@@ -51,7 +51,7 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
 export function dynamicString(string, tokens = {}) {
   let updatedString = string;
 
-  Object.keys(tokens).forEach(key => {
+  Object.keys(tokens).forEach((key) => {
     const regex = new RegExp(`{${key}}`, 'g');
 
     updatedString = updatedString.replace(regex, tokens[key]);
