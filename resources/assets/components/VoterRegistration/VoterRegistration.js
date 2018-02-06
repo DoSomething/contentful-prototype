@@ -7,6 +7,8 @@ import { Flex, FlexCell } from '../Flex';
 import SectionHeader from '../SectionHeader';
 import { dynamicString } from '../../helpers';
 
+import './voter-registration.scss';
+
 const VoterRegistration = (props) => {
   const {
     campaignId,
@@ -34,8 +36,8 @@ const VoterRegistration = (props) => {
         step={stepIndex}
       />
       <FlexCell width="two-thirds">
-        <Card className="rounded bordered" title={title}>
-          <div className="padded">
+        <Card className="rounded bordered voter-registration" title={title}>
+          <div className="padded clearfix">
             <Markdown>{ content }</Markdown>
 
             { link ? <a className="button" href={dynamicString(link, tokens)} target="blank">Start Registration</a> : null }
