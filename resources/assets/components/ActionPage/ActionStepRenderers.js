@@ -205,13 +205,13 @@ export function renderVoterRegistration(step, stepIndex) {
  * @return {Component}
  */
 export function renderShareAction(step) {
+  const contentfulId = step.id;
+
   return (
-    <FlexCell width="two-thirds" key={`share-action-${step.id}`}>
-      <PuckWaypoint name="social_share_action-top" />
-
+    <FlexCell width="two-thirds" key={`share-action-${contentfulId}`}>
+      <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
       <ShareActionContainer {...step.fields} />
-
-      <PuckWaypoint name="social_share_action-bottom" />
+      <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
     </FlexCell>
   );
 }
