@@ -12,11 +12,11 @@ import './share-action.scss';
 const ShareAction = (props) => {
   const { title, content, link, openModal, trackEvent } = props;
 
-  const onFacebookClick = (link) => {
-    const trackingData = { link };
+  const onFacebookClick = (url) => {
+    const trackingData = { url };
     trackEvent('clicked share action', trackingData);
 
-    showFacebookSharePrompt({ href: link }, (response) => {
+    showFacebookSharePrompt({ href: url }, (response) => {
       if (response) {
         trackEvent('share action completed', trackingData);
         openModal(POST_SHARE_MODAL);
