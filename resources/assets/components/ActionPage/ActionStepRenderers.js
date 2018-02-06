@@ -1,4 +1,5 @@
 import React from 'react';
+import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
@@ -45,9 +46,11 @@ export function renderPhotoUploader(step, isSignedUp) {
 
   return (
     <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
+      <PuckWaypoint name="photo_uploader_action-top" />
       <div className="margin-horizontal-md">
         <ReportbackUploaderContainer actionType={step.type.sys.id} {...step.fields} />
       </div>
+      <PuckWaypoint name="photo_uploader_action-bottom" />
     </FlexCell>
   );
 }
@@ -85,7 +88,6 @@ export function renderThirdPartyAction(step, stepIndex) {
     <ThirdPartyActionContainer
       key={id}
       title={title}
-      template="legacy"
       content={content}
       stepIndex={stepIndex}
       dynamicLink={additionalContent.dynamicLink || null}
@@ -107,12 +109,15 @@ export function renderActionStep(step, stepIndex, template) {
   const { id, fields } = step;
   const {
     title, content, background, photos,
-    displayOptions, hideStepNumber, truncate,
+    displayOptions, hideStepNumber, truncate, additionalContent,
   } = fields;
+
+  const preTitle = (additionalContent && additionalContent.preTitle);
 
   return (
     <ActionStep
       key={id}
+      preTitle={preTitle}
       title={title}
       content={content}
       stepIndex={stepIndex}
@@ -176,19 +181,20 @@ export function renderLegacyGallery() {
  */
 export function renderVoterRegistration(step, stepIndex) {
   const { title, content, additionalContent } = step.fields;
-  const { template, dynamicLink } = additionalContent;
+  const { dynamicLink } = additionalContent;
 
   return (
     <FlexCell width="full" key={`voter-reg-${stepIndex}`}>
+      <PuckWaypoint name="voter_registration_action-top" />
       <div className="action-step">
         <VoterRegistrationContainer
           content={content}
           title={title}
-          template={template}
           stepIndex={stepIndex}
           dynamicLink={dynamicLink}
         />
       </div>
+      <PuckWaypoint name="voter_registration_action-bottom" />
     </FlexCell>
   );
 }
@@ -201,7 +207,11 @@ export function renderVoterRegistration(step, stepIndex) {
 export function renderShareAction(step) {
   return (
     <FlexCell width="two-thirds" key={`share-action-${step.id}`}>
+      <PuckWaypoint name="social_share_action-top" />
+
       <ShareActionContainer {...step.fields} />
+
+      <PuckWaypoint name="social_share_action-bottom" />
     </FlexCell>
   );
 }

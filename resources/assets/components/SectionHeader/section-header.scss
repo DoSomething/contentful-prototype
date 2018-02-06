@@ -1,0 +1,26 @@
+@import '../../scss/next-toolbox.scss';
+
+.section-header {
+  width: 100%;
+
+  .section-header__pre-title {
+    font-size: $font-medium;
+    font-weight: $weight-bold;
+  }
+
+  .-emphasized {
+    margin: $half-spacing 0;
+  }
+
+  .-emphasized:after {
+    margin-top: -10px;
+    margin-left: 5px;
+  }
+
+  h1.section-header__title {
+    font-family: $secondary-font-family;
+    font-size: $font-hero;
+    font-weight: $weight-normal;
+    margin-top: 5px;
+  }
+}
