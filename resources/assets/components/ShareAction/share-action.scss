@@ -1,12 +1,9 @@
 @import '../../scss/next-toolbox.scss';
 
 .share-action {
-  ul {
-    padding-left: $base-spacing;
-    list-style-type: square;
-
-    a {
-      cursor: pointer;
-    }
+  .button {
+    width: 100%;
+    border-radius: 0;
+    text-transform: none;
   }
 }

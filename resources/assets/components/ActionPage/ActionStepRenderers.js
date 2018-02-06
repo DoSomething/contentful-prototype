@@ -208,7 +208,7 @@ export function renderShareAction(step) {
   const contentfulId = step.id;
 
   return (
-    <FlexCell width="full" key={`share-action-${contentfulId}`}>
+    <FlexCell width="two-thirds" key={`share-action-${contentfulId}`}>
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
       <ShareActionContainer {...step.fields} />
       <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
