@@ -180,18 +180,17 @@ export function renderLegacyGallery() {
  * @return {Component}
  */
 export function renderVoterRegistration(step, stepIndex) {
-  const { title, content, additionalContent } = step.fields;
-  const { dynamicLink } = additionalContent;
+  const { title, content, link } = step.fields;
 
   return (
-    <FlexCell width="full" key={`voter-reg-${stepIndex}`}>
+    <FlexCell width="full" key={`voter-registration-${step.id}`}>
       <PuckWaypoint name="voter_registration_action-top" />
       <div className="action-step">
         <VoterRegistrationContainer
           content={content}
           title={title}
+          link={link}
           stepIndex={stepIndex}
-          dynamicLink={dynamicLink}
         />
       </div>
       <PuckWaypoint name="voter_registration_action-bottom" />

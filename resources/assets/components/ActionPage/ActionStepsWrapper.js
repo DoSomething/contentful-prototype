@@ -33,7 +33,6 @@ const ActionStepsWrapper = (props) => {
         return renderThirdPartyAction(step, stepIndex);
 
       case 'voterRegistrationAction':
-        stepIndex += 1; // 🤔
         return renderVoterRegistration(step, stepIndex);
 
       case 'shareAction':
