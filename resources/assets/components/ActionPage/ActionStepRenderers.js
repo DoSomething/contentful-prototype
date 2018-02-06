@@ -1,4 +1,5 @@
 import React from 'react';
+import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
@@ -45,9 +46,11 @@ export function renderPhotoUploader(step, isSignedUp) {
 
   return (
     <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
+      <PuckWaypoint name="photo_uploader_action-top" />
       <div className="margin-horizontal-md">
         <ReportbackUploaderContainer actionType={step.type.sys.id} {...step.fields} />
       </div>
+      <PuckWaypoint name="photo_uploader_action-bottom" />
     </FlexCell>
   );
 }
@@ -182,6 +185,7 @@ export function renderVoterRegistration(step, stepIndex) {
 
   return (
     <FlexCell width="full" key={`voter-reg-${stepIndex}`}>
+      <PuckWaypoint name="voter_registration_action-top" />
       <div className="action-step">
         <VoterRegistrationContainer
           content={content}
@@ -190,6 +194,7 @@ export function renderVoterRegistration(step, stepIndex) {
           dynamicLink={dynamicLink}
         />
       </div>
+      <PuckWaypoint name="voter_registration_action-bottom" />
     </FlexCell>
   );
 }
@@ -202,7 +207,9 @@ export function renderVoterRegistration(step, stepIndex) {
 export function renderShareAction(step) {
   return (
     <FlexCell width="full" key={`share-action-${step.id}`}>
+      <PuckWaypoint name="social_share_action-top" />
       <ShareActionContainer {...step.fields} />
+      <PuckWaypoint name="social_share_action-bottom" />
     </FlexCell>
   );
 }

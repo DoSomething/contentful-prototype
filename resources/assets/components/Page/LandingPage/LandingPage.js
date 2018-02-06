@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Enclosure from '../../Enclosure';
 import LedeBanner from '../../LedeBanner/LedeBanner';
@@ -43,10 +44,12 @@ const LandingPage = (props) => {
         </Enclosure>
       </div>
 
+      <PuckWaypoint name="landing_page_cta-top" />
       <CallToActionContainer
         className="legacy border-top border-radius-none bg-off-white padding-lg"
         content={tagline}
       />
+      <PuckWaypoint name="landing_page_cta-bottom" />
 
       <div className="info-bar -dark">
         <div className="wrapper">A DoSomething.org campaign. Join over 5.5 million members taking action. Any cause, anytime, anywhere.</div>
