@@ -10,7 +10,7 @@ import { showFacebookSharePrompt } from '../../helpers';
 import './share-action.scss';
 
 const ShareAction = (props) => {
-  const { additionalContent, openModal, trackEvent } = props;
+  const { title, content, link, openModal, trackEvent } = props;
 
   const onFacebookClick = (link) => {
     const trackingData = { link };
@@ -25,8 +25,6 @@ const ShareAction = (props) => {
       }
     });
   };
-
-  const { title, link, content } = additionalContent;
 
   return (
     <div className="share-action margin-horizontal-md margin-bottom-lg">
@@ -47,15 +45,13 @@ const ShareAction = (props) => {
 };
 
 ShareAction.defaultProps = {
-  additionalContent: null,
+  content: null,
 };
 
 ShareAction.propTypes = {
-  additionalContent: PropTypes.shape({
-    link: PropTypes.string,
-    title: PropTypes.string,
-    content: PropTypes.string,
-  }),
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string,
+  link: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
