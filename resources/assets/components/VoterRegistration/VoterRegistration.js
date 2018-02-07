@@ -53,7 +53,7 @@ VoterRegistration.propTypes = {
   campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideStepNumber: PropTypes.bool,
-  link: PropTypes.string,
+  link: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
@@ -62,7 +62,6 @@ VoterRegistration.propTypes = {
 VoterRegistration.defaultProps = {
   content: 'Register to vote!',
   hideStepNumber: true,
-  link: null,
 };
 
 export default VoterRegistration;
