@@ -2,7 +2,9 @@
 
 .action-step {
   width: 100%;
-  margin-bottom: $base-spacing;
+  // @TODO Once we start nesting actions within the action step (as more of a 'section')
+  // we should re-eveluate the margin here
+  margin-bottom: 36px;
 
   > .flex {
     margin: 0 $base-spacing / 2;
