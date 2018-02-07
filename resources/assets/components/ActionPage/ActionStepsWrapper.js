@@ -6,6 +6,7 @@ import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderActionStep, renderRevealer,
   renderLegacyGallery, renderVoterRegistration, renderShareAction,
+  renderLinkAction,
 } from './ActionStepRenderers';
 
 const ActionStepsWrapper = (props) => {
@@ -37,6 +38,9 @@ const ActionStepsWrapper = (props) => {
 
       case 'shareAction':
         return renderShareAction(step);
+
+      case 'linkAction':
+        return renderLinkAction(step);
 
       default:
         stepIndex += 1;
