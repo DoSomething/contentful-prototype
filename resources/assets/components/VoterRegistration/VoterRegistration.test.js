@@ -13,7 +13,7 @@ test('VoterRegistration is rendered as a card component with a button', () => {
       stepIndex={1}
       title="Register to vote!"
       userId="551234567890abcdefghijkl"
-    />
+    />,
   );
 
   expect(wrapper.find('.card').length).toEqual(1);

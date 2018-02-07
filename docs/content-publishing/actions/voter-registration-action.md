@@ -9,7 +9,7 @@ The `VoterRegistrationAction` component renders a visual component which allows 
 ## Usage Instructions
 When creating a new _Voter Registration Action_ on Contentful, you are required to enter a value for the `link` field.
 
-Enter a full URL where the member should be directed to upon clicking on the button in the start their registration.
+Enter a full URL where the member should be directed to upon clicking on the button to start their registration.
 
 You can use select _tokens_ in the specified URL to include dynamic information. These tokens will be replaced with actual values.
 
