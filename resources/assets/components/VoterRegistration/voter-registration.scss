@@ -1,0 +1,29 @@
+@import '~@dosomething/forge/scss/toolkit';
+@import '../../scss/next-toolbox.scss';
+
+.voter-registration {
+  .button {
+    font-weight: $weight-normal;
+    margin-top: $half-spacing;
+    max-width: 350px;
+    text-transform: none;
+    width: 100%;
+  }
+
+  @include media($larger) {
+    .markdown {
+      float: left;
+      padding-right: $base-spacing;
+      width: 66.666666667%;
+    }
+
+    .button {
+      clear: none;
+      display: block;
+      float: right;
+      margin-top: 0;
+      padding-left: $half-spacing;
+      width: 33.333333333%;
+    }
+  }
+}

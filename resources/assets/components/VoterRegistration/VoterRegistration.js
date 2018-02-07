@@ -1,62 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '../Card';
 import Markdown from '../Markdown';
-import { makeUrl } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
 import SectionHeader from '../SectionHeader';
+import { dynamicString } from '../../helpers';
+
+import './voter-registration.scss';
 
 const VoterRegistration = (props) => {
-  const { content, hideStepNumber, stepIndex,
-    title, dynamicLink } = props;
+  const {
+    campaignId,
+    campaignRunId,
+    content,
+    hideStepNumber,
+    link,
+    stepIndex,
+    title,
+    userId,
+  } = props;
 
-  const { baseUrl, params, type } = dynamicLink;
-
-  const query = params.reduce((paramsObject, param) => ({
-    ...paramsObject,
-    [param.property]: param.dynamic ? props[param.value] : param.value,
-  }), {});
-
-  let link;
-
-  if (type === 'turboVote') {
-    const queryValue = Object.entries(query)
-      .map(([key, value]) => (`${key}:${value}`))
-      .join(',');
-
-    link = `${baseUrl}?r=${queryValue}`;
-  } else {
-    link = makeUrl(baseUrl, query).href;
-  }
-
-  const formattedContent = (
-    content || VoterRegistration.defaultProps.content
-  ).replace(/:::[a-zA-Z]*:::/gi, link);
+  const tokens = {
+    northstarId: userId,
+    campaignId,
+    campaignRunId,
+    source: 'web',
+  };
 
   return (
     <Flex>
       <SectionHeader
         title={title}
         hideStepNumber={hideStepNumber}
-        stepIndex={stepIndex}
+        step={stepIndex}
       />
       <FlexCell width="two-thirds">
-        <Markdown>{ formattedContent }</Markdown>
+        <Card className="rounded bordered voter-registration" title={title}>
+          <div className="padded clearfix">
+            <Markdown>{ content }</Markdown>
+
+            { link ? <a className="button" href={dynamicString(link, tokens)} target="_blank">Start Registration</a> : null }
+          </div>
+        </Card>
       </FlexCell>
     </Flex>
   );
 };
 
 VoterRegistration.propTypes = {
+  campaignId: PropTypes.string.isRequired,
+  campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideStepNumber: PropTypes.bool,
+  link: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  dynamicLink: PropTypes.shape({
-    baseUrl: PropTypes.string,
-    params: PropTypes.arrayOf(PropTypes.object),
-    type: PropTypes.string,
-  }).isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 VoterRegistration.defaultProps = {

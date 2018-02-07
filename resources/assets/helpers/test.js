@@ -3,6 +3,7 @@ import {
   modifiers,
   pluralize,
   makeShareLink,
+  dynamicString,
   contentfulImageUrl,
 } from './index';
 
@@ -25,6 +26,32 @@ test('generate contentful image url with all specified parameters', () => {
   const contentfulImage = contentfulImageUrl('//images.contentful.com/somecrazystring.jpg', 800, 600, 'fill');
 
   expect(contentfulImage).toBe('//images.contentful.com/somecrazystring.jpg?w=800&h=600&fit=fill');
+});
+
+/**
+ * Test dynamicString()
+ */
+test('tokens in a string are replaced only with values that are specified', () => {
+  const tokens = {
+    campaignLead: 'Puppet Sloth',
+    northstarId: '551234567890abcdefghijkl',
+    campaignId: '1234',
+    source: 'web',
+  };
+
+  // URL Examples
+  const basicUrl = 'http://example.com?userId={northstarId}&campaign={campaignId}&source={source}';
+
+  expect(dynamicString(basicUrl, tokens)).toBe('http://example.com?userId=551234567890abcdefghijkl&campaign=1234&source=web');
+
+  const complexUrl = 'https://turbonotes.xyz/?r=user:{northstarId},campaign:{campaignId},source:{source}';
+
+  expect(dynamicString(complexUrl, tokens)).toBe('https://turbonotes.xyz/?r=user:551234567890abcdefghijkl,campaign:1234,source:web');
+
+  // Generic Text Example
+  const greeting = 'Hey friend! {campaignLead} here, welcoming you to another DoSomething Power Hour!';
+
+  expect(dynamicString(greeting, tokens)).toBe('Hey friend! Puppet Sloth here, welcoming you to another DoSomething Power Hour!');
 });
 
 /**
