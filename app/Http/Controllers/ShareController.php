@@ -37,8 +37,6 @@ class ShareController extends Controller
         $campaign = $this->campaignRepository->findBySlug($slug);
         $socialFields = get_social_fields($campaign, $request->url());
 
-        $appId = config('services.analytics.facebook_id');
-
         return view('share.show', [
             'campaign' => $campaign,
             'env' => get_client_environment_vars(),

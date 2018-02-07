@@ -30,7 +30,7 @@ import './scss/fonts.scss';
 
 // Elements
 import App from './components/App';
-import renderSharePage from './share';
+import ShareApp from './components/ShareApp';
 
 // Things
 import { init as historyInit } from './history';
@@ -58,5 +58,5 @@ if (appElement) {
 // @TODO: This makes sense in a separate entry point.
 const shareElement = document.getElementById('share-page');
 if (shareElement) {
-  renderSharePage(shareElement);
+  ReactDom.render(<ShareApp />, shareElement);
 }
