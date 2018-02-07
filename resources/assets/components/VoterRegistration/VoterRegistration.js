@@ -40,7 +40,7 @@ const VoterRegistration = (props) => {
           <div className="padded clearfix">
             <Markdown>{ content }</Markdown>
 
-            { link ? <a className="button" href={dynamicString(link, tokens)} target="blank">Start Registration</a> : null }
+            { link ? <a className="button" href={dynamicString(link, tokens)} target="_blank">Start Registration</a> : null }
           </div>
         </Card>
       </FlexCell>
