@@ -36,8 +36,10 @@ class ShareController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
         $socialFields = get_social_fields($campaign, $request->url());
+        $socialFields['title'] = 'Tap to share!';
 
         return view('share.show', [
+            'title' => 'Tap to share!',
             'campaign' => $campaign,
             'env' => get_client_environment_vars(),
             'socialFields' => $socialFields,
