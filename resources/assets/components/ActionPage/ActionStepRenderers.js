@@ -11,6 +11,7 @@ import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import { ShareActionContainer } from '../ShareAction';
+import LinkActionContainer from '../LinkAction';
 
 /**
  * Render a competition step.
@@ -211,6 +212,23 @@ export function renderShareAction(step) {
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
       <ShareActionContainer {...step.fields} />
       <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
+    </FlexCell>
+  );
+}
+
+/**
+ * Render a link action.
+ *
+ * @return {Component}
+ */
+export function renderLinkAction(step) {
+  const contentfulId = step.id;
+
+  return (
+    <FlexCell width="two-thirds" key={`link-action-${contentfulId}`}>
+      <PuckWaypoint name="link_action-top" waypointData={{ contentfulId }} />
+      <LinkActionContainer {...step.fields} />
+      <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
     </FlexCell>
   );
 }
