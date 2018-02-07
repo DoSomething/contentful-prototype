@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../Card';
-import Embed from '../Embed';
-import Markdown from '../Markdown';
+import Card from '../../Card';
+import Embed from '../../Embed';
+import Markdown from '../../Markdown';
 
 const LinkAction = (props) => {
   const { title, content, link, trackEvent } = props;
