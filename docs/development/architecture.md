@@ -3,4 +3,4 @@
 
 The following diagram provides a basic outline of the Phoenix Architecture:
 
-![Phoenix Basic Architecture](assets/phoenix_basic_architecture.png)
+![Phoenix Basic Architecture](_assets/phoenix_basic_architecture.png)

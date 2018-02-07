@@ -7,12 +7,13 @@
 ## Development
 - [Installation](development/installation.md)
 - [Architecture](development/architecture.md)
-- [Heroku Usage](development/heroku.md)
-- [Sixpack AB Testing](development/sixpack-ab-testing.md)
-- [Routing](development/routing.md)
-- [Issues &amp; Pull Requests](development/issues-and-pull-requests.md)
+- [Deployments](development/deployments/README.md)
+  + [Heroku](development/deployments/heroku.md)
 - [Features](development/features/README.md)
+  + [Routing](development/features/routing.md)
+  + [Sixpack A/B Testing](development/features/sixpack-ab-testing.md)
   + [Traffic Distribution](development/features/traffic-distribution.md)
+- [Contributing](development/contributing.md)
 
 
 ## API Reference
@@ -48,8 +49,9 @@
 
 ## Contributing Instructions
 - [Getting Started](contributing-instructions/README.md)
-- [Editing Docs Locally](contributing-instructions/editing-docs-locally.md)
-- [Editing Docs On GitHub](contributing-instructions/editing-docs-on-github.md)
+- [Edit This Documentation](contributing-instructions/editing/README.md)
+  + [Editing Docs Locally](contributing-instructions/editing/editing-docs-locally.md)
+  + [Editing Docs On GitHub](contributing-instructions/editing/editing-docs-on-github.md)
 
 
 ***

@@ -5,7 +5,7 @@ Fork and clone this repository to your computer, and then [add to your local Hom
 
 We use [Contentful](https://www.contentful.com/) as our content management platform. Please setup an account and request access to the _space_ used for this project.
 
-```sh
+```bash
 # Install dependencies:
 $ composer install && npm install
     
@@ -22,7 +22,7 @@ $ npm start
 
 You may run PHP tests locally using [PHPUnit](https://github.com/sebastianbergmann/phpunit), by running:
 
-```sh
+```bash
 $ vendor/bin/phpunit
 ```
 
@@ -32,7 +32,7 @@ _It would be easier to run the PHPUnit tests from within the Homestead Vagrant b
 
 You may run JavaScript tests locally using [Jest](https://github.com/facebook/jest), by running:
 
-```sh
+```bash
 $ npm test
 ```
 

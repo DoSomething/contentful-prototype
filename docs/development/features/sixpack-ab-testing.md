@@ -1,5 +1,5 @@
 
-# Implementing Sixpack On The Front-End
+# Implementing Sixpack On The Frontend
 ***
 When implementing an A/B test using Sixpack in Phoenix-Next on the front-end, there are a few steps for successfully executing an experiment.
 
