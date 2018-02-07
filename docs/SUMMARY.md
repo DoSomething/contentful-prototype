@@ -42,6 +42,8 @@
 ## Content Publishing
 - [Introduction](content-publishing/README.md)
 - [General Tips](content-publishing/general-tips.md)
+- [Actions](content-publishing/actions/README.md)
+  + [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
 
 
 ## Contributing Instructions
