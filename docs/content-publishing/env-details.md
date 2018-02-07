@@ -14,4 +14,3 @@ On Thor, anything that is in Draft mode will show on the page. This allows you t
 
 Phoenix Next has an administration console that allows you to see all of the views a user would see through the campaign. Note that if you are clicking out to a modal, the behavior here will be incorrect as an administrator (it retriggers the "mock signup/unsignup button"). This is not indicative of how it will work for a user.
 
-[image:90DC0E5F-B323-4149-ADB5-5D1631C74E04-44102-0001E56E5961251C/image43.png]
