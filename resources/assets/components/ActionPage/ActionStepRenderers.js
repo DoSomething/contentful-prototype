@@ -11,7 +11,7 @@ import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import { ShareActionContainer } from '../ShareAction';
-import LinkActionContainer from '../LinkAction';
+import LinkActionContainer from '../Actions/LinkAction';
 
 /**
  * Render a competition step.
