@@ -3,7 +3,7 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
-import VoterRegistrationContainer from '../VoterRegistration';
+import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
 import { FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
@@ -176,18 +176,18 @@ export function renderLegacyGallery() {
 }
 
 /**
- * Render the voter registration container.
+ * Render the voter registration action container.
  *
  * @return {Component}
  */
-export function renderVoterRegistration(step, stepIndex) {
+export function renderVoterRegistrationAction(step, stepIndex) {
   const { title, content, link } = step.fields;
 
   return (
-    <FlexCell width="full" key={`voter-registration-${step.id}`}>
+    <FlexCell width="full" key={`voter-registration-action-${step.id}`}>
       <PuckWaypoint name="voter_registration_action-top" />
       <div className="action-step">
-        <VoterRegistrationContainer
+        <VoterRegistrationActionContainer
           content={content}
           title={title}
           link={link}
