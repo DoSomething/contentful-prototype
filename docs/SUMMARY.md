@@ -45,6 +45,7 @@
 - [General Tips](content-publishing/general-tips.md)
 - [Actions](content-publishing/actions/README.md)
   + [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
+  + [Link Action](content-publishing/actions/link-action.md)
 
 
 ## Contributing Instructions
