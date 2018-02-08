@@ -13,7 +13,7 @@ Let's use our Survey example.
 
 If we only want to expose this Survey to 5 percent of traffic:
 
-```js
+```jsx
 <TrafficDistribution percentage={5} feature="survey_feature">
   <Survey />
 </TrafficDistribution>
