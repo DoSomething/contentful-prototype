@@ -19,9 +19,9 @@ const LinkAction = (props) => {
           <Markdown className="padded">{content}</Markdown>
           : null }
 
-        <span role="button" tabIndex="0" onClick={onLinkClick}>
+        <div role="button" tabIndex="0" onClick={onLinkClick}>
           <Embed className="padded" url={link} />
-        </span>
+        </div>
       </Card>
     </div>
   );
