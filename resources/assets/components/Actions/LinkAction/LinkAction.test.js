@@ -12,12 +12,12 @@ describe('LinkAction component', () => {
       content="This is a great link"
       trackEvent={trackEventMock}
       link="https://dosomething.org"
-      />
+    />,
   );
 
   it('renders a Card component', () => {
-    expect(wrapper.find("Card")).toHaveLength(1);
-    expect(wrapper.find("Card").find("Embed")).toHaveLength(1);
+    expect(wrapper.find('Card')).toHaveLength(1);
+    expect(wrapper.find('Card').find('Embed')).toHaveLength(1);
   });
 
   it('calls the event tracker prop function when the link is clicked', () => {
