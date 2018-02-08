@@ -389,11 +389,12 @@ export function makeUrl(path, queryParameters) {
  * Get the query-string value at the given key.
  *
  * @param  {String}   key
+ * @param  {URL|Location}   url
  * @return {String}
  */
-export function query(key) {
+export function query(key, url = window.location) {
   // Ensure we have a URL object from the location.
-  const search = new URLSearchParams(window.location.search);
+  const search = new URLSearchParams(url.search);
 
   return search.get(key);
 }
