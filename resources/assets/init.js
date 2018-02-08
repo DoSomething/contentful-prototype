@@ -30,6 +30,7 @@ import './scss/fonts.scss';
 
 // Elements
 import App from './components/App';
+import ShareApp from './components/ShareApp';
 
 // Things
 import { init as historyInit } from './history';
@@ -51,4 +52,11 @@ googleAnalytics(history);
 const appElement = document.getElementById('app');
 if (appElement) {
   ReactDom.render(<App store={store} history={history} />, appElement);
+}
+
+// Handle direct share links (for SMS flow).
+// @TODO: This makes sense in a separate entry point.
+const shareElement = document.getElementById('share-page');
+if (shareElement) {
+  ReactDom.render(<ShareApp />, shareElement);
 }

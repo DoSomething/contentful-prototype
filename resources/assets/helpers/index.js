@@ -395,11 +395,25 @@ export function showTwitterSharePrompt(href, quote) {
  *
  * @param {String} url
  * @param {object} query
- * return {URL}
+ * @return {URL}
  */
-export function makeUrl(path, query) {
+export function makeUrl(path, queryParameters) {
   const urlObject = new URL(path);
-  urlObject.search = new URLSearchParams(query);
+  urlObject.search = new URLSearchParams(queryParameters);
 
   return urlObject;
+}
+
+/**
+ * Get the query-string value at the given key.
+ *
+ * @param  {String}   key
+ * @param  {URL|Location}   url
+ * @return {String}
+ */
+export function query(key, url = window.location) {
+  // Ensure we have a URL object from the location.
+  const search = new URLSearchParams(url.search);
+
+  return search.get(key);
 }
