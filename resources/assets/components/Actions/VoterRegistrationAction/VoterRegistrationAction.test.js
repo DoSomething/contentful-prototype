@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'enzyme';
 
-import VoterRegistration from './VoterRegistration';
+import VoterRegistrationAction from './VoterRegistrationAction';
 
-test('VoterRegistration is rendered as a card component with a button', () => {
+test('VoterRegistrationAction is rendered as a card component with a button', () => {
   const wrapper = render(
-    <VoterRegistration
+    <VoterRegistrationAction
       campaignId="1234"
       campaignRunId="9876"
       content="Cras justo odio, dapibus ac facilisis in, egestas eget quam. Duis mollis, est non commodo luctus, nisi erat porttitor ligula."
