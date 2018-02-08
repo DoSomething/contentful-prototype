@@ -117,6 +117,7 @@ export function renderActionStep(step, stepIndex, template) {
 
   return (
     <ActionStep
+      id={id}
       key={id}
       preTitle={preTitle}
       title={title}
