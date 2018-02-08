@@ -1,7 +1,7 @@
 <h1 align="center">🔥 Phoenix (next) 🔥</h1>
 
 
-This is __Phoenix (next)__, the new campaign experience for [DoSomething.org](https://www.dosomething.org)! It's built using [Laravel 5.3](https://laravel.com/docs/5.3), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org) and plays nicely with the rest of our team ([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.)
+This is __Phoenix (next)__, the new campaign experience for [DoSomething.org](https://www.dosomething.org)! It's built using [Laravel 5.4](https://laravel.com/docs/5.4), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org) and plays nicely with the rest of our team ([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.)
 
 For information on installation and other usage please head over to one of the following sections:
 - [Installation Instructions](development/installation.md)
