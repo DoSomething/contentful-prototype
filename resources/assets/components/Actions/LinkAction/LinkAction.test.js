@@ -21,7 +21,7 @@ describe('LinkAction component', () => {
   });
 
   it('calls the event tracker prop function when the link is clicked', () => {
-    wrapper.find('span').simulate('click');
+    wrapper.find('.link-wrapper').simulate('click');
     expect(trackEventMock).toHaveBeenCalled();
   });
 });
