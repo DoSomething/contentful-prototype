@@ -5,7 +5,7 @@ We want to provide DoSomething.org members with multiple actions they can decide
 
 
 ## Available Reportback Actions
-- Link Action (...info to come...)
+- [Link Action](link-action.md)
 - Photo Upload Action (...info to come...)
 - Share Action (...info to come...)
 - [Voter Registration Action](voter-registration-action.md)
