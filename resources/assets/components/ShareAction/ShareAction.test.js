@@ -25,21 +25,18 @@ describe('ShareAction component', () => {
   // shallow copy of the component and test it as necessary.
   let wrapper;
 
-
-  describe('It renders', () => {
-    beforeEach(() => {
-      wrapper = getShallow();
-    })
-
-    it('a Card component', () => {
-      expect(wrapper.find('Card')).toHaveLength(1);
-      expect(wrapper.find('Card').find('Embed')).toHaveLength(1);
-    });
-
-    it('a Facebook Share button', () => {
-      expect(wrapper.find('button').text()).toEqual('Share on Facebook');
-    });
+  beforeAll(() => {
+    wrapper = getShallow();
   })
+
+  it('renders a Card component', () => {
+    expect(wrapper.find('Card')).toHaveLength(1);
+    expect(wrapper.find('Card').find('Embed')).toHaveLength(1);
+  });
+
+  it('renders a Facebook Share button', () => {
+    expect(wrapper.find('button').text()).toEqual('Share on Facebook');
+  });
 
   describe('Clicking the Social Share Button', () => {
     beforeEach(() => {
