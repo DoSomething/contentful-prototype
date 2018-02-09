@@ -9,6 +9,7 @@ import Card from '../Card';
 import Markdown from '../Markdown';
 import FormMessage from '../FormMessage';
 import MediaUploader from '../MediaUploader';
+import { POST_REPORTBACK_MODAL } from '../Modal';
 
 import './reportback-uploader.scss';
 
@@ -112,6 +113,7 @@ class ReportbackUploader extends React.Component {
           });
 
           trackingMessage = 'Successful Reportback';
+          this.props.openModal(POST_REPORTBACK_MODAL);
         } else {
           trackingMessage = 'Unsuccessful Reportback';
           trackingData.submission_error = this.props.submissions.messaging.error;
@@ -270,6 +272,7 @@ ReportbackUploader.propTypes = {
     plural: PropTypes.string,
   }),
   shouldShowAffirmation: PropTypes.bool,
+  openModal: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
