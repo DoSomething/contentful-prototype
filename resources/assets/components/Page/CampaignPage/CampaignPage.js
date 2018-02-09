@@ -25,6 +25,7 @@ const CampaignPage = (props) => {
     actionText, affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
     dashboard, endDate, hasActivityFeed, isAffiliated, legacyCampaignId, match,
     openModal, shouldShowActionPage, slug, subtitle, template, title, totalCampaignSignups,
+    affiliatedActionLink, affiliatedActionText,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -53,6 +54,8 @@ const CampaignPage = (props) => {
         endDate={endDate}
         template={template}
         affiliateSponsors={affiliateSponsors}
+        affiliatedActionLink={affiliatedActionLink}
+        affiliatedActionText={affiliatedActionText}
         actionText={actionText}
       />
 
@@ -131,6 +134,8 @@ const CampaignPage = (props) => {
 };
 
 CampaignPage.propTypes = {
+  affiliatedActionText: PropTypes.string,
+  affiliatedActionLink: PropTypes.string,
   actionText: PropTypes.string.isRequired,
   blurb: PropTypes.string,
   coverImage: PropTypes.shape({
@@ -167,6 +172,8 @@ CampaignPage.propTypes = {
 };
 
 CampaignPage.defaultProps = {
+  affiliatedActionText: null,
+  affiliatedActionLink: null,
   blurb: null,
   dashboard: null,
   endDate: null,

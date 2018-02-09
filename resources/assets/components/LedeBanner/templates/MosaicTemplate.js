@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 import Markdown from '../../Markdown';
 import AffiliateOptionContainer from '../../AffiliateOption';
@@ -11,6 +12,8 @@ import SponsorPromotion from '../../SponsorPromotion';
 
 const MosaicTemplate = (props) => {
   const {
+    affiliatedActionText,
+    affiliatedActionLink,
     actionText,
     affiliateSponsors,
     title,
@@ -54,6 +57,14 @@ const MosaicTemplate = (props) => {
     </div>
   ), 'lede banner', { text: actionText });
 
+  const actionButton = affiliatedActionLink ? (
+    <div className="header__signup">
+      <Link className={classnames('button', '-action')} to={affiliatedActionLink}>
+        {affiliatedActionText || 'Take Action'}
+      </Link>
+    </div>
+  ) : null;
+
   return (
     <header role="banner" className="lede-banner">
       <div className="lede-banner__image" style={backgroundImageStyle} />
@@ -66,7 +77,7 @@ const MosaicTemplate = (props) => {
 
           { blurb ? <Markdown className="lede-banner__blurb">{blurb}</Markdown> : null }
 
-          { isAffiliated ? null : <SignupButton /> }
+          { isAffiliated ? actionButton : <SignupButton /> }
           { sponsorComponent }
         </div>
       </div>
@@ -75,6 +86,8 @@ const MosaicTemplate = (props) => {
 };
 
 MosaicTemplate.propTypes = {
+  affiliatedActionText: PropTypes.string,
+  affiliatedActionLink: PropTypes.string,
   actionText: PropTypes.string.isRequired,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   blurb: PropTypes.string,
@@ -91,6 +104,8 @@ MosaicTemplate.propTypes = {
 };
 
 MosaicTemplate.defaultProps = {
+  affiliatedActionText: null,
+  affiliatedActionLink: null,
   blurb: null,
   showPartnerMsgOptIn: false,
   signupArrowContent: null,
