@@ -23,11 +23,7 @@ describe('ShareAction component', () => {
 
   // We'll declare this reference to the wrapper object, so we can more elegantly reset the
   // shallow copy of the component and test it as necessary.
-  let wrapper;
-
-  beforeAll(() => {
-    wrapper = getShallow();
-  })
+  let wrapper = getShallow();
 
   it('renders a Card component', () => {
     expect(wrapper.find('Card')).toHaveLength(1);
