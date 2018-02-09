@@ -1,5 +1,7 @@
 /* global document window MutationObserver */
 
+import { scrollToElement } from './scroll';
+
 /**
  * Enhance router to scroll to elements for anchor links.
  * @see <https://git.io/vATNf>
@@ -29,12 +31,11 @@ export default (history, timeout = 1000) => {
     }
   };
 
-  const createScrollToElement = id => () => {
+  const createScrollObserver = id => () => {
     const element = document.getElementById(id);
 
     if (element) {
-      element.scrollIntoView();
-
+      scrollToElement(element);
       reset();
 
       return true;
@@ -62,15 +63,13 @@ export default (history, timeout = 1000) => {
       return;
     }
 
-    const scrollToElement = createScrollToElement(elementId);
-
+    const observeHandler = createScrollObserver(elementId);
     setTimeout(() => {
-      if (scrollToElement()) {
+      if (observeHandler()) {
         return;
       }
 
-      observer = new MutationObserver(scrollToElement);
-
+      observer = new MutationObserver(observeHandler);
       observer.observe(document, {
         attributes: true,
         childList: true,
