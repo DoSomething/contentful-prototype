@@ -43,6 +43,8 @@
 ## Content Publishing
 - [Introduction](content-publishing/README.md)
 - [General Tips](content-publishing/general-tips.md)
+- [Initial Campaign Publication](content-publishing/initial-campaign-publication/README.md)
+  + [Ashes Publication](content-publishing/initial-campaign-publication/phoenix-ashes-publication.md)
 - [Actions](content-publishing/actions/README.md)
   + [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
   + [Link Action](content-publishing/actions/link-action.md)
