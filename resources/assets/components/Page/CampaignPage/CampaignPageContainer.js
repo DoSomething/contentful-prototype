@@ -9,6 +9,8 @@ import { convertExperiment, openModal } from '../../../actions';
  */
 const mapStateToProps = state => ({
   actionText: state.campaign.actionText,
+  affiliatedActionText: state.campaign.additionalContent.affiliatedActionText,
+  affiliatedActionLink: state.campaign.additionalContent.affiliatedActionLink,
   blurb: state.campaign.blurb,
   coverImage: state.campaign.coverImage,
   dashboard: state.campaign.dashboard,

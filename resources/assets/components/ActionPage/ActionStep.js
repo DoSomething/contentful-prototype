@@ -16,7 +16,7 @@ const renderPhoto = (photo, index) => (
 
 const ActionStep = (props) => {
   const {
-    title, stepIndex, content, photos, photoWidth,
+    id, title, stepIndex, content, photos, photoWidth,
     shouldTruncate, hideStepNumber, preTitle,
   } = props;
 
@@ -30,7 +30,7 @@ const ActionStep = (props) => {
 
   return (
     <FlexCell width="full">
-      <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
+      <div id={`step-${id}`} className={classnames('action-step', { '-truncate': shouldTruncate })}>
         <Flex>
           <SectionHeader
             preTitle={preTitle}
@@ -54,6 +54,7 @@ const ActionStep = (props) => {
 };
 
 ActionStep.propTypes = {
+  id: PropTypes.string.isRequired,
   preTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
