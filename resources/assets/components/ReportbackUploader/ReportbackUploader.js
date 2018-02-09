@@ -36,7 +36,6 @@ class ReportbackUploader extends React.Component {
 
     this.handleOnSubmitForm = this.handleOnSubmitForm.bind(this);
     this.handleOnFileUpload = this.handleOnFileUpload.bind(this);
-    this.getAffirmationContent = this.getAffirmationContent.bind(this);
 
     this.defaultMediaState = {
       file: null,
@@ -59,12 +58,6 @@ class ReportbackUploader extends React.Component {
       impact: null,
       ...infoFields,
     };
-  }
-
-  getAffirmationContent() {
-    return this.props.affirmationContent || (
-      ReportbackUploader.defaultProps.affirmationContent
-    );
   }
 
   handleOnFileUpload(media) {
@@ -126,7 +119,7 @@ class ReportbackUploader extends React.Component {
   render() {
     const {
       submissions, showQuantityField, informationTitle, informationContent,
-      shouldShowAffirmation, toggleReportbackAffirmation, referralRB,
+      referralRB,
     } = this.props;
 
     const formHasErrors = get(submissions.messaging, 'error', null);
@@ -248,13 +241,6 @@ class ReportbackUploader extends React.Component {
           ) : null }
         </div>
 
-        { shouldShowAffirmation ? (
-          <div className="photo-uploader-affirmation margin-top-lg">
-            <Card title="We Got Your Photo" className="bordered rounded" onClose={() => toggleReportbackAffirmation(false)}>
-              <Markdown className="padding-md">{this.getAffirmationContent()}</Markdown>
-            </Card>
-          </div>
-        ) : null }
       </div>
     );
   }
@@ -262,7 +248,6 @@ class ReportbackUploader extends React.Component {
 
 ReportbackUploader.propTypes = {
   actionType: PropTypes.string,
-  affirmationContent: PropTypes.string,
   referralRB: PropTypes.bool,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
@@ -271,7 +256,6 @@ ReportbackUploader.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
-  shouldShowAffirmation: PropTypes.bool,
   openModal: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   submissions: PropTypes.shape({
@@ -284,12 +268,10 @@ ReportbackUploader.propTypes = {
   submitReferralPost: PropTypes.func.isRequired,
   submitPhotoPost: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
-  toggleReportbackAffirmation: PropTypes.func.isRequired,
 };
 
 ReportbackUploader.defaultProps = {
   actionType: 'photoUploaderAction',
-  affirmationContent: 'Thanks! We got your photo and you\'re entered to win the scholarship!',
   referralRB: false,
   informationContent: null,
   informationTitle: null,
@@ -298,7 +280,6 @@ ReportbackUploader.defaultProps = {
     plural: 'items',
   },
   showQuantityField: true,
-  shouldShowAffirmation: false,
 };
 
 export default ReportbackUploader;

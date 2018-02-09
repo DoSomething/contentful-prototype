@@ -4,7 +4,6 @@ import { get } from 'lodash';
 import CampaignDashboard from './CampaignDashboard';
 import { clickedShowLandingPage, clickedShowActionPage } from '../../../actions/admin';
 import { clickedShowAffirmation, signupCreated, clickedRemoveSignUp } from '../../../actions/signup';
-import { toggleReportbackAffirmation } from '../../../actions/reportback';
 import { userHasRole } from '../../../selectors/user';
 import { openModal } from '../../../actions/modal';
 
@@ -29,7 +28,6 @@ const actionCreators = {
   clickedShowActionPage,
   signupCreated,
   clickedRemoveSignUp,
-  toggleReportbackAffirmation,
   openModal,
 };
 

@@ -5,7 +5,7 @@ import ReportbackUploader from './ReportbackUploader';
 import { openModal } from '../../actions/modal';
 import {
   addSubmissionItemToList, submitPhotoPost,
-  submitReferralPost, toggleReportbackAffirmation,
+  submitReferralPost,
 } from '../../actions';
 
 /**
@@ -17,7 +17,6 @@ const mapStateToProps = state => ({
   submissions: state.submissions,
   noun: get(state.campaign.additionalContent, 'noun'),
   uploads: state.uploads,
-  shouldShowAffirmation: state.submissions.shouldShowAffirmation,
   referralRB: get(state.campaign.additionalContent, 'referralRB'),
 });
 
@@ -29,7 +28,6 @@ const actionCreators = {
   addSubmissionItemToList,
   submitPhotoPost,
   submitReferralPost,
-  toggleReportbackAffirmation,
   openModal,
 };
 
