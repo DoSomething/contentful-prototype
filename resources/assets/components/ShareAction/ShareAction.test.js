@@ -21,28 +21,34 @@ describe('ShareAction component', () => {
     />,
   );
 
-  it('renders a Card component', () => {
-    const wrapper = getShallow();
+  // We'll declare this reference to the wrapper object, so we can more elegantly reset the
+  // shallow copy of the component and test it as necessary.
+  let wrapper;
 
-    expect(wrapper.find('Card')).toHaveLength(1);
-    expect(wrapper.find('Card').find('Embed')).toHaveLength(1);
-  });
 
-  it('renders a Facebook Share button', () => {
-    const wrapper = getShallow();
+  describe('It renders', () => {
+    beforeEach(() => {
+      wrapper = getShallow();
+    })
 
-    expect(wrapper.find('button').text()).toEqual('Share on Facebook');
-  });
+    it('a Card component', () => {
+      expect(wrapper.find('Card')).toHaveLength(1);
+      expect(wrapper.find('Card').find('Embed')).toHaveLength(1);
+    });
+
+    it('a Facebook Share button', () => {
+      expect(wrapper.find('button').text()).toEqual('Share on Facebook');
+    });
+  })
 
   describe('Clicking the Social Share Button', () => {
     beforeEach(() => {
       trackEventMock = jest.fn();
       openModalMock = jest.fn();
+      wrapper = getShallow();
     });
 
     it('calls the FB ui method to trigger the facebook share', () => {
-      const wrapper = getShallow();
-
       setFBshare(true);
 
       wrapper.find('button').simulate('click');
@@ -51,8 +57,6 @@ describe('ShareAction component', () => {
     });
 
     it('tracks clicked share action event', () => {
-      const wrapper = getShallow();
-
       setFBshare(true);
 
       wrapper.find('button').simulate('click');
@@ -64,8 +68,6 @@ describe('ShareAction component', () => {
     });
 
     it('tracks completed share action event when social share is successful', () => {
-      const wrapper = getShallow();
-
       setFBshare(true);
 
       wrapper.find('button').simulate('click');
@@ -75,8 +77,6 @@ describe('ShareAction component', () => {
     });
 
     it('displays the affirmation modal when social share is successful', () => {
-      const wrapper = getShallow();
-
       setFBshare(true);
 
       wrapper.find('button').simulate('click');
@@ -85,8 +85,6 @@ describe('ShareAction component', () => {
     });
 
     it('tracks completed share action event when social share is cancelled', () => {
-      const wrapper = getShallow();
-
       setFBshare(false);
 
       wrapper.find('button').simulate('click');
