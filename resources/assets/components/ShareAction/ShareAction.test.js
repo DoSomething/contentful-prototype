@@ -2,15 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ShareAction from './ShareAction';
-import setFBshare from '../../__mocks__/facebookShareMock.js';
+import setFBshare from '../../__mocks__/facebookShareMock';
 
 describe('ShareAction component', () => {
-
   const url = 'https://dosomething.org';
   const trackingData = { url };
 
   let trackEventMock = jest.fn();
-  let openModalMock  = jest.fn();
+  let openModalMock = jest.fn();
 
   const getShallow = () => shallow(
     <ShareAction
@@ -95,5 +94,5 @@ describe('ShareAction component', () => {
       expect(trackEventMock).toHaveBeenCalledTimes(2);
       expect(trackEventMock.mock.calls[1]).toEqual(['share action cancelled', trackingData]);
     });
-  })
+  });
 });

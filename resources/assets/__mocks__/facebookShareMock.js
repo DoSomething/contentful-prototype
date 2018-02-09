@@ -3,7 +3,7 @@ const setFBshare = (shouldBeSuccessful) => {
     ui: jest.fn((share, callback) => {
       callback(shouldBeSuccessful);
     }),
-  }
-}
+  };
+};
 
 export default setFBshare;
