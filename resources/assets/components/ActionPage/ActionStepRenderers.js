@@ -183,11 +183,12 @@ export function renderLegacyGallery() {
  */
 export function renderVoterRegistrationAction(step, stepIndex) {
   const { title, content, link } = step.fields;
+  const key = `voter-registration-action-${step.id}`;
 
   return (
-    <FlexCell width="full" key={`voter-registration-action-${step.id}`}>
+    <FlexCell width="full" key={key}>
       <PuckWaypoint name="voter_registration_action-top" />
-      <div className="action-step">
+      <div id={key} className="action-step">
         <VoterRegistrationActionContainer
           content={content}
           title={title}
