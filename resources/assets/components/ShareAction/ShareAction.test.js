@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import ShareAction from './ShareAction';
-import setFBshare from '../../__mocks__/facebookShareMock.js'
+import setFBshare from '../../__mocks__/facebookShareMock.js';
 
 describe('ShareAction component', () => {
 
@@ -39,6 +39,16 @@ describe('ShareAction component', () => {
     beforeEach(() => {
       trackEventMock = jest.fn();
       openModalMock = jest.fn();
+    });
+
+    it('calls the FB ui method to trigger the facebook share', () => {
+      const wrapper = getShallow();
+
+      setFBshare(true);
+
+      wrapper.find('button').simulate('click');
+
+      expect(global.FB.ui).toHaveBeenCalled();
     });
 
     it('tracks clicked share action event', () => {
