@@ -1,4 +1,4 @@
-#Adding the sponsor logo and URL
+# Adding the sponsor logo and URL
 ***
 
 1. In the Campaign, find the section for Affiliate sponsor
