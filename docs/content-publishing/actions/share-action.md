@@ -5,7 +5,6 @@ The `ShareAction` component renders a visual component which features an embedde
 
 ![Share Action component](../_assets/share-action-component.png)  
 
-
 ## Usage Instructions
 The Share Action consists of three fields:
 
