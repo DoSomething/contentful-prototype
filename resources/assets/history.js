@@ -1,4 +1,5 @@
 import createHistory from 'history/createBrowserHistory';
+import createHistoryHashObserver from './createHistoryHashObserver';
 
 let history = null;
 
@@ -16,7 +17,9 @@ export function get() {
  * @return {History}
  */
 export function init() {
-  history = createHistory();
+  history = createHistoryHashObserver(
+    createHistory(), 1000,
+  );
 
   return history;
 }
