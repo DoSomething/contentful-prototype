@@ -1,5 +1,5 @@
 import createHistory from 'history/createBrowserHistory';
-import createHistoryHashObserver from './createHistoryHashObserver';
+import createHistoryHashObserver from './helpers/createHistoryHashObserver';
 
 let history = null;
 
