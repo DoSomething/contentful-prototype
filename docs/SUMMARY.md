@@ -46,6 +46,7 @@
 - [Actions](content-publishing/actions/README.md)
   + [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
   + [Link Action](content-publishing/actions/link-action.md)
+  + [Share Action](content-publishing/actions/share-action.md)
 
 
 ## Contributing Instructions
