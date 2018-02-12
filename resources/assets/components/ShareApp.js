@@ -19,8 +19,11 @@ class ShareApp extends React.Component {
   }
 
   render() {
+    const confirmationMessage = `Thanks for sharing and demanding representation
+      in media! You're entered for the chance to win the $3000 scholarship.`;
+
     return this.state.hasShared ? (
-      <h3>Thanks for sharing!</h3>
+      <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
     ) : (
       <ShareAction
         title="Share This"
