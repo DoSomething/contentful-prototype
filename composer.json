@@ -64,7 +64,9 @@
             "php artisan optimize"
         ],
         "compile": [
-            "php artisan gateway:key"
+            "php artisan gateway:key",
+            "php artisan route:cache",
+            "php artisan config:cache"
         ]
     },
     "config": {
