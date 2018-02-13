@@ -10,7 +10,7 @@
     "build": "npm run clean && NODE_ENV=production webpack",
     "stat": "NODE_ENV=production webpack --json > stats.json",
     "clean": "rm -rf public/next/assets",
-    "heroku-postbuild": "sh bootstrap/setup.sh"
+    "heroku-postbuild": "npm run build"
   },
   "engines": {
     "node": "8.x",
