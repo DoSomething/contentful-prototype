@@ -25,10 +25,12 @@ function get_heroku_db_config_var($url, $key, $default = '')
 
     $vars = parse_url(env($url));
 
+    $value = data_get($vars, $key, $default);
+
     if ($key === 'path') {
-        return substr($vars[$key], 1);
+        return substr($value, 1) ?: $default;
     } else {
-        return $vars[$key];
+        return $value;
     }
 }
 
