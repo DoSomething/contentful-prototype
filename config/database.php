@@ -69,11 +69,11 @@ return [
 
         'heroku_mariadb' => [
             'driver' => 'mysql',
-            'host' => get_heroku_db_config_var('JAWSDB_MARIA_URL', 'host'),
-            'port' => get_heroku_db_config_var('JAWSDB_MARIA_URL', 'port'),
-            'database' => get_heroku_db_config_var('JAWSDB_MARIA_URL', 'path'),
-            'username' => get_heroku_db_config_var('JAWSDB_MARIA_URL', 'user'),
-            'password' => get_heroku_db_config_var('JAWSDB_MARIA_URL', 'pass'),
+            'host' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'host'),
+            'port' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'port', '3306'),
+            'database' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'path'),
+            'username' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'user'),
+            'password' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'pass'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -83,11 +83,11 @@ return [
 
         'heroku_mysql' => [
             'driver' => 'mysql',
-            'host' => get_heroku_db_config_var('CLEARDB_DATABASE_URL', 'host'),
-            'port' => get_heroku_db_config_var('CLEARDB_DATABASE_URL', 'port'),
-            'database' => get_heroku_db_config_var('CLEARDB_DATABASE_URL', 'path'),
-            'username' => get_heroku_db_config_var('CLEARDB_DATABASE_URL', 'user'),
-            'password' => get_heroku_db_config_var('CLEARDB_DATABASE_URL', 'pass'),
+            'host' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'host'),
+            'port' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'port', '3306'),
+            'database' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'path'),
+            'username' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'user'),
+            'password' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'pass'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
@@ -126,9 +126,9 @@ return [
         'client' => 'predis',
 
         'default' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
+            'host' => get_heroku_url_vars('REDIS_URL', 'host'),
+            'password' => get_heroku_url_vars('REDIS_URL', 'pass', null),
+            'port' => get_heroku_url_vars('REDIS_URL', 'port', 6379),
             'database' => env('REDIS_DB_NUMBER', 0),
         ],
 

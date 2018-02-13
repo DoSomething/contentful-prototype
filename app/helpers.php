@@ -17,7 +17,7 @@ use SeatGeek\Sixpack\Session\Base as Sixpack;
  * @param  string $default
  * @return string
  */
-function get_heroku_db_config_var($url, $key, $default = '')
+function get_heroku_url_vars($url, $key, $default = '')
 {
     if (! env($url)) {
         return $default;
