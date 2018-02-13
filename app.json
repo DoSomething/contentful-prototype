@@ -75,6 +75,7 @@
   "formation": {},
   "addons": [
     "cleardb",
+    "jawsdb-maria",
     "heroku-redis"
   ],
   "buildpacks": [
