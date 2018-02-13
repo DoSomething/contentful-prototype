@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Contentful\Delivery\Client as DeliveryClient;
 
@@ -16,6 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
+        // @see: https://laravel-news.com/laravel-5-4-key-too-long-error
+        Schema::defaultStringLength(191);
+
         // Add a `redirect` helper to the Router.
         $router->macro('redirect', function ($from, $to) use ($router) {
             return $router->get($from, function ($bindings = []) use ($to, $router) {
