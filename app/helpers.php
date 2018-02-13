@@ -9,6 +9,32 @@ use Illuminate\Support\Facades\Storage;
 use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 /**
+ * Get Heroku database configuration variables from supplied
+ * database url.
+ *
+ * @param  string $url
+ * @param  string $key
+ * @param  string $default
+ * @return string
+ */
+function get_heroku_url_vars($url, $key, $default = '')
+{
+    if (! env($url)) {
+        return $default;
+    }
+
+    $vars = parse_url(env($url));
+
+    $value = data_get($vars, $key, $default);
+
+    if ($key === 'path') {
+        return substr($value, 1) ?: $default;
+    } else {
+        return $value;
+    }
+}
+
+/**
  * Determine if the supplied ID is likely a legacy campaign ID.
  *
  * @param  string $id

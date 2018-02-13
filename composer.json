@@ -63,8 +63,9 @@
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ],
-        "compile": [
-            "php artisan gateway:key"
+        "warmup": [
+            "php artisan gateway:key",
+            "php artisan config:cache"
         ]
     },
     "config": {

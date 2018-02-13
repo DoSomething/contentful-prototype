@@ -9,6 +9,7 @@
     },
     "APP_LOG": "errorlog",
     "APP_URL": "https://ds-phoenix-staging.herokuapp.com/",
+    "DB_CONNECTION": "heroku_mariadb",
     "CONTENTFUL_CACHE": "false",
     "CONTENTFUL_CONTENT_API_KEY": {
       "required": true
@@ -73,7 +74,7 @@
   },
   "formation": {},
   "addons": [
-    "cleardb",
+    "jawsdb-maria",
     "heroku-redis"
   ],
   "buildpacks": [

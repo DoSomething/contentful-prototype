@@ -1,24 +1,5 @@
 <?php
 
-/**
- * The following is for handling traditional .env SQL configuration
- * or a Heroku configuration which is a single url string
- * containing all of the credentials.
- */
-$mysql_host = env('DB_HOST', 'localhost');
-$mysql_port = env('DB_PORT', '3306');
-$mysql_database = env('DB_DATABASE', 'forge');
-$mysql_username = env('DB_USERNAME', 'forge');
-$mysql_password = env('DB_PASSWORD', '');
-
-if (env('CLEARDB_DATABASE_URL')) {
-    $mysql_cloud_url = parse_url(env('CLEARDB_DATABASE_URL'));
-    $mysql_host = $mysql_cloud_url['host'];
-    $mysql_username = $mysql_cloud_url['user'];
-    $mysql_password = $mysql_cloud_url['pass'];
-    $mysql_database = substr($mysql_cloud_url['path'], 1);
-}
-
 return [
 
     /*
@@ -60,11 +41,11 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => $mysql_host,
-            'port' => $mysql_port,
-            'database' => $mysql_database,
-            'username' => $mysql_username,
-            'password' => $mysql_password,
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'forge'),
+            'username' => env('DB_USERNAME', 'forge'),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
@@ -84,6 +65,34 @@ return [
             'prefix' => '',
             'schema' => 'public',
             'sslmode' => 'prefer',
+        ],
+
+        'heroku_mariadb' => [
+            'driver' => 'mysql',
+            'host' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'host'),
+            'port' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'port', '3306'),
+            'database' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'path'),
+            'username' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'user'),
+            'password' => get_heroku_url_vars('JAWSDB_MARIA_URL', 'pass'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
+        'heroku_mysql' => [
+            'driver' => 'mysql',
+            'host' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'host'),
+            'port' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'port', '3306'),
+            'database' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'path'),
+            'username' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'user'),
+            'password' => get_heroku_url_vars('CLEARDB_DATABASE_URL', 'pass'),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
         ],
 
     ],
@@ -117,9 +126,9 @@ return [
         'client' => 'predis',
 
         'default' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
+            'host' => get_heroku_url_vars('REDIS_URL', 'host'),
+            'password' => get_heroku_url_vars('REDIS_URL', 'pass', null),
+            'port' => get_heroku_url_vars('REDIS_URL', 'port', 6379),
             'database' => env('REDIS_DB_NUMBER', 0),
         ],
 
