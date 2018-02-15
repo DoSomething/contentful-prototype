@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PuckProvider, PuckConnector } from '@dosomething/puck-client';
+import { get } from 'lodash';
 import { Flex, FlexCell } from './Flex';
 import { BlockWrapper } from './Block';
 import ShareAction from './ShareAction';
@@ -27,10 +28,18 @@ class ShareApp extends React.Component {
     // HACK: Yowza! Is there a better way to do this??
     const campaignPath = window.location.pathname.split('/').slice(0, -1).join('/');
 
+    const confirmationActionText = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionText');
+    const confirmationActionLink = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionLink');
+
     return this.state.hasShared ? (
       <div>
         <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
         <ul className="form-actions">
+          { confirmationActionText && confirmationActionLink ? (
+            <li><a href={confirmationActionLink} className="button">{confirmationActionText}</a></li>
+          ) : (
+            null
+          )}
           <li><a href={campaignPath} className="button -tertiary">back to campaign</a></li>
         </ul>
       </div>
