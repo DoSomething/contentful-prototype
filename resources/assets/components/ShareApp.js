@@ -1,3 +1,5 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PuckProvider, PuckConnector } from '@dosomething/puck-client';
@@ -22,9 +24,15 @@ class ShareApp extends React.Component {
     const defaultConfirmation = 'Thanks for sharing!';
     const confirmationMessage = get(window.STATE, 'campaign.additionalContent.smsShareConfirmation', defaultConfirmation);
 
+    // HACK: Yowza! Is there a better way to do this??
+    const campaignPath = window.location.pathname.split('/').slice(0, -1).join('/');
+
     return this.state.hasShared ? (
       <div>
         <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
+        <ul className="form-actions">
+          <li><a href={campaignPath} className="button -tertiary">back to campaign</a></li>
+        </ul>
       </div>
     ) : (
       <ShareAction
