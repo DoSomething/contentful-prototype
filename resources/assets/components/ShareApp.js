@@ -25,11 +25,10 @@ class ShareApp extends React.Component {
     const defaultConfirmation = 'Thanks for sharing!';
     const confirmationMessage = get(window.STATE, 'campaign.additionalContent.smsShareConfirmation', defaultConfirmation);
 
-    // HACK: Yowza! Is there a better way to do this??
-    const campaignPath = window.location.pathname.split('/').slice(0, -1).join('/');
-
     const confirmationActionText = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionText');
     const confirmationActionLink = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionLink');
+
+    const campaignPath = window.location.pathname.replace('share', '');
 
     return this.state.hasShared ? (
       <div>
