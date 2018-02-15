@@ -19,11 +19,13 @@ class ShareApp extends React.Component {
   }
 
   render() {
-    const confirmationMessage = `Thanks for sharing and demanding representation
-      in media! You're entered for the chance to win the $3000 scholarship.`;
+    const defaultConfirmation = 'Thanks for sharing!';
+    const confirmationMessage = get(window.STATE, 'campaign.additionalContent.smsShareConfirmation', defaultConfirmation);
 
     return this.state.hasShared ? (
-      <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
+      <div>
+        <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
+      </div>
     ) : (
       <ShareAction
         title="Share This"
