@@ -28,7 +28,7 @@ class ShareApp extends React.Component {
     const confirmationActionText = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionText');
     const confirmationActionLink = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionLink');
 
-    const campaignPath = window.location.pathname.replace('share', '');
+    const campaignPath = window.location.pathname.replace(/share$/, '');
 
     return this.state.hasShared ? (
       <div>
