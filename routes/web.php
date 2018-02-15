@@ -7,10 +7,6 @@
  * @see \App\Providers\RouteServiceProvider
  */
 
-$router->get('next/info', function () {
-    return phpinfo();
-});
-
 // Homepage
 $router->redirect('/', 'us/campaigns/sincerely-us');
 $router->redirect('/us', 'us/campaigns/sincerely-us');
