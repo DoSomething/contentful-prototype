@@ -1,9 +1,23 @@
 {
   "name": "phoenix",
   "description": ":sparkles:",
+  "formation": {},
+  "addons": [
+    "jawsdb-maria",
+    "heroku-redis",
+    "papertrail"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
   "env": {
-    "APP_DEBUG": "false",
     "APP_ENV": "staging",
+    "APP_DEBUG": "false",
     "APP_KEY": {
       "required": true
     },
@@ -71,18 +85,5 @@
     "SIXPACK_TIMEOUT": {
       "required": true
     }
-  },
-  "formation": {},
-  "addons": [
-    "jawsdb-maria",
-    "heroku-redis"
-  ],
-  "buildpacks": [
-    {
-      "url": "heroku/php"
-    },
-    {
-      "url": "heroku/nodejs"
-    }
-  ]
+  }
 }
