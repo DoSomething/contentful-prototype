@@ -1,6 +1,9 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PuckProvider, PuckConnector } from '@dosomething/puck-client';
+import { get } from 'lodash';
 import { Flex, FlexCell } from './Flex';
 import { BlockWrapper } from './Block';
 import ShareAction from './ShareAction';
@@ -19,11 +22,26 @@ class ShareApp extends React.Component {
   }
 
   render() {
-    const confirmationMessage = `Thanks for sharing and demanding representation
-      in media! You're entered for the chance to win the $3000 scholarship.`;
+    const defaultConfirmation = 'Thanks for sharing!';
+    const confirmationMessage = get(window.STATE, 'campaign.additionalContent.smsShareConfirmation', defaultConfirmation);
+
+    const confirmationActionText = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionText');
+    const confirmationActionLink = get(window.STATE, 'campaign.additionalContent.smsShareConfirmationActionLink');
+
+    const campaignPath = window.location.pathname.replace(/share$/, '');
 
     return this.state.hasShared ? (
-      <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
+      <div>
+        <h3 style={{ textAlign: 'center' }}>{confirmationMessage}</h3>
+        <ul className="form-actions">
+          { confirmationActionText && confirmationActionLink ? (
+            <li><a href={confirmationActionLink} className="button">{confirmationActionText}</a></li>
+          ) : (
+            null
+          )}
+          <li><a href={campaignPath} className="button -tertiary">or take another action</a></li>
+        </ul>
+      </div>
     ) : (
       <ShareAction
         title="Share This"
