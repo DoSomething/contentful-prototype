@@ -40,7 +40,7 @@ class ShareApp extends React.Component {
           ) : (
             null
           )}
-          <li><a href={campaignPath} className="button -tertiary">back to campaign</a></li>
+          <li><a href={campaignPath} className="button -tertiary">or take another action</a></li>
         </ul>
       </div>
     ) : (
