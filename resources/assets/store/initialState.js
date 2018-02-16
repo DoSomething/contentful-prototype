@@ -59,7 +59,6 @@ const initialState = {
     isStoring: false,
     items: [],
     messaging: null,
-    shouldShowAffirmation: false,
   },
   uploads: {},
   user: {

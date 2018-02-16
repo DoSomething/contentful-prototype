@@ -4,10 +4,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import { POST_REPORTBACK_MODAL } from '../../Modal';
+
 const CampaignDashboard = (props) => {
   const { hasLandingPage, slug, clickedShowAffirmation, clickedShowLandingPage,
     clickedShowActionPage, clickedRemoveSignUp, hasReferralRB, signupCreated,
-    isAdmin, isSignedUp, toggleReportbackAffirmation,
+    isAdmin, isSignedUp, openModal,
   } = props;
 
   const onSignUpClick = () => (! isSignedUp ? signupCreated() : clickedRemoveSignUp());
@@ -38,7 +40,7 @@ const CampaignDashboard = (props) => {
       <button className="button -secondary margin-md" onClick={onSignUpClick}>
         {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
       </button>
-      <button className="button -secondary margin-md" onClick={() => toggleReportbackAffirmation(true)}>
+      <button className="button -secondary margin-md" onClick={() => openModal(POST_REPORTBACK_MODAL)}>
         Show Reportback Affirmation
       </button>
       { hasReferralRB && isAdmin ?
@@ -60,8 +62,8 @@ CampaignDashboard.propTypes = {
   clickedShowActionPage: PropTypes.func.isRequired,
   clickedRemoveSignUp: PropTypes.func.isRequired,
   signupCreated: PropTypes.func.isRequired,
-  toggleReportbackAffirmation: PropTypes.func.isRequired,
   hasReferralRB: PropTypes.bool.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 CampaignDashboard.defaultProps = {

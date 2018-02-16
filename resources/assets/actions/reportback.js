@@ -16,7 +16,6 @@ import {
   REQUESTED_USER_SUBMISSIONS,
   REQUESTED_USER_SUBMISSIONS_FAILED,
   RECEIVED_USER_SUBMISSIONS,
-  TOGGLE_REPORTBACK_AFFIRMATION,
   queueEvent,
 } from '../actions';
 
@@ -154,14 +153,6 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
   };
 }
 
-// Action : toggle the reportback affirmation being displayed
-export function toggleReportbackAffirmation(shouldShowAffirmation) {
-  return {
-    type: TOGGLE_REPORTBACK_AFFIRMATION,
-    shouldShowAffirmation,
-  };
-}
-
 // Async Action: submit a new reportback and place in submissions gallery.
 export function submitReportback(url, reportback) {
   return (dispatch) => {
@@ -187,7 +178,6 @@ export function submitReportback(url, reportback) {
           });
         } else {
           dispatch(storeReportbackSuccessful());
-          dispatch(toggleReportbackAffirmation(true));
 
           response.json().then((json) => {
             dispatch(addSubmissionMetadata(reportback, json.shift()));
