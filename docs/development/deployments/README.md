@@ -1,4 +1,3 @@
 # Deployments
-***
 
 - [Heroku](heroku.md)

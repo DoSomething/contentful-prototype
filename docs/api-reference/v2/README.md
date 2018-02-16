@@ -1,5 +1,4 @@
 # Phoenix API Version 2.0
-***
 
 ## Campaigns
 The [`/campaigns`](campaigns.md) endpoint contains all endpoints related to retrieving campaign information as well as posting reportback actions for a specific campaign.

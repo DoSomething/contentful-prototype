@@ -1,5 +1,4 @@
 # Overview
-***
 
 ## Table Of Contents
 - [Affiliation Flow](overview.md#affiliation-flow)

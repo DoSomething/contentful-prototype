@@ -1,5 +1,4 @@
 # Editing Docs On GitHub
-***
 
 You can use GitHub's interface to create or edit documentation files.
 

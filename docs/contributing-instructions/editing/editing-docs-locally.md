@@ -1,5 +1,4 @@
 # Editing Docs Locally
-***
 
 To help facilitate editing the documentation locally, you can install the `gitbook-cli` globally to auto-build and serve a sample version with your edits as you work.
 

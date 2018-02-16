@@ -1,5 +1,4 @@
 # Table of Contents
-***
 
 ## Welcome
 - [Introduction](/README.md)
@@ -43,7 +42,7 @@
 ## Content Publishing
 - [Introduction](content-publishing/README.md)
 - [General Tips](content-publishing/general-tips.md)
-- [Environment Details & Behaviors](content-publishing/env-details.md)
+- [Environment Details & Behaviors](content-publishing/environment-details-and-behavior.md)
 - [Initial Campaign Publication](content-publishing/initial-campaign-publication/README.md)
   + [Ashes Publication](content-publishing/initial-campaign-publication/phoenix-ashes-publication.md)
   + [Next Publication](content-publishing/initial-campaign-publication/phoenix-next-publication.md)
@@ -52,8 +51,6 @@
   + [Landing Page](content-publishing/landing-page/landing-page.md)
   + [Sponsor Logo](content-publishing/landing-page/sponsor-logo.md)
   + [Campaign Lead](content-publishing/landing-page/campaign-lead.md)
-
-- [Action Steps](content-publishing/action-steps/README.md)
 - [Actions](content-publishing/actions/README.md)
   + [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
   + [Link Action](content-publishing/actions/link-action.md)

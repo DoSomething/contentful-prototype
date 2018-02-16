@@ -1,5 +1,4 @@
 # Traffic Distribution
-***
 
 Sometimes we'll have a feature that we only want to expose to a portion of our traffic. (E.G. a Survey feature, which we'd only like 5 percent of our users to see.)
 

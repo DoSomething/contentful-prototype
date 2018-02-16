@@ -1,5 +1,4 @@
 # Link Action
-***
 
 The `LinkAction` component renders a visual component which features an embedded link. It allows us to present a link that we'd like DoSomething.org members to follow in a clear and actionable format.
 

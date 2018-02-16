@@ -1,5 +1,4 @@
 # Landing Page
-***
 
 ## Needed for campaign publication
 - [Lede Banner](lede-banner.md)

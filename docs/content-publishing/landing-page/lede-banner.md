@@ -1,5 +1,4 @@
 # Lede Banner
-***
 
 1. *Title* should already be filled in from the last steps
 2. *Call To Action:* This is the large, emotional text below the title and what shows up at the bottom of pages to prompt the user to join

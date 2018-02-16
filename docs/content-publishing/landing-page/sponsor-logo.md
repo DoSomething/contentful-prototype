@@ -1,5 +1,4 @@
 # Adding the sponsor logo and URL
-***
 
 1. In the Campaign, find the section for Affiliate sponsor
 2. Check to see if the sponsor you are looking for already exists before creating a new one
