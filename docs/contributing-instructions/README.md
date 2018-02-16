@@ -1,5 +1,4 @@
 # Contributing
-***
 
 The documentation for Phoenix (next) is generated from the `/docs` directory in the Phoenix repository using [GitBook](https://www.gitbook.com/).
 

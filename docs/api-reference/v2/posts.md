@@ -1,5 +1,4 @@
 # Posts
-***
 
 ## Retrieve all Posts
 ```

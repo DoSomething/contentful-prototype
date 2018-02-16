@@ -1,5 +1,4 @@
 # Routing
-***
 
 Since Phoenix (next) is working alongside Phoenix Ashes (the legacy portion of our website), there are some magical routing configurations
 to ensure that user traffic is being directed to its proper place (with some requests being directed the legacy application, and the others to 

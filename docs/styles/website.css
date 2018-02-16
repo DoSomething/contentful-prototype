@@ -1,0 +1,13 @@
+.markdown-section h1 {
+  border-bottom: 3px dashed #eee;
+  margin-bottom: 30px;
+}
+
+.markdown-section h2 {
+  margin-bottom: 15px;
+}
+
+.markdown-section h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}

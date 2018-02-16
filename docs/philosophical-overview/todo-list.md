@@ -1,5 +1,4 @@
 ## Todo List
-***
 
 - Information about Phoenix-Ashes
 - Add table of contents

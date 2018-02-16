@@ -1,5 +1,4 @@
 # Campaigns
-***
 
 ## Retrieve a Campaign
 ```

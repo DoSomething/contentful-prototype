@@ -1,5 +1,4 @@
 # Phoenix-ashes publication
-*** 
 
 There are some fields that you need to fill in on the Phoenix-ashes campaign page because the homepage tile, the /campaigns page tiles, Looker data, and some SMS and email messaging relies on the Phoenix-ashes campaign page.
 

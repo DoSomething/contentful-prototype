@@ -1,5 +1,4 @@
 # Heroku
-***
 
 Heroku is a platform that lets developers focus on building applications instead of orchestrating infastructure. We currently use Heroku for Review Applications, temporary apps that deploy for every pull request, and we're moving towards hosting Phoenix (next) entirely on Heroku.
 

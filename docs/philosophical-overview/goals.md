@@ -1,5 +1,4 @@
 # Goals
-***
 
 The goal of **Phoenix (next)** is to provide the tools for campaign leads to create more engaging, useful and impactful campaigns.
 

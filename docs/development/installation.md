@@ -1,5 +1,4 @@
 # Installation
-***
 
 Fork and clone this repository to your computer, and then [add to your local Homestead](https://github.com/DoSomething/communal-docs/tree/master/Homestead) installation. Homestead provides a pre-packaged development environment to help get you up and running quickly! 
 

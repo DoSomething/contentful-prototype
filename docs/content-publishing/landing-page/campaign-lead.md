@@ -1,5 +1,4 @@
 #Campaign Lead
-***
 
 1. On the campaign, you can add a campaign lead for the entire campaign
 2. This is where the email will pull for the campaign lead in the footer

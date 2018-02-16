@@ -1,5 +1,4 @@
 # Phoenix-Next Publication
-*** 
 
 1. Go to app.contentful.com
 2. Click "Phoenix" under the Spaces section In the top right, click "+Add Entry" and select "Campaign"

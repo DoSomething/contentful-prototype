@@ -1,5 +1,4 @@
 # Landing Page
-***
 
 1. Find the section called "Landing Page" at the bottom of the Campaign page.
 3. For the pitch page content:

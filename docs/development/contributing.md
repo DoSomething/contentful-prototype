@@ -1,5 +1,4 @@
 # Contributing
-***
 
 ## Issues And Pull Requests
 We use an integration between Pivotal and GitHub to keep track of progress on our work.
