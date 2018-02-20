@@ -29,27 +29,25 @@ const ActionStep = (props) => {
   ) : null;
 
   return (
-    <FlexCell width="full">
-      <div id={`step-${id}`} className={classnames('action-step', { '-truncate': shouldTruncate })}>
-        <Flex>
-          <SectionHeader
-            preTitle={preTitle}
-            title={title}
-            step={stepIndex}
-            hideStepNumber={hideStepNumber}
-          />
-          { content ?
-            <FlexCell width="two-thirds">
-              <Markdown>{ content }</Markdown>
-            </FlexCell>
-            :
-            null
-          }
-          {photoComponent}
-        </Flex>
-      </div>
+    <div id={`step-${id}`} className={classnames('action-step', { '-truncate': shouldTruncate })}>
+      <Flex>
+        <SectionHeader
+          preTitle={preTitle}
+          title={title}
+          step={stepIndex}
+          hideStepNumber={hideStepNumber}
+        />
+        { content ? (
+          <FlexCell width="two-thirds">
+            <Markdown>{ content }</Markdown>
+          </FlexCell>
+        ) : (
+          null
+        )}
+        {photoComponent}
+      </Flex>
       <PuckWaypoint name="action-step__bottom" waypointData={{ title }} />
-    </FlexCell>
+    </div>
   );
 };
 

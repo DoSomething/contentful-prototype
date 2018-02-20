@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { Flex } from '../Flex';
+import { Flex, FlexCell } from '../Flex';
 import SectionHeader from '../SectionHeader';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
@@ -62,9 +62,10 @@ const ActionStepsWrapper = (props) => {
     // @TODO: These should be split out into separate "content" blocks.
     let prefixComponent = null;
     if (['voterRegistrationAction'].includes(type)) {
-      const title = get(step, 'fields.title');
+      const title = get(step, 'fields.title', '');
 
-      prefixComponent = title ? (
+      // @HACK: We have some blank titles " "... just hide those.
+      prefixComponent = title.trim().length ? (
         <SectionHeader
           title={title}
           hideStepNumber={get(step, 'fields.hideStepNumber', true)}
@@ -73,11 +74,18 @@ const ActionStepsWrapper = (props) => {
       ) : null;
     }
 
+    let columnWidth = 'two-thirds';
+    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'campaignActionStep', 'default'].includes(type)) {
+      columnWidth = 'full';
+    }
+
     return (
-      <div>
+      <Flex>
         {prefixComponent}
-        <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />
-      </div>
+        <FlexCell width={columnWidth}>
+          <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+        </FlexCell>
+      </Flex>
     );
   });
 
@@ -92,9 +100,9 @@ const ActionStepsWrapper = (props) => {
   }
 
   return (
-    <Flex>
+    <div>
       { stepComponents }
-    </Flex>
+    </div>
   );
 };
 

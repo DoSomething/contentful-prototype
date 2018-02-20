@@ -5,7 +5,6 @@ import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
 import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
 import Affirmation from '../Affirmation';
-import { FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
@@ -47,13 +46,13 @@ export function renderPhotoUploader(step, isSignedUp) {
   }
 
   return (
-    <FlexCell key="reportback_uploader" className="margin-bottom-lg" width="full">
+    <div key="reportback_uploader" className="margin-bottom-lg">
       <PuckWaypoint name="photo_uploader_action-top" />
       <div className="margin-horizontal-md">
         <ReportbackUploaderContainer actionType={step.type.sys.id} {...step.fields} />
       </div>
       <PuckWaypoint name="photo_uploader_action-bottom" />
-    </FlexCell>
+    </div>
   );
 }
 
@@ -68,11 +67,7 @@ export function renderSubmissionGallery(isSignedUp) {
     return null;
   }
 
-  return (
-    <FlexCell key="submission_gallery" width="full">
-      <SubmissionGalleryContainer />
-    </FlexCell>
-  );
+  return <SubmissionGalleryContainer key="submission_gallery" />;
 }
 
 /**
@@ -187,7 +182,7 @@ export function renderVoterRegistrationAction(step, stepIndex) {
   const key = `voter-registration-action-${step.id}`;
 
   return (
-    <FlexCell width="full" key={key}>
+    <div key={key}>
       <PuckWaypoint name="voter_registration_action-top" />
       <div className="action-step">
         <VoterRegistrationActionContainer
@@ -198,7 +193,7 @@ export function renderVoterRegistrationAction(step, stepIndex) {
         />
       </div>
       <PuckWaypoint name="voter_registration_action-bottom" />
-    </FlexCell>
+    </div>
   );
 }
 
@@ -211,11 +206,11 @@ export function renderShareAction(step) {
   const contentfulId = step.id;
 
   return (
-    <FlexCell width="two-thirds" key={`share-action-${contentfulId}`}>
+    <div key={`share-action-${contentfulId}`}>
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
       <ShareActionContainer {...step.fields} />
       <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
-    </FlexCell>
+    </div>
   );
 }
 
@@ -228,11 +223,11 @@ export function renderLinkAction(step) {
   const contentfulId = step.id;
 
   return (
-    <FlexCell width="two-thirds" key={`link-action-${contentfulId}`}>
+    <div key={`link-action-${contentfulId}`}>
       <PuckWaypoint name="link_action-top" waypointData={{ contentfulId }} />
       <LinkActionContainer {...step.fields} />
       <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
-    </FlexCell>
+    </div>
   );
 }
 

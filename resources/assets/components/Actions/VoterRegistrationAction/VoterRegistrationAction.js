@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import Card from '../../Card';
 import Markdown from '../../Markdown';
-import { Flex, FlexCell } from '../../Flex';
 import { dynamicString } from '../../../helpers';
 
 import './voter-registration-action.scss';
@@ -25,17 +24,13 @@ const VoterRegistrationAction = (props) => {
   };
 
   return (
-    <Flex>
-      <FlexCell width="two-thirds">
-        <Card className="rounded bordered voter-registration" title="Register to vote">
-          <div className="padded clearfix">
-            <Markdown>{ content }</Markdown>
+    <Card className="rounded bordered voter-registration" title="Register to vote">
+      <div className="padded clearfix">
+        <Markdown>{ content }</Markdown>
 
-            { link ? <a className="button" href={dynamicString(link, tokens)} target="_blank">Start Registration</a> : null }
-          </div>
-        </Card>
-      </FlexCell>
-    </Flex>
+        { link ? <a className="button" href={dynamicString(link, tokens)} target="_blank">Start Registration</a> : null }
+      </div>
+    </Card>
   );
 };
 
