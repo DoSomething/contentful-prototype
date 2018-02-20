@@ -71,7 +71,9 @@ const MosaicTemplate = (props) => {
       <div className="lede-banner__content">
         <div className="wrapper">
           <div className="lede-banner__headline">
-            <h1 className="lede-banner__headline-title">{title}</h1>
+            <h1 className={classnames('lede-banner__headline-title', { 'smaller-font': title.length > 25 })}>
+              {title}
+            </h1>
             <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
           </div>
 
