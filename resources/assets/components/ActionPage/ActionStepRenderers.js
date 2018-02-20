@@ -4,6 +4,7 @@ import ActionStep from './ActionStep';
 import Revealer from '../Revealer';
 import SignupButtonFactory from '../SignupButton';
 import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
+import Affirmation from '../Affirmation';
 import { FlexCell } from '../Flex';
 import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
@@ -233,4 +234,13 @@ export function renderLinkAction(step) {
       <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
     </FlexCell>
   );
+}
+
+/**
+ * Render the affirmation step.
+ *
+ * @return {Component}
+ */
+export function renderAffirmation(step) {
+  return <Affirmation content={step.fields} />;
 }

@@ -6,8 +6,42 @@ import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderActionStep, renderRevealer,
   renderLegacyGallery, renderVoterRegistrationAction, renderShareAction,
-  renderLinkAction,
+  renderLinkAction, renderAffirmation,
 } from './ActionStepRenderers';
+
+const ActionStepBlock = ({ step, stepIndex, isSignedUp = false }) => {
+  const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
+
+  switch (type) {
+    case 'affirmation':
+      return renderAffirmation(step);
+
+    case 'competition':
+      return renderCompetitionStep(step);
+
+    case 'photoUploaderAction':
+    case 'photo-uploader':
+      return renderPhotoUploader(step, isSignedUp);
+
+    case 'submission-gallery':
+      return renderSubmissionGallery(isSignedUp);
+
+    case 'third-party-action':
+      return renderThirdPartyAction(step, stepIndex);
+
+    case 'voterRegistrationAction':
+      return renderVoterRegistrationAction(step, stepIndex);
+
+    case 'shareAction':
+      return renderShareAction(step);
+
+    case 'linkAction':
+      return renderLinkAction(step);
+
+    default:
+      return renderActionStep(step, stepIndex);
+  }
+};
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId,
@@ -18,34 +52,12 @@ const ActionStepsWrapper = (props) => {
   const stepComponents = actionSteps.map((step) => {
     const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
 
-    switch (type) {
-      case 'competition':
-        return renderCompetitionStep(step);
-
-      case 'photoUploaderAction':
-      case 'photo-uploader':
-        return renderPhotoUploader(step, isSignedUp);
-
-      case 'submission-gallery':
-        return renderSubmissionGallery(isSignedUp);
-
-      case 'third-party-action':
-        stepIndex += 1;
-        return renderThirdPartyAction(step, stepIndex);
-
-      case 'voterRegistrationAction':
-        return renderVoterRegistrationAction(step, stepIndex);
-
-      case 'shareAction':
-        return renderShareAction(step);
-
-      case 'linkAction':
-        return renderLinkAction(step);
-
-      default:
-        stepIndex += 1;
-        return renderActionStep(step, stepIndex);
+    // Is this a "numbered" step? If so, increment our step index.
+    if (['third-party-action', 'campaignActionStep', 'default'].includes(type)) {
+      stepIndex += 1;
     }
+
+    return <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />;
   });
 
   if (! isSignedUp) {
