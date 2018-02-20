@@ -9,7 +9,7 @@ import {
   renderLinkAction, renderAffirmation,
 } from './ActionStepRenderers';
 
-const ActionStepBlock = ({ step, stepIndex, isSignedUp = false }) => {
+export const ActionStepBlock = ({ step, stepIndex = 0, isSignedUp = false }) => {
   const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
 
   switch (type) {

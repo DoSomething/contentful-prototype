@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AffirmationContainer } from '../../Affirmation';
+import { ActionStepBlock } from '../../ActionPage/ActionStepsWrapper';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
 import SlideshowContainer from '../../Slideshow';
 
@@ -14,10 +14,11 @@ const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
           byline={competitionStep.additionalContent}
         />
       ) : null }
-      <AffirmationContainer />
+      <ActionStepBlock step={affirmation} closeModal={closeModal} />
     </SlideshowContainer>
   </div>
 );
+
 
 PostSignupModal.propTypes = {
   affirmation: PropTypes.object.isRequired, // eslint-disable-line
