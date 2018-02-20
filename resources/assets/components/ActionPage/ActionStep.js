@@ -16,7 +16,7 @@ const renderPhoto = (photo, index) => (
 
 const ActionStep = (props) => {
   const {
-    id, title, stepIndex, content, photos, photoWidth,
+    title, stepIndex, content, photos, photoWidth,
     shouldTruncate, hideStepNumber, preTitle,
   } = props;
 
@@ -29,7 +29,7 @@ const ActionStep = (props) => {
   ) : null;
 
   return (
-    <div id={`step-${id}`} className={classnames('action-step', { '-truncate': shouldTruncate })}>
+    <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
       <Flex>
         <SectionHeader
           preTitle={preTitle}
@@ -52,7 +52,6 @@ const ActionStep = (props) => {
 };
 
 ActionStep.propTypes = {
-  id: PropTypes.string.isRequired,
   preTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
