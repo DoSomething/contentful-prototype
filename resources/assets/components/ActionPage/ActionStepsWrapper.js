@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { Flex } from '../Flex';
+import SectionHeader from '../SectionHeader';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderActionStep, renderRevealer,
@@ -57,7 +58,27 @@ const ActionStepsWrapper = (props) => {
       stepIndex += 1;
     }
 
-    return <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />;
+    // Some components have built-in section headers. For those, append it.
+    // @TODO: These should be split out into separate "content" blocks.
+    let prefixComponent = null;
+    if (['voterRegistrationAction'].includes(type)) {
+      const title = get(step, 'fields.title');
+
+      prefixComponent = title ? (
+        <SectionHeader
+          title={title}
+          hideStepNumber={get(step, 'fields.hideStepNumber', true)}
+          step={stepIndex}
+        />
+      ) : null;
+    }
+
+    return (
+      <div>
+        {prefixComponent}
+        <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+      </div>
+    );
   });
 
   if (! isSignedUp) {

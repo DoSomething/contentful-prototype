@@ -189,7 +189,7 @@ export function renderVoterRegistrationAction(step, stepIndex) {
   return (
     <FlexCell width="full" key={key}>
       <PuckWaypoint name="voter_registration_action-top" />
-      <div id={key} className="action-step">
+      <div className="action-step">
         <VoterRegistrationActionContainer
           content={content}
           title={title}
