@@ -111,20 +111,20 @@ class Campaign extends Entity implements JsonSerializable
      */
     public function parseActionStep($step)
     {
-            switch ($step->getContentType()) {
-                case 'photoUploaderAction':
-                    return new PhotoUploaderAction($step->entry);
-                case 'voterRegistrationAction':
-                    return new VoterRegistrationAction($step->entry);
-                case 'shareAction':
-                    return new ShareAction($step->entry);
-                case 'linkAction':
-                    return new LinkAction($step->entry);
-                case 'affirmation':
-                    return new Affirmation($step->entry);
-                default:
-                    return new CampaignActionStep($step->entry);
-            }
+        switch ($step->getContentType()) {
+            case 'photoUploaderAction':
+                return new PhotoUploaderAction($step->entry);
+            case 'voterRegistrationAction':
+                return new VoterRegistrationAction($step->entry);
+            case 'shareAction':
+                return new ShareAction($step->entry);
+            case 'linkAction':
+                return new LinkAction($step->entry);
+            case 'affirmation':
+                return new Affirmation($step->entry);
+            default:
+                return new CampaignActionStep($step->entry);
+        }
     }
 
     /**
