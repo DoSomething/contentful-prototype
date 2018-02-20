@@ -84,6 +84,13 @@
     font-size: 28px;
     top: -$half-spacing;
   }
+
+  @include media("(max-width: 450px)") {
+    &.smaller-font {
+      font-size: 15px;
+      top: -4px;
+    }
+  }
 }
 
 .lede-banner__headline-subtitle {
