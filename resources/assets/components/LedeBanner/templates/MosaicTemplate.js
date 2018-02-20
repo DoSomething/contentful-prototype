@@ -10,6 +10,8 @@ import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import SponsorPromotion from '../../SponsorPromotion';
 
+import './landing-page.scss';
+
 const MosaicTemplate = (props) => {
   const {
     affiliatedActionText,
