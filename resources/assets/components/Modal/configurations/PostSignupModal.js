@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ActionStepBlock } from '../../ActionPage/ActionStepsWrapper';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
+import { ModalControls } from '../../Modal';
 import SlideshowContainer from '../../Slideshow';
 
 const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
@@ -14,7 +15,9 @@ const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
           byline={competitionStep.additionalContent}
         />
       ) : null }
-      <ActionStepBlock step={affirmation} closeModal={closeModal} />
+      <ModalControls onClose={closeModal}>
+        <ActionStepBlock step={affirmation} />
+      </ModalControls>
     </SlideshowContainer>
   </div>
 );

@@ -1,5 +1,7 @@
 export default from './containers/ModalSwitchContainer';
 
+export ModalControls from './ModalControls';
+
 export Modal from './containers/ModalContainer';
 export SurveyModalContainer from './containers/SurveyModalContainer';
 export PostShareModalContainer from './containers/PostShareModalContainer';
