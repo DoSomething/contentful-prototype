@@ -16,7 +16,7 @@ const renderPhoto = (photo, index) => (
 
 const ActionStep = (props) => {
   const {
-    id, title, stepIndex, content, photos, photoWidth,
+    title, stepIndex, content, photos, photoWidth,
     shouldTruncate, hideStepNumber, preTitle,
   } = props;
 
@@ -29,32 +29,29 @@ const ActionStep = (props) => {
   ) : null;
 
   return (
-    <FlexCell width="full">
-      <div id={`step-${id}`} className={classnames('action-step', { '-truncate': shouldTruncate })}>
-        <Flex>
-          <SectionHeader
-            preTitle={preTitle}
-            title={title}
-            step={stepIndex}
-            hideStepNumber={hideStepNumber}
-          />
-          { content ?
-            <FlexCell width="two-thirds">
-              <Markdown>{ content }</Markdown>
-            </FlexCell>
-            :
-            null
-          }
-          {photoComponent}
-        </Flex>
-      </div>
+    <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
+      <Flex>
+        <SectionHeader
+          preTitle={preTitle}
+          title={title}
+          step={stepIndex}
+          hideStepNumber={hideStepNumber}
+        />
+        { content ? (
+          <FlexCell width="two-thirds">
+            <Markdown>{ content }</Markdown>
+          </FlexCell>
+        ) : (
+          null
+        )}
+        {photoComponent}
+      </Flex>
       <PuckWaypoint name="action-step__bottom" waypointData={{ title }} />
-    </FlexCell>
+    </div>
   );
 };
 
 ActionStep.propTypes = {
-  id: PropTypes.string.isRequired,
   preTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,

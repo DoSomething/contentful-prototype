@@ -104,6 +104,30 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse and extract data for an action step.
+     *
+     * @param  Entry $entry
+     * @return array
+     */
+    public function parseActionStep($step)
+    {
+        switch ($step->getContentType()) {
+            case 'photoUploaderAction':
+                return new PhotoUploaderAction($step->entry);
+            case 'voterRegistrationAction':
+                return new VoterRegistrationAction($step->entry);
+            case 'shareAction':
+                return new ShareAction($step->entry);
+            case 'linkAction':
+                return new LinkAction($step->entry);
+            case 'affirmation':
+                return new Affirmation($step->entry);
+            default:
+                return new CampaignActionStep($step->entry);
+        }
+    }
+
+    /**
      * Parse and extract data for action steps.
      *
      * @param  array $actionSteps
@@ -112,18 +136,7 @@ class Campaign extends Entity implements JsonSerializable
     public function parseActionSteps($actionSteps)
     {
         return collect($actionSteps)->map(function ($step) {
-            switch ($step->getContentType()) {
-                case 'photoUploaderAction':
-                    return new PhotoUploaderAction($step->entry);
-                case 'voterRegistrationAction':
-                    return new VoterRegistrationAction($step->entry);
-                case 'shareAction':
-                    return new ShareAction($step->entry);
-                case 'linkAction':
-                    return new LinkAction($step->entry);
-                default:
-                    return new CampaignActionStep($step->entry);
-            }
+            return $this->parseActionStep($step);
         });
     }
 
@@ -217,7 +230,7 @@ class Campaign extends Entity implements JsonSerializable
             'actionSteps' => $this->parseActionSteps($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
-            'affirmation' => $this->affirmation ? new Affirmation($this->affirmation->entry) : null,
+            'affirmation' => $this->parseActionStep($this->affirmation),
             'pages' => $this->pages,
             'landingPage' => $this->landingPage ? new Page($this->landingPage->entry) : null,
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,

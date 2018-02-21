@@ -1,13 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { Flex } from '../Flex';
+import { Flex, FlexCell } from '../Flex';
+import SectionHeader from '../SectionHeader';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderActionStep, renderRevealer,
   renderLegacyGallery, renderVoterRegistrationAction, renderShareAction,
-  renderLinkAction,
+  renderLinkAction, renderAffirmation,
 } from './ActionStepRenderers';
+
+export const ActionStepBlock = ({ step, stepIndex = 0, isSignedUp = false }) => {
+  const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
+
+  switch (type) {
+    case 'affirmation':
+      return renderAffirmation(step);
+
+    case 'competition':
+      return renderCompetitionStep(step);
+
+    case 'photoUploaderAction':
+    case 'photo-uploader':
+      return renderPhotoUploader(step, isSignedUp);
+
+    case 'submission-gallery':
+      return renderSubmissionGallery(isSignedUp);
+
+    case 'third-party-action':
+      return renderThirdPartyAction(step, stepIndex);
+
+    case 'voterRegistrationAction':
+      return renderVoterRegistrationAction(step, stepIndex);
+
+    case 'shareAction':
+      return renderShareAction(step);
+
+    case 'linkAction':
+      return renderLinkAction(step);
+
+    default:
+      return renderActionStep(step, stepIndex);
+  }
+};
 
 const ActionStepsWrapper = (props) => {
   const { actionSteps, callToAction, campaignId,
@@ -18,34 +53,40 @@ const ActionStepsWrapper = (props) => {
   const stepComponents = actionSteps.map((step) => {
     const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
 
-    switch (type) {
-      case 'competition':
-        return renderCompetitionStep(step);
-
-      case 'photoUploaderAction':
-      case 'photo-uploader':
-        return renderPhotoUploader(step, isSignedUp);
-
-      case 'submission-gallery':
-        return renderSubmissionGallery(isSignedUp);
-
-      case 'third-party-action':
-        stepIndex += 1;
-        return renderThirdPartyAction(step, stepIndex);
-
-      case 'voterRegistrationAction':
-        return renderVoterRegistrationAction(step, stepIndex);
-
-      case 'shareAction':
-        return renderShareAction(step);
-
-      case 'linkAction':
-        return renderLinkAction(step);
-
-      default:
-        stepIndex += 1;
-        return renderActionStep(step, stepIndex);
+    // Is this a "numbered" step? If so, increment our step index.
+    if (['third-party-action', 'campaignActionStep', 'default'].includes(type)) {
+      stepIndex += 1;
     }
+
+    // Some components have built-in section headers. For those, append it.
+    // @TODO: These should be split out into separate "content" blocks.
+    let prefixComponent = null;
+    if (['voterRegistrationAction'].includes(type)) {
+      const title = get(step, 'fields.title', '');
+
+      // @HACK: We have some blank titles " "... just hide those.
+      prefixComponent = title.trim().length ? (
+        <SectionHeader
+          title={title}
+          hideStepNumber={get(step, 'fields.hideStepNumber', true)}
+          step={stepIndex}
+        />
+      ) : null;
+    }
+
+    let columnWidth = 'two-thirds';
+    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'campaignActionStep', 'default'].includes(type)) {
+      columnWidth = 'full';
+    }
+
+    return (
+      <Flex id={`step-${step.id}`}>
+        {prefixComponent}
+        <FlexCell width={columnWidth}>
+          <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+        </FlexCell>
+      </Flex>
+    );
   });
 
   if (! isSignedUp) {
@@ -59,9 +100,9 @@ const ActionStepsWrapper = (props) => {
   }
 
   return (
-    <Flex>
+    <div>
       { stepComponents }
-    </Flex>
+    </div>
   );
 };
 

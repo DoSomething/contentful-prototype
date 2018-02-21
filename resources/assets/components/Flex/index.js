@@ -4,13 +4,14 @@ import classnames from 'classnames';
 import { modifiers } from '../../helpers';
 import './flex.scss';
 
-export const Flex = ({ className = null, children }) => (
-  <div className={classnames('flex', className)}>
+export const Flex = ({ id, className = null, children }) => (
+  <div id={id} className={classnames('flex', className)}>
     {children}
   </div>
 );
 
 Flex.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.object,
@@ -19,6 +20,7 @@ Flex.propTypes = {
 };
 
 Flex.defaultProps = {
+  id: null,
   className: null,
 };
 

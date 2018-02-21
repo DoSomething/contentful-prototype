@@ -27,7 +27,7 @@ const ShareAction = (props) => {
   };
 
   return (
-    <div className="share-action margin-horizontal-md margin-bottom-lg">
+    <div className="share-action margin-bottom-lg">
       <Card title={title} className="rounded bordered">
         { content ?
           <Markdown className="padded">{content}</Markdown>
