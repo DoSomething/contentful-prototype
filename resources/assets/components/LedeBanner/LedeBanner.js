@@ -5,8 +5,6 @@ import LegacyTemplate from './templates/LegacyTemplate';
 import MosaicTemplate from './templates/MosaicTemplate';
 import CoverTemplate from './templates/CoverTemplate';
 
-import './lede-banner.scss';
-
 const LedeBanner = (props) => {
   const { template } = props;
 

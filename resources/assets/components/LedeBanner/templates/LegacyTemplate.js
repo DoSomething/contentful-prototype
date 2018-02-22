@@ -8,8 +8,6 @@ import SponsorPromotion from '../../SponsorPromotion';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import { contentfulImageUrl } from '../../../helpers';
 
-import './landing-page.scss';
-
 const LegacyTemplate = (props) => {
   const {
     actionText,

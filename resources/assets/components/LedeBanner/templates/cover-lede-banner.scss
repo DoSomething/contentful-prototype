@@ -1,0 +1,55 @@
+@import '~@dosomething/forge/scss/toolkit';
+@import '../../../scss/next-toolbox.scss';
+
+.cover-lede-banner {
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  background-color: fuchsia;
+  display: flex;
+  height: calc(100vh - 84px); // subtract .navigation height
+  padding: 15px;
+  width: 100%;
+
+  @include media($medium) {
+    height: calc(100vh - 110px); // subtract .navigation height
+    padding: $base-spacing;
+  }
+
+  > .wrapper {
+    @include media($medium) {
+      max-width: 810px;
+    }
+  }
+}
+
+.cover-lede-banner__headline-title {
+  color: $primary-color;
+  font-family: $primary-font-family;
+  font-size: 18px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-transform: uppercase;
+}
+
+.cover-lede-banner__headline-subtitle {
+  color: $white;
+  font-family: $secondary-font-family;
+  font-size: 36px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin-bottom: $base-spacing;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(0,0,0,0.2);
+  text-transform: uppercase;
+}
+
+.cover-lede-banner__blurb {
+  color: $white;
+  margin-bottom: $base-spacing;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+}

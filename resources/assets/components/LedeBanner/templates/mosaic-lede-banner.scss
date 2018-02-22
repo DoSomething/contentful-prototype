@@ -1,9 +1,10 @@
 @import '~@dosomething/forge/scss/toolkit';
-@import '../../scss/next-toolbox.scss';
+@import '../../../scss/next-toolbox.scss';
 
-.lede-banner {
+.mosaic-lede-banner {
   background-color: $dark-background-color;
   color: $dark-background-contrast-color;
+  width: 100%;
 
   @include media($medium) {
     display: table;
@@ -38,7 +39,7 @@
   }
 }
 
-.lede-banner__content {
+.mosaic-lede-banner__content {
   @include media($medium) {
     display: table-cell;
     vertical-align: middle;
@@ -54,7 +55,7 @@
   }
 }
 
-.lede-banner__image {
+.mosaic-lede-banner__image {
   background-size: cover;
   background-position: center;
   min-height: 200px;
@@ -66,11 +67,11 @@
   }
 }
 
-.lede-banner__headline {
+.mosaic-lede-banner__headline {
   position: relative;
 }
 
-.lede-banner__headline-title {
+.mosaic-lede-banner__headline-title {
   background-color: $dark-background-color;
   color: $primary-color;
   font-family: $primary-font-family;
@@ -93,7 +94,7 @@
   }
 }
 
-.lede-banner__headline-subtitle {
+.mosaic-lede-banner__headline-subtitle {
   color: $dark-background-contrast-color;
   border-top: 8px solid $primary-color;
   border-bottom: 8px solid $primary-color;
@@ -111,7 +112,7 @@
   }
 }
 
-.lede-banner__blurb {
+.mosaic-lede-banner__blurb {
   font-family: $primary-font-family;
   padding-top: $base-spacing;
 
@@ -134,7 +135,7 @@
   }
 }
 
-.lede-banner__sponsor {
+.mosaic-lede-banner__sponsor {
   .promotion .__copy, .promotion .__image {
     max-width: 100%;
   }

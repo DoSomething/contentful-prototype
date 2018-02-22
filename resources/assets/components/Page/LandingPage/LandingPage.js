@@ -31,7 +31,7 @@ const LandingPage = (props) => {
         coverImage={coverImage}
         legacyCampaignId={legacyCampaignId}
         endDate={endDate}
-        template={template}
+        template="cover"
         affiliateSponsors={affiliateSponsors}
         signupArrowContent={signupArrowContent}
         showPartnerMsgOptIn={showPartnerMsgOptIn}
