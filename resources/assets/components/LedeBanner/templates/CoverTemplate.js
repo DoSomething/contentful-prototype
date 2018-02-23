@@ -9,42 +9,42 @@ import { contentfulImageUrl } from '../../../helpers';
 import './cover-lede-banner.scss';
 
 const CoverTemplate = (props) => {
-  console.log(props);
-
   const {
+    actionText,
     affiliateSponsors,
     coverImage,
     isAffiliated,
+    legacyCampaignId,
     subtitle,
     title,
   } = props;
 
-  console.log(affiliateSponsors);
-
   const blurb = 'Want to celebrate Black History Month by supporting diversity in TV and film? Take 5 minutes and you\'ll enter to win a $3000 scholarship.';
 
-  // const backgroundImageStyle = {
-  //   backgroundImage: `url(${contentfulImageUrl(coverImage.url, '1440', '810', 'fill')})`,
-  // };
-
   const backgroundImageStyle = {
-    backgroundImage: `url(http://wlpapers.com/images/light-background-1.jpg)`,
-  }
+    backgroundImage: `url(${contentfulImageUrl(coverImage.url, '1440', '810', 'fill')})`,
+  };
+
+  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+    <div className="cover-lede-banner__signup">
+      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
+    </div>
+  ));
 
   return (
     <header role="banner" className="cover-lede-banner" style={backgroundImageStyle}>
       <div className="wrapper margin-horizontal-auto">
-        <h1 className="cover-lede-banner__headline-title">{"Some rather long title here that should likely never exist"}</h1>
+        <h1 className="cover-lede-banner__headline-title">{title}</h1>
 
         <h2 className="cover-lede-banner__headline-subtitle">{subtitle}</h2>
 
         { blurb ? <Markdown className="cover-lede-banner__blurb">{blurb}</Markdown> : null }
 
-        { isAffiliated ? null : <button className="button">Join Us</button> }
+        { isAffiliated ? null : <SignupButton /> }
 
         { affiliateSponsors.length ?
           <SponsorPromotion
-            className="mosaic-lede-banner__sponsor padding-top-lg clear-both"
+            className="cover-lede-banner__sponsor"
             imgUrl={affiliateSponsors[0].fields.logo.url}
             title={affiliateSponsors[0].fields.logo.title}
           />
@@ -54,6 +54,19 @@ const CoverTemplate = (props) => {
       </div>
     </header>
   );
+};
+
+CoverTemplate.propTypes = {
+  actionText: PropTypes.string.isRequired,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  coverImage: PropTypes.shape({
+    description: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
+  isAffiliated: PropTypes.bool.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CoverTemplate;

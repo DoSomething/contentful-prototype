@@ -37,7 +37,7 @@ const MosaicTemplate = (props) => {
   ) : null;
 
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <div className="header__signup">
+    <div className="mosaic-lede-banner__signup">
       <button
         className={classnames('button', { '-float': affiliateSponsors.length })}
         onClick={() => clickedSignUp(legacyCampaignId)}

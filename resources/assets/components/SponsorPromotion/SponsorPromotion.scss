@@ -2,7 +2,6 @@
 @import '../../scss/next-toolbox.scss';
 
 $btw-mobile-and-tablet: "(min-width: 860px)";
-$btw-tablet-and-desktop: "(min-width: 960px)";
 
 .header .promotions {
   // Shift it down so that the "creator" portraits are adjacent to the bottom of the Header
@@ -40,7 +39,7 @@ $btw-tablet-and-desktop: "(min-width: 960px)";
   display: table;
   margin: 0 auto;
 
-  @include media($btw-tablet-and-desktop) {
+  @include media($large) {
     margin: 0;
   }
 
@@ -49,7 +48,7 @@ $btw-tablet-and-desktop: "(min-width: 960px)";
     .promotion {
       width: 50%;
 
-      @include media($btw-tablet-and-desktop) {
+      @include media($large) {
         height: 100px;
         width: auto;
       }
@@ -67,7 +66,7 @@ $btw-tablet-and-desktop: "(min-width: 960px)";
           top: 10%;
           width: 1px;
 
-          @include media($btw-tablet-and-desktop) {
+          @include media($large) {
             right: 10px;
           }
         }
@@ -76,89 +75,49 @@ $btw-tablet-and-desktop: "(min-width: 960px)";
   }
 }
 
-
 // Promotion Individual
 .promotion {
   display: table-cell;
   position: relative;
 
   > .wrapper {
-    @include media($btw-tablet-and-desktop) {
-      display: table;
-      height: 100%;
-    }
-  }
-
-  a {
-    display: block;
-    text-decoration: none;
-  }
-
-  img {
-    display: block;
-    height: auto;
-    margin: 0 auto;
-    max-width: 100%;
-    width: auto;
-  }
-
-  .__image {
-
-    @include media($btw-tablet-and-desktop) {
-      display: table-cell;
-      padding: 0 0 0 10px;
-      vertical-align: middle;
-    }
+    display: table;
   }
 
   .__copy {
-    @include rgba(color, #fff, 0.7, #fff);
-
+    color: rgba(255, 255, 255, 0.7);
+    display: table-cell;
     font-size: $font-small;
     font-weight: $weight-bold;
     line-height: 1;
-    margin: 0;
-    padding: 0 0 9px;
-    text-align: center;
+    padding-right: 10px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.2);
     text-transform: uppercase;
+    vertical-align: middle;
+    white-space: nowrap;
 
-    @include media($btw-tablet-and-desktop) {
-      display: table-cell;
-      min-width: 85px;  // @TODO: Not ideal.
-      padding: 0;
-      text-align: right;
-      vertical-align: middle;
+    @include media($large) {
+      font-size: $font-regular;
     }
   }
-}
-
-
-// Promotion Specific
-.promotion--sponsor {
 
   .__image {
-    max-width: 175px;
-  }
-
-  .__image + .__image {
-    margin-top: $base-spacing / 2;
-  }
-
-  img {
-    max-height: 50px;
+    display: table-cell;
+    vertical-align: middle;
   }
 }
 
 
+// Creator Specific
 .promotion--creator {
 
-  @include media($btw-tablet-and-desktop) {
+  @include media($large) {
     vertical-align: bottom;
   }
 
   .__image {
 
-    @include media($btw-tablet-and-desktop) {
+    @include media($large) {
       vertical-align: bottom;
     }
   }
@@ -166,7 +125,7 @@ $btw-tablet-and-desktop: "(min-width: 960px)";
   img {
     max-height: 70px;
 
-    @include media($btw-tablet-and-desktop) {
+    @include media($large) {
       max-height: 100px;
     }
   }
