@@ -1,9 +1,14 @@
 @import '~@dosomething/forge/scss/toolkit';
 
 // Temporary override of the page navigation.
+// Fixed pixel height helps with vh units in banner.
 .navigation {
   background-color: $white;
-  overflow: auto;
+  height: 84px;
+
+  @include media($medium) {
+    height: 110px;
+  }
 }
 
 .navigation__logo {

@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import './SponsorPromotion.scss';
+import './sponsor-promotion.scss';
 
-const SponsorPromotion = ({ imgUrl, title }) => (
-  <div className="promotions">
+const SponsorPromotion = ({ className = null, imgUrl, title }) => (
+  <div className={classnames('promotions', className)}>
     <div className="promotion promotion--sponsor">
       <div className="wrapper">
         <p className="__copy">Powered by</p>
@@ -17,11 +18,13 @@ const SponsorPromotion = ({ imgUrl, title }) => (
 );
 
 SponsorPromotion.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
 };
 
 SponsorPromotion.defaultProps = {
+  className: null,
   title: 'Campaign Sponsor Logo',
 };
 

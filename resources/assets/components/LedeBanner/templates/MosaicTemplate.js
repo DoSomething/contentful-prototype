@@ -4,11 +4,13 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import Markdown from '../../Markdown';
-import AffiliateOptionContainer from '../../AffiliateOption';
 import SignupButtonFactory from '../../SignupButton';
+import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
-import SponsorPromotion from '../../SponsorPromotion';
+import AffiliateOptionContainer from '../../AffiliateOption';
+
+import './mosaic-lede-banner.scss';
 
 const MosaicTemplate = (props) => {
   const {
@@ -34,22 +36,10 @@ const MosaicTemplate = (props) => {
     <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
   ) : null;
 
-  const sponsor = affiliateSponsors[0];
-  const sponsorComponent = sponsor ? (
-    <div className="lede-banner__sponsor padding-top-lg clear-both">
-      <SponsorPromotion
-        imgUrl={sponsor.fields.logo.url}
-        title={sponsor.fields.logo.title}
-      />
-    </div>
-  ) : null;
-
-  const buttonClassname = classnames('button', { '-float': sponsor });
-
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <div className="header__signup">
+    <div className="mosaic-lede-banner__signup">
       <button
-        className={buttonClassname}
+        className={classnames('button', { '-float': affiliateSponsors.length })}
         onClick={() => clickedSignUp(legacyCampaignId)}
       >{ actionText }</button>
       { signupArrowComponent }
@@ -66,21 +56,30 @@ const MosaicTemplate = (props) => {
   ) : null;
 
   return (
-    <header role="banner" className="lede-banner">
-      <div className="lede-banner__image" style={backgroundImageStyle} />
-      <div className="lede-banner__content">
+    <header role="banner" className="mosaic-lede-banner">
+      <div className="mosaic-lede-banner__image" style={backgroundImageStyle} />
+      <div className="mosaic-lede-banner__content">
         <div className="wrapper">
-          <div className="lede-banner__headline">
-            <h1 className={classnames('lede-banner__headline-title', { 'smaller-font': title.length > 25 })}>
+          <div className="mosaic-lede-banner__headline">
+            <h1 className={classnames('mosaic-lede-banner__headline-title', { 'smaller-font': title.length > 25 })}>
               {title}
             </h1>
-            <h2 className="lede-banner__headline-subtitle">{subtitle}</h2>
+            <h2 className="mosaic-lede-banner__headline-subtitle">{subtitle}</h2>
           </div>
 
-          { blurb ? <Markdown className="lede-banner__blurb">{blurb}</Markdown> : null }
+          { blurb ? <Markdown className="mosaic-lede-banner__blurb">{blurb}</Markdown> : null }
 
           { isAffiliated ? actionButton : <SignupButton /> }
-          { sponsorComponent }
+
+          { affiliateSponsors.length ?
+            <SponsorPromotion
+              className="mosaic-lede-banner__sponsor padding-top-lg clear-both"
+              imgUrl={affiliateSponsors[0].fields.logo.url}
+              title={affiliateSponsors[0].fields.logo.title}
+            />
+            :
+            null
+          }
         </div>
       </div>
     </header>
