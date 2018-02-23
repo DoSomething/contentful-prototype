@@ -36,11 +36,12 @@ const CampaignPage = (props) => {
     *if* it's available (meaning the campaign has an activity feed property populated).
     Otherwise, we render the ActionPage as usual.
   */
-  const renderActionOrFeed = () => (
-    isClosed && ! shouldShowActionPage && hasActivityFeed ?
-      <Redirect to={`${match.url}/community`} />
-      : <ActionPageContainer />
-  );
+  const shouldShowActivityFeed = isClosed && ! shouldShowActionPage && hasActivityFeed;
+  const ActionPageOrActivityFeed = () => (shouldShowActivityFeed ? (
+    <Redirect to={`${match.url}/community`} />
+  ) : (
+    <ActionPageContainer />
+  ));
 
   return (
     <div>
@@ -75,22 +76,19 @@ const CampaignPage = (props) => {
             <Route
               path={`${match.url}`}
               exact
-              render={renderActionOrFeed}
+              component={ActionPageOrActivityFeed}
             />
             <Route
               path={`${match.url}/action`}
-              render={renderActionOrFeed}
+              component={ActionPageOrActivityFeed}
             />
             <Route
               path={`${match.url}/community`}
               render={() => {
-                /*
-                  For legacy templates which don't require an ActivityFeed
-                  (community page elements), we first check to ensure
-                  that they indeed have a feed, otherwise we'll just redirect to the action page.
-                */
-                if (template === 'legacy') {
-                  return hasActivityFeed ? <FeedContainer /> : <Redirect to={`${match.url}/action`} />;
+                // Does this campaign have an activity feed? (Some on the
+                // "legacy" template don't.) If not, redirect to action page.
+                if (template === 'legacy' && ! hasActivityFeed) {
+                  return <Redirect to={`${match.url}/action`} />;
                 }
 
                 return <FeedContainer />;
@@ -116,8 +114,7 @@ const CampaignPage = (props) => {
                 return <Redirect to={`${match.url}`} />;
               }}
             />
-            { /* Any random route nested under a campaign will
-              just be redirected to the campaigns root page */ }
+            { /* If no route matches, just redirect back to the main page: */ }
             <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
           </Switch>
         </Enclosure>
