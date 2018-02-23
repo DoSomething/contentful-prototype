@@ -130,3 +130,14 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
     }
   }
 }
+
+
+.partner-content {
+  padding: 12px;
+  float: left;
+
+  .__copy {
+    color: rgba(173, 173, 173, 1);
+    text-shadow: none;
+  }
+}
