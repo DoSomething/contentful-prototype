@@ -66,7 +66,9 @@ export function completeQuiz(quizId) {
     }
 
     document.querySelector('.main').scrollIntoView(true);
-    return dispatch(quizConvert(quizId));
+
+    return getState().user.id ?
+      dispatch(quizConvert(quizId)) : dispatch(viewQuizResult(quizId));
   });
 }
 
