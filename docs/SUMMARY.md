@@ -7,6 +7,7 @@
 - [Installation](development/installation.md)
 - [Architecture](development/architecture.md)
 - [Deployments](development/deployments/README.md)
+  + [Contentful Migrations](development/deployments/contentful-migrations.md)
   + [Heroku](development/deployments/heroku.md)
 - [Features](development/features/README.md)
   + [Routing](development/features/routing.md)
