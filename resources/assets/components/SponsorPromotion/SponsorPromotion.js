@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './SponsorPromotion.scss';
+import './sponsor-promotion.scss';
 
 const SponsorPromotion = ({ className = null, imgUrl, title }) => (
   <div className={classnames('promotions', className)}>
