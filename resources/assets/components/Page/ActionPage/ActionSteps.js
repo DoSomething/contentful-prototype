@@ -57,8 +57,8 @@ const ActionSteps = (props) => {
 
   let stepIndex = 0;
 
-  const stepComponents = actionSteps.map((step) => {
-    const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
+  const stepComponents = actionSteps.map((json) => {
+    const type = get(json, 'fields.customType', false) || get(json, 'type.sys.id', false) || 'default';
 
     // Is this a "numbered" step? If so, increment our step index.
     if (['third-party-action', 'campaignActionStep', 'default'].includes(type)) {
@@ -69,13 +69,13 @@ const ActionSteps = (props) => {
     // @TODO: These should be split out into separate "content" blocks.
     let prefixComponent = null;
     if (['voterRegistrationAction'].includes(type)) {
-      const title = get(step, 'fields.title', '');
+      const title = get(json, 'fields.title', '');
 
       // @HACK: We have some blank titles " "... just hide those.
       prefixComponent = title.trim().length ? (
         <SectionHeader
           title={title}
-          hideStepNumber={get(step, 'fields.hideStepNumber', true)}
+          hideStepNumber={get(json, 'fields.hideStepNumber', true)}
           step={stepIndex}
         />
       ) : null;
@@ -87,10 +87,10 @@ const ActionSteps = (props) => {
     }
 
     return (
-      <Flex id={`step-${step.id}`} key={step.id}>
+      <Flex id={`step-${json.id}`} key={json.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
-          <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+          <ActionStepBlock json={json} stepIndex={stepIndex} isSignedUp={isSignedUp} />
         </FlexCell>
       </Flex>
     );

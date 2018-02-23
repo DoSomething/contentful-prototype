@@ -16,7 +16,7 @@ const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
         />
       ) : null }
       <ModalControls onClose={closeModal}>
-        <ActionStepBlock step={affirmation} />
+        <ActionStepBlock json={affirmation} />
       </ModalControls>
     </SlideshowContainer>
   </div>

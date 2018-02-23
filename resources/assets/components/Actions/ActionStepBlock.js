@@ -6,42 +6,42 @@ import {
   renderShareAction, renderLinkAction, renderAffirmation,
 } from './ActionStepRenderers';
 
-export const ActionStepBlock = ({ step, stepIndex = 0, isSignedUp = false }) => {
-  const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
+export const ActionStepBlock = ({ json, stepIndex = 0, isSignedUp = false }) => {
+  const type = get(json, 'fields.customType', false) || get(json, 'type.sys.id', false) || 'default';
 
   switch (type) {
     case 'affirmation':
-      return renderAffirmation(step);
+      return renderAffirmation(json);
 
     case 'competition':
-      return renderCompetitionStep(step);
+      return renderCompetitionStep(json);
 
     case 'photoUploaderAction':
     case 'photo-uploader':
-      return renderPhotoUploader(step, isSignedUp);
+      return renderPhotoUploader(json, isSignedUp);
 
     case 'submission-gallery':
       return renderSubmissionGallery(isSignedUp);
 
     case 'third-party-action':
-      return renderThirdPartyAction(step, stepIndex);
+      return renderThirdPartyAction(json, stepIndex);
 
     case 'voterRegistrationAction':
-      return renderVoterRegistrationAction(step, stepIndex);
+      return renderVoterRegistrationAction(json, stepIndex);
 
     case 'shareAction':
-      return renderShareAction(step);
+      return renderShareAction(json);
 
     case 'linkAction':
-      return renderLinkAction(step);
+      return renderLinkAction(json);
 
     default:
-      return renderContentBlock(step, stepIndex);
+      return renderContentBlock(json, stepIndex);
   }
 };
 
 ActionStepBlock.propTypes = {
-  step: PropTypes.object.isRequired, // eslint-disable-line
+  json: PropTypes.object.isRequired, // eslint-disable-line
   stepIndex: PropTypes.number,
   isSignedUp: PropTypes.bool.isRequired,
 };
