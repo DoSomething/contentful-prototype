@@ -5,16 +5,16 @@ import Card from '../Card';
 import Embed from '../Embed';
 import Markdown from '../Markdown';
 import { POST_SHARE_MODAL } from '../Modal';
-import { showFacebookSharePrompt } from '../../helpers';
+import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
 import './share-action.scss';
 
 const ShareAction = (props) => {
-  const { title, content, link, openModal, trackEvent } = props;
+  const { title, content, link, socialPlatform, openModal, trackEvent } = props;
 
   const onFacebookClick = (url) => {
     const trackingData = { url };
-    trackEvent('clicked share action', trackingData);
+    trackEvent('clicked facebook share action', trackingData);
 
     showFacebookSharePrompt({ href: url }, (response) => {
       if (response) {
@@ -26,6 +26,25 @@ const ShareAction = (props) => {
     });
   };
 
+  const onTwitterClick = (url) => {
+    const trackingData = { url };
+    trackEvent('clicked twitter share action', trackingData);
+
+    showTwitterSharePrompt(link);
+    // @TODO Add post share affirmation modal trigger here.
+  };
+
+  const shareButton = socialPlatform === 'facebook' ? (
+    <button className="button" onClick={() => onFacebookClick(link)}>
+      Share on Facebook
+    </button>
+  ) : (
+    <button className="button" onClick={() => onTwitterClick(link)}>
+      Share on Twitter
+    </button>
+  );
+
+
   return (
     <div className="share-action margin-bottom-lg">
       <Card title={title} className="rounded bordered">
@@ -35,10 +54,7 @@ const ShareAction = (props) => {
 
         <Embed className="padded" url={link} />
 
-        <button
-          className="button"
-          onClick={() => onFacebookClick(link)}
-        >Share on Facebook</button>
+        { shareButton }
       </Card>
     </div>
   );
@@ -54,6 +70,7 @@ ShareAction.propTypes = {
   link: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
+  socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
 };
 
 export default ShareAction;
