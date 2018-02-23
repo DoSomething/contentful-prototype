@@ -3,48 +3,55 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
-import {
-  renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
-  renderThirdPartyAction, renderActionStep, renderRevealer,
-  renderLegacyGallery, renderVoterRegistrationAction, renderShareAction,
-  renderLinkAction, renderAffirmation,
-} from './ActionStepRenderers';
+import { ActionStepBlock } from '../../Actions';
+import { PostGalleryContainer } from '../../Gallery/PostGallery';
+import Revealer from '../../Revealer';
+import SignupButtonFactory from '../../SignupButton';
 
-export const ActionStepBlock = ({ step, stepIndex = 0, isSignedUp = false }) => {
-  const type = get(step, 'fields.customType', false) || get(step, 'type.sys.id', false) || 'default';
+/**
+ * Render the action page revealer.
+ *
+ * @param  {String}  callToAction
+ * @param  {Boolean} hasPendingSignup
+ * @param  {Boolean} isSignedUp
+ * @param  {String}  campaignId
+ * @return {Component}
+ */
+export function renderRevealer(callToAction, hasPendingSignup, isSignedUp, campaignId) {
+  const SignupRevealer = SignupButtonFactory(({ clickedSignUp }) => (
+    <Revealer
+      title="Join Us"
+      callToAction={callToAction}
+      isLoading={hasPendingSignup}
+      onReveal={() => clickedSignUp(campaignId)}
+      isSignedUp={isSignedUp}
+    />
+  ), 'action page revealer', { text: 'Join Us', callToAction });
 
-  switch (type) {
-    case 'affirmation':
-      return renderAffirmation(step);
+  return (
+    <SignupRevealer key="revealer" />
+  );
+}
 
-    case 'competition':
-      return renderCompetitionStep(step);
+/**
+ * Render a legacy version of the user submissions gallery.
+ *
+ * @return {Component}
+ */
+export function renderLegacyGallery() {
+  return (
+    <div key="member_gallery" className="action-step">
+      <div className="margin-top-xlg margin-bottom-xlg margin-horizontal-md">
+        <h2 className="heading -emphasized legacy-step-header margin-top-md margin-bottom-md">
+          <span>Member Gallery</span>
+        </h2>
+        <PostGalleryContainer key="post_gallery" type="reportback" />
+      </div>
+    </div>
+  );
+}
 
-    case 'photoUploaderAction':
-    case 'photo-uploader':
-      return renderPhotoUploader(step, isSignedUp);
-
-    case 'submission-gallery':
-      return renderSubmissionGallery(isSignedUp);
-
-    case 'third-party-action':
-      return renderThirdPartyAction(step, stepIndex);
-
-    case 'voterRegistrationAction':
-      return renderVoterRegistrationAction(step, stepIndex);
-
-    case 'shareAction':
-      return renderShareAction(step);
-
-    case 'linkAction':
-      return renderLinkAction(step);
-
-    default:
-      return renderActionStep(step, stepIndex);
-  }
-};
-
-const ActionStepsWrapper = (props) => {
+const ActionSteps = (props) => {
   const { actionSteps, callToAction, campaignId,
     hasActivityFeed, hasPendingSignup, isSignedUp, template } = props;
 
@@ -106,7 +113,7 @@ const ActionStepsWrapper = (props) => {
   );
 };
 
-ActionStepsWrapper.propTypes = {
+ActionSteps.propTypes = {
   actionSteps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
@@ -116,4 +123,4 @@ ActionStepsWrapper.propTypes = {
   template: PropTypes.string.isRequired,
 };
 
-export default ActionStepsWrapper;
+export default ActionSteps;

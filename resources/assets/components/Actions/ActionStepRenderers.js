@@ -1,17 +1,14 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionStep from './ActionStep';
-import Revealer from '../../Revealer';
-import SignupButtonFactory from '../../SignupButton';
-import VoterRegistrationActionContainer from '../../Actions/VoterRegistrationAction';
-import Affirmation from '../../Affirmation';
-import { PostGalleryContainer } from '../../Gallery/PostGallery';
-import { ThirdPartyActionContainer } from '../../Actions/ThirdPartyAction';
-import { ReportbackUploaderContainer } from '../../ReportbackUploader';
-import { CompetitionBlockContainer } from '../../CompetitionBlock';
-import { SubmissionGalleryContainer } from '../../Gallery/SubmissionGallery';
-import { ShareActionContainer } from '../../ShareAction';
-import LinkActionContainer from '../../Actions/LinkAction';
+import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
+import Affirmation from '../Affirmation';
+import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
+import { ReportbackUploaderContainer } from '../ReportbackUploader';
+import { CompetitionBlockContainer } from '../CompetitionBlock';
+import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
+import { ShareActionContainer } from '../ShareAction';
+import LinkActionContainer from '../Actions/LinkAction';
 
 /**
  * Render a competition step.
@@ -125,49 +122,6 @@ export function renderActionStep(step, stepIndex, template) {
       shouldTruncate={truncate}
       template={template}
     />
-  );
-}
-
-/**
- * Render the action page revealer.
- *
- * @param  {String}  callToAction
- * @param  {Boolean} hasPendingSignup
- * @param  {Boolean} isSignedUp
- * @param  {String}  campaignId
- * @return {Component}
- */
-export function renderRevealer(callToAction, hasPendingSignup, isSignedUp, campaignId) {
-  const SignupRevealer = SignupButtonFactory(({ clickedSignUp }) => (
-    <Revealer
-      title="Join Us"
-      callToAction={callToAction}
-      isLoading={hasPendingSignup}
-      onReveal={() => clickedSignUp(campaignId)}
-      isSignedUp={isSignedUp}
-    />
-  ), 'action page revealer', { text: 'Join Us', callToAction });
-
-  return (
-    <SignupRevealer key="revealer" />
-  );
-}
-
-/**
- * Render a legacy version of the user submissions gallery.
- *
- * @return {Component}
- */
-export function renderLegacyGallery() {
-  return (
-    <div key="member_gallery" className="action-step">
-      <div className="margin-top-xlg margin-bottom-xlg margin-horizontal-md">
-        <h2 className="heading -emphasized legacy-step-header margin-top-md margin-bottom-md">
-          <span>Member Gallery</span>
-        </h2>
-        <PostGalleryContainer key="post_gallery" type="reportback" />
-      </div>
-    </div>
   );
 }
 

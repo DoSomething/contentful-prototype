@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActionStepBlock } from '../../ActionPage/ActionStepsWrapper';
+import { ActionStepBlock } from '../../Actions';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
 import { ModalControls } from '../../Modal';
 import SlideshowContainer from '../../Slideshow';

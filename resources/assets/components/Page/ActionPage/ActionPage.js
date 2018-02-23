@@ -2,11 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
 
-import ActionStepsWrapperContainer from './ActionStepsWrapperContainer';
-import './actionPage.scss';
+import ActionStepsContainer from './ActionStepsContainer';
 
 /**
- * Render the feed.
+ * Render the action page steps.
  *
  * @returns {XML}
  */
@@ -25,7 +24,7 @@ const ActionPage = (props) => {
   }
 
   return (
-    <ActionStepsWrapperContainer actionSteps={actionSteps} />
+    <ActionStepsContainer actionSteps={actionSteps} />
   );
 };
 

@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
-import SectionHeader from '../../SectionHeader';
-import Markdown from '../../Markdown';
-import { Flex, FlexCell } from '../../Flex';
+import SectionHeader from '../SectionHeader';
+import Markdown from '../Markdown';
+import { Flex, FlexCell } from '../Flex';
+
+import './actionStep.scss';
 
 // TODO: Replace alt with better description.
 const renderPhoto = (photo, index) => (
