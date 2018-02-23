@@ -7,7 +7,7 @@ import Dashboard from '../../Dashboard';
 import Enclosure from '../../Enclosure';
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import { QuizContainer } from '../../Quiz';
-import { BlockContainer } from '../../Block';
+import ActivityFeedBlock from '../../ActivityFeedBlock';
 import { isCampaignClosed } from '../../../helpers';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import { ActionPageContainer } from '../ActionPage';
@@ -95,7 +95,7 @@ const CampaignPage = (props) => {
               }}
             />
             <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
-            <Route path={`${match.url}/blocks/:id`} component={BlockContainer} />
+            <Route path={`${match.url}/blocks/:id`} component={ActivityFeedBlock} />
             <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
             <Route
               path={`${match.url}/modal/:id`}
