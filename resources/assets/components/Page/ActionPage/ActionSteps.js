@@ -40,7 +40,7 @@ export function renderRevealer(callToAction, hasPendingSignup, isSignedUp, campa
  */
 export function renderLegacyGallery() {
   return (
-    <div key="member_gallery" className="action-step">
+    <div key="member_gallery" className="content-block">
       <div className="margin-top-xlg margin-bottom-xlg margin-horizontal-md">
         <h2 className="heading -emphasized legacy-step-header margin-top-md margin-bottom-md">
           <span>Member Gallery</span>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
-import ActionStep from './ActionStep';
+import ContentBlock from './ContentBlock';
 import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
 import Affirmation from '../Affirmation';
 import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
@@ -99,7 +99,7 @@ export function renderThirdPartyAction(step, stepIndex) {
  * @param  {String} template The current campaign template.
  * @return {Component}
  */
-export function renderActionStep(step, stepIndex, template) {
+export function renderContentBlock(step, stepIndex, template) {
   const { id, fields } = step;
   const {
     title, content, background, photos,
@@ -109,7 +109,7 @@ export function renderActionStep(step, stepIndex, template) {
   const preTitle = (additionalContent && additionalContent.preTitle);
 
   return (
-    <ActionStep
+    <ContentBlock
       key={id}
       preTitle={preTitle}
       title={title}
@@ -135,16 +135,14 @@ export function renderVoterRegistrationAction(step, stepIndex) {
   const key = `voter-registration-action-${step.id}`;
 
   return (
-    <div key={key}>
+    <div key={key} className="margin-bottom-lg">
       <PuckWaypoint name="voter_registration_action-top" />
-      <div className="action-step">
-        <VoterRegistrationActionContainer
-          content={content}
-          title={title}
-          link={link}
-          stepIndex={stepIndex}
-        />
-      </div>
+      <VoterRegistrationActionContainer
+        content={content}
+        title={title}
+        link={link}
+        stepIndex={stepIndex}
+      />
       <PuckWaypoint name="voter_registration_action-bottom" />
     </div>
   );

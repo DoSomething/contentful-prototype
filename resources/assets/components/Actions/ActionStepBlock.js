@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
-  renderThirdPartyAction, renderActionStep, renderVoterRegistrationAction,
+  renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
   renderShareAction, renderLinkAction, renderAffirmation,
 } from './ActionStepRenderers';
 
@@ -36,7 +36,7 @@ export const ActionStepBlock = ({ step, stepIndex = 0, isSignedUp = false }) => 
       return renderLinkAction(step);
 
     default:
-      return renderActionStep(step, stepIndex);
+      return renderContentBlock(step, stepIndex);
   }
 };
 
