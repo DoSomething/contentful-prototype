@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import Markdown from '../../Markdown';
 import SignupButtonFactory from '../../SignupButton';
@@ -11,6 +12,8 @@ import './cover-lede-banner.scss';
 const CoverTemplate = (props) => {
   const {
     actionText,
+    affiliatedActionLink,
+    affiliatedActionText,
     affiliateSponsors,
     coverImage,
     isAffiliated,
@@ -31,6 +34,14 @@ const CoverTemplate = (props) => {
     </div>
   ));
 
+  const actionButton = affiliatedActionLink ? (
+    <div className="cover-lede-banner__signup">
+      <Link className="button -action" to={affiliatedActionLink}>
+        { affiliatedActionText || 'Take Action' }
+      </Link>
+    </div>
+  ) : null;
+
   return (
     <header role="banner" className="cover-lede-banner" style={backgroundImageStyle}>
       <div className="wrapper margin-horizontal-auto">
@@ -40,7 +51,7 @@ const CoverTemplate = (props) => {
 
         { blurb ? <Markdown className="cover-lede-banner__blurb">{blurb}</Markdown> : null }
 
-        { isAffiliated ? null : <SignupButton /> }
+        { isAffiliated ? actionButton : <SignupButton /> }
 
         { affiliateSponsors.length ?
           <SponsorPromotion
@@ -58,6 +69,8 @@ const CoverTemplate = (props) => {
 
 CoverTemplate.propTypes = {
   actionText: PropTypes.string.isRequired,
+  affiliatedActionLink: PropTypes.string,
+  affiliatedActionText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
@@ -67,6 +80,12 @@ CoverTemplate.propTypes = {
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+};
+
+CoverTemplate.defaultProps = {
+  affiliatedActionLink: null,
+  affiliatedActionText: null,
+  blurb: null,
 };
 
 export default CoverTemplate;
