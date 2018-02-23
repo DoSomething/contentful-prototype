@@ -30,21 +30,6 @@ export function viewQuizResult(quizId) {
 
 export function quizConvert(quizId) {
   return ((dispatch, getState) => {
-    // If the user is not logged in, handle this action later.
-    if (! getState().user.id) {
-      const quizData = getState().quiz[quizId];
-      set(quizId, QUIZ_STORAGE_KEY, quizData.questions);
-
-      return dispatch(queueEvent('quizConvert', quizId));
-    }
-
-    // Load questions from previous state if available
-    const questions = get(quizId, QUIZ_STORAGE_KEY);
-    if (questions) {
-      dispatch(loadPreviousQuizState(quizId, questions));
-      remove(quizId, QUIZ_STORAGE_KEY);
-    }
-
     const campaignId = getState().campaign.legacyCampaignId;
     dispatch(clickedSignUp(campaignId, 'source:quiz', false));
 
