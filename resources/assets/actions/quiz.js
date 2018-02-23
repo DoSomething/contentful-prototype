@@ -3,7 +3,6 @@
 import { find } from 'lodash';
 import {
   clickedSignUp,
-  queueEvent,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
