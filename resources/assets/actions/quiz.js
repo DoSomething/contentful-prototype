@@ -10,7 +10,6 @@ import {
   LOAD_PREVIOUS_QUIZ_STATE,
   QUIZ_ERROR,
 } from '../actions';
-import { QUIZ_STORAGE_KEY, set, get, remove } from '../helpers/storage';
 
 export function loadPreviousQuizState(quizId, questions) {
   return { type: LOAD_PREVIOUS_QUIZ_STATE, quizId, questions };
