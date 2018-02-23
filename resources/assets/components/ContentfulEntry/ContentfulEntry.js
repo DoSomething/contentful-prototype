@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Quiz from '../Quiz';
-import { BlockJson } from '../../types';
+import { ContentfulEntryJson } from '../../types';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
@@ -14,14 +14,14 @@ import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
   renderShareAction, renderLinkAction, renderAffirmation,
-} from '../Actions/ActionStepRenderers';
+} from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
-const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
+const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
-type BlockProps = { json: BlockJson, stepIndex: number, isSignedUp: boolean };
+type ContentfulEntryProps = { json: ContentfulEntryJson, stepIndex: number, isSignedUp: boolean };
 
-const Block = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: BlockProps) => {
+const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: ContentfulEntryProps) => {
   const type = parseContentfulType(json);
 
   switch (type) {
@@ -102,4 +102,4 @@ const Block = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: BlockProps) => {
   }
 };
 
-export default Block;
+export default ContentfulEntry;

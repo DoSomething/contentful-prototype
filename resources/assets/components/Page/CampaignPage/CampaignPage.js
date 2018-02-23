@@ -95,6 +95,7 @@ const CampaignPage = (props) => {
               }}
             />
             <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
+            <Route path={`${match.url}/blocks/:id`} component={BlockContainer} />
             <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
             <Route
               path={`${match.url}/modal/:id`}
