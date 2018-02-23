@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActionStepBlock } from '../../Actions';
+import Block from '../../Block';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
 import { ModalControls } from '../../Modal';
 import SlideshowContainer from '../../Slideshow';
@@ -16,7 +16,7 @@ const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
         />
       ) : null }
       <ModalControls onClose={closeModal}>
-        <ActionStepBlock json={affirmation} />
+        <Block json={affirmation} />
       </ModalControls>
     </SlideshowContainer>
   </div>

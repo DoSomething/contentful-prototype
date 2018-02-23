@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
-import { ActionStepBlock } from '../../Actions';
+import Block from '../../Block';
 import { PostGalleryContainer } from '../../Gallery/PostGallery';
 import Revealer from '../../Revealer';
 import SignupButtonFactory from '../../SignupButton';
+import { parseContentfulType } from '../../../helpers';
 
 /**
  * Render the action page revealer.
@@ -58,10 +59,10 @@ const ActionSteps = (props) => {
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map((json) => {
-    const type = get(json, 'fields.customType', false) || get(json, 'type.sys.id', false) || 'default';
+    const type = parseContentfulType(json, 'contentBlock');
 
     // Is this a "numbered" step? If so, increment our step index.
-    if (['third-party-action', 'campaignActionStep', 'default'].includes(type)) {
+    if (['third-party-action', 'contentBlock'].includes(type)) {
       stepIndex += 1;
     }
 
@@ -82,7 +83,7 @@ const ActionSteps = (props) => {
     }
 
     let columnWidth = 'two-thirds';
-    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'campaignActionStep', 'default'].includes(type)) {
+    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'contentBlock'].includes(type)) {
       columnWidth = 'full';
     }
 
@@ -90,7 +91,7 @@ const ActionSteps = (props) => {
       <Flex id={`step-${json.id}`} key={json.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
-          <ActionStepBlock json={json} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+          <Block json={json} stepIndex={stepIndex} isSignedUp={isSignedUp} />
         </FlexCell>
       </Flex>
     );

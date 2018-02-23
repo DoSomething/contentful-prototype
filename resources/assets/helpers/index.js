@@ -417,3 +417,26 @@ export function query(key, url = window.location) {
 
   return search.get(key);
 }
+
+/**
+ * Get the content type of the given entry, including custom
+ * overrides for "Custom Block" or "Campaign Action Step" or
+ * manual re-assignments.
+ *
+ * @param  {Object} json
+ * @param  {String} default
+ * @return {String}
+ */
+export function parseContentfulType(json, defaultType) {
+  // Figure out the "type" of this entry based on 'customType' field, Contentful machine name,
+  // or the 'type' set in the API transformer. If none of those match, use the given default.
+  let type = get(json, 'fields.customType') || get(json, 'type.sys.id') || get(json, 'type') || defaultType;
+
+  // Re-map old custom types to their new counterparts.
+  // @TODO: Change this for old entries on Contentful!
+  if (type === 'campaignActionStep') {
+    type = 'contentBlock';
+  }
+
+  return type;
+}
