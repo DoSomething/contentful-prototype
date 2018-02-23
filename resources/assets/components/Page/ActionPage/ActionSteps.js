@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
-import Block from '../../Block';
+import ContentfulEntry from '../../ContentfulEntry';
 import { PostGalleryContainer } from '../../Gallery/PostGallery';
 import Revealer from '../../Revealer';
 import SignupButtonFactory from '../../SignupButton';
@@ -91,7 +91,7 @@ const ActionSteps = (props) => {
       <Flex id={`step-${json.id}`} key={json.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
-          <Block json={json} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+          <ContentfulEntry json={json} stepIndex={stepIndex} isSignedUp={isSignedUp} />
         </FlexCell>
       </Flex>
     );
