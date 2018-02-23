@@ -46,7 +46,7 @@ export function quizConvert(quizId) {
     }
 
     const campaignId = getState().campaign.legacyCampaignId;
-    dispatch(clickedSignUp(campaignId, { source: 'quiz' }, false));
+    dispatch(clickedSignUp(campaignId, 'source:quiz', false));
 
     return dispatch(viewQuizResult(quizId));
   });
