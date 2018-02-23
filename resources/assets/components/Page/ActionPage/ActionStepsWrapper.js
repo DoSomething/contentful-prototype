@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
-import { Flex, FlexCell } from '../Flex';
-import SectionHeader from '../SectionHeader';
+import { Flex, FlexCell } from '../../Flex';
+import SectionHeader from '../../SectionHeader';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderActionStep, renderRevealer,

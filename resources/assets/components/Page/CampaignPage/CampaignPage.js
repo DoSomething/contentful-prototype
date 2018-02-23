@@ -10,7 +10,7 @@ import { QuizContainer } from '../../Quiz';
 import { BlockContainer } from '../../Block';
 import { isCampaignClosed } from '../../../helpers';
 import LedeBanner from '../../LedeBanner/LedeBanner';
-import { ActionPageContainer } from '../../ActionPage';
+import { ActionPageContainer } from '../ActionPage';
 import { CallToActionContainer } from '../../CallToAction';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';

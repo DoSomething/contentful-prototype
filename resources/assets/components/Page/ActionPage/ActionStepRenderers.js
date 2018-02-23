@@ -1,17 +1,17 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionStep from './ActionStep';
-import Revealer from '../Revealer';
-import SignupButtonFactory from '../SignupButton';
-import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
-import Affirmation from '../Affirmation';
-import { PostGalleryContainer } from '../Gallery/PostGallery';
-import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
-import { ReportbackUploaderContainer } from '../ReportbackUploader';
-import { CompetitionBlockContainer } from '../CompetitionBlock';
-import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
-import { ShareActionContainer } from '../ShareAction';
-import LinkActionContainer from '../Actions/LinkAction';
+import Revealer from '../../Revealer';
+import SignupButtonFactory from '../../SignupButton';
+import VoterRegistrationActionContainer from '../../Actions/VoterRegistrationAction';
+import Affirmation from '../../Affirmation';
+import { PostGalleryContainer } from '../../Gallery/PostGallery';
+import { ThirdPartyActionContainer } from '../../Actions/ThirdPartyAction';
+import { ReportbackUploaderContainer } from '../../ReportbackUploader';
+import { CompetitionBlockContainer } from '../../CompetitionBlock';
+import { SubmissionGalleryContainer } from '../../Gallery/SubmissionGallery';
+import { ShareActionContainer } from '../../ShareAction';
+import LinkActionContainer from '../../Actions/LinkAction';
 
 /**
  * Render a competition step.
