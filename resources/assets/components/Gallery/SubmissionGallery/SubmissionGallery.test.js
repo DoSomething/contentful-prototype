@@ -14,6 +14,7 @@ test('it renders correctly with required props', () => {
     <SubmissionGallery
       fetchUserReportbacks={() => {}}
       legacyCampaignId="1234"
+      legacyCampaignRunId="5678"
       submissions={{
         isFetching: false,
         items: [mediaItem],
@@ -31,6 +32,7 @@ test('it renders loader while fetching', () => {
     <SubmissionGallery
       fetchUserReportbacks={() => {}}
       legacyCampaignId="1234"
+      legacyCampaignRunId="5678"
       submissions={{
         isFetching: true,
         items: [mediaItem],

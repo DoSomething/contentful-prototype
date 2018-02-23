@@ -80,7 +80,7 @@ const ActionStepsWrapper = (props) => {
     }
 
     return (
-      <Flex id={`step-${step.id}`}>
+      <Flex id={`step-${step.id}`} key={step.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
           <ActionStepBlock step={step} stepIndex={stepIndex} isSignedUp={isSignedUp} />
