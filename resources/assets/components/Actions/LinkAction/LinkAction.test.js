@@ -4,9 +4,8 @@ import renderer from 'react-test-renderer';
 
 import LinkAction from './LinkAction';
 
-const trackEventMock = jest.fn();
-
 describe('LinkAction component', () => {
+  const trackEventMock = jest.fn();
 
   describe('without an affiliateLogo', () => {
     const wrapper = shallow(
