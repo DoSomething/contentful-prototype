@@ -3,14 +3,12 @@
 import { find } from 'lodash';
 import {
   clickedSignUp,
-  queueEvent,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
   LOAD_PREVIOUS_QUIZ_STATE,
   QUIZ_ERROR,
 } from '../actions';
-import { QUIZ_STORAGE_KEY, set, get, remove } from '../helpers/storage';
 
 export function loadPreviousQuizState(quizId, questions) {
   return { type: LOAD_PREVIOUS_QUIZ_STATE, quizId, questions };
@@ -30,23 +28,8 @@ export function viewQuizResult(quizId) {
 
 export function quizConvert(quizId) {
   return ((dispatch, getState) => {
-    // If the user is not logged in, handle this action later.
-    if (! getState().user.id) {
-      const quizData = getState().quiz[quizId];
-      set(quizId, QUIZ_STORAGE_KEY, quizData.questions);
-
-      return dispatch(queueEvent('quizConvert', quizId));
-    }
-
-    // Load questions from previous state if available
-    const questions = get(quizId, QUIZ_STORAGE_KEY);
-    if (questions) {
-      dispatch(loadPreviousQuizState(quizId, questions));
-      remove(quizId, QUIZ_STORAGE_KEY);
-    }
-
     const campaignId = getState().campaign.legacyCampaignId;
-    dispatch(clickedSignUp(campaignId, { source: 'quiz' }, false));
+    dispatch(clickedSignUp(campaignId, 'source:quiz', false));
 
     return dispatch(viewQuizResult(quizId));
   });
@@ -66,7 +49,9 @@ export function completeQuiz(quizId) {
     }
 
     document.querySelector('.main').scrollIntoView(true);
-    return dispatch(quizConvert(quizId));
+
+    return getState().user.id ?
+      dispatch(quizConvert(quizId)) : dispatch(viewQuizResult(quizId));
   });
 }
 
