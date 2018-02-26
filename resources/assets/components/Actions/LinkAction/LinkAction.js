@@ -8,7 +8,7 @@ import Markdown from '../../Markdown';
 import SponsorPromotion from '../../SponsorPromotion';
 
 const LinkAction = (props) => {
-  const { title, content, link, trackEvent, affiliateLogo } = props;
+  const { title, content, link, affiliateLogo, trackEvent } = props;
 
   const onLinkClick = () => {
     trackEvent('clicked link action', { link });
