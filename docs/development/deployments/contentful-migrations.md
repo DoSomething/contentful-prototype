@@ -2,7 +2,7 @@
 
 We utilize the [Contentful Migrations CLI](https://github.com/contentful/migration-cli) to help with managing changes to our content models on Contentful. The Migration CLI allows us to create migration scripts that programmatically make the changes to a content type when they are run. Keeping changes to our content models in code allows us to better track our changes over time, and also allows modifying all instances of a content type in one fell swoop!
 
-However, we need to establish a proper process for how we run these migrations, since we currently do not have a system in place to run these migration scripts as part of our build and deploy steps. Once we have fine-tuned our process we will be looking into adding it as a step in out deploys.
+However, we need to establish a proper process for how we run these migrations, since we currently do not have a system in place to run these migration scripts as part of our build and deploy steps. Once we have fine-tuned our process we will be looking into adding it as a step in our deploys.
 
 ## Process
 For the time being, follow these steps when creating Contentful migrations and subsequently running them:
