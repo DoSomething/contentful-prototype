@@ -30,7 +30,7 @@ const LinkAction = (props) => {
 
         { affiliateLogo ? (
           <SponsorPromotion
-            className="partner-content"
+            className="affiliate-link-action"
             imgUrl={affiliateLogo}
           />
         ) : null }
