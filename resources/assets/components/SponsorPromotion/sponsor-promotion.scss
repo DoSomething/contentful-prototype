@@ -130,3 +130,15 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
     }
   }
 }
+
+
+// Override styling for affiliate logo appearing on affiliate Link Action
+.affiliate-link-action {
+  padding: 0 0 12px 12px;
+  float: left;
+
+  .__copy {
+    color: rgba(173, 173, 173, 1);
+    text-shadow: none;
+  }
+}
