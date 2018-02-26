@@ -48,7 +48,7 @@ const MosaicTemplate = (props) => {
   ), 'lede banner', { text: actionText });
 
   const actionButton = affiliatedActionLink ? (
-    <div className="header__signup">
+    <div className="mosaic-lede-banner__signup">
       <Link className={classnames('button', '-action')} to={affiliatedActionLink}>
         {affiliatedActionText || 'Take Action'}
       </Link>
