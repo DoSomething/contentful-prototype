@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Card from '../../Card';
 import Embed from '../../Embed';
@@ -15,7 +16,10 @@ const LinkAction = (props) => {
 
   return (
     <div className="link-action margin-horizontal-md margin-bottom-lg">
-      <Card title={title} className="rounded bordered">
+      <Card
+        title={title}
+        className={classnames('rounded bordered', { 'affiliate-content': affiliateLogo })}
+      >
         { content ?
           <Markdown className="padded">{content}</Markdown>
           : null }
