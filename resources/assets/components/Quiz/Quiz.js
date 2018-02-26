@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Markdown from '../Markdown';
 import Question from './Question';
-import { ShareContainer } from '../Share';
 import Conclusion from './Conclusion';
+import { ShareContainer } from '../Share';
+
 import './quiz.scss';
 
 const Quiz = (props) => {
