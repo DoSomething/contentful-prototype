@@ -4,6 +4,10 @@ The `LinkAction` component renders a visual component which features an embedded
 
 ![Link Action component](../_assets/link-action-component.png)  
 
+It can also be equipped with an affiliate logo, which it will feature within the link action, and will change the background color of the card title to purple:
+
+![Affiliate Link Action component](../_assets/link-action-component-2.png)  
+
 
 ## Usage Instructions
 The Link Action consists of three fields:
@@ -11,4 +15,4 @@ The Link Action consists of three fields:
 - **title (required)**: The title that will show up in the yellow bar atop the Link Action.
 - **content (optional)**: content in Markdown format that will appear within the card atop the link.
 - **link (required)**: a valid URL which will be embedded within the card.
-
+- **affiliateLogo (optional)**: an image URL which will be featured on bottom of the action. (adding this property will also cause a color change in the title of the action)
