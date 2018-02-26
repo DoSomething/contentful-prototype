@@ -7,14 +7,16 @@ import SectionHeader from '../SectionHeader';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 
+import './contentBlock.scss';
+
 // TODO: Replace alt with better description.
 const renderPhoto = (photo, index) => (
-  <div className="action-step__photo" key={index}>
+  <div className="content-block__photo" key={index}>
     <img alt="Action step" src={photo} />
   </div>
 );
 
-const ActionStep = (props) => {
+const ContentBlock = (props) => {
   const {
     title, stepIndex, content, photos, photoWidth,
     shouldTruncate, hideStepNumber, preTitle,
@@ -22,14 +24,14 @@ const ActionStep = (props) => {
 
   const photoComponent = photos && photos.length ? (
     <FlexCell width={photoWidth}>
-      <div className={`action-step__photos -${photoWidth}`}>
+      <div className={`content-block__photos -${photoWidth}`}>
         { photos ? photos.map(renderPhoto) : null }
       </div>
     </FlexCell>
   ) : null;
 
   return (
-    <div className={classnames('action-step', { '-truncate': shouldTruncate })}>
+    <div className={classnames('content-block', { '-truncate': shouldTruncate })}>
       <Flex>
         <SectionHeader
           preTitle={preTitle}
@@ -46,12 +48,12 @@ const ActionStep = (props) => {
         )}
         {photoComponent}
       </Flex>
-      <PuckWaypoint name="action-step__bottom" waypointData={{ title }} />
+      <PuckWaypoint name="content-block__bottom" waypointData={{ title }} />
     </div>
   );
 };
 
-ActionStep.propTypes = {
+ContentBlock.propTypes = {
   preTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
@@ -62,7 +64,7 @@ ActionStep.propTypes = {
   hideStepNumber: PropTypes.bool,
 };
 
-ActionStep.defaultProps = {
+ContentBlock.defaultProps = {
   preTitle: null,
   content: null,
   photos: [],
@@ -70,4 +72,4 @@ ActionStep.defaultProps = {
   hideStepNumber: false,
 };
 
-export default ActionStep;
+export default ContentBlock;

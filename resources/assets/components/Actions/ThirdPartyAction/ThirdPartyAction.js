@@ -29,7 +29,7 @@ const ThirdParyAction = (props) => {
 
   return (
     <FlexCell width="full">
-      <div className={classnames('action-step')}>
+      <div className={classnames('content-block')}>
         <Flex>
           <SectionHeader
             title={title}

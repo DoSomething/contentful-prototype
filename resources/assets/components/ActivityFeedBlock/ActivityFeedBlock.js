@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { find } from 'lodash';
-import Block from './Block';
+import ContentfulEntry from '../ContentfulEntry';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -13,4 +13,4 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 // Export the container component.
-export default connect(mapStateToProps)(Block);
+export default connect(mapStateToProps)(ContentfulEntry);

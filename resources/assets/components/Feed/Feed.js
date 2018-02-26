@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Block from '../Block';
+import ContentfulEntry from '../ContentfulEntry';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
 
@@ -23,7 +23,7 @@ const renderFeedItem = (block, index) => (
       'display-flex': block.type === 'reportbacks',
     })}
   >
-    <Block json={block} />
+    <ContentfulEntry json={block} />
   </FlexCell>
 );
 

@@ -3,18 +3,28 @@
 import React from 'react';
 
 import Quiz from '../Quiz';
-import { BlockJson } from '../../types';
+import { ContentfulEntryJson } from '../../types';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import PlaceholderBlock from '../PlaceholderBlock';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import { parseContentfulType } from '../../helpers';
+import {
+  renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
+  renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
+  renderShareAction, renderLinkAction, renderAffirmation,
+} from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
-const DEFAULT_BLOCK: BlockJson = { fields: { type: null } };
+const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
-const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
-  switch (json.type) {
+type ContentfulEntryProps = { json: ContentfulEntryJson, stepIndex: number, isSignedUp: boolean };
+
+const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: ContentfulEntryProps) => {
+  const type = parseContentfulType(json);
+
+  switch (type) {
     case 'callToAction':
       return (
         <CallToActionContainer
@@ -59,9 +69,37 @@ const Block = ({ json = DEFAULT_BLOCK }: { json: BlockJson }) => {
         />
       );
 
+    case 'affirmation':
+      return renderAffirmation(json);
+
+    case 'competition':
+      return renderCompetitionStep(json);
+
+    case 'photoUploaderAction':
+    case 'photo-uploader':
+      return renderPhotoUploader(json, isSignedUp);
+
+    case 'submission-gallery':
+      return renderSubmissionGallery(isSignedUp);
+
+    case 'third-party-action':
+      return renderThirdPartyAction(json, stepIndex);
+
+    case 'voterRegistrationAction':
+      return renderVoterRegistrationAction(json, stepIndex);
+
+    case 'shareAction':
+      return renderShareAction(json);
+
+    case 'linkAction':
+      return renderLinkAction(json);
+
+    case 'contentBlock':
+      return renderContentBlock(json, stepIndex);
+
     default:
       return <PlaceholderBlock />;
   }
 };
 
-export default Block;
+export default ContentfulEntry;

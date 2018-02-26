@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import ActionStepsWrapper from './ActionStepsWrapper';
+import ActionSteps from './ActionSteps';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -15,4 +15,4 @@ const mapStateToProps = state => ({
 
 
 // Export the container component.
-export default connect(mapStateToProps)(ActionStepsWrapper);
+export default connect(mapStateToProps)(ActionSteps);

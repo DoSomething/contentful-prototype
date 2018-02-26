@@ -1,13 +1,13 @@
 import React from 'react';
-import Block from '../components/Block';
+import { BlockWrapper } from '../components/Block';
 import { Flex, FlexCell } from '../components/Flex';
 
 const NotFound = () => (
   <Flex>
     <FlexCell>
-      <Block className="placeholder">
+      <BlockWrapper className="placeholder">
         404, Not Found! :(
-      </Block>
+      </BlockWrapper>
     </FlexCell>
   </Flex>
 );
