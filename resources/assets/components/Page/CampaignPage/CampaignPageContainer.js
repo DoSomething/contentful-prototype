@@ -26,7 +26,6 @@ const mapStateToProps = state => ({
   subtitle: state.campaign.callToAction,
   template: state.campaign.template,
   title: state.campaign.title,
-  totalCampaignSignups: state.signups.total,
 });
 
 /**

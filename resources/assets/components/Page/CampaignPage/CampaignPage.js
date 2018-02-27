@@ -3,7 +3,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Dashboard from '../../Dashboard';
+import DashboardContainer from '../../Dashboard/DashboardContainer';
 import Enclosure from '../../Enclosure';
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import { QuizContainer } from '../../Quiz';
@@ -24,7 +24,7 @@ const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, campaignLead,
     dashboard, endDate, hasActivityFeed, isAffiliated, match,
-    openModal, shouldShowActionPage, slug, template, totalCampaignSignups,
+    openModal, shouldShowActionPage, slug, template,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -47,13 +47,7 @@ const CampaignPage = (props) => {
       <LedeBannerContainer />
 
       <div className="main clearfix">
-        { dashboard ?
-          <Dashboard
-            totalCampaignSignups={totalCampaignSignups}
-            content={dashboard}
-            endDate={endDate}
-          />
-          : null }
+        { dashboard ? <DashboardContainer /> : null }
 
         <TabbedNavigationContainer campaignSlug={slug} />
 
@@ -138,7 +132,6 @@ CampaignPage.propTypes = {
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   slug: PropTypes.string.isRequired,
   template: PropTypes.string.isRequired,
-  totalCampaignSignups: PropTypes.number,
   openModal: PropTypes.func.isRequired,
   shouldShowActionPage: PropTypes.bool.isRequired,
 };
@@ -147,7 +140,6 @@ CampaignPage.defaultProps = {
   dashboard: null,
   endDate: null,
   isAffiliated: false,
-  totalCampaignSignups: 0,
   campaignLead: null,
 };
 
