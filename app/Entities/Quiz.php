@@ -66,6 +66,7 @@ class Quiz extends Entity implements JsonSerializable
                 'comparison' => $this->comparison,
                 'callToAction' => $this->callToAction,
                 'questions' => $this->parseQuestionsFromJson(),
+                'additionalContent' => $this->additionalContent,
             ],
         ];
     }

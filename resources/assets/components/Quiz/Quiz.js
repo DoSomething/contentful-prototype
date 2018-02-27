@@ -13,7 +13,8 @@ import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
 import './quiz.scss';
 
 const Quiz = (props) => {
-  const { id, fields, data, dashboard, completeQuiz, pickQuizAnswer, trackEvent } = props;
+  const { id, fields, data, dashboard, completeQuiz,
+    pickQuizAnswer, trackEvent, showLedeBanner } = props;
   const { error, shouldSeeResult } = data;
 
   const introduction = shouldSeeResult ? null : (
@@ -60,10 +61,10 @@ const Quiz = (props) => {
 
   return (
     <div>
-      <LedeBannerContainer />
+      { showLedeBanner ? <LedeBannerContainer /> : null }
       <div className="main clearfix">
-        { dashboard ? <DashboardContainer /> : null }
-        <TabbedNavigationContainer />
+        { dashboard && showLedeBanner ? <DashboardContainer /> : null }
+        { showLedeBanner ? <TabbedNavigationContainer /> : null }
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <div className="quiz">
             <div className="quiz__introduction">
@@ -106,6 +107,7 @@ Quiz.propTypes = {
   }),
   completeQuiz: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
+  showLedeBanner: PropTypes.bool.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 

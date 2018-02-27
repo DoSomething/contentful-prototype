@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
-import { find } from 'lodash';
+import { get, find } from 'lodash';
 import Quiz from './Quiz';
 import {
   pickWinner,
@@ -36,6 +36,7 @@ const mapStateToProps = (state, ownProps) => {
     fields: quizFields,
     data: quizData,
     dashboard: state.campaign.dashboard,
+    showLedeBanner: get(quizFields, 'additionalContent.showLedeBanner', true),
   };
 };
 
