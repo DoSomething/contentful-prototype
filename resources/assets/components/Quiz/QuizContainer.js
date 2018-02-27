@@ -35,6 +35,7 @@ const mapStateToProps = (state, ownProps) => {
     id: quizId,
     fields: quizFields,
     data: quizData,
+    dashboard: state.campaign.dashboard,
   };
 };
 
