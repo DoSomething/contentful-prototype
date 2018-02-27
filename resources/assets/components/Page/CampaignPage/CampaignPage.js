@@ -9,7 +9,7 @@ import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or 
 import { QuizContainer } from '../../Quiz';
 import ActivityFeedBlock from '../../ActivityFeedBlock';
 import { isCampaignClosed } from '../../../helpers';
-import LedeBanner from '../../LedeBanner/LedeBanner';
+import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import { ActionPageContainer } from '../ActionPage';
 import { CallToActionContainer } from '../../CallToAction';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
@@ -22,10 +22,9 @@ import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
 const CampaignPage = (props) => {
   const {
-    actionText, affiliatePartners, affiliateSponsors, blurb, campaignLead, coverImage,
-    dashboard, endDate, hasActivityFeed, isAffiliated, legacyCampaignId, match,
-    openModal, shouldShowActionPage, slug, subtitle, template, title, totalCampaignSignups,
-    affiliatedActionLink, affiliatedActionText,
+    affiliatePartners, affiliateSponsors, campaignLead,
+    dashboard, endDate, hasActivityFeed, isAffiliated, match,
+    openModal, shouldShowActionPage, slug, template, totalCampaignSignups,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -45,20 +44,7 @@ const CampaignPage = (props) => {
 
   return (
     <div>
-      <LedeBanner
-        isAffiliated={isAffiliated}
-        title={title}
-        subtitle={subtitle}
-        blurb={blurb}
-        coverImage={coverImage}
-        legacyCampaignId={legacyCampaignId}
-        endDate={endDate}
-        template={template}
-        affiliateSponsors={affiliateSponsors}
-        affiliatedActionLink={affiliatedActionLink}
-        affiliatedActionText={affiliatedActionText}
-        actionText={actionText}
-      />
+      <LedeBannerContainer />
 
       <div className="main clearfix">
         { dashboard ?
@@ -131,14 +117,6 @@ const CampaignPage = (props) => {
 };
 
 CampaignPage.propTypes = {
-  affiliatedActionText: PropTypes.string,
-  affiliatedActionLink: PropTypes.string,
-  actionText: PropTypes.string.isRequired,
-  blurb: PropTypes.string,
-  coverImage: PropTypes.shape({
-    description: PropTypes.string,
-    url: PropTypes.string,
-  }).isRequired,
   dashboard: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -157,21 +135,15 @@ CampaignPage.propTypes = {
   hasActivityFeed: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  legacyCampaignId: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   slug: PropTypes.string.isRequired,
-  subtitle: PropTypes.string.isRequired,
   template: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
   totalCampaignSignups: PropTypes.number,
   openModal: PropTypes.func.isRequired,
   shouldShowActionPage: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {
-  affiliatedActionText: null,
-  affiliatedActionLink: null,
-  blurb: null,
   dashboard: null,
   endDate: null,
   isAffiliated: false,
