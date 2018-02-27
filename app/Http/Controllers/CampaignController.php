@@ -57,7 +57,7 @@ class CampaignController extends Controller
     public function show($slug)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
-        // dd($campaign);
+
         $env = get_client_environment_vars();
 
         // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
