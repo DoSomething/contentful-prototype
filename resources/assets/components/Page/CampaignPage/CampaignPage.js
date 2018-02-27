@@ -24,7 +24,7 @@ const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, campaignLead,
     dashboard, endDate, hasActivityFeed, isAffiliated, match,
-    openModal, shouldShowActionPage, slug, template,
+    openModal, shouldShowActionPage, template,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -45,12 +45,9 @@ const CampaignPage = (props) => {
   return (
     <div>
       <LedeBannerContainer />
-
       <div className="main clearfix">
         { dashboard ? <DashboardContainer /> : null }
-
-        <TabbedNavigationContainer campaignSlug={slug} />
-
+        <TabbedNavigationContainer />
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <Switch>
             <Route
@@ -100,7 +97,6 @@ const CampaignPage = (props) => {
         </Enclosure>
         { ! isAffiliated ? <CallToActionContainer key="callToAction" className="-sticky" /> : null }
       </div>
-
       <CampaignFooter
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
@@ -130,7 +126,6 @@ CampaignPage.propTypes = {
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  slug: PropTypes.string.isRequired,
   template: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   shouldShowActionPage: PropTypes.bool.isRequired,

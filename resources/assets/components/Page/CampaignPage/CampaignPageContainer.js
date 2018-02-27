@@ -16,7 +16,6 @@ const mapStateToProps = state => ({
   campaignLead: get(state, 'campaign.campaignLead.fields', null),
   legacyCampaignId: state.campaign.legacyCampaignId,
   shouldShowActionPage: state.admin.shouldShowActionPage,
-  slug: state.campaign.slug,
   template: state.campaign.template,
 });
 
