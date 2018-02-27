@@ -7,6 +7,7 @@ import ActionPage from './ActionPage';
  */
 const mapStateToProps = state => ({
   steps: state.campaign.actionSteps,
+  dashboard: state.campaign.dashboard,
   signedUp: state.signups.thisCampaign,
   featureFlags: get(state.campaign.additionalContent, 'featureFlags'),
 });

@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
+import Enclosure from '../../Enclosure';
+import DashboardContainer from '../../Dashboard/DashboardContainer';
+import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 
 import ActionStepsContainer from './ActionStepsContainer';
 
@@ -10,7 +14,7 @@ import ActionStepsContainer from './ActionStepsContainer';
  * @returns {XML}
  */
 const ActionPage = (props) => {
-  const { steps, signedUp } = props;
+  const { dashboard, steps, signedUp } = props;
 
   let actionSteps = cloneDeep(steps);
 
@@ -24,13 +28,31 @@ const ActionPage = (props) => {
   }
 
   return (
-    <ActionStepsContainer actionSteps={actionSteps} />
+    <div>
+      <LedeBannerContainer />
+      <div className="main clearfix">
+        { dashboard ? <DashboardContainer /> : null }
+        <TabbedNavigationContainer />
+        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+          <ActionStepsContainer actionSteps={actionSteps} />
+        </Enclosure>
+      </div>
+    </div>
   );
 };
 
 ActionPage.propTypes = {
   steps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   signedUp: PropTypes.bool.isRequired,
+};
+
+ActionPage.defaultProps = {
+  dashboard: null,
 };
 
 export default ActionPage;

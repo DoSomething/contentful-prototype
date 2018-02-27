@@ -7,10 +7,14 @@ import NotFound from '../../NotFound';
 import { isCampaignClosed } from '../../../helpers';
 import ScrollConcierge from '../../ScrollConcierge';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
+import Enclosure from '../../Enclosure';
+import DashboardContainer from '../../Dashboard/DashboardContainer';
+import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 
 import './campaign-subpage.scss';
 
-const CampaignSubPage = (props) => {
+const CampaignSubPageContent = (props) => {
   const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
   const subPage = find(pages, page => page.fields.slug.endsWith(match.params.slug));
@@ -54,7 +58,7 @@ const CampaignSubPage = (props) => {
   );
 };
 
-CampaignSubPage.propTypes = {
+CampaignSubPageContent.propTypes = {
   campaignEndDate: PropTypes.string.isRequired,
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   noun: PropTypes.shape({
@@ -75,7 +79,7 @@ CampaignSubPage.propTypes = {
   }),
 };
 
-CampaignSubPage.defaultProps = {
+CampaignSubPageContent.defaultProps = {
   pages: [],
   noun: {
     singular: 'action',
@@ -86,6 +90,36 @@ CampaignSubPage.defaultProps = {
     singular: 'take',
     plural: 'take',
   },
+};
+
+/**
+ * Render the page & chrome.
+ *
+ * @returns {XML}
+ */
+const CampaignSubPage = props => (
+  <div>
+    <LedeBannerContainer />
+    <div className="main clearfix">
+      { props.dashboard ? <DashboardContainer /> : null }
+      <TabbedNavigationContainer />
+      <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+        <CampaignSubPageContent {...props} />
+      </Enclosure>
+    </div>
+  </div>
+);
+
+CampaignSubPage.propTypes = {
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
+};
+
+CampaignSubPage.defaultProps = {
+  dashboard: null,
 };
 
 export default CampaignSubPage;

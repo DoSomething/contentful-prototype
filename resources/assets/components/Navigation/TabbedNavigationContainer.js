@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
   campaignEndDate: get(state.campaign.endDate, 'date', null),
+  campaignSlug: state.campaign.slug,
   template: state.campaign.template,
 });
 
