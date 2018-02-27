@@ -10,6 +10,8 @@ import { ShareContainer } from '../Share';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
+import { ShareActionContainer } from '../ShareAction';
+import LinkActionContainer from '../Actions/LinkAction';
 
 import './quiz.scss';
 
@@ -54,19 +56,23 @@ const Quiz = (props) => {
     </Conclusion>
   ) : null;
 
-  const showResultingAction = (selectedResult) => {
-    console.log(selectedResult);
-
+  const showResultingAction = () => {
     const action = find(fields.results, { id: selectedResult });
 
-    console.log(action);
+    const actionProps = {
+      ...action.fields,
+      content: `${fields.conclusion}\n${action.fields.content}`,
+    };
 
-    if (action.type.sys.id = 'linkAction') {
-      // return <LinkAction />;
-    }
+    switch (action.type.sys.id) {
+      case 'linkAction':
+        return <LinkActionContainer {...actionProps} />;
 
-    if (action.type.sys.id = 'shareAction') {
-      // return <ShareAction />;
+      case 'shareAction':
+        return <ShareActionContainer {...actionProps} />;
+
+      default:
+        return null;
     }
   };
 
