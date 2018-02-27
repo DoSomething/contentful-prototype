@@ -50,5 +50,3 @@ test('it generates a campaign update in affiliate mode snapshot', () => {
 test('it can display a campaign update as a card component', () => {
   expect(component.find('Card')).toHaveLength(1);
 });
-
-
