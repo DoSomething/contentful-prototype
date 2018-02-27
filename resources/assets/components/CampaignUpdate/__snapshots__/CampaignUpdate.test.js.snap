@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`it generates a campaign update snapshot 1`] = `
+exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
 <Card
-  className="rounded bordered"
+  className="rounded bordered affiliate-content"
   id="1234567890"
   link="http://example.com/link-to-content"
   onClose={null}
@@ -16,12 +16,41 @@ exports[`it generates a campaign update snapshot 1`] = `
   <footer
     className="padded clearfix"
   >
-    <Byline
-      author="Aang"
-      avatar="http://example.com/avatar-aang.jpg"
-      className="float-left"
-      jobTitle="The Last Airbender"
-      share={null}
+    <SponsorPromotion
+      className="affiliate-logo"
+      imgUrl="http://example.com/avatar-aang.jpg"
+      title="Campaign Sponsor Logo"
+    />
+    <Share
+      className="clear-none -right-icon"
+      link="http://example.com/link-to-content"
+      parentSource="campaignUpdate"
+      variant="icon"
+    />
+  </footer>
+</Card>
+`;
+
+exports[`it generates a campaign update snapshot 1`] = `
+<Card
+  className="rounded bordered affiliate-content"
+  id="1234567890"
+  link="http://example.com/link-to-content"
+  onClose={null}
+  title="Campaign Update"
+>
+  <Markdown
+    className="padded"
+  >
+    Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum.
+  </Markdown>
+  <footer
+    className="padded clearfix"
+  >
+    <SponsorPromotion
+      className="affiliate-logo"
+      imgUrl="http://example.com/avatar-aang.jpg"
+      title="Campaign Sponsor Logo"
     />
     <Share
       className="clear-none -right-icon"
