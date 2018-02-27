@@ -42,6 +42,7 @@ class CampaignUpdate extends Entity implements JsonSerializable
             'type' => $type,
             'fields' => [
                 'author' => $author,
+                'affiliateLogo' => get_image_url($this->affiliateLogo, 'logo'),
                 'content' => $content,
                 'displayOptions' => $this->displayOptions->first(),
                 'link' => $this->link,
