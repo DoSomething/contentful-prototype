@@ -399,7 +399,7 @@ export function showTwitterSharePrompt(href, quote) {
  */
 export function makeUrl(path, queryParameters) {
   const urlObject = new URL(path);
-  urlObject.search = new URLSearchParams(queryParameters);
+  urlObject.search = new URLSearchParams(queryParameters).toString();
 
   return urlObject;
 }
