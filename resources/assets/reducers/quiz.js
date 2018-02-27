@@ -18,7 +18,7 @@ const ensureSafeState = (state, quizId) => {
 };
 
 const quiz = (state = {}, action) => {
-  const { quizId } = action;
+  const { quizId, resultActionId } = action;
   const safeState = ensureSafeState(state, quizId);
 
   switch (action.type) {
@@ -47,6 +47,7 @@ const quiz = (state = {}, action) => {
         [quizId]: {
           ...safeState[quizId],
           shouldSeeResult: true,
+          selectedResult: resultActionId,
         },
       };
     case COMPARE_QUIZ_ANSWER:

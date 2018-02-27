@@ -1,4 +1,5 @@
 import React from 'react';
+import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Markdown from '../Markdown';
@@ -15,7 +16,7 @@ import './quiz.scss';
 const Quiz = (props) => {
   const { id, fields, data, dashboard, completeQuiz,
     pickQuizAnswer, trackEvent, showLedeBanner } = props;
-  const { error, shouldSeeResult } = data;
+  const { error, shouldSeeResult, selectedResult } = data;
 
   const introduction = shouldSeeResult ? null : (
     <Markdown className="quiz__description">{fields.introduction}</Markdown>
@@ -53,6 +54,22 @@ const Quiz = (props) => {
     </Conclusion>
   ) : null;
 
+  const showResultingAction = (selectedResult) => {
+    console.log(selectedResult);
+
+    const action = find(fields.results, { id: selectedResult });
+
+    console.log(action);
+
+    if (action.type.sys.id = 'linkAction') {
+      // return <LinkAction />;
+    }
+
+    if (action.type.sys.id = 'shareAction') {
+      // return <ShareAction />;
+    }
+  };
+
   if (shouldSeeResult) {
     trackEvent('converted on quiz', {
       responses: data.questions,
@@ -72,10 +89,14 @@ const Quiz = (props) => {
               <h2 className="quiz__title">{fields.title}</h2>
               {introduction}
             </div>
+
             {questions}
+
             {quizError}
+
             {submitConclusion}
-            {shareConclusion}
+
+            {fields.resultActions && selectedResult ? showResultingAction(selectedResult) : shareConclusion}
           </div>
         </Enclosure>
       </div>

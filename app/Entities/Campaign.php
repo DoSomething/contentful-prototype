@@ -106,7 +106,7 @@ class Campaign extends Entity implements JsonSerializable
     /**
      * Parse and extract data for an action step.
      *
-     * @param  Entry $entry
+     * @param  Entry $step
      * @return array
      */
     public function parseActionStep($step)

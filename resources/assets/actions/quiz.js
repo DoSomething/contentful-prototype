@@ -1,6 +1,7 @@
 /* global document */
 
-import { find } from 'lodash';
+import { find, get } from 'lodash';
+
 import {
   clickedSignUp,
   PICK_QUIZ_ANSWER,
@@ -22,16 +23,17 @@ export function quizError(quizId, error) {
   return { type: QUIZ_ERROR, quizId, error };
 }
 
-export function viewQuizResult(quizId) {
-  return { type: VIEW_QUIZ_RESULT, quizId };
+export function viewQuizResult(quizId, resultActionId) {
+  return { type: VIEW_QUIZ_RESULT, quizId, resultActionId };
 }
 
-export function quizConvert(quizId) {
+export function quizConvert(quizId, resultActionId) {
   return ((dispatch, getState) => {
     const campaignId = getState().campaign.legacyCampaignId;
+
     dispatch(clickedSignUp(campaignId, 'source:quiz', false));
 
-    return dispatch(viewQuizResult(quizId));
+    return dispatch(viewQuizResult(quizId, resultActionId));
   });
 }
 
@@ -40,8 +42,10 @@ export function completeQuiz(quizId) {
     const quizData = getState().quiz[quizId];
     const quizContent = find(getState().campaign.quizzes, { id: quizId });
 
-    const totalAnswers = (quizData && quizData.questions) ?
-      Object.values(quizData.questions).length : 0;
+    const totalAnswers = (
+      (quizData && quizData.questions) ? Object.values(quizData.questions).length : 0
+    );
+
     const totalQuestions = quizContent.fields.questions.length;
 
     if (totalAnswers < totalQuestions) {
@@ -50,8 +54,21 @@ export function completeQuiz(quizId) {
 
     document.querySelector('.main').scrollIntoView(true);
 
+    // @HACK: Here we go! For the first question, grab the answer, if it is equal to 0,
+    // we show a share action since user is under age, otherwise we show a link action.
+    const firstAnswer = Number(quizData.questions[0]);
+    let resultActionId = null;
+
+    if (firstAnswer === 0) {
+      resultActionId = get(quizContent.fields.resultActions, 'shareAction', null);
+    } else {
+      resultActionId = get(quizContent.fields.resultActions, 'linkAction', null);
+    }
+
     return getState().user.id ?
-      dispatch(quizConvert(quizId)) : dispatch(viewQuizResult(quizId));
+      dispatch(quizConvert(quizId, resultActionId))
+      :
+      dispatch(viewQuizResult(quizId, resultActionId));
   });
 }
 
