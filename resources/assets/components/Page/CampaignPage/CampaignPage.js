@@ -3,17 +3,13 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import DashboardContainer from '../../Dashboard/DashboardContainer';
-import Enclosure from '../../Enclosure';
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import { QuizContainer } from '../../Quiz';
 import ActivityFeedBlock from '../../ActivityFeedBlock';
 import { isCampaignClosed } from '../../../helpers';
-import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import { ActionPageContainer } from '../ActionPage';
 import { CallToActionContainer } from '../../CallToAction';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
-import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 import CampaignFooter from '../../CampaignFooter';
 import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
@@ -23,7 +19,7 @@ import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, campaignLead,
-    dashboard, endDate, hasActivityFeed, isAffiliated, match,
+    endDate, hasActivityFeed, isAffiliated, match,
     openModal, shouldShowActionPage, template,
   } = props;
 
@@ -32,9 +28,9 @@ const CampaignPage = (props) => {
   /*
     If the campaign is closed (and an admin has not specifically
     toggled the show Action Page button), we want to render the ActivityFeed (community page)
-    *if* it's available (meaning the campaign has an activity feed property populated).
+   *if* it's available (meaning the campaign has an activity feed property populated).
     Otherwise, we render the ActionPage as usual.
-  */
+    */
   const shouldShowActivityFeed = isClosed && ! shouldShowActionPage && hasActivityFeed;
   const ActionPageOrActivityFeed = () => (shouldShowActivityFeed ? (
     <Redirect to={`${match.url}/community`} />
@@ -44,57 +40,52 @@ const CampaignPage = (props) => {
 
   return (
     <div>
-      <LedeBannerContainer />
-      <div className="main clearfix">
-        { dashboard ? <DashboardContainer /> : null }
-        <TabbedNavigationContainer />
-        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-          <Switch>
-            <Route
-              path={`${match.url}`}
-              exact
-              component={ActionPageOrActivityFeed}
-            />
-            <Route
-              path={`${match.url}/action`}
-              component={ActionPageOrActivityFeed}
-            />
-            <Route
-              path={`${match.url}/community`}
-              render={() => {
-                // Does this campaign have an activity feed? (Some on the
-                // "legacy" template don't.) If not, redirect to action page.
-                if (template === 'legacy' && ! hasActivityFeed) {
-                  return <Redirect to={`${match.url}/action`} />;
-                }
+      <div>
+        <Switch>
+          <Route
+            path={`${match.url}`}
+            exact
+            component={ActionPageOrActivityFeed}
+          />
+          <Route
+            path={`${match.url}/action`}
+            component={ActionPageOrActivityFeed}
+          />
+          <Route
+            path={`${match.url}/community`}
+            render={() => {
+              // Does this campaign have an activity feed? (Some on the
+              // "legacy" template don't.) If not, redirect to action page.
+              if (template === 'legacy' && ! hasActivityFeed) {
+                return <Redirect to={`${match.url}/action`} />;
+              }
 
-                return <FeedContainer />;
-              }}
-            />
-            <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
-            <Route path={`${match.url}/blocks/:id`} component={ActivityFeedBlock} />
-            <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
-            <Route
-              path={`${match.url}/modal/:id`}
-              render={(routingProps) => {
-                const { id } = routingProps.match.params;
+              return <FeedContainer />;
+            }}
+          />
+          <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
+          <Route path={`${match.url}/blocks/:id`} component={ActivityFeedBlock} />
+          <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
+          <Route
+            path={`${match.url}/modal/:id`}
+            render={(routingProps) => {
+              const { id } = routingProps.match.params;
 
-                switch (id) {
-                  case 'reportback':
-                    openModal(REPORTBACK_UPLOADER_MODAL);
-                    break;
-                  default:
-                    openModal(CONTENT_MODAL, id);
-                    break;
-                }
+              switch (id) {
+                case 'reportback':
+                  openModal(REPORTBACK_UPLOADER_MODAL);
+                  break;
+                default:
+                  openModal(CONTENT_MODAL, id);
+                  break;
+              }
 
-                return <Redirect to={`${match.url}`} />;
-              }}
-            />
-            { /* If no route matches, just redirect back to the main page: */ }
-            <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
-          </Switch>
-        </Enclosure>
+              return <Redirect to={`${match.url}`} />;
+            }}
+          />
+          { /* If no route matches, just redirect back to the main page: */ }
+          <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
+        </Switch>
         { ! isAffiliated ? <CallToActionContainer key="callToAction" className="-sticky" /> : null }
       </div>
       <CampaignFooter
@@ -107,11 +98,6 @@ const CampaignPage = (props) => {
 };
 
 CampaignPage.propTypes = {
-  dashboard: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,
@@ -132,7 +118,6 @@ CampaignPage.propTypes = {
 };
 
 CampaignPage.defaultProps = {
-  dashboard: null,
   endDate: null,
   isAffiliated: false,
   campaignLead: null,

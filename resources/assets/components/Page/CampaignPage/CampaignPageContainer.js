@@ -8,7 +8,6 @@ import { convertExperiment, openModal } from '../../../actions';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  dashboard: state.campaign.dashboard,
   isAffiliated: state.signups.thisCampaign,
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   affiliateSponsors: state.campaign.affiliateSponsors,

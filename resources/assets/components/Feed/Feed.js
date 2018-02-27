@@ -5,6 +5,10 @@ import classnames from 'classnames';
 import ContentfulEntry from '../ContentfulEntry';
 import Revealer from '../Revealer';
 import { Flex, FlexCell } from '../Flex';
+import Enclosure from '../Enclosure';
+import DashboardContainer from '../Dashboard/DashboardContainer';
+import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
+import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
 
 import './feed.scss';
 
@@ -33,8 +37,8 @@ const renderFeedItem = (block, index) => (
  * @returns {XML}
  */
 const Feed = (props) => {
-  const { actionText, blocks, callToAction, campaignId, signedUp, hasPendingSignup, isAuthenticated,
-    canLoadMorePages, clickedViewMore, clickedSignUp } = props;
+  const { actionText, blocks, callToAction, campaignId, dashboard, signedUp, hasPendingSignup,
+    isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp } = props;
 
   const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId);
   const revealer = (
@@ -50,10 +54,17 @@ const Feed = (props) => {
 
   return (
     <div>
-      <Flex className="feed">
-        {blocks.map(renderFeedItem)}
-      </Flex>
-      {revealer}
+      <LedeBannerContainer />
+      <div className="main clearfix">
+        { dashboard ? <DashboardContainer /> : null }
+        <TabbedNavigationContainer />
+        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+          <Flex className="feed">
+            {blocks.map(renderFeedItem)}
+          </Flex>
+          {revealer}
+        </Enclosure>
+      </div>
     </div>
   );
 };
@@ -68,6 +79,11 @@ Feed.propTypes = {
   })),
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   signedUp: PropTypes.bool.isRequired,
   hasPendingSignup: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
@@ -78,6 +94,7 @@ Feed.propTypes = {
 
 Feed.defaultProps = {
   blocks: [],
+  dashboard: null,
 };
 
 export default Feed;
