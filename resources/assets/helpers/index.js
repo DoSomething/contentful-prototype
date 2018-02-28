@@ -9,10 +9,16 @@ import markdownItFootnote from 'markdown-it-footnote';
 // Helper Constants
 export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
-// Internal Helper Functions
-const isExternal = url => (
-  new URL(url, window.location.origin).hostname !== window.location.hostname
-);
+
+/**
+ * Return a boolean indicating as to weather the provided URL is external to the site.
+ *
+ * @param  {String} url
+ * @return {Boolean}
+ */
+export function isExternal(url) {
+  return new URL(url, window.location.origin).hostname !== window.location.hostname;
+}
 
 /**
  * Generate a Contentful Image URL with added url parameters.
