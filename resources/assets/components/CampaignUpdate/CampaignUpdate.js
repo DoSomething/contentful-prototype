@@ -20,12 +20,16 @@ const CampaignUpdate = (props) => {
 
   const isTweet = content && content.length < 144;
 
+  // The affiliate logo specific text is hardcoded for OZY
+  // @TODO Make this a Contentful field?
+  const title = affiliateLogo ? 'See More Be More Do More' : 'Campaign Update';
+
   return (
     <Card
       id={id}
       className={classnames('rounded', { bordered, 'affiliate-content': affiliateLogo })}
       link={titleLink}
-      title="Campaign Update"
+      title={title}
       onClose={closeModal}
     >
       <Markdown className={classnames('padded', { 'font-size-lg': isTweet })}>

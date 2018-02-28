@@ -6,7 +6,7 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
   id="1234567890"
   link="http://example.com/link-to-content"
   onClose={null}
-  title="Campaign Update"
+  title="See More Be More Do More"
 >
   <Markdown
     className="padded"
@@ -37,7 +37,7 @@ exports[`it generates a campaign update snapshot 1`] = `
   id="1234567890"
   link="http://example.com/link-to-content"
   onClose={null}
-  title="Campaign Update"
+  title="See More Be More Do More"
 >
   <Markdown
     className="padded"
