@@ -11,7 +11,7 @@ export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BA
 
 
 /**
- * Return a boolean indicating as to weather the provided URL is external to the site.
+ * Return a boolean indicating as to whether the provided URL is external to the site.
  *
  * @param  {String} url
  * @return {Boolean}
