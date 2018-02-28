@@ -1,1 +1,1 @@
-export default from './ActivityFeedBlock';
+export default from './ActivityFeedBlockContainer';

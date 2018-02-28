@@ -1,16 +1,25 @@
-import { connect } from 'react-redux';
-import { find } from 'lodash';
+import PropTypes from 'prop-types';
+import React from 'react';
 import ContentfulEntry from '../ContentfulEntry';
+import Enclosure from '../Enclosure';
+import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
 
 /**
- * Provide state from the Redux store as props for this component.
+ * Render the action page steps.
+ *
+ * @returns {XML}
  */
-const mapStateToProps = (state, ownProps) => {
-  const { id } = ownProps.match.params;
-  const json = find(state.campaign.activityFeed, { id });
+const ActivityFeedBlock = ({ json }) => (
+  <div className="main clearfix">
+    <TabbedNavigationContainer />
+    <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+      <ContentfulEntry json={json} />
+    </Enclosure>
+  </div>
+);
 
-  return { json };
+ActivityFeedBlock.propTypes = {
+  json: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-// Export the container component.
-export default connect(mapStateToProps)(ContentfulEntry);
+export default ActivityFeedBlock;
