@@ -57,13 +57,8 @@ export function completeQuiz(quizId) {
     // @HACK: Here we go! For the first question, grab the answer, if it is equal to 0,
     // we show a share action since user is under age, otherwise we show a link action.
     const firstAnswer = Number(quizData.questions[0]);
-    let resultActionId = null;
-
-    if (firstAnswer === 0) {
-      resultActionId = get(quizContent.fields.resultActions, 'shareAction', null);
-    } else {
-      resultActionId = get(quizContent.fields.resultActions, 'linkAction', null);
-    }
+    const resultActionType = firstAnswer === 0 ? 'shareAction' : 'linkAction';
+    const resultActionId = get(quizContent.fields.resultActions, resultActionType, null);
 
     return getState().user.id ?
       dispatch(quizConvert(quizId, resultActionId))
