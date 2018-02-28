@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   const quizContent = find(state.campaign.quizzes, { fields: { slug } });
   const quizId = quizContent.id;
   const quizData = state.quiz[quizId];
+  console.log(quizData);
   let quizFields = quizContent.fields;
 
   const winner = pickWinner(quizData ? quizData.questions : {}, quizFields.questions);

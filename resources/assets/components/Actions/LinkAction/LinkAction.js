@@ -15,7 +15,7 @@ const LinkAction = (props) => {
   };
 
   return (
-    <div className="link-action margin-horizontal-md margin-bottom-lg">
+    <div className="link-action margin-bottom-lg">
       <Card
         title={title}
         className={classnames('rounded bordered', { 'affiliate-content': affiliateLogo })}

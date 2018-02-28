@@ -1,4 +1,5 @@
 import React from 'react';
+import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Markdown from '../Markdown';
@@ -10,13 +11,15 @@ import { CallToActionContainer } from '../CallToAction';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
+import { ShareActionContainer } from '../ShareAction';
+import LinkActionContainer from '../Actions/LinkAction';
 
 import './quiz.scss';
 
 const Quiz = (props) => {
   const { id, fields, data, dashboard, completeQuiz,
     pickQuizAnswer, trackEvent, showLedeBanner } = props;
-  const { error, shouldSeeResult } = data;
+  const { error, shouldSeeResult, selectedResult } = data;
 
   const introduction = shouldSeeResult ? null : (
     <Markdown className="quiz__description">{fields.introduction}</Markdown>
@@ -54,6 +57,26 @@ const Quiz = (props) => {
     </Conclusion>
   ) : null;
 
+  const showResultingAction = () => {
+    const action = find(fields.results, { id: selectedResult });
+
+    const actionProps = {
+      ...action.fields,
+      content: `${fields.conclusion}\n${action.fields.content}`,
+    };
+
+    switch (action.type.sys.id) {
+      case 'linkAction':
+        return <LinkActionContainer {...actionProps} />;
+
+      case 'shareAction':
+        return <ShareActionContainer {...actionProps} />;
+
+      default:
+        return null;
+    }
+  };
+
   if (shouldSeeResult) {
     trackEvent('converted on quiz', {
       responses: data.questions,
@@ -73,10 +96,14 @@ const Quiz = (props) => {
               <h2 className="quiz__title">{fields.title}</h2>
               {introduction}
             </div>
+
             {questions}
+
             {quizError}
+
             {submitConclusion}
-            {shareConclusion}
+
+            {fields.resultActions && selectedResult ? showResultingAction() : shareConclusion}
           </div>
         </Enclosure>
         { showLedeBanner ? <CallToActionContainer className="-sticky" hideIfSignedUp /> : null }

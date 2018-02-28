@@ -135,7 +135,7 @@ export function renderVoterRegistrationAction(step, stepIndex) {
   const key = `voter-registration-action-${step.id}`;
 
   return (
-    <div key={key} className="margin-bottom-lg">
+    <div key={key} className="margin-bottom-lg margin-horizontal-md">
       <PuckWaypoint name="voter_registration_action-top" />
       <VoterRegistrationActionContainer
         content={content}
@@ -157,7 +157,7 @@ export function renderShareAction(step) {
   const contentfulId = step.id;
 
   return (
-    <div key={`share-action-${contentfulId}`}>
+    <div key={`share-action-${contentfulId}`} className="margin-horizontal-md">
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
       <ShareActionContainer {...step.fields} />
       <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
@@ -174,7 +174,7 @@ export function renderLinkAction(step) {
   const contentfulId = step.id;
 
   return (
-    <div key={`link-action-${contentfulId}`}>
+    <div key={`link-action-${contentfulId}`} className="margin-horizontal-md">
       <PuckWaypoint name="link_action-top" waypointData={{ contentfulId }} />
       <LinkActionContainer {...step.fields} />
       <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
