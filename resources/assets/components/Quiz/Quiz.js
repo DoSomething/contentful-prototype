@@ -102,7 +102,7 @@ const Quiz = (props) => {
 
             {submitConclusion}
 
-            {fields.resultActions && selectedResult ? showResultingAction(selectedResult) : shareConclusion}
+            {fields.resultActions && selectedResult ? showResultingAction() : shareConclusion}
           </div>
         </Enclosure>
       </div>
