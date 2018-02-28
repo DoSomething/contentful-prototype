@@ -8,11 +8,16 @@ import Markdown from '../../Markdown';
 import SponsorPromotion from '../../SponsorPromotion';
 
 const LinkAction = (props) => {
-  const { title, content, link, affiliateLogo, trackEvent } = props;
+  const { content, link, affiliateLogo, trackEvent } = props;
 
   const onLinkClick = () => {
     trackEvent('clicked link action', { link });
   };
+
+  // The affiliate logo specific text is hard-coded for OZY. Though we can set this title
+  // in Contentful, we currently can't for CampaignUpdates which have a similar affiliate flow,
+  // so this ensures consistency until we make this part of the content editing process.
+  const title = affiliateLogo ? 'See More Be More Do More' : props.title;
 
   return (
     <div className="link-action margin-bottom-lg">
