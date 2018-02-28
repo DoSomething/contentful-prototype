@@ -135,7 +135,7 @@ export function renderVoterRegistrationAction(step, stepIndex) {
   const key = `voter-registration-action-${step.id}`;
 
   return (
-    <div key={key} className="margin-bottom-lg">
+    <div key={key} className="margin-bottom-lg margin-horizontal-md">
       <PuckWaypoint name="voter_registration_action-top" />
       <VoterRegistrationActionContainer
         content={content}
