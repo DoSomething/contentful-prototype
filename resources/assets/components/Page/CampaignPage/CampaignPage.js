@@ -8,7 +8,6 @@ import { QuizContainer } from '../../Quiz';
 import BlockPageContainer from '../BlockPage';
 import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
-import { CallToActionContainer } from '../../CallToAction';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
 import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
@@ -19,7 +18,7 @@ import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 const CampaignPage = (props) => {
   const {
     affiliatePartners, affiliateSponsors, campaignLead,
-    endDate, hasActivityFeed, isAffiliated, match,
+    endDate, hasActivityFeed, match,
     openModal, shouldShowActionPage, template,
   } = props;
 
@@ -86,7 +85,6 @@ const CampaignPage = (props) => {
           { /* If no route matches, just redirect back to the main page: */ }
           <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
         </Switch>
-        { ! isAffiliated ? <CallToActionContainer key="callToAction" className="-sticky" /> : null }
       </div>
       <CampaignFooter
         affiliateSponsors={affiliateSponsors}
@@ -107,7 +105,6 @@ CampaignPage.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
   }),
-  isAffiliated: PropTypes.bool,
   hasActivityFeed: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -119,7 +116,6 @@ CampaignPage.propTypes = {
 
 CampaignPage.defaultProps = {
   endDate: null,
-  isAffiliated: false,
   campaignLead: null,
 };
 

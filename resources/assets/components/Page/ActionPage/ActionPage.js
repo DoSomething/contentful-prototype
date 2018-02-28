@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { cloneDeep } from 'lodash';
 import Enclosure from '../../Enclosure';
+import { CallToActionContainer } from '../../CallToAction';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
@@ -36,6 +37,7 @@ const ActionPage = (props) => {
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <ActionStepsContainer actionSteps={actionSteps} />
         </Enclosure>
+        <CallToActionContainer className="-sticky" hideIfSignedUp />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Question from './Question';
 import Conclusion from './Conclusion';
 import Enclosure from '../Enclosure';
 import { ShareContainer } from '../Share';
+import { CallToActionContainer } from '../CallToAction';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
@@ -78,6 +79,7 @@ const Quiz = (props) => {
             {shareConclusion}
           </div>
         </Enclosure>
+        { showLedeBanner ? <CallToActionContainer className="-sticky" hideIfSignedUp /> : null }
       </div>
     </div>
   );
