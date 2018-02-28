@@ -57,6 +57,7 @@
   + [Link Action](content-publishing/actions/link-action.md)
   + [Share Action](content-publishing/actions/share-action.md)
 - [Community](content-publishing/community/README.md)
+  + [Campaign Update](content-publishing/community/campaign-update.md)
 - [Pages](content-publishing/pages/README.md)
 
 
