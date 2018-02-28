@@ -4,8 +4,9 @@ import classnames from 'classnames';
 
 import ContentfulEntry from '../ContentfulEntry';
 import Revealer from '../Revealer';
-import { Flex, FlexCell } from '../Flex';
 import Enclosure from '../Enclosure';
+import { Flex, FlexCell } from '../Flex';
+import { CallToActionContainer } from '../CallToAction';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
@@ -64,6 +65,7 @@ const Feed = (props) => {
           </Flex>
           {revealer}
         </Enclosure>
+        <CallToActionContainer className="-sticky" hideIfSignedUp />
       </div>
     </div>
   );

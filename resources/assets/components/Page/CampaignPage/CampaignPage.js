@@ -8,7 +8,6 @@ import { QuizContainer } from '../../Quiz';
 import BlockPageContainer from '../BlockPage';
 import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
-import { CallToActionContainer } from '../../CallToAction';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
 import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
@@ -86,7 +85,6 @@ const CampaignPage = (props) => {
           { /* If no route matches, just redirect back to the main page: */ }
           <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
         </Switch>
-        <CallToActionContainer className="-sticky" hideIfSignedUp />
       </div>
       <CampaignFooter
         affiliateSponsors={affiliateSponsors}
