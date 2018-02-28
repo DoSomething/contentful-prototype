@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ContentfulEntry from '../ContentfulEntry';
-import Enclosure from '../Enclosure';
-import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
+import Enclosure from '../../Enclosure';
+import ContentfulEntry from '../../ContentfulEntry';
+import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 
 /**
- * Render the action page steps.
+ * Render the block page.
  *
  * @returns {XML}
  */
-const ActivityFeedBlock = ({ json }) => (
+const BlockPage = ({ json }) => (
   <div className="main clearfix">
     <TabbedNavigationContainer />
     <Enclosure className="default-container margin-top-lg margin-bottom-lg">
@@ -18,8 +18,8 @@ const ActivityFeedBlock = ({ json }) => (
   </div>
 );
 
-ActivityFeedBlock.propTypes = {
+BlockPage.propTypes = {
   json: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
-export default ActivityFeedBlock;
+export default BlockPage;

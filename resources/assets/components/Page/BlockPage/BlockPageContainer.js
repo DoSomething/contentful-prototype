@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { find } from 'lodash';
-import ActivityFeedBlock from './ActivityFeedBlock';
+import BlockPage from './BlockPage';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -13,4 +13,4 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 // Export the container component.
-export default connect(mapStateToProps)(ActivityFeedBlock);
+export default connect(mapStateToProps)(BlockPage);

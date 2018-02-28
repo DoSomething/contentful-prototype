@@ -5,7 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import { QuizContainer } from '../../Quiz';
-import ActivityFeedBlock from '../../ActivityFeedBlock';
+import BlockPageContainer from '../BlockPage';
 import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
 import { CallToActionContainer } from '../../CallToAction';
@@ -64,7 +64,7 @@ const CampaignPage = (props) => {
             }}
           />
           <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
-          <Route path={`${match.url}/blocks/:id`} component={ActivityFeedBlock} />
+          <Route path={`${match.url}/blocks/:id`} component={BlockPageContainer} />
           <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
           <Route
             path={`${match.url}/modal/:id`}
