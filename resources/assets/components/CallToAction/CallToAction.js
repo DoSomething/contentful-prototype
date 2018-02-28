@@ -27,6 +27,7 @@ type CallToActionProps = {
   impactPrefix: ?string,
   impactSuffix: ?string,
   impactValue: ?string,
+  hideIfSignedUp: ?bool,
   isSignedUp: bool,
   legacyCampaignId: ?string,
   tagline: string,
@@ -36,8 +37,12 @@ type CallToActionProps = {
 
 const CallToAction = ({
   actionText, campaignId, className, content, impactPrefix, impactSuffix, impactValue,
-  isSignedUp, legacyCampaignId, tagline, useCampaignTagline, visualStyle,
+  hideIfSignedUp, isSignedUp, legacyCampaignId, tagline, useCampaignTagline, visualStyle,
 }: CallToActionProps) => {
+  if (hideIfSignedUp && isSignedUp) {
+    return null;
+  }
+
   const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
     <Button onClick={() => clickedSignUp(legacyCampaignId || campaignId)} text={actionText} />
   ), 'call to action', { text: actionText });
@@ -67,6 +72,7 @@ CallToAction.defaultProps = {
   impactPrefix: null,
   impactSuffix: null,
   impactValue: null,
+  hideIfSignedUp: false,
   legacyCampaignId: null,
 };
 
