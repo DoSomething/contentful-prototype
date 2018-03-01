@@ -13,7 +13,7 @@ const ShareAction = (props) => {
   const { title, content, link, socialPlatform, openModal, trackEvent } = props;
 
   const onFacebookClick = () => {
-    const trackingData = { link };
+    const trackingData = { url: link };
     trackEvent('clicked facebook share action', trackingData);
 
     showFacebookSharePrompt({ href: link }, (response) => {
@@ -27,7 +27,7 @@ const ShareAction = (props) => {
   };
 
   const onTwitterClick = () => {
-    const trackingData = { link };
+    const trackingData = { url: link };
     trackEvent('clicked twitter share action', trackingData);
 
     showTwitterSharePrompt(link, '', () => openModal(POST_SHARE_MODAL));
