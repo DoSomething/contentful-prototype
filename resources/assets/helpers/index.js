@@ -379,7 +379,7 @@ export function showFacebookSharePrompt(share, callback) {
  * @param  {String} href
  * @param  {String} quote
  */
-export function showTwitterSharePrompt(href, quote) {
+export function showTwitterSharePrompt(href, quote = '', callback) {
   const width = 550;
   const height = 420;
   const winHeight = window.screen.height;
@@ -392,8 +392,21 @@ export function showTwitterSharePrompt(href, quote) {
     top = Math.round((winHeight / 2) - (height / 2));
   }
 
-  window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote}`, 'intent',
+  const twitterShareWindow = window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote}`, 'intent',
     `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`);
+
+  let interval;
+
+  const check = () => {
+    if (twitterShareWindow.closed) {
+      clearInterval(interval);
+      callback();
+    }
+  };
+
+  if (callback) {
+    interval = setInterval(check, 1000);
+  }
 }
 
 /**

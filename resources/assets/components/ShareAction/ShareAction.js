@@ -5,18 +5,18 @@ import Card from '../Card';
 import Embed from '../Embed';
 import Markdown from '../Markdown';
 import { POST_SHARE_MODAL } from '../Modal';
-import { showFacebookSharePrompt } from '../../helpers';
+import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
 import './share-action.scss';
 
 const ShareAction = (props) => {
-  const { title, content, link, openModal, trackEvent } = props;
+  const { title, content, link, socialPlatform, openModal, trackEvent } = props;
 
-  const onFacebookClick = (url) => {
-    const trackingData = { url };
-    trackEvent('clicked share action', trackingData);
+  const onFacebookClick = () => {
+    const trackingData = { url: link };
+    trackEvent('clicked facebook share action', trackingData);
 
-    showFacebookSharePrompt({ href: url }, (response) => {
+    showFacebookSharePrompt({ href: link }, (response) => {
       if (response) {
         trackEvent('share action completed', trackingData);
         openModal(POST_SHARE_MODAL);
@@ -24,6 +24,32 @@ const ShareAction = (props) => {
         trackEvent('share action cancelled', trackingData);
       }
     });
+  };
+
+  const onTwitterClick = () => {
+    const trackingData = { url: link };
+    trackEvent('clicked twitter share action', trackingData);
+
+    showTwitterSharePrompt(link, '', () => openModal(POST_SHARE_MODAL));
+  };
+
+  const shareButton = () => {
+    switch (socialPlatform) {
+      case 'facebook':
+        return (
+          <button className="button" onClick={() => onFacebookClick(link)}>
+            Share on Facebook
+          </button>
+        );
+      case 'twitter':
+        return (
+          <button className="button" onClick={() => onTwitterClick(link)}>
+            Share on Twitter
+          </button>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
@@ -35,10 +61,7 @@ const ShareAction = (props) => {
 
         <Embed className="padded" url={link} />
 
-        <button
-          className="button"
-          onClick={() => onFacebookClick(link)}
-        >Share on Facebook</button>
+        { shareButton() }
       </Card>
     </div>
   );
@@ -54,6 +77,7 @@ ShareAction.propTypes = {
   link: PropTypes.string.isRequired,
   openModal: PropTypes.func.isRequired,
   trackEvent: PropTypes.func.isRequired,
+  socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
 };
 
 export default ShareAction;
