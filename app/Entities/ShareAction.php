@@ -21,7 +21,7 @@ class ShareAction extends Entity implements JsonSerializable
                 'content' => $this->content,
                 'link' => $this->link,
                 'affirmation' => $this->affirmation,
-                'socialPlatform' => $this->socialPlatform,
+                'socialPlatform' => $this->socialPlatform->first() ?: 'facebook',
             ],
         ];
     }
