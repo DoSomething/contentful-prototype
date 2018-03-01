@@ -34,16 +34,24 @@ const ShareAction = (props) => {
     // @TODO Add post share affirmation modal trigger here.
   };
 
-  const shareButton = socialPlatform === 'facebook' ? (
-    <button className="button" onClick={() => onFacebookClick(link)}>
-      Share on Facebook
-    </button>
-  ) : (
-    <button className="button" onClick={() => onTwitterClick(link)}>
-      Share on Twitter
-    </button>
-  );
-
+  const shareButton = () => {
+    switch (socialPlatform) {
+      case 'facebook':
+        return (
+          <button className="button" onClick={() => onFacebookClick(link)}>
+            Share on Facebook
+          </button>
+        );
+      case 'twitter':
+        return (
+          <button className="button" onClick={() => onTwitterClick(link)}>
+            Share on Twitter
+          </button>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <div className="share-action margin-bottom-lg">
@@ -54,7 +62,7 @@ const ShareAction = (props) => {
 
         <Embed className="padded" url={link} />
 
-        { shareButton }
+        { shareButton() }
       </Card>
     </div>
   );
