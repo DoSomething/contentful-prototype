@@ -1,7 +1,8 @@
-/* global window, document, Blob, FB, URL, URLSearchParams */
+/* global window, document, Blob, FB, URL */
 
 import get from 'lodash/get';
 import MarkdownIt from 'markdown-it';
+import queryString from 'query-string';
 import { isPast, parse } from 'date-fns';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
@@ -418,7 +419,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  */
 export function makeUrl(path, queryParameters) {
   const urlObject = new URL(path);
-  urlObject.search = new URLSearchParams(queryParameters).toString();
+  urlObject.search = queryString.stringify(queryParameters);
 
   return urlObject;
 }
@@ -432,9 +433,9 @@ export function makeUrl(path, queryParameters) {
  */
 export function query(key, url = window.location) {
   // Ensure we have a URL object from the location.
-  const search = new URLSearchParams(url.search);
+  const search = queryString.parse(url.search);
 
-  return search.get(key);
+  return search[key];
 }
 
 /**
