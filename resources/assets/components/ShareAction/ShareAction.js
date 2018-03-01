@@ -30,8 +30,7 @@ const ShareAction = (props) => {
     const trackingData = { url };
     trackEvent('clicked twitter share action', trackingData);
 
-    showTwitterSharePrompt(link);
-    // @TODO Add post share affirmation modal trigger here.
+    showTwitterSharePrompt(link, '', openModal.bind(null, POST_SHARE_MODAL));
   };
 
   const shareButton = () => {
