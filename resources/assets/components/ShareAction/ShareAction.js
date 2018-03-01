@@ -30,7 +30,7 @@ const ShareAction = (props) => {
     const trackingData = { url };
     trackEvent('clicked twitter share action', trackingData);
 
-    showTwitterSharePrompt(link, '', openModal.bind(null, POST_SHARE_MODAL));
+    showTwitterSharePrompt(link, '', () => openModal(POST_SHARE_MODAL));
   };
 
   const shareButton = () => {
