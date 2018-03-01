@@ -101,7 +101,10 @@ describe('ShareAction component', () => {
       wrapper = getShallow('twitter');
     });
 
-    global.open = jest.fn().mockReturnValue({closed: true});
+    // Mock the `open` function to test that we're opening the twitter intent window,
+    // and showing an affirmation once it's closed.
+    // (hence the mock return value to indicate closed status).
+    global.open = jest.fn().mockReturnValue({ closed: true });
 
     it('opens a new window with the proper Twitter intent URL', () => {
       wrapper.find('button').simulate('click');
@@ -121,6 +124,8 @@ describe('ShareAction component', () => {
     it('displays the affirmation modal when social share is successful', () => {
       wrapper.find('button').simulate('click');
 
+      // Run the timer a second so that the callback in -
+      // `setInterval` in the twitter share function runs.
       jest.runTimersToTime(1000);
 
       expect(openModalMock).toHaveBeenCalledTimes(1);
