@@ -1,4 +1,4 @@
-/* global window, document, Blob, FB, URL, URLSearchParams */
+/* global window, document, Blob, FB, URL */
 
 import get from 'lodash/get';
 import MarkdownIt from 'markdown-it';
