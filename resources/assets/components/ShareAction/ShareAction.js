@@ -12,11 +12,11 @@ import './share-action.scss';
 const ShareAction = (props) => {
   const { title, content, link, socialPlatform, openModal, trackEvent } = props;
 
-  const onFacebookClick = (url) => {
-    const trackingData = { url };
+  const onFacebookClick = () => {
+    const trackingData = { link };
     trackEvent('clicked facebook share action', trackingData);
 
-    showFacebookSharePrompt({ href: url }, (response) => {
+    showFacebookSharePrompt({ href: link }, (response) => {
       if (response) {
         trackEvent('share action completed', trackingData);
         openModal(POST_SHARE_MODAL);
@@ -26,8 +26,8 @@ const ShareAction = (props) => {
     });
   };
 
-  const onTwitterClick = (url) => {
-    const trackingData = { url };
+  const onTwitterClick = () => {
+    const trackingData = { link };
     trackEvent('clicked twitter share action', trackingData);
 
     showTwitterSharePrompt(link, '', () => openModal(POST_SHARE_MODAL));
