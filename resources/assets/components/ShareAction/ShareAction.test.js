@@ -4,6 +4,8 @@ import { shallow } from 'enzyme';
 import ShareAction from './ShareAction';
 import setFBshare from '../../__mocks__/facebookShareMock';
 
+jest.useFakeTimers();
+
 describe('ShareAction component', () => {
   const url = 'https://dosomething.org';
   const trackingData = { url };
@@ -11,7 +13,7 @@ describe('ShareAction component', () => {
   let trackEventMock = jest.fn();
   let openModalMock = jest.fn();
 
-  const getShallow = (socialPlatform) => shallow(
+  const getShallow = socialPlatform => shallow(
     <ShareAction
       title="Click on this link!"
       content="This is a great link"
@@ -99,13 +101,13 @@ describe('ShareAction component', () => {
       wrapper = getShallow('twitter');
     });
 
-    it('opens a new window with the proper Twitter intent URL', () => {
-      global.open = jest.fn();
+    global.open = jest.fn().mockReturnValue({closed: true});
 
+    it('opens a new window with the proper Twitter intent URL', () => {
       wrapper.find('button').simulate('click');
 
       expect(global.open).toHaveBeenCalled();
-      expect(global.open.mock.calls[0][0]).toEqual(`https://twitter.com/intent/tweet?url=${url}&text=${undefined}`);
+      expect(global.open.mock.calls[0][0]).toEqual(`https://twitter.com/intent/tweet?url=${url}&text=`);
     });
 
     it('tracks clicked share action event', () => {
@@ -116,11 +118,10 @@ describe('ShareAction component', () => {
       expect(trackEventMock.mock.calls[0]).toEqual(['clicked twitter share action', trackingData]);
     });
 
-    // @TODO activate this test when we properly implement the post share affirmaion modal for twitter share.
-    xit('displays the affirmation modal when social share is successful', () => {
-      setFBshare(true);
-
+    it('displays the affirmation modal when social share is successful', () => {
       wrapper.find('button').simulate('click');
+
+      jest.runTimersToTime(1000);
 
       expect(openModalMock).toHaveBeenCalledTimes(1);
     });
