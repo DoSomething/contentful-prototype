@@ -15,6 +15,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   shouldShowActionPage: state.admin.shouldShowActionPage,
   template: state.campaign.template,
+  endDate: state.campaign.endDate,
 });
 
 /**
