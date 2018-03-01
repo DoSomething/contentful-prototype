@@ -373,7 +373,7 @@ export function showFacebookSharePrompt(share, callback) {
  * @param  {String} href
  * @param  {String} quote
  */
-export function showTwitterSharePrompt(href, quote) {
+export function showTwitterSharePrompt(href, quote = '') {
   const width = 550;
   const height = 420;
   const winHeight = window.screen.height;
