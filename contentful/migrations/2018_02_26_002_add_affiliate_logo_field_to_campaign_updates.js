@@ -1,12 +1,12 @@
 module.exports = function (migration) {
-  const page = migration.editContentType('campaignUpdate');
+  const block = migration.editContentType('campaignUpdate');
 
-  page.createField('affiliateLogo')
+  block.createField('affiliateLogo')
     .name('Affiliate Logo')
     .type('Link')
     .linkType('Asset')
     .validations([{linkMimetypeGroup: ["image"]}])
     .required(false);
 
-  page.moveField('affiliateLogo').afterField('author');
+  block.moveField('affiliateLogo').afterField('author');
 }

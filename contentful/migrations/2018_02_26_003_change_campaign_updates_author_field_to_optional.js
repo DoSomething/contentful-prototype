@@ -1,6 +1,6 @@
 module.exports = function (migration) {
-  const page = migration.editContentType('campaignUpdate');
+  const block = migration.editContentType('campaignUpdate');
 
-  page.editField('author')
+  block.editField('author')
     .required(false);
 }
