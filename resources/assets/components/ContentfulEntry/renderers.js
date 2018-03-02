@@ -138,6 +138,7 @@ export function renderVoterRegistrationAction(step, stepIndex) {
     <div key={key} className="margin-bottom-lg margin-horizontal-md">
       <PuckWaypoint name="voter_registration_action-top" />
       <VoterRegistrationActionContainer
+        contentfulId={step.id}
         content={content}
         title={title}
         link={link}

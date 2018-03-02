@@ -12,6 +12,7 @@ const VoterRegistrationAction = (props) => {
     campaignId,
     campaignRunId,
     content,
+    contentfulId,
     link,
     userId,
   } = props;
@@ -38,6 +39,7 @@ VoterRegistrationAction.propTypes = {
   campaignId: PropTypes.string.isRequired,
   campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
+  contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
