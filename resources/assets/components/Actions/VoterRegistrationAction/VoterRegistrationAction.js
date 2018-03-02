@@ -26,12 +26,19 @@ const VoterRegistrationAction = (props) => {
     source: 'web',
   };
 
+  const parsedLink = link && dynamicString(link, tokens);
+
+  const handleClick = () => {
+    const trackingData = { url: parsedLink, modal: modalType }
+    trackEvent('clicked voter registration action', trackingData)
+  }
+
   return (
     <Card className="rounded bordered voter-registration" title="Register to vote">
       <div className="padded clearfix">
         <Markdown>{ content }</Markdown>
 
-        { link ? <a className="button" href={dynamicString(link, tokens)} target="_blank">Start Registration</a> : null }
+        { parsedLink ? <a className="button" href={parsedLink} onClick={handleClick} target="_blank">Start Registration</a> : null }
       </div>
     </Card>
   );
