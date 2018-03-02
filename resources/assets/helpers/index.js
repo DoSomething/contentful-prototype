@@ -18,7 +18,7 @@ export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BA
  * @return {Boolean}
  */
 export function isExternal(url) {
-  return new URL(url, window.location.origin).hostname !== window.location.hostname;
+  return new URL(String(url), window.location.origin).hostname !== window.location.hostname;
 }
 
 /**
@@ -418,7 +418,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  * @return {URL}
  */
 export function makeUrl(path, queryParameters) {
-  const urlObject = new URL(path);
+  const urlObject = new URL(String(path));
   urlObject.search = queryString.stringify(queryParameters);
 
   return urlObject;
