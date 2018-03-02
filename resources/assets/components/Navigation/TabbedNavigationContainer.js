@@ -40,8 +40,9 @@ const TabbedNavigationContainer = (props) => {
 
   const campaignSlug = props.campaignSlug;
 
-  // Create links for additional "content" pages on this campaign in Contentful.
+  // Create links for any pages referenced on this campaign.
   const additionalPages = pages
+    .filter(entry => entry.type === 'page')
     .filter(page => ! page.fields.hideFromNavigation)
     .map((page) => {
       const pageHasCampaignSlug = page.fields.slug.indexOf(campaignSlug) >= 0;
