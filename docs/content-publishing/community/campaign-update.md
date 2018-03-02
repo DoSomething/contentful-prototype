@@ -1,9 +1,11 @@
 # Campaign Update
 
+## Campaign Update (default)
 The `CampaignUpdate` component renders a visual component which can feature campaign updates, announcements and informational content rendered in Markdown format, as well as an embedded link (this can be to an article, a video, any valid URL will do!). In the right hand side of the footer of the Campaign Update we add a Facebook and Twitter social share icon. (The metadata for the content of the share can be customized, but will default to be a share of the link to the Campaign Update). A Byline featuring the author of the Campaign Update (another customizable setting), will be set on the left hand side of the Campaign Update footer.
 
 ![Campaign Update component](../_assets/campaign-update-component.png)  
 
+## Affiliate Update
 The Campaign Update can also be equipped with an affiliate logo. If this field is set, the campaign update will render in 'Affiliate' mode, highlighting the Campaign Update with purple coloring in the title, as well as replacing the author Byline with a promotion for the affiliate, featuring the provided logo.
 
 ![Campaign Update Affiliate component](../_assets/campaign-update-affiliate-component.png)  

@@ -1,7 +1,7 @@
 # Initial Campaign Publication
 
-## Needed for campaign publication
+Currently, while we still support the legacy DoSomething.org platform, to publish a campaign you need to follow instructions on both the old **Ashes** platform and the new **Phoenix (next)** platform.
 - [Ashes Publication](phoenix-ashes-publication.md)
-- [Next Publication](phoenix-next-publication.md)
+- [Phoenix (next) Publication](phoenix-next-publication.md)
 
 
