@@ -136,10 +136,10 @@ module.exports = {
   */
 
   screens: {
-    'sm': '560px', // 576px
-    'md': '760px', // 768px
-    'lg': '960px', // 992px
-    'xl': '1060px', // 1200px
+    'sm': '560px', // Tailwind default 576px
+    'md': '760px', // Tailwind default 768px
+    'lg': '960px', // Tailwind default 992px
+    'xl': '1060px', // Tailwind default 1200px
   },
 
 
@@ -199,15 +199,15 @@ module.exports = {
   */
 
   textSizes: {
-    'xs': '.75rem',     // 12px
-    'sm': '.875rem',    // 14px
-    'base': '1rem',     // 18px
-    'lg': '1.125rem',   // 22px
-    'xl': '1.25rem',    // 28px
-    '2xl': '1.5rem',    // 35px
-    '3xl': '1.875rem',  // 53px
-    '4xl': '2.25rem',   // 65px
-    '5xl': '3rem',      // 84px
+    'xs': '12px',
+    'sm': '14px',
+    'base':'18px',
+    'lg': '22px',
+    'xl': '28px',
+    '2xl': '35px',
+    '3xl': '53px',
+    '4xl': '65px',
+    '5xl': '84px',
   },
 
 
