@@ -4,8 +4,8 @@ module.exports = function (migration) {
   block.editField('pages')
     .validations([{
       linkContentType: [
-        'page', 'customBlock', 'shareAction', 'linkAction',
-        'voterRegistrationAction', 'campaignUpdate',
+        'campaignUpdate', 'customBlock', 'linkAction', 'page',
+        'photoUploaderAction', 'shareAction', 'voterRegistrationAction',
       ],
     }])
 }
