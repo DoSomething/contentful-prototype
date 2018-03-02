@@ -14,6 +14,7 @@ const VoterRegistrationAction = (props) => {
     content,
     contentfulId,
     link,
+    trackEvent,
     userId,
   } = props;
 
@@ -41,6 +42,7 @@ VoterRegistrationAction.propTypes = {
   content: PropTypes.string,
   contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  trackEvent: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
