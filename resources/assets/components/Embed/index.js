@@ -22,13 +22,13 @@ class Embed extends React.Component {
 
   render() {
     let embed = <div className="spinner" />;
-    const target = isExternal(this.state.url) ? '_blank' : '_self';
 
     // If an <iframe> code snippet is provided, use that. Otherwise, build preview card.
     if (this.state.code) {
       const embedHtml = { __html: this.state.code };
       embed = (<div className="media-video" dangerouslySetInnerHTML={embedHtml} />); //  eslint-disable-line react/no-danger
     } else if (this.state.title && this.state.url) {
+      const target = isExternal(this.state.url) ? '_blank' : '_self';
       embed = (
         <a href={this.state.url} target={target} rel="noopener noreferrer">
           <Figure className="padded margin-bottom-none" image={this.state.image || this.state.provider.icon} alt={this.state.provider.name} alignment="left-collapse" size="large">
