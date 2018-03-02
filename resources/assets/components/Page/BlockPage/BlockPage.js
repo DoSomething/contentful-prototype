@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Enclosure from '../../Enclosure';
 import ContentfulEntry from '../../ContentfulEntry';
-import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
 
 /**
  * Render the block page.
@@ -11,9 +10,11 @@ import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContaine
  */
 const BlockPage = ({ json }) => (
   <div className="main clearfix">
-    <TabbedNavigationContainer />
     <Enclosure className="default-container margin-top-lg margin-bottom-lg">
       <ContentfulEntry json={json} />
+      <ul className="form-actions">
+        <li><a href=".." className="button -tertiary">or take another action</a></li>
+      </ul>
     </Enclosure>
   </div>
 );
