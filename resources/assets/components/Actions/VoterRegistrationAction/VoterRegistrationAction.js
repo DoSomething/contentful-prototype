@@ -14,6 +14,7 @@ const VoterRegistrationAction = (props) => {
     content,
     contentfulId,
     link,
+    modalType,
     trackEvent,
     userId,
   } = props;
@@ -42,12 +43,14 @@ VoterRegistrationAction.propTypes = {
   content: PropTypes.string,
   contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  modalType: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
 VoterRegistrationAction.defaultProps = {
   content: 'Register to vote!',
+  modalType: null,
 };
 
 export default VoterRegistrationAction;
