@@ -29,9 +29,9 @@ const VoterRegistrationAction = (props) => {
   const parsedLink = link && dynamicString(link, tokens);
 
   const handleClick = () => {
-    const trackingData = { url: parsedLink, modal: modalType }
-    trackEvent('clicked voter registration action', trackingData)
-  }
+    const trackingData = { contentfulId, url: parsedLink, modal: modalType };
+    trackEvent('clicked voter registration action', trackingData);
+  };
 
   return (
     <Card className="rounded bordered voter-registration" title="Register to vote">
