@@ -12,7 +12,10 @@ const VoterRegistrationAction = (props) => {
     campaignId,
     campaignRunId,
     content,
+    contentfulId,
     link,
+    modalType,
+    trackEvent,
     userId,
   } = props;
 
@@ -23,12 +26,19 @@ const VoterRegistrationAction = (props) => {
     source: 'web',
   };
 
+  const parsedLink = link && dynamicString(link, tokens);
+
+  const handleClick = () => {
+    const trackingData = { contentfulId, url: parsedLink, modal: modalType };
+    trackEvent('clicked voter registration action', trackingData);
+  };
+
   return (
     <Card className="rounded bordered voter-registration" title="Register to vote">
       <div className="padded clearfix">
         <Markdown>{ content }</Markdown>
 
-        { link ? <a className="button" href={dynamicString(link, tokens)} target="_blank">Start Registration</a> : null }
+        { parsedLink ? <a className="button" href={parsedLink} onClick={handleClick} target="_blank">Start Registration</a> : null }
       </div>
     </Card>
   );
@@ -38,12 +48,16 @@ VoterRegistrationAction.propTypes = {
   campaignId: PropTypes.string.isRequired,
   campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
+  contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  modalType: PropTypes.string,
+  trackEvent: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
 VoterRegistrationAction.defaultProps = {
   content: 'Register to vote!',
+  modalType: null,
 };
 
 export default VoterRegistrationAction;

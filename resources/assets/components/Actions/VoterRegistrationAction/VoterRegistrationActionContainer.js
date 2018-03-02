@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { PuckConnector } from '@dosomething/puck-client';
 
 import VoterRegistrationAction from './VoterRegistrationAction';
 
@@ -9,9 +10,10 @@ const mapStateToProps = state => ({
   userId: state.user.id,
   campaignId: state.campaign.legacyCampaignId,
   campaignRunId: state.campaign.legacyCampaignRunId,
+  modalType: state.modal.modalType,
 });
 
 /**
  * Export the container component.
  */
-export default connect(mapStateToProps)(VoterRegistrationAction);
+export default connect(mapStateToProps)(PuckConnector(VoterRegistrationAction));
