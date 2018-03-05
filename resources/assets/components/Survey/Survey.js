@@ -10,7 +10,7 @@ import { isTimestampValid } from '../../helpers';
 
 import ModalLauncherContainer from '../ModalLauncher';
 
-const SURVEY_COUNTDOWN = 1;
+const SURVEY_COUNTDOWN = 60;
 
 const Survey = ({ userId }) => {
   // If the query params indicate a redirect from typeform post survey submission, track
