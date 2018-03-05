@@ -70,7 +70,7 @@ class CampaignController extends Controller
         ])->with('state', [
             'campaign' => $campaign,
             'user' => [
-                'id' => auth()->id(),
+                'id' => auth()->id() ?: request()->query('user_id'),
                 'isAuthenticated' => auth()->check(),
                 'role' => auth()->user() ? auth()->user()->role : null,
             ],
