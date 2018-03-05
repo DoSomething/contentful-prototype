@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import ReportbackItem from './ReportbackItem';
+import { isAuthenticated } from '../../selectors/user';
 import {
   toggleReactionOn,
   toggleReactionOff,
@@ -27,7 +28,7 @@ const mapStateToProps = (state, props) => {
     firstName: reportback.user.first_name,
     reaction: reportbackItem.reaction,
     caption: reportbackItem.caption,
-    isAuthenticated: state.user.id !== null,
+    isAuthenticated: isAuthenticated(state),
     reportback,
   };
 };

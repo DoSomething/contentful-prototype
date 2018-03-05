@@ -3,6 +3,7 @@
 import { Phoenix } from '@dosomething/gateway';
 import { has, get } from 'lodash';
 import { normalizeReportbackItemResponse } from '../normalizers';
+import { isAuthenticated } from '../selectors/user';
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
@@ -118,7 +119,8 @@ export function addSubmissionItemToList(reportbackItem) {
 export function toggleReactionOn(reportbackItemId, termId) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
-    if (! getState().user.id) {
+    const state = getState();
+    if (! isAuthenticated(state)) {
       dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
       return;
     }
