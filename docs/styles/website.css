@@ -11,3 +11,9 @@
   font-size: 22px;
   margin-bottom: 15px;
 }
+
+.markdown-section img {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  margin: 5px 1% 0;
+  max-width: 98%;
+}
