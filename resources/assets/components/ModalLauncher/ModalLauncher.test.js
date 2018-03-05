@@ -1,24 +1,25 @@
-/* global window */
-
 import React from 'react';
 import { mount } from 'enzyme';
-import { getTime } from 'date-fns';
 
 import ModalLauncher from './ModalLauncher';
-import { set } from '../../helpers/storage';
-import LocalStorageMock from '../../__mocks__/localStorageMock';
 
 // Faking timers to be able to interact with and mock our timed modal launcher component
 jest.useFakeTimers();
 
 const MODAL_COUNTDOWN = 60;
-const MODAL_TYPE = 'AWESOME_MODAL'
+const MODAL_TYPE = 'AWESOME_MODAL';
 
 const mountModal = () => {
   // Using a function mock for the openModal prop
   const openModalMock = jest.fn();
 
-  mount(<ModalLauncher openModal={openModalMock} countdown={MODAL_COUNTDOWN} modalType={MODAL_TYPE} />);
+  mount(
+    <ModalLauncher
+      openModal={openModalMock}
+      countdown={MODAL_COUNTDOWN}
+      modalType={MODAL_TYPE}
+    />
+  );
 
   return openModalMock;
 };
