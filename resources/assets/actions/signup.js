@@ -4,6 +4,7 @@ import { push } from 'react-router-redux';
 
 import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
+import { isAuthenticated } from '../selectors/user';
 import { POST_SIGNUP_MODAL } from '../components/Modal';
 import {
   SIGNUP_CREATED,
@@ -62,13 +63,14 @@ export function signupPending() {
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   return (dispatch, getState) => {
-    if (getState().user.id === null) {
+    const state = getState();
+    if (! isAuthenticated(state)) {
       return dispatch(signupNotFound());
     }
 
     return (new Phoenix()).get('next/signups', {
       campaigns: campaignId,
-      user: getState().user.id,
+      user: state.user.id,
     }).then((response) => {
       if (! response || ! response.data || ! response.data[0]) {
         throw new Error('no signup found');
@@ -109,26 +111,27 @@ export function getTotalSignups(campaignId) {
 // check if the user is logged in or has an existing signup.
 export function clickedSignUp(campaignId, options = null, shouldRedirectToActionTab = true) {
   return (dispatch, getState) => {
+    const state = getState();
     const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
 
     // get campagin run id from state.
-    const campaignRunId = getState().campaign.legacyCampaignRunId;
+    const campaignRunId = state.campaign.legacyCampaignRunId;
 
     // If we show an affiliate option, send the value over to Rogue as details
     let details = options;
 
-    const additionalContent = getState().campaign.additionalContent || {};
+    const additionalContent = state.campaign.additionalContent || {};
     if (additionalContent.displayAffilitateOptOut && ! details) {
-      details = getState().signups.affiliateMessagingOptOut ? 'affiliate-opt-out' : null;
+      details = state.signups.affiliateMessagingOptOut ? 'affiliate-opt-out' : null;
     }
 
     // If the user is not logged in, handle this action later.
-    if (! getState().user.id) {
+    if (! isAuthenticated(state)) {
       return dispatch(queueEvent('clickedSignUp', campaignId, details));
     }
 
     // If we already have a signup, just go to the action page.
-    if (getState().signups.data.includes(campaignId)) {
+    if (state.signups.data.includes(campaignId)) {
       return shouldRedirectToActionTab ? dispatch(push(campaignActionUrl)) : null;
     }
 
@@ -146,7 +149,7 @@ export function clickedSignUp(campaignId, options = null, shouldRedirectToAction
         dispatch(signupCreated(campaignId));
 
         // Take user to the action page if campaign is open.
-        const endDate = get(getState().campaign.endDate, 'date', null);
+        const endDate = get(state.campaign.endDate, 'date', null);
         const isClosed = isCampaignClosed(endDate);
         if (shouldRedirectToActionTab && ! isClosed) {
           dispatch(openModal(POST_SIGNUP_MODAL));

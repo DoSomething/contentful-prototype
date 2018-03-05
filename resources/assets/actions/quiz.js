@@ -10,6 +10,7 @@ import {
   LOAD_PREVIOUS_QUIZ_STATE,
   QUIZ_ERROR,
 } from '../actions';
+import { isAuthenticated } from '../selectors/user';
 
 export function loadPreviousQuizState(quizId, questions) {
   return { type: LOAD_PREVIOUS_QUIZ_STATE, quizId, questions };
@@ -60,7 +61,8 @@ export function completeQuiz(quizId) {
     const resultActionType = firstAnswer === 0 ? 'shareAction' : 'linkAction';
     const resultActionId = get(quizContent.fields.resultActions, resultActionType, null);
 
-    return getState().user.id ?
+    const state = getState();
+    return isAuthenticated(state) ?
       dispatch(quizConvert(quizId, resultActionId))
       :
       dispatch(viewQuizResult(quizId, resultActionId));

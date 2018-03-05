@@ -104,39 +104,41 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
-     * Parse and extract data for an action step.
+     * Parse and extract data for a block.
      *
      * @param  Entry $step
      * @return array
      */
-    public function parseActionStep($step)
+    public function parseBlock($block)
     {
-        switch ($step->getContentType()) {
+        switch ($block->getContentType()) {
             case 'photoUploaderAction':
-                return new PhotoUploaderAction($step->entry);
+                return new PhotoUploaderAction($block->entry);
             case 'voterRegistrationAction':
-                return new VoterRegistrationAction($step->entry);
+                return new VoterRegistrationAction($block->entry);
             case 'shareAction':
-                return new ShareAction($step->entry);
+                return new ShareAction($block->entry);
             case 'linkAction':
-                return new LinkAction($step->entry);
+                return new LinkAction($block->entry);
             case 'affirmation':
-                return new Affirmation($step->entry);
+                return new Affirmation($block->entry);
+            case 'page':
+                return $block;
             default:
-                return new CampaignActionStep($step->entry);
+                return new CampaignActionStep($block->entry);
         }
     }
 
     /**
-     * Parse and extract data for action steps.
+     * Parse and extract data for blocks.
      *
-     * @param  array $actionSteps
+     * @param  array $blocks
      * @return array
      */
-    public function parseActionSteps($actionSteps)
+    public function parseBlocks($blocks)
     {
-        return collect($actionSteps)->map(function ($step) {
-            return $this->parseActionStep($step);
+        return collect($blocks)->map(function ($block) {
+            return $this->parseBlock($block);
         });
     }
 
@@ -227,11 +229,11 @@ class Campaign extends Entity implements JsonSerializable
                 $this->activity_feed,
                 array_get($this->additionalContent, 'reverseActivityFeedOrder', true)
             ),
-            'actionSteps' => $this->parseActionSteps($this->actionSteps),
+            'actionSteps' => $this->parseBlocks($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
-            'affirmation' => $this->parseActionStep($this->affirmation),
-            'pages' => $this->pages,
+            'affirmation' => $this->parseBlock($this->affirmation),
+            'pages' => $this->parseBlocks($this->pages),
             'landingPage' => $this->landingPage ? new Page($this->landingPage->entry) : null,
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,

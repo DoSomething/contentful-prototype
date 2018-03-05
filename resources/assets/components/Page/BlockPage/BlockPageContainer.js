@@ -7,7 +7,10 @@ import BlockPage from './BlockPage';
  */
 const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params;
-  const json = find(state.campaign.activityFeed, { id });
+
+  const json = find(state.campaign.pages, { id })
+    || find(state.campaign.actionSteps, { id })
+    || find(state.campaign.activityFeed, { id });
 
   return { json };
 };
