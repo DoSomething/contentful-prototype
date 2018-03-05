@@ -8,66 +8,37 @@ import { SURVEY_MODAL } from '../Modal';
 import { get, set } from '../../helpers/storage';
 import { isTimestampValid } from '../../helpers';
 
-const SURVEY_COUNTDOWN = 60;
+import ModalLauncherContainer from '../ModalLauncher';
 
-class Survey extends React.Component {
-  constructor() {
-    super();
+const SURVEY_COUNTDOWN = 1;
 
-    this.state = {
-      count: 0,
-    };
-
-    this.incrementOrLaunch = this.incrementOrLaunch.bind(this);
-    this.shouldSeeSurvey = this.shouldSeeSurvey.bind(this);
+const Survey = ({ userId }) => {
+  // If the query params indicate a redirect from typeform post survey submission, track
+  if (window.location.search === '?finished_nps=1') {
+    set(`${userId}_finished_survey`, 'boolean', true);
   }
 
-  componentDidMount() {
-    // If the query params indicate a redirect from typeform post survey submission, track
-    if (window.location.search === '?finished_nps=1') {
-      set(`${this.props.userId}_finished_survey`, 'boolean', true);
-    }
+  const env = window.ENV || {};
 
-    if (this.shouldSeeSurvey()) {
-      this.timer = setInterval(this.incrementOrLaunch, 1000);
-    }
-  }
+  const isFinished = get(`${userId}_finished_survey`, 'boolean');
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+  // @see: SurveyModal.js
+  const dismissalTime = get(`${userId}_dismissed_survey`, 'timestamp');
+  // Check if the survey was dismissed over 30 days ago.
+  const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
 
-  shouldSeeSurvey() {
-    const env = window.ENV || {};
-    const userId = this.props.userId;
+  const shouldSeeSurvey = env.SURVEY_ENABLED && userId && ! isFinished && ! isDismissed;
 
-    const isFinished = get(`${userId}_finished_survey`, 'boolean');
-
-    // @see: SurveyModal.js
-    const dismissalTime = get(`${userId}_dismissed_survey`, 'timestamp');
-    // Check if the survey was dismissed over 30 days ago.
-    const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
-
-    return env.SURVEY_ENABLED && userId && ! isFinished && ! isDismissed;
-  }
-
-  incrementOrLaunch() {
-    if (this.state.count < SURVEY_COUNTDOWN) {
-      this.setState(prevState => ({ count: prevState.count + 1 }));
-    } else {
-      this.props.openModal(SURVEY_MODAL);
-      clearInterval(this.timer);
-    }
-  }
-
-  render() {
-    return null;
-  }
-}
+  return shouldSeeSurvey ? (
+    <ModalLauncherContainer
+      countdown={SURVEY_COUNTDOWN}
+      modalType={SURVEY_MODAL}
+    />
+  ) : null;
+};
 
 Survey.propTypes = {
   userId: PropTypes.string,
-  openModal: PropTypes.func.isRequired,
 };
 
 Survey.defaultProps = {

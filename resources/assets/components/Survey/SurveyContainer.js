@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import Survey from './Survey';
-import { openModal } from '../../actions';
 import { getUserId } from '../../selectors/user';
 
 /**
@@ -12,14 +11,6 @@ const mapStateToProps = state => ({
 });
 
 /**
- * Provide pre-bound functions that allow the component to dispatch
- * actions to the Redux store as props for this component.
- */
-const mapActionsToProps = {
-  openModal,
-};
-
-/**
  * Export the container component.
  */
-export default connect(mapStateToProps, mapActionsToProps)(Survey);
+export default connect(mapStateToProps)(Survey);
