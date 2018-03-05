@@ -18,7 +18,7 @@ const mountModal = () => {
       openModal={openModalMock}
       countdown={MODAL_COUNTDOWN}
       modalType={MODAL_TYPE}
-    />
+    />,
   );
 
   return openModalMock;
