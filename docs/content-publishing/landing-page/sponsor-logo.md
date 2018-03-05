@@ -11,5 +11,5 @@
   - **Link**: this is the actual link for the affiliate sponsor, where the footer will link to externally.
   - **Logo**: this is the logo for the affiliate sponsor that is in the lede banner and in other components on the site.
 
-7) After you are finished, _Publish_ the affiliate sponsor and then go back to the main page.
-![Affiliate sponsor added](../_assets/affiliatesponsor_added.png)
+4) After you are finished, _Publish_ the affiliate sponsor and then go back to the main page.
+![Affiliate sponsor added](../_assets/affiliate-sponsor-added.png)
