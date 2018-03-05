@@ -69,17 +69,11 @@ const ShareAction = (props) => {
 };
 
 ShareAction.defaultProps = {
-  affirmation: null,
-  confirmationAction: null,
-  confirmationActionLink: null,
   content: null,
 };
 
 ShareAction.propTypes = {
   id: PropTypes.string.isRequired,
-  // affirmation: PropTypes.string,
-  // confirmationAction: PropTypes.string,
-  // confirmationActionLink: PropTypes.string,
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
