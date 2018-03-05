@@ -10,7 +10,7 @@ import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 import './share-action.scss';
 
 const ShareAction = (props) => {
-  const { title, content, link, socialPlatform, openModal, trackEvent } = props;
+  const { id, title, content, link, socialPlatform, openModal, trackEvent } = props;
 
   const onFacebookClick = () => {
     const trackingData = { url: link };
@@ -19,7 +19,8 @@ const ShareAction = (props) => {
     showFacebookSharePrompt({ href: link }, (response) => {
       if (response) {
         trackEvent('share action completed', trackingData);
-        openModal(POST_SHARE_MODAL);
+        // @TODO: Render a <Modal>...</Modal> component here!
+        openModal(POST_SHARE_MODAL, id);
       } else {
         trackEvent('share action cancelled', trackingData);
       }
@@ -72,6 +73,7 @@ ShareAction.defaultProps = {
 };
 
 ShareAction.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,

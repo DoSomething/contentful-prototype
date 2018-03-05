@@ -8,10 +8,9 @@ import {
 } from '../Modal';
 
 const ModalSwitch = (props) => {
-  const { modalType } = props;
   let children = null;
 
-  switch (modalType) {
+  switch (props.modalType) {
     case POST_SIGNUP_MODAL:
       children = <PostSignupModal />;
       break;
@@ -25,7 +24,7 @@ const ModalSwitch = (props) => {
       children = <SurveyModalContainer />;
       break;
     case POST_SHARE_MODAL:
-      children = <PostShareModalContainer />;
+      children = <PostShareModalContainer id={props.id} />;
       break;
     case POST_REPORTBACK_MODAL:
       children = <PostReportbackModalContainer />;
@@ -40,10 +39,12 @@ const ModalSwitch = (props) => {
 
 ModalSwitch.propTypes = {
   modalType: PropTypes.string,
+  id: PropTypes.string,
 };
 
 ModalSwitch.defaultProps = {
   modalType: null,
+  id: null,
 };
 
 export default ModalSwitch;

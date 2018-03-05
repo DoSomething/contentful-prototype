@@ -160,7 +160,7 @@ export function renderShareAction(step) {
   return (
     <div key={`share-action-${contentfulId}`} className="margin-horizontal-md">
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
-      <ShareActionContainer {...step.fields} />
+      <ShareActionContainer id={step.id} {...step.fields} />
       <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
     </div>
   );
