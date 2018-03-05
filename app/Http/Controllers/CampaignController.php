@@ -71,6 +71,7 @@ class CampaignController extends Controller
             'campaign' => $campaign,
             'user' => [
                 'id' => auth()->id(),
+                'isAuthenticated' => auth()->check(),
                 'role' => auth()->user() ? auth()->user()->role : null,
             ],
         ]);

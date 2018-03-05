@@ -5,7 +5,7 @@
  * @returns {String}
  */
 export function isAuthenticated(state) {
-  return Boolean(state.user.id);
+  return state.user.isAuthenticated;
 }
 
 /**

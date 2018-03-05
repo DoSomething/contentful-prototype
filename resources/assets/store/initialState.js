@@ -63,6 +63,7 @@ const initialState = {
   uploads: {},
   user: {
     id: null,
+    isAuthenticated: false,
     role: null,
   },
 };
