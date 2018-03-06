@@ -75,7 +75,6 @@ class Entity implements ArrayAccess, JsonSerializable
         }
     }
 
-
     /**
      * Dynamically access the campaign's attributes.
      *
