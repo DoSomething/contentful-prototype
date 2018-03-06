@@ -15,7 +15,6 @@ const Campaign = props => (
     </AdminDashboardContainer>
 
     <NotificationContainer />
-    <ModalSwitch />
     <ModalSwitchContainer />
 
     <TrafficDistribution percentage={5} feature="nps_survey">
