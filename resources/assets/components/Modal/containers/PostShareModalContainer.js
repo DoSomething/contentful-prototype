@@ -4,11 +4,6 @@ import PostShareModal from '../configurations/PostShareModal';
 import { closeModal } from '../../../actions/modal';
 
 const mapStateToProps = (state) => {
-  const actions = state.campaign.actionSteps;
-  if (! actions) {
-    return {};
-  }
-
   const id = state.modal.contentfulId;
   const json = find(state.campaign.pages, { id })
     || find(state.campaign.actionSteps, { id })
