@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ModalSwitch from '../Modal';
-import SurveyContainer from '../Survey';
+import { ModalSwitchContainer, SURVEY_MODAL } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../TrafficDistribution';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import { AdminDashboardContainer, CampaignDashboardContainer } from '../AdminDashboard';
+import ModalLauncherContainer from '../ModalLauncher';
 
 const Campaign = props => (
   <div>
@@ -16,9 +16,14 @@ const Campaign = props => (
 
     <NotificationContainer />
     <ModalSwitch />
+    <ModalSwitchContainer />
 
     <TrafficDistribution percentage={5} feature="nps_survey">
-      <SurveyContainer />
+      <ModalLauncherContainer
+        type="nps_survey"
+        countdown={60}
+        modalType={SURVEY_MODAL}
+      />
     </TrafficDistribution>
 
     { props.shouldShowLandingPage ?
