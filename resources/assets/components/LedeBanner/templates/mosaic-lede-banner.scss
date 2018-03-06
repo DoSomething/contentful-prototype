@@ -86,11 +86,9 @@
     top: -$half-spacing;
   }
 
-  @include media("(max-width: 450px)") {
-    &.smaller-font {
-      font-size: 15px;
-      top: -4px;
-    }
+  &.smaller-font {
+    position: relative;
+    top: 0;
   }
 }
 
