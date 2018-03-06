@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
 
-import ModalLauncher from './ModalLauncher';
 import { openModal } from '../../actions';
+import ModalLauncher from './ModalLauncher';
+import { getUserId, isAuthenticated } from '../../selectors/user';
+
+const mapStateToProps = state => ({
+  userId: getUserId(state),
+  isAuthenticated: isAuthenticated(state),
+});
 
 /**
  * Provide pre-bound functions that allow the component to dispatch
@@ -14,4 +20,4 @@ const mapActionsToProps = {
 /**
  * Export the container component.
  */
-export default connect(null, mapActionsToProps)(ModalLauncher);
+export default connect(mapStateToProps, mapActionsToProps)(ModalLauncher);
