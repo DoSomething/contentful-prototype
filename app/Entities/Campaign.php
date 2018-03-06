@@ -104,45 +104,6 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
-     * Parse and extract data for a block.
-     *
-     * @param  Entry $step
-     * @return array
-     */
-    public function parseBlock($block)
-    {
-        switch ($block->getContentType()) {
-            case 'photoUploaderAction':
-                return new PhotoUploaderAction($block->entry);
-            case 'voterRegistrationAction':
-                return new VoterRegistrationAction($block->entry);
-            case 'shareAction':
-                return new ShareAction($block->entry);
-            case 'linkAction':
-                return new LinkAction($block->entry);
-            case 'affirmation':
-                return new Affirmation($block->entry);
-            case 'page':
-                return $block;
-            default:
-                return new CampaignActionStep($block->entry);
-        }
-    }
-
-    /**
-     * Parse and extract data for blocks.
-     *
-     * @param  array $blocks
-     * @return array
-     */
-    public function parseBlocks($blocks)
-    {
-        return collect($blocks)->map(function ($block) {
-            return $this->parseBlock($block);
-        });
-    }
-
-    /**
      * Parse and extract data for quizzes.
      *
      * @param  array $quizzes
