@@ -49,10 +49,6 @@ export default (history, timeout = 1000) => {
       reset();
     }
 
-    if (action !== 'PUSH' && location.pathname !== window.location.pathname) {
-      return;
-    }
-
     if (typeof location.hash !== 'string') {
       return;
     }
