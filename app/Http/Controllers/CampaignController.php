@@ -57,6 +57,7 @@ class CampaignController extends Controller
                 'id' => auth()->id() ?: $request->query('user_id'),
                 'isAuthenticated' => auth()->check(),
                 'role' => auth()->user() ? auth()->user()->role : null,
+                'source' => $request->query('utm_source'),
             ],
         ]);
     }
