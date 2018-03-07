@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Enclosure from '../../Enclosure';
-import { convertExperiment } from '../../actions';
 import ExperimentContainer from '../../Experiment';
+import { convertExperiment } from '../../../actions';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import PitchTemplate from './templates/PitchTemplate';
 import LedeBannerAltB from '../../LedeBanner/LedeBannerAltB';
@@ -26,7 +26,7 @@ const LandingPage = (props) => {
 
   return (
     <div>
-      <ExperimentContainer>
+      <ExperimentContainer name="lede_banner_design_variations">
         <LedeBanner
           experiment="lede_banner_design_variations"
           alternative="mosaic"

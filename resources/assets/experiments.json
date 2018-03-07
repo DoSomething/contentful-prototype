@@ -3,7 +3,8 @@
     "meta": {
       "preTest": {
         "campaign.allowExperiments": true
-      }
+      },
+      "convertOnSignupIntent": true
     },
     "alternatives": {
       "a": "mosaic",
