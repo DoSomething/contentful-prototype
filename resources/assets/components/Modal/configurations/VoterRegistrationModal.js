@@ -9,11 +9,9 @@ const VoterRegistrationModal = (props) => {
   const link = 'https://dosomething.turbovote.org/?r=user:{northstarId},campaignID:{campaignId},campaignRunID:{campaignRunId},source:{source}';
 
   return (
-    <div className="modal__slide">
-      <ModalControls onClose={props.closeModal}>
-        <VoterRegistrationActionContainer content={content} link={link} />
-      </ModalControls>
-    </div>
+    <ModalControls className="modal__slide" onClose={props.closeModal}>
+      <VoterRegistrationActionContainer content={content} link={link} />
+    </ModalControls>
   );
 };
 
