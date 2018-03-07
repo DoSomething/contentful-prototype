@@ -48,6 +48,9 @@ class CampaignController extends Controller
         $campaign = $this->campaignRepository->findBySlug($slug);
 
         return view('campaigns.show', [
+            // This is used to build campaign-specific login links in the
+            // server-rendered top navigation bar.
+            'campaign' => $campaign,
             // We render social metatags server-side because Facebook & Twitter
             // do not render JavaScript when crawling pages like Google does.
             'socialFields' => get_social_fields($campaign, $request->url()),
