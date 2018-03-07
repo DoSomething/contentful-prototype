@@ -1,4 +1,15 @@
 {
+  "lede_banner_design_variations": {
+    "meta": {
+      "preTest": {
+        "campaign.allowExperiments": true
+      }
+    },
+    "alternatives": {
+      "a": "mosaic",
+      "b": "cover"
+    }
+  },
   "competitions_prompt_style": {
     "meta": {
       "preTest": {

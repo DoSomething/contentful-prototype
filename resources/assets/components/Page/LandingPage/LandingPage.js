@@ -5,8 +5,11 @@ import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Enclosure from '../../Enclosure';
+import { convertExperiment } from '../../actions';
+import ExperimentContainer from '../../Experiment';
 import LedeBanner from '../../LedeBanner/LedeBanner';
 import PitchTemplate from './templates/PitchTemplate';
+import LedeBannerAltB from '../../LedeBanner/LedeBannerAltB';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
@@ -23,19 +26,42 @@ const LandingPage = (props) => {
 
   return (
     <div>
-      <LedeBanner
-        isAffiliated={isAffiliated}
-        title={title}
-        subtitle={subtitle}
-        blurb={blurb}
-        coverImage={coverImage}
-        legacyCampaignId={legacyCampaignId}
-        endDate={endDate}
-        template={template}
-        affiliateSponsors={affiliateSponsors}
-        signupArrowContent={signupArrowContent}
-        showPartnerMsgOptIn={showPartnerMsgOptIn}
-      />
+      <ExperimentContainer>
+        <LedeBanner
+          experiment="lede_banner_design_variations"
+          alternative="mosaic"
+          convert={convertExperiment}
+          isAffiliated={isAffiliated}
+          title={title}
+          subtitle={subtitle}
+          blurb={blurb}
+          coverImage={coverImage}
+          legacyCampaignId={legacyCampaignId}
+          endDate={endDate}
+          template={template}
+          affiliateSponsors={affiliateSponsors}
+          signupArrowContent={signupArrowContent}
+          showPartnerMsgOptIn={showPartnerMsgOptIn}
+          actionText={actionText}
+        />
+        <LedeBannerAltB
+          experiment="lede_banner_design_variations"
+          alternative="cover"
+          convert={convertExperiment}
+          isAffiliated={isAffiliated}
+          title={title}
+          subtitle={subtitle}
+          blurb={blurb}
+          coverImage={coverImage}
+          legacyCampaignId={legacyCampaignId}
+          endDate={endDate}
+          template="cover"
+          affiliateSponsors={affiliateSponsors}
+          signupArrowContent={signupArrowContent}
+          showPartnerMsgOptIn={showPartnerMsgOptIn}
+          actionText={actionText}
+        />
+      </ExperimentContainer>
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
