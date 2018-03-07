@@ -58,15 +58,12 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        $env = get_client_environment_vars();
-
         // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
         $socialFields = get_social_fields($campaign, Request::url());
 
         return view('campaigns.show', [
             'campaign' => $campaign,
             'socialFields' => $socialFields,
-            'env' => $env,
         ])->with('state', [
             'campaign' => $campaign,
             'user' => [

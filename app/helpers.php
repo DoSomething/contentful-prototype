@@ -317,28 +317,6 @@ function phoenixLink($path)
 }
 
 /**
- * Get the env vars which are safe for client usage.
- *
- * @return array
- */
-function get_client_environment_vars()
-{
-    return [
-        'APP_ENV' => config('app.env'),
-        'GLADIATOR_URL' => config('services.gladiator.url'),
-        'NORTHSTAR_URL' => config('services.northstar.url'),
-        'PHOENIX_URL' => config('services.phoenix.url'),
-        'PHOENIX_LEGACY_URL' => config('services.phoenix-legacy.url'),
-        'PUCK_URL' => config('services.analytics.puck_url'),
-        'SIXPACK_BASE_URL' => config('services.sixpack.url'),
-        'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
-        'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
-        'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-        'SURVEY_ENABLED' => config('services.survey.enabled'),
-    ];
-}
-
-/**
  * Get the presentation values we should package with our
  * Northstar authorization requests.
  *
