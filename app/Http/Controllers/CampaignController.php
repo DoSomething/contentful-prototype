@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Request;
-use App\Services\PhoenixLegacy;
+use Illuminate\Http\Request;
 use App\Repositories\CampaignRepository;
 
 class CampaignController extends Controller
@@ -17,23 +15,14 @@ class CampaignController extends Controller
     protected $campaignRepository;
 
     /**
-     * The legacy Phoenix API.
-     *
-     * @var PhoenixLegacy
-     */
-    private $phoenixLegacy;
-
-    /**
      * Make a new CampaignController, inject dependencies,
      * and set middleware for this controller's methods.
      *
      * @param CampaignRepository $campaignRepository
-     * @param PhoenixLegacy $phoenixLegacy
      */
-    public function __construct(CampaignRepository $campaignRepository, PhoenixLegacy $phoenixLegacy)
+    public function __construct(CampaignRepository $campaignRepository)
     {
         $this->campaignRepository = $campaignRepository;
-        $this->phoenixLegacy = $phoenixLegacy;
     }
 
     /**
@@ -54,25 +43,24 @@ class CampaignController extends Controller
      * @param  int  $slug
      * @return \Illuminate\View\View
      */
-    public function show($slug)
+    public function show($slug, Request $request)
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        $env = get_client_environment_vars();
-
-        // The slug argument will not contain `/blocks` or other path extensions, hence `::url()`.
-        $socialFields = get_social_fields($campaign, Request::url());
-
         return view('campaigns.show', [
+            // This is used to build campaign-specific login links in the
+            // server-rendered top navigation bar.
             'campaign' => $campaign,
-            'socialFields' => $socialFields,
-            'env' => $env,
+            // We render social metatags server-side because Facebook & Twitter
+            // do not render JavaScript when crawling pages like Google does.
+            'socialFields' => get_social_fields($campaign, $request->url()),
         ])->with('state', [
             'campaign' => $campaign,
             'user' => [
-                'id' => auth()->id() ?: request()->query('user_id'),
+                'id' => auth()->id() ?: $request->query('user_id'),
                 'isAuthenticated' => auth()->check(),
                 'role' => auth()->user() ? auth()->user()->role : null,
+                'source' => $request->query('utm_source'),
             ],
         ]);
     }

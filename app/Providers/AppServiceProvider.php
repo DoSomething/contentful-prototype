@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Contentful\Delivery\Client as DeliveryClient;
@@ -29,6 +30,23 @@ class AppServiceProvider extends ServiceProvider
 
                 return redirect($to);
             });
+        });
+
+        // Attach "client-safe" environment variables to views.
+        View::composer('*', function ($view) {
+            $view->with('env', [
+                'APP_ENV' => config('app.env'),
+                'GLADIATOR_URL' => config('services.gladiator.url'),
+                'NORTHSTAR_URL' => config('services.northstar.url'),
+                'PHOENIX_URL' => config('services.phoenix.url'),
+                'PHOENIX_LEGACY_URL' => config('services.phoenix-legacy.url'),
+                'PUCK_URL' => config('services.analytics.puck_url'),
+                'SIXPACK_BASE_URL' => config('services.sixpack.url'),
+                'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
+                'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
+                'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
+                'SURVEY_ENABLED' => config('services.survey.enabled'),
+            ]);
         });
     }
 

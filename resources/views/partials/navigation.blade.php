@@ -21,15 +21,11 @@
                 @if (Auth::user())
                     <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
                     <ul>
-                        <li><a href="{{ phoenixLink('northstar/' . Auth::user()->northstar_id) }}">Profile</a></li>
+                        <li><a href="{{ phoenixLink('northstar/' . Auth::id()) }}">Profile</a></li>
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    @if (isset($campaign))
-                        <a href="{{ route('login', get_login_query($campaign)) }}">Log In</a>
-                    @else
-                        <a href="{{ route('login') }}">Log In</a>
-                    @endif
+                    <a href="{{ route('login', isset($campaign) ? get_login_query($campaign) : null) }}">Log In</a>
                 @endif
             </li>
         </ul>
