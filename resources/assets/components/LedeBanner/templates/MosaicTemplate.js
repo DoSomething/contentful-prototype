@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import Markdown from '../../Markdown';
-import SignupButtonFactory from '../../SignupButton';
+import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
@@ -16,14 +16,12 @@ const MosaicTemplate = (props) => {
   const {
     affiliatedActionText,
     affiliatedActionLink,
-    actionText,
     affiliateSponsors,
     title,
     subtitle,
     blurb,
     coverImage,
     isAffiliated,
-    legacyCampaignId,
     showPartnerMsgOptIn,
     signupArrowContent,
   } = props;
@@ -32,20 +30,15 @@ const MosaicTemplate = (props) => {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
   };
 
-  const signupArrowComponent = signupArrowContent ? (
-    <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
-  ) : null;
-
-  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
+  const signupButton = (
     <div className="mosaic-lede-banner__signup">
-      <button
-        className={classnames('button', { '-float': affiliateSponsors.length })}
-        onClick={() => clickedSignUp(legacyCampaignId)}
-      >{ actionText }</button>
-      { signupArrowComponent }
+      <SignupButton className={classnames({ '-float': affiliateSponsors.length })} source="lede banner" />
+      { signupArrowContent ? (
+        <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
+      ) : null }
       { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
     </div>
-  ), 'lede banner', { text: actionText });
+  );
 
   const actionButton = affiliatedActionLink ? (
     <div className="mosaic-lede-banner__signup">
@@ -69,7 +62,7 @@ const MosaicTemplate = (props) => {
 
           { blurb ? <Markdown className="mosaic-lede-banner__blurb">{blurb}</Markdown> : null }
 
-          { isAffiliated ? actionButton : <SignupButton /> }
+          { isAffiliated ? actionButton : signupButton }
 
           { affiliateSponsors.length ?
             <SponsorPromotion
@@ -89,7 +82,6 @@ const MosaicTemplate = (props) => {
 MosaicTemplate.propTypes = {
   affiliatedActionText: PropTypes.string,
   affiliatedActionLink: PropTypes.string,
-  actionText: PropTypes.string.isRequired,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   blurb: PropTypes.string,
   coverImage: PropTypes.shape({
@@ -97,7 +89,6 @@ MosaicTemplate.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   isAffiliated: PropTypes.bool.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   showPartnerMsgOptIn: PropTypes.bool.isRequired,

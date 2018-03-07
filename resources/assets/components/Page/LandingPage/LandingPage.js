@@ -13,7 +13,7 @@ import './landing-page.scss';
 
 const LandingPage = (props) => {
   const {
-    actionText, affiliateSponsors, blurb, coverImage,
+    affiliateSponsors, blurb, coverImage,
     endDate, isAffiliated, legacyCampaignId, pitchContent,
     sidebar, showPartnerMsgOptIn, signupArrowContent,
     subtitle, tagline, template, title,
@@ -35,7 +35,6 @@ const LandingPage = (props) => {
         affiliateSponsors={affiliateSponsors}
         signupArrowContent={signupArrowContent}
         showPartnerMsgOptIn={showPartnerMsgOptIn}
-        actionText={actionText}
       />
 
       <div className="clearfix bg-white">
@@ -59,7 +58,6 @@ const LandingPage = (props) => {
 };
 
 LandingPage.propTypes = {
-  actionText: PropTypes.string.isRequired,
   blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,

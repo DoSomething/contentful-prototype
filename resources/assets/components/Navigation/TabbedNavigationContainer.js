@@ -7,18 +7,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import Button from '../Button/Button';
 import NavigationLink from '../Navigation/NavigationLink';
 import TabbedNavigation from './TabbedNavigation';
 import { campaignPaths } from '../../helpers/navigation';
 import { isCampaignClosed } from '../../helpers';
-import SignupButtonFactory from '../SignupButton';
+import SignupButton from '../SignupButton';
 
 const mapStateToProps = state => ({
-  actionText: state.campaign.actionText,
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   isAffiliated: state.signups.thisCampaign,
-  legacyCampaignId: state.campaign.legacyCampaignId,
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
   campaignEndDate: get(state.campaign.endDate, 'date', null),
@@ -28,7 +25,7 @@ const mapStateToProps = state => ({
 
 const TabbedNavigationContainer = (props) => {
   const {
-    actionText, hasActivityFeed, isAffiliated, legacyCampaignId,
+    hasActivityFeed, isAffiliated,
     pages, campaignEndDate, template,
   } = props;
 
@@ -58,10 +55,6 @@ const TabbedNavigationContainer = (props) => {
         <NavigationLink key={page.id} to={path}>{page.fields.title}</NavigationLink>
       );
     });
-
-  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <Button className="-inline nav-button" onClick={() => clickedSignUp(legacyCampaignId)} text={actionText} />
-  ), 'tabbed navigation', { text: actionText });
 
   const shouldHideCommunity = ! hasActivityFeed;
   const shouldHideAction = (isClosed || (shouldHideCommunity && additionalPages.length === 0));
@@ -110,18 +103,16 @@ const TabbedNavigationContainer = (props) => {
         <CommunityNavigationLink />
         { additionalPages }
       </div>
-      { isAffiliated ? null : <SignupButton /> }
+      { isAffiliated ? null : <SignupButton className="-inline nav-button" source="tabbed navigation" /> }
     </TabbedNavigation>
   );
 };
 
 TabbedNavigationContainer.propTypes = {
-  actionText: PropTypes.string.isRequired,
   campaignEndDate: PropTypes.string,
   campaignSlug: PropTypes.string.isRequired,
   hasActivityFeed: PropTypes.bool.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
   pages: PropTypes.oneOfType([
     PropTypes.array,
   ]),
