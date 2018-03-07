@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
 import { clickedSignUp } from '../../actions/signup';
@@ -12,7 +11,7 @@ import SignupButton from './SignupButton';
 const mapStateToProps = state => ({
   template: state.campaign.template,
   experiments: state.experiments,
-  actionText: state.campaign.actionText,
+  campaignActionText: state.campaign.actionText,
   legacyCampaignId: state.campaign.legacyCampaignId,
 });
 

@@ -4,8 +4,10 @@ import classnames from 'classnames';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 const SignupButton = (props) => {
-  const { actionText, className, clickedSignUp, experiments, template,
-    source, trackEvent, legacyCampaignId, convertExperiment } = props;
+  const { campaignActionText, className, clickedSignUp, experiments, source,
+    template, text, trackEvent, legacyCampaignId, convertExperiment } = props;
+
+  const buttonText = text || campaignActionText;
 
   const convertExperiments = () => {
     Object.keys(experiments).forEach((experiment) => {
@@ -23,17 +25,18 @@ const SignupButton = (props) => {
       template,
       legacyCampaignId,
       source,
-      sourceData: { text: actionText },
+      sourceData: { text: buttonText },
     });
   };
 
   return (
-    <button className={classnames('button', className)} onClick={onSignup}>{ actionText }</button>
+    <button className={classnames('button', className)} onClick={onSignup}>{ buttonText }</button>
   );
 };
 
 SignupButton.propTypes = {
-  actionText: PropTypes.string,
+  text: PropTypes.string,
+  campaignActionText: PropTypes.string,
   className: PropTypes.string,
   clickedSignUp: PropTypes.func.isRequired,
   convertExperiment: PropTypes.func.isRequired,
@@ -45,7 +48,8 @@ SignupButton.propTypes = {
 };
 
 SignupButton.defaultProps = {
-  actionText: 'Take Action',
+  text: null,
+  campaignActionText: 'Take Action',
   className: null,
   template: null,
 };
