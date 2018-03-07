@@ -1,59 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PuckConnector } from '@dosomething/puck-client';
-import SignupButtonContainer from './SignupButtonContainer';
+import classnames from 'classnames';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
-/**
- * HOC for wrapping signup buttons. Handles tracking
- * and dispatching the signup action.
- *
- * @param {Component} WrappedComponent
- * @param {String} source
- * @param {Object} sourceData
- * @return {Class} <SignupButton />
- */
-const SignupButtonFactory = (WrappedComponent, source = null, sourceData = null) => {
-  const SignupButton = (props) => {
-    const { clickedSignUp, template, trackEvent, experiments, convertExperiment } = props;
+const SignupButton = (props) => {
+  const { campaignActionText, className, clickedSignUp, experiments, source,
+    template, text, trackEvent, legacyCampaignId, convertExperiment } = props;
 
-    const convertExperiments = () => {
-      Object.keys(experiments).forEach((experiment) => {
-        if (convertOnSignupIntent(experiment)) {
-          convertExperiment(experiment);
-        }
-      });
-    };
+  const buttonText = text || campaignActionText;
 
-    const onSignup = (campaignId) => {
-      convertExperiments();
-      clickedSignUp(campaignId);
-      trackEvent('signup', {
-        template,
-        campaignId,
-        source,
-        sourceData,
-      });
-    };
-
-    return (
-      <WrappedComponent {...props} clickedSignUp={onSignup} />
-    );
+  const convertExperiments = () => {
+    Object.keys(experiments).forEach((experiment) => {
+      if (convertOnSignupIntent(experiment)) {
+        convertExperiment(experiment);
+      }
+    });
   };
 
-  SignupButton.propTypes = {
-    clickedSignUp: PropTypes.func.isRequired,
-    template: PropTypes.string,
-    trackEvent: PropTypes.func.isRequired,
-    experiments: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-    convertExperiment: PropTypes.func.isRequired,
+  // Decorate click handler for A/B tests & analytics.
+  const onSignup = () => {
+    convertExperiments();
+    clickedSignUp(legacyCampaignId);
+    trackEvent('signup', {
+      template,
+      legacyCampaignId,
+      source,
+      sourceData: { text: buttonText },
+    });
   };
 
-  SignupButton.defaultProps = {
-    template: null,
-  };
-
-  return SignupButtonContainer(PuckConnector(SignupButton));
+  return (
+    <button className={classnames('button', className)} onClick={onSignup}>{ buttonText }</button>
+  );
 };
 
-export default SignupButtonFactory;
+SignupButton.propTypes = {
+  text: PropTypes.string,
+  campaignActionText: PropTypes.string,
+  className: PropTypes.string,
+  clickedSignUp: PropTypes.func.isRequired,
+  convertExperiment: PropTypes.func.isRequired,
+  experiments: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  legacyCampaignId: PropTypes.string.isRequired,
+  source: PropTypes.string.isRequired,
+  template: PropTypes.string,
+  trackEvent: PropTypes.func.isRequired,
+};
+
+SignupButton.defaultProps = {
+  text: null,
+  campaignActionText: 'Take Action',
+  className: null,
+  template: null,
+};
+
+export default SignupButton;

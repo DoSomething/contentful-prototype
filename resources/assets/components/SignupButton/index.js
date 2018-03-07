@@ -1,1 +1,1 @@
-export default from './SignupButton';
+export default from './SignupButtonContainer';
