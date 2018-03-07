@@ -7,7 +7,7 @@ import BlockModal from './BlockModal';
 const PostShareModal = (props) => {
   const { affirmationText, affirmationBlock, closeModal } = props;
 
-  // If we have a block to show, render it as a content modal:
+  // If we have a block to show, render it as a block modal:
   if (affirmationBlock) {
     return (
       <BlockModal closeModal={closeModal} json={affirmationBlock} />
