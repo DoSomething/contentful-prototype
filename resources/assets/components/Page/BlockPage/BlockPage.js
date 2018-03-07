@@ -24,7 +24,7 @@ BlockPage.propTypes = {
 };
 
 BlockPage.defaultProps = {
-  json: null, // eslint-disable-line react/forbid-prop-types
+  json: null,
 };
 
 export default BlockPage;
