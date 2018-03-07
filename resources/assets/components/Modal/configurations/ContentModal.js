@@ -1,48 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../Card';
-import Markdown from '../../Markdown';
-import NotFound from '../../NotFound';
-import { CampaignUpdateContainer } from '../../CampaignUpdate';
+import ContentfulEntry from '../../ContentfulEntry';
+import ModalControls from '../ModalControls';
 
 const ContentModal = (props) => {
-  const { content, closeModal, title, type, contentfulId } = props;
+  const { json, closeModal } = props;
 
-  const campaignUpdate = (
-    <div className="modal__slide">
-      <CampaignUpdateContainer id={contentfulId} bordered={false} closeModal={closeModal} />
-    </div>
+  return (
+    <ModalControls className="modal__slide" onClose={closeModal}>
+      <ContentfulEntry json={json} />
+    </ModalControls>
   );
-
-  const card = (
-    <Card title={title} className="modal__slide" onClose={closeModal}>
-      {
-        content ?
-          <Markdown className="padded">{ content }</Markdown>
-          :
-          <NotFound />
-      }
-    </Card>
-  );
-
-  switch (type) {
-    case 'campaignUpdate':
-      return campaignUpdate;
-    default:
-      return card;
-  }
 };
 
 ContentModal.propTypes = {
-  content: PropTypes.string.isRequired,
-  contentfulId: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
-  title: PropTypes.string,
-  type: PropTypes.string.isRequired,
+  json: PropTypes.object, // eslint-disable-line
 };
 
 ContentModal.defaultProps = {
-  title: null,
+  json: null,
 };
 
 export default ContentModal;
