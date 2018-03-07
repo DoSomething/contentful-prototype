@@ -2,18 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../../Card';
 import Markdown from '../../Markdown';
-import ModalControls from '../ModalControls';
-import ContentfulEntry from '../../ContentfulEntry';
+import ContentModal from './ContentModal';
 
 const PostShareModal = (props) => {
   const { affirmationText, affirmationBlock, closeModal } = props;
 
-  // If we have a block to show, render it as a modal:
+  // If we have a block to show, render it as a content modal:
   if (affirmationBlock) {
     return (
-      <ModalControls onClose={closeModal}>
-        <ContentfulEntry json={affirmationBlock} />
-      </ModalControls>
+      <ContentModal closeModal={closeModal} json={affirmationBlock} />
     );
   }
 
