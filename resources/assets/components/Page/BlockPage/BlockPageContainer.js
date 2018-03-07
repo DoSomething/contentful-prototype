@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { find } from 'lodash';
 import BlockPage from './BlockPage';
+import { findContentfulEntry } from '../../../helpers';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -8,9 +8,7 @@ import BlockPage from './BlockPage';
 const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params;
 
-  const json = find(state.campaign.pages, { id })
-    || find(state.campaign.actionSteps, { id })
-    || find(state.campaign.activityFeed, { id });
+  const json = findContentfulEntry(state, id);
 
   return { json };
 };
