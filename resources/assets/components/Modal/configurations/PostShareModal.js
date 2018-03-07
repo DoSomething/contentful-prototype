@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '../../Card';
 import Markdown from '../../Markdown';
-import ContentModal from './ContentModal';
+import BlockModal from './BlockModal';
 
 const PostShareModal = (props) => {
   const { affirmationText, affirmationBlock, closeModal } = props;
@@ -10,7 +10,7 @@ const PostShareModal = (props) => {
   // If we have a block to show, render it as a content modal:
   if (affirmationBlock) {
     return (
-      <ContentModal closeModal={closeModal} json={affirmationBlock} />
+      <BlockModal closeModal={closeModal} json={affirmationBlock} />
     );
   }
 

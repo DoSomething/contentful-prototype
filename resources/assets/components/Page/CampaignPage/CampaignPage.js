@@ -10,7 +10,7 @@ import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
-import { CONTENT_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
+import { BLOCK_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
@@ -75,7 +75,7 @@ const CampaignPage = (props) => {
                   openModal(REPORTBACK_UPLOADER_MODAL);
                   break;
                 default:
-                  openModal(CONTENT_MODAL, id);
+                  openModal(BLOCK_MODAL, id);
                   break;
               }
 

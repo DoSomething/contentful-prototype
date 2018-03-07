@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import ContentfulEntry from '../../ContentfulEntry';
 import ModalControls from '../ModalControls';
 
-const ContentModal = (props) => {
+const BlockModal = (props) => {
   const { json, closeModal } = props;
+
+  json.fields.bordered = false;
 
   return (
     <ModalControls className="modal__slide" onClose={closeModal}>
@@ -13,13 +15,13 @@ const ContentModal = (props) => {
   );
 };
 
-ContentModal.propTypes = {
+BlockModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   json: PropTypes.object, // eslint-disable-line
 };
 
-ContentModal.defaultProps = {
+BlockModal.defaultProps = {
   json: null,
 };
 
-export default ContentModal;
+export default BlockModal;

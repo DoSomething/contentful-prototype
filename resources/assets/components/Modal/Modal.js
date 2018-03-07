@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Portal from 'react-portal';
 import {
   POST_SIGNUP_MODAL, POST_SHARE_MODAL, CONTENT_MODAL,
+  POST_SIGNUP_MODAL, POST_SHARE_MODAL, BLOCK_MODAL,
 } from '../Modal';
 
 import './modal.scss';
@@ -49,6 +50,7 @@ class Modal extends React.Component {
       POST_SIGNUP_MODAL,
       POST_SHARE_MODAL,
       CONTENT_MODAL,
+      BLOCK_MODAL,
     ].includes(modalType);
 
     return (
