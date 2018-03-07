@@ -68,6 +68,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new LinkAction($block->entry);
             case 'affirmation':
                 return new Affirmation($block->entry);
+            case 'campaignUpdate':
+                return new CampaignUpdate($block->entry);
             case 'page':
                 return $block;
             default:
