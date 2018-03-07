@@ -21,7 +21,7 @@ describe('ShareAction component', () => {
       openModal={openModalMock}
       link={url}
       socialPlatform={socialPlatform}
-      id='1234'
+      id="1234"
     />,
   );
 
