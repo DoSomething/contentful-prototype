@@ -44,13 +44,9 @@ export default (history, timeout = 1000) => {
     return false;
   };
 
-  history.listen((location, action) => {
+  history.listen((location) => {
     if (timeoutId) {
       reset();
-    }
-
-    if (action !== 'PUSH') {
-      return;
     }
 
     if (typeof location.hash !== 'string') {
