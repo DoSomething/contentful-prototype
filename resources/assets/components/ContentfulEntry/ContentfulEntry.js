@@ -47,7 +47,6 @@ const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: Conten
           content={json.fields.content}
           displayOptions={json.fields.displayOptions}
           link={json.fields.link}
-          bordered={false}
         />
       );
 
