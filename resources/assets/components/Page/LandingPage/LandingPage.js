@@ -42,7 +42,6 @@ const LandingPage = (props) => {
           affiliateSponsors={affiliateSponsors}
           signupArrowContent={signupArrowContent}
           showPartnerMsgOptIn={showPartnerMsgOptIn}
-          actionText={actionText}
         />
         <LedeBannerAltB
           experiment="lede_banner_design_variations"
@@ -59,7 +58,6 @@ const LandingPage = (props) => {
           affiliateSponsors={affiliateSponsors}
           signupArrowContent={signupArrowContent}
           showPartnerMsgOptIn={showPartnerMsgOptIn}
-          actionText={actionText}
         />
       </ExperimentContainer>
 
