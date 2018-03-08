@@ -1,6 +1,6 @@
 /* global window, document, Blob, FB, URL */
 
-import get from 'lodash/get';
+import { get, find } from 'lodash';
 import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
 import { isPast, parse } from 'date-fns';
@@ -436,6 +436,20 @@ export function query(key, url = window.location) {
   const search = queryString.parse(url.search);
 
   return search[key];
+}
+
+/**
+ * Find an entry from within the campaign by given ID param.
+ * (Returns false if not found).
+ *
+ * @param  {Object} state
+ * @param  {String} id
+ * @return {Object|Undefined}
+ */
+export function findContentfulEntry(state, id) {
+  return find(state.campaign.pages, { id })
+    || find(state.campaign.actionSteps, { id })
+    || find(state.campaign.activityFeed, { id });
 }
 
 /**

@@ -42,6 +42,7 @@ const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: Conten
       return (
         <CampaignUpdateContainer
           id={json.id}
+          affiliateLogo={json.fields.affiliateLogo}
           author={json.fields.author}
           content={json.fields.content}
           displayOptions={json.fields.displayOptions}

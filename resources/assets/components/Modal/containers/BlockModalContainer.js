@@ -1,21 +1,18 @@
 import { connect } from 'react-redux';
-import { get } from 'lodash';
-import PostShareModal from '../configurations/PostShareModal';
+import BlockModal from '../configurations/BlockModal';
 import { closeModal } from '../../../actions/modal';
 import { findContentfulEntry } from '../../../helpers';
 
 const mapStateToProps = (state) => {
   const id = state.modal.contentfulId;
+
   const json = findContentfulEntry(state, id);
 
-  return {
-    affirmationText: get(json, 'fields.affirmation'),
-    affirmationBlock: get(json, 'fields.affirmationBlock'),
-  };
+  return { json };
 };
 
 const actionCreators = {
   closeModal,
 };
 
-export default connect(mapStateToProps, actionCreators)(PostShareModal);
+export default connect(mapStateToProps, actionCreators)(BlockModal);

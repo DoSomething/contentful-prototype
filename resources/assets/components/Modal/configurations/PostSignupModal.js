@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContentfulEntry from '../../ContentfulEntry';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
-import { ModalControls } from '../../Modal';
 import SlideshowContainer from '../../Slideshow';
+import BlockModal from './BlockModal';
 
 const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
   <div className="modal__slide">
@@ -15,9 +14,7 @@ const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
           byline={competitionStep.additionalContent}
         />
       ) : null }
-      <ModalControls onClose={closeModal}>
-        <ContentfulEntry json={affirmation} />
-      </ModalControls>
+      <BlockModal closeModal={closeModal} json={affirmation} />
     </SlideshowContainer>
   </div>
 );
