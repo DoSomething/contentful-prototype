@@ -14,6 +14,8 @@ const mapStateToProps = state => ({
   endDate: state.campaign.endDate,
   isAffiliated: state.signups.thisCampaign,
   affiliateSponsors: state.campaign.affiliateSponsors,
+  signupArrowContent: get(state.campaign.additionalContent, 'signupArrowContent', null),
+  showPartnerMsgOptIn: get(state.campaign.additionalContent, 'displayAffilitateOptOut', false),
   subtitle: state.campaign.callToAction,
   template: state.campaign.template,
   title: state.campaign.title,
