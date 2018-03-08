@@ -22,7 +22,7 @@ class ModalLauncher extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.userId && this.shouldSeeModal) {
+    if (this.props.userId && this.shouldSeeModal()) {
       const openModal = this.props.openModal.bind(this, this.props.modalType);
       this.timer = setTimeout(openModal, this.props.countdown * 1000);
     }
