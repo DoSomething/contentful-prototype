@@ -6,8 +6,6 @@ import ModalControls from '../ModalControls';
 const BlockModal = (props) => {
   const { json, closeModal } = props;
 
-  json.fields.bordered = false;
-
   return (
     <ModalControls className="modal__slide" onClose={closeModal}>
       <ContentfulEntry json={json} />
