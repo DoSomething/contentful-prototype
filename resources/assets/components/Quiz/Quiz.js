@@ -2,16 +2,16 @@ import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Markdown from '../Markdown';
 import Question from './Question';
-import Conclusion from './Conclusion';
+import Markdown from '../Markdown';
 import Enclosure from '../Enclosure';
+import Conclusion from './Conclusion';
 import { ShareContainer } from '../Share';
+import ContentfulEntry from '../ContentfulEntry';
 import { CallToActionContainer } from '../CallToAction';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
-import ContentfulEntry from '../ContentfulEntry';
 
 import './quiz.scss';
 
