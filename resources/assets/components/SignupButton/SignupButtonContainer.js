@@ -1,18 +1,19 @@
 import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
-import { clickedSignUp } from '../../actions/signup';
-import { convertExperiment } from '../../actions';
+
 import SignupButton from './SignupButton';
+import { convertExperiment } from '../../actions';
+import { clickedSignUp } from '../../actions/signup';
 
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  template: state.campaign.template,
-  experiments: state.experiments,
   campaignActionText: state.campaign.actionText,
+  experiments: state.experiments,
   legacyCampaignId: state.campaign.legacyCampaignId,
+  template: state.campaign.template,
 });
 
 /**

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import Markdown from '../../Markdown';
-import SignupButtonFactory from '../../SignupButton';
+import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 
@@ -11,13 +11,11 @@ import './cover-lede-banner.scss';
 
 const CoverTemplate = (props) => {
   const {
-    actionText,
     affiliatedActionLink,
     affiliatedActionText,
     affiliateSponsors,
     coverImage,
     isAffiliated,
-    legacyCampaignId,
     subtitle,
     title,
   } = props;
@@ -27,12 +25,6 @@ const CoverTemplate = (props) => {
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(coverImage.url, '1440', '810', 'fill')})`,
   };
-
-  const SignupButton = SignupButtonFactory(({ clickedSignUp }) => (
-    <div className="cover-lede-banner__signup">
-      <button className="button" onClick={() => clickedSignUp(legacyCampaignId)}>{ actionText }</button>
-    </div>
-  ));
 
   const actionButton = affiliatedActionLink ? (
     <div className="cover-lede-banner__signup">
@@ -51,7 +43,12 @@ const CoverTemplate = (props) => {
 
         { blurb ? <Markdown className="cover-lede-banner__blurb">{blurb}</Markdown> : null }
 
-        { isAffiliated ? actionButton : <SignupButton /> }
+        { isAffiliated ?
+          actionButton :
+          <div className="cover-lede-banner__signup">
+            <SignupButton source="cover lede banner" />
+          </div>
+        }
 
         { affiliateSponsors.length ?
           <SponsorPromotion
@@ -68,7 +65,6 @@ const CoverTemplate = (props) => {
 };
 
 CoverTemplate.propTypes = {
-  actionText: PropTypes.string.isRequired,
   affiliatedActionLink: PropTypes.string,
   affiliatedActionText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -76,7 +72,6 @@ CoverTemplate.propTypes = {
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

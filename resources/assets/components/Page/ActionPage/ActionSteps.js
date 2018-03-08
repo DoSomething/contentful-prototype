@@ -1,13 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
+
+import Revealer from '../../Revealer';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
 import ContentfulEntry from '../../ContentfulEntry';
-import { PostGalleryContainer } from '../../Gallery/PostGallery';
-import Revealer from '../../Revealer';
 import SignupButtonFactory from '../../SignupButton';
 import { parseContentfulType } from '../../../helpers';
+import { PostGalleryContainer } from '../../Gallery/PostGallery';
 
 /**
  * Render the action page revealer.
