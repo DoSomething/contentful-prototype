@@ -444,7 +444,7 @@ export function query(key, url = window.location) {
  *
  * @param  {Object} state
  * @param  {String} id
- * @return {Object|Boolean}
+ * @return {Object|Undefined}
  */
 export function findContentfulEntry(state, id) {
   return find(state.campaign.pages, { id })
