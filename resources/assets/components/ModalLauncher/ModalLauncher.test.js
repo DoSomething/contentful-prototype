@@ -80,15 +80,19 @@ describe('The ModalLauncher component', () => {
   });
 
   it('does not launch the modal when `ENV`s `[type]_ENABLED` is toggled off', () => {
-    global.ENV.SURVEY_ENABLED = false;
+    global.ENV.FUN_SURVEY_ENABLED = false;
 
     const openModalMock = mountModal();
+
+    jest.runAllTimers();
 
     expect(openModalMock).toHaveBeenCalledTimes(0);
   });
 
   it('does not launch when there is no userId', () => {
     const openModalMock = mountModal(false);
+
+    jest.runAllTimers();
 
     expect(openModalMock).toHaveBeenCalledTimes(0);
   });
@@ -97,6 +101,8 @@ describe('The ModalLauncher component', () => {
     toggleHideModal(true);
 
     const openModalMock = mountModal();
+
+    jest.runAllTimers();
 
     expect(openModalMock).toHaveBeenCalledTimes(0);
   });
@@ -109,6 +115,8 @@ describe('The ModalLauncher component', () => {
     });
 
     const openModalMock = mountModal();
+
+    jest.runAllTimers();
 
     expect(openModalMock).toHaveBeenCalledTimes(0);
 
@@ -123,6 +131,8 @@ describe('The ModalLauncher component', () => {
 
     const openModalMock = mountModal();
 
+    jest.runAllTimers();
+
     expect(openModalMock).toHaveBeenCalledTimes(0);
   });
 
@@ -133,6 +143,8 @@ describe('The ModalLauncher component', () => {
 
     const openModalMock = mountModal();
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    jest.runAllTimers();
+
+    expect(openModalMock).toHaveBeenCalledTimes(1);
   });
 });
