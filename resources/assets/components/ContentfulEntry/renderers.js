@@ -46,7 +46,7 @@ export function renderPhotoUploader(step, isSignedUp) {
     <div key="reportback_uploader" className="margin-bottom-lg">
       <PuckWaypoint name="photo_uploader_action-top" />
       <div className="margin-horizontal-md">
-        <ReportbackUploaderContainer actionType={step.type.sys.id} {...step.fields} />
+        <ReportbackUploaderContainer actionType={step.type} {...step.fields} />
       </div>
       <PuckWaypoint name="photo_uploader_action-bottom" />
     </div>
