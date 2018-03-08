@@ -1,22 +1,21 @@
 import { connect } from 'react-redux';
+
 import Feed from './Feed';
-import { clickedViewMore, clickedSignUp } from '../../actions';
+import { clickedViewMore } from '../../actions';
+import { isAuthenticated } from '../../selectors/user';
 import {
   getBlocksWithReportbacks,
   getVisibleBlocks,
   getTotalVisibleBlockPoints,
   getMaximumBlockPoints,
 } from '../../selectors/feed';
-import { isAuthenticated } from '../../selectors/user';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  actionText: state.campaign.actionText,
   blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
   canLoadMorePages: getTotalVisibleBlockPoints(state) < getMaximumBlockPoints(state),
-  campaignId: state.campaign.legacyCampaignId,
   callToAction: state.campaign.callToAction,
   dashboard: state.campaign.dashboard,
   signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
@@ -31,7 +30,6 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   clickedViewMore,
-  clickedSignUp,
 };
 
 // Export the container component.

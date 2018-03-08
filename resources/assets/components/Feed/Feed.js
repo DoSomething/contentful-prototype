@@ -38,8 +38,8 @@ const renderFeedItem = (block, index) => (
  * @returns {XML}
  */
 const Feed = (props) => {
-  const { actionText, blocks, callToAction, campaignId, dashboard, signedUp, hasPendingSignup,
-    isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp } = props;
+  const { blocks, callToAction, dashboard, signedUp, hasPendingSignup,
+    isAuthenticated, canLoadMorePages, clickedViewMore } = props;
 
   const shouldShowRevealer = (isAuthenticated && ! signedUp) || canLoadMorePages;
   const revealer = (
@@ -71,7 +71,6 @@ const Feed = (props) => {
 };
 
 Feed.propTypes = {
-  actionText: PropTypes.string.isRequired,
   blocks: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
@@ -79,7 +78,6 @@ Feed.propTypes = {
     additionalContent: PropTypes.instanceOf(Object),
   })),
   callToAction: PropTypes.string.isRequired,
-  campaignId: PropTypes.string.isRequired,
   dashboard: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -90,7 +88,6 @@ Feed.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   canLoadMorePages: PropTypes.bool.isRequired,
   clickedViewMore: PropTypes.func.isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
 };
 
 Feed.defaultProps = {

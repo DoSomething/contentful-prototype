@@ -6,7 +6,7 @@ import './button.scss';
 const Button = ({ onClick, className, isLoading, text }) => {
   const classNames = classnames('button', { 'is-loading': isLoading }, className);
 
-  return <button className={classNames} disabled={isLoading} onClick={onClick}>{text}</button>
+  return <button className={classNames} disabled={isLoading} onClick={onClick}>{text}</button>;
 };
 
 Button.propTypes = {
