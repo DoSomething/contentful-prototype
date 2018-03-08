@@ -15,7 +15,7 @@ class PhotoUploaderAction extends Entity implements JsonSerializable
     {
         return [
             'id' => $this->entry->getId(),
-            'type' => $this->entry->getContentType(),
+            'type' => $this->getContentType(),
             'fields' => [
                 'informationTitle' => $this->informationTitle,
                 'informationContent' => $this->informationContent,
