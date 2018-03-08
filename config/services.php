@@ -65,7 +65,7 @@ return [
     'contentful' => [
         'cache' => env('CONTENTFUL_CACHE', true),
     ],
-    'survey' => [
-        'enabled' => env('SURVEY_ENABLED', false),
+    'nps_survey' => [
+        'enabled' => env('NPS_SURVEY_ENABLED', false),
     ],
 ];
