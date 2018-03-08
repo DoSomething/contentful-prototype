@@ -6,7 +6,6 @@ import Revealer from '../../Revealer';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
 import ContentfulEntry from '../../ContentfulEntry';
-import SignupButtonFactory from '../../SignupButton';
 import { parseContentfulType } from '../../../helpers';
 import { PostGalleryContainer } from '../../Gallery/PostGallery';
 
@@ -19,19 +18,14 @@ import { PostGalleryContainer } from '../../Gallery/PostGallery';
  * @param  {String}  campaignId
  * @return {Component}
  */
-export function renderRevealer(callToAction, hasPendingSignup, isSignedUp, campaignId) {
-  const SignupRevealer = SignupButtonFactory(({ clickedSignUp }) => (
+export function renderRevealer(callToAction, hasPendingSignup, isSignedUp) {
+  return (
     <Revealer
       title="Join Us"
       callToAction={callToAction}
       isLoading={hasPendingSignup}
-      onReveal={() => clickedSignUp(campaignId)}
       isSignedUp={isSignedUp}
     />
-  ), 'action page revealer', { text: 'Join Us', callToAction });
-
-  return (
-    <SignupRevealer key="revealer" />
   );
 }
 

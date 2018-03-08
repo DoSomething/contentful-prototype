@@ -41,14 +41,13 @@ const Feed = (props) => {
   const { actionText, blocks, callToAction, campaignId, dashboard, signedUp, hasPendingSignup,
     isAuthenticated, canLoadMorePages, clickedViewMore, clickedSignUp } = props;
 
-  const viewMoreOrSignup = signedUp ? clickedViewMore : () => clickedSignUp(campaignId);
+  const shouldShowRevealer = (isAuthenticated && ! signedUp) || canLoadMorePages;
   const revealer = (
     <Revealer
-      title={signedUp ? 'view more' : actionText}
+      title="view more"
       callToAction={signedUp ? '' : callToAction}
       isLoading={hasPendingSignup}
-      isVisible={(isAuthenticated && ! signedUp) || canLoadMorePages}
-      onReveal={() => viewMoreOrSignup()}
+      onReveal={clickedViewMore}
       isSignedUp={signedUp}
     />
   );
@@ -63,7 +62,7 @@ const Feed = (props) => {
           <Flex className="feed">
             {blocks.map(renderFeedItem)}
           </Flex>
-          {revealer}
+          {shouldShowRevealer ? revealer : null}
         </Enclosure>
         <CallToActionContainer className="-sticky" hideIfSignedUp />
       </div>
