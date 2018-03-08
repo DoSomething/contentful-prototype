@@ -58,6 +58,9 @@ const Quiz = (props) => {
 
   const showResultingAction = () => {
     const action = find(fields.results, { id: selectedResult });
+    if (action) {
+      action.fields.content = `${fields.conclusion}\n${action.fields.content}`;
+    }
 
     return <ContentfulEntry json={action} />;
   };
