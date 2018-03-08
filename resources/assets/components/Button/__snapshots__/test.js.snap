@@ -3,6 +3,7 @@
 exports[`Button snapshot test 1`] = `
 <button
   className="button -modifier"
+  disabled={false}
   onClick={[Function]}
 >
   Join Us

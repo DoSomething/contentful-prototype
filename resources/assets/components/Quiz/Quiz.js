@@ -2,17 +2,16 @@ import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Markdown from '../Markdown';
 import Question from './Question';
-import Conclusion from './Conclusion';
+import Markdown from '../Markdown';
 import Enclosure from '../Enclosure';
+import Conclusion from './Conclusion';
 import { ShareContainer } from '../Share';
+import ContentfulEntry from '../ContentfulEntry';
 import { CallToActionContainer } from '../CallToAction';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
-import { ShareActionContainer } from '../ShareAction';
-import LinkActionContainer from '../Actions/LinkAction';
 
 import './quiz.scss';
 
@@ -59,22 +58,11 @@ const Quiz = (props) => {
 
   const showResultingAction = () => {
     const action = find(fields.results, { id: selectedResult });
-
-    const actionProps = {
-      ...action.fields,
-      content: `${fields.conclusion}\n${action.fields.content}`,
-    };
-
-    switch (action.type.sys.id) {
-      case 'linkAction':
-        return <LinkActionContainer {...actionProps} />;
-
-      case 'shareAction':
-        return <ShareActionContainer {...actionProps} />;
-
-      default:
-        return null;
+    if (action) {
+      action.fields.content = `${fields.conclusion}\n${action.fields.content}`;
     }
+
+    return <ContentfulEntry json={action} />;
   };
 
   if (shouldSeeResult) {

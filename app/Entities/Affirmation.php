@@ -32,7 +32,7 @@ class Affirmation extends Entity implements JsonSerializable
 
         return [
             'id' => $this->entry->getId(),
-            'type' => $this->entry->getContentType(),
+            'type' => $this->getContentType(),
             'fields' => [
                 'header' => $this->header,
                 'photo' => get_image_url($this->photo, 'square'),

@@ -1,21 +1,23 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import classnames from 'classnames';
+import PropTypes from 'prop-types';
+
+import SignupButton from '../SignupButton';
+import Button from '../Button/Button';
 
 import './revealer.scss';
 
 const Revealer = (props) => {
-  const { callToAction, isLoading, isVisible,
-    isSignedUp, onReveal, title } = props;
-
-  if (! isVisible) {
-    return null;
-  }
+  const { callToAction, isLoading, isSignedUp,
+    onReveal, title } = props;
 
   return (
     <div className="revealer">
       { callToAction ? <h1>{callToAction}</h1> : null }
-      <button disabled={isLoading} className={classnames('button', { 'is-loading': isLoading, 'is-cta': ! isSignedUp })} onClick={onReveal}>{title}</button>
+      { isSignedUp ? (
+        <Button isLoading={isLoading} onClick={onReveal} text={title} />
+      ) : (
+        <SignupButton className="is-cta" source="revealer" />
+      ) }
     </div>
   );
 };
@@ -23,7 +25,6 @@ const Revealer = (props) => {
 Revealer.propTypes = {
   callToAction: PropTypes.string,
   isLoading: PropTypes.bool,
-  isVisible: PropTypes.bool,
   isSignedUp: PropTypes.bool,
   onReveal: PropTypes.func,
   title: PropTypes.string,
@@ -32,7 +33,6 @@ Revealer.propTypes = {
 Revealer.defaultProps = {
   callToAction: null,
   isLoading: false,
-  isVisible: true,
   isSignedUp: false,
   onReveal: () => {},
   title: 'view more',
