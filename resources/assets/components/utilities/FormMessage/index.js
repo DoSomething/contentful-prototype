@@ -1,8 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import classnames from 'classnames';
 import { has } from 'lodash';
-import { makeHash, modifiers } from '../../helpers';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+
+import { makeHash, modifiers } from '../../../helpers';
 
 import './form-message.scss';
 

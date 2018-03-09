@@ -7,8 +7,8 @@ import classnames from 'classnames';
 
 import Card from '../Card';
 import Markdown from '../Markdown';
-import FormMessage from '../FormMessage';
-import MediaUploader from '../MediaUploader';
+import FormMessage from '../utilities/FormMessage';
+import MediaUploader from '../utilities/MediaUploader';
 import { POST_REPORTBACK_MODAL } from '../Modal';
 
 import './reportback-uploader.scss';

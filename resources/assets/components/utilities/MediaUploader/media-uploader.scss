@@ -1,4 +1,4 @@
-@import '../../scss/next-toolbox.scss';
+@import '../../../scss/next-toolbox.scss';
 
 .media-uploader {
   background-color: #eee;
@@ -44,7 +44,7 @@
       }
 
       span::before {
-        background: transparent url('../../images/plus_sign.svg');
+        background: transparent url('../../../images/plus_sign.svg');
         background-size: cover;
         content: '';
         display: block;
