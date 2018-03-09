@@ -72,5 +72,5 @@ return [
         'voter_reg_modal' => [
             'enabled' => env('VOTER_REG_MODAL_ENABLED', false),
         ],
-    ]
+    ],
 ];
