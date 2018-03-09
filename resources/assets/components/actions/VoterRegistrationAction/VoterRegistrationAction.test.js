@@ -40,5 +40,3 @@ describe('clicking the VoterRegistrationAction button', () => {
     expect(get(`${'551234567890abcdefghijkl'}_hide_voter_reg_modal`, 'boolean')).toBe(true);
   });
 });
-
-
