@@ -4,7 +4,7 @@ This feature allows for a pop up / modal (e.g. a survey, or some promotion) that
 
 We use the ModalLauncher component to process the logic and set up the parameters for launching this component.
 
-It will conditionally launch the specified modal type, after the specified amount of time, under these conditions:
+It will launch the specified modal type, after the specified amount of time, under these conditions:
 
 - the user is logged in
 - the user has not dismissed the modal in 30 days (localstorage)
@@ -15,7 +15,7 @@ It will conditionally launch the specified modal type, after the specified amoun
 
 Let's use our Survey example.
 
-If we only want to launch this Survey modal after 60 seconds and using the FUN_SURVEY_MODAL type:
+If we only want to launch this FUN_SURVEY_MODAL modal type after 60 seconds:
 
 ```jsx
 <ModalLauncher 
@@ -27,7 +27,9 @@ If we only want to launch this Survey modal after 60 seconds and using the FUN_S
 
 And viola! 
 
-Please note, that you are in charge of setting up the localstorage of user dismissal and hide feature fields. They should be set in the following format:
+## Please Note
+
+Please note, that you are in charge of setting up the localstorage to track user dismissal and whether to hide the specific modal feature. This should be set in the following format:
 
 (assuming use of the [`set`](https://git.io/vAhRx) storage helper)
 
