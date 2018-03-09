@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ModalSwitchContainer, SURVEY_MODAL } from '../Modal';
+import { ModalSwitchContainer, SURVEY_MODAL, VOTER_REGISTRATION_MODAL } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../TrafficDistribution';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
@@ -25,6 +25,16 @@ const Campaign = props => (
       />
     </TrafficDistribution>
 
+    { props.featureFlags && props.featureFlags.showVoterRegistrationModal ? (
+      <TrafficDistribution percentage={10} feature="voter_reg_modal">
+        <ModalLauncherContainer
+          type="voter_reg_modal"
+          countdown={30}
+          modalType={VOTER_REGISTRATION_MODAL}
+        />
+      </TrafficDistribution>
+    ) : null }
+
     { props.shouldShowLandingPage ?
       <LandingPageContainer {...props} />
       :
@@ -34,6 +44,11 @@ const Campaign = props => (
 
 Campaign.propTypes = {
   shouldShowLandingPage: PropTypes.bool.isRequired,
+  featureFlags: PropTypes.objectOf(PropTypes.bool),
+};
+
+Campaign.defaultProps = {
+  featureFlags: null,
 };
 
 export default Campaign;

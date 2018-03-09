@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 
 import Campaign from './Campaign';
 
@@ -22,6 +23,7 @@ const mapStateToProps = (state, props) => {
 
   return {
     shouldShowLandingPage,
+    featureFlags: get(state.campaign.additionalContent, 'featureFlags'),
   };
 };
 
