@@ -5,6 +5,7 @@ This is __Phoenix (next)__, the new campaign experience for [DoSomething.org](ht
 
 For information on installation and other usage please head over to one of the following sections:
 - [Installation Instructions](development/installation.md)
+- [Developer Onboarding](development/developer_onbaording.md)
 - [API Reference](api-reference/README.md)
 - [Philosophical Overview](philosophical-overview/README.md)
 - [Content Publishing](content-publishing/README.md)
