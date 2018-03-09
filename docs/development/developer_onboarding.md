@@ -7,87 +7,21 @@ However, before running `php artisan phoenix:setup`, you are going to need a few
 
 
 ### Northstar
-For the most part, you can use the staging **Northstar** URL for your development environment: `https://northstar-thor.dosomething.org`
+For the most part, you can use the staging Northstar URL for your development environment: `https://northstar-thor.dosomething.org`
 
 To gain access to an ID and SECRET, you will need to have the proper permissions set on your DoSomething account. Let a developer on the team know if you are unable to access [Aurora (staging)](https://aurora-thor.dosomething.org/clients).
 
 
 ### Contentful
-Be sure to setup your [Contentful account](https://www.contentful.com/sign-up/) and request access to the project **Phoenix** project space, so that you can set the proper _Contentful Space ID_ and _Contentful API Key_ in your setup.
+Be sure to setup your [Contentful account](https://www.contentful.com/sign-up/) and request access to the project _Phoenix_ project space, so that you can set the proper _Contentful Space ID_ and _Contentful API Key_ in your setup.
 
-Once you gain access to Contentful and the **Phoenix** space, you can find the values you need in the **Space settings** tab and click on **API Keys** in Contentful. Then select the **Phoenix Next - local development** token.
+Once you gain access to Contentful and the _Phoenix_ space, you can find the values you need in the **Space settings** tab and click on **API Keys** in Contentful. Then select the **Phoenix Next - local development** token.
 
 
 ### .ENV (noun: /Dot EE EN VEE/)
-Here's an example of how a typical `.env` file might look for a developer (with `random-string` replacing any auth data):
+The `.env` file provides environment specific configurations that can be set differently depending on the environment (local, qa, production, etc). Here is what an [example .env](https://github.com/DoSomething/phoenix-next/blob/master/.env.example) looks like from the repository.
 
-```
-APP_ENV=local
-APP_KEY=random-string
-APP_DEBUG=true
-APP_LOG_LEVEL=debug
-APP_URL=http://phoenix.test
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=phoenix
-DB_USERNAME=homestead
-DB_PASSWORD=secret
-
-BROADCAST_DRIVER=log
-CACHE_DRIVER=redis
-SESSION_DRIVER=file
-QUEUE_DRIVER=sync
-
-CONTENTFUL_CONTENT_API_KEY=random-string
-CONTENTFUL_USE_PREVIEW_API=false
-CONTENTFUL_CONTENT_DELIVERY_API_KEY=random-string
-CONTENTFUL_CONTENT_PREVIEW_API_KEY=some-other-random-string
-CONTENTFUL_SPACE_ID=random-string
-CONTENTFUL_CACHE=false
-
-GLADIATOR_URL=https://gladiator-thor.dosomething.org
-GLADIATOR_API_KEY=random-string
-
-NORTHSTAR_URL=https://northstar-thor.dosomething.org
-NORTHSTAR_AUTHORIZATION_ID=random-string
-NORTHSTAR_AUTHORIZATION_SECRET=random-string
-
-PHOENIX_URL=http://phoenix.test
-PHOENIX_LEGACY_URL=https://thor.dosomething.org
-PHOENIX_LEGACY_USERNAME=random-string
-PHOENIX_LEGACY_PASSWORD=random-string
-
-ROGUE_URL=https://rogue-thor.dosomething.org
-ROGUE_API_KEY=random-string
-
-REDIS_HOST=127.0.0.1
-REDIS_PASSWORD=null
-REDIS_PORT=6379
-REDIS_DB_NUMBER=1
-
-MAIL_DRIVER=smtp
-MAIL_HOST=mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=null
-MAIL_PASSWORD=null
-MAIL_ENCRYPTION=null
-
-SIXPACK_ENABLED=true
-SIXPACK_BASE_URL=http://phoenix.test:5000
-SIXPACK_COOKIE_PREFIX=phoenix_next_local_sixpack
-SIXPACK_TIMEOUT=null
-
-PUSHER_APP_ID=
-PUSHER_KEY=
-PUSHER_SECRET=
-
-GOOGLE_ANALYTICS_ID=
-FACEBOOK_APP_ID=random-string
-CUSTOMER_IO_ID=
-PUCK_URL=
-```
+If running the Phoenix setup from scratch, a copy of this `.env.example` file will be made and renamed to `.env`. Make sure to update the new file with the corresponding values you need for your local setup.
 
 
 ### Preview API
