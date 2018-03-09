@@ -45,7 +45,8 @@ class AppServiceProvider extends ServiceProvider
                 'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-                'NPS_SURVEY_ENABLED' => config('services.nps_survey.enabled'),
+                'NPS_SURVEY_ENABLED' => config('services.timed_modals.nps_survey.enabled'),
+                'VOTER_REG_MODAL_ENABLED' => config('services.timed_modals.voter_reg_modal.enabled'),
             ]);
         });
     }

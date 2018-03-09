@@ -65,7 +65,12 @@ return [
     'contentful' => [
         'cache' => env('CONTENTFUL_CACHE', true),
     ],
-    'nps_survey' => [
-        'enabled' => env('NPS_SURVEY_ENABLED', false),
-    ],
+    'timed_modals' => [
+        'nps_survey' => [
+            'enabled' => env('NPS_SURVEY_ENABLED', false),
+        ],
+        'voter_reg_modal' => [
+            'enabled' => env('VOTER_REG_MODAL_ENABLED', false),
+        ],
+    ]
 ];
