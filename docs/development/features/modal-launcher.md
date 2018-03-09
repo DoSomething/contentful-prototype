@@ -27,7 +27,7 @@ If we only want to launch this FUN_SURVEY_MODAL modal type after 60 seconds:
 
 And viola! 
 
-## Please Note
+## Considerations
 
 Please note, that you are in charge of setting up the localstorage to track user dismissal and whether to hide the specific modal feature. This should be set in the following format:
 
