@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { get, set } from '../../helpers/storage';
-import { isTimestampValid } from '../../helpers';
+import { isTimestampValid, env } from '../../helpers';
 
 class ModalLauncher extends React.Component {
   constructor(props) {
@@ -39,8 +39,6 @@ class ModalLauncher extends React.Component {
       return false;
     }
 
-    const env = window.ENV || {};
-
     let shouldNotSee = get(`${userId}_hide_${type}`, 'boolean');
     // Support for legacy nps survey 'hide feature' storage format.
     if (type === 'nps_survey' && ! shouldNotSee) {
@@ -53,7 +51,7 @@ class ModalLauncher extends React.Component {
     // Check if the survey was dismissed over 30 days ago.
     const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
 
-    return env[`${type.toUpperCase()}_ENABLED`] && ! shouldNotSee && ! isDismissed;
+    return env(`${type.toUpperCase()}_ENABLED`) && ! shouldNotSee && ! isDismissed;
   }
 
   render() {
