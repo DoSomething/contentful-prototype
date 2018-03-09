@@ -67,8 +67,8 @@ const LandingPage = (props) => {
         </Enclosure>
 
         <CallToActionContainer
-          className="-sticky"
           content={tagline}
+          sticky
         />
       </div>
 
