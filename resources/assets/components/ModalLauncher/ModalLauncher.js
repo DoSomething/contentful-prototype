@@ -1,10 +1,8 @@
-/* global window */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { get, set } from '../../helpers/storage';
-import { isTimestampValid, env } from '../../helpers';
+import { isTimestampValid, env, query } from '../../helpers';
 
 class ModalLauncher extends React.Component {
   constructor(props) {
@@ -12,11 +10,8 @@ class ModalLauncher extends React.Component {
 
     this.shouldSeeModal = this.shouldSeeModal.bind(this);
 
-    // If the query params indicate to store the feature modal to be hidden
-    // (including a legacy format for NPS Typeform Survey), store it.
-    if (window.location.search === '?finished_nps=1') {
-      set(`${props.userId}_finished_survey`, 'boolean', true);
-    } else if (window.location.search === `?hide_${props.type}=1`) {
+    // If the query params indicate to store the feature modal to be hidden, store it.
+    if (query(`hide_${props.type}`) === '1') {
       set(`${props.userId}_hide_${props.type}`, 'boolean', true);
     }
   }
