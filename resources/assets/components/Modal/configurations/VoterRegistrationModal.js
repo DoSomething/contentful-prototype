@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ModalControls } from '../../Modal';
-import VoterRegistrationActionContainer from '../../Actions/VoterRegistrationAction';
+import VoterRegistrationActionContainer from '../../actions/VoterRegistrationAction';
 
 const VoterRegistrationModal = (props) => {
   const content = 'Register to vote and encourage friends to do the same. YOU have the power to elect the officials who will create the future YOU want to see. Get loud in 2018.';
