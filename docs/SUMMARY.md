@@ -14,6 +14,7 @@
   + [Routing](development/features/routing.md)
   + [Sixpack A/B Testing](development/features/sixpack-ab-testing.md)
   + [Traffic Distribution](development/features/traffic-distribution.md)
+  + [Modal Launcher](development/features/modal-launcher.md)
 - [Contributing](development/contributing.md)
 
 
