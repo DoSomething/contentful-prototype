@@ -264,3 +264,9 @@ h1, h2, h3, p {
     @include push(2);
   }
 }
+
+.hide-on-mobile {
+  @include media($small) {
+    display: none;
+  }
+}
