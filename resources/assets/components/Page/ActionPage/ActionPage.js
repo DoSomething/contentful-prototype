@@ -37,7 +37,7 @@ const ActionPage = (props) => {
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <ActionStepsContainer actionSteps={actionSteps} />
         </Enclosure>
-        <CallToActionContainer className="-sticky" hideIfSignedUp />
+        <CallToActionContainer sticky hideIfSignedUp />
       </div>
     </div>
   );

@@ -94,7 +94,7 @@ const Quiz = (props) => {
             {fields.resultActions && selectedResult ? showResultingAction() : shareConclusion}
           </div>
         </Enclosure>
-        { showLedeBanner ? <CallToActionContainer className="-sticky" hideIfSignedUp /> : null }
+        { showLedeBanner ? <CallToActionContainer sticky hideIfSignedUp /> : null }
       </div>
     </div>
   );

@@ -64,7 +64,7 @@ const Feed = (props) => {
           </Flex>
           {shouldShowRevealer ? revealer : null}
         </Enclosure>
-        <CallToActionContainer className="-sticky" hideIfSignedUp />
+        <CallToActionContainer sticky hideIfSignedUp />
       </div>
     </div>
   );

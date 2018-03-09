@@ -26,6 +26,7 @@ type CallToActionProps = {
   impactValue: ?string,
   hideIfSignedUp: ?bool,
   isSignedUp: bool,
+  sticky: ?bool,
   tagline: string,
   useCampaignTagline: bool,
   visualStyle: string,
@@ -33,7 +34,7 @@ type CallToActionProps = {
 
 const CallToAction = ({
   className, content, impactPrefix, impactSuffix, impactValue,
-  hideIfSignedUp, isSignedUp, tagline, useCampaignTagline, visualStyle,
+  hideIfSignedUp, isSignedUp, sticky, tagline, useCampaignTagline, visualStyle,
 }: CallToActionProps) => {
   if (hideIfSignedUp && isSignedUp) {
     return null;
@@ -41,6 +42,7 @@ const CallToAction = ({
 
   return (
     <Card className={classnames('call-to-action rounded padded text-centered', className, {
+      '-sticky': sticky,
       'bg-white bordered light': visualStyle === 'light',
       'bg-black dark': visualStyle === 'dark',
       'bg-transparent border-none transparent': visualStyle === 'transparent',
@@ -64,6 +66,7 @@ CallToAction.defaultProps = {
   impactSuffix: null,
   impactValue: null,
   hideIfSignedUp: false,
+  sticky: false,
 };
 
 export default CallToAction;
