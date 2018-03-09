@@ -20,7 +20,7 @@ const CoverTemplate = (props) => {
     title,
   } = props;
 
-  const blurb = 'Want to celebrate Black History Month by supporting diversity in TV and film? Take 5 minutes and you\'ll enter to win a $3000 scholarship.';
+  const blurb = 'The US has immigrants to thank for everything from YouTube to blue jeans to basketball. Join us to unlock Kiva loans for immigrant entrepreneurs and a chance to win a $5,000 scholarship!';
 
   // Overriding with specific coverImage URL for A/B test.
   coverImage.url = 'https://images.ctfassets.net/81iqaqpfd8fy/5u4wqT1Vte2SAWO0sK0oCS/78d47661fd65d2dc98235fe9fde221a6/grab-the-mic.png';
