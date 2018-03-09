@@ -39,7 +39,7 @@ There are a couple of other applications and sites that you will want access to 
 
 ## Tips and Tidbits 🍩
 
-### Staging Environment
+### Preview Environment
 Once a _Pull Request_ is merged, a deploy to our staging environment is automatically triggered.
 
 The staging environment can be accessed at [https://phoenix-preview.dosomething.org](https://phoenix-preview.dosomething.org).
