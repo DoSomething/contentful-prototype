@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../../Card';
 import Markdown from '../../Markdown';
+import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
 
 import './voter-registration-action.scss';
@@ -31,6 +32,7 @@ const VoterRegistrationAction = (props) => {
   const handleClick = () => {
     const trackingData = { contentfulId, url: parsedLink, modal: modalType };
     trackEvent('clicked voter registration action', trackingData);
+    set(`${props.userId}_hide_voter_reg_modal`, 'boolean', true);
   };
 
   return (
