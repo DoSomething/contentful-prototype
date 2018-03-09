@@ -5,6 +5,7 @@
 
 ## Development
 - [Installation](development/installation.md)
+- [Developer Onboarding](development/developer_onboarding.md)
 - [Architecture](development/architecture.md)
 - [Deployments](development/deployments/README.md)
   + [Contentful Migrations](development/deployments/contentful-migrations.md)

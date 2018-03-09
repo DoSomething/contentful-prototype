@@ -15,7 +15,7 @@
   ],
   "pluginsConfig": {
     "editlink": {
-      "base": "https://github.com/DoSomething/phoenix-next/tree/dev/docs",
+      "base": "https://github.com/DoSomething/phoenix-next/tree/master/docs",
       "label": "Edit This Page"
     },
     "github": {
