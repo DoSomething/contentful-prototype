@@ -65,11 +65,16 @@ const LandingPage = (props) => {
         <Enclosure className="default-container margin-lg pitch-landing-page">
           <PitchTemplate pitchContent={pitchContent} sidebarCTA={sidebarCTA} />
         </Enclosure>
+
+        <CallToActionContainer
+          className="-sticky"
+          content={tagline}
+        />
       </div>
 
       <PuckWaypoint name="landing_page_cta-top" />
       <CallToActionContainer
-        className="legacy border-top border-radius-none bg-off-white padding-lg"
+        className="legacy border-top border-radius-none bg-off-white padding-lg hide-on-mobile"
         content={tagline}
       />
       <PuckWaypoint name="landing_page_cta-bottom" />
