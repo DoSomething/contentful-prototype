@@ -15,7 +15,7 @@ class SurveyModal extends React.Component {
 
   componentWillUnmount() {
     // @see: Survey.js
-    set(`${this.props.northstarId}_dismissed_survey`, 'timestamp', Date.now());
+    set(`${this.props.northstarId}_dismissed_nps_survey`, 'timestamp', Date.now());
   }
 
   render() {

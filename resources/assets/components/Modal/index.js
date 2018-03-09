@@ -1,5 +1,6 @@
 export default from './containers/ModalSwitchContainer';
 
+export ModalSwitchContainer from './containers/ModalSwitchContainer';
 export ModalControls from './ModalControls';
 
 export Modal from './containers/ModalContainer';
