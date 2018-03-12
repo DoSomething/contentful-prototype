@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import ContentfulEntry from '../../ContentfulEntry';
 import ModalControls from '../ModalControls';
-import { parseContentfulType } from '../../../helpers';
 import StaticBlock from '../../StaticBlock';
+import { parseContentfulType } from '../../../helpers';
 
 const BlockModal = (props) => {
   const { json, closeModal } = props;
