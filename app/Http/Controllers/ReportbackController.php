@@ -67,7 +67,8 @@ class ReportbackController extends Controller
 
         Log::info('RB Response:', $response);
 
-        UploadedMedia::delete($path);
+        // @TODO: Re-enable this so we don't use up a ton of space!
+        // UploadedMedia::delete($path);
 
         return $response;
     }
