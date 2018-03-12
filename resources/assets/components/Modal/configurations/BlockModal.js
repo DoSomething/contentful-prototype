@@ -12,13 +12,13 @@ const BlockModal = (props) => {
   let children = <ContentfulEntry json={json} />;
 
   if (parseContentfulType(json) === 'page') {
-  	children = (
-  		<StaticBlock
+    children = (
+      <StaticBlock
         content={json.fields.content}
         source={json.fields.source}
         title={json.fields.title}
       />
-  	);
+    );
   }
 
   return (
