@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Answer from './Answer';
-import PhotoHeader from '../PhotoHeader';
+import SectionHeader from '../SectionHeader';
 
 const isActive = (answer, activeAnswer) => answer.id === activeAnswer;
 const shouldFade = (answer, activeAnswer) => (
@@ -10,15 +11,15 @@ const shouldFade = (answer, activeAnswer) => (
 
 const Question = (props) => {
   const {
-    id, quizId, title, backgroundImage, answers,
-    pickQuizAnswer, activeAnswer,
+    id, quizId, title, answers, pickQuizAnswer, activeAnswer,
   } = props;
 
   return (
     <div className="question">
-      <PhotoHeader backgroundImage={backgroundImage}>
-        <h2 className="question__title">{ title }</h2>
-      </PhotoHeader>
+      <SectionHeader
+        title={title}
+        hideStepNumber
+      />
       <div className="question__choices">
         {answers.map(answer => (
           <Answer
@@ -41,14 +42,12 @@ Question.propTypes = {
   quizId: PropTypes.string.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  backgroundImage: PropTypes.string,
   answers: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   activeAnswer: PropTypes.string,
 };
 
 Question.defaultProps = {
   activeAnswer: null,
-  backgroundImage: null,
 };
 
 export default Question;
