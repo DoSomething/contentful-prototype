@@ -10,7 +10,7 @@ import { ShareContainer } from '../Share';
 import './affirmation.scss';
 
 const Affirmation = ({ closeModal, content }) => (
-  <Card className="affirmation rounded" title="Thanks for joining us!" onClose={closeModal}>
+  <Card className="affirmation rounded" title="Thanks for joining us!">
     <Markdown className="padded">{content.quote}</Markdown>
     <Flex className="flex-align-center">
       <FlexCell className="affirmation__cta padded" width="half">
@@ -26,7 +26,6 @@ const Affirmation = ({ closeModal, content }) => (
 );
 
 Affirmation.propTypes = {
-  closeModal: PropTypes.func.isRequired,
   content: PropTypes.shape({
     header: PropTypes.string,
     photo: PropTypes.string,
