@@ -62,7 +62,6 @@ const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: Conten
       );
 
     case 'static':
-    case 'page':
       return (
         <StaticBlock
           content={json.fields.content}
