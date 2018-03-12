@@ -5,7 +5,7 @@ import { closeModal } from '../../../actions/modal';
 
 const mapStateToProps = (state) => {
   const reportbackUploader = find(
-    state.campaign.actionSteps, { type: { sys: { id: 'photoUploaderAction' } } },
+    state.campaign.actionSteps, { type: 'photoUploaderAction' },
   );
 
   return {
