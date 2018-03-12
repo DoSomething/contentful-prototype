@@ -50,11 +50,14 @@ class ReportbackController extends Controller
     {
         $path = UploadedMedia::store($request->file('media'));
 
+        $temporaryUrl = config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals';
+        Log::info('Created temporary reportback URL.', ['url' => $temporaryUrl]);
+
         $response = $this->phoenixLegacy->storeReportback(
             auth()->id(),
             $request->input('campaignId'),
             [
-                'file_url' => config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals',
+                'file_url' => $temporaryUrl,
                 'caption' => $request->input('caption'),
                 'quantity' => $request->input('impact'),
                 'why_participated' => $request->input('whyParticipated'),
