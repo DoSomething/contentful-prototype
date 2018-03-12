@@ -9,7 +9,7 @@ import { ShareContainer } from '../Share';
 
 import './affirmation.scss';
 
-const Affirmation = ({ closeModal, content }) => (
+const Affirmation = ({ content }) => (
   <Card className="affirmation rounded" title="Thanks for joining us!">
     <Markdown className="padded">{content.quote}</Markdown>
     <Flex className="flex-align-center">
