@@ -1,14 +1,14 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 import { ContentBlock } from '../Block';
-import VoterRegistrationActionContainer from '../Actions/VoterRegistrationAction';
+import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction';
 import Affirmation from '../Affirmation';
-import { ThirdPartyActionContainer } from '../Actions/ThirdPartyAction';
+import { ThirdPartyActionContainer } from '../actions/ThirdPartyAction';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import { ShareActionContainer } from '../ShareAction';
-import LinkActionContainer from '../Actions/LinkAction';
+import LinkActionContainer from '../actions/LinkAction';
 
 /**
  * Render a competition step.
