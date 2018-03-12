@@ -51,6 +51,7 @@ class ReportbackController extends Controller
         $path = UploadedMedia::store($request->file('media'));
 
         $temporaryUrl = config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals';
+
         Log::info('Created temporary reportback URL.', ['url' => $temporaryUrl]);
 
         $response = $this->phoenixLegacy->storeReportback(
@@ -67,8 +68,7 @@ class ReportbackController extends Controller
 
         Log::info('RB Response:', $response);
 
-        // @TODO: Re-enable this so we don't use up a ton of space!
-        // UploadedMedia::delete($path);
+        UploadedMedia::delete($path);
 
         return $response;
     }
