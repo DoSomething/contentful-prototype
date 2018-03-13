@@ -46,5 +46,17 @@
       "a": "legacy_landing_page",
       "b": "landing_page_alt"
     }
+  },
+  "source_signup_button": {
+    "meta": {
+      "preTest": {
+        "campaign.allowExperiments": true
+      },
+      "convertOnSignupIntent": true
+    },
+    "alternatives": {
+      "a": "default_signup_copy",
+      "b": "source_signup_copy"
+    }
   }
 }

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
+import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
 import { convertExperiment } from '../../actions';
@@ -11,9 +12,11 @@ import { clickedSignUp } from '../../actions/signup';
  */
 const mapStateToProps = state => ({
   campaignActionText: state.campaign.actionText,
+  sourceActionText: get(state, 'campaign.additionalContent.sourceActionText'),
   experiments: state.experiments,
   legacyCampaignId: state.campaign.legacyCampaignId,
   template: state.campaign.template,
+  trafficSource: state.user.source,
 });
 
 /**
