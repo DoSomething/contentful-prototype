@@ -11,42 +11,6 @@
       "b": "cover"
     }
   },
-  "competitions_prompt_style": {
-    "meta": {
-      "preTest": {
-        "signups.thisCampaign": true,
-        "competitions.thisCampaign": false
-      }
-    },
-    "alternatives": {
-      "a": "default_block",
-      "b": "colorful_block"
-    }
-  },
-  "scholarship_cta_copy": {
-    "meta": {
-      "preTest": {
-        "signups.thisCampaign": false
-      }
-    },
-    "alternatives": {
-      "a": "default",
-      "b": "get_started",
-      "c": "apply_now"
-    }
-  },
-  "landing_page": {
-    "meta": {
-      "preTest": {
-        "campaign.allowExperiments": true
-      },
-      "convertOnSignupIntent": true
-    },
-    "alternatives": {
-      "a": "legacy_landing_page",
-      "b": "landing_page_alt"
-    }
-  },
   "source_signup_button": {
     "meta": {
       "preTest": {
