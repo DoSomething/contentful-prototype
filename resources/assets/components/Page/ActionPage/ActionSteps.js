@@ -98,7 +98,7 @@ const ActionSteps = (props) => {
     ));
   }
 
-  if (template === 'legacy' || ! hasActivityFeed) {
+  if (isSignedUp && (template === 'legacy' || ! hasActivityFeed)) {
     stepComponents.push(renderLegacyGallery());
   }
 
