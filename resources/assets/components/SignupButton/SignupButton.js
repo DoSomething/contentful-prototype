@@ -1,25 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { get } from 'lodash';
 
+import Button from '../Button/Button';
+import ExperimentContainer from '../Experiment';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 const SignupButton = (props) => {
   const { campaignActionText, sourceActionText, className, clickedSignUp, experiments, source,
     template, text, trackEvent, trafficSource, legacyCampaignId, convertExperiment } = props;
-
-  // A/B Test: If a user has a traffic source, test different button language!
-  let sourceOverride = null;
-  if (trafficSource) {
-    sourceOverride = get(sourceActionText, trafficSource);
-
-    // @TODO ...
-  }
-
-  // In descending priority: button-specific text prop, source-specific override,
-  // campaign action text override, or standard "Take Action" copy.
-  const buttonText = text || sourceOverride || campaignActionText;
 
   const convertExperiments = () => {
     Object.keys(experiments).forEach((experiment) => {
@@ -30,7 +19,7 @@ const SignupButton = (props) => {
   };
 
   // Decorate click handler for A/B tests & analytics.
-  const onSignup = () => {
+  const onSignup = (buttonText) => {
     convertExperiments();
     clickedSignUp(legacyCampaignId);
     trackEvent('signup', {
@@ -41,15 +30,42 @@ const SignupButton = (props) => {
     });
   };
 
+  const baseCopy = text || campaignActionText;
+
+  // If no source-specific override, don't opt in to the A/B test.
+  const sourceOverride = get(sourceActionText, trafficSource);
+  if (! sourceOverride) {
+    return <Button className={className} onClick={() => onSignup(baseCopy)} text={baseCopy} />;
+  }
+
+  // A/B Test: If a user has a traffic source w/ an override, try it!
+  const experiment = 'source_signup_button';
+  const sourceCopy = text || sourceOverride || campaignActionText;
+
   return (
-    <button className={classnames('button', className)} onClick={onSignup}>{ buttonText }</button>
+    <ExperimentContainer name={experiment}>
+      <Button
+        experiment={experiment}
+        alternative="default_signup_copy"
+        className={className}
+        onClick={() => onSignup(baseCopy)}
+        text={baseCopy}
+      />
+      <Button
+        experiment={experiment}
+        alternative="source_signup_copy"
+        className={className}
+        onClick={() => onSignup(sourceCopy)}
+        text={sourceCopy}
+      />
+    </ExperimentContainer>
   );
 };
 
 SignupButton.propTypes = {
   text: PropTypes.string,
   campaignActionText: PropTypes.string,
-  sourceActionText: PropTypes.string,
+  sourceActionText: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
   clickedSignUp: PropTypes.func.isRequired,
   convertExperiment: PropTypes.func.isRequired,
