@@ -20,7 +20,7 @@ export function assertTestPasses(test, state) {
     const value = values[index];
 
     // Check if the test matches the app state.
-    if (! get(state, key, false) === value) {
+    if (get(state, key, false) !== value) {
       return false;
     }
   }
