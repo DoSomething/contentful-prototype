@@ -21,7 +21,9 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
 type ContentfulEntryProps = { json: ContentfulEntryJson, stepIndex: number, isSignedUp: boolean };
 
-const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: ContentfulEntryProps) => {
+const ContentfulEntry = ({
+  json = DEFAULT_BLOCK, stepIndex = 1, isSignedUp,
+}: ContentfulEntryProps) => {
   const type = parseContentfulType(json);
 
   switch (type) {
