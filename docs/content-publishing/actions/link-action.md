@@ -19,5 +19,5 @@ The Link Action consists of three fields:
 - **title (required)**: The title that will show up in the yellow bar atop the Link Action.
 - **content (optional)**: content in Markdown format that will appear within the card atop the link.
 - **link (required)**: a valid URL which will be embedded within the card.
-- **buttonText (required)**: Text for button to link which will replace the embedded link.
+- **buttonText (optional)**: Text for button to link which will replace the embedded link.
 - **affiliateLogo (optional)**: an image URL which will be featured on bottom of the action. (adding this property will also cause a color change in the title of the action)
