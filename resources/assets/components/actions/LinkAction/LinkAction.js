@@ -8,8 +8,6 @@ import Markdown from '../../Markdown';
 import SponsorPromotion from '../../SponsorPromotion';
 import { isExternal } from '../../../helpers';
 
-import './link-action.scss';
-
 const LinkAction = (props) => {
   const { content, link, buttonText, affiliateLogo, trackEvent } = props;
 
@@ -48,7 +46,7 @@ const LinkAction = (props) => {
         ) : null }
 
         { buttonText ? (
-          <a className="button" target={target} href={link} onClick={onLinkClick}>
+          <a className="button button-attached" target={target} href={link} onClick={onLinkClick}>
             { buttonText }
           </a>
         ) : null }

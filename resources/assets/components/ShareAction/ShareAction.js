@@ -7,8 +7,6 @@ import Markdown from '../Markdown';
 import { POST_SHARE_MODAL } from '../Modal';
 import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
-import './share-action.scss';
-
 const ShareAction = (props) => {
   const { id, title, content, link, socialPlatform, openModal, trackEvent } = props;
 
@@ -38,13 +36,13 @@ const ShareAction = (props) => {
     switch (socialPlatform) {
       case 'facebook':
         return (
-          <button className="button" onClick={() => onFacebookClick(link)}>
+          <button className="button button-attached" onClick={() => onFacebookClick(link)}>
             Share on Facebook
           </button>
         );
       case 'twitter':
         return (
-          <button className="button" onClick={() => onTwitterClick(link)}>
+          <button className="button button-attached" onClick={() => onTwitterClick(link)}>
             Share on Twitter
           </button>
         );
