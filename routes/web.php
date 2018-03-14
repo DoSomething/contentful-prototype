@@ -19,7 +19,6 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
-$router->get('us/campaigns/{campaign}/share', 'ShareController@show');
 $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
 $router->redirect('campaigns/{slug}', 'us/campaigns/{slug}');
