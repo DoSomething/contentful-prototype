@@ -29,10 +29,10 @@ test('it can display a reportback block', () => {
 
 test('it should display a placeholder for an unknown block type', () => {
   const wrapper = shallow(<ContentfulEntry json={{ id: '12345', type: 'tongue_cat' }} />);
-  expect(wrapper.find('PlaceholderBlock')).toHaveLength(1);
+  expect(wrapper.find('NotFound')).toHaveLength(1);
 });
 
 test('it should display a placeholder for an empty block', () => {
   const wrapper = shallow(<ContentfulEntry />);
-  expect(wrapper.find('PlaceholderBlock')).toHaveLength(1);
+  expect(wrapper.find('NotFound')).toHaveLength(1);
 });

@@ -6,7 +6,7 @@ import Quiz from '../Quiz';
 import { ContentfulEntryJson } from '../../types';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
-import PlaceholderBlock from '../PlaceholderBlock';
+import NotFound from '../NotFound';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import { parseContentfulType } from '../../helpers';
@@ -99,7 +99,7 @@ const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: Conten
       return renderContentBlock(json, stepIndex);
 
     default:
-      return <PlaceholderBlock />;
+      return <NotFound />;
   }
 };
 
