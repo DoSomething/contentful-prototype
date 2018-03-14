@@ -2,6 +2,7 @@
   "lede_banner_design_variations": {
     "meta": {
       "preTest": {
+        "campaign.slug": "grab-mic",
         "campaign.allowExperiments": true
       },
       "convertOnSignupIntent": true
