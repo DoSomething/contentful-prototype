@@ -9,6 +9,7 @@ import ReportbackBlock from '../ReportbackBlock';
 import NotFound from '../NotFound';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { parseContentfulType } from '../../helpers';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
@@ -71,6 +72,9 @@ const ContentfulEntry = ({
           title={json.fields.title}
         />
       );
+
+    case 'gallery':
+      return <PostGalleryContainer />;
 
     case 'affirmation':
       return renderAffirmation(json);
