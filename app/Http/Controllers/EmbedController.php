@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Embed\Embed;
+use Embed\Http\CurlDispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -19,22 +20,37 @@ class EmbedController extends Controller
         $this->validate($request, ['url' => 'required|url']);
 
         $url = $request->query('url');
-        $info = remember('embed.' . md5($url), 60, function () use ($url) {
-            return Embed::create($url);
+
+        $dispatcher = new CurlDispatcher([
+            CURLOPT_CONNECTTIMEOUT => 1,
+            CURLOPT_TIMEOUT => 3,
+        ]);
+
+        $info = remember('embed.' . md5($url), 60, function () use ($url, $dispatcher) {
+                try {
+                    return Embed::create($url, null, $dispatcher);
+                } catch (\Exception $exception) {
+                    return 'Embed Request Unsuccessful. Error: '.$exception->getMessage();
+                }
         });
 
-        return [
-            'type' => $info->type,
-            'provider' => [
-                'name' => $info->providerName,
-                'icon' => $info->providerIcon,
-            ],
-            'title' => $info->title,
-            'description' => $info->description,
-            'url' => $info->url,
-            'image' => $info->image,
-            'code' => $info->type === 'video' ? $info->code : null,
-        ];
+        if (gettype($info) === 'string') {
+            return ['requestFailed' => true, 'info' => $info];
+        } else {
+            return [
+                'type' => $info->type,
+                'provider' => [
+                    'name' => $info->providerName,
+                    'icon' => $info->providerIcon,
+                ],
+                'title' => $info->title,
+                'description' => $info->description,
+                'url' => $info->url,
+                'image' => $info->image,
+                'code' => $info->type === 'video' ? $info->code : null,
+            ];
+        }
+
     }
 
     /**
