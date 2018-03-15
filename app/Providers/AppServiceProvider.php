@@ -49,6 +49,13 @@ class AppServiceProvider extends ServiceProvider
                 'VOTER_REG_MODAL_ENABLED' => config('services.timed_modals.voter_reg_modal.enabled'),
             ]);
         });
+
+        View::composer('*', function ($view) {
+            $view->with('auth', [
+                'id' => auth()->id(),
+                'jwt' => auth()->user()->access_token,
+            ]);
+        });
     }
 
     /**

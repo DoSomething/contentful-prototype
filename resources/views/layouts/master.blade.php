@@ -34,7 +34,8 @@
 
     @include('partials.analytics')
     {{ isset($state) ? scriptify($state) : scriptify() }}
-    {{ isset($env) ? scriptify($env, 'ENV') : scriptify() }}
+    {{ scriptify($env, 'ENV') }}
+    {{ scriptify($auth, 'AUTH') }}
 
     <script type="text/javascript" src="{{ elixir('app.js', 'next/assets') }}"></script>
 
