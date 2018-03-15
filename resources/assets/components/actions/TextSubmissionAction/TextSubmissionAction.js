@@ -48,6 +48,7 @@ TextSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   campaignRunId: PropTypes.string.isRequired,
+  className: PropTypes.string,
   contentfulId: PropTypes.string.isRequired,
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
@@ -57,6 +58,7 @@ TextSubmissionAction.propTypes = {
 
 TextSubmissionAction.defaultProps = {
   buttonText: 'Submit',
+  className: null,
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',
   title: 'Submit your text',
