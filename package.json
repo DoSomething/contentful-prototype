@@ -66,7 +66,7 @@
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
-    "@dosomething/babel-config": "^2.0.1",
+    "@dosomething/babel-config": "^2.1.0",
     "@dosomething/eslint-config": "^3.1.2",
     "@dosomething/webpack-config": "^3.0.0",
     "babel-eslint": "^8.1.1",

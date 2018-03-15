@@ -16,6 +16,13 @@ button {
   border: none;
 }
 
+.button {
+  &:focus {
+    border: none;
+    box-shadow: 0 0 3px $blue, inset 0 0 1px rgba(0,0,0,0.4);
+  }
+}
+
 h1, h2, h3, p {
   color: $black;
 }
@@ -31,12 +38,6 @@ h1, h2, h3, p {
     text-align: center;
     width: 100%;
   }
-}
-
-// Stop buttons from slightly popping in size when focused;
-// since they go from 0 border to 1px when focused.
-.button {
-  border: 1px solid $blue;
 }
 
 // Utility classes.
