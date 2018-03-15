@@ -8,8 +8,8 @@
  */
 
 // Homepage
-$router->redirect('/', 'us/campaigns/sincerely-us');
-$router->redirect('/us', 'us/campaigns/sincerely-us');
+$router->redirect('/', 'us/campaigns');
+$router->redirect('/us', 'us/campaigns');
 
 // Authentication
 $router->get('next/login', 'AuthController@getLogin')->name('login');

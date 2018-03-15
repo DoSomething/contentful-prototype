@@ -41,14 +41,27 @@ class CampaignRepository
      */
     public function getAll()
     {
-        $query = (new Query)->setContentType('campaign');
+        $flattenedCampaign = remember('campaigns', 15, function () {
+            $query = (new Query)->setContentType('campaign')->setInclude(0);
+            $campaigns = $this->contentful->getEntries($query);
+            $array = iterator_to_array($campaigns);
 
-        $campaigns = $this->contentful->getEntries($query);
-        $array = iterator_to_array($campaigns);
+            // Transform & cast as JSON so we can cache this. One little gotcha -
+            // we don't want full campaigns, that'd be a monstrous object!
+            $results = collect($array)->map(function ($entity) {
+                return [
+                    'id' => $entity->getId(),
+                    'slug' => $entity->getSlug(),
+                    'title' => $entity->getTitle(),
+                    'callToAction' => $entity->getCallToAction(),
+                    'coverImage' => get_image_url($entity->getCoverImage(), 'square'),
+                ];
+            });
 
-        return collect($array)->map(function ($entity) {
-            return new Campaign($entity);
+            return $results->toJson();
         });
+
+        return json_decode($flattenedCampaign);
     }
 
     /**
@@ -126,8 +139,7 @@ class CampaignRepository
             } else {
                 $campaign = new Campaign($campaigns[0]);
 
-                // encoding campaign to provide serialized version of the campaign to cache, to avoid
-                // "Serialization of 'Closure' is not allowed" error.
+                // Cast as JSON so we can cache this.
                 return json_encode($campaign);
             }
         }, $skipCache);

@@ -26,6 +26,7 @@ import './scss/base.scss';
 import './scss/chrome.scss';
 import './scss/container.scss';
 import './scss/navigation.scss';
+import './scss/placeholder.scss';
 import './scss/fonts.scss';
 
 // React Application
