@@ -16,9 +16,12 @@
                                 <a class="wrapper" href="{{ url('campaigns/'.$item->slug) }}">
                                     <div class="tile__meta">
                                         <h1 class="tile__title">{{ $item->title }}</h1>
-                                        <p class="tile__tagline">{{ $item->callToAction }}</p>
                                     </div>
-                                    <img alt="kitten overlords" src="{{ get_image_url($item->coverImage, 'square') }}" />
+                                    @if ($item->coverImage)
+                                        <img alt="{{ $item->title }}" src="{{ $item->coverImage }}" />
+                                    @else
+                                        <img alt="No cover image!" src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" />
+                                    @endif
                                 </a>
                             </article>
                         </li>
