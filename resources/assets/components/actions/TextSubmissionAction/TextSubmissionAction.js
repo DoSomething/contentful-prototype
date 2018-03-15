@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Card from '../../Card';
 
@@ -10,6 +11,10 @@ class TextSubmissionAction extends React.Component {
     super(props);
 
     this.handleSubmitForm = this.handleSubmitForm.bind(this);
+
+    this.state = {
+      data: null, // @TODO: temporary holder; not sure what full state is yet.
+    };
   }
 
   handleSubmitForm(event) {
@@ -23,7 +28,7 @@ class TextSubmissionAction extends React.Component {
 
   render() {
     return (
-      <Card className="bordered rounded text-submission-action" title={this.props.title}>
+      <Card className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
         <form onSubmit={this.handleSubmitForm}>
           <div className="padded">
             <div className="form-item">
