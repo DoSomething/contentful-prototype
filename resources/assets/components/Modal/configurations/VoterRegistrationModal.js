@@ -8,7 +8,7 @@ import VoterRegistrationActionContainer from '../../actions/VoterRegistrationAct
 class VoterRegistrationModal extends React.Component {
   componentWillUnmount() {
     // @see: ModalLauncher.js
-    set(`${this.props.northstarId}_dismissed_voter_reg_modal`, 'timestamp', Date.now());
+    set(`${this.props.userId}_dismissed_voter_reg_modal`, 'timestamp', Date.now());
   }
 
   render() {
@@ -25,7 +25,7 @@ class VoterRegistrationModal extends React.Component {
 
 VoterRegistrationModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  northstarId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default VoterRegistrationModal;
