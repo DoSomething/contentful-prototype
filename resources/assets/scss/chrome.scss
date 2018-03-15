@@ -8,6 +8,11 @@
   &.-lock {
     position: fixed;
   }
+
+  &.-plain .wrapper {
+    background: none;
+    box-shadow: none;
+  }
 }
 
 .main {

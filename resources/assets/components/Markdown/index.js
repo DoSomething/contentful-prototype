@@ -9,12 +9,20 @@ const pattern = /\/\/images\.contentful\.com.+\.(jpg|png)/g;
 const contentfulImageFormat = url => (contentfulImageUrl(url, '1000'));
 const formatImageUrls = string => (string.replace(pattern, contentfulImageFormat));
 
-const Markdown = ({ className = null, children }) => (
-  <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={markdown(formatImageUrls(children))} /> // eslint-disable-line react/no-danger
-);
+const Markdown = ({ className = null, children }) => {
+  // When directly writing content into this component, React may pass it as an
+  // array of strings. If so, combine them to get the Markdown source!
+  const sourceMarkdown = Array.isArray(children) ? children.join('') : children;
+  const html = markdown(formatImageUrls(sourceMarkdown));
+
+  return <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={html} />; // eslint-disable-line react/no-danger
+};
 
 Markdown.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
   className: PropTypes.string,
 };
 

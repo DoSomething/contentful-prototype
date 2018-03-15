@@ -6,9 +6,10 @@ import Quiz from '../Quiz';
 import { ContentfulEntryJson } from '../../types';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
-import PlaceholderBlock from '../PlaceholderBlock';
+import NotFound from '../NotFound';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import { PostGalleryContainer } from '../Gallery/PostGallery';
 import { parseContentfulType } from '../../helpers';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
@@ -21,7 +22,9 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
 type ContentfulEntryProps = { json: ContentfulEntryJson, stepIndex: number, isSignedUp: boolean };
 
-const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: ContentfulEntryProps) => {
+const ContentfulEntry = ({
+  json = DEFAULT_BLOCK, stepIndex = 1, isSignedUp,
+}: ContentfulEntryProps) => {
   const type = parseContentfulType(json);
 
   switch (type) {
@@ -70,6 +73,9 @@ const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: Conten
         />
       );
 
+    case 'gallery':
+      return <PostGalleryContainer />;
+
     case 'affirmation':
       return renderAffirmation(json);
 
@@ -99,7 +105,7 @@ const ContentfulEntry = ({ json = DEFAULT_BLOCK, stepIndex, isSignedUp }: Conten
       return renderContentBlock(json, stepIndex);
 
     default:
-      return <PlaceholderBlock />;
+      return <NotFound />;
   }
 };
 
