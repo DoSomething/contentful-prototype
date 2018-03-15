@@ -21,6 +21,10 @@ return [
         'puck_url' => env('PUCK_URL'),
     ],
 
+    'graphql' => [
+        'url' => env('GRAPHQL_URL', 'https://graphql-preview.dosomething.org/graphql'),
+    ],
+
     'gladiator' => [
         'url' => env('GLADIATOR_URL', 'https://gladiator-qa.dosomething.org'),
         'key' => env('GLADIATOR_API_KEY'),
