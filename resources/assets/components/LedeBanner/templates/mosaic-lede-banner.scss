@@ -22,11 +22,18 @@
     }
 
     &.-action {
-      background: #fff;
+      background-color: #fff;
       color: #000;
 
-      // HACK: Fix awkward blue border on click.
-      &:focus { border: 0 };
+      &:hover, &:focus {
+        background-color: $off-white;
+        box-shadow: none;
+      }
+
+      &:active {
+        position: relative;
+        top: 1px;
+      }
     }
   }
 
