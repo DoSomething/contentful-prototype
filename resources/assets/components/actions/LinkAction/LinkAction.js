@@ -6,9 +6,10 @@ import Card from '../../Card';
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
 import SponsorPromotion from '../../SponsorPromotion';
+import { isExternal } from '../../../helpers';
 
 const LinkAction = (props) => {
-  const { content, link, affiliateLogo, trackEvent } = props;
+  const { content, link, buttonText, affiliateLogo, trackEvent } = props;
 
   const onLinkClick = () => {
     trackEvent('clicked link action', { link });
@@ -18,6 +19,8 @@ const LinkAction = (props) => {
   // in Contentful, we currently can't for CampaignUpdates which have a similar affiliate flow,
   // so this ensures consistency until we make this part of the content editing process.
   const title = affiliateLogo ? 'See More Be More Do More' : props.title;
+
+  const target = isExternal(link) ? '_blank' : '_self';
 
   return (
     <div className="link-action margin-bottom-lg">
@@ -29,15 +32,23 @@ const LinkAction = (props) => {
           <Markdown className="padded">{content}</Markdown>
           : null }
 
-        <div role="button" tabIndex="0" onClick={onLinkClick} className="link-wrapper">
-          <Embed className="padded" url={link} />
-        </div>
+        { buttonText ? null : (
+          <div role="button" tabIndex="0" onClick={onLinkClick} className="link-wrapper">
+            <Embed className="padded" url={link} />
+          </div>
+        ) }
 
         { affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
             imgUrl={affiliateLogo}
           />
+        ) : null }
+
+        { buttonText ? (
+          <a className="button button-attached" target={target} href={link} onClick={onLinkClick}>
+            { buttonText }
+          </a>
         ) : null }
 
       </Card>
@@ -48,6 +59,7 @@ const LinkAction = (props) => {
 LinkAction.defaultProps = {
   content: null,
   affiliateLogo: null,
+  buttonText: null,
 };
 
 LinkAction.propTypes = {
@@ -56,6 +68,7 @@ LinkAction.propTypes = {
   link: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
   affiliateLogo: PropTypes.string,
+  buttonText: PropTypes.string,
 };
 
 export default LinkAction;
