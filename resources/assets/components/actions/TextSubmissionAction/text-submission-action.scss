@@ -1,0 +1,9 @@
+@import '~@dosomething/forge/scss/toolkit';
+@import '../../../scss/next-toolbox.scss';
+
+.text-submission-action {
+  .button {
+    border-radius: 0;
+    width: 100%;
+  }
+}

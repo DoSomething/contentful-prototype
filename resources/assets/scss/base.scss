@@ -33,6 +33,12 @@ h1, h2, h3, p {
   }
 }
 
+// Stop buttons from slightly popping in size when focused;
+// since they go from 0 border to 1px when focused.
+.button {
+  border: 1px solid $blue;
+}
+
 // Utility classes.
 // @TODO: Move over to Forge 7 soon!
 .background-image-centered {
