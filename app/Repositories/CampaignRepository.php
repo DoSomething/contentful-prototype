@@ -47,7 +47,7 @@ class CampaignRepository
             $array = iterator_to_array($campaigns);
 
             // Transform & cast as JSON so we can cache this. One little gotcha -
-            // we don't want to grab full campaigns, that'd be a bajillion requests!
+            // we don't want full campaigns, that'd be a monstrous object!
             $results = collect($array)->map(function ($entity) {
                 return [
                     'id' => $entity->getId(),
