@@ -38,6 +38,8 @@ class Embed extends React.Component {
           </Figure>
         </a>
       );
+    } else if (this.state.requestFailed) {
+      embed = <a href={this.props.url}>{this.props.url}</a>;
     }
 
     return (
