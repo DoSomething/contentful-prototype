@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Embed\Embed;
-use Embed\Http\CurlDispatcher;
 use Illuminate\Http\Request;
+use Embed\Http\CurlDispatcher;
 use Illuminate\Http\JsonResponse;
 
 class EmbedController extends Controller
@@ -27,11 +27,11 @@ class EmbedController extends Controller
         ]);
 
         $info = remember('embed.' . md5($url), 60, function () use ($url, $dispatcher) {
-                try {
-                    return Embed::create($url, null, $dispatcher);
-                } catch (\Exception $exception) {
-                    return 'Embed Request Unsuccessful. Error: '.$exception->getMessage();
-                }
+            try {
+                return Embed::create($url, null, $dispatcher);
+            } catch (\Exception $exception) {
+                return 'Embed Request Unsuccessful. Error: '.$exception->getMessage();
+            }
         });
 
         if (gettype($info) === 'string') {
@@ -50,7 +50,6 @@ class EmbedController extends Controller
                 'code' => $info->type === 'video' ? $info->code : null,
             ];
         }
-
     }
 
     /**
