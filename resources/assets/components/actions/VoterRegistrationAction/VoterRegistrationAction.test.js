@@ -32,11 +32,11 @@ test('VoterRegistrationAction is rendered as a card component with a button', ()
 describe('clicking the VoterRegistrationAction button', () => {
   wrapper.find('.button').simulate('click');
 
-  it('calls the event tracker prop function', () => {
+  test('calls the event tracker prop function', () => {
     expect(trackEventMock).toHaveBeenCalled();
   });
 
-  it('store to hide voter_reg_modal from user in local storage', () => {
+  test('sets the user to be hidden from voter_reg_modal in local storage', () => {
     expect(get(`${'551234567890abcdefghijkl'}_hide_voter_reg_modal`, 'boolean')).toBe(true);
   });
 });
