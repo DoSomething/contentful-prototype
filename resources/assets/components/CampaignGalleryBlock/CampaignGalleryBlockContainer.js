@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import PostGallery from './PostGallery';
+import CampaignGalleryBlock from './CampaignGalleryBlock';
 
 /**
  * Provide state from the Redux store as props for this component. (In
@@ -74,5 +74,5 @@ const mapResultToProps = ({ data: { loading, postsByCampaignId, variables, fetch
 
 // Export the container component.
 export default connect(mapStateToProps)(
-  graphql(query, { options: queryOptions, props: mapResultToProps })(PostGallery),
+  graphql(query, { options: queryOptions, props: mapResultToProps })(CampaignGalleryBlock),
 );

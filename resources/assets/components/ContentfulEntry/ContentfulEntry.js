@@ -9,7 +9,7 @@ import ReportbackBlock from '../ReportbackBlock';
 import NotFound from '../NotFound';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
-import { PostGalleryContainer } from '../Gallery/PostGallery';
+import CampaignGalleryBlockContainer from '../CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import { parseContentfulType } from '../../helpers';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
@@ -63,7 +63,7 @@ const ContentfulEntry = ({
       return renderContentBlock(json, stepIndex);
 
     case 'gallery':
-      return <PostGalleryContainer />;
+      return <CampaignGalleryBlockContainer />;
 
     case 'linkAction':
       return renderLinkAction(json);

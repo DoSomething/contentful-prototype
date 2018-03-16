@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import Card from '../../Card';
+import Card from '../Card';
 import Gallery from '../Gallery';
-import LoadMore from '../../LoadMore';
-import { ReportbackItem } from '../../ReportbackItem';
+import LoadMore from '../LoadMore';
+import { ReportbackItem } from '../ReportbackItem';
 
-const PostGallery = (props) => {
+const CampaignGalleryBlock = (props) => {
   const { loading, postsByCampaignId, loadMorePosts } = props;
 
   return loading ? (
@@ -33,14 +33,14 @@ const PostGallery = (props) => {
   );
 };
 
-PostGallery.propTypes = {
+CampaignGalleryBlock.propTypes = {
   postsByCampaignId: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
 };
 
-PostGallery.defaultProps = {
+CampaignGalleryBlock.defaultProps = {
   postsByCampaignId: [],
 };
 
-export default PostGallery;
+export default CampaignGalleryBlock;
