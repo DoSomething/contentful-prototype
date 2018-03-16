@@ -58,20 +58,22 @@ class Entity implements ArrayAccess, JsonSerializable
         }
 
         switch ($block->getContentType()) {
-            case 'photoUploaderAction':
-                return new PhotoUploaderAction($block->entry);
-            case 'voterRegistrationAction':
-                return new VoterRegistrationAction($block->entry);
-            case 'shareAction':
-                return new ShareAction($block->entry);
-            case 'linkAction':
-                return new LinkAction($block->entry);
             case 'affirmation':
                 return new Affirmation($block->entry);
             case 'campaignUpdate':
                 return new CampaignUpdate($block->entry);
+            case 'linkAction':
+                return new LinkAction($block->entry);
             case 'page':
                 return $block;
+            case 'photoUploaderAction':
+                return new PhotoUploaderAction($block->entry);
+            case 'shareAction':
+                return new ShareAction($block->entry);
+            case 'textSubmissionAction':
+                return new TextSubmissionAction($block->entry);
+            case 'voterRegistrationAction':
+                return new VoterRegistrationAction($block->entry);
             default:
                 return new CampaignActionStep($block->entry);
         }
