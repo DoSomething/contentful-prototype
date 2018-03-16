@@ -37,7 +37,7 @@ class TextSubmissionAction extends React.Component {
             </div>
             <p className="footnote">Your submission will be reviewed by a DoSomething.org staffer and added to our public gallery.</p>
           </div>
-          <input type="submit" defaultValue={this.props.buttonText} className="button" />
+          <input type="submit" defaultValue={this.props.buttonText} className="button" disabled />
         </form>
       </Card>
     );
