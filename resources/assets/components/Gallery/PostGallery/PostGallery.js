@@ -27,6 +27,7 @@ const PostGallery = (props) => {
           </Card>
         ))}
       </Gallery>
+      { /* TODO: Use `networkStatus` to differentiate initial load from subsequent ones? (https://goo.gl/UnWbak) */ }
       <LoadMore className="padding-lg text-centered" text="view more" onClick={loadMorePosts} isLoading={false} />
     </div>
   );
