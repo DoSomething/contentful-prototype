@@ -4,10 +4,11 @@ import { get } from 'lodash';
 
 import Card from '../../Card';
 import Gallery from '../Gallery';
+import LoadMore from '../../LoadMore';
 import { ReportbackItem } from '../../ReportbackItem';
 
 const PostGallery = (props) => {
-  const { loading, postsByCampaignId } = props.data;
+  const { loading, postsByCampaignId, loadMorePosts } = props;
 
   return loading ? (
     <div className="spinner -centered" />
@@ -26,21 +27,19 @@ const PostGallery = (props) => {
           </Card>
         ))}
       </Gallery>
+      <LoadMore className="padding-lg text-centered" text="view more" onClick={loadMorePosts} isLoading={false} />
     </div>
   );
 };
 
 PostGallery.propTypes = {
-  data: PropTypes.shape({
-    postsByCampaignId: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-    loading: PropTypes.bool.isRequired,
-  }),
+  postsByCampaignId: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  loading: PropTypes.bool.isRequired,
+  loadMorePosts: PropTypes.func.isRequired,
 };
 
 PostGallery.defaultProps = {
-  data: {
-    postsByCampaignId: [],
-  },
+  postsByCampaignId: [],
 };
 
 export default PostGallery;
