@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 import Card from '../../Card';
 import Gallery from '../Gallery';
@@ -17,9 +18,10 @@ const PostGallery = (props) => {
           <Card className="rounded" key={post.id}>
             <ReportbackItem
               id={String(post.id)}
+              type={post.type}
               caption={post.media.text}
               url={post.media.url}
-              firstName={post.user.firstName}
+              firstName={get(post, 'user.firstName') || 'A Doer'}
             />
           </Card>
         ))}
@@ -32,7 +34,13 @@ PostGallery.propTypes = {
   data: PropTypes.shape({
     postsByCampaignId: PropTypes.array, // eslint-disable-line react/forbid-prop-types
     loading: PropTypes.bool.isRequired,
-  }).isRequired,
+  }),
+};
+
+PostGallery.defaultProps = {
+  data: {
+    postsByCampaignId: [],
+  },
 };
 
 export default PostGallery;
