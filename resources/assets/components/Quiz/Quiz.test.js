@@ -21,6 +21,7 @@ test('it should display a placeholder quiz', () => {
       startQuiz={() => {}}
       trackEvent={() => {}}
       pickQuizAnswer={() => {}}
+      showLedeBanner={false}
     />,
   );
 
