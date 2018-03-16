@@ -17,7 +17,8 @@ import './quiz.scss';
 
 const Quiz = (props) => {
   const { id, fields, data, dashboard, completeQuiz,
-    pickQuizAnswer, trackEvent, showLedeBanner } = props;
+    pickQuizAnswer, trackEvent, showLedeBanner,
+    completionButtonText } = props;
   const { error, shouldSeeResult, selectedResult } = data;
 
   const introduction = shouldSeeResult ? null : (
@@ -43,7 +44,9 @@ const Quiz = (props) => {
       <button
         onClick={() => completeQuiz(id)}
         className="button quiz__submit"
-      >get results</button>
+      >
+        {completionButtonText || Quiz.defaultProps.completionButtonText}
+      </button>
     </Conclusion>
   );
 
@@ -125,6 +128,7 @@ Quiz.propTypes = {
   completeQuiz: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
   showLedeBanner: PropTypes.bool.isRequired,
+  completionButtonText: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
 };
 
@@ -143,6 +147,7 @@ Quiz.defaultProps = {
     comparison: '',
     callToAction: '',
   },
+  completionButtonText: 'get results',
 };
 
 export default Quiz;

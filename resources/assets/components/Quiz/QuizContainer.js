@@ -36,6 +36,7 @@ const mapStateToProps = (state, ownProps) => {
     fields: quizFields,
     data: quizData,
     dashboard: state.campaign.dashboard,
+    completionButtonText: get(quizFields, 'additionalContent.completionButtonText'),
     showLedeBanner: get(quizFields, 'additionalContent.showLedeBanner', true),
   };
 };
