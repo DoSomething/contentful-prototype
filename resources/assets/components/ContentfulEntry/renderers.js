@@ -1,14 +1,16 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
+
 import { ContentBlock } from '../Block';
-import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction';
 import Affirmation from '../Affirmation';
-import { ThirdPartyActionContainer } from '../actions/ThirdPartyAction';
-import { ReportbackUploaderContainer } from '../ReportbackUploader';
-import { CompetitionBlockContainer } from '../CompetitionBlock';
-import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import { ShareActionContainer } from '../ShareAction';
 import LinkActionContainer from '../actions/LinkAction';
+import { CompetitionBlockContainer } from '../CompetitionBlock';
+import { ReportbackUploaderContainer } from '../ReportbackUploader';
+import { ThirdPartyActionContainer } from '../actions/ThirdPartyAction';
+import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
+import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction';
+import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 
 /**
  * Render a competition step.
@@ -179,6 +181,24 @@ export function renderLinkAction(step) {
       <PuckWaypoint name="link_action-top" waypointData={{ contentfulId }} />
       <LinkActionContainer {...step.fields} />
       <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
+    </div>
+  );
+}
+
+/**
+ * Render a link action.
+ *
+ * @param {Object} data
+ * @return {Component}
+ */
+export function renderTextSubmissionAction(data) {
+  const contentfulId = data.id;
+
+  return (
+    <div key={`text-submission-action-${contentfulId}`} className="margin-horizontal-md">
+      <PuckWaypoint name="text_submission_action-top" waypointData={{ contentfulId }} />
+      <TextSubmissionActionContainer {...data.fields} />
+      <PuckWaypoint name="text_submission_action-top" waypointData={{ contentfulId }} />
     </div>
   );
 }
