@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ModalSwitchContainer, SURVEY_MODAL, VOTER_REGISTRATION_MODAL } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../TrafficDistribution';
-import { CampaignPageContainer, LandingPageContainer } from '../Page';
+import { CampaignPageContainer } from '../Page';
 import { AdminDashboardContainer, CampaignDashboardContainer } from '../AdminDashboard';
 import ModalLauncherContainer from '../ModalLauncher';
 import QuizAltContainer from '../QuizAlt/QuizAltContainer';
