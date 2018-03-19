@@ -46,7 +46,7 @@ const CampaignPage = (props) => {
           <Route
             path={`${match.url}`}
             exact
-            component={ActionPageOrActivityFeed}
+            component={QuizAltContainer}
           />
           <Route
             path={`${match.url}/action`}
