@@ -12,8 +12,6 @@ import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
 import { BLOCK_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
-import QuizAltContainer from '../../QuizAlt/QuizAltContainer';
-
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
 
@@ -46,7 +44,7 @@ const CampaignPage = (props) => {
           <Route
             path={`${match.url}`}
             exact
-            component={QuizAltContainer}
+            component={ActionPageOrActivityFeed}
           />
           <Route
             path={`${match.url}/action`}
@@ -67,7 +65,6 @@ const CampaignPage = (props) => {
           <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
           <Route path={`${match.url}/blocks/:id`} component={BlockPageContainer} />
           <Route path={`${match.url}/quiz/:slug`} component={QuizContainer} />
-          <Route path={`${match.url}/new-quiz`} component={QuizAltContainer} />
           <Route
             path={`${match.url}/modal/:id`}
             render={(routingProps) => {
