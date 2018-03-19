@@ -1,13 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Quiz from './Quiz';
+import LegacyQuiz from './LegacyQuiz';
 
 // Mock Redux containers so we don't need Provider context.
-jest.mock('./QuizContainer', () => 'QuizContainer');
+jest.mock('./LegacyQuizContainer', () => 'LegacyQuizContainer');
 
 test('it should display a placeholder quiz', () => {
   const wrapper = mount(
-    <Quiz
+    <LegacyQuiz
       id="1"
       fields={{
         callToAction: 'do it',
@@ -25,5 +25,5 @@ test('it should display a placeholder quiz', () => {
     />,
   );
 
-  expect(wrapper.find(Quiz)).toHaveLength(1);
+  expect(wrapper.find(LegacyQuiz)).toHaveLength(1);
 });

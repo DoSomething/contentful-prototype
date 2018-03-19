@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import Quiz from '../Quiz';
+import LegacyQuiz from '../LegacyQuiz';
 import { ContentfulEntryJson } from '../../types';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
@@ -73,7 +73,7 @@ const ContentfulEntry = ({
       return renderPhotoUploader(json, isSignedUp);
 
     case 'quiz':
-      return <Quiz />;
+      return <LegacyQuiz />;
 
     // @TODO: Will be refactored when switching to Rogue!
     case 'reportbacks':
