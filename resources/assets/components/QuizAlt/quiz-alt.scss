@@ -1,0 +1,93 @@
+@import '../../scss/next-toolbox.scss';
+
+.quiz {
+  margin: 0 $half-spacing;
+
+  .quiz__heading {
+    color: $primary-color;
+    font-size: $font-large;
+    font-weight: $weight-bold;
+    text-transform: uppercase;
+  }
+
+  .quiz__title {
+    font-family: $secondary-font-family;
+    font-size: $font-hero;
+    text-transform: uppercase;
+    margin-bottom: $base-spacing;
+  }
+
+  .question {
+    margin: $base-spacing 0;
+
+    .question__title {
+      color: $white;
+      font-family: $secondary-font-family;
+      font-size: $font-larger;
+      font-weight: normal;
+      letter-spacing: 2px;
+
+      @include media($medium) {
+        font-size: $font-hero;
+        padding: $base-spacing;
+      }
+    }
+  }
+
+  .question__choices {
+    margin-top: $base-spacing;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .choice {
+    margin-bottom: $half-spacing;
+    font-weight: $weight-bold;
+    text-decoration: none;
+    width: 100%;
+    outline: 0;
+
+    &.background-image {
+      flex: 0 0 33%;
+      padding: 0 $half-spacing $half-spacing 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .-active {
+      border-color: $blue;
+      border-width: 2px;
+    }
+  }
+
+  .quiz-conclusion {
+    margin-bottom: $base-spacing;
+
+    .conclusion__item {
+      display: inline-block;
+      vertical-align: middle;
+      box-sizing: border-box;
+
+      @include media($small) {
+        width: 100%;
+      }
+
+      @include media($tablet) {
+        &.-one-third {
+          width: 50%;
+        }
+
+        &.-two-thirds {
+          width: 50%;
+        }
+      }
+
+      button {
+        width: 100%;
+        min-height: 65px;
+      }
+    }
+  }
+}
