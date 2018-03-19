@@ -7,7 +7,6 @@ import TrafficDistribution from '../TrafficDistribution';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import { AdminDashboardContainer, CampaignDashboardContainer } from '../AdminDashboard';
 import ModalLauncherContainer from '../ModalLauncher';
-import QuizAltContainer from '../QuizAlt/QuizAltContainer';
 
 const Campaign = props => (
   <div>
@@ -37,7 +36,6 @@ const Campaign = props => (
     ) : null }
 
     { props.shouldShowLandingPage ?
-      <QuizAltContainer />
       <LandingPageContainer {...props} />
       :
       <CampaignPageContainer {...props} />}
