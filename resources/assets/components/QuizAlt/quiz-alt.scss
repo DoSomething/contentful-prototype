@@ -50,6 +50,10 @@
     &.background-image {
       flex: 0 0 33%;
       padding: 0 $half-spacing $half-spacing 0;
+
+      @include media($small) {
+        flex: 0 0 50%;
+      }
     }
 
     &:hover {
