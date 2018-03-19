@@ -14,7 +14,7 @@ import { parseContentfulType } from '../../helpers';
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
-  renderShareAction, renderLinkAction, renderAffirmation,
+  renderShareAction, renderLinkAction, renderAffirmation, renderTextSubmissionAction,
 } from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
@@ -28,6 +28,9 @@ const ContentfulEntry = ({
   const type = parseContentfulType(json);
 
   switch (type) {
+    case 'affirmation':
+      return renderAffirmation(json);
+
     case 'callToAction':
       return (
         <CallToActionContainer
@@ -53,6 +56,22 @@ const ContentfulEntry = ({
         />
       );
 
+    case 'competition':
+      return renderCompetitionStep(json);
+
+    case 'contentBlock':
+      return renderContentBlock(json, stepIndex);
+
+    case 'gallery':
+      return <PostGalleryContainer />;
+
+    case 'linkAction':
+      return renderLinkAction(json);
+
+    case 'photoUploaderAction':
+    case 'photo-uploader':
+      return renderPhotoUploader(json, isSignedUp);
+
     case 'quiz':
       return <Quiz />;
 
@@ -64,6 +83,9 @@ const ContentfulEntry = ({
         />
       );
 
+    case 'shareAction':
+      return renderShareAction(json);
+
     case 'static':
       return (
         <StaticBlock
@@ -73,36 +95,17 @@ const ContentfulEntry = ({
         />
       );
 
-    case 'gallery':
-      return <PostGalleryContainer />;
-
-    case 'affirmation':
-      return renderAffirmation(json);
-
-    case 'competition':
-      return renderCompetitionStep(json);
-
-    case 'photoUploaderAction':
-    case 'photo-uploader':
-      return renderPhotoUploader(json, isSignedUp);
-
     case 'submission-gallery':
       return renderSubmissionGallery(isSignedUp);
+
+    case 'textSubmissionAction':
+      return renderTextSubmissionAction(json);
 
     case 'third-party-action':
       return renderThirdPartyAction(json, stepIndex);
 
     case 'voterRegistrationAction':
       return renderVoterRegistrationAction(json, stepIndex);
-
-    case 'shareAction':
-      return renderShareAction(json);
-
-    case 'linkAction':
-      return renderLinkAction(json);
-
-    case 'contentBlock':
-      return renderContentBlock(json, stepIndex);
 
     default:
       return <NotFound />;
