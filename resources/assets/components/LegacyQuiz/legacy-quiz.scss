@@ -3,7 +3,11 @@
 .quiz {
   margin: 0 $half-spacing;
 
-  .quiz__heading {
+  .quiz__introduction {
+    text-align: center;
+  }
+
+  .quiz__subtitle {
     color: $primary-color;
     font-size: $font-large;
     font-weight: $weight-bold;
@@ -15,6 +19,10 @@
     font-size: $font-hero;
     text-transform: uppercase;
     margin-bottom: $base-spacing;
+  }
+
+  .quiz__description {
+    margin-bottom: $base-spacing * 2;
   }
 
   .question {
@@ -40,20 +48,17 @@
     flex-wrap: wrap;
   }
 
-  .choice {
+  .answer {
     margin-bottom: $half-spacing;
     font-weight: $weight-bold;
+    text-align: center;
     text-decoration: none;
     width: 100%;
     outline: 0;
 
-    &.background-image {
+    @include media($medium) {
       flex: 0 0 33%;
-      padding: 0 $half-spacing $half-spacing 0;
-
-      @include media($small) {
-        flex: 0 0 50%;
-      }
+      padding: 0 $half-spacing $half-spacing $half-spacing;
     }
 
     &:hover {
@@ -66,7 +71,7 @@
     }
   }
 
-  .quiz-conclusion {
+  .conclusion {
     margin-bottom: $base-spacing;
 
     .conclusion__item {
@@ -74,23 +79,18 @@
       vertical-align: middle;
       box-sizing: border-box;
 
-      @include media($small) {
-        width: 100%;
-      }
-
       @include media($tablet) {
         &.-one-third {
-          width: 50%;
+          width: 33%;
         }
 
         &.-two-thirds {
-          width: 50%;
+          width: 66%;
         }
       }
 
       button {
         width: 100%;
-        min-height: 65px;
       }
     }
   }
