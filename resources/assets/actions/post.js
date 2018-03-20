@@ -23,4 +23,23 @@ export function fetchCampaignPosts() {
   };
 }
 
-export default {};
+/**
+ * Store posts for the specified campaign.
+ *
+ * @param  {Object} data
+ * @return {function}
+ */
+export function storeCampaignPost(data) {
+  return (dispatch, getState) => {
+    console.log('🤖 beep boop storing campaign post...');
+    // console.log(getState().campaign.id);
+    // console.log(data);
+
+    dispatch(apiRequest('POST', {
+      body: {
+        textValue: data.textValue,
+      },
+      url: `api/v2/campaigns/${data.campaignId}/post`,
+    }));
+  };
+}
