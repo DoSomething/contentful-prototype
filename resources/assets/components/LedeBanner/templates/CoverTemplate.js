@@ -19,7 +19,7 @@ const CoverTemplate = (props) => {
     subtitle,
   } = props;
 
-  const blurb = 'Fight anti-immigrant hate speech online, and you’ll unlock a Kiva loan to an immigrant entrepreneur. (You could even win a $3,000 scholarship!)';
+  const blurb = 'Fight anti-immigrant hate speech online, and you’ll unlock a Kiva loan for an immigrant entrepreneur. (You could even win a $3,000 scholarship!)';
 
   // Overriding with specific coverImage URL for A/B test.
   coverImage.url = 'https://images.ctfassets.net/81iqaqpfd8fy/5u4wqT1Vte2SAWO0sK0oCS/78d47661fd65d2dc98235fe9fde221a6/grab-the-mic.png';
