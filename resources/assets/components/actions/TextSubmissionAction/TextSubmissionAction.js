@@ -22,7 +22,7 @@ class TextSubmissionAction extends React.Component {
     event.preventDefault();
 
     // Send this off to the backend API to validate/send to Rogue.
-    // console.log(this.state);
+    // We should maybe ONLY send the data we need to pass instead of full state.
     this.props.storeCampaignPost(this.state);
   }
 

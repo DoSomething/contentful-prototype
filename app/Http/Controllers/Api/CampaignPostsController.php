@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
 use App\Repositories\CampaignRepository;
@@ -55,14 +56,18 @@ class CampaignPostsController extends Controller
      * @param  string $id Campaign ID
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store($id, Request $request)
+    public function store($id, PostRequest $request)
     {
-        $this->validate($request, [
-            'media' => 'required',  //@TODO: add file|image
-            'caption' => 'required|min:4|max:60',
-            'impact' => 'required|integer|min:1',
-            'whyParticipated' => 'required',
-        ]);
+        \Illuminate\Support\Facades\Log::info('TextSubmissionAction', [$request->toArray()]);
+
+        // $this->validate($request, [
+        //     'media' => 'required',  //@TODO: add file|image
+        //     'caption' => 'required|min:4|max:60',
+        //     'impact' => 'required|integer|min:1',
+        //     'whyParticipated' => 'required',
+        // ]);
+
+        dd('stop');
 
         $request->merge(['campaign_id' => $id]);
 

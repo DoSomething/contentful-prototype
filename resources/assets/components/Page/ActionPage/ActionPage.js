@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { cloneDeep } from 'lodash';
+
 import Enclosure from '../../Enclosure';
+import ActionStepsContainer from './ActionStepsContainer';
 import { CallToActionContainer } from '../../CallToAction';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
-
-import ActionStepsContainer from './ActionStepsContainer';
 
 /**
  * Render the action page steps.

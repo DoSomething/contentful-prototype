@@ -32,14 +32,13 @@ export function fetchCampaignPosts() {
 export function storeCampaignPost(data) {
   return (dispatch, getState) => {
     console.log('🤖 beep boop storing campaign post...');
-    // console.log(getState().campaign.id);
-    // console.log(data);
+
+    const token = getState().user.token;
 
     dispatch(apiRequest('POST', {
-      body: {
-        textValue: data.textValue,
-      },
-      url: `api/v2/campaigns/${data.campaignId}/post`,
+      token,
+      body: { ...data },
+      url: `api/v2/campaigns/${data.campaignId}/posts`,
     }));
   };
 }
