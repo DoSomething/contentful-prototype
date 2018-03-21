@@ -96,15 +96,21 @@ const TabbedNavigationContainer = (props) => {
     )
   );
 
+  const hideTabbedNavigation = (
+    shouldHideAction && shouldHideCommunity && ! additionalPages.length
+  );
+
   return (
-    <TabbedNavigation>
-      <div className="nav-items">
-        <ActionNavigationLink />
-        <CommunityNavigationLink />
-        { additionalPages }
-      </div>
-      { isAffiliated ? null : <SignupButton className="-inline nav-button" source="tabbed navigation" /> }
-    </TabbedNavigation>
+    hideTabbedNavigation ? null : (
+      <TabbedNavigation>
+        <div className="nav-items">
+          <ActionNavigationLink />
+          <CommunityNavigationLink />
+          { additionalPages }
+        </div>
+        { isAffiliated ? null : <SignupButton className="-inline nav-button" source="tabbed navigation" /> }
+      </TabbedNavigation>
+    )
   );
 };
 
