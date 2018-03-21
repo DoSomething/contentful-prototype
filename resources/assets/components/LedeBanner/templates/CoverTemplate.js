@@ -17,7 +17,6 @@ const CoverTemplate = (props) => {
     coverImage,
     isAffiliated,
     subtitle,
-    title,
   } = props;
 
   const blurb = 'Fight anti-immigrant hate speech online, and you’ll unlock a Kiva loan to an immigrant entrepreneur. (You could even win a $3,000 scholarship!)';
@@ -77,7 +76,6 @@ CoverTemplate.propTypes = {
   }).isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
 };
 
 CoverTemplate.defaultProps = {
