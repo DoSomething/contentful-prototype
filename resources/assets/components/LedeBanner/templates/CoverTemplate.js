@@ -16,7 +16,7 @@ const CoverTemplate = (props) => {
     affiliateSponsors,
     coverImage,
     isAffiliated,
-    subtitle,
+    title,
   } = props;
 
   const blurb = 'Fight anti-immigrant hate speech online, and you’ll unlock a Kiva loan for an immigrant entrepreneur. (You could even win a $3,000 scholarship!)';
@@ -39,9 +39,9 @@ const CoverTemplate = (props) => {
   return (
     <header role="banner" className="cover-lede-banner" style={backgroundImageStyle}>
       <div className="wrapper margin-horizontal-auto">
-        <h1 className="cover-lede-banner__headline-title">Get Loud In Support Of Immmigrants Online And At The Polls</h1>
+        <h1 className="cover-lede-banner__headline-title">{title}</h1>
 
-        <h2 className="cover-lede-banner__headline-subtitle">{subtitle}</h2>
+        <h2 className="cover-lede-banner__headline-subtitle">Get Loud In Support Of Immmigrants Online And At The Polls</h2>
 
         { blurb ? <Markdown className="cover-lede-banner__blurb">{blurb}</Markdown> : null }
 
@@ -75,7 +75,7 @@ CoverTemplate.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   isAffiliated: PropTypes.bool.isRequired,
-  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 CoverTemplate.defaultProps = {
