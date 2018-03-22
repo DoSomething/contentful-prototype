@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use JsonSerializable;
 
-class Quiz extends Entity implements JsonSerializable
+class LegacyQuiz extends Entity implements JsonSerializable
 {
     /**
      * Parse answers from the given question.
