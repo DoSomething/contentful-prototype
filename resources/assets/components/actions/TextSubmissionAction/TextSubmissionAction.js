@@ -1,3 +1,5 @@
+/* global FormData */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -8,22 +10,36 @@ import './text-submission-action.scss';
 
 class TextSubmissionAction extends React.Component {
   state = {
-    action: this.props.action,
-    id: this.props.id,
-    campaignId: this.props.campaignId,
-    legacyCampaignId: this.props.legacyCampaignId,
-    legacyCampaignRunId: this.props.legacyCampaignRunId,
+    isWaiting: false,
     textValue: '',
-    type: 'text',
-    userId: this.props.userId,
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
 
+    const formData = new FormData();
+
+    formData.append('action', this.props.action);
+    formData.append('campaignId', this.props.campaignId);
+    formData.append('type', this.props.type);
+    formData.append('text', this.state.textValue);
+
+    if (this.props.legacyCampaignId && this.props.legacyCampaignRunId) {
+      formData.append('details', JSON.stringify({
+        legacyCampaignId: this.props.legacyCampaignId,
+        legacyCampaignRunId: this.props.legacyCampaignRunId,
+      }));
+    }
+
+    // console.log(formData);
+
+    // this.setState({
+    //   formData,
+    // });
+
+
     // Send this off to the backend API to validate/send to Rogue.
-    // We should maybe ONLY send the data we need to pass instead of full state.
-    this.props.storeCampaignPost(this.state);
+    this.props.storeCampaignPost(formData);
   }
 
   handleChange = (event) => {
@@ -34,7 +50,7 @@ class TextSubmissionAction extends React.Component {
 
   render() {
     return (
-      <Card className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
+      <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
         <form onSubmit={this.handleSubmit}>
           <div className="padded">
             <div className="form-item">
@@ -51,7 +67,7 @@ class TextSubmissionAction extends React.Component {
             </div>
             <p className="footnote">Your submission will be reviewed by a DoSomething.org staffer and added to our public gallery.</p>
           </div>
-          <input type="submit" defaultValue={this.props.buttonText} className="button" />
+          <input type="submit" defaultValue={this.props.buttonText} className="button" disabled={this.state.isWaiting} />
         </form>
       </Card>
     );
@@ -59,20 +75,25 @@ class TextSubmissionAction extends React.Component {
 }
 
 TextSubmissionAction.propTypes = {
+  action: PropTypes.string.isRequired,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
-  campaignRunId: PropTypes.string.isRequired,
   className: PropTypes.string,
-  contentfulId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  legacyCampaignId: PropTypes.string,
+  legacyCampaignRunId: PropTypes.string,
+  storeCampaignPost: PropTypes.func.isRequired,
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
-  userId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 TextSubmissionAction.defaultProps = {
   buttonText: 'Submit',
   className: null,
+  legacyCampaignId: null,
+  legacyCampaignRunId: null,
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',
   title: 'Submit your text',

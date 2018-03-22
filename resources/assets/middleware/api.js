@@ -1,5 +1,3 @@
-/* global window */
-
 import { RestApiClient } from '@dosomething/gateway';
 
 import { API } from '../constants/action-types';
@@ -17,22 +15,47 @@ const apiMiddleware = () => next => (action) => {
 
   switch (action.method) {
     case 'POST':
+      // console.log('🎃 what is in the form data:');
+      // for (var value of payload.body.values()) {
+      //   console.log(value);
+      // }
+
       const clientPost = new RestApiClient(PHOENIX_URL, {
-        headers: { 'Authorization': `Bearer ${payload.token}` }
+        headers: {
+          Authorization: `Bearer ${payload.token}`,
+          'Content-Type': 'multipart/form-data',
+        }
       });
-
-      console.log('🥑');
-      console.log(clientPost);
-
-      console.log('POST request...');
-      console.log(payload.url);
-      console.log(payload.body);
-      clientPost.post(payload.url, payload.body)
+      // console.log(clientPost);
+      // console.log('🚀 request is about to be sent!');
+      return clientPost.post(payload.url, payload.body)
         .then((response) => {
-          console.log('🌶');
+          // console.log('🌶');
           console.log(response);
+        })
+        .catch(error => {
+          // console.log('🌹 caught the error!');
+          console.log(error.response);
         });
-      return;
+
+      // const token = document.querySelector('meta[name="csrf-token"]');
+      // return window.fetch(payload.url, {
+      //   method: 'POST',
+      //   headers: {
+      //     'X-CSRF-Token': token ? token.getAttribute('content') : null,
+      //     Accept: 'application/json',
+      //   },
+      //   credentials: 'same-origin',
+      //   body: payload.body,
+      // })
+      //   .then((response) => {
+      //     console.log('😿');
+      //     console.log(response);
+      //     console.log(response.status);
+      //     response.json().then((data) => {
+      //       console.log(data);
+      //     });
+      //   });
 
     case 'GET':
       const clientGet = new RestApiClient(PHOENIX_URL);

@@ -1,3 +1,5 @@
+/* global window */
+
 import apiRequest from './api';
 
 /**
@@ -26,7 +28,7 @@ export function fetchCampaignPosts() {
 /**
  * Store posts for the specified campaign.
  *
- * @param  {Object} data
+ * @param  {FormData} data
  * @return {function}
  */
 export function storeCampaignPost(data) {
@@ -35,10 +37,15 @@ export function storeCampaignPost(data) {
 
     const token = getState().user.token;
 
+    // console.log(data.get('campaignId'));
+    // for (var value of data.values()) {
+    //   console.log(value);
+    // }
+
     dispatch(apiRequest('POST', {
       token,
-      body: { ...data },
-      url: `api/v2/campaigns/${data.campaignId}/posts`,
+      body: data,
+      url: `${window.location.origin}/api/v2/campaigns/${data.get('campaignId')}/posts`,
     }));
   };
 }

@@ -21,10 +21,18 @@ class PostRequest extends FormRequest
      *
      * @return array
      */
-    // public function messages()
-    // {
+    public function messages()
+    {
+        switch($this->input('type'))
+        {
+            case 'text':
+                return [
+                    'text.required' => 'The text field with your message is required.',
+                ];
+        }
 
-    // }
+        return [];
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -33,14 +41,15 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        \Illuminate\Support\Facades\Log::info('PostRequest', [$this->toArray()]);
+        \Illuminate\Support\Facades\Log::info('PostRequest FULL:', [$this]);
+        \Illuminate\Support\Facades\Log::info('PostRequest:', [$this->toArray()]);
+        \Illuminate\Support\Facades\Log::info('PostRequest:', [$this->input('type')]);
 
         switch($this->input('type'))
         {
             case 'text':
                 return [
                     'text' => 'required',
-                    'example' => 'required',
                 ];
         }
 

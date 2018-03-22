@@ -31,7 +31,7 @@ class CampaignPostsController extends Controller
      */
     public function __construct(CampaignRepository $campaignRepository, PostRepository $postRepository)
     {
-        $this->middleware('auth:api')->except(['index']);
+        // $this->middleware('auth:api')->except(['index']);
 
         $this->campaignRepository = $campaignRepository;
 
