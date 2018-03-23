@@ -31,14 +31,7 @@ class TextSubmissionAction extends React.Component {
       }));
     }
 
-    // console.log(formData);
-
-    // this.setState({
-    //   formData,
-    // });
-
-
-    // Send this off to the backend API to validate/send to Rogue.
+    // Send this off to the backend API to validate and send off to Rogue.
     this.props.storeCampaignPost(formData);
   }
 

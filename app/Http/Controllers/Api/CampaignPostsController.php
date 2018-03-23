@@ -31,7 +31,7 @@ class CampaignPostsController extends Controller
      */
     public function __construct(CampaignRepository $campaignRepository, PostRepository $postRepository)
     {
-        // $this->middleware('auth:api')->except(['index']);
+        $this->middleware('auth:api')->except(['index']);
 
         $this->campaignRepository = $campaignRepository;
 
@@ -58,7 +58,7 @@ class CampaignPostsController extends Controller
      */
     public function store($id, PostRequest $request)
     {
-        \Illuminate\Support\Facades\Log::info('TextSubmissionAction', [$request->toArray()]);
+        // @TODO: Reactivate this once in upcoming pull request:
 
         // $this->validate($request, [
         //     'media' => 'required',  //@TODO: add file|image
@@ -67,32 +67,32 @@ class CampaignPostsController extends Controller
         //     'whyParticipated' => 'required',
         // ]);
 
-        dd('stop');
+        // $request->merge(['campaign_id' => $id]);
 
-        $request->merge(['campaign_id' => $id]);
+        // // Append the Campaign Run ID to Request if Legacy Campaign
+        // if (is_legacy_id($id)) {
+        //     $legacyCampaign = $this->campaignRepository->findByLegacyCampaignId($id);
+        //     $legacyCampaign = $legacyCampaign->jsonSerialize();
 
-        // Append the Campaign Run ID to Request if Legacy Campaign
-        if (is_legacy_id($id)) {
-            $legacyCampaign = $this->campaignRepository->findByLegacyCampaignId($id);
-            $legacyCampaign = $legacyCampaign->jsonSerialize();
+        //     $request->merge(['campaign_run_id' => $legacyCampaign['legacyCampaignRunId']]);
+        // }
 
-            $request->merge(['campaign_run_id' => $legacyCampaign['legacyCampaignRunId']]);
-        }
+        // // @TODO: Rename the following items on the front-end so they more easily
+        // // match with the params Rogue is expecting and thus don't need to manipulate
+        // // these params here.
+        // $request->merge(['file' => $request->file('media')]);
+        // $request->offsetUnset('media');
 
-        // @TODO: Rename the following items on the front-end so they more easily
-        // match with the params Rogue is expecting and thus don't need to manipulate
-        // these params here.
-        $request->merge(['file' => $request->file('media')]);
-        $request->offsetUnset('media');
+        // $request->merge(['quantity' => intval($request->input('impact'))]);
+        // $request->offsetUnset('impact');
 
-        $request->merge(['quantity' => intval($request->input('impact'))]);
-        $request->offsetUnset('impact');
+        // $request->merge(['why_participated' => $request->input('whyParticipated')]);
+        // $request->offsetUnset('whyParticipated');
 
-        $request->merge(['why_participated' => $request->input('whyParticipated')]);
-        $request->offsetUnset('whyParticipated');
+        // $data = $this->postRepository->storePost($request->all());
 
-        $data = $this->postRepository->storePost($request->all());
+        // return response()->json($data, 201);
 
-        return response()->json($data, 201);
+        return null;
     }
 }

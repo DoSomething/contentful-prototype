@@ -1,4 +1,4 @@
-/* global window */
+/* global window FormData */
 
 import apiRequest from './api';
 
