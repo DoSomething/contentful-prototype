@@ -31,7 +31,7 @@ class PostRequest extends FormRequest
                     'quantity.integer' => 'The quantity field needs to be a number.',
                     'quantity.min' => 'The quantity field needs to be a number greater than 0.',
                     'text.required' => 'Please provide a caption for your photo.',
-                    'why_participated.required' => 'Please tell us why you participated.'
+                    'why_participated.required' => 'Please tell us why you participated.',
                 ];
 
             case 'text':
