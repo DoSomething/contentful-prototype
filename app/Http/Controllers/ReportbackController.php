@@ -48,8 +48,6 @@ class ReportbackController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        dd('stop');
-
         $path = UploadedMedia::store($request->file('media'));
 
         $temporaryUrl = config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals';
