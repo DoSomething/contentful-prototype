@@ -23,15 +23,26 @@ class PostRequest extends FormRequest
      */
     public function messages()
     {
+        // Custom validation rule messaging based on the type of post action.
         switch($this->input('type'))
         {
+            case 'photo':
+                return [
+                    'file.required' => 'An uploaded photo is required.',
+                    'quantity.integer' => 'The quantity field needs to be a number.',
+                    'quantity.min' => 'The quantity field needs to be a number greater than 0.',
+                    'text.required' => 'Please provide a caption for your photo.',
+                    'why_participated.required' => 'Please tell us why you participated.'
+                ];
+
             case 'text':
                 return [
                     'text.required' => 'The text field with your message is required.',
                 ];
-        }
 
-        return [];
+            default:
+                return [];
+        }
     }
 
     /**
@@ -41,20 +52,24 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        \Illuminate\Support\Facades\Log::info('PostRequest FULL:', [$this]);
-        \Illuminate\Support\Facades\Log::info('PostRequest:', [$this->toArray()]);
-        \Illuminate\Support\Facades\Log::info('PostRequest:', [$this->input('type')]);
-
+        // Custom validation rules based on the type of post action.
         switch($this->input('type'))
         {
+            case 'photo':
+                return [
+                    'file' => 'required|file|image',
+                    'quantity' => 'integer|min:1',
+                    'text' => 'required|min:4|max:60',
+                    'why_participated' => 'required',
+                ];
+
             case 'text':
                 return [
                     'text' => 'required',
                 ];
-        }
 
-        return [
-            'id' => 'required',
-        ];
+            default:
+                return [];
+        }
     }
 }
