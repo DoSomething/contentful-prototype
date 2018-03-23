@@ -24,8 +24,7 @@ class PostRequest extends FormRequest
     public function messages()
     {
         // Custom validation rule messaging based on the type of post action.
-        switch($this->input('type'))
-        {
+        switch ($this->input('type')) {
             case 'photo':
                 return [
                     'file.required' => 'An uploaded photo is required.',
@@ -53,8 +52,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         // Custom validation rules based on the type of post action.
-        switch($this->input('type'))
-        {
+        switch ($this->input('type')) {
             case 'photo':
                 return [
                     'file' => 'required|file|image',
