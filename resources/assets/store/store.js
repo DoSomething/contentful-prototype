@@ -62,7 +62,7 @@ export function initializeStore(store) {
   store.dispatch(getTotalSignups(state.campaign.legacyCampaignId));
 
   // Fetch Campaign Posts
-  // store.dispatch(fetchCampaignPosts());
+  store.dispatch(fetchCampaignPosts());
 
   // Fetch the first page of reportbacks for the feed.
   // @TODO: deprecate this in favor of fetchCampaignPosts()
