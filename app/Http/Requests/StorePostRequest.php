@@ -45,8 +45,6 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
-        \Illuminate\Support\Facades\Log::info('PostRequest', [$this->toArray()]);
-
         $additionalRules = [];
 
         if ($this->input('actionType') === 'photoUploaderAction') {
