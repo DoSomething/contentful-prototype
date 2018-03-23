@@ -2,13 +2,9 @@ import React from 'react';
 import { every } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Enclosure from '../Enclosure';
 import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
 import QuizConclusion from './QuizConclusion';
-import DashboardContainer from '../Dashboard/DashboardContainer';
-import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
-import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
 
 import './quiz.scss';
 
@@ -48,8 +44,8 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { callToAction, conclusionText, dashboard, introduction,
-      questions, showLedeBanner, submitButtonText, title } = this.props;
+    const { callToAction, introduction, questions, submitButtonText,
+      title } = this.props;
 
     const showResults = this.state.showResults;
 
@@ -76,48 +72,27 @@ class Quiz extends React.Component {
 
     return (
       <div>
+        <Flex className="quiz">
+          <FlexCell width="two-thirds">
+            <h1 className="quiz__heading">Quiz</h1>
+            <h2 className="quiz__title">{ title }</h2>
 
-        { showLedeBanner ? <LedeBannerContainer /> : null }
+            { showResults ? null : introduction }
 
-        <div className="main clearfix">
+            { showResults ? null : quizQuestions }
 
-          { dashboard && showLedeBanner ? <DashboardContainer /> : null }
-
-          { showLedeBanner ? <TabbedNavigationContainer /> : null }
-
-          <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
-            <Flex className="quiz">
-              <FlexCell width="two-thirds">
-                <h1 className="quiz__heading">Quiz</h1>
-                <h2 className="quiz__title">{ title }</h2>
-
-                { showResults ? null : introduction }
-
-                { showResults ? null : quizQuestions }
-
-                { quizConclusion }
-              </FlexCell>
-            </Flex>
-          </Enclosure>
-        </div>
       </div>
     );
   }
 }
 
 Quiz.propTypes = {
-  dashboard: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
   callToAction: PropTypes.string.isRequired,
   introduction: PropTypes.string.isRequired,
   questions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-  showLedeBanner: PropTypes.bool,
   })).isRequired,
   results: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -130,7 +105,6 @@ Quiz.propTypes = {
 };
 
 Quiz.defaultProps = {
-  dashboard: null,
   submitButtonText: null,
 };
 
