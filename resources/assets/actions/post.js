@@ -32,6 +32,10 @@ export function fetchCampaignPosts() {
  * @return {function}
  */
 export function storeCampaignPost(data) {
+  if (! (data instanceof FormData)) {
+    throw Error(`The supplied data must be an instance of FormData, instead it is an instance of ${data.constructor.name}.`);
+  }
+
   return (dispatch, getState) => {
     const token = getState().user.token;
 
