@@ -162,8 +162,8 @@ export function submitReportback(url, reportback) {
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
-    // @TODO: Refactor once update to Gateway JS is made to allow posting
-    // FormData properly without trying to convert to a JSON string.
+    // @TODO: Refactor once update to Gateway JS is made
+    // to allow overriding header configs properly.
     return window.fetch(url, {
       method: 'POST',
       headers: {
