@@ -1,13 +1,15 @@
 import React from 'react';
-import { every } from 'lodash';
 import PropTypes from 'prop-types';
+import { every, find } from 'lodash';
 
 import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
 import QuizConclusion from './QuizConclusion';
+import ContentfulEntry from '../ContentfulEntry';
+
+import calculateResult from './quiz-helpers';
 
 import './quiz.scss';
-
 
 class Quiz extends React.Component {
   constructor() {
@@ -20,12 +22,16 @@ class Quiz extends React.Component {
     this.selectChoice = this.selectChoice.bind(this);
     this.completedQuiz = this.completedQuiz.bind(this);
     this.completeQuiz = this.completeQuiz.bind(this);
+    this.getResult = this.getResult.bind(this);
   }
 
-  selectChoice(questionId, choiceId) {
-    const choices = Object.assign({}, this.state.choices);
-    choices[questionId] = choiceId;
-    this.setState({ choices });
+  getResult() {
+    const result = find(this.props.results, { id: this.state.result.resultWinner });
+    const resultBlock = find(this.props.resultBlocks, { id: this.state.result.resultBlockWinner });
+
+    resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
+
+    return <ContentfulEntry json={resultBlock} />;
   }
 
   completedQuiz() {
@@ -39,8 +45,16 @@ class Quiz extends React.Component {
       this.props.trackEvent('converted on quiz', {
         responses: this.state.choices,
       });
-      this.setState({ showResults: true });
+
+      const result = calculateResult(this.state.choices, this.props.questions);
+      this.setState({ showResults: true, result });
     }
+  }
+
+  selectChoice(questionId, choiceId) {
+    const choices = Object.assign({}, this.state.choices);
+    choices[questionId] = choiceId;
+    this.setState({ choices });
   }
 
   render() {
@@ -60,7 +74,7 @@ class Quiz extends React.Component {
       />
     ));
 
-    const quizConclusion = showResults ? <h1>{conclusionText}</h1> : (
+    const quizConclusion = showResults ? this.getResult() : (
       <QuizConclusion callToAction={callToAction}>
         <button
           onClick={() => this.completeQuiz()}
@@ -81,6 +95,9 @@ class Quiz extends React.Component {
 
             { showResults ? null : quizQuestions }
 
+            { quizConclusion }
+          </FlexCell>
+        </Flex>
       </div>
     );
   }
