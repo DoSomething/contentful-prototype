@@ -20,7 +20,7 @@ export function fetchCampaignPosts() {
       query: {
         limit: 24,
       },
-      url: `api/v2/campaigns/${campaignId}/posts`,
+      url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
     }));
   };
 }
@@ -33,14 +33,7 @@ export function fetchCampaignPosts() {
  */
 export function storeCampaignPost(data) {
   return (dispatch, getState) => {
-    console.log('🤖 beep boop storing campaign post...');
-
     const token = getState().user.token;
-
-    // console.log(data.get('campaignId'));
-    // for (var value of data.values()) {
-    //   console.log(value);
-    // }
 
     dispatch(apiRequest('POST', {
       token,
