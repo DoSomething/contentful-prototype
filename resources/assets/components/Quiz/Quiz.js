@@ -12,50 +12,6 @@ import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
 
 import './quiz.scss';
 
-const defaultTitle = 'Do you know how to build an ark?';
-const defaultIntroduction = 'With the current state of moral decay in the world, there\'s bound to be another flood as a result of God\'s mighty and vicious wrath. See if you have the know-how to build an ark and save yourself (and your cat) from impending doom.';
-const defaultQuestions = [
-  {
-    id: '0',
-    title: 'What is an ark?',
-    choices: [
-      { id: '0', title: 'The Arc de Triomphe' },
-      { id: '1', title: 'A luminous electrical discharge between two electrodes or other points.' },
-      { id: '2', title: 'A harp' },
-      { id: '3', title: 'Gimme a Kit Kat and I might tell ya about it' },
-    ],
-  },
-  {
-    id: '1',
-    title: 'What would you use to attach a nail to a piece of wood?',
-    choices: [
-      { id: '0', title: 'The Arc de Triomphe' },
-      { id: '1', title: 'A hammer' },
-      { id: '2', title: 'My annoying little brother' },
-      { id: '3', title: 'Trump' },
-      { id: '4', title: 'There are no nails in a barge' },
-    ],
-  },
-  {
-    id: '2',
-    title: 'What would you use to attach a nail to a piece of wood?',
-    choices: [
-      { id: '0', title: 'one', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '1', title: 'two', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '2', title: 'three', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '3', title: 'four', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '4', title: 'five', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-    ],
-  },
-];
-
-const defaultSubmitButtonText = 'Get Results';
-
-const defaultCallToAction = 'Click **"Get Results"** to find out your likelihood for a match';
-
-const defaultConclusionText = 'Genetic compatibility is key for finding a match, which means the more diverse the registry is, the more lives we’ll save.';
-
-const defaultShowLedeBanner = false;
 
 class Quiz extends React.Component {
   constructor() {
@@ -150,34 +106,32 @@ class Quiz extends React.Component {
 }
 
 Quiz.propTypes = {
-  callToAction: PropTypes.string,
-  conclusionText: PropTypes.string,
   dashboard: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  introduction: PropTypes.string,
+  callToAction: PropTypes.string.isRequired,
+  introduction: PropTypes.string.isRequired,
   questions: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-  })),
   showLedeBanner: PropTypes.bool,
+  })).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+  })).isRequired,
+  resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   submitButtonText: PropTypes.string,
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
-  callToAction: defaultCallToAction,
-  conclusionText: defaultConclusionText,
   dashboard: null,
-  introduction: defaultIntroduction,
-  questions: defaultQuestions,
-  showLedeBanner: defaultShowLedeBanner,
-  submitButtonText: defaultSubmitButtonText,
-  title: defaultTitle,
+  submitButtonText: null,
 };
 
 export default Quiz;
