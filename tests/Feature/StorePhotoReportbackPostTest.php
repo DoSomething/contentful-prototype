@@ -30,6 +30,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function caption_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'impact' => '30',
             'media' => 'not-a-file-upload',
             'whyParticipated' => 'Because testing is very important.',
@@ -42,6 +43,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function caption_must_be_4_characters_or_longer_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'duh',
             'impact' => '30',
             'media' => 'not-a-file-upload',
@@ -55,6 +57,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function caption_must_be_60_characters_or_shorter_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'This caption is way longer than 60 characters and thus should fail!',
             'impact' => '30',
             'media' => 'not-a-file-upload',
@@ -68,6 +71,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function impact_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'media' => 'not-a-file-upload',
             'whyParticipated' => 'Because testing is very important.',
@@ -80,6 +84,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function impact_must_be_a_valid_integer_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'impact' => 'not-an-integer',
             'media' => 'not-a-file-upload',
@@ -93,6 +98,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function impact_must_be_a_whole_number_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'impact' => '3.5',
             'media' => 'not-a-file-upload',
@@ -106,6 +112,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function impact_must_be_at_least_1_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'impact' => '0',
             'media' => 'not-a-file-upload',
@@ -119,6 +126,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function media_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'impact' => '30',
             'whyParticipated' => 'Because testing is very important.',
@@ -133,6 +141,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
         $this->markTestIncomplete('@TODO: Implement once we upgrade to Laravel 5.4.');
 
         $this->storePhotoPost([
+            'type' => 'photo',
             'media' => 'not-a-file-upload',
         ]);
 
@@ -145,6 +154,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
         $this->markTestIncomplete('@TODO: Implement once we upgrade to Laravel 5.4.');
 
         $this->storePhotoPost([
+            'type' => 'photo',
             'media' => 'not-a-file-upload',
         ]);
 
@@ -155,6 +165,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     public function why_participated_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'impact' => '30',
             'media' => 'not-a-file-upload',
@@ -169,6 +180,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
         $this->markTestIncomplete('@TODO: Implement once we upgrade to Laravel 5.4.');
 
         $this->storePhotoPost([
+            'type' => 'photo',
             'caption' => 'Great caption!',
             'impact' => '30',
             'media' => 'not-a-file-upload',

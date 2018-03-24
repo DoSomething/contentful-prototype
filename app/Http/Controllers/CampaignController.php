@@ -61,6 +61,7 @@ class CampaignController extends Controller
                 'isAuthenticated' => auth()->check(),
                 'role' => auth()->user() ? auth()->user()->role : null,
                 'source' => $request->query('utm_source'),
+                'token' => auth()->user() ? auth()->user()->access_token : null,
             ],
         ]);
     }

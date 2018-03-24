@@ -1,3 +1,5 @@
+/* global window FormData */
+
 import apiRequest from './api';
 
 /**
@@ -18,9 +20,29 @@ export function fetchCampaignPosts() {
       query: {
         limit: 24,
       },
-      url: `api/v2/campaigns/${campaignId}/posts`,
+      url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
     }));
   };
 }
 
-export default {};
+/**
+ * Store posts for the specified campaign.
+ *
+ * @param  {FormData} data
+ * @return {function}
+ */
+export function storeCampaignPost(data) {
+  if (! (data instanceof FormData)) {
+    throw Error(`The supplied data must be an instance of FormData, instead it is an instance of ${data.constructor.name}.`);
+  }
+
+  return (dispatch, getState) => {
+    const token = getState().user.token;
+
+    dispatch(apiRequest('POST', {
+      token,
+      body: data,
+      url: `${window.location.origin}/api/v2/campaigns/${data.get('campaignId')}/posts`,
+    }));
+  };
+}
