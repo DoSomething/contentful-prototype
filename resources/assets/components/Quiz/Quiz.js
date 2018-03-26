@@ -7,7 +7,7 @@ import QuizQuestion from './QuizQuestion';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
 
-import calculateResult from './quiz-helpers';
+import calculateResult from './helpers';
 
 import './quiz.scss';
 

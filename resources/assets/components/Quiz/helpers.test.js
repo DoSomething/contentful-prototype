@@ -1,4 +1,4 @@
-import calculateResult from './quiz-helpers';
+import calculateResult from './helpers';
 
 const questions = [
   {
