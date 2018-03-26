@@ -14,7 +14,7 @@ If you fill in the Button Text field, instead of rendering an embedded link, the
 
 ## Link Action = Call Action!
 
-The `LinkAction` can also feature a link to a valid US telephone number! (To allow for a 'call your member of congress' type actions and the like).
+The `LinkAction` can also feature a link to a valid US telephone number! (To allow for 'call your member of congress' type actions and the like).
 
 This can be done by adding the phone number instead of a URL to the `link` field and -importantly- prefixing the telephone number with `tel:`. E.G. `tel:212 254-2390`.
 
