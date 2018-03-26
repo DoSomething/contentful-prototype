@@ -8,8 +8,9 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use DoSomething\Gateway\Exceptions\ValidationException as GatewayValidationException;
 
 class Handler extends ExceptionHandler
 {
@@ -94,6 +95,10 @@ class Handler extends ExceptionHandler
             $code = 422;
 
             $fields = $exception->validator->errors()->getMessages();
+        } elseif ($exception instanceof GatewayValidationException) {
+            $code = 422;
+
+            $fields = $exception->getErrors();
         } elseif ($exception instanceof AuthenticationException) {
             $code = 401;
         } else {
