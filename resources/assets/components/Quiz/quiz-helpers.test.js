@@ -19,9 +19,9 @@ const questions = [
   },
 ];
 
-const selections = { '0': '0', '1': '1' };
+const selections = { 0: '0', 1: '1' };
 
 test('it tallies the results and returns the one with the most selections', () => {
-  const expectedResult = { resultWinner: '1', resultBlockWinner: '1234'};
+  const expectedResult = { resultWinner: '1', resultBlockWinner: '1234' };
   expect(calculateResult(selections, questions)).toEqual(expectedResult);
 });

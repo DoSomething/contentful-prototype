@@ -1,7 +1,6 @@
 import React from 'react';
-import { mount, render, shallow } from 'enzyme';
+import { render, shallow } from 'enzyme';
 import Quiz from './Quiz';
-import QuizConclusion from './QuizConclusion';
 import QuizQuestion from './QuizQuestion';
 
 const sampleChoice = { id: '0', title: 'title', results: ['0'], resultBlock: '1' };
@@ -35,7 +34,7 @@ const props = {
         title: 'Do it!',
         content: 'Click this link!',
         link: 'https://dosomething.org',
-      }
+      },
     },
   ],
   questions: [
@@ -50,9 +49,7 @@ const props = {
       choices: [sampleChoice],
     },
   ],
-}
-
-
+};
 
 test('it should display a placeholder quiz', () => {
   const wrapper = shallow(
@@ -78,7 +75,6 @@ test('the button is disabled when quiz is incomplete', () => {
 });
 
 test('the questions are displayed', () => {
-
   const wrapper = shallow(
     <Quiz
       trackEvent={() => {}}
@@ -97,7 +93,7 @@ test('the button is not disabled when quiz is complete', () => {
       {...props}
     />,
   );
-  wrapper.setState({choices: {0: '0', 1: '0'}});
+  wrapper.setState( choices: { 0: '0', 1: '0' } });
   expect(wrapper.find('button').prop('disabled')).toBe(false);
 });
 
