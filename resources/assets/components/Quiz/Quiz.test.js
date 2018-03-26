@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import Quiz from './Quiz';
+import { Quiz } from './Quiz';
 import QuizQuestion from './QuizQuestion';
 
 const sampleChoice = { id: '0', title: 'title', results: ['0'], resultBlock: '1' };

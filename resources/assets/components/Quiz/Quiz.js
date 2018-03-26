@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { every, find, get } from 'lodash';
 
+import NotFound from '../NotFound';
+import Enclosure from '../Enclosure';
 import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
 import QuizConclusion from './QuizConclusion';
@@ -10,6 +12,22 @@ import ContentfulEntry from '../ContentfulEntry';
 import calculateResult from './helpers';
 
 import './quiz.scss';
+
+const QuizWrapper = props => (
+  <div className="main clearfix">
+    <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
+      { props.notFound ? <NotFound /> : <Quiz {...props} /> }
+    </Enclosure>
+  </div>
+);
+
+QuizWrapper.propTypes = {
+  notFound: PropTypes.bool,
+};
+
+QuizWrapper.defaultProps = {
+  notFound: false,
+};
 
 class Quiz extends React.Component {
   constructor() {
@@ -92,20 +110,18 @@ class Quiz extends React.Component {
     );
 
     return (
-      <div>
-        <Flex className="quiz">
-          <FlexCell width="two-thirds">
-            <h1 className="quiz__heading">Quiz</h1>
-            <h2 className="quiz__title">{ title }</h2>
+      <Flex className="quiz">
+        <FlexCell width="two-thirds">
+          <h1 className="quiz__heading">Quiz</h1>
+          <h2 className="quiz__title">{ title }</h2>
 
-            { showResults ? null : introduction }
+          { showResults ? null : introduction }
 
-            { showResults ? null : quizQuestions }
+          { showResults ? null : quizQuestions }
 
-            { quizConclusion }
-          </FlexCell>
-        </Flex>
-      </div>
+          { quizConclusion }
+        </FlexCell>
+      </Flex>
     );
   }
 }
@@ -132,4 +148,4 @@ Quiz.defaultProps = {
   submitButtonText: null,
 };
 
-export default Quiz;
+export { QuizWrapper, Quiz };
