@@ -97,7 +97,7 @@ test('the button is not disabled when quiz is complete', () => {
   expect(wrapper.find('button').prop('disabled')).toBe(false);
 });
 
-test('clicking the button hides the quiz and shows the conclusion and tracks the conversion', () => {
+test('clicking the button hides the quiz, shows the conclusion, and tracks the conversion', () => {
   const tracker = jest.fn();
 
   const wrapper = shallow(
@@ -107,7 +107,7 @@ test('clicking the button hides the quiz and shows the conclusion and tracks the
     />,
   );
 
-  wrapper.setState({choices: {0: '0', 1: '0'}});
+  wrapper.setState({ choices: { 0: '0', 1: '0' } });
 
   wrapper.find('button').simulate('click');
 
