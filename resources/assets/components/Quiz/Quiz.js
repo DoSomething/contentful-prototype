@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { every, find } from 'lodash';
+import { every, find, get } from 'lodash';
 
 import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
@@ -19,15 +19,22 @@ class Quiz extends React.Component {
       choices: {},
     };
 
+    this.getResult = this.getResult.bind(this);
+    this.completeQuiz = this.completeQuiz.bind(this);
     this.selectChoice = this.selectChoice.bind(this);
     this.completedQuiz = this.completedQuiz.bind(this);
-    this.completeQuiz = this.completeQuiz.bind(this);
-    this.getResult = this.getResult.bind(this);
   }
 
   getResult() {
-    const result = find(this.props.results, { id: this.state.result.resultWinner });
-    const resultBlock = find(this.props.resultBlocks, { id: this.state.result.resultBlockWinner });
+    const resultId = get(this.state, 'results.resultId');
+    const result = find(this.props.results, { id: resultId });
+
+    const resultBlockId = get(this.state, 'results.resultBlockId');
+    const resultBlock = find(this.props.resultBlocks, { id: resultBlockId });
+
+    if (! (resultBlock && resultBlock.fields)) {
+      return null;
+    }
 
     resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
 
@@ -46,8 +53,8 @@ class Quiz extends React.Component {
         responses: this.state.choices,
       });
 
-      const result = calculateResult(this.state.choices, this.props.questions);
-      this.setState({ showResults: true, result });
+      const results = calculateResult(this.state.choices, this.props.questions);
+      this.setState({ showResults: true, results });
     }
   }
 

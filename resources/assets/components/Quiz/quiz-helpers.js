@@ -31,16 +31,16 @@ const calculateResult = (selections, questions) => {
   });
 
   // sorts results by their selection counter in descending order
-  const resultWinner = Object.keys(talliedResults).sort((resultA, resultB) => (
+  const resultId = Object.keys(talliedResults).sort((resultA, resultB) => (
     talliedResults[resultB] - talliedResults[resultA]
   ))[0];
 
   // sorts results by their selection counter in descending order
-  const resultBlockWinner = Object.keys(talliedResultBlocks).sort((blockA, blockB) => (
+  const resultBlockId = Object.keys(talliedResultBlocks).sort((blockA, blockB) => (
     talliedResultBlocks[blockB] - talliedResultBlocks[blockA]
   ))[0];
 
-  return { resultWinner, resultBlockWinner };
+  return { resultId, resultBlockId };
 };
 
 export default calculateResult;
