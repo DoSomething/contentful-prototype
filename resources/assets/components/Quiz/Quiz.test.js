@@ -93,7 +93,7 @@ test('the button is not disabled when quiz is complete', () => {
       {...props}
     />,
   );
-  wrapper.setState( choices: { 0: '0', 1: '0' } });
+  wrapper.setState({ choices: { 0: '0', 1: '0' } });
   expect(wrapper.find('button').prop('disabled')).toBe(false);
 });
 
