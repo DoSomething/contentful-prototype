@@ -37,10 +37,7 @@ class Quiz extends React.Component {
       choices: {},
     };
 
-    this.getResult = this.getResult.bind(this);
-    this.completeQuiz = this.completeQuiz.bind(this);
     this.selectChoice = this.selectChoice.bind(this);
-    this.completedQuiz = this.completedQuiz.bind(this);
   }
 
   getResult() {
