@@ -29,7 +29,7 @@ class Quiz extends React.Component {
     this.selectChoice = this.selectChoice.bind(this);
   }
 
-  completedQuiz() {
+  evaluateQuiz() {
     const questions = this.props.fields.additionalContent.questions;
 
     return every(questions, question => (
@@ -38,7 +38,7 @@ class Quiz extends React.Component {
   }
 
   completeQuiz() {
-    if (this.completedQuiz()) {
+    if (this.evaluateQuiz()) {
       this.props.trackEvent('converted on quiz', {
         responses: this.state.choices,
       });
@@ -120,7 +120,7 @@ class Quiz extends React.Component {
                     <button
                       onClick={() => this.completeQuiz()}
                       className="button quiz__submit"
-                      disabled={! this.completedQuiz()}
+                      disabled={! this.evaluateQuiz()}
                     >{submitButtonText || 'Get Results'}</button>
                   </QuizConclusion>
                 )}
