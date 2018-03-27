@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { every, find, get } from 'lodash';
+import { every, find } from 'lodash';
 
 import NotFound from '../NotFound';
 import Enclosure from '../Enclosure';
 import { Flex, FlexCell } from '../Flex';
+import { ShareContainer } from '../Share';
 import QuizQuestion from './QuizQuestion';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
@@ -35,25 +36,13 @@ class Quiz extends React.Component {
 
     this.state = {
       choices: {},
+      results: {
+        resultId: null,
+        resultBlockId: null,
+      },
     };
 
     this.selectChoice = this.selectChoice.bind(this);
-  }
-
-  getResult() {
-    const resultId = get(this.state, 'results.resultId');
-    const result = find(this.props.results, { id: resultId });
-
-    const resultBlockId = get(this.state, 'results.resultBlockId');
-    const resultBlock = find(this.props.resultBlocks, { id: resultBlockId });
-
-    if (! (resultBlock && resultBlock.fields)) {
-      return null;
-    }
-
-    resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
-
-    return <ContentfulEntry json={resultBlock} />;
   }
 
   completedQuiz() {
@@ -74,9 +63,34 @@ class Quiz extends React.Component {
   }
 
   selectChoice(questionId, choiceId) {
-    const choices = Object.assign({}, this.state.choices);
-    choices[questionId] = choiceId;
-    this.setState({ choices });
+    this.setState({
+      choices: {
+        ...this.state.choices,
+        [questionId]: choiceId,
+      },
+    });
+  }
+
+  renderResult() {
+    const resultBlockId = this.state.results.resultBlockId;
+    const resultBlock = find(this.props.resultBlocks, { id: resultBlockId });
+
+    const resultId = this.state.results.resultId;
+    const result = find(this.props.results, { id: resultId });
+
+    if (! resultBlock) {
+      // Return the result on it's own when no result block is found.
+      return result ? (
+        <QuizConclusion callToAction={result.content}>
+          <ShareContainer className="quiz__share" parentSource="quiz" />
+        </QuizConclusion>
+      ) : null;
+    }
+
+    // Prepend the "quiz result" text to the specified block.
+    resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
+
+    return <ContentfulEntry json={resultBlock} />;
   }
 
   render() {
@@ -96,7 +110,7 @@ class Quiz extends React.Component {
       />
     ));
 
-    const quizConclusion = showResults ? this.getResult() : (
+    const quizConclusion = showResults ? this.renderResult() : (
       <QuizConclusion callToAction={callToAction}>
         <button
           onClick={() => this.completeQuiz()}
