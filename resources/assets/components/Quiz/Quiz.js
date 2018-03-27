@@ -14,6 +14,9 @@ import calculateResult from './helpers';
 
 import './quiz.scss';
 
+// @TODO replace with a more generalized solution for finding, rendering,
+// - and handling not found - content, once we move over to a 'Pages focused'
+// general Block approach.
 const QuizWrapper = props => (
   <div className="main clearfix">
     <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
