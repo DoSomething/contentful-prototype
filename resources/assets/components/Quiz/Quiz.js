@@ -14,25 +14,6 @@ import calculateResult from './helpers';
 
 import './quiz.scss';
 
-// @TODO replace with a more generalized solution for finding, rendering,
-// - and handling not found - content, once we move over to a 'Pages focused'
-// general Block approach.
-const QuizWrapper = props => (
-  <div className="main clearfix">
-    <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
-      { props.notFound ? <NotFound /> : <Quiz {...props} /> }
-    </Enclosure>
-  </div>
-);
-
-QuizWrapper.propTypes = {
-  notFound: PropTypes.bool,
-};
-
-QuizWrapper.defaultProps = {
-  notFound: false,
-};
-
 class Quiz extends React.Component {
   constructor() {
     super();
@@ -49,7 +30,9 @@ class Quiz extends React.Component {
   }
 
   completedQuiz() {
-    return every(this.props.questions, question => (
+    const questions = this.props.fields.additionalContent.questions;
+
+    return every(questions, question => (
       !! this.state.choices[question.id]
     ));
   }
@@ -60,7 +43,10 @@ class Quiz extends React.Component {
         responses: this.state.choices,
       });
 
-      const results = calculateResult(this.state.choices, this.props.questions);
+      const results = calculateResult(
+        this.state.choices,
+        this.props.fields.additionalContent.questions,
+      );
       this.setState({ showResults: true, results });
     }
   }
@@ -75,11 +61,13 @@ class Quiz extends React.Component {
   }
 
   renderResult() {
+    const { results, resultBlocks } = this.props.fields.additionalContent;
+
     const resultBlockId = this.state.results.resultBlockId;
-    const resultBlock = find(this.props.resultBlocks, { id: resultBlockId });
+    const resultBlock = find(resultBlocks, { id: resultBlockId });
 
     const resultId = this.state.results.resultId;
-    const result = find(this.props.results, { id: resultId });
+    const result = find(results, { id: resultId });
 
     if (! resultBlock) {
       // Return the result on it's own when no result block is found.
@@ -97,69 +85,79 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { callToAction, introduction, questions, submitButtonText,
-      title } = this.props;
+    const { title, additionalContent } = (this.props.fields || {});
+
+    const { callToAction, introduction, questions, submitButtonText } = (additionalContent || {});
 
     const { choices, showResults } = this.state;
 
-    const quizQuestions = questions.map(question => (
-      <QuizQuestion
-        key={question.id}
-        id={question.id}
-        title={question.title}
-        choices={question.choices}
-        selectChoice={this.selectChoice}
-        activeChoiceId={choices[question.id]}
-      />
-    ));
-
-    const quizConclusion = showResults ? this.renderResult() : (
-      <QuizConclusion callToAction={callToAction}>
-        <button
-          onClick={() => this.completeQuiz()}
-          className="button quiz__submit"
-          disabled={! this.completedQuiz()}
-        >{submitButtonText || Quiz.defaultProps.submitButtonText}</button>
-      </QuizConclusion>
-    );
-
     return (
-      <Flex className="quiz">
-        <FlexCell width="two-thirds">
-          <h1 className="quiz__heading">Quiz</h1>
-          <h2 className="quiz__title">{ title }</h2>
+      <div className="main clearfix">
+        <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
+          { this.props.fields ? (
+            <Flex className="quiz">
+              <FlexCell width="two-thirds">
+                <h1 className="quiz__heading">Quiz</h1>
+                <h2 className="quiz__title">{ title }</h2>
 
-          { showResults ? null : introduction }
+                { showResults ? null : introduction }
 
-          { showResults ? null : quizQuestions }
+                { showResults ? null : (
+                  questions.map(question => (
+                    <QuizQuestion
+                      key={question.id}
+                      id={question.id}
+                      title={question.title}
+                      choices={question.choices}
+                      selectChoice={this.selectChoice}
+                      activeChoiceId={choices[question.id]}
+                    />
+                  ))
+                )}
 
-          { quizConclusion }
-        </FlexCell>
-      </Flex>
+                { showResults ? this.renderResult() : (
+                  <QuizConclusion callToAction={callToAction}>
+                    <button
+                      onClick={() => this.completeQuiz()}
+                      className="button quiz__submit"
+                      disabled={! this.completedQuiz()}
+                    >{submitButtonText || 'Get Results'}</button>
+                  </QuizConclusion>
+                )}
+              </FlexCell>
+            </Flex>
+          ) : <NotFound /> }
+        </Enclosure>
+      </div>
     );
   }
 }
 
 Quiz.propTypes = {
-  callToAction: PropTypes.string.isRequired,
-  introduction: PropTypes.string.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+  fields: PropTypes.shape({
+    additionalContent: PropTypes.shape({
+      callToAction: PropTypes.string.isRequired,
+      introduction: PropTypes.string.isRequired,
+      questions: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        choices: PropTypes.arrayOf(PropTypes.object).isRequired,
+      })).isRequired,
+      results: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+      })).isRequired,
+      resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+      submitButtonText: PropTypes.string,
+    }),
     title: PropTypes.string.isRequired,
-    choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-  })).isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-  })).isRequired,
-  resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  submitButtonText: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  }),
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
-  submitButtonText: 'Get Results',
+  fields: null,
 };
 
-export { QuizWrapper, Quiz };
+
+export default Quiz;
