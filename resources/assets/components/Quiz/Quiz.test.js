@@ -1,54 +1,58 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
-import { Quiz } from './Quiz';
+import Quiz from './Quiz';
 import QuizQuestion from './QuizQuestion';
 
 const sampleChoice = { id: '0', title: 'title', results: ['0'], resultBlock: '1' };
 
 const props = {
-  title: 'This is a cool kids quiz',
-  introduction: 'Lets do this',
-  results: [
-    {
-      id: '0',
-      content: 'test question',
-      blockId: '1',
-    },
-    {
-      id: '1',
-      content: 'another one',
-      blockId: '1',
-    },
-    {
-      id: '2',
-      content: 'another one',
-      blockId: '2',
-    },
-  ],
-  callToAction: 'Click **"Get Results"** to find out your likelihood for a match',
-  resultBlocks: [
-    {
-      id: '1',
-      type: 'linkAction',
-      fields: {
-        title: 'Do it!',
-        content: 'Click this link!',
-        link: 'https://dosomething.org',
-      },
-    },
-  ],
-  questions: [
-    {
-      id: '0',
-      title: 'title',
-      choices: [sampleChoice],
-    },
-    {
-      id: '1',
-      title: 'title',
-      choices: [sampleChoice],
-    },
-  ],
+  fields: {
+    title: 'This is a cool kids quiz',
+    additionalContent: {
+      introduction: 'Lets do this',
+      results: [
+        {
+          id: '0',
+          content: 'test question',
+          blockId: '1',
+        },
+        {
+          id: '1',
+          content: 'another one',
+          blockId: '1',
+        },
+        {
+          id: '2',
+          content: 'another one',
+          blockId: '2',
+        },
+      ],
+      callToAction: 'Click **"Get Results"** to find out your likelihood for a match',
+      resultBlocks: [
+        {
+          id: '1',
+          type: 'linkAction',
+          fields: {
+            title: 'Do it!',
+            content: 'Click this link!',
+            link: 'https://dosomething.org',
+          },
+        },
+      ],
+      questions: [
+        {
+          id: '0',
+          title: 'title',
+          choices: [sampleChoice],
+        },
+        {
+          id: '1',
+          title: 'title',
+          choices: [sampleChoice],
+        },
+      ],
+    }
+  }
 };
 
 test('it should display a placeholder quiz', () => {
