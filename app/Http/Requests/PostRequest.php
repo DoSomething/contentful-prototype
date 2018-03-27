@@ -28,6 +28,7 @@ class PostRequest extends FormRequest
             case 'text':
                 return [
                     'text.required' => 'The text field with your message is required.',
+                    'text.max' => 'The message may not be greater than :max characters.',
                 ];
 
             default:
@@ -54,7 +55,7 @@ class PostRequest extends FormRequest
 
             case 'text':
                 return [
-                    'text' => 'required',
+                    'text' => 'required|max:256',
                 ];
 
             default:

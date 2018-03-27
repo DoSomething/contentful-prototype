@@ -56,11 +56,13 @@ class PostRepository
      */
     public function storePost($payload = [])
     {
-        unset($payload['media']);
+        if (array_has($payload, 'file')) {
+            unset($payload['media']);
 
-        // Guzzle expects specific file object for multipart form.
-        // @TODO: upadte Gateway to handle multipart form data.
-        $payload['file'] = fopen($payload['file']->getPathname(), 'r');
+            // Guzzle expects specific file object for multipart form.
+            // @TODO: upadte Gateway to handle multipart form data.
+            $payload['file'] = fopen($payload['file']->getPathname(), 'r');
+        }
 
         $multipartData = collect($payload)->map(function ($value, $key) {
             return ['name' => $key, 'contents' => $value];

@@ -10,7 +10,6 @@ import './text-submission-action.scss';
 
 class TextSubmissionAction extends React.Component {
   state = {
-    isWaiting: false,
     textValue: '',
   };
 
@@ -20,7 +19,6 @@ class TextSubmissionAction extends React.Component {
     const formData = new FormData();
 
     formData.append('action', this.props.action);
-    formData.append('campaignId', this.props.campaignId);
     formData.append('type', this.props.type);
     formData.append('text', this.state.textValue);
 
@@ -32,7 +30,7 @@ class TextSubmissionAction extends React.Component {
     }
 
     // Send this off to the backend API to validate and send off to Rogue.
-    this.props.storeCampaignPost(formData);
+    this.props.storeCampaignPost(this.props.campaignId, formData);
   }
 
   handleChange = (event) => {
