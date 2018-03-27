@@ -51,8 +51,8 @@ const props = {
           choices: [sampleChoice],
         },
       ],
-    }
-  }
+    },
+  },
 };
 
 test('it should display a placeholder quiz', () => {
