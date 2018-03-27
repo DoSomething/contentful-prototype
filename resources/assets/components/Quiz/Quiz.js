@@ -97,7 +97,7 @@ class Quiz extends React.Component {
     const { callToAction, introduction, questions, submitButtonText,
       title } = this.props;
 
-    const showResults = this.state.showResults;
+    const { choices, showResults } = this.state;
 
     const quizQuestions = questions.map(question => (
       <QuizQuestion
@@ -106,7 +106,7 @@ class Quiz extends React.Component {
         title={question.title}
         choices={question.choices}
         selectChoice={this.selectChoice}
-        activeChoiceId={this.state.choices[question.id]}
+        activeChoiceId={choices[question.id]}
       />
     ));
 
@@ -116,7 +116,7 @@ class Quiz extends React.Component {
           onClick={() => this.completeQuiz()}
           className="button quiz__submit"
           disabled={! this.completedQuiz()}
-        >{submitButtonText || 'Get Resultss'}</button>
+        >{submitButtonText || Quiz.defaultProps.submitButtonText}</button>
       </QuizConclusion>
     );
 
@@ -156,7 +156,7 @@ Quiz.propTypes = {
 };
 
 Quiz.defaultProps = {
-  submitButtonText: null,
+  submitButtonText: 'Get Results',
 };
 
 export { QuizWrapper, Quiz };
