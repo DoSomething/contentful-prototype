@@ -22,7 +22,7 @@ return [
     ],
 
     'graphql' => [
-        'url' => env('GRAPHQL_URL', 'https://graphql-preview.dosomething.org/graphql'),
+        'url' => env('GRAPHQL_URL', 'https://graphql-qa.dosomething.org/graphql'),
     ],
 
     'gladiator' => [
