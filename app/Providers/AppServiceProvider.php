@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('env', [
                 'APP_ENV' => config('app.env'),
+                'GRAPHQL_URL' => config('services.graphql.url'),
                 'GLADIATOR_URL' => config('services.gladiator.url'),
                 'NORTHSTAR_URL' => config('services.northstar.url'),
                 'NPS_SURVEY_ENABLED' => config('services.timed_modals.nps_survey.enabled'),
@@ -47,6 +48,13 @@ class AppServiceProvider extends ServiceProvider
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
                 'VOTER_REG_MODAL_ENABLED' => config('services.timed_modals.voter_reg_modal.enabled'),
+            ]);
+        });
+
+        View::composer('*', function ($view) {
+            $view->with('auth', [
+                'id' => auth()->id(),
+                'jwt' => auth()->user() ? auth()->user()->access_token : null,
             ]);
         });
     }

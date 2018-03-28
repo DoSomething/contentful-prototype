@@ -78,7 +78,7 @@ const ActionSteps = (props) => {
     }
 
     let columnWidth = 'two-thirds';
-    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'contentBlock'].includes(type)) {
+    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'contentBlock', 'gallery'].includes(type)) {
       columnWidth = 'full';
     }
 
