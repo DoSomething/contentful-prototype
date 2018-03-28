@@ -1,61 +1,16 @@
 import React from 'react';
-import { every } from 'lodash';
 import PropTypes from 'prop-types';
+import { every, find } from 'lodash';
 
-import Enclosure from '../Enclosure';
 import { Flex, FlexCell } from '../Flex';
+import { ShareContainer } from '../Share';
 import QuizQuestion from './QuizQuestion';
 import QuizConclusion from './QuizConclusion';
-import DashboardContainer from '../Dashboard/DashboardContainer';
-import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
-import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
+import ContentfulEntry from '../ContentfulEntry';
+
+import calculateResult from './helpers';
 
 import './quiz.scss';
-
-const defaultTitle = 'Do you know how to build an ark?';
-const defaultIntroduction = 'With the current state of moral decay in the world, there\'s bound to be another flood as a result of God\'s mighty and vicious wrath. See if you have the know-how to build an ark and save yourself (and your cat) from impending doom.';
-const defaultQuestions = [
-  {
-    id: '0',
-    title: 'What is an ark?',
-    choices: [
-      { id: '0', title: 'The Arc de Triomphe' },
-      { id: '1', title: 'A luminous electrical discharge between two electrodes or other points.' },
-      { id: '2', title: 'A harp' },
-      { id: '3', title: 'Gimme a Kit Kat and I might tell ya about it' },
-    ],
-  },
-  {
-    id: '1',
-    title: 'What would you use to attach a nail to a piece of wood?',
-    choices: [
-      { id: '0', title: 'The Arc de Triomphe' },
-      { id: '1', title: 'A hammer' },
-      { id: '2', title: 'My annoying little brother' },
-      { id: '3', title: 'Trump' },
-      { id: '4', title: 'There are no nails in a barge' },
-    ],
-  },
-  {
-    id: '2',
-    title: 'What would you use to attach a nail to a piece of wood?',
-    choices: [
-      { id: '0', title: 'one', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '1', title: 'two', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '2', title: 'three', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '3', title: 'four', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-      { id: '4', title: 'five', backgroundImage: 'https://images.contentful.com/81iqaqpfd8fy/1N1pKu1dyweQwY4Im0coKY/7def3323b3fdcde66b01cf3183eb2cde/stm-share-a-03__1_.png' },
-    ],
-  },
-];
-
-const defaultSubmitButtonText = 'Get Results';
-
-const defaultCallToAction = 'Click **"Get Results"** to find out your likelihood for a match';
-
-const defaultConclusionText = 'Genetic compatibility is key for finding a match, which means the more diverse the registry is, the more lives we’ll save.';
-
-const defaultShowLedeBanner = false;
 
 class Quiz extends React.Component {
   constructor() {
@@ -63,121 +18,136 @@ class Quiz extends React.Component {
 
     this.state = {
       choices: {},
+      results: {
+        resultId: null,
+        resultBlockId: null,
+      },
     };
 
     this.selectChoice = this.selectChoice.bind(this);
-    this.completedQuiz = this.completedQuiz.bind(this);
-    this.completeQuiz = this.completeQuiz.bind(this);
   }
 
-  selectChoice(questionId, choiceId) {
-    const choices = Object.assign({}, this.state.choices);
-    choices[questionId] = choiceId;
-    this.setState({ choices });
-  }
+  evaluateQuiz() {
+    const questions = this.props.additionalContent.questions;
 
-  completedQuiz() {
-    return every(this.props.questions, question => (
+    return every(questions, question => (
       !! this.state.choices[question.id]
     ));
   }
 
   completeQuiz() {
-    if (this.completedQuiz()) {
+    if (this.evaluateQuiz()) {
       this.props.trackEvent('converted on quiz', {
         responses: this.state.choices,
       });
-      this.setState({ showResults: true });
+
+      const results = calculateResult(
+        this.state.choices,
+        this.props.additionalContent.questions,
+      );
+      this.setState({ showResults: true, results });
     }
   }
 
+  selectChoice(questionId, choiceId) {
+    this.setState({
+      choices: {
+        ...this.state.choices,
+        [questionId]: choiceId,
+      },
+    });
+  }
+
+  renderResult() {
+    const { results, resultBlocks } = this.props.additionalContent;
+
+    const resultBlockId = this.state.results.resultBlockId;
+    const resultBlock = find(resultBlocks, { id: resultBlockId });
+
+    const resultId = this.state.results.resultId;
+    const result = find(results, { id: resultId });
+
+    if (! resultBlock) {
+      // Return the result on it's own when no result block is found.
+      return result ? (
+        <QuizConclusion callToAction={result.content}>
+          <ShareContainer className="quiz__share" parentSource="quiz" />
+        </QuizConclusion>
+      ) : null;
+    }
+
+    // Prepend the "quiz result" text to the specified block.
+    resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
+
+    return <ContentfulEntry json={resultBlock} />;
+  }
+
   render() {
-    const { callToAction, conclusionText, dashboard, introduction,
-      questions, showLedeBanner, submitButtonText, title } = this.props;
+    const { title, additionalContent } = this.props;
 
-    const showResults = this.state.showResults;
+    const { callToAction, introduction, questions, submitButtonText } = (additionalContent || {});
 
-    const quizQuestions = questions.map(question => (
-      <QuizQuestion
-        key={question.id}
-        id={question.id}
-        title={question.title}
-        choices={question.choices}
-        selectChoice={this.selectChoice}
-        activeChoiceId={this.state.choices[question.id]}
-      />
-    ));
-
-    const quizConclusion = showResults ? <h1>{conclusionText}</h1> : (
-      <QuizConclusion callToAction={callToAction}>
-        <button
-          onClick={() => this.completeQuiz()}
-          className="button quiz__submit"
-          disabled={! this.completedQuiz()}
-        >{submitButtonText || 'Get Resultss'}</button>
-      </QuizConclusion>
-    );
+    const { choices, showResults } = this.state;
 
     return (
-      <div>
+      <Flex className="quiz">
+        <FlexCell width="two-thirds">
+          <h1 className="quiz__heading">Quiz</h1>
+          <h2 className="quiz__title">{ title }</h2>
 
-        { showLedeBanner ? <LedeBannerContainer /> : null }
+          { showResults ? null : introduction }
 
-        <div className="main clearfix">
+          { showResults ? null : (
+            questions.map(question => (
+              <QuizQuestion
+                key={question.id}
+                id={question.id}
+                title={question.title}
+                choices={question.choices}
+                selectChoice={this.selectChoice}
+                activeChoiceId={choices[question.id]}
+              />
+            ))
+          )}
 
-          { dashboard && showLedeBanner ? <DashboardContainer /> : null }
-
-          { showLedeBanner ? <TabbedNavigationContainer /> : null }
-
-          <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
-            <Flex className="quiz">
-              <FlexCell width="two-thirds">
-                <h1 className="quiz__heading">Quiz</h1>
-                <h2 className="quiz__title">{ title }</h2>
-
-                { showResults ? null : introduction }
-
-                { showResults ? null : quizQuestions }
-
-                { quizConclusion }
-              </FlexCell>
-            </Flex>
-          </Enclosure>
-        </div>
-      </div>
+          { showResults ? this.renderResult() : (
+            <QuizConclusion callToAction={callToAction}>
+              <button
+                onClick={() => this.completeQuiz()}
+                className="button quiz__submit"
+                disabled={! this.evaluateQuiz()}
+              >{submitButtonText || Quiz.defaultProps.submitButtonText}</button>
+            </QuizConclusion>
+          )}
+        </FlexCell>
+      </Flex>
     );
   }
 }
 
 Quiz.propTypes = {
-  callToAction: PropTypes.string,
-  conclusionText: PropTypes.string,
-  dashboard: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
-  introduction: PropTypes.string,
-  questions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-  })),
-  showLedeBanner: PropTypes.bool,
-  submitButtonText: PropTypes.string,
-  title: PropTypes.string,
+  additionalContent: PropTypes.shape({
+    callToAction: PropTypes.string.isRequired,
+    introduction: PropTypes.string.isRequired,
+    questions: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      choices: PropTypes.arrayOf(PropTypes.object).isRequired,
+    })).isRequired,
+    results: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    })).isRequired,
+    resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    submitButtonText: PropTypes.string,
+  }).isRequired,
+  title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
-  callToAction: defaultCallToAction,
-  conclusionText: defaultConclusionText,
-  dashboard: null,
-  introduction: defaultIntroduction,
-  questions: defaultQuestions,
-  showLedeBanner: defaultShowLedeBanner,
-  submitButtonText: defaultSubmitButtonText,
-  title: defaultTitle,
+  submitButtonText: 'Get Results',
 };
+
 
 export default Quiz;
