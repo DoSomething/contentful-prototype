@@ -439,17 +439,26 @@ export function query(key, url = window.location) {
 }
 
 /**
- * Find an entry from within the campaign by given ID param.
+ * Find an entry from within the campaign by given ID or Slug param.
  * (Returns false if not found).
  *
  * @param  {Object} state
- * @param  {String} id
+ * @param  {String} identifier
  * @return {Object|Undefined}
  */
-export function findContentfulEntry(state, id) {
-  return find(state.campaign.pages, { id })
-    || find(state.campaign.actionSteps, { id })
-    || find(state.campaign.activityFeed, { id });
+export function findContentfulEntry(state, identifier) {
+  const campaign = state.campaign;
+
+  const contentfulEntries = [].concat(
+    campaign.actionSteps,
+    campaign.activityFeed,
+    campaign.pages,
+    campaign.quizzes,
+  );
+
+  return find(contentfulEntries, entry => (
+    entry.id === identifier || entry.fields.slug === identifier
+  ));
 }
 
 /**
