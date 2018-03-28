@@ -70,9 +70,10 @@ class TabbedNavigation extends React.Component {
   updateState() {
     this.isAnimatingFrame = false;
 
-    const tabbedNavRect = this.node.getBoundingClientRect();
-
-    this.setState({ isStuck: tabbedNavRect.top <= 0 });
+    if (this.node) {
+      const tabbedNavRect = this.node.getBoundingClientRect();
+      this.setState({ isStuck: tabbedNavRect.top <= 0 });
+    }
   }
 
   /**
