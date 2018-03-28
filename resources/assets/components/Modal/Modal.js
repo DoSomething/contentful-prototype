@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import Portal from 'react-portal';
+import { PortalWithState } from 'react-portal';
 import {
   POST_SIGNUP_MODAL, POST_SHARE_MODAL, BLOCK_MODAL, VOTER_REGISTRATION_MODAL,
   POST_REPORTBACK_MODAL,
@@ -54,21 +54,23 @@ class Modal extends React.Component {
       POST_REPORTBACK_MODAL,
     ].includes(modalType);
 
-    return (
-      <Portal
+    return shouldShowModal ? (
+      <PortalWithState
         closeOnEsc
-        isOpened={shouldShowModal}
+        defaultOpen
         onOpen={() => chrome.classList.add('-lock')}
         onClose={() => chrome.classList.remove('-lock')}
       >
-        <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
-          <div className="modal__container">
-            { children }
-            { hideCloseButton ? null : <button className="modal__exit" onClick={this.props.closeModal}>×</button> }
+        {({ isOpen, portal }) => (isOpen ? portal((
+          <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
+            <div className="modal__container">
+              { children }
+              { hideCloseButton ? null : <button className="modal__exit" onClick={this.props.closeModal}>×</button> }
+            </div>
           </div>
-        </div>
-      </Portal>
-    );
+        )) : null)}
+      </PortalWithState>
+    ) : null;
   }
 }
 
