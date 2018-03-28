@@ -42,7 +42,7 @@ class Entity implements ArrayAccess, JsonSerializable
     {
         return collect($blocks)->map(function ($block) {
             return $this->parseBlock($block);
-        });
+        })->values();
     }
 
     /**
