@@ -12,7 +12,6 @@ import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import { parseContentfulType } from '../../helpers';
 import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
-
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
