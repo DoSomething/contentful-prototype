@@ -9,6 +9,7 @@ exports[`it renders correctly with required props 1`] = `
     basicDisplay={true}
     firstName="A Doer"
     isFetching={false}
+    key="707371276"
     media={
       Object {
         "uri": "http://fakelink.com",

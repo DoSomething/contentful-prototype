@@ -1,4 +1,4 @@
-/* global window */
+/* global jsdom */
 
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -9,9 +9,8 @@ describe('LinkAction component', () => {
   const trackEventMock = jest.fn();
 
   // mocking the window.location.origin for the isExternal helper method called from LinkAction
-  Object.defineProperty(window.location, 'origin', {
-    writable: true,
-    value: 'https://dosomething.org',
+  jsdom.reconfigure({
+    url: 'https://dosomething.org',
   });
 
   const props = {
