@@ -4,21 +4,15 @@ import PropTypes from 'prop-types';
 
 import Question from './Question';
 import Markdown from '../Markdown';
-import Enclosure from '../Enclosure';
 import Conclusion from './Conclusion';
 import { ShareContainer } from '../Share';
 import ContentfulEntry from '../ContentfulEntry';
-import { CallToActionContainer } from '../CallToAction';
-import DashboardContainer from '../Dashboard/DashboardContainer';
-import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
-import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
 
 import './legacy-quiz.scss';
 
 const LegacyQuiz = (props) => {
-  const { id, fields, data, dashboard, completeQuiz,
-    pickQuizAnswer, trackEvent, showLedeBanner,
-    submitButtonText } = props;
+  const { id, fields, data, completeQuiz,
+    pickQuizAnswer, trackEvent, submitButtonText } = props;
   const { error, shouldSeeResult, selectedResult } = data;
 
   const introduction = shouldSeeResult ? null : (
@@ -75,30 +69,20 @@ const LegacyQuiz = (props) => {
   }
 
   return (
-    <div>
-      { showLedeBanner ? <LedeBannerContainer /> : null }
-      <div className="main clearfix">
-        { dashboard && showLedeBanner ? <DashboardContainer /> : null }
-        { showLedeBanner ? <TabbedNavigationContainer /> : null }
-        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-          <div className="quiz">
-            <div className="quiz__introduction">
-              <h1 className="quiz__subtitle">{fields.subtitle || LegacyQuiz.defaultProps.fields.subtitle}</h1>
-              <h2 className="quiz__title">{fields.title}</h2>
-              {introduction}
-            </div>
-
-            {questions}
-
-            {quizError}
-
-            {submitConclusion}
-
-            {fields.resultActions && selectedResult ? showResultingAction() : shareConclusion}
-          </div>
-        </Enclosure>
-        { showLedeBanner ? <CallToActionContainer sticky hideIfSignedUp /> : null }
+    <div className="quiz">
+      <div className="quiz__introduction">
+        <h1 className="quiz__subtitle">{fields.subtitle || LegacyQuiz.defaultProps.fields.subtitle}</h1>
+        <h2 className="quiz__title">{fields.title}</h2>
+        {introduction}
       </div>
+
+      {questions}
+
+      {quizError}
+
+      {submitConclusion}
+
+      {fields.resultActions && selectedResult ? showResultingAction() : shareConclusion}
     </div>
   );
 };
@@ -120,14 +104,8 @@ LegacyQuiz.propTypes = {
     questions: PropTypes.object,
     error: PropTypes.string,
   }).isRequired,
-  dashboard: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
   completeQuiz: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
-  showLedeBanner: PropTypes.bool.isRequired,
   submitButtonText: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
 };
@@ -138,7 +116,6 @@ LegacyQuiz.defaultProps = {
     questions: {},
     error: null,
   },
-  dashboard: null,
   fields: {
     subtitle: 'Quiz',
     introduction: '',

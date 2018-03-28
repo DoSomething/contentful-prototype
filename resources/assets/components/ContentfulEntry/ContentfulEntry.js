@@ -77,7 +77,7 @@ const ContentfulEntry = ({
       return <QuizContainer {...json.fields} />;
 
     case 'quizBeta':
-      return <LegacyQuizContainer />;
+      return <LegacyQuizContainer quizContent={json} />;
 
     // @TODO: Will be refactored when switching to Rogue!
     case 'reportbacks':
