@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { every, find } from 'lodash';
 
-import NotFound from '../NotFound';
-import Enclosure from '../Enclosure';
 import { Flex, FlexCell } from '../Flex';
 import { ShareContainer } from '../Share';
 import QuizQuestion from './QuizQuestion';
@@ -92,43 +90,37 @@ class Quiz extends React.Component {
     const { choices, showResults } = this.state;
 
     return (
-      <div className="main clearfix">
-        <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
-          { this.props.id ? (
-            <Flex className="quiz">
-              <FlexCell width="two-thirds">
-                <h1 className="quiz__heading">Quiz</h1>
-                <h2 className="quiz__title">{ title }</h2>
+      <Flex className="quiz">
+        <FlexCell width="two-thirds">
+          <h1 className="quiz__heading">Quiz</h1>
+          <h2 className="quiz__title">{ title }</h2>
 
-                { showResults ? null : introduction }
+          { showResults ? null : introduction }
 
-                { showResults ? null : (
-                  questions.map(question => (
-                    <QuizQuestion
-                      key={question.id}
-                      id={question.id}
-                      title={question.title}
-                      choices={question.choices}
-                      selectChoice={this.selectChoice}
-                      activeChoiceId={choices[question.id]}
-                    />
-                  ))
-                )}
+          { showResults ? null : (
+            questions.map(question => (
+              <QuizQuestion
+                key={question.id}
+                id={question.id}
+                title={question.title}
+                choices={question.choices}
+                selectChoice={this.selectChoice}
+                activeChoiceId={choices[question.id]}
+              />
+            ))
+          )}
 
-                { showResults ? this.renderResult() : (
-                  <QuizConclusion callToAction={callToAction}>
-                    <button
-                      onClick={() => this.completeQuiz()}
-                      className="button quiz__submit"
-                      disabled={! this.evaluateQuiz()}
-                    >{submitButtonText || 'Get Results'}</button>
-                  </QuizConclusion>
-                )}
-              </FlexCell>
-            </Flex>
-          ) : <NotFound /> }
-        </Enclosure>
-      </div>
+          { showResults ? this.renderResult() : (
+            <QuizConclusion callToAction={callToAction}>
+              <button
+                onClick={() => this.completeQuiz()}
+                className="button quiz__submit"
+                disabled={! this.evaluateQuiz()}
+              >{submitButtonText || Quiz.defaultProps.submitButtonText}</button>
+            </QuizConclusion>
+          )}
+        </FlexCell>
+      </Flex>
     );
   }
 }
@@ -148,16 +140,13 @@ Quiz.propTypes = {
     })).isRequired,
     resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
     submitButtonText: PropTypes.string,
-  }),
-  id: PropTypes.string,
-  title: PropTypes.string,
+  }).isRequired,
+  title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
-  additionalContent: null,
-  id: null,
-  title: null,
+  submitButtonText: 'Get Results',
 };
 
 
