@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import LegacyQuiz from '../LegacyQuiz';
+import QuizContainer from '../Quiz/QuizContainer';
 import { ContentfulEntryJson } from '../../types';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
@@ -11,6 +11,8 @@ import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import { parseContentfulType } from '../../helpers';
+import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
+
 import {
   renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
   renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
@@ -73,7 +75,10 @@ const ContentfulEntry = ({
       return renderPhotoUploader(json, isSignedUp);
 
     case 'quiz':
-      return <LegacyQuiz />;
+      return <QuizContainer {...json.fields} />;
+
+    case 'quizBeta':
+      return <LegacyQuizContainer />;
 
     // @TODO: Will be refactored when switching to Rogue!
     case 'reportbacks':
