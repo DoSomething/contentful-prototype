@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import update from 'react/lib/update';
+import update from 'react-addons-update';
 import {
   REQUESTED_REPORTBACKS,
   RECEIVED_REPORTBACKS,
