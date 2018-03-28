@@ -11,7 +11,7 @@ import { PHOENIX_URL } from '../constants';
  * @param  {Object} payload
  * @return {void}
  */
-const getRequest = (payload) => {
+const getRequest = (payload, dispatch) => {
   const client = new RestApiClient(PHOENIX_URL);
 
   if (window.ENV.APP_ENV !== 'production') {
@@ -37,7 +37,7 @@ const getRequest = (payload) => {
  * @param  {Object} payload
  * @return {Object}
  */
-const postRequest = (payload) => {
+const postRequest = (payload, dispatch) => {
   const client = new RestApiClient(PHOENIX_URL, {
     headers: {
       Authorization: `Bearer ${payload.token}`,
@@ -48,18 +48,22 @@ const postRequest = (payload) => {
   return client.post(payload.url, payload.body)
     .then((response) => {
       console.log('✅ successful response!');
-      console.log(response);
+      // console.log(response);
+      dispatch({ type: payload.success, response });
     })
     .catch((error) => {
       console.log('🚫 failed response; caught the error!');
-      console.log(error.response);
+      // console.log(error.response);
+      const response = error.response;
+
+      dispatch({ type: payload.failure, response });
     });
 };
 
 /**
  * Middleware for handling API actions.
  */
-const apiMiddleware = () => next => (action) => {
+const apiMiddleware = ({ dispatch }) => next => (action) => {
   if (action.type !== API) {
     return next(action);
   }
@@ -68,11 +72,11 @@ const apiMiddleware = () => next => (action) => {
 
   switch (action.method) {
     case 'GET':
-      getRequest(payload);
+      getRequest(payload, dispatch);
       break;
 
     case 'POST':
-      postRequest(payload);
+      postRequest(payload, dispatch);
       break;
 
     default:
