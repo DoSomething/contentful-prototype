@@ -30,7 +30,7 @@ class Quiz extends React.Component {
   }
 
   evaluateQuiz() {
-    const questions = this.props.fields.additionalContent.questions;
+    const questions = this.props.additionalContent.questions;
 
     return every(questions, question => (
       !! this.state.choices[question.id]
@@ -45,7 +45,7 @@ class Quiz extends React.Component {
 
       const results = calculateResult(
         this.state.choices,
-        this.props.fields.additionalContent.questions,
+        this.props.additionalContent.questions,
       );
       this.setState({ showResults: true, results });
     }
@@ -61,7 +61,7 @@ class Quiz extends React.Component {
   }
 
   renderResult() {
-    const { results, resultBlocks } = this.props.fields.additionalContent;
+    const { results, resultBlocks } = this.props.additionalContent;
 
     const resultBlockId = this.state.results.resultBlockId;
     const resultBlock = find(resultBlocks, { id: resultBlockId });
@@ -85,7 +85,7 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { title, additionalContent } = (this.props.fields || {});
+    const { title, additionalContent } = this.props;
 
     const { callToAction, introduction, questions, submitButtonText } = (additionalContent || {});
 
@@ -94,7 +94,7 @@ class Quiz extends React.Component {
     return (
       <div className="main clearfix">
         <Enclosure className="default-container margin-top-xlg margin-bottom-lg">
-          { this.props.fields ? (
+          { this.props.id ? (
             <Flex className="quiz">
               <FlexCell width="two-thirds">
                 <h1 className="quiz__heading">Quiz</h1>
@@ -134,29 +134,30 @@ class Quiz extends React.Component {
 }
 
 Quiz.propTypes = {
-  fields: PropTypes.shape({
-    additionalContent: PropTypes.shape({
-      callToAction: PropTypes.string.isRequired,
-      introduction: PropTypes.string.isRequired,
-      questions: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-      })).isRequired,
-      results: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-      })).isRequired,
-      resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-      submitButtonText: PropTypes.string,
-    }),
-    title: PropTypes.string.isRequired,
+  additionalContent: PropTypes.shape({
+    callToAction: PropTypes.string.isRequired,
+    introduction: PropTypes.string.isRequired,
+    questions: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      choices: PropTypes.arrayOf(PropTypes.object).isRequired,
+    })).isRequired,
+    results: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    })).isRequired,
+    resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+    submitButtonText: PropTypes.string,
   }),
+  id: PropTypes.string,
+  title: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
-  fields: null,
+  additionalContent: null,
+  id: null,
+  title: null,
 };
 
 

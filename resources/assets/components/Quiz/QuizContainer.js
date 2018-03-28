@@ -13,10 +13,9 @@ const mapStateToProps = (state, ownProps) => {
   const quiz = find(state.campaign.quizzes, { fields: { slug } });
 
   const fields = quiz ? quiz.fields : null;
+  const id = quiz ? quiz.id : null;
 
-  return {
-    fields,
-  };
+  return { ...fields, id };
 };
 
 export default connect(mapStateToProps)(PuckConnector(Quiz));
