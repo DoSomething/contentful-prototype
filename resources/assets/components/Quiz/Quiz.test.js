@@ -28,17 +28,6 @@ const props = {
       },
     ],
     callToAction: 'Click **"Get Results"** to find out your likelihood for a match',
-    resultBlocks: [
-      {
-        id: '1',
-        type: 'linkAction',
-        fields: {
-          title: 'Do it!',
-          content: 'Click this link!',
-          link: 'https://dosomething.org',
-        },
-      },
-    ],
     questions: [
       {
         id: '0',
@@ -52,6 +41,17 @@ const props = {
       },
     ],
   },
+  resultBlocks: [
+    {
+      id: '1',
+      type: 'linkAction',
+      fields: {
+        title: 'Do it!',
+        content: 'Click this link!',
+        link: 'https://dosomething.org',
+      },
+    },
+  ],
 };
 
 test('it should display a placeholder quiz', () => {
