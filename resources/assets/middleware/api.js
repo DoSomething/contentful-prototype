@@ -11,7 +11,7 @@ import { PHOENIX_URL } from '../constants';
  * @param  {Object} payload
  * @return {void}
  */
-const getRequest = (payload, dispatch) => {
+const getRequest = (payload) => {
   const client = new RestApiClient(PHOENIX_URL);
 
   if (window.ENV.APP_ENV !== 'production') {
@@ -55,7 +55,7 @@ const postRequest = (payload, dispatch) => {
         success: {
           code: 201,
           message: 'Thanks for your submission!',
-        }
+        },
       };
 
       dispatch({

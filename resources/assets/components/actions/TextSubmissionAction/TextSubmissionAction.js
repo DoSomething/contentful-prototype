@@ -76,6 +76,10 @@ TextSubmissionAction.propTypes = {
   legacyCampaignId: PropTypes.string,
   legacyCampaignRunId: PropTypes.string,
   storeCampaignPost: PropTypes.func.isRequired,
+  submissions: PropTypes.shape({
+    isPending: PropTypes.bool,
+    items: PropTypes.object,
+  }).isRequired,
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,

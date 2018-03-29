@@ -13,8 +13,6 @@ const postSubmissions = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case POST_SUBMISSION_FAILED:
-      console.log(action);
-
       return {
         ...state,
         isPending: false,
@@ -28,8 +26,6 @@ const postSubmissions = (state = {}, action) => {
       };
 
     case POST_SUBMISSION_SUCCESSFUL:
-      console.log(action);
-
       return {
         ...state,
         isPending: false,
