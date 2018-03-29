@@ -1,5 +1,5 @@
 // A JSON "block" content type, from Contentful.
-export type BlockJson = {
+export type ContentfulEntryJson = {
   id: string,
   type: string,
   fields: any,
