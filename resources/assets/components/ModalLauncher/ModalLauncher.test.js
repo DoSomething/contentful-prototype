@@ -1,4 +1,4 @@
-/* global window */
+/* global jsdom */
 
 import React from 'react';
 import { mount } from 'enzyme';
@@ -109,9 +109,8 @@ describe('The ModalLauncher component', () => {
 
 
   it('marks the modal to be hidden (and does not render the modal) if the URL params indicate as such', () => {
-    Object.defineProperty(window.location, 'search', {
-      writable: true,
-      value: '?hide_fun_survey=1',
+    jsdom.reconfigure({
+      url: 'https://phoenix.test/?hide_fun_survey=1',
     });
 
     const openModalMock = mountModal();
@@ -120,9 +119,8 @@ describe('The ModalLauncher component', () => {
 
     expect(openModalMock).toHaveBeenCalledTimes(0);
 
-    Object.defineProperty(window.location, 'search', {
-      writable: true,
-      value: '',
+    jsdom.reconfigure({
+      url: 'https://phoenix.test',
     });
   });
 
