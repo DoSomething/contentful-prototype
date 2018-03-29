@@ -3,11 +3,14 @@ module.exports = function (migration) {
 
   quiz.createField('resultBlocks')
     .name('Result Blocks')
-    .type('Link')
-    .linkType('Entry')
-    .validations([
-      { linkContentType: [ 'linkAction', 'shareAction' ] },
-    ])
+    .type('Array')
+    .items({
+      type: 'Link',
+      linkType: 'Entry',
+      validations: ([{
+        linkContentType: [ 'linkAction', 'shareAction' ],
+      }]),
+    })
     .required(false);
 
     quiz.moveField('resultBlocks').beforeField('additionalContent');
