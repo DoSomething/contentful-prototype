@@ -59,7 +59,8 @@ class Quiz extends React.Component {
   }
 
   renderResult() {
-    const { results, resultBlocks } = this.props.additionalContent;
+    const { resultBlocks } = this.props;
+    const { results } = this.props.additionalContent;
 
     const resultBlockId = this.state.results.resultBlockId;
     const resultBlock = find(resultBlocks, { id: resultBlockId });
@@ -138,14 +139,15 @@ Quiz.propTypes = {
       id: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
     })).isRequired,
-    resultBlocks: PropTypes.arrayOf(PropTypes.object).isRequired,
     submitButtonText: PropTypes.string,
   }).isRequired,
+  resultBlocks: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
+  resultBlocks: null,
   submitButtonText: 'Get Results',
 };
 
