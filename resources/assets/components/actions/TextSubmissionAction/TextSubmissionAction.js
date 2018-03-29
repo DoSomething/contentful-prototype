@@ -18,14 +18,16 @@ class TextSubmissionAction extends React.Component {
 
     const formData = new FormData();
 
+    formData.append('id', this.props.id);
     formData.append('action', this.props.action);
     formData.append('type', this.props.type);
     formData.append('text', this.state.textValue);
 
     if (this.props.legacyCampaignId && this.props.legacyCampaignRunId) {
       formData.append('details', JSON.stringify({
-        legacyCampaignId: this.props.legacyCampaignId,
-        legacyCampaignRunId: this.props.legacyCampaignRunId,
+        campaign_id: this.props.campaignId,
+        legacy_campaign_id: this.props.legacyCampaignId,
+        legacy_campaign_run_id: this.props.legacyCampaignRunId,
       }));
     }
 
@@ -58,7 +60,7 @@ class TextSubmissionAction extends React.Component {
             </div>
             <p className="footnote">Your submission will be reviewed by a DoSomething.org staffer and added to our public gallery.</p>
           </div>
-          <input type="submit" defaultValue={this.props.buttonText} className="button" disabled={this.state.isWaiting} />
+          <input type="submit" defaultValue={this.props.buttonText} className="button" disabled={this.props.submissions.isPending} />
         </form>
       </Card>
     );
@@ -74,6 +76,10 @@ TextSubmissionAction.propTypes = {
   legacyCampaignId: PropTypes.string,
   legacyCampaignRunId: PropTypes.string,
   storeCampaignPost: PropTypes.func.isRequired,
+  submissions: PropTypes.shape({
+    isPending: PropTypes.bool,
+    items: PropTypes.object,
+  }).isRequired,
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,

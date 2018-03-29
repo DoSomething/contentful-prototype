@@ -34,6 +34,10 @@ const initialState = {
     items: [],
   },
   posts: {},
+  postSubmissions: {
+    isPending: false,
+    items: {},
+  },
   quiz: {},
   reportbacks: {
     currentPage: 0,

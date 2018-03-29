@@ -58,7 +58,17 @@ class CampaignPostsController extends Controller
      */
     public function store($id, PostRequest $request)
     {
-        $request->merge(['campaign_id' => $id]);
+        // @TODO: temporary mechanism to pass along the legacy campaign ID and
+        // legacy campaign run ID, assigning them in a single location. Eventually,
+        // we want to only send the Contentful ID.
+        $legacyData = json_decode($request->input('details'));
+
+        $request->merge(['campaign_id' => $legacyData->legacy_campaign_id]);
+        $request->merge(['campaign_run_id' => $legacyData->legacy_campaign_run_id]);
+
+        // Replace above temporary mechanism with the following, once we switch to
+        // Contentful only IDs:
+        // $request->merge(['campaign_id' => $id]);
 
         $data = $this->postRepository->storePost($request->all());
 

@@ -1,6 +1,11 @@
 /* global window FormData */
 
 import apiRequest from './api';
+import {
+  POST_SUBMISSION_PENDING,
+  POST_SUBMISSION_FAILED,
+  POST_SUBMISSION_SUCCESSFUL,
+} from '../constants/action-types';
 
 /**
  * Fetch posts for the specified campaign.
@@ -40,10 +45,19 @@ export function storeCampaignPost(id, data) {
   return (dispatch, getState) => {
     const token = getState().user.token;
 
-    dispatch(apiRequest('POST', {
-      token,
-      body: data,
-      url: `${window.location.origin}/api/v2/campaigns/${id}/posts`,
-    }));
+    dispatch(
+      apiRequest('POST', {
+        body: data,
+        failure: POST_SUBMISSION_FAILED,
+        meta: {
+          id: data.get('id'),
+          type: data.get('type'),
+        },
+        pending: POST_SUBMISSION_PENDING,
+        success: POST_SUBMISSION_SUCCESSFUL,
+        token,
+        url: `${window.location.origin}/api/v2/campaigns/${id}/posts`,
+      }),
+    );
   };
 }
