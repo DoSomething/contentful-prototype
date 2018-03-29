@@ -50,17 +50,27 @@ const postRequest = (payload, dispatch) => {
   return client.post(payload.url, payload.body)
     .then((response) => {
       console.log('✅ successful response!');
-      // console.log(response);
-      dispatch({ type: payload.success, response });
+
+      response.status = {
+        success: {
+          code: 201,
+          message: 'Thanks for your submission!',
+        }
+      };
+
+      dispatch({
+        meta: payload.meta,
+        response,
+        type: payload.success,
+      });
     })
     .catch((error) => {
       console.log('🚫 failed response; caught the error!');
-      // console.log(error.response);
       const response = error.response;
 
       dispatch({
-        response,
         meta: payload.meta,
+        response,
         type: payload.failure,
       });
     });
