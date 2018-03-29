@@ -45,6 +45,8 @@ const postRequest = (payload, dispatch) => {
     },
   });
 
+  dispatch({ type: payload.pending });
+
   return client.post(payload.url, payload.body)
     .then((response) => {
       console.log('✅ successful response!');
@@ -56,7 +58,11 @@ const postRequest = (payload, dispatch) => {
       // console.log(error.response);
       const response = error.response;
 
-      dispatch({ type: payload.failure, response });
+      dispatch({
+        response,
+        meta: payload.meta,
+        type: payload.failure,
+      });
     });
 };
 

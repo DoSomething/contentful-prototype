@@ -14,10 +14,17 @@ const postSubmissions = (state = {}, action) => {
 
     case POST_SUBMISSION_FAILED:
       console.log('🤗 from the reducer!');
+      console.log(action);
       console.log(action.response);
       return {
         ...state,
         isPending: false,
+        items: {
+          [action.meta.id]: {
+            type: action.meta.type,
+            status: action.response,
+          },
+        },
       };
 
     case POST_SUBMISSION_SUCCESSFUL:
@@ -26,6 +33,13 @@ const postSubmissions = (state = {}, action) => {
       return {
         ...state,
         isPending: false,
+        items: {
+          [action.meta.id]: {
+            type: action.meta.type,
+            status: 'success',
+            data: action.response.data,
+          },
+        },
       };
 
     default:

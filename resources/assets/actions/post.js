@@ -49,6 +49,11 @@ export function storeCampaignPost(id, data) {
       apiRequest('POST', {
         body: data,
         failure: POST_SUBMISSION_FAILED,
+        meta: {
+          id: data.get('id'),
+          type: data.get('type'),
+        },
+        pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
         token,
         url: `${window.location.origin}/api/v2/campaigns/${id}/posts`,
