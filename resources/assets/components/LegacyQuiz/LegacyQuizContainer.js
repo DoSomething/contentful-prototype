@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
-import { get, find } from 'lodash';
+import { get } from 'lodash';
 import LegacyQuiz from './LegacyQuiz';
 import {
   pickWinner,
@@ -13,9 +13,7 @@ import { pickQuizAnswer, completeQuiz } from '../../actions/quiz';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, ownProps) => {
-  const { slug } = ownProps.match.params;
-
-  const quizContent = find(state.campaign.quizzes, { fields: { slug } });
+  const quizContent = ownProps.quizContent;
   const quizId = quizContent.id;
   const quizData = state.quiz[quizId];
   let quizFields = quizContent.fields;
@@ -35,9 +33,7 @@ const mapStateToProps = (state, ownProps) => {
     id: quizId,
     fields: quizFields,
     data: quizData,
-    dashboard: state.campaign.dashboard,
     submitButtonText: get(quizFields, 'additionalContent.submitButtonText'),
-    showLedeBanner: get(quizFields, 'additionalContent.showLedeBanner', true),
   };
 };
 

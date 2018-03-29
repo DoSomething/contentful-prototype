@@ -6,9 +6,9 @@ import { findContentfulEntry } from '../../../helpers';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, ownProps) => {
-  const { id } = ownProps.match.params;
+  const { id, slug } = ownProps.match.params;
 
-  const json = findContentfulEntry(state, id);
+  const json = findContentfulEntry(state, (id || slug));
 
   return { json };
 };
