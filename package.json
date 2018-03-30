@@ -38,7 +38,9 @@
     "@publica/url-polyfill": "^0.5.8",
     "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",
+    "apollo-link": "^1.2.1",
     "apollo-link-context": "^1.0.7",
+    "apollo-link-error": "^1.0.7",
     "apollo-link-http": "^1.5.3",
     "babel-jest": "^20.0.3",
     "babel-polyfill": "^6.26.0",
@@ -76,7 +78,7 @@
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "sixpack-client": "^2.1.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
     "@dosomething/babel-config": "^2.1.0",
