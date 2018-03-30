@@ -7,8 +7,9 @@ import ExperimentContainer from '../Experiment';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 const SignupButton = (props) => {
-  const { campaignActionText, sourceActionText, className, clickedSignUp, experiments, source,
-    template, text, trackEvent, trafficSource, legacyCampaignId, convertExperiment } = props;
+  const { campaignActionText, className, clickedSignUp, disableSignup, experiments,
+    source, sourceActionText, template, text, trackEvent, trafficSource,
+    legacyCampaignId, convertExperiment } = props;
 
   const convertExperiments = () => {
     Object.keys(experiments).forEach((experiment) => {
@@ -35,7 +36,12 @@ const SignupButton = (props) => {
   // If no source-specific override, don't opt in to the A/B test.
   const sourceOverride = get(sourceActionText, trafficSource);
   if (! sourceOverride) {
-    return <Button className={className} onClick={() => onSignup(baseCopy)} text={baseCopy} />;
+    return (
+      disableSignup ?
+        null
+        :
+        <Button className={className} onClick={() => onSignup(baseCopy)} text={baseCopy} />
+    );
   }
 
   // A/B Test: If a user has a traffic source w/ an override, try it!
@@ -43,46 +49,51 @@ const SignupButton = (props) => {
   const sourceCopy = text || sourceOverride || campaignActionText;
 
   return (
-    <ExperimentContainer name={experiment}>
-      <Button
-        experiment={experiment}
-        alternative="default_signup_copy"
-        className={className}
-        onClick={() => onSignup(baseCopy)}
-        text={baseCopy}
-      />
-      <Button
-        experiment={experiment}
-        alternative="source_signup_copy"
-        className={className}
-        onClick={() => onSignup(sourceCopy)}
-        text={sourceCopy}
-      />
-    </ExperimentContainer>
+    disableSignup ?
+      null
+      :
+      <ExperimentContainer name={experiment}>
+        <Button
+          experiment={experiment}
+          alternative="default_signup_copy"
+          className={className}
+          onClick={() => onSignup(baseCopy)}
+          text={baseCopy}
+        />
+        <Button
+          experiment={experiment}
+          alternative="source_signup_copy"
+          className={className}
+          onClick={() => onSignup(sourceCopy)}
+          text={sourceCopy}
+        />
+      </ExperimentContainer>
   );
 };
 
 SignupButton.propTypes = {
-  text: PropTypes.string,
   campaignActionText: PropTypes.string,
-  sourceActionText: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
   clickedSignUp: PropTypes.func.isRequired,
+  disableSignup: PropTypes.bool,
   convertExperiment: PropTypes.func.isRequired,
   experiments: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
+  sourceActionText: PropTypes.objectOf(PropTypes.string),
   template: PropTypes.string,
-  trafficSource: PropTypes.string,
+  text: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
+  trafficSource: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
-  text: null,
   campaignActionText: 'Take Action',
-  sourceActionText: null,
   className: null,
+  disableSignup: false,
+  sourceActionText: null,
   template: null,
+  text: null,
   trafficSource: null,
 };
 
