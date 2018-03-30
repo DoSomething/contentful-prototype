@@ -31,17 +31,17 @@ const SignupButton = (props) => {
     });
   };
 
+  // Have signups been disabled for this campaign?
+  if (disableSignup) {
+    return null;
+  }
+
   const baseCopy = text || campaignActionText;
 
   // If no source-specific override, don't opt in to the A/B test.
   const sourceOverride = get(sourceActionText, trafficSource);
   if (! sourceOverride) {
-    return (
-      disableSignup ?
-        null
-        :
-        <Button className={className} onClick={() => onSignup(baseCopy)} text={baseCopy} />
-    );
+    return <Button className={className} onClick={() => onSignup(baseCopy)} text={baseCopy} />;
   }
 
   // A/B Test: If a user has a traffic source w/ an override, try it!
@@ -49,25 +49,22 @@ const SignupButton = (props) => {
   const sourceCopy = text || sourceOverride || campaignActionText;
 
   return (
-    disableSignup ?
-      null
-      :
-      <ExperimentContainer name={experiment}>
-        <Button
-          experiment={experiment}
-          alternative="default_signup_copy"
-          className={className}
-          onClick={() => onSignup(baseCopy)}
-          text={baseCopy}
-        />
-        <Button
-          experiment={experiment}
-          alternative="source_signup_copy"
-          className={className}
-          onClick={() => onSignup(sourceCopy)}
-          text={sourceCopy}
-        />
-      </ExperimentContainer>
+    <ExperimentContainer name={experiment}>
+      <Button
+        experiment={experiment}
+        alternative="default_signup_copy"
+        className={className}
+        onClick={() => onSignup(baseCopy)}
+        text={baseCopy}
+      />
+      <Button
+        experiment={experiment}
+        alternative="source_signup_copy"
+        className={className}
+        onClick={() => onSignup(sourceCopy)}
+        text={sourceCopy}
+      />
+    </ExperimentContainer>
   );
 };
 
