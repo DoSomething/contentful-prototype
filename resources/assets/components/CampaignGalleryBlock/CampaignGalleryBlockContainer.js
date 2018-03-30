@@ -72,7 +72,7 @@ const mapResultToProps = ({ data: { loading, postsByCampaignId, variables, fetch
   }),
 });
 
-// Export the container component.
+// Export the Redux/GraphQL container component.
 export default connect(mapStateToProps)(
   graphql(query, { options: queryOptions, props: mapResultToProps })(CampaignGalleryBlock),
 );
