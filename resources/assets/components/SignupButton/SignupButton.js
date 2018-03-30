@@ -7,8 +7,9 @@ import ExperimentContainer from '../Experiment';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 const SignupButton = (props) => {
-  const { campaignActionText, sourceActionText, className, clickedSignUp, experiments, source,
-    template, text, trackEvent, trafficSource, legacyCampaignId, convertExperiment } = props;
+  const { campaignActionText, className, clickedSignUp, disableSignup, experiments,
+    source, sourceActionText, template, text, trackEvent, trafficSource,
+    legacyCampaignId, convertExperiment } = props;
 
   const convertExperiments = () => {
     Object.keys(experiments).forEach((experiment) => {
@@ -29,6 +30,11 @@ const SignupButton = (props) => {
       sourceData: { text: buttonText },
     });
   };
+
+  // Have signups been disabled for this campaign?
+  if (disableSignup) {
+    return null;
+  }
 
   const baseCopy = text || campaignActionText;
 
@@ -63,26 +69,28 @@ const SignupButton = (props) => {
 };
 
 SignupButton.propTypes = {
-  text: PropTypes.string,
   campaignActionText: PropTypes.string,
-  sourceActionText: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
   clickedSignUp: PropTypes.func.isRequired,
+  disableSignup: PropTypes.bool,
   convertExperiment: PropTypes.func.isRequired,
   experiments: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
+  sourceActionText: PropTypes.objectOf(PropTypes.string),
   template: PropTypes.string,
-  trafficSource: PropTypes.string,
+  text: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
+  trafficSource: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
-  text: null,
   campaignActionText: 'Take Action',
-  sourceActionText: null,
   className: null,
+  disableSignup: false,
+  sourceActionText: null,
   template: null,
+  text: null,
   trafficSource: null,
 };
 
