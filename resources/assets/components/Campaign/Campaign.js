@@ -26,7 +26,7 @@ const Campaign = props => (
     </TrafficDistribution>
 
     { props.featureFlags && props.featureFlags.showVoterRegistrationModal ? (
-      <TrafficDistribution percentage={10} feature="voter_reg_modal">
+      <TrafficDistribution percentage={50} feature="voter_reg_modal">
         <ModalLauncherContainer
           type="voter_reg_modal"
           countdown={30}
