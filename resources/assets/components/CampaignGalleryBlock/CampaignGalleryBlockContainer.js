@@ -26,6 +26,8 @@ const POST_GALLERY_QUERY = gql`
       status
       url
       text
+      reactions
+      reacted
       user {
         id
         firstName
