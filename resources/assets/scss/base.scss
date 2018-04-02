@@ -40,6 +40,14 @@ h1, h2, h3, p {
   }
 }
 
+// @TODO: for cleanup. Adding to base for now since needed
+// for validation in all forms.
+.field-label {
+  &.has-error {
+    color: $error-color;
+  }
+}
+
 // Utility classes.
 // @TODO: Move over to Forge 7 soon!
 .background-image-centered {
@@ -144,6 +152,10 @@ h1, h2, h3, p {
   float: right;
 }
 
+.font-bold {
+  font-weight: $weight-bold;
+}
+
 .font-size-lg {
   font-size: $font-large;
 
@@ -193,6 +205,10 @@ h1, h2, h3, p {
   padding-bottom: $base-spacing;
 }
 
+.padding-top-md {
+  padding-top: $half-spacing;
+}
+
 .padding-top-lg {
   padding-top: $base-spacing;
 }
@@ -224,6 +240,10 @@ h1, h2, h3, p {
   margin-right: $half-spacing;
 }
 
+.margin-bottom-sm {
+  margin-bottom: 6px;
+}
+
 .margin-bottom-md {
   margin-bottom: $half-spacing;
 }
@@ -234,6 +254,14 @@ h1, h2, h3, p {
 
 .margin-bottom-xlg {
   margin-bottom: $section-spacing;
+}
+
+.margin-top-none {
+  margin-top: 0 !important;
+}
+
+.margin-top-sm {
+  margin-top: 6px;
 }
 
 .margin-top-md {

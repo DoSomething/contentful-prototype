@@ -1,10 +1,13 @@
 /* global FormData */
 
 import React from 'react';
+import { has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../Card';
+import FormValidation from '../../utilities/Form/FormValidation';
+import { getFieldErrors } from '../../../helpers/forms';
 
 import './text-submission-action.scss';
 
@@ -12,6 +15,15 @@ class TextSubmissionAction extends React.Component {
   state = {
     textValue: '',
   };
+
+  componentDidUpdate = (prevProps) => {
+    const prevResponse = prevProps.submissions.items[this.props.id] || null;
+    const response = this.props.submissions.items[this.props.id] || null;
+
+    if (! has(prevResponse, 'status.success') && has(response, 'status.success')) {
+      this.resetForm();
+    }
+  }
 
   handleSubmit = (event) => {
     event.preventDefault();
@@ -31,7 +43,6 @@ class TextSubmissionAction extends React.Component {
       }));
     }
 
-    // Send this off to the backend API to validate and send off to Rogue.
     this.props.storeCampaignPost(this.props.campaignId, formData);
   }
 
@@ -41,15 +52,28 @@ class TextSubmissionAction extends React.Component {
     });
   }
 
+  resetForm = () => {
+    this.setState({
+      textValue: '',
+    });
+  }
+
   render() {
+    const formResponse = this.props.submissions.items[this.props.id] || null;
+
+    const errors = getFieldErrors(formResponse);
+
     return (
       <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
+
+        { formResponse ? <FormValidation response={formResponse} /> : null }
+
         <form onSubmit={this.handleSubmit}>
           <div className="padded">
             <div className="form-item">
-              <label className="field-label" htmlFor="text">{this.props.textFieldLabel}</label>
+              <label className={classnames('field-label', { 'has-error': has(errors, 'text') })} htmlFor="text">{this.props.textFieldLabel}</label>
               <input
-                className="text-field"
+                className={classnames('text-field', { 'has-error shake': has(errors, 'text') })}
                 type="text"
                 id="text"
                 name="text"

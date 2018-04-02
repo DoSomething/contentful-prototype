@@ -4,15 +4,20 @@ import { shallow } from 'enzyme';
 import TextSubmissionAction from './TextSubmissionAction';
 
 describe('TextSubmissionAction component', () => {
+  const id = 'abcdefghi123456789';
+
   const wrapper = shallow(
     <TextSubmissionAction
       action="textSubmissionAction"
       campaignId="1234"
       campaignRunId="6789"
       contentfulId="1122334455667788990011"
-      id="abcdefghi123456789"
+      id={id}
       storeCampaignPost={jest.fn()}
-      submissions={{ isPending: false }}
+      submissions={{
+        isPending: false,
+        items: {},
+      }}
       type="text"
       userId="666655554444333322221111"
     />,

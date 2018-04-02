@@ -1,0 +1,21 @@
+@import '../../../scss/next-toolbox.scss';
+
+.form-validation {
+  border-bottom: 2px solid $light-gray;
+
+  &.-error {
+    color: $error-color;
+
+    p {
+      color: $error-color;
+    }
+  }
+
+  &.-success {
+    color: green;
+
+    p {
+      color: green;
+    }
+  }
+}
