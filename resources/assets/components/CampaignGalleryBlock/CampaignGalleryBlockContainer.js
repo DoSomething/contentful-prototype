@@ -6,6 +6,7 @@ import gql from 'graphql-tag';
 
 import CampaignGalleryBlock from './CampaignGalleryBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import { NetworkStatus } from '../../constants';
 
 /**
  * Provide state from the Redux store as props for this component. (In
@@ -47,7 +48,7 @@ const CampaignGalleryQuery = ({ campaignId }) => (
   >
     {({ data, error, networkStatus, variables, fetchMore }) => {
       // On initial load, just display a loading spinner.
-      if (networkStatus === 1) {
+      if (networkStatus === NetworkStatus.LOADING) {
         return <div className="spinner -centered" />;
       }
 
@@ -59,7 +60,7 @@ const CampaignGalleryQuery = ({ campaignId }) => (
       return (
         <CampaignGalleryBlock
           postsByCampaignId={data.postsByCampaignId}
-          loading={networkStatus === 3}
+          loading={networkStatus === NetworkStatus.FETCH_MORE}
           loadMorePosts={() => fetchMore({
             variables: {
               // The value in `variables.page` doesn't get updated here on
