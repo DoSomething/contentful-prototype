@@ -10,13 +10,17 @@ import { onError } from 'apollo-link-error';
 import { env } from './helpers';
 
 // Create an authentication link with the user's access token.
-const accessToken = window.AUTH.jwt;
-const authenticationLink = setContext((request, { headers }) => {
+const authenticationLink = setContext((request, context) => {
+  const accessToken = window.AUTH.jwt;
+
   if (accessToken) {
-    return { ...headers, authorization: `Bearer ${accessToken}` };
+    return {
+      ...context,
+      headers: { authorization: `Bearer ${accessToken}` },
+    };
   }
 
-  return headers;
+  return context;
 });
 
 // Create an error-reporting link.
@@ -34,12 +38,15 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   }
 });
 
+// Create the HTTP link! This is our terminating link that makes actual requests.
+const httpLink = new HttpLink({ uri: env('GRAPHQL_URL') });
+
 // Configure Apollo Client.
 const client = new ApolloClient({
   link: ApolloLink.from([
     errorLink,
     authenticationLink,
-    new HttpLink({ uri: env('GRAPHQL_URL') }),
+    httpLink,
   ]),
   cache: new InMemoryCache(),
 });

@@ -18,8 +18,11 @@ const CampaignGalleryBlock = (props) => {
             <ReportbackItem
               id={String(post.id)}
               type={post.type}
-              caption={post.media.text}
-              url={post.media.url}
+              reaction={{ total: post.reactions, reacted: post.reacted }}
+              toggleReactionOn={() => console.log('Coming soon!')}
+              toggleReactionOff={() => console.log('Coming soon!')}
+              caption={post.text}
+              url={post.url}
               firstName={get(post, 'user.firstName') || 'A Doer'}
             />
           </Card>
