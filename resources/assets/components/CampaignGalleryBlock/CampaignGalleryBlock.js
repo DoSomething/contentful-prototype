@@ -18,8 +18,8 @@ const CampaignGalleryBlock = (props) => {
             <ReportbackItem
               id={String(post.id)}
               type={post.type}
-              caption={post.media.text}
-              url={post.media.url}
+              caption={post.text}
+              url={post.url}
               firstName={get(post, 'user.firstName') || 'A Doer'}
             />
           </Card>

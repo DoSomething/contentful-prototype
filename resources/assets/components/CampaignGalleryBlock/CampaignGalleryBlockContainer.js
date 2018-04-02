@@ -24,10 +24,8 @@ const POST_GALLERY_QUERY = gql`
     postsByCampaignId(id: $campaignId, count: $count, page: $page) {
       id
       status
-      media {
-        url
-        text
-      }
+      url
+      text
       user {
         id
         firstName
