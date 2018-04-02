@@ -63,12 +63,6 @@ class TextSubmissionAction extends React.Component {
 
     const errors = getFieldErrors(formResponse);
 
-    // Reset the form if the response from submitting was successful.
-    // if (has(formResponse, 'status.success')) {
-    //   console.log('🤔 this should have run...');
-    //   this.resetForm();
-    // }
-
     return (
       <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
 

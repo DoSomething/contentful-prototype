@@ -12,6 +12,12 @@ export function getStatusMessage(response) {
   return status.message;
 }
 
+/**
+ * Get the errors for all fields in a form response.
+ *
+ * @param  {Object} response
+ * @return {Object}
+ */
 export function getFieldErrors(response) {
   if (! has(response, 'status.error.fields')) {
     return null;
@@ -20,6 +26,12 @@ export function getFieldErrors(response) {
   return response.status.error.fields;
 }
 
+/**
+ * Get all the error messages for each field in a form response.
+ *
+ * @param  {Object} response
+ * @return {Array|null}
+ */
 export function getFieldErrorMessages(response) {
   const errorFields = getFieldErrors(response);
 
