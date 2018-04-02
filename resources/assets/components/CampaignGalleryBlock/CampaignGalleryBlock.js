@@ -10,9 +10,7 @@ import { ReportbackItem } from '../ReportbackItem';
 const CampaignGalleryBlock = (props) => {
   const { loading, postsByCampaignId, loadMorePosts } = props;
 
-  return loading ? (
-    <div className="spinner -centered" />
-  ) : (
+  return (
     <div>
       <Gallery type="triad" className="expand-horizontal-md">
         {postsByCampaignId.map(post => (
@@ -27,8 +25,7 @@ const CampaignGalleryBlock = (props) => {
           </Card>
         ))}
       </Gallery>
-      { /* TODO: Use `networkStatus` to differentiate initial load from subsequent ones? (https://goo.gl/UnWbak) */ }
-      <LoadMore className="padding-lg text-centered" text="view more" onClick={loadMorePosts} isLoading={false} />
+      <LoadMore className="padding-lg text-centered" text="view more" onClick={loadMorePosts} isLoading={loading} />
     </div>
   );
 };
