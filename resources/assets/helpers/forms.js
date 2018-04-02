@@ -1,4 +1,4 @@
-import { has } from 'lodash';
+import { get } from 'lodash';
 
 /**
  * Get the status error/success message for a form response.
@@ -16,14 +16,10 @@ export function getStatusMessage(response) {
  * Get the errors for all fields in a form response.
  *
  * @param  {Object} response
- * @return {Object}
+ * @return {Object|null}
  */
 export function getFieldErrors(response) {
-  if (! has(response, 'status.error.fields')) {
-    return null;
-  }
-
-  return response.status.error.fields;
+  return get(response, 'status.error.fields', null);
 }
 
 /**
