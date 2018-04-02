@@ -1,0 +1,19 @@
+@import '../../../scss/next-toolbox.scss';
+
+.form-validation {
+  &.-error {
+    color: $error-color;
+
+    p {
+      color: $error-color;
+    }
+  }
+
+  &.-success {
+    color: green;
+
+    p {
+      color: green;
+    }
+  }
+}
