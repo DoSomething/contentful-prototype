@@ -14,12 +14,12 @@ describe('TextSubmissionAction component', () => {
       contentfulId="1122334455667788990011"
       id={id}
       storeCampaignPost={jest.fn()}
-      submissions={{ isPending: false }}
+      submissions={{
+        isPending: false,
+        items: {},
+      }}
       type="text"
       userId="666655554444333322221111"
-      submissions={{
-        items: {}
-      }}
     />,
   );
 
