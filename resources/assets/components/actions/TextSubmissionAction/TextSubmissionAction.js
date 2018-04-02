@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../Card';
+import FormValidation from '../../utilities/Form/FormValidation';
 
 import './text-submission-action.scss';
 
@@ -42,8 +43,20 @@ class TextSubmissionAction extends React.Component {
   }
 
   render() {
+    if (this.props.submissions.items[this.props.id]) {
+      console.log('🤠 we found it y\'all');
+    } else {
+      console.log('😡 we found NOTHING!');
+    }
+
+    const formResponse = this.props.submissions.items[this.props.id] || null;
+    console.log(formResponse);
+
     return (
       <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
+
+        { formResponse ? <FormValidation data={formResponse} /> : null }
+
         <form onSubmit={this.handleSubmit}>
           <div className="padded">
             <div className="form-item">

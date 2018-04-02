@@ -56,6 +56,8 @@ class PostRequest extends FormRequest
             case 'text':
                 return [
                     'text' => 'required|max:256',
+                    'example' => 'required',
+                    'other' => 'required',
                 ];
 
             default:
