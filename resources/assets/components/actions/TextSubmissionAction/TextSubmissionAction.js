@@ -43,7 +43,12 @@ class TextSubmissionAction extends React.Component {
       }));
     }
 
-    this.props.storeCampaignPost(this.props.campaignId, formData);
+    // Send request to store the campaign text submission post.
+    this.props.storeCampaignPost(this.props.campaignId, {
+      body: formData,
+      id: this.props.id,
+      type: this.props.type,
+    });
   }
 
   handleChange = (event) => {

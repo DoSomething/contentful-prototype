@@ -33,30 +33,32 @@ export function fetchCampaignPosts() {
 /**
  * Store posts for the specified campaign.
  *
- * @param {String} id
- * @param  {FormData} data
+ * @param {String} campaignId
+ * @param  {Object} data
  * @return {function}
  */
-export function storeCampaignPost(id, data) {
-  if (! (data instanceof FormData)) {
-    throw Error(`The supplied data must be an instance of FormData, instead it is an instance of ${data.constructor.name}.`);
+export function storeCampaignPost(campaignId, data) {
+  if (! (data.body instanceof FormData)) {
+    throw Error(`The supplied data.body must be an instance of FormData, instead it is an instance of ${data.body.constructor.name}.`);
   }
+
+  const { body, id, type } = data;
 
   return (dispatch, getState) => {
     const token = getState().user.token;
 
     dispatch(
       apiRequest('POST', {
-        body: data,
+        body,
         failure: POST_SUBMISSION_FAILED,
         meta: {
-          id: data.get('id'),
-          type: data.get('type'),
+          id,
+          type,
         },
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
         token,
-        url: `${window.location.origin}/api/v2/campaigns/${id}/posts`,
+        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
       }),
     );
   };
