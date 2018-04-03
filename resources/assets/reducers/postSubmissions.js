@@ -1,6 +1,9 @@
+import { has } from 'lodash';
+
 import {
-  POST_SUBMISSION_PENDING,
   POST_SUBMISSION_FAILED,
+  POST_SUBMISSION_PENDING,
+  POST_SUBMISSION_CLEAR_ITEM,
   POST_SUBMISSION_SUCCESSFUL,
 } from '../constants/action-types';
 
@@ -9,6 +12,18 @@ import {
  */
 const postSubmissions = (state = {}, action) => {
   switch (action.type) {
+    case POST_SUBMISSION_CLEAR_ITEM:
+      if (has(state, `items.${action.id}`)) {
+        return {
+          ...state,
+          items: {
+            [action.id]: undefined,
+          },
+        };
+      }
+
+      return state;
+
     case POST_SUBMISSION_PENDING:
       return { ...state, isPending: true };
 
