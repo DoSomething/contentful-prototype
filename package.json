@@ -54,6 +54,7 @@
     "enzyme-to-json": "^3.3.3",
     "fontfaceobserver": "^2.0.13",
     "graphql": "^0.13.2",
+    "graphql-anywhere": "^4.1.8",
     "graphql-tag": "^2.8.0",
     "history": "^4.7.2",
     "jest-environment-jsdom": "^22.4.3",
