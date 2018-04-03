@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 import Card from '../Card';
 import Gallery from '../Gallery';
@@ -15,15 +14,7 @@ const CampaignGalleryBlock = (props) => {
       <Gallery type="triad" className="expand-horizontal-md">
         {postsByCampaignId.map(post => (
           <Card className="rounded" key={post.id}>
-              id={String(post.id)}
-              type={post.type}
-              firstName={get(post, 'user.firstName') || 'A Doer'}
-              reactions={post.reactions}
-              reacted={post.reacted}
-              text={post.text}
-              url={post.url}
-            />
-            <PostCard
+            <PostCard post={post} />
           </Card>
         ))}
       </Gallery>

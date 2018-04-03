@@ -1,49 +1,58 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { propType } from 'graphql-anywhere';
+import gql from 'graphql-tag';
 
 import { Figure, BaseFigure } from '../Figure';
 import Reaction from '../Reaction';
 import { pluralize } from '../../helpers';
 import './post.scss';
 
-const Post = (props) => {
-  const { id, firstName, url, text, quantity, reacted, reactions, noun } = props;
+export const postCardQuery = gql`
+  fragment PostCard on Post {
+    id
+    status
+    url
+    text
+    quantity
+    reacted
+    reactions
+    user {
+      firstName
+    }
+  }
+`;
 
+const PostCard = ({ post, noun }) => {
   const reactionElement = (
     <Reaction
-      active={reacted}
-      total={reactions}
-      onToggleOn={() => console.log(id)}
-      onToggleOff={() => console.log(id)}
+      active={post.reacted}
+      total={post.reactions}
+      onToggleOn={() => console.log('TOGGLE', post.id)}
+      onToggleOff={() => console.log('TOGGLE', post.id)}
     />
   );
 
   return (
-    <Figure className="post" image={url} alt={`${firstName}'s photo`}>
+    <Figure className="post" image={post.url} alt={`${post.user.firstName}'s photo`}>
       <BaseFigure media={reactionElement} alignment="right" className="padded margin-bottom-none">
-        <h4>{firstName}</h4>
-        { quantity ? <p className="footnote">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
-        { text ? <p>{text}</p> : null }
+        <h4>{post.user.firstName}</h4>
+        { post.quantity ? <p className="footnote">{post.quantity} {pluralize(post.quantity, noun.singular, noun.plural)}</p> : null }
+        { post.text ? <p>{post.text}</p> : null }
       </BaseFigure>
     </Figure>
   );
 };
 
-Post.propTypes = {
-  id: PropTypes.string.isRequired,
-  firstName: PropTypes.string,
-  url: PropTypes.string,
-  text: PropTypes.string,
-  quantity: PropTypes.number,
-  reacted: PropTypes.bool,
-  reactions: PropTypes.number,
+PostCard.propTypes = {
+  post: propType(postCardQuery).isRequired,
   noun: PropTypes.shape({
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
 };
 
-Post.defaultProps = {
+PostCard.defaultProps = {
   firstName: 'A Doer',
   url: undefined,
   text: null,
@@ -56,4 +65,4 @@ Post.defaultProps = {
   },
 };
 
-export default Post;
+export default PostCard;
