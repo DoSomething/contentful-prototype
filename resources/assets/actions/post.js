@@ -38,10 +38,10 @@ export function fetchCampaignPosts() {
  * @return {Object}
  */
 export function clearPostSubmissionItem(id) {
-  return ({
+  return {
     id,
     type: POST_SUBMISSION_CLEAR_ITEM,
-  });
+  };
 }
 
 /**
