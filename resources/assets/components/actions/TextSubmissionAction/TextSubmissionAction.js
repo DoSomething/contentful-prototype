@@ -21,8 +21,8 @@ class TextSubmissionAction extends React.Component {
     const prevResponse = prevProps.submissions.items[this.props.id] || null;
     const response = this.props.submissions.items[this.props.id] || null;
 
-    // If prior response had no success, but current response does, than the
-    // submission was successful!
+    // If prior response had no success status, but current response does, then
+    // the submission was successful!
     if (! has(prevResponse, 'status.success') && has(response, 'status.success')) {
       this.resetForm();
       this.props.openModal(POST_REPORTBACK_MODAL);
