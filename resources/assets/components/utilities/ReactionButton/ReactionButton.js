@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { propType } from 'graphql-anywhere';
-import classnames from 'classnames';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { propType } from 'graphql-anywhere';
 
 import { BaseFigure } from '../../Figure';
 

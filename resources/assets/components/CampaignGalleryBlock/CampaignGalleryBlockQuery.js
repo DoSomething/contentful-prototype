@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
-import CampaignGalleryBlock from './CampaignGalleryBlock';
 import PaginatedQuery from '../PaginatedQuery';
+import CampaignGalleryBlock from './CampaignGalleryBlock';
 import { postCardFragment } from '../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../utilities/ReactionButton/ReactionButton';
 
