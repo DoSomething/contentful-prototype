@@ -4,7 +4,8 @@ import gql from 'graphql-tag';
 
 import CampaignGalleryBlock from './CampaignGalleryBlock';
 import PaginatedQuery from '../PaginatedQuery';
-import { postCardQuery } from '../PostCard/PostCard';
+import { postCardFragment } from '../PostCard/PostCard';
+import { reactionButtonFragment } from '../Reaction/ReactionButton';
 
 /**
  * The GraphQL query to load data for this component.
@@ -13,10 +14,12 @@ const POST_GALLERY_QUERY = gql`
   query PostGallery($campaignId: String!, $count: Int, $page: Int) {
     postsByCampaignId(id: $campaignId, count: $count, page: $page) {
       ...PostCard
+      ...ReactionButton
     }
   }
 
-  ${postCardQuery}
+  ${postCardFragment}
+  ${reactionButtonFragment}
 `;
 
 /**

@@ -4,19 +4,17 @@ import { propType } from 'graphql-anywhere';
 import gql from 'graphql-tag';
 
 import { Figure, BaseFigure } from '../Figure';
-import Reaction from '../Reaction';
+import ReactionButton from '../Reaction/ReactionButton';
 import { pluralize } from '../../helpers';
 import './post.scss';
 
-export const postCardQuery = gql`
+export const postCardFragment = gql`
   fragment PostCard on Post {
     id
     status
     url
     text
     quantity
-    reacted
-    reactions
     user {
       firstName
     }
@@ -25,11 +23,9 @@ export const postCardQuery = gql`
 
 const PostCard = ({ post, noun }) => {
   const reactionElement = (
-    <Reaction
-      active={post.reacted}
-      total={post.reactions}
-      onToggleOn={() => console.log('TOGGLE', post.id)}
-      onToggleOff={() => console.log('TOGGLE', post.id)}
+    <ReactionButton
+      post={post}
+      toggleReaction={() => console.log('this gonna toggle that')}
     />
   );
 
@@ -45,7 +41,7 @@ const PostCard = ({ post, noun }) => {
 };
 
 PostCard.propTypes = {
-  post: propType(postCardQuery).isRequired,
+  post: propType(postCardFragment).isRequired,
   noun: PropTypes.shape({
     singular: PropTypes.string,
     plural: PropTypes.string,
