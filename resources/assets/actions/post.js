@@ -2,8 +2,9 @@
 
 import apiRequest from './api';
 import {
-  POST_SUBMISSION_PENDING,
   POST_SUBMISSION_FAILED,
+  POST_SUBMISSION_PENDING,
+  POST_SUBMISSION_CLEAR_ITEM,
   POST_SUBMISSION_SUCCESSFUL,
 } from '../constants/action-types';
 
@@ -27,6 +28,19 @@ export function fetchCampaignPosts() {
       },
       url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
     }));
+  };
+}
+
+/**
+ * Clear the post submission item with the specified id.
+ *
+ * @param  {String} id
+ * @return {Object}
+ */
+export function clearPostSubmissionItem(id) {
+  return {
+    id,
+    type: POST_SUBMISSION_CLEAR_ITEM,
   };
 }
 

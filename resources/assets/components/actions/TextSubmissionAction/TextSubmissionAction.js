@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../Card';
-import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors } from '../../../helpers/forms';
+import FormValidation from '../../utilities/Form/FormValidation';
 
 import './text-submission-action.scss';
 
@@ -20,13 +20,18 @@ class TextSubmissionAction extends React.Component {
     const prevResponse = prevProps.submissions.items[this.props.id] || null;
     const response = this.props.submissions.items[this.props.id] || null;
 
+    // If prior response had no success status, but current response does, then
+    // the submission was successful!
     if (! has(prevResponse, 'status.success') && has(response, 'status.success')) {
       this.resetForm();
+      this.props.openModal('POST_REPORTBACK_MODAL');
     }
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    this.props.clearPostSubmissionItem(this.props.id);
 
     const formData = new FormData();
 
@@ -101,9 +106,11 @@ TextSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
+  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   legacyCampaignId: PropTypes.string,
   legacyCampaignRunId: PropTypes.string,
+  openModal: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
