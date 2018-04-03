@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../Card';
-import { POST_REPORTBACK_MODAL } from '../../Modal';
 import { getFieldErrors } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';
 
@@ -25,7 +24,7 @@ class TextSubmissionAction extends React.Component {
     // the submission was successful!
     if (! has(prevResponse, 'status.success') && has(response, 'status.success')) {
       this.resetForm();
-      this.props.openModal(POST_REPORTBACK_MODAL);
+      this.props.openModal('POST_REPORTBACK_MODAL');
     }
   }
 
