@@ -23,12 +23,7 @@ export const postCardFragment = gql`
 `;
 
 const PostCard = ({ post, noun }) => {
-  const reactionElement = (
-    <ReactionButton
-      post={post}
-      toggleReaction={() => console.log('this gonna toggle that')}
-    />
-  );
+  const reactionElement = <ReactionButton post={post} />;
 
   return (
     <Figure className="post" image={post.url} alt={`${post.user.firstName}'s photo`}>
