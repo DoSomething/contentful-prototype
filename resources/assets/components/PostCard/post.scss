@@ -1,0 +1,32 @@
+@import '../../scss/next-toolbox.scss';
+
+.post {
+  font-family: $primary-font-family;
+  margin-bottom: 0;
+
+  h4 {
+    display: inline;
+    font-size: $font-regular;
+    font-weight: $weight-bold;
+  }
+
+  p {
+    color: $med-gray;
+  }
+
+  > .figure__media {
+    background-color: $med-gray;
+
+    & > img {
+      width: 480px; // HACK: Expand smaller images to fit in card.
+    }
+  }
+
+  > .figure__body p {
+    word-break: break-word;
+  }
+
+  .figure.-right > .figure__body {
+    overflow: unset;
+  }
+}

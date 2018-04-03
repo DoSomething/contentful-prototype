@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import Card from '../Card';
 import Gallery from '../Gallery';
 import LoadMore from '../LoadMore';
-import { ReportbackItem } from '../ReportbackItem';
+import PostCard from '../PostCard/PostCard';
 
 const CampaignGalleryBlock = (props) => {
   const { loading, postsByCampaignId, loadMorePosts } = props;
@@ -15,16 +15,15 @@ const CampaignGalleryBlock = (props) => {
       <Gallery type="triad" className="expand-horizontal-md">
         {postsByCampaignId.map(post => (
           <Card className="rounded" key={post.id}>
-            <ReportbackItem
               id={String(post.id)}
               type={post.type}
-              reaction={{ total: post.reactions, reacted: post.reacted }}
-              toggleReactionOn={() => console.log('Coming soon!')}
-              toggleReactionOff={() => console.log('Coming soon!')}
-              caption={post.text}
-              url={post.url}
               firstName={get(post, 'user.firstName') || 'A Doer'}
+              reactions={post.reactions}
+              reacted={post.reacted}
+              text={post.text}
+              url={post.url}
             />
+            <PostCard
           </Card>
         ))}
       </Gallery>
