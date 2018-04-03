@@ -4,8 +4,7 @@ import { propType } from 'graphql-anywhere';
 import classnames from 'classnames';
 import gql from 'graphql-tag';
 
-import { BaseFigure } from '../Figure';
-import './reaction.scss';
+import { BaseFigure } from '../../Figure';
 
 export const reactionButtonFragment = gql`
   fragment ReactionButton on Post {

@@ -4,8 +4,8 @@ import gql from 'graphql-tag';
 
 import CampaignGalleryBlock from './CampaignGalleryBlock';
 import PaginatedQuery from '../PaginatedQuery';
-import { postCardFragment } from '../PostCard/PostCard';
-import { reactionButtonFragment } from '../Reaction/ReactionButton';
+import { postCardFragment } from '../utilities/PostCard/PostCard';
+import { reactionButtonFragment } from '../utilities/ReactionButton/ReactionButton';
 
 /**
  * The GraphQL query to load data for this component.

@@ -3,9 +3,9 @@ import React from 'react';
 import { propType } from 'graphql-anywhere';
 import gql from 'graphql-tag';
 
-import { Figure, BaseFigure } from '../Figure';
-import ReactionButton from '../Reaction/ReactionButton';
-import { pluralize } from '../../helpers';
+import { Figure, BaseFigure } from '../../Figure';
+import ReactionButton from '../ReactionButton/ReactionButton';
+import { pluralize } from '../../../helpers';
 import './post.scss';
 
 export const postCardFragment = gql`

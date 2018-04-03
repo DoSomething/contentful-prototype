@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 import Gallery from '../Gallery';
 import LoadMore from '../LoadMore';
-import PostCard from '../PostCard/PostCard';
+import PostCard from '../utilities/PostCard/PostCard';
 
 const CampaignGalleryBlock = (props) => {
   const { loading, postsByCampaignId, loadMorePosts } = props;
