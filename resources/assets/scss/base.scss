@@ -55,6 +55,14 @@ h1, h2, h3, p {
   background-size: cover;
 }
 
+.color-white {
+  color: $white !important;
+}
+
+.color-yellow {
+  color: $primary-color !important;
+}
+
 .bg-black {
   background-color: $black !important;
 }
@@ -134,6 +142,13 @@ h1, h2, h3, p {
   margin-right: -$half-spacing;
 }
 
+
+.flex-center-y {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .flex-center-xy {
   display: flex;
   justify-content: center;
@@ -162,6 +177,10 @@ h1, h2, h3, p {
   p {
     font-size: $font-large;
   }
+}
+
+.caps-lock {
+  text-transform: uppercase;
 }
 
 // TODO: Remove this.
@@ -283,6 +302,14 @@ h1, h2, h3, p {
 
 .rounded {
   border-radius: $lg-border-radius;
+}
+
+.rounded-top {
+  border-radius: $lg-border-radius $lg-border-radius 0 0;
+}
+
+.rounded-bottom {
+  border-radius: 0 0 $lg-border-radius $lg-border-radius;
 }
 
 .faded {
