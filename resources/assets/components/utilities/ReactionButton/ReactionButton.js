@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Mutation } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 
 import { BaseFigure } from '../../Figure';
@@ -13,21 +13,38 @@ export const reactionButtonFragment = gql`
   }
 `;
 
-const Reaction = ({ post, toggleReaction }) => {
-  const reactionButton = <div className={classnames('reaction__button', { '-reacted': post.reacted })} />;
+const TOGGLE_REACTION = gql`
+  mutation ToggleReaction($postId: Int!) {
+    toggleReaction(postId: $postId) {
+      id
+      reactions
+      reacted
+    }
+  }
+`;
 
-  return (
-    <button className="reaction" onClick={toggleReaction}>
-      <BaseFigure media={reactionButton} alignment="left" className="margin-bottom-none">
-        <span className="reaction__meta">{post.reactions}</span>
-      </BaseFigure>
-    </button>
-  );
-};
+const ReactionButton = ({ post }) => (
+  <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
+    {(toggleReaction, { loading }) => {
+      const button = loading ? (
+        <div className="spinner" />
+      ) : (
+        <div className={classnames('reaction__button', { '-reacted': post.reacted })} />
+      );
 
-Reaction.propTypes = {
+      return (
+        <button className="reaction" onClick={toggleReaction}>
+          <BaseFigure media={button} alignment="left" className="margin-bottom-none">
+            <span className="reaction__meta">{post.reactions}</span>
+          </BaseFigure>
+        </button>
+      );
+    }}
+  </Mutation>
+);
+
+ReactionButton.propTypes = {
   post: propType(reactionButtonFragment).isRequired,
-  toggleReaction: PropTypes.func.isRequired,
 };
 
-export default Reaction;
+export default ReactionButton;
