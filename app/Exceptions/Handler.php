@@ -91,26 +91,27 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof HttpException) {
             $code = $exception->getStatusCode() ?: 500;
+            $message = $exception->getMessage();
         } elseif ($exception instanceof ValidationException) {
             $code = 422;
-
+            $message = 'Hmm, there were some issues with your submission.';
             $fields = $exception->validator->errors()->getMessages();
         } elseif ($exception instanceof GatewayValidationException) {
             $code = 422;
-
+            $message = 'Hmm, there were some issues with your submission.';
             $fields = $exception->getErrors();
         } elseif ($exception instanceof AuthenticationException) {
             $code = 401;
+            $message = $exception->getMessage();
         } else {
             $code = 500;
+            $message = config('app.debug') ? $exception->getMessage() : self::PRODUCTION_ERROR_MESSAGE;
         }
-
-        $hideErrorDetails = $code === 500 && ! config('app.debug');
 
         $response = [
             'error' => [
                 'code' => $code,
-                'message' => $hideErrorDetails ? self::PRODUCTION_ERROR_MESSAGE : $exception->getMessage(),
+                'message' =>$message,
             ],
         ];
 

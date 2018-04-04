@@ -1,7 +1,7 @@
 /* global FormData */
 
 import React from 'react';
-import { has } from 'lodash';
+import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -36,7 +36,7 @@ class TextSubmissionAction extends React.Component {
     const formData = new FormData();
 
     formData.append('id', this.props.id);
-    formData.append('action', this.props.action);
+    formData.append('action', get(this.props.additionalContent, 'action', 'default'));
     formData.append('type', this.props.type);
     formData.append('text', this.state.textValue);
 
@@ -102,7 +102,9 @@ class TextSubmissionAction extends React.Component {
 }
 
 TextSubmissionAction.propTypes = {
-  action: PropTypes.string.isRequired,
+  additionalContent: PropTypes.shape({
+    action: PropTypes.string,
+  }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
@@ -123,6 +125,7 @@ TextSubmissionAction.propTypes = {
 };
 
 TextSubmissionAction.defaultProps = {
+  additionalContent: null,
   buttonText: 'Submit',
   className: null,
   legacyCampaignId: null,

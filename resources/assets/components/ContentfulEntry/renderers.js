@@ -197,7 +197,7 @@ export function renderTextSubmissionAction(data) {
   return (
     <div key={`text-submission-action-${contentfulId}`} className="margin-horizontal-md margin-bottom-lg">
       <PuckWaypoint name="text_submission_action-top" waypointData={{ contentfulId }} />
-      <TextSubmissionActionContainer id={data.id} action={data.type} {...data.fields} />
+      <TextSubmissionActionContainer id={data.id} {...data.fields} />
       <PuckWaypoint name="text_submission_action-bottom" waypointData={{ contentfulId }} />
     </div>
   );
