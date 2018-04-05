@@ -37,6 +37,11 @@
   background-color: $purple;
 
   &:before {
+    // Offset the 'tail' from bottom with a 1px overlap to avoid
+    // sub-pixel rendering issue w/ slight gap between elements.
+    top: auto;
+    bottom: -19px;
+
     border-color: $purple transparent transparent $purple;
     left: 25%;
   }
