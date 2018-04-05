@@ -32,14 +32,12 @@
 }
 
 .chat-bubble.-post-bubble {
-  $bright-purple: #563795;
-
-  background-color: $bright-purple;
   font-family: $font-league-gothic;
   min-height: 340px; // HACK: short text posts should be same height as photos.
+  background-color: $purple;
 
   &:before {
-    border-color: $bright-purple transparent transparent $bright-purple;
+    border-color: $purple transparent transparent $purple;
     left: 25%;
   }
 }
