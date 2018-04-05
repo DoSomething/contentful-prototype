@@ -6,12 +6,14 @@ import Gallery from '../Gallery';
 import LoadMore from '../LoadMore';
 import PostCard from '../utilities/PostCard/PostCard';
 
+import './campaign-gallery.scss';
+
 const CampaignGalleryBlock = (props) => {
   const { loading, postsByCampaignId, loadMorePosts } = props;
 
   return (
     <div>
-      <Gallery type="triad" className="expand-horizontal-md">
+      <Gallery type="triad" className="campaign-gallery expand-horizontal-md">
         {postsByCampaignId.map(post => (
           <Card className="rounded" key={post.id}>
             <PostCard post={post} />

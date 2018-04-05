@@ -3,8 +3,9 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
+import LazyImage from '../../LazyImage';
+import { BaseFigure } from '../../Figure';
 import { pluralize } from '../../../helpers';
-import { Figure, BaseFigure } from '../../Figure';
 import ReactionButton from '../ReactionButton/ReactionButton';
 
 import './post.scss';
@@ -12,6 +13,7 @@ import './post.scss';
 export const postCardFragment = gql`
   fragment PostCard on Post {
     id
+    type
     status
     url
     text
@@ -24,15 +26,34 @@ export const postCardFragment = gql`
 
 const PostCard = ({ post, noun }) => {
   const reactionElement = <ReactionButton post={post} />;
+  let media = null;
+
+  // Render the appropriate media for this post:
+  switch (post.type) {
+    case 'text':
+      media = (
+        <div className="chat-bubble -post-bubble flex-center-y margin-bottom-none rounded-top">
+          <h4 className="color-yellow caps-lock">I beat bullying by...</h4>
+          <p className="color-white caps-lock">{post.text}</p>
+        </div>
+      );
+      break;
+    case 'photo':
+      media = <LazyImage alt={`${post.user.firstName}'s photo`} src={post.url} />;
+      break;
+
+    default:
+      media = null;
+  }
 
   return (
-    <Figure className="post" image={post.url} alt={`${post.user.firstName}'s photo`}>
+    <BaseFigure className="post" media={media}>
       <BaseFigure media={reactionElement} alignment="right" className="padded margin-bottom-none">
         <h4>{post.user.firstName}</h4>
         { post.quantity ? <p className="footnote">{post.quantity} {pluralize(post.quantity, noun.singular, noun.plural)}</p> : null }
-        { post.text ? <p>{post.text}</p> : null }
+        { post.type !== 'text' && post.text ? <p>{post.text}</p> : null }
       </BaseFigure>
-    </Figure>
+    </BaseFigure>
   );
 };
 

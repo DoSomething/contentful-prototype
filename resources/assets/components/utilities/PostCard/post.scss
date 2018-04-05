@@ -30,3 +30,27 @@
     overflow: unset;
   }
 }
+
+.chat-bubble.-post-bubble {
+  font-family: $font-league-gothic;
+  min-height: 340px; // HACK: short text posts should be same height as photos.
+  background-color: $purple;
+
+  &:before {
+    // Offset the 'tail' from bottom with a 1px overlap to avoid
+    // sub-pixel rendering issue w/ slight gap between elements.
+    top: auto;
+    bottom: -19px;
+
+    border-color: $purple transparent transparent $purple;
+    left: 25%;
+  }
+
+  p {
+    font-size: $font-medium;
+
+    @include media($large) {
+      font-size: $font-large;
+    }
+  }
+}
