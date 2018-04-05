@@ -45,4 +45,12 @@
     border-color: $purple transparent transparent $purple;
     left: 25%;
   }
+
+  p {
+    font-size: $font-medium;
+
+    @include media($large) {
+      font-size: $font-large;
+    }
+  }
 }
