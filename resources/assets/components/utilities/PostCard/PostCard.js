@@ -25,6 +25,7 @@ export const postCardFragment = gql`
 `;
 
 const PostCard = ({ post, noun }) => {
+  const firstName = post.user ? post.user.firstName : 'A Doer';
   const reactionElement = <ReactionButton post={post} />;
   let media = null;
 
@@ -39,7 +40,7 @@ const PostCard = ({ post, noun }) => {
       );
       break;
     case 'photo':
-      media = <LazyImage alt={`${post.user.firstName}'s photo`} src={post.url} />;
+      media = <LazyImage alt={`${firstName}'s photo`} src={post.url} />;
       break;
 
     default:
@@ -49,7 +50,7 @@ const PostCard = ({ post, noun }) => {
   return (
     <BaseFigure className="post" media={media}>
       <BaseFigure media={reactionElement} alignment="right" className="padded margin-bottom-none">
-        <h4>{post.user.firstName}</h4>
+        <h4>{firstName}</h4>
         { post.quantity ? <p className="footnote">{post.quantity} {pluralize(post.quantity, noun.singular, noun.plural)}</p> : null }
         { post.type !== 'text' && post.text ? <p>{post.text}</p> : null }
       </BaseFigure>
