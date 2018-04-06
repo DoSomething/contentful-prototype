@@ -19,5 +19,11 @@ module.exports = configure({
   },
 
   resolve: {
+    alias: {
+      // HACK: This module's ES entry point causes a strange module
+      // resolution error on Webpack 4. Forcing CJS fixes!
+      '@researchgate/react-intersection-observer':
+        '@researchgate/react-intersection-observer/lib/js',
+    },
   },
 });
