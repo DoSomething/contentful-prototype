@@ -49,4 +49,8 @@
   text-align: center;
   top: 0;
   width: 50px;
+
+  &:focus {
+    outline: thin dotted;
+  }
 }
