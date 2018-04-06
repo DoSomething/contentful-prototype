@@ -13,12 +13,11 @@ module.exports = configure({
   },
 
   module: {
-    loaders: [
+    rules: [
       { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', include: path.join(__dirname, '/resources/assets') },
     ],
   },
 
   resolve: {
-    modules: [path.join(__dirname, 'node_modules')],
   },
 });
