@@ -62,7 +62,7 @@ class Modal extends React.Component {
         onClose={() => chrome.classList.remove('-lock')}
       >
         {({ isOpen, portal }) => (isOpen ? portal((
-          <div className="modal" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
+          <div className="modal-v1" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
             <div className="modal__container">
               { children }
               { hideCloseButton ? null : <button className="modal__exit" onClick={this.props.closeModal}>×</button> }

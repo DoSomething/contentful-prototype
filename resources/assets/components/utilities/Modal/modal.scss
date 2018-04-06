@@ -1,0 +1,52 @@
+@import '../../../scss/next-toolbox.scss';
+
+.modal-portal {
+  background-color: $dark-background-color-transparent;
+  overflow-y: scroll;
+  z-index: 10000;
+
+  &.is-active {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  > .wrapper {
+    align-items: center;
+    background-color: rgba(0,0,0,0.3);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    overflow-y: scroll;
+    padding: $half-spacing;
+    position: relative;
+    width: 100%;
+
+    @include media($medium) {
+      padding: $base-spacing;
+    }
+  }
+}
+
+.modal {
+  margin: auto;
+  max-width: 800px;
+  position: relative;
+}
+
+.modal__close {
+  color: $black;
+  cursor: pointer;
+  display: block;
+  font-size: 34px;
+  height: 50px;
+  line-height: 34px;
+  padding: 0 0 10px;  // bottom padding helps align "X" with titles in card
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 50px;
+}
