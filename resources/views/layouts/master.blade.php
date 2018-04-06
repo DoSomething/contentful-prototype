@@ -32,6 +32,8 @@
         </div>
     </div>
 
+    <div id="modal-portal" class="modal-portal" role="presentation"></div>
+
     @include('partials.analytics')
     {{ isset($state) ? scriptify($state) : scriptify() }}
     {{ scriptify($env, 'ENV') }}

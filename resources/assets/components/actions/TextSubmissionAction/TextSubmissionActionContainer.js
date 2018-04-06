@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 
-import { openModal } from '../../../actions/modal';
 import TextSubmissionAction from './TextSubmissionAction';
 import { clearPostSubmissionItem, storeCampaignPost } from '../../../actions/post';
 
@@ -21,7 +20,6 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   clearPostSubmissionItem,
-  openModal,
   storeCampaignPost,
 };
 
