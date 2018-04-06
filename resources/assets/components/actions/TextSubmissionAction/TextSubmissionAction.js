@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../Card';
+import Modal from '../../utilities/Modal/Modal';
 import { getFieldErrors } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';
 
@@ -13,6 +14,7 @@ import './text-submission-action.scss';
 
 class TextSubmissionAction extends React.Component {
   state = {
+    showModal: false,
     textValue: '',
   };
 
@@ -24,7 +26,10 @@ class TextSubmissionAction extends React.Component {
     // the submission was successful!
     if (! has(prevResponse, 'status.success') && has(response, 'status.success')) {
       this.resetForm();
-      this.props.openModal('POST_REPORTBACK_MODAL');
+
+      this.setState({
+        showModal: true,
+      });
     }
   }
 
@@ -74,34 +79,53 @@ class TextSubmissionAction extends React.Component {
     const errors = getFieldErrors(formResponse);
 
     return (
-      <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
+      <React.Fragment>
+        <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
 
-        { formResponse ? <FormValidation response={formResponse} /> : null }
+          { formResponse ? <FormValidation response={formResponse} /> : null }
 
-        <form onSubmit={this.handleSubmit}>
-          <div className="padded">
-            <div className="form-item">
-              <label className={classnames('field-label', { 'has-error': has(errors, 'text') })} htmlFor="text">{this.props.textFieldLabel}</label>
-              <input
-                className={classnames('text-field', { 'has-error shake': has(errors, 'text') })}
-                type="text"
-                id="text"
-                name="text"
-                placeholder={this.props.textFieldPlaceholder}
-                value={this.state.textValue}
-                onChange={this.handleChange}
-              />
+          <form onSubmit={this.handleSubmit}>
+            <div className="padded">
+              <div className="form-item">
+                <label className={classnames('field-label', { 'has-error': has(errors, 'text') })} htmlFor="text">{this.props.textFieldLabel}</label>
+                <input
+                  className={classnames('text-field', { 'has-error shake': has(errors, 'text') })}
+                  type="text"
+                  id="text"
+                  name="text"
+                  placeholder={this.props.textFieldPlaceholder}
+                  value={this.state.textValue}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <p className="footnote">Your submission will be reviewed by a DoSomething.org staffer and added to our public gallery.</p>
             </div>
-            <p className="footnote">Your submission will be reviewed by a DoSomething.org staffer and added to our public gallery.</p>
-          </div>
-          <input type="submit" defaultValue={this.props.buttonText} className="button" disabled={this.props.submissions.isPending} />
-        </form>
-      </Card>
+            <input type="submit" defaultValue={this.props.buttonText} className="button" disabled={this.props.submissions.isPending} />
+          </form>
+        </Card>
+
+        { this.state.showModal ?
+          <Modal onClose={() => this.setState({ showModal: false })}>
+            <Card className="bordered rounded" title="We got your message!">
+              <div className="padded">
+                { this.props.affirmationContent
+                  ||
+                  <p>{TextSubmissionAction.defaultProps.affirmationContent}</p>
+                }
+              </div>
+            </Card>
+
+          </Modal>
+          :
+          null
+        }
+      </React.Fragment>
     );
   }
 }
 
 TextSubmissionAction.propTypes = {
+  affirmationContent: PropTypes.string,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
@@ -112,7 +136,6 @@ TextSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired,
   legacyCampaignId: PropTypes.string,
   legacyCampaignRunId: PropTypes.string,
-  openModal: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
@@ -126,6 +149,7 @@ TextSubmissionAction.propTypes = {
 
 TextSubmissionAction.defaultProps = {
   additionalContent: null,
+  affirmationContent: 'Thanks for joining the movement, and submitting your message! After we review your submission, we\'ll add it to the public gallery alongside submissions from all the other members taking action in this campaign.',
   buttonText: 'Submit',
   className: null,
   legacyCampaignId: null,
