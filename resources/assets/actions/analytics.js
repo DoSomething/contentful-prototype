@@ -13,7 +13,7 @@ export function trackAnalyticsEvent(name, data, service) {
     type: TRACK_ANALYTICS_EVENT,
     meta: { service },
     payload: { name, data },
-  }
+  };
 }
 
 /**

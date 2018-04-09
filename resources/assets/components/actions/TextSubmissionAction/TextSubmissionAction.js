@@ -156,6 +156,7 @@ TextSubmissionAction.propTypes = {
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
+  trackPuckEvent: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
 };
 
