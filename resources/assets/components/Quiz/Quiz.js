@@ -28,7 +28,7 @@ class Quiz extends React.Component {
   }
 
   evaluateQuiz() {
-    const questions = this.props.additionalContent.questions;
+    const questions = this.props.questions;
 
     return every(questions, question => (
       !! this.state.choices[question.id]
@@ -43,7 +43,7 @@ class Quiz extends React.Component {
 
       const results = calculateResult(
         this.state.choices,
-        this.props.additionalContent.questions,
+        this.props.questions,
       );
       this.setState({ showResults: true, results });
     }
@@ -59,8 +59,7 @@ class Quiz extends React.Component {
   }
 
   renderResult() {
-    const { resultBlocks } = this.props;
-    const { results } = this.props.additionalContent;
+    const { resultBlocks, results } = this.props;
 
     const resultBlockId = this.state.results.resultBlockId;
     const resultBlock = find(resultBlocks, { id: resultBlockId });
@@ -70,6 +69,7 @@ class Quiz extends React.Component {
 
     if (! resultBlock) {
       // Return the result on it's own when no result block is found.
+
       return result ? (
         <QuizConclusion callToAction={result.content}>
           <ShareContainer className="quiz__share" parentSource="quiz" />
@@ -84,9 +84,9 @@ class Quiz extends React.Component {
   }
 
   render() {
-    const { title, additionalContent } = this.props;
+    const { additionalContent, questions, title } = this.props;
 
-    const { callToAction, introduction, questions, submitButtonText } = (additionalContent || {});
+    const { callToAction, introduction, submitButtonText } = (additionalContent || {});
 
     const { choices, showResults } = this.state;
 
@@ -130,17 +130,17 @@ Quiz.propTypes = {
   additionalContent: PropTypes.shape({
     callToAction: PropTypes.string.isRequired,
     introduction: PropTypes.string.isRequired,
-    questions: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-    })).isRequired,
-    results: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    })).isRequired,
     submitButtonText: PropTypes.string,
   }).isRequired,
+  questions: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    choices: PropTypes.arrayOf(PropTypes.object).isRequired,
+  })).isRequired,
+  results: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
+  })).isRequired,
   resultBlocks: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
