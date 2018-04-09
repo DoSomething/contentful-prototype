@@ -10,37 +10,20 @@ const props = {
   title: 'This is a cool kids quiz',
   additionalContent: {
     introduction: 'Lets do this',
-    results: [
-      {
-        id: '0',
-        content: 'test question',
-        blockId: '1',
-      },
-      {
-        id: '1',
-        content: 'another one',
-        blockId: '1',
-      },
-      {
-        id: '2',
-        content: 'another one',
-        blockId: '2',
-      },
-    ],
     callToAction: 'Click **"Get Results"** to find out your likelihood for a match',
-    questions: [
-      {
-        id: '0',
-        title: 'title',
-        choices: [sampleChoice],
-      },
-      {
-        id: '1',
-        title: 'title',
-        choices: [sampleChoice],
-      },
-    ],
   },
+  questions: [
+    {
+      id: '0',
+      title: 'title',
+      choices: [sampleChoice],
+    },
+    {
+      id: '1',
+      title: 'title',
+      choices: [sampleChoice],
+    },
+  ],
   resultBlocks: [
     {
       id: '1',
@@ -50,6 +33,23 @@ const props = {
         content: 'Click this link!',
         link: 'https://dosomething.org',
       },
+    },
+  ],
+  results: [
+    {
+      id: '0',
+      content: 'test question',
+      blockId: '1',
+    },
+    {
+      id: '1',
+      content: 'another one',
+      blockId: '1',
+    },
+    {
+      id: '2',
+      content: 'another one',
+      blockId: '2',
     },
   ],
 };
