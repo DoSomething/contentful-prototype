@@ -12,5 +12,5 @@ module.exports = function (migration) {
     .required(true);
 
   quiz.moveField('results').beforeField('resultBlocks');
-  quiz.moveField('questions').beforeField('resultBlocks');
+  quiz.moveField('questions').beforeField('additionalContent');
 }
