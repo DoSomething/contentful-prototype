@@ -37,6 +37,16 @@ class TextSubmissionAction extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
+    // @TODO: clean this up and set data into variable to be passed for multiple
+    // trackPuckEvent calls.
+    this.props.trackPuckEvent('clicked-text-submission-action-button', {
+      component: {
+        action: get(this.props.additionalContent, 'action', 'default'),
+        id: this.props.id,
+        type: this.props.type,
+      },
+    });
+
     this.props.clearPostSubmissionItem(this.props.id);
 
     const formData = new FormData();
