@@ -5,11 +5,10 @@
     "test:ci": "jest",
     "lint": "eslint --ext .js resources/assets",
     "flow": "flow",
-    "start": "npm run clean && NODE_ENV=development webpack --watch",
-    "build:dev": "npm run clean && NODE_ENV=development webpack",
-    "build": "npm run clean && NODE_ENV=production webpack",
-    "stat": "NODE_ENV=production webpack --json > stats.json",
-    "clean": "rm -rf public/next/assets",
+    "start": "webpack --env=development --hide-modules --watch",
+    "build:dev": "webpack --env=development --hide-modules",
+    "build": "webpack --env=production",
+    "stat": "webpack --env=production --json > stats.json",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
@@ -33,7 +32,7 @@
   "dependencies": {
     "@dosomething/analytics": "^2.1.1",
     "@dosomething/forge": "^6.8.0",
-    "@dosomething/gateway": "^1.2.0",
+    "@dosomething/gateway": "^1.2.2",
     "@dosomething/puck-client": "^1.4.0",
     "@publica/url-polyfill": "^0.5.8",
     "apollo-cache-inmemory": "^1.1.12",
