@@ -77,8 +77,10 @@ class Quiz extends React.Component {
       ) : null;
     }
 
-    // Prepend the "quiz result" text to the specified block.
-    resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
+    if (result) {
+      // Prepend the "quiz result" text to the specified block.
+      resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
+    }
 
     return <ContentfulEntry json={resultBlock} />;
   }
