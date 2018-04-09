@@ -46,7 +46,7 @@ class Quiz extends Entity implements JsonSerializable
     private function parseResults($results)
     {
         return collect($results)->map(function ($result, $index) {
-            $resultId = chr($index+65);
+            $resultId = chr($index + 65);
             $result['id'] = $resultId;
 
             return $result;
