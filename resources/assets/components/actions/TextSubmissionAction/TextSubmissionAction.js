@@ -39,10 +39,12 @@ class TextSubmissionAction extends React.Component {
 
     this.props.clearPostSubmissionItem(this.props.id);
 
+    const action = get(this.props.additionalContent, 'action', 'default');
+
     const formData = new FormData();
 
     formData.append('id', this.props.id);
-    formData.append('action', get(this.props.additionalContent, 'action', 'default'));
+    formData.append('action', action);
     formData.append('type', this.props.type);
     formData.append('text', this.state.textValue);
 
@@ -56,6 +58,7 @@ class TextSubmissionAction extends React.Component {
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
+      action,
       body: formData,
       id: this.props.id,
       type: this.props.type,
