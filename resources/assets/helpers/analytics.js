@@ -44,7 +44,7 @@ export function analyzeWithPuck(name, data, state) {
  * Watch the given parameters for changes in their state
  * and record it to Google Analytics.
  */
-export function googleAnalyticsTrack(history) {
+export function googleAnalyticsInit(history) {
   init('track');
 
   dimensionByCookie('platform');
