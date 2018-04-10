@@ -5,7 +5,9 @@ import { Phoenix } from '@dosomething/gateway';
 
 import { Figure } from '../Figure';
 import { isExternal } from '../../helpers';
+
 import './embed.scss';
+import linkIcon from './linkIcon.svg';
 
 class Embed extends React.Component {
   constructor(props) {
@@ -39,7 +41,14 @@ class Embed extends React.Component {
         </a>
       );
     } else if (this.state.requestFailed) {
-      embed = <a href={this.props.url}>{this.props.url}</a>;
+      embed = (
+        <a href={this.props.url}>
+          <Figure className="padded margin-bottom-none bordered rounded" image={linkIcon} alt="link icon" alignment="left-collapse" size="small">
+            <h3>{ this.props.url }</h3>
+            <p className="footnote">(Click or share this link)</p>
+          </Figure>
+        </a>
+      );
     }
 
     return (
