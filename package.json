@@ -83,7 +83,7 @@
   "devDependencies": {
     "@dosomething/babel-config": "^2.1.0",
     "@dosomething/eslint-config": "^3.1.2",
-    "@dosomething/webpack-config": "github:dosomething/webpack-config#webpack-4",
+    "@dosomething/webpack-config": "^4.0.0",
     "babel-eslint": "^8.1.1",
     "eslint-loader": "^2.0.0",
     "flow-bin": "0.59.0",
