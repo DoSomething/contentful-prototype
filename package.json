@@ -10,6 +10,7 @@
     "build": "webpack --env=production",
     "stat": "webpack --env=production --json > stats.json",
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
+    "precommit": "pretty-quick --staged",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
@@ -93,9 +94,11 @@
     "@dosomething/webpack-config": "^4.0.0",
     "eslint-loader": "^2.0.0",
     "flow-bin": "0.59.0",
+    "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "modernizr": "^3.6.0",
+    "pretty-quick": "^1.4.1",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
