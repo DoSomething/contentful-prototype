@@ -5,11 +5,10 @@
     "test:ci": "jest",
     "lint": "eslint --ext .js resources/assets",
     "flow": "flow",
-    "start": "npm run clean && NODE_ENV=development webpack --watch",
-    "build:dev": "npm run clean && NODE_ENV=development webpack",
-    "build": "npm run clean && NODE_ENV=production webpack",
-    "stat": "NODE_ENV=production webpack --json > stats.json",
-    "clean": "rm -rf public/next/assets",
+    "start": "webpack --env=development --hide-modules --watch",
+    "build:dev": "webpack --env=development --hide-modules",
+    "build": "webpack --env=production",
+    "stat": "webpack --env=production --json > stats.json",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
@@ -33,7 +32,7 @@
   "dependencies": {
     "@dosomething/analytics": "^2.1.1",
     "@dosomething/forge": "^6.8.0",
-    "@dosomething/gateway": "^1.2.0",
+    "@dosomething/gateway": "^1.2.2",
     "@dosomething/puck-client": "^1.4.0",
     "@publica/url-polyfill": "^0.5.8",
     "apollo-cache-inmemory": "^1.1.12",
@@ -65,16 +64,16 @@
     "markdown-it-for-inline": "^0.1.1",
     "prop-types": "^15.5.8",
     "query-string": "^5.1.1",
-    "react": "^16.3.0",
+    "react": "^16.3.1",
     "react-addons-update": "^15.6.2",
-    "react-apollo": "^2.1.1",
-    "react-dom": "^16.3.0",
+    "react-apollo": "^2.1.2",
+    "react-dom": "^16.3.1",
     "react-portal": "^4.1.4",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "5.0.0-alpha.9",
-    "react-test-renderer": "^16.3.0",
+    "react-test-renderer": "^16.3.1",
     "redux": "^3.7.2",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
@@ -84,9 +83,9 @@
   "devDependencies": {
     "@dosomething/babel-config": "^2.1.0",
     "@dosomething/eslint-config": "^3.1.2",
-    "@dosomething/webpack-config": "^3.0.0",
+    "@dosomething/webpack-config": "^4.0.0",
     "babel-eslint": "^8.1.1",
-    "eslint-loader": "^1.9.0",
+    "eslint-loader": "^2.0.0",
     "flow-bin": "0.59.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
@@ -95,6 +94,7 @@
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
     "tailwindcss": "^0.4.3",
-    "webpack": "^3.10.0"
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   }
 }

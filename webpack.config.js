@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const configure = require('@dosomething/webpack-config');
 const path = require('path');
 
@@ -13,12 +12,17 @@ module.exports = configure({
   },
 
   module: {
-    loaders: [
+    rules: [
       { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', include: path.join(__dirname, '/resources/assets') },
     ],
   },
 
   resolve: {
-    modules: [path.join(__dirname, 'node_modules')],
+    alias: {
+      // HACK: This module's ES entry point causes a strange module
+      // resolution error on Webpack 4. Forcing CJS fixes!
+      '@researchgate/react-intersection-observer':
+        '@researchgate/react-intersection-observer/lib/js',
+    },
   },
 });
