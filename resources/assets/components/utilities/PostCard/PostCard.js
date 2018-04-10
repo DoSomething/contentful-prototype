@@ -67,12 +67,6 @@ PostCard.propTypes = {
 };
 
 PostCard.defaultProps = {
-  firstName: 'A Doer',
-  url: undefined,
-  text: null,
-  quantity: undefined,
-  reacted: false,
-  reactions: 0,
   noun: {
     singular: 'item',
     plural: 'items',
