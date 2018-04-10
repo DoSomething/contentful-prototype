@@ -66,8 +66,6 @@ export function googleAnalyticsTrack(history) {
  * @return {Object}
  */
 export function trackAnalyticsEvent(name, data, service) {
-  console.log('🎉 tracking analytics event via a helper function!');
-
   switch (service) {
     case 'ga':
       analyzeWithGoogleAnalytics(name, data);
