@@ -56,7 +56,17 @@ export function storeCampaignPost(campaignId, data) {
     throw Error(`The supplied data.body must be an instance of FormData, instead it is an instance of ${data.body.constructor.name}.`);
   }
 
-  const { body, id, type } = data;
+  const { action, body, id, type } = data;
+
+  const analytics = {
+    name: `${type}-submission-action`,
+    service: 'puck',
+    payload: {
+      action,
+      campaignId,
+      id,
+    },
+  };
 
   return (dispatch, getState) => {
     const token = getState().user.token;
@@ -68,6 +78,7 @@ export function storeCampaignPost(campaignId, data) {
         meta: {
           id,
           type,
+          analytics,
         },
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,

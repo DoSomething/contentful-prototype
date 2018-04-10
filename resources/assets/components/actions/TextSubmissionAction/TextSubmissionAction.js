@@ -37,22 +37,14 @@ class TextSubmissionAction extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    // @TODO: clean this up and set data into variable to be passed for multiple
-    // trackPuckEvent calls.
-    this.props.trackPuckEvent('clicked-text-submission-action-button', {
-      component: {
-        action: get(this.props.additionalContent, 'action', 'default'),
-        id: this.props.id,
-        type: this.props.type,
-      },
-    });
-
     this.props.clearPostSubmissionItem(this.props.id);
+
+    const action = get(this.props.additionalContent, 'action', 'default');
 
     const formData = new FormData();
 
     formData.append('id', this.props.id);
-    formData.append('action', get(this.props.additionalContent, 'action', 'default'));
+    formData.append('action', action);
     formData.append('type', this.props.type);
     formData.append('text', this.state.textValue);
 
@@ -66,6 +58,7 @@ class TextSubmissionAction extends React.Component {
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
+      action,
       body: formData,
       id: this.props.id,
       type: this.props.type,
@@ -156,7 +149,6 @@ TextSubmissionAction.propTypes = {
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
-  trackPuckEvent: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired,
 };
 

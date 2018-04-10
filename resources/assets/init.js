@@ -34,8 +34,8 @@ import App from './components/App';
 
 // DOM Helpers
 import { init as historyInit } from './history';
+import { googleAnalyticsTrack } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
-import googleAnalytics from './helpers/googleAnalytics';
 
 // Configure store & history.
 const history = historyInit();
@@ -46,7 +46,7 @@ const store = configureStore({ ...reducers, routing: routerReducer }, middleware
 bindNavigationEvents();
 
 // Add event listeners for GA.
-googleAnalytics(history);
+googleAnalyticsTrack(history);
 
 // Render the application!
 const appElement = document.getElementById('app');

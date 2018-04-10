@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import TextSubmissionAction from './TextSubmissionAction';
-import { trackPuckEvent } from '../../../actions/analytics';
 import { clearPostSubmissionItem, storeCampaignPost } from '../../../actions/post';
 
 /**
@@ -22,7 +21,6 @@ const mapStateToProps = state => ({
 const actionCreators = {
   clearPostSubmissionItem,
   storeCampaignPost,
-  trackPuckEvent,
 };
 
 /**
