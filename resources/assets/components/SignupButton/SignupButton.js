@@ -6,13 +6,25 @@ import Button from '../Button/Button';
 import ExperimentContainer from '../Experiment';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
-const SignupButton = (props) => {
-  const { campaignActionText, className, clickedSignUp, disableSignup, experiments,
-    source, sourceActionText, template, text, trackEvent, trafficSource,
-    legacyCampaignId, convertExperiment } = props;
+const SignupButton = props => {
+  const {
+    campaignActionText,
+    className,
+    clickedSignUp,
+    disableSignup,
+    experiments,
+    source,
+    sourceActionText,
+    template,
+    text,
+    trackEvent,
+    trafficSource,
+    legacyCampaignId,
+    convertExperiment,
+  } = props;
 
   const convertExperiments = () => {
-    Object.keys(experiments).forEach((experiment) => {
+    Object.keys(experiments).forEach(experiment => {
       if (convertOnSignupIntent(experiment)) {
         convertExperiment(experiment);
       }
@@ -20,7 +32,7 @@ const SignupButton = (props) => {
   };
 
   // Decorate click handler for A/B tests & analytics.
-  const onSignup = (buttonText) => {
+  const onSignup = buttonText => {
     convertExperiments();
     clickedSignUp(legacyCampaignId);
     trackEvent('signup', {
@@ -40,8 +52,14 @@ const SignupButton = (props) => {
 
   // If no source-specific override, don't opt in to the A/B test.
   const sourceOverride = get(sourceActionText, trafficSource);
-  if (! sourceOverride) {
-    return <Button className={className} onClick={() => onSignup(baseCopy)} text={baseCopy} />;
+  if (!sourceOverride) {
+    return (
+      <Button
+        className={className}
+        onClick={() => onSignup(baseCopy)}
+        text={baseCopy}
+      />
+    );
   }
 
   // A/B Test: If a user has a traffic source w/ an override, try it!

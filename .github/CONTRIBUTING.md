@@ -1,6 +1,5 @@
 # Contributing
 
-
 We follow [Laravel's code style](http://laravel.com/docs/5.3/contributions#coding-style). Be sure to configure
 [EditorConfig](http://editorconfig.org) to ensure you have proper indentation settings.
 

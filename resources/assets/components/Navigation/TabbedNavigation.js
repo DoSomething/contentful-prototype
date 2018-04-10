@@ -57,7 +57,7 @@ class TabbedNavigation extends React.Component {
    * Request frame of animation.
    */
   requestFrame() {
-    if (! this.isAnimatingFrame) {
+    if (!this.isAnimatingFrame) {
       window.requestAnimationFrame(this.updateState);
     }
 
@@ -81,10 +81,14 @@ class TabbedNavigation extends React.Component {
    */
   render() {
     return (
-      <div ref={node => (this.node = node)} id="tabbed-navigation" className={classnames('tabbed-navigation', { 'is-stuck': this.state.isStuck })}>
-        <div className="wrapper">
-          { this.props.children }
-        </div>
+      <div
+        ref={node => (this.node = node)}
+        id="tabbed-navigation"
+        className={classnames('tabbed-navigation', {
+          'is-stuck': this.state.isStuck,
+        })}
+      >
+        <div className="wrapper">{this.props.children}</div>
       </div>
     );
   }

@@ -7,18 +7,15 @@ import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
 import './share.scss';
 
-const Share = (props) => {
-  const {
-    className, link, parentSource,
-    quote, trackEvent, variant,
-  } = props;
+const Share = props => {
+  const { className, link, parentSource, quote, trackEvent, variant } = props;
 
   const trackingData = { parentSource, variant, link, quote };
 
   const onFacebookClick = () => {
     trackEvent('clicked facebook share', trackingData);
 
-    showFacebookSharePrompt({ href: link, quote }, (response) => {
+    showFacebookSharePrompt({ href: link, quote }, response => {
       if (response) {
         trackEvent('facebook share posted', trackingData);
       } else {
@@ -38,15 +35,19 @@ const Share = (props) => {
 
   return (
     <div className={classnames({ 'share-tray': isIcon })}>
-      { isIcon ? (
+      {isIcon ? (
         <button className={buttonClassName} onClick={onTwitterClick}>
-          <i className="social-icon -twitter"><span>Twitter</span></i>
-        </button>) : null
-      }
+          <i className="social-icon -twitter">
+            <span>Twitter</span>
+          </i>
+        </button>
+      ) : null}
 
       <button className={buttonClassName} onClick={onFacebookClick}>
         {isIcon ? null : 'share on'}
-        <i className="social-icon -facebook"><span>Facebook</span></i>
+        <i className="social-icon -facebook">
+          <span>Facebook</span>
+        </i>
       </button>
     </div>
   );

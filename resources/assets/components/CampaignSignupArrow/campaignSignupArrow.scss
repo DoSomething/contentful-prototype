@@ -27,7 +27,7 @@
 
   .message-callout__copy {
     @include media($large) {
-      margin-top: - $half-spacing;
+      margin-top: -$half-spacing;
     }
 
     @include media($medium) {
@@ -35,7 +35,7 @@
     }
 
     @include media($small) {
-      margin-left: - $base-spacing * 2;
+      margin-left: -$base-spacing * 2;
 
       p {
         font-size: 20px;
@@ -45,7 +45,8 @@
 
   .message-callout__copy::before {
     @include media($larger) {
-      background: url("~@dosomething/forge/assets/images/callout/arrow-left-white.png") 50% 50% / 35px no-repeat transparent !important;
+      background: url('~@dosomething/forge/assets/images/callout/arrow-left-white.png')
+        50% 50% / 35px no-repeat transparent !important;
       height: 19px !important;
       left: 0;
       margin-top: -9px;
@@ -55,8 +56,7 @@
     }
 
     @include media($small) {
-      right: - $base-spacing;
+      right: -$base-spacing;
     }
-
   }
 }

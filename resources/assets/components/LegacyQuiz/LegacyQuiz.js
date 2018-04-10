@@ -10,35 +10,39 @@ import ContentfulEntry from '../ContentfulEntry';
 
 import './legacy-quiz.scss';
 
-const LegacyQuiz = (props) => {
-  const { id, fields, data, completeQuiz,
-    pickQuizAnswer, trackEvent, submitButtonText } = props;
+const LegacyQuiz = props => {
+  const {
+    id,
+    fields,
+    data,
+    completeQuiz,
+    pickQuizAnswer,
+    trackEvent,
+    submitButtonText,
+  } = props;
   const { error, shouldSeeResult, selectedResult } = data;
 
   const introduction = shouldSeeResult ? null : (
     <Markdown className="quiz__description">{fields.introduction}</Markdown>
   );
 
-  const questions = shouldSeeResult ? null : (fields.questions).map(question => (
-    <Question
-      key={question.id}
-      pickQuizAnswer={pickQuizAnswer}
-      quizId={id}
-      activeAnswer={data.questions ? data.questions[question.id] : null}
-      {...question}
-    />
-  ));
+  const questions = shouldSeeResult
+    ? null
+    : fields.questions.map(question => (
+        <Question
+          key={question.id}
+          pickQuizAnswer={pickQuizAnswer}
+          quizId={id}
+          activeAnswer={data.questions ? data.questions[question.id] : null}
+          {...question}
+        />
+      ));
 
-  const quizError = error ? (
-    <p className="quiz__error">{data.error}</p>
-  ) : null;
+  const quizError = error ? <p className="quiz__error">{data.error}</p> : null;
 
   const submitConclusion = shouldSeeResult ? null : (
     <Conclusion callToAction={fields.callToAction}>
-      <button
-        onClick={() => completeQuiz(id)}
-        className="button quiz__submit"
-      >
+      <button onClick={() => completeQuiz(id)} className="button quiz__submit">
         {submitButtonText || LegacyQuiz.defaultProps.submitButtonText}
       </button>
     </Conclusion>
@@ -46,10 +50,7 @@ const LegacyQuiz = (props) => {
 
   const shareConclusion = shouldSeeResult ? (
     <Conclusion callToAction={fields.conclusion}>
-      <ShareContainer
-        className="quiz__share"
-        parentSource="quiz"
-      />
+      <ShareContainer className="quiz__share" parentSource="quiz" />
     </Conclusion>
   ) : null;
 
@@ -71,7 +72,9 @@ const LegacyQuiz = (props) => {
   return (
     <div className="quiz">
       <div className="quiz__introduction">
-        <h1 className="quiz__subtitle">{fields.subtitle || LegacyQuiz.defaultProps.fields.subtitle}</h1>
+        <h1 className="quiz__subtitle">
+          {fields.subtitle || LegacyQuiz.defaultProps.fields.subtitle}
+        </h1>
         <h2 className="quiz__title">{fields.title}</h2>
         {introduction}
       </div>
@@ -82,7 +85,9 @@ const LegacyQuiz = (props) => {
 
       {submitConclusion}
 
-      {fields.resultActions && selectedResult ? showResultingAction() : shareConclusion}
+      {fields.resultActions && selectedResult
+        ? showResultingAction()
+        : shareConclusion}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import SectionHeader from '../SectionHeader';
 
 import { convertNumberToWord } from '../../helpers';
 
-const QuizQuestion = (props) => {
+const QuizQuestion = props => {
   const { activeChoiceId, choices, id, selectChoice, title } = props;
 
   const quizChoices = choices.map(choice => (
@@ -27,9 +27,7 @@ const QuizQuestion = (props) => {
         title={title}
         hideStepNumber
       />
-      <div className="question__choices">
-        { quizChoices }
-      </div>
+      <div className="question__choices">{quizChoices}</div>
     </div>
   );
 };

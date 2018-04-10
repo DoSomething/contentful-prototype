@@ -4,9 +4,11 @@ import classnames from 'classnames';
 
 const ModalContent = ({ children, onClose, className }) => (
   <div className={classnames('modal', className)}>
-    <button className="modal__close" onClick={onClose}>&times;</button>
+    <button className="modal__close" onClick={onClose}>
+      &times;
+    </button>
 
-    { children }
+    {children}
   </div>
 );
 

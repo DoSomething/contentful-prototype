@@ -1,8 +1,10 @@
 @import '../../scss/next-toolbox.scss';
 
 .markdown {
-
-  h1, h2, h3, p {
+  h1,
+  h2,
+  h3,
+  p {
     color: inherit;
   }
 
@@ -40,11 +42,14 @@
     font-size: $font-medium;
   }
 
-  pre, blockquote {
+  pre,
+  blockquote {
     position: relative;
     margin: $base-spacing 0;
 
-    p, ul, code {
+    p,
+    ul,
+    code {
       margin-left: $base-spacing;
     }
 
@@ -59,11 +64,13 @@
     }
   }
 
-  strong, a {
+  strong,
+  a {
     font-weight: 700;
   }
 
-  h2, h3 {
+  h2,
+  h3 {
     font-family: $primary-font-family;
   }
 
@@ -86,7 +93,8 @@
     text-align: center;
   }
 
-  th, td {
+  th,
+  td {
     border: 1px solid $light-gray;
     padding: $half-spacing;
     width: 50%;
@@ -98,7 +106,8 @@
 }
 
 .footnotes {
-  .footnotes-list, .footnote-item p {
+  .footnotes-list,
+  .footnote-item p {
     font-size: $font-small;
     color: $med-gray;
     overflow-wrap: break-word;

@@ -18,9 +18,9 @@ class ReportbackUploader extends React.Component {
     const reportback = container;
     const formData = new FormData();
 
-    Object.keys(reportback).forEach((item) => {
+    Object.keys(reportback).forEach(item => {
       if (item === 'media') {
-        formData.append(item, (reportback[item].file || ''));
+        formData.append(item, reportback[item].file || '');
       } else {
         formData.append(item, reportback[item]);
       }
@@ -44,13 +44,15 @@ class ReportbackUploader extends React.Component {
       uri: null,
     };
 
-    const infoFields = props.referralRB ? ({
-      friend_name: null,
-      friend_email: null,
-      friend_story: null,
-    }) : ({
-      why_participated: null,
-    });
+    const infoFields = props.referralRB
+      ? {
+          friend_name: null,
+          friend_email: null,
+          friend_story: null,
+        }
+      : {
+          why_participated: null,
+        };
 
     this.state = {
       media: this.defaultMediaState,
@@ -67,16 +69,20 @@ class ReportbackUploader extends React.Component {
   handleOnSubmitForm(event) {
     event.preventDefault();
 
-    const infoFields = this.props.referralRB ? ({
-      friendName: this.friend_name.value,
-      friendEmail: this.friend_email.value,
-      friendStory: this.friend_story.value,
-    }) : ({
-      whyParticipated: this.why_participated.value,
-    });
+    const infoFields = this.props.referralRB
+      ? {
+          friendName: this.friend_name.value,
+          friendEmail: this.friend_email.value,
+          friendStory: this.friend_story.value,
+        }
+      : {
+          whyParticipated: this.why_participated.value,
+        };
 
     const reportback = {
-      actionType: this.props.referralRB ? 'referralAction' : this.props.actionType,
+      actionType: this.props.referralRB
+        ? 'referralAction'
+        : this.props.actionType,
       campaignId: this.props.legacyCampaignId,
       caption: this.caption.value,
       impact: this.props.showQuantityField ? this.impact.value : 1,
@@ -89,52 +95,63 @@ class ReportbackUploader extends React.Component {
 
     const fileType = reportback.media.file ? reportback.media.file.type : null;
 
-    reportback.media.type = fileType ? fileType.substring(0, fileType.indexOf('/')) : null;
+    reportback.media.type = fileType
+      ? fileType.substring(0, fileType.indexOf('/'))
+      : null;
 
-    const submitReportback = this.props.referralRB ?
-      this.props.submitReferralPost : this.props.submitPhotoPost;
+    const submitReportback = this.props.referralRB
+      ? this.props.submitReferralPost
+      : this.props.submitPhotoPost;
 
-    submitReportback(ReportbackUploader.setFormData(reportback))
-      .then(() => {
-        const trackingData = { campaignId: this.props.legacyCampaignId };
-        let trackingMessage;
+    submitReportback(ReportbackUploader.setFormData(reportback)).then(() => {
+      const trackingData = { campaignId: this.props.legacyCampaignId };
+      let trackingMessage;
 
-        if (this.props.submissions.messaging.success) {
-          this.form.reset();
-          this.setState({
-            media: this.defaultMediaState,
-          });
+      if (this.props.submissions.messaging.success) {
+        this.form.reset();
+        this.setState({
+          media: this.defaultMediaState,
+        });
 
-          trackingMessage = 'Successful Reportback';
-          this.props.openModal(POST_REPORTBACK_MODAL);
-        } else {
-          trackingMessage = 'Unsuccessful Reportback';
-          trackingData.submission_error = this.props.submissions.messaging.error;
-        }
+        trackingMessage = 'Successful Reportback';
+        this.props.openModal(POST_REPORTBACK_MODAL);
+      } else {
+        trackingMessage = 'Unsuccessful Reportback';
+        trackingData.submission_error = this.props.submissions.messaging.error;
+      }
 
-        this.props.trackEvent(trackingMessage, trackingData);
-      });
+      this.props.trackEvent(trackingMessage, trackingData);
+    });
   }
 
   render() {
     const {
-      submissions, showQuantityField, informationTitle, informationContent,
+      submissions,
+      showQuantityField,
+      informationTitle,
+      informationContent,
       referralRB,
     } = this.props;
 
     const formHasErrors = get(submissions.messaging, 'error', null);
 
-    const isInvalidField = name => (
-      Object.keys(get(submissions, 'messaging.error.fields', {}))
-        .indexOf(name) !== -1
+    const isInvalidField = name =>
+      Object.keys(get(submissions, 'messaging.error.fields', {})).indexOf(
+        name,
+      ) !== -1;
+
+    const previousImpact = get(
+      this.props.submissions.reportback,
+      'quantity',
+      0,
     );
 
-    const previousImpact = get(this.props.submissions.reportback, 'quantity', 0);
-
     // @TODO: using a hardcoded array is not sustainable...
-    const infoFieldNames = referralRB ? ['friendName', 'friendEmail', 'friendStory'] : ['whyParticipated'];
-    const inputClassnames = ['impact', 'caption', ...infoFieldNames]
-      .reduce((classes, input) => ({
+    const infoFieldNames = referralRB
+      ? ['friendName', 'friendEmail', 'friendStory']
+      : ['whyParticipated'];
+    const inputClassnames = ['impact', 'caption', ...infoFieldNames].reduce(
+      (classes, input) => ({
         ...classes,
         [input]: {
           label: classnames('field-label', {
@@ -145,30 +162,42 @@ class ReportbackUploader extends React.Component {
             shake: isInvalidField(input),
           }),
         },
-      }), {});
+      }),
+      {},
+    );
 
     const impactInput = (
       <div className="form-item-group">
         <div className="padding-md">
-          { previousImpact ?
+          {previousImpact ? (
             <div className="impact-display">
               <span className="impact-display__quantity">{previousImpact}</span>
-              <span className="impact-display__units">{`${this.props.noun.plural} Counted`}</span>
+              <span className="impact-display__units">{`${
+                this.props.noun.plural
+              } Counted`}</span>
             </div>
-            :
-            null
-          }
+          ) : null}
 
           <label className={inputClassnames.impact.label} htmlFor="impact">
-            { previousImpact ?
-              'Got more items? You can enter your new total here:'
-              :
-              'How many items are in this photo?'
-            }
+            {previousImpact
+              ? 'Got more items? You can enter your new total here:'
+              : 'How many items are in this photo?'}
           </label>
-          <input className={inputClassnames.impact.textField} id="impact" name="impact" type="text" placeholder="Quantity # (300)" ref={input => (this.impact = input)} />
+          <input
+            className={inputClassnames.impact.textField}
+            id="impact"
+            name="impact"
+            type="text"
+            placeholder="Quantity # (300)"
+            ref={input => (this.impact = input)}
+          />
 
-          { previousImpact ? <div className="impact-display__help-text">You will need to upload a new photo to update your collection total.</div> : null }
+          {previousImpact ? (
+            <div className="impact-display__help-text">
+              You will need to upload a new photo to update your collection
+              total.
+            </div>
+          ) : null}
         </div>
       </div>
     );
@@ -176,23 +205,70 @@ class ReportbackUploader extends React.Component {
     const infoFields = referralRB ? (
       <div className="form-item-group">
         <div className="padding-md">
-          <label className={inputClassnames.friendName.label} htmlFor="friend_name">Friend&#39;s Name</label>
-          <input className={inputClassnames.friendName.textField} id="friend_name" name="friend_name" type="text" placeholder="Friend's name" ref={input => (this.friend_name = input)} />
+          <label
+            className={inputClassnames.friendName.label}
+            htmlFor="friend_name"
+          >
+            Friend&#39;s Name
+          </label>
+          <input
+            className={inputClassnames.friendName.textField}
+            id="friend_name"
+            name="friend_name"
+            type="text"
+            placeholder="Friend's name"
+            ref={input => (this.friend_name = input)}
+          />
         </div>
         <div className="padding-md">
-          <label className={inputClassnames.friendEmail.label} htmlFor="friend_email">Friend&#39;s Email</label>
-          <input className={inputClassnames.friendEmail.textField} id="friend_email" name="friend_email" type="text" placeholder="puppet-sloth@example.com" ref={input => (this.friend_email = input)} />
+          <label
+            className={inputClassnames.friendEmail.label}
+            htmlFor="friend_email"
+          >
+            Friend&#39;s Email
+          </label>
+          <input
+            className={inputClassnames.friendEmail.textField}
+            id="friend_email"
+            name="friend_email"
+            type="text"
+            placeholder="puppet-sloth@example.com"
+            ref={input => (this.friend_email = input)}
+          />
         </div>
         <div className="padding-md">
-          <label className={inputClassnames.friendStory.label} htmlFor="friend_story">Friend&#39;s Story</label>
-          <textarea className={inputClassnames.friendStory.textField} id="friend_story" name="friend_story" type="text" placeholder="No need to write an essay, but we'd love to know why your friend deserves the scholarship." ref={input => (this.friend_story = input)} />
+          <label
+            className={inputClassnames.friendStory.label}
+            htmlFor="friend_story"
+          >
+            Friend&#39;s Story
+          </label>
+          <textarea
+            className={inputClassnames.friendStory.textField}
+            id="friend_story"
+            name="friend_story"
+            type="text"
+            placeholder="No need to write an essay, but we'd love to know why your friend deserves the scholarship."
+            ref={input => (this.friend_story = input)}
+          />
         </div>
       </div>
     ) : (
       <div className="form-item-group">
         <div className="padding-md">
-          <label className={inputClassnames.whyParticipated.label} htmlFor="why_participated">Why is this campaign important to you?</label>
-          <textarea className={inputClassnames.whyParticipated.textField} id="why_participated" name="why_participated" placeholder="No need to write an essay, but we'd love to see why this matters to you!" ref={input => (this.why_participated = input)} />
+          <label
+            className={inputClassnames.whyParticipated.label}
+            htmlFor="why_participated"
+          >
+            Why is this campaign important to you?
+          </label>
+          <textarea
+            className={inputClassnames.whyParticipated.textField}
+            id="why_participated"
+            name="why_participated"
+            placeholder="No need to write an essay, but we'd love to see why this matters to you!"
+            ref={input => (this.why_participated = input)}
+          />
         </div>
       </div>
     );
@@ -202,45 +278,70 @@ class ReportbackUploader extends React.Component {
         <div className="photo-uploader-action clearfix">
           <div className="photo-uploader-form">
             <Card title="Upload your photos" className="bordered rounded">
+              {formHasErrors ? (
+                <FormMessage messaging={submissions.messaging} />
+              ) : null}
 
-              { formHasErrors ? <FormMessage messaging={submissions.messaging} /> : null }
-
-              <form className="reportback-post-form" onSubmit={this.handleOnSubmitForm} ref={form => (this.form = form)}>
+              <form
+                className="reportback-post-form"
+                onSubmit={this.handleOnSubmitForm}
+                ref={form => (this.form = form)}
+              >
                 <div className="wrapper">
-
                   <div className="form-section">
                     <div className="form-item-group">
                       <div className="padding-md">
-                        <MediaUploader label="Add your photo here" media={this.state.media} onChange={this.handleOnFileUpload} hasError={isInvalidField('media')} />
+                        <MediaUploader
+                          label="Add your photo here"
+                          media={this.state.media}
+                          onChange={this.handleOnFileUpload}
+                          hasError={isInvalidField('media')}
+                        />
 
-                        <label className={inputClassnames.caption.label} htmlFor="caption">Add a caption to your photo.</label>
-                        <input className={inputClassnames.caption.textField} id="caption" name="caption" type="text" placeholder="60 characters or less" ref={input => (this.caption = input)} />
+                        <label
+                          className={inputClassnames.caption.label}
+                          htmlFor="caption"
+                        >
+                          Add a caption to your photo.
+                        </label>
+                        <input
+                          className={inputClassnames.caption.textField}
+                          id="caption"
+                          name="caption"
+                          type="text"
+                          placeholder="60 characters or less"
+                          ref={input => (this.caption = input)}
+                        />
                       </div>
                     </div>
                   </div>
 
                   <div className="form-section">
-                    { showQuantityField ? impactInput : null }
+                    {showQuantityField ? impactInput : null}
 
-                    { infoFields }
+                    {infoFields}
                   </div>
-
                 </div>
 
-                <button className="button button-attached" type="submit" disabled={submissions.isStoring}>Submit a new photo</button>
+                <button
+                  className="button button-attached"
+                  type="submit"
+                  disabled={submissions.isStoring}
+                >
+                  Submit a new photo
+                </button>
               </form>
             </Card>
           </div>
 
-          { informationContent ? (
+          {informationContent ? (
             <div className="photo-uploader-information">
               <Card title={informationTitle} className="bordered rounded">
                 <Markdown className="padding-md">{informationContent}</Markdown>
               </Card>
             </div>
-          ) : null }
+          ) : null}
         </div>
-
       </div>
     );
   }

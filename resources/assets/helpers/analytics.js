@@ -39,7 +39,6 @@ export function analyzeWithPuck(name, data, state) {
   Puck.trackEvent(name, data);
 }
 
-
 /**
  * Watch the given parameters for changes in their state
  * and record it to Google Analytics.
@@ -76,7 +75,9 @@ export function trackAnalyticsEvent(name, data, service) {
       break;
 
     default:
-      console.error(`The "${service}" service is missing, not supported or incorrect!`);
+      console.error(
+        `The "${service}" service is missing, not supported or incorrect!`,
+      );
   }
 }
 

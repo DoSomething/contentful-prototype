@@ -10,10 +10,17 @@ import Markdown from '../Markdown';
 import { ShareContainer } from '../Share';
 import SponsorPromotion from '../SponsorPromotion';
 
-const CampaignUpdate = (props) => {
+const CampaignUpdate = props => {
   const {
-    affiliateLogo, author, id, closeModal,
-    content, link, shareLink, bordered, titleLink,
+    affiliateLogo,
+    author,
+    id,
+    closeModal,
+    content,
+    link,
+    shareLink,
+    bordered,
+    titleLink,
   } = props;
 
   const authorFields = get(author, 'fields', {});
@@ -27,7 +34,10 @@ const CampaignUpdate = (props) => {
   return (
     <Card
       id={id}
-      className={classnames('rounded', { bordered, 'affiliate-content': affiliateLogo })}
+      className={classnames('rounded', {
+        bordered,
+        'affiliate-content': affiliateLogo,
+      })}
       link={titleLink}
       title={title}
       onClose={closeModal}
@@ -36,14 +46,11 @@ const CampaignUpdate = (props) => {
         {content || 'Placeholder'}
       </Markdown>
 
-      { link ? <Embed className="padded" url={link} /> : null }
+      {link ? <Embed className="padded" url={link} /> : null}
 
       <footer className="padded clearfix">
-        { affiliateLogo ? (
-          <SponsorPromotion
-            className="affiliate-logo"
-            imgUrl={affiliateLogo}
-          />
+        {affiliateLogo ? (
+          <SponsorPromotion className="affiliate-logo" imgUrl={affiliateLogo} />
         ) : (
           <Byline
             author={authorFields.name}
@@ -51,7 +58,7 @@ const CampaignUpdate = (props) => {
             jobTitle={authorFields.jobTitle || undefined}
             className="float-left"
           />
-        ) }
+        )}
         <ShareContainer
           link={shareLink}
           variant="icon"

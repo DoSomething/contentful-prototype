@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ModalSwitchContainer, SURVEY_MODAL, VOTER_REGISTRATION_MODAL } from '../Modal';
+import {
+  ModalSwitchContainer,
+  SURVEY_MODAL,
+  VOTER_REGISTRATION_MODAL,
+} from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../TrafficDistribution';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
-import { AdminDashboardContainer, CampaignDashboardContainer } from '../AdminDashboard';
+import {
+  AdminDashboardContainer,
+  CampaignDashboardContainer,
+} from '../AdminDashboard';
 import ModalLauncherContainer from '../ModalLauncher';
 
 const Campaign = props => (
@@ -25,7 +32,7 @@ const Campaign = props => (
       />
     </TrafficDistribution>
 
-    { props.featureFlags && props.featureFlags.showVoterRegistrationModal ? (
+    {props.featureFlags && props.featureFlags.showVoterRegistrationModal ? (
       <TrafficDistribution percentage={50} feature="voter_reg_modal">
         <ModalLauncherContainer
           type="voter_reg_modal"
@@ -33,12 +40,13 @@ const Campaign = props => (
           modalType={VOTER_REGISTRATION_MODAL}
         />
       </TrafficDistribution>
-    ) : null }
+    ) : null}
 
-    { props.shouldShowLandingPage ?
+    {props.shouldShowLandingPage ? (
       <LandingPageContainer {...props} />
-      :
-      <CampaignPageContainer {...props} />}
+    ) : (
+      <CampaignPageContainer {...props} />
+    )}
   </div>
 );
 

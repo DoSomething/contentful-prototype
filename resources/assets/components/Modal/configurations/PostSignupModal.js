@@ -7,18 +7,17 @@ import BlockModal from './BlockModal';
 const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
   <div className="modal__slide">
     <SlideshowContainer slideshowId="post-signup-modal" hideCloseButton>
-      { competitionStep ? (
+      {competitionStep ? (
         <CompetitionBlockContainer
           content={competitionStep.content}
           photo={competitionStep.photos[0]}
           byline={competitionStep.additionalContent}
         />
-      ) : null }
+      ) : null}
       <BlockModal closeModal={closeModal} json={affirmation} />
     </SlideshowContainer>
   </div>
 );
-
 
 PostSignupModal.propTypes = {
   affirmation: PropTypes.object.isRequired, // eslint-disable-line

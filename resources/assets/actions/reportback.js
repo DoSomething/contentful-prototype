@@ -32,11 +32,7 @@ export function requestedReportbacks(node) {
 
 // Action: new reportback data received.
 export function receivedReportbacks(
-  {
-    reportbacks,
-    reportbackItems,
-    reactions,
-  },
+  { reportbacks, reportbackItems, reactions },
   currentPage,
   totalPages,
   total,
@@ -120,34 +116,38 @@ export function toggleReactionOn(reportbackItemId, termId) {
   return (dispatch, getState) => {
     // If the user is not logged in, handle this action later.
     const state = getState();
-    if (! isAuthenticated(state)) {
+    if (!isAuthenticated(state)) {
       dispatch(queueEvent('toggleReactionOn', reportbackItemId, termId));
       return;
     }
 
     dispatch(reactionChanged(reportbackItemId, true));
 
-    (new Phoenix()).post('next/reactions', {
-      reportback_item_id: reportbackItemId,
-      term_id: termId,
-    }).then((json) => {
-      if (! has(json, '[0].created')) {
-        throw new Error('Could not create reaction.');
-      }
+    new Phoenix()
+      .post('next/reactions', {
+        reportback_item_id: reportbackItemId,
+        term_id: termId,
+      })
+      .then(json => {
+        if (!has(json, '[0].created')) {
+          throw new Error('Could not create reaction.');
+        }
 
-      dispatch(reactionComplete(reportbackItemId, json[0].kid));
-    }).catch(() => {
-      dispatch(reactionChanged(reportbackItemId, false));
-    });
+        dispatch(reactionComplete(reportbackItemId, json[0].kid));
+      })
+      .catch(() => {
+        dispatch(reactionChanged(reportbackItemId, false));
+      });
   };
 }
 
 // Async Action: user un-reacted to a photo.
 export function toggleReactionOff(reportbackItemId, reactionId) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(reactionChanged(reportbackItemId, false));
 
-    (new Phoenix()).delete(`next/reactions/${reactionId}`)
+    new Phoenix()
+      .delete(`next/reactions/${reactionId}`)
       .then(() => {
         dispatch(reactionComplete(reportbackItemId, null));
       })
@@ -157,31 +157,32 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
 
 // Async Action: submit a new reportback and place in submissions gallery.
 export function submitReportback(url, reportback) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(storeReportback(reportback));
 
     const token = document.querySelector('meta[name="csrf-token"]');
 
     // @TODO: Refactor once update to Gateway JS is made
     // to allow overriding header configs properly.
-    return window.fetch(url, {
-      method: 'POST',
-      headers: {
-        'X-CSRF-Token': token ? token.getAttribute('content') : null,
-        Accept: 'application/json',
-      },
-      credentials: 'same-origin',
-      body: reportback.formData,
-    })
-      .then((response) => {
+    return window
+      .fetch(url, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-Token': token ? token.getAttribute('content') : null,
+          Accept: 'application/json',
+        },
+        credentials: 'same-origin',
+        body: reportback.formData,
+      })
+      .then(response => {
         if (response.status >= 300) {
-          response.json().then((json) => {
+          response.json().then(json => {
             dispatch(storeReportbackFailed(json));
           });
         } else {
           dispatch(storeReportbackSuccessful());
 
-          response.json().then((json) => {
+          response.json().then(json => {
             dispatch(addSubmissionMetadata(reportback, json.shift()));
             dispatch(addSubmissionItemToList(reportback));
           });
@@ -202,28 +203,33 @@ export function submitPhotoPost(post) {
 }
 
 export function fetchUserReportbacks(userId, campaignId, campaignRunId) {
-  if (! userId) {
-    return (dispatch) => {
+  if (!userId) {
+    return dispatch => {
       dispatch(requestingUserReportbacksFailed());
     };
   }
 
-  return (dispatch) => {
+  return dispatch => {
     dispatch(requestingUserReportbacks());
 
-    return (new Phoenix()).get('next/signups', { campaigns: campaignId, users: userId, runs: campaignRunId })
-      .then((json) => {
+    return new Phoenix()
+      .get('next/signups', {
+        campaigns: campaignId,
+        users: userId,
+        runs: campaignRunId,
+      })
+      .then(json => {
         dispatch(receivedUserReportbacks());
 
         if (json.data.length) {
           const reportback = json.data.shift().reportback;
 
-          if (! reportback) {
+          if (!reportback) {
             return;
           }
 
           dispatch(addSubmissionMetadata(reportback));
-          reportback.reportback_items.data.forEach((reportbackItem) => {
+          reportback.reportback_items.data.forEach(reportbackItem => {
             dispatch(addSubmissionItemToList(reportbackItem));
           });
         }
@@ -240,13 +246,17 @@ export function fetchReportbacks() {
 
     dispatch(requestedReportbacks(node));
 
-    (new Phoenix()).get('next/reportbackItems', { campaigns: node, count, page }).then((json) => {
-      const normalizedData = normalizeReportbackItemResponse(json.data);
-      const currentPage = get(json, 'meta.pagination.current_page', 1);
-      const totalPages = get(json, 'meta.pagination.total_pages', 1);
-      const total = get(json, 'meta.pagination.total', 0);
+    new Phoenix()
+      .get('next/reportbackItems', { campaigns: node, count, page })
+      .then(json => {
+        const normalizedData = normalizeReportbackItemResponse(json.data);
+        const currentPage = get(json, 'meta.pagination.current_page', 1);
+        const totalPages = get(json, 'meta.pagination.total_pages', 1);
+        const total = get(json, 'meta.pagination.total', 0);
 
-      dispatch(receivedReportbacks(normalizedData, currentPage, totalPages, total));
-    });
+        dispatch(
+          receivedReportbacks(normalizedData, currentPage, totalPages, total),
+        );
+      });
   };
 }

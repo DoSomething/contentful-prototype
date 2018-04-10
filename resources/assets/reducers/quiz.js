@@ -7,7 +7,7 @@ import {
 } from '../actions';
 
 const ensureSafeState = (state, quizId) => {
-  if (! state[quizId]) {
+  if (!state[quizId]) {
     return {
       ...state,
       [quizId]: {},
@@ -67,7 +67,8 @@ const quiz = (state = {}, action) => {
           error: action.error,
         },
       };
-    default: return state;
+    default:
+      return state;
   }
 };
 

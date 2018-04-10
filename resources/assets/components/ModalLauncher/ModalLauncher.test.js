@@ -17,7 +17,6 @@ const type = 'fun_survey';
 const MODAL_COUNTDOWN = 60;
 const MODAL_TYPE = 'AWESOME_MODAL';
 
-
 const mountModal = (isAuthenticated = true) => {
   // Using a function mock for the openModal prop
   const openModalMock = jest.fn();
@@ -37,7 +36,7 @@ const mountModal = (isAuthenticated = true) => {
 };
 
 // Helper to set the user survey completion status in localstorage
-const toggleHideModal = (value) => {
+const toggleHideModal = value => {
   set(`${userId}_hide_${type}`, 'boolean', value);
 };
 
@@ -107,7 +106,6 @@ describe('The ModalLauncher component', () => {
     expect(openModalMock).toHaveBeenCalledTimes(0);
   });
 
-
   it('marks the modal to be hidden (and does not render the modal) if the URL params indicate as such', () => {
     jsdom.reconfigure({
       url: 'https://phoenix.test/?hide_fun_survey=1',
@@ -135,7 +133,7 @@ describe('The ModalLauncher component', () => {
   });
 
   it('launches the modal if the user is marked as dismissed more then 30 days ago', () => {
-    const time = getTime(Date.now()) - (31 * 1440 * 60 * 1000);
+    const time = getTime(Date.now()) - 31 * 1440 * 60 * 1000;
 
     set(`${userId}_dismissed_fun_survey`, 'timestamp', time);
 

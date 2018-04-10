@@ -7,25 +7,31 @@ export function normalizeReportbacksResponse(data) {
   const reportbacks = {};
   const reportbackItems = {};
 
-  data.forEach((reportbackRecord) => {
+  data.forEach(reportbackRecord => {
     const reportback = reportbackRecord;
 
-    reportback.reportback_items = reportback.reportback_items.data.map((reprotbackItemRecord) => {
-      const reportbackItem = reprotbackItemRecord;
-      const reactions = reportbackItem.kudos.data;
-      const currentUser = reactions[0] ? reactions[0].current_user : false;
+    reportback.reportback_items = reportback.reportback_items.data.map(
+      reprotbackItemRecord => {
+        const reportbackItem = reprotbackItemRecord;
+        const reactions = reportbackItem.kudos.data;
+        const currentUser = reactions[0] ? reactions[0].current_user : false;
 
-      reportbackItem.reaction = {
-        id: currentUser ? currentUser.kudos_id : null,
-        reacted: !! (currentUser && currentUser.kudos_id),
-        total: reportbackItem.kudos.data[0] ? reportbackItem.kudos.data[0].term.total : 0,
-        termId: reportbackItem.kudos.data[0] ? reportbackItem.kudos.data[0].term.id : '1274', // This is a hardcoded default because phoenix-ashes is bugged.
-      };
-      delete reportbackItem.kudos;
+        reportbackItem.reaction = {
+          id: currentUser ? currentUser.kudos_id : null,
+          reacted: !!(currentUser && currentUser.kudos_id),
+          total: reportbackItem.kudos.data[0]
+            ? reportbackItem.kudos.data[0].term.total
+            : 0,
+          termId: reportbackItem.kudos.data[0]
+            ? reportbackItem.kudos.data[0].term.id
+            : '1274', // This is a hardcoded default because phoenix-ashes is bugged.
+        };
+        delete reportbackItem.kudos;
 
-      reportbackItems[reportbackItem.id] = reportbackItem;
-      return reportbackItem.id;
-    });
+        reportbackItems[reportbackItem.id] = reportbackItem;
+        return reportbackItem.id;
+      },
+    );
 
     delete reportback.campaign;
     reportbacks[reportback.id] = reportback;
@@ -43,14 +49,14 @@ export function normalizeReportbackItemResponse(data) {
   const reportbacks = {};
   const reportbackItems = {};
 
-  data.forEach((reportbackItemRecord) => {
+  data.forEach(reportbackItemRecord => {
     const reportbackItem = reportbackItemRecord;
     const kudos = reportbackItem.kudos.data[0];
     const currentUser = kudos ? kudos.current_user : false;
 
     reportbackItem.reaction = {
       id: currentUser ? currentUser.kudos_id : null,
-      reacted: !! (currentUser && currentUser.kudos_id),
+      reacted: !!(currentUser && currentUser.kudos_id),
       total: kudos ? kudos.term.total : 0,
       termId: kudos ? kudos.term.id : '1274', // This is a hardcoded default because phoenix-ashes is bugged.
     };
@@ -58,18 +64,18 @@ export function normalizeReportbackItemResponse(data) {
     const reportback = reportbackItem.reportback;
     let existingReportback = reportbacks[reportback.id];
 
-    if (! existingReportback) {
+    if (!existingReportback) {
       existingReportback = reportback;
       reportbacks[reportback.id] = existingReportback;
     }
 
-    if (! existingReportback.reportback_items) {
+    if (!existingReportback.reportback_items) {
       existingReportback.reportback_items = []; // Underscore naming b/c of old data format.
     }
 
     existingReportback.reportback_items.push(reportbackItem.id);
 
-    if (! existingReportback.user) {
+    if (!existingReportback.user) {
       existingReportback.user = reportbackItem.user;
     }
 

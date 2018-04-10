@@ -6,18 +6,17 @@ import Button from '../Button/Button';
 
 import './revealer.scss';
 
-const Revealer = (props) => {
-  const { callToAction, isLoading, isSignedUp,
-    onReveal, title } = props;
+const Revealer = props => {
+  const { callToAction, isLoading, isSignedUp, onReveal, title } = props;
 
   return (
     <div className="revealer">
-      { callToAction ? <h1>{callToAction}</h1> : null }
-      { isSignedUp ? (
+      {callToAction ? <h1>{callToAction}</h1> : null}
+      {isSignedUp ? (
         <Button isLoading={isLoading} onClick={onReveal} text={title} />
       ) : (
         <SignupButton className="is-cta" source="revealer" />
-      ) }
+      )}
     </div>
   );
 };

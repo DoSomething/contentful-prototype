@@ -9,7 +9,7 @@
     button {
       color: $light-gray;
       font-size: 14px;
-      text-decoration:underline;
+      text-decoration: underline;
       padding: 0px;
 
       &:focus {
@@ -20,7 +20,7 @@
 
   .footnote-details {
     display: none;
-    background-color: rgba(0,0,0,.7);
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: $lg-border-radius;
     padding: $half-spacing / 2;
 

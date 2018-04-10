@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 const ModalControls = ({ children, onClose, className }) => (
   <div style={{ position: 'relative' }} className={className}>
-    <button className="card__exit -floating" onClick={onClose}>&times;</button>
-    { children }
+    <button className="card__exit -floating" onClick={onClose}>
+      &times;
+    </button>
+    {children}
   </div>
 );
 

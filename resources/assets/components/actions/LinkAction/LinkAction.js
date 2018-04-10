@@ -8,7 +8,7 @@ import Markdown from '../../Markdown';
 import SponsorPromotion from '../../SponsorPromotion';
 import { isExternal } from '../../../helpers';
 
-const LinkAction = (props) => {
+const LinkAction = props => {
   const { content, link, buttonText, affiliateLogo, trackEvent } = props;
 
   const onLinkClick = () => {
@@ -26,31 +26,40 @@ const LinkAction = (props) => {
     <div className="link-action margin-bottom-lg">
       <Card
         title={title}
-        className={classnames('rounded bordered', { 'affiliate-content': affiliateLogo })}
+        className={classnames('rounded bordered', {
+          'affiliate-content': affiliateLogo,
+        })}
       >
-        { content ?
-          <Markdown className="padded">{content}</Markdown>
-          : null }
+        {content ? <Markdown className="padded">{content}</Markdown> : null}
 
-        { buttonText ? null : (
-          <div role="button" tabIndex="0" onClick={onLinkClick} className="link-wrapper">
+        {buttonText ? null : (
+          <div
+            role="button"
+            tabIndex="0"
+            onClick={onLinkClick}
+            className="link-wrapper"
+          >
             <Embed className="padded" url={link} />
           </div>
-        ) }
+        )}
 
-        { affiliateLogo ? (
+        {affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
             imgUrl={affiliateLogo}
           />
-        ) : null }
+        ) : null}
 
-        { buttonText ? (
-          <a className="button button-attached" target={target} href={link} onClick={onLinkClick}>
-            { buttonText }
+        {buttonText ? (
+          <a
+            className="button button-attached"
+            target={target}
+            href={link}
+            onClick={onLinkClick}
+          >
+            {buttonText}
           </a>
-        ) : null }
-
+        ) : null}
       </Card>
     </div>
   );

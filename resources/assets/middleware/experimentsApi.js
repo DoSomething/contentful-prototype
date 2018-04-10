@@ -5,9 +5,9 @@ import {
 } from '../actions';
 import { participate, convert } from '../helpers/sixpack';
 
-const experimentsApiMiddleware = ({ dispatch }) => next => (action) => {
+const experimentsApiMiddleware = ({ dispatch }) => next => action => {
   if (action.type === PARTICIPATE_IN_EXPERIMENT) {
-    participate(action.name).then((alternative) => {
+    participate(action.name).then(alternative => {
       dispatch(updateStore(action.name, alternative));
     });
   }

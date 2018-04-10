@@ -14,15 +14,26 @@ import CampaignGalleryBlockContainer from '../CampaignGalleryBlock/CampaignGalle
 import { parseContentfulType } from '../../helpers';
 import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
 import {
-  renderCompetitionStep, renderPhotoUploader, renderSubmissionGallery,
-  renderThirdPartyAction, renderContentBlock, renderVoterRegistrationAction,
-  renderShareAction, renderLinkAction, renderAffirmation, renderTextSubmissionAction,
+  renderCompetitionStep,
+  renderPhotoUploader,
+  renderSubmissionGallery,
+  renderThirdPartyAction,
+  renderContentBlock,
+  renderVoterRegistrationAction,
+  renderShareAction,
+  renderLinkAction,
+  renderAffirmation,
+  renderTextSubmissionAction,
 } from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
-type Props = { json: ContentfulEntryJson, stepIndex: number, isSignedUp: boolean };
+type Props = {
+  json: ContentfulEntryJson,
+  stepIndex: number,
+  isSignedUp: boolean,
+};
 type State = { hasError: boolean };
 
 class ContentfulEntry extends React.Component<Props, State> {
@@ -98,13 +109,9 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'quizBeta':
         return <LegacyQuizContainer quizContent={json} />;
 
-        // @TODO: Will be refactored when switching to Rogue!
+      // @TODO: Will be refactored when switching to Rogue!
       case 'reportbacks':
-        return (
-          <ReportbackBlock
-            reportbacks={json.reportbacks}
-          />
-        );
+        return <ReportbackBlock reportbacks={json.reportbacks} />;
 
       case 'shareAction':
         return renderShareAction(json);

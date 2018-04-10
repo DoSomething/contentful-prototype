@@ -4,7 +4,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { PortalWithState } from 'react-portal';
 import {
-  POST_SIGNUP_MODAL, POST_SHARE_MODAL, BLOCK_MODAL, VOTER_REGISTRATION_MODAL,
+  POST_SIGNUP_MODAL,
+  POST_SHARE_MODAL,
+  BLOCK_MODAL,
+  VOTER_REGISTRATION_MODAL,
   POST_REPORTBACK_MODAL,
 } from '../Modal';
 
@@ -61,14 +64,30 @@ class Modal extends React.Component {
         onOpen={() => chrome.classList.add('-lock')}
         onClose={() => chrome.classList.remove('-lock')}
       >
-        {({ isOpen, portal }) => (isOpen ? portal((
-          <div className="modal-v1" role="presentation" ref={node => this.node = node} onClick={this.handleOverlayClick}>
-            <div className="modal__container">
-              { children }
-              { hideCloseButton ? null : <button className="modal__exit" onClick={this.props.closeModal}>×</button> }
-            </div>
-          </div>
-        )) : null)}
+        {({ isOpen, portal }) =>
+          isOpen
+            ? portal(
+                <div
+                  className="modal-v1"
+                  role="presentation"
+                  ref={node => (this.node = node)}
+                  onClick={this.handleOverlayClick}
+                >
+                  <div className="modal__container">
+                    {children}
+                    {hideCloseButton ? null : (
+                      <button
+                        className="modal__exit"
+                        onClick={this.props.closeModal}
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+                </div>,
+              )
+            : null
+        }
       </PortalWithState>
     ) : null;
   }

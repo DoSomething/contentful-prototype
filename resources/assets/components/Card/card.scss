@@ -22,7 +22,7 @@
     color: $black;
 
     &:hover {
-      color: rgba($black, 0.75);  // @TODO should be a variable
+      color: rgba($black, 0.75); // @TODO should be a variable
       text-decoration: none;
     }
   }
@@ -32,7 +32,8 @@
   .card__title {
     background-color: $sponsor-accent;
 
-    h1, a {
+    h1,
+    a {
       color: $white;
     }
   }

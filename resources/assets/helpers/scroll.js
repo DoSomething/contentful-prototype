@@ -8,7 +8,7 @@ import FontFaceObserver from 'fontfaceobserver';
  *
  * @see https://stackoverflow.com/a/34999925/811624
  */
-const waitForLayout = (callback) => {
+const waitForLayout = callback => {
   // Wait for the call stack to clear.
   setTimeout(() => {
     // Then, wait until we've rendered a frame.
@@ -37,7 +37,10 @@ export const scrollTo = (target = 0, duration = 500) => {
     const elapsed = Date.now() - beginning;
 
     // Scroll to wherever we should be at this point in the animation.
-    const newOffset = Math.min(initialOffset + Math.floor(distance * (elapsed / duration)), target);
+    const newOffset = Math.min(
+      initialOffset + Math.floor(distance * (elapsed / duration)),
+      target,
+    );
     window.scrollTo(0, newOffset);
 
     // If we've reached the target or got interrupted, stop.
@@ -57,7 +60,7 @@ export const scrollTo = (target = 0, duration = 500) => {
  *
  * @param {DOMElement} element
  */
-export const scrollToElement = (element) => {
+export const scrollToElement = element => {
   const font = new FontFaceObserver('League Gothic');
 
   // Wait for headline font to load so we don't scroll to

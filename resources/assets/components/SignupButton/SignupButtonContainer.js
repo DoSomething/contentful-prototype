@@ -6,7 +6,6 @@ import SignupButton from './SignupButton';
 import { convertExperiment } from '../../actions';
 import { clickedSignUp } from '../../actions/signup';
 
-
 /**
  * Provide state from the Redux store as props for this component.
  */
@@ -30,4 +29,6 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(PuckConnector(SignupButton));
+export default connect(mapStateToProps, actionCreators)(
+  PuckConnector(SignupButton),
+);

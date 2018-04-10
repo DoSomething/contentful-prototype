@@ -43,11 +43,7 @@ const httpLink = new HttpLink({ uri: env('GRAPHQL_URL') });
 
 // Configure Apollo Client.
 const client = new ApolloClient({
-  link: ApolloLink.from([
-    errorLink,
-    authenticationLink,
-    httpLink,
-  ]),
+  link: ApolloLink.from([errorLink, authenticationLink, httpLink]),
   cache: new InMemoryCache(),
 });
 

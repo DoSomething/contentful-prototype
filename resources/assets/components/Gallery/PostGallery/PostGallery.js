@@ -25,23 +25,32 @@ class PostGallery extends React.Component {
   }
 
   render() {
-    const { currentPage, entities, isFetching, total, totalPages } = this.props.reportbacks;
+    const {
+      currentPage,
+      entities,
+      isFetching,
+      total,
+      totalPages,
+    } = this.props.reportbacks;
 
-    return ! total ?
+    return !total ? (
       <div className="spinner -centered" />
-      :
+    ) : (
       <div>
         <Gallery type="triad" className="expand-horizontal-md">
           {Object.keys(entities).map(this.renderItem)}
         </Gallery>
 
-        {
-          currentPage !== totalPages ?
-            <LoadMore className="padding-lg text-centered" text="view more" onClick={this.props.fetchReportbacks} isLoading={isFetching} />
-            :
-            null
-        }
-      </div>;
+        {currentPage !== totalPages ? (
+          <LoadMore
+            className="padding-lg text-centered"
+            text="view more"
+            onClick={this.props.fetchReportbacks}
+            isLoading={isFetching}
+          />
+        ) : null}
+      </div>
+    );
   }
 }
 

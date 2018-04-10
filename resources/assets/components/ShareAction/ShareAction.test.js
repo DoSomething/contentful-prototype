@@ -13,17 +13,18 @@ describe('ShareAction component', () => {
   let trackEventMock = jest.fn();
   let openModalMock = jest.fn();
 
-  const getShallow = socialPlatform => shallow(
-    <ShareAction
-      title="Click on this link!"
-      content="This is a great link"
-      trackEvent={trackEventMock}
-      openModal={openModalMock}
-      link={url}
-      socialPlatform={socialPlatform}
-      id="1234"
-    />,
-  );
+  const getShallow = socialPlatform =>
+    shallow(
+      <ShareAction
+        title="Click on this link!"
+        content="This is a great link"
+        trackEvent={trackEventMock}
+        openModal={openModalMock}
+        link={url}
+        socialPlatform={socialPlatform}
+        id="1234"
+      />,
+    );
 
   // We'll declare this reference to the wrapper object, so we can more elegantly reset the
   // shallow copy of the component and test it as necessary.
@@ -64,8 +65,14 @@ describe('ShareAction component', () => {
 
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
-      expect(trackEventMock.mock.calls[0]).toEqual(['clicked facebook share action', trackingData]);
-      expect(trackEventMock.mock.calls[1]).toEqual(['share action completed', trackingData]);
+      expect(trackEventMock.mock.calls[0]).toEqual([
+        'clicked facebook share action',
+        trackingData,
+      ]);
+      expect(trackEventMock.mock.calls[1]).toEqual([
+        'share action completed',
+        trackingData,
+      ]);
     });
 
     it('tracks completed share action event when social share is successful', () => {
@@ -74,7 +81,10 @@ describe('ShareAction component', () => {
       wrapper.find('button').simulate('click');
 
       expect(trackEventMock).toHaveBeenCalledTimes(2);
-      expect(trackEventMock.mock.calls[0]).toEqual(['clicked facebook share action', trackingData]);
+      expect(trackEventMock.mock.calls[0]).toEqual([
+        'clicked facebook share action',
+        trackingData,
+      ]);
     });
 
     it('displays the affirmation modal when social share is successful', () => {
@@ -91,7 +101,10 @@ describe('ShareAction component', () => {
       wrapper.find('button').simulate('click');
 
       expect(trackEventMock).toHaveBeenCalledTimes(2);
-      expect(trackEventMock.mock.calls[1]).toEqual(['share action cancelled', trackingData]);
+      expect(trackEventMock.mock.calls[1]).toEqual([
+        'share action cancelled',
+        trackingData,
+      ]);
     });
   });
 
@@ -111,7 +124,9 @@ describe('ShareAction component', () => {
       wrapper.find('button').simulate('click');
 
       expect(global.open).toHaveBeenCalled();
-      expect(global.open.mock.calls[0][0]).toEqual(`https://twitter.com/intent/tweet?url=${url}&text=`);
+      expect(global.open.mock.calls[0][0]).toEqual(
+        `https://twitter.com/intent/tweet?url=${url}&text=`,
+      );
     });
 
     it('tracks clicked share action event', () => {
@@ -119,7 +134,10 @@ describe('ShareAction component', () => {
 
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
-      expect(trackEventMock.mock.calls[0]).toEqual(['clicked twitter share action', trackingData]);
+      expect(trackEventMock.mock.calls[0]).toEqual([
+        'clicked twitter share action',
+        trackingData,
+      ]);
     });
 
     it('displays the affirmation modal when social share is successful', () => {

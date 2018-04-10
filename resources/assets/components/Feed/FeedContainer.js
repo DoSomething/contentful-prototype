@@ -15,7 +15,8 @@ import {
  */
 const mapStateToProps = state => ({
   blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
-  canLoadMorePages: getTotalVisibleBlockPoints(state) < getMaximumBlockPoints(state),
+  canLoadMorePages:
+    getTotalVisibleBlockPoints(state) < getMaximumBlockPoints(state),
   callToAction: state.campaign.callToAction,
   dashboard: state.campaign.dashboard,
   signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),

@@ -13,7 +13,11 @@ const BlockPage = ({ json }) => (
     <Enclosure className="default-container margin-top-lg margin-bottom-lg">
       <ContentfulEntry json={json} />
       <ul className="form-actions">
-        <li><a href=".." className="button -tertiary">or take another action</a></li>
+        <li>
+          <a href=".." className="button -tertiary">
+            or take another action
+          </a>
+        </li>
       </ul>
     </Enclosure>
   </div>

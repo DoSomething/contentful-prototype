@@ -8,19 +8,19 @@
 
 // overridden colors
 $black: $off-black;
-$light-gray: #DCDCDC;
+$light-gray: #dcdcdc;
 
 // semantic colors
-$primary-color: #F9DD27;
+$primary-color: #f9dd27;
 $success-color: #008000;
-$sponsor-accent: #8963CA;
+$sponsor-accent: #8963ca;
 
 $primary-text-color: $off-black;
-$secondary-text-color: #A3A3A3;
+$secondary-text-color: #a3a3a3;
 
 $primary-border-color: $light-gray;
 
-$light-background-color: #F6F6F6;
+$light-background-color: #f6f6f6;
 $light-background-contrast-color: $off-black;
 $dark-background-color: $off-black;
 $dark-background-color-transparent: rgba(34, 34, 34, 0.9);
@@ -30,8 +30,10 @@ $dark-background-contrast-color: $white;
 $half-spacing: $base-spacing / 2;
 
 // Font Stacks
-$font-source-sans: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-$font-league-gothic: "League Gothic", "Impact", "Franklin Gothic Bold", "Arial Black", sans-serif;
+$font-source-sans: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial',
+  sans-serif;
+$font-league-gothic: 'League Gothic', 'Impact', 'Franklin Gothic Bold',
+  'Arial Black', sans-serif;
 $gothic-letter-spacing: 4px;
 
 $primary-font-family: $font-source-sans;

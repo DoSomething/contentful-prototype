@@ -1,4 +1,4 @@
-const setFBshare = (shouldBeSuccessful) => {
+const setFBshare = shouldBeSuccessful => {
   global.FB = {
     ui: jest.fn((share, callback) => {
       callback(shouldBeSuccessful);

@@ -9,5 +9,6 @@ So that GitBook generates the documentation properly and converts the markdown t
 Additionally, all links in a file are relative to that file's location in the directory structure.
 
 ## Editing Options
-- [Editing Docs Locally](editing-docs-locally.md)
-- [Editing Docs On GitHub](editing-docs-on-github.md)
+
+* [Editing Docs Locally](editing-docs-locally.md)
+* [Editing Docs On GitHub](editing-docs-on-github.md)

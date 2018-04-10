@@ -16,22 +16,31 @@ const renderPhoto = (photo, index) => (
   </div>
 );
 
-const ContentBlock = (props) => {
+const ContentBlock = props => {
   const {
-    title, stepIndex, content, photos, photoWidth,
-    shouldTruncate, hideStepNumber, preTitle,
+    title,
+    stepIndex,
+    content,
+    photos,
+    photoWidth,
+    shouldTruncate,
+    hideStepNumber,
+    preTitle,
   } = props;
 
-  const photoComponent = photos && photos.length ? (
-    <FlexCell width={photoWidth}>
-      <div className={`content-block__photos -${photoWidth}`}>
-        { photos ? photos.map(renderPhoto) : null }
-      </div>
-    </FlexCell>
-  ) : null;
+  const photoComponent =
+    photos && photos.length ? (
+      <FlexCell width={photoWidth}>
+        <div className={`content-block__photos -${photoWidth}`}>
+          {photos ? photos.map(renderPhoto) : null}
+        </div>
+      </FlexCell>
+    ) : null;
 
   return (
-    <div className={classnames('content-block', { '-truncate': shouldTruncate })}>
+    <div
+      className={classnames('content-block', { '-truncate': shouldTruncate })}
+    >
       <Flex>
         <SectionHeader
           preTitle={preTitle}
@@ -39,13 +48,11 @@ const ContentBlock = (props) => {
           step={stepIndex}
           hideStepNumber={hideStepNumber}
         />
-        { content ? (
+        {content ? (
           <FlexCell width="two-thirds">
-            <Markdown>{ content }</Markdown>
+            <Markdown>{content}</Markdown>
           </FlexCell>
-        ) : (
-          null
-        )}
+        ) : null}
         {photoComponent}
       </Flex>
       <PuckWaypoint name="content-block__bottom" waypointData={{ title }} />

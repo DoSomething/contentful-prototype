@@ -47,13 +47,20 @@ export function renderLegacyGallery() {
   );
 }
 
-const ActionSteps = (props) => {
-  const { actionSteps, callToAction, campaignId,
-    hasActivityFeed, hasPendingSignup, isSignedUp, template } = props;
+const ActionSteps = props => {
+  const {
+    actionSteps,
+    callToAction,
+    campaignId,
+    hasActivityFeed,
+    hasPendingSignup,
+    isSignedUp,
+    template,
+  } = props;
 
   let stepIndex = 0;
 
-  const stepComponents = actionSteps.map((json) => {
+  const stepComponents = actionSteps.map(json => {
     const type = parseContentfulType(json, 'contentBlock');
 
     // Is this a "numbered" step? If so, increment our step index.
@@ -78,7 +85,15 @@ const ActionSteps = (props) => {
     }
 
     let columnWidth = 'two-thirds';
-    if (['photo-uploader', 'photoUploaderAction', 'submission-gallery', 'contentBlock', 'gallery'].includes(type)) {
+    if (
+      [
+        'photo-uploader',
+        'photoUploaderAction',
+        'submission-gallery',
+        'contentBlock',
+        'gallery',
+      ].includes(type)
+    ) {
       columnWidth = 'full';
     }
 
@@ -86,27 +101,27 @@ const ActionSteps = (props) => {
       <Flex id={`step-${json.id}`} key={json.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
-          <ContentfulEntry json={json} stepIndex={stepIndex} isSignedUp={isSignedUp} />
+          <ContentfulEntry
+            json={json}
+            stepIndex={stepIndex}
+            isSignedUp={isSignedUp}
+          />
         </FlexCell>
       </Flex>
     );
   });
 
-  if (! isSignedUp) {
-    stepComponents.push(renderRevealer(
-      callToAction, hasPendingSignup, isSignedUp, campaignId,
-    ));
+  if (!isSignedUp) {
+    stepComponents.push(
+      renderRevealer(callToAction, hasPendingSignup, isSignedUp, campaignId),
+    );
   }
 
-  if (isSignedUp && (template === 'legacy' || ! hasActivityFeed)) {
+  if (isSignedUp && (template === 'legacy' || !hasActivityFeed)) {
     stepComponents.push(renderLegacyGallery());
   }
 
-  return (
-    <div>
-      { stepComponents }
-    </div>
-  );
+  return <div>{stepComponents}</div>;
 };
 
 ActionSteps.propTypes = {

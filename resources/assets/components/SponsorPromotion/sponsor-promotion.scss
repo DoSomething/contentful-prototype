@@ -1,7 +1,7 @@
 @import '~@dosomething/forge/scss/toolkit';
 @import '../../scss/next-toolbox.scss';
 
-$btw-mobile-and-tablet: "(min-width: 860px)";
+$btw-mobile-and-tablet: '(min-width: 860px)';
 
 .header .promotions {
   // Shift it down so that the "creator" portraits are adjacent to the bottom of the Header
@@ -33,7 +33,6 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
   }
 }
 
-
 // Promotions Grouping
 .promotions {
   display: table;
@@ -44,7 +43,6 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
   }
 
   &.-dual {
-
     .promotion {
       width: 50%;
 
@@ -59,7 +57,7 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
         &:after {
           background-color: #fff;
           background-color: rgba(#fff, 0.5);
-          content: "";
+          content: '';
           height: 80%;
           position: absolute;
           right: 0;
@@ -91,7 +89,7 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
     font-weight: $weight-bold;
     line-height: 1;
     padding-right: 10px;
-    text-shadow: 0 0 5px rgba(0,0,0,0.2);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     text-transform: uppercase;
     vertical-align: middle;
     white-space: nowrap;
@@ -107,16 +105,13 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
   }
 }
 
-
 // Creator Specific
 .promotion--creator {
-
   @include media($large) {
     vertical-align: bottom;
   }
 
   .__image {
-
     @include media($large) {
       vertical-align: bottom;
     }
@@ -130,7 +125,6 @@ $btw-mobile-and-tablet: "(min-width: 860px)";
     }
   }
 }
-
 
 // Override styling for affiliate logo appearing on affiliate content (LinkAction, CampaignUpdate)
 .affiliate-logo {

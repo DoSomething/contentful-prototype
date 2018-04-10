@@ -52,8 +52,12 @@ const submissions = (state = {}, action) => {
         reportback: {
           id: action.id || action.reportback.id,
           flagged: action.reportback.flagged || null,
-          quantity: Number(action.reportback.impact) || Number(action.reportback.quantity),
-          whyParticipated: action.reportback.whyParticipated || action.reportback.why_participated,
+          quantity:
+            Number(action.reportback.impact) ||
+            Number(action.reportback.quantity),
+          whyParticipated:
+            action.reportback.whyParticipated ||
+            action.reportback.why_participated,
         },
       };
 

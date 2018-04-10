@@ -49,10 +49,19 @@ const PostCard = ({ post, noun }) => {
 
   return (
     <BaseFigure className="post" media={media}>
-      <BaseFigure media={reactionElement} alignment="right" className="padded margin-bottom-none">
+      <BaseFigure
+        media={reactionElement}
+        alignment="right"
+        className="padded margin-bottom-none"
+      >
         <h4>{firstName}</h4>
-        { post.quantity ? <p className="footnote">{post.quantity} {pluralize(post.quantity, noun.singular, noun.plural)}</p> : null }
-        { post.type !== 'text' && post.text ? <p>{post.text}</p> : null }
+        {post.quantity ? (
+          <p className="footnote">
+            {post.quantity}{' '}
+            {pluralize(post.quantity, noun.singular, noun.plural)}
+          </p>
+        ) : null}
+        {post.type !== 'text' && post.text ? <p>{post.text}</p> : null}
       </BaseFigure>
     </BaseFigure>
   );

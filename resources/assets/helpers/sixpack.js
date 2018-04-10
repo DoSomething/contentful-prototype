@@ -6,7 +6,7 @@ import experiments from '../experiments.json';
 export function sixpack() {
   const env = window.ENV || {};
 
-  if (! env.SIXPACK_BASE_URL) {
+  if (!env.SIXPACK_BASE_URL) {
     throw new Error('Missing Sixpack configuration settings.');
   }
 
@@ -37,13 +37,18 @@ export function participate(name) {
     const alternatives = Object.values(experiments[name].alternatives);
     const trafficFraction = experiments[name].trafficFraction;
 
-    sixpack().participate(name, alternatives, trafficFraction, (error, response) => {
-      if (error) {
-        reject(error);
-      }
+    sixpack().participate(
+      name,
+      alternatives,
+      trafficFraction,
+      (error, response) => {
+        if (error) {
+          reject(error);
+        }
 
-      resolve(response.alternative.name);
-    });
+        resolve(response.alternative.name);
+      },
+    );
   });
 }
 
@@ -56,7 +61,8 @@ export function participate(name) {
 export function convert(name) {
   return new Promise((resolve, reject) => {
     sixpack().convert(name, (error, response) => {
-      console.groupCollapsed('%c Sixpack: %c Triggered event "%s"',
+      console.groupCollapsed(
+        '%c Sixpack: %c Triggered event "%s"',
         'background-color: #e2ccff; display: block; font-weight: bold; line-height: 1.5;',
         'background-color: transparent; font-weight: normal; line-height: 1.5;',
       );

@@ -4,7 +4,8 @@ import { PuckConnector } from '@dosomething/puck-client';
 import ReportbackUploader from './ReportbackUploader';
 import { openModal } from '../../actions/modal';
 import {
-  addSubmissionItemToList, submitPhotoPost,
+  addSubmissionItemToList,
+  submitPhotoPost,
   submitReferralPost,
 } from '../../actions';
 
@@ -32,4 +33,6 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(PuckConnector(ReportbackUploader));
+export default connect(mapStateToProps, actionCreators)(
+  PuckConnector(ReportbackUploader),
+);

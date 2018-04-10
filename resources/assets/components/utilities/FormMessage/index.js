@@ -7,19 +7,17 @@ import { makeHash, modifiers } from '../../../helpers';
 
 import './form-message.scss';
 
-const renderMessage = message => (
-  <p>{message}</p>
-);
+const renderMessage = message => <p>{message}</p>;
 
 const renderValidationMessage = error => (
   <article>
     <h1 className="title">Hmm, there were some issues with your submission.</h1>
     <ul className="list -compacted">
-      {Object.keys(error.fields || {}).map(field => (
+      {Object.keys(error.fields || {}).map(field =>
         error.fields[field].map(message => (
           <li key={makeHash(message)}>{message}</li>
-        ))
-      ))}
+        )),
+      )}
     </ul>
   </article>
 );
@@ -51,7 +49,11 @@ const FormMessage = ({ messaging }) => {
   }
 
   if (message) {
-    return <div className={classnames('form-message', modifiers(modifierClasses))}>{message}</div>;
+    return (
+      <div className={classnames('form-message', modifiers(modifierClasses))}>
+        {message}
+      </div>
+    );
   }
 
   return null;

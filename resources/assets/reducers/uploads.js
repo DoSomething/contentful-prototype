@@ -1,8 +1,6 @@
 /**
  * Uploads reducer.
  */
-const uploads = (state = {}) => (
-  state
-);
+const uploads = (state = {}) => state;
 
 export default uploads;

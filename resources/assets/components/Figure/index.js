@@ -5,8 +5,21 @@ import LazyImage from '../LazyImage';
 import { modifiers } from '../../helpers';
 import './figure.scss';
 
-export const BaseFigure = ({ alignment, verticalAlignment, media, size, className, children }) => (
-  <article className={classnames('figure', className, modifiers(alignment, verticalAlignment, size))}>
+export const BaseFigure = ({
+  alignment,
+  verticalAlignment,
+  media,
+  size,
+  className,
+  children,
+}) => (
+  <article
+    className={classnames(
+      'figure',
+      className,
+      modifiers(alignment, verticalAlignment, size),
+    )}
+  >
     <div className="figure__media">{media}</div>
     <div className="figure__body">{children}</div>
   </article>
@@ -30,18 +43,21 @@ BaseFigure.defaultProps = {
   media: null,
 };
 
-export const Figure = (props) => {
-  const media = <LazyImage className={props.imageClassName} alt={props.alt} src={props.image} />;
+export const Figure = props => {
+  const media = (
+    <LazyImage
+      className={props.imageClassName}
+      alt={props.alt}
+      src={props.image}
+    />
+  );
 
   return <BaseFigure {...props} media={media} />;
 };
 
 Figure.propTypes = {
   imageClassName: PropTypes.string,
-  image: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  image: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   alt: PropTypes.string.isRequired,
 };
 

@@ -9,7 +9,7 @@ const NavigationLink = props => (
     className={classnames('nav-link', props.className)}
     activeClassName="is-active"
   >
-    { props.children }
+    {props.children}
   </NavLink>
 );
 

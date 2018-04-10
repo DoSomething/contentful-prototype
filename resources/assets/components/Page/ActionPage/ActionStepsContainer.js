@@ -13,6 +13,5 @@ const mapStateToProps = state => ({
   template: state.campaign.template,
 });
 
-
 // Export the container component.
 export default connect(mapStateToProps)(ActionSteps);

@@ -6,7 +6,7 @@ import ModalControls from '../ModalControls';
 import StaticBlock from '../../StaticBlock';
 import { parseContentfulType } from '../../../helpers';
 
-const BlockModal = (props) => {
+const BlockModal = props => {
   const { json, closeModal } = props;
 
   let children = <ContentfulEntry json={json} />;
@@ -23,7 +23,7 @@ const BlockModal = (props) => {
 
   return (
     <ModalControls className="modal__slide" onClose={closeModal}>
-      { children }
+      {children}
     </ModalControls>
   );
 };

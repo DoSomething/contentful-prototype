@@ -4,22 +4,22 @@ import Card from '../../Card';
 import Markdown from '../../Markdown';
 import BlockModal from './BlockModal';
 
-const PostShareModal = (props) => {
+const PostShareModal = props => {
   const { affirmationText, affirmationBlock, closeModal } = props;
 
   // If we have a block to show, render it as a block modal:
   if (affirmationBlock) {
-    return (
-      <BlockModal closeModal={closeModal} json={affirmationBlock} />
-    );
+    return <BlockModal closeModal={closeModal} json={affirmationBlock} />;
   }
 
   // Otherwise, return a simple modal with the given Markdown:
   return (
-    <Card title="Thanks for sharing!" className="modal__slide bordered rounded" onClose={closeModal}>
-      <Markdown className="padded">
-        { affirmationText }
-      </Markdown>
+    <Card
+      title="Thanks for sharing!"
+      className="modal__slide bordered rounded"
+      onClose={closeModal}
+    >
+      <Markdown className="padded">{affirmationText}</Markdown>
     </Card>
   );
 };

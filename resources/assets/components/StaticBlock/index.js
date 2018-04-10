@@ -7,7 +7,11 @@ import './static-block.scss';
 const StaticBlock = ({ content, source, title }) => (
   <BlockWrapper title={title}>
     <Markdown>{content}</Markdown>
-    { source ? <div className="static-block__citation"><p className="footnote">{source}</p></div> : null }
+    {source ? (
+      <div className="static-block__citation">
+        <p className="footnote">{source}</p>
+      </div>
+    ) : null}
   </BlockWrapper>
 );
 

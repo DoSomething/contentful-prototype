@@ -8,8 +8,8 @@ import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 
 // Helper Constants
-export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
-
+export const EMPTY_IMAGE =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 /**
  * Return a boolean indicating as to whether the provided URL is external to the site.
@@ -18,7 +18,10 @@ export const EMPTY_IMAGE = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BA
  * @return {Boolean}
  */
 export function isExternal(url) {
-  return new URL(String(url), window.location.origin).hostname !== window.location.hostname;
+  return (
+    new URL(String(url), window.location.origin).hostname !==
+    window.location.hostname
+  );
 }
 
 /**
@@ -30,7 +33,12 @@ export function isExternal(url) {
  * @param  {String} fit
  * @return {String}
  */
-export function contentfulImageUrl(url, width = null, height = null, fit = null) {
+export function contentfulImageUrl(
+  url,
+  width = null,
+  height = null,
+  fit = null,
+) {
   const params = [];
 
   if (width) {
@@ -58,7 +66,7 @@ export function contentfulImageUrl(url, width = null, height = null, fit = null)
 export function dynamicString(string, tokens = {}) {
   let updatedString = string;
 
-  Object.keys(tokens).forEach((key) => {
+  Object.keys(tokens).forEach(key => {
     const regex = new RegExp(`{${key}}`, 'g');
 
     updatedString = updatedString.replace(regex, tokens[key]);
@@ -74,7 +82,7 @@ export function dynamicString(string, tokens = {}) {
  * @returns {boolean}
  */
 export function ensureAuth(isAuthenticated) {
-  if (! isAuthenticated) {
+  if (!isAuthenticated) {
     window.location.href = '/next/login';
     return false;
   }
@@ -127,11 +135,13 @@ export function markdown(source = '') {
 export function modifiers(...names) {
   let classes = names;
 
-  if (! Array.isArray(classes)) {
+  if (!Array.isArray(classes)) {
     classes = [classes];
   }
 
-  return classes.filter(className => className).map(className => `-${className}`);
+  return classes
+    .filter(className => className)
+    .map(className => `-${className}`);
 }
 
 /**
@@ -158,12 +168,16 @@ function getFileType(file) {
   const byte2 = dv.getUint8(1, true);
   const hex = byte1.toString(16) + byte2.toString(16);
 
-  return get({
-    '8950': 'image/png', // eslint-disable-line quote-props
-    '4749': 'image/gif', // eslint-disable-line quote-props
-    '424d': 'image/bmp', // eslint-disable-line quote-props
-    'ffd8': 'image/jpeg', // eslint-disable-line quote-props
-  }, hex, null);
+  return get(
+    {
+      '8950': 'image/png', // eslint-disable-line quote-props
+      '4749': 'image/gif', // eslint-disable-line quote-props
+      '424d': 'image/bmp', // eslint-disable-line quote-props
+      ffd8: 'image/jpeg', // eslint-disable-line quote-props
+    },
+    hex,
+    null,
+  );
 }
 
 /**
@@ -208,7 +222,7 @@ export function generateUniqueId() {
  * @return {Boolean}
  */
 export function isTimestampValid(timestamp, maxTime) {
-  return (timestamp + maxTime) > Date.now();
+  return timestamp + maxTime > Date.now();
 }
 
 /**
@@ -218,18 +232,30 @@ export function isTimestampValid(timestamp, maxTime) {
  */
 export function convertNumberToWord(number) {
   switch (number) {
-    case 0: return 'zero';
-    case 1: return 'one';
-    case 2: return 'two';
-    case 3: return 'three';
-    case 4: return 'four';
-    case 5: return 'five';
-    case 6: return 'six';
-    case 7: return 'seven';
-    case 8: return 'eight';
-    case 9: return 'nine';
-    case 10: return 'ten';
-    default: throw new Error('Number out of range');
+    case 0:
+      return 'zero';
+    case 1:
+      return 'one';
+    case 2:
+      return 'two';
+    case 3:
+      return 'three';
+    case 4:
+      return 'four';
+    case 5:
+      return 'five';
+    case 6:
+      return 'six';
+    case 7:
+      return 'seven';
+    case 8:
+      return 'eight';
+    case 9:
+      return 'nine';
+    case 10:
+      return 'ten';
+    default:
+      throw new Error('Number out of range');
   }
 }
 
@@ -247,13 +273,13 @@ export function makeHash(string) {
 
   let hash = 0;
 
-  if (! string.length) {
+  if (!string.length) {
     return hash;
   }
 
   string.split('').forEach((char, index) => {
     const charCode = string.charCodeAt(index);
-    hash = ((hash << 5) - hash) + charCode; // eslint-disable-line no-bitwise
+    hash = (hash << 5) - hash + charCode; // eslint-disable-line no-bitwise
     hash = hash & hash; // eslint-disable-line no-bitwise, operator-assignment
   });
 
@@ -271,14 +297,23 @@ export function makeHash(string) {
  */
 export function makeShareLink(
   resource,
-  options: { domain: string, slug?: string, key: string, type: "blocks" | "modal" },
+  options: {
+    domain: string,
+    slug?: string,
+    key: string,
+    type: 'blocks' | 'modal',
+  },
 ) {
   switch (resource) {
     case 'campaigns':
-      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
+      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${
+        options.key
+      }`;
 
     default:
-      throw new Error('Please provide an expected section type for generating the link.');
+      throw new Error(
+        'Please provide an expected section type for generating the link.',
+      );
   }
 }
 
@@ -307,15 +342,15 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
   const breakpoints = [
     {
       name: 'small',
-      test: width => (width <= 759),
+      test: width => width <= 759,
     },
     {
       name: 'medium',
-      test: width => (width >= 760 && width <= 959),
+      test: width => width >= 760 && width <= 959,
     },
     {
       name: 'large',
-      test: width => (width >= 960),
+      test: width => width >= 960,
     },
   ];
 
@@ -329,7 +364,7 @@ export function getFormattedScreenSize(screenWidth = window.innerWidth) {
  * @return {Boolean}
  */
 export function isCampaignClosed(endDate) {
-  if (! endDate) {
+  if (!endDate) {
     return false;
   }
 
@@ -367,11 +402,14 @@ export function env(key) {
 export function showFacebookSharePrompt(share, callback) {
   const { href, quote } = share;
 
-  FB.ui({
-    method: 'share',
-    href,
-    quote,
-  }, callback);
+  FB.ui(
+    {
+      method: 'share',
+      href,
+      quote,
+    },
+    callback,
+  );
 }
 
 /**
@@ -386,15 +424,18 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   const winHeight = window.screen.height;
   const winWidth = window.screen.width;
 
-  const left = Math.round((winWidth / 2) - (width / 2));
+  const left = Math.round(winWidth / 2 - width / 2);
   let top = 0;
 
   if (winHeight > height) {
-    top = Math.round((winHeight / 2) - (height / 2));
+    top = Math.round(winHeight / 2 - height / 2);
   }
 
-  const twitterShareWindow = window.open(`https://twitter.com/intent/tweet?url=${href}&text=${quote}`, 'intent',
-    `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`);
+  const twitterShareWindow = window.open(
+    `https://twitter.com/intent/tweet?url=${href}&text=${quote}`,
+    'intent',
+    `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`,
+  );
 
   let interval;
 
@@ -456,9 +497,10 @@ export function findContentfulEntry(state, identifier) {
     campaign.quizzes,
   );
 
-  return find(contentfulEntries, entry => (
-    entry.id === identifier || entry.fields.slug === identifier
-  ));
+  return find(
+    contentfulEntries,
+    entry => entry.id === identifier || entry.fields.slug === identifier,
+  );
 }
 
 /**
@@ -473,7 +515,11 @@ export function findContentfulEntry(state, identifier) {
 export function parseContentfulType(json, defaultType) {
   // Figure out the "type" of this entry based on 'customType' field, Contentful machine name,
   // or the 'type' set in the API transformer. If none of those match, use the given default.
-  let type = get(json, 'fields.customType') || get(json, 'type.sys.id') || get(json, 'type') || defaultType;
+  let type =
+    get(json, 'fields.customType') ||
+    get(json, 'type.sys.id') ||
+    get(json, 'type') ||
+    defaultType;
 
   // Re-map old custom types to their new counterparts.
   // @TODO: Change this for old entries on Contentful!

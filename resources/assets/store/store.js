@@ -32,7 +32,8 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
   middleware.push(...customMiddlewares);
 
   // If React DevTools are available, use instrumented compose function.
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line
 
   // @TODO: Let's just merge all 3 states at once
   const transformedState = loadStorage(initialState, preloadedState);
@@ -54,7 +55,7 @@ export function initializeStore(store) {
   const state = store.getState();
 
   // If we don't already have a signup cached in local storage, check.
-  if (! state.signups.data.includes(state.campaign.legacyCampaignId)) {
+  if (!state.signups.data.includes(state.campaign.legacyCampaignId)) {
     store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
   }
 

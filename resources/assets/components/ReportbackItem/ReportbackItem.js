@@ -6,9 +6,20 @@ import Reaction from '../Reaction';
 import { pluralize } from '../../helpers';
 import './reportback-item.scss';
 
-const ReportbackItem = (props) => {
-  const { id, url, quantity, noun, caption, firstName, reaction = null, isFetching = false,
-    basicDisplay = false, toggleReactionOn, toggleReactionOff } = props;
+const ReportbackItem = props => {
+  const {
+    id,
+    url,
+    quantity,
+    noun,
+    caption,
+    firstName,
+    reaction = null,
+    isFetching = false,
+    basicDisplay = false,
+    toggleReactionOn,
+    toggleReactionOff,
+  } = props;
 
   const reactionElement = reaction ? (
     <Reaction
@@ -21,8 +32,16 @@ const ReportbackItem = (props) => {
 
   if (isFetching) {
     return (
-      <Figure className="reportback-item margin-bottom-none" image="" alt="Loading...">
-        <BaseFigure media={reactionElement} alignment="right" className="padded margin-bottom-none">
+      <Figure
+        className="reportback-item margin-bottom-none"
+        image=""
+        alt="Loading..."
+      >
+        <BaseFigure
+          media={reactionElement}
+          alignment="right"
+          className="padded margin-bottom-none"
+        >
           <h4>Loading…</h4>
           <p className="footnote">…</p>
         </BaseFigure>
@@ -31,11 +50,23 @@ const ReportbackItem = (props) => {
   }
 
   return (
-    <Figure className="reportback-item margin-bottom-none" image={url} alt={`${firstName}'s photo`}>
-      <BaseFigure media={reactionElement} alignment="right" className="padded margin-bottom-none">
-        {! basicDisplay && firstName ? <h4>{firstName}</h4> : null }
-        {! basicDisplay && quantity ? <p className="footnote">{quantity} {pluralize(quantity, noun.singular, noun.plural)}</p> : null }
-        {caption ? <p>{caption}</p> : null }
+    <Figure
+      className="reportback-item margin-bottom-none"
+      image={url}
+      alt={`${firstName}'s photo`}
+    >
+      <BaseFigure
+        media={reactionElement}
+        alignment="right"
+        className="padded margin-bottom-none"
+      >
+        {!basicDisplay && firstName ? <h4>{firstName}</h4> : null}
+        {!basicDisplay && quantity ? (
+          <p className="footnote">
+            {quantity} {pluralize(quantity, noun.singular, noun.plural)}
+          </p>
+        ) : null}
+        {caption ? <p>{caption}</p> : null}
       </BaseFigure>
     </Figure>
   );

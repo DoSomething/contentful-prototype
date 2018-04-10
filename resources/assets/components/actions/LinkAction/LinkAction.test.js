@@ -21,11 +21,7 @@ describe('LinkAction component', () => {
   };
 
   describe('without buttonText', () => {
-    const wrapper = shallow(
-      <LinkAction
-        {...props}
-      />,
-    );
+    const wrapper = shallow(<LinkAction {...props} />);
 
     it('renders a Card component with the link embed', () => {
       expect(wrapper.find('Card')).toHaveLength(1);
@@ -40,10 +36,7 @@ describe('LinkAction component', () => {
 
   describe('with buttonText', () => {
     const wrapper = shallow(
-      <LinkAction
-        {...props}
-        buttonText="Click this button"
-      />,
+      <LinkAction {...props} buttonText="Click this button" />,
     );
     it('renders a Card component with a button', () => {
       expect(wrapper.find('Card')).toHaveLength(1);
@@ -58,10 +51,7 @@ describe('LinkAction component', () => {
 
   describe('without an affiliateLogo', () => {
     const wrapper = shallow(
-      <LinkAction
-        {...props}
-        buttonText="Click this button"
-      />,
+      <LinkAction {...props} buttonText="Click this button" />,
     );
 
     it('does not add an "affiliate-content" class to the Card', () => {

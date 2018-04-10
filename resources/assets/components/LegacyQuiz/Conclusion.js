@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 import Markdown from '../Markdown';
 
-const Conclusion = (props) => {
+const Conclusion = props => {
   const { children, callToAction } = props;
 
   return (
     <Card className="conclusion rounded bordered padding-lg">
-      <div className="conclusion__item -one-third padding-lg">
-        { children }
-      </div>
+      <div className="conclusion__item -one-third padding-lg">{children}</div>
       <div className="conclusion__item -two-thirds padding-lg">
         <Markdown className="conclusion__cta">{callToAction}</Markdown>
       </div>

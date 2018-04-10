@@ -10,15 +10,18 @@ const mapStateToProps = (state, props) => {
   // @TODO: Move these into the pages themselves.
   const { location, match } = props;
   const isQuiz = location.pathname.replace(match.url, '').startsWith('/quiz/');
-  const isBlock = location.pathname.replace(match.url, '').startsWith('/blocks/');
+  const isBlock = location.pathname
+    .replace(match.url, '')
+    .startsWith('/blocks/');
 
-  const ignoreLandingPage = state.admin.shouldShowActionPage || isQuiz || isBlock;
+  const ignoreLandingPage =
+    state.admin.shouldShowActionPage || isQuiz || isBlock;
   let shouldShowLandingPage = false;
 
   if (state.admin.shouldShowLandingPage) {
     shouldShowLandingPage = true;
-  } else if (hasLandingPage && ! ignoreLandingPage) {
-    shouldShowLandingPage = ! isSignedUp;
+  } else if (hasLandingPage && !ignoreLandingPage) {
+    shouldShowLandingPage = !isSignedUp;
   }
 
   return {

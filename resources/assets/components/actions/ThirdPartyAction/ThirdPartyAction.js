@@ -6,25 +6,30 @@ import Markdown from '../../Markdown';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
 
-const ThirdParyAction = (props) => {
+const ThirdParyAction = props => {
   const {
-    content, dynamicLink, dynamicUrlParams, hideStepNumber, stepIndex,
-    title, userId,
+    content,
+    dynamicLink,
+    dynamicUrlParams,
+    hideStepNumber,
+    stepIndex,
+    title,
+    userId,
   } = props;
 
   let contentLink = '';
 
-  const urlParams = dynamicUrlParams.map((param) => {
+  const urlParams = dynamicUrlParams.map(param => {
     const value = param === 'northstar_id' ? userId : props[param];
 
     return `${param}=${value}`;
   });
 
   if (dynamicLink) {
-    contentLink = dynamicLink.indexOf('?') === -1 ?
-      `${dynamicLink}?${urlParams.join('&')}`
-      :
-      `${dynamicLink}&${urlParams.join('&')}`;
+    contentLink =
+      dynamicLink.indexOf('?') === -1
+        ? `${dynamicLink}?${urlParams.join('&')}`
+        : `${dynamicLink}&${urlParams.join('&')}`;
   }
 
   return (
@@ -36,13 +41,13 @@ const ThirdParyAction = (props) => {
             step={stepIndex}
             hideStepNumber={hideStepNumber}
           />
-          { content ?
+          {content ? (
             <FlexCell width="two-thirds">
-              <Markdown>{ content.replace(/:::[a-zA-Z]*:::/gi, contentLink) }</Markdown>
+              <Markdown>
+                {content.replace(/:::[a-zA-Z]*:::/gi, contentLink)}
+              </Markdown>
             </FlexCell>
-            :
-            null
-          }
+          ) : null}
         </Flex>
       </div>
     </FlexCell>

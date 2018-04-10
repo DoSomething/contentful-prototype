@@ -14,11 +14,17 @@ import { BLOCK_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
 
-const CampaignPage = (props) => {
+const CampaignPage = props => {
   const {
-    affiliatePartners, affiliateSponsors, campaignLead,
-    endDate, hasActivityFeed, match,
-    openModal, shouldShowActionPage, template,
+    affiliatePartners,
+    affiliateSponsors,
+    campaignLead,
+    endDate,
+    hasActivityFeed,
+    match,
+    openModal,
+    shouldShowActionPage,
+    template,
   } = props;
 
   const isClosed = isCampaignClosed(get(endDate, 'date', null));
@@ -29,12 +35,14 @@ const CampaignPage = (props) => {
    *if* it's available (meaning the campaign has an activity feed property populated).
     Otherwise, we render the ActionPage as usual.
     */
-  const shouldShowActivityFeed = isClosed && ! shouldShowActionPage && hasActivityFeed;
-  const ActionPageOrActivityFeed = () => (shouldShowActivityFeed ? (
-    <Redirect to={`${match.url}/community`} />
-  ) : (
-    <ActionPageContainer />
-  ));
+  const shouldShowActivityFeed =
+    isClosed && !shouldShowActionPage && hasActivityFeed;
+  const ActionPageOrActivityFeed = () =>
+    shouldShowActivityFeed ? (
+      <Redirect to={`${match.url}/community`} />
+    ) : (
+      <ActionPageContainer />
+    );
 
   return (
     <div>
@@ -54,19 +62,28 @@ const CampaignPage = (props) => {
             render={() => {
               // Does this campaign have an activity feed? (Some on the
               // "legacy" template don't.) If not, redirect to action page.
-              if (template === 'legacy' && ! hasActivityFeed) {
+              if (template === 'legacy' && !hasActivityFeed) {
                 return <Redirect to={`${match.url}/action`} />;
               }
 
               return <FeedContainer />;
             }}
           />
-          <Route path={`${match.url}/pages/:slug`} component={CampaignSubPageContainer} />
-          <Route path={`${match.url}/blocks/:id`} component={BlockPageContainer} />
-          <Route path={`${match.url}/quiz/:slug`} component={BlockPageContainer} />
+          <Route
+            path={`${match.url}/pages/:slug`}
+            component={CampaignSubPageContainer}
+          />
+          <Route
+            path={`${match.url}/blocks/:id`}
+            component={BlockPageContainer}
+          />
+          <Route
+            path={`${match.url}/quiz/:slug`}
+            component={BlockPageContainer}
+          />
           <Route
             path={`${match.url}/modal/:id`}
-            render={(routingProps) => {
+            render={routingProps => {
               const { id } = routingProps.match.params;
 
               switch (id) {
@@ -81,7 +98,7 @@ const CampaignPage = (props) => {
               return <Redirect to={`${match.url}`} />;
             }}
           />
-          { /* If no route matches, just redirect back to the main page: */ }
+          {/* If no route matches, just redirect back to the main page: */}
           <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
         </Switch>
       </div>

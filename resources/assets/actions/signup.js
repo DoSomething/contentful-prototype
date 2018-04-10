@@ -64,22 +64,25 @@ export function signupPending() {
 export function checkForSignup(campaignId) {
   return (dispatch, getState) => {
     const state = getState();
-    if (! isAuthenticated(state)) {
+    if (!isAuthenticated(state)) {
       return dispatch(signupNotFound());
     }
 
-    return (new Phoenix()).get('next/signups', {
-      campaigns: campaignId,
-      user: state.user.id,
-    }).then((response) => {
-      if (! response || ! response.data || ! response.data[0]) {
-        throw new Error('no signup found');
-      }
+    return new Phoenix()
+      .get('next/signups', {
+        campaigns: campaignId,
+        user: state.user.id,
+      })
+      .then(response => {
+        if (!response || !response.data || !response.data[0]) {
+          throw new Error('no signup found');
+        }
 
-      dispatch(signupFound(campaignId));
-    }).catch(() => {
-      dispatch(signupNotFound());
-    });
+        dispatch(signupFound(campaignId));
+      })
+      .catch(() => {
+        dispatch(signupNotFound());
+      });
   };
 }
 
@@ -91,8 +94,8 @@ export function setTotalSignups(total) {
 // Async Action: get the total signups for this campaign.
 export function getTotalSignups(campaignId) {
   return (dispatch, getState) => {
-    (new Phoenix()).get(`next/signups/total/${campaignId}`).then((response) => {
-      if (! response || ! response.meta || ! response.meta.pagination) {
+    new Phoenix().get(`next/signups/total/${campaignId}`).then(response => {
+      if (!response || !response.meta || !response.meta.pagination) {
         throw new Error('no signup metadata found');
       }
 
@@ -109,10 +112,18 @@ export function getTotalSignups(campaignId) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
-export function clickedSignUp(campaignId, options = null, shouldRedirectToActionTab = true) {
+export function clickedSignUp(
+  campaignId,
+  options = null,
+  shouldRedirectToActionTab = true,
+) {
   return (dispatch, getState) => {
     const state = getState();
-    const campaignActionUrl = join('/us/campaigns', getState().campaign.slug, '/action');
+    const campaignActionUrl = join(
+      '/us/campaigns',
+      getState().campaign.slug,
+      '/action',
+    );
 
     // get campagin run id from state.
     const campaignRunId = state.campaign.legacyCampaignRunId;
@@ -121,42 +132,48 @@ export function clickedSignUp(campaignId, options = null, shouldRedirectToAction
     let details = options;
 
     const additionalContent = state.campaign.additionalContent || {};
-    if (additionalContent.displayAffilitateOptOut && ! details) {
-      details = state.signups.affiliateMessagingOptOut ? 'affiliate-opt-out' : null;
+    if (additionalContent.displayAffilitateOptOut && !details) {
+      details = state.signups.affiliateMessagingOptOut
+        ? 'affiliate-opt-out'
+        : null;
     }
 
     // If the user is not logged in, handle this action later.
-    if (! isAuthenticated(state)) {
+    if (!isAuthenticated(state)) {
       return dispatch(queueEvent('clickedSignUp', campaignId, details));
     }
 
     // If we already have a signup, just go to the action page.
     if (state.signups.data.includes(campaignId)) {
-      return shouldRedirectToActionTab ? dispatch(push(campaignActionUrl)) : null;
+      return shouldRedirectToActionTab
+        ? dispatch(push(campaignActionUrl))
+        : null;
     }
 
     dispatch(signupPending());
 
-    return (new Phoenix()).post('next/signups', { campaignId, campaignRunId, details }).then((response) => {
-      // Handle a bad signup response...
-      if (! response) {
-        dispatch(addNotification('error'));
-      } else if (response[0] === false) {
-        // If Drupal denied our signup request, check if we already had a signup.
-        dispatch(checkForSignup(campaignId));
-      } else {
-        // Create signup and track any data before redirects.
-        dispatch(signupCreated(campaignId));
+    return new Phoenix()
+      .post('next/signups', { campaignId, campaignRunId, details })
+      .then(response => {
+        // Handle a bad signup response...
+        if (!response) {
+          dispatch(addNotification('error'));
+        } else if (response[0] === false) {
+          // If Drupal denied our signup request, check if we already had a signup.
+          dispatch(checkForSignup(campaignId));
+        } else {
+          // Create signup and track any data before redirects.
+          dispatch(signupCreated(campaignId));
 
-        // Take user to the action page if campaign is open.
-        const endDate = get(state.campaign.endDate, 'date', null);
-        const isClosed = isCampaignClosed(endDate);
-        if (shouldRedirectToActionTab && ! isClosed) {
-          dispatch(openModal(POST_SIGNUP_MODAL));
-          dispatch(push(campaignActionUrl));
+          // Take user to the action page if campaign is open.
+          const endDate = get(state.campaign.endDate, 'date', null);
+          const isClosed = isCampaignClosed(endDate);
+          if (shouldRedirectToActionTab && !isClosed) {
+            dispatch(openModal(POST_SIGNUP_MODAL));
+            dispatch(push(campaignActionUrl));
+          }
         }
-      }
-    });
+      });
   };
 }
 

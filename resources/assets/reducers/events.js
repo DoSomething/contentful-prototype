@@ -1,9 +1,6 @@
 /* global window */
 
-import {
-  QUEUE_EVENT,
-  COMPLETED_EVENT,
-} from '../actions';
+import { QUEUE_EVENT, COMPLETED_EVENT } from '../actions';
 
 import {
   append as storageAppend,
