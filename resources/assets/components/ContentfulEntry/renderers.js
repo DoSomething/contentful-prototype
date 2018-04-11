@@ -1,7 +1,7 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
-import { ContentBlock } from '../Block';
+import { LegacyContentBlock } from '../Block';
 import Affirmation from '../Affirmation';
 import { ShareActionContainer } from '../ShareAction';
 import LinkActionContainer from '../actions/LinkAction';
@@ -101,7 +101,7 @@ export function renderThirdPartyAction(step, stepIndex) {
  * @param  {String} template The current campaign template.
  * @return {Component}
  */
-export function renderContentBlock(step, stepIndex, template) {
+export function renderLegacyContentBlock(step, stepIndex, template) {
   const { id, fields } = step;
   const {
     title,
@@ -117,7 +117,7 @@ export function renderContentBlock(step, stepIndex, template) {
   const preTitle = additionalContent && additionalContent.preTitle;
 
   return (
-    <ContentBlock
+    <LegacyContentBlock
       key={id}
       preTitle={preTitle}
       title={title}

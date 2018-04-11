@@ -18,7 +18,7 @@ import {
   renderPhotoUploader,
   renderSubmissionGallery,
   renderThirdPartyAction,
-  renderContentBlock,
+  renderLegacyContentBlock,
   renderVoterRegistrationAction,
   renderShareAction,
   renderLinkAction,
@@ -90,8 +90,8 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'competition':
         return renderCompetitionStep(json);
 
-      case 'contentBlock':
-        return renderContentBlock(json, stepIndex);
+      case 'legacyContentBlock':
+        return renderLegacyContentBlock(json, stepIndex);
 
       case 'gallery':
         return <CampaignGalleryBlockContainer />;

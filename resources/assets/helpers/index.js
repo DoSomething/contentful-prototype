@@ -524,7 +524,7 @@ export function parseContentfulType(json, defaultType) {
   // Re-map old custom types to their new counterparts.
   // @TODO: Change this for old entries on Contentful!
   if (type === 'campaignActionStep') {
-    type = 'contentBlock';
+    type = 'legacyContentBlock';
   }
 
   return type;
