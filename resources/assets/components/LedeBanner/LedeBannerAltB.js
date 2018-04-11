@@ -5,7 +5,7 @@ import LegacyTemplate from './templates/LegacyTemplate';
 import MosaicTemplate from './templates/MosaicTemplate';
 import CoverTemplate from './templates/CoverTemplate';
 
-const LedeBanner = (props) => {
+const LedeBanner = props => {
   const { template } = props;
 
   switch (template) {
@@ -23,6 +23,5 @@ const LedeBanner = (props) => {
 LedeBanner.propTypes = {
   template: PropTypes.string.isRequired,
 };
-
 
 export default LedeBanner;

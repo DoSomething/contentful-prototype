@@ -6,7 +6,8 @@
   margin-bottom: $half-spacing;
   width: 100%;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: darken(#eee, 5%);
   }
 

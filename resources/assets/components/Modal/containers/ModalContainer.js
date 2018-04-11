@@ -13,9 +13,7 @@ const actionCreators = {
 };
 
 const mapPropsToEvents = trackEvent => ({
-  closeModal: ({ modalType }) => (
-    trackEvent('close modal', { modalType })
-  ),
+  closeModal: ({ modalType }) => trackEvent('close modal', { modalType }),
 });
 
 export default connect(mapStateToProps, actionCreators)(

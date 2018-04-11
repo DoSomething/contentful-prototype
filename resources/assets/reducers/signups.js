@@ -8,10 +8,7 @@ import {
   CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
 
-import {
-  set as storageSet,
-  SIGNUP_STORAGE_KEY,
-} from '../helpers/storage';
+import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 
 /**
  * Signup reducer:
@@ -21,10 +18,7 @@ const signupReducer = (state = {}, action) => {
 
   switch (action.type) {
     case SIGNUP_CREATED:
-      signups = [
-        ...state.data,
-        action.campaignId,
-      ];
+      signups = [...state.data, action.campaignId];
 
       storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
 
@@ -39,10 +33,7 @@ const signupReducer = (state = {}, action) => {
       };
 
     case SIGNUP_FOUND:
-      signups = [
-        ...state.data,
-        action.campaignId,
-      ];
+      signups = [...state.data, action.campaignId];
 
       storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
 
@@ -63,7 +54,10 @@ const signupReducer = (state = {}, action) => {
       return { ...state, total: action.total };
 
     case SIGNUP_CLICKED_OPT_OUT:
-      return { ...state, affiliateMessagingOptOut: ! state.affiliateMessagingOptOut };
+      return {
+        ...state,
+        affiliateMessagingOptOut: !state.affiliateMessagingOptOut,
+      };
 
     case CLICKED_REMOVE_SIGN_UP:
       return { ...state, thisCampaign: false };

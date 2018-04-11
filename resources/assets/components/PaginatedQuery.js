@@ -14,7 +14,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
     variables={{ ...variables, count, page: 1 }}
     notifyOnNetworkStatusChange
   >
-    {(result) => {
+    {result => {
       // On initial load, just display a loading spinner.
       if (result.networkStatus === NetworkStatus.LOADING) {
         return <div className="spinner -centered" />;
@@ -28,26 +28,27 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
       return children({
         result: result.data[queryName],
         fetching: result.networkStatus === NetworkStatus.FETCH_MORE,
-        fetchMore: () => result.fetchMore({
-          variables: {
-            // The value in `variables.page` doesn't get updated here on
-            // subsequent clicks, so we have to recalculate each time...
-            page: (result.data[queryName].length / result.variables.count) + 1,
-          },
-          updateQuery: (previousResult, { fetchMoreResult }) => {
-            if (! fetchMoreResult[queryName]) {
-              return previousResult;
-            }
+        fetchMore: () =>
+          result.fetchMore({
+            variables: {
+              // The value in `variables.page` doesn't get updated here on
+              // subsequent clicks, so we have to recalculate each time...
+              page: result.data[queryName].length / result.variables.count + 1,
+            },
+            updateQuery: (previousResult, { fetchMoreResult }) => {
+              if (!fetchMoreResult[queryName]) {
+                return previousResult;
+              }
 
-            return {
-              ...previousResult,
-              [queryName]: [
-                ...previousResult[queryName],
-                ...fetchMoreResult[queryName],
-              ],
-            };
-          },
-        }),
+              return {
+                ...previousResult,
+                [queryName]: [
+                  ...previousResult[queryName],
+                  ...fetchMoreResult[queryName],
+                ],
+              };
+            },
+          }),
       });
     }}
   </Query>

@@ -5,21 +5,15 @@ import Answer from './Answer';
 import SectionHeader from '../SectionHeader';
 
 const isActive = (answer, activeAnswer) => answer.id === activeAnswer;
-const shouldFade = (answer, activeAnswer) => (
-  activeAnswer !== null && ! isActive(answer, activeAnswer)
-);
+const shouldFade = (answer, activeAnswer) =>
+  activeAnswer !== null && !isActive(answer, activeAnswer);
 
-const Question = (props) => {
-  const {
-    id, quizId, title, answers, pickQuizAnswer, activeAnswer,
-  } = props;
+const Question = props => {
+  const { id, quizId, title, answers, pickQuizAnswer, activeAnswer } = props;
 
   return (
     <div className="question">
-      <SectionHeader
-        title={title}
-        hideStepNumber
-      />
+      <SectionHeader title={title} hideStepNumber />
       <div className="question__choices">
         {answers.map(answer => (
           <Answer

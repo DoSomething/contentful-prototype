@@ -15,7 +15,11 @@ class SurveyModal extends React.Component {
 
   componentWillUnmount() {
     // @see: ModalLauncher.js
-    set(`${this.props.northstarId}_dismissed_nps_survey`, 'timestamp', Date.now());
+    set(
+      `${this.props.northstarId}_dismissed_nps_survey`,
+      'timestamp',
+      Date.now(),
+    );
   }
 
   render() {
@@ -31,7 +35,11 @@ class SurveyModal extends React.Component {
     const typeformUrl = makeUrl(SURVEY_DATA_URL, typeformQuery);
 
     return (
-      <div className="modal__slide typeform-widget" data-url={typeformUrl.href} style={{ width: '100%', height: '500px' }} />
+      <div
+        className="modal__slide typeform-widget"
+        data-url={typeformUrl.href}
+        style={{ width: '100%', height: '500px' }}
+      />
     );
   }
 }

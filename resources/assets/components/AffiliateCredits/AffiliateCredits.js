@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AffiliateCredit = ({ title, link }) => {
-  const affiliate = link ? <a href={link} target="_blank">{title}</a> : title;
+  const affiliate = link ? (
+    <a href={link} target="_blank">
+      {title}
+    </a>
+  ) : (
+    title
+  );
 
   return <span>{affiliate}</span>;
 };
@@ -16,25 +22,24 @@ AffiliateCredit.defaultProps = {
   link: null,
 };
 
-
 const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
   const sponsor = affiliateSponsors[0];
   const partner = affiliatePartners[0];
 
-  const sponsorCredit = sponsor ?
+  const sponsorCredit = sponsor ? (
     <AffiliateCredit link={sponsor.fields.link} title={sponsor.fields.title} />
-    : null;
-  const partnerCredit = partner ?
+  ) : null;
+  const partnerCredit = partner ? (
     <AffiliateCredit link={partner.fields.link} title={partner.fields.title} />
-    : null;
+  ) : null;
 
   const multipleCredits = sponsor && partner ? ' and ' : null;
 
-  return (
-    (sponsorCredit || partnerCredit) ?
-      <span>In partnership with {sponsorCredit} {multipleCredits} {partnerCredit}</span>
-      : null
-  );
+  return sponsorCredit || partnerCredit ? (
+    <span>
+      In partnership with {sponsorCredit} {multipleCredits} {partnerCredit}
+    </span>
+  ) : null;
 };
 
 AffiliateCredits.propTypes = {

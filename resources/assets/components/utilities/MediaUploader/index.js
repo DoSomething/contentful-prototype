@@ -62,10 +62,20 @@ class MediaUploader extends React.Component {
     }
 
     return (
-      <div className={classnames('media-uploader', { 'has-image': filePreviewUrl, 'has-error': hasError })}>
+      <div
+        className={classnames('media-uploader', {
+          'has-image': filePreviewUrl,
+          'has-error': hasError,
+        })}
+      >
         <label htmlFor="media-uploader">
           {content}
-          <input type="file" id="media-uploader" name="media-uploader" onChange={this.handleChange} />
+          <input
+            type="file"
+            id="media-uploader"
+            name="media-uploader"
+            onChange={this.handleChange}
+          />
         </label>
       </div>
     );

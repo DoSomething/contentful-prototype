@@ -13,10 +13,7 @@ export const Flex = ({ id, className = null, children }) => (
 Flex.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 Flex.defaultProps = {

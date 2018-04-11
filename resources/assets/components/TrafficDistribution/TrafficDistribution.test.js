@@ -10,51 +10,46 @@ beforeEach(() => {
   global.localStorage = new LocalStorageMock();
 });
 
-
 // Set some constants for consistent traffic percentage math across the tests.
 const percentage = 10;
 
 const withinPool = percentage / 100;
 
-const outsidePool = (percentage / 100) + 1;
+const outsidePool = percentage / 100 + 1;
 
 // Fake feature name.
 const feature = 'test_feature';
 
-
 // HELPER METHODS:
 
 // Sets up a mock Math object, with a mock random() method for testing.
-const setMockMath = (num) => {
+const setMockMath = num => {
   const mockMath = Object.create(global.Math);
   mockMath.random = () => num;
   global.Math = mockMath;
 };
 
-const setWithinPool = () => (setMockMath(withinPool));
-const setOutsidePool = () => (setMockMath(outsidePool));
+const setWithinPool = () => setMockMath(withinPool);
+const setOutsidePool = () => setMockMath(outsidePool);
 
-const shallowComponent = () => (
+const shallowComponent = () =>
   shallow(
     <TrafficDistribution percentage={percentage} feature={feature}>
       <p>Hey there ole chap!</p>
     </TrafficDistribution>,
-  )
-);
+  );
 
-const testFeatureVisibility = (component) => {
+const testFeatureVisibility = component => {
   expect(component.find('p')).toHaveLength(1);
   expect(component.find('p').text()).toEqual('Hey there ole chap!');
 };
 
-const getFeatureFromStorage = () => (
-  get(`TrafficDistribution_${feature}`, 'object')
-);
+const getFeatureFromStorage = () =>
+  get(`TrafficDistribution_${feature}`, 'object');
 
-const setFeatureInStorage = (showFeature) => {
+const setFeatureInStorage = showFeature => {
   set(`TrafficDistribution_${feature}`, 'object', { showFeature });
 };
-
 
 // TESTS:
 

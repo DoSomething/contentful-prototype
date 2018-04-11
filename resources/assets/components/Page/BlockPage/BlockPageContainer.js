@@ -8,7 +8,7 @@ import { findContentfulEntry } from '../../../helpers';
 const mapStateToProps = (state, ownProps) => {
   const { id, slug } = ownProps.match.params;
 
-  const json = findContentfulEntry(state, (id || slug));
+  const json = findContentfulEntry(state, id || slug);
 
   return { json };
 };

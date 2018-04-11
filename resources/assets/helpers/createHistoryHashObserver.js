@@ -15,7 +15,7 @@ export default (history, timeout = 1000) => {
 
   // Supported in IE11+ & evergreens, skip if not.
   // <https://caniuse.com/#feat=mutationobserver>
-  if (! window.MutationObserver) {
+  if (!window.MutationObserver) {
     return history;
   }
 
@@ -44,7 +44,7 @@ export default (history, timeout = 1000) => {
     return false;
   };
 
-  history.listen((location) => {
+  history.listen(location => {
     if (timeoutId) {
       reset();
     }
@@ -55,7 +55,7 @@ export default (history, timeout = 1000) => {
 
     const elementId = location.hash.slice(1);
 
-    if (! elementId) {
+    if (!elementId) {
       return;
     }
 

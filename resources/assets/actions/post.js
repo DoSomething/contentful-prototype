@@ -20,14 +20,16 @@ export function fetchCampaignPosts() {
     // @TODO: for now prefer legacy ID over contentful ID
     const campaignId = legacyId || id;
 
-    dispatch(apiRequest('GET', {
-      id,
-      legacyId,
-      query: {
-        limit: 24,
-      },
-      url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
-    }));
+    dispatch(
+      apiRequest('GET', {
+        id,
+        legacyId,
+        query: {
+          limit: 24,
+        },
+        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
+      }),
+    );
   };
 }
 
@@ -52,8 +54,12 @@ export function clearPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  if (! (data.body instanceof FormData)) {
-    throw Error(`The supplied data.body must be an instance of FormData, instead it is an instance of ${data.body.constructor.name}.`);
+  if (!(data.body instanceof FormData)) {
+    throw Error(
+      `The supplied data.body must be an instance of FormData, instead it is an instance of ${
+        data.body.constructor.name
+      }.`,
+    );
   }
 
   const { action, body, id, type } = data;

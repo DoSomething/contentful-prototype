@@ -9,7 +9,6 @@
 }
 
 .photo-uploader-action {
-
   .field-label {
     height: auto;
   }
@@ -111,7 +110,12 @@
     width: 33.3333333333333%;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-size: $font-regular;
   }
 }

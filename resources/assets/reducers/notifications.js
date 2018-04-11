@@ -13,10 +13,7 @@ const notifications = (state = {}, action) => {
 
       return {
         ...state,
-        items: [
-          ...state.items,
-          notification,
-        ],
+        items: [...state.items, notification],
       };
     }
 

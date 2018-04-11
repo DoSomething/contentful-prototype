@@ -1,14 +1,15 @@
 # Environment Details & Behaviors
-***
 
-*Production*
+---
+
+_Production_
 URL: next.dosomething.org/us/campaigns/…
 
 The only things that will show up on production are those that have been published in the Contentful campaign. If something is in Draft or Archived, they will not show on the live campaign.
 
-*Thor*
+_Thor_
 
-URL:  next-thor.dosomething.org/us/campaigns/…
+URL: next-thor.dosomething.org/us/campaigns/…
 
 On Thor, anything that is in Draft mode will show on the page. This allows you to queue up content changes without actually changing a live campaign, as well as identify if new content is an issue before publishing to Production.
 

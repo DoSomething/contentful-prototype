@@ -22,7 +22,10 @@ class Modal extends React.Component {
 
   componentDidMount() {
     this.chrome.classList.add('-lock');
-    this.chrome.setAttribute('style', `transform: translateY(-${this.scrollOffset}px)`);
+    this.chrome.setAttribute(
+      'style',
+      `transform: translateY(-${this.scrollOffset}px)`,
+    );
     this.modalPortal.classList.add('is-active');
     this.modalPortal.appendChild(this.el);
   }
@@ -38,7 +41,7 @@ class Modal extends React.Component {
   render() {
     const children = (
       <ModalContent onClose={this.props.onClose}>
-        { this.props.children}
+        {this.props.children}
       </ModalContent>
     );
 

@@ -37,6 +37,8 @@ describe('clicking the VoterRegistrationAction button', () => {
   });
 
   test('sets the user to be hidden from voter_reg_modal in local storage', () => {
-    expect(get(`${'551234567890abcdefghijkl'}_hide_voter_reg_modal`, 'boolean')).toBe(true);
+    expect(
+      get(`${'551234567890abcdefghijkl'}_hide_voter_reg_modal`, 'boolean'),
+    ).toBe(true);
   });
 });

@@ -30,23 +30,24 @@ class ModalLauncher extends React.Component {
   shouldSeeModal() {
     const { userId, type, isAuthenticated } = this.props;
 
-    if (! isAuthenticated) {
+    if (!isAuthenticated) {
       return false;
     }
 
     let shouldNotSee = get(`${userId}_hide_${type}`, 'boolean');
     // Support for legacy nps survey 'hide feature' storage format.
-    if (type === 'nps_survey' && ! shouldNotSee) {
+    if (type === 'nps_survey' && !shouldNotSee) {
       shouldNotSee = get(`${userId}_finished_survey`, 'boolean');
     }
-
 
     // @see: SurveyModal.js
     const dismissalTime = get(`${userId}_dismissed_${type}`, 'timestamp');
     // Check if the survey was dismissed over 30 days ago.
-    const isDismissed = isTimestampValid(dismissalTime, (30 * 1440 * 60 * 1000));
+    const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
 
-    return env(`${type.toUpperCase()}_ENABLED`) && ! shouldNotSee && ! isDismissed;
+    return (
+      env(`${type.toUpperCase()}_ENABLED`) && !shouldNotSee && !isDismissed
+    );
   }
 
   render() {
@@ -67,6 +68,5 @@ ModalLauncher.defaultProps = {
   userId: null,
   isAuthenticated: false,
 };
-
 
 export default ModalLauncher;

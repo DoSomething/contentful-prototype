@@ -6,7 +6,7 @@ import LandingPage from './LandingPage';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const landingPage = state.campaign.landingPage.fields;
 
   return {
@@ -18,8 +18,16 @@ const mapStateToProps = (state) => {
     isAffiliated: state.signups.thisCampaign,
     affiliateSponsors: state.campaign.affiliateSponsors,
     legacyCampaignId: state.campaign.legacyCampaignId,
-    showPartnerMsgOptIn: get(state.campaign.additionalContent, 'displayAffilitateOptOut', false),
-    signupArrowContent: get(state.campaign.additionalContent, 'signupArrowContent', null),
+    showPartnerMsgOptIn: get(
+      state.campaign.additionalContent,
+      'displayAffilitateOptOut',
+      false,
+    ),
+    signupArrowContent: get(
+      state.campaign.additionalContent,
+      'signupArrowContent',
+      null,
+    ),
     subtitle: state.campaign.callToAction,
     tagline: get(state.campaign.additionalContent, 'tagline'),
     template: state.campaign.template,

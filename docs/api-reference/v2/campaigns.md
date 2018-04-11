@@ -1,6 +1,7 @@
 # Campaigns
 
 ## Retrieve a Campaign
+
 ```
 GET /api/v2/campaigns/{id}
 ```
@@ -8,11 +9,13 @@ GET /api/v2/campaigns/{id}
 The `id` can be either a Contentful ID or an Ashes Legacy ID.
 
 Example Request:
+
 ```
 https://next.dosomething.org/api/v2/campaigns/6LQzMvDNQcYQYwso8qSkQ8
 ```
 
 Example Response:
+
 ```json
 {
   "data": {
@@ -24,27 +27,30 @@ Example Response:
     "title": "[Test] Teens for Jeans",
     "slug": "test-teens-for-jeans",
     "endDate": {
-        "date": "2018-02-15 12:00:00.000000",
-        "timezone_type": 1,
-        "timezone": "-06:00"
+      "date": "2018-02-15 12:00:00.000000",
+      "timezone_type": 1,
+      "timezone": "-06:00"
     },
     "callToAction": "Let's collect another million jeans TOGETHER.",
     "tagline": "Let's collect another million jeans TOGETHER.",
     "blurb": "",
     "coverImage": {
-        "description": null,
-        "url": "https://images.contentful.com/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg",
-        "landscapeUrl": "https://images.contentful.com/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?w=1440&h=620&fm=jpg&fit=fill"
+      "description": null,
+      "url":
+        "https://images.contentful.com/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg",
+      "landscapeUrl":
+        "https://images.contentful.com/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?w=1440&h=620&fm=jpg&fit=fill"
     },
     "campaignLead": {
-        "id": "4V3gy8KPBK4gAWuMGSKWuA",
-        "type": "staff",
-        "fields": {
-            "name": "Adam Garner",
-            "jobTitle": "Campaign Lead",
-            "avatar": "https://images.contentful.com/81iqaqpfd8fy/5dN0SxEQrYeI8eKwOAOwia/179e972eae699c6377faa74d611a50a2/Adam_Garner_Headshot.png?w=600&h=600&fm=jpg&fit=fill",
-            "email": "adam@dosomething.org"
-        }
+      "id": "4V3gy8KPBK4gAWuMGSKWuA",
+      "type": "staff",
+      "fields": {
+        "name": "Adam Garner",
+        "jobTitle": "Campaign Lead",
+        "avatar":
+          "https://images.contentful.com/81iqaqpfd8fy/5dN0SxEQrYeI8eKwOAOwia/179e972eae699c6377faa74d611a50a2/Adam_Garner_Headshot.png?w=600&h=600&fm=jpg&fit=fill",
+        "email": "adam@dosomething.org"
+      }
     },
     "affiliateSponsors": [],
     "affiliatePartners": [],
@@ -63,8 +69,8 @@ Example Response:
 }
 ```
 
-
 ## Retrieve all Posts for a Campaign
+
 ```
 GET /api/v2/campaigns/{id}/posts
 ```
@@ -73,8 +79,8 @@ The request is proxied to Rogue and automatically adds the `filter[campaign_id]=
 
 // @TODO add link to corresponding url params and response example from Rogue
 
-
 ## Create a Post for a Campaign
+
 ```
 POST /api/v2/campaigns/{id}/posts
 ```
@@ -82,11 +88,13 @@ POST /api/v2/campaigns/{id}/posts
 The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:$id` to the query params.
 
 Example Request:
+
 ```
 https://next.dosomething.org/api/v2/campaigns/3455/posts
 ```
 
 Example Response
+
 ```json
 {
   "data": {
@@ -95,7 +103,8 @@ Example Response
     "northstar_id": "551234567890abcdefghijkl",
     "media": {
       "url": "https://rogue-thor.dosomething.org/images/123456",
-      "original_image_url": "https://ds-rogue-thor.s3.amazonaws.com/uploads/reportback-items/8496508-superlongstringidhere-1234567890.jpeg?time=1517330438",
+      "original_image_url":
+        "https://ds-rogue-thor.s3.amazonaws.com/uploads/reportback-items/8496508-superlongstringidhere-1234567890.jpeg?time=1517330438",
       "caption": "Some awesome caption here!"
     },
     "quantity": "12",
@@ -128,4 +137,3 @@ Example Response
 ```
 
 Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
-

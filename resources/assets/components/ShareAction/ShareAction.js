@@ -7,14 +7,22 @@ import Markdown from '../Markdown';
 import { POST_SHARE_MODAL } from '../Modal';
 import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
 
-const ShareAction = (props) => {
-  const { id, title, content, link, socialPlatform, openModal, trackEvent } = props;
+const ShareAction = props => {
+  const {
+    id,
+    title,
+    content,
+    link,
+    socialPlatform,
+    openModal,
+    trackEvent,
+  } = props;
 
   const onFacebookClick = () => {
     const trackingData = { url: link };
     trackEvent('clicked facebook share action', trackingData);
 
-    showFacebookSharePrompt({ href: link }, (response) => {
+    showFacebookSharePrompt({ href: link }, response => {
       if (response) {
         trackEvent('share action completed', trackingData);
         // @TODO: Render a <Modal>...</Modal> component here!
@@ -36,13 +44,19 @@ const ShareAction = (props) => {
     switch (socialPlatform) {
       case 'facebook':
         return (
-          <button className="button button-attached" onClick={() => onFacebookClick(link)}>
+          <button
+            className="button button-attached"
+            onClick={() => onFacebookClick(link)}
+          >
             Share on Facebook
           </button>
         );
       case 'twitter':
         return (
-          <button className="button button-attached" onClick={() => onTwitterClick(link)}>
+          <button
+            className="button button-attached"
+            onClick={() => onTwitterClick(link)}
+          >
             Share on Twitter
           </button>
         );
@@ -54,13 +68,11 @@ const ShareAction = (props) => {
   return (
     <div className="share-action margin-bottom-lg">
       <Card title={title} className="rounded bordered">
-        { content ?
-          <Markdown className="padded">{content}</Markdown>
-          : null }
+        {content ? <Markdown className="padded">{content}</Markdown> : null}
 
         <Embed className="padded" url={link} />
 
-        { shareButton() }
+        {shareButton()}
       </Card>
     </div>
   );

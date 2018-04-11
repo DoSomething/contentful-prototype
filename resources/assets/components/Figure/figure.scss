@@ -3,13 +3,17 @@
 .figure.-small > .figure__media {
   width: 50px;
 
-  img { width: 100% }
+  img {
+    width: 100%;
+  }
 }
 
 .figure.-large > .figure__media {
   width: 200px;
 
-  img { width: 100% }
+  img {
+    width: 100%;
+  }
 }
 
 .figure.-left.-center.-small {

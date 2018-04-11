@@ -8,7 +8,7 @@ import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import AffiliateOptionContainer from '../../AffiliateOption';
 
-const LegacyTemplate = (props) => {
+const LegacyTemplate = props => {
   const {
     title,
     subtitle,
@@ -21,7 +21,12 @@ const LegacyTemplate = (props) => {
   } = props;
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${contentfulImageUrl(coverImage.url, '1440', '810', 'fill')})`,
+    backgroundImage: `url(${contentfulImageUrl(
+      coverImage.url,
+      '1440',
+      '810',
+      'fill',
+    )})`,
   };
 
   // @TODO: consider whether there can be more than one affiliate, or
@@ -29,30 +34,36 @@ const LegacyTemplate = (props) => {
   const sponsor = affiliateSponsors[0];
 
   return (
-    <header role="banner" className="header -hero header--action has-promotions" style={backgroundImageStyle}>
+    <header
+      role="banner"
+      className="header -hero header--action has-promotions"
+      style={backgroundImageStyle}
+    >
       <div className="wrapper">
         <h1 className="header__title">{title}</h1>
         <p className="header__subtitle">{subtitle}</p>
-        { endDate ? <p className="header__date">Ends {format(endDate.date, 'MMMM Do')}</p> : null }
+        {endDate ? (
+          <p className="header__date">Ends {format(endDate.date, 'MMMM Do')}</p>
+        ) : null}
 
-        { isAffiliated ? null : (
+        {isAffiliated ? null : (
           <div className="header__signup">
-            { signupArrowContent ? <CampaignSignupArrow content={signupArrowContent} /> : null }
+            {signupArrowContent ? (
+              <CampaignSignupArrow content={signupArrowContent} />
+            ) : null}
             <div>
               <SignupButton source="legacy lede banner" />
-              { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
+              {showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null}
             </div>
           </div>
         )}
 
-        {
-          sponsor ?
-            <SponsorPromotion
-              imgUrl={sponsor.fields.logo.url}
-              title={sponsor.fields.logo.title}
-            />
-            : null
-        }
+        {sponsor ? (
+          <SponsorPromotion
+            imgUrl={sponsor.fields.logo.url}
+            title={sponsor.fields.logo.title}
+          />
+        ) : null}
       </div>
     </header>
   );

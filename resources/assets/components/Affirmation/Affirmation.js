@@ -14,14 +14,18 @@ const Affirmation = ({ content }) => (
     <Markdown className="padded">{content.quote}</Markdown>
     <Flex className="flex-align-center">
       <FlexCell className="affirmation__cta padded" width="half">
-        <h3>{ content.callToActionHeader }</h3>
-        <p>{ content.callToActionDescription }</p>
+        <h3>{content.callToActionHeader}</h3>
+        <p>{content.callToActionDescription}</p>
       </FlexCell>
       <FlexCell className="padded" width="half">
         <ShareContainer variant="blue" parentSource="affirmation" />
       </FlexCell>
     </Flex>
-    <Byline author={content.author.fields.name} {...content.author.fields} className="padded" />
+    <Byline
+      author={content.author.fields.name}
+      {...content.author.fields}
+      className="padded"
+    />
   </Card>
 );
 

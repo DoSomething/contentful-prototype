@@ -2,26 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './slideshow.scss';
 
-const Slideshow = (props) => {
+const Slideshow = props => {
   const {
-    hideCloseButton, isFinalSlide, nextSlide,
-    onComplete, slide, slideshowId,
+    hideCloseButton,
+    isFinalSlide,
+    nextSlide,
+    onComplete,
+    slide,
+    slideshowId,
   } = props;
 
   const nextFunc = isFinalSlide ? onComplete : () => nextSlide(slideshowId);
 
-  const SlideButton = () => (isFinalSlide && hideCloseButton ? null : (
-    <button
-      className="button slideshow__button margin-top-lg"
-      onClick={() => nextFunc()}
-    >{ isFinalSlide ? 'Close' : 'Next' }</button>
-  ));
+  const SlideButton = () =>
+    isFinalSlide && hideCloseButton ? null : (
+      <button
+        className="button slideshow__button margin-top-lg"
+        onClick={() => nextFunc()}
+      >
+        {isFinalSlide ? 'Close' : 'Next'}
+      </button>
+    );
 
   return (
     <div className="slideshow">
-      <div className="slideshow__slide">
-        { slide }
-      </div>
+      <div className="slideshow__slide">{slide}</div>
       <SlideButton />
     </div>
   );

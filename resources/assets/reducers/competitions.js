@@ -4,10 +4,7 @@ import {
   COMPETITION_PENDING,
 } from '../actions';
 
-import {
-  set as storageSet,
-  COMPETITION_STORAGE_KEY,
-} from '../helpers/storage';
+import { set as storageSet, COMPETITION_STORAGE_KEY } from '../helpers/storage';
 
 /**
  * Competitions reducer:
@@ -17,10 +14,7 @@ const competitions = (state = {}, action) => {
 
   switch (action.type) {
     case JOINED_COMPETITION:
-      joinedCompetitions = [
-        ...state.data,
-        action.campaignId,
-      ];
+      joinedCompetitions = [...state.data, action.campaignId];
 
       storageSet(action.userId, COMPETITION_STORAGE_KEY, joinedCompetitions);
 
@@ -33,10 +27,7 @@ const competitions = (state = {}, action) => {
       };
 
     case COMPETITION_FOUND:
-      joinedCompetitions = [
-        ...state.data,
-        action.campaignId,
-      ];
+      joinedCompetitions = [...state.data, action.campaignId];
 
       storageSet(action.userId, COMPETITION_STORAGE_KEY, joinedCompetitions);
 

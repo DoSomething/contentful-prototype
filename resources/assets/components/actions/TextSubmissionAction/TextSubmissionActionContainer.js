@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 
 import TextSubmissionAction from './TextSubmissionAction';
-import { clearPostSubmissionItem, storeCampaignPost } from '../../../actions/post';
+import {
+  clearPostSubmissionItem,
+  storeCampaignPost,
+} from '../../../actions/post';
 
 /**
  * Provide state from the Redux store as props for this component.

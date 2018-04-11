@@ -25,7 +25,8 @@
       background-color: #fff;
       color: #000;
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         background-color: $off-white;
         box-shadow: none;
       }
@@ -126,7 +127,7 @@
   }
 }
 
-.message-callout{
+.message-callout {
   clear: both;
   margin-top: $half-spacing;
 
@@ -141,7 +142,8 @@
 }
 
 .mosaic-lede-banner__sponsor {
-  .promotion .__copy, .promotion .__image {
+  .promotion .__copy,
+  .promotion .__image {
     max-width: 100%;
   }
 }

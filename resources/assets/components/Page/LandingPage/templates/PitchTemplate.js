@@ -7,11 +7,11 @@ import Card from '../../../Card';
 const PitchTemplate = ({ pitchContent, sidebarCTA }) => (
   <div className="campaign-subpage">
     <div className="primary">
-      <Markdown>{ pitchContent }</Markdown>
+      <Markdown>{pitchContent}</Markdown>
     </div>
     <div className="secondary">
-      <Card title={sidebarCTA.title} className="rounded bordered" >
-        <Markdown className="padded" >{ sidebarCTA.content }</Markdown>
+      <Card title={sidebarCTA.title} className="rounded bordered">
+        <Markdown className="padded">{sidebarCTA.content}</Markdown>
       </Card>
     </div>
   </div>
@@ -33,4 +33,3 @@ PitchTemplate.defaultProps = {
 };
 
 export default PitchTemplate;
-

@@ -1,3 +1,5 @@
+/* eslint-disable react/no-danger */
+
 import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
@@ -6,8 +8,9 @@ import { markdown, contentfulImageUrl } from '../../helpers';
 import './markdown.scss';
 
 const pattern = /\/\/images\.contentful\.com.+\.(jpg|png)/g;
-const contentfulImageFormat = url => (contentfulImageUrl(url, '1000'));
-const formatImageUrls = string => (string.replace(pattern, contentfulImageFormat));
+const contentfulImageFormat = url => contentfulImageUrl(url, '1000');
+const formatImageUrls = string =>
+  string.replace(pattern, contentfulImageFormat);
 
 const Markdown = ({ className = null, children }) => {
   // When directly writing content into this component, React may pass it as an
@@ -15,7 +18,12 @@ const Markdown = ({ className = null, children }) => {
   const sourceMarkdown = Array.isArray(children) ? children.join('') : children;
   const html = markdown(formatImageUrls(sourceMarkdown));
 
-  return <div className={classnames('markdown', 'with-lists', className)} dangerouslySetInnerHTML={html} />; // eslint-disable-line react/no-danger
+  return (
+    <div
+      className={classnames('markdown', 'with-lists', className)}
+      dangerouslySetInnerHTML={html}
+    />
+  );
 };
 
 Markdown.propTypes = {

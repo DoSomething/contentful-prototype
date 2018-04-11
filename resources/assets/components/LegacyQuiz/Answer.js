@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Card from '../Card';
 
-const Answer = (props) => {
+const Answer = props => {
   const {
-    id, title, quizId, questionId, pickQuizAnswer,
-    isActive, isFaded, backgroundImage,
+    id,
+    title,
+    quizId,
+    questionId,
+    pickQuizAnswer,
+    isActive,
+    isFaded,
+    backgroundImage,
   } = props;
 
   const classes = classnames('bordered rounded', {
@@ -22,8 +28,8 @@ const Answer = (props) => {
       tabIndex={0}
     >
       <Card className={classes}>
-        { backgroundImage ? <img src={backgroundImage} alt="" /> : null }
-        <p className="padding-lg">{ title }</p>
+        {backgroundImage ? <img src={backgroundImage} alt="" /> : null}
+        <p className="padding-lg">{title}</p>
       </Card>
     </a>
   );

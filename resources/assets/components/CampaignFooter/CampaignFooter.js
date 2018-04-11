@@ -20,7 +20,11 @@ CampaignFooterContact.defaultProps = {
   email: 'help@dosomething.org',
 };
 
-const CampaignFooter = ({ affiliateSponsors, affiliatePartners, campaignLead }) => (
+const CampaignFooter = ({
+  affiliateSponsors,
+  affiliatePartners,
+  campaignLead,
+}) => (
   <footer className="info-bar">
     <div className="default-container padding-vertical-lg padding-horizontal-md">
       <AffiliateCredits

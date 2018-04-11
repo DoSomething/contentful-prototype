@@ -19,13 +19,13 @@ export const campaignPaths = {
 export function getRouteName(route) {
   // When doing path comparisons, we want the least specific
   // (eg: '/') paths at the end of the array.
-  const pathValues = (
-    Object.values(campaignPaths).sort((pathA, pathB) => pathB.length - pathA.length)
+  const pathValues = Object.values(campaignPaths).sort(
+    (pathA, pathB) => pathB.length - pathA.length,
   );
 
   // Check if /pages/faq starts with /pages/.
   const match = pathValues.find(path => route.startsWith(path));
-  if (! match) {
+  if (!match) {
     return 'undefined route';
   }
 
@@ -52,7 +52,7 @@ export function getRouteName(route) {
  * @param  {String} toggleClass
  */
 export function toggleHandler(button, target, toggleClass) {
-  if (! button || ! target) {
+  if (!button || !target) {
     return;
   }
 

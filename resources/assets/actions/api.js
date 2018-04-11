@@ -7,9 +7,9 @@ import { API } from '../constants/action-types';
  */
 export default function apiRequest(method, payload) {
   // @TODO: check if supplied arguments are ok!
-  return ({
+  return {
     type: API,
     method,
     payload,
-  });
+  };
 }

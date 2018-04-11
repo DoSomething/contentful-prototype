@@ -40,7 +40,7 @@ export function renderCompetitionStep(step) {
  * @return {Component}
  */
 export function renderPhotoUploader(step, isSignedUp) {
-  if (! isSignedUp) {
+  if (!isSignedUp) {
     return null;
   }
 
@@ -62,7 +62,7 @@ export function renderPhotoUploader(step, isSignedUp) {
  * @return {Component}
  */
 export function renderSubmissionGallery(isSignedUp) {
-  if (! isSignedUp) {
+  if (!isSignedUp) {
     return null;
   }
 
@@ -104,11 +104,17 @@ export function renderThirdPartyAction(step, stepIndex) {
 export function renderContentBlock(step, stepIndex, template) {
   const { id, fields } = step;
   const {
-    title, content, background, photos,
-    displayOptions, hideStepNumber, truncate, additionalContent,
+    title,
+    content,
+    background,
+    photos,
+    displayOptions,
+    hideStepNumber,
+    truncate,
+    additionalContent,
   } = fields;
 
-  const preTitle = (additionalContent && additionalContent.preTitle);
+  const preTitle = additionalContent && additionalContent.preTitle;
 
   return (
     <ContentBlock
@@ -163,7 +169,10 @@ export function renderShareAction(step) {
     <div key={`share-action-${contentfulId}`} className="margin-horizontal-md">
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
       <ShareActionContainer id={step.id} {...step.fields} />
-      <PuckWaypoint name="share_action-bottom" waypointData={{ contentfulId }} />
+      <PuckWaypoint
+        name="share_action-bottom"
+        waypointData={{ contentfulId }}
+      />
     </div>
   );
 }
@@ -195,10 +204,19 @@ export function renderTextSubmissionAction(data) {
   const contentfulId = data.id;
 
   return (
-    <div key={`text-submission-action-${contentfulId}`} className="margin-horizontal-md margin-bottom-lg">
-      <PuckWaypoint name="text_submission_action-top" waypointData={{ contentfulId }} />
+    <div
+      key={`text-submission-action-${contentfulId}`}
+      className="margin-horizontal-md margin-bottom-lg"
+    >
+      <PuckWaypoint
+        name="text_submission_action-top"
+        waypointData={{ contentfulId }}
+      />
       <TextSubmissionActionContainer id={data.id} {...data.fields} />
-      <PuckWaypoint name="text_submission_action-bottom" waypointData={{ contentfulId }} />
+      <PuckWaypoint
+        name="text_submission_action-bottom"
+        waypointData={{ contentfulId }}
+      />
     </div>
   );
 }

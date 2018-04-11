@@ -12,10 +12,14 @@ const REPORTBACK_DISPLAY_OPTION = 'one-third';
  */
 export function mapDisplayToBlockPoints(displayOption) {
   switch (displayOption) {
-    case 'one-third': return 1;
-    case 'two-thirds': return 2;
-    case 'full': return 3;
-    default: return 0;
+    case 'one-third':
+      return 1;
+    case 'two-thirds':
+      return 2;
+    case 'full':
+      return 3;
+    default:
+      return 0;
   }
 }
 
@@ -24,7 +28,8 @@ export function mapDisplayToBlockPoints(displayOption) {
  *
  * @return {Integer}
  */
-const getReportbackBlockPoint = () => mapDisplayToBlockPoints(REPORTBACK_DISPLAY_OPTION);
+const getReportbackBlockPoint = () =>
+  mapDisplayToBlockPoints(REPORTBACK_DISPLAY_OPTION);
 
 /**
  * Get the blocks from the application state.
@@ -38,10 +43,11 @@ export const getBlocks = state => state.campaign.activityFeed;
  * @returns {*}
  */
 export function totalBlockPointsInFeed(state) {
-  return getBlocks(state)
-    .reduce((total, block) => (
-      total + mapDisplayToBlockPoints(block.fields.displayOptions)
-    ), 0);
+  return getBlocks(state).reduce(
+    (total, block) =>
+      total + mapDisplayToBlockPoints(block.fields.displayOptions),
+    0,
+  );
 }
 
 /**
@@ -52,9 +58,11 @@ export function totalBlockPointsInFeed(state) {
 export function totalReportbackBlockPointsInFeed(state) {
   return getBlocks(state)
     .filter(block => block.type === 'reportbacks')
-    .reduce((total, block) => (
-      total + mapDisplayToBlockPoints(block.fields.displayOptions)
-    ), 0);
+    .reduce(
+      (total, block) =>
+        total + mapDisplayToBlockPoints(block.fields.displayOptions),
+      0,
+    );
 }
 
 /**
@@ -63,20 +71,17 @@ export function totalReportbackBlockPointsInFeed(state) {
  * @param state
  * @returns {number}
  */
-export const getTotalVisibleBlockPoints = state => (
-  state.blocks.page * BLOCKS_PER_ROW * ROWS_PER_PAGE
-);
+export const getTotalVisibleBlockPoints = state =>
+  state.blocks.page * BLOCKS_PER_ROW * ROWS_PER_PAGE;
 
 /**
  * Get the number of blocks that are visible in the feed.
  * @param state
  * @returns {number}
  */
-export const getMaximumBlockPoints = state => (
-  totalBlockPointsInFeed(state) + (
-    state.reportbacks.total - totalReportbackBlockPointsInFeed(state)
-  )
-);
+export const getMaximumBlockPoints = state =>
+  totalBlockPointsInFeed(state) +
+  (state.reportbacks.total - totalReportbackBlockPointsInFeed(state));
 
 /**
  * Filter the blocks based on the page.
@@ -114,7 +119,7 @@ export function getVisibleBlocks(state) {
   while (totalPoints <= targetPoints) {
     const block = allBlocks[blockIndex];
 
-    if (! block) {
+    if (!block) {
       break;
     }
 
@@ -124,18 +129,25 @@ export function getVisibleBlocks(state) {
     totalPoints += mapDisplayToBlockPoints(block.fields.displayOptions);
 
     const nextBlock = allBlocks[blockIndex];
-    if (! nextBlock) {
+    if (!nextBlock) {
       break;
     }
 
     const rowPointsRemaining = totalPoints % BLOCKS_PER_ROW;
-    const nextBlockPoints = mapDisplayToBlockPoints(nextBlock.fields.displayOptions);
+    const nextBlockPoints = mapDisplayToBlockPoints(
+      nextBlock.fields.displayOptions,
+    );
     const remainingRowPoints = BLOCKS_PER_ROW - rowPointsRemaining;
-    const remainingRowReportbacks = remainingRowPoints / getReportbackBlockPoint();
+    const remainingRowReportbacks =
+      remainingRowPoints / getReportbackBlockPoint();
     const nextBlockStartsNewRow = nextBlockPoints > remainingRowPoints;
 
     if (rowPointsRemaining !== 0 && nextBlockStartsNewRow) {
-      for (let fillerIndex = 0; fillerIndex < remainingRowReportbacks; fillerIndex += 1) {
+      for (
+        let fillerIndex = 0;
+        fillerIndex < remainingRowReportbacks;
+        fillerIndex += 1
+      ) {
         appendReportbackBlock();
       }
     }
@@ -143,7 +155,10 @@ export function getVisibleBlocks(state) {
 
   // If we weren't able to fill enough rows with blocks, add
   // additional reportback blocks until we hit the target.
-  while (totalPoints < targetPoints && totalPoints < getMaximumBlockPoints(state)) {
+  while (
+    totalPoints < targetPoints &&
+    totalPoints < getMaximumBlockPoints(state)
+  ) {
     appendReportbackBlock();
   }
 
@@ -160,7 +175,7 @@ export function getBlocksWithReportbacks(blocks, state) {
   const reportbacks = state.reportbacks.ids;
   let reportbackIndex = 0;
 
-  return blocks.map((block) => {
+  return blocks.map(block => {
     if (block.type !== 'reportbacks') {
       return block;
     }

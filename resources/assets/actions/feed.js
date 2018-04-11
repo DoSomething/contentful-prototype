@@ -22,15 +22,21 @@ export function conditionallyFetchReportbacks() {
 
     // The number of needed reportbacks are the number of reportback blocks in the
     // community feed + any additional offset that hasn't been filled by blocks.
-    const overflowReportbackBlocks = Math.max(0, (
-      getTotalVisibleBlockPoints(state) - totalBlockPointsInFeed(state)
-    ));
+    const overflowReportbackBlocks = Math.max(
+      0,
+      getTotalVisibleBlockPoints(state) - totalBlockPointsInFeed(state),
+    );
 
-    const neededReportbacks = totalReportbackBlockPointsInFeed(state) + overflowReportbackBlocks;
+    const neededReportbacks =
+      totalReportbackBlockPointsInFeed(state) + overflowReportbackBlocks;
 
     // Dispatch an HTTP request if we don't have enough reportbacks in the store.
     if (state.reportbacks.ids.length < neededReportbacks) {
-      console.log(`Loading more reportbacks. We have ${state.reportbacks.ids.length} and need ${neededReportbacks}.`);
+      console.log(
+        `Loading more reportbacks. We have ${
+          state.reportbacks.ids.length
+        } and need ${neededReportbacks}.`,
+      );
       dispatch(fetchReportbacks());
     }
   };
@@ -38,7 +44,7 @@ export function conditionallyFetchReportbacks() {
 
 // Async Action: user clicked the "view more" button.
 export function clickedViewMore() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(displayNextPage());
     dispatch(conditionallyFetchReportbacks());
   };

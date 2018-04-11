@@ -4,14 +4,12 @@ import PropTypes from 'prop-types';
 import Card from '../Card';
 import Markdown from '../Markdown';
 
-const QuizConclusion = (props) => {
+const QuizConclusion = props => {
   const { children, callToAction } = props;
 
   return (
     <Card className="quiz-conclusion rounded bordered">
-      <div className="conclusion__item -one-third padding-md">
-        { children }
-      </div>
+      <div className="conclusion__item -one-third padding-md">{children}</div>
       <div className="conclusion__item -two-thirds padding-md">
         <Markdown className="conclusion__cta">{callToAction}</Markdown>
       </div>

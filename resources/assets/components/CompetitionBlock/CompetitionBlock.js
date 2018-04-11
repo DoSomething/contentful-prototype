@@ -15,23 +15,35 @@ You should receive an email shortly with more instructions.
 You can keep working on the campaign for now. I'm so excited to have you onboard!
 `;
 
-const CompetitionBlock = (props) => {
-  const { content, photo, byline, joinCompetition, hasJoinedCompetition, hasPendingJoin,
-    showConfirmation, campaignId, campaignRunId, checkForCompetition, experiment, convert } = props;
+const CompetitionBlock = props => {
+  const {
+    content,
+    photo,
+    byline,
+    joinCompetition,
+    hasJoinedCompetition,
+    hasPendingJoin,
+    showConfirmation,
+    campaignId,
+    campaignRunId,
+    checkForCompetition,
+    experiment,
+    convert,
+  } = props;
 
-  if (! content) {
+  if (!content) {
     return null;
   }
 
   // If we already joined the competition & saw the confirmation message,
   // display nothing.
-  if (! showConfirmation && hasJoinedCompetition) {
+  if (!showConfirmation && hasJoinedCompetition) {
     return null;
   }
 
   // If we haven't joined a competition yet or clicked the join button,
   // check for existing competition join.
-  if (! showConfirmation && ! hasJoinedCompetition) {
+  if (!showConfirmation && !hasJoinedCompetition) {
     checkForCompetition(campaignId, campaignRunId);
   }
 
@@ -45,23 +57,37 @@ const CompetitionBlock = (props) => {
         }
         joinCompetition(campaignId, campaignRunId);
       }}
-    >join competition</button>
+    >
+      join competition
+    </button>
   );
 
-  const competitionPhoto = photo && ! showConfirmation ? (
-    <div className="competition-block__photo">
-      <LazyImage alt="competition" src={photo} />
-    </div>
-  ) : null;
+  const competitionPhoto =
+    photo && !showConfirmation ? (
+      <div className="competition-block__photo">
+        <LazyImage alt="competition" src={photo} />
+      </div>
+    ) : null;
 
   return (
-    <BlockWrapper title="Go above and beyond!" className={classnames('-colorful')}>
-      <div className={classnames('competition-block', { 'is-confirmation': showConfirmation })}>
+    <BlockWrapper
+      title="Go above and beyond!"
+      className={classnames('-colorful')}
+    >
+      <div
+        className={classnames('competition-block', {
+          'is-confirmation': showConfirmation,
+        })}
+      >
         <div className="clearfix">
-          <Markdown className={classnames('', { 'is-success': showConfirmation })}>{ showConfirmation ? DEFAULT_CONFIRMATION : content }</Markdown>
-          { competitionPhoto }
+          <Markdown
+            className={classnames('', { 'is-success': showConfirmation })}
+          >
+            {showConfirmation ? DEFAULT_CONFIRMATION : content}
+          </Markdown>
+          {competitionPhoto}
         </div>
-        { button }
+        {button}
         <Byline {...byline} />
       </div>
     </BlockWrapper>

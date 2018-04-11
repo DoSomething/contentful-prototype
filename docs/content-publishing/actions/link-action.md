@@ -2,7 +2,7 @@
 
 The `LinkAction` component renders a visual component which features an embedded link. It allows us to present a link that we'd like DoSomething.org members to follow in a clear and actionable format.
 
-![Link Action component](../_assets/link-action-component.png)  
+![Link Action component](../_assets/link-action-component.png)
 
 It can also be equipped with an affiliate logo, which it will feature within the link action, and will change the background color of the card title to purple:
 
@@ -22,12 +22,12 @@ Be sure to add some Button Text via the `buttonText` field if you're linking to 
 
 ![Link Action as a Telephone link with button text](../_assets/link-action-tel-link.png)
 
-
 ## Usage Instructions
+
 The Link Action consists of three fields:
 
-- **title (required)**: The title that will show up in the yellow bar atop the Link Action.
-- **content (optional)**: content in Markdown format that will appear within the card atop the link.
-- **link (required)**: a valid URL which will be embedded within the card, or a telephone link which will be linked to through the button.
-- **buttonText (optional)**: Text for button to link which will replace the embedded link. (*this is required for a telephone link action!*)
-- **affiliateLogo (optional)**: an image URL which will be featured on bottom of the action. (adding this property will also cause a color change in the title of the action)
+* **title (required)**: The title that will show up in the yellow bar atop the Link Action.
+* **content (optional)**: content in Markdown format that will appear within the card atop the link.
+* **link (required)**: a valid URL which will be embedded within the card, or a telephone link which will be linked to through the button.
+* **buttonText (optional)**: Text for button to link which will replace the embedded link. (_this is required for a telephone link action!_)
+* **affiliateLogo (optional)**: an image URL which will be featured on bottom of the action. (adding this property will also cause a color change in the title of the action)

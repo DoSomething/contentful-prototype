@@ -14,12 +14,22 @@ import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
 
-const LandingPage = (props) => {
+const LandingPage = props => {
   const {
-    affiliateSponsors, blurb, coverImage,
-    endDate, isAffiliated, legacyCampaignId, pitchContent,
-    sidebar, showPartnerMsgOptIn, signupArrowContent,
-    subtitle, tagline, template, title,
+    affiliateSponsors,
+    blurb,
+    coverImage,
+    endDate,
+    isAffiliated,
+    legacyCampaignId,
+    pitchContent,
+    sidebar,
+    showPartnerMsgOptIn,
+    signupArrowContent,
+    subtitle,
+    tagline,
+    template,
+    title,
   } = props;
 
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
@@ -66,10 +76,7 @@ const LandingPage = (props) => {
           <PitchTemplate pitchContent={pitchContent} sidebarCTA={sidebarCTA} />
         </Enclosure>
 
-        <CallToActionContainer
-          content={tagline}
-          sticky
-        />
+        <CallToActionContainer content={tagline} sticky />
       </div>
 
       <PuckWaypoint name="landing_page_cta-top" />
@@ -80,7 +87,10 @@ const LandingPage = (props) => {
       <PuckWaypoint name="landing_page_cta-bottom" />
 
       <div className="info-bar -dark">
-        <div className="wrapper">A DoSomething.org campaign. Join over 5.5 million members taking action. Any cause, anytime, anywhere.</div>
+        <div className="wrapper">
+          A DoSomething.org campaign. Join over 5.5 million members taking
+          action. Any cause, anytime, anywhere.
+        </div>
       </div>
     </div>
   );

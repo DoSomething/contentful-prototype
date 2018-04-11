@@ -7,6 +7,4 @@ const actionCreators = {
   openModal,
 };
 
-export default connect(null, actionCreators)(
-  PuckConnector(ShareAction),
-);
+export default connect(null, actionCreators)(PuckConnector(ShareAction));

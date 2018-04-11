@@ -18,7 +18,7 @@
 
   // If narrow viewport less than 550px, do not stretch the lede banner and allow
   // natural height based on content.
-  @include media("(max-height: 550px)") {
+  @include media('(max-height: 550px)') {
     height: auto;
   }
 
@@ -36,7 +36,7 @@
   line-height: 1.1;
   margin-bottom: 10px;
   text-align: center;
-  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   text-transform: uppercase;
 
   @include media($medium) {
@@ -53,7 +53,7 @@
   line-height: 1.2;
   margin-bottom: $base-spacing;
   text-align: center;
-  text-shadow: 0 0 5px rgba(0,0,0,0.2);
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
 
   @include media($medium) {
@@ -65,7 +65,7 @@
   color: $white;
   margin-bottom: $base-spacing;
   text-align: center;
-  text-shadow: 0 0 10px rgba(0,0,0,0.8);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 
   p {
     @include media($medium) {
@@ -82,7 +82,7 @@
     width: 100%;
   }
 
-  @include media("(min-width: 500px)") {
+  @include media('(min-width: 500px)') {
     max-width: 320px;
   }
 }

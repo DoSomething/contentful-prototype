@@ -4,7 +4,7 @@ import PostShareModal from '../configurations/PostShareModal';
 import { closeModal } from '../../../actions/modal';
 import { findContentfulEntry } from '../../../helpers';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const id = state.modal.contentfulId;
   const json = findContentfulEntry(state, id);
 

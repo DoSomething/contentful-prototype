@@ -19,22 +19,25 @@ class TextSubmissionAction extends React.Component {
     textValue: '',
   };
 
-  componentDidUpdate = (prevProps) => {
+  componentDidUpdate = prevProps => {
     const prevResponse = prevProps.submissions.items[this.props.id] || null;
     const response = this.props.submissions.items[this.props.id] || null;
 
     // If prior response had no success status, but current response does, then
     // the submission was successful!
-    if (! has(prevResponse, 'status.success') && has(response, 'status.success')) {
+    if (
+      !has(prevResponse, 'status.success') &&
+      has(response, 'status.success')
+    ) {
       this.resetForm();
 
       this.setState({
         showModal: true,
       });
     }
-  }
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
 
     this.props.clearPostSubmissionItem(this.props.id);
@@ -49,11 +52,14 @@ class TextSubmissionAction extends React.Component {
     formData.append('text', this.state.textValue);
 
     if (this.props.legacyCampaignId && this.props.legacyCampaignRunId) {
-      formData.append('details', JSON.stringify({
-        campaign_id: this.props.campaignId,
-        legacy_campaign_id: this.props.legacyCampaignId,
-        legacy_campaign_run_id: this.props.legacyCampaignRunId,
-      }));
+      formData.append(
+        'details',
+        JSON.stringify({
+          campaign_id: this.props.campaignId,
+          legacy_campaign_id: this.props.legacyCampaignId,
+          legacy_campaign_run_id: this.props.legacyCampaignRunId,
+        }),
+      );
     }
 
     // Send request to store the campaign text submission post.
@@ -63,19 +69,19 @@ class TextSubmissionAction extends React.Component {
       id: this.props.id,
       type: this.props.type,
     });
-  }
+  };
 
-  handleChange = (event) => {
+  handleChange = event => {
     this.setState({
       textValue: event.target.value,
     });
-  }
+  };
 
   resetForm = () => {
     this.setState({
       textValue: '',
     });
-  }
+  };
 
   render() {
     const formResponse = this.props.submissions.items[this.props.id] || null;
@@ -84,16 +90,31 @@ class TextSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
-        <Card id={this.props.id} className={classnames('bordered rounded text-submission-action', this.props.className)} title={this.props.title}>
-
-          { formResponse ? <FormValidation response={formResponse} /> : null }
+        <Card
+          id={this.props.id}
+          className={classnames(
+            'bordered rounded text-submission-action',
+            this.props.className,
+          )}
+          title={this.props.title}
+        >
+          {formResponse ? <FormValidation response={formResponse} /> : null}
 
           <form onSubmit={this.handleSubmit}>
             <div className="padded">
               <div className="form-item">
-                <label className={classnames('field-label', { 'has-error': has(errors, 'text') })} htmlFor="text">{this.props.textFieldLabel}</label>
+                <label
+                  className={classnames('field-label', {
+                    'has-error': has(errors, 'text'),
+                  })}
+                  htmlFor="text"
+                >
+                  {this.props.textFieldLabel}
+                </label>
                 <input
-                  className={classnames('text-field', { 'has-error shake': has(errors, 'text') })}
+                  className={classnames('text-field', {
+                    'has-error shake': has(errors, 'text'),
+                  })}
                   type="text"
                   id="text"
                   name="text"
@@ -102,28 +123,30 @@ class TextSubmissionAction extends React.Component {
                   onChange={this.handleChange}
                 />
               </div>
-              <p className="footnote">Your submission will be reviewed by a DoSomething.org staffer and added to our public gallery.</p>
+              <p className="footnote">
+                Your submission will be reviewed by a DoSomething.org staffer
+                and added to our public gallery.
+              </p>
             </div>
-            <input type="submit" defaultValue={this.props.buttonText} className="button" disabled={this.props.submissions.isPending} />
+            <input
+              type="submit"
+              defaultValue={this.props.buttonText}
+              className="button"
+              disabled={this.props.submissions.isPending}
+            />
           </form>
         </Card>
 
-        { this.state.showModal ?
+        {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
             <Card className="bordered rounded" title="We got your message!">
               <Markdown className="padded">
-                {
-                  this.props.affirmationContent
-                  ||
-                  TextSubmissionAction.defaultProps.affirmationContent
-                }
+                {this.props.affirmationContent ||
+                  TextSubmissionAction.defaultProps.affirmationContent}
               </Markdown>
             </Card>
-
           </Modal>
-          :
-          null
-        }
+        ) : null}
       </React.Fragment>
     );
   }
@@ -154,7 +177,8 @@ TextSubmissionAction.propTypes = {
 
 TextSubmissionAction.defaultProps = {
   additionalContent: null,
-  affirmationContent: 'Thanks for joining the movement, and submitting your message! After we review your submission, we\'ll add it to the public gallery alongside submissions from all the other members taking action in this campaign.',
+  affirmationContent:
+    "Thanks for joining the movement, and submitting your message! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit',
   className: null,
   legacyCampaignId: null,

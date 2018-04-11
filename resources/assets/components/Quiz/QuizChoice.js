@@ -4,8 +4,16 @@ import classnames from 'classnames';
 
 import Card from '../Card';
 
-const QuizChoice = (props) => {
-  const { backgroundImage, id, isActive, isFaded, questionId, selectChoice, title } = props;
+const QuizChoice = props => {
+  const {
+    backgroundImage,
+    id,
+    isActive,
+    isFaded,
+    questionId,
+    selectChoice,
+    title,
+  } = props;
 
   const cardClasses = classnames('bordered rounded', {
     '-active': isActive,
@@ -20,8 +28,10 @@ const QuizChoice = (props) => {
       tabIndex={0}
     >
       <Card className={cardClasses}>
-        { backgroundImage ? <img src={backgroundImage} alt="quiz choice background" /> : null }
-        <p className="padding-md">{ title }</p>
+        {backgroundImage ? (
+          <img src={backgroundImage} alt="quiz choice background" />
+        ) : null}
+        <p className="padding-md">{title}</p>
       </Card>
     </a>
   );

@@ -1,10 +1,11 @@
 @import 'next-toolbox';
 
 // Import Forge so we get our base styles.
-$forge-path: "../../../node_modules/@dosomething/forge/assets/";
+$forge-path: '../../../node_modules/@dosomething/forge/assets/';
 @import '~@dosomething/forge/scss/forge';
 
-body, html {
+body,
+html {
   font-family: $primary-font-family;
   line-height: 1.4;
 }
@@ -19,16 +20,22 @@ button {
 .button {
   &:focus {
     border: none;
-    box-shadow: 0 0 3px $blue, inset 0 0 1px rgba(0,0,0,0.4);
+    box-shadow: 0 0 3px $blue, inset 0 0 1px rgba(0, 0, 0, 0.4);
   }
 }
 
-h1, h2, h3, p {
+h1,
+h2,
+h3,
+p {
   color: $black;
 }
 
 .inverted {
-  h1, h2, h3, p {
+  h1,
+  h2,
+  h3,
+  p {
     color: $white;
   }
 }
@@ -142,7 +149,6 @@ h1, h2, h3, p {
   margin-right: -$half-spacing;
 }
 
-
 .flex-center-y {
   display: flex;
   justify-content: center;
@@ -198,12 +204,12 @@ h1, h2, h3, p {
 
 .padding-vertical-md {
   padding-top: $half-spacing;
-  padding-bottom: $half-spacing
+  padding-bottom: $half-spacing;
 }
 
 .padding-vertical-lg {
   padding-top: $base-spacing;
-  padding-bottom: $base-spacing
+  padding-bottom: $base-spacing;
 }
 
 .padding-horizontal-md {

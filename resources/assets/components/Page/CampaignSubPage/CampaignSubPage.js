@@ -14,31 +14,35 @@ import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContaine
 
 import './campaign-subpage.scss';
 
-const CampaignSubPageContent = (props) => {
+const CampaignSubPageContent = props => {
   const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
-  const subPage = find(pages, page => page.fields.slug.endsWith(match.params.slug));
+  const subPage = find(pages, page =>
+    page.fields.slug.endsWith(match.params.slug),
+  );
 
-  if (! subPage) {
+  if (!subPage) {
     return <NotFound />;
   }
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
-  const ctaContent = `${tagline} Join hundreds of members and ${verb.plural} ${noun.plural}!`;
+  const ctaContent = `${tagline} Join hundreds of members and ${verb.plural} ${
+    noun.plural
+  }!`;
 
   return (
     <div className="clearfix padded campaign-subpage" id={subPage.id}>
       <div className="primary">
         <ScrollConcierge />
         <article className="padded bordered rounded bg-white">
-          <h2 className="visually-hidden">{ subPage.fields.title }</h2>
+          <h2 className="visually-hidden">{subPage.fields.title}</h2>
 
-          <Markdown>{ subPage.fields.content }</Markdown>
+          <Markdown>{subPage.fields.content}</Markdown>
         </article>
       </div>
 
-      { isClosed ? null : (
+      {isClosed ? null : (
         <div className="secondary">
           <CallToActionContainer
             content={ctaContent}
@@ -48,11 +52,8 @@ const CampaignSubPageContent = (props) => {
         </div>
       )}
 
-      { isClosed ? null : (
-        <CallToActionContainer
-          useCampaignTagline
-          visualStyle="transparent"
-        />
+      {isClosed ? null : (
+        <CallToActionContainer useCampaignTagline visualStyle="transparent" />
       )}
     </div>
   );
@@ -65,13 +66,15 @@ CampaignSubPageContent.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
-  pages: PropTypes.arrayOf(PropTypes.shape({
-    fields: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
+  pages: PropTypes.arrayOf(
+    PropTypes.shape({
+      fields: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        slug: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+      }),
     }),
-  })),
+  ),
   tagline: PropTypes.string,
   verb: PropTypes.shape({
     singular: PropTypes.string,
@@ -101,7 +104,7 @@ const CampaignSubPage = props => (
   <div>
     <LedeBannerContainer />
     <div className="main clearfix">
-      { props.dashboard ? <DashboardContainer /> : null }
+      {props.dashboard ? <DashboardContainer /> : null}
       <TabbedNavigationContainer />
       <Enclosure className="default-container margin-top-lg margin-bottom-lg">
         <CampaignSubPageContent {...props} />

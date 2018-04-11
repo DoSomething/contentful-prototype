@@ -19,7 +19,10 @@ export function startQueue() {
       dispatch(completedEvent(index));
 
       // Check if the event is over 30 min old before dispatching.
-      const isValidTimestamp = isTimestampValid(event.createdAt, (30 * 60 * 1000));
+      const isValidTimestamp = isTimestampValid(
+        event.createdAt,
+        30 * 60 * 1000,
+      );
 
       // Check if the user successfully authenticated
       const state = getState();

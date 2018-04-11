@@ -13,7 +13,7 @@ const renderImpactContent = (prefix, value, suffix) => {
 
   return (
     <div className="cta__impact margin-bottom-lg">
-      { prefix ? `${prefix} ` : null } {valueElem} { suffix ? ` ${suffix}` : null }
+      {prefix ? `${prefix} ` : null} {valueElem} {suffix ? ` ${suffix}` : null}
     </div>
   );
 };
@@ -24,37 +24,58 @@ type CallToActionProps = {
   impactPrefix: ?string,
   impactSuffix: ?string,
   impactValue: ?string,
-  hideIfSignedUp: ?bool,
-  isSignedUp: bool,
-  sticky: ?bool,
+  hideIfSignedUp: ?boolean,
+  isSignedUp: boolean,
+  sticky: ?boolean,
   tagline: string,
-  useCampaignTagline: bool,
+  useCampaignTagline: boolean,
   visualStyle: string,
 };
 
 const CallToAction = ({
-  className, content, impactPrefix, impactSuffix, impactValue,
-  hideIfSignedUp, isSignedUp, sticky, tagline, useCampaignTagline, visualStyle,
+  className,
+  content,
+  impactPrefix,
+  impactSuffix,
+  impactValue,
+  hideIfSignedUp,
+  isSignedUp,
+  sticky,
+  tagline,
+  useCampaignTagline,
+  visualStyle,
 }: CallToActionProps) => {
   if (hideIfSignedUp && isSignedUp) {
     return null;
   }
 
   return (
-    <Card className={classnames('call-to-action rounded padded text-centered', className, {
-      '-sticky': sticky,
-      'bg-white bordered light': visualStyle === 'light',
-      'bg-black dark': visualStyle === 'dark',
-      'bg-transparent border-none transparent': visualStyle === 'transparent',
-    })}
+    <Card
+      className={classnames(
+        'call-to-action rounded padded text-centered',
+        className,
+        {
+          '-sticky': sticky,
+          'bg-white bordered light': visualStyle === 'light',
+          'bg-black dark': visualStyle === 'dark',
+          'bg-transparent border-none transparent':
+            visualStyle === 'transparent',
+        },
+      )}
     >
-      { useCampaignTagline ? <div className="cta__tagline margin-bottom-lg">{tagline}</div> : null }
+      {useCampaignTagline ? (
+        <div className="cta__tagline margin-bottom-lg">{tagline}</div>
+      ) : null}
 
-      { impactValue ? renderImpactContent(impactPrefix, impactValue, impactSuffix) : null }
+      {impactValue
+        ? renderImpactContent(impactPrefix, impactValue, impactSuffix)
+        : null}
 
-      { content ? <div className="cta__message margin-bottom-lg">{content}</div> : null }
+      {content ? (
+        <div className="cta__message margin-bottom-lg">{content}</div>
+      ) : null}
 
-      { isSignedUp ? null : <SignupButton source="call to action" /> }
+      {isSignedUp ? null : <SignupButton source="call to action" />}
     </Card>
   );
 };

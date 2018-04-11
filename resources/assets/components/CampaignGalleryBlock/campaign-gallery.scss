@@ -2,7 +2,7 @@
 
 .campaign-gallery {
   // Alternate adjacent 'chat-bubble' colors within a gallery.
-  li:nth-of-type(2n) .chat-bubble{
+  li:nth-of-type(2n) .chat-bubble {
     $bright-purple: #563795;
     background-color: $bright-purple;
 

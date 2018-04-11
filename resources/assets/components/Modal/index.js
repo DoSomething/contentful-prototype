@@ -10,7 +10,6 @@ export PostReportbackModalContainer from './containers/PostReportbackModalContai
 export BlockModalContainer from './containers/BlockModalContainer';
 export VoterRegistrationModalContainer from './containers/VoterRegistrationModalContainer';
 
-
 // TODO: whoops, these probably need to be renamed to have 'Container' appended to the name.
 export PostSignupModal from './containers/PostSignupModalContainer';
 export ReportbackUploaderModal from './configurations/ReportbackUploaderModal';

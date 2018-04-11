@@ -37,11 +37,19 @@ const renderFeedItem = (block, index) => (
  *
  * @returns {XML}
  */
-const Feed = (props) => {
-  const { blocks, callToAction, dashboard, signedUp, hasPendingSignup,
-    isAuthenticated, canLoadMorePages, clickedViewMore } = props;
+const Feed = props => {
+  const {
+    blocks,
+    callToAction,
+    dashboard,
+    signedUp,
+    hasPendingSignup,
+    isAuthenticated,
+    canLoadMorePages,
+    clickedViewMore,
+  } = props;
 
-  const shouldShowRevealer = (isAuthenticated && ! signedUp) || canLoadMorePages;
+  const shouldShowRevealer = (isAuthenticated && !signedUp) || canLoadMorePages;
   const revealer = (
     <Revealer
       title="view more"
@@ -56,12 +64,10 @@ const Feed = (props) => {
     <div>
       <LedeBannerContainer />
       <div className="main clearfix">
-        { dashboard ? <DashboardContainer /> : null }
+        {dashboard ? <DashboardContainer /> : null}
         <TabbedNavigationContainer />
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-          <Flex className="feed">
-            {blocks.map(renderFeedItem)}
-          </Flex>
+          <Flex className="feed">{blocks.map(renderFeedItem)}</Flex>
           {shouldShowRevealer ? revealer : null}
         </Enclosure>
         <CallToActionContainer sticky hideIfSignedUp />
@@ -71,12 +77,14 @@ const Feed = (props) => {
 };
 
 Feed.propTypes = {
-  blocks: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    content: PropTypes.string,
-    additionalContent: PropTypes.instanceOf(Object),
-  })),
+  blocks: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      content: PropTypes.string,
+      additionalContent: PropTypes.instanceOf(Object),
+    }),
+  ),
   callToAction: PropTypes.string.isRequired,
   dashboard: PropTypes.shape({
     id: PropTypes.string,

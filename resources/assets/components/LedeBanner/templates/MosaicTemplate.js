@@ -12,7 +12,7 @@ import AffiliateOptionContainer from '../../AffiliateOption';
 
 import './mosaic-lede-banner.scss';
 
-const MosaicTemplate = (props) => {
+const MosaicTemplate = props => {
   const {
     affiliatedActionText,
     affiliatedActionLink,
@@ -27,22 +27,36 @@ const MosaicTemplate = (props) => {
   } = props;
 
   const backgroundImageStyle = {
-    backgroundImage: `url(${contentfulImageUrl(coverImage.url, '800', '600', 'fill')})`,
+    backgroundImage: `url(${contentfulImageUrl(
+      coverImage.url,
+      '800',
+      '600',
+      'fill',
+    )})`,
   };
 
   const signupButton = (
     <div className="mosaic-lede-banner__signup">
-      <SignupButton className={classnames({ '-float': affiliateSponsors.length })} source="lede banner" />
-      { signupArrowContent ? (
-        <CampaignSignupArrow content={signupArrowContent} className="-mosaic-arrow" />
-      ) : null }
-      { showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null }
+      <SignupButton
+        className={classnames({ '-float': affiliateSponsors.length })}
+        source="lede banner"
+      />
+      {signupArrowContent ? (
+        <CampaignSignupArrow
+          content={signupArrowContent}
+          className="-mosaic-arrow"
+        />
+      ) : null}
+      {showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null}
     </div>
   );
 
   const actionButton = affiliatedActionLink ? (
     <div className="mosaic-lede-banner__signup">
-      <Link className={classnames('button', '-action')} to={affiliatedActionLink}>
+      <Link
+        className={classnames('button', '-action')}
+        to={affiliatedActionLink}
+      >
         {affiliatedActionText || 'Take Action'}
       </Link>
     </div>
@@ -54,25 +68,31 @@ const MosaicTemplate = (props) => {
       <div className="mosaic-lede-banner__content">
         <div className="wrapper">
           <div className="mosaic-lede-banner__headline">
-            <h1 className={classnames('mosaic-lede-banner__headline-title', { 'smaller-font': title.length > 25 })}>
+            <h1
+              className={classnames('mosaic-lede-banner__headline-title', {
+                'smaller-font': title.length > 25,
+              })}
+            >
               {title}
             </h1>
-            <h2 className="mosaic-lede-banner__headline-subtitle">{subtitle}</h2>
+            <h2 className="mosaic-lede-banner__headline-subtitle">
+              {subtitle}
+            </h2>
           </div>
 
-          { blurb ? <Markdown className="mosaic-lede-banner__blurb">{blurb}</Markdown> : null }
+          {blurb ? (
+            <Markdown className="mosaic-lede-banner__blurb">{blurb}</Markdown>
+          ) : null}
 
-          { isAffiliated ? actionButton : signupButton }
+          {isAffiliated ? actionButton : signupButton}
 
-          { affiliateSponsors.length ?
+          {affiliateSponsors.length ? (
             <SponsorPromotion
               className="mosaic-lede-banner__sponsor padding-top-lg clear-both"
               imgUrl={affiliateSponsors[0].fields.logo.url}
               title={affiliateSponsors[0].fields.logo.title}
             />
-            :
-            null
-          }
+          ) : null}
         </div>
       </div>
     </header>

@@ -31,16 +31,16 @@ export function getFieldErrors(response) {
 export function getFieldErrorMessages(response) {
   const errorFields = getFieldErrors(response);
 
-  if (! errorFields) {
+  if (!errorFields) {
     return null;
   }
 
   const messages = [];
 
   // Collect all error messages for every field
-  Object.keys(errorFields).map(field => (
-    errorFields[field].map(message => (messages.push(message)))
-  ));
+  Object.keys(errorFields).map(field =>
+    errorFields[field].map(message => messages.push(message)),
+  );
 
   return messages;
 }

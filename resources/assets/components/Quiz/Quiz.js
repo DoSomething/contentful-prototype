@@ -30,9 +30,7 @@ class Quiz extends React.Component {
   evaluateQuiz() {
     const questions = this.props.questions;
 
-    return every(questions, question => (
-      !! this.state.choices[question.id]
-    ));
+    return every(questions, question => !!this.state.choices[question.id]);
   }
 
   completeQuiz() {
@@ -41,10 +39,7 @@ class Quiz extends React.Component {
         responses: this.state.choices,
       });
 
-      const results = calculateResult(
-        this.state.choices,
-        this.props.questions,
-      );
+      const results = calculateResult(this.state.choices, this.props.questions);
       this.setState({ showResults: true, results });
     }
   }
@@ -67,7 +62,7 @@ class Quiz extends React.Component {
     const resultId = this.state.results.resultId;
     const result = find(results, { id: resultId });
 
-    if (! resultBlock) {
+    if (!resultBlock) {
       // Return the result on it's own when no result block is found.
 
       return result ? (
@@ -79,7 +74,9 @@ class Quiz extends React.Component {
 
     if (result) {
       // Prepend the "quiz result" text to the specified block.
-      resultBlock.fields.content = `${result.content}\n\n${resultBlock.fields.content}`;
+      resultBlock.fields.content = `${result.content}\n\n${
+        resultBlock.fields.content
+      }`;
     }
 
     return <ContentfulEntry json={resultBlock} />;
@@ -88,7 +85,8 @@ class Quiz extends React.Component {
   render() {
     const { additionalContent, questions, title } = this.props;
 
-    const { callToAction, introduction, submitButtonText } = (additionalContent || {});
+    const { callToAction, introduction, submitButtonText } =
+      additionalContent || {};
 
     const { choices, showResults } = this.state;
 
@@ -96,30 +94,34 @@ class Quiz extends React.Component {
       <Flex className="quiz">
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
-          <h2 className="quiz__title">{ title }</h2>
+          <h2 className="quiz__title">{title}</h2>
 
-          { showResults ? null : introduction }
+          {showResults ? null : introduction}
 
-          { showResults ? null : (
-            questions.map(question => (
-              <QuizQuestion
-                key={question.id}
-                id={question.id}
-                title={question.title}
-                choices={question.choices}
-                selectChoice={this.selectChoice}
-                activeChoiceId={choices[question.id]}
-              />
-            ))
-          )}
+          {showResults
+            ? null
+            : questions.map(question => (
+                <QuizQuestion
+                  key={question.id}
+                  id={question.id}
+                  title={question.title}
+                  choices={question.choices}
+                  selectChoice={this.selectChoice}
+                  activeChoiceId={choices[question.id]}
+                />
+              ))}
 
-          { showResults ? this.renderResult() : (
+          {showResults ? (
+            this.renderResult()
+          ) : (
             <QuizConclusion callToAction={callToAction}>
               <button
                 onClick={() => this.completeQuiz()}
                 className="button quiz__submit"
-                disabled={! this.evaluateQuiz()}
-              >{submitButtonText || Quiz.defaultProps.submitButtonText}</button>
+                disabled={!this.evaluateQuiz()}
+              >
+                {submitButtonText || Quiz.defaultProps.submitButtonText}
+              </button>
             </QuizConclusion>
           )}
         </FlexCell>
@@ -134,15 +136,19 @@ Quiz.propTypes = {
     introduction: PropTypes.string.isRequired,
     submitButtonText: PropTypes.string,
   }).isRequired,
-  questions: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    choices: PropTypes.arrayOf(PropTypes.object).isRequired,
-  })).isRequired,
-  results: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    content: PropTypes.string.isRequired,
-  })).isRequired,
+  questions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      choices: PropTypes.arrayOf(PropTypes.object).isRequired,
+    }),
+  ).isRequired,
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
   resultBlocks: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
@@ -152,6 +158,5 @@ Quiz.defaultProps = {
   resultBlocks: null,
   submitButtonText: 'Get Results',
 };
-
 
 export default Quiz;

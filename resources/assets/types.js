@@ -7,4 +7,4 @@ export type ContentfulEntryJson = {
   // When displayed in the feed, we distribute reportbacks
   // to the available blocks by adding IDs to this property.
   reportbacks: ?Array<string>,
-}
+};

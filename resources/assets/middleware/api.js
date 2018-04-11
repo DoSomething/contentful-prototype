@@ -11,23 +11,23 @@ import { PHOENIX_URL } from '../constants';
  * @param  {Object} payload
  * @return {void}
  */
-const getRequest = (payload) => {
+const getRequest = payload => {
   const client = new RestApiClient(PHOENIX_URL);
 
   if (window.ENV.APP_ENV !== 'production') {
-    client.get(payload.url, payload.query)
-      .then((response) => {
-        // @TODO: more to come with handling the response!
-        if (response && response.data) {
-          console.groupCollapsed('%c API Middleware Response: ',
-            'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
-          );
-          console.table(response.data);
-          console.groupEnd();
-        } else {
-          console.log('Nope, nothing to see here for now...');
-        }
-      });
+    client.get(payload.url, payload.query).then(response => {
+      // @TODO: more to come with handling the response!
+      if (response && response.data) {
+        console.groupCollapsed(
+          '%c API Middleware Response: ',
+          'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
+        );
+        console.table(response.data);
+        console.groupEnd();
+      } else {
+        console.log('Nope, nothing to see here for now...');
+      }
+    });
   }
 };
 
@@ -47,8 +47,9 @@ const postRequest = (payload, dispatch) => {
 
   dispatch({ type: payload.pending });
 
-  return client.post(payload.url, payload.body)
-    .then((response) => {
+  return client
+    .post(payload.url, payload.body)
+    .then(response => {
       console.log('✅ successful response!');
 
       response.status = {
@@ -64,7 +65,7 @@ const postRequest = (payload, dispatch) => {
         type: payload.success,
       });
     })
-    .catch((error) => {
+    .catch(error => {
       console.log('🚫 failed response; caught the error!');
       const response = error.response;
 
@@ -79,7 +80,7 @@ const postRequest = (payload, dispatch) => {
 /**
  * Middleware for handling API actions.
  */
-const apiMiddleware = ({ dispatch }) => next => (action) => {
+const apiMiddleware = ({ dispatch }) => next => action => {
   if (action.type !== API) {
     return next(action);
   }
@@ -98,7 +99,9 @@ const apiMiddleware = ({ dispatch }) => next => (action) => {
     default:
       // @TODO: is a console error fine? or should we throw an Error that the
       // method is not supported or incorrect?
-      console.error(`The "${action.method}" method is not supported or incorrect!`);
+      console.error(
+        `The "${action.method}" method is not supported or incorrect!`,
+      );
   }
 
   return next(action);

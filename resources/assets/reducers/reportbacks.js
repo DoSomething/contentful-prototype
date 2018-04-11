@@ -31,7 +31,7 @@ const reportbacks = (state = {}, action) => {
       };
 
     case REACTION_CHANGED: {
-      if (! state.itemEntities[action.reportbackItemId]) {
+      if (!state.itemEntities[action.reportbackItemId]) {
         return state;
       }
 
@@ -41,7 +41,9 @@ const reportbacks = (state = {}, action) => {
             reaction: {
               reacted: { $set: action.value },
               total: {
-                $set: state.itemEntities[action.reportbackItemId].reaction.total + (action.value ? 1 : -1), // eslint-disable-line max-len
+                $set:
+                  state.itemEntities[action.reportbackItemId].reaction.total +
+                  (action.value ? 1 : -1), // eslint-disable-line max-len
               },
             },
           },

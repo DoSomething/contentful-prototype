@@ -6,7 +6,7 @@ import {
 } from '../actions';
 
 export function convertExperiment(name) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: CONVERT_EXPERIMENT,
       name,
@@ -15,7 +15,7 @@ export function convertExperiment(name) {
 }
 
 export function participateInExperiment(name) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: PARTICIPATE_IN_EXPERIMENT,
       name,
@@ -24,7 +24,7 @@ export function participateInExperiment(name) {
 }
 
 export function addToStore(name) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: ADD_TO_EXPERIMENTS_STORE,
       name,
@@ -33,7 +33,7 @@ export function addToStore(name) {
 }
 
 export function updateStore(name, alternative) {
-  return (dispatch) => {
+  return dispatch => {
     dispatch({
       type: UPDATE_EXPERIMENTS_STORE,
       name,

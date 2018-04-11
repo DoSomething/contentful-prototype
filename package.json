@@ -9,11 +9,17 @@
     "build:dev": "webpack --env=development --hide-modules",
     "build": "webpack --env=production",
     "stat": "webpack --env=production --json > stats.json",
+    "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
+    "precommit": "pretty-quick --staged",
     "heroku-postbuild": "npm run build"
   },
   "engines": {
     "node": "8.x",
     "npm": "5.x"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
   },
   "babel": {
     "presets": [
@@ -51,6 +57,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.3",
+    "eslint-config-prettier": "^2.9.0",
     "fontfaceobserver": "^2.0.13",
     "graphql": "^0.13.2",
     "graphql-anywhere": "^4.1.8",
@@ -62,6 +69,7 @@
     "markdown-it": "^8.4.0",
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-for-inline": "^0.1.1",
+    "prettier": "^1.11.1",
     "prop-types": "^15.5.8",
     "query-string": "^5.1.1",
     "react": "^16.3.1",
@@ -82,14 +90,15 @@
   },
   "devDependencies": {
     "@dosomething/babel-config": "^2.1.0",
-    "@dosomething/eslint-config": "^3.1.2",
+    "@dosomething/eslint-config": "^4.0.0",
     "@dosomething/webpack-config": "^4.0.0",
-    "babel-eslint": "^8.1.1",
     "eslint-loader": "^2.0.0",
     "flow-bin": "0.59.0",
+    "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "modernizr": "^3.6.0",
+    "pretty-quick": "^1.4.1",
     "redux-devtools": "^3.4.1",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",

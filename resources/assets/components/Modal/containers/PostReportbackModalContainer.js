@@ -3,10 +3,10 @@ import { find } from 'lodash';
 import PostReportbackModal from '../configurations/PostReportbackModal';
 import { closeModal } from '../../../actions/modal';
 
-const mapStateToProps = (state) => {
-  const reportbackUploader = find(
-    state.campaign.actionSteps, { type: 'photoUploaderAction' },
-  );
+const mapStateToProps = state => {
+  const reportbackUploader = find(state.campaign.actionSteps, {
+    type: 'photoUploaderAction',
+  });
 
   return {
     content: reportbackUploader.fields.affirmationContent,

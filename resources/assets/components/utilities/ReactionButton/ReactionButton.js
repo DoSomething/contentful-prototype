@@ -29,12 +29,20 @@ const ReactionButton = ({ post }) => (
       const button = loading ? (
         <div className="spinner" />
       ) : (
-        <div className={classnames('reaction__button', { '-reacted': post.reacted })} />
+        <div
+          className={classnames('reaction__button', {
+            '-reacted': post.reacted,
+          })}
+        />
       );
 
       return (
         <button className="reaction" onClick={toggleReaction}>
-          <BaseFigure media={button} alignment="left" className="margin-bottom-none">
+          <BaseFigure
+            media={button}
+            alignment="left"
+            className="margin-bottom-none"
+          >
             <span className="reaction__meta">{post.reactions}</span>
           </BaseFigure>
         </button>

@@ -2,10 +2,7 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 import ReportbackItem from './ReportbackItem';
 import { isAuthenticated } from '../../selectors/user';
-import {
-  toggleReactionOn,
-  toggleReactionOff,
-} from '../../actions';
+import { toggleReactionOn, toggleReactionOff } from '../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -13,11 +10,12 @@ import {
 const mapStateToProps = (state, props) => {
   const reportback = state.reportbacks.entities[props.id];
 
-  if (! reportback) {
+  if (!reportback) {
     return { isFetching: true };
   }
 
-  const reportbackItem = state.reportbacks.itemEntities[reportback.reportback_items[0]];
+  const reportbackItem =
+    state.reportbacks.itemEntities[reportback.reportback_items[0]];
 
   return {
     isFetching: false,

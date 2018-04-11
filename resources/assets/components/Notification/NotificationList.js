@@ -6,9 +6,11 @@ import './notification.scss';
 const Notification = ({ message, style, remove }) => (
   <div className={`notification -${style}`}>
     <div className="notification__content">
-      <p>{ message }</p>
+      <p>{message}</p>
     </div>
-    <button className="notification__close" onClick={remove}>&times;</button>
+    <button className="notification__close" onClick={remove}>
+      &times;
+    </button>
   </div>
 );
 

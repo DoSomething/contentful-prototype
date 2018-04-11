@@ -18,24 +18,27 @@ export function joinCompetition(campaignId, campaignRunId) {
     const userId = getState().user.id;
     dispatch({ type: COMPETITION_PENDING });
 
-    (new Phoenix()).post('next/contests/users', {
-      legacyCampaignId: campaignId,
-      legacyCampaignRunId: campaignRunId,
-    }).then((response) => {
-      if (! response) {
-        throw new Error('competition signup failed');
-      }
-
-      if (response.data) {
-        dispatch({ type: JOINED_COMPETITION, campaignId, userId });
-
-        if (getState().modal.shouldShowModal) {
-          dispatch(closeModal());
+    new Phoenix()
+      .post('next/contests/users', {
+        legacyCampaignId: campaignId,
+        legacyCampaignRunId: campaignRunId,
+      })
+      .then(response => {
+        if (!response) {
+          throw new Error('competition signup failed');
         }
-      }
-    }).catch(() => {
-      dispatch(addNotification('error'));
-    });
+
+        if (response.data) {
+          dispatch({ type: JOINED_COMPETITION, campaignId, userId });
+
+          if (getState().modal.shouldShowModal) {
+            dispatch(closeModal());
+          }
+        }
+      })
+      .catch(() => {
+        dispatch(addNotification('error'));
+      });
   };
 }
 
@@ -49,22 +52,26 @@ export function checkForCompetition(campaignId, campaignRunId) {
       return;
     }
 
-    (new Phoenix()).get('next/contests/users', {
-      campaign_id: campaignId,
-      campaign_run_id: campaignRunId,
-    }).then((response) => {
-      if (! response) {
-        throw new Error('competition get failed');
-      }
+    new Phoenix()
+      .get('next/contests/users', {
+        campaign_id: campaignId,
+        campaign_run_id: campaignRunId,
+      })
+      .then(response => {
+        if (!response) {
+          throw new Error('competition get failed');
+        }
 
-      const joinedCompetition = response.data &&
-        (response.data.waitingRoom || response.data.competition);
+        const joinedCompetition =
+          response.data &&
+          (response.data.waitingRoom || response.data.competition);
 
-      if (joinedCompetition) {
-        dispatch({ type: COMPETITION_FOUND, campaignId, userId });
-      }
-    }).catch(() => {
-      dispatch(addNotification('error'));
-    });
+        if (joinedCompetition) {
+          dispatch({ type: COMPETITION_FOUND, campaignId, userId });
+        }
+      })
+      .catch(() => {
+        dispatch(addNotification('error'));
+      });
   };
 }

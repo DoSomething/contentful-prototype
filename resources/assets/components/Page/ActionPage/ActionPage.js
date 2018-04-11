@@ -14,14 +14,14 @@ import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContaine
  *
  * @returns {XML}
  */
-const ActionPage = (props) => {
+const ActionPage = props => {
   const { dashboard, steps, signedUp } = props;
 
   let actionSteps = cloneDeep(steps);
 
-  if (! signedUp) {
+  if (!signedUp) {
     // Truncate steps if user isn't signed up & remove any custom steps.
-    actionSteps = actionSteps.filter(step => ! step.customType).slice(0, 2);
+    actionSteps = actionSteps.filter(step => !step.customType).slice(0, 2);
 
     if (actionSteps[actionSteps.length - 1]) {
       actionSteps[actionSteps.length - 1].truncate = true;
@@ -32,7 +32,7 @@ const ActionPage = (props) => {
     <div>
       <LedeBannerContainer />
       <div className="main clearfix">
-        { dashboard ? <DashboardContainer /> : null }
+        {dashboard ? <DashboardContainer /> : null}
         <TabbedNavigationContainer />
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <ActionStepsContainer actionSteps={actionSteps} />

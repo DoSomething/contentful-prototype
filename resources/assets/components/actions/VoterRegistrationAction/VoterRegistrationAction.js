@@ -8,7 +8,7 @@ import { dynamicString } from '../../../helpers';
 
 import './voter-registration-action.scss';
 
-const VoterRegistrationAction = (props) => {
+const VoterRegistrationAction = props => {
   const {
     campaignId,
     campaignRunId,
@@ -36,11 +36,23 @@ const VoterRegistrationAction = (props) => {
   };
 
   return (
-    <Card className="rounded bordered voter-registration" title="Register to vote">
+    <Card
+      className="rounded bordered voter-registration"
+      title="Register to vote"
+    >
       <div className="padded clearfix">
-        <Markdown>{ content }</Markdown>
+        <Markdown>{content}</Markdown>
 
-        { parsedLink ? <a className="button" href={parsedLink} onClick={handleClick} target="_blank">Start Registration</a> : null }
+        {parsedLink ? (
+          <a
+            className="button"
+            href={parsedLink}
+            onClick={handleClick}
+            target="_blank"
+          >
+            Start Registration
+          </a>
+        ) : null}
       </div>
     </Card>
   );

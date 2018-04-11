@@ -8,17 +8,17 @@ const TrafficDistribution = ({ percentage, feature, children }) => {
 
   const storedValue = get(`TrafficDistribution_${feature}`, 'object');
 
-  if (! storedValue) {
-    shouldSeeFeature = (Math.random() * 100) <= percentage;
+  if (!storedValue) {
+    shouldSeeFeature = Math.random() * 100 <= percentage;
 
-    set(`TrafficDistribution_${feature}`, 'object', { showFeature: shouldSeeFeature });
+    set(`TrafficDistribution_${feature}`, 'object', {
+      showFeature: shouldSeeFeature,
+    });
   } else {
     shouldSeeFeature = storedValue.showFeature;
   }
 
-  return (
-    shouldSeeFeature ? <div>{ children }</div> : null
-  );
+  return shouldSeeFeature ? <div>{children}</div> : null;
 };
 
 TrafficDistribution.propTypes = {

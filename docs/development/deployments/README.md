@@ -1,4 +1,4 @@
 # Deployments
 
-- [Contentful Migrations](contentful-migrations.md)
-- [Heroku](heroku.md)
+* [Contentful Migrations](contentful-migrations.md)
+* [Heroku](heroku.md)

@@ -14,8 +14,16 @@ const appendAdditionalData = (data, state) => {
 
   if (get(state, 'campaign.type', null) === 'campaign') {
     updatedData.campaignId = get(state, 'campaign.id', null);
-    updatedData.legacyCampaignId = get(state, 'campaign.legacyCampaignId', null);
-    updatedData.legacyCampaignRunId = get(state, 'campaign.legacyCampaignRunId', null);
+    updatedData.legacyCampaignId = get(
+      state,
+      'campaign.legacyCampaignId',
+      null,
+    );
+    updatedData.legacyCampaignRunId = get(
+      state,
+      'campaign.legacyCampaignRunId',
+      null,
+    );
   }
 
   return updatedData;
@@ -24,8 +32,8 @@ const appendAdditionalData = (data, state) => {
 /**
  * Middleware for handling Analytics actions.
  */
-const analyticsMiddleware = ({ getState }) => next => (action) => {
-  if (! has(action, 'payload.meta.analytics')) {
+const analyticsMiddleware = ({ getState }) => next => action => {
+  if (!has(action, 'payload.meta.analytics')) {
     return next(action);
   }
 

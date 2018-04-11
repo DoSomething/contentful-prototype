@@ -8,7 +8,7 @@ import PostCard from '../utilities/PostCard/PostCard';
 
 import './campaign-gallery.scss';
 
-const CampaignGalleryBlock = (props) => {
+const CampaignGalleryBlock = props => {
   const { loading, postsByCampaignId, loadMorePosts } = props;
 
   return (
@@ -20,7 +20,12 @@ const CampaignGalleryBlock = (props) => {
           </Card>
         ))}
       </Gallery>
-      <LoadMore className="padding-lg text-centered" text="view more" onClick={loadMorePosts} isLoading={loading} />
+      <LoadMore
+        className="padding-lg text-centered"
+        text="view more"
+        onClick={loadMorePosts}
+        isLoading={loading}
+      />
     </div>
   );
 };

@@ -17,9 +17,7 @@ export function get() {
  * @return {History}
  */
 export function init() {
-  history = createHistoryHashObserver(
-    createHistory(), 1000,
-  );
+  history = createHistoryHashObserver(createHistory(), 1000);
 
   return history;
 }

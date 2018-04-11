@@ -18,7 +18,10 @@ const mapStateToProps = (state, ownProps) => {
   const quizData = state.quiz[quizId];
   let quizFields = quizContent.fields;
 
-  const winner = pickWinner(quizData ? quizData.questions : {}, quizFields.questions);
+  const winner = pickWinner(
+    quizData ? quizData.questions : {},
+    quizFields.questions,
+  );
   if (winner) {
     quizFields = {
       ...quizFields,
@@ -38,7 +41,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const actions = {
-  pickQuizAnswer, completeQuiz,
+  pickQuizAnswer,
+  completeQuiz,
 };
 
 // Export the container component.

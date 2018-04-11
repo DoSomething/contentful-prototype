@@ -1,7 +1,4 @@
-import {
-  ADD_TO_EXPERIMENTS_STORE,
-  UPDATE_EXPERIMENTS_STORE,
-} from '../actions';
+import { ADD_TO_EXPERIMENTS_STORE, UPDATE_EXPERIMENTS_STORE } from '../actions';
 
 /**
  * Experiments reducer:

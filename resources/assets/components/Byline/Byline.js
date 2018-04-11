@@ -17,10 +17,11 @@ const Byline = ({ author, jobTitle, avatar, share, className }) => (
       imageClassName="avatar"
       className="margin-bottom-none"
     >
-      <strong>{author}</strong><br />
+      <strong>{author}</strong>
+      <br />
       <p className="footnote">{jobTitle}</p>
     </Figure>
-    { share }
+    {share}
   </div>
 );
 
@@ -28,10 +29,7 @@ Byline.propTypes = {
   author: PropTypes.string,
   className: PropTypes.string,
   jobTitle: PropTypes.string,
-  avatar: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   share: PropTypes.node,
 };
 
