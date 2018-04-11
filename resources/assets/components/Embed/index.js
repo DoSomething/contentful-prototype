@@ -74,8 +74,8 @@ class Embed extends React.Component {
         <div
           className={classnames('wrapper', {
             'flex-center-xy': !this.state.title,
-            bordered: this.state.title, // eslint-disable-line quote-props
-            rounded: this.state.title, // eslint-disable-line quote-props
+            bordered: this.state.title,
+            rounded: this.state.title,
           })}
         >
           {embed}

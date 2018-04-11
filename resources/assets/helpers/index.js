@@ -170,10 +170,10 @@ function getFileType(file) {
 
   return get(
     {
-      '8950': 'image/png', // eslint-disable-line quote-props
-      '4749': 'image/gif', // eslint-disable-line quote-props
-      '424d': 'image/bmp', // eslint-disable-line quote-props
-      ffd8: 'image/jpeg', // eslint-disable-line quote-props
+      '8950': 'image/png',
+      '4749': 'image/gif',
+      '424d': 'image/bmp',
+      ffd8: 'image/jpeg',
     },
     hex,
     null,
