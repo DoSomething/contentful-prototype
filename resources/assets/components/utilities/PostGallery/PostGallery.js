@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../Card'; // @TODO: move into utilities
-import Gallery from '../../Gallery'; // @TODO: move into utilities
-import LoadMore from '../../LoadMore'; // @TODO: move into utilities
+import Gallery from '../Gallery/Gallery';
+import LoadMore from '../LoadMore/LoadMore';
 import PostCard from '../PostCard/PostCard';
 
 import './post-gallery.scss';
