@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get } from 'lodash';
 
-import Card from '../Card';
 import Embed from '../Embed';
 import Byline from '../Byline';
 import Markdown from '../Markdown';
+import Card from '../utilities/Card/Card';
 import { ShareContainer } from '../Share';
 import SponsorPromotion from '../SponsorPromotion';
 

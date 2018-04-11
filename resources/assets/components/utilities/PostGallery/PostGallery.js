@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../../Card'; // @TODO: move into utilities
+import Card from '../Card/Card';
 import Gallery from '../Gallery/Gallery';
 import LoadMore from '../LoadMore/LoadMore';
 import PostCard from '../PostCard/PostCard';

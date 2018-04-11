@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Card from '../../Card';
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
-import SponsorPromotion from '../../SponsorPromotion';
+import Card from '../../utilities/Card/Card';
 import { isExternal } from '../../../helpers';
+import SponsorPromotion from '../../SponsorPromotion';
 
 const LinkAction = props => {
   const { content, link, buttonText, affiliateLogo, trackEvent } = props;

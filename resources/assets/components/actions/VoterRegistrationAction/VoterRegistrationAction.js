@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../../Card';
 import Markdown from '../../Markdown';
+import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../../Card';
+import Card from '../../utilities/Card/Card';
 import Gallery from '../../utilities/Gallery/Gallery';
 import LoadMore from '../../utilities/LoadMore/LoadMore';
 import ReportbackItemContainer from '../../ReportbackItem';

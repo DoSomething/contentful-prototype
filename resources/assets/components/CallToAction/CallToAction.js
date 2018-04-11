@@ -3,7 +3,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import Card from '../Card';
+import Card from '../utilities/Card/Card';
 import SignupButton from '../SignupButton';
 
 import './cta.scss';

@@ -5,11 +5,11 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Card from '../Card';
 import Markdown from '../Markdown';
+import Card from '../utilities/Card/Card';
+import { POST_REPORTBACK_MODAL } from '../Modal';
 import FormMessage from '../utilities/FormMessage';
 import MediaUploader from '../utilities/MediaUploader';
-import { POST_REPORTBACK_MODAL } from '../Modal';
 
 import './reportback-uploader.scss';
 

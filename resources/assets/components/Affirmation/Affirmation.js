@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Byline from '../Byline';
-import Card from '../Card';
 import { Flex, FlexCell } from '../Flex';
 import Markdown from '../Markdown';
+import Card from '../utilities/Card/Card';
 import { ShareContainer } from '../Share';
 
 import './affirmation.scss';

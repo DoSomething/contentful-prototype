@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../Card';
 import Markdown from '../Markdown';
+import Card from '../utilities/Card/Card';
 
 const QuizConclusion = props => {
   const { children, callToAction } = props;
