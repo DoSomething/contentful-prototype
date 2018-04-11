@@ -7,7 +7,7 @@ import SectionHeader from '../SectionHeader';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 
-import './legacyContentBlock.scss';
+import './legacy-content-block.scss';
 
 // TODO: Replace alt with better description.
 const renderPhoto = (photo, index) => (
