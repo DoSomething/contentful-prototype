@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { modifiers } from '../../helpers';
+import { modifiers } from '../../../helpers';
 
 const renderGalleryItem = (child, index) => (
   <li key={`submission-${index}`}>{child}</li>

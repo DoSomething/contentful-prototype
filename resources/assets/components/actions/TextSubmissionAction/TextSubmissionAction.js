@@ -5,8 +5,8 @@ import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Card from '../../Card';
 import Markdown from '../../Markdown';
+import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import { getFieldErrors } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';

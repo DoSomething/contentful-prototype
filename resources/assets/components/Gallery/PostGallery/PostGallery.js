@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../../Card';
-import Gallery from '../Gallery';
-import LoadMore from '../../LoadMore';
+import Card from '../../utilities/Card/Card';
+import Gallery from '../../utilities/Gallery/Gallery';
+import LoadMore from '../../utilities/LoadMore/LoadMore';
 import ReportbackItemContainer from '../../ReportbackItem';
 
 class PostGallery extends React.Component {

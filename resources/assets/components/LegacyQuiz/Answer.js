@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Card from '../Card';
+
+import Card from '../utilities/Card/Card';
 
 const Answer = props => {
   const {

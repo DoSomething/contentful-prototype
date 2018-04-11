@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Card from '../components/Card';
+import Card from '../components/utilities/Card/Card';
 import Markdown from '../components/Markdown';
 
 const zendeskUrl =

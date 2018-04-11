@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../../Card';
+
 import Markdown from '../../Markdown';
 import BlockModal from './BlockModal';
+import Card from '../../utilities/Card/Card';
 
 const PostShareModal = props => {
   const { affirmationText, affirmationBlock, closeModal } = props;
