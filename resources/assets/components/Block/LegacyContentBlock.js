@@ -57,10 +57,7 @@ const LegacyContentBlock = props => {
         ) : null}
         {photoComponent}
       </Flex>
-      <PuckWaypoint
-        name="legacy-content-block__bottom"
-        waypointData={{ title }}
-      />
+      <PuckWaypoint name="content-block__bottom" waypointData={{ title }} />
     </div>
   );
 };
