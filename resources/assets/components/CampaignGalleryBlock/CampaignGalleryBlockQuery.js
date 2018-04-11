@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 import PaginatedQuery from '../PaginatedQuery';
-import CampaignGalleryBlock from './CampaignGalleryBlock';
+import PostGallery from '../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../utilities/ReactionButton/ReactionButton';
 
@@ -33,8 +33,8 @@ const CampaignGalleryQuery = ({ campaignId }) => (
     count={9}
   >
     {({ result, fetching, fetchMore }) => (
-      <CampaignGalleryBlock
-        postsByCampaignId={result}
+      <PostGallery
+        posts={result}
         loading={fetching}
         loadMorePosts={fetchMore}
       />
