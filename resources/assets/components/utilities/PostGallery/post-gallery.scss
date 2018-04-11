@@ -1,6 +1,6 @@
-@import '../../scss/next-toolbox';
+@import '../../../scss/next-toolbox';
 
-.campaign-gallery {
+.post-gallery {
   // Alternate adjacent 'chat-bubble' colors within a gallery.
   li:nth-of-type(2n) .chat-bubble {
     $bright-purple: #563795;
