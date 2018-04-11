@@ -35,12 +35,13 @@ You may run JavaScript tests locally using [Jest](https://github.com/facebook/je
 $ npm test
 ```
 
-## Linting
+## Code Style
 
-We use [ESLint](http://eslint.org/) to lint our front-end JavaScript code. It runs in the following scenarios:
+We use [Prettier](https://prettier.io/) to format our code & [ESLint](http://eslint.org/) to catch common mistakes. They run in the following scenarios:
 
 * When using the `npm start` command, your files will be "watched" for changes, and when a change is detected, the JS code will be linted and only compiled if it passes.
-* You can manually execute linting the code by running `npm run lint -s`. The `-s` option lets you suppress the verbose NPM warnings that follows when there are linting errors.
-* Code linting also runs via [Wercker](http://www.wercker.com/) our continuous integration service when a new pull request is made for the repository.
+* Code will be automatically formatted when committing changes. You can also install an [editor plugin](https://prettier.io/docs/en/editors.html) to reformat code as you write it, or manually format the project with `npm run format`.
+* You can manually lint code by running `npm run lint -s`. The `-s` option lets you suppress the verbose NPM warnings that follows when there are linting errors.
+* Code linting also runs via [Wercker](http://www.wercker.com/), our continuous integration service, when a new pull request is made for the repository.
 
 We use [StyleCI](https://styleci.io/repos/75642790) service to lint our PHP code when a new pull request is made for the respository.
