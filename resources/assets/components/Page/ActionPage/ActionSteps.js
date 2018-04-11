@@ -36,7 +36,7 @@ export function renderRevealer(callToAction, hasPendingSignup, isSignedUp) {
  */
 export function renderLegacyGallery() {
   return (
-    <div key="member_gallery" className="content-block">
+    <div key="member_gallery" className="legacy-content-block">
       <div className="margin-top-xlg margin-bottom-xlg margin-horizontal-md">
         <h2 className="heading -emphasized legacy-step-header margin-top-md margin-bottom-md">
           <span>Member Gallery</span>
@@ -61,10 +61,10 @@ const ActionSteps = props => {
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map(json => {
-    const type = parseContentfulType(json, 'contentBlock');
+    const type = parseContentfulType(json, 'legacyContentBlock');
 
     // Is this a "numbered" step? If so, increment our step index.
-    if (['third-party-action', 'contentBlock'].includes(type)) {
+    if (['third-party-action', 'legacyContentBlock'].includes(type)) {
       stepIndex += 1;
     }
 
@@ -90,7 +90,7 @@ const ActionSteps = props => {
         'photo-uploader',
         'photoUploaderAction',
         'submission-gallery',
-        'contentBlock',
+        'legacyContentBlock',
         'gallery',
       ].includes(type)
     ) {

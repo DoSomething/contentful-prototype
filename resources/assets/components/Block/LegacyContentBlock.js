@@ -7,16 +7,16 @@ import SectionHeader from '../SectionHeader';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 
-import './contentBlock.scss';
+import './legacy-content-block.scss';
 
 // TODO: Replace alt with better description.
 const renderPhoto = (photo, index) => (
-  <div className="content-block__photo" key={index}>
+  <div className="legacy-content-block__photo" key={index}>
     <img alt="Action step" src={photo} />
   </div>
 );
 
-const ContentBlock = props => {
+const LegacyContentBlock = props => {
   const {
     title,
     stepIndex,
@@ -31,7 +31,7 @@ const ContentBlock = props => {
   const photoComponent =
     photos && photos.length ? (
       <FlexCell width={photoWidth}>
-        <div className={`content-block__photos -${photoWidth}`}>
+        <div className={`legacy-content-block__photos -${photoWidth}`}>
           {photos ? photos.map(renderPhoto) : null}
         </div>
       </FlexCell>
@@ -39,7 +39,9 @@ const ContentBlock = props => {
 
   return (
     <div
-      className={classnames('content-block', { '-truncate': shouldTruncate })}
+      className={classnames('legacy-content-block', {
+        '-truncate': shouldTruncate,
+      })}
     >
       <Flex>
         <SectionHeader
@@ -60,7 +62,7 @@ const ContentBlock = props => {
   );
 };
 
-ContentBlock.propTypes = {
+LegacyContentBlock.propTypes = {
   preTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
   stepIndex: PropTypes.number.isRequired,
@@ -71,7 +73,7 @@ ContentBlock.propTypes = {
   hideStepNumber: PropTypes.bool,
 };
 
-ContentBlock.defaultProps = {
+LegacyContentBlock.defaultProps = {
   preTitle: null,
   content: null,
   photos: [],
@@ -79,4 +81,4 @@ ContentBlock.defaultProps = {
   hideStepNumber: false,
 };
 
-export default ContentBlock;
+export default LegacyContentBlock;

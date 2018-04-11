@@ -1,6 +1,6 @@
 @import '../../scss/next-toolbox.scss';
 
-.content-block {
+.legacy-content-block {
   width: 100%;
   // @TODO Once we start nesting actions within the action step (as more of a 'section')
   // we should re-eveluate the margin here
@@ -31,12 +31,12 @@
     font-family: $primary-font-family;
   }
 
-  .content-block__photos {
+  .legacy-content-block__photos {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    .content-block__photo {
+    .legacy-content-block__photo {
       margin-bottom: $base-spacing;
       width: 100%;
       height: 100%;
@@ -49,15 +49,15 @@
 
   // Custom overrides for the various layouts on tablet+ devices.
   @include media($medium) {
-    .content-block__photos.-one-third {
+    .legacy-content-block__photos.-one-third {
       margin-left: $base-spacing;
       width: auto;
     }
 
-    .content-block__photos.-full {
+    .legacy-content-block__photos.-full {
       flex-direction: row;
 
-      .content-block__photo:not(:first-child) {
+      .legacy-content-block__photo:not(:first-child) {
         margin-left: $half-spacing;
       }
     }

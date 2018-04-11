@@ -34,7 +34,7 @@ const ThirdParyAction = props => {
 
   return (
     <FlexCell width="full">
-      <div className={classnames('content-block')}>
+      <div className={classnames('legacy-content-block')}>
         <Flex>
           <SectionHeader
             title={title}
