@@ -245,7 +245,7 @@ export function renderContentBlock(data) {
       key={`content-block-${contentfulId}`}
       className="margin-horizontal-md margin-bottom-lg"
     >
-      <ContentBlock {...data.fields} />
+      <ContentBlock id={contentfulId} {...data.fields} />
     </div>
   );
 }
