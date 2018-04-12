@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import {
   ModalSwitchContainer,
@@ -8,6 +9,7 @@ import {
 } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
+import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import {
   AdminDashboardContainer,
@@ -16,7 +18,11 @@ import {
 import ModalLauncherContainer from '../ModalLauncher';
 
 const Campaign = props => (
-  <div>
+  <ModalRoute
+    history={props.history}
+    location={props.location}
+    match={props.match}
+  >
     <AdminDashboardContainer>
       <CampaignDashboardContainer />
     </AdminDashboardContainer>
@@ -47,12 +53,15 @@ const Campaign = props => (
     ) : (
       <CampaignPageContainer {...props} />
     )}
-  </div>
+  </ModalRoute>
 );
 
 Campaign.propTypes = {
   shouldShowLandingPage: PropTypes.bool.isRequired,
   featureFlags: PropTypes.objectOf(PropTypes.bool),
+  location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 Campaign.defaultProps = {

@@ -9,7 +9,6 @@ import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
-import { BLOCK_MODAL, REPORTBACK_UPLOADER_MODAL } from '../../Modal';
 
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
@@ -22,7 +21,6 @@ const CampaignPage = props => {
     endDate,
     hasActivityFeed,
     match,
-    openModal,
     shouldShowActionPage,
     template,
   } = props;
@@ -81,23 +79,6 @@ const CampaignPage = props => {
             path={`${match.url}/quiz/:slug`}
             component={BlockPageContainer}
           />
-          <Route
-            path={`${match.url}/modal/:id`}
-            render={routingProps => {
-              const { id } = routingProps.match.params;
-
-              switch (id) {
-                case 'reportback':
-                  openModal(REPORTBACK_UPLOADER_MODAL);
-                  break;
-                default:
-                  openModal(BLOCK_MODAL, id);
-                  break;
-              }
-
-              return <Redirect to={`${match.url}`} />;
-            }}
-          />
           {/* If no route matches, just redirect back to the main page: */}
           <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
         </Switch>
@@ -126,7 +107,6 @@ CampaignPage.propTypes = {
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   template: PropTypes.string.isRequired,
-  openModal: PropTypes.func.isRequired,
   shouldShowActionPage: PropTypes.bool.isRequired,
 };
 
