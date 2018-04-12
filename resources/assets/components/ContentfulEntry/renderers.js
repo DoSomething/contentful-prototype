@@ -5,6 +5,7 @@ import { LegacyContentBlock } from '../Block';
 import Affirmation from '../Affirmation';
 import { ShareActionContainer } from '../ShareAction';
 import LinkActionContainer from '../actions/LinkAction';
+import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { ThirdPartyActionContainer } from '../actions/ThirdPartyAction';
@@ -195,7 +196,7 @@ export function renderLinkAction(step) {
 }
 
 /**
- * Render a link action.
+ * Render a text submission action.
  *
  * @param {Object} data
  * @return {Component}
@@ -228,4 +229,23 @@ export function renderTextSubmissionAction(data) {
  */
 export function renderAffirmation(step) {
   return <Affirmation content={step.fields} />;
+}
+
+/**
+ * Render a content block.
+ *
+ * @param {Object} data ContentBlock
+ * @return {Component}
+ */
+export function renderContentBlock(data) {
+  const contentfulId = data.id;
+
+  return (
+    <div
+      key={`content-block-${contentfulId}`}
+      className="margin-horizontal-md margin-bottom-lg"
+    >
+      <ContentBlock id={contentfulId} {...data.fields} />
+    </div>
+  );
 }

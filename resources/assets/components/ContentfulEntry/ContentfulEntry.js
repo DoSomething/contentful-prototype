@@ -24,6 +24,7 @@ import {
   renderLinkAction,
   renderAffirmation,
   renderTextSubmissionAction,
+  renderContentBlock,
 } from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
@@ -90,11 +91,14 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'competition':
         return renderCompetitionStep(json);
 
-      case 'legacyContentBlock':
-        return renderLegacyContentBlock(json, stepIndex);
+      case 'contentBlock':
+        return renderContentBlock(json);
 
       case 'gallery':
         return <CampaignGalleryBlockContainer />;
+
+      case 'legacyContentBlock':
+        return renderLegacyContentBlock(json, stepIndex);
 
       case 'linkAction':
         return renderLinkAction(json);
