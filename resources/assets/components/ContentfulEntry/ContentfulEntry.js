@@ -10,7 +10,7 @@ import NotFound from '../NotFound';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
-import CampaignGalleryBlockContainer from '../CampaignGalleryBlock/CampaignGalleryBlockContainer';
+import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import { parseContentfulType } from '../../helpers';
 import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
 import {

@@ -12,6 +12,7 @@ import { ThirdPartyActionContainer } from '../actions/ThirdPartyAction';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
+import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 
 /**
  * Render a competition step.
@@ -214,6 +215,7 @@ export function renderTextSubmissionAction(data) {
         waypointData={{ contentfulId }}
       />
       <TextSubmissionActionContainer id={data.id} {...data.fields} />
+      <SubmissionGalleryBlockContainer />
       <PuckWaypoint
         name="text_submission_action-bottom"
         waypointData={{ contentfulId }}
