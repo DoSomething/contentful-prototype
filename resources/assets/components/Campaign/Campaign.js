@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import {
   ModalSwitchContainer,
@@ -58,9 +59,9 @@ const Campaign = props => (
 Campaign.propTypes = {
   shouldShowLandingPage: PropTypes.bool.isRequired,
   featureFlags: PropTypes.objectOf(PropTypes.bool),
-  location: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
-  history: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
-  match: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  location: ReactRouterPropTypes.location.isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 Campaign.defaultProps = {

@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import ContentfulEntryContainer from '../../ContentfulEntry/ContentfulEntryContainer';
 import Modal from '../../utilities/Modal/Modal';
@@ -22,16 +23,16 @@ class ModalLayer extends React.Component {
   }
 
   componentWillUpdate(nextProps) {
-    const { location } = this.props;
-
-    // If we're opening a modal, keep track of where we were:
+    // If we're opening a modal, keep track of where we were.
     if (!isModal(this.props.location) && isModal(nextProps.location)) {
-      this.previousLocation = location.pathname;
+      this.previousLocation = this.props.location.pathname;
       this.previousScroll = window.scrollY;
     }
   }
 
   componentDidUpdate(prevProps) {
+    // After closing a modal, restore scroll position. We do this in
+    // `componentDidUpdate` because we need re-rendered page in place.
     if (isModal(prevProps.location) && !isModal(this.props.location)) {
       window.scroll(0, this.previousScroll);
     }
@@ -63,10 +64,10 @@ class ModalLayer extends React.Component {
 }
 
 ModalLayer.propTypes = {
-  history: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
-  location: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
-  match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  children: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
+  children: PropTypes.node,
 };
 
 ModalLayer.defaultProps = {
