@@ -6,13 +6,11 @@ import {
   BlockModalContainer,
   ReportbackUploaderModal,
   PostReportbackModalContainer,
-  PostShareModalContainer,
   SurveyModalContainer,
   VoterRegistrationModalContainer,
   POST_SIGNUP_MODAL,
   BLOCK_MODAL,
   REPORTBACK_UPLOADER_MODAL,
-  POST_SHARE_MODAL,
   SURVEY_MODAL,
   POST_REPORTBACK_MODAL,
   VOTER_REGISTRATION_MODAL,
@@ -34,9 +32,6 @@ const ModalSwitch = props => {
     case SURVEY_MODAL:
       children = <SurveyModalContainer />;
       break;
-    case POST_SHARE_MODAL:
-      children = <PostShareModalContainer id={props.id} />;
-      break;
     case POST_REPORTBACK_MODAL:
       children = <PostReportbackModalContainer />;
       break;
@@ -52,7 +47,6 @@ const ModalSwitch = props => {
 
 ModalSwitch.propTypes = {
   modalType: PropTypes.string,
-  id: PropTypes.string,
 };
 
 ModalSwitch.defaultProps = {

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { PortalWithState } from 'react-portal';
 import {
   POST_SIGNUP_MODAL,
-  POST_SHARE_MODAL,
   BLOCK_MODAL,
   VOTER_REGISTRATION_MODAL,
   POST_REPORTBACK_MODAL,
@@ -51,7 +50,6 @@ class Modal extends React.Component {
 
     const hideCloseButton = [
       POST_SIGNUP_MODAL,
-      POST_SHARE_MODAL,
       BLOCK_MODAL,
       VOTER_REGISTRATION_MODAL,
       POST_REPORTBACK_MODAL,
