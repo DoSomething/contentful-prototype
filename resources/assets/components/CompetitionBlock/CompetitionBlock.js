@@ -3,9 +3,10 @@ import React from 'react';
 import classnames from 'classnames';
 
 import Markdown from '../Markdown';
-import { BlockWrapper } from '../Block';
-import Byline from '../Byline';
 import LazyImage from '../LazyImage';
+import { BlockWrapper } from '../Block';
+import Byline from '../utilities/Byline/Byline';
+
 import './competitionBlock.scss';
 
 const DEFAULT_CONFIRMATION = `

@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Embed from '../Embed';
-import Markdown from '../Markdown';
-import Card from '../utilities/Card/Card';
-import { POST_SHARE_MODAL } from '../Modal';
-import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
+import Embed from '../../Embed';
+import Markdown from '../../Markdown';
+import Card from '../../utilities/Card/Card';
+import { POST_SHARE_MODAL } from '../../Modal';
+import {
+  showFacebookSharePrompt,
+  showTwitterSharePrompt,
+} from '../../../helpers';
 
 const ShareAction = props => {
   const {

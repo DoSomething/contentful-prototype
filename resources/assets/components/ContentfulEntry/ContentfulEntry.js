@@ -2,17 +2,17 @@
 
 import React from 'react';
 
-import QuizContainer from '../Quiz/QuizContainer';
-import { ContentfulEntryJson } from '../../types';
+import NotFound from '../NotFound';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
-import NotFound from '../NotFound';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import QuizContainer from '../Quiz/QuizContainer';
+import { ContentfulEntryJson } from '../../types';
+import { parseContentfulType } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
+import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
-import { parseContentfulType } from '../../helpers';
-import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
 import {
   renderCompetitionStep,
   renderPhotoUploader,

@@ -4,10 +4,10 @@ import classnames from 'classnames';
 import { get } from 'lodash';
 
 import Embed from '../Embed';
-import Byline from '../Byline';
 import Markdown from '../Markdown';
 import Card from '../utilities/Card/Card';
 import { ShareContainer } from '../Share';
+import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
 
 const CampaignUpdate = props => {

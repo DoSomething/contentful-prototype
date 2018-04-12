@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
-import VoterRegistrationModal from '../configurations/VoterRegistrationModal';
+
 import { closeModal } from '../../../actions/modal';
 import { getUserId } from '../../../selectors/user';
+import VoterRegistrationModal from '../configurations/VoterRegistrationModal';
 
 /**
  * Provide state from the Redux store as props for this component.

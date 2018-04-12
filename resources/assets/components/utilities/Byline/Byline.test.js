@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
-import Byline from './index';
+
+import Byline from './Byline';
 
 test('Byline default snapshot test', () => {
   const component = shallow(<Byline />);

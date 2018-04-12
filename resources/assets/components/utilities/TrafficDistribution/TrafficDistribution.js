@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { get, set } from '../../helpers/storage';
+import { get, set } from '../../../helpers/storage';
 
 const TrafficDistribution = ({ percentage, feature, children }) => {
   let shouldSeeFeature;
