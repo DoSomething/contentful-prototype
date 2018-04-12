@@ -7,7 +7,7 @@ import {
   VOTER_REGISTRATION_MODAL,
 } from '../Modal';
 import NotificationContainer from '../Notification';
-import TrafficDistribution from '../TrafficDistribution';
+import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import {
   AdminDashboardContainer,

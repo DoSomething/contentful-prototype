@@ -2,11 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { Figure } from '../Figure';
+import { Figure } from '../../Figure';
 import DEFAULT_AVATAR from './default-avatar.png';
 
 import './byline.scss';
 
+/**
+ * The <Byline /> component accepts details
+ * about an author and the option to add a
+ * Facebook share.
+ */
 const Byline = ({ author, jobTitle, avatar, share, className }) => (
   <div className={classnames('byline', className)}>
     <Figure

@@ -1,18 +1,18 @@
 import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
-import { LegacyContentBlock } from '../Block';
 import Affirmation from '../Affirmation';
-import { ShareActionContainer } from '../ShareAction';
-import LinkActionContainer from '../actions/LinkAction';
+import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
-import { ThirdPartyActionContainer } from '../actions/ThirdPartyAction';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
-import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction';
+import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
+import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
+import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
+import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 
 /**
  * Render a competition step.

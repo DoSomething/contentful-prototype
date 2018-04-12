@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import TrafficDistribution from './TrafficDistribution';
-import { get, set } from '../../helpers/storage';
-import LocalStorageMock from '../../__mocks__/localStorageMock';
+import { get, set } from '../../../helpers/storage';
+import LocalStorageMock from '../../../__mocks__/localStorageMock';
 
 // Before each test, we set a fresh localStorage mock
 beforeEach(() => {

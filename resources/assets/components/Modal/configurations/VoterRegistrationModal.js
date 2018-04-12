@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { set } from '../../../helpers/storage';
 import { ModalControls } from '../../Modal';
-import VoterRegistrationActionContainer from '../../actions/VoterRegistrationAction';
+import { set } from '../../../helpers/storage';
+import VoterRegistrationActionContainer from '../../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 
 class VoterRegistrationModal extends React.Component {
   componentWillUnmount() {
