@@ -14,7 +14,7 @@ const isModal = location => location.pathname.includes('/modal/');
 const withoutModal = location =>
   location.pathname.replace(/\/modal\/[a-zA-Z0-9]*\/?/, '');
 
-class ModalLayer extends React.Component {
+class ModalRoute extends React.Component {
   constructor(props) {
     super(props);
 
@@ -63,15 +63,15 @@ class ModalLayer extends React.Component {
   }
 }
 
-ModalLayer.propTypes = {
+ModalRoute.propTypes = {
   history: ReactRouterPropTypes.history.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   children: PropTypes.node,
 };
 
-ModalLayer.defaultProps = {
+ModalRoute.defaultProps = {
   children: null,
 };
 
-export default ModalLayer;
+export default ModalRoute;

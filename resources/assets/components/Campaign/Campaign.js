@@ -9,7 +9,7 @@ import {
 } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
-import ModalLayer from '../utilities/ModalLayer/ModalLayer';
+import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import {
   AdminDashboardContainer,
@@ -18,7 +18,7 @@ import {
 import ModalLauncherContainer from '../ModalLauncher';
 
 const Campaign = props => (
-  <ModalLayer
+  <ModalRoute
     history={props.history}
     location={props.location}
     match={props.match}
@@ -53,7 +53,7 @@ const Campaign = props => (
     ) : (
       <CampaignPageContainer {...props} />
     )}
-  </ModalLayer>
+  </ModalRoute>
 );
 
 Campaign.propTypes = {
