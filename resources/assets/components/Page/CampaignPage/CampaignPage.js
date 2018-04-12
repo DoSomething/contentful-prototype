@@ -9,8 +9,6 @@ import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
-import ContentfulEntryContainer from '../../ContentfulEntry/ContentfulEntryContainer';
-import Modal from '../../utilities/Modal/Modal';
 
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
@@ -80,14 +78,6 @@ const CampaignPage = props => {
           <Route
             path={`${match.url}/quiz/:slug`}
             component={BlockPageContainer}
-          />
-          <Route
-            path={`${match.url}/modal/:id`}
-            render={routingProps => (
-              <Modal>
-                <ContentfulEntryContainer id={routingProps.match.params.id} />
-              </Modal>
-            )}
           />
           {/* If no route matches, just redirect back to the main page: */}
           <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />

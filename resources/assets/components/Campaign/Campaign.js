@@ -8,6 +8,7 @@ import {
 } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
+import ModalLayer from '../utilities/ModalLayer/ModalLayer';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import {
   AdminDashboardContainer,
@@ -16,7 +17,11 @@ import {
 import ModalLauncherContainer from '../ModalLauncher';
 
 const Campaign = props => (
-  <div>
+  <ModalLayer
+    history={props.history}
+    location={props.location}
+    match={props.match}
+  >
     <AdminDashboardContainer>
       <CampaignDashboardContainer />
     </AdminDashboardContainer>
@@ -47,12 +52,15 @@ const Campaign = props => (
     ) : (
       <CampaignPageContainer {...props} />
     )}
-  </div>
+  </ModalLayer>
 );
 
 Campaign.propTypes = {
   shouldShowLandingPage: PropTypes.bool.isRequired,
   featureFlags: PropTypes.objectOf(PropTypes.bool),
+  location: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  history: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
+  match: PropTypes.any.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 Campaign.defaultProps = {
