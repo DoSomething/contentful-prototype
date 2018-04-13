@@ -1,7 +1,7 @@
 /* global jsdom */
 
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { getTime } from 'date-fns';
 
 import { set } from '../../helpers/storage';
@@ -15,25 +15,17 @@ jest.useFakeTimers();
 const userId = '1234';
 const type = 'fun_survey';
 const MODAL_COUNTDOWN = 60;
-const MODAL_TYPE = 'AWESOME_MODAL';
 
-const mountModal = (isAuthenticated = true) => {
-  // Using a function mock for the openModal prop
-  const openModalMock = jest.fn();
-
-  mount(
+const getShallow = (isAuthenticated = true) =>
+  shallow(
     <ModalLauncher
       type={type}
       countdown={MODAL_COUNTDOWN}
-      modalType={MODAL_TYPE}
+      render={() => <div className="my-modal" />}
       userId={userId}
       isAuthenticated={isAuthenticated}
-      openModal={openModalMock}
     />,
   );
-
-  return openModalMock;
-};
 
 // Helper to set the user survey completion status in localstorage
 const toggleHideModal = value => {
@@ -51,59 +43,55 @@ describe('The ModalLauncher component', () => {
   });
 
   it('waits the alotted countdown time to launch modal', () => {
-    const openModalMock = mountModal();
+    const wrapper = getShallow();
 
     jest.runTimersToTime((MODAL_COUNTDOWN - 1) * 1000);
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    expect(wrapper.update().find('Modal')).toHaveLength(0);
 
     jest.runTimersToTime(2000);
 
-    expect(openModalMock).toHaveBeenCalledTimes(1);
+    expect(wrapper.update().find('Modal')).toHaveLength(1);
   });
 
   it('opens the correct modal type', () => {
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock.mock.calls[0][0]).toBe(MODAL_TYPE);
+    expect(wrapper.update().find('Modal')).toHaveLength(1);
+    // expect(openModalMock.mock.calls[0][0]).toBe(MODAL_TYPE);
   });
 
   it('launches the modal when `ENV`s `[type]_ENABLED` is toggled on', () => {
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(1);
+    expect(wrapper.update().find('Modal')).toHaveLength(1);
   });
 
   it('does not launch the modal when `ENV`s `[type]_ENABLED` is toggled off', () => {
     global.ENV.FUN_SURVEY_ENABLED = false;
 
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    expect(wrapper.update().find('Modal')).toHaveLength(0);
   });
 
   it('does not launch when there is no userId', () => {
-    const openModalMock = mountModal(false);
-
+    const wrapper = getShallow(false);
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    expect(wrapper.update().find('Modal')).toHaveLength(0);
   });
 
   it('does not launch when the feature is marked to be hidden', () => {
     toggleHideModal(true);
 
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    expect(wrapper.update().find('Modal')).toHaveLength(0);
   });
 
   it('marks the modal to be hidden (and does not render the modal) if the URL params indicate as such', () => {
@@ -111,11 +99,10 @@ describe('The ModalLauncher component', () => {
       url: 'https://phoenix.test/?hide_fun_survey=1',
     });
 
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    expect(wrapper.update().find('Modal')).toHaveLength(0);
 
     jsdom.reconfigure({
       url: 'https://phoenix.test',
@@ -125,11 +112,10 @@ describe('The ModalLauncher component', () => {
   it('does not launch if the user is marked as dismissed less then 30 days ago', () => {
     set(`${userId}_dismissed_fun_survey`, 'timestamp', Date.now());
 
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(0);
+    expect(wrapper.update().find('Modal')).toHaveLength(0);
   });
 
   it('launches the modal if the user is marked as dismissed more then 30 days ago', () => {
@@ -137,10 +123,9 @@ describe('The ModalLauncher component', () => {
 
     set(`${userId}_dismissed_fun_survey`, 'timestamp', time);
 
-    const openModalMock = mountModal();
-
+    const wrapper = getShallow();
     jest.runAllTimers();
 
-    expect(openModalMock).toHaveBeenCalledTimes(1);
+    expect(wrapper.update().find('Modal')).toHaveLength(1);
   });
 });

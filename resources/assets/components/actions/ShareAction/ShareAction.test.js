@@ -11,7 +11,6 @@ describe('ShareAction component', () => {
   const trackingData = { url };
 
   let trackEventMock = jest.fn();
-  let openModalMock = jest.fn();
 
   const getShallow = socialPlatform =>
     shallow(
@@ -19,10 +18,8 @@ describe('ShareAction component', () => {
         title="Click on this link!"
         content="This is a great link"
         trackEvent={trackEventMock}
-        openModal={openModalMock}
-        link={url}
         socialPlatform={socialPlatform}
-        id="1234"
+        link={url}
       />,
     );
 
@@ -46,7 +43,6 @@ describe('ShareAction component', () => {
   describe('Clicking the Social Share Button for a Facebook share', () => {
     beforeEach(() => {
       trackEventMock = jest.fn();
-      openModalMock = jest.fn();
       wrapper = getShallow('facebook');
     });
 
@@ -92,7 +88,7 @@ describe('ShareAction component', () => {
 
       wrapper.find('button').simulate('click');
 
-      expect(openModalMock).toHaveBeenCalledTimes(1);
+      expect(wrapper.find('Modal')).toHaveLength(1);
     });
 
     it('tracks completed share action event when social share is cancelled', () => {
@@ -111,7 +107,6 @@ describe('ShareAction component', () => {
   describe('Clicking the Social Share Button for a Twitter share', () => {
     beforeEach(() => {
       trackEventMock = jest.fn();
-      openModalMock = jest.fn();
       wrapper = getShallow('twitter');
     });
 
@@ -143,11 +138,13 @@ describe('ShareAction component', () => {
     it('displays the affirmation modal when social share is successful', () => {
       wrapper.find('button').simulate('click');
 
-      // Run the timer a second so that the callback in -
-      // `setInterval` in the twitter share function runs.
-      jest.runTimersToTime(1000);
+      // We check if the share dialog has been closed every 1s,
+      // so let's "wait" until the first tick of that check.
+      jest.advanceTimersByTime(1000);
 
-      expect(openModalMock).toHaveBeenCalledTimes(1);
+      // Wait for our mock-closed window to run the `setState` callback,
+      // and then check that we're displaying a <Modal> affirmation.
+      expect(wrapper.update().find('Modal')).toHaveLength(1);
     });
   });
 });

@@ -4,8 +4,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 
 import {
   ModalSwitchContainer,
-  SURVEY_MODAL,
-  VOTER_REGISTRATION_MODAL,
+  SurveyModalContainer,
+  VoterRegistrationModalContainer,
 } from '../Modal';
 import NotificationContainer from '../Notification';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
@@ -34,7 +34,7 @@ const Campaign = props => (
       <ModalLauncherContainer
         type="nps_survey"
         countdown={60}
-        modalType={SURVEY_MODAL}
+        render={() => <SurveyModalContainer />}
       />
     </TrafficDistribution>
 
@@ -43,7 +43,7 @@ const Campaign = props => (
         <ModalLauncherContainer
           type="voter_reg_modal"
           countdown={30}
-          modalType={VOTER_REGISTRATION_MODAL}
+          render={() => <VoterRegistrationModalContainer />}
         />
       </TrafficDistribution>
     ) : null}
