@@ -5,8 +5,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { POST_REPORTBACK_MODAL } from '../../Modal';
-
 const CampaignDashboard = props => {
   const {
     hasLandingPage,
@@ -19,7 +17,6 @@ const CampaignDashboard = props => {
     signupCreated,
     isAdmin,
     isSignedUp,
-    openModal,
   } = props;
 
   const onSignUpClick = () =>
@@ -70,12 +67,6 @@ const CampaignDashboard = props => {
       <button className="button -secondary margin-md" onClick={onSignUpClick}>
         {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
       </button>
-      <button
-        className="button -secondary margin-md"
-        onClick={() => openModal(POST_REPORTBACK_MODAL)}
-      >
-        Show Reportback Affirmation
-      </button>
       {hasReferralRB && isAdmin ? (
         <button
           className="button -secondary margin-md"
@@ -99,7 +90,6 @@ CampaignDashboard.propTypes = {
   clickedRemoveSignUp: PropTypes.func.isRequired,
   signupCreated: PropTypes.func.isRequired,
   hasReferralRB: PropTypes.bool.isRequired,
-  openModal: PropTypes.func.isRequired,
 };
 
 CampaignDashboard.defaultProps = {

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { PortalWithState } from 'react-portal';
-import { POST_SIGNUP_MODAL, POST_REPORTBACK_MODAL } from '../Modal';
+import { POST_SIGNUP_MODAL } from '../Modal';
 
 import './modal.scss';
 
@@ -43,9 +43,7 @@ class Modal extends React.Component {
     const { modalType, shouldShowModal, children } = this.props;
     const chrome = document.getElementById('chrome');
 
-    const hideCloseButton = [POST_SIGNUP_MODAL, POST_REPORTBACK_MODAL].includes(
-      modalType,
-    );
+    const hideCloseButton = [POST_SIGNUP_MODAL].includes(modalType);
 
     return shouldShowModal ? (
       <PortalWithState

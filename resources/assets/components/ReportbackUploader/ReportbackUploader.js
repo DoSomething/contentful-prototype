@@ -7,7 +7,7 @@ import classnames from 'classnames';
 
 import Markdown from '../Markdown';
 import Card from '../utilities/Card/Card';
-import { POST_REPORTBACK_MODAL } from '../Modal';
+import Modal from '../utilities/Modal/Modal';
 import FormMessage from '../utilities/FormMessage';
 import MediaUploader from '../utilities/MediaUploader';
 
@@ -55,6 +55,7 @@ class ReportbackUploader extends React.Component {
         };
 
     this.state = {
+      showAffirmationModal: false,
       media: this.defaultMediaState,
       caption: null,
       impact: null,
@@ -114,7 +115,7 @@ class ReportbackUploader extends React.Component {
         });
 
         trackingMessage = 'Successful Reportback';
-        this.props.openModal(POST_REPORTBACK_MODAL);
+        this.setState({ showAffirmationModal: true });
       } else {
         trackingMessage = 'Unsuccessful Reportback';
         trackingData.submission_error = this.props.submissions.messaging.error;
@@ -342,6 +343,20 @@ class ReportbackUploader extends React.Component {
             </div>
           ) : null}
         </div>
+
+        {this.state.showAffirmationModal ? (
+          <Modal onClose={() => this.setState({ showAffirmationModal: false })}>
+            <Card
+              title="We Got Your Submission"
+              className="modal__slide bordered rounded"
+            >
+              <Markdown className="padding-md">
+                {this.props.affirmationContent ||
+                  `Thanks! We got your submission and you're entered to win the scholarship!`}
+              </Markdown>
+            </Card>
+          </Modal>
+        ) : null}
       </div>
     );
   }
@@ -350,6 +365,7 @@ class ReportbackUploader extends React.Component {
 ReportbackUploader.propTypes = {
   actionType: PropTypes.string,
   referralRB: PropTypes.bool,
+  affirmationContent: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   legacyCampaignId: PropTypes.string.isRequired,
@@ -357,7 +373,6 @@ ReportbackUploader.propTypes = {
     singular: PropTypes.string,
     plural: PropTypes.string,
   }),
-  openModal: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   submissions: PropTypes.shape({
     isFetching: PropTypes.bool,
