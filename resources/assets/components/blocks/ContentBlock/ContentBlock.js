@@ -20,9 +20,11 @@ const ContentBlock = props => {
 
   return (
     <div className="content-block">
-      <div className="margin-horizontal-md">
-        <SectionHeader preTitle={superTitle} title={title} hideStepNumber />
-      </div>
+      {title ? (
+        <div className="margin-horizontal-md">
+          <SectionHeader preTitle={superTitle} title={title} hideStepNumber />
+        </div>
+      ) : null}
 
       <div className="margin-horizontal-md">
         {image ? (

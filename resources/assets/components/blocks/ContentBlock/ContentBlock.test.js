@@ -23,6 +23,16 @@ describe('ContentBlock component', () => {
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
 
+  test("does not include SectionHeader when there's no title", () => {
+    const wrapper = shallow(
+      <ContentBlock {...props} {...image} title={undefined} />,
+    );
+
+    expect(wrapper.find('SectionHeader').length).toEqual(0);
+
+    expect(shallowToJson(wrapper)).toMatchSnapshot();
+  });
+
   test('is rendered with the proper child components when image is not set', () => {
     const wrapper = shallow(<ContentBlock {...props} />);
 
