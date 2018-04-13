@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-import NavigationLink from '../Navigation/NavigationLink';
+import SignupButton from '../SignupButton';
+import { isCampaignClosed } from '../../helpers';
 import TabbedNavigation from './TabbedNavigation';
 import { campaignPaths } from '../../helpers/navigation';
-import { isCampaignClosed } from '../../helpers';
-import SignupButton from '../SignupButton';
+import NavigationLink from '../Navigation/NavigationLink';
 
 const mapStateToProps = state => ({
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
