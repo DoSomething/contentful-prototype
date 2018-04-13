@@ -5,13 +5,9 @@ import {
   PostSignupModal,
   ReportbackUploaderModal,
   PostReportbackModalContainer,
-  SurveyModalContainer,
-  VoterRegistrationModalContainer,
   POST_SIGNUP_MODAL,
   REPORTBACK_UPLOADER_MODAL,
-  SURVEY_MODAL,
   POST_REPORTBACK_MODAL,
-  VOTER_REGISTRATION_MODAL,
 } from '../Modal';
 
 const ModalSwitch = props => {
@@ -24,14 +20,8 @@ const ModalSwitch = props => {
     case REPORTBACK_UPLOADER_MODAL:
       children = <ReportbackUploaderModal />;
       break;
-    case SURVEY_MODAL:
-      children = <SurveyModalContainer />;
-      break;
     case POST_REPORTBACK_MODAL:
       children = <PostReportbackModalContainer />;
-      break;
-    case VOTER_REGISTRATION_MODAL:
-      children = <VoterRegistrationModalContainer />;
       break;
     default:
       break;

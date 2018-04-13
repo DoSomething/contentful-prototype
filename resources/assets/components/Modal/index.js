@@ -14,6 +14,4 @@ export ReportbackUploaderModal from './configurations/ReportbackUploaderModal';
 
 export const POST_SIGNUP_MODAL = 'POST_SIGNUP_MODAL';
 export const REPORTBACK_UPLOADER_MODAL = 'REPORTBACK_UPLOADER_MODAL';
-export const SURVEY_MODAL = 'SURVEY_MODAL';
 export const POST_REPORTBACK_MODAL = 'POST_REPORTBACK_MODAL';
-export const VOTER_REGISTRATION_MODAL = 'VOTER_REGISTRATION_MODAL';
