@@ -14,12 +14,14 @@ const SUBMISSION_GALLERY_QUERY = gql`
   query SubmissionGalleryQuery(
     $campaignId: String!
     $userId: String!
+    $type: String!
     $count: Int
     $page: Int
   ) {
     posts(
       campaignId: $campaignId
       userId: $userId
+      type: $type
       count: $count
       page: $page
     ) {
@@ -35,11 +37,11 @@ const SUBMISSION_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const SubmissionGalleryBlockQuery = ({ campaignId, userId }) => (
+const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) => (
   <PaginatedQuery
     query={SUBMISSION_GALLERY_QUERY}
     queryName="posts"
-    variables={{ campaignId, userId }}
+    variables={{ campaignId, userId, type }}
     count={6}
   >
     {({ result, fetching, fetchMore }) => (
@@ -54,6 +56,7 @@ const SubmissionGalleryBlockQuery = ({ campaignId, userId }) => (
 
 SubmissionGalleryBlockQuery.propTypes = {
   campaignId: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

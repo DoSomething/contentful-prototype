@@ -215,7 +215,7 @@ export function renderTextSubmissionAction(data) {
         waypointData={{ contentfulId }}
       />
       <TextSubmissionActionContainer id={data.id} {...data.fields} />
-      <SubmissionGalleryBlockContainer />
+      <SubmissionGalleryBlockContainer type="text" />
       <PuckWaypoint
         name="text_submission_action-bottom"
         waypointData={{ contentfulId }}
