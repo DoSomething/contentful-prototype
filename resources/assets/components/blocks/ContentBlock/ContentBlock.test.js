@@ -1,6 +1,7 @@
 import React from 'react';
-import { mount, shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
+
 import ContentBlock from './ContentBlock';
 
 const props = {
