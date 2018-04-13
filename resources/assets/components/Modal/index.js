@@ -10,8 +10,6 @@ export VoterRegistrationModalContainer from './containers/VoterRegistrationModal
 
 // TODO: whoops, these probably need to be renamed to have 'Container' appended to the name.
 export PostSignupModal from './containers/PostSignupModalContainer';
-export ReportbackUploaderModal from './configurations/ReportbackUploaderModal';
 
 export const POST_SIGNUP_MODAL = 'POST_SIGNUP_MODAL';
-export const REPORTBACK_UPLOADER_MODAL = 'REPORTBACK_UPLOADER_MODAL';
 export const POST_REPORTBACK_MODAL = 'POST_REPORTBACK_MODAL';
