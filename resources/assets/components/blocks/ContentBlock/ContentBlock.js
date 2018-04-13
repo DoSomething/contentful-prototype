@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Markdown from '../../Markdown';
-import SectionHeader from '../../SectionHeader';
 import { Figure } from '../../Figure';
+import SectionHeader from '../../SectionHeader';
 
 import './content-block.scss';
 
