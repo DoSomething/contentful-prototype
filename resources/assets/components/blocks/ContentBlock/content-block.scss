@@ -1,0 +1,34 @@
+@import '../../../scss/next-toolbox.scss';
+
+.content-block {
+  width: 100%;
+  margin-bottom: 36px;
+
+  h1,
+  h2,
+  h3,
+  p {
+    color: $black;
+    font-family: $primary-font-family;
+  }
+
+  .figure > .figure__media {
+    width: 100%;
+  }
+
+  @include media($medium) {
+    .figure {
+      > .figure__media {
+        width: 33.333333% !important;
+      }
+
+      &.-right > .figure__media {
+        margin-left: $base-spacing;
+      }
+
+      &.-left-collapse > .figure__media {
+        margin-right: $base-spacing;
+      }
+    }
+  }
+}
