@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentBlock component is rendered with the proper child components when image is set 1`] = `
+<div
+  className="content-block"
+>
+  <div
+    className="margin-horizontal-md"
+  >
+    <SectionHeader
+      hideStepNumber={true}
+      preTitle="Test Super Title"
+      step={null}
+      title="Test Title"
+    />
+  </div>
+  <div
+    className="margin-horizontal-md"
+  >
+    <Figure
+      alignment="right"
+      alt="content-block"
+      image="image.com"
+      imageClassName={null}
+      size="large"
+    >
+      <Markdown
+        className={null}
+      >
+        Test Content
+      </Markdown>
+    </Figure>
+  </div>
+</div>
+`;
+
+exports[`ContentBlock component it works beautifully with a mere content prop 1`] = `
+<div
+  className="content-block"
+>
+  <div
+    className="margin-horizontal-md"
+  >
+    <SectionHeader
+      hideStepNumber={true}
+      preTitle={null}
+      step={null}
+      title={null}
+    />
+  </div>
+  <div
+    className="margin-horizontal-md"
+  >
+    <Markdown
+      className={null}
+    >
+      hi there
+    </Markdown>
+  </div>
+</div>
+`;
