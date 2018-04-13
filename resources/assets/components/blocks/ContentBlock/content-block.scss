@@ -31,4 +31,15 @@
       }
     }
   }
+  @include media($small) {
+    .figure.-right {
+      > .figure__media {
+        margin-bottom: $half-spacing;
+      }
+
+      > .figure__body {
+        overflow: visible;
+      }
+    }
+  }
 }
