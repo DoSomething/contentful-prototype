@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Modal from '../utilities/Modal/Modal';
 import { get, set } from '../../helpers/storage';
 import { isTimestampValid, env, query } from '../../helpers';
 
 class ModalLauncher extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.shouldSeeModal = this.shouldSeeModal.bind(this);
-
-    // If the query params indicate to store the feature modal to be hidden, store it.
-    if (query(`hide_${props.type}`) === '1') {
-      set(`${props.userId}_hide_${props.type}`, 'boolean', true);
-    }
-  }
+  state = { showModal: false };
 
   componentDidMount() {
-    if (this.props.userId && this.shouldSeeModal()) {
-      const openModal = this.props.openModal.bind(this, this.props.modalType);
-      this.timer = setTimeout(openModal, this.props.countdown * 1000);
+    const { type, userId, countdown } = this.props;
+
+    // If the query params indicate to store the feature modal to be hidden, store it.
+    if (query(`hide_${type}`) === '1') {
+      set(`${userId}_hide_${type}`, 'boolean', true);
+    }
+
+    if (userId && this.shouldSeeModal()) {
+      this.timer = setTimeout(() => {
+        this.setState({ showModal: true });
+      }, countdown * 1000);
     }
   }
 
@@ -27,7 +27,7 @@ class ModalLauncher extends React.Component {
     clearTimeout(this.timer);
   }
 
-  shouldSeeModal() {
+  shouldSeeModal = () => {
     const { userId, type, isAuthenticated } = this.props;
 
     if (!isAuthenticated) {
@@ -48,10 +48,14 @@ class ModalLauncher extends React.Component {
     return (
       env(`${type.toUpperCase()}_ENABLED`) && !shouldNotSee && !isDismissed
     );
-  }
+  };
 
   render() {
-    return null;
+    return this.state.showModal ? (
+      <Modal onClose={() => this.setState({ showModal: false })}>
+        {this.props.render()}
+      </Modal>
+    ) : null;
   }
 }
 
@@ -59,8 +63,7 @@ ModalLauncher.propTypes = {
   userId: PropTypes.string,
   isAuthenticated: PropTypes.bool,
   type: PropTypes.string.isRequired,
-  openModal: PropTypes.func.isRequired,
-  modalType: PropTypes.string.isRequired,
+  render: PropTypes.func.isRequired,
   countdown: PropTypes.number.isRequired,
 };
 
