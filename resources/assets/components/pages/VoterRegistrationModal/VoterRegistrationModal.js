@@ -13,6 +13,7 @@ const VoterRegistrationModal = () => {
       content={content}
       link={link}
       contentfulId="static-voter-reg-modal"
+      modalType="voter_reg_modal"
     />
   );
 };
