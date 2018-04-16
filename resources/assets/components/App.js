@@ -6,11 +6,11 @@ import { ApolloProvider } from 'react-apollo';
 import { ConnectedRouter } from 'react-router-redux';
 import { PuckProvider } from '@dosomething/puck-client';
 
+import { env } from '../helpers';
+import graphqlClient from '../graphql';
+import { getUserId } from '../selectors/user';
 import { CampaignContainer } from './Campaign';
 import { initializeStore } from '../store/store';
-import { getUserId } from '../selectors/user';
-import graphqlClient from '../graphql';
-import { env } from '../helpers';
 
 const App = ({ store, history }) => {
   initializeStore(store);
