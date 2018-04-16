@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import { convertExperiment, openModal } from '../../../actions';
+import { convertExperiment, clickedHideAffirmation } from '../../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
   campaignLead: get(state, 'campaign.campaignLead.fields', null),
   legacyCampaignId: state.campaign.legacyCampaignId,
   shouldShowActionPage: state.admin.shouldShowActionPage,
+  shouldShowSignupAffirmation: state.signups.shouldShowAffirmation,
   template: state.campaign.template,
   endDate: state.campaign.endDate,
 });
@@ -24,7 +25,7 @@ const mapStateToProps = state => ({
  */
 const mapActionsToProps = {
   convertExperiment,
-  openModal,
+  clickedHideAffirmation,
 };
 
 /**

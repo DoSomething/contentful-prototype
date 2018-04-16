@@ -4,6 +4,8 @@ import {
   SIGNUP_PENDING,
   SIGNUP_NOT_FOUND,
   SIGNUP_CLICKED_OPT_OUT,
+  OPENED_POST_SIGNUP_MODAL,
+  CLOSED_POST_SIGNUP_MODAL,
   SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
@@ -30,6 +32,18 @@ const signupReducer = (state = {}, action) => {
         thisCampaign: true,
         shouldShowAffirmation: true,
         total: state.total + 1,
+      };
+
+    case OPENED_POST_SIGNUP_MODAL:
+      return {
+        ...state,
+        shouldShowAffirmation: true,
+      };
+
+    case CLOSED_POST_SIGNUP_MODAL:
+      return {
+        ...state,
+        shouldShowAffirmation: false,
       };
 
     case SIGNUP_FOUND:

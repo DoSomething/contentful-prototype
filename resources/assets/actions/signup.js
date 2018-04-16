@@ -12,6 +12,8 @@ import {
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
   SIGNUP_CLICKED_OPT_OUT,
+  OPENED_POST_SIGNUP_MODAL,
+  CLOSED_POST_SIGNUP_MODAL,
   SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
   queueEvent,
@@ -186,7 +188,12 @@ export function clickedRemoveSignUp() {
 // Action: triggers the post signup affirmation modal.
 // This is for admin usage.
 export function clickedShowAffirmation() {
-  return openModal(POST_SIGNUP_MODAL);
+  return { type: OPENED_POST_SIGNUP_MODAL };
+}
+
+// Action: no existing signup was found for the campaign.
+export function clickedHideAffirmation() {
+  return { type: CLOSED_POST_SIGNUP_MODAL };
 }
 
 // Action: sends whether the user opted out of affiliate messaging.

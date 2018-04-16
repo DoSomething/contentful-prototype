@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
+import { PostSignupModal } from '../../Modal';
 import BlockPageContainer from '../BlockPage';
 import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
 import CampaignFooter from '../../CampaignFooter';
+import Modal from '../../utilities/Modal/Modal';
 
 // TODO: If they click a modal link from the action page, this takes them to the root /.
 // We should probably make a solution that lets them stay on the page they were already at.
@@ -18,10 +20,12 @@ const CampaignPage = props => {
     affiliatePartners,
     affiliateSponsors,
     campaignLead,
+    clickedHideAffirmation,
     endDate,
     hasActivityFeed,
     match,
     shouldShowActionPage,
+    shouldShowSignupAffirmation,
     template,
   } = props;
 
@@ -45,6 +49,11 @@ const CampaignPage = props => {
   return (
     <div>
       <div>
+        {shouldShowSignupAffirmation ? (
+          <Modal onClose={clickedHideAffirmation}>
+            <PostSignupModal />
+          </Modal>
+        ) : null}
         <Switch>
           <Route
             path={`${match.url}`}
@@ -108,6 +117,8 @@ CampaignPage.propTypes = {
   match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   template: PropTypes.string.isRequired,
   shouldShowActionPage: PropTypes.bool.isRequired,
+  shouldShowSignupAffirmation: PropTypes.bool.isRequired,
+  clickedHideAffirmation: PropTypes.func.isRequired,
 };
 
 CampaignPage.defaultProps = {

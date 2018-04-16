@@ -52,6 +52,7 @@ const initialState = {
     data: [],
     thisCampaign: false,
     thisSession: false,
+    shouldShowAffirmation: false,
     isPending: false,
     total: 0,
     affiliateMessagingOptOut: false,

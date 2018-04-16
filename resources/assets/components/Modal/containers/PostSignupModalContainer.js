@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import PostSignupModal from '../configurations/PostSignupModal';
-import { closeModal } from '../../../actions/modal';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -12,12 +11,4 @@ const mapStateToProps = state => ({
   ),
 });
 
-/**
- * Provide pre-bound functions that allow the component to dispatch
- * actions to the Redux store as props for this component.
- */
-const actionCreators = {
-  closeModal,
-};
-
-export default connect(mapStateToProps, actionCreators)(PostSignupModal);
+export default connect(mapStateToProps)(PostSignupModal);
