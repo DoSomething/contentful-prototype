@@ -4,7 +4,6 @@ export campaign from './campaign';
 export competitions from './competitions';
 export events from './events';
 export experiments from './experiments';
-export modal from './modal';
 export notifications from './notifications';
 export posts from './posts';
 export postSubmissions from './postSubmissions';

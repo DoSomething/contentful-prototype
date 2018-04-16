@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ModalControls } from '../../Modal';
 import { set } from '../../../helpers/storage';
 import VoterRegistrationActionContainer from '../../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 
@@ -22,19 +21,16 @@ class VoterRegistrationModal extends React.Component {
       'https://dosomething.turbovote.org/?r=user:{northstarId},campaignID:{campaignId},campaignRunID:{campaignRunId},source:{source}';
 
     return (
-      <ModalControls className="modal__slide" onClose={this.props.closeModal}>
-        <VoterRegistrationActionContainer
-          content={content}
-          link={link}
-          contentfulId="static-voter-reg-modal"
-        />
-      </ModalControls>
+      <VoterRegistrationActionContainer
+        content={content}
+        link={link}
+        contentfulId="static-voter-reg-modal"
+      />
     );
   }
 }
 
 VoterRegistrationModal.propTypes = {
-  closeModal: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

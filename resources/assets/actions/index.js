@@ -66,10 +66,6 @@ export const QUEUE_EVENT = 'QUEUE_EVENT';
 export const COMPLETED_EVENT = 'COMPLETED_EVENT';
 export * from './event';
 
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
-export * from './modal';
-
 export const LOAD_PREVIOUS_QUIZ_STATE = 'LOAD_PREVIOUS_QUIZ_STATE';
 export const PICK_QUIZ_ANSWER = 'PICK_QUIZ_ANSWER';
 export const VIEW_QUIZ_RESULT = 'VIEW_QUIZ_RESULT';

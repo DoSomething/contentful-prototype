@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 import { PuckConnector } from '@dosomething/puck-client';
 import ReportbackUploader from './ReportbackUploader';
-import { openModal } from '../../actions/modal';
 import {
   addSubmissionItemToList,
   submitPhotoPost,
@@ -29,7 +28,6 @@ const actionCreators = {
   addSubmissionItemToList,
   submitPhotoPost,
   submitReferralPost,
-  openModal,
 };
 
 // Export the container component.

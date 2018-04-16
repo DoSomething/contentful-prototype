@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import {
-  ModalSwitchContainer,
   SurveyModalContainer,
   VoterRegistrationModalContainer,
 } from '../Modal';
@@ -28,7 +27,6 @@ const Campaign = props => (
     </AdminDashboardContainer>
 
     <NotificationContainer />
-    <ModalSwitchContainer />
 
     <TrafficDistribution percentage={5} feature="nps_survey">
       <ModalLauncherContainer
