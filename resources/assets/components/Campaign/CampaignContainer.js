@@ -7,10 +7,6 @@ const mapStateToProps = (state, props) => {
   const hasLandingPage = state.campaign.landingPage !== null;
   const isSignedUp = state.signups.thisCampaign;
 
-  console.log('💩');
-  console.log(props.location);
-  console.log(props.match);
-
   // @TODO: Move these into the pages themselves.
   const { location, match } = props;
   const isQuiz = location.pathname.replace(match.url, '').startsWith('/quiz/');
