@@ -15,8 +15,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import thunk from 'redux-thunk';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
-import { configureStore } from './store/store';
+
 import * as reducers from './reducers';
+import { configureStore } from './store/store';
 
 // Browser polyfills
 import './polyfills';

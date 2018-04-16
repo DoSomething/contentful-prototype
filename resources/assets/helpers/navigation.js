@@ -7,7 +7,6 @@ export const campaignPaths = {
   action: '/action',
   blocks: '/blocks/',
   quiz: '/quiz/',
-  pages: '/pages/',
 };
 
 /**
