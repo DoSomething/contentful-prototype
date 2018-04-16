@@ -35,7 +35,7 @@ BaseFigure.propTypes = {
     'right-collapse',
   ]),
   verticalAlignment: PropTypes.oneOf(['center']),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'one-third']),
   media: PropTypes.node,
 };
 
