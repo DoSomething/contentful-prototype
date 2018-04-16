@@ -8,7 +8,7 @@ import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
 import SurveyModalContainer from '../pages/SurveyModal/SurveyModalContainer';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
-import VoterRegistrationModalContainer from '../pages/VoterRegistrationModal/VoterRegistrationModalContainer';
+import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
 import {
   AdminDashboardContainer,
   CampaignDashboardContainer,
@@ -39,7 +39,7 @@ const Campaign = props => (
         <ModalLauncherContainer
           type="voter_reg_modal"
           countdown={30}
-          render={() => <VoterRegistrationModalContainer />}
+          render={() => <VoterRegistrationModal />}
         />
       </TrafficDistribution>
     ) : null}
