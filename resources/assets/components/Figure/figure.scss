@@ -49,12 +49,14 @@
 }
 
 .figure.-one-third {
-  &.figure.-right-collapse > .figure__media {
-    margin-left: $base-spacing;
-  }
+  @include media($tablet) {
+    &.figure.-right-collapse > .figure__media {
+      margin-left: $base-spacing;
+    }
 
-  &.figure.-left-collapse > .figure__media {
-    margin-right: $base-spacing;
+    &.figure.-left-collapse > .figure__media {
+      margin-right: $base-spacing;
+    }
   }
 
   &.figure > .figure__media {
