@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { get } from 'lodash';
 
 import Modal from '../utilities/Modal/Modal';
-import { get, set } from '../../helpers/storage';
+import { get as getStorage, set as setStorage } from '../../helpers/storage';
 import { isTimestampValid, env, query } from '../../helpers';
 
 class ModalLauncher extends React.Component {
@@ -13,7 +14,7 @@ class ModalLauncher extends React.Component {
 
     // If the query params indicate to store the feature modal to be hidden, store it.
     if (query(`hide_${type}`) === '1') {
-      set(`${userId}_hide_${type}`, 'boolean', true);
+      setStorage(`${userId}_hide_${type}`, 'boolean', true);
     }
 
     if (userId && this.shouldSeeModal()) {
@@ -34,14 +35,17 @@ class ModalLauncher extends React.Component {
       return false;
     }
 
-    let shouldNotSee = get(`${userId}_hide_${type}`, 'boolean');
+    let shouldNotSee = getStorage(`${userId}_hide_${type}`, 'boolean');
     // Support for legacy nps survey 'hide feature' storage format.
     if (type === 'nps_survey' && !shouldNotSee) {
-      shouldNotSee = get(`${userId}_finished_survey`, 'boolean');
+      shouldNotSee = getStorage(`${userId}_finished_survey`, 'boolean');
     }
 
     // Check if the survey was dismissed over 30 days ago.
-    const dismissalTime = get(`${userId}_dismissed_${type}`, 'timestamp');
+    const dismissalTime = getStorage(
+      `${userId}_dismissed_${type}`,
+      'timestamp',
+    );
     const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
 
     return (
@@ -53,22 +57,25 @@ class ModalLauncher extends React.Component {
     const { userId, type } = this.props;
 
     // Mark this modal as "dismissed" in local storage & close.
-    set(`${userId}_dismissed_${type}`, 'timestamp', Date.now());
+    setStorage(`${userId}_dismissed_${type}`, 'timestamp', Date.now());
     this.setState({ showModal: false });
   };
 
   render() {
-    // Set the proper Puck "event name" so we can
-    // continue tracking opens of timed modals.
-    let type = this.props.type;
-    if (type === 'voter_reg_modal') {
-      type = 'VOTER_REGISTRATION_MODAL';
-    } else if (type === '') {
-      type = 'SURVEY_MODAL';
-    }
+    const { type } = this.props;
+
+    // Map the modal type to the proper Puck "event" so
+    // we can continue tracking opens of timed modals.
+    const trackingOverrides = {
+      voter_reg_modal: 'VOTER_REGISTRATION_MODAL',
+      nps_survey: 'SURVEY_MODAL',
+    };
 
     return this.state.showModal ? (
-      <Modal trackingId={type} onClose={this.handleClose}>
+      <Modal
+        trackingId={get(trackingOverrides, type, type)}
+        onClose={this.handleClose}
+      >
         {this.props.render()}
       </Modal>
     ) : null;
