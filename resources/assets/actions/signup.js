@@ -5,18 +5,18 @@ import { push } from 'react-router-redux';
 import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
-import { POST_SIGNUP_MODAL } from '../components/Modal';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
   SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
   SIGNUP_CLICKED_OPT_OUT,
+  OPENED_POST_SIGNUP_MODAL,
+  CLOSED_POST_SIGNUP_MODAL,
   SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
   queueEvent,
   addNotification,
-  openModal,
 } from '../actions';
 
 /**
@@ -169,7 +169,7 @@ export function clickedSignUp(
           const endDate = get(state.campaign.endDate, 'date', null);
           const isClosed = isCampaignClosed(endDate);
           if (shouldRedirectToActionTab && !isClosed) {
-            dispatch(openModal(POST_SIGNUP_MODAL));
+            dispatch({ type: OPENED_POST_SIGNUP_MODAL });
             dispatch(push(campaignActionUrl));
           }
         }
@@ -186,7 +186,12 @@ export function clickedRemoveSignUp() {
 // Action: triggers the post signup affirmation modal.
 // This is for admin usage.
 export function clickedShowAffirmation() {
-  return openModal(POST_SIGNUP_MODAL);
+  return { type: OPENED_POST_SIGNUP_MODAL };
+}
+
+// Action: no existing signup was found for the campaign.
+export function clickedHideAffirmation() {
+  return { type: CLOSED_POST_SIGNUP_MODAL };
 }
 
 // Action: sends whether the user opted out of affiliate messaging.

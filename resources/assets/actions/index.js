@@ -44,6 +44,8 @@ export const SIGNUP_FOUND = 'SIGNUP_FOUND';
 export const SIGNUP_PENDING = 'SIGNUP_PENDING';
 export const SIGNUP_NOT_FOUND = 'SIGNUP_NOT_FOUND';
 export const SIGNUP_CLICKED_OPT_OUT = 'SIGNUP_CLICKED_OPT_OUT';
+export const OPENED_POST_SIGNUP_MODAL = 'OPENED_POST_SIGNUP_MODAL';
+export const CLOSED_POST_SIGNUP_MODAL = 'CLOSED_POST_SIGNUP_MODAL';
 export const HIDE_AFFIRMATION = 'HIDE_AFFIRMATION';
 export const SET_TOTAL_SIGNUPS = 'SET_TOTAL_SIGNUPS';
 export const CLICKED_REMOVE_SIGN_UP = 'CLICKED_REMOVE_SIGN_UP';
@@ -63,10 +65,6 @@ export * from './notifications';
 export const QUEUE_EVENT = 'QUEUE_EVENT';
 export const COMPLETED_EVENT = 'COMPLETED_EVENT';
 export * from './event';
-
-export const OPEN_MODAL = 'OPEN_MODAL';
-export const CLOSE_MODAL = 'CLOSE_MODAL';
-export * from './modal';
 
 export const LOAD_PREVIOUS_QUIZ_STATE = 'LOAD_PREVIOUS_QUIZ_STATE';
 export const PICK_QUIZ_ANSWER = 'PICK_QUIZ_ANSWER';

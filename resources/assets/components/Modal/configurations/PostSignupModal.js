@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CompetitionBlockContainer } from '../../CompetitionBlock';
 import SlideshowContainer from '../../Slideshow';
-import BlockModal from './BlockModal';
+import ContentfulEntry from '../../ContentfulEntry';
 
-const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
+const PostSignupModal = ({ competitionStep, affirmation }) => (
   <div className="modal__slide">
     <SlideshowContainer slideshowId="post-signup-modal" hideCloseButton>
       {competitionStep ? (
@@ -14,14 +14,13 @@ const PostSignupModal = ({ competitionStep, affirmation, closeModal }) => (
           byline={competitionStep.additionalContent}
         />
       ) : null}
-      <BlockModal closeModal={closeModal} json={affirmation} />
+      <ContentfulEntry json={affirmation} />
     </SlideshowContainer>
   </div>
 );
 
 PostSignupModal.propTypes = {
   affirmation: PropTypes.object.isRequired, // eslint-disable-line
-  closeModal: PropTypes.func.isRequired,
   competitionStep: PropTypes.shape({
     content: PropTypes.string.isRequired,
     photo: PropTypes.string,

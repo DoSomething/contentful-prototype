@@ -12,7 +12,6 @@ import {
   clickedRemoveSignUp,
 } from '../../../actions/signup';
 import { userHasRole } from '../../../selectors/user';
-import { openModal } from '../../../actions/modal';
 
 const mapStateToProps = state => {
   const isSignedUp = state.signups.thisCampaign;
@@ -39,7 +38,6 @@ const actionCreators = {
   clickedShowActionPage,
   signupCreated,
   clickedRemoveSignUp,
-  openModal,
 };
 
 export default connect(mapStateToProps, actionCreators)(CampaignDashboard);

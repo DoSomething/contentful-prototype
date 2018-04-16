@@ -1,7 +1,5 @@
 preset: laravel
 
-linting: true
-
 disabled:
  - concat_without_spaces
  - no_useless_return

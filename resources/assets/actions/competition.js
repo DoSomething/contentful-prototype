@@ -4,7 +4,7 @@ import {
   COMPETITION_FOUND,
   COMPETITION_PENDING,
   addNotification,
-  closeModal,
+  clickedHideAffirmation,
 } from '../actions';
 
 /**
@@ -32,7 +32,7 @@ export function joinCompetition(campaignId, campaignRunId) {
           dispatch({ type: JOINED_COMPETITION, campaignId, userId });
 
           if (getState().modal.shouldShowModal) {
-            dispatch(closeModal());
+            dispatch(clickedHideAffirmation());
           }
         }
       })
