@@ -11,35 +11,4 @@
     color: $black;
     font-family: $primary-font-family;
   }
-
-  .figure > .figure__media {
-    width: 100%;
-  }
-
-  @include media($medium) {
-    .figure {
-      > .figure__media {
-        width: 33.333333% !important;
-      }
-
-      &.-right > .figure__media {
-        margin-left: $base-spacing;
-      }
-
-      &.-left-collapse > .figure__media {
-        margin-right: $base-spacing;
-      }
-    }
-  }
-  @include media($small) {
-    .figure.-right {
-      > .figure__media {
-        margin-bottom: $half-spacing;
-      }
-
-      > .figure__body {
-        overflow: visible;
-      }
-    }
-  }
 }

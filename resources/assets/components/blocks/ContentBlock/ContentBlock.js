@@ -10,11 +10,7 @@ import './content-block.scss';
 const ContentBlock = props => {
   const { content, image, imageAlignment, superTitle, title } = props;
 
-  const imageAlignmentClass =
-    // ensure proper responsiveness setting for the figure component (only required for 'left')
-    (imageAlignment === 'left' && 'left-collapse') ||
-    imageAlignment ||
-    ContentBlock.defaultProps.imageAlignment;
+  const defaultImageAlignment = ContentBlock.defaultProps.imageAlignment;
 
   const contentNode = content ? <Markdown>{content}</Markdown> : null;
 
@@ -31,8 +27,9 @@ const ContentBlock = props => {
           <Figure
             image={image}
             alt="content-block"
-            alignment={imageAlignmentClass}
+            alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
             size="large"
+            className="content-block"
           >
             {contentNode}
           </Figure>
