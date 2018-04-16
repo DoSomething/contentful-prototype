@@ -1,16 +1,17 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
-import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
 import BlockPageContainer from '../BlockPage';
+import Modal from '../../utilities/Modal/Modal';
+import CampaignFooter from '../../CampaignFooter';
 import { isCampaignClosed } from '../../../helpers';
 import { ActionPageContainer } from '../ActionPage';
 import { CampaignSubPageContainer } from '../CampaignSubPage';
-import CampaignFooter from '../../CampaignFooter';
-import Modal from '../../utilities/Modal/Modal';
+import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
 
 const CampaignPage = props => {
   const {
@@ -108,7 +109,7 @@ CampaignPage.propTypes = {
   hasActivityFeed: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  match: ReactRouterPropTypes.match.isRequired,
   template: PropTypes.string.isRequired,
   shouldShowActionPage: PropTypes.bool.isRequired,
   shouldShowSignupAffirmation: PropTypes.bool.isRequired,
