@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
 
 import ModalContent from './ModalContent';
+import { trackPuckEvent } from '../../../helpers/analytics';
 
 import './modal.scss';
 
@@ -28,6 +29,11 @@ class Modal extends React.Component {
     );
     this.modalPortal.classList.add('is-active');
     this.modalPortal.appendChild(this.el);
+
+    // Track in analytics that the modal opened:
+    if (this.props.trackingId) {
+      trackPuckEvent('open modal', { modalType: this.props.trackingId });
+    }
   }
 
   componentWillUnmount() {
@@ -51,7 +57,12 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
+  trackingId: PropTypes.string,
   onClose: PropTypes.func.isRequired,
+};
+
+Modal.defaultProps = {
+  trackingId: null,
 };
 
 export default Modal;
