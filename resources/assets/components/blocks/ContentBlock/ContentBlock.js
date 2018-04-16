@@ -28,8 +28,7 @@ const ContentBlock = props => {
             image={image}
             alt="content-block"
             alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
-            size="large"
-            className="content-block"
+            size="one-third"
           >
             {contentNode}
           </Figure>
