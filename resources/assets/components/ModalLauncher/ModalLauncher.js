@@ -40,9 +40,8 @@ class ModalLauncher extends React.Component {
       shouldNotSee = get(`${userId}_finished_survey`, 'boolean');
     }
 
-    // @see: SurveyModal.js
-    const dismissalTime = get(`${userId}_dismissed_${type}`, 'timestamp');
     // Check if the survey was dismissed over 30 days ago.
+    const dismissalTime = get(`${userId}_dismissed_${type}`, 'timestamp');
     const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
 
     return (
@@ -50,11 +49,17 @@ class ModalLauncher extends React.Component {
     );
   };
 
+  handleClose = () => {
+    const { userId, type } = this.props;
+
+    // Mark this modal as "dismissed" in local storage & close.
+    set(`${userId}_dismissed_${type}`, 'timestamp', Date.now());
+    this.setState({ showModal: false });
+  };
+
   render() {
     return this.state.showModal ? (
-      <Modal onClose={() => this.setState({ showModal: false })}>
-        {this.props.render()}
-      </Modal>
+      <Modal onClose={this.handleClose}>{this.props.render()}</Modal>
     ) : null;
   }
 }

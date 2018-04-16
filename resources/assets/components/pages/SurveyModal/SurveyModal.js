@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { set } from '../../../helpers/storage';
 import { makeUrl } from '../../../helpers';
 
 const SURVEY_DATA_URL = 'https://dosomething.typeform.com/to/Bvcwvm';
@@ -11,15 +10,6 @@ const SURVEY_DATA_URL = 'https://dosomething.typeform.com/to/Bvcwvm';
 class SurveyModal extends React.Component {
   componentDidMount() {
     window.typeformInit();
-  }
-
-  componentWillUnmount() {
-    // @see: ModalLauncher.js
-    set(
-      `${this.props.northstarId}_dismissed_nps_survey`,
-      'timestamp',
-      Date.now(),
-    );
   }
 
   render() {

@@ -10,7 +10,6 @@ const mapStateToProps = state => ({
   userId: state.user.id,
   campaignId: state.campaign.legacyCampaignId,
   campaignRunId: state.campaign.legacyCampaignRunId,
-  modalType: state.modal.modalType,
 });
 
 /**
