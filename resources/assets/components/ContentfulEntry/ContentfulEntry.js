@@ -103,6 +103,15 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'linkAction':
         return renderLinkAction(json);
 
+      case 'page':
+        return (
+          <StaticBlock
+            content={json.fields.content}
+            source={json.fields.source}
+            title={json.fields.title}
+          />
+        );
+
       case 'photoUploaderAction':
       case 'photo-uploader':
         return renderPhotoUploader(json, isSignedUp);
