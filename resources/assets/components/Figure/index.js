@@ -28,9 +28,14 @@ export const BaseFigure = ({
 BaseFigure.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  alignment: PropTypes.oneOf(['left', 'right', 'left-collapse']),
+  alignment: PropTypes.oneOf([
+    'left',
+    'right',
+    'left-collapse',
+    'right-collapse',
+  ]),
   verticalAlignment: PropTypes.oneOf(['center']),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large', 'one-third']),
   media: PropTypes.node,
 };
 

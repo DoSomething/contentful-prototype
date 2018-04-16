@@ -240,14 +240,11 @@ export function renderAffirmation(step) {
  * @return {Component}
  */
 export function renderContentBlock(data) {
-  const contentfulId = data.id;
-
   return (
-    <div
-      key={`content-block-${contentfulId}`}
-      className="margin-horizontal-md margin-bottom-lg"
-    >
-      <ContentBlock id={contentfulId} {...data.fields} />
-    </div>
+    <ContentBlock
+      key={`content-block-${data.id}`}
+      id={data.id}
+      {...data.fields}
+    />
   );
 }
