@@ -2,19 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import {
-  SurveyModalContainer,
-  VoterRegistrationModalContainer,
-} from '../Modal';
 import NotificationContainer from '../Notification';
-import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
+import ModalLauncherContainer from '../ModalLauncher';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import { CampaignPageContainer, LandingPageContainer } from '../Page';
+import SurveyModalContainer from '../pages/SurveyModal/SurveyModalContainer';
+import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
+import VoterRegistrationModalContainer from '../pages/VoterRegistrationModal/VoterRegistrationModalContainer';
 import {
   AdminDashboardContainer,
   CampaignDashboardContainer,
 } from '../AdminDashboard';
-import ModalLauncherContainer from '../ModalLauncher';
 
 const Campaign = props => (
   <ModalRoute

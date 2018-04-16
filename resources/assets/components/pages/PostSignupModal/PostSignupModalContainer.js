@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PostSignupModal from '../configurations/PostSignupModal';
+import PostSignupModal from './PostSignupModal';
 
 /**
  * Provide state from the Redux store as props for this component.

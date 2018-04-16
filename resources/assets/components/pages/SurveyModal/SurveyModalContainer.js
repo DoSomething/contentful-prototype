@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SurveyModal from '../configurations/SurveyModal';
+import SurveyModal from './SurveyModal';
 import { getUserId } from '../../../selectors/user';
 
 const mapStateToProps = state => ({
