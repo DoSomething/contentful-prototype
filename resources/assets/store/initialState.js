@@ -25,11 +25,6 @@ const initialState = {
     queue: [],
   },
   experiments: {},
-  modal: {
-    modalType: null,
-    contentfulId: null,
-    shouldShowModal: false,
-  },
   notifications: {
     items: [],
   },
