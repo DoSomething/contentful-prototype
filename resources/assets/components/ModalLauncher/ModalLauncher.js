@@ -58,8 +58,19 @@ class ModalLauncher extends React.Component {
   };
 
   render() {
+    // Set the proper Puck "event name" so we can
+    // continue tracking opens of timed modals.
+    let type = this.props.type;
+    if (type === 'voter_reg_modal') {
+      type = 'VOTER_REGISTRATION_MODAL';
+    } else if (type === '') {
+      type = 'SURVEY_MODAL';
+    }
+
     return this.state.showModal ? (
-      <Modal onClose={this.handleClose}>{this.props.render()}</Modal>
+      <Modal trackingId={type} onClose={this.handleClose}>
+        {this.props.render()}
+      </Modal>
     ) : null;
   }
 }
