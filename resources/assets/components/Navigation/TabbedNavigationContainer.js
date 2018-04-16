@@ -52,12 +52,7 @@ const TabbedNavigationContainer = props => {
         pageSlug = pageSlug.replace(`${campaignSlug}/`, '');
       }
 
-      const path = join(
-        '/us/campaigns',
-        campaignSlug,
-        campaignPaths.pages,
-        pageSlug,
-      );
+      const path = join('/us/campaigns', campaignSlug, pageSlug);
 
       return (
         <NavigationLink key={page.id} to={path}>

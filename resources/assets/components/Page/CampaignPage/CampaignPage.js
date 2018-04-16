@@ -77,10 +77,6 @@ const CampaignPage = props => {
             }}
           />
           <Route
-            path={`${match.url}/pages/:slug`}
-            component={CampaignSubPageContainer}
-          />
-          <Route
             path={`${match.url}/blocks/:id`}
             component={BlockPageContainer}
           />
@@ -88,8 +84,15 @@ const CampaignPage = props => {
             path={`${match.url}/quiz/:slug`}
             component={BlockPageContainer}
           />
-          {/* If no route matches, just redirect back to the main page: */}
-          <Redirect from={`${match.url}/:anything`} to={`${match.url}`} />
+          {/* @deprecate: remove this Route specification with `/pages/:slug` */}
+          <Route
+            path={`${match.url}/pages/:slug`}
+            component={CampaignSubPageContainer}
+          />
+          <Route
+            path={`${match.url}/:slug`}
+            component={CampaignSubPageContainer}
+          />
         </Switch>
       </div>
       <CampaignFooter
