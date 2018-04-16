@@ -20,18 +20,47 @@
   margin-bottom: 0;
 }
 
-.figure.-left-collapse {
-  text-align: left;
+.figure {
+  &.-right-collapse,
+  &.-left-collapse {
+    text-align: left;
+
+    @include media($tablet) {
+      > .figure__media {
+        margin-right: gutter();
+        margin-bottom: 0;
+      }
+
+      > .figure__body {
+        overflow: hidden;
+      }
+    }
+  }
 
   @include media($tablet) {
-    > .figure__media {
-      float: left;
-      margin-right: gutter();
-      margin-bottom: 0;
+    &.-right-collapse > .figure__media {
+      float: right;
     }
 
-    > .figure__body {
-      overflow: hidden;
+    &.-left-collapse > .figure__media {
+      float: left;
+    }
+  }
+}
+
+.content-block {
+  &.figure.-right-collapse > .figure__media {
+    margin-left: $base-spacing;
+  }
+
+  &.figure.-left-collapse > .figure__media {
+    margin-right: $base-spacing;
+  }
+  &.figure > .figure__media {
+    width: 33%;
+
+    @include media($small) {
+      width: 100%;
     }
   }
 }
