@@ -41,16 +41,21 @@ describe('ContentBlock component', () => {
     expect(wrapper.find('Markdown').length).toEqual(1);
   });
 
-  test('it renders the correct alignment class for "left" image prop', () => {
-    const wrapper = shallow(
+  test('it renders the correct alignment class for "left" and "right" image props', () => {
+    let wrapper = shallow(
       <ContentBlock {...props} {...image} imageAlignment="left" />,
     );
     expect(wrapper.find('Figure').props().alignment).toEqual('left-collapse');
+
+    wrapper = shallow(
+      <ContentBlock {...props} {...image} imageAlignment="right" />,
+    );
+    expect(wrapper.find('Figure').props().alignment).toEqual('right-collapse');
   });
 
   test('it defaults to "right" image alignment', () => {
     const wrapper = shallow(<ContentBlock {...props} {...image} />);
-    expect(wrapper.find('Figure').props().alignment).toEqual('right');
+    expect(wrapper.find('Figure').props().alignment).toEqual('right-collapse');
   });
 
   test('it works beautifully with a mere content prop', () => {

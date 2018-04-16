@@ -8,8 +8,9 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
     className="margin-horizontal-md"
   >
     <Figure
-      alignment="right"
+      alignment="right-collapse"
       alt="content-block"
+      className="content-block"
       image="image.com"
       imageClassName={null}
       size="large"
@@ -42,8 +43,9 @@ exports[`ContentBlock component is rendered with the proper child components whe
     className="margin-horizontal-md"
   >
     <Figure
-      alignment="right"
+      alignment="right-collapse"
       alt="content-block"
+      className="content-block"
       image="image.com"
       imageClassName={null}
       size="large"
