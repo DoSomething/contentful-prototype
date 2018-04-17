@@ -5,12 +5,12 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
-import BlockPageContainer from '../BlockPage';
 import Modal from '../../utilities/Modal/Modal';
 import CampaignFooter from '../../CampaignFooter';
 import { isCampaignClosed } from '../../../helpers';
-import { ActionPageContainer } from '../ActionPage';
-import { CampaignSubPageContainer } from '../CampaignSubPage';
+import BlockPageContainer from '../BlockPage/BlockPageContainer';
+import ActionPageContainer from '../ActionPage/ActionPageContainer';
+import CampaignSubPageContainer from '../CampaignSubPage/CampaignSubPageContainer';
 import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
 
 const CampaignPage = props => {
