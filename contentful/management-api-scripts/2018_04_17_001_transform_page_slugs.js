@@ -71,6 +71,10 @@ async function transformPageSlug(campaign, page, environment) {
   const campaignSlug = campaign.fields.slug[locale];
   const pageSlug = pageEntry.fields.slug[locale];
 
+  if (pageSlug.indexOf(campaignSlug) === 0) {
+    return;
+  }
+
   pageEntry.fields.slug[locale] = join(campaignSlug, pageSlug);
   console.log(pageEntry.fields.slug);
 
