@@ -76,7 +76,6 @@ async function transformPageSlug(campaign, page, environment) {
   }
 
   pageEntry.fields.slug[locale] = join(campaignSlug, pageSlug);
-  console.log(pageEntry.fields.slug);
 
   pageEntry.update().then(page => page.publish());
 
