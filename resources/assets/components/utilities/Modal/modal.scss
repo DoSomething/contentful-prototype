@@ -50,6 +50,7 @@
   text-align: center;
   top: 0;
   width: 50px;
+  z-index: 9999; // Ensure "x" is above all other elements, like iframes.
 
   &:focus {
     outline: thin dotted;
