@@ -9,8 +9,8 @@ import { PuckProvider } from '@dosomething/puck-client';
 import { env } from '../helpers';
 import graphqlClient from '../graphql';
 import { getUserId } from '../selectors/user';
-import { CampaignContainer } from './Campaign';
 import { initializeStore } from '../store/store';
+import CampaignContainer from './Campaign/CampaignContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);
