@@ -1,4 +1,5 @@
 const { join } = require('path');
+const { get } = require('lodash');
 const contentful = require('contentful-management');
 
 const spaceId = process.argv[3];
@@ -42,19 +43,13 @@ async function transformPageSlugs() {
   });
 
   campaigns.items.forEach(campaign => {
-    const pages = campaign.fields.pages;
+    const pages = get(campaign.fields.pages, locale, []);
 
-    if (!pages || !pages[locale]) {
-      return;
-    }
-
-    const campaignPages = campaign.fields.pages[locale];
-
-    campaignPages.forEach(page => {
+    pages.forEach(page => {
       transformPageSlug(campaign, page, environment);
     });
 
-    console.log(`Updated Campaign! [ID: ${campaign.sys.id}]\n`);
+    console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
 
     // API breather room
     sleep(1000);
@@ -64,14 +59,10 @@ async function transformPageSlugs() {
 async function transformPageSlug(campaign, page, environment) {
   const pageEntry = await environment.getEntry(page.sys.id);
 
-  if (!pageEntry.fields.slug || !campaign.fields.slug) {
-    return;
-  }
+  const campaignSlug = get(campaign.fields.slug, locale);
+  const pageSlug = get(pageEntry.fields.slug, locale);
 
-  const campaignSlug = campaign.fields.slug[locale];
-  const pageSlug = pageEntry.fields.slug[locale];
-
-  if (pageSlug.indexOf(campaignSlug) === 0) {
+  if (!campaignSlug || !pageSlug || pageSlug.indexOf(campaignSlug) === 0) {
     return;
   }
 
