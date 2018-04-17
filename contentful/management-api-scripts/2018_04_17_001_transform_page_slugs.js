@@ -1,4 +1,5 @@
 const contentful = require('contentful-management');
+const { join } = require('path');
 
 const spaceId = process.argv[3];
 const accessToken = process.argv[5];
@@ -67,9 +68,11 @@ async function transformPageSlug(campaign, page, environment) {
     return;
   }
 
-  pageEntry.fields.slug[locale] = `${campaign.fields.slug[locale]}/${
-    pageEntry.fields.slug[locale]
-  }`;
+  const campaignSlug = campaign.fields.slug[locale];
+  const pageSlug = pageEntry.fields.slug[locale];
+
+  pageEntry.fields.slug[locale] = join(campaignSlug, pageSlug);
+  console.log(pageEntry.fields.slug);
 
   pageEntry.update().then(page => page.publish());
 
