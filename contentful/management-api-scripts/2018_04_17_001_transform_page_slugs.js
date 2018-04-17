@@ -35,17 +35,28 @@ async function transformPageSlugs() {
     pages.forEach(page => {
       transformPageSlug(campaign, page, environment);
     });
+
+    console.log(`Updated Campaign! [ID: ${campaign.sys.id}]\n`);
   });
 }
 
 async function transformPageSlug(campaign, page, environment) {
   const pageEntry = await environment.getEntry(page.sys.id);
 
-  pageEntry.fields.slug['en-US'] = `${campaign.fields.slug['en-US']}/${
-    pageEntry.fields.slug['en-US']
+  const locale = 'en-US';
+
+  if (!pageEntry.fields.slug || !campaign.fields.slug) {
+    return;
+  }
+
+  pageEntry.fields.slug[locale] = `${campaign.fields.slug[locale]}/${
+    pageEntry.fields.slug[locale]
   }`;
 
   pageEntry.update().then(page => page.publish());
+
+  console.log(`Updated Page! [ID: ${pageEntry.sys.id}]`);
+  console.log(`--> ${pageEntry.fields.slug[locale]}\n`);
 }
 
 transformPageSlugs();
