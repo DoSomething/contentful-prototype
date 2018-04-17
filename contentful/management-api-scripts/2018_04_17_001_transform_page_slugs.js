@@ -3,12 +3,19 @@ const contentful = require('contentful-management');
 const spaceId = process.argv[3];
 const accessToken = process.argv[5];
 
+const locale = 'en-US';
+
 if (!spaceId || !accessToken) {
   console.log(
     'Please provide the space-id and access token arguments in the following format:',
   );
   console.log('--space-id [space-id] --access-token [access-token]');
   return;
+}
+
+// Helper Function
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function getEnvironment() {
@@ -34,20 +41,27 @@ async function transformPageSlugs() {
   });
 
   campaigns.items.forEach(campaign => {
-    const pages = campaign.fields.pages['en-US'];
+    const pages = campaign.fields.pages;
 
-    pages.forEach(page => {
+    if (!pages || !pages[locale]) {
+      return;
+    }
+
+    const campaignPages = campaign.fields.pages[locale];
+
+    campaignPages.forEach(page => {
       transformPageSlug(campaign, page, environment);
     });
 
     console.log(`Updated Campaign! [ID: ${campaign.sys.id}]\n`);
+
+    // API breather room
+    sleep(1000);
   });
 }
 
 async function transformPageSlug(campaign, page, environment) {
   const pageEntry = await environment.getEntry(page.sys.id);
-
-  const locale = 'en-US';
 
   if (!pageEntry.fields.slug || !campaign.fields.slug) {
     return;
