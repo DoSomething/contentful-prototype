@@ -11,7 +11,7 @@ if (!spaceId || !accessToken) {
   return;
 }
 
-async function transformPageSlugs() {
+async function getEnvironment() {
   const client = contentful.createClient({
     // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
     accessToken: accessToken,
@@ -22,7 +22,11 @@ async function transformPageSlugs() {
 
   // This API call will request the environment with the specified - as of now hardcoded - id
   // (Contentful requires this scoping, as the `space.getEntries` is being deprecated)
-  const environment = await space.getEnvironment('master');
+  return space.getEnvironment('master');
+}
+
+async function transformPageSlugs() {
+  const environment = await getEnvironment();
 
   // Now that we have an environment, we can get entries from that environment
   const campaigns = await environment.getEntries({
