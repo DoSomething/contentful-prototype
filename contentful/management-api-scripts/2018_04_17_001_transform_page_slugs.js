@@ -1,5 +1,5 @@
-const contentful = require('contentful-management');
 const { join } = require('path');
+const contentful = require('contentful-management');
 
 const spaceId = process.argv[3];
 const accessToken = process.argv[5];
