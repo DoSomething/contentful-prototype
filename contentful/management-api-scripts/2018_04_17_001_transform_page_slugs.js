@@ -35,9 +35,6 @@ async function transformPageSlugs() {
     pages.forEach(page => {
       transformPageSlug(campaign, page, environment);
     });
-
-    // give the API a breather
-    sleep(1);
   });
 }
 
