@@ -72,6 +72,9 @@ async function transformPageSlug(campaign, page, environment) {
 
   console.log(`Updated Page! [ID: ${pageEntry.sys.id}]`);
   console.log(`--> ${pageEntry.fields.slug[locale]}\n`);
+
+  // API breather room
+  sleep(1000);
 }
 
 transformPageSlugs();
