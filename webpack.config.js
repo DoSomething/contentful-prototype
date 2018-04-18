@@ -28,6 +28,8 @@ module.exports = configure({
       // resolution error on Webpack 4. Forcing CJS fixes!
       '@researchgate/react-intersection-observer':
         '@researchgate/react-intersection-observer/lib/js',
+      // Force 'lodash-es' for tree-shaking Lodash:
+      lodash: 'lodash-es',
     },
   },
 
