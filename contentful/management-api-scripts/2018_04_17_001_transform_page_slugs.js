@@ -54,9 +54,6 @@ async function transformPageSlugs() {
     });
 
     console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
-
-    // API breather room
-    sleep(1000);
   });
 }
 
@@ -83,7 +80,7 @@ async function transformPageSlug(campaign, page, environment) {
   console.log(`--> ${pageEntry.fields.slug[locale]}\n`);
 
   // API breather room
-  sleep(1000);
+  await sleep(1000);
 }
 
 transformPageSlugs();
