@@ -53,7 +53,7 @@
     "babel-preset-flow": "^6.23.0",
     "classnames": "^2.2.5",
     "css-module-flow": "^1.0.0",
-    "date-fns": "^1.29.0",
+    "date-fns": "^2.0.0-alpha.7",
     "dom-delegate": "^2.0.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",

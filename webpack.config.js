@@ -19,6 +19,12 @@ module.exports = configure({
         use: 'eslint-loader',
         include: path.join(__dirname, '/resources/assets'),
       },
+      {
+        include: path.resolve('node_modules', 'date-fns'),
+        // Fix incorrect 'sideEffects' flag in 'date-fns'.
+        // <https://git.io/vpIaT>
+        sideEffects: false,
+      },
     ],
   },
 
