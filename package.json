@@ -8,7 +8,7 @@
     "start": "webpack --env=development --hide-modules --watch",
     "build:dev": "webpack --env=development --hide-modules",
     "build": "webpack --env=production",
-    "stat": "webpack --env=production --json > stats.json",
+    "stat": "webpack --env=production --profile --json > stats.json",
     "analyze": "npm run stat && webpack-bundle-analyzer stats.json",
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
     "precommit": "pretty-quick --staged",
@@ -56,6 +56,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
     "classnames": "^2.2.5",
+    "core-js": "^2.5.5",
     "css-module-flow": "^1.0.0",
     "date-fns": "^2.0.0-alpha.7",
     "dom-delegate": "^2.0.3",
@@ -95,7 +96,7 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "@dosomething/babel-config": "^2.1.0",
+    "@dosomething/babel-config": "dosomething/babel-config#targets",
     "@dosomething/eslint-config": "^4.0.0",
     "@dosomething/webpack-config": "^4.0.0",
     "contentful-management": "^5.0.0",
