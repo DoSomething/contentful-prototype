@@ -1,11 +1,15 @@
 const { join } = require('path');
 const { get } = require('lodash');
+const parseArgs = require('minimist');
 const contentful = require('contentful-management');
 
-const spaceId = process.argv[3];
-const accessToken = process.argv[5];
-
 const locale = 'en-US';
+
+const args = parseArgs(process.argv, {
+  alias: { 'access-token': 'accessToken', spaceId: 'space-id' },
+});
+
+const { spaceId, accessToken } = args;
 
 if (!spaceId || !accessToken) {
   console.log(
