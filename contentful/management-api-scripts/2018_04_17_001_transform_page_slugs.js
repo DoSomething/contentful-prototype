@@ -62,7 +62,12 @@ async function transformPageSlug(campaign, page, environment) {
   const campaignSlug = get(campaign.fields.slug, locale);
   const pageSlug = get(pageEntry.fields.slug, locale);
 
-  if (!campaignSlug || !pageSlug || pageSlug.indexOf(campaignSlug) === 0) {
+  if (
+    !campaignSlug ||
+    !pageSlug ||
+    pageSlug.indexOf(campaignSlug) === 0 ||
+    pageSlug.indexOf(campaignSlug) === 1
+  ) {
     return;
   }
 
