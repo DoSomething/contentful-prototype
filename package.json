@@ -99,6 +99,7 @@
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
+    "minimist": "^1.2.0",
     "modernizr": "^3.6.0",
     "pretty-quick": "^1.4.1",
     "redux-devtools": "^3.4.1",
