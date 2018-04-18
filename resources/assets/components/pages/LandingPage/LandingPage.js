@@ -88,7 +88,7 @@ const LandingPage = props => {
 
       <div className="info-bar -dark">
         <div className="wrapper">
-          A DoSomething.org campaign. Join over 5.5 million members taking
+          A DoSomething.org campaign. Join over 6 million members taking
           action. Any cause, anytime, anywhere.
         </div>
       </div>
