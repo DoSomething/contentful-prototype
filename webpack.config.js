@@ -13,7 +13,12 @@ module.exports = configure({
 
   module: {
     rules: [
-      { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', include: path.join(__dirname, '/resources/assets') },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        use: 'eslint-loader',
+        include: path.join(__dirname, '/resources/assets'),
+      },
     ],
   },
 
@@ -23,6 +28,12 @@ module.exports = configure({
       // resolution error on Webpack 4. Forcing CJS fixes!
       '@researchgate/react-intersection-observer':
         '@researchgate/react-intersection-observer/lib/js',
+    },
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
     },
   },
 });

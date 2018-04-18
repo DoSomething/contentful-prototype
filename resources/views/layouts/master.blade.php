@@ -39,6 +39,7 @@
     {{ scriptify($env, 'ENV') }}
     {{ scriptify($auth, 'AUTH') }}
 
+    <script type="text/javascript" src="{{ elixir('vendors~app.js', 'next/assets') }}"></script>
     <script type="text/javascript" src="{{ elixir('app.js', 'next/assets') }}"></script>
 
     @stack('scripts')
