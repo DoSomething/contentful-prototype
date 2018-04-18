@@ -25,4 +25,10 @@ module.exports = configure({
         '@researchgate/react-intersection-observer/lib/js',
     },
   },
+
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
 });
