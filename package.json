@@ -9,6 +9,7 @@
     "build:dev": "webpack --env=development --hide-modules",
     "build": "webpack --env=production",
     "stat": "webpack --env=production --json > stats.json",
+    "analyze": "npm run stat && webpack-bundle-analyzer stats.json",
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
     "precommit": "pretty-quick --staged",
     "heroku-postbuild": "npm run build"
@@ -107,6 +108,7 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "tailwindcss": "^0.4.3",
     "webpack": "^4.5.0",
+    "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.14"
   }
 }
