@@ -1,9 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 
-import './subpage-navigation.scss';
+import './page-navigation.scss';
 
-class SubPageNavigation extends React.Component {
+class PageNavigation extends React.Component {
   state = {
     isStuck: true,
   };
@@ -25,11 +25,11 @@ class SubPageNavigation extends React.Component {
         })}
       >
         <div className="wrapper">
-          <div className="nav-items">hello</div>
+          <div className="nav-items">{this.props.children}</div>
         </div>
       </div>
     );
   }
 }
 
-export default SubPageNavigation;
+export default PageNavigation;

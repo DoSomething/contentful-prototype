@@ -11,7 +11,8 @@ import Enclosure from '../../Enclosure';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 // import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
-import SubPageNavigation from '../../utilities/SubPageNavigation/SubPageNavigation';
+// import PageNavigation from '../../utilities/PageNavigation/PageNavigation';
+import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-subpage.scss';
 
@@ -110,7 +111,7 @@ const CampaignSubPage = props => (
     <LedeBannerContainer />
     <div className="main clearfix">
       {props.dashboard ? <DashboardContainer /> : null}
-      <SubPageNavigation />
+      <CampaignPageNavigationContainer />
       <Enclosure className="default-container margin-top-lg margin-bottom-lg">
         <CampaignSubPageContent {...props} />
       </Enclosure>
