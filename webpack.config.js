@@ -13,7 +13,12 @@ module.exports = configure({
 
   module: {
     rules: [
-      { enforce: 'pre', test: /\.js$/, use: 'eslint-loader', include: path.join(__dirname, '/resources/assets') },
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        use: 'eslint-loader',
+        include: path.join(__dirname, '/resources/assets'),
+      },
     ],
   },
 
