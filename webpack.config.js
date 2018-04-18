@@ -28,6 +28,17 @@ module.exports = configure({
     ],
   },
 
+  externals: {
+    // Exclude dependency on Node.js 'buffer' module.
+    buffer: 'root Buffer',
+  },
+
+  // Remove unnecessary Node built-ins.
+  node: {
+    process: false,
+    Buffer: false,
+  },
+
   resolve: {
     alias: {
       // HACK: This module's ES entry point causes a strange module
