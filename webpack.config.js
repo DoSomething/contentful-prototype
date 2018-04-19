@@ -31,6 +31,8 @@ module.exports = configure({
   externals: {
     // Exclude dependency on Node.js 'buffer' module.
     buffer: 'root Buffer',
+    // Exclude dependency on 'readable-stream' module.
+    'readable-stream': 'root Stream',
   },
 
   // Remove unnecessary Node built-ins.
