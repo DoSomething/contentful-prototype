@@ -3,7 +3,7 @@
 import { get, find } from 'lodash';
 import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
-import { isPast, parse } from 'date-fns';
+import { isBefore } from 'date-fns';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 
@@ -368,7 +368,7 @@ export function isCampaignClosed(endDate) {
     return false;
   }
 
-  return isPast(parse(endDate));
+  return isBefore(endDate, new Date());
 }
 
 /**
