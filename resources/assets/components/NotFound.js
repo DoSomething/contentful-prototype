@@ -12,7 +12,9 @@ const NotFound = () => (
       __We searched our site, but couldn&apos;t find what you were looking
       for.__ Try [Grab the Mic](/us/campaigns/grab-mic?utm_source=404) and join
       our movement to create the most civically active generation ever. You can
-      also try [our homepage](/) or [reach out]({zendeskUrl}) to us.
+      also try [our homepage](https://www.dosomething.org) or [reach out]({
+        zendeskUrl
+      }) to us.
     </Markdown>
   </Card>
 );
