@@ -67,7 +67,7 @@
     "fontfaceobserver": "^2.0.13",
     "graphql": "^0.13.2",
     "graphql-anywhere": "^4.1.8",
-    "graphql-tag": "^2.8.0",
+    "graphql-tag": "^2.9.0",
     "history": "^4.7.2",
     "jest-environment-jsdom": "^22.4.3",
     "jest-environment-jsdom-global": "^1.0.3",
@@ -96,7 +96,7 @@
     "unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@dosomething/babel-config": "^2.2.0",
+    "@dosomething/babel-config": "^2.2.1",
     "@dosomething/eslint-config": "^4.0.0",
     "@dosomething/webpack-config": "^4.1.0",
     "contentful-management": "^5.0.0",
