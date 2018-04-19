@@ -17,8 +17,12 @@ import './campaign-subpage.scss';
 const CampaignSubPageContent = props => {
   const { campaignEndDate, match, noun, pages, tagline, verb } = props;
 
-  const subPage = find(pages, page =>
-    page.fields.slug.endsWith(match.params.slug),
+  const subPage = find(
+    pages,
+    page =>
+      page.type === 'page'
+        ? page.fields.slug.endsWith(match.params.slug)
+        : false,
   );
 
   if (!subPage) {
@@ -69,8 +73,8 @@ CampaignSubPageContent.propTypes = {
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        slug: PropTypes.string.isRequired,
+        title: PropTypes.string,
+        slug: PropTypes.string,
         content: PropTypes.string.isRequired,
       }),
     }),
