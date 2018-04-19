@@ -96,9 +96,9 @@
     "unfetch": "^3.0.0"
   },
   "devDependencies": {
-    "@dosomething/babel-config": "dosomething/babel-config#targets",
+    "@dosomething/babel-config": "^2.2.0",
     "@dosomething/eslint-config": "^4.0.0",
-    "@dosomething/webpack-config": "^4.0.0",
+    "@dosomething/webpack-config": "^4.1.0",
     "contentful-management": "^5.0.0",
     "eslint-loader": "^2.0.0",
     "flow-bin": "0.59.0",
