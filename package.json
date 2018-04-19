@@ -93,7 +93,7 @@
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.2.0",
     "sixpack-client": "^2.1.0",
-    "whatwg-fetch": "^2.0.4"
+    "unfetch": "^3.0.0"
   },
   "devDependencies": {
     "@dosomething/babel-config": "dosomething/babel-config#targets",

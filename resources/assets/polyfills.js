@@ -5,7 +5,7 @@
 import 'babel-polyfill';
 
 // `fetch()` polyfill (http://caniuse.com/#feat=fetch)
-import 'whatwg-fetch';
+import 'unfetch';
 
 // URL constructor polyfill (http://caniuse.com/#feat=url)
 // @see: https://github.com/webcomponents/URL
