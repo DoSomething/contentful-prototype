@@ -368,7 +368,7 @@ export function isCampaignClosed(endDate) {
     return false;
   }
 
-  return isBefore(new Date(endDate), new Date());
+  return isBefore(endDate, new Date());
 }
 
 /**
