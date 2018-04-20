@@ -6,7 +6,7 @@ const LOCALE = 'en-US';
 
 async function initContentManagementClient(callback) {
   const args = parseArgs(process.argv, {
-    alias: { 'access-token': 'accessToken', spaceId: 'space-id' },
+    alias: { accessToken: 'access-token', spaceId: 'space-id' },
   });
 
   const { spaceId, accessToken } = args;
