@@ -11,6 +11,7 @@
 * [Architecture](development/architecture.md)
 * [Deployments](development/deployments/README.md)
   * [Contentful Migrations](development/deployments/contentful-migrations.md)
+  * [Contentful Content Management API Scripts](contentful-content-management-api.md)
   * [Heroku](development/deployments/heroku.md)
 * [Features](development/features/README.md)
   * [Routing](development/features/routing.md)
