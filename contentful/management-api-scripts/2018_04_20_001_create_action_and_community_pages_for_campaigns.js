@@ -104,6 +104,4 @@ async function transferPageBlocks(environment) {
   }
 }
 
-contentManagementClient.init(function(environment) {
-  transferPageBlocks(environment);
-});
+contentManagementClient.init(transferPageBlocks);

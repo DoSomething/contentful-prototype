@@ -44,6 +44,4 @@ async function transformPageSlug(campaign, page, environment) {
   await sleep(1000);
 }
 
-contentManagementClient.init(function(environment) {
-  transformPageSlugs(environment);
-});
+contentManagementClient.init(transformPageSlugs);
