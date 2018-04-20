@@ -1,7 +1,7 @@
 const { join } = require('path');
 const { contentManagementClient } = require('./contentManagementClient');
 
-const LOCALE = contentManagementClient.LOCALE;
+const { LOCALE } = contentManagementClient.constants;
 const { sleep, getField } = contentManagementClient.helpers;
 
 async function transformPageSlugs(environment) {
