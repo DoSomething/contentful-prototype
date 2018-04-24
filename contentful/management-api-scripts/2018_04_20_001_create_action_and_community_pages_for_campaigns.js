@@ -27,7 +27,7 @@ async function run(environment, args) {
 
     for (var i = 0; i < campaignEntries.items.length; i++) {
       const campaignEntry = campaignEntries.items[i];
-      addPagesToCampaign(environment, campaignEntry);
+      await addPagesToCampaign(environment, campaignEntry);
     }
   }
 }
