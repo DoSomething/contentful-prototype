@@ -98,7 +98,7 @@ async function addPagesToCampaign(environment, campaign) {
     const actionPage = await attempt(() =>
       environment.createEntry('page', {
         fields: {
-          internalTitl: {
+          internalTitle: {
             [LOCALE]: `${campaignInternalTitle} Action Page`,
           },
           title: {
