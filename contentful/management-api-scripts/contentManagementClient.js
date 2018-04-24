@@ -19,7 +19,7 @@ async function initContentManagementClient(callback) {
     return;
   }
   const environment = await getEnvironment(spaceId, accessToken);
-  callback(environment);
+  callback(environment, args);
 }
 
 async function getEnvironment(spaceId, accessToken) {
@@ -45,15 +45,20 @@ function getField(entry, field, defaultVal = null) {
   return get(entry.fields[field], LOCALE, defaultVal);
 }
 
+function attempt(callback) {
+  return callback().catch(error => console.log(error.message));
+}
+
 module.exports = {
   contentManagementClient: {
     init: initContentManagementClient,
     constants: {
-      LOCALE: LOCALE,
+      LOCALE,
     },
     helpers: {
-      sleep: sleep,
-      getField: getField,
+      sleep,
+      getField,
+      attempt,
     },
   },
 };
