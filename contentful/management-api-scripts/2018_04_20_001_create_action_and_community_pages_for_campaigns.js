@@ -4,7 +4,7 @@ const { contentManagementClient } = require('./contentManagementClient');
 const { LOCALE } = contentManagementClient.constants;
 const { sleep, getField, attempt } = contentManagementClient.helpers;
 
-async function transferPageBlocks(environment, args) {
+async function run(environment, args) {
   const campaignId = args['campaign-id'];
   if (campaignId) {
     const campaignEntry = await attempt(() => environment.getEntry(campaignId));
@@ -13,7 +13,7 @@ async function transferPageBlocks(environment, args) {
       return;
     }
 
-    transformCampaign(environment, campaignEntry);
+    addPagesToCampaign(environment, campaignEntry);
   } else {
     const campaignEntries = await attempt(() =>
       environment.getEntries({
@@ -27,12 +27,12 @@ async function transferPageBlocks(environment, args) {
 
     for (var i = 0; i < campaignEntries.items.length; i++) {
       const campaignEntry = campaignEntries.items[i];
-      transformCampaign(environment, campaignEntry);
+      addPagesToCampaign(environment, campaignEntry);
     }
   }
 }
 
-async function transformCampaign(environment, campaign) {
+async function addPagesToCampaign(environment, campaign) {
   const campaignInternalTitle = getField(campaign, 'internalTitle');
   const campaignSlug = getField(campaign, 'slug', '');
   const campaignActivityFeed = getField(campaign, 'activityFeed');
@@ -148,4 +148,4 @@ async function transformCampaign(environment, campaign) {
   sleep(1000);
 }
 
-contentManagementClient.init(transferPageBlocks);
+contentManagementClient.init(run);
