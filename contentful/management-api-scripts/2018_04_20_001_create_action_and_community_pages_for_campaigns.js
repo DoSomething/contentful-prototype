@@ -45,7 +45,11 @@ async function addPagesToCampaign(environment, campaign) {
   }
 
   // If the campaign doesn't have these fields set, than presumably no transformation is needed.
-  if (!campaignInternalTitle || !campaignSlug) {
+  if (
+    !campaignInternalTitle ||
+    !campaignSlug ||
+    (!campaignActionSteps && !campaignActivityFeed)
+  ) {
     console.log(`Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
     console.log('--------------------------------------------\n');
     return;
