@@ -2,37 +2,61 @@ const { join } = require('path');
 const { contentManagementClient } = require('./contentManagementClient');
 
 const { LOCALE } = contentManagementClient.constants;
-const { sleep, getField } = contentManagementClient.helpers;
+const { sleep, getField, attempt } = contentManagementClient.helpers;
 
-async function transferPageBlocks(environment) {
-  const campaigns = await environment.getEntries({
-    content_type: 'campaign',
-  });
+async function transferPageBlocks(environment, args) {
+  const campaignId = args['campaign-id'];
+  if (campaignId) {
+    const campaignEntry = await attempt(() => environment.getEntry(campaignId));
 
-  for (var i = 0; i < campaigns.items.length; i++) {
-    const campaign = campaigns.items[i];
-
-    const campaignInternalTitle = getField(campaign, 'internalTitle');
-    const campaignSlug = getField(campaign, 'slug', '');
-    const campaignActivityFeed = getField(campaign, 'activityFeed');
-    const campaignActionSteps = getField(campaign, 'actionSteps');
-    const campaignPages = getField(campaign, 'pages', []);
-
-    if (!campaignPages.length) {
-      // Ensure the campaign has a pages property with the correct locale
-      campaign.fields.pages = { [LOCALE]: [] };
+    if (!campaignEntry) {
+      return;
     }
 
-    // If the campaign doesn't have these fields set, than presumably no transformation is needed.
-    if (!campaignInternalTitle || !campaignSlug) {
-      console.log(`Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
-      console.log('--------------------------------------------\n');
-      continue;
+    transformCampaign(environment, campaignEntry);
+  } else {
+    const campaignEntries = await attempt(() =>
+      environment.getEntries({
+        content_type: 'campaign',
+      }),
+    );
+
+    if (!campaignEntries) {
+      return;
     }
 
-    if (campaignActivityFeed) {
-      // Create a new community 'Page' with the activityFeed blocks from the source campaign
-      const communityPage = await environment.createEntry('page', {
+    for (var i = 0; i < campaignEntries.items.length; i++) {
+      const campaignEntry = campaignEntries.items[i];
+      transformCampaign(environment, campaignEntry);
+    }
+  }
+}
+
+async function transformCampaign(environment, campaign) {
+  const campaignInternalTitle = getField(campaign, 'internalTitle');
+  const campaignSlug = getField(campaign, 'slug', '');
+  const campaignActivityFeed = getField(campaign, 'activityFeed');
+  const campaignActionSteps = getField(campaign, 'actionSteps');
+  const campaignPages = getField(campaign, 'pages', []);
+
+  if (!campaignPages.length) {
+    // Ensure the campaign has a pages property with the correct locale
+    campaign.fields.pages = { [LOCALE]: [] };
+  }
+
+  // If the campaign doesn't have these fields set, than presumably no transformation is needed.
+  if (!campaignInternalTitle || !campaignSlug) {
+    console.log(`Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
+    console.log('--------------------------------------------\n');
+    return;
+  }
+
+  console.log(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
+
+  if (campaignActivityFeed) {
+    // Create a new community 'Page' with the activityFeed blocks from the source campaign
+    const communityPage = await attempt(() =>
+      environment.createEntry('page', {
         fields: {
           internalTitle: {
             [LOCALE]: `${campaignInternalTitle} Community Page`,
@@ -47,26 +71,34 @@ async function transferPageBlocks(environment) {
             [LOCALE]: campaignActivityFeed,
           },
         },
-      });
+      }),
+    );
 
-      await communityPage.publish();
-      console.log(`Created Community Page! [ID: ${communityPage.sys.id}]\n`);
+    if (communityPage) {
+      const publishedCommunityPage = await attempt(() =>
+        communityPage.publish(),
+      );
+      if (publishedCommunityPage) {
+        console.log(`Created Community Page! [ID: ${communityPage.sys.id}]\n`);
 
-      // Add a Link to the new Page to the campaigns Pages field
-      campaign.fields.pages[LOCALE].push({
-        sys: {
-          type: 'Link',
-          linkType: 'Entry',
-          id: communityPage.sys.id,
-        },
-      });
+        // Add a Link to the new Page to the campaigns Pages field
+        campaign.fields.pages[LOCALE].push({
+          sys: {
+            type: 'Link',
+            linkType: 'Entry',
+            id: communityPage.sys.id,
+          },
+        });
+      }
     }
+  }
 
-    if (campaignActivityFeed) {
-      // Creates a new action 'Page' with the actionStep blocks from the source campaign
-      const actionPage = await environment.createEntry('page', {
+  if (campaignActionSteps) {
+    // Creates a new action 'Page' with the actionStep blocks from the source campaign
+    const actionPage = await attempt(() =>
+      environment.createEntry('page', {
         fields: {
-          internalTitle: {
+          internalTitl: {
             [LOCALE]: `${campaignInternalTitle} Action Page`,
           },
           title: {
@@ -79,29 +111,41 @@ async function transferPageBlocks(environment) {
             [LOCALE]: campaignActionSteps,
           },
         },
-      });
+      }),
+    );
 
-      await actionPage.publish();
-      console.log(`Created Action Page! [ID: ${actionPage.sys.id}]\n`);
+    if (actionPage) {
+      const publishedActionPage = attempt(() => actionPage.publish());
+      if (publishedActionPage) {
+        console.log(`Created Action Page! [ID: ${actionPage.sys.id}]\n`);
 
-      // Add a Link to the new Page to the campaigns Pages field
-      campaign.fields.pages[LOCALE].push({
-        sys: {
-          type: 'Link',
-          linkType: 'Entry',
-          id: actionPage.sys.id,
-        },
-      });
+        // Add a Link to the new Page to the campaigns Pages field
+        campaign.fields.pages[LOCALE].push({
+          sys: {
+            type: 'Link',
+            linkType: 'Entry',
+            id: actionPage.sys.id,
+          },
+        });
+      }
     }
-
-    await campaign.update().then(campaign => campaign.publish());
-
-    console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
-    console.log('--------------------------------------------\n');
-
-    // API breather room
-    sleep(1000);
   }
+
+  const updatedCampaign = await attempt(() => campaign.update());
+  if (updatedCampaign) {
+    const publishedCampaign = await attempt(() => updatedCampaign.publish());
+    if (publishedCampaign) {
+      console.log(
+        `Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
+      );
+    }
+    console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
+  }
+
+  console.log('--------------------------------------------\n');
+
+  // API breather room
+  sleep(1000);
 }
 
 contentManagementClient.init(transferPageBlocks);
