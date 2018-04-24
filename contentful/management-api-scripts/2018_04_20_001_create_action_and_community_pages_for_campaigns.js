@@ -79,7 +79,9 @@ async function addPagesToCampaign(environment, campaign) {
         communityPage.publish(),
       );
       if (publishedCommunityPage) {
-        console.log(`Created Community Page! [ID: ${communityPage.sys.id}]\n`);
+        console.log(
+          `  - Created Community Page! [ID: ${communityPage.sys.id}]\n`,
+        );
 
         // Add a Link to the new Page to the campaigns Pages field
         campaign.fields.pages[LOCALE].push({
@@ -117,7 +119,7 @@ async function addPagesToCampaign(environment, campaign) {
     if (actionPage) {
       const publishedActionPage = attempt(() => actionPage.publish());
       if (publishedActionPage) {
-        console.log(`Created Action Page! [ID: ${actionPage.sys.id}]\n`);
+        console.log(`  - Created Action Page! [ID: ${actionPage.sys.id}]\n`);
 
         // Add a Link to the new Page to the campaigns Pages field
         campaign.fields.pages[LOCALE].push({
@@ -136,7 +138,7 @@ async function addPagesToCampaign(environment, campaign) {
     const publishedCampaign = await attempt(() => updatedCampaign.publish());
     if (publishedCampaign) {
       console.log(
-        `Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
+        `  - Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
       );
     }
     console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
