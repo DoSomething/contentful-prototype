@@ -32,6 +32,7 @@
     ]
   },
   "jest": {
+    "clearMocks": true,
     "testEnvironment": "jest-environment-jsdom-global",
     "setupTestFrameworkScriptFile": "<rootDir>/jest-setup.js",
     "moduleNameMapper": {
