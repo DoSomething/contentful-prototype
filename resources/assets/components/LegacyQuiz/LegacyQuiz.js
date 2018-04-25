@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Question from './Question';
 import Markdown from '../Markdown';
 import Conclusion from './Conclusion';
-import { ShareContainer } from '../Share';
+import Share from '../utilities/Share/Share';
 import ContentfulEntry from '../ContentfulEntry';
 
 import './legacy-quiz.scss';
@@ -50,7 +50,7 @@ const LegacyQuiz = props => {
 
   const shareConclusion = shouldSeeResult ? (
     <Conclusion callToAction={fields.conclusion}>
-      <ShareContainer className="quiz__share" parentSource="quiz" />
+      <Share className="quiz__share" parentSource="quiz" />
     </Conclusion>
   ) : null;
 

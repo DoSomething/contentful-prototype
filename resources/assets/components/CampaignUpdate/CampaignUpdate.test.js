@@ -3,9 +3,6 @@ import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import CampaignUpdate from './CampaignUpdate';
 
-// Mock Redux containers so we don't need Provider context.
-jest.mock('../Share/ShareContainer', () => 'Share');
-
 const author = {
   fields: {
     avatar: 'http://example.com/avatar-aang.jpg',

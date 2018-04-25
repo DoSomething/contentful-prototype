@@ -25,6 +25,7 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
       className="clear-none -right-icon"
       link="http://example.com/link-to-content"
       parentSource="campaignUpdate"
+      quote={null}
       variant="icon"
     />
   </footer>
@@ -56,6 +57,7 @@ exports[`it generates a campaign update snapshot 1`] = `
       className="clear-none -right-icon"
       link="http://example.com/link-to-content"
       parentSource="campaignUpdate"
+      quote={null}
       variant="icon"
     />
   </footer>
