@@ -25,7 +25,7 @@ This is something way beyond the scope of the migration script.
 
 For cases like these, we employ the usage of the [Content Management API](https://www.contentful.com/developers/docs/references/content-management-api/).
 
-The Content Management API affords us the flexibility to fetch specific Entries and access all there fields, update those fields, create new entries, and provide those new entries with fields based off of some other source.
+The Content Management API affords us the flexibility to fetch specific Entries and access all of their fields, update those fields, create new entries, and provide those new entries with fields based off of some other source.
 
 We use the [JS SDK](https://github.com/contentful/contentful-management.js) for this API, using some basic boilerplate setup across scripts to prevent repetition, but allowing any custom new transformations.
 
@@ -47,10 +47,11 @@ Import the contentful management api client
 const { contentManagementClient } = require('./contentManagementClient');
 ```
 
-Create a callback function with an `environment` parameter which will be passed in from the client's init method
+Create a callback function with an `environment` parameter (As well as an optional `args` parameter referring to the command line arguments when running the script). These will be passed in from the client's init method.
 
 ```js
-async function coolScript(environment) {
+async function coolScript(environment, args) {
+  console.log(args);
   const entities = await environment.getEntities();
   console.log(entities);
 }
