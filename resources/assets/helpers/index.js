@@ -438,6 +438,14 @@ export function showFacebookShareDialog(href, quote = null) {
   });
 }
 
+/**
+ * Open a dialog and run a callback when it closes.
+ *
+ * @param {String} href
+ * @param {Function} callback
+ * @param {Number} height
+ * @param {Number} width
+ */
 export function openDialog(href, callback, width = 550, height = 420) {
   const winHeight = window.screen.height;
   const winWidth = window.screen.width;
@@ -449,7 +457,7 @@ export function openDialog(href, callback, width = 550, height = 420) {
     top = Math.round(winHeight / 2 - height / 2);
   }
 
-  const twitterShareWindow = window.open(
+  const dialog = window.open(
     href,
     'intent',
     `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`,
@@ -458,7 +466,7 @@ export function openDialog(href, callback, width = 550, height = 420) {
   let interval;
 
   const check = () => {
-    if (twitterShareWindow.closed) {
+    if (dialog.closed) {
       clearInterval(interval);
       callback();
     }
@@ -470,7 +478,7 @@ export function openDialog(href, callback, width = 550, height = 420) {
 }
 
 /**
- * Share a link by generating a Twitter intent share prompt.
+ * Share a link by opening a Facebook share prompt.
  *
  * @param  {String} href
  * @param  {String} quote
@@ -483,7 +491,7 @@ export function showFacebookSharePrompt(href, callback) {
 }
 
 /**
- * Share a link by generating a Twitter intent share prompt.
+ * Share a link by opening a Twitter share prompt.
  *
  * @param  {String} href
  * @param  {String} quote
