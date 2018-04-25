@@ -1,4 +1,4 @@
-/* global window, document, Blob, FB, URL */
+/* global window, document, Blob, URL */
 
 import { get, find } from 'lodash';
 import MarkdownIt from 'markdown-it';
@@ -393,7 +393,33 @@ export function env(key) {
 }
 
 /**
- * Share a link by generating a Facebook share prompt.
+ * Load and return the Facebook SDK.
+ */
+export function loadFacebookSDK() {
+  return new Promise(resolve => {
+    if (document.getElementById('facebook-jssdk')) {
+      resolve(window.FB);
+    }
+
+    // Set init callback for once we've loaded Facebook's SDK:
+    window.fbAsyncInit = () => {
+      window.FB.init({
+        appId: env('FACEBOOK_APP_ID'),
+        version: 'v2.8',
+      });
+
+      resolve(window.FB);
+    };
+
+    const script = document.createElement('script');
+    script.id = 'facebook-jssdk';
+    script.src = '//connect.facebook.net/en_US/sdk.js';
+    document.head.append(script);
+  });
+}
+
+/**
+ * Share a link by generating a Facebook share dialog.
  * Get a callback if the share is successful or not.
  *
  * @param  {Object}   share

@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             $view->with('env', [
                 'APP_ENV' => config('app.env'),
+                'FACEBOOK_APP_ID' => config('services.analytics.facebook_id'),
                 'GRAPHQL_URL' => config('services.graphql.url'),
                 'GLADIATOR_URL' => config('services.gladiator.url'),
                 'NORTHSTAR_URL' => config('services.northstar.url'),
