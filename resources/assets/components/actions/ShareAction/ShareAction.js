@@ -7,8 +7,8 @@ import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
 import {
-  showFacebookSharePrompt,
   loadFacebookSDK,
+  showFacebookShareDialog,
   showTwitterSharePrompt,
 } from '../../../helpers';
 
@@ -22,29 +22,26 @@ class ShareAction extends React.Component {
     }
   }
 
-  handleFacebookClick = link => {
+  handleFacebookClick = url => {
     const { trackEvent } = this.props;
-    const trackingData = { url: link };
 
-    trackEvent('clicked facebook share action', trackingData);
+    trackEvent('clicked facebook share action', { url });
 
-    showFacebookSharePrompt({ href: link }, response => {
-      if (!response) {
-        trackEvent('share action cancelled', trackingData);
-        return;
-      }
-
-      trackEvent('share action completed', trackingData);
-      this.setState({ showModal: true });
-    });
+    showFacebookShareDialog(url)
+      .then(() => {
+        trackEvent('share action completed', { url });
+        this.setState({ showModal: true });
+      })
+      .catch(() => {
+        trackEvent('share action cancelled', { url });
+      });
   };
 
-  handleTwitterClick = link => {
+  handleTwitterClick = url => {
     const { trackEvent } = this.props;
-    const trackingData = { url: link };
 
-    trackEvent('clicked twitter share action', trackingData);
-    showTwitterSharePrompt(link, '', () => this.setState({ showModal: true }));
+    trackEvent('clicked twitter share action', { url });
+    showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
   };
 
   render() {
@@ -57,10 +54,10 @@ class ShareAction extends React.Component {
       title,
     } = this.props;
 
-    const handleShareClick =
-      socialPlatform === 'facebook'
-        ? this.handleFacebookClick
-        : this.handleTwitterClick;
+    const isFacebook = socialPlatform === 'facebook';
+    const handleShareClick = isFacebook
+      ? this.handleFacebookClick
+      : this.handleTwitterClick;
 
     return (
       <React.Fragment>

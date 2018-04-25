@@ -425,17 +425,17 @@ export function loadFacebookSDK() {
  * @param  {Object}   share
  * @param  {Function} callback
  */
-export function showFacebookSharePrompt(share, callback) {
-  const { href, quote } = share;
+export function showFacebookShareDialog(href, quote = null) {
+  const options = {
+    method: 'share',
+    quote,
+    href,
+  };
 
-  FB.ui(
-    {
-      method: 'share',
-      href,
-      quote,
-    },
-    callback,
-  );
+  return new Promise((resolve, reject) => {
+    const handler = success => (success ? resolve() : reject());
+    return window.FB.ui(options, handler);
+  });
 }
 
 /**
