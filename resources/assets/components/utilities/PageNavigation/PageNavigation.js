@@ -85,8 +85,16 @@ export default PageNavigation;
 
 PageNavigation.propTypes = {
   children: PropTypes.node,
+  pages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      slug: PropTypes.string,
+      title: PropTypes.string,
+    }),
+  ),
 };
 
 PageNavigation.defaultProps = {
   children: null,
+  pages: [],
 };
