@@ -35,7 +35,3 @@ Instead of applying the migration, push up a pull request with the script. Make 
 ### 4) Merge approved pull request
 
 ### 5) Run and apply the migration script
-
-### Pro Tip
-
-Since, unlike the migration CLI, there is no way to initially run the script to see if it's valid. You might want to first go about testing with a dummy (staging / personal) Contentful Space to ensure your script will behave as intended!

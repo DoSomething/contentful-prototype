@@ -80,3 +80,9 @@ You'll run the file as you would any regular `node.js` file, passing in the Cont
 ```bash
 $ node contentful/content-management-scripts/20XX_XX_001_logs_all_entries.js --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 ```
+
+### Pro Tips
+
+* Since, unlike the migration CLI, there is no way to initially run the script to see if it's valid. You might want to first go about testing with a dummy (staging / personal) Contentful Space to ensure your script will behave as intended!
+
+* There is a suite of helper functions in `./helpers` containing some common logic we found ourselves running with these scripts.
