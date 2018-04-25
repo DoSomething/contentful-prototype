@@ -94,11 +94,14 @@ class Entity implements ArrayAccess, JsonSerializable
         }
 
         // @see: DynamicEntry's __call implementation.
-        // If trying to get a translation for a field that isn't
-        // filled out, it'll throw ErrorException so we catch that.
         try {
             $value = $this->entry->{'get'.ucwords($property)}();
+        } catch (\Contentful\Exception\NotFoundException $error) {
+            // If the linked resource is not published, return null.
+            $value = null;
         } catch (\ErrorException $error) {
+            // If trying to get a translation for a field that isn't
+            // filled out, it'll throw ErrorException so we catch that.
             $value = null;
         }
 

@@ -39,6 +39,19 @@
     {{ scriptify($env, 'ENV') }}
     {{ scriptify($auth, 'AUTH') }}
 
+    <script type="text/javascript">
+        var features = [];
+        ('fetch' in window) || features.push('fetch');
+        ('URL' in window) || features.push('URL');
+
+        if (features.length) {
+            features.unshift('default-3.6');
+
+            var s = document.createElement('script');
+            s.src = 'https://cdn.polyfill.io/v2/polyfill.min.js?features='+features.join(',');
+            document.head.appendChild(s);
+        }
+    </script>
     <script type="text/javascript" src="{{ elixir('vendors~app.js', 'next/assets') }}"></script>
     <script type="text/javascript" src="{{ elixir('app.js', 'next/assets') }}"></script>
 

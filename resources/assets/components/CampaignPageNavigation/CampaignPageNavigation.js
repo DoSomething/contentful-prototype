@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NavigationLink from '../Navigation/NavigationLink';
-import { prepareCampaignPageSlugs } from '../../helpers/campaign';
+import { prepareCampaignPageSlug } from '../../helpers/campaign';
 import PageNavigation from '../utilities/PageNavigation/PageNavigation';
 
 const CampaignPageNavigation = ({
@@ -28,22 +28,46 @@ const CampaignPageNavigation = ({
 
   console.log(linkablePages);
 
-  const pageSlugs = linkablePages.map(page => page.fields.slug);
+  const campaignPages = linkablePages.map(page => {
+    return {
+      id: page.id,
+      slug: page.fields.slug,
+      title: page.fields.title,
+    };
+  });
 
+  console.log(campaignPages);
+
+  // Conditional whether to include Community page.
   if (hasCommunityPage) {
-    pageSlugs.unshift('community');
+    campaignPages.unshift({
+      id: 'community-page',
+      slug: 'community',
+      title: 'Community',
+    });
   }
 
-  if (pageSlugs.length && !isCampaignClosed) {
-    pageSlugs.unshift('action');
+  // Conditional whether to include Action page.
+  if (campaignPages.length && !isCampaignClosed) {
+    campaignPages.unshift({
+      id: 'action-page',
+      slug: 'action',
+      title: 'Action',
+    });
   }
 
-  console.log(prepareCampaignPageSlugs(campaignSlug, pageSlugs));
+  campaignPages.map(
+    page => (page.slug = prepareCampaignPageSlug(campaignSlug, page.slug)),
+  );
 
   console.log('💃🏽');
-  console.log(pageSlugs);
+  console.log(campaignPages);
 
-  return <PageNavigation>hello there!</PageNavigation>;
+  return (
+    <PageNavigation pages={campaignPages}>
+      <div className="-inline nav-button">hello there!</div>
+    </PageNavigation>
+  );
 };
 
 export default CampaignPageNavigation;
