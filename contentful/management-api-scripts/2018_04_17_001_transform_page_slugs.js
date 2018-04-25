@@ -1,8 +1,8 @@
 const { join } = require('path');
+const { constants, getField, sleep } = './helpers';
 const { contentManagementClient } = require('./contentManagementClient');
 
 const { LOCALE } = contentManagementClient.constants;
-const { sleep, getField } = contentManagementClient.helpers;
 
 async function transformPageSlugs(environment) {
   const campaigns = await environment.getEntries({
