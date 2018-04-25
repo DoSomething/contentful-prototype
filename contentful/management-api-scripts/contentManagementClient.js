@@ -45,6 +45,7 @@ function getField(entry, field, defaultVal = null) {
   return get(entry.fields[field], LOCALE, defaultVal);
 }
 
+// Catch and log any callback errors
 function attempt(callback) {
   return callback().catch(error => console.log(error.message));
 }
