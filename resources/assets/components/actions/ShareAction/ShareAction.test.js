@@ -3,21 +3,20 @@ import { shallow } from 'enzyme';
 
 import ShareAction from './ShareAction';
 import setFBshare from '../../../__mocks__/facebookShareMock';
+import { trackPuckEvent as trackEventMock } from '../../../helpers/analytics';
 
+jest.mock('../../../helpers/analytics');
 jest.useFakeTimers();
 
 describe('ShareAction component', () => {
   const url = 'https://dosomething.org';
   const trackingData = { url };
 
-  let trackEventMock = jest.fn();
-
   const getShallow = socialPlatform =>
     shallow(
       <ShareAction
         title="Click on this link!"
         content="This is a great link"
-        trackEvent={trackEventMock}
         socialPlatform={socialPlatform}
         link={url}
       />,
@@ -33,23 +32,22 @@ describe('ShareAction component', () => {
   });
 
   it('renders a proper Share button based on social platform', () => {
-    expect(wrapper.find('button').text()).toEqual('Share on Facebook');
+    expect(wrapper.find('Button').prop('text')).toEqual('Share on Facebook');
 
     wrapper = getShallow('twitter');
 
-    expect(wrapper.find('button').text()).toEqual('Share on Twitter');
+    expect(wrapper.find('Button').prop('text')).toEqual('Share on Twitter');
   });
 
   describe('Clicking the Social Share Button for a Facebook share', () => {
     beforeEach(() => {
-      trackEventMock = jest.fn();
       wrapper = getShallow('facebook');
     });
 
     it('calls the FB ui method to trigger the facebook share', () => {
       setFBshare(true);
 
-      wrapper.find('button').simulate('click');
+      wrapper.find('Button').simulate('click');
 
       expect(global.FB.ui).toHaveBeenCalled();
     });
@@ -57,7 +55,7 @@ describe('ShareAction component', () => {
     it('tracks clicked share action event', () => {
       setFBshare(true);
 
-      wrapper.find('button').simulate('click');
+      wrapper.find('Button').simulate('click');
 
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
@@ -65,48 +63,24 @@ describe('ShareAction component', () => {
         'clicked facebook share action',
         trackingData,
       ]);
-      expect(trackEventMock.mock.calls[1]).toEqual([
-        'share action completed',
-        trackingData,
-      ]);
     });
 
-    it('tracks completed share action event when social share is successful', () => {
+    it('displays the affirmation modal when social share is successful', done => {
       setFBshare(true);
 
-      wrapper.find('button').simulate('click');
+      wrapper.find('Button').simulate('click');
 
-      expect(trackEventMock).toHaveBeenCalledTimes(2);
-      expect(trackEventMock.mock.calls[0]).toEqual([
-        'clicked facebook share action',
-        trackingData,
-      ]);
-    });
+      // Wait for `showFacebookShareDialog` promise to resolve.
+      setImmediate(() => {
+        expect(wrapper.update().find('Modal')).toHaveLength(1);
 
-    it('displays the affirmation modal when social share is successful', () => {
-      setFBshare(true);
-
-      wrapper.find('button').simulate('click');
-
-      expect(wrapper.find('Modal')).toHaveLength(1);
-    });
-
-    it('tracks completed share action event when social share is cancelled', () => {
-      setFBshare(false);
-
-      wrapper.find('button').simulate('click');
-
-      expect(trackEventMock).toHaveBeenCalledTimes(2);
-      expect(trackEventMock.mock.calls[1]).toEqual([
-        'share action cancelled',
-        trackingData,
-      ]);
+        done();
+      });
     });
   });
 
   describe('Clicking the Social Share Button for a Twitter share', () => {
     beforeEach(() => {
-      trackEventMock = jest.fn();
       wrapper = getShallow('twitter');
     });
 
@@ -116,7 +90,7 @@ describe('ShareAction component', () => {
     global.open = jest.fn().mockReturnValue({ closed: true });
 
     it('opens a new window with the proper Twitter intent URL', () => {
-      wrapper.find('button').simulate('click');
+      wrapper.find('Button').simulate('click');
 
       expect(global.open).toHaveBeenCalled();
       expect(global.open.mock.calls[0][0]).toEqual(
@@ -125,7 +99,7 @@ describe('ShareAction component', () => {
     });
 
     it('tracks clicked share action event', () => {
-      wrapper.find('button').simulate('click');
+      wrapper.find('Button').simulate('click');
 
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
@@ -136,7 +110,7 @@ describe('ShareAction component', () => {
     });
 
     it('displays the affirmation modal when social share is successful', () => {
-      wrapper.find('button').simulate('click');
+      wrapper.find('Button').simulate('click');
 
       // We check if the share dialog has been closed every 1s,
       // so let's "wait" until the first tick of that check.

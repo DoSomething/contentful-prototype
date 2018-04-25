@@ -1,4 +1,4 @@
-/* global window, document, Blob, FB, URL */
+/* global window, document, Blob, URL */
 
 import { get, find } from 'lodash';
 import MarkdownIt from 'markdown-it';
@@ -393,34 +393,60 @@ export function env(key) {
 }
 
 /**
- * Share a link by generating a Facebook share prompt.
+ * Load and return the Facebook SDK.
+ */
+export function loadFacebookSDK() {
+  return new Promise(resolve => {
+    if (document.getElementById('facebook-jssdk')) {
+      resolve(window.FB);
+    }
+
+    // Set init callback for once we've loaded Facebook's SDK:
+    window.fbAsyncInit = () => {
+      window.FB.init({
+        appId: env('FACEBOOK_APP_ID'),
+        version: 'v2.8',
+      });
+
+      resolve(window.FB);
+    };
+
+    const script = document.createElement('script');
+    script.id = 'facebook-jssdk';
+    script.src = '//connect.facebook.net/en_US/sdk.js';
+    document.head.append(script);
+  });
+}
+
+/**
+ * Share a link by generating a Facebook share dialog.
  * Get a callback if the share is successful or not.
  *
  * @param  {Object}   share
  * @param  {Function} callback
  */
-export function showFacebookSharePrompt(share, callback) {
-  const { href, quote } = share;
+export function showFacebookShareDialog(href, quote = null) {
+  const options = {
+    method: 'share',
+    quote,
+    href,
+  };
 
-  FB.ui(
-    {
-      method: 'share',
-      href,
-      quote,
-    },
-    callback,
-  );
+  return new Promise((resolve, reject) => {
+    const handler = success => (success ? resolve() : reject());
+    return window.FB.ui(options, handler);
+  });
 }
 
 /**
- * Share a link by generating a Twitter intent share prompt.
+ * Open a dialog and run a callback when it closes.
  *
- * @param  {String} href
- * @param  {String} quote
+ * @param {String} href
+ * @param {Function} callback
+ * @param {Number} height
+ * @param {Number} width
  */
-export function showTwitterSharePrompt(href, quote = '', callback) {
-  const width = 550;
-  const height = 420;
+export function openDialog(href, callback, width = 550, height = 420) {
   const winHeight = window.screen.height;
   const winWidth = window.screen.width;
 
@@ -431,8 +457,8 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
     top = Math.round(winHeight / 2 - height / 2);
   }
 
-  const twitterShareWindow = window.open(
-    `https://twitter.com/intent/tweet?url=${href}&text=${quote}`,
+  const dialog = window.open(
+    href,
     'intent',
     `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`,
   );
@@ -440,7 +466,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   let interval;
 
   const check = () => {
-    if (twitterShareWindow.closed) {
+    if (dialog.closed) {
       clearInterval(interval);
       callback();
     }
@@ -449,6 +475,31 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   if (callback) {
     interval = setInterval(check, 1000);
   }
+}
+
+/**
+ * Share a link by opening a Facebook share prompt.
+ *
+ * @param  {String} href
+ * @param  {String} quote
+ */
+export function showFacebookSharePrompt(href, callback) {
+  const appId = env('FACEBOOK_APP_ID');
+  const intent = `https://www.facebook.com/dialog/share?app_id=${appId}&display=popup&href=${href}`;
+
+  openDialog(intent, callback);
+}
+
+/**
+ * Share a link by opening a Twitter share prompt.
+ *
+ * @param  {String} href
+ * @param  {String} quote
+ */
+export function showTwitterSharePrompt(href, quote = '', callback) {
+  const intent = `https://twitter.com/intent/tweet?url=${href}&text=${quote}`;
+
+  openDialog(intent, callback);
 }
 
 /**

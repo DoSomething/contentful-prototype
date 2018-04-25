@@ -3,40 +3,43 @@ import PropTypes from 'prop-types';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
+import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
+import { trackPuckEvent } from '../../../helpers/analytics';
 import {
-  showFacebookSharePrompt,
+  loadFacebookSDK,
+  showFacebookShareDialog,
   showTwitterSharePrompt,
 } from '../../../helpers';
 
 class ShareAction extends React.Component {
   state = { showModal: false };
 
-  handleFacebookClick = link => {
-    const { trackEvent } = this.props;
-    const trackingData = { url: link };
+  componentDidMount() {
+    // If this is a Facebook share action, make sure we load SDK.
+    if (this.props.socialPlatform === 'facebook') {
+      loadFacebookSDK();
+    }
+  }
 
-    trackEvent('clicked facebook share action', trackingData);
+  handleFacebookClick = url => {
+    trackPuckEvent('clicked facebook share action', { url });
 
-    showFacebookSharePrompt({ href: link }, response => {
-      if (!response) {
-        trackEvent('share action cancelled', trackingData);
-        return;
-      }
-
-      trackEvent('share action completed', trackingData);
-      this.setState({ showModal: true });
-    });
+    showFacebookShareDialog(url)
+      .then(() => {
+        trackPuckEvent('share action completed', { url });
+        this.setState({ showModal: true });
+      })
+      .catch(() => {
+        trackPuckEvent('share action cancelled', { url });
+      });
   };
 
-  handleTwitterClick = link => {
-    const { trackEvent } = this.props;
-    const trackingData = { url: link };
-
-    trackEvent('clicked twitter share action', trackingData);
-    showTwitterSharePrompt(link, '', () => this.setState({ showModal: true }));
+  handleTwitterClick = url => {
+    trackPuckEvent('clicked twitter share action', { url });
+    showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
   };
 
   render() {
@@ -49,10 +52,10 @@ class ShareAction extends React.Component {
       title,
     } = this.props;
 
-    const handleShareClick =
-      socialPlatform === 'facebook'
-        ? this.handleFacebookClick
-        : this.handleTwitterClick;
+    const isFacebook = socialPlatform === 'facebook';
+    const handleShareClick = isFacebook
+      ? this.handleFacebookClick
+      : this.handleTwitterClick;
 
     return (
       <React.Fragment>
@@ -62,12 +65,11 @@ class ShareAction extends React.Component {
 
             <Embed className="padded" url={link} />
 
-            <button
-              className="button button-attached"
+            <Button
+              className="button-attached"
               onClick={() => handleShareClick(link)}
-            >
-              Share on {socialPlatform === 'facebook' ? 'Facebook' : 'Twitter'}
-            </button>
+              text={`Share on ${isFacebook ? 'Facebook' : 'Twitter'}`}
+            />
           </Card>
         </div>
         {this.state.showModal ? (
@@ -93,7 +95,6 @@ ShareAction.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
-  trackEvent: PropTypes.func.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
