@@ -47,7 +47,7 @@ Import the contentful management api client
 const { contentManagementClient } = require('./contentManagementClient');
 ```
 
-Create a callback function with an `environment` parameter (As well as an optional `args` parameter referring to the command line arguments when running the script). These will be passed in from the client's init method.
+Create a callback function which can receive an `environment` parameter (As well as an optional `args` parameter which will refer to to the command line arguments provided when the script is run). These will be passed in from the contentManagementClient's `init` method.
 
 ```js
 async function coolScript(environment, args) {
