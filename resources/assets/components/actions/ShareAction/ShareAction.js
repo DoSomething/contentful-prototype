@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
+import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -67,12 +68,11 @@ class ShareAction extends React.Component {
 
             <Embed className="padded" url={link} />
 
-            <button
-              className="button button-attached"
+            <Button
+              className="button-attached"
               onClick={() => handleShareClick(link)}
-            >
-              Share on {socialPlatform === 'facebook' ? 'Facebook' : 'Twitter'}
-            </button>
+              text={`Share on ${isFacebook ? 'Facebook' : 'Twitter'}`}
+            />
           </Card>
         </div>
         {this.state.showModal ? (
