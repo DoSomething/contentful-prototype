@@ -8,11 +8,19 @@ import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
 import {
   showFacebookSharePrompt,
+  loadFacebookSDK,
   showTwitterSharePrompt,
 } from '../../../helpers';
 
 class ShareAction extends React.Component {
   state = { showModal: false };
+
+  componentDidMount() {
+    // If this is a Facebook share action, make sure we load SDK.
+    if (this.props.socialPlatform === 'facebook') {
+      loadFacebookSDK();
+    }
+  }
 
   handleFacebookClick = link => {
     const { trackEvent } = this.props;
