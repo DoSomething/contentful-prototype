@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
-import { ShareContainer } from '../Share';
+import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 
 import './affirmation.scss';
@@ -18,7 +18,7 @@ const Affirmation = ({ content }) => (
         <p>{content.callToActionDescription}</p>
       </FlexCell>
       <FlexCell className="padded" width="half">
-        <ShareContainer variant="blue" parentSource="affirmation" />
+        <Share variant="blue" parentSource="affirmation" />
       </FlexCell>
     </Flex>
     <Byline

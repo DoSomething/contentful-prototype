@@ -6,7 +6,7 @@ import { get } from 'lodash';
 import Embed from '../Embed';
 import Markdown from '../Markdown';
 import Card from '../utilities/Card/Card';
-import { ShareContainer } from '../Share';
+import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
 
@@ -59,7 +59,7 @@ const CampaignUpdate = props => {
             className="float-left"
           />
         )}
-        <ShareContainer
+        <Share
           link={shareLink}
           variant="icon"
           parentSource="campaignUpdate"

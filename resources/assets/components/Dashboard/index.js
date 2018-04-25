@@ -1,8 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Flex, FlexCell } from '../Flex';
-import { ShareContainer } from '../Share';
+import Share from '../utilities/Share/Share';
 import { getDaysBetween } from '../../helpers';
+
 import './dashboard.scss';
 
 /**
@@ -55,7 +57,7 @@ const Dashboard = props => {
                 <p>{replaceTemplateVars(props.content.fields.shareCopy)}</p>
               </div>
               <div className="dashboard__block -half">
-                <ShareContainer variant="black" parentSource="dashboard" />
+                <Share variant="black" parentSource="dashboard" />
               </div>
             </Flex>
           </div>

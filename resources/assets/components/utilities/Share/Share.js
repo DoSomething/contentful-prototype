@@ -1,24 +1,28 @@
 /* global window */
 
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { showFacebookSharePrompt, showTwitterSharePrompt } from '../../helpers';
+
+import { trackPuckEvent } from '../../../helpers/analytics';
+import {
+  showFacebookSharePrompt,
+  showTwitterSharePrompt,
+} from '../../../helpers';
 
 import './share.scss';
 
 const Share = props => {
-  const { className, link, parentSource, quote, trackEvent, variant } = props;
-
+  const { className, link, parentSource, quote, variant } = props;
   const trackingData = { parentSource, variant, link, quote };
 
   const onFacebookClick = () => {
-    trackEvent('clicked facebook share', trackingData);
+    trackPuckEvent('clicked facebook share', trackingData);
     showFacebookSharePrompt(link);
   };
 
   const onTwitterClick = () => {
-    trackEvent('clicked twitter share', trackingData);
+    trackPuckEvent('clicked twitter share', trackingData);
     showTwitterSharePrompt(link, quote || '');
   };
 
@@ -50,7 +54,6 @@ Share.propTypes = {
   link: PropTypes.string,
   parentSource: PropTypes.string,
   quote: PropTypes.string,
-  trackEvent: PropTypes.func.isRequired,
   variant: PropTypes.oneOf(['black', 'blue', 'icon']),
 };
 

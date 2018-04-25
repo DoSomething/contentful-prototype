@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { every, find } from 'lodash';
 
+import calculateResult from './helpers';
 import { Flex, FlexCell } from '../Flex';
-import { ShareContainer } from '../Share';
 import QuizQuestion from './QuizQuestion';
+import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
-
-import calculateResult from './helpers';
 
 import './quiz.scss';
 
@@ -67,7 +66,7 @@ class Quiz extends React.Component {
 
       return result ? (
         <QuizConclusion callToAction={result.content}>
-          <ShareContainer className="quiz__share" parentSource="quiz" />
+          <Share className="quiz__share" parentSource="quiz" />
         </QuizConclusion>
       ) : null;
     }
