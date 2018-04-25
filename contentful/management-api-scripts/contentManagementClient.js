@@ -36,30 +36,11 @@ async function getEnvironment(spaceId, accessToken) {
   return space.getEnvironment('master');
 }
 
-// Helper Functions
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function getField(entry, field, defaultVal = null) {
-  return get(entry.fields[field], LOCALE, defaultVal);
-}
-
-// Catch and log any callback errors
-function attempt(callback) {
-  return callback().catch(error => console.log(error.message));
-}
-
 module.exports = {
   contentManagementClient: {
     init: initContentManagementClient,
     constants: {
       LOCALE,
-    },
-    helpers: {
-      sleep,
-      getField,
-      attempt,
     },
   },
 };
