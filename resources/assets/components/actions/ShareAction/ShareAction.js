@@ -7,6 +7,7 @@ import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
+import { trackPuckEvent } from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
   showFacebookShareDialog,
@@ -24,24 +25,20 @@ class ShareAction extends React.Component {
   }
 
   handleFacebookClick = url => {
-    const { trackEvent } = this.props;
-
-    trackEvent('clicked facebook share action', { url });
+    trackPuckEvent('clicked facebook share action', { url });
 
     showFacebookShareDialog(url)
       .then(() => {
-        trackEvent('share action completed', { url });
+        trackPuckEvent('share action completed', { url });
         this.setState({ showModal: true });
       })
       .catch(() => {
-        trackEvent('share action cancelled', { url });
+        trackPuckEvent('share action cancelled', { url });
       });
   };
 
   handleTwitterClick = url => {
-    const { trackEvent } = this.props;
-
-    trackEvent('clicked twitter share action', { url });
+    trackPuckEvent('clicked twitter share action', { url });
     showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
   };
 
@@ -98,7 +95,6 @@ ShareAction.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
-  trackEvent: PropTypes.func.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
