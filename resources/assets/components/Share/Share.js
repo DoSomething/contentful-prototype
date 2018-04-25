@@ -14,19 +14,11 @@ const Share = props => {
 
   const onFacebookClick = () => {
     trackEvent('clicked facebook share', trackingData);
-
-    showFacebookSharePrompt({ href: link, quote }, response => {
-      if (response) {
-        trackEvent('facebook share posted', trackingData);
-      } else {
-        trackEvent('facebook share cancelled', trackingData);
-      }
-    });
+    showFacebookSharePrompt(link);
   };
 
   const onTwitterClick = () => {
     trackEvent('clicked twitter share', trackingData);
-
     showTwitterSharePrompt(link, quote || '');
   };
 

@@ -438,15 +438,7 @@ export function showFacebookShareDialog(href, quote = null) {
   });
 }
 
-/**
- * Share a link by generating a Twitter intent share prompt.
- *
- * @param  {String} href
- * @param  {String} quote
- */
-export function showTwitterSharePrompt(href, quote = '', callback) {
-  const width = 550;
-  const height = 420;
+export function openDialog(href, callback, width = 550, height = 420) {
   const winHeight = window.screen.height;
   const winWidth = window.screen.width;
 
@@ -458,7 +450,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   }
 
   const twitterShareWindow = window.open(
-    `https://twitter.com/intent/tweet?url=${href}&text=${quote}`,
+    href,
     'intent',
     `scrollbars=yes,resizable=yes,toolbar=no,location=yes,width=${width},height=${height},left=${left},top=${top}`,
   );
@@ -475,6 +467,31 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   if (callback) {
     interval = setInterval(check, 1000);
   }
+}
+
+/**
+ * Share a link by generating a Twitter intent share prompt.
+ *
+ * @param  {String} href
+ * @param  {String} quote
+ */
+export function showFacebookSharePrompt(href, callback) {
+  const appId = env('FACEBOOK_APP_ID');
+  const intent = `https://www.facebook.com/dialog/share?app_id=${appId}&display=popup&href=${href}`;
+
+  openDialog(intent, callback);
+}
+
+/**
+ * Share a link by generating a Twitter intent share prompt.
+ *
+ * @param  {String} href
+ * @param  {String} quote
+ */
+export function showTwitterSharePrompt(href, quote = '', callback) {
+  const intent = `https://twitter.com/intent/tweet?url=${href}&text=${quote}`;
+
+  openDialog(intent, callback);
 }
 
 /**
