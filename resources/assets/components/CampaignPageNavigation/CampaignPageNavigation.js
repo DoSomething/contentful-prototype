@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import NavigationLink from '../Navigation/NavigationLink';
 import { prepareCampaignPageSlug } from '../../helpers/campaign';
 import PageNavigation from '../utilities/PageNavigation/PageNavigation';
+import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 
 const CampaignPageNavigation = ({
   campaignSlug,
@@ -18,15 +19,11 @@ const CampaignPageNavigation = ({
     return null;
   }
 
-  console.log(pages);
-
   const linkablePages = pages
     .filter(page => page.type === 'page')
     // @TODO: we want to eventually remove the need for hideFromNavigation field
     // in favor of always linking to pages referenced in the `pages` field.
     .filter(page => !page.fields.hideFromNavigation);
-
-  console.log(linkablePages);
 
   const campaignPages = linkablePages.map(page => {
     return {
@@ -35,8 +32,6 @@ const CampaignPageNavigation = ({
       title: page.fields.title,
     };
   });
-
-  console.log(campaignPages);
 
   // Conditional whether to include Community page.
   if (hasCommunityPage) {
@@ -60,12 +55,14 @@ const CampaignPageNavigation = ({
     page => (page.slug = prepareCampaignPageSlug(campaignSlug, page.slug)),
   );
 
-  console.log('💃🏽');
-  console.log(campaignPages);
-
   return (
     <PageNavigation pages={campaignPages}>
-      <div className="-inline nav-button">hello there!</div>
+      {isAffiliated ? null : (
+        <SignupButtonContainer
+          className="-inline nav-button"
+          source="tabbed navigation"
+        />
+      )}
     </PageNavigation>
   );
 };
