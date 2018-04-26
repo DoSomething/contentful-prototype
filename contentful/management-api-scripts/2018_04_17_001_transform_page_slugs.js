@@ -1,5 +1,5 @@
 const { join } = require('path');
-const { constants, getField, sleep } = './helpers';
+const { constants, getField, sleep } = require('./helpers');
 const { contentManagementClient } = require('./contentManagementClient');
 
 const { LOCALE } = constants;
@@ -45,3 +45,41 @@ async function transformPageSlug(campaign, page, environment) {
 }
 
 contentManagementClient.init(transformPageSlugs);
+
+// if (campaignActionSteps) {
+//     // Creates a new action 'Page' with the actionStep blocks from the source campaign
+//     const actionPage = await attempt(() =>
+//       environment.createEntry('page', {
+//         fields: {
+//           internalTitle: {
+//             [LOCALE]: `${campaignInternalTitle} Action Page`,
+//           },
+//           title: {
+//             [LOCALE]: 'Action Page',
+//           },
+//           slug: {
+//             [LOCALE]: join(campaignSlug, 'action'),
+//           },
+//           blocks: {
+//             [LOCALE]: campaignActionSteps,
+//           },
+//         },
+//       }),
+//     );
+
+//     if (actionPage) {
+//       const publishedActionPage = attempt(() => actionPage.publish());
+//       if (publishedActionPage) {
+//         console.log(`  - Created Action Page! [ID: ${actionPage.sys.id}]\n`);
+
+//         // Add a Link to the new Page to the campaigns Pages field
+//         campaign.fields.pages[LOCALE].push({
+//           sys: {
+//             type: 'Link',
+//             linkType: 'Entry',
+//             id: actionPage.sys.id,
+//           },
+//         });
+//       }
+//     }
+//   }
