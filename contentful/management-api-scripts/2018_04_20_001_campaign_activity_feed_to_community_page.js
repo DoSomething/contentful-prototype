@@ -6,6 +6,7 @@ const {
   getField,
   linkReference,
   processEntries,
+  withFields,
   sleep,
 } = require('./helpers');
 const { contentManagementClient } = require('./contentManagementClient');
@@ -14,11 +15,7 @@ const { LOCALE } = constants;
 
 const logger = createLogger('community_page_from_activity_feed');
 
-async function addCommunityPageFromActivityFeed(
-  environment,
-  campaign,
-  logStream,
-) {
+async function addCommunityPageFromActivityFeed(environment, campaign) {
   const campaignInternalTitle = getField(campaign, 'internalTitle');
   const campaignSlug = getField(campaign, 'slug');
   const campaignActivityFeed = getField(campaign, 'activityFeed');
@@ -40,22 +37,15 @@ async function addCommunityPageFromActivityFeed(
 
   // Create a new community 'Page' with the activityFeed blocks from the source campaign
   const communityPage = await attempt(() =>
-    environment.createEntry('page', {
-      fields: {
-        internalTitle: {
-          [LOCALE]: `${campaignInternalTitle} Community Page`,
-        },
-        title: {
-          [LOCALE]: 'Community Page',
-        },
-        slug: {
-          [LOCALE]: join(campaignSlug, 'community'),
-        },
-        blocks: {
-          [LOCALE]: campaignActivityFeed,
-        },
-      },
-    }),
+    environment.createEntry(
+      'page',
+      withFields({
+        internalTitle: `${campaignInternalTitle} Community Page`,
+        title: 'Community',
+        slug: join(campaignSlug, 'community'),
+        blocks: campaignActivityFeed,
+      }),
+    ),
   );
 
   if (communityPage) {
@@ -97,4 +87,3 @@ contentManagementClient.init((environment, args) =>
     addCommunityPageFromActivityFeed,
   ),
 );
-// stream.end();

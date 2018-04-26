@@ -58,6 +58,7 @@ function linkReference(id) {
   };
 }
 
+// Configure and return a winston logger object (for easy logging to console and log file with specified title)
 function createLogger(title) {
   const format = winston.format.printf(
     info => (info.level === 'error' ? `error: ${info.message}` : info.message),
@@ -72,6 +73,17 @@ function createLogger(title) {
   return winston;
 }
 
+// Return Contentful formatted fields object
+function withFields(fields) {
+  const entryFields = {};
+
+  Object.keys(fields).forEach(
+    fieldName => (entryFields[fieldName] = { [LOCALE]: fields[fieldName] }),
+  );
+
+  return { fields: entryFields };
+}
+
 module.exports = {
   sleep,
   getField,
@@ -79,6 +91,7 @@ module.exports = {
   linkReference,
   processEntries,
   createLogger,
+  withFields,
   constants: {
     LOCALE,
   },
