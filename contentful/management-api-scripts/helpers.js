@@ -1,4 +1,5 @@
 const { get } = require('lodash');
+const winston = require('winston');
 
 const LOCALE = 'en-US';
 
@@ -12,17 +13,13 @@ function getField(entry, field, defaultVal = null) {
 
 // Catch and log any callback errors
 function attempt(callback) {
-  return callback().catch(error => log(error.message));
+  return callback().catch(error => {
+    winston.error(error.message);
+  });
 }
 
 // Process either a single entry if specified in args, or all entries of provided content type.
-async function processEntries(
-  environment,
-  args,
-  logStream,
-  entryType,
-  process,
-) {
+async function processEntries(environment, args, entryType, process) {
   const entryId = args[`${entryType}-id`];
   if (entryId) {
     const entry = await attempt(() => environment.getEntry(entryId));
@@ -31,7 +28,7 @@ async function processEntries(
       return;
     }
 
-    await process(environment, entry, logStream);
+    await process(environment, entry);
   } else {
     const entries = await attempt(() =>
       environment.getEntries({
@@ -45,11 +42,9 @@ async function processEntries(
 
     for (var i = 0; i < entries.items.length; i++) {
       const entry = entries.items[i];
-      await process(environment, entry, logStream);
+      await process(environment, entry);
     }
   }
-
-  logStream.end();
 }
 
 // Generate an Entry Link reference object with provided ID
@@ -63,16 +58,18 @@ function linkReference(id) {
   };
 }
 
-// Wil maintain a global reference to the logStream
-let storedStream;
-
-// Log content to the log file stream and to console.
-function log(content, stream) {
-  console.log(content);
-
-  if ((storedStream = storedStream || stream)) {
-    storedStream.write(content);
-  }
+function createLogger(title) {
+  const format = winston.format.printf(
+    info => (info.level === 'error' ? `error: ${info.message}` : info.message),
+  );
+  const filename = `${__dirname}/logs/${title}_${new Date().getTime()}.txt`;
+  winston.configure({
+    transports: [
+      new winston.transports.File({ filename, format }),
+      new winston.transports.Console({ format }),
+    ],
+  });
+  return winston;
 }
 
 module.exports = {
@@ -81,7 +78,7 @@ module.exports = {
   attempt,
   linkReference,
   processEntries,
-  log,
+  createLogger,
   constants: {
     LOCALE,
   },
