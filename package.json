@@ -123,6 +123,7 @@
     "tailwindcss": "^0.4.3",
     "webpack": "^4.6.0",
     "webpack-bundle-analyzer": "^2.11.1",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^2.0.14",
+    "winston": "^3.0.0-rc5"
   }
 }
