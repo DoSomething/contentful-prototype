@@ -13,7 +13,7 @@ const { LOCALE } = constants;
 
 async function addCommunityPageFromActivityFeed(environment, campaign) {
   const campaignInternalTitle = getField(campaign, 'internalTitle');
-  const campaignSlug = getField(campaign, 'slug', '');
+  const campaignSlug = getField(campaign, 'slug');
   const campaignActivityFeed = getField(campaign, 'activityFeed');
   const campaignPages = getField(campaign, 'pages', []);
 
