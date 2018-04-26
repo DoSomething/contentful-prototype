@@ -30,7 +30,14 @@
     "plugins": [
       "graphql-tag",
       "syntax-dynamic-import"
-    ]
+    ],
+    "env": {
+      "test": {
+        "plugins": [
+          "babel-plugin-dynamic-import-node"
+        ]
+      }
+    }
   },
   "jest": {
     "clearMocks": true,
@@ -53,6 +60,7 @@
     "apollo-link-error": "^1.0.9",
     "apollo-link-http": "^1.5.4",
     "babel-jest": "^20.0.3",
+    "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-graphql-tag": "^1.5.0",
     "babel-preset-flow": "^6.23.0",
     "classnames": "^2.2.5",
