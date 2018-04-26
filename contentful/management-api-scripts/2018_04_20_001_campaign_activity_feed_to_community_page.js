@@ -1,9 +1,11 @@
+const fs = require('fs');
 const { join } = require('path');
 const {
   attempt,
   constants,
   getField,
   linkReference,
+  log,
   processEntries,
   sleep,
 } = require('./helpers');
@@ -11,7 +13,15 @@ const { contentManagementClient } = require('./contentManagementClient');
 
 const { LOCALE } = constants;
 
-async function addCommunityPageFromActivityFeed(environment, campaign) {
+let logStream = fs.createWriteStream(
+  `${__dirname}/logs/community_page_from_activity_feed_${new Date().getTime()}.txt`,
+);
+
+async function addCommunityPageFromActivityFeed(
+  environment,
+  campaign,
+  logStream,
+) {
   const campaignInternalTitle = getField(campaign, 'internalTitle');
   const campaignSlug = getField(campaign, 'slug');
   const campaignActivityFeed = getField(campaign, 'activityFeed');
@@ -24,12 +34,12 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
   // If the campaign doesn't have these fields set, than presumably no transformation is needed.
   if (!campaignInternalTitle || !campaignSlug || !campaignActivityFeed) {
-    console.log(`Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
-    console.log('--------------------------------------------\n');
+    log(logStream, `Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
+    log(logStream, '--------------------------------------------\n');
     return;
   }
 
-  console.log(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
+  log(logStream, `Processing Campaign! [ID: ${campaign.sys.id}]\n`);
 
   // Create a new community 'Page' with the activityFeed blocks from the source campaign
   const communityPage = await attempt(() =>
@@ -55,7 +65,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
     const publishedCommunityPage = await attempt(() => communityPage.publish());
     if (publishedCommunityPage) {
       const id = publishedCommunityPage.sys.id;
-      console.log(`  - Created Community Page! [ID: ${id}]\n`);
+      log(logStream, `  - Created Community Page! [ID: ${id}]\n`);
 
       // Add a Link to the new Page to the campaigns Pages field
       campaign.fields.pages[LOCALE].push(linkReference(id));
@@ -67,7 +77,8 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
           updatedCampaign.publish(),
         );
         if (publishedCampaign) {
-          console.log(
+          log(
+            logStream,
             `  - Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
           );
         }
@@ -75,8 +86,8 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
     }
   }
 
-  console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
-  console.log('--------------------------------------------\n');
+  log(logStream, `Processed Campaign! [ID: ${campaign.sys.id}]\n`);
+  log(logStream, '--------------------------------------------\n');
 
   // API breather room
   sleep(1000);
@@ -86,7 +97,9 @@ contentManagementClient.init((environment, args) =>
   processEntries(
     environment,
     args,
-    addCommunityPageFromActivityFeed,
+    logStream,
     'campaign',
+    addCommunityPageFromActivityFeed,
   ),
 );
+// stream.end();

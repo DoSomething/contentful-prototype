@@ -16,7 +16,13 @@ function attempt(callback) {
 }
 
 // Process either a single entry if specified in args, or all entries of provided content type.
-async function processEntries(environment, args, process, entryType) {
+async function processEntries(
+  environment,
+  args,
+  logStream,
+  entryType,
+  process,
+) {
   const entryId = args[`${entryType}-id`];
   if (entryId) {
     const entry = await attempt(() => environment.getEntry(entryId));
@@ -25,7 +31,7 @@ async function processEntries(environment, args, process, entryType) {
       return;
     }
 
-    process(environment, entry);
+    return process(environment, entry, logStream);
   } else {
     const entries = await attempt(() =>
       environment.getEntries({
@@ -39,7 +45,7 @@ async function processEntries(environment, args, process, entryType) {
 
     for (var i = 0; i < entries.items.length; i++) {
       const entry = entries.items[i];
-      await process(environment, entry);
+      await process(environment, entry, logStream);
     }
   }
 }
@@ -55,12 +61,19 @@ function linkReference(id) {
   };
 }
 
+// Log content to the log file stream and to console.
+function log(stream, content) {
+  stream.write(content);
+  console.log(content);
+}
+
 module.exports = {
   sleep,
   getField,
   attempt,
   linkReference,
   processEntries,
+  log,
   constants: {
     LOCALE,
   },
