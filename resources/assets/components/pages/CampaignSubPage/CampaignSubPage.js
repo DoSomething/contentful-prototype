@@ -10,7 +10,7 @@ import ScrollConcierge from '../../ScrollConcierge';
 import Enclosure from '../../Enclosure';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
+import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-subpage.scss';
 
@@ -109,7 +109,7 @@ const CampaignSubPage = props => (
     <LedeBannerContainer />
     <div className="main clearfix">
       {props.dashboard ? <DashboardContainer /> : null}
-      <TabbedNavigationContainer />
+      <CampaignPageNavigationContainer />
       <Enclosure className="default-container margin-top-lg margin-bottom-lg">
         <CampaignSubPageContent {...props} />
       </Enclosure>

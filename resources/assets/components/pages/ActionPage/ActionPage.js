@@ -7,7 +7,7 @@ import ActionStepsContainer from './ActionStepsContainer';
 import { CallToActionContainer } from '../../CallToAction';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import TabbedNavigationContainer from '../../Navigation/TabbedNavigationContainer';
+import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 /**
  * Render the action page steps.
@@ -33,7 +33,7 @@ const ActionPage = props => {
       <LedeBannerContainer />
       <div className="main clearfix">
         {dashboard ? <DashboardContainer /> : null}
-        <TabbedNavigationContainer />
+        <CampaignPageNavigationContainer />
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <ActionStepsContainer actionSteps={actionSteps} />
         </Enclosure>

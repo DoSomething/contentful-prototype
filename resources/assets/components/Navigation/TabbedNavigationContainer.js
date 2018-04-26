@@ -88,6 +88,7 @@ const TabbedNavigationContainer = props => {
     campaignSlug,
     campaignPaths.action,
   );
+
   const ActionNavigationLink = () =>
     shouldHideAction ? null : (
       <NavigationLink
@@ -103,6 +104,7 @@ const TabbedNavigationContainer = props => {
     campaignSlug,
     campaignPaths.community,
   );
+
   const CommunityNavigationLink = () =>
     shouldHideCommunity ? null : (
       <NavigationLink
