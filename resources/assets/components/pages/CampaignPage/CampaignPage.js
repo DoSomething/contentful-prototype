@@ -1,5 +1,5 @@
 import React from 'react';
-import { get } from 'lodash';
+import { join } from 'path';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import Modal from '../../utilities/Modal/Modal';
 import CampaignFooter from '../../CampaignFooter';
-import { isCampaignClosed } from '../../../helpers';
 import BlockPageContainer from '../BlockPage/BlockPageContainer';
 import ActionPageContainer from '../ActionPage/ActionPageContainer';
 import CampaignSubPageContainer from '../CampaignSubPage/CampaignSubPageContainer';
@@ -19,27 +18,11 @@ const CampaignPage = props => {
     affiliateSponsors,
     campaignLead,
     clickedHideAffirmation,
-    endDate,
-    hasActivityFeed,
+    hasCommunityPage,
+    isCampaignClosed,
     match,
-    shouldShowActionPage,
     shouldShowSignupAffirmation,
-    template,
   } = props;
-
-  const isClosed = isCampaignClosed(get(endDate, 'date', null));
-
-  // If the campaign is closed (and an admin has not hit the "Show Action Page" button),
-  // we want to render the community page (activity feed) if it's available, or
-  // if not just render the action page.
-  const shouldShowActivityFeed =
-    isClosed && !shouldShowActionPage && hasActivityFeed;
-  const ActionPageOrActivityFeed = () =>
-    shouldShowActivityFeed ? (
-      <Redirect to={`${match.url}/community`} />
-    ) : (
-      <ActionPageContainer />
-    );
 
   return (
     <div>
@@ -49,43 +32,53 @@ const CampaignPage = props => {
             <PostSignupModalContainer />
           </Modal>
         ) : null}
+
         <Switch>
           <Route
             path={`${match.url}`}
             exact
-            component={ActionPageOrActivityFeed}
-          />
-          <Route
-            path={`${match.url}/action`}
-            component={ActionPageOrActivityFeed}
-          />
-          <Route
-            path={`${match.url}/community`}
             render={() => {
-              // Does this campaign have an activity feed? (Some on the
-              // "legacy" template don't.) If not, redirect to action page.
-              if (template === 'legacy' && !hasActivityFeed) {
-                return <Redirect to={`${match.url}/action`} />;
+              const path =
+                isCampaignClosed && hasCommunityPage ? 'community' : 'action';
+
+              return <Redirect to={join(match.url, path)} />;
+            }}
+          />
+
+          <Route
+            path={join(match.url, 'action')}
+            component={ActionPageContainer}
+          />
+
+          <Route
+            path={join(match.url, 'community')}
+            render={() => {
+              if (!hasCommunityPage) {
+                return <Redirect to={join(match.url, 'action')} />;
               }
 
               return <FeedContainer />;
             }}
           />
+
           <Route
-            path={`${match.url}/blocks/:id`}
+            path={join(match.url, 'blocks/:id')}
             component={BlockPageContainer}
           />
+
           <Route
-            path={`${match.url}/quiz/:slug`}
+            path={join(match.url, 'quiz/:slug')}
             component={BlockPageContainer}
           />
+
           {/* @deprecate: remove this Route specification with `/pages/:slug` */}
           <Route
-            path={`${match.url}/pages/:slug`}
+            path={join(match.url, 'pages/:slug')}
             component={CampaignSubPageContainer}
           />
+
           <Route
-            path={`${match.url}/:slug`}
+            path={join(match.url, ':slug')}
             component={CampaignSubPageContainer}
           />
         </Switch>
@@ -100,27 +93,20 @@ const CampaignPage = props => {
 };
 
 CampaignPage.propTypes = {
-  endDate: PropTypes.shape({
-    date: PropTypes.string,
-    timezone: PropTypes.string,
-    timezone_type: PropTypes.number,
-  }),
+  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   campaignLead: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
   }),
-  hasActivityFeed: PropTypes.bool.isRequired,
-  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  match: ReactRouterPropTypes.match.isRequired,
-  template: PropTypes.string.isRequired,
-  shouldShowActionPage: PropTypes.bool.isRequired,
-  shouldShowSignupAffirmation: PropTypes.bool.isRequired,
   clickedHideAffirmation: PropTypes.func.isRequired,
+  hasCommunityPage: PropTypes.bool.isRequired,
+  isCampaignClosed: PropTypes.bool.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
+  shouldShowSignupAffirmation: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {
-  endDate: null,
   campaignLead: null,
 };
 

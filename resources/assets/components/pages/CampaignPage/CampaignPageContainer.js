@@ -2,21 +2,23 @@ import get from 'lodash/get';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
+import { isCampaignClosed } from '../../../helpers';
 import { convertExperiment, clickedHideAffirmation } from '../../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
   campaignLead: get(state, 'campaign.campaignLead.fields', null),
+  hasActivityFeed: Boolean(state.campaign.activityFeed.length),
+  hasCommunityPage: Boolean(state.campaign.activityFeed.length),
+  isCampaignClosed: isCampaignClosed(
+    get(state.campaign.endDate, 'date', false),
+  ),
   legacyCampaignId: state.campaign.legacyCampaignId,
-  shouldShowActionPage: state.admin.shouldShowActionPage,
   shouldShowSignupAffirmation: state.signups.shouldShowAffirmation,
-  template: state.campaign.template,
-  endDate: state.campaign.endDate,
 });
 
 /**
