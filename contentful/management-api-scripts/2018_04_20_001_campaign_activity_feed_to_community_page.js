@@ -31,38 +31,34 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
   console.log(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
 
-  if (campaignActivityFeed) {
-    // Create a new community 'Page' with the activityFeed blocks from the source campaign
-    const communityPage = await attempt(() =>
-      environment.createEntry('page', {
-        fields: {
-          internalTitle: {
-            [LOCALE]: `${campaignInternalTitle} Community Page`,
-          },
-          title: {
-            [LOCALE]: 'Community Page',
-          },
-          slug: {
-            [LOCALE]: join(campaignSlug, 'community'),
-          },
-          blocks: {
-            [LOCALE]: campaignActivityFeed,
-          },
+  // Create a new community 'Page' with the activityFeed blocks from the source campaign
+  const communityPage = await attempt(() =>
+    environment.createEntry('page', {
+      fields: {
+        internalTitle: {
+          [LOCALE]: `${campaignInternalTitle} Community Page`,
         },
-      }),
-    );
+        title: {
+          [LOCALE]: 'Community Page',
+        },
+        slug: {
+          [LOCALE]: join(campaignSlug, 'community'),
+        },
+        blocks: {
+          [LOCALE]: campaignActivityFeed,
+        },
+      },
+    }),
+  );
 
-    if (communityPage) {
-      const publishedCommunityPage = await attempt(() =>
-        communityPage.publish(),
-      );
-      if (publishedCommunityPage) {
-        const id = publishedCommunityPage.sys.id;
-        console.log(`  - Created Community Page! [ID: ${id}]\n`);
+  if (communityPage) {
+    const publishedCommunityPage = await attempt(() => communityPage.publish());
+    if (publishedCommunityPage) {
+      const id = publishedCommunityPage.sys.id;
+      console.log(`  - Created Community Page! [ID: ${id}]\n`);
 
-        // Add a Link to the new Page to the campaigns Pages field
-        campaign.fields.pages[LOCALE].push(linkReference(id));
-      }
+      // Add a Link to the new Page to the campaigns Pages field
+      campaign.fields.pages[LOCALE].push(linkReference(id));
     }
   }
 
