@@ -134,8 +134,6 @@ Reportback blocks placed into the feed will automatically fill with report backs
 
 Action steps make up the bulk of the Action page. Each step of the campaign is an Action Step block. They contain a header, header photo, a markdown body and can handle a gallery of photos on either the right side or beneath the content.
 
-There is a variation of the action step component for competitions. If this toggle is selected in Contentful, the visual style will change and a button will be added for a user to join a campaign. There is a logical check to see if a user is in a competition when the page is loaded. If so, the block will not be displayed.
-
 ### RB Photo Uploader
 
 Technically, the photo uploader component is a action step. If toggled in Contentful, this component will allow a user to upload a photo to complete their campaign action. The photo uploader can accept the following items:

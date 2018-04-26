@@ -13,7 +13,6 @@ import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
-  renderCompetitionStep,
   renderPhotoUploader,
   renderSubmissionGallery,
   renderThirdPartyAction,
@@ -86,9 +85,6 @@ class ContentfulEntry extends React.Component<Props, State> {
             link={json.fields.link}
           />
         );
-
-      case 'competition':
-        return renderCompetitionStep(json);
 
       case 'contentBlock':
         return renderContentBlock(json);

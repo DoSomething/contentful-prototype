@@ -15,12 +15,6 @@ const initialState = {
   campaign: {
     activityFeed: [],
   },
-  competitions: {
-    data: [],
-    thisCampaign: false,
-    showConfirmation: false,
-    isPending: false,
-  },
   events: {
     queue: [],
   },
