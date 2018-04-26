@@ -12,7 +12,7 @@ function getField(entry, field, defaultVal = null) {
 
 // Catch and log any callback errors
 function attempt(callback) {
-  return callback().catch(error => console.log(error.message));
+  return callback().catch(error => log(error.message));
 }
 
 // Process either a single entry if specified in args, or all entries of provided content type.
@@ -31,7 +31,7 @@ async function processEntries(
       return;
     }
 
-    return process(environment, entry, logStream);
+    await process(environment, entry, logStream);
   } else {
     const entries = await attempt(() =>
       environment.getEntries({
@@ -48,6 +48,8 @@ async function processEntries(
       await process(environment, entry, logStream);
     }
   }
+
+  logStream.end();
 }
 
 // Generate an Entry Link reference object with provided ID
@@ -61,10 +63,16 @@ function linkReference(id) {
   };
 }
 
+// Wil maintain a global reference to the logStream
+let storedStream;
+
 // Log content to the log file stream and to console.
-function log(stream, content) {
-  stream.write(content);
+function log(content, stream) {
   console.log(content);
+
+  if ((storedStream = storedStream || stream)) {
+    storedStream.write(content);
+  }
 }
 
 module.exports = {

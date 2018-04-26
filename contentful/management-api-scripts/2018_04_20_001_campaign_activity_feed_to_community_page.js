@@ -22,6 +22,9 @@ async function addCommunityPageFromActivityFeed(
   campaign,
   logStream,
 ) {
+  // Set up reference to our stream object in helpers/log
+  log('', logStream);
+
   const campaignInternalTitle = getField(campaign, 'internalTitle');
   const campaignSlug = getField(campaign, 'slug');
   const campaignActivityFeed = getField(campaign, 'activityFeed');
@@ -34,12 +37,12 @@ async function addCommunityPageFromActivityFeed(
 
   // If the campaign doesn't have these fields set, than presumably no transformation is needed.
   if (!campaignInternalTitle || !campaignSlug || !campaignActivityFeed) {
-    log(logStream, `Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
-    log(logStream, '--------------------------------------------\n');
+    log(`Skipping Campaign! [ID: ${campaign.sys.id}]\n`);
+    log('--------------------------------------------\n');
     return;
   }
 
-  log(logStream, `Processing Campaign! [ID: ${campaign.sys.id}]\n`);
+  log(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
 
   // Create a new community 'Page' with the activityFeed blocks from the source campaign
   const communityPage = await attempt(() =>
@@ -65,7 +68,7 @@ async function addCommunityPageFromActivityFeed(
     const publishedCommunityPage = await attempt(() => communityPage.publish());
     if (publishedCommunityPage) {
       const id = publishedCommunityPage.sys.id;
-      log(logStream, `  - Created Community Page! [ID: ${id}]\n`);
+      log(`  - Created Community Page! [ID: ${id}]\n`);
 
       // Add a Link to the new Page to the campaigns Pages field
       campaign.fields.pages[LOCALE].push(linkReference(id));
@@ -78,7 +81,6 @@ async function addCommunityPageFromActivityFeed(
         );
         if (publishedCampaign) {
           log(
-            logStream,
             `  - Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
           );
         }
@@ -86,8 +88,8 @@ async function addCommunityPageFromActivityFeed(
     }
   }
 
-  log(logStream, `Processed Campaign! [ID: ${campaign.sys.id}]\n`);
-  log(logStream, '--------------------------------------------\n');
+  log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
+  log('--------------------------------------------\n');
 
   // API breather room
   sleep(1000);
