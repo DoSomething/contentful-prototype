@@ -38,11 +38,10 @@ const CampaignPage = props => {
             path={`${match.url}`}
             exact
             render={() => {
-              if (isCampaignClosed && hasCommunityPage) {
-                return <Redirect to={join(match.url, 'community')} />;
-              }
+              const path =
+                isCampaignClosed && hasCommunityPage ? 'community' : 'action';
 
-              return <Redirect to={join(match.url, 'action')} />;
+              return <Redirect to={join(match.url, path)} />;
             }}
           />
 
