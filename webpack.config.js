@@ -9,6 +9,7 @@ module.exports = configure({
   output: {
     // Override output path for Laravel's "public" directory.
     path: path.join(__dirname, '/public/next/assets'),
+    publicPath: '/next/assets/',
   },
 
   module: {
