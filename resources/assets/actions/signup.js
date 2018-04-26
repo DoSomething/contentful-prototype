@@ -5,6 +5,7 @@ import { push } from 'react-router-redux';
 import { Phoenix } from '@dosomething/gateway';
 import { isCampaignClosed } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
+import { isSignedUp } from '../selectors/signup';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -101,7 +102,7 @@ export function getTotalSignups(campaignId) {
 
       let total = response.meta.pagination.total;
       // @TODO: Not ideal, but the browser doesn't know if this is an old cached response or not.
-      if (getState().signups.thisCampaign) {
+      if (isSignedUp(getState())) {
         total += 1;
       }
 
@@ -179,8 +180,8 @@ export function clickedSignUp(
 
 // Action: removes the current signup from campaign
 // for admin to preview content
-export function clickedRemoveSignUp() {
-  return { type: CLICKED_REMOVE_SIGN_UP };
+export function clickedRemoveSignUp(campaignId) {
+  return { type: CLICKED_REMOVE_SIGN_UP, campaignId };
 }
 
 // Action: triggers the post signup affirmation modal.

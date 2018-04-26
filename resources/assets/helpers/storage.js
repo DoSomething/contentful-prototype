@@ -98,10 +98,6 @@ export function loadStorage(initialState, preloadedState) {
   if (userId) {
     const signups = getArray(userId, SIGNUP_STORAGE_KEY);
     state.signups.data = signups;
-
-    if (signups.includes(preloadedState.campaign.legacyCampaignId)) {
-      state.signups.thisCampaign = true;
-    }
   }
 
   state.events.queue = getArray('queue', EVENT_STORAGE_KEY);

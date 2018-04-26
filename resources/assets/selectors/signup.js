@@ -5,7 +5,9 @@
  * @returns {String}
  */
 export function isSignedUp(state) {
-  return state.signups.thisCampaign;
+  const campaignId = state.campaign.legacyCampaignId;
+
+  return state.signups.data.includes(campaignId);
 }
 
 export default null;

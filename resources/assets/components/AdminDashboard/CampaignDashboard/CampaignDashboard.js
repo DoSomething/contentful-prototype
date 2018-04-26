@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const CampaignDashboard = props => {
   const {
+    campaignId,
     hasLandingPage,
     slug,
     clickedShowAffirmation,
@@ -20,7 +21,7 @@ const CampaignDashboard = props => {
   } = props;
 
   const onSignUpClick = () =>
-    !isSignedUp ? signupCreated() : clickedRemoveSignUp();
+    !isSignedUp ? signupCreated(campaignId) : clickedRemoveSignUp(campaignId);
 
   const onReferralExportClick = () => {
     const message =
@@ -80,6 +81,7 @@ const CampaignDashboard = props => {
 };
 
 CampaignDashboard.propTypes = {
+  campaignId: PropTypes.string.isRequired,
   hasLandingPage: PropTypes.bool,
   slug: PropTypes.string.isRequired,
   isAdmin: PropTypes.bool.isRequired,

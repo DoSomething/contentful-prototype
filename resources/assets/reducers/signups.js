@@ -1,3 +1,5 @@
+import { pull } from 'lodash';
+
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -9,7 +11,6 @@ import {
   SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
-
 import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 
 /**
@@ -74,7 +75,12 @@ const signupReducer = (state = {}, action) => {
       };
 
     case CLICKED_REMOVE_SIGN_UP:
-      return { ...state, thisCampaign: false };
+      return {
+        ...state,
+        // Remove the current campaign's ID from the store,
+        // so admins can see what the page would look like.
+        data: pull(state.data, action.campaignId),
+      };
 
     default:
       return state;

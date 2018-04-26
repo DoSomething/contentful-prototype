@@ -24,6 +24,7 @@ const mapStateToProps = state => {
 
   return {
     slug: state.campaign.slug,
+    campaignId: state.campaign.legacyCampaignId,
     hasReferralRB,
     hasLandingPage,
     isSignedUp: isSignedUp(state),
