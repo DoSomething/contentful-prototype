@@ -3,14 +3,13 @@
 import React from 'react';
 
 import NotFound from '../NotFound';
+import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
-import QuizContainer from '../Quiz/QuizContainer';
 import { ContentfulEntryJson } from '../../types';
 import { parseContentfulType } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
-import LegacyQuizContainer from '../LegacyQuiz/LegacyQuizContainer';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
@@ -116,11 +115,15 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'photo-uploader':
         return renderPhotoUploader(json, isSignedUp);
 
-      case 'quiz':
+      case 'quiz': {
+        const QuizContainer = Loader(import('../Quiz/QuizContainer'));
         return <QuizContainer {...json.fields} />;
+      }
 
-      case 'quizBeta':
-        return <LegacyQuizContainer quizContent={json} />;
+      case 'quizBeta': {
+        const LegacyQuiz = Loader(import('../LegacyQuiz/LegacyQuizContainer'));
+        return <LegacyQuiz quizContent={json} />;
+      }
 
       // @TODO: Will be refactored when switching to Rogue!
       case 'reportbacks':
