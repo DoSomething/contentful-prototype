@@ -16,3 +16,4 @@ Homestead.yaml
 .DS_Store
 
 npm-debug.log
+/contentful/management-api-scripts/logs
