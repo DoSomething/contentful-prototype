@@ -47,7 +47,7 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        return view('campaigns.show', [
+        return view('app', [
             // This is used to build campaign-specific login links in the
             // server-rendered top navigation bar.
             'campaign' => $campaign,
