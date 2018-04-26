@@ -20,7 +20,6 @@ const mapStateToProps = state => ({
   callToAction: state.campaign.callToAction,
   dashboard: state.campaign.dashboard,
   signedUp: state.signups.data.includes(state.campaign.legacyCampaignId),
-  hasNewSignup: state.signups.thisSession,
   hasPendingSignup: state.signups.isPending,
   isAuthenticated: isAuthenticated(state),
 });

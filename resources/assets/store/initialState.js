@@ -40,7 +40,6 @@ const initialState = {
   signups: {
     data: [],
     thisCampaign: false,
-    thisSession: false,
     shouldShowAffirmation: false,
     isPending: false,
     total: 0,

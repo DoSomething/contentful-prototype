@@ -29,7 +29,6 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        thisSession: true,
         thisCampaign: true,
         shouldShowAffirmation: true,
         total: state.total + 1,
