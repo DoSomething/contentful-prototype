@@ -41,10 +41,11 @@ import { bindNavigationEvents } from './helpers/navigation';
 // Configure store & history.
 const history = historyInit();
 const middleware = [thunk, routerMiddleware(history)];
+const preloadedState = window.STATE || {};
 const store = configureStore(
   { ...reducers, routing: routerReducer },
   middleware,
-  window.STATE,
+  { ...preloadedState, user: window.AUTH },
 );
 
 // Add event listeners for top-level navigation.

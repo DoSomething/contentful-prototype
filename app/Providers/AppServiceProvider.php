@@ -54,8 +54,11 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer('*', function ($view) {
             $view->with('auth', [
-                'id' => auth()->id(),
-                'jwt' => auth()->user() ? auth()->user()->access_token : null,
+                'isAuthenticated' => auth()->check(),
+                'id' => auth()->id() ?: request()->query('user_id'),
+                'token' => auth()->user() ? auth()->user()->access_token : null,
+                'role' => auth()->user() ? auth()->user()->role : 'user',
+                'source' => request()->query('utm_source'),
             ]);
         });
     }
