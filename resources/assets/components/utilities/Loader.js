@@ -8,13 +8,10 @@ import Placeholder from './Placeholder';
  * @param {Promise} module
  * @return {React.Component}
  */
-function Loader(module) {
-  const component = Loadable({
+const Loader = module =>
+  Loadable({
     loader: () => module,
     loading: Placeholder,
   });
-
-  return component;
-}
 
 export default Loader;
