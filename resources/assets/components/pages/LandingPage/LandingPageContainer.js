@@ -2,6 +2,7 @@ import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
+import { isSignedUp } from '../../../selectors/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -15,7 +16,7 @@ const mapStateToProps = state => {
     coverImage: state.campaign.coverImage,
     dashboard: state.campaign.dashboard,
     endDate: state.campaign.endDate,
-    isAffiliated: state.signups.thisCampaign,
+    isAffiliated: isSignedUp(state),
     affiliateSponsors: state.campaign.affiliateSponsors,
     legacyCampaignId: state.campaign.legacyCampaignId,
     showPartnerMsgOptIn: get(

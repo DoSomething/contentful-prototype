@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 
 import Campaign from './Campaign';
+import { isSignedUp } from '../../selectors/signup';
 
 const mapStateToProps = (state, props) => {
   const hasLandingPage = state.campaign.landingPage !== null;
-  const isSignedUp = state.signups.thisCampaign;
 
   // @TODO: Move these into the pages themselves.
   const { location, match } = props;
@@ -21,7 +21,7 @@ const mapStateToProps = (state, props) => {
   if (state.admin.shouldShowLandingPage) {
     shouldShowLandingPage = true;
   } else if (hasLandingPage && !ignoreLandingPage) {
-    shouldShowLandingPage = !isSignedUp;
+    shouldShowLandingPage = !isSignedUp(state);
   }
 
   return {

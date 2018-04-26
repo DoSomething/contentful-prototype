@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import ActionSteps from './ActionSteps';
+import { isSignedUp } from '../../../selectors/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -9,7 +10,7 @@ const mapStateToProps = state => ({
   callToAction: state.campaign.callToAction,
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   hasPendingSignup: state.signups.isPending,
-  isSignedUp: state.signups.thisCampaign,
+  isSignedUp: isSignedUp(state),
   template: state.campaign.template,
 });
 
