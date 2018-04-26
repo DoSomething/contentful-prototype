@@ -59,20 +59,23 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
       // Add a Link to the new Page to the campaigns Pages field
       campaign.fields.pages[LOCALE].push(linkReference(id));
+
+      // Update and publish the campaign
+      const updatedCampaign = await attempt(() => campaign.update());
+      if (updatedCampaign) {
+        const publishedCampaign = await attempt(() =>
+          updatedCampaign.publish(),
+        );
+        if (publishedCampaign) {
+          console.log(
+            `  - Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
+          );
+        }
+      }
     }
   }
 
-  const updatedCampaign = await attempt(() => campaign.update());
-  if (updatedCampaign) {
-    const publishedCampaign = await attempt(() => updatedCampaign.publish());
-    if (publishedCampaign) {
-      console.log(
-        `  - Successfully published Campaign! [ID: ${campaign.sys.id}]\n`,
-      );
-    }
-    console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
-  }
-
+  console.log(`Processed Campaign! [ID: ${campaign.sys.id}]\n`);
   console.log('--------------------------------------------\n');
 
   // API breather room
