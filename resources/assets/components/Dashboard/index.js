@@ -7,13 +7,13 @@ import { getDaysBetween } from '../../helpers';
 
 import './dashboard.scss';
 
-/**
- * Render the dashboard.
- * @param props
- * @returns {XML}
- * @constructor
- */
-const Dashboard = props => {
+class Dashboard extends React.Component {
+  componentDidMount() {
+    if (this.props.totalCampaignSignups === 0) {
+      this.props.getTotalSignups(this.props.legacyCampaignId);
+    }
+  }
+
   /**
    * Replace the given text with variables from the props.
    * @TODO: This should not be defined in the render function.
@@ -21,54 +21,82 @@ const Dashboard = props => {
    * @param  {String} text
    * @return {String}
    */
-  function replaceTemplateVars(text) {
+  replaceTemplateVars(text) {
     const totalCampaignSignups = (
-      props.totalCampaignSignups || 0
+      this.props.totalCampaignSignups || 0
     ).toLocaleString();
 
     return text
       .replace('{totalSignups}', totalCampaignSignups)
       .replace(
         '{endDate}',
-        getDaysBetween(new Date(), new Date(props.endDate.date)),
+        getDaysBetween(new Date(), new Date(this.props.endDate.date)),
       );
   }
 
-  return (
-    <Flex>
-      <FlexCell width="full">
-        <div className="dashboard">
-          <div className="dashboard__block -quarter">
-            <h1>{replaceTemplateVars(props.content.fields.firstValue)}</h1>
-            <span>
-              {replaceTemplateVars(props.content.fields.firstDescription)}
-            </span>
+  /**
+   * Render the dashboard.
+   * @param props
+   * @returns {XML}
+   * @constructor
+   */
+  render() {
+    return (
+      <Flex>
+        <FlexCell width="full">
+          <div className="dashboard">
+            <div className="dashboard__block -quarter">
+              <h1>
+                {this.replaceTemplateVars(this.props.content.fields.firstValue)}
+              </h1>
+              <span>
+                {this.replaceTemplateVars(
+                  this.props.content.fields.firstDescription,
+                )}
+              </span>
+            </div>
+            <div className="dashboard__block -quarter">
+              <h1>
+                {this.replaceTemplateVars(
+                  this.props.content.fields.secondValue,
+                )}
+              </h1>
+              <span>
+                {this.replaceTemplateVars(
+                  this.props.content.fields.secondDescription,
+                )}
+              </span>
+            </div>
+            <div className="dashboard__block -half">
+              <Flex>
+                <div className="dashboard__block -half">
+                  <h2>
+                    {this.replaceTemplateVars(
+                      this.props.content.fields.shareHeader,
+                    )}
+                  </h2>
+                  <p>
+                    {this.replaceTemplateVars(
+                      this.props.content.fields.shareCopy,
+                    )}
+                  </p>
+                </div>
+                <div className="dashboard__block -half">
+                  <Share variant="black" parentSource="dashboard" />
+                </div>
+              </Flex>
+            </div>
           </div>
-          <div className="dashboard__block -quarter">
-            <h1>{replaceTemplateVars(props.content.fields.secondValue)}</h1>
-            <span>
-              {replaceTemplateVars(props.content.fields.secondDescription)}
-            </span>
-          </div>
-          <div className="dashboard__block -half">
-            <Flex>
-              <div className="dashboard__block -half">
-                <h2>{replaceTemplateVars(props.content.fields.shareHeader)}</h2>
-                <p>{replaceTemplateVars(props.content.fields.shareCopy)}</p>
-              </div>
-              <div className="dashboard__block -half">
-                <Share variant="black" parentSource="dashboard" />
-              </div>
-            </Flex>
-          </div>
-        </div>
-      </FlexCell>
-    </Flex>
-  );
-};
+        </FlexCell>
+      </Flex>
+    );
+  }
+}
 
 Dashboard.propTypes = {
   totalCampaignSignups: PropTypes.number,
+  getTotalSignups: PropTypes.func.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
   endDate: PropTypes.shape({
     date: PropTypes.string,
   }).isRequired,

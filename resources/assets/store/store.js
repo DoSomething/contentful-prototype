@@ -1,13 +1,7 @@
 import merge from 'lodash/merge';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import {
-  checkForSignup,
-  fetchCampaignPosts,
-  fetchReportbacks,
-  startQueue,
-  getTotalSignups,
-} from '../actions';
+import { checkForSignup, startQueue } from '../actions';
 import { loadStorage } from '../helpers/storage';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
@@ -54,20 +48,13 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 export function initializeStore(store) {
   const state = store.getState();
 
+  const campaignId = state.campaign.legacyCampaignId;
+  const haveSignup = state.signups.data.includes(campaignId);
+
   // If we don't already have a signup cached in local storage, check.
-  if (!state.signups.data.includes(state.campaign.legacyCampaignId)) {
+  if (campaignId && !haveSignup) {
     store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
   }
-
-  // Check for total signups
-  store.dispatch(getTotalSignups(state.campaign.legacyCampaignId));
-
-  // Fetch Campaign Posts
-  store.dispatch(fetchCampaignPosts());
-
-  // Fetch the first page of reportbacks for the feed.
-  // @TODO: deprecate this in favor of fetchCampaignPosts()
-  store.dispatch(fetchReportbacks());
 
   // Start the event queue.
   store.dispatch(startQueue());
