@@ -11,7 +11,7 @@ import './post-gallery.scss';
 const PostGallery = props => {
   const { loading, posts, loadMorePosts } = props;
 
-  return (
+  return posts.length ? (
     <div>
       <Gallery type="triad" className="post-gallery expand-horizontal-md">
         {posts.map(post => (
@@ -21,13 +21,14 @@ const PostGallery = props => {
         ))}
       </Gallery>
       <LoadMore
+        buttonClassName="-tertiary"
         className="padding-lg text-centered"
         text="view more"
         onClick={loadMorePosts}
         isLoading={loading}
       />
     </div>
-  );
+  ) : null;
 };
 
 PostGallery.propTypes = {
