@@ -393,6 +393,34 @@ export function env(key) {
 }
 
 /**
+ * Construct URL with query params
+ *
+ * @param {String} url
+ * @param {object} query
+ * @return {URL}
+ */
+export function makeUrl(path, queryParameters) {
+  const urlObject = new URL(String(path));
+  urlObject.search = queryString.stringify(queryParameters);
+
+  return urlObject;
+}
+
+/**
+ * Get the query-string value at the given key.
+ *
+ * @param  {String}   key
+ * @param  {URL|Location}   url
+ * @return {String}
+ */
+export function query(key, url = window.location) {
+  // Ensure we have a URL object from the location.
+  const search = queryString.parse(url.search);
+
+  return search[key];
+}
+
+/**
  * Load and return the Facebook SDK.
  */
 export function loadFacebookSDK() {
@@ -500,34 +528,6 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   const intent = `https://twitter.com/intent/tweet?url=${href}&text=${quote}`;
 
   openDialog(intent, callback);
-}
-
-/**
- * Construct URL with query params
- *
- * @param {String} url
- * @param {object} query
- * @return {URL}
- */
-export function makeUrl(path, queryParameters) {
-  const urlObject = new URL(String(path));
-  urlObject.search = queryString.stringify(queryParameters);
-
-  return urlObject;
-}
-
-/**
- * Get the query-string value at the given key.
- *
- * @param  {String}   key
- * @param  {URL|Location}   url
- * @return {String}
- */
-export function query(key, url = window.location) {
-  // Ensure we have a URL object from the location.
-  const search = queryString.parse(url.search);
-
-  return search[key];
 }
 
 /**
