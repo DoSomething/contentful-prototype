@@ -47,7 +47,7 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        return view('campaigns.show', [
+        return view('app', [
             // This is used to build campaign-specific login links in the
             // server-rendered top navigation bar.
             'campaign' => $campaign,
@@ -56,13 +56,6 @@ class CampaignController extends Controller
             'socialFields' => get_social_fields($campaign, $request->url()),
         ])->with('state', [
             'campaign' => $campaign,
-            'user' => [
-                'id' => auth()->id() ?: $request->query('user_id'),
-                'isAuthenticated' => auth()->check(),
-                'role' => auth()->user() ? auth()->user()->role : null,
-                'source' => $request->query('utm_source'),
-                'token' => auth()->user() ? auth()->user()->access_token : null,
-            ],
         ]);
     }
 }

@@ -11,7 +11,7 @@ import { env } from './helpers';
 
 // Create an authentication link with the user's access token.
 const authenticationLink = setContext((request, context) => {
-  const accessToken = window.AUTH.jwt;
+  const accessToken = window.AUTH.token;
 
   if (accessToken) {
     return {

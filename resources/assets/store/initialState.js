@@ -15,12 +15,6 @@ const initialState = {
   campaign: {
     activityFeed: [],
   },
-  competitions: {
-    data: [],
-    thisCampaign: false,
-    showConfirmation: false,
-    isPending: false,
-  },
   events: {
     queue: [],
   },
@@ -46,7 +40,6 @@ const initialState = {
   signups: {
     data: [],
     thisCampaign: false,
-    thisSession: false,
     shouldShowAffirmation: false,
     isPending: false,
     total: 0,

@@ -6,9 +6,6 @@ import PostSignupModal from './PostSignupModal';
  */
 const mapStateToProps = state => ({
   affirmation: state.campaign.affirmation,
-  competitionStep: state.campaign.actionSteps.find(
-    step => step.customType && step.customType === 'competition',
-  ),
 });
 
 export default connect(mapStateToProps)(PostSignupModal);

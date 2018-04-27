@@ -10,12 +10,13 @@ import { withRouter } from 'react-router-dom';
 import SignupButton from '../SignupButton';
 import { isCampaignClosed } from '../../helpers';
 import TabbedNavigation from './TabbedNavigation';
+import { isSignedUp } from '../../selectors/signup';
 import { campaignPaths } from '../../helpers/navigation';
 import NavigationLink from '../Navigation/NavigationLink';
 
 const mapStateToProps = state => ({
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
-  isAffiliated: state.signups.thisCampaign,
+  isAffiliated: isSignedUp(state),
   pages: state.campaign.pages,
   pathname: state.routing.location.pathname,
   campaignEndDate: get(state.campaign.endDate, 'date', null),

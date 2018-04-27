@@ -12,23 +12,23 @@ import {
   clickedRemoveSignUp,
 } from '../../../actions/signup';
 import { userHasRole } from '../../../selectors/user';
+import { isSignedUp } from '../../../selectors/signup';
 
 const mapStateToProps = state => {
-  const isSignedUp = state.signups.thisCampaign;
   const hasLandingPage = state.campaign.landingPage !== null;
   const hasReferralRB = get(
     state.campaign.additionalContent,
     'referralRB',
     false,
   );
-  const isAdmin = userHasRole(state, ['admin']);
 
   return {
     slug: state.campaign.slug,
+    campaignId: state.campaign.legacyCampaignId,
     hasReferralRB,
     hasLandingPage,
-    isSignedUp,
-    isAdmin,
+    isSignedUp: isSignedUp(state),
+    isAdmin: userHasRole(state, ['admin']),
   };
 };
 

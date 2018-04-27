@@ -51,11 +51,6 @@ export const SET_TOTAL_SIGNUPS = 'SET_TOTAL_SIGNUPS';
 export const CLICKED_REMOVE_SIGN_UP = 'CLICKED_REMOVE_SIGN_UP';
 export * from './signup';
 
-export const JOINED_COMPETITION = 'JOINED_COMPETITION';
-export const COMPETITION_FOUND = 'COMPETITION_FOUND';
-export const COMPETITION_PENDING = 'COMPETITION_PENDING';
-export * from './competition';
-
 // Notification Action Names & Creators
 export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
 export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION';

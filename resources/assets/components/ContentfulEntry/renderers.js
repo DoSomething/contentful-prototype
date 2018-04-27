@@ -5,7 +5,6 @@ import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
 import ShareAction from '../actions/ShareAction/ShareAction';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
-import { CompetitionBlockContainer } from '../CompetitionBlock';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -13,26 +12,6 @@ import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyAct
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
-
-/**
- * Render a competition step.
- *
- * @param  {Object} step Component Action Step
- * @return {Component}
- */
-export function renderCompetitionStep(step) {
-  const { id, fields } = step;
-  const { content, photos, additionalContent } = fields;
-
-  return (
-    <CompetitionBlockContainer
-      key={id}
-      content={content}
-      photo={photos[0]}
-      byline={additionalContent}
-    />
-  );
-}
 
 /**
  * Render the Photo Uploader step.
