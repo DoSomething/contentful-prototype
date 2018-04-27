@@ -513,7 +513,10 @@ export function openDialog(href, callback, width = 550, height = 420) {
  */
 export function showFacebookSharePrompt(href, callback) {
   const appId = env('FACEBOOK_APP_ID');
-  const intent = `https://www.facebook.com/dialog/share?app_id=${appId}&display=popup&href=${href}`;
+  const intent = makeUrl('https://www.facebook.com/dialog/share', {
+    appId,
+    href,
+  });
 
   openDialog(intent, callback);
 }
@@ -525,7 +528,10 @@ export function showFacebookSharePrompt(href, callback) {
  * @param  {String} quote
  */
 export function showTwitterSharePrompt(href, quote = '', callback) {
-  const intent = `https://twitter.com/intent/tweet?url=${href}&text=${quote}`;
+  const intent = makeUrl('https://twitter.com/intent/tweet', {
+    url: href,
+    text: quote,
+  });
 
   openDialog(intent, callback);
 }
