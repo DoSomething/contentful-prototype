@@ -5,12 +5,19 @@ import classnames from 'classnames';
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
 import Card from '../../utilities/Card/Card';
-import { isExternal } from '../../../helpers';
 import SponsorPromotion from '../../SponsorPromotion';
 import { trackPuckEvent } from '../../../helpers/analytics';
+import { isExternal, dynamicString } from '../../../helpers';
 
 const LinkAction = props => {
-  const { content, link, buttonText, affiliateLogo, trackEvent } = props;
+  const {
+    content,
+    link,
+    userId,
+    campaignId,
+    buttonText,
+    affiliateLogo,
+  } = props;
 
   const onLinkClick = () => {
     trackPuckEvent('clicked link action', { link });
@@ -22,6 +29,7 @@ const LinkAction = props => {
   const title = affiliateLogo ? 'See More Be More Do More' : props.title;
 
   const target = isExternal(link) ? '_blank' : '_self';
+  const href = dynamicString(link, { campaignId, userId });
 
   return (
     <div className="link-action margin-bottom-lg">
@@ -40,7 +48,7 @@ const LinkAction = props => {
             onClick={onLinkClick}
             className="link-wrapper"
           >
-            <Embed className="padded" url={link} />
+            <Embed className="padded" url={href} />
           </div>
         )}
 
@@ -55,7 +63,7 @@ const LinkAction = props => {
           <a
             className="button button-attached"
             target={target}
-            href={link}
+            href={href}
             onClick={onLinkClick}
           >
             {buttonText}
@@ -70,15 +78,18 @@ LinkAction.defaultProps = {
   content: null,
   affiliateLogo: null,
   buttonText: null,
+  campaignId: null,
+  userId: null,
 };
 
 LinkAction.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
-  trackEvent: PropTypes.func.isRequired,
   affiliateLogo: PropTypes.string,
   buttonText: PropTypes.string,
+  campaignId: PropTypes.string,
+  userId: PropTypes.string,
 };
 
 export default LinkAction;
