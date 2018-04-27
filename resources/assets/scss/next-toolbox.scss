@@ -6,6 +6,9 @@
 // but this can be moved to Forge when we're confident with
 // the variables.
 
+// breakpoints
+$only-medium: '(min-width: 760px) and (max-width: 960px)';
+
 // overridden colors
 $black: $off-black;
 $light-gray: #dcdcdc;
