@@ -1,20 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
 import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
+import { getUserId } from '../../../selectors/user';
 import ContentfulEntry from '../../ContentfulEntry';
 import { trackPuckEvent } from '../../../helpers/analytics';
 import {
+  dynamicString,
   loadFacebookSDK,
   showFacebookShareDialog,
   showTwitterSharePrompt,
 } from '../../../helpers';
 
-class ShareAction extends React.Component {
+export class ShareAction extends React.Component {
   state = { showModal: false };
 
   componentDidMount() {
@@ -50,6 +53,8 @@ class ShareAction extends React.Component {
       link,
       socialPlatform,
       title,
+      campaignId,
+      userId,
     } = this.props;
 
     const isFacebook = socialPlatform === 'facebook';
@@ -57,17 +62,19 @@ class ShareAction extends React.Component {
       ? this.handleFacebookClick
       : this.handleTwitterClick;
 
+    const href = dynamicString(link, { campaignId, userId });
+
     return (
       <React.Fragment>
         <div className="share-action margin-bottom-lg">
           <Card title={title} className="rounded bordered">
             {content ? <Markdown className="padded">{content}</Markdown> : null}
 
-            <Embed className="padded" url={link} />
+            <Embed className="padded" url={href} />
 
             <Button
               className="button-attached"
-              onClick={() => handleShareClick(link)}
+              onClick={() => handleShareClick(href)}
               text={`Share on ${isFacebook ? 'Facebook' : 'Twitter'}`}
             />
           </Card>
@@ -98,11 +105,18 @@ ShareAction.propTypes = {
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
+  campaignId: PropTypes.string,
+  userId: PropTypes.string,
 };
 
 ShareAction.defaultProps = {
   content: null,
   affirmation: 'Thanks for rallying your friends on Facebook!',
+  campaignId: null,
+  userId: null,
 };
 
-export default ShareAction;
+export default connect(state => ({
+  userId: getUserId(state),
+  campaignId: state.campaign.legacyCampaignId,
+}))(ShareAction);

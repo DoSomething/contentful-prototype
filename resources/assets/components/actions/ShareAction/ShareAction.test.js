@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ShareAction from './ShareAction';
+import { ShareAction } from './ShareAction';
 import setFBshare from '../../../__mocks__/facebookShareMock';
 import { trackPuckEvent as trackEventMock } from '../../../helpers/analytics';
 
