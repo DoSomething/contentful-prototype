@@ -1,4 +1,4 @@
-import { PuckConnector } from '@dosomething/puck-client';
 import LinkAction from './LinkAction';
 
-export default PuckConnector(LinkAction);
+// Export the container component.
+export default connect(mapStateToProps)(LinkAction);

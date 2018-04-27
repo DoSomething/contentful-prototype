@@ -7,12 +7,13 @@ import Markdown from '../../Markdown';
 import Card from '../../utilities/Card/Card';
 import { isExternal } from '../../../helpers';
 import SponsorPromotion from '../../SponsorPromotion';
+import { trackPuckEvent } from '../../../helpers/analytics';
 
 const LinkAction = props => {
   const { content, link, buttonText, affiliateLogo, trackEvent } = props;
 
   const onLinkClick = () => {
-    trackEvent('clicked link action', { link });
+    trackPuckEvent('clicked link action', { link });
   };
 
   // The affiliate logo specific text is hard-coded for OZY. Though we can set this title
