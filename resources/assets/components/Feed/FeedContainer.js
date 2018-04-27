@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Feed from './Feed';
-import { clickedViewMore } from '../../actions';
+import { fetchReportbacks, clickedViewMore } from '../../actions';
 import { isAuthenticated } from '../../selectors/user';
 import {
   getBlocksWithReportbacks,
@@ -14,6 +14,7 @@ import {
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
+  hasReportbacks: state.reportbacks.ids.length > 0,
   blocks: getBlocksWithReportbacks(getVisibleBlocks(state), state),
   canLoadMorePages:
     getTotalVisibleBlockPoints(state) < getMaximumBlockPoints(state),
@@ -29,6 +30,7 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
+  fetchReportbacks,
   clickedViewMore,
 };
 

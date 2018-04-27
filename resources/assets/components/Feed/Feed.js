@@ -37,46 +37,57 @@ const renderFeedItem = (block, index) => (
  *
  * @returns {XML}
  */
-const Feed = props => {
-  const {
-    blocks,
-    callToAction,
-    dashboard,
-    signedUp,
-    hasPendingSignup,
-    isAuthenticated,
-    canLoadMorePages,
-    clickedViewMore,
-  } = props;
+class Feed extends React.Component {
+  componentDidMount() {
+    // If we don't have reportbacks in the store, fetch some!
+    if (!this.props.hasReportbacks) {
+      this.props.fetchReportbacks();
+    }
+  }
 
-  const shouldShowRevealer = (isAuthenticated && !signedUp) || canLoadMorePages;
-  const revealer = (
-    <Revealer
-      title="view more"
-      callToAction={signedUp ? '' : callToAction}
-      isLoading={hasPendingSignup}
-      onReveal={clickedViewMore}
-      isSignedUp={signedUp}
-    />
-  );
+  render() {
+    const {
+      blocks,
+      callToAction,
+      dashboard,
+      signedUp,
+      hasPendingSignup,
+      isAuthenticated,
+      canLoadMorePages,
+      clickedViewMore,
+    } = this.props;
 
-  return (
-    <div>
-      <LedeBannerContainer />
-      <div className="main clearfix">
-        {dashboard ? <DashboardContainer /> : null}
-        <CampaignPageNavigationContainer />
-        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-          <Flex className="feed">{blocks.map(renderFeedItem)}</Flex>
-          {shouldShowRevealer ? revealer : null}
-        </Enclosure>
-        <CallToActionContainer sticky hideIfSignedUp />
+    const shouldShowRevealer =
+      (isAuthenticated && !signedUp) || canLoadMorePages;
+    const revealer = (
+      <Revealer
+        title="view more"
+        callToAction={signedUp ? '' : callToAction}
+        isLoading={hasPendingSignup}
+        onReveal={clickedViewMore}
+        isSignedUp={signedUp}
+      />
+    );
+
+    return (
+      <div>
+        <LedeBannerContainer />
+        <div className="main clearfix">
+          {dashboard ? <DashboardContainer /> : null}
+          <CampaignPageNavigationContainer />
+          <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+            <Flex className="feed">{blocks.map(renderFeedItem)}</Flex>
+            {shouldShowRevealer ? revealer : null}
+          </Enclosure>
+          <CallToActionContainer sticky hideIfSignedUp />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 Feed.propTypes = {
+  hasReportbacks: PropTypes.bool.isRequired,
   blocks: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -96,6 +107,7 @@ Feed.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   canLoadMorePages: PropTypes.bool.isRequired,
   clickedViewMore: PropTypes.func.isRequired,
+  fetchReportbacks: PropTypes.func.isRequired,
 };
 
 Feed.defaultProps = {
