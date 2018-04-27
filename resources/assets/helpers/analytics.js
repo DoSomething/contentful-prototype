@@ -4,7 +4,6 @@ import { Engine as PuckClient } from '@dosomething/puck-client';
 import { dimensionByCookie, init, pageview } from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
-import { getUserId } from '../selectors/user';
 import { get as getHistory } from '../history';
 
 /**
@@ -25,13 +24,12 @@ export function analyzeWithGoogleAnalytics(name, data) {
  *
  * @param  {String} name
  * @param  {Object} data
- * @param  {Object} state
  * @return {void}
  */
-export function analyzeWithPuck(name, data, state) {
+export function analyzeWithPuck(name, data) {
   const Puck = new PuckClient({
     source: 'phoenix-next',
-    getUser: () => getUserId(state),
+    getUser: () => window.AUTH.id,
     puckUrl: PUCK_URL,
     history: getHistory(),
   });
@@ -71,7 +69,7 @@ export function trackAnalyticsEvent(name, data, service) {
       break;
 
     case 'puck':
-      analyzeWithPuck(name, data, window.STATE);
+      analyzeWithPuck(name, data);
       break;
 
     default:
