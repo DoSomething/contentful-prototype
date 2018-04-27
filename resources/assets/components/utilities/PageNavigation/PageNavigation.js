@@ -22,6 +22,8 @@ class PageNavigation extends React.Component {
   };
 
   componentDidMount = () => {
+    // @TODO: Revist setting state here after making action and
+    // community pages are created for all campaigns.
     this.updateState();
 
     window.addEventListener('scroll', this.onScroll, false);

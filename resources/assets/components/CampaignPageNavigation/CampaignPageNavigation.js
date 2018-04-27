@@ -64,8 +64,6 @@ const CampaignPageNavigation = ({
   );
 };
 
-export default CampaignPageNavigation;
-
 CampaignPageNavigation.propTypes = {
   campaignSlug: PropTypes.string.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
@@ -84,3 +82,5 @@ CampaignPageNavigation.propTypes = {
 CampaignPageNavigation.defaultProps = {
   pages: [],
 };
+
+export default CampaignPageNavigation;
