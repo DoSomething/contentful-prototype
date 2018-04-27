@@ -9,7 +9,7 @@ import { Flex, FlexCell } from '../Flex';
 import { CallToActionContainer } from '../CallToAction';
 import DashboardContainer from '../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../LedeBanner/LedeBannerContainer';
-import TabbedNavigationContainer from '../Navigation/TabbedNavigationContainer';
+import CampaignPageNavigationContainer from '../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './feed.scss';
 
@@ -65,7 +65,7 @@ const Feed = props => {
       <LedeBannerContainer />
       <div className="main clearfix">
         {dashboard ? <DashboardContainer /> : null}
-        <TabbedNavigationContainer />
+        <CampaignPageNavigationContainer />
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <Flex className="feed">{blocks.map(renderFeedItem)}</Flex>
           {shouldShowRevealer ? revealer : null}
