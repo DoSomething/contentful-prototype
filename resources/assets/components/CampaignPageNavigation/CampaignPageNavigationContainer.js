@@ -1,5 +1,6 @@
 import { get } from 'lodash';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import { isCampaignClosed } from '../../helpers';
 import CampaignPageNavigation from './CampaignPageNavigation';
@@ -13,4 +14,4 @@ const mapStateToProps = state => ({
   campaignSlug: state.campaign.slug,
 });
 
-export default connect(mapStateToProps)(CampaignPageNavigation);
+export default withRouter(connect(mapStateToProps)(CampaignPageNavigation));
