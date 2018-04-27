@@ -35,7 +35,7 @@ const PostCard = ({ post, noun }) => {
       media = (
         <div className="chat-bubble -post-bubble flex-center-y margin-bottom-none rounded-top">
           <h4 className="color-yellow caps-lock">I beat bullying by...</h4>
-          <p className="color-white caps-lock">{post.text}</p>
+          <p className="color-white">{post.text}</p>
         </div>
       );
       break;
