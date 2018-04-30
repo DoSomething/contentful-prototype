@@ -13,7 +13,9 @@ const Revealer = props => {
     <div className="revealer">
       {callToAction ? <h1>{callToAction}</h1> : null}
       {isSignedUp ? (
-        <Button isLoading={isLoading} onClick={onReveal} text={title} />
+        <Button isLoading={isLoading} onClick={onReveal}>
+          {title}
+        </Button>
       ) : (
         <SignupButton className="is-cta" source="revealer" />
       )}

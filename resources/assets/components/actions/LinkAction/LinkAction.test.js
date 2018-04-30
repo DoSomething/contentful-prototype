@@ -40,11 +40,11 @@ describe('LinkAction component', () => {
     );
     it('renders a Card component with a button', () => {
       expect(wrapper.find('Card')).toHaveLength(1);
-      expect(wrapper.find('Card').find('.button')).toHaveLength(1);
+      expect(wrapper.find('Card').find('Button')).toHaveLength(1);
     });
 
     it('calls the event tracker prop function when the button is clicked', () => {
-      wrapper.find('.button').simulate('click');
+      wrapper.find('Button').simulate('click');
       expect(trackEventMock).toHaveBeenCalled();
     });
   });
