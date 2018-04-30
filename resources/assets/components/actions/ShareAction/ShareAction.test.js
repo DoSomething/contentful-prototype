@@ -86,11 +86,6 @@ describe('ShareAction component', () => {
       wrapper = getShallow('twitter');
     });
 
-    // Mock the `open` function to test that we're opening the twitter intent window,
-    // and showing an affirmation once it's closed.
-    // (hence the mock return value to indicate closed status).
-    global.open = jest.fn().mockReturnValue({ closed: true });
-
     it('opens a new window with the proper Twitter intent URL', () => {
       wrapper.find('Button').simulate('click');
 
