@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import LinkAction from './LinkAction';
+import ShareAction from './ShareAction';
 import { getUserId } from '../../../selectors/user';
 
 /**
@@ -12,4 +12,4 @@ const mapStateToProps = state => ({
 });
 
 // Export the container component.
-export default connect(mapStateToProps)(LinkAction);
+export default connect(mapStateToProps)(ShareAction);

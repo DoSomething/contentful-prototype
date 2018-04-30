@@ -5,6 +5,8 @@ import ShareAction from './ShareAction';
 import setFBshare from '../../../__mocks__/facebookShareMock';
 import { trackPuckEvent as trackEventMock } from '../../../helpers/analytics';
 
+jest.mock('./ShareActionContainer', () => 'ShareActionContainer');
+
 jest.mock('../../../helpers/analytics');
 jest.useFakeTimers();
 
@@ -93,8 +95,10 @@ describe('ShareAction component', () => {
       wrapper.find('Button').simulate('click');
 
       expect(global.open).toHaveBeenCalled();
-      expect(global.open.mock.calls[0][0]).toEqual(
-        `https://twitter.com/intent/tweet?url=${url}&text=`,
+
+      const intentUrl = String(global.open.mock.calls[0][0]);
+      expect(intentUrl).toEqual(
+        'https://twitter.com/intent/tweet?text=&url=https%3A%2F%2Fdosomething.org',
       );
     });
 
