@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import { MEDIA_MEDIUM_SIZE_MIN } from '../../../constants';
-import NavigationLink from '../../Navigation/NavigationLink';
+import NavigationLink from '../../utilities/NavigationLink/NavigationLink';
 
 import './page-navigation.scss';
 
