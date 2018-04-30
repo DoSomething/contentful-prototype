@@ -111,6 +111,9 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'photo-uploader':
         return renderPhotoUploader(json, isSignedUp);
 
+      case 'photoSubmissionAction':
+        return null;
+
       case 'quiz': {
         const QuizContainer = Loader(import('../Quiz/QuizContainer'));
         return <QuizContainer {...json.fields} />;
