@@ -4,11 +4,20 @@ import classnames from 'classnames';
 
 import './button.scss';
 
-const Button = ({ onClick, className, attached, isLoading, children }) => {
+const Button = ({
+  onClick,
+  className,
+  type,
+  attached,
+  isDisabled,
+  isLoading,
+  children,
+}) => {
   const classNames = classnames(
     'button',
     {
       'is-loading': isLoading,
+      'is-disabled': isDisabled,
       '-attached': attached,
     },
     className,
@@ -16,7 +25,12 @@ const Button = ({ onClick, className, attached, isLoading, children }) => {
 
   const buttonText = Array.isArray(children) ? children.join('') : children;
   const button = (
-    <button className={classNames} disabled={isLoading} onClick={onClick}>
+    <button
+      type={type}
+      className={classNames}
+      disabled={isDisabled || isLoading}
+      onClick={onClick}
+    >
       {buttonText}
     </button>
   );
@@ -30,8 +44,10 @@ const Button = ({ onClick, className, attached, isLoading, children }) => {
 };
 
 Button.propTypes = {
+  type: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
+  isDisabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   attached: PropTypes.bool,
   children: PropTypes.oneOfType([
@@ -41,7 +57,9 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  type: null,
   className: null,
+  isDisabled: false,
   isLoading: false,
   attached: false,
 };
