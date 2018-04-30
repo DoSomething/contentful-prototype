@@ -34,11 +34,21 @@ describe('ShareAction component', () => {
   });
 
   it('renders a proper Share button based on social platform', () => {
-    expect(wrapper.find('Button').prop('text')).toEqual('Share on Facebook');
+    expect(
+      wrapper
+        .find('Button')
+        .dive()
+        .text(),
+    ).toEqual('Share on Facebook');
 
     wrapper = getShallow('twitter');
 
-    expect(wrapper.find('Button').prop('text')).toEqual('Share on Twitter');
+    expect(
+      wrapper
+        .find('Button')
+        .dive()
+        .text(),
+    ).toEqual('Share on Twitter');
   });
 
   describe('Clicking the Social Share Button for a Facebook share', () => {
