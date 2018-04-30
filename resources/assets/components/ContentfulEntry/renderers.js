@@ -3,11 +3,11 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
-import ShareAction from '../actions/ShareAction/ShareAction';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
+import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -149,7 +149,7 @@ export function renderShareAction(step) {
   return (
     <div key={`share-action-${contentfulId}`} className="margin-horizontal-md">
       <PuckWaypoint name="share_action-top" waypointData={{ contentfulId }} />
-      <ShareAction id={step.id} {...step.fields} />
+      <ShareActionContainer id={step.id} {...step.fields} />
       <PuckWaypoint
         name="share_action-bottom"
         waypointData={{ contentfulId }}

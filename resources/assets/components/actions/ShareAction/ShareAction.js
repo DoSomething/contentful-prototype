@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
 import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
-import { getUserId } from '../../../selectors/user';
 import ContentfulEntry from '../../ContentfulEntry';
 import { trackPuckEvent } from '../../../helpers/analytics';
 import {
@@ -17,7 +15,7 @@ import {
   showTwitterSharePrompt,
 } from '../../../helpers';
 
-export class ShareAction extends React.Component {
+class ShareAction extends React.Component {
   state = { showModal: false };
 
   componentDidMount() {
@@ -116,7 +114,4 @@ ShareAction.defaultProps = {
   userId: null,
 };
 
-export default connect(state => ({
-  userId: getUserId(state),
-  campaignId: state.campaign.legacyCampaignId,
-}))(ShareAction);
+export default ShareAction;
