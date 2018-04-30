@@ -4,10 +4,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import LinkAction from './LinkAction';
+import { trackPuckEvent as trackEventMock } from '../../../helpers/analytics';
+
+jest.mock('../../../helpers/analytics');
 
 describe('LinkAction component', () => {
-  const trackEventMock = jest.fn();
-
   // mocking the window.location.origin for the isExternal helper method called from LinkAction
   jsdom.reconfigure({
     url: 'https://dosomething.org',
@@ -16,7 +17,6 @@ describe('LinkAction component', () => {
   const props = {
     title: 'Click on this link!',
     content: 'This is a great link',
-    trackEvent: trackEventMock,
     link: 'https://dosomething.org',
   };
 
