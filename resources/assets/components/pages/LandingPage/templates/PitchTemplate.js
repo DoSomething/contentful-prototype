@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Markdown from '../../../Markdown';
 import Card from '../../../utilities/Card/Card';
+import Markdown from '../../../utilities/Markdown/Markdown';
 
 const PitchTemplate = ({ pitchContent, sidebarCTA }) => (
   <div className="campaign-subpage">

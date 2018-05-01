@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Card from '../components/utilities/Card/Card';
-import Markdown from '../components/Markdown';
+import Markdown from '../components/utilities/Markdown/Markdown';
 
 const zendeskUrl =
   'https://help.dosomething.org/hc/en-us/articles/115016093488-Help-The-page-I-m-looking-for-says-Page-Not-Found-';

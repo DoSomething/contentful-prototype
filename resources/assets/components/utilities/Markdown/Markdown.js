@@ -1,9 +1,10 @@
 /* eslint-disable react/no-danger */
 
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { markdown, contentfulImageUrl } from '../../helpers';
+
+import { markdown, contentfulImageUrl } from '../../../helpers';
 
 import './markdown.scss';
 

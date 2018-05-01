@@ -5,11 +5,11 @@ import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Markdown from '../../Markdown';
-import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
+import Button from '../../utilities/Button/Button';
 import { getFieldErrors } from '../../../helpers/forms';
+import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
 
 class TextSubmissionAction extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SignupButton from '../SignupButton';
-import Button from '../Button/Button';
+import Button from '../utilities/Button/Button';
 
 import './revealer.scss';
 

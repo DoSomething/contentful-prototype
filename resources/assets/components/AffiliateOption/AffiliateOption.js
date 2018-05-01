@@ -1,7 +1,9 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import React from 'react';
-import Markdown from '../Markdown';
+
+import Markdown from '../utilities/Markdown/Markdown';
+
 import './affiliateOption.scss';
 
 class AffiliateOption extends React.Component {

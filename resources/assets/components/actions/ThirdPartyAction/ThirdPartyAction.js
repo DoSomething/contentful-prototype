@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Markdown from '../../Markdown';
 import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
+import Markdown from '../../utilities/Markdown/Markdown';
 
 const ThirdParyAction = props => {
   const {

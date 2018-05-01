@@ -5,11 +5,11 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Markdown from '../Markdown';
-import Button from '../Button/Button';
 import Card from '../utilities/Card/Card';
 import Modal from '../utilities/Modal/Modal';
+import Button from '../utilities/Button/Button';
 import FormMessage from '../utilities/FormMessage';
+import Markdown from '../utilities/Markdown/Markdown';
 import MediaUploader from '../utilities/MediaUploader';
 
 import './reportback-uploader.scss';

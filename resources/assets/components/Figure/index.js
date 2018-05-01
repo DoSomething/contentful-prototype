@@ -1,8 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import LazyImage from '../LazyImage';
+
 import { modifiers } from '../../helpers';
+import LazyImage from '../utilities/LazyImage';
+
 import './figure.scss';
 
 export const BaseFigure = ({

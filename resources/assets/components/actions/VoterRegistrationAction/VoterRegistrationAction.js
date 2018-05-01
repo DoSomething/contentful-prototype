@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Markdown from '../../Markdown';
 import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
+import Markdown from '../../utilities/Markdown/Markdown';
 
 import './voter-registration-action.scss';
 
