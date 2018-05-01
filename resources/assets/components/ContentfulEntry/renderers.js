@@ -203,6 +203,14 @@ export function renderTextSubmissionAction(data) {
   );
 }
 
+export function renderPhotoSubmissionAction(data) {
+  const contentfulId = data.id;
+
+  console.log(contentfulId);
+
+  return null;
+}
+
 /**
  * Render the affirmation step.
  *
