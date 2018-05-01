@@ -129,7 +129,7 @@ class TextSubmissionAction extends React.Component {
             </div>
             <Button
               type="submit"
-              disabled={this.props.submissions.isPending}
+              loading={this.props.submissions.isPending}
               attached
             >
               {this.props.buttonText}
