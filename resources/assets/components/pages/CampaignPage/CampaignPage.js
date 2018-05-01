@@ -49,11 +49,7 @@ const CampaignPage = props => {
           <Route
             path={join(match.url, 'action')}
             render={() => {
-              if (isAdmin) {
-                return <ActionPageContainer />;
-              }
-
-              if (isCampaignClosed && hasCommunityPage) {
+              if (isCampaignClosed && hasCommunityPage && !isAdmin) {
                 return <Redirect to={join(match.url, 'community')} />;
               }
 
