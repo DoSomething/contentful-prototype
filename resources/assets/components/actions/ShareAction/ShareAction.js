@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
-import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
+import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
 import { trackPuckEvent } from '../../../helpers/analytics';
 import {

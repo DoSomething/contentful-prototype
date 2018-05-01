@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import Button from '../Button/Button';
+import Button from '../utilities/Button/Button';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 const SignupButton = props => {

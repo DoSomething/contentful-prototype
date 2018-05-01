@@ -6,8 +6,8 @@ import classnames from 'classnames';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
-import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
+import Button from '../../utilities/Button/Button';
 import SponsorPromotion from '../../SponsorPromotion';
 import { trackPuckEvent } from '../../../helpers/analytics';
 import { isExternal, dynamicString } from '../../../helpers';
