@@ -108,6 +108,7 @@ CampaignPage.propTypes = {
   }),
   clickedHideAffirmation: PropTypes.func.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   shouldShowSignupAffirmation: PropTypes.bool.isRequired,
