@@ -10,15 +10,15 @@ const Button = ({
   className,
   type,
   attached,
-  isDisabled,
-  isLoading,
+  disabled,
+  loading,
   children,
 }) => {
   const classNames = classnames(
     'button',
     {
-      'is-loading': isLoading,
-      'is-disabled': isDisabled,
+      'is-loading': loading,
+      'is-disabled': disabled,
       '-attached': attached,
     },
     className,
@@ -29,7 +29,7 @@ const Button = ({
     <button
       type={type}
       className={classNames}
-      disabled={isDisabled || isLoading}
+      disabled={disabled || loading}
       onClick={onClick}
     >
       {buttonText}
@@ -48,8 +48,8 @@ Button.propTypes = {
   type: PropTypes.string,
   onClick: requiredIf(PropTypes.func, props => props.type !== 'submit'),
   className: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isLoading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
   attached: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.string,
@@ -60,8 +60,8 @@ Button.propTypes = {
 Button.defaultProps = {
   type: null,
   className: null,
-  isDisabled: false,
-  isLoading: false,
+  disabled: false,
+  loading: false,
   attached: false,
 };
 

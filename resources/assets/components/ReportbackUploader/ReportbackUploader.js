@@ -325,7 +325,7 @@ class ReportbackUploader extends React.Component {
                   </div>
                 </div>
 
-                <Button type="submit" disabled={submissions.isStoring} attached>
+                <Button type="submit" loading={submissions.isStoring} attached>
                   Submit a new photo
                 </Button>
               </form>
