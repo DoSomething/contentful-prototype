@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import requiredIf from 'react-required-if';
 
 import './button.scss';
 
@@ -45,7 +46,7 @@ const Button = ({
 
 Button.propTypes = {
   type: PropTypes.string,
-  onClick: PropTypes.func.isRequired,
+  onClick: requiredIf(PropTypes.func, props => props.type !== 'submit'),
   className: PropTypes.string,
   isDisabled: PropTypes.bool,
   isLoading: PropTypes.bool,
