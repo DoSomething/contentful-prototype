@@ -512,9 +512,8 @@ export function openDialog(href, callback, width = 550, height = 420) {
  * @param  {String} quote
  */
 export function showFacebookSharePrompt(href, callback) {
-  const appId = env('FACEBOOK_APP_ID');
   const intent = makeUrl('https://www.facebook.com/dialog/share', {
-    appId,
+    app_id: env('FACEBOOK_APP_ID'),
     href,
   });
 
