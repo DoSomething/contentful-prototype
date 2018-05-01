@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Markdown from '../Markdown';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
 import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
+import Markdown from '../utilities/Markdown/Markdown';
 
 import './affirmation.scss';
 

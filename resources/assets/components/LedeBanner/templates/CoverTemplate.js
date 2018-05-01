@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import Markdown from '../../Markdown';
 import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
+import Markdown from '../../utilities/Markdown/Markdown';
 
 import './cover-lede-banner.scss';
 

@@ -2,12 +2,12 @@ import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Markdown from '../../Markdown';
 import NotFound from '../../NotFound';
-import { isCampaignClosed } from '../../../helpers';
-import { CallToActionContainer } from '../../CallToAction';
-import ScrollConcierge from '../../ScrollConcierge';
 import Enclosure from '../../Enclosure';
+import { isCampaignClosed } from '../../../helpers';
+import ScrollConcierge from '../../ScrollConcierge';
+import Markdown from '../../utilities/Markdown/Markdown';
+import { CallToActionContainer } from '../../CallToAction';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';

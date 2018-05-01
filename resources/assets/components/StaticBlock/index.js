@@ -1,7 +1,9 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import BlockWrapper from '../Block/BlockWrapper';
-import Markdown from '../Markdown';
+import Markdown from '../utilities/Markdown/Markdown';
+
 import './static-block.scss';
 
 const StaticBlock = ({ content, source, title }) => (

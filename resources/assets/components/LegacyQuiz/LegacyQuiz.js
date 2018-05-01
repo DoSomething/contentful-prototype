@@ -3,10 +3,10 @@ import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Question from './Question';
-import Markdown from '../Markdown';
 import Conclusion from './Conclusion';
 import Share from '../utilities/Share/Share';
 import ContentfulEntry from '../ContentfulEntry';
+import Markdown from '../utilities/Markdown/Markdown';
 
 import './legacy-quiz.scss';
 
