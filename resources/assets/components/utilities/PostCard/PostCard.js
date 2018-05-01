@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
-import LazyImage from '../../LazyImage';
 import { BaseFigure } from '../../Figure';
 import { pluralize } from '../../../helpers';
+import LazyImage from '../../utilities/LazyImage';
 import ReactionButton from '../ReactionButton/ReactionButton';
 
 import './post.scss';
