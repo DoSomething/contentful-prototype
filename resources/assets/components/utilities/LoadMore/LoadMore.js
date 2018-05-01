@@ -12,7 +12,7 @@ const LoadMore = ({
   text = 'Load More',
 }) => (
   <div className={classnames('loader', className)}>
-    <Button className={buttonClassName} isLoading={isLoading} onClick={onClick}>
+    <Button className={buttonClassName} loading={isLoading} onClick={onClick}>
       {text}
     </Button>
   </div>
