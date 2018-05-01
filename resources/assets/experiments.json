@@ -11,17 +11,5 @@
       "a": "mosaic",
       "b": "cover"
     }
-  },
-  "source_signup_button": {
-    "meta": {
-      "preTest": {
-        "campaign.allowExperiments": true
-      },
-      "convertOnSignupIntent": true
-    },
-    "alternatives": {
-      "a": "default_signup_copy",
-      "b": "source_signup_copy"
-    }
   }
 }

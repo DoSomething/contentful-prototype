@@ -93,6 +93,7 @@
     "react-loadable": "^5.3.1",
     "react-portal": "^4.1.5",
     "react-redux": "^5.0.7",
+    "react-required-if": "^1.0.3",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-prop-types": "^1.0.3",

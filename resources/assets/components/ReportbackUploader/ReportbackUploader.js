@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Markdown from '../Markdown';
+import Button from '../Button/Button';
 import Card from '../utilities/Card/Card';
 import Modal from '../utilities/Modal/Modal';
 import FormMessage from '../utilities/FormMessage';
@@ -324,13 +325,9 @@ class ReportbackUploader extends React.Component {
                   </div>
                 </div>
 
-                <button
-                  className="button button-attached"
-                  type="submit"
-                  disabled={submissions.isStoring}
-                >
+                <Button type="submit" disabled={submissions.isStoring} attached>
                   Submit a new photo
-                </button>
+                </Button>
               </form>
             </Card>
           </div>

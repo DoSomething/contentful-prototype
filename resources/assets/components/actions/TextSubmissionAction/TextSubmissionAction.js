@@ -6,12 +6,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Markdown from '../../Markdown';
+import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import { getFieldErrors } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';
-
-import './text-submission-action.scss';
 
 class TextSubmissionAction extends React.Component {
   state = {
@@ -128,12 +127,13 @@ class TextSubmissionAction extends React.Component {
                 and added to our public gallery.
               </p>
             </div>
-            <input
+            <Button
               type="submit"
-              defaultValue={this.props.buttonText}
-              className="button"
               disabled={this.props.submissions.isPending}
-            />
+              attached
+            >
+              {this.props.buttonText}
+            </Button>
           </form>
         </Card>
 

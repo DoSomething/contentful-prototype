@@ -1,11 +1,15 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
+
 import Button from './Button';
 
 test('Button snapshot test', () => {
-  const tree = renderer
-    .create(<Button className="-modifier" onClick={() => {}} />)
-    .toJSON();
+  const wrapper = shallow(
+    <Button className="-modifier" onClick={() => {}}>
+      Text
+    </Button>,
+  );
 
-  expect(tree).toMatchSnapshot();
+  expect(toJson(wrapper)).toMatchSnapshot();
 });

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../Button/Button';
-import ExperimentContainer from '../Experiment';
 import { convertOnSignupIntent } from '../../helpers/sixpack';
 
 const SignupButton = props => {
@@ -48,41 +47,14 @@ const SignupButton = props => {
     return null;
   }
 
-  const baseCopy = text || campaignActionText;
-
-  // If no source-specific override, don't opt in to the A/B test.
+  // If a user has a traffic source w/ an override, try it!
   const sourceOverride = get(sourceActionText, trafficSource);
-  if (!sourceOverride) {
-    return (
-      <Button
-        className={className}
-        onClick={() => onSignup(baseCopy)}
-        text={baseCopy}
-      />
-    );
-  }
-
-  // A/B Test: If a user has a traffic source w/ an override, try it!
-  const experiment = 'source_signup_button';
-  const sourceCopy = text || sourceOverride || campaignActionText;
+  const buttonCopy = text || sourceOverride || campaignActionText;
 
   return (
-    <ExperimentContainer name={experiment}>
-      <Button
-        experiment={experiment}
-        alternative="default_signup_copy"
-        className={className}
-        onClick={() => onSignup(baseCopy)}
-        text={baseCopy}
-      />
-      <Button
-        experiment={experiment}
-        alternative="source_signup_copy"
-        className={className}
-        onClick={() => onSignup(sourceCopy)}
-        text={sourceCopy}
-      />
-    </ExperimentContainer>
+    <Button className={className} onClick={() => onSignup(buttonCopy)}>
+      {buttonCopy}
+    </Button>
   );
 };
 

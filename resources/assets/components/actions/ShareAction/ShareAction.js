@@ -67,14 +67,10 @@ class ShareAction extends React.Component {
         <div className="share-action margin-bottom-lg">
           <Card title={title} className="rounded bordered">
             {content ? <Markdown className="padded">{content}</Markdown> : null}
-
             <Embed className="padded" url={href} />
-
-            <Button
-              className="button-attached"
-              onClick={() => handleShareClick(href)}
-              text={`Share on ${isFacebook ? 'Facebook' : 'Twitter'}`}
-            />
+            <Button attached onClick={() => handleShareClick(href)}>
+              Share on {isFacebook ? 'Facebook' : 'Twitter'}
+            </Button>
           </Card>
         </div>
         {this.state.showModal ? (

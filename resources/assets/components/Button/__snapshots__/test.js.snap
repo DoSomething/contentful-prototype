@@ -5,7 +5,8 @@ exports[`Button snapshot test 1`] = `
   className="button -modifier"
   disabled={false}
   onClick={[Function]}
+  type={null}
 >
-  Join Us
+  Text
 </button>
 `;

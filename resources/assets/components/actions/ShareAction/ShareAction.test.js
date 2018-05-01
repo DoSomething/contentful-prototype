@@ -34,11 +34,21 @@ describe('ShareAction component', () => {
   });
 
   it('renders a proper Share button based on social platform', () => {
-    expect(wrapper.find('Button').prop('text')).toEqual('Share on Facebook');
+    expect(
+      wrapper
+        .find('Button')
+        .dive()
+        .text(),
+    ).toEqual('Share on Facebook');
 
     wrapper = getShallow('twitter');
 
-    expect(wrapper.find('Button').prop('text')).toEqual('Share on Twitter');
+    expect(
+      wrapper
+        .find('Button')
+        .dive()
+        .text(),
+    ).toEqual('Share on Twitter');
   });
 
   describe('Clicking the Social Share Button for a Facebook share', () => {
@@ -85,11 +95,6 @@ describe('ShareAction component', () => {
     beforeEach(() => {
       wrapper = getShallow('twitter');
     });
-
-    // Mock the `open` function to test that we're opening the twitter intent window,
-    // and showing an affirmation once it's closed.
-    // (hence the mock return value to indicate closed status).
-    global.open = jest.fn().mockReturnValue({ closed: true });
 
     it('opens a new window with the proper Twitter intent URL', () => {
       wrapper.find('Button').simulate('click');

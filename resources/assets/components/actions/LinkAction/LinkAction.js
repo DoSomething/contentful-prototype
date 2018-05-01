@@ -1,13 +1,21 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Embed from '../../Embed';
 import Markdown from '../../Markdown';
+import Button from '../../Button/Button';
 import Card from '../../utilities/Card/Card';
 import SponsorPromotion from '../../SponsorPromotion';
 import { trackPuckEvent } from '../../../helpers/analytics';
 import { isExternal, dynamicString } from '../../../helpers';
+
+const onLinkClick = link => {
+  window.open(link, isExternal(link) ? '_blank' : '_self');
+  trackPuckEvent('clicked link action', { link });
+};
 
 const LinkAction = props => {
   const {
@@ -19,16 +27,11 @@ const LinkAction = props => {
     affiliateLogo,
   } = props;
 
-  const onLinkClick = () => {
-    trackPuckEvent('clicked link action', { link });
-  };
-
   // The affiliate logo specific text is hard-coded for OZY. Though we can set this title
   // in Contentful, we currently can't for CampaignUpdates which have a similar affiliate flow,
   // so this ensures consistency until we make this part of the content editing process.
   const title = affiliateLogo ? 'See More Be More Do More' : props.title;
 
-  const target = isExternal(link) ? '_blank' : '_self';
   const href = dynamicString(link, { campaignId, userId });
 
   return (
@@ -45,7 +48,7 @@ const LinkAction = props => {
           <div
             role="button"
             tabIndex="0"
-            onClick={onLinkClick}
+            onClick={() => onLinkClick(link)}
             className="link-wrapper"
           >
             <Embed className="padded" url={href} />
@@ -60,14 +63,9 @@ const LinkAction = props => {
         ) : null}
 
         {buttonText ? (
-          <a
-            className="button button-attached"
-            target={target}
-            href={href}
-            onClick={onLinkClick}
-          >
+          <Button attached onClick={() => onLinkClick(link)}>
             {buttonText}
-          </a>
+          </Button>
         ) : null}
       </Card>
     </div>

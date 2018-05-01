@@ -13,7 +13,6 @@ describe('TextSubmissionAction component', () => {
       clearPostSubmissionItem={jest.fn()}
       contentfulId="1122334455667788990011"
       id={id}
-      openModal={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{
         isPending: false,
@@ -27,6 +26,6 @@ describe('TextSubmissionAction component', () => {
   test('is rendered as a card component with a form and submit button', () => {
     expect(wrapper.find('Card').length).toEqual(1);
     expect(wrapper.find('form').length).toEqual(1);
-    expect(wrapper.find('input[type="submit"]').length).toEqual(1);
+    expect(wrapper.find('Button').length).toEqual(1);
   });
 });
