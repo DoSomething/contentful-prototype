@@ -1,18 +1,18 @@
 module.exports = function(migration) {
-  const imageMediaBlock = migration
-    .createContentType('imageMediaBlock')
-    .name('Image Media Block')
+  const imagesBlock = migration
+    .createContentType('imagesBlock')
+    .name('Images Block')
     .description('A block of images')
     .displayField('internalTitle');
 
-  imageMediaBlock
+  imagesBlock
     .createField('internalTitle')
     .name('Internal Title')
     .type('Symbol')
     .required(true)
     .localized(false);
 
-  imageMediaBlock
+  imagesBlock
     .createField('images')
     .name('Images')
     .type('Array')
