@@ -19,6 +19,7 @@ const CampaignPage = props => {
     campaignLead,
     clickedHideAffirmation,
     hasCommunityPage,
+    isAdmin,
     isCampaignClosed,
     match,
     shouldShowSignupAffirmation,
@@ -47,7 +48,13 @@ const CampaignPage = props => {
 
           <Route
             path={join(match.url, 'action')}
-            component={ActionPageContainer}
+            render={() => {
+              if (isAdmin || (!isCampaignClosed && !hasCommunityPage)) {
+                return <ActionPageContainer />;
+              }
+
+              return <Redirect to={join(match.url, 'community')} />;
+            }}
           />
 
           <Route
@@ -101,6 +108,7 @@ CampaignPage.propTypes = {
   }),
   clickedHideAffirmation: PropTypes.func.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
+  isAdmin: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   shouldShowSignupAffirmation: PropTypes.bool.isRequired,

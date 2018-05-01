@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
 import { isCampaignClosed } from '../../../helpers';
+import { userHasRole } from '../../../selectors/user';
 import { convertExperiment, clickedHideAffirmation } from '../../../actions';
 
 /**
@@ -14,6 +15,7 @@ const mapStateToProps = state => ({
   campaignLead: get(state, 'campaign.campaignLead.fields', null),
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   hasCommunityPage: Boolean(state.campaign.activityFeed.length),
+  isAdmin: userHasRole(state, 'admin'),
   isCampaignClosed: isCampaignClosed(
     get(state.campaign.endDate, 'date', false),
   ),
