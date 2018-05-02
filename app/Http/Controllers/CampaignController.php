@@ -47,7 +47,7 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        dd($campaign);
+        // dd($campaign);
 
         return view('app', [
             // This is used to build campaign-specific login links in the

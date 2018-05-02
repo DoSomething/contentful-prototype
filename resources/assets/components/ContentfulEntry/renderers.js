@@ -10,6 +10,7 @@ import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
+import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 
@@ -208,7 +209,14 @@ export function renderPhotoSubmissionAction(data) {
 
   console.log(contentfulId);
 
-  return null;
+  return (
+    <div
+      key={`photo-submission-action-${contentfulId}`}
+      className="margin-horizontal-md margin-bottom-lg"
+    >
+      <PhotoSubmissionActionContainer />
+    </div>
+  );
 }
 
 /**
