@@ -8,7 +8,7 @@ import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
-import { parseContentfulType } from '../../helpers';
+import { parseContentfulType, report } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
@@ -40,11 +40,9 @@ class ContentfulEntry extends React.Component<Props, State> {
     hasError: false,
   };
 
-  componentDidCatch() {
+  componentDidCatch(error: Error) {
     this.setState({ hasError: true });
-
-    // @TODO: We should report this somewhere!
-    // report(error, info);
+    report(error);
   }
 
   render() {

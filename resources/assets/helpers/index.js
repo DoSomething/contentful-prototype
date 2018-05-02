@@ -585,3 +585,16 @@ export function parseContentfulType(json, defaultType) {
 
   return type;
 }
+
+/**
+ * Report a caught error to New Relic.
+ *
+ * @param {Error} error
+ */
+export function report(error) {
+  if (!window.newrelic) {
+    return;
+  }
+
+  window.newrelic.noticeError(error);
+}
