@@ -44,7 +44,6 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
         title: 'Community',
         slug: join(campaignSlug, 'community'),
         blocks: campaignActivityFeed,
-        hideFromNavigation: true,
       }),
     ),
   );
