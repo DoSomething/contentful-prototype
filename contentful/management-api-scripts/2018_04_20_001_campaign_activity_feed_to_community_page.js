@@ -18,7 +18,7 @@ const logger = createLogger('community_page_from_activity_feed');
 async function addCommunityPageFromActivityFeed(environment, campaign) {
   const campaignInternalTitle = getField(campaign, 'internalTitle');
   const campaignSlug = getField(campaign, 'slug');
-  const campaignActivityFeed = getField(campaign, 'activityFeed');
+  const campaignActivityFeed = getField(campaign, 'activity_feed');
   const campaignPages = getField(campaign, 'pages', []);
 
   if (!campaignPages.length) {
@@ -44,6 +44,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
         title: 'Community',
         slug: join(campaignSlug, 'community'),
         blocks: campaignActivityFeed,
+        hideFromNavigation: true,
       }),
     ),
   );
