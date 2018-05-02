@@ -40,18 +40,23 @@
     {{ scriptify($auth, 'AUTH') }}
 
     <script type="text/javascript">
+        var hasWorkingUrl = false; // https://git.io/vpzRA
+        try { var u = new URL('b', 'http://a'); u.pathname = 'c%20d'; hasWorkingUrl = u.href === 'http://a/c%20d'; } catch(e) {}
+
         var features = [];
-        ('fetch' in window) || features.push('fetch');
-        ('URL' in window) || features.push('URL');
+        if (!('Map' in window) || !('WeakSet' in window)) features.push('es2015')
+        if (!('includes' in Array)) features.push('es2016')
+        if (!('values' in Object)) features.push('Object.values');
+        if (!('fetch' in window)) features.push('fetch');
+        if (!hasWorkingUrl) features.push('URL');
 
         if (features.length) {
-            features.unshift('default-3.6');
-
             var s = document.createElement('script');
             s.src = 'https://cdn.polyfill.io/v2/polyfill.min.js?features='+features.join(',');
             document.head.appendChild(s);
         }
     </script>
+
     <script type="text/javascript" src="{{ elixir('vendors~app.js', 'next/assets') }}"></script>
     <script type="text/javascript" src="{{ elixir('app.js', 'next/assets') }}"></script>
 
