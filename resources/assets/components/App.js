@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ConnectedRouter } from 'react-router-redux';
 import { PuckProvider } from '@dosomething/puck-client';
@@ -25,7 +25,10 @@ const App = ({ store, history }) => {
       >
         <ApolloProvider client={graphqlClient}>
           <ConnectedRouter history={history}>
-            <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+            <Switch>
+              <Route path="/profile" render={() => <h1>PROFILE</h1>} />
+              <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+            </Switch>
           </ConnectedRouter>
         </ApolloProvider>
       </PuckProvider>
