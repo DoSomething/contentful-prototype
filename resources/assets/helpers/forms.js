@@ -44,3 +44,19 @@ export function getFieldErrorMessages(response) {
 
   return messages;
 }
+
+/**
+ * Set null properites to undefined to help with React defaultProps.
+ *
+ * @param  {Object} fields
+ * @return {Object}
+ */
+export function setNullFieldsToUndefined(fields) {
+  const updatedFields = {};
+
+  Object.keys(fields).forEach(key => {
+    updatedFields[key] = fields[key] === null ? undefined : fields[key];
+  });
+
+  return updatedFields;
+}

@@ -4,6 +4,7 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
+import { setNullFieldsToUndefined } from '../../helpers/forms';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -194,7 +195,7 @@ export function renderTextSubmissionAction(data) {
         name="text_submission_action-top"
         waypointData={{ contentfulId }}
       />
-      <TextSubmissionActionContainer id={data.id} {...data.fields} />
+      <TextSubmissionActionContainer id={contentfulId} {...data.fields} />
       <SubmissionGalleryBlockContainer type="text" />
       <PuckWaypoint
         name="text_submission_action-bottom"
@@ -206,15 +207,14 @@ export function renderTextSubmissionAction(data) {
 
 export function renderPhotoSubmissionAction(data) {
   const contentfulId = data.id;
-
-  console.log(contentfulId);
+  const fields = setNullFieldsToUndefined(data.fields);
 
   return (
     <div
       key={`photo-submission-action-${contentfulId}`}
       className="margin-horizontal-md margin-bottom-lg"
     >
-      <PhotoSubmissionActionContainer />
+      <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
     </div>
   );
 }
