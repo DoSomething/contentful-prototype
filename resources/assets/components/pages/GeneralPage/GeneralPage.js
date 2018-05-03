@@ -34,7 +34,7 @@ const GeneralPage = props => {
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <h1>{title}</h1>
           <h3>{subTitle}</h3>
-          {subPage.fields.blocks.map(block => {
+          {blocks.map(block => {
             return <ContentfulEntry key={block.id} json={block} />;
           })}
         </Enclosure>
