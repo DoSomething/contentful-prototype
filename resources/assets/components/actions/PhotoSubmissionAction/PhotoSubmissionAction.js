@@ -14,9 +14,11 @@ class PhotoSubmissionAction extends React.Component {
     showModal: false,
   };
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate(prevProps) {
     console.log(prevProps);
-  };
+  }
+
+  type = 'photo';
 
   defaultMediaState = {
     file: null,
@@ -26,7 +28,7 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   handleChange = event => {
-    console.log(event);
+    console.log(event.target);
   };
 
   handleFileUpload = media => {
@@ -126,6 +128,8 @@ class PhotoSubmissionAction extends React.Component {
                       id="why_participated"
                       name="why_participated"
                       placeholder={this.props.whyParticipatedFieldPlaceholder}
+                      value={this.state.whyParticipatedValue}
+                      onChange={this.handleChange}
                     />
                   </div>
                 </div>

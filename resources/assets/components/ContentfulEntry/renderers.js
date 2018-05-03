@@ -206,15 +206,11 @@ export function renderTextSubmissionAction(data) {
 }
 
 export function renderPhotoSubmissionAction(data) {
-  const contentfulId = data.id;
   const fields = setNullFieldsToUndefined(data.fields);
 
   return (
-    <div
-      key={`photo-submission-action-${contentfulId}`}
-      className="margin-horizontal-md margin-bottom-lg"
-    >
-      <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
+    <div className="margin-horizontal-md margin-bottom-lg">
+      <PhotoSubmissionActionContainer id={data.id} {...fields} />
     </div>
   );
 }
