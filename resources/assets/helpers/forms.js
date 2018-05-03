@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { isNull, get, omitBy } from 'lodash';
 
 /**
  * Get the status error/success message for a form response.
@@ -52,11 +52,5 @@ export function getFieldErrorMessages(response) {
  * @return {Object}
  */
 export function setNullFieldsToUndefined(fields) {
-  const updatedFields = {};
-
-  Object.keys(fields).forEach(key => {
-    updatedFields[key] = fields[key] === null ? undefined : fields[key];
-  });
-
-  return updatedFields;
+  return omitBy(fields, isNull);
 }
