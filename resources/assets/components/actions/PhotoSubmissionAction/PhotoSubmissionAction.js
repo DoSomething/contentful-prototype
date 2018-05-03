@@ -1,5 +1,3 @@
-/* global FormData */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -17,7 +15,7 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   componentDidUpdate = prevProps => {
-    console.log('component did update...');
+    console.log(prevProps);
   };
 
   defaultMediaState = {
@@ -28,7 +26,7 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   handleChange = event => {
-    this.setState({});
+    console.log(event);
   };
 
   handleFileUpload = media => {
@@ -152,9 +150,14 @@ PhotoSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
+  className: PropTypes.string,
   id: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
+  submissions: PropTypes.shape({
+    isPending: PropTypes.bool,
+    items: PropTypes.object,
+  }).isRequired,
   title: PropTypes.string,
   whyParticipatedFieldLabel: PropTypes.string,
   whyParticipatedFieldPlaceholder: PropTypes.string,
@@ -164,6 +167,7 @@ PhotoSubmissionAction.defaultProps = {
   buttonText: 'Submit a new photo',
   captionFieldLabel: 'Add a caption to your photo.',
   captionFieldPlaceholder: '60 characters or less',
+  className: null,
   quantityFieldLabel: 'How many items are in this photo?',
   quantityFieldPlaceholder: 'Quantity # (300)',
   title: 'Submit your photo',
