@@ -4,7 +4,7 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
-import { setNullFieldsToUndefined } from '../../helpers/forms';
+import { withoutNulls } from '../../helpers';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -171,7 +171,7 @@ export function renderLinkAction(step) {
   return (
     <div key={`link-action-${contentfulId}`} className="margin-horizontal-md">
       <PuckWaypoint name="link_action-top" waypointData={{ contentfulId }} />
-      <LinkActionContainer {...step.fields} />
+      <LinkActionContainer {...withoutNulls(step.fields)} />
       <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
     </div>
   );
@@ -206,7 +206,7 @@ export function renderTextSubmissionAction(data) {
 }
 
 export function renderPhotoSubmissionAction(data) {
-  const fields = setNullFieldsToUndefined(data.fields);
+  const fields = withoutNulls(data.fields);
 
   return (
     <div className="margin-horizontal-md margin-bottom-lg">
