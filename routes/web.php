@@ -16,6 +16,11 @@ $router->get('next/login', 'AuthController@getLogin')->name('login');
 $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
+// Profile
+$router->get('/us/profile', function () {
+    return view('app');
+});
+
 // Campaigns
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
