@@ -34,8 +34,8 @@ const LinkAction = props => {
 
   const href = dynamicString(link, { campaignId, userId });
 
-  // If no button/content is provided, show plain embed.
-  if (!content && !buttonText) {
+  // If no content is provided, show as an embed.
+  if (!content) {
     return (
       <div
         role="button"
@@ -58,17 +58,6 @@ const LinkAction = props => {
       >
         {content ? <Markdown className="padded">{content}</Markdown> : null}
 
-        {buttonText ? null : (
-          <div
-            role="button"
-            tabIndex="0"
-            onClick={() => onLinkClick(link)}
-            className="link-wrapper"
-          >
-            <Embed className="padded" url={href} />
-          </div>
-        )}
-
         {affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
@@ -76,11 +65,9 @@ const LinkAction = props => {
           />
         ) : null}
 
-        {buttonText ? (
-          <Button attached onClick={() => onLinkClick(link)}>
-            {buttonText}
-          </Button>
-        ) : null}
+        <Button attached onClick={() => onLinkClick(link)}>
+          {buttonText}
+        </Button>
       </Card>
     </div>
   );
@@ -89,7 +76,7 @@ const LinkAction = props => {
 LinkAction.defaultProps = {
   content: null,
   affiliateLogo: null,
-  buttonText: null,
+  buttonText: 'Visit Link',
   campaignId: null,
   userId: null,
 };
