@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../utilities/Card/Card';
+import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import MediaUploader from '../../utilities/MediaUploader';
 
@@ -17,8 +18,6 @@ class PhotoSubmissionAction extends React.Component {
   componentDidUpdate(prevProps) {
     console.log(prevProps);
   }
-
-  type = 'photo';
 
   defaultMediaState = {
     file: null,
@@ -41,6 +40,7 @@ class PhotoSubmissionAction extends React.Component {
     event.preventDefault();
 
     console.log(event);
+    console.log(this.props.id);
 
     this.setState({
       captionValue: event.target.value,
@@ -59,7 +59,6 @@ class PhotoSubmissionAction extends React.Component {
     return (
       <React.Fragment>
         <Card
-          id={this.props.id}
           className={classnames(
             'bordered rounded photo-submission-action',
             this.props.className,
@@ -145,6 +144,8 @@ class PhotoSubmissionAction extends React.Component {
             </Button>
           </form>
         </Card>
+
+        {this.state.showModal ? <Modal /> : null}
       </React.Fragment>
     );
   }
