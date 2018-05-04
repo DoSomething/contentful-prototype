@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, shallow } from 'enzyme';
+
 import Quiz from './Quiz';
 import QuizQuestion from './QuizQuestion';
 

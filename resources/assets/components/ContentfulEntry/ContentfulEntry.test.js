@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+
 import ContentfulEntry from './ContentfulEntry';
 
 // Mock Redux containers so we don't need Provider context.

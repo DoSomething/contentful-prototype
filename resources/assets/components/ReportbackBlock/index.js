@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import BlockWrapper from '../Block/BlockWrapper';
 import ReportbackItemContainer from '../ReportbackItem';
 import './reportback-block.scss';

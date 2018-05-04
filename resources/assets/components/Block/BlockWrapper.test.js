@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
 import { MemoryRouter } from 'react-router';
+
 import BlockWrapper from './BlockWrapper';
 
 test('it renders correctly with children', () => {

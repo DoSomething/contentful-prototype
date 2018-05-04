@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
 import { PuckConnector } from '@dosomething/puck-client';
+
 import ReportbackUploader from './ReportbackUploader';
 import {
   addSubmissionItemToList,

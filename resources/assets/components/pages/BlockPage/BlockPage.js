@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+
 import Enclosure from '../../Enclosure';
 import ContentfulEntry from '../../ContentfulEntry';
 

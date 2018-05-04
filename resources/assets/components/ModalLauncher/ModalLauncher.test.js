@@ -6,7 +6,6 @@ import { getTime } from 'date-fns';
 
 import { set } from '../../helpers/storage';
 import LocalStorageMock from '../../__mocks__/localStorageMock';
-
 import ModalLauncher from './ModalLauncher';
 
 // Faking timers to be able to interact with and mock our timed modal launcher component

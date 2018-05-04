@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
+
 import ReportbackItem from './ReportbackItem';
 import { isAuthenticated } from '../../selectors/user';
 import { toggleReactionOn, toggleReactionOff } from '../../actions';

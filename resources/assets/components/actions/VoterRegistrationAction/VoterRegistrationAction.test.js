@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { get } from '../../../helpers/storage';
-
 import VoterRegistrationAction from './VoterRegistrationAction';
 import LocalStorageMock from '../../../__mocks__/localStorageMock';
 

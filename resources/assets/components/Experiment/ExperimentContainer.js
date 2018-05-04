@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import Experiment from './Experiment';
 import { participateInExperiment } from '../../actions';
 

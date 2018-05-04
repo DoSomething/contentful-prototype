@@ -1,5 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+
 import Gallery from './Gallery';
 
 test('it renders correctly with children', () => {

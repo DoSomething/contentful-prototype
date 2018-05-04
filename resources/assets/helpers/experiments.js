@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import { get } from 'lodash';
+
 import experimentsDefinitions from '../experiments.json';
 
 /**

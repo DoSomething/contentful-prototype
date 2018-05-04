@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { nextSlide } from '../../actions/slideshow';
 import Slideshow from './Slideshow';
 

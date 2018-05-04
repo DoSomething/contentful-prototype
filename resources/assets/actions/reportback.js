@@ -2,6 +2,7 @@
 
 import { Phoenix } from '@dosomething/gateway';
 import { has, get } from 'lodash';
+
 import { normalizeReportbackItemResponse } from '../normalizers';
 import { isAuthenticated } from '../selectors/user';
 import {
