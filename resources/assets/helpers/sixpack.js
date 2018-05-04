@@ -1,6 +1,7 @@
 /* global window */
 
 import client from 'sixpack-client';
+
 import experiments from '../experiments.json';
 
 export function sixpack() {

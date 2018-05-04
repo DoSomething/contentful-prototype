@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import BlockPage from './BlockPage';
 import { findContentfulEntry } from '../../../helpers';
 

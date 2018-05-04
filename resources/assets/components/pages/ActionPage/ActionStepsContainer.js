@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+
 import ActionSteps from './ActionSteps';
 import { isSignedUp } from '../../../selectors/signup';
 

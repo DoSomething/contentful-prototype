@@ -11,5 +11,17 @@ module.exports = {
     // Require multi-line curly braces for all conditionals.
     curly: ['error', 'all'],
     'brace-style': ['error', '1tbs', { allowSingleLine: false }],
+
+    // Require imports to be grouped by type (packages, then internal files).
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'always',
+        groups: [
+          ['builtin', 'external'],
+          ['parent', 'sibling', 'internal', 'index'],
+        ],
+      },
+    ],
   },
 };

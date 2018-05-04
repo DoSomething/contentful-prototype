@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import QuizChoice from './QuizChoice';
 import SectionHeader from '../SectionHeader';
-
 import { convertNumberToWord } from '../../helpers';
 
 const QuizQuestion = props => {

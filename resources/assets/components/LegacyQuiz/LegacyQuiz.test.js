@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+
 import LegacyQuiz from './LegacyQuiz';
 
 // Mock Redux containers so we don't need Provider context.

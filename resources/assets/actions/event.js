@@ -1,5 +1,4 @@
 import * as actions from '../actions';
-
 import { isTimestampValid } from '../helpers';
 import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 import { isAuthenticated } from '../selectors/user';

@@ -1,6 +1,7 @@
 /* global window */
 
 import { connect } from 'react-redux';
+
 import CampaignUpdate from './CampaignUpdate';
 import { makeShareLink } from '../../helpers';
 

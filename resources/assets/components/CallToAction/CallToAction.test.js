@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { shallowToJson } from 'enzyme-to-json';
+
 import CallToAction from './CallToAction';
 
 // @TODO: Test was failing without having the mock, although it is

@@ -8,9 +8,9 @@ import { truncate } from 'lodash';
 
 import { Figure } from '../Figure';
 import { isExternal } from '../../helpers';
+import linkIcon from './linkIcon.svg';
 
 import './embed.scss';
-import linkIcon from './linkIcon.svg';
 
 class Embed extends React.Component {
   constructor(props) {

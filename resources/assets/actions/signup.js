@@ -1,8 +1,8 @@
 import { join } from 'path';
 import { get } from 'lodash';
 import { push } from 'react-router-redux';
-
 import { Phoenix } from '@dosomething/gateway';
+
 import { isCampaignClosed } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
 import { isSignedUp } from '../selectors/signup';

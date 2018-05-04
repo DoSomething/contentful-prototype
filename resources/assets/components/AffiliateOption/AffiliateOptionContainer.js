@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { get } from 'lodash';
+
 import AffiliateOption from './AffiliateOption';
 import { clickedOptOut } from '../../actions/signup';
 

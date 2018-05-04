@@ -1,4 +1,5 @@
 /* global window, document */
+/* eslint-disable import/order */
 
 /*
  |--------------------------------------------------------------------------

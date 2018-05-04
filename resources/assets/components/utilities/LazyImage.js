@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
 /* global Image */
 
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { EMPTY_IMAGE } from '../../helpers';
 
 class LazyImage extends React.Component {

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { PuckConnector } from '@dosomething/puck-client';
 import { get } from 'lodash';
+
 import LegacyQuiz from './LegacyQuiz';
 import {
   pickWinner,
