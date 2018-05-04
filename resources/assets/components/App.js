@@ -11,6 +11,7 @@ import graphqlClient from '../graphql';
 import { getUserId } from '../selectors/user';
 import { initializeStore } from '../store/store';
 import CampaignContainer from './Campaign/CampaignContainer';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -26,7 +27,7 @@ const App = ({ store, history }) => {
         <ApolloProvider client={graphqlClient}>
           <ConnectedRouter history={history}>
             <Switch>
-              <Route path="/profile" render={() => <h1>PROFILE</h1>} />
+              <Route path="/profile" component={ProfilePage} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
             </Switch>
           </ConnectedRouter>
