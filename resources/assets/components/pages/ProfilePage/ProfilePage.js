@@ -1,14 +1,9 @@
-import React from 'react'; //npm files
+import React from 'react';
 
-import Enclosure from '../../Enclosure'; //files from app
+import Enclosure from '../../Enclosure';
 import Card from '../../utilities/Card/Card';
 
-//css imports go here
-
 const ProfilePage = () => {
-  // const {} = props;
-  console.log('shhhhhhh');
-
   return (
     <div className="main clearfix">
       <Enclosure className="default-container margin-top-lg margin-bottom-lg">
