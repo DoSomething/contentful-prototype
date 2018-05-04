@@ -34,6 +34,20 @@ const LinkAction = props => {
 
   const href = dynamicString(link, { campaignId, userId });
 
+  // If no button/content is provided, show plain embed.
+  if (!content && !buttonText) {
+    return (
+      <div
+        role="button"
+        tabIndex="0"
+        onClick={() => onLinkClick(link)}
+        className="link-wrapper margin-bottom-lg"
+      >
+        <Embed url={href} />
+      </div>
+    );
+  }
+
   return (
     <div className="link-action margin-bottom-lg">
       <Card
