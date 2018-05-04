@@ -1,14 +1,14 @@
 /* eslint-disable react/no-danger */
 
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { truncate } from 'lodash';
 import classnames from 'classnames';
 import { Phoenix } from '@dosomething/gateway';
-import { truncate } from 'lodash';
 
 import { Figure } from '../Figure';
-import { isExternal } from '../../helpers';
 import linkIcon from './linkIcon.svg';
+import { isExternal } from '../../helpers';
 
 import './embed.scss';
 
