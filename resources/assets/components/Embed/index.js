@@ -40,15 +40,21 @@ class Embed extends React.Component {
       embed = (
         <a href={this.state.url} target={target} rel="noopener noreferrer">
           <Figure
-            className="padded margin-bottom-none"
+            className="margin-bottom-none bg-white"
             image={this.state.image || this.state.provider.icon}
             alt={this.state.provider.name}
             alignment="left-collapse"
             size="large"
           >
-            <h3>{this.state.title}</h3>
-            {this.state.description ? <p>{this.state.description}</p> : null}
-            <p className="footnote">{this.state.provider.name}</p>
+            <div className="margin-vertical-md margin-right-md">
+              <h3>{this.state.title}</h3>
+              {this.state.description ? (
+                <p className="color-gray">{this.state.description}</p>
+              ) : null}
+              <p className="footnote font-bold caps-lock">
+                {this.state.provider.name}
+              </p>
+            </div>
           </Figure>
         </a>
       );
@@ -56,7 +62,7 @@ class Embed extends React.Component {
       embed = (
         <a href={this.props.url}>
           <Figure
-            className="padded margin-bottom-none bordered rounded"
+            className="padded margin-bottom-none"
             image={linkIcon}
             alt="link icon"
             alignment="left-collapse"
@@ -72,10 +78,8 @@ class Embed extends React.Component {
     return (
       <div className={classnames('embed', this.props.className)}>
         <div
-          className={classnames('wrapper', {
+          className={classnames('wrapper', 'bordered', 'rounded', 'bg-white', {
             'flex-center-xy': !this.state.title,
-            bordered: this.state.title,
-            rounded: this.state.title,
           })}
         >
           {embed}
