@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
+import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { PuckProvider } from '@dosomething/puck-client';
 
@@ -10,8 +10,8 @@ import { env } from '../helpers';
 import graphqlClient from '../graphql';
 import { getUserId } from '../selectors/user';
 import { initializeStore } from '../store/store';
-import CampaignContainer from './Campaign/CampaignContainer';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import CampaignContainer from './Campaign/CampaignContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);
