@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { isNull, get, omitBy } from 'lodash';
 
 /**
  * Get the status error/success message for a form response.
@@ -43,4 +43,14 @@ export function getFieldErrorMessages(response) {
   );
 
   return messages;
+}
+
+/**
+ * Set null properites to undefined to help with React defaultProps.
+ *
+ * @param  {Object} fields
+ * @return {Object}
+ */
+export function setNullFieldsToUndefined(fields) {
+  return omitBy(fields, isNull);
 }

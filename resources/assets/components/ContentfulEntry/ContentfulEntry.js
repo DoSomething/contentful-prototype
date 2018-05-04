@@ -13,16 +13,17 @@ import { CampaignUpdateContainer } from '../CampaignUpdate';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
-  renderPhotoUploader,
-  renderSubmissionGallery,
-  renderThirdPartyAction,
-  renderLegacyContentBlock,
-  renderVoterRegistrationAction,
-  renderShareAction,
   renderLinkAction,
   renderAffirmation,
-  renderTextSubmissionAction,
+  renderShareAction,
   renderContentBlock,
+  renderPhotoUploader,
+  renderThirdPartyAction,
+  renderSubmissionGallery,
+  renderLegacyContentBlock,
+  renderPhotoSubmissionAction,
+  renderTextSubmissionAction,
+  renderVoterRegistrationAction,
 } from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
@@ -110,7 +111,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return renderPhotoUploader(json, isSignedUp);
 
       case 'photoSubmissionAction':
-        return null;
+        return renderPhotoSubmissionAction(json);
 
       case 'quiz': {
         const QuizContainer = Loader(import('../Quiz/QuizContainer'));

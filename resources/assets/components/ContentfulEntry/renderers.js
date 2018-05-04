@@ -4,12 +4,14 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
+import { setNullFieldsToUndefined } from '../../helpers/forms';
 import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
+import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 
@@ -193,12 +195,22 @@ export function renderTextSubmissionAction(data) {
         name="text_submission_action-top"
         waypointData={{ contentfulId }}
       />
-      <TextSubmissionActionContainer id={data.id} {...data.fields} />
+      <TextSubmissionActionContainer id={contentfulId} {...data.fields} />
       <SubmissionGalleryBlockContainer type="text" />
       <PuckWaypoint
         name="text_submission_action-bottom"
         waypointData={{ contentfulId }}
       />
+    </div>
+  );
+}
+
+export function renderPhotoSubmissionAction(data) {
+  const fields = setNullFieldsToUndefined(data.fields);
+
+  return (
+    <div className="margin-horizontal-md margin-bottom-lg">
+      <PhotoSubmissionActionContainer id={data.id} {...fields} />
     </div>
   );
 }

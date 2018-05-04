@@ -1,0 +1,9 @@
+@import '../../../scss/next-toolbox.scss';
+
+.photo-submission-action {
+  background-color: rgba(255, 0, 255, 0.5);
+
+  .form-section + .form-section {
+    border-top: 2px solid $light-gray;
+  }
+}
