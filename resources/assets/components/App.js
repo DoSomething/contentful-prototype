@@ -27,7 +27,7 @@ const App = ({ store, history }) => {
         <ApolloProvider client={graphqlClient}>
           <ConnectedRouter history={history}>
             <Switch>
-              <Route path="/profile" component={ProfilePage} />
+              <Route path="/us/profile" component={ProfilePage} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
             </Switch>
           </ConnectedRouter>
