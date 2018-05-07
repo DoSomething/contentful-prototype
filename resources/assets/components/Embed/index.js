@@ -9,6 +9,7 @@ import { Phoenix } from '@dosomething/gateway';
 import linkIcon from './linkIcon.svg';
 import { isExternal } from '../../helpers';
 import LazyImage from '../utilities/LazyImage';
+import PlaceholderText from '../utilities/PlaceholderText/PlaceholderText';
 
 import './embed.scss';
 
@@ -30,9 +31,6 @@ class Embed extends React.Component {
     const { url, badged, className } = this.props;
     const { data } = this.state;
 
-    const title = data ? data.title : 'Loading...';
-    const description = data ? data.description : '...';
-    const source = data ? data.provider.name : '...';
     const image = data ? data.image : null;
 
     // If an <iframe> code snippet is provided, use that.
@@ -53,9 +51,13 @@ class Embed extends React.Component {
           <LazyImage className="embed__image" src={image} background />
           <div className="embed__content padded">
             <div className="margin-vertical-md margin-right-md">
-              <h3>{title}</h3>
-              {description ? <p className="color-gray">{description}</p> : null}
-              <p className="footnote font-bold caps-lock">{source}</p>
+              <h3>{data ? data.title : <PlaceholderText size="medium" />}</h3>
+              <p className="color-gray">
+                {data ? data.description : <PlaceholderText size="large" />}
+              </p>
+              <p className="footnote font-bold caps-lock">
+                {data ? data.provider.name : <PlaceholderText size="small" />}
+              </p>
             </div>
           </div>
           {badged ? (

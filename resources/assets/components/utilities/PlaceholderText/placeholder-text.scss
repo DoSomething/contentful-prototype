@@ -1,0 +1,39 @@
+@import '../../../scss/next-toolbox.scss';
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: 200px 0;
+  }
+}
+
+.placeholder-shimmer {
+  animation: shimmer 2s linear 0s infinite normal forwards;
+  background: $light-gray;
+  background-image: linear-gradient(
+    to right,
+    $light-gray 25%,
+    lighten($light-gray, 10%) 50%,
+    $light-gray 75%
+  );
+  background-size: 400px 50px; // Consistent gradient for all elements.
+}
+
+.placeholder-text {
+  display: inline-block;
+  height: 1.1em;
+}
+
+.placeholder-text.-small {
+  width: 25%;
+}
+
+.placeholder-text.-medium {
+  width: 60%;
+}
+
+.placeholder-text.-large {
+  width: 100%;
+}
