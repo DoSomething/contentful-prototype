@@ -9,13 +9,11 @@ import GeneralPage from './GeneralPage';
 const mapStateToProps = (state, ownProps) => {
   // @todo This setup is temporary to test general pages
   // this container should just be fetching the props from state
-  const { match, pages } = ownProps;
-
   const subPage = find(
-    pages,
+    state.campaign.pages,
     page =>
       page.type === 'page'
-        ? page.fields.slug.endsWith(match.params.slug)
+        ? page.fields.slug.endsWith(ownProps.match.params.slug)
         : false,
   );
 
