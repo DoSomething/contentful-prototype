@@ -43,7 +43,7 @@ const LinkAction = props => {
         onClick={() => onLinkClick(link)}
         className="link-wrapper margin-bottom-lg"
       >
-        <Embed url={href} />
+        <Embed url={href} badged />
         {affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
