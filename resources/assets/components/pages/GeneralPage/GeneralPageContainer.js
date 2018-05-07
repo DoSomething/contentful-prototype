@@ -28,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     title,
     subTitle,
-    block,
+    blocks,
   };
 };
 
