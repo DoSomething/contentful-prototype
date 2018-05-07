@@ -26,8 +26,11 @@ const GeneralPage = props => {
           </div>
 
           {blocks.map(block => (
-            <div className="general-page__block margin-vertical-lg">
-              <ContentfulEntry key={block.id} json={block} />
+            <div
+              className="general-page__block margin-vertical-lg"
+              key={block.id}
+            >
+              <ContentfulEntry json={block} />
             </div>
           ))}
         </Enclosure>
