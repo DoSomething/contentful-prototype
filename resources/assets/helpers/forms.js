@@ -44,3 +44,7 @@ export function getFieldErrorMessages(response) {
 
   return messages;
 }
+
+export function setFormData() {
+  console.log('✨');
+}

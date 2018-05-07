@@ -1,11 +1,16 @@
+/* global FormData */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { camelCase, get } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import MediaUploader from '../../utilities/MediaUploader';
+import FormValidation from '../../utilities/Form/FormValidation';
+import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 class PhotoSubmissionAction extends React.Component {
   state = {
@@ -13,10 +18,11 @@ class PhotoSubmissionAction extends React.Component {
     file: this.defaultMediaState,
     quantityValue: '',
     showModal: false,
+    whyParticipatedValue: '',
   };
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
+    // console.log(prevProps);
   }
 
   defaultMediaState = {
@@ -27,7 +33,9 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   handleChange = event => {
-    console.log(event.target);
+    this.setState({
+      [`${camelCase(event.target.name)}Value`]: event.target.value,
+    });
   };
 
   handleFileUpload = media => {
@@ -42,20 +50,56 @@ class PhotoSubmissionAction extends React.Component {
     console.log(event);
     console.log(this.props.id);
 
-    this.setState({
-      captionValue: event.target.value,
-      quantityValue: event.target.value,
+    this.props.clearPostSubmissionItem(this.props.id);
+
+    const type = 'photo';
+
+    const action = get(this.props.additionalContent, 'action', 'default');
+
+    setFormData();
+    const formData = new FormData();
+
+    formData.append('id', this.props.id);
+    formData.append('action', action);
+    formData.append('type', type);
+    formData.append('text', this.state.captionValue);
+    formData.append('quantity', this.state.quantityValue);
+    formData.append('why_participated', this.state.whyParticipatedValue);
+
+    if (this.props.legacyCampaignId && this.props.legacyCampaignRunId) {
+      formData.append(
+        'details',
+        JSON.stringify({
+          campaign_id: this.props.campaignId,
+          legacy_campaign_id: this.props.legacyCampaignId,
+          legacy_campaign_run_id: this.props.legacyCampaignRunId,
+        }),
+      );
+    }
+
+    // Send request to store the campaign photo submission post.
+    this.props.storeCampaignPost(this.props.campaignId, {
+      action,
+      body: formData,
+      id: this.props.id,
+      type,
     });
   };
 
   resetForm = () => {
     this.setState({
       captionValue: '',
+      file: this.defaultMediaState,
       quantityValue: '',
+      whyParticipatedValue: '',
     });
   };
 
   render() {
+    const formResponse = this.props.submissions.items[this.props.id] || null;
+
+    const errors = getFieldErrors(formResponse);
+
     return (
       <React.Fragment>
         <Card
@@ -65,6 +109,8 @@ class PhotoSubmissionAction extends React.Component {
           )}
           title={this.props.title}
         >
+          {formResponse ? <FormValidation response={formResponse} /> : null}
+
           <form onSubmit={this.handleSubmit}>
             <div className="wrapper">
               <div className="form-section">
@@ -156,6 +202,7 @@ PhotoSubmissionAction.propTypes = {
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
+  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
