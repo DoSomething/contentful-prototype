@@ -17,7 +17,7 @@ const GeneralPage = props => {
   return (
     <div>
       <div className="main clearfix general-page">
-        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+        <Enclosure className="default-container margin-vertical">
           <div className="general-page__heading text-centered">
             <h1 className="general-page__title caps-lock">{title}</h1>
             {subTitle ? (
