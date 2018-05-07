@@ -50,8 +50,8 @@
     margin-left: 10%;
   }
 
-  @include media($large) {
-    width: 65%;
-    margin-left: 17.5%;
+  @include media($larger) {
+    width: 50%;
+    margin-left: 25%;
   }
 }
