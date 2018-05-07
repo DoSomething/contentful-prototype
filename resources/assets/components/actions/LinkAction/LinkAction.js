@@ -44,6 +44,12 @@ const LinkAction = props => {
         className="link-wrapper margin-bottom-lg"
       >
         <Embed url={href} />
+        {affiliateLogo ? (
+          <SponsorPromotion
+            className="affiliate-logo -padded"
+            imgUrl={affiliateLogo}
+          />
+        ) : null}
       </div>
     );
   }
