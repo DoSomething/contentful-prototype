@@ -74,10 +74,6 @@ export function storeCampaignPost(campaignId, data) {
     },
   };
 
-  console.log(campaignId);
-  console.log(data);
-  console.log(analytics);
-
   return (dispatch, getState) => {
     const token = getState().user.token;
 

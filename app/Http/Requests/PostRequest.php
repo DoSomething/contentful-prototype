@@ -55,11 +55,11 @@ class PostRequest extends FormRequest
         switch ($this->input('type')) {
             case 'photo':
                 return [
-                    'file' => 'required',  //@TODO: add file|image
+                    'file' => 'required|file|image',
                     'quantity' => 'required|integer|min:1',
                     'text' => 'required|min:4|max:60',
                     'why_participated' => 'required',
-                    'poopieness' => 'required',
+                    'preventSubmission' => 'required',
                 ];
 
             case 'text':
