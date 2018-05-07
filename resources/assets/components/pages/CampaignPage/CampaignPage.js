@@ -87,6 +87,12 @@ const CampaignPage = props => {
 
           <Route
             path={join(match.url, ':slug')}
+            component={CampaignSubPageContainer}
+          />
+
+          {/* temporary testing route for general pages */}
+          <Route
+            path={join(match.url, 'general-page', ':slug')}
             component={GeneralPageContainer}
           />
         </Switch>
