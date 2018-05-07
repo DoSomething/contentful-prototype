@@ -38,7 +38,11 @@ const GeneralPage = props => {
             <h1 className="general-page__title caps-lock">{title}</h1>
             <p className="general-page__subtitle">{subTitle}</p>
           </div>
-          {blocks.map(block => <ContentfulEntry key={block.id} json={block} />)}
+          {blocks.map(block => (
+            <div className="general-page__block margin-vertical-lg">
+              <ContentfulEntry key={block.id} json={block} />
+            </div>
+          ))}
         </Enclosure>
       </div>
     </div>
