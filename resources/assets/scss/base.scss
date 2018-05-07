@@ -325,14 +325,17 @@ p {
 
 .rounded {
   border-radius: $lg-border-radius;
+  overflow: hidden;
 }
 
 .rounded-top {
   border-radius: $lg-border-radius $lg-border-radius 0 0;
+  overflow: hidden;
 }
 
 .rounded-bottom {
   border-radius: 0 0 $lg-border-radius $lg-border-radius;
+  overflow: hidden;
 }
 
 .faded {
