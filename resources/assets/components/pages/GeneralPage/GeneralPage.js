@@ -16,7 +16,7 @@ const GeneralPage = props => {
 
   return (
     <div>
-      <div className="main clearfix">
+      <div className="main clearfix general-page">
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           <div className="general-page__heading text-centered">
             <h1 className="general-page__title caps-lock">{title}</h1>
@@ -26,10 +26,7 @@ const GeneralPage = props => {
           </div>
 
           {blocks.map(block => (
-            <div
-              className="general-page__block margin-vertical-lg"
-              key={block.id}
-            >
+            <div className="general-page__block margin-vertical" key={block.id}>
               <ContentfulEntry json={block} />
             </div>
           ))}
