@@ -2,13 +2,13 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { truncate } from 'lodash';
+// import { truncate } from 'lodash';
 import classnames from 'classnames';
 import { Phoenix } from '@dosomething/gateway';
 
-import { Figure } from '../Figure';
 import linkIcon from './linkIcon.svg';
 import { isExternal } from '../../helpers';
+import LazyImage from '../utilities/LazyImage';
 
 import './embed.scss';
 
@@ -16,74 +16,60 @@ class Embed extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = { data: null };
     this.phoenix = new Phoenix();
   }
 
   componentDidMount() {
     this.phoenix
       .get('next/embed', { url: this.props.url })
-      .then(json => this.setState(json));
+      .then(data => this.setState({ data }));
   }
 
   render() {
-    let embed = <div className="spinner" />;
+    const { url, badged, className } = this.props;
+    const { data } = this.state;
 
-    // If an <iframe> code snippet is provided, use that. Otherwise, build preview card.
-    if (this.state.code) {
-      const embedHtml = { __html: this.state.code };
-      embed = (
-        <div className="media-video" dangerouslySetInnerHTML={embedHtml} />
-      );
-    } else if (this.state.title && this.state.url) {
-      const target = isExternal(this.state.url) ? '_blank' : '_self';
-      embed = (
-        <a href={this.state.url} target={target} rel="noopener noreferrer">
-          <Figure
-            className="margin-bottom-none bg-white"
-            image={this.state.image || this.state.provider.icon}
-            alt={this.state.provider.name}
-            alignment="left-collapse"
-            size="large"
-          >
+    const title = data ? data.title : 'Loading...';
+    const description = data ? data.description : '...';
+    const source = data ? data.provider.name : '...';
+    const image = data ? data.image : null;
+
+    // If an <iframe> code snippet is provided, use that.
+    // Otherwise, fill in our "embed card".
+    const embed = this.state.code ? (
+      <div
+        className="media-video"
+        dangerouslySetInnerHTML={{ __html: this.state.code }}
+      />
+    ) : (
+      <a
+        href={url}
+        className="embed__linker"
+        target={isExternal(url) ? '_blank' : '_self'}
+        rel="noopener noreferrer"
+      >
+        <div className="embed">
+          <LazyImage className="embed__image" src={image} background />
+          <div className="embed__content padded">
             <div className="margin-vertical-md margin-right-md">
-              <h3>{this.state.title}</h3>
-              {this.state.description ? (
-                <p className="color-gray">{this.state.description}</p>
-              ) : null}
-              <p className="footnote font-bold caps-lock">
-                {this.state.provider.name}
-              </p>
+              <h3>{title}</h3>
+              {description ? <p className="color-gray">{description}</p> : null}
+              <p className="footnote font-bold caps-lock">{source}</p>
             </div>
-          </Figure>
-        </a>
-      );
-    } else if (this.state.requestFailed) {
-      embed = (
-        <a href={this.props.url}>
-          <Figure
-            className="padded margin-bottom-none"
-            image={linkIcon}
-            alt="link icon"
-            alignment="left-collapse"
-            size="small"
-          >
-            <h3>{truncate(this.props.url, { length: 50 })}</h3>
-            <p className="footnote">(Click or share this link)</p>
-          </Figure>
-        </a>
-      );
-    }
+          </div>
+          {badged ? (
+            <div className="button embed__badge flex-center-xy">
+              <img src={linkIcon} alt="link" />
+            </div>
+          ) : null}
+        </div>
+      </a>
+    );
 
     return (
-      <div className={classnames('embed', this.props.className)}>
-        <div
-          className={classnames('wrapper', 'bordered', 'rounded', 'bg-white', {
-            'flex-center-xy': !this.state.title,
-          })}
-        >
-          {embed}
-        </div>
+      <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
+        {embed}
       </div>
     );
   }
@@ -92,10 +78,12 @@ class Embed extends React.Component {
 Embed.propTypes = {
   className: PropTypes.string,
   url: PropTypes.string.isRequired,
+  badged: PropTypes.bool,
 };
 
 Embed.defaultProps = {
   className: null,
+  badged: false,
 };
 
 export default Embed;
