@@ -66,6 +66,10 @@ p {
   color: $white !important;
 }
 
+.color-gray {
+  color: $med-gray !important;
+}
+
 .color-yellow {
   color: $primary-color !important;
 }
@@ -301,9 +305,22 @@ p {
   margin-top: $section-spacing;
 }
 
+.margin-vertical {
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
+}
+
 .margin-vertical-md {
   margin-top: $half-spacing;
   margin-bottom: $half-spacing;
+}
+
+.margin-right {
+  margin-right: $base-spacing;
+}
+
+.margin-right-md {
+  margin-right: $half-spacing;
 }
 
 .rounded {

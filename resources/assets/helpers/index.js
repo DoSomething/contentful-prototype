@@ -1,6 +1,6 @@
 /* global window, document, Blob, URL */
 
-import { get, find } from 'lodash';
+import { get, find, isNull, omitBy } from 'lodash';
 import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
 import { isBefore } from 'date-fns';
@@ -597,4 +597,14 @@ export function report(error) {
   }
 
   window.newrelic.noticeError(error);
+}
+
+/**
+ * Set null properites to undefined to help with React defaultProps.
+ *
+ * @param  {Object} fields
+ * @return {Object}
+ */
+export function withoutNulls(fields) {
+  return omitBy(fields, isNull);
 }

@@ -16,28 +16,27 @@ describe('LinkAction component', () => {
 
   const props = {
     title: 'Click on this link!',
-    content: 'This is a great link',
     link: 'https://dosomething.org',
   };
 
-  describe('without buttonText', () => {
+  describe('without content', () => {
     const wrapper = shallow(<LinkAction {...props} />);
 
-    it('renders a Card component with the link embed', () => {
-      expect(wrapper.find('Card')).toHaveLength(1);
-      expect(wrapper.find('Card').find('Embed')).toHaveLength(1);
+    it('renders a link embed', () => {
+      expect(wrapper.find('Embed')).toHaveLength(1);
     });
 
     it('calls the event tracker prop function when the link is clicked', () => {
-      wrapper.find('.link-wrapper').simulate('click');
+      wrapper.simulate('click');
       expect(trackEventMock).toHaveBeenCalled();
     });
   });
 
-  describe('with buttonText', () => {
+  describe('with content', () => {
     const wrapper = shallow(
-      <LinkAction {...props} buttonText="Click this button" />,
+      <LinkAction {...props} content="This is a great link" />,
     );
+
     it('renders a Card component with a button', () => {
       expect(wrapper.find('Card')).toHaveLength(1);
       expect(wrapper.find('Card').find('Button')).toHaveLength(1);
@@ -49,10 +48,25 @@ describe('LinkAction component', () => {
     });
   });
 
-  describe('without an affiliateLogo', () => {
+  describe('with custom button text', () => {
     const wrapper = shallow(
-      <LinkAction {...props} buttonText="Click this button" />,
+      <LinkAction
+        {...props}
+        content="This is a great link"
+        buttonText="Do it!"
+      />,
     );
+
+    it('renders a button with the appropriate text', () => {
+      const button = wrapper.find('Button');
+
+      expect(button).toHaveLength(1);
+      expect(button.dive().text()).toEqual('Do it!');
+    });
+  });
+
+  describe('without an affiliateLogo', () => {
+    const wrapper = shallow(<LinkAction {...props} content="Look here!" />);
 
     it('does not add an "affiliate-content" class to the Card', () => {
       expect(wrapper.find('Card').hasClass('affiliate-content')).toEqual(false);
@@ -67,6 +81,7 @@ describe('LinkAction component', () => {
     const wrapper = shallow(
       <LinkAction
         {...props}
+        content="This is a sponsored post, so take a good look at it!"
         affiliateLogo="https://vignette.wikia.nocookie.net/pokemon/images/b/b0/Team_Rocket_trio_OS.png/revision/latest?cb=20150915073657"
       />,
     );
