@@ -1,5 +1,9 @@
 @import '../../../scss/next-toolbox';
 
+.general-page {
+  background: $white;
+}
+
 .general-page__heading {
   .general-page__title {
     font-family: $secondary-font-family;
