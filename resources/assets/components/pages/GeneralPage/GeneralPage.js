@@ -6,6 +6,8 @@ import NotFound from '../../NotFound';
 import Enclosure from '../../Enclosure';
 import ContentfulEntry from '../../ContentfulEntry';
 
+import './general-page.scss';
+
 /**
  * Render a general page
  *
@@ -32,8 +34,10 @@ const GeneralPage = props => {
     <div>
       <div className="main clearfix">
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-          <h1>{title}</h1>
-          <h3>{subTitle}</h3>
+          <div className="general-page__heading text-centered">
+            <h1 className="general-page__title caps-lock">{title}</h1>
+            <p className="general-page__subtitle">{subTitle}</p>
+          </div>
           {blocks.map(block => <ContentfulEntry key={block.id} json={block} />)}
         </Enclosure>
       </div>
