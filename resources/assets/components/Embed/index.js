@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { truncate } from 'lodash';
+import { truncate } from 'lodash';
 import classnames from 'classnames';
 import { Phoenix } from '@dosomething/gateway';
 
@@ -51,9 +51,19 @@ class Embed extends React.Component {
           <LazyImage className="embed__image" src={image} background />
           <div className="embed__content padded">
             <div className="margin-vertical-md margin-right-md">
-              <h3>{data ? data.title : <PlaceholderText size="medium" />}</h3>
+              <h3>
+                {data ? (
+                  truncate(data.title, { length: 140 })
+                ) : (
+                  <PlaceholderText size="medium" />
+                )}
+              </h3>
               <p className="color-gray">
-                {data ? data.description : <PlaceholderText size="large" />}
+                {data ? (
+                  truncate(data.description, { length: 300 })
+                ) : (
+                  <PlaceholderText size="large" />
+                )}
               </p>
               <p className="footnote font-bold caps-lock">
                 {data ? data.provider.name : <PlaceholderText size="small" />}

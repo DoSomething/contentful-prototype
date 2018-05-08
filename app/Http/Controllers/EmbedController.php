@@ -41,7 +41,7 @@ class EmbedController extends Controller
                     'name' => parse_url($url)['host'],
                     'icon' => null,
                 ],
-                'title' => str_limit($url, 140),
+                'title' => $url,
                 'url' => $url,
                 'description' => null,
             ];
