@@ -49,7 +49,7 @@ class Embed extends React.Component {
           <LazyImage className="embed__image" src={image} background />
           <div className="embed__content padded">
             <div className="margin-vertical-md margin-right-md">
-              <h3>
+              <h3 className="line-break">
                 {data ? (
                   truncate(data.title, { length: 60 })
                 ) : (
