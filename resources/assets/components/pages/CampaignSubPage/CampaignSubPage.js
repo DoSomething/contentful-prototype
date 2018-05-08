@@ -50,7 +50,7 @@ const CampaignSubPageContent = props => {
         <div>
           <ScrollConcierge />
           {subPage.fields.blocks.map(block => (
-            <div className="margin-vertical" key={block.id} id={block.id}>
+            <div className="margin-vertical" key={block.id}>
               <ContentfulEntry json={block} />
             </div>
           ))}
