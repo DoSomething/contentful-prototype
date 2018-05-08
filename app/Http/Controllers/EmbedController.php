@@ -26,7 +26,7 @@ class EmbedController extends Controller
             CURLOPT_TIMEOUT => 3,
         ]);
 
-        $info = remember('embed.' . md5($url), 60, function () use ($url, $dispatcher) {
+        $info = remember('embed.' . md5($url), 60 * 48, function () use ($url, $dispatcher) {
             try {
                 return Embed::create($url, null, $dispatcher);
             } catch (\Exception $exception) {
