@@ -59,7 +59,7 @@ class PostRequest extends FormRequest
                     'quantity' => 'required|integer|min:1',
                     'text' => 'required|min:4|max:60',
                     'why_participated' => 'required',
-                    'preventSubmission' => 'required',
+                    'prevent_submission' => 'required',
                 ];
 
             case 'text':

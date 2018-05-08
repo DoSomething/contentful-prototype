@@ -14,14 +14,14 @@ class PhotoSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
 
-    this.defaultMediaState = {
+    this.defaultFileState = {
       file: null,
       filePreviewUrl: null,
     };
 
     this.state = {
-      captionValue: '',
-      mediaValue: this.defaultMediaState,
+      textValue: '',
+      fileValue: this.defaultFileState,
       quantityValue: '',
       showModal: false,
       whyParticipatedValue: '',
@@ -40,7 +40,7 @@ class PhotoSubmissionAction extends React.Component {
 
   handleFileUpload = media => {
     this.setState({
-      mediaValue: media,
+      fileValue: media,
     });
   };
 
@@ -58,8 +58,8 @@ class PhotoSubmissionAction extends React.Component {
         action,
         type,
         id: this.props.id,
-        file: this.state.mediaValue.file || '',
-        text: this.state.captionValue,
+        file: this.state.fileValue.file || '',
+        text: this.state.textValue,
         quantity: this.state.quantityValue,
         why_participated: this.state.whyParticipatedValue,
       },
@@ -77,8 +77,8 @@ class PhotoSubmissionAction extends React.Component {
 
   resetForm = () => {
     this.setState({
-      captionValue: '',
-      mediaValue: this.defaultMediaState,
+      textValue: '',
+      fileValue: this.defaultFileState,
       quantityValue: '',
       whyParticipatedValue: '',
     });
@@ -106,8 +106,9 @@ class PhotoSubmissionAction extends React.Component {
                 <div className="form-item-group padding-md">
                   <MediaUploader
                     label="Add your photo here"
-                    media={this.state.mediaValue}
+                    media={this.state.fileValue}
                     onChange={this.handleFileUpload}
+                    hasError={has(errors, 'file')}
                   />
 
                   <div className="form-item">
@@ -115,7 +116,7 @@ class PhotoSubmissionAction extends React.Component {
                       className={classnames('field-label', {
                         'has-error': has(errors, 'text'),
                       })}
-                      htmlFor="caption"
+                      htmlFor="text"
                     >
                       {this.props.captionFieldLabel}
                     </label>
@@ -124,10 +125,10 @@ class PhotoSubmissionAction extends React.Component {
                         'has-error shake': has(errors, 'text'),
                       })}
                       type="text"
-                      id="caption"
-                      name="caption"
+                      id="text"
+                      name="text"
                       placeholder={this.props.captionFieldPlaceholder}
-                      value={this.state.captionValue}
+                      value={this.state.textValue}
                       onChange={this.handleChange}
                     />
                   </div>
