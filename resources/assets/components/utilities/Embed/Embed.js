@@ -31,15 +31,13 @@ class Embed extends React.Component {
     const { url, badged, className } = this.props;
     const { data } = this.state;
 
+    const code = data ? data.code : null;
     const image = data ? data.image : null;
 
     // If an <iframe> code snippet is provided, use that.
     // Otherwise, fill in our "embed card".
-    const embed = this.state.code ? (
-      <div
-        className="media-video"
-        dangerouslySetInnerHTML={{ __html: this.state.code }}
-      />
+    const embed = code ? (
+      <div className="media-video" dangerouslySetInnerHTML={{ __html: code }} />
     ) : (
       <a
         href={url}
