@@ -65,7 +65,7 @@ class MediaUploader extends React.Component {
       <div
         className={classnames('media-uploader', {
           'has-image': filePreviewUrl,
-          'has-error': hasError,
+          'has-error shake': hasError,
         })}
       >
         <label htmlFor="media-uploader">
