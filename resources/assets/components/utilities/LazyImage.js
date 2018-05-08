@@ -15,7 +15,7 @@ class LazyImage extends React.Component {
   }
 
   /**
-   * Perform actions immediately after mounting component.
+   * Perform actions after receiving new props.
    */
   componentDidUpdate() {
     this.loader = new Image();
