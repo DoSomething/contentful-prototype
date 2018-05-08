@@ -1,0 +1,57 @@
+@import '../../../scss/next-toolbox';
+
+.general-page {
+  background: $white;
+}
+
+.general-page__heading {
+  .general-page__title {
+    font-family: $secondary-font-family;
+    font-size: $font-superhero;
+    font-weight: $weight-normal;
+
+    @include media($medium) {
+      font-size: $font-gigantic;
+    }
+  }
+
+  .general-page__subtitle {
+    font-family: $primary-font-family;
+    font-weight: $weight-bold;
+
+    @include media($medium) {
+      font-size: $font-large;
+    }
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(
+      to right,
+      $blue 0%,
+      $blue 33.3%,
+      $purple 33.3%,
+      $purple 66.6%,
+      $yellow 66.6%,
+      $yellow 100%
+    );
+    margin: $section-spacing 10px;
+  }
+}
+
+.default-container {
+  width: 95%;
+  margin-left: 2.5%;
+
+  @include media($medium) {
+    width: 80%;
+    margin-left: 10%;
+  }
+
+  @include media($larger) {
+    width: 50%;
+    margin-left: 25%;
+  }
+}

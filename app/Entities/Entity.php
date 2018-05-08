@@ -67,7 +67,7 @@ class Entity implements ArrayAccess, JsonSerializable
             case 'linkAction':
                 return new LinkAction($block->entry);
             case 'page':
-                return $block;
+                return new Page($block->entry);
             case 'photoSubmissionAction':
                 return new PhotoSubmissionAction($block->entry);
             case 'photoUploaderAction':
@@ -78,6 +78,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new TextSubmissionAction($block->entry);
             case 'voterRegistrationAction':
                 return new VoterRegistrationAction($block->entry);
+            case 'callToAction':
+                return new CallToAction($block->entry);
             default:
                 return new CampaignActionStep($block->entry);
         }
