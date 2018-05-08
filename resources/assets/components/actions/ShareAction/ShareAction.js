@@ -67,7 +67,9 @@ class ShareAction extends React.Component {
         <div className="share-action margin-bottom-lg">
           <Card title={title} className="rounded bordered">
             {content ? <Markdown className="padded">{content}</Markdown> : null}
-            <Embed className="padded" url={href} />
+            <div className="padded">
+              <Embed url={href} />
+            </div>
             <Button attached onClick={() => handleShareClick(href)}>
               Share on {isFacebook ? 'Facebook' : 'Twitter'}
             </Button>

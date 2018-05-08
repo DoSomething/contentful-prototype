@@ -46,7 +46,11 @@ const CampaignUpdate = props => {
         {content || 'Placeholder'}
       </Markdown>
 
-      {link ? <Embed className="padded" url={link} /> : null}
+      {link ? (
+        <div className="padded">
+          <Embed url={link} />
+        </div>
+      ) : null}
 
       <footer className="padded clearfix">
         {affiliateLogo ? (
