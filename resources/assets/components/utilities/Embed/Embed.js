@@ -51,14 +51,14 @@ class Embed extends React.Component {
             <div className="margin-vertical-md margin-right-md">
               <h3>
                 {data ? (
-                  truncate(data.title, { length: 140 })
+                  truncate(data.title, { length: 60 })
                 ) : (
                   <PlaceholderText size="medium" />
                 )}
               </h3>
               <p className="color-gray">
                 {data ? (
-                  truncate(data.description, { length: 300 })
+                  truncate(data.description, { length: 240 })
                 ) : (
                   <PlaceholderText size="large" />
                 )}
