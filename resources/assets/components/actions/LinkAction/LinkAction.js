@@ -4,8 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Embed from '../../Embed';
 import Card from '../../utilities/Card/Card';
+import Embed from '../../utilities/Embed/Embed';
 import Button from '../../utilities/Button/Button';
 import SponsorPromotion from '../../SponsorPromotion';
 import Markdown from '../../utilities/Markdown/Markdown';

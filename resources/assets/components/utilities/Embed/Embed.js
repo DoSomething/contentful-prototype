@@ -7,9 +7,9 @@ import classnames from 'classnames';
 import { Phoenix } from '@dosomething/gateway';
 
 import linkIcon from './linkIcon.svg';
-import { isExternal } from '../../helpers';
-import LazyImage from '../utilities/LazyImage';
-import PlaceholderText from '../utilities/PlaceholderText/PlaceholderText';
+import { isExternal } from '../../../helpers';
+import LazyImage from '../LazyImage';
+import PlaceholderText from '../PlaceholderText/PlaceholderText';
 
 import './embed.scss';
 

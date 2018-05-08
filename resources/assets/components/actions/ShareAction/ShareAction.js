@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Embed from '../../Embed';
 import Card from '../../utilities/Card/Card';
+import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
