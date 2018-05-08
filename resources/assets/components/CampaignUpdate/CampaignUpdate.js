@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get } from 'lodash';
 
-import Embed from '../Embed';
 import Card from '../utilities/Card/Card';
+import Embed from '../utilities/Embed/Embed';
 import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
@@ -46,7 +46,11 @@ const CampaignUpdate = props => {
         {content || 'Placeholder'}
       </Markdown>
 
-      {link ? <Embed className="padded" url={link} /> : null}
+      {link ? (
+        <div className="padded">
+          <Embed url={link} />
+        </div>
+      ) : null}
 
       <footer className="padded clearfix">
         {affiliateLogo ? (

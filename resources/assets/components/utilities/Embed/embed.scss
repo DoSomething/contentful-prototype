@@ -1,0 +1,37 @@
+@import '../../../scss/next-toolbox';
+
+.embed {
+  display: flex;
+  min-height: 100px;
+
+  @include media($mobile) {
+    flex-direction: column;
+  }
+}
+
+.embed__linker,
+.embed__linker:hover {
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+.embed__image {
+  flex: 0 0 150px;
+  background-color: $light-gray;
+  background-size: cover;
+  background-position: center;
+}
+
+.embed__content {
+  flex: 1 1 auto;
+}
+
+.embed__badge {
+  flex: 0 0 auto;
+  border-radius: 0;
+  padding: $half-spacing;
+}
+
+.embed__badge img {
+  max-width: none;
+}

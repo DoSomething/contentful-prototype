@@ -35,7 +35,16 @@ class EmbedController extends Controller
         });
 
         if (gettype($info) === 'string') {
-            return ['requestFailed' => true, 'info' => $info];
+            return [
+                'type' => 'error',
+                'provider' => [
+                    'name' => parse_url($url)['host'],
+                    'icon' => null,
+                ],
+                'title' => $url,
+                'url' => $url,
+                'description' => null,
+            ];
         } else {
             return [
                 'type' => $info->type,

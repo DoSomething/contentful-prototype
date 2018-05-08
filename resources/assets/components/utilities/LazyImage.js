@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import requiredIf from 'react-required-if';
 
 import { EMPTY_IMAGE } from '../../helpers';
 
@@ -9,20 +10,25 @@ class LazyImage extends React.Component {
   constructor(props) {
     super(props);
 
+    this.loader = null;
     this.state = { loaded: false };
   }
 
   /**
-   * Perform actions immediately after mounting component.
+   * Perform actions after receiving new props.
    */
-  componentDidMount() {
-    const loader = new Image();
+  componentDidUpdate() {
+    this.loader = new Image();
 
     // Load image and set `loaded: true` state when ready.
-    loader.onload = () => this.setState({ loaded: true });
+    this.loader.onload = () => this.setState({ loaded: true });
     if (this.props.src) {
-      loader.src = this.props.src;
+      this.loader.src = this.props.src;
     }
+  }
+
+  componentWillUnmount() {
+    this.loader = null;
   }
 
   /**
@@ -31,11 +37,26 @@ class LazyImage extends React.Component {
    * @returns {XML}
    */
   render() {
+    const showPlaceholder = this.state.loaded && this.props.src;
+    const imageUrl = showPlaceholder ? this.props.src : EMPTY_IMAGE;
+
+    if (this.props.background) {
+      return (
+        <div
+          className={this.props.className}
+          style={{
+            backgroundImage: `url(${imageUrl})`,
+            transition: 'background 0.5s',
+          }}
+        />
+      );
+    }
+
     return (
       <img
         {...this.props}
-        alt=""
-        src={this.state.loaded && this.props.src ? this.props.src : EMPTY_IMAGE}
+        alt={this.props.alt}
+        src={imageUrl}
         style={{
           transition: 'opacity 0.5s',
           opacity: this.state.loaded ? 1 : 0,
@@ -46,7 +67,17 @@ class LazyImage extends React.Component {
 }
 
 LazyImage.propTypes = {
-  src: PropTypes.string.isRequired,
+  alt: requiredIf(PropTypes.string, props => !props.background),
+  background: PropTypes.bool,
+  className: PropTypes.string,
+  src: PropTypes.string,
+};
+
+LazyImage.defaultProps = {
+  alt: null,
+  background: false,
+  className: null,
+  src: null,
 };
 
 export default LazyImage;
