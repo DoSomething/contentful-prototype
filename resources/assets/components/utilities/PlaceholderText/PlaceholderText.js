@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './placeholder-text.scss';
 
 const PlaceholderText = ({ size }) => (
-  <div className={`placeholder-shimmer placeholder-text -${size}`} />
+  <span className={`placeholder-shimmer placeholder-text -${size}`} />
 );
 
 PlaceholderText.propTypes = {

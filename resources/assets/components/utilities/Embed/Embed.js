@@ -46,7 +46,7 @@ class Embed extends React.Component {
         rel="noopener noreferrer"
       >
         <div className="embed">
-          <LazyImage className="embed__image" src={image} background />
+          <LazyImage className="embed__image" src={image} asBackground />
           <div className="embed__content padded">
             <div className="margin-vertical-md margin-right-md">
               <h3 className="line-break">
