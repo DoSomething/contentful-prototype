@@ -31,7 +31,8 @@ class Page extends Entity implements JsonSerializable
      * @param  array $blocks
      * @return array
      */
-    public function parseBlocks($blocks) {
+    public function parseBlocks($blocks)
+    {
         $parsedBlocks = parent::parseBlocks($blocks);
 
         if (ends_with($this->slug, 'community')) {
