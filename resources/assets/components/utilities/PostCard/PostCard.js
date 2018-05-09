@@ -56,8 +56,10 @@ const PostCard = ({ post, noun }) => {
         alignment="right"
         className="padded margin-bottom-none"
       >
-        <PostBadge status={post.status} tags={post.tags} />
-        <h4>{firstName}</h4>
+        <h4>
+          {firstName}
+          <PostBadge status={post.status} tags={post.tags} />
+        </h4>
         {post.quantity ? (
           <p className="footnote">
             {post.quantity}{' '}

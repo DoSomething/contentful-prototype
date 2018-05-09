@@ -63,14 +63,7 @@
 }
 
 .post-badge {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  border-top: $base-spacing solid $yellow;
-  border-right: $base-spacing solid transparent;
-}
-
-.post-badge.-rejected {
-  border-top: $base-spacing solid $error-color;
+  display: inline-block;
+  vertical-align: -2px;
+  padding-left: 6px;
 }
