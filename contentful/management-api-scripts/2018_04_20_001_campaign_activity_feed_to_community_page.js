@@ -21,6 +21,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
   const campaignSlug = getField(campaign, 'slug');
   const campaignActivityFeed = getField(campaign, 'activity_feed');
   const campaignPages = getField(campaign, 'pages', []);
+  const campaignAdditionalContent = getField(campaign, 'additionalContent');
 
   if (!campaignPages.length) {
     // Ensure the campaign has a pages property with the correct locale
@@ -36,9 +37,9 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
   logger.info(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
 
-  const communityPageBlocks = [];
+  let communityPageBlocks = [];
 
-  // Copy over all block link references from activityFeed besides for `reportbacks` custom blocks
+  // Copy over all block link references from activity_feed besides for `reportbacks` custom blocks
   for (let i = 0; i < campaignActivityFeed.length; i++) {
     const block = campaignActivityFeed[i];
     const blockEntry = await attempt(() => environment.getEntry(block.sys.id));
@@ -58,6 +59,15 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
     }
 
     communityPageBlocks.push(block);
+  }
+
+  // Reverse the community page blocks for activity_feeds which were still ordered top to bottom
+  const reverseActivityFeedOrder = get(
+    campaignAdditionalContent,
+    'reverseActivityFeedOrder',
+  );
+  if (reverseActivityFeedOrder === false) {
+    communityPageBlocks = communityPageBlocks.reverse();
   }
 
   // Create a new community 'Page' with the activity_feed blocks from the source campaign
