@@ -1,61 +1,107 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import MediaUploader from '../../utilities/MediaUploader';
+import FormValidation from '../../utilities/Form/FormValidation';
+import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 class PhotoSubmissionAction extends React.Component {
-  state = {
-    captionValue: '',
-    file: this.defaultMediaState,
-    quantityValue: '',
-    showModal: false,
-  };
+  constructor(props) {
+    super(props);
+
+    // @TODO: Update the MediaUploader component and remove need
+    // for this object.
+    this.defaultMediaState = {
+      file: null,
+      filePreviewUrl: null,
+    };
+
+    this.state = {
+      captionValue: '',
+      mediaValue: this.defaultMediaState,
+      quantityValue: '',
+      showModal: false,
+      whyParticipatedValue: '',
+    };
+  }
 
   componentDidUpdate(prevProps) {
     console.log(prevProps);
   }
 
-  defaultMediaState = {
-    file: null,
-    filePreviewUrl: null,
-    type: null,
-    uri: null,
+  fields = {
+    file: 'media',
+    text: 'caption',
+    quantity: 'quantity',
+    why_participated: 'whyParticipated',
   };
 
   handleChange = event => {
-    console.log(event.target);
+    this.setState({
+      [`${event.target.name}Value`]: event.target.value,
+    });
   };
 
   handleFileUpload = media => {
     this.setState({
-      file: media,
+      mediaValue: media,
     });
   };
 
   handleSubmit = event => {
     event.preventDefault();
 
-    console.log(event);
-    console.log(this.props.id);
+    this.props.clearPostSubmissionItem(this.props.id);
 
-    this.setState({
-      captionValue: event.target.value,
-      quantityValue: event.target.value,
+    const type = 'photo';
+
+    const action = get(this.props.additionalContent, 'action', 'default');
+
+    const formData = setFormData(
+      {
+        action,
+        type,
+        id: this.props.id,
+        // Associate state values to fields.
+        ...mapValues(this.fields, value => this.state[`${value}Value`]),
+        file: this.state.mediaValue.file || '',
+      },
+      this.props,
+    );
+
+    // Send request to store the campaign photo submission post.
+    this.props.storeCampaignPost(this.props.campaignId, {
+      action,
+      body: formData,
+      id: this.props.id,
+      type,
     });
   };
 
   resetForm = () => {
     this.setState({
       captionValue: '',
+      mediaValue: this.defaultMediaState,
       quantityValue: '',
+      whyParticipatedValue: '',
     });
   };
 
   render() {
+    const formResponse = this.props.submissions.items[this.props.id] || null;
+
+    const formErrors = getFieldErrors(formResponse);
+
+    // Associate errors to component field names.
+    const errors = formErrors
+      ? mapValues(invert(this.fields), value => formErrors[value])
+      : null;
+
     return (
       <React.Fragment>
         <Card
@@ -65,25 +111,32 @@ class PhotoSubmissionAction extends React.Component {
           )}
           title={this.props.title}
         >
+          {formResponse ? <FormValidation response={formResponse} /> : null}
+
           <form onSubmit={this.handleSubmit}>
             <div className="wrapper">
               <div className="form-section">
                 <div className="form-item-group padding-md">
                   <MediaUploader
                     label="Add your photo here"
-                    media={this.state.file}
+                    media={this.state.mediaValue}
                     onChange={this.handleFileUpload}
+                    hasError={has(errors, 'media')}
                   />
 
                   <div className="form-item">
                     <label
-                      className={classnames('field-label')}
+                      className={classnames('field-label', {
+                        'has-error': has(errors, 'caption'),
+                      })}
                       htmlFor="caption"
                     >
                       {this.props.captionFieldLabel}
                     </label>
                     <input
-                      className={classnames('text-field')}
+                      className={classnames('text-field', {
+                        'has-error shake': has(errors, 'caption'),
+                      })}
                       type="text"
                       id="caption"
                       name="caption"
@@ -99,13 +152,17 @@ class PhotoSubmissionAction extends React.Component {
                 <div className="form-item-group padding-md">
                   <div className="form-item">
                     <label
-                      className={classnames('field-label')}
+                      className={classnames('field-label', {
+                        'has-error': has(errors, 'quantity'),
+                      })}
                       htmlFor="quantity"
                     >
                       {this.props.quantityFieldLabel}
                     </label>
                     <input
-                      className={classnames('text-field')}
+                      className={classnames('text-field', {
+                        'has-error shake': has(errors, 'quantity'),
+                      })}
                       type="text"
                       id="quantity"
                       name="quantity"
@@ -117,15 +174,19 @@ class PhotoSubmissionAction extends React.Component {
 
                   <div className="form-item">
                     <label
-                      className={classnames('field-label')}
-                      htmlFor="why_participated"
+                      className={classnames('field-label', {
+                        'has-error': has(errors, 'whyParticipated'),
+                      })}
+                      htmlFor="whyParticipated"
                     >
                       {this.props.whyParticipatedFieldLabel}
                     </label>
                     <textarea
-                      className={classnames('text-field')}
-                      id="why_participated"
-                      name="why_participated"
+                      className={classnames('text-field', {
+                        'has-error shake': has(errors, 'whyParticipated'),
+                      })}
+                      id="whyParticipated"
+                      name="whyParticipated"
                       placeholder={this.props.whyParticipatedFieldPlaceholder}
                       value={this.state.whyParticipatedValue}
                       onChange={this.handleChange}
@@ -152,13 +213,19 @@ class PhotoSubmissionAction extends React.Component {
 }
 
 PhotoSubmissionAction.propTypes = {
+  additionalContent: PropTypes.shape({
+    action: PropTypes.string,
+  }),
   buttonText: PropTypes.string,
+  campaignId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
+  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
+  storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
     items: PropTypes.object,
@@ -169,6 +236,7 @@ PhotoSubmissionAction.propTypes = {
 };
 
 PhotoSubmissionAction.defaultProps = {
+  additionalContent: null,
   buttonText: 'Submit a new photo',
   captionFieldLabel: 'Add a caption to your photo.',
   captionFieldPlaceholder: '60 characters or less',

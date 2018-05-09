@@ -27,138 +27,138 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function caption_is_required_to_submit_photo_post()
+    public function text_caption_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'impact' => '30',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'quantity' => '30',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('caption');
+        $this->assertValidationError('text');
     }
 
     /** @test */
-    public function caption_must_be_4_characters_or_longer_to_submit_photo_post()
+    public function text_caption_must_be_4_characters_or_longer_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'duh',
-            'impact' => '30',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'text' => 'duh',
+            'quantity' => '30',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('caption');
+        $this->assertValidationError('text');
     }
 
     /** @test */
-    public function caption_must_be_60_characters_or_shorter_to_submit_photo_post()
+    public function text_caption_must_be_60_characters_or_shorter_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'This caption is way longer than 60 characters and thus should fail!',
-            'impact' => '30',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'text' => 'This text caption is way longer than 60 characters and thus should fail!',
+            'quantity' => '30',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('caption');
+        $this->assertValidationError('text');
     }
 
     /** @test */
-    public function impact_is_required_to_submit_photo_post()
+    public function quantity_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'text' => 'Great text caption!',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('impact');
+        $this->assertValidationError('quantity');
     }
 
     /** @test */
-    public function impact_must_be_a_valid_integer_to_submit_photo_post()
+    public function quantity_must_be_a_valid_integer_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'impact' => 'not-an-integer',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'text' => 'Great text caption!',
+            'quantity' => 'not-an-integer',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('impact');
+        $this->assertValidationError('quantity');
     }
 
     /** @test */
-    public function impact_must_be_a_whole_number_to_submit_photo_post()
+    public function quantity_must_be_a_whole_number_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'impact' => '3.5',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'caption' => 'Great text caption!',
+            'quantity' => '3.5',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('impact');
+        $this->assertValidationError('quantity');
     }
 
     /** @test */
-    public function impact_must_be_at_least_1_to_submit_photo_post()
+    public function quantity_must_be_at_least_1_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'impact' => '0',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'caption' => 'Great text caption!',
+            'quantity' => '0',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('impact');
+        $this->assertValidationError('quantity');
     }
 
     /** @test */
-    public function media_is_required_to_submit_photo_post()
+    public function file_media_is_required_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'impact' => '30',
-            'whyParticipated' => 'Because testing is very important.',
+            'caption' => 'Great text caption!',
+            'quantity' => '30',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
-        $this->assertValidationError('media');
+        $this->assertValidationError('file');
     }
 
     /** @test */
-    public function media_must_be_a_valid_file_upload_to_submit_photo_post()
+    public function file_media_must_be_a_valid_file_upload_to_submit_photo_post()
     {
         $this->markTestIncomplete('@TODO: Implement once we upgrade to Laravel 5.4.');
 
         $this->storePhotoPost([
             'type' => 'photo',
-            'media' => 'not-a-file-upload',
+            'file' => 'not-a-file-upload',
         ]);
 
-        $this->assertValidationError('media');
+        $this->assertValidationError('file');
     }
 
     /** @test */
-    public function media_must_be_a_valid_image_to_submit_photo_post()
+    public function file_media_must_be_a_valid_image_to_submit_photo_post()
     {
         $this->markTestIncomplete('@TODO: Implement once we upgrade to Laravel 5.4.');
 
         $this->storePhotoPost([
             'type' => 'photo',
-            'media' => 'not-a-file-upload',
+            'file' => 'not-a-file-upload',
         ]);
 
-        $this->assertValidationError('media');
+        $this->assertValidationError('file');
     }
 
     /** @test */
@@ -166,12 +166,12 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     {
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'impact' => '30',
-            'media' => 'not-a-file-upload',
+            'caption' => 'Great text caption!',
+            'quantity' => '30',
+            'file' => 'not-a-file-upload',
         ]);
 
-        $this->assertValidationError('whyParticipated');
+        $this->assertValidationError('why_participated');
     }
 
     /** @test */
@@ -181,10 +181,10 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
 
         $this->storePhotoPost([
             'type' => 'photo',
-            'caption' => 'Great caption!',
-            'impact' => '30',
-            'media' => 'not-a-file-upload',
-            'whyParticipated' => 'Because testing is very important.',
+            'caption' => 'Great text caption!',
+            'quantity' => '30',
+            'file' => 'not-a-file-upload',
+            'why_participated' => 'Because testing is very important.',
         ]);
 
         $this->assertResponseStatus(201);

@@ -25,10 +25,18 @@ class PostRequest extends FormRequest
     {
         // Custom validation rule messaging based on the type of post action.
         switch ($this->input('type')) {
+            case 'photo':
+                return [
+                    'file.required' => 'An uploaded photo is required.',
+                    'text.max' => 'The caption field may not be greater than :max characters.',
+                    'text.min' => 'The caption field may not be less than :min characters.',
+                    'text.required' => 'The caption field for your photo is required.',
+                ];
+
             case 'text':
                 return [
-                    'text.required' => 'The text field with your message is required.',
                     'text.max' => 'The message may not be greater than :max characters.',
+                    'text.required' => 'The text field with your message is required.',
                 ];
 
             default:
@@ -47,10 +55,11 @@ class PostRequest extends FormRequest
         switch ($this->input('type')) {
             case 'photo':
                 return [
-                    'media' => 'required',  //@TODO: add file|image
-                    'caption' => 'required|min:4|max:60',
-                    'impact' => 'required|integer|min:1',
-                    'whyParticipated' => 'required',
+                    'file' => 'required|file|image',
+                    'quantity' => 'required|integer|min:1',
+                    'text' => 'required|min:4|max:60',
+                    'why_participated' => 'required',
+                    'prevent_submission' => 'required',
                 ];
 
             case 'text':

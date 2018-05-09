@@ -1,4 +1,6 @@
-import { get } from 'lodash';
+/* global FormData */
+
+import { get, forEach } from 'lodash';
 
 /**
  * Get the status error/success message for a form response.
@@ -43,4 +45,30 @@ export function getFieldErrorMessages(response) {
   );
 
   return messages;
+}
+
+/**
+ * Set form data for the provided values.
+ *
+ * @param {Object} values
+ * @param {Object} props
+ */
+export function setFormData(values, props = {}) {
+  const formData = new FormData();
+
+  forEach(values, (value, key) => formData.append(key, value));
+
+  // Append additional campaign details.
+  if (props.legacyCampaignId && props.legacyCampaignRunId) {
+    formData.append(
+      'details',
+      JSON.stringify({
+        campaign_id: props.campaignId,
+        legacy_campaign_id: props.legacyCampaignId,
+        legacy_campaign_run_id: props.legacyCampaignRunId,
+      }),
+    );
+  }
+
+  return formData;
 }
