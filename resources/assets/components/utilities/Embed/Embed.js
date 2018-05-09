@@ -46,7 +46,7 @@ class Embed extends React.Component {
         rel="noopener noreferrer"
       >
         <div className="embed">
-          <LazyImage className="embed__image" src={image} background />
+          <LazyImage className="embed__image" src={image} hasBackgroundImage />
           <div className="embed__content padded">
             <div className="margin-vertical-md margin-right-md">
               <h3 className="line-break">
@@ -56,16 +56,24 @@ class Embed extends React.Component {
                   <PlaceholderText size="medium" />
                 )}
               </h3>
-              <p className="color-gray">
+              <div>
                 {data ? (
-                  truncate(data.description, { length: 240 })
+                  <p className="color-gray">
+                    {truncate(data.description, { length: 240 })}
+                  </p>
                 ) : (
                   <PlaceholderText size="large" />
                 )}
-              </p>
-              <p className="footnote font-bold caps-lock">
-                {data ? data.provider.name : <PlaceholderText size="small" />}
-              </p>
+              </div>
+              <div className="footnote">
+                {data ? (
+                  <p className="color-gray font-bold caps-lock">
+                    {data.provider.name}
+                  </p>
+                ) : (
+                  <PlaceholderText size="small" />
+                )}
+              </div>
             </div>
           </div>
           {badged ? (
