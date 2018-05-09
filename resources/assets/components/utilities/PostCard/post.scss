@@ -1,6 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .post {
+  position: relative;
   font-family: $primary-font-family;
   margin-bottom: 0;
 
@@ -59,4 +60,16 @@
       font-size: $font-medium;
     }
   }
+}
+
+.post-badge {
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 30px;
+  height: 30px;
+  background: $yellow;
+  color: #fff;
+  transform: rotate(-45deg);
 }
