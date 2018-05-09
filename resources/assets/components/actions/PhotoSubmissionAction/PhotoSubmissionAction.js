@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { camelCase, get, has, invert, mapValues } from 'lodash';
+import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
@@ -31,7 +31,7 @@ class PhotoSubmissionAction extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(prevProps);
+    console.log(prevProps);
   }
 
   fields = {
@@ -43,7 +43,7 @@ class PhotoSubmissionAction extends React.Component {
 
   handleChange = event => {
     this.setState({
-      [`${camelCase(event.target.name)}Value`]: event.target.value,
+      [`${event.target.name}Value`]: event.target.value,
     });
   };
 
