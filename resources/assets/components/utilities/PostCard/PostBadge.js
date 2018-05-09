@@ -43,7 +43,7 @@ const PostBadge = ({ status, tags }) => {
 };
 
 PostBadge.propTypes = {
-  status: PropTypes.bool.isRequired,
+  status: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
 };
 
