@@ -26,6 +26,22 @@ class Page extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse blocks, and reverse parsed blocks for community pages.
+     *
+     * @param  array $blocks
+     * @return array
+     */
+    public function parseBlocks($blocks) {
+        $parsedBlocks = parent::parseBlocks($blocks);
+
+        if (ends_with($this->slug, 'community')) {
+            return $parsedBlocks->reverse()->values();
+        }
+
+        return $parsedBlocks;
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
