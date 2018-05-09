@@ -65,15 +65,12 @@
 .post-badge {
   display: block;
   position: absolute;
-  top: -15px;
-  left: -15px;
-  width: 30px;
-  height: 30px;
-  background: $yellow;
-  color: #fff;
-  transform: rotate(-45deg);
+  top: 0;
+  left: 0;
+  border-top: $base-spacing solid $yellow;
+  border-right: $base-spacing solid transparent;
 }
 
 .post-badge.-rejected {
-  color: $error-color;
+  border-top: $base-spacing solid $error-color;
 }
