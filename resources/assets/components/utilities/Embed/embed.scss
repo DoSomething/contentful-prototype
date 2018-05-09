@@ -7,10 +7,6 @@
   @include media($mobile) {
     flex-direction: column;
   }
-
-  .footnote {
-    margin-top: 36px;
-  }
 }
 
 .embed__linker,

@@ -40,7 +40,7 @@ class LazyImage extends React.Component {
     const showPlaceholder = this.state.loaded && this.props.src;
     const imageUrl = showPlaceholder ? this.props.src : EMPTY_IMAGE;
 
-    if (this.props.hasBackgroundImage) {
+    if (this.props.asBackground) {
       return (
         <div
           className={this.props.className}
@@ -67,16 +67,16 @@ class LazyImage extends React.Component {
 }
 
 LazyImage.propTypes = {
-  alt: requiredIf(PropTypes.string, props => !props.hasBackgroundImage),
+  alt: requiredIf(PropTypes.string, props => !props.asBackground),
   className: PropTypes.string,
-  hasBackgroundImage: PropTypes.bool,
+  asBackground: PropTypes.bool,
   src: PropTypes.string,
 };
 
 LazyImage.defaultProps = {
   alt: null,
   className: null,
-  hasBackgroundImage: false,
+  asBackground: false,
   src: null,
 };
 
