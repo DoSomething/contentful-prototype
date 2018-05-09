@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
+import PostBadge from './PostBadge';
 import { BaseFigure } from '../../Figure';
 import { pluralize } from '../../../helpers';
 import LazyImage from '../../utilities/LazyImage';
@@ -17,6 +18,7 @@ export const postCardFragment = gql`
     status
     url
     text
+    tags
     quantity
     user {
       firstName
@@ -54,7 +56,10 @@ const PostCard = ({ post, noun }) => {
         alignment="right"
         className="padded margin-bottom-none"
       >
-        <h4>{firstName}</h4>
+        <h4>
+          {firstName}
+          <PostBadge status={post.status} tags={post.tags} />
+        </h4>
         {post.quantity ? (
           <p className="footnote">
             {post.quantity}{' '}
