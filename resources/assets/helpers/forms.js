@@ -1,6 +1,6 @@
 /* global FormData */
 
-import { get } from 'lodash';
+import { get, forEach } from 'lodash';
 
 /**
  * Get the status error/success message for a form response.
@@ -56,7 +56,7 @@ export function getFieldErrorMessages(response) {
 export function setFormData(values, props = {}) {
   const formData = new FormData();
 
-  Object.keys(values).map(key => formData.append(key, values[key]));
+  forEach(values, (value, key) => formData.append(key, value));
 
   // Append additional campaign details.
   if (props.legacyCampaignId && props.legacyCampaignRunId) {

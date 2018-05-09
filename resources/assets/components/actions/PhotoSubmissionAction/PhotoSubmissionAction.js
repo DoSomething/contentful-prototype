@@ -93,16 +93,14 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   render() {
-    let errors = null;
-
     const formResponse = this.props.submissions.items[this.props.id] || null;
 
     const formErrors = getFieldErrors(formResponse);
 
     // Associate errors to component field names.
-    if (formErrors) {
-      errors = mapValues(invert(this.fields), value => formErrors[value]);
-    }
+    const errors = formErrors
+      ? mapValues(invert(this.fields), value => formErrors[value])
+      : null;
 
     return (
       <React.Fragment>
