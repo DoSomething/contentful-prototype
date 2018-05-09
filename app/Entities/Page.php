@@ -35,7 +35,7 @@ class Page extends Entity implements JsonSerializable
     {
         $parsedBlocks = parent::parseBlocks($blocks);
 
-        if (ends_with($this->slug, 'community')) {
+        if (ends_with(rtrim($this->slug, '/'), 'community')) {
             return $parsedBlocks->reverse()->values();
         }
 
