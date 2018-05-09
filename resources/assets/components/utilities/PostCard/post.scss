@@ -73,3 +73,7 @@
   color: #fff;
   transform: rotate(-45deg);
 }
+
+.post-badge.-rejected {
+  color: $error-color;
+}
