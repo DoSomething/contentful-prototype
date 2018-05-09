@@ -1,4 +1,5 @@
 const { join } = require('path');
+const { get } = require('lodash');
 const {
   attempt,
   constants,
@@ -35,7 +36,31 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
   logger.info(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
 
-  // Create a new community 'Page' with the activityFeed blocks from the source campaign
+  const communityPageBlocks = [];
+
+  // Copy over all block link references from activityFeed besides for `reportbacks` custom blocks
+  for (let i = 0; i < campaignActivityFeed.length; i++) {
+    const block = campaignActivityFeed[i];
+    const blockEntry = await attempt(() => environment.getEntry(block.sys.id));
+
+    if (!blockEntry) {
+      continue;
+    }
+
+    const contentType = get(blockEntry.sys, 'contentType.sys.id');
+    const blockType = getField(blockEntry, 'type');
+
+    if (contentType === 'customBlock' && blockType === 'reportbacks') {
+      logger.info(
+        `    * Skipping a 'reportbacks' custom block! [ID: ${block.sys.id}]\n`,
+      );
+      continue;
+    }
+
+    communityPageBlocks.push(block);
+  }
+
+  // Create a new community 'Page' with the activity_feed blocks from the source campaign
   const communityPage = await attempt(() =>
     environment.createEntry(
       'page',
@@ -43,7 +68,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
         internalTitle: `${campaignInternalTitle} Community Page`,
         title: 'Community',
         slug: join(campaignSlug, 'community'),
-        blocks: campaignActivityFeed,
+        blocks: communityPageBlocks,
       }),
     ),
   );
@@ -56,6 +81,8 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
       // Add a Link to the new Page to the campaigns Pages field
       campaign.fields.pages[LOCALE].push(linkReference(id));
+      // Remove activity_feed blocks from campaign
+      campaign.fields.activity_feed[LOCALE] = [];
 
       // Update and publish the campaign
       const updatedCampaign = await attempt(() => campaign.update());
