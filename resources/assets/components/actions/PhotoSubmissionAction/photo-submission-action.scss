@@ -1,9 +1,74 @@
 @import '../../../scss/next-toolbox.scss';
 
 .photo-submission-action {
-  background-color: rgba(255, 0, 255, 0.5);
+  > .wrapper {
+    @include media($medium) {
+      display: flex;
+      position: relative;
 
-  .form-section + .form-section {
-    border-top: 2px solid $light-gray;
+      // Vertical divider between form sections.
+      &::after {
+        background-color: $light-gray;
+        content: '';
+        display: block;
+        height: calc(100% - 12px);
+        position: absolute;
+        top: $half-spacing;
+        left: 50%;
+        width: 1px;
+        z-index: 10;
+      }
+    }
+  }
+
+  .text-field {
+    display: block;
+  }
+
+  textarea {
+    min-height: 120px;
+
+    @include media($medium) {
+      flex: 1;
+    }
+  }
+
+  // Form Sections
+  .form-section {
+    padding: 0 $half-spacing;
+
+    @include media($medium) {
+      flex: 1;
+    }
+
+    > .wrapper {
+      border-bottom: 1px solid $light-gray;
+      padding: $half-spacing 0;
+
+      @include media($medium) {
+        border-bottom: 0 none;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  // Form Items
+  .form-item {
+    margin-bottom: 0;
+
+    &.stretched {
+      @include media($medium) {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+    }
+  }
+
+  .form-item + .form-item {
+    margin-top: $base-spacing;
   }
 }
