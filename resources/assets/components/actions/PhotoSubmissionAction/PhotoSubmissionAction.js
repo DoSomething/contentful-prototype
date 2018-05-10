@@ -10,6 +10,8 @@ import MediaUploader from '../../utilities/MediaUploader';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
+import './photo-submission-action.scss';
+
 class PhotoSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
@@ -105,18 +107,18 @@ class PhotoSubmissionAction extends React.Component {
     return (
       <React.Fragment>
         <Card
-          className={classnames(
-            'bordered rounded photo-submission-action',
-            this.props.className,
-          )}
+          className={classnames('bordered rounded', this.props.className)}
           title={this.props.title}
         >
           {formResponse ? <FormValidation response={formResponse} /> : null}
 
-          <form onSubmit={this.handleSubmit}>
+          <form
+            className="photo-submission-action"
+            onSubmit={this.handleSubmit}
+          >
             <div className="wrapper">
-              <div className="form-section">
-                <div className="form-item-group padding-md">
+              <div className="form-section padding-horizontal-md">
+                <div className="form-item-group padding-vertical-md">
                   <MediaUploader
                     label="Add your photo here"
                     media={this.state.mediaValue}
@@ -148,8 +150,8 @@ class PhotoSubmissionAction extends React.Component {
                 </div>
               </div>
 
-              <div className="form-section">
-                <div className="form-item-group padding-md">
+              <div className="form-section padding-horizontal-md">
+                <div className="form-item-group padding-vertical-md">
                   <div className="form-item">
                     <label
                       className={classnames('field-label', {
@@ -172,7 +174,7 @@ class PhotoSubmissionAction extends React.Component {
                     />
                   </div>
 
-                  <div className="form-item">
+                  <div className="form-item stretched">
                     <label
                       className={classnames('field-label', {
                         'has-error': has(errors, 'whyParticipated'),

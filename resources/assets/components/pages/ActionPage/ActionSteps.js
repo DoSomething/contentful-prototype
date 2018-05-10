@@ -88,6 +88,7 @@ const ActionSteps = props => {
     if (
       [
         'contentBlock',
+        'photoSubmissionAction',
         'photo-uploader',
         'photoUploaderAction',
         'submission-gallery',
