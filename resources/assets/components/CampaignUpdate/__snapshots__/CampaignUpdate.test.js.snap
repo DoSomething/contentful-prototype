@@ -4,7 +4,7 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
 <Card
   className="rounded bordered affiliate-content"
   id="1234567890"
-  link="http://example.com/link-to-content"
+  link={null}
   onClose={null}
   title="See More Be More Do More"
 >
@@ -20,13 +20,6 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
       className="affiliate-logo"
       imgUrl="http://example.com/avatar-aang.jpg"
       title="Campaign Sponsor Logo"
-    />
-    <Share
-      className="clear-none -right-icon"
-      link="http://example.com/link-to-content"
-      parentSource="campaignUpdate"
-      quote={null}
-      variant="icon"
     />
   </footer>
 </Card>
@@ -36,7 +29,7 @@ exports[`it generates a campaign update snapshot 1`] = `
 <Card
   className="rounded bordered affiliate-content"
   id="1234567890"
-  link="http://example.com/link-to-content"
+  link={null}
   onClose={null}
   title="See More Be More Do More"
 >
@@ -52,13 +45,6 @@ exports[`it generates a campaign update snapshot 1`] = `
       className="affiliate-logo"
       imgUrl="http://example.com/avatar-aang.jpg"
       title="Campaign Sponsor Logo"
-    />
-    <Share
-      className="clear-none -right-icon"
-      link="http://example.com/link-to-content"
-      parentSource="campaignUpdate"
-      quote={null}
-      variant="icon"
     />
   </footer>
 </Card>
