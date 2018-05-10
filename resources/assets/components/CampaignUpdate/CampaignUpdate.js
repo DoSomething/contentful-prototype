@@ -5,7 +5,7 @@ import { get } from 'lodash';
 
 import Card from '../utilities/Card/Card';
 import Embed from '../utilities/Embed/Embed';
-// @see line 82 *1
+// @see line 81 *1
 // import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
@@ -20,7 +20,7 @@ const CampaignUpdate = props => {
     content,
     link,
     bordered,
-    // @see line 82 *1
+    // @see line 81 *1
     // shareLink,
     // titleLink,
   } = props;
@@ -40,7 +40,7 @@ const CampaignUpdate = props => {
         bordered,
         'affiliate-content': affiliateLogo,
       })}
-      // @see line 82 *1
+      // @see line 81 *1
       // link={titleLink}
       title={title}
       onClose={closeModal}
@@ -66,7 +66,7 @@ const CampaignUpdate = props => {
             className="float-left"
           />
         )}
-        {/* @see line 82 *1
+        {/* @see line 81 *1
           <Share
             link={shareLink}
             variant="icon"
