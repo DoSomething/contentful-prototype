@@ -28,7 +28,8 @@ const PostBadge = ({ status, tags }) => {
     );
   }
 
-  if (tags.includes('hide-in-gallery')) {
+  // If we can see tags for this post, and one is 'hide in gallery'.
+  if (tags && tags.includes('hide-in-gallery')) {
     return (
       <img
         className="post-badge"
