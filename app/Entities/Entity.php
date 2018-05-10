@@ -80,6 +80,16 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new VoterRegistrationAction($block->entry);
             case 'callToAction':
                 return new CallToAction($block->entry);
+            case 'customBlock':
+                if ($block->entry->getType() === 'join_cta') {
+                    return new CallToAction($block->entry);
+                }
+
+                if ($block->entry->getType() === 'campaign_update') {
+                    return new CampaignUpdate($block->entry);
+                }
+
+                return new CustomBlock($block->entry);
             default:
                 return new CampaignActionStep($block->entry);
         }

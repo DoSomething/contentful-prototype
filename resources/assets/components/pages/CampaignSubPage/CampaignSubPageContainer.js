@@ -6,10 +6,9 @@ import CampaignSubPage from './CampaignSubPage';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = state => ({
   pages: state.campaign.pages,
   dashboard: state.campaign.dashboard,
-  route: ownProps.match.params,
   noun: get(state.campaign.additionalContent, 'noun'),
   verb: get(state.campaign.additionalContent, 'verb'),
   tagline: get(state.campaign.additionalContent, 'tagline'),
