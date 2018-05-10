@@ -1,15 +1,22 @@
 @import '../../../scss/next-toolbox.scss';
 
 .photo-submission-action {
-  // background-color: rgba(255, 0, 255, 0.25);
-
-  @include media($medium) {
-    // background-color: rgba(255, 255, 0, 0.25);
-  }
-
   > .wrapper {
     @include media($medium) {
       display: flex;
+      position: relative;
+
+      &::after {
+        background-color: $light-gray;
+        content: '';
+        display: block;
+        height: calc(100% - 12px);
+        position: absolute;
+        top: 12px;
+        left: 50%;
+        width: 1px;
+        z-index: 10;
+      }
     }
   }
 
@@ -27,30 +34,28 @@
 
   // Form Sections
   .form-section {
-    background-color: rgba(0, 255, 255, 0.25);
+    padding: 0 $half-spacing;
 
     @include media($medium) {
       flex: 1;
     }
-  }
 
-  // Form Item Groups
-  .form-item-group {
-    background-color: rgba(0, 255, 0, 0.5);
-    border-bottom: 1px solid $light-gray;
+    > .wrapper {
+      border-bottom: 1px solid $light-gray;
+      padding: $half-spacing 0;
 
-    @include media($medium) {
-      border-bottom: 0 none;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
+      @include media($medium) {
+        border-bottom: 0 none;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding-bottom: 0;
+      }
     }
   }
 
   // Form Items
   .form-item {
-    // background-color: fuchsia;
-
     margin-bottom: 0;
 
     &.stretched {

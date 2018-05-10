@@ -117,8 +117,8 @@ class PhotoSubmissionAction extends React.Component {
             onSubmit={this.handleSubmit}
           >
             <div className="wrapper">
-              <div className="form-section padding-horizontal-md">
-                <div className="form-item-group padding-vertical-md">
+              <div className="form-section">
+                <div className="wrapper">
                   <MediaUploader
                     label="Add your photo here"
                     media={this.state.mediaValue}
@@ -150,8 +150,8 @@ class PhotoSubmissionAction extends React.Component {
                 </div>
               </div>
 
-              <div className="form-section padding-horizontal-md">
-                <div className="form-item-group padding-vertical-md">
+              <div className="form-section">
+                <div className="wrapper">
                   <div className="form-item">
                     <label
                       className={classnames('field-label', {
