@@ -22,6 +22,8 @@ const initialState = {
   notifications: {
     items: [],
   },
+  // standalone (campaign independent) pages
+  page: {},
   posts: {},
   postSubmissions: {
     isPending: false,
