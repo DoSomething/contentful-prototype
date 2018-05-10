@@ -32,9 +32,13 @@
 
 .modal {
   margin: auto;
-  min-width: 400px;
+  min-width: 250px;
   max-width: 800px;
   position: relative;
+
+  @include media($medium) {
+    min-width: 400px;
+  }
 }
 
 .modal__close {
