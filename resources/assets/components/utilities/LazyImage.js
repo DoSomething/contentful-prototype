@@ -15,9 +15,24 @@ class LazyImage extends React.Component {
   }
 
   /**
+   * Perform actions after component is mounted.
+   */
+  componentDidMount() {
+    this.setLoader();
+  }
+
+  /**
    * Perform actions after receiving new props.
    */
   componentDidUpdate() {
+    this.setLoader();
+  }
+
+  componentWillUnmount() {
+    this.loader = null;
+  }
+
+  setLoader = () => {
     this.loader = new Image();
 
     // Load image and set `loaded: true` state when ready.
@@ -25,11 +40,7 @@ class LazyImage extends React.Component {
     if (this.props.src) {
       this.loader.src = this.props.src;
     }
-  }
-
-  componentWillUnmount() {
-    this.loader = null;
-  }
+  };
 
   /**
    * Render the image.
