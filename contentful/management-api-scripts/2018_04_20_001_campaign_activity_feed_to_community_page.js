@@ -90,7 +90,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
       logger.info(`  - Created Community Page! [ID: ${id}]\n`);
 
       // Add a Link to the new Page to the campaigns Pages field
-      campaign.fields.pages[LOCALE].push(linkReference(id));
+      campaign.fields.pages[LOCALE].unshift(linkReference(id));
       // Remove activity_feed blocks from campaign
       campaign.fields.activity_feed[LOCALE] = [];
 
