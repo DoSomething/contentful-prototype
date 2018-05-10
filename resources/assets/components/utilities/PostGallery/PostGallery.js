@@ -12,7 +12,7 @@ const PostGallery = props => {
   const { loading, posts, loadMorePosts } = props;
 
   return posts.length ? (
-    <div>
+    <div className="margin-horizontal-md">
       <Gallery type="triad" className="post-gallery expand-horizontal-md">
         {posts.map(post => (
           <Card className="rounded" key={post.id}>
