@@ -27,10 +27,7 @@ $router->redirect('campaigns', 'us/campaigns');
 
 // Non campaign pages
 $router->redirect('/{slug}', 'us/{slug}');
-$router->get('/us/{slug}', function ($slug) {
-    return response('Hang Tight! We\'ll have static pages up and running in a jiffy!', 501)
-        ->header('Content-Type', 'text/plain');
-});
+$router->get('/us/{slug}', 'PageController@show');
 
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute) {
