@@ -48,6 +48,7 @@ class ShareAction extends React.Component {
       affirmation, // @TODO: Rename me to 'affirmationText'?
       affirmationBlock,
       content,
+      hideEmbed,
       link,
       socialPlatform,
       title,
@@ -67,9 +68,11 @@ class ShareAction extends React.Component {
         <div className="share-action margin-bottom-lg">
           <Card title={title} className="rounded bordered">
             {content ? <Markdown className="padded">{content}</Markdown> : null}
-            <div className="padded">
-              <Embed url={href} />
-            </div>
+            {hideEmbed ? null : (
+              <div className="padded">
+                <Embed url={href} />
+              </div>
+            )}
             <Button attached onClick={() => handleShareClick(href)}>
               Share on {isFacebook ? 'Facebook' : 'Twitter'}
             </Button>
@@ -103,6 +106,7 @@ ShareAction.propTypes = {
   affirmationBlock: PropTypes.object, // eslint-disable-line
   campaignId: PropTypes.string,
   userId: PropTypes.string,
+  hideEmbed: PropTypes.bool,
 };
 
 ShareAction.defaultProps = {
@@ -110,6 +114,7 @@ ShareAction.defaultProps = {
   affirmation: 'Thanks for rallying your friends on Facebook!',
   campaignId: null,
   userId: null,
+  hideEmbed: false,
 };
 
 export default ShareAction;
