@@ -89,7 +89,11 @@ class ContentfulEntry extends React.Component<Props, State> {
         return renderContentBlock(json);
 
       case 'gallery':
-        return <CampaignGalleryBlockContainer />;
+        return (
+          <div className="margin-horizontal-md">
+            <CampaignGalleryBlockContainer />
+          </div>
+        );
 
       case 'legacyContentBlock':
         return renderLegacyContentBlock(json, stepIndex);
