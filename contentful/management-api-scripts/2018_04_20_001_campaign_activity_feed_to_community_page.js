@@ -1,4 +1,5 @@
 const { join } = require('path');
+const { get } = require('lodash');
 const {
   attempt,
   constants,
@@ -20,6 +21,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
   const campaignSlug = getField(campaign, 'slug');
   const campaignActivityFeed = getField(campaign, 'activity_feed');
   const campaignPages = getField(campaign, 'pages', []);
+  const campaignAdditionalContent = getField(campaign, 'additionalContent');
 
   if (!campaignPages.length) {
     // Ensure the campaign has a pages property with the correct locale
@@ -35,7 +37,40 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
   logger.info(`Processing Campaign! [ID: ${campaign.sys.id}]\n`);
 
-  // Create a new community 'Page' with the activityFeed blocks from the source campaign
+  let communityPageBlocks = [];
+
+  // Copy over all block link references from activity_feed besides for `reportbacks` custom blocks
+  for (let i = 0; i < campaignActivityFeed.length; i++) {
+    const block = campaignActivityFeed[i];
+    const blockEntry = await attempt(() => environment.getEntry(block.sys.id));
+
+    if (!blockEntry) {
+      continue;
+    }
+
+    const contentType = get(blockEntry.sys, 'contentType.sys.id');
+    const blockType = getField(blockEntry, 'type');
+
+    if (contentType === 'customBlock' && blockType === 'reportbacks') {
+      logger.info(
+        `    * Skipping a 'reportbacks' custom block! [ID: ${block.sys.id}]\n`,
+      );
+      continue;
+    }
+
+    communityPageBlocks.push(block);
+  }
+
+  // Reverse the community page blocks for activity_feeds which were still ordered top to bottom
+  const reverseActivityFeedOrder = get(
+    campaignAdditionalContent,
+    'reverseActivityFeedOrder',
+  );
+  if (reverseActivityFeedOrder === false) {
+    communityPageBlocks = communityPageBlocks.reverse();
+  }
+
+  // Create a new community 'Page' with the activity_feed blocks from the source campaign
   const communityPage = await attempt(() =>
     environment.createEntry(
       'page',
@@ -43,7 +78,7 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
         internalTitle: `${campaignInternalTitle} Community Page`,
         title: 'Community',
         slug: join(campaignSlug, 'community'),
-        blocks: campaignActivityFeed,
+        blocks: communityPageBlocks,
       }),
     ),
   );
@@ -56,6 +91,8 @@ async function addCommunityPageFromActivityFeed(environment, campaign) {
 
       // Add a Link to the new Page to the campaigns Pages field
       campaign.fields.pages[LOCALE].push(linkReference(id));
+      // Remove activity_feed blocks from campaign
+      campaign.fields.activity_feed[LOCALE] = [];
 
       // Update and publish the campaign
       const updatedCampaign = await attempt(() => campaign.update());
