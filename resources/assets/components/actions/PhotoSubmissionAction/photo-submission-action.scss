@@ -6,6 +6,7 @@
       display: flex;
       position: relative;
 
+      // Vertical divider between form sections.
       &::after {
         background-color: $light-gray;
         content: '';
