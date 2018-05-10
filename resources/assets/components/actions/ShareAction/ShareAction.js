@@ -47,12 +47,12 @@ class ShareAction extends React.Component {
     const {
       affirmation, // @TODO: Rename me to 'affirmationText'?
       affirmationBlock,
+      campaignId,
       content,
       hideEmbed,
       link,
       socialPlatform,
       title,
-      campaignId,
       userId,
     } = this.props;
 
@@ -98,23 +98,23 @@ class ShareAction extends React.Component {
 }
 
 ShareAction.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  link: PropTypes.string.isRequired,
-  socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
   campaignId: PropTypes.string,
-  userId: PropTypes.string,
+  content: PropTypes.string,
   hideEmbed: PropTypes.bool,
+  link: PropTypes.string.isRequired,
+  socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
+  title: PropTypes.string.isRequired,
+  userId: PropTypes.string,
 };
 
 ShareAction.defaultProps = {
-  content: null,
   affirmation: 'Thanks for rallying your friends on Facebook!',
   campaignId: null,
-  userId: null,
+  content: null,
   hideEmbed: false,
+  userId: null,
 };
 
 export default ShareAction;
