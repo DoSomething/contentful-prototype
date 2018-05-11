@@ -1,11 +1,11 @@
 /* global window, document, Blob, URL */
 
-import { get, find, isNull, omitBy } from 'lodash';
+import { isBefore } from 'date-fns';
 import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
-import { isBefore } from 'date-fns';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
+import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -600,11 +600,16 @@ export function report(error) {
 }
 
 /**
- * Set null properites to undefined to help with React defaultProps.
+ * Set null properites to undefined.
+ * Helps with React defaultProps.
  *
- * @param  {Object} fields
+ * @param  {Object} data
  * @return {Object}
  */
-export function withoutNulls(fields) {
-  return omitBy(fields, isNull);
+export function withoutNulls(data) {
+  return omitBy(data, isNull);
+}
+
+export function withoutUndefined(data) {
+  return omitBy(data, isUndefined);
 }
