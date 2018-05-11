@@ -29,7 +29,7 @@
 
         if (features.length) scripts.unshift('https://cdn.polyfill.io/v2/polyfill.min.js?features='+ features.join(','));
 
-        // Script loader, from <goo.gl/wez2dP>
+        // Script loader, from <goo.gl/wez2dP>. More context at <https://git.io/vpywh>.
         !function(e,t,r){function n(){for(;d[0]&&"loaded"==d[0][f];)c=d.shift(),c[o]=!i.parentNode.insertBefore(c,i)}
         for(var s,a,c,d=[],i=e.scripts[0],o="onreadystatechange",f="readyState";s=r.shift();)a=e.createElement(t),
         "async" in i?(a.async=!1,e.head.appendChild(a)):i[f]?(d.push(a),a[o]=n):e.write("<"+t+'src="'+s
