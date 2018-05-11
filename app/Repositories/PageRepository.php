@@ -43,8 +43,8 @@ class PageRepository
 
         if (! $pages->count()) {
             throw new ModelNotFoundException;
-        } else {
-            return new Page($pages[0]);
         }
+
+        return new Page($pages[0]);
     }
 }
