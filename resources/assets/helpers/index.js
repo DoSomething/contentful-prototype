@@ -610,6 +610,12 @@ export function withoutNulls(data) {
   return omitBy(data, isNull);
 }
 
+/**
+ * Remove items with undefined properties.
+ *
+ * @param  {Object} data
+ * @return {Object}
+ */
 export function withoutUndefined(data) {
   return omitBy(data, isUndefined);
 }
