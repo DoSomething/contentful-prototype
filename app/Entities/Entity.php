@@ -60,10 +60,24 @@ class Entity implements ArrayAccess, JsonSerializable
         switch ($block->getContentType()) {
             case 'affirmation':
                 return new Affirmation($block->entry);
+            case 'callToAction':
+                return new CallToAction($block->entry);
             case 'campaignUpdate':
                 return new CampaignUpdate($block->entry);
             case 'contentBlock':
                 return new ContentBlock($block->entry);
+            case 'customBlock':
+                if ($block->entry->getType() === 'join_cta') {
+                    return new CallToAction($block->entry);
+                }
+
+                if ($block->entry->getType() === 'campaign_update') {
+                    return new CampaignUpdate($block->entry);
+                }
+
+                return new CustomBlock($block->entry);
+            case 'imagesBlock':
+                return new ImagesBlock($block->entry);
             case 'linkAction':
                 return new LinkAction($block->entry);
             case 'page':
@@ -78,18 +92,6 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new TextSubmissionAction($block->entry);
             case 'voterRegistrationAction':
                 return new VoterRegistrationAction($block->entry);
-            case 'callToAction':
-                return new CallToAction($block->entry);
-            case 'customBlock':
-                if ($block->entry->getType() === 'join_cta') {
-                    return new CallToAction($block->entry);
-                }
-
-                if ($block->entry->getType() === 'campaign_update') {
-                    return new CampaignUpdate($block->entry);
-                }
-
-                return new CustomBlock($block->entry);
             default:
                 return new CampaignActionStep($block->entry);
         }
