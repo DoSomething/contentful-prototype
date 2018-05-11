@@ -22,7 +22,7 @@
         if (!('fetch' in window)) features.push('fetch');
         if (!hasWorkingUrl) features.push('URL');
 
-        const scripts = [
+        var scripts = [
             '{{ elixir("vendors~app.js", "next/assets") }}',
             '{{ elixir("app.js", "next/assets") }}',
         ];
