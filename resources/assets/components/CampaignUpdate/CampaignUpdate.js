@@ -79,9 +79,10 @@ const CampaignUpdate = props => {
 };
 
 // *1:
-// Temporarily sunsetting sharing and linking since
-// moving campaign updates from `activity_feed` to page removes the entry as a direct descendent of
-// the campaigns, thus disabling our helpers#findContentfulEntry from finding it for rendering.
+// Temporarily sunsetting sharing and title links due to affects of running
+// /content/management-api-scripts/2018_04_20_001_campaign_activity_feed_to_community_page
+// (Moving Campaign##activity_feed blocks to a Page prevents us from finding and displaying the entries locally
+// at the /block and /modal routes)
 // @todo implement routing for individual entries.
 
 CampaignUpdate.propTypes = {
