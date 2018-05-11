@@ -13,7 +13,7 @@ Updates in the _Community Feed_ currently consist of [Campaign Updates](./campai
 
 * **Internal Title**: this is the title for the content within the Contentful system and will not be displayed on the website.
   * Format: `Campaign Name - Date - Short Description`.
-* **Display Options**: this refers to how wide you want the block to be - recommended width for campaign updates is `two-thirds` or `full`.
+* ~**Display Options**: this refers to how wide you want the block to be - recommended width for campaign updates is `two-thirds` or `full`.~ - All campaign updates are now displayed at full width across the page.
 * **Content**: use markdown to fill in and format whatever you want.
 * **Link**: if you want the campaign update to have an external link that is highlighted in its own card, you should put the link in this field. This is also where you should drop a YouTube link for a video update.
 
