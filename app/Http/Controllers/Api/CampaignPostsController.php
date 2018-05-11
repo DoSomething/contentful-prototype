@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
 use App\Repositories\CampaignRepository;
@@ -70,7 +71,11 @@ class CampaignPostsController extends Controller
         // Contentful only IDs:
         // $request->merge(['campaign_id' => $id]);
 
+        Log::info('Phoenix '.$request->input('type').' submission request data:', $request->all());
+
         $data = $this->postRepository->storePost($request->all());
+
+        Log::info('Phoenix '.$request->input('type').' submission response data:', array_except($data, 'data.signup'));
 
         return response()->json($data, 201);
     }
