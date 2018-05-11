@@ -5,7 +5,8 @@ import { get } from 'lodash';
 
 import Card from '../utilities/Card/Card';
 import Embed from '../utilities/Embed/Embed';
-import Share from '../utilities/Share/Share';
+// @see line 81 *1
+// import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
 import Markdown from '../utilities/Markdown/Markdown';
@@ -18,9 +19,10 @@ const CampaignUpdate = props => {
     closeModal,
     content,
     link,
-    shareLink,
     bordered,
-    titleLink,
+    // @see line 81 *1
+    // shareLink,
+    // titleLink,
   } = props;
 
   const authorFields = get(author, 'fields', {});
@@ -38,7 +40,8 @@ const CampaignUpdate = props => {
         bordered,
         'affiliate-content': affiliateLogo,
       })}
-      link={titleLink}
+      // @see line 81 *1
+      // link={titleLink}
       title={title}
       onClose={closeModal}
     >
@@ -63,16 +66,24 @@ const CampaignUpdate = props => {
             className="float-left"
           />
         )}
-        <Share
-          link={shareLink}
-          variant="icon"
-          parentSource="campaignUpdate"
-          className="clear-none -right-icon"
-        />
+        {/* @see line 81 *1
+          <Share
+            link={shareLink}
+            variant="icon"
+            parentSource="campaignUpdate"
+            className="clear-none -right-icon"
+          /> */}
       </footer>
     </Card>
   );
 };
+
+// *1:
+// Temporarily sunsetting sharing and title links due to affects of running
+// /content/management-api-scripts/2018_04_20_001_campaign_activity_feed_to_community_page
+// (Moving Campaign##activity_feed blocks to a Page prevents us from finding and displaying the entries locally
+// at the /block and /modal routes)
+// @todo implement routing for individual entries.
 
 CampaignUpdate.propTypes = {
   id: PropTypes.string.isRequired,
@@ -85,8 +96,9 @@ CampaignUpdate.propTypes = {
   closeModal: PropTypes.func,
   content: PropTypes.string,
   link: PropTypes.string,
-  shareLink: PropTypes.string.isRequired,
-  titleLink: PropTypes.string.isRequired,
+  // @see line 81 *1
+  // shareLink: PropTypes.string.isRequired,
+  // titleLink: PropTypes.string.isRequired,
   bordered: PropTypes.bool,
 };
 
