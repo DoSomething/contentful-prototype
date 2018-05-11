@@ -34,11 +34,8 @@ class PageController extends Controller
     {
         $page = $this->pageRepository->findBySlug($slug);
 
-        // return view('app')->with('state', [
-        //     'page' => $page,
-        // ]);
-
-        return response('Hang Tight! We\'ll have static pages up and running in a jiffy!', 501)
-            ->header('Content-Type', 'text/plain');
+        return view('app')->with('state', [
+            'page' => $page,
+        ]);
     }
 }
