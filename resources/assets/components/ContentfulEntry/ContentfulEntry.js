@@ -10,6 +10,7 @@ import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
 import { parseContentfulType, report } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
+import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
@@ -94,6 +95,9 @@ class ContentfulEntry extends React.Component<Props, State> {
             <CampaignGalleryBlockContainer />
           </div>
         );
+
+      case 'imagesBlock':
+        return <ImagesBlock images={json.fields.images} />;
 
       case 'legacyContentBlock':
         return renderLegacyContentBlock(json, stepIndex);
