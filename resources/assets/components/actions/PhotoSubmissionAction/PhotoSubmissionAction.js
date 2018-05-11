@@ -5,6 +5,7 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
+import { withoutUndefined } from '../../../helpers';
 import Button from '../../utilities/Button/Button';
 import MediaUploader from '../../utilities/MediaUploader';
 import FormValidation from '../../utilities/Form/FormValidation';
@@ -100,9 +101,11 @@ class PhotoSubmissionAction extends React.Component {
     const formErrors = getFieldErrors(formResponse);
 
     // Associate errors to component field names.
-    const errors = formErrors
-      ? mapValues(invert(this.fields), value => formErrors[value])
-      : null;
+    const errors = withoutUndefined(
+      formErrors
+        ? mapValues(invert(this.fields), value => formErrors[value])
+        : null,
+    );
 
     return (
       <React.Fragment>
