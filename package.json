@@ -83,7 +83,6 @@
     "markdown-it": "^8.4.0",
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-for-inline": "^0.1.1",
-    "npm": "^6.0.1",
     "prettier": "^1.12.1",
     "prop-types": "^15.5.8",
     "query-string": "^5.1.1",
