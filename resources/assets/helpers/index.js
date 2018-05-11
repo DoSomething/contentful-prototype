@@ -600,7 +600,7 @@ export function report(error) {
 }
 
 /**
- * Set null properites to undefined.
+ * Remove items with null properties.
  * Helps with React defaultProps.
  *
  * @param  {Object} data
