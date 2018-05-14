@@ -1,0 +1,21 @@
+@import '../../../../scss/next-toolbox';
+
+.cta-template {
+  color: $white;
+
+  @include media($medium) {
+    padding: 12px 24px;
+  }
+
+  .cta-template__title {
+    color: $primary-color;
+    font-size: $font-large;
+    font-weight: bold;
+  }
+
+  .cta-template__content {
+    line-height: 1.2;
+    font-family: $secondary-font-family;
+    font-size: 48px;
+  }
+}
