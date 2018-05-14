@@ -74,7 +74,7 @@ async function addActionPageFromActionSteps(environment, campaign) {
         }]\n`,
       );
 
-      const internalTitle = `${campaignInternalTitle} - Action Step`;
+      const internalTitle = `${campaignInternalTitle} - Action Step ${stepIndex}`;
 
       const contentBlockFields = {
         internalTitle,
