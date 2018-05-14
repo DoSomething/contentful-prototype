@@ -9,7 +9,6 @@ import { isSignedUp } from '../../../selectors/signup';
 const mapStateToProps = state => ({
   campaignId: state.campaign.legacyCampaignId,
   callToAction: state.campaign.callToAction,
-  hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   hasPendingSignup: state.signups.isPending,
   isSignedUp: isSignedUp(state),
   template: state.campaign.template,

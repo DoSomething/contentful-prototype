@@ -52,7 +52,6 @@ const ActionSteps = props => {
     actionSteps,
     callToAction,
     campaignId,
-    hasActivityFeed,
     hasPendingSignup,
     isSignedUp,
     template,
@@ -130,7 +129,6 @@ ActionSteps.propTypes = {
   actionSteps: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   callToAction: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
-  hasActivityFeed: PropTypes.bool.isRequired,
   hasPendingSignup: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   template: PropTypes.string.isRequired,
