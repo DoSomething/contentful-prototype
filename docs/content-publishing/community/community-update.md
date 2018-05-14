@@ -6,10 +6,11 @@ Updates in the _Community Feed_ currently consist of [Campaign Updates](./campai
 
 ### Creating a Campaign Update
 
-1.  Within a Campaign on Contentful, scroll down and find the **Activity Feed** section.
-2.  Click "Create new entry and link".
-3.  Click the "Campaign Update" type.
-4.  After you have clicked "Create new entry and link", you will be presented with a form to create the new campaign update with the following fields:
+1.  Within a Campaign on Contentful, scroll down and find the **Pages** section.
+2.  Find the entry titled 'Community', visit that entry's page, and scroll down to find the **blocks** section.
+3.  Click "Create new entry and link".
+4.  Click the "Campaign Update" type.
+5.  After you have clicked "Create new entry and link", you will be presented with a form to create the new campaign update with the following fields:
 
 * **Internal Title**: this is the title for the content within the Contentful system and will not be displayed on the website.
   * Format: `Campaign Name - Date - Short Description`.
