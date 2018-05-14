@@ -1,13 +1,7 @@
-/* global jsdom */
-
 import React from 'react';
 import { shallow } from 'enzyme';
 
 import LinkAction from './LinkAction';
-import ClassicTemplate from './templates/ClassicTemplate';
-import { trackPuckEvent as trackEventMock } from '../../../helpers/analytics';
-
-jest.mock('../../../helpers/analytics');
 
 describe('LinkAction component', () => {
   const props = {
