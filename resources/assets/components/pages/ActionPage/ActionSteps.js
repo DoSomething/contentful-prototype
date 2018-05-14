@@ -119,7 +119,7 @@ const ActionSteps = props => {
     );
   }
 
-  if (isSignedUp && (template === 'legacy' || !hasActivityFeed)) {
+  if (isSignedUp && template === 'legacy') {
     stepComponents.push(renderLegacyGallery());
   }
 
