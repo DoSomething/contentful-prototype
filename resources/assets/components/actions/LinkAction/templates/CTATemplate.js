@@ -1,11 +1,19 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import Card from '../../../utilities/Card/Card';
+import { isExternal } from '../../../../helpers';
 import Button from '../../../utilities/Button/Button';
+import { trackPuckEvent } from '../../../../helpers/analytics';
 
 import './cta-template.scss';
+
+const onLinkClick = link => {
+  window.open(link, isExternal(link) ? '_blank' : '_self');
+  trackPuckEvent('clicked link action', { link });
+};
 
 const CallToAction = props => (
   <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
@@ -15,9 +23,12 @@ const CallToAction = props => (
       {props.content}
     </div>
 
-    <a className="button margin-bottom-md" href={props.link}>
+    <Button
+      className="margin-bottom-md"
+      onClick={() => onLinkClick(props.link)}
+    >
       {props.buttonText}
-    </a>
+    </Button>
   </Card>
 );
 
