@@ -23,7 +23,7 @@ class PhotoSubmissionAction extends React.Component {
     if (responseSuccessful) {
       return {
         shouldResetForm: true,
-        showModal: responseSuccessful,
+        showModal: true,
       };
     }
 
@@ -32,8 +32,6 @@ class PhotoSubmissionAction extends React.Component {
 
   constructor(props) {
     super(props);
-
-    console.log(this.props);
 
     // @TODO: Update the MediaUploader component and remove need
     // for this object.
