@@ -76,6 +76,20 @@ module.exports = function(migration) {
     .localized(true);
 
   photoSubmissionAction
+    .createField('informationTitle')
+    .name('Information Title')
+    .type('Symbol')
+    .required(false)
+    .localized(true);
+
+  photoSubmissionAction
+    .createField('informationContent')
+    .name('Information Content')
+    .type('Text')
+    .required(false)
+    .localized(true);
+
+  photoSubmissionAction
     .createField('affirmationContent')
     .name('Affirmation Content')
     .type('Text')

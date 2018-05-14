@@ -1,6 +1,25 @@
 @import '../../../scss/next-toolbox.scss';
 
 .photo-submission-action {
+  @include media($large) {
+    float: left;
+    padding-right: $half-spacing;
+    width: 66.6666666666666%;
+  }
+}
+
+.photo-submission-information {
+  margin-top: $base-spacing;
+
+  @include media($large) {
+    float: right;
+    margin-top: 0;
+    padding-left: $half-spacing;
+    width: 33.3333333333333%;
+  }
+}
+
+.photo-submission-form {
   > .wrapper {
     @include media($medium) {
       display: flex;

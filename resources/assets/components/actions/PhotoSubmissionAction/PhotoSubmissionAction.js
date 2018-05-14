@@ -5,8 +5,9 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
-import { withoutUndefined } from '../../../helpers';
 import Button from '../../utilities/Button/Button';
+import { withoutUndefined } from '../../../helpers';
+import Markdown from '../../utilities/Markdown/Markdown';
 import MediaUploader from '../../utilities/MediaUploader';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
@@ -14,6 +15,19 @@ import { getFieldErrors, setFormData } from '../../../helpers/forms';
 import './photo-submission-action.scss';
 
 class PhotoSubmissionAction extends React.Component {
+  static getDerivedStateFromProps(nextProps) {
+    const response = nextProps.submissions.items[nextProps.id] || null;
+
+    if (has(response, 'status.success')) {
+      return {
+        shouldResetForm: true,
+        showModal: true,
+      };
+    }
+
+    return null;
+  }
+
   constructor(props) {
     super(props);
 
@@ -28,13 +42,16 @@ class PhotoSubmissionAction extends React.Component {
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
+      shouldResetForm: false,
       showModal: false,
       whyParticipatedValue: '',
     };
   }
 
-  componentDidUpdate(prevProps) {
-    console.log(prevProps);
+  componentDidUpdate() {
+    if (this.state.shouldResetForm) {
+      this.resetForm();
+    }
   }
 
   fields = {
@@ -91,6 +108,7 @@ class PhotoSubmissionAction extends React.Component {
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
+      shouldResetForm: false,
       whyParticipatedValue: '',
     });
   };
@@ -109,115 +127,144 @@ class PhotoSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
-        <Card
-          className={classnames('bordered rounded', this.props.className)}
-          title={this.props.title}
-        >
-          {formResponse ? <FormValidation response={formResponse} /> : null}
-
-          <form
-            className="photo-submission-action"
-            onSubmit={this.handleSubmit}
-          >
-            <div className="wrapper">
-              <div className="form-section">
-                <div className="wrapper">
-                  <MediaUploader
-                    label="Add your photo here"
-                    media={this.state.mediaValue}
-                    onChange={this.handleFileUpload}
-                    hasError={has(errors, 'media')}
-                  />
-
-                  <div className="form-item">
-                    <label
-                      className={classnames('field-label', {
-                        'has-error': has(errors, 'caption'),
-                      })}
-                      htmlFor="caption"
-                    >
-                      {this.props.captionFieldLabel}
-                    </label>
-                    <input
-                      className={classnames('text-field', {
-                        'has-error shake': has(errors, 'caption'),
-                      })}
-                      type="text"
-                      id="caption"
-                      name="caption"
-                      placeholder={this.props.captionFieldPlaceholder}
-                      value={this.state.captionValue}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className="form-section">
-                <div className="wrapper">
-                  <div className="form-item">
-                    <label
-                      className={classnames('field-label', {
-                        'has-error': has(errors, 'quantity'),
-                      })}
-                      htmlFor="quantity"
-                    >
-                      {this.props.quantityFieldLabel}
-                    </label>
-                    <input
-                      className={classnames('text-field', {
-                        'has-error shake': has(errors, 'quantity'),
-                      })}
-                      type="text"
-                      id="quantity"
-                      name="quantity"
-                      placeholder={this.props.quantityFieldPlaceholder}
-                      value={this.state.quantityValue}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-
-                  <div className="form-item stretched">
-                    <label
-                      className={classnames('field-label', {
-                        'has-error': has(errors, 'whyParticipated'),
-                      })}
-                      htmlFor="whyParticipated"
-                    >
-                      {this.props.whyParticipatedFieldLabel}
-                    </label>
-                    <textarea
-                      className={classnames('text-field', {
-                        'has-error shake': has(errors, 'whyParticipated'),
-                      })}
-                      id="whyParticipated"
-                      name="whyParticipated"
-                      placeholder={this.props.whyParticipatedFieldPlaceholder}
-                      value={this.state.whyParticipatedValue}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Button
-              type="submit"
-              loading={this.props.submissions.isPending}
-              attached
+        <div className="clearfix">
+          <div className="photo-submission-action">
+            <Card
+              className={classnames('bordered rounded', this.props.className)}
+              title={this.props.title}
             >
-              {this.props.buttonText}
-            </Button>
-          </form>
-        </Card>
+              {formResponse ? <FormValidation response={formResponse} /> : null}
 
-        {this.state.showModal ? <Modal /> : null}
+              <form
+                className="photo-submission-form"
+                onSubmit={this.handleSubmit}
+              >
+                <div className="wrapper">
+                  <div className="form-section">
+                    <div className="wrapper">
+                      <MediaUploader
+                        label="Add your photo here"
+                        media={this.state.mediaValue}
+                        onChange={this.handleFileUpload}
+                        hasError={has(errors, 'media')}
+                      />
+
+                      <div className="form-item">
+                        <label
+                          className={classnames('field-label', {
+                            'has-error': has(errors, 'caption'),
+                          })}
+                          htmlFor="caption"
+                        >
+                          {this.props.captionFieldLabel}
+                        </label>
+                        <input
+                          className={classnames('text-field', {
+                            'has-error shake': has(errors, 'caption'),
+                          })}
+                          type="text"
+                          id="caption"
+                          name="caption"
+                          placeholder={this.props.captionFieldPlaceholder}
+                          value={this.state.captionValue}
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="form-section">
+                    <div className="wrapper">
+                      <div className="form-item">
+                        <label
+                          className={classnames('field-label', {
+                            'has-error': has(errors, 'quantity'),
+                          })}
+                          htmlFor="quantity"
+                        >
+                          {this.props.quantityFieldLabel}
+                        </label>
+                        <input
+                          className={classnames('text-field', {
+                            'has-error shake': has(errors, 'quantity'),
+                          })}
+                          type="text"
+                          id="quantity"
+                          name="quantity"
+                          placeholder={this.props.quantityFieldPlaceholder}
+                          value={this.state.quantityValue}
+                          onChange={this.handleChange}
+                        />
+                      </div>
+
+                      <div className="form-item stretched">
+                        <label
+                          className={classnames('field-label', {
+                            'has-error': has(errors, 'whyParticipated'),
+                          })}
+                          htmlFor="whyParticipated"
+                        >
+                          {this.props.whyParticipatedFieldLabel}
+                        </label>
+                        <textarea
+                          className={classnames('text-field', {
+                            'has-error shake': has(errors, 'whyParticipated'),
+                          })}
+                          id="whyParticipated"
+                          name="whyParticipated"
+                          placeholder={
+                            this.props.whyParticipatedFieldPlaceholder
+                          }
+                          value={this.state.whyParticipatedValue}
+                          onChange={this.handleChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <Button
+                  type="submit"
+                  loading={this.props.submissions.isPending}
+                  attached
+                >
+                  {this.props.buttonText}
+                </Button>
+              </form>
+            </Card>
+          </div>
+
+          {this.props.informationContent ? (
+            <div className="photo-submission-information">
+              <Card
+                title={this.props.informationTitle}
+                className="bordered rounded"
+              >
+                <Markdown className="padding-md">
+                  {this.props.informationContent}
+                </Markdown>
+              </Card>
+            </div>
+          ) : null}
+        </div>
+
+        {this.state.showModal ? (
+          <Modal onClose={() => this.setState({ showModal: false })}>
+            <Card className="bordered rounded" title="We got your photo!">
+              <Markdown className="padded">
+                {this.props.affirmationContent ||
+                  PhotoSubmissionAction.defaultProps.affirmationContent}
+              </Markdown>
+            </Card>
+          </Modal>
+        ) : null}
       </React.Fragment>
     );
   }
 }
 
 PhotoSubmissionAction.propTypes = {
+  affirmationContent: PropTypes.string,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
@@ -228,6 +275,8 @@ PhotoSubmissionAction.propTypes = {
   className: PropTypes.string,
   clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  informationContent: PropTypes.string,
+  informationTitle: PropTypes.string,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
   storeCampaignPost: PropTypes.func.isRequired,
@@ -242,10 +291,15 @@ PhotoSubmissionAction.propTypes = {
 
 PhotoSubmissionAction.defaultProps = {
   additionalContent: null,
+  affirmationContent:
+    "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
   captionFieldLabel: 'Add a caption to your photo.',
   captionFieldPlaceholder: '60 characters or less',
   className: null,
+  informationContent:
+    'A DoSomething staffer will review and approve your photo.',
+  informationTitle: 'More Info',
   quantityFieldLabel: 'How many items are in this photo?',
   quantityFieldPlaceholder: 'Quantity # (300)',
   title: 'Submit your photo',
