@@ -22,6 +22,7 @@ class LinkAction extends Entity implements JsonSerializable
                 'link' => $this->link,
                 'buttonText' => $this->buttonText,
                 'affiliateLogo' => get_image_url($this->affiliateLogo, 'logo'),
+                'template' => $this->template,
             ],
         ];
     }
