@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import LinkActionCard from './templates/LinkActionCard';
+import ClassicTemplate from './templates/ClassicTemplate';
 
 const LinkAction = props => {
   const { template } = props;
 
   switch (template) {
-    case 'card':
-      return <LinkActionCard {...props} />;
     default:
-      return <LinkActionCard {...props} />;
+      return <ClassicTemplate {...props} />;
   }
 };
 
@@ -19,7 +17,7 @@ LinkAction.propTypes = {
 };
 
 LinkAction.defaultProps = {
-  template: 'card',
+  template: null,
 };
 
 export default LinkAction;
