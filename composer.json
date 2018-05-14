@@ -1,76 +1,61 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
-    "type": "project",
-    "require": {
-        "php": ">=5.6.4",
-        "laravel/framework": "5.4.*",
-        "dosomething/gateway": "^1.9.5",
-        "contentful/contentful": "1.0.*",
-        "contentful/laravel": "1.0.*",
-        "erusev/parsedown": "^1.6",
-        "predis/predis": "^1.1",
-        "fideloper/proxy": "^3.2",
-        "embed/embed": "3.2.*",
-        "barryvdh/laravel-debugbar": "^2.3",
-        "seatgeek/sixpack-php": "^2.1",
-        "doctrine/dbal": "^2.5",
-        "dfurnes/environmentalist": "^0.0.2",
-        "laravel/tinker": "~1.0"
-    },
-    "require-dev": {
-        "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*",
-        "laravel/browser-kit-testing": "1.*"
-    },
-    "autoload": {
-        "classmap": [
-            "database"
-        ],
-        "files": [
-          "app/helpers.php"
-        ],
-        "psr-4": {
-            "App\\": "app/"
-        }
-    },
-    "autoload-dev": {
-        "classmap": [
-            "tests/DatabaseSetup.php",
-            "tests/TestCase.php"
-        ],
-        "psr-4": {
-          "Tests\\": "tests/"
-        }
-    },
-    "scripts": {
-        "post-root-package-install": [
-            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "php artisan key:generate"
-        ],
-        "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
-        ],
-        "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
-        ],
-        "warmup": [
-            "php artisan gateway:key",
-            "php artisan config:cache"
-        ]
-    },
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.6.4",
+    "barryvdh/laravel-debugbar": "^2.3",
+    "contentful/contentful": "1.0.*",
+    "contentful/laravel": "1.0.*",
+    "dfurnes/environmentalist": "^0.0.2",
+    "doctrine/dbal": "^2.5",
+    "dosomething/gateway": "^1.14.7",
+    "embed/embed": "3.2.*",
+    "erusev/parsedown": "^1.6",
+    "fideloper/proxy": "^3.2",
+    "laravel/framework": "5.4.*",
+    "laravel/tinker": "~1.0",
+    "predis/predis": "^1.1",
+    "seatgeek/sixpack-php": "^2.1"
+  },
+  "require-dev": {
+    "fzaninotto/faker": "~1.4",
+    "mockery/mockery": "0.9.*",
+    "phpunit/phpunit": "~5.7",
+    "symfony/css-selector": "3.1.*",
+    "symfony/dom-crawler": "3.1.*",
+    "laravel/browser-kit-testing": "1.*"
+  },
+  "autoload": {
+    "classmap": ["database"],
+    "files": ["app/helpers.php"],
+    "psr-4": {
+      "App\\": "app/"
     }
+  },
+  "autoload-dev": {
+    "classmap": ["tests/DatabaseSetup.php", "tests/TestCase.php"],
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-root-package-install": [
+      "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": ["php artisan key:generate"],
+    "post-install-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postInstall",
+      "php artisan optimize"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "php artisan optimize"
+    ],
+    "warmup": ["php artisan gateway:key", "php artisan config:cache"]
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  }
 }
