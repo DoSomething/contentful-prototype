@@ -18,9 +18,7 @@ class PhotoSubmissionAction extends React.Component {
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
-    const responseSuccessful = has(response, 'status.success');
-
-    if (responseSuccessful) {
+    if (has(response, 'status.success')) {
       return {
         shouldResetForm: true,
         showModal: true,
