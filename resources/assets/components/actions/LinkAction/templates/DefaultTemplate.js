@@ -17,7 +17,7 @@ const onLinkClick = link => {
   trackPuckEvent('clicked link action', { link });
 };
 
-const ClassicTemplate = props => {
+const DefaultTemplate = props => {
   const {
     content,
     link,
@@ -79,7 +79,7 @@ const ClassicTemplate = props => {
   );
 };
 
-ClassicTemplate.defaultProps = {
+DefaultTemplate.defaultProps = {
   content: null,
   affiliateLogo: null,
   buttonText: 'Visit Link',
@@ -87,7 +87,7 @@ ClassicTemplate.defaultProps = {
   userId: null,
 };
 
-ClassicTemplate.propTypes = {
+DefaultTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
@@ -97,4 +97,4 @@ ClassicTemplate.propTypes = {
   userId: PropTypes.string,
 };
 
-export default ClassicTemplate;
+export default DefaultTemplate;

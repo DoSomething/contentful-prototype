@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ClassicTemplate from './templates/ClassicTemplate';
+import DefaultTemplate from './templates/DefaultTemplate';
 
 const LinkAction = props => {
   const { template } = props;
 
   switch (template) {
     default:
-      return <ClassicTemplate {...props} />;
+      return <DefaultTemplate {...props} />;
   }
 };
 

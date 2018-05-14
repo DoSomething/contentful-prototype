@@ -3,13 +3,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import ClassicTemplate from './ClassicTemplate';
+import DefaultTemplate from './DefaultTemplate';
 import { trackPuckEvent as trackEventMock } from '../../../../helpers/analytics';
 
 jest.mock('../../../../helpers/analytics');
 
-describe('ClassicTemplate component', () => {
-  // mocking the window.location.origin for the isExternal helper method called from ClassicTemplate
+describe('DefaultTemplate component', () => {
+  // mocking the window.location.origin for the isExternal helper method called from DefaultTemplate
   jsdom.reconfigure({
     url: 'https://dosomething.org',
   });
@@ -20,7 +20,7 @@ describe('ClassicTemplate component', () => {
   };
 
   describe('without content', () => {
-    const wrapper = shallow(<ClassicTemplate {...props} />);
+    const wrapper = shallow(<DefaultTemplate {...props} />);
 
     it('renders a link embed', () => {
       expect(wrapper.find('Embed')).toHaveLength(1);
@@ -34,7 +34,7 @@ describe('ClassicTemplate component', () => {
 
   describe('with content', () => {
     const wrapper = shallow(
-      <ClassicTemplate {...props} content="This is a great link" />,
+      <DefaultTemplate {...props} content="This is a great link" />,
     );
 
     it('renders a Card component with a button', () => {
@@ -50,7 +50,7 @@ describe('ClassicTemplate component', () => {
 
   describe('with custom button text', () => {
     const wrapper = shallow(
-      <ClassicTemplate
+      <DefaultTemplate
         {...props}
         content="This is a great link"
         buttonText="Do it!"
@@ -67,7 +67,7 @@ describe('ClassicTemplate component', () => {
 
   describe('without an affiliateLogo', () => {
     const wrapper = shallow(
-      <ClassicTemplate {...props} content="Look here!" />,
+      <DefaultTemplate {...props} content="Look here!" />,
     );
 
     it('does not add an "affiliate-content" class to the Card', () => {
@@ -81,7 +81,7 @@ describe('ClassicTemplate component', () => {
 
   describe('with an affiliateLogo', () => {
     const wrapper = shallow(
-      <ClassicTemplate
+      <DefaultTemplate
         {...props}
         content="This is a sponsored post, so take a good look at it!"
         affiliateLogo="https://vignette.wikia.nocookie.net/pokemon/images/b/b0/Team_Rocket_trio_OS.png/revision/latest?cb=20150915073657"

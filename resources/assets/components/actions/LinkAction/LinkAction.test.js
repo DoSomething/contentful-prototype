@@ -11,7 +11,7 @@ describe('LinkAction component', () => {
 
   const wrapper = shallow(<LinkAction {...props} />);
 
-  it('renders the ClassicTemplate by default', () => {
-    expect(wrapper.find('ClassicTemplate')).toHaveLength(1);
+  it('renders the DefaultTemplate by default', () => {
+    expect(wrapper.find('DefaultTemplate')).toHaveLength(1);
   });
 });
