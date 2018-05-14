@@ -7,6 +7,4 @@ module.exports = function(migration) {
     .type('Symbol')
     .required(false)
     .validations([{ in: ['default', 'cta'] }]);
-
-  linkAction.moveField('template').beforeField('title');
 };
