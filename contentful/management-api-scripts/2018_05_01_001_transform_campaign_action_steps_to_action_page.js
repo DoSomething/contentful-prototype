@@ -104,7 +104,7 @@ async function addActionPageFromActionSteps(environment, campaign) {
               'imagesBlock',
               withFields({
                 internalTitle: `${internalTitle} - photos`,
-                photos,
+                images: photos,
               }),
             ),
           );
