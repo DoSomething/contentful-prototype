@@ -35,28 +35,31 @@ import './scss/fonts.scss';
 import App from './components/App';
 
 // DOM Helpers
+import { ready } from './helpers';
 import { init as historyInit } from './history';
 import { googleAnalyticsInit } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
 
 // Configure store & history.
-const history = historyInit();
-const middleware = [thunk, routerMiddleware(history)];
-const preloadedState = window.STATE || {};
-const store = configureStore(
-  { ...reducers, routing: routerReducer },
-  middleware,
-  { ...preloadedState, user: window.AUTH },
-);
+ready(() => {
+  const history = historyInit();
+  const middleware = [thunk, routerMiddleware(history)];
+  const preloadedState = window.STATE || {};
+  const store = configureStore(
+    { ...reducers, routing: routerReducer },
+    middleware,
+    { ...preloadedState, user: window.AUTH },
+  );
 
-// Add event listeners for top-level navigation.
-bindNavigationEvents();
+  // Add event listeners for top-level navigation.
+  bindNavigationEvents();
 
-// Add event listeners for GA.
-googleAnalyticsInit(history);
+  // Add event listeners for GA.
+  googleAnalyticsInit(history);
 
-// Render the application!
-const appElement = document.getElementById('app');
-if (appElement) {
-  ReactDom.render(<App store={store} history={history} />, appElement);
-}
+  // Render the application!
+  const appElement = document.getElementById('app');
+  if (appElement) {
+    ReactDom.render(<App store={store} history={history} />, appElement);
+  }
+});
