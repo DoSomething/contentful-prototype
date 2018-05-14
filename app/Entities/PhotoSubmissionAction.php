@@ -21,6 +21,8 @@ class PhotoSubmissionAction extends Entity implements JsonSerializable
                 'whyParticipatedFieldLabel' => $this->whyParticipatedFieldLabel,
                 'whyParticipatedFieldPlaceholder' => $this->whyParticipatedFieldPlaceholder,
                 'buttonText' => $this->buttonText,
+                'informationTitle' => $this->informationTitle,
+                'informationContent' => $this->informationContent,
                 'affirmationContent' => $this->affirmationContent,
                 'additionalContent' => $this->additionalContent,
             ],
