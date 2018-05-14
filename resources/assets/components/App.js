@@ -25,7 +25,7 @@ const App = ({ store, history }) => {
         history={history}
         puckUrl={env('PUCK_URL')}
       >
-        <ApolloProvider client={graphqlClient}>
+        <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           <ConnectedRouter history={history}>
             <Switch>
               <Route path="/us/profile" component={ProfilePage} />
