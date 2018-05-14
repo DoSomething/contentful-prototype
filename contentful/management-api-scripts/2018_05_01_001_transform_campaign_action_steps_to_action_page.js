@@ -53,6 +53,8 @@ async function addActionPageFromActionSteps(environment, campaign) {
       const actionStepTitle = getField(campaignActionStep, 'title');
       const content = getField(campaignActionStep, 'content');
       const hideStepNumber = getField(campaignActionStep, 'hideStepNumber');
+      const images = getField(campaignActionStep, 'photos', []);
+
       // If the action step is meant to have a step number attached, we'll manually add it as a superTitle
       const supertitle =
         hideStepNumber == null || !hideStepNumber
@@ -73,16 +75,20 @@ async function addActionPageFromActionSteps(environment, campaign) {
 
       const internalTitle = `${campaignInternalTitle} - Action Step`;
 
+      const contentBlockFields = {
+        internalTitle,
+        supertitle,
+        title: actionStepTitle,
+        content,
+      };
+
+      // If there are image on this action step, set the first image on the new content blocks 'image' field
+      if (images.length === 1) {
+        contentBlockFields['image'] = images.shift();
+      }
+
       const contentBlock = await attempt(() =>
-        environment.createEntry(
-          'contentBlock',
-          withFields({
-            internalTitle,
-            supertitle,
-            title: actionStepTitle,
-            content,
-          }),
-        ),
+        environment.createEntry('contentBlock', withFields(contentBlockFields)),
       );
 
       const publishedContentBlock = await attempt(() => contentBlock.publish());
@@ -90,9 +96,7 @@ async function addActionPageFromActionSteps(environment, campaign) {
       if (publishedContentBlock) {
         let publishedImagesBlock;
 
-        // If the action step has any photos, we'll add them to a separate Images Block
-        const images = getField(campaignActionStep, 'photos', []);
-
+        // If the action step has multiple photos, we'll add them to a separate Images Block
         if (images.length) {
           const imagesBlock = await attempt(() =>
             environment.createEntry(
@@ -151,6 +155,9 @@ async function addActionPageFromActionSteps(environment, campaign) {
       }
       // Add a Link to the new Page in the campaigns Pages field
       campaign.fields.pages[LOCALE].push(linkReference(actionPage.sys.id));
+
+      // Remove actionSteps blocks from campaign
+      campaign.fields.actionSteps[LOCALE] = [];
 
       // Update and publish the campaign
       const updatedCampaign = await attempt(() => campaign.update());
