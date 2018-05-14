@@ -8,5 +8,5 @@ module.exports = function(migration) {
     .required(false)
     .validations([{ in: ['default', 'cta'] }]);
 
-  linkAction.moveField('imageAlignment').beforeField('title');
+  linkAction.moveField('template').beforeField('title');
 };
