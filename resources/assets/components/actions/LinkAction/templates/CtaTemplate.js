@@ -20,9 +20,7 @@ const CtaTemplate = props => (
   <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
     <h3 className="cta-template__title margin-top-lg">{props.title}</h3>
 
-    <Markdown className="cta-template__content color-white">
-      {props.content}
-    </Markdown>
+    <Markdown className="cta-template__content">{props.content}</Markdown>
 
     <Button
       className="margin-vertical-md"
