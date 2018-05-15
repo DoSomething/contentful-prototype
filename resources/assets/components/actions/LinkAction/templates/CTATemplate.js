@@ -17,14 +17,12 @@ const onLinkClick = link => {
 
 const CtaTemplate = props => (
   <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
-    <div className="cta-template__title margin-top-lg">{props.title}</div>
+    <h3 className="cta-template__title margin-top-lg">{props.title}</h3>
 
-    <div className="cta-template__content margin-bottom-md">
-      {props.content}
-    </div>
+    <p className="cta-template__content color-white">{props.content}</p>
 
     <Button
-      className="margin-bottom-md"
+      className="margin-vertical-md"
       onClick={() => onLinkClick(props.link)}
     >
       {props.buttonText}
