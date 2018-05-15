@@ -77,7 +77,7 @@ class ShareAction extends React.Component {
             {content ? <Markdown className="padded">{content}</Markdown> : null}
             {hideEmbed ? null : (
               <div className="padded">
-                <Embed url={href} />
+                <Embed url={link} />
               </div>
             )}
             <Button attached onClick={() => handleShareClick(href)}>

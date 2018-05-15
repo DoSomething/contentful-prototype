@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import { Phoenix } from '@dosomething/gateway';
 
 import linkIcon from './linkIcon.svg';
-import { isExternal } from '../../../helpers';
+import { isExternal, withoutTokens } from '../../../helpers';
 import LazyImage from '../LazyImage';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 
@@ -23,7 +23,7 @@ class Embed extends React.Component {
 
   componentDidMount() {
     this.phoenix
-      .get('next/embed', { url: this.props.url })
+      .get('next/embed', { url: withoutTokens(this.props.url) })
       .then(data => this.setState({ data }));
   }
 
