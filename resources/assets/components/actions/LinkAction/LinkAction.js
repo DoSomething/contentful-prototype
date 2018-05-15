@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CTATemplate from './templates/CTATemplate';
+import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
 
 const LinkAction = props => {
@@ -9,7 +9,7 @@ const LinkAction = props => {
 
   switch (template) {
     case 'cta':
-      return <CTATemplate {...props} />;
+      return <CtaTemplate {...props} />;
     default:
       return <DefaultTemplate {...props} />;
   }

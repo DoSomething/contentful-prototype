@@ -15,7 +15,7 @@ const onLinkClick = link => {
   trackPuckEvent('clicked link action', { link });
 };
 
-const CTATemplate = props => (
+const CtaTemplate = props => (
   <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
     <div className="cta-template__title margin-top-lg">{props.title}</div>
 
@@ -32,15 +32,15 @@ const CTATemplate = props => (
   </Card>
 );
 
-CTATemplate.propTypes = {
+CtaTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   buttonText: PropTypes.string,
 };
 
-CTATemplate.defaultProps = {
+CtaTemplate.defaultProps = {
   buttonText: "Let's do this!",
 };
 
-export default CTATemplate;
+export default CtaTemplate;
