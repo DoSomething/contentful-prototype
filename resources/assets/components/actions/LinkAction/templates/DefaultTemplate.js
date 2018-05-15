@@ -78,7 +78,7 @@ const DefaultTemplate = props => {
           />
         ) : null}
 
-        <Button attached onClick={() => onLinkClick(link)}>
+        <Button attached onClick={() => onLinkClick(href)}>
           {buttonText}
         </Button>
       </Card>
