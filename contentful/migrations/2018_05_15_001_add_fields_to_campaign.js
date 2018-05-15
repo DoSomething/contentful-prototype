@@ -6,30 +6,30 @@ module.exports = function(migration) {
     .name('Staff Pick')
     .type('Boolean')
     .required(false)
-    .localized(true);
+    .localized(false);
 
   campaign
-    .createField('cause')
-    .name('Cause')
+    .createField('causes')
+    .name('Causes')
     .type('Array')
     .items({
       type: 'Symbol',
       validations: [
         {
           in: [
-            'Animals',
-            'Bullying',
-            'Disasters',
-            'Discrimination',
-            'Education',
-            'Environment',
-            'Homelessness',
-            'Mental Health',
-            'Physical Health',
-            'Poverty',
-            'Relationships',
-            'Sex',
-            'Violence',
+            'animals',
+            'bullying',
+            'disasters',
+            'discrimination',
+            'education',
+            'environment',
+            'homelessness',
+            'mental health',
+            'physical health',
+            'poverty',
+            'relationships',
+            'sex',
+            'violence',
           ],
         },
       ],
@@ -43,7 +43,8 @@ module.exports = function(migration) {
     .createField('scholarshipAmount')
     .name('Scholarship Amount')
     .type('Integer')
-    .required(false);
+    .required(false)
+    .localized(false);
 
   campaign.moveField('additionalContent').afterField('scholarshipAmount');
 };
