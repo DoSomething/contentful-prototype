@@ -28,6 +28,7 @@ class PostRequest extends FormRequest
             case 'photo':
                 return [
                     'file.required' => 'An uploaded photo is required.',
+                    'quantity.required_if' => 'The quantity field is required.',
                     'text.max' => 'The caption field may not be greater than :max characters.',
                     'text.min' => 'The caption field may not be less than :min characters.',
                     'text.required' => 'The caption field for your photo is required.',
@@ -56,7 +57,8 @@ class PostRequest extends FormRequest
             case 'photo':
                 return [
                     'file' => 'required|file|image',
-                    'quantity' => 'required|integer|min:1',
+                    'quantity' => 'required_if:show_quantity,1|integer|min:1',
+                    'show_quantity' => 'required|boolean',
                     'text' => 'required|min:4|max:60',
                     'why_participated' => 'required',
                 ];

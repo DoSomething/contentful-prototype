@@ -54,11 +54,18 @@ class PhotoSubmissionAction extends React.Component {
     }
   }
 
-  fields = {
-    file: 'media',
-    text: 'caption',
-    quantity: 'quantity',
-    why_participated: 'whyParticipated',
+  fields = () => {
+    const items = {
+      file: 'media',
+      text: 'caption',
+      why_participated: 'whyParticipated',
+    };
+
+    if (this.props.showQuantityField) {
+      items.quantity = 'quantity';
+    }
+
+    return items;
   };
 
   handleChange = event => {
@@ -88,8 +95,9 @@ class PhotoSubmissionAction extends React.Component {
         type,
         id: this.props.id,
         // Associate state values to fields.
-        ...mapValues(this.fields, value => this.state[`${value}Value`]),
+        ...mapValues(this.fields(), value => this.state[`${value}Value`]),
         file: this.state.mediaValue.file || '',
+        show_quantity: this.props.showQuantityField ? 1 : 0,
       },
       this.props,
     );
@@ -121,7 +129,7 @@ class PhotoSubmissionAction extends React.Component {
     // Associate errors to component field names.
     const errors = withoutUndefined(
       formErrors
-        ? mapValues(invert(this.fields), value => formErrors[value])
+        ? mapValues(invert(this.fields()), value => formErrors[value])
         : null,
     );
 
@@ -175,27 +183,29 @@ class PhotoSubmissionAction extends React.Component {
 
                   <div className="form-section">
                     <div className="wrapper">
-                      <div className="form-item">
-                        <label
-                          className={classnames('field-label', {
-                            'has-error': has(errors, 'quantity'),
-                          })}
-                          htmlFor="quantity"
-                        >
-                          {this.props.quantityFieldLabel}
-                        </label>
-                        <input
-                          className={classnames('text-field', {
-                            'has-error shake': has(errors, 'quantity'),
-                          })}
-                          type="text"
-                          id="quantity"
-                          name="quantity"
-                          placeholder={this.props.quantityFieldPlaceholder}
-                          value={this.state.quantityValue}
-                          onChange={this.handleChange}
-                        />
-                      </div>
+                      {this.props.showQuantityField ? (
+                        <div className="form-item">
+                          <label
+                            className={classnames('field-label', {
+                              'has-error': has(errors, 'quantity'),
+                            })}
+                            htmlFor="quantity"
+                          >
+                            {this.props.quantityFieldLabel}
+                          </label>
+                          <input
+                            className={classnames('text-field', {
+                              'has-error shake': has(errors, 'quantity'),
+                            })}
+                            type="text"
+                            id="quantity"
+                            name="quantity"
+                            placeholder={this.props.quantityFieldPlaceholder}
+                            value={this.state.quantityValue}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      ) : null}
 
                       <div className="form-item stretched">
                         <label
@@ -279,6 +289,7 @@ PhotoSubmissionAction.propTypes = {
   informationTitle: PropTypes.string,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
+  showQuantityField: PropTypes.bool,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
@@ -301,7 +312,8 @@ PhotoSubmissionAction.defaultProps = {
     'A DoSomething staffer will review and approve your photo.',
   informationTitle: 'More Info',
   quantityFieldLabel: 'How many items are in this photo?',
-  quantityFieldPlaceholder: 'Quantity # (300)',
+  quantityFieldPlaceholder: 'Quantity # (e.g. 300)',
+  showQuantityField: true,
   title: 'Submit your photo',
   whyParticipatedFieldLabel: 'Why is this campaign important to you?',
   whyParticipatedFieldPlaceholder:
