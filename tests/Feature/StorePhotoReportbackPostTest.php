@@ -68,12 +68,13 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
     }
 
     /** @test */
-    public function quantity_is_required_to_submit_photo_post()
+    public function quantity_is_required_if_field_is_displayed_to_submit_photo_post()
     {
         $this->storePhotoPost([
             'type' => 'photo',
             'text' => 'Great text caption!',
             'file' => 'not-a-file-upload',
+            'show_quantity' => '1',
             'why_participated' => 'Because testing is very important.',
         ]);
 
