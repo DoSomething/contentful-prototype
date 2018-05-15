@@ -9,35 +9,32 @@ module.exports = function(migration) {
     .localized(false);
 
   campaign
-    .createField('causes')
-    .name('Causes')
-    .type('Array')
-    .items({
-      type: 'Symbol',
-      validations: [
-        {
-          in: [
-            'animals',
-            'bullying',
-            'disasters',
-            'discrimination',
-            'education',
-            'environment',
-            'homelessness',
-            'mental health',
-            'physical health',
-            'poverty',
-            'relationships',
-            'sex',
-            'violence',
-          ],
-        },
-      ],
-    })
+    .createField('cause')
+    .name('Cause')
+    .type('Symbol')
+    .validations([
+      {
+        in: [
+          'animals',
+          'bullying',
+          'disasters',
+          'discrimination',
+          'education',
+          'environment',
+          'homelessness',
+          'mental health',
+          'physical health',
+          'poverty',
+          'relationships',
+          'sex',
+          'violence',
+        ],
+      },
+    ])
     .required(false)
     .localized(true);
 
-  campaign.changeEditorInterface('cause', 'checkbox');
+  campaign.changeEditorInterface('cause', 'radio');
 
   campaign
     .createField('scholarshipAmount')
