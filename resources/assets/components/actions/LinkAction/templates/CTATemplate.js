@@ -15,7 +15,7 @@ const onLinkClick = link => {
   trackPuckEvent('clicked link action', { link });
 };
 
-const CallToAction = props => (
+const CTATemplate = props => (
   <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
     <div className="cta-template__title margin-top-lg">{props.title}</div>
 
@@ -32,15 +32,15 @@ const CallToAction = props => (
   </Card>
 );
 
-CallToAction.propTypes = {
+CTATemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   buttonText: PropTypes.string,
 };
 
-CallToAction.defaultProps = {
+CTATemplate.defaultProps = {
   buttonText: "Let's do this!",
 };
 
-export default CallToAction;
+export default CTATemplate;
