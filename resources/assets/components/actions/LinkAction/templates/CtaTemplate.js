@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import { isExternal } from '../../../../helpers';
 import Button from '../../../utilities/Button/Button';
+import Markdown from '../../../utilities/Markdown/Markdown';
 import { trackPuckEvent } from '../../../../helpers/analytics';
 
 import './cta-template.scss';
@@ -19,7 +20,9 @@ const CtaTemplate = props => (
   <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
     <h3 className="cta-template__title margin-top-lg">{props.title}</h3>
 
-    <p className="cta-template__content color-white">{props.content}</p>
+    <Markdown className="cta-template__content color-white">
+      {props.content}
+    </Markdown>
 
     <Button
       className="margin-vertical-md"
