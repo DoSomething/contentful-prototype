@@ -21,7 +21,8 @@ const VoterRegistrationAction = props => {
   } = props;
 
   const tokens = {
-    northstarId: userId,
+    userId,
+    northstarId: userId, // @TODO: Remove!
     campaignId,
     campaignRunId,
     source: 'web',

@@ -76,6 +76,19 @@ export function dynamicString(string, tokens = {}) {
 }
 
 /**
+ * Return a string with tokens removed.
+ *
+ * @param  {String} string
+ * @param  {Object} tokens
+ * @return {String}
+ */
+export function withoutTokens(string) {
+  const regex = new RegExp(`{[A-Za-z]*}`, 'g');
+
+  return string.replace(regex, 'x');
+}
+
+/**
  * Ensure a user is authenticated. If not, redirect them
  * to log in via the OpenID Connect flow.
  * @param isAuthenticated
