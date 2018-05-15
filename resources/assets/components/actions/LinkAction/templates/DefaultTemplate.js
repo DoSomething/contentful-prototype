@@ -23,6 +23,7 @@ const DefaultTemplate = props => {
     link,
     userId,
     campaignId,
+    campaignRunId,
     buttonText,
     affiliateLogo,
   } = props;
@@ -32,7 +33,13 @@ const DefaultTemplate = props => {
   // so this ensures consistency until we make this part of the content editing process.
   const title = affiliateLogo ? 'See More Be More Do More' : props.title;
 
-  const href = dynamicString(link, { campaignId, userId });
+  const href = dynamicString(link, {
+    userId,
+    northstarId: userId, // @TODO: Remove!
+    campaignId,
+    campaignRunId,
+    source: 'web',
+  });
 
   // If no content is provided, show as an embed.
   if (!content) {
@@ -40,10 +47,10 @@ const DefaultTemplate = props => {
       <div
         role="button"
         tabIndex="0"
-        onClick={() => onLinkClick(link)}
+        onClick={() => onLinkClick(href)}
         className="link-wrapper margin-bottom-lg"
       >
-        <Embed url={href} badged />
+        <Embed url={link} badged />
         {affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
@@ -84,6 +91,7 @@ DefaultTemplate.defaultProps = {
   affiliateLogo: null,
   buttonText: 'Visit Link',
   campaignId: null,
+  campaignRunId: null,
   userId: null,
 };
 
@@ -94,6 +102,7 @@ DefaultTemplate.propTypes = {
   affiliateLogo: PropTypes.string,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
+  campaignRunId: PropTypes.string,
   userId: PropTypes.string,
 };
 

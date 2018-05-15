@@ -9,6 +9,7 @@ import { getUserId } from '../../../selectors/user';
 const mapStateToProps = state => ({
   userId: getUserId(state),
   campaignId: state.campaign.legacyCampaignId,
+  campaignRunId: state.campaign.legacyCampaignRunId,
 });
 
 // Export the container component.

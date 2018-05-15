@@ -48,6 +48,7 @@ class ShareAction extends React.Component {
       affirmation, // @TODO: Rename me to 'affirmationText'?
       affirmationBlock,
       campaignId,
+      campaignRunId,
       content,
       hideEmbed,
       link,
@@ -61,7 +62,13 @@ class ShareAction extends React.Component {
       ? this.handleFacebookClick
       : this.handleTwitterClick;
 
-    const href = dynamicString(link, { campaignId, userId });
+    const href = dynamicString(link, {
+      userId,
+      northstarId: userId, // @TODO: Remove!
+      campaignId,
+      campaignRunId,
+      source: 'web',
+    });
 
     return (
       <React.Fragment>
@@ -101,6 +108,7 @@ ShareAction.propTypes = {
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
   campaignId: PropTypes.string,
+  campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
   link: PropTypes.string.isRequired,
