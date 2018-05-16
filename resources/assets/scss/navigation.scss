@@ -9,6 +9,19 @@
   @include media($medium) {
     height: 110px;
   }
+
+  .button {
+    display: none;
+
+    @include media($large) {
+      color: $white;
+      display: block;
+      float: left;
+      font-weight: $weight-normal;
+      text-shadow: none;
+      text-transform: none;
+    }
+  }
 }
 
 .navigation__logo {
@@ -17,5 +30,13 @@
     top: auto;
     left: auto;
     z-index: auto;
+  }
+}
+
+.navigation__menu {
+  > .wrapper {
+    @include media($medium) {
+      float: right;
+    }
   }
 }
