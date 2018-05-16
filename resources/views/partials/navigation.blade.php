@@ -16,18 +16,25 @@
                 </a>
             </li>
         </ul>
-        <ul class="navigation__secondary">
-            <li class="navigation__dropdown">
-                @if (Auth::user())
-                    <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
-                    <ul>
-                        <li><a href="{{ phoenixLink('northstar/' . Auth::id()) }}">Profile</a></li>
-                        <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
-                    </ul>
-                @else
-                    <a href="{{ route('login', isset($campaign) ? get_login_query($campaign) : null) }}">Log In</a>
-                @endif
-            </li>
-        </ul>
+
+        <div class="wrapper">
+            @if (Auth::user())
+                <a href="https://www.dosomething.vote/" class="button" target="_blank">Register to Vote</a>
+            @endif
+
+            <ul class="navigation__secondary">
+                <li class="navigation__dropdown">
+                    @if (Auth::user())
+                        <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
+                        <ul>
+                            <li><a href="{{ phoenixLink('northstar/' . Auth::id()) }}">Profile</a></li>
+                            <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
+                        </ul>
+                    @else
+                        <a href="{{ route('login', isset($campaign) ? get_login_query($campaign) : null) }}">Log In</a>
+                    @endif
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
