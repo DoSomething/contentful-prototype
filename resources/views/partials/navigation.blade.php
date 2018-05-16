@@ -19,7 +19,7 @@
 
         <div class="wrapper">
             @if (Auth::user())
-                <a href="https://www.dosomething.vote/" class="button" target="_blank">Register to Vote</a>
+                <a href="https://www.dosomething.vote/?r=campaignID:8017,campaignRunID:8022,source:web,source_details:nav" class="button" target="_blank">Register to Vote</a>
             @endif
 
             <ul class="navigation__secondary">
