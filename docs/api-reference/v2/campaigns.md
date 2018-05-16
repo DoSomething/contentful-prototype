@@ -64,7 +64,10 @@ Example Response:
     "socialOverride": null,
     "additionalContent": null,
     "allowExperiments": true,
-    "actionText": "Join Us"
+    "actionText": "Join Us",
+    "staffPick": null,
+    "cause": null,
+    "scholarshipAmount": null
   }
 }
 ```

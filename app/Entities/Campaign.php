@@ -205,6 +205,9 @@ class Campaign extends Entity implements JsonSerializable
             'additionalContent' => $this->additionalContent,
             'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,
             'actionText' => array_get($this->campaignSettings, 'actionText') ?: 'Join Us',
+            'staffPick' => $this->staffPick,
+            'cause' => $this->cause,
+            'scholarshipAmount' => $this->scholarshipAmount,
         ];
     }
 }
