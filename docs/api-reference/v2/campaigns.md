@@ -65,9 +65,9 @@ Example Response:
     "additionalContent": null,
     "allowExperiments": true,
     "actionText": "Join Us",
-    "staffPick": false,
-    "cause": "animals",
-    "scholarshipAmount": 5000
+    "staffPick": null,
+    "cause": null,
+    "scholarshipAmount": null
   }
 }
 ```
