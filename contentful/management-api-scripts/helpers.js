@@ -29,7 +29,7 @@ async function processEntries(environment, args, entryType, process) {
     }
 
     await process(environment, entry);
-  } else {
+  } else if (args['all']) {
     const entries = await attempt(() =>
       environment.getEntries({
         content_type: entryType,
