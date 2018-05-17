@@ -106,7 +106,7 @@ async function addActionPageFromActionSteps(environment, campaign) {
         let publishedImagesBlock;
 
         // If the action step has multiple photos, we'll add them to a separate Images Block
-        if (photos.length) {
+        if (photos.length > 1) {
           const imagesBlock = await attempt(() =>
             environment.createEntry(
               'imagesBlock',
