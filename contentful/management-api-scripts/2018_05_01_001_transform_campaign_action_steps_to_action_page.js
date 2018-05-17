@@ -55,12 +55,20 @@ async function addActionPageFromActionSteps(environment, campaign) {
       const content = getField(campaignActionStep, 'content');
       const hideStepNumber = getField(campaignActionStep, 'hideStepNumber');
       const photos = getField(campaignActionStep, 'photos', []);
+      const additionalContent = getField(
+        campaignActionStep,
+        'additionalContent',
+        {},
+      );
 
-      // If the action step is meant to have a step number attached, we'll manually add it as a superTitle
-      const supertitle =
-        hideStepNumber == null || !hideStepNumber
-          ? `Step ${stepIndex + 1}`
-          : null;
+      // Campaign Action Steps supported an optional preTitle field in additionalContent
+      // which was set as the SectionHeader superTitle
+      let superTitle = additionalContent['preTitle'];
+
+      // If the action step is meant to have a step number attached, we'll manually add it as the superTitle
+      if (hideStepNumber == null || !hideStepNumber) {
+        superTitle = `Step ${stepIndex}`;
+      }
 
       if (!content) {
         logger.info(
@@ -78,14 +86,14 @@ async function addActionPageFromActionSteps(environment, campaign) {
 
       const contentBlockFields = {
         internalTitle,
-        supertitle,
+        superTitle,
         title: actionStepTitle,
         content,
       };
 
       // If there is only one photo on this action step, set it to the new content blocks 'image' field
       if (photos.length === 1) {
-        contentBlockFields['image'] = photos.shift();
+        contentBlockFields['image'] = photos[0];
       }
 
       const contentBlock = await attempt(() =>
