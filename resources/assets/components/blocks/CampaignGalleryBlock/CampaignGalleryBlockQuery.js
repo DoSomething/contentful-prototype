@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';

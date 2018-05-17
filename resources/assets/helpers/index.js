@@ -89,18 +89,12 @@ export function withoutTokens(string) {
 }
 
 /**
- * Ensure a user is authenticated. If not, redirect them
- * to log in via the OpenID Connect flow.
- * @param isAuthenticated
- * @returns {boolean}
+ * Check to see if user is authenticated.
+ *
+ * @return {Boolean}
  */
-export function ensureAuth(isAuthenticated) {
-  if (!isAuthenticated) {
-    window.location.href = '/next/login';
-    return false;
-  }
-
-  return true;
+export function isAuthenticated() {
+  return get(window.AUTH, 'isAuthenticated', false);
 }
 
 /**
