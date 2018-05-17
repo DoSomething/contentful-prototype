@@ -19,7 +19,7 @@
       color: $white;
       display: block;
       float: left;
-      font-weight: $weight-normal;
+      margin: 5px 0;
       text-shadow: none;
       text-transform: none;
     }
@@ -36,6 +36,8 @@
 }
 
 .navigation__menu {
+  overflow: auto;
+
   > .wrapper {
     @include media($medium) {
       float: right;
@@ -48,3 +50,7 @@
     float: left;
   }
 }
+
+// .navigation__secondary {
+//   background: red;
+// }
