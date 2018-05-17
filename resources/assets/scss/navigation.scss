@@ -5,6 +5,8 @@
 .navigation {
   background-color: $white;
   height: 84px;
+  position: relative;
+  z-index: 100;
 
   @include media($medium) {
     height: 110px;
@@ -38,5 +40,11 @@
     @include media($medium) {
       float: right;
     }
+  }
+}
+
+.navigation__primary {
+  @include media($medium) {
+    float: left;
   }
 }
