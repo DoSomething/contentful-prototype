@@ -5,9 +5,9 @@ import { propType } from 'graphql-anywhere';
 
 import PostBadge from './PostBadge';
 import { BaseFigure } from '../../Figure';
-import { pluralize } from '../../../helpers';
 import LazyImage from '../../utilities/LazyImage';
 import ReactionButton from '../ReactionButton/ReactionButton';
+import { isAuthenticated, pluralize } from '../../../helpers';
 
 import './post.scss';
 
@@ -28,7 +28,9 @@ export const postCardFragment = gql`
 
 const PostCard = ({ post, noun }) => {
   const firstName = post.user ? post.user.firstName : 'A Doer';
-  const reactionElement = <ReactionButton post={post} />;
+  const reactionElement = isAuthenticated() ? (
+    <ReactionButton post={post} />
+  ) : null;
   let media = null;
 
   // Render the appropriate media for this post:
