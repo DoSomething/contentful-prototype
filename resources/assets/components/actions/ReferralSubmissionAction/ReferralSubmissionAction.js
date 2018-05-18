@@ -1,5 +1,3 @@
-/* global FormData */
-
 import React from 'react';
 import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
@@ -181,8 +179,6 @@ ReferralSubmissionAction.propTypes = {
   className: PropTypes.string,
   clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  legacyCampaignId: PropTypes.string,
-  legacyCampaignRunId: PropTypes.string,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
