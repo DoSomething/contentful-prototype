@@ -61,6 +61,8 @@ const postRequest = (payload, dispatch) => {
         },
       };
 
+      console.log(response);
+
       dispatch({
         meta: payload.meta,
         response,

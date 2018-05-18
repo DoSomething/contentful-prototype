@@ -40,6 +40,10 @@
     }
   }
 
+  .field-label {
+    height: auto;
+  }
+
   .text-field {
     display: block;
   }
@@ -89,5 +93,25 @@
 
   .form-item + .form-item {
     margin-top: $base-spacing;
+  }
+
+  // Quantity Display
+  .quantity-display {
+    span {
+      display: block;
+    }
+  }
+
+  .quantity-display__total {
+    font-family: $font-league-gothic;
+    font-size: $font-hero;
+    line-height: 1;
+  }
+
+  .quantity-display__units {
+    color: $med-gray;
+    font-size: $font-regular;
+    font-weight: $weight-bold;
+    text-transform: uppercase;
   }
 }

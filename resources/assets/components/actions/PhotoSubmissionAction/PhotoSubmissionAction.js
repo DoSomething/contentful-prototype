@@ -45,6 +45,8 @@ class PhotoSubmissionAction extends React.Component {
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
+      displayTotal: false,
+      signup: null,
       shouldResetForm: false,
       signup: null,
       showModal: false,
@@ -65,6 +67,12 @@ class PhotoSubmissionAction extends React.Component {
     request.then(response => {
       this.handleSignupResponse(response.data[0]);
     });
+  }
+
+  componentDidMount() {
+    console.log(this.state);
+    console.log('💃🏽 PSA Mounted');
+    this.setSignup();
   }
 
   componentDidUpdate() {
@@ -147,6 +155,15 @@ class PhotoSubmissionAction extends React.Component {
     });
   };
 
+  setSignup = () => {
+    this.setState({
+      signup: {
+        quantity: 35,
+        why_participated: 'Because I love to give everyone my pantaloons!',
+      },
+    });
+  };
+
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
 
@@ -213,13 +230,25 @@ class PhotoSubmissionAction extends React.Component {
                     <div className="wrapper">
                       {this.props.showQuantityField ? (
                         <div className="form-item">
+                          {this.state.displayTotal ? (
+                            <div className="quantity-display padding-vertical-md">
+                              <span className="quantity-display__total">
+                                {this.state.signup.quantity}
+                              </span>
+                              <span className="quantity-display__units">
+                                total items
+                              </span>
+                            </div>
+                          ) : null}
                           <label
                             className={classnames('field-label', {
                               'has-error': has(errors, 'quantity'),
                             })}
                             htmlFor="quantity"
                           >
-                            {this.props.quantityFieldLabel}
+                            {this.state.displayTotal
+                              ? 'You can enter your new total here:'
+                              : this.props.quantityFieldLabel}
                           </label>
                           <input
                             className={classnames('text-field', {
