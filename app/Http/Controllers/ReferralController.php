@@ -5,31 +5,20 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\Referral;
 use Illuminate\Http\Request;
-use App\Services\PhoenixLegacy;
-use App\Services\UploadedMedia;
-use Illuminate\Support\Facades\Log;
 
 class ReferralController extends Controller
 {
-    /**
-     * The legacy Phoenix API.
-     *
-     * @var PhoenixLegacy
-     */
-    private $phoenixLegacy;
 
     /**
      * ReferralController constructor.
      */
-    public function __construct(PhoenixLegacy $phoenixLegacy)
+    public function __construct()
     {
-        $this->phoenixLegacy = $phoenixLegacy;
-
         $this->middleware('auth');
     }
 
     /**
-     * Store 'Refer a Friend' RB fields locally, then store regular reportback fields through the PhoenixLegacy API.
+     * Store 'referral' action fields locally.
      *
      * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
@@ -48,7 +37,7 @@ class ReferralController extends Controller
             'referrer_northstar_id' => auth()->id(),
         ]);
 
-        return response()->json($referral, 201);;
+        return response()->json($referral, 201);
     }
 
     public function csvExport()
