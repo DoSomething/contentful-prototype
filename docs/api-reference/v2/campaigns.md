@@ -1,5 +1,45 @@
 # Campaigns
 
+## Retrieve all Campaigns
+
+This returns an abridged set of primary campaign fields to reduce the data load.
+
+```
+GET /api/v2/campaigns
+```
+
+Example Request:
+
+```
+https://next.dosomething.org/api/v2/campaigns
+```
+
+Example Response:
+
+```json
+{
+  "data": [
+    {
+      "id": "6LQzMvDNQcYQYwso8qSkQ8",
+      "slug": "test-teens-for-jeans",
+      "title": "[Test] Teens for Jeans",
+      "callToAction": "Let's collect another million jeans TOGETHER.",
+      "coverImage":
+        "https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?w=600&h=600&fm=jpg&fit=fill"
+    },
+    {
+      "id": "5bUfbCp98sicAKSoscqUUO",
+      "slug": "legacy-test-thumb-wars",
+      "title": "[LegacyTest] Thumb Wars",
+      "callToAction":
+        "Share Thumb Socks with a friend to remind them not to text and drive.",
+      "coverImage":
+        "https://images.ctfassets.net/81iqaqpfd8fy/56IbQd5sBGSSASAA8a6oQ4/e0a772998ec2e1e183f6cbee843ed032/thumb_wars.jpg?w=600&h=600&fm=jpg&fit=fill"
+    }
+  ]
+}
+```
+
 ## Retrieve a Campaign
 
 ```

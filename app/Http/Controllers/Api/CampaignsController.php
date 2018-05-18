@@ -31,7 +31,9 @@ class CampaignsController extends Controller
      */
     public function index()
     {
-        abort(501, 'Currently not implemented.');
+        $data = $this->campaignRepository->getAll();
+
+        return response()->json(['data' => $data]);
     }
 
     /**
