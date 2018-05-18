@@ -1,7 +1,7 @@
 /* global window */
 
 import { ApolloLink } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
+import { BatchHttpLink } from 'apollo-link-batch-http';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -38,8 +38,9 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 // Configure Apollo Client.
 export default uri => {
-  // Create the HTTP link! This is our terminating link that makes actual requests.
-  const httpLink = new HttpLink({ uri });
+  // Create the HTTP link! This is our terminating link that batches up
+  // GraphQL queries and makes the actual HTTP request to our server.
+  const httpLink = new BatchHttpLink({ uri });
 
   return new ApolloClient({
     link: ApolloLink.from([errorLink, authenticationLink, httpLink]),
