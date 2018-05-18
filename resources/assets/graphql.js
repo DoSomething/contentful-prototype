@@ -1,11 +1,11 @@
 /* global window */
 
 import { ApolloLink } from 'apollo-link';
-import { BatchHttpLink } from 'apollo-link-batch-http';
+import { onError } from 'apollo-link-error';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { onError } from 'apollo-link-error';
+import { BatchHttpLink } from 'apollo-link-batch-http';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
 
 // Create an authentication link with the user's access token.
