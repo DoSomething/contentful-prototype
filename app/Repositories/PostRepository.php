@@ -33,22 +33,6 @@ class PostRepository
     }
 
     /**
-     * Get posts for a specified campaign from Rogue.
-     *
-     * @param  string $id
-     * @param  array $query
-     * @return array - JSON response
-     */
-    public function getCampaignPosts($id, $query = [])
-    {
-        // @TODO: consolidate with getPosts() above.
-        // No reason setting the campaign_id cannot happen in parent call.
-        $query['filter']['campaign_id'] = $id;
-
-        return $this->rogue->get('v3/posts', $query);
-    }
-
-    /**
      * Store post in Rogue.
      *
      * @param  array  $payload

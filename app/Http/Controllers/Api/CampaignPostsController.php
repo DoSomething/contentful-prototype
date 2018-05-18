@@ -48,7 +48,11 @@ class CampaignPostsController extends Controller
      */
     public function index($id, Request $request)
     {
-        return $this->postRepository->getCampaignPosts($id, $request->all());
+        $query = $request->all();
+
+        $query['filter']['campaign_id'] = $id;
+
+        return $this->postRepository->getPosts($id, $query);
     }
 
     /**

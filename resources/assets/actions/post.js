@@ -13,7 +13,7 @@ import {
  *
  * @return {function}
  */
-export function fetchCampaignPosts() {
+export function fetchCampaignPosts(query = {}) {
   return (dispatch, getState) => {
     const id = getState().campaign.id;
     const legacyId = getState().campaign.legacyCampaignId;
@@ -24,9 +24,7 @@ export function fetchCampaignPosts() {
       apiRequest('GET', {
         id,
         legacyId,
-        query: {
-          limit: 24,
-        },
+        query,
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
       }),
     );
