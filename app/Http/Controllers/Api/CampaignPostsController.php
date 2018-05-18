@@ -52,7 +52,7 @@ class CampaignPostsController extends Controller
 
         $query['filter']['campaign_id'] = $id;
 
-        return $this->postRepository->getPosts($id, $query);
+        return $this->postRepository->getPosts($query);
     }
 
     /**
