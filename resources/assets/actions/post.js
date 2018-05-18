@@ -88,6 +88,15 @@ export function storeCampaignPost(campaignId, data) {
     },
   };
 
+  let url = `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`;
+
+  if (type === 'referral') {
+    // @todo reset the url var to referrals endpoint
+    url = 'And now for something completely different';
+    console.log('referral submission!');
+    return { type: 'referral' };
+  }
+
   return (dispatch, getState) => {
     const token = getState().user.token;
 
@@ -103,7 +112,7 @@ export function storeCampaignPost(campaignId, data) {
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
         token,
-        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
+        url,
       }),
     );
   };
