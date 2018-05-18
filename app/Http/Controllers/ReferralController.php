@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Referral;
+use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
 use App\Services\UploadedMedia;
 use Illuminate\Support\Facades\Log;
-use App\Http\Requests\StorePostRequest;
 
 class ReferralController extends Controller
 {
@@ -34,41 +34,21 @@ class ReferralController extends Controller
      * @param  \App\Http\Requests\StorePostRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        Referral::create([
-            'friend_name' => $request->input('friendName'),
-            'friend_email' => $request->input('friendEmail'),
-            'friend_story' => $request->input('friendStory'),
+
+        $this->validate($request, [
+            'firstName' => 'required',
+            'email' => 'required|email',
+        ]);
+
+        $referral = Referral::create([
+            'friend_name' => $request->input('firstName'),
+            'friend_email' => $request->input('email'),
             'referrer_northstar_id' => auth()->id(),
         ]);
 
-        // Static 'why participated' to pass validation.
-        $request['whyParticipated'] = 'Refer-A-Friend';
-
-        $path = UploadedMedia::store($request->file('media'));
-
-        $temporaryUrl = config('app.env') !== 'local' ? config('app.url').'/next'.$path : 'https://placeimg.com/1000/768/animals';
-
-        Log::info('Created temporary reportback URL.', ['url' => $temporaryUrl]);
-
-        $response = $this->phoenixLegacy->storeReportback(
-            auth()->id(),
-            $request->input('campaignId'),
-            [
-                'file_url' => $temporaryUrl,
-                'caption' => $request->input('caption'),
-                'quantity' => $request->input('impact'),
-                'why_participated' => $request->input('whyParticipated'),
-                'source' => 'phoenix-next',
-            ]
-        );
-
-        Log::info('RB Response:', $response);
-
-        UploadedMedia::delete($path);
-
-        return $response;
+        return response()->json($referral, 201);;
     }
 
     public function csvExport()
@@ -99,7 +79,7 @@ class ReferralController extends Controller
             $referral->referrer_email = $user->email;
         }
 
-        $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'friend_story', 'referrer_northstar_id', 'referrer_first_name', 'referrer_last_name', 'referrer_email'];
+        $columns = ['id', 'created_at', 'friend_name', 'friend_email', 'referrer_northstar_id', 'referrer_first_name', 'referrer_last_name', 'referrer_email'];
 
         $callback = function () use ($referrals, $columns, $referralsEloquentBuilder) {
             generate_streamed_csv($columns, $referrals);
