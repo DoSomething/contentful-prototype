@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class ReferralController extends Controller
 {
-
     /**
      * ReferralController constructor.
      */
@@ -25,7 +24,6 @@ class ReferralController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'firstName' => 'required',
             'email' => 'required|email',
