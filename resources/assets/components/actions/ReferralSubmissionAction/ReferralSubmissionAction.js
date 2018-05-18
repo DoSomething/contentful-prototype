@@ -8,9 +8,9 @@ import classnames from 'classnames';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
-import { getFieldErrors } from '../../../helpers/forms';
 import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
+import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 class ReferralSubmissionAction extends React.Component {
   static getDerivedStateFromProps(nextProps) {
@@ -47,24 +47,16 @@ class ReferralSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const formData = new FormData();
-
-    formData.append('id', this.props.id);
-    formData.append('action', action);
-    formData.append('type', this.props.type);
-    formData.append('firstName', this.state.firstName);
-    formData.append('email', this.state.email);
-
-    if (this.props.legacyCampaignId && this.props.legacyCampaignRunId) {
-      formData.append(
-        'details',
-        JSON.stringify({
-          campaign_id: this.props.campaignId,
-          legacy_campaign_id: this.props.legacyCampaignId,
-          legacy_campaign_run_id: this.props.legacyCampaignRunId,
-        }),
-      );
-    }
+    const formData = setFormData(
+      {
+        action,
+        type: this.props.type,
+        id: this.props.id,
+        firstName: this.state.firstName,
+        email: this.state.email,
+      },
+      this.props,
+    );
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
