@@ -1,3 +1,5 @@
+/* eslint-disable react/sort-comp */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -313,6 +315,8 @@ PhotoSubmissionAction.propTypes = {
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   initPostSubmissionItem: PropTypes.func.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
+  legacyCampaignRunId: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,

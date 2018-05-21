@@ -1,3 +1,5 @@
+/* global window */
+
 import { RestApiClient } from '@dosomething/gateway';
 
 import { PHOENIX_URL } from '../constants';
