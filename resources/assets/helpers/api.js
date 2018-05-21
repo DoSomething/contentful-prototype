@@ -21,7 +21,8 @@ export function getRequest(payload) {
 }
 
 /**
- * [getUserCampaignSignups description]
+ * Get campaign signups for a user.
+ *
  * @param  {String} userId
  * @param  {String} campaignId
  * @param  {String|Null} campaignRunId
