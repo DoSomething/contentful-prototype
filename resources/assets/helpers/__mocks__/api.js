@@ -1,3 +1,5 @@
+/* eslint-disable import/prefer-default-export */
+
 export function getUserCampaignSignups(
   userId,
   campaignId,
@@ -18,7 +20,7 @@ export function getUserCampaignSignups(
     ],
   };
 
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     resolve(signup);
   });
 }
