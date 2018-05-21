@@ -7,7 +7,7 @@ import { getRequest } from '../helpers/api';
 import { API } from '../constants/action-types';
 
 /**
- * Send a GET request.
+ * Send a GET request and dispatch actions.
  *
  * @param  {Object} payload
  * @return {void}
