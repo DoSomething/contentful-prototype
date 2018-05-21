@@ -2,8 +2,9 @@
 
 import { RestApiClient } from '@dosomething/gateway';
 
-import { API } from '../constants/action-types';
 import { PHOENIX_URL } from '../constants';
+import { getRequest } from '../helpers/api';
+import { API } from '../constants/action-types';
 
 /**
  * Send a GET request.
@@ -11,11 +12,9 @@ import { PHOENIX_URL } from '../constants';
  * @param  {Object} payload
  * @return {void}
  */
-const getRequest = payload => {
-  const client = new RestApiClient(PHOENIX_URL);
-
+const getRequestAction = payload => {
   if (window.ENV.APP_ENV !== 'production') {
-    client.get(payload.url, payload.query).then(response => {
+    getRequest(payload).then(response => {
       // @TODO: more to come with handling the response!
       if (response && response.data) {
         console.groupCollapsed(
@@ -92,7 +91,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
 
   switch (action.method) {
     case 'GET':
-      getRequest(payload, dispatch);
+      getRequestAction(payload, dispatch);
       break;
 
     case 'POST':

@@ -9,6 +9,7 @@ import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
 import MediaUploader from '../../utilities/MediaUploader';
+import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
@@ -43,11 +44,25 @@ class PhotoSubmissionAction extends React.Component {
       mediaValue: this.defaultMediaState,
       quantityValue: '',
       shouldResetForm: false,
+      signup: null,
       showModal: false,
       whyParticipatedValue: '',
     };
 
     this.props.initPostSubmissionItem(this.props.id);
+  }
+
+  componentDidMount() {
+    const request = getUserCampaignSignups(
+      this.props.userId,
+      this.props.legacyCampaignId,
+      this.props.legacyCampaignRunId,
+    );
+
+    // @TODO: handle if errors.
+    request.then(response => {
+      this.setSignup(response.data['0']);
+    });
   }
 
   componentDidUpdate() {
@@ -113,12 +128,19 @@ class PhotoSubmissionAction extends React.Component {
     });
   };
 
+  setSignup = data => {
+    this.setState({
+      signup: data,
+    });
+  };
+
   resetForm = () => {
     this.setState({
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
       shouldResetForm: false,
+      signup: this.props.submissions.items[this.props.id].data.signup.data,
       whyParticipatedValue: '',
     });
   };
@@ -301,6 +323,7 @@ PhotoSubmissionAction.propTypes = {
     items: PropTypes.object,
   }).isRequired,
   title: PropTypes.string,
+  userId: PropTypes.string.isRequired,
   whyParticipatedFieldLabel: PropTypes.string,
   whyParticipatedFieldPlaceholder: PropTypes.string,
 };
