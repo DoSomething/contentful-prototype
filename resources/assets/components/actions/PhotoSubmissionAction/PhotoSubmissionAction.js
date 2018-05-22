@@ -46,6 +46,8 @@ class PhotoSubmissionAction extends React.Component {
       showModal: false,
       whyParticipatedValue: '',
     };
+
+    this.props.appendPostSubmissionItem(this.props.id);
   }
 
   componentDidUpdate() {
@@ -122,7 +124,9 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   render() {
-    const formResponse = this.props.submissions.items[this.props.id] || null;
+    const submissionItem = this.props.submissions.items[this.props.id];
+
+    const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const formErrors = getFieldErrors(formResponse);
 
@@ -235,7 +239,7 @@ class PhotoSubmissionAction extends React.Component {
 
                 <Button
                   type="submit"
-                  loading={this.props.submissions.isPending}
+                  loading={submissionItem ? submissionItem.isPending : true}
                   attached
                 >
                   {this.props.buttonText}
@@ -278,6 +282,7 @@ PhotoSubmissionAction.propTypes = {
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
+  appendPostSubmissionItem: PropTypes.func.isRequired,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,

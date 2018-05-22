@@ -13,10 +13,16 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
 
 class TextSubmissionAction extends React.Component {
-  state = {
-    showModal: false,
-    textValue: '',
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      textValue: '',
+    };
+
+    this.props.appendPostSubmissionItem(this.props.id);
+  }
 
   componentDidUpdate = prevProps => {
     const prevResponse = prevProps.submissions.items[this.props.id] || null;
@@ -83,7 +89,9 @@ class TextSubmissionAction extends React.Component {
   };
 
   render() {
-    const formResponse = this.props.submissions.items[this.props.id] || null;
+    const submissionItem = this.props.submissions.items[this.props.id];
+
+    const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const errors = getFieldErrors(formResponse);
 
@@ -129,7 +137,7 @@ class TextSubmissionAction extends React.Component {
             </div>
             <Button
               type="submit"
-              loading={this.props.submissions.isPending}
+              loading={submissionItem ? submissionItem.isPending : true}
               attached
             >
               {this.props.buttonText}
@@ -157,6 +165,7 @@ TextSubmissionAction.propTypes = {
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
+  appendPostSubmissionItem: PropTypes.func.isRequired,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
