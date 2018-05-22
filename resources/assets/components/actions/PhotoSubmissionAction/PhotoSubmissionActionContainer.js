@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import { getUserId } from '../../../selectors/user';
 import PhotoSubmissionAction from './PhotoSubmissionAction';
 import {
   initPostSubmissionItem,
@@ -12,6 +13,7 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   legacyCampaignRunId: state.campaign.legacyCampaignRunId,
   submissions: state.postSubmissions,
+  userId: getUserId(state),
 });
 
 const actionCreators = {

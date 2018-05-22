@@ -7,17 +7,9 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Repositories\PostRepository;
-use App\Repositories\CampaignRepository;
 
 class CampaignPostsController extends Controller
 {
-    /**
-     * The campaign repository.
-     *
-     * @var CampaignRepository
-     */
-    private $campaignRepository;
-
     /**
      * The post repository.
      *
@@ -30,11 +22,9 @@ class CampaignPostsController extends Controller
      *
      * @var PostRepository $postRepository
      */
-    public function __construct(CampaignRepository $campaignRepository, PostRepository $postRepository)
+    public function __construct(PostRepository $postRepository)
     {
         $this->middleware('auth:api')->except(['index']);
-
-        $this->campaignRepository = $campaignRepository;
 
         $this->postRepository = $postRepository;
     }

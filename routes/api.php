@@ -13,9 +13,6 @@
 
 // v2 Routes
 $router->group(['prefix' => 'v2'], function () {
-    // Posts
-    $this->get('/posts', 'Api\PostsController@index');
-
     // Campaigns
     $this->get('/campaigns', 'Api\CampaignsController@index');
     $this->get('/campaigns/{id}', 'Api\CampaignsController@show');
@@ -23,4 +20,10 @@ $router->group(['prefix' => 'v2'], function () {
     // Campaign Posts
     $this->get('/campaigns/{id}/posts', 'Api\CampaignPostsController@index');
     $this->post('/campaigns/{id}/posts', 'Api\CampaignPostsController@store');
+
+    // Campaign Signups
+    $this->get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
+
+    // Posts
+    $this->get('/posts', 'Api\PostsController@index');
 });
