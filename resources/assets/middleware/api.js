@@ -45,7 +45,10 @@ const postRequest = (payload, dispatch) => {
     },
   });
 
-  dispatch({ type: payload.pending });
+  dispatch({
+    id: payload.meta.id,
+    type: payload.pending,
+  });
 
   return client
     .post(payload.url, payload.body)

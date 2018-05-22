@@ -26,7 +26,6 @@ const initialState = {
   page: {},
   posts: {},
   postSubmissions: {
-    isPending: false,
     items: {},
   },
   quiz: {},

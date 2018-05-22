@@ -46,6 +46,8 @@ class PhotoSubmissionAction extends React.Component {
       showModal: false,
       whyParticipatedValue: '',
     };
+
+    this.props.initPostSubmissionItem(this.props.id);
   }
 
   componentDidUpdate() {
@@ -83,7 +85,7 @@ class PhotoSubmissionAction extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.props.clearPostSubmissionItem(this.props.id);
+    this.props.resetPostSubmissionItem(this.props.id);
 
     const type = 'photo';
 
@@ -122,7 +124,9 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   render() {
-    const formResponse = this.props.submissions.items[this.props.id] || null;
+    const submissionItem = this.props.submissions.items[this.props.id];
+
+    const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const formErrors = getFieldErrors(formResponse);
 
@@ -235,7 +239,7 @@ class PhotoSubmissionAction extends React.Component {
 
                 <Button
                   type="submit"
-                  loading={this.props.submissions.isPending}
+                  loading={submissionItem ? submissionItem.isPending : true}
                   attached
                 >
                   {this.props.buttonText}
@@ -283,12 +287,13 @@ PhotoSubmissionAction.propTypes = {
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
-  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
+  initPostSubmissionItem: PropTypes.func.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
+  resetPostSubmissionItem: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({

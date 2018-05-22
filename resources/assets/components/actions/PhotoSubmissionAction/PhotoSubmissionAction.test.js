@@ -10,8 +10,9 @@ describe('PhotoSubmissionAction component', () => {
     <PhotoSubmissionAction
       campaignId="1234"
       campaignRunId="6789"
-      clearPostSubmissionItem={jest.fn()}
       id={id}
+      initPostSubmissionItem={jest.fn()}
+      resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{
         isPending: false,
