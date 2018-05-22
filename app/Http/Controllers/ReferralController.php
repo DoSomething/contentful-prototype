@@ -25,12 +25,12 @@ class ReferralController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'firstName' => 'required',
+            'first_name' => 'required',
             'email' => 'required|email',
         ]);
 
         $referral = Referral::create([
-            'friend_name' => $request->input('firstName'),
+            'friend_name' => $request->input('first_name'),
             'friend_email' => $request->input('email'),
             'referrer_northstar_id' => auth()->id(),
         ]);
