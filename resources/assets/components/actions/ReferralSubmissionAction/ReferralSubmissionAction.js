@@ -25,17 +25,23 @@ class ReferralSubmissionAction extends React.Component {
     return null;
   }
 
-  state = {
-    showModal: false,
-    firstName: '',
-    // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
-    email: '',
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      firstName: '',
+      // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
+      email: '',
+    };
+
+    this.props.initPostSubmissionItem(this.props.id);
+  }
 
   handleSubmit = event => {
     event.preventDefault();
 
-    this.props.clearPostSubmissionItem(this.props.id);
+    this.props.resetPostSubmissionItem(this.props.id);
 
     const type = 'referral';
 
@@ -68,7 +74,9 @@ class ReferralSubmissionAction extends React.Component {
   };
 
   render() {
-    const formResponse = this.props.submissions.items[this.props.id] || null;
+    const submissionItem = this.props.submissions.items[this.props.id];
+
+    const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const errors = getFieldErrors(formResponse);
 
@@ -165,8 +173,9 @@ ReferralSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
-  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  initPostSubmissionItem: PropTypes.func.isRequired,
+  resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
