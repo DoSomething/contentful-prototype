@@ -2,11 +2,40 @@
 
 import apiRequest from './api';
 import {
+  POST_SUBMISSION_APPEND_ITEM,
+  POST_SUBMISSION_CLEAR_ITEM,
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_PENDING,
-  POST_SUBMISSION_CLEAR_ITEM,
   POST_SUBMISSION_SUCCESSFUL,
 } from '../constants/action-types';
+
+/**
+ * Append the post submission item with the specified id
+ * to the redux store.
+ *
+ * @param  {String} id
+ * @return {Object}
+ */
+export function appendPostSubmissionItem(id) {
+  return {
+    id,
+    type: POST_SUBMISSION_APPEND_ITEM,
+  };
+}
+
+/**
+ * Clear data from the post submission item with the
+ * specified id.
+ *
+ * @param  {String} id
+ * @return {Object}
+ */
+export function clearPostSubmissionItem(id) {
+  return {
+    id,
+    type: POST_SUBMISSION_CLEAR_ITEM,
+  };
+}
 
 /**
  * Fetch posts for the specified campaign.
@@ -28,19 +57,6 @@ export function fetchCampaignPosts(query = {}) {
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
       }),
     );
-  };
-}
-
-/**
- * Clear the post submission item with the specified id.
- *
- * @param  {String} id
- * @return {Object}
- */
-export function clearPostSubmissionItem(id) {
-  return {
-    id,
-    type: POST_SUBMISSION_CLEAR_ITEM,
   };
 }
 
