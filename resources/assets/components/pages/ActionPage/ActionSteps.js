@@ -93,6 +93,7 @@ const ActionSteps = props => {
         'submission-gallery',
         'legacyContentBlock',
         'gallery',
+        'imagesBlock',
       ].includes(type)
     ) {
       columnWidth = 'full';
