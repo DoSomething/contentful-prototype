@@ -88,11 +88,11 @@ export function storeCampaignPost(campaignId, data) {
     },
   };
 
-  let url = `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`;
-
-  if (type === 'referral') {
-    url = `${window.location.origin}/next/referrals`;
-  }
+  // Separate endpoint for 'referral' actions since we don't post them to rogue.
+  const url =
+    type === 'referral'
+      ? `/next/referrals`
+      : `/api/v2/campaigns/${campaignId}/posts`;
 
   return (dispatch, getState) => {
     const token = getState().user.token;
