@@ -4,6 +4,7 @@
 
     var features = [];
     if (!('Map' in window) || !('WeakSet' in window)) features.push('es2015')
+    if (!('find' in Array.prototype)) features.push('Array.prototype.find')
     if (!('includes' in Array.prototype)) features.push('es2016')
     if (!('values' in Object)) features.push('Object.values');
     if (!('fetch' in window)) features.push('fetch');
