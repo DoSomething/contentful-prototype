@@ -91,10 +91,7 @@ export function storeCampaignPost(campaignId, data) {
   let url = `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`;
 
   if (type === 'referral') {
-    // @todo reset the url var to referrals endpoint
-    url = 'And now for something completely different';
-    console.log('referral submission!');
-    return { type: 'referral' };
+    url = `${window.location.origin}/next/referrals`;
   }
 
   return (dispatch, getState) => {
