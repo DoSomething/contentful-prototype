@@ -141,7 +141,7 @@ class ReferralSubmissionAction extends React.Component {
             </div>
             <Button
               type="submit"
-              loading={this.props.submissions.isPending}
+              loading={submissionItem ? submissionItem.isPending : true}
               attached
             >
               {this.props.buttonText ||
