@@ -63,7 +63,7 @@ class PhotoSubmissionAction extends React.Component {
 
     // @TODO: handle if errors.
     request.then(response => {
-      this.setSignup(response.data['0']);
+      this.handleSignupResponse(response.data[0]);
     });
   }
 
@@ -130,7 +130,7 @@ class PhotoSubmissionAction extends React.Component {
     });
   };
 
-  setSignup = data => {
+  handleSignupResponse = data => {
     this.setState({
       signup: data,
     });

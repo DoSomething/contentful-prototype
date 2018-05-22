@@ -14,7 +14,7 @@ import { API } from '../constants/action-types';
  */
 const getRequestAction = payload => {
   if (window.ENV.APP_ENV !== 'production') {
-    getRequest(payload).then(response => {
+    getRequest(payload.url, payload.query).then(response => {
       // @TODO: more to come with handling the response!
       if (response && response.data) {
         console.groupCollapsed(
