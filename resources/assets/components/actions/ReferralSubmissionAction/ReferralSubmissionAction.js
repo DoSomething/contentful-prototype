@@ -16,8 +16,9 @@ class ReferralSubmissionAction extends React.Component {
 
     if (has(response, 'status.success')) {
       return {
-        shouldResetForm: true,
         showModal: true,
+        firstName: '',
+        email: '',
       };
     }
 
@@ -25,18 +26,11 @@ class ReferralSubmissionAction extends React.Component {
   }
 
   state = {
-    shouldResetForm: false,
     showModal: false,
     firstName: '',
     // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
     email: '',
   };
-
-  componentDidUpdate() {
-    if (this.state.shouldResetForm) {
-      this.resetForm();
-    }
-  }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -63,21 +57,13 @@ class ReferralSubmissionAction extends React.Component {
       action,
       body: formData,
       id: this.props.id,
-      type: this.props.type,
+      type,
     });
   };
 
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value,
-    });
-  };
-
-  resetForm = () => {
-    this.setState({
-      firstName: '',
-      email: '',
-      shouldResetForm: false,
     });
   };
 
