@@ -38,7 +38,9 @@ const CampaignPageNavigation = ({
     });
   }
 
-  const hasActionPage = pages.find(page => page.fields.slug.endsWith('action'));
+  const hasActionPage = pages.find(
+    page => page.type === 'page' && page.fields.slug.endsWith('action'),
+  );
 
   // Conditional whether to include Action page.
   if (campaignPages.length && !isCampaignClosed && !hasActionPage) {
