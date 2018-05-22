@@ -21,7 +21,7 @@ class TextSubmissionAction extends React.Component {
       textValue: '',
     };
 
-    this.props.appendPostSubmissionItem(this.props.id);
+    this.props.initPostSubmissionItem(this.props.id);
   }
 
   componentDidUpdate = prevProps => {
@@ -165,11 +165,11 @@ TextSubmissionAction.propTypes = {
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
-  appendPostSubmissionItem: PropTypes.func.isRequired,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
+  initPostSubmissionItem: PropTypes.func.isRequired,
   legacyCampaignId: PropTypes.string,
   legacyCampaignRunId: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,

@@ -1,10 +1,10 @@
 import { has } from 'lodash';
 
 import {
-  POST_SUBMISSION_APPEND_ITEM,
-  POST_SUBMISSION_RESET_ITEM,
   POST_SUBMISSION_FAILED,
+  POST_SUBMISSION_INIT_ITEM,
   POST_SUBMISSION_PENDING,
+  POST_SUBMISSION_RESET_ITEM,
   POST_SUBMISSION_SUCCESSFUL,
 } from '../constants/action-types';
 
@@ -13,7 +13,7 @@ import {
  */
 const postSubmissions = (state = {}, action) => {
   switch (action.type) {
-    case POST_SUBMISSION_APPEND_ITEM:
+    case POST_SUBMISSION_INIT_ITEM:
       return {
         ...state,
         items: {

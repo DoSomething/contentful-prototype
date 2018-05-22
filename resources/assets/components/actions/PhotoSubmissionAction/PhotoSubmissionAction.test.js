@@ -8,10 +8,10 @@ describe('PhotoSubmissionAction component', () => {
 
   const wrapper = shallow(
     <PhotoSubmissionAction
-      appendPostSubmissionItem={jest.fn()}
       campaignId="1234"
       campaignRunId="6789"
       id={id}
+      initPostSubmissionItem={jest.fn()}
       resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{

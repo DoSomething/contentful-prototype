@@ -47,7 +47,7 @@ class PhotoSubmissionAction extends React.Component {
       whyParticipatedValue: '',
     };
 
-    this.props.appendPostSubmissionItem(this.props.id);
+    this.props.initPostSubmissionItem(this.props.id);
   }
 
   componentDidUpdate() {
@@ -282,7 +282,6 @@ PhotoSubmissionAction.propTypes = {
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
-  appendPostSubmissionItem: PropTypes.func.isRequired,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,
@@ -291,6 +290,7 @@ PhotoSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
+  initPostSubmissionItem: PropTypes.func.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,
