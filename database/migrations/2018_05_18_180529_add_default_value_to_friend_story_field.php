@@ -26,7 +26,7 @@ class AddDefaultValueToFriendStoryField extends Migration
     public function down()
     {
         Schema::table('referrals', function (Blueprint $table) {
-            $table->text('friend_story')->change();
+            $table->text('friend_story')->nullable(false)->change();
         });
     }
 }
