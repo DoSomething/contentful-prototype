@@ -1,11 +1,12 @@
 import React from 'react';
-import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
+import { withoutUndefined } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
@@ -17,8 +18,8 @@ class ReferralSubmissionAction extends React.Component {
     if (has(response, 'status.success')) {
       return {
         showModal: true,
-        firstName: '',
-        email: '',
+        firstNameValue: '',
+        emailValue: '',
       };
     }
 
@@ -30,13 +31,24 @@ class ReferralSubmissionAction extends React.Component {
 
     this.state = {
       showModal: false,
-      firstName: '',
+      firstNameValue: '',
       // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
-      email: '',
+      emailValue: '',
     };
 
     this.props.initPostSubmissionItem(this.props.id);
   }
+
+  fields = {
+    first_name: 'firstName',
+    email: 'email',
+  };
+
+  handleChange = event => {
+    this.setState({
+      [`${event.target.name}Value`]: event.target.value,
+    });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -52,8 +64,8 @@ class ReferralSubmissionAction extends React.Component {
         action,
         type,
         id: this.props.id,
-        firstName: this.state.firstName,
-        email: this.state.email,
+        // Associate state values to fields.
+        ...mapValues(this.fields, value => this.state[`${value}Value`]),
       },
       this.props,
     );
@@ -67,18 +79,19 @@ class ReferralSubmissionAction extends React.Component {
     });
   };
 
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value,
-    });
-  };
-
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
-    const errors = getFieldErrors(formResponse);
+    const formErrors = getFieldErrors(formResponse);
+
+    // Associate errors to component field names.
+    const errors = withoutUndefined(
+      formErrors
+        ? mapValues(invert(this.fields), value => formErrors[value])
+        : null,
+    );
 
     return (
       <React.Fragment>
@@ -101,7 +114,7 @@ class ReferralSubmissionAction extends React.Component {
                   className={classnames('field-label', {
                     'has-error': has(errors, 'firstName'),
                   })}
-                  htmlFor="first-name"
+                  htmlFor="firstName"
                 >
                   Your friend&#39;s first name
                 </label>
@@ -111,7 +124,7 @@ class ReferralSubmissionAction extends React.Component {
                   })}
                   type="text"
                   id="firstName"
-                  name="first-name"
+                  name="firstName"
                   placeholder="First name"
                   value={this.state.firstName}
                   onChange={this.handleChange}
