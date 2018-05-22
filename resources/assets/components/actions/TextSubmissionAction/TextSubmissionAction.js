@@ -45,7 +45,7 @@ class TextSubmissionAction extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.props.clearPostSubmissionItem(this.props.id);
+    this.props.resetPostSubmissionItem(this.props.id);
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
@@ -169,10 +169,10 @@ TextSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
-  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   legacyCampaignId: PropTypes.string,
   legacyCampaignRunId: PropTypes.string,
+  resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,

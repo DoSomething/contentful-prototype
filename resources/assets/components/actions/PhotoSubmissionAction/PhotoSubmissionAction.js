@@ -85,7 +85,7 @@ class PhotoSubmissionAction extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    this.props.clearPostSubmissionItem(this.props.id);
+    this.props.resetPostSubmissionItem(this.props.id);
 
     const type = 'photo';
 
@@ -288,12 +288,12 @@ PhotoSubmissionAction.propTypes = {
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
-  clearPostSubmissionItem: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
+  resetPostSubmissionItem: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({

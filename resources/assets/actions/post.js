@@ -3,7 +3,7 @@
 import apiRequest from './api';
 import {
   POST_SUBMISSION_APPEND_ITEM,
-  POST_SUBMISSION_CLEAR_ITEM,
+  POST_SUBMISSION_RESET_ITEM,
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_PENDING,
   POST_SUBMISSION_SUCCESSFUL,
@@ -20,20 +20,6 @@ export function appendPostSubmissionItem(id) {
   return {
     id,
     type: POST_SUBMISSION_APPEND_ITEM,
-  };
-}
-
-/**
- * Clear data from the post submission item with the
- * specified id.
- *
- * @param  {String} id
- * @return {Object}
- */
-export function clearPostSubmissionItem(id) {
-  return {
-    id,
-    type: POST_SUBMISSION_CLEAR_ITEM,
   };
 }
 
@@ -57,6 +43,20 @@ export function fetchCampaignPosts(query = {}) {
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
       }),
     );
+  };
+}
+
+/**
+ * Clear data from the post submission item with the
+ * specified id.
+ *
+ * @param  {String} id
+ * @return {Object}
+ */
+export function resetPostSubmissionItem(id) {
+  return {
+    id,
+    type: POST_SUBMISSION_RESET_ITEM,
   };
 }
 

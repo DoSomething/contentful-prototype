@@ -11,9 +11,9 @@ describe('TextSubmissionAction component', () => {
       appendPostSubmissionItem={jest.fn()}
       campaignId="1234"
       campaignRunId="6789"
-      clearPostSubmissionItem={jest.fn()}
       contentfulId="1122334455667788990011"
       id={id}
+      resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{
         isPending: false,

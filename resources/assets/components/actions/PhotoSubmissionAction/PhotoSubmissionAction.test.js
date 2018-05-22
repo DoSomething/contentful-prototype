@@ -11,8 +11,8 @@ describe('PhotoSubmissionAction component', () => {
       appendPostSubmissionItem={jest.fn()}
       campaignId="1234"
       campaignRunId="6789"
-      clearPostSubmissionItem={jest.fn()}
       id={id}
+      resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{
         isPending: false,

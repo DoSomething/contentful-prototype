@@ -2,7 +2,7 @@ import { has } from 'lodash';
 
 import {
   POST_SUBMISSION_APPEND_ITEM,
-  POST_SUBMISSION_CLEAR_ITEM,
+  POST_SUBMISSION_RESET_ITEM,
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_PENDING,
   POST_SUBMISSION_SUCCESSFUL,
@@ -24,7 +24,7 @@ const postSubmissions = (state = {}, action) => {
         },
       };
 
-    case POST_SUBMISSION_CLEAR_ITEM:
+    case POST_SUBMISSION_RESET_ITEM:
       if (has(state, `items.${action.id}`)) {
         return {
           ...state,

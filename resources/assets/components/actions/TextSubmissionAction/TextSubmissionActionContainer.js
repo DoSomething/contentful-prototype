@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import TextSubmissionAction from './TextSubmissionAction';
 import {
   appendPostSubmissionItem,
-  clearPostSubmissionItem,
+  resetPostSubmissionItem,
   storeCampaignPost,
 } from '../../../actions/post';
 
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   appendPostSubmissionItem,
-  clearPostSubmissionItem,
+  resetPostSubmissionItem,
   storeCampaignPost,
 };
 
