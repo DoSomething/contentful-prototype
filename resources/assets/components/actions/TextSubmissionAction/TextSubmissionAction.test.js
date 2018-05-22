@@ -8,6 +8,7 @@ describe('TextSubmissionAction component', () => {
 
   const wrapper = shallow(
     <TextSubmissionAction
+      appendPostSubmissionItem={jest.fn()}
       campaignId="1234"
       campaignRunId="6789"
       clearPostSubmissionItem={jest.fn()}
