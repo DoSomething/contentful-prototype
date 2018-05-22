@@ -12,7 +12,6 @@ import {
 const mapStateToProps = state => ({
   campaignId: state.campaign.id,
   submissions: state.postSubmissions,
-  type: 'referral',
 });
 
 /**

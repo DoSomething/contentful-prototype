@@ -43,12 +43,14 @@ class ReferralSubmissionAction extends React.Component {
 
     this.props.clearPostSubmissionItem(this.props.id);
 
+    const type = 'referral';
+
     const action = get(this.props.additionalContent, 'action', 'default');
 
     const formData = setFormData(
       {
         action,
-        type: this.props.type,
+        type,
         id: this.props.id,
         firstName: this.state.firstName,
         email: this.state.email,
@@ -185,7 +187,6 @@ ReferralSubmissionAction.propTypes = {
     items: PropTypes.object,
   }).isRequired,
   title: PropTypes.string,
-  type: PropTypes.string.isRequired,
 };
 
 ReferralSubmissionAction.defaultProps = {
