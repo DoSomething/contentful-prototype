@@ -13,7 +13,11 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
-import { getFieldErrors, setFormData } from '../../../helpers/forms';
+import {
+  calculateDifference,
+  getFieldErrors,
+  setFormData,
+} from '../../../helpers/forms';
 
 import './photo-submission-action.scss';
 
@@ -108,6 +112,11 @@ class PhotoSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
+    const quantity = calculateDifference(
+      get(this.state.signup, 'quantity', null),
+      this.state.quantityValue,
+    );
+
     const formData = setFormData(
       {
         action,
@@ -116,6 +125,8 @@ class PhotoSubmissionAction extends React.Component {
         // Associate state values to fields.
         ...mapValues(this.fields(), value => this.state[`${value}Value`]),
         file: this.state.mediaValue.file || '',
+        previousQuantity: get(this.state.signup, 'quantity', 0),
+        quantity,
         show_quantity: this.props.showQuantityField ? 1 : 0,
       },
       this.props,
