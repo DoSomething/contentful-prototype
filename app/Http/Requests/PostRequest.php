@@ -77,7 +77,8 @@ class PostRequest extends FormRequest
     /**
      * Set validation message for min quantity rule.
      */
-    private function setMinQuantityMessage() {
+    private function setMinQuantityMessage()
+    {
         $previousQuantity = (int) $this->input('previousQuantity');
 
         return $previousQuantity
