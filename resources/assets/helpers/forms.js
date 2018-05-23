@@ -8,14 +8,13 @@ import { forEach, get, isInteger } from 'lodash';
  *
  * @param  {Number|String} total
  * @param  {Number|String} submittedValue
- * @return {Number}
+ * @return {Number|String}
  */
 export function calculateDifference(total, submittedValue) {
-  if (!isInteger(Number(total))) {
-    return submittedValue;
-  }
+  const validTotal = total && isInteger(Number(total));
+  const validValue = submittedValue && isInteger(Number(submittedValue));
 
-  if (!isInteger(Number(submittedValue))) {
+  if (!validTotal || !validValue) {
     return submittedValue;
   }
 
