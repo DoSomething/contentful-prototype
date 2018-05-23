@@ -25,6 +25,7 @@ import {
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
   renderVoterRegistrationAction,
+  renderReferralSubmissionAction,
 } from './renderers';
 
 // If no block is passed, just render an empty "placeholder".
@@ -130,6 +131,9 @@ class ContentfulEntry extends React.Component<Props, State> {
         const LegacyQuiz = Loader(import('../LegacyQuiz/LegacyQuizContainer'));
         return <LegacyQuiz quizContent={json} />;
       }
+
+      case 'referralSubmissionAction':
+        return renderReferralSubmissionAction(json);
 
       // @TODO: Will be refactored when switching to Rogue!
       case 'reportbacks':
