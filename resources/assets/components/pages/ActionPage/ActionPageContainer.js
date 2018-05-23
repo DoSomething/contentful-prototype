@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 
   const steps = state.campaign.actionSteps.length
     ? state.campaign.actionSteps
-    : actionPage.fields.blocks;
+    : get(actionPage, 'fields.blocks', []);
 
   return {
     steps,
