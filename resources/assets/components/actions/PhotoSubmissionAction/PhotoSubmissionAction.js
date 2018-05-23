@@ -46,7 +46,6 @@ class PhotoSubmissionAction extends React.Component {
       mediaValue: this.defaultMediaState,
       quantityValue: '',
       displayTotal: false,
-      signup: null,
       shouldResetForm: false,
       signup: null,
       showModal: false,
@@ -57,6 +56,9 @@ class PhotoSubmissionAction extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.state);
+    console.log('💃🏽 PSA Mounted');
+
     const request = getUserCampaignSignups(
       this.props.userId,
       this.props.legacyCampaignId,
@@ -65,14 +67,12 @@ class PhotoSubmissionAction extends React.Component {
 
     // @TODO: handle if errors.
     request.then(response => {
+      console.log(response.data[0]);
+
       this.handleSignupResponse(response.data[0]);
     });
-  }
 
-  componentDidMount() {
-    console.log(this.state);
-    console.log('💃🏽 PSA Mounted');
-    this.setSignup();
+    // this.setSignup();
   }
 
   componentDidUpdate() {
@@ -142,6 +142,8 @@ class PhotoSubmissionAction extends React.Component {
     this.setState({
       signup: data,
     });
+
+    console.log(this.state);
   };
 
   resetForm = () => {
@@ -155,14 +157,14 @@ class PhotoSubmissionAction extends React.Component {
     });
   };
 
-  setSignup = () => {
-    this.setState({
-      signup: {
-        quantity: 35,
-        why_participated: 'Because I love to give everyone my pantaloons!',
-      },
-    });
-  };
+  // setSignup = () => {
+  //   this.setState({
+  //     signup: {
+  //       quantity: 35,
+  //       why_participated: 'Because I love to give everyone my pantaloons!',
+  //     },
+  //   });
+  // };
 
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
