@@ -45,7 +45,6 @@ class PhotoSubmissionAction extends React.Component {
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
-      displayTotal: false,
       shouldResetForm: false,
       signup: null,
       showModal: false,
@@ -56,9 +55,6 @@ class PhotoSubmissionAction extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state);
-    console.log('💃🏽 PSA Mounted');
-
     const request = getUserCampaignSignups(
       this.props.userId,
       this.props.legacyCampaignId,
@@ -67,12 +63,8 @@ class PhotoSubmissionAction extends React.Component {
 
     // @TODO: handle if errors.
     request.then(response => {
-      console.log(response.data[0]);
-
       this.handleSignupResponse(response.data[0]);
     });
-
-    // this.setSignup();
   }
 
   componentDidUpdate() {
@@ -142,29 +134,24 @@ class PhotoSubmissionAction extends React.Component {
     this.setState({
       signup: data,
     });
-
-    console.log(this.state);
   };
 
   resetForm = () => {
+    const signup = get(
+      this.props.submissions.items[this.props.id],
+      'data.signup.data',
+      null,
+    );
+
     this.setState({
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
       shouldResetForm: false,
-      signup: this.props.submissions.items[this.props.id].data.signup.data,
+      signup,
       whyParticipatedValue: '',
     });
   };
-
-  // setSignup = () => {
-  //   this.setState({
-  //     signup: {
-  //       quantity: 35,
-  //       why_participated: 'Because I love to give everyone my pantaloons!',
-  //     },
-  //   });
-  // };
 
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
@@ -172,6 +159,8 @@ class PhotoSubmissionAction extends React.Component {
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const formErrors = getFieldErrors(formResponse);
+
+    const quantity = get(this.state.signup, 'quantity', null);
 
     // Associate errors to component field names.
     const errors = withoutUndefined(
@@ -232,13 +221,13 @@ class PhotoSubmissionAction extends React.Component {
                     <div className="wrapper">
                       {this.props.showQuantityField ? (
                         <div className="form-item">
-                          {this.state.displayTotal ? (
+                          {quantity ? (
                             <div className="quantity-display padding-vertical-md">
-                              <span className="quantity-display__total">
-                                {this.state.signup.quantity}
-                              </span>
                               <span className="quantity-display__units">
                                 total items
+                              </span>
+                              <span className="quantity-display__total">
+                                {quantity}
                               </span>
                             </div>
                           ) : null}
@@ -248,7 +237,7 @@ class PhotoSubmissionAction extends React.Component {
                             })}
                             htmlFor="quantity"
                           >
-                            {this.state.displayTotal
+                            {quantity
                               ? 'You can enter your new total here:'
                               : this.props.quantityFieldLabel}
                           </label>
