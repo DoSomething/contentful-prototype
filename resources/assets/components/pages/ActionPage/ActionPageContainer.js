@@ -8,8 +8,8 @@ import { isSignedUp } from '../../../selectors/signup';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => {
-  const actionPage = state.campaign.pages.find(page =>
-    page.fields.slug.endsWith('action'),
+  const actionPage = state.campaign.pages.find(
+    page => page.type === 'page' && page.fields.slug.endsWith('action'),
   );
 
   const steps = state.campaign.actionSteps.length
