@@ -126,7 +126,7 @@ class ReferralSubmissionAction extends React.Component {
                   id="firstName"
                   name="firstName"
                   placeholder="First name"
-                  value={this.state.firstName}
+                  value={this.state.firstNameValue}
                   onChange={this.handleChange}
                 />
               </div>
@@ -147,7 +147,7 @@ class ReferralSubmissionAction extends React.Component {
                   id="email"
                   name="email"
                   placeholder="hello@example.com"
-                  value={this.state.email}
+                  value={this.state.emailValue}
                   onChange={this.handleChange}
                 />
               </div>
