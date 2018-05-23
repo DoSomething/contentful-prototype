@@ -14,6 +14,7 @@ import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextS
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
+import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
 
 /**
  * Render the Photo Uploader step.
@@ -211,6 +212,16 @@ export function renderPhotoSubmissionAction(data) {
   return (
     <div className="margin-horizontal-md margin-bottom-lg">
       <PhotoSubmissionActionContainer id={data.id} {...fields} />
+    </div>
+  );
+}
+
+export function renderReferralSubmissionAction(data) {
+  const fields = withoutNulls(data.fields);
+
+  return (
+    <div className="margin-horizontal-md margin-bottom-lg">
+      <ReferralSubmissionActionContainer id={data.id} {...fields} />
     </div>
   );
 }
