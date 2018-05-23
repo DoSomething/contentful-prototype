@@ -53,9 +53,6 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        // dd($this->input());
-        \Illuminate\Support\Facades\Log::info('PSA request:', $this->input());
-
         // Custom validation rules based on the type of post action.
         switch ($this->input('type')) {
             case 'photo':
@@ -81,14 +78,10 @@ class PostRequest extends FormRequest
      * Set validation message for min quantity rule.
      */
     private function setMinQuantityMessage() {
-        $message = 'The quantity must be at least :min or greater.';
-
         $previousQuantity = (int) $this->input('previousQuantity');
 
-        if ($previousQuantity) {
-            $message = 'The quantity must be greater than '.$previousQuantity.'.';
-        }
-
-        return $message;
+        return $previousQuantity
+            ? 'The quantity must be greater than '.$previousQuantity.'.'
+            : 'The quantity must be at least :min or greater.';
     }
 }
