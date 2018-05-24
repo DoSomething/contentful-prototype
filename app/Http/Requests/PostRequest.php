@@ -29,6 +29,7 @@ class PostRequest extends FormRequest
                 return [
                     'file.required' => 'An uploaded photo is required.',
                     'quantity.required_if' => 'The quantity field is required.',
+                    'quantity.min' => $this->setMinQuantityMessage(),
                     'text.max' => 'The caption field may not be greater than :max characters.',
                     'text.min' => 'The caption field may not be less than :min characters.',
                     'text.required' => 'The caption field for your photo is required.',
@@ -71,5 +72,17 @@ class PostRequest extends FormRequest
             default:
                 return [];
         }
+    }
+
+    /**
+     * Set validation message for min quantity rule.
+     */
+    private function setMinQuantityMessage()
+    {
+        $previousQuantity = (int) $this->input('previousQuantity');
+
+        return $previousQuantity
+            ? 'The quantity must be greater than '.$previousQuantity.'.'
+            : 'The quantity must be at least :min or greater.';
     }
 }

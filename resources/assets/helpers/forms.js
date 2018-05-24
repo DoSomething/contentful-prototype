@@ -1,6 +1,25 @@
 /* global FormData */
 
-import { get, forEach } from 'lodash';
+import { forEach, get, isInteger } from 'lodash';
+
+/**
+ * Calculate the difference between a total value and a submitted value.
+ * Returns submitted value if calculation cannot be completed.
+ *
+ * @param  {Number|String} total
+ * @param  {Number|String} submittedValue
+ * @return {Number|String}
+ */
+export function calculateDifference(total, submittedValue) {
+  const validTotal = total && isInteger(Number(total));
+  const validValue = submittedValue && isInteger(Number(submittedValue));
+
+  if (!validTotal || !validValue) {
+    return submittedValue;
+  }
+
+  return Number(submittedValue) - Number(total);
+}
 
 /**
  * Get the status error/success message for a form response.

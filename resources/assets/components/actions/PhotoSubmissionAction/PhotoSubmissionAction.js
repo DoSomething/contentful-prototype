@@ -13,7 +13,11 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
-import { getFieldErrors, setFormData } from '../../../helpers/forms';
+import {
+  calculateDifference,
+  getFieldErrors,
+  setFormData,
+} from '../../../helpers/forms';
 
 import './photo-submission-action.scss';
 
@@ -108,6 +112,11 @@ class PhotoSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
+    const quantity = calculateDifference(
+      get(this.state.signup, 'quantity', null),
+      this.state.quantityValue,
+    );
+
     const formData = setFormData(
       {
         action,
@@ -116,6 +125,8 @@ class PhotoSubmissionAction extends React.Component {
         // Associate state values to fields.
         ...mapValues(this.fields(), value => this.state[`${value}Value`]),
         file: this.state.mediaValue.file || '',
+        previousQuantity: get(this.state.signup, 'quantity', 0),
+        quantity,
         show_quantity: this.props.showQuantityField ? 1 : 0,
       },
       this.props,
@@ -137,12 +148,18 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   resetForm = () => {
+    const signup = get(
+      this.props.submissions.items[this.props.id],
+      'data.signup.data',
+      null,
+    );
+
     this.setState({
       captionValue: '',
       mediaValue: this.defaultMediaState,
       quantityValue: '',
       shouldResetForm: false,
-      signup: this.props.submissions.items[this.props.id].data.signup.data,
+      signup,
       whyParticipatedValue: '',
     });
   };
@@ -153,6 +170,8 @@ class PhotoSubmissionAction extends React.Component {
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const formErrors = getFieldErrors(formResponse);
+
+    const quantity = get(this.state.signup, 'quantity', null);
 
     // Associate errors to component field names.
     const errors = withoutUndefined(
@@ -213,13 +232,25 @@ class PhotoSubmissionAction extends React.Component {
                     <div className="wrapper">
                       {this.props.showQuantityField ? (
                         <div className="form-item">
+                          {quantity ? (
+                            <div className="quantity-display padding-vertical-md">
+                              <span className="quantity-display__units">
+                                total items
+                              </span>
+                              <span className="quantity-display__total">
+                                {quantity}
+                              </span>
+                            </div>
+                          ) : null}
                           <label
                             className={classnames('field-label', {
                               'has-error': has(errors, 'quantity'),
                             })}
                             htmlFor="quantity"
                           >
-                            {this.props.quantityFieldLabel}
+                            {quantity
+                              ? 'You can enter your new total here:'
+                              : this.props.quantityFieldLabel}
                           </label>
                           <input
                             className={classnames('text-field', {
