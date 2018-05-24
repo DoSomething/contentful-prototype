@@ -63,23 +63,13 @@ exports[`ContentBlock component it works beautifully with a mere content prop 1`
   className="content-block"
 >
   <div
-    className="margin-horizontal-md"
+    className="margin-horizontal-md two-thirds"
   >
-    <Flex
+    <Markdown
       className={null}
-      id={null}
     >
-      <FlexCell
-        className={null}
-        width="two-thirds"
-      >
-        <Markdown
-          className={null}
-        >
-          hi there
-        </Markdown>
-      </FlexCell>
-    </Flex>
+      hi there
+    </Markdown>
   </div>
 </div>
 `;
