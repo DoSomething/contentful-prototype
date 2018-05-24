@@ -11,4 +11,10 @@
     color: $black;
     font-family: $primary-font-family;
   }
+
+  .two-thirds {
+    @include media($medium) {
+      width: 66.6666666666666%;
+    }
+  }
 }

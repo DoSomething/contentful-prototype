@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { Figure } from '../../Figure';
 import SectionHeader from '../../SectionHeader';
@@ -9,8 +10,6 @@ import './content-block.scss';
 
 const ContentBlock = props => {
   const { content, image, imageAlignment, superTitle, title } = props;
-
-  const defaultImageAlignment = ContentBlock.defaultProps.imageAlignment;
 
   const contentNode = content ? <Markdown>{content}</Markdown> : null;
 
@@ -22,12 +21,14 @@ const ContentBlock = props => {
         </div>
       ) : null}
 
-      <div className="margin-horizontal-md">
+      <div
+        className={classnames('margin-horizontal-md', { 'two-thirds': !image })}
+      >
         {image ? (
           <Figure
             image={image}
             alt="content-block"
-            alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
+            alignment={`${imageAlignment}-collapse`}
             size="one-third"
           >
             {contentNode}

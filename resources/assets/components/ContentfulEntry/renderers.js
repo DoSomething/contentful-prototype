@@ -242,11 +242,9 @@ export function renderAffirmation(step) {
  * @return {Component}
  */
 export function renderContentBlock(data) {
+  const fields = withoutNulls(data.fields);
+
   return (
-    <ContentBlock
-      key={`content-block-${data.id}`}
-      id={data.id}
-      {...data.fields}
-    />
+    <ContentBlock key={`content-block-${data.id}`} id={data.id} {...fields} />
   );
 }
