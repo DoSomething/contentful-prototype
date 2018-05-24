@@ -37,7 +37,7 @@ describe('ContentBlock component', () => {
     const wrapper = shallow(<ContentBlock {...props} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
-    expect(wrapper.find('Figure').length).toEqual(0);
+    expect(wrapper.find('Figure').length).toEqual(1);
     expect(wrapper.find('Markdown').length).toEqual(1);
   });
 
