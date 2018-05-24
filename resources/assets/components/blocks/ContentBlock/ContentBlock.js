@@ -23,18 +23,14 @@ const ContentBlock = props => {
       ) : null}
 
       <div className="margin-horizontal-md">
-        {image ? (
-          <Figure
-            image={image}
-            alt="content-block"
-            alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
-            size="one-third"
-          >
-            {contentNode}
-          </Figure>
-        ) : (
-          contentNode
-        )}
+        <Figure
+          image={image}
+          alt="content-block"
+          alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
+          size="one-third"
+        >
+          {contentNode}
+        </Figure>
       </div>
     </div>
   );
