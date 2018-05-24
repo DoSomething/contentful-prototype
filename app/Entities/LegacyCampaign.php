@@ -50,7 +50,7 @@ class LegacyCampaign implements JsonSerializable
             'additionalContent' => [
                 'noun' => $this->legacyCampaign['reportback_info']['noun'],
                 'verb' => $this->legacyCampaign['reportback_info']['verb'],
-            ]
+            ],
         ];
     }
 }
