@@ -65,19 +65,21 @@ exports[`ContentBlock component it works beautifully with a mere content prop 1`
   <div
     className="margin-horizontal-md"
   >
-    <Figure
-      alignment="right-collapse"
-      alt="content-block"
-      image={null}
-      imageClassName={null}
-      size="one-third"
+    <Flex
+      className={null}
+      id={null}
     >
-      <Markdown
+      <FlexCell
         className={null}
+        width="two-thirds"
       >
-        hi there
-      </Markdown>
-    </Figure>
+        <Markdown
+          className={null}
+        >
+          hi there
+        </Markdown>
+      </FlexCell>
+    </Flex>
   </div>
 </div>
 `;
