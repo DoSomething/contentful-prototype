@@ -16,7 +16,9 @@ const mapStateToProps = state => ({
   hasActivityFeed: Boolean(state.campaign.activityFeed.length),
   hasCommunityPage: Boolean(
     state.campaign.activityFeed.length ||
-      state.campaign.pages.find(page => page.fields.slug.endsWith('community')),
+      state.campaign.pages.find(
+        page => page.type === 'page' && page.fields.slug.endsWith('community'),
+      ),
   ),
   isAdmin: userHasRole(state, 'admin'),
   isCampaignClosed: isCampaignClosed(
