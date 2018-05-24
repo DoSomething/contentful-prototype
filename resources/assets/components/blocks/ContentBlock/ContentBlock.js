@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../Figure';
+import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
 import Markdown from '../../utilities/Markdown/Markdown';
 
@@ -9,6 +10,10 @@ import './content-block.scss';
 
 const ContentBlock = props => {
   const { content, image, imageAlignment, superTitle, title } = props;
+
+  const defaultImageAlignment = ContentBlock.defaultProps.imageAlignment;
+
+  const contentNode = content ? <Markdown>{content}</Markdown> : null;
 
   return (
     <div className="content-block">
@@ -19,14 +24,20 @@ const ContentBlock = props => {
       ) : null}
 
       <div className="margin-horizontal-md">
-        <Figure
-          image={image}
-          alt="content-block"
-          alignment={`${imageAlignment}-collapse`}
-          size="one-third"
-        >
-          {content ? <Markdown>{content}</Markdown> : null}
-        </Figure>
+        {image ? (
+          <Figure
+            image={image}
+            alt="content-block"
+            alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
+            size="one-third"
+          >
+            {contentNode}
+          </Figure>
+        ) : (
+          <Flex>
+            <FlexCell width="two-thirds">{contentNode}</FlexCell>
+          </Flex>
+        )}
       </div>
     </div>
   );
