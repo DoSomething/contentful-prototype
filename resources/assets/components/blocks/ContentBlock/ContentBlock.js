@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { Figure } from '../../Figure';
-import { Flex, FlexCell } from '../../Flex';
 import SectionHeader from '../../SectionHeader';
 import Markdown from '../../utilities/Markdown/Markdown';
 
@@ -21,7 +21,9 @@ const ContentBlock = props => {
         </div>
       ) : null}
 
-      <div className="margin-horizontal-md">
+      <div
+        className={classnames('margin-horizontal-md', { 'two-thirds': !image })}
+      >
         {image ? (
           <Figure
             image={image}
@@ -32,9 +34,7 @@ const ContentBlock = props => {
             {contentNode}
           </Figure>
         ) : (
-          <Flex>
-            <FlexCell width="two-thirds">{contentNode}</FlexCell>
-          </Flex>
+          contentNode
         )}
       </div>
     </div>
