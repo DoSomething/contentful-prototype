@@ -11,8 +11,6 @@ import './content-block.scss';
 const ContentBlock = props => {
   const { content, image, imageAlignment, superTitle, title } = props;
 
-  const defaultImageAlignment = ContentBlock.defaultProps.imageAlignment;
-
   const contentNode = content ? <Markdown>{content}</Markdown> : null;
 
   return (
@@ -28,7 +26,7 @@ const ContentBlock = props => {
           <Figure
             image={image}
             alt="content-block"
-            alignment={`${imageAlignment || defaultImageAlignment}-collapse`}
+            alignment={`${imageAlignment}-collapse`}
             size="one-third"
           >
             {contentNode}
