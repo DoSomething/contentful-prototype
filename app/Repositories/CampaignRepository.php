@@ -115,6 +115,23 @@ class CampaignRepository
     }
 
     /**
+     * Find a list of campaigns by their legacy IDs.
+     *
+     * @param  array $ids
+     * @return \Illuminate\Support\Collection
+     */
+    public function findByLegacyCampaignIds($ids) {
+        $query['ids'] = implode(',', $ids);
+
+        $legacyCampaigns = $this->phoenixLegacy->getCampaigns($query);
+
+        return collect($legacyCampaigns['data'])->map(function ($legacyCampaign) {
+            return new LegacyCampaign($legacyCampaign);
+        });
+
+    }
+
+    /**
      * Find a campaign by its slug.
      *
      * @param  string $slug
