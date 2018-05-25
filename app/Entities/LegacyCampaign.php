@@ -48,8 +48,14 @@ class LegacyCampaign implements JsonSerializable
             'staffPick' => $this->legacyCampaign['staff_pick'],
             'cause' => $this->legacyCampaign['causes']['primary']['name'],
             'additionalContent' => [
-                'noun' => $this->legacyCampaign['reportback_info']['noun'],
-                'verb' => $this->legacyCampaign['reportback_info']['verb'],
+                'noun' => [
+                    'singular' => null,
+                    'plural' => $this->legacyCampaign['reportback_info']['noun'],
+                ],
+                'verb' => [
+                    'singular' => null,
+                    'plural' => $this->legacyCampaign['reportback_info']['verb'],
+                ],
             ],
         ];
     }
