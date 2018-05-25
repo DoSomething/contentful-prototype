@@ -15,7 +15,6 @@ const mapStateToProps = state => ({
   legacyCampaignId: state.campaign.legacyCampaignId,
   legacyCampaignRunId: state.campaign.legacyCampaignRunId,
   submissions: state.postSubmissions,
-  type: 'text',
 });
 
 /**
