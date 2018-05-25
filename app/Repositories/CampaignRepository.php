@@ -120,7 +120,8 @@ class CampaignRepository
      * @param  array $ids
      * @return \Illuminate\Support\Collection
      */
-    public function findByLegacyCampaignIds($ids) {
+    public function findByLegacyCampaignIds($ids)
+    {
         $query['ids'] = implode(',', $ids);
 
         $legacyCampaigns = $this->phoenixLegacy->getCampaigns($query);
@@ -128,7 +129,6 @@ class CampaignRepository
         return collect($legacyCampaigns['data'])->map(function ($legacyCampaign) {
             return new LegacyCampaign($legacyCampaign);
         });
-
     }
 
     /**
