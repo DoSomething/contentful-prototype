@@ -1,18 +1,30 @@
-/* global FormData */
-
 import React from 'react';
-import { has, get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
-import { getFieldErrors } from '../../../helpers/forms';
+import { withoutUndefined } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
+import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 class TextSubmissionAction extends React.Component {
+  static getDerivedStateFromProps(nextProps) {
+    const response = nextProps.submissions.items[nextProps.id] || null;
+
+    if (has(response, 'status.success')) {
+      return {
+        showModal: true,
+        textValue: '',
+      };
+    }
+
+    return null;
+  }
+
   constructor(props) {
     super(props);
 
@@ -24,56 +36,8 @@ class TextSubmissionAction extends React.Component {
     this.props.initPostSubmissionItem(this.props.id);
   }
 
-  componentDidUpdate = prevProps => {
-    const prevResponse = prevProps.submissions.items[this.props.id] || null;
-    const response = this.props.submissions.items[this.props.id] || null;
-
-    // If prior response had no success status, but current response does, then
-    // the submission was successful!
-    if (
-      !has(prevResponse, 'status.success') &&
-      has(response, 'status.success')
-    ) {
-      this.resetForm();
-
-      this.setState({
-        showModal: true,
-      });
-    }
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    this.props.resetPostSubmissionItem(this.props.id);
-
-    const action = get(this.props.additionalContent, 'action', 'default');
-
-    const formData = new FormData();
-
-    formData.append('id', this.props.id);
-    formData.append('action', action);
-    formData.append('type', this.props.type);
-    formData.append('text', this.state.textValue);
-
-    if (this.props.legacyCampaignId && this.props.legacyCampaignRunId) {
-      formData.append(
-        'details',
-        JSON.stringify({
-          campaign_id: this.props.campaignId,
-          legacy_campaign_id: this.props.legacyCampaignId,
-          legacy_campaign_run_id: this.props.legacyCampaignRunId,
-        }),
-      );
-    }
-
-    // Send request to store the campaign text submission post.
-    this.props.storeCampaignPost(this.props.campaignId, {
-      action,
-      body: formData,
-      id: this.props.id,
-      type: this.props.type,
-    });
+  fields = {
+    text: 'text',
   };
 
   handleChange = event => {
@@ -82,9 +46,32 @@ class TextSubmissionAction extends React.Component {
     });
   };
 
-  resetForm = () => {
-    this.setState({
-      textValue: '',
+  handleSubmit = event => {
+    event.preventDefault();
+
+    this.props.resetPostSubmissionItem(this.props.id);
+
+    const type = 'text';
+
+    const action = get(this.props.additionalContent, 'action', 'default');
+
+    const formData = setFormData(
+      {
+        action,
+        type,
+        id: this.props.id,
+        // Associate state values to fields.
+        ...mapValues(this.fields, value => this.state[`${value}Value`]),
+      },
+      this.props,
+    );
+
+    // Send request to store the campaign text submission post.
+    this.props.storeCampaignPost(this.props.campaignId, {
+      action,
+      body: formData,
+      id: this.props.id,
+      type,
     });
   };
 
@@ -93,7 +80,14 @@ class TextSubmissionAction extends React.Component {
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
-    const errors = getFieldErrors(formResponse);
+    const formErrors = getFieldErrors(formResponse);
+
+    // Associate errors to component field names.
+    const errors = withoutUndefined(
+      formErrors
+        ? mapValues(invert(this.fields), value => formErrors[value])
+        : null,
+    );
 
     return (
       <React.Fragment>
@@ -170,8 +164,8 @@ TextSubmissionAction.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   initPostSubmissionItem: PropTypes.func.isRequired,
-  legacyCampaignId: PropTypes.string,
-  legacyCampaignRunId: PropTypes.string,
+  legacyCampaignId: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  legacyCampaignRunId: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
@@ -181,7 +175,6 @@ TextSubmissionAction.propTypes = {
   textFieldLabel: PropTypes.string,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
-  type: PropTypes.string.isRequired,
 };
 
 TextSubmissionAction.defaultProps = {
