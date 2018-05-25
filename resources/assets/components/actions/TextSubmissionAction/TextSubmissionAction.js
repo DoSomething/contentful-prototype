@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { has, get, mapValues } from 'lodash';
+import { get, has, invert, mapValues } from 'lodash';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
+import { withoutUndefined } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
@@ -79,7 +80,14 @@ class TextSubmissionAction extends React.Component {
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
-    const errors = getFieldErrors(formResponse);
+    const formErrors = getFieldErrors(formResponse);
+
+    // Associate errors to component field names.
+    const errors = withoutUndefined(
+      formErrors
+        ? mapValues(invert(this.fields), value => formErrors[value])
+        : null,
+    );
 
     return (
       <React.Fragment>
