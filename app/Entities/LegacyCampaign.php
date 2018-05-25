@@ -20,7 +20,7 @@ class LegacyCampaign implements JsonSerializable
      */
     public function __construct($legacyCampaign)
     {
-        $this->legacyCampaign = $legacyCampaign['data'];
+        $this->legacyCampaign = $legacyCampaign;
     }
 
     /**

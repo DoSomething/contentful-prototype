@@ -108,7 +108,7 @@ class CampaignRepository
                 throw new ModelNotFoundException;
             }
 
-            return new LegacyCampaign($legacyCampaign);
+            return new LegacyCampaign($legacyCampaign['data']);
         }
 
         return new Campaign($campaigns[0]);
