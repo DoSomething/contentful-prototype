@@ -108,10 +108,27 @@ class CampaignRepository
                 throw new ModelNotFoundException;
             }
 
-            return new LegacyCampaign($legacyCampaign);
+            return new LegacyCampaign($legacyCampaign['data']);
         }
 
         return new Campaign($campaigns[0]);
+    }
+
+    /**
+     * Find a list of campaigns by their legacy IDs.
+     *
+     * @param  array $ids
+     * @return \Illuminate\Support\Collection
+     */
+    public function findByLegacyCampaignIds($ids)
+    {
+        $query['ids'] = implode(',', $ids);
+
+        $legacyCampaigns = $this->phoenixLegacy->getCampaigns($query);
+
+        return collect($legacyCampaigns['data'])->map(function ($legacyCampaign) {
+            return new LegacyCampaign($legacyCampaign);
+        });
     }
 
     /**
