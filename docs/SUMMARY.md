@@ -65,6 +65,7 @@
   * [Link Action](content-publishing/actions/link-action.md)
   * [Photo Submission Action](content-publishing/actions/photo-submission-action.md)
   * [Share Action](content-publishing/actions/share-action.md)
+  * [Text Submission Action](content-publishing/actions/text-submission-action.md)
   * [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
 * [Community](content-publishing/community/README.md)
   * [Campaign Update](content-publishing/community/campaign-update.md)

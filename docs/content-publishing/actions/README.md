@@ -7,4 +7,5 @@ We want to provide DoSomething.org members with multiple actions they can decide
 * [Link Action](link-action.md)
 * [Photo Submission Action](photo-submission-action.md)
 * [Share Action](share-action.md)
+* [Text Submission Action](text-submission-action.md)
 * [Voter Registration Action](voter-registration-action.md)
