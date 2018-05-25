@@ -41,7 +41,7 @@ class PhoenixLegacy extends RestApiClient
     }
 
     /**
-     * Get details for (optionally filtered) campaigns from Phoenix.
+     * Get an index of (optionally filtered) campaigns from Phoenix.
      * @see: https://github.com/DoSomething/phoenix/blob/dev/documentation/endpoints/campaigns.md#retrieve-all-campaigns
      *
      * @param array $query - query string for filtering results
