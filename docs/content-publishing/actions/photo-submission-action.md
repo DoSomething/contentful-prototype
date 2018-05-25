@@ -14,7 +14,7 @@ For all the fields in the component designated as _optional_, a default value wi
 
 The Photo Submission Action consists of the following fields:
 
-* **internalTitle** _(required)_:
+* **internalTitle** _(required)_: the title used internally to find this component in Contentful; please follow helper text displyed under the field for suggested naming convention.
 * **title** _(optional)_: the title that will show up in the yellow bar atop the Photo Submission Action.
 * **captionFieldLabel** _(optional)_: the text label for the caption field.
 * **captionFieldPlaceholder** _(optional)_: the text placeholder in the caption field to provide an example.
