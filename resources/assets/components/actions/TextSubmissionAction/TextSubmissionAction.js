@@ -13,6 +13,19 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
 
 class TextSubmissionAction extends React.Component {
+  static getDerivedStateFromProps(nextProps) {
+    const response = nextProps.submissions.items[nextProps.id] || null;
+
+    if (has(response, 'status.success')) {
+      return {
+        showModal: true,
+        textValue: '',
+      };
+    }
+
+    return null;
+  }
+
   constructor(props) {
     super(props);
 
@@ -23,24 +36,6 @@ class TextSubmissionAction extends React.Component {
 
     this.props.initPostSubmissionItem(this.props.id);
   }
-
-  componentDidUpdate = prevProps => {
-    const prevResponse = prevProps.submissions.items[this.props.id] || null;
-    const response = this.props.submissions.items[this.props.id] || null;
-
-    // If prior response had no success status, but current response does, then
-    // the submission was successful!
-    if (
-      !has(prevResponse, 'status.success') &&
-      has(response, 'status.success')
-    ) {
-      this.resetForm();
-
-      this.setState({
-        showModal: true,
-      });
-    }
-  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -79,12 +74,6 @@ class TextSubmissionAction extends React.Component {
   handleChange = event => {
     this.setState({
       textValue: event.target.value,
-    });
-  };
-
-  resetForm = () => {
-    this.setState({
-      textValue: '',
     });
   };
 
