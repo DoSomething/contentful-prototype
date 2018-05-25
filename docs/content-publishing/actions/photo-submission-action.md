@@ -8,11 +8,11 @@ The component can optionally show or hide the quantity field, which allows membe
 
 If a campaign uses the **quantity** field, after a member successfully submits a photo submission, the component will display the current total quantity. Showcasing their current quantity makes it easier for returning members to submit photo updates along with updating their new total items collected. When entering an updated quantity, the member should enter their _new total_ items, which needs to be higher than their current displayed total.
 
-For all the fields in the component designated as _optional_, a default value will be used if no value is entered.
-
 ## Usage Instructions
 
 The Photo Submission Action consists of the following fields:
+
+_For all the fields below designated as "(optional)", a default value will be used if no value is entered._
 
 * **internalTitle** _(required)_: the title used internally to find this component in Contentful; please follow helper text displyed under the field for suggested naming convention.
 * **title** _(optional)_: the title that will show up in the yellow bar atop the Photo Submission Action.
