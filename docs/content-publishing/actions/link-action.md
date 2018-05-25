@@ -24,10 +24,10 @@ Be sure to add some Button Text via the `buttonText` field if you're linking to 
 
 ## Usage Instructions
 
-The Link Action consists of three fields:
+The Link Action consists of the following fields:
 
-* **title (required)**: The title that will show up in the yellow bar atop the Link Action.
+* **title (required)**: the title that will show up in the yellow bar atop the Link Action.
 * **content (optional)**: content in Markdown format that will appear within the card atop the link.
 * **link (required)**: a valid URL which will be embedded within the card, or a telephone link which will be linked to through the button.
-* **buttonText (optional)**: Text for button to link which will replace the embedded link. (_this is required for a telephone link action!_)
+* **buttonText (optional)**: text for button to link which will replace the embedded link. (_this is required for a telephone link action!_)
 * **affiliateLogo (optional)**: an image URL which will be featured on bottom of the action. (adding this property will also cause a color change in the title of the action)
