@@ -64,6 +64,11 @@ class TextSubmissionAction extends React.Component {
         ...mapValues(this.fields, value => this.state[`${value}Value`]),
       },
       this.props,
+      {
+        campaign_id: this.props.campaignId,
+        legacy_campaign_id: this.props.legacyCampaignId,
+        legacy_campaign_run_id: this.props.legacyCampaignRunId,
+      },
     );
 
     // Send request to store the campaign text submission post.
@@ -164,8 +169,8 @@ TextSubmissionAction.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   initPostSubmissionItem: PropTypes.func.isRequired,
-  legacyCampaignId: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  legacyCampaignRunId: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  legacyCampaignId: PropTypes.string.isRequired,
+  legacyCampaignRunId: PropTypes.string.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
@@ -183,8 +188,6 @@ TextSubmissionAction.defaultProps = {
     "Thanks for joining the movement, and submitting your message! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit',
   className: null,
-  legacyCampaignId: null,
-  legacyCampaignRunId: null,
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',
   title: 'Submit your text',
