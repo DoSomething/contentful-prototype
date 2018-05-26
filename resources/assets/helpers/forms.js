@@ -70,11 +70,10 @@ export function getFieldErrorMessages(response) {
  * Set form data for the provided values.
  *
  * @param {Object} values
- * @param {Object} props
  * @param {Null|Object} details
  * @return FormData
  */
-export function setFormData(values, props = {}, details = null) {
+export function setFormData(values, details = null) {
   const formData = new FormData();
 
   forEach(values, (value, key) => formData.append(key, value));

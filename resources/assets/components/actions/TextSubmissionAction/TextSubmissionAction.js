@@ -63,7 +63,6 @@ class TextSubmissionAction extends React.Component {
         // Associate state values to fields.
         ...mapValues(this.fields, value => this.state[`${value}Value`]),
       },
-      this.props,
       {
         campaign_id: this.props.campaignId,
         legacy_campaign_id: this.props.legacyCampaignId,

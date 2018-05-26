@@ -129,7 +129,6 @@ class PhotoSubmissionAction extends React.Component {
         quantity,
         show_quantity: this.props.showQuantityField ? 1 : 0,
       },
-      this.props,
       {
         campaign_id: this.props.campaignId,
         legacy_campaign_id: this.props.legacyCampaignId,
