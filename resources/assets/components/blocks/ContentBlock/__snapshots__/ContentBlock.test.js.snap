@@ -63,7 +63,7 @@ exports[`ContentBlock component it works beautifully with a mere content prop 1`
   className="content-block"
 >
   <div
-    className="margin-horizontal-md two-thirds"
+    className="margin-horizontal-md"
   >
     <Markdown
       className={null}

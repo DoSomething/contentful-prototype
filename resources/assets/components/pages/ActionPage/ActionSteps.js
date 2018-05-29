@@ -86,7 +86,6 @@ const ActionSteps = props => {
     let columnWidth = 'two-thirds';
     if (
       [
-        'contentBlock',
         'photoSubmissionAction',
         'photo-uploader',
         'photoUploaderAction',
@@ -96,6 +95,11 @@ const ActionSteps = props => {
         'imagesBlock',
       ].includes(type)
     ) {
+      columnWidth = 'full';
+    }
+
+    // Only setting full column width for Content Blocks with an image
+    if (type === 'contentBlock' && json.fields.image) {
       columnWidth = 'full';
     }
 
