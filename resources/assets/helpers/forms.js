@@ -70,23 +70,16 @@ export function getFieldErrorMessages(response) {
  * Set form data for the provided values.
  *
  * @param {Object} values
- * @param {Object} props
+ * @param {Null|Object} details
+ * @return FormData
  */
-export function setFormData(values, props = {}) {
+export function setFormData(values, details = null) {
   const formData = new FormData();
 
   forEach(values, (value, key) => formData.append(key, value));
 
-  // Append additional campaign details.
-  if (props.legacyCampaignId && props.legacyCampaignRunId) {
-    formData.append(
-      'details',
-      JSON.stringify({
-        campaign_id: props.campaignId,
-        legacy_campaign_id: props.legacyCampaignId,
-        legacy_campaign_run_id: props.legacyCampaignRunId,
-      }),
-    );
+  if (details) {
+    formData.append('details', JSON.stringify(details));
   }
 
   return formData;
