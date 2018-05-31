@@ -107,7 +107,7 @@ const SocialDriveAction = props => {
 
 SocialDriveAction.propTypes = {
   link: PropTypes.string.isRequired,
-  showPageViews: PropTypes.string,
+  showPageViews: PropTypes.bool,
   userId: PropTypes.string.isRequired,
 };
 
