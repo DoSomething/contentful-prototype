@@ -12,7 +12,6 @@ import { parseContentfulType, report } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
-import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
   renderLinkAction,
@@ -142,13 +141,6 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'shareAction':
         return renderShareAction(json);
-
-      case 'socialDriveAction':
-        return (
-          <div className="margin-horizontal-md margin-bottom-lg">
-            <SocialDriveActionContainer {...json.fields} />
-          </div>
-        );
 
       case 'static':
         return (
