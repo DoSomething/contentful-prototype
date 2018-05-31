@@ -69,7 +69,7 @@ const SocialDriveAction = ({ link, userId }) => {
         <hr className="border" />
       </div>
 
-      <div className="link-info padding-horizontal-md">
+      <div className="link-info padded">
         <p className="info__title">What happens next?</p>
 
         <p className="info__text">
