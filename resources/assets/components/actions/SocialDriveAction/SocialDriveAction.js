@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
-import Share from '../../utilities/Share/Share';
 import Embed from '../../utilities/Embed/Embed';
 import {
   handleFacebookShareClick,
@@ -66,9 +66,9 @@ const SocialDriveAction = ({ link }) => (
       <p className="info__title">What happens next?</p>
 
       <p className="info__text">
-        As you share your voter registration page, we'll keep track of how many
-        people you bring in. Check back often and try to get as many views as
-        possible!
+        As you share your voter registration page, we&#39;ll keep track of how
+        many people you bring in. Check back often and try to get as many views
+        as possible!
       </p>
     </div>
 
@@ -78,5 +78,9 @@ const SocialDriveAction = ({ link }) => (
     </div>
   </Card>
 );
+
+SocialDriveAction.propTypes = {
+  link: PropTypes.string.isRequired,
+};
 
 export default SocialDriveAction;
