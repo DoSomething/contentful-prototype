@@ -20,8 +20,8 @@ const SocialDriveAction = props => {
   const href = dynamicString(link, { userId });
 
   const handleCopyLinkClick = () => {
-    const r = document.querySelector('#social-drive-link');
-    r.select();
+    const linkInput = document.querySelector('#social-drive-link');
+    linkInput.select();
     document.execCommand('copy');
   };
 
