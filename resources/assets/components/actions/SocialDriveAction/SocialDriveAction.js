@@ -1,3 +1,5 @@
+/* global document */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,6 +19,12 @@ const SocialDriveAction = props => {
 
   const href = dynamicString(link, { userId });
 
+  const handleCopyLinkClick = () => {
+    const r = document.querySelector('#social-drive-link');
+    r.select();
+    document.execCommand('copy');
+  };
+
   return (
     <Card
       title="Your Online Drive"
@@ -35,10 +43,14 @@ const SocialDriveAction = props => {
           <input
             readOnly
             type="text"
+            id="social-drive-link"
             className="text-field link"
             value={href}
           />
-          <button className="text-field link-copy-button">
+          <button
+            className="text-field link-copy-button"
+            onClick={handleCopyLinkClick}
+          >
             <img src={linkIcon} alt="link" />
             <p>Copy link</p>
           </button>
