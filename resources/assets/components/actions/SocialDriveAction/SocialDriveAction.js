@@ -37,7 +37,6 @@ const SocialDriveAction = ({ link }) => (
     <div className="share-buttons">
       <div className="share-button padded">
         <button
-          attached
           className="button padding-vertical-md bg-dark-blue"
           onClick={() => handleFacebookShareClick(link)}
         >
@@ -48,7 +47,6 @@ const SocialDriveAction = ({ link }) => (
 
       <div className="share-button padded">
         <button
-          attached
           className="button padding-vertical-md"
           onClick={() => handleTwitterShareClick(link)}
         >
