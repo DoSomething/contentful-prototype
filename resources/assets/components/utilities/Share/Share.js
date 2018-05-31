@@ -4,10 +4,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { trackPuckEvent } from '../../../helpers/analytics';
 import {
-  showFacebookSharePrompt,
-  showTwitterSharePrompt,
+  handleFacebookShareClick,
+  handleTwitterShareClick,
 } from '../../../helpers';
 
 import './share.scss';
@@ -16,30 +15,26 @@ const Share = props => {
   const { className, link, parentSource, quote, variant } = props;
   const trackingData = { parentSource, variant, link, quote };
 
-  const onFacebookClick = () => {
-    trackPuckEvent('clicked facebook share', trackingData);
-    showFacebookSharePrompt(link);
-  };
-
-  const onTwitterClick = () => {
-    trackPuckEvent('clicked twitter share', trackingData);
-    showTwitterSharePrompt(link, quote || '');
-  };
-
   const buttonClassName = classnames('share', className, `-${variant}`);
   const isIcon = variant === 'icon';
 
   return (
     <div className={classnames({ 'share-tray': isIcon })}>
       {isIcon ? (
-        <button className={buttonClassName} onClick={onTwitterClick}>
+        <button
+          className={buttonClassName}
+          onClick={() => handleTwitterShareClick(link, trackingData, quote)}
+        >
           <i className="social-icon -twitter">
             <span>Twitter</span>
           </i>
         </button>
       ) : null}
 
-      <button className={buttonClassName} onClick={onFacebookClick}>
+      <button
+        className={buttonClassName}
+        onClick={() => handleFacebookShareClick(link, trackingData)}
+      >
         {isIcon ? null : 'share on'}
         <i className="social-icon -facebook">
           <span>Facebook</span>
