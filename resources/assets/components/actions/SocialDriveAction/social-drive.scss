@@ -1,0 +1,108 @@
+@import '../../../scss/next-toolbox.scss';
+
+.social-drive-action {
+  .link-area {
+    @include media($large) {
+      display: flex;
+
+      .share-text {
+        margin: auto;
+        white-space: nowrap;
+        padding-right: $half-spacing;
+        padding-bottom: 0;
+      }
+    }
+
+    .share-text {
+      color: $off-black;
+      padding-bottom: $half-spacing / 2;
+    }
+
+    .link {
+      color: $dark-gray;
+      overflow: scroll;
+      padding-right: 0;
+      white-space: nowrap;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .link-copy-button {
+      display: flex;
+      max-width: 120px;
+      border-radius: 0 4px 4px 0;
+      cursor: copy;
+
+      p {
+        font-size: 16px;
+        font-family: $primary-font-family;
+      }
+
+      img {
+        margin-right: 5px;
+      }
+    }
+
+    .link,
+    .link-copy-button {
+      padding: 0 12px;
+    }
+
+    .link-bar {
+      display: flex;
+      flex: 1;
+    }
+  }
+
+  hr {
+    border: 0.5px solid $light-gray;
+  }
+
+  .info__title {
+    font-family: $primary-font-family;
+    font-weight: $weight-bold;
+  }
+
+  .info__text {
+    margin-top: 10px;
+    font-family: $primary-font-family;
+    line-height: $font-large;
+  }
+
+  .page-views__text {
+    color: $med-gray;
+    font-size: $font-regular;
+    font-family: $primary-font-family;
+    font-weight: $weight-sbold;
+  }
+
+  .page-views__amount {
+    font-family: $secondary-font-family;
+    font-weight: $weight-normal;
+    font-size: $font-hero;
+    line-height: $font-hero;
+  }
+
+  .share-buttons {
+    @include media($large) {
+      display: flex;
+
+      .share-button {
+        flex: 1;
+      }
+    }
+
+    .share-button button {
+      width: 100%;
+      text-transform: none;
+      font-size: $font-regular;
+    }
+
+    .social-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .bg-dark-blue {
+    background-color: #39579a;
+  }
+}
