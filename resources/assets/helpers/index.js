@@ -3,10 +3,11 @@
 import { isBefore } from 'date-fns';
 import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
-import { trackPuckEvent } from './analytics';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
+
+import { trackPuckEvent } from './analytics';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -455,29 +456,6 @@ export function loadFacebookSDK() {
 }
 
 /**
- * Handle click event on from Facebook share button
- *
- * @param {String} href
- * @param {Object} trackingData
- */
-export function handleFacebookShareClick(href, trackingData) {
-  trackPuckEvent('clicked facebook share', trackingData);
-  showFacebookSharePrompt(href);
-}
-
-/**
- * Handle click event from a Twitter share button
- *
- * @param {String} href
- * @param {Object} trackingData
- * @param {String} quote
- */
-export function handleTwitterShareClick(href, trackingData, quote = '') {
-  trackPuckEvent('clicked twitter share', trackingData);
-  showTwitterSharePrompt(href, quote);
-}
-
-/**
  * Share a link by generating a Facebook share dialog.
  * Get a callback if the share is successful or not.
  *
@@ -564,6 +542,29 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   });
 
   openDialog(intent, callback);
+}
+
+/**
+ * Handle click event on from Facebook share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ */
+export function handleFacebookShareClick(href, trackingData) {
+  trackPuckEvent('clicked facebook share', trackingData);
+  showFacebookSharePrompt(href);
+}
+
+/**
+ * Handle click event from a Twitter share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ * @param {String} quote
+ */
+export function handleTwitterShareClick(href, trackingData, quote = '') {
+  trackPuckEvent('clicked twitter share', trackingData);
+  showTwitterSharePrompt(href, quote);
 }
 
 /**
