@@ -39,7 +39,11 @@
         display: flex;
         max-width: 120px;
         border-radius: 0 4px 4px 0;
-        cursor: copy;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $light-gray;
+        }
 
         p {
           font-size: 16px;
