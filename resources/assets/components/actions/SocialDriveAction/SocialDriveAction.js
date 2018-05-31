@@ -12,7 +12,9 @@ import {
 
 import './social-drive.scss';
 
-const SocialDriveAction = ({ link, userId }) => {
+const SocialDriveAction = props => {
+  const { link, showPageViews, userId } = props;
+
   const href = dynamicString(link, { userId });
 
   return (
@@ -65,31 +67,40 @@ const SocialDriveAction = ({ link, userId }) => {
         </div>
       </div>
 
-      <div className="padding-horizontal-md">
-        <hr className="border" />
-      </div>
+      {showPageViews ? (
+        <div>
+          <div className="padding-horizontal-md">
+            <hr className="border" />
+          </div>
 
-      <div className="link-info padded">
-        <p className="info__title">What happens next?</p>
+          <div className="link-info padded">
+            <p className="info__title">What happens next?</p>
 
-        <p className="info__text">
-          As you share your voter registration page, we&#39;ll keep track of how
-          many people you bring in. Check back often and try to get as many
-          views as possible!
-        </p>
-      </div>
+            <p className="info__text">
+              As you share your voter registration page, we&#39;ll keep track of
+              how many people you bring in. Check back often and try to get as
+              many views as possible!
+            </p>
+          </div>
 
-      <div className="padded page-views">
-        <span className="page-views__text caps-lock">total page views</span>
-        <h1 className="page-views__amount">5</h1>
-      </div>
+          <div className="padded page-views">
+            <span className="page-views__text caps-lock">total page views</span>
+            <h1 className="page-views__amount">5</h1>
+          </div>
+        </div>
+      ) : null}
     </Card>
   );
 };
 
 SocialDriveAction.propTypes = {
   link: PropTypes.string.isRequired,
+  showPageViews: PropTypes.string,
   userId: PropTypes.string.isRequired,
+};
+
+SocialDriveAction.defaultProps = {
+  showPageViews: false,
 };
 
 export default SocialDriveAction;
