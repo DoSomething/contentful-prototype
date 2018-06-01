@@ -2,16 +2,35 @@
 
 namespace App\Services;
 
+use DoSomething\Gateway\AuthorizesWithApiKey;
 use DoSomething\Gateway\Common\RestApiClient;
 
 class Bertly extends RestApiClient
 {
+    use AuthorizesWithApiKey;
+
+    /**
+     * The header to provide the API key in.
+     * @var string
+     */
+    protected $apiKeyHeader;
+
+    /**
+     * The Bertly API key.
+     * @var string
+     */
+    protected $apiKey;
+
     /**
      * Bertly constructor.
      */
     public function __construct()
     {
         $base_url = config('services.bertly.url');
+
+        // Set fields for `AuthorizesWithApiKey` trait.
+        $this->apiKeyHeader = 'X-BERTLY-API-KEY';
+        $this->apiKey = config('services.bertly.key');
 
         parent::__construct($base_url);
     }
@@ -31,25 +50,5 @@ class Bertly extends RestApiClient
         ]);
 
         return $response['url'];
-    }
-
-    /**
-     * Send a raw API request, without attempting to handle error responses.
-     *
-     * @param $method
-     * @param $path
-     * @param array $options
-     * @param bool $withAuthorization
-     * @return \GuzzleHttp\Psr7\Response
-     */
-    public function raw($method, $path, $options, $withAuthorization = true)
-    {
-        $options['headers'] = $this->defaultHeaders;
-
-        if ($withAuthorization) {
-            $options['headers']['X-BERTLY-API-KEY'] = config('services.bertly.key');
-        }
-
-        return parent::raw($method, $path, $options, $withAuthorization);
     }
 }
