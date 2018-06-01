@@ -22,7 +22,7 @@ class LinkController extends Controller
     }
 
     /**
-     * Store a reaction.
+     * Store a new shortened link.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -33,6 +33,8 @@ class LinkController extends Controller
             'url' => 'required|url',
         ]);
 
+        // Only allow users to create short-links for
+        // whitelisted "safe" sites:
         $whitelist = [
             'www.dosomething.org',
             'vote.dosomething.org',
