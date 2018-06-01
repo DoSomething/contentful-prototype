@@ -7,6 +7,8 @@ import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
+import { trackPuckEvent } from './analytics';
+
 // Helper Constants
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
@@ -540,6 +542,29 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
   });
 
   openDialog(intent, callback);
+}
+
+/**
+ * Handle click event on from Facebook share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ */
+export function handleFacebookShareClick(href, trackingData) {
+  trackPuckEvent('clicked facebook share', trackingData);
+  showFacebookSharePrompt(href);
+}
+
+/**
+ * Handle click event from a Twitter share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ * @param {String} quote
+ */
+export function handleTwitterShareClick(href, trackingData, quote = '') {
+  trackPuckEvent('clicked twitter share', trackingData);
+  showTwitterSharePrompt(href, quote);
 }
 
 /**
