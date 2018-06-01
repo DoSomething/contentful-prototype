@@ -50,16 +50,4 @@ class LinkController extends Controller
 
         return response()->json(['url' => $url]);
     }
-
-    /**
-     * Delete a reaction.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function delete(Request $request, $id)
-    {
-        return response()->json($this->phoenixLegacy->deleteReaction($id));
-    }
 }
