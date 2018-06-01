@@ -26,4 +26,7 @@ $router->group(['prefix' => 'v2'], function () {
 
     // Posts
     $this->get('/posts', 'Api\PostsController@index');
+
+    // Shortlinks
+    $this->post('links', 'Api\LinkController@store');
 });
