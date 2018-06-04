@@ -18,9 +18,15 @@ import {
 import './social-drive.scss';
 
 class SocialDriveAction extends React.Component {
-  state = {
-    shortenedLink: null,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shortenedLink: null,
+    };
+
+    this.linkInput = React.createRef();
+  }
 
   componentDidMount() {
     const { userId, token } = this.props;
@@ -33,8 +39,7 @@ class SocialDriveAction extends React.Component {
   }
 
   handleCopyLinkClick = () => {
-    const linkInput = document.querySelector('#social-drive-link');
-    linkInput.select();
+    this.linkInput.current.select();
     document.execCommand('copy');
   };
 
@@ -60,7 +65,7 @@ class SocialDriveAction extends React.Component {
             <input
               readOnly
               type="text"
-              id="social-drive-link"
+              ref={this.linkInput}
               className="text-field link"
               value={shortenedLink || 'Loading...'}
               disabled={!shortenedLink}
