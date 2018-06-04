@@ -22,6 +22,25 @@ export function getRequest(url, query) {
 }
 
 /**
+ * Send a POST request.
+ *
+ * @param  {String} url
+ * @param  {Object} query
+ * @param  {String} token
+ * @return {Object}
+ */
+export function postRequest(url, query, token) {
+  const client = new RestApiClient(PHOENIX_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+  return client.post(url, query);
+}
+
+/**
  * Get campaign signups for a user.
  *
  * @param  {String} userId
