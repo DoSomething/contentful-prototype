@@ -8,7 +8,6 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import { setFormData } from '../../../helpers/forms';
 import {
   dynamicString,
   handleFacebookShareClick,
@@ -28,10 +27,8 @@ class SocialDriveAction extends React.Component {
 
     const href = dynamicString(this.props.link, { userId });
 
-    const formData = setFormData({ url: withoutTokens(href) });
-
-    postRequest('api/v2/links', formData, token).then(response =>
-      this.setState({ shortenedLink: response.url }),
+    postRequest('api/v2/links', { url: withoutTokens(href) }, token).then(
+      response => this.setState({ shortenedLink: response.url }),
     );
   }
 
