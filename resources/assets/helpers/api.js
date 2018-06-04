@@ -33,7 +33,7 @@ export function postRequest(url, query, token) {
   const client = new RestApiClient(PHOENIX_URL, {
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'multipart/form-data',
+      'Content-Type': 'application/json',
     },
   });
 
