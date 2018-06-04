@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import linkIcon from './linkIcon.svg';
-import { postRequest } from '../../../helpers/api';
-import { setFormData } from '../../../helpers/forms';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
+import { postRequest } from '../../../helpers/api';
+import { setFormData } from '../../../helpers/forms';
 import {
   dynamicString,
   handleFacebookShareClick,
