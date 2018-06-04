@@ -28,8 +28,7 @@ class PostRequest extends FormRequest
             case 'photo':
                 return [
                     'file.required' => 'An uploaded photo is required.',
-                    'quantity.required_if' => 'The quantity field is required.',
-                    'quantity.min' => $this->setMinQuantityMessage(),
+                    'quantity.min' => $this->getMinQuantityMessage(),
                     'text.max' => 'The caption field may not be greater than :max characters.',
                     'text.min' => 'The caption field may not be less than :min characters.',
                     'text.required' => 'The caption field for your photo is required.',
@@ -56,13 +55,7 @@ class PostRequest extends FormRequest
         // Custom validation rules based on the type of post action.
         switch ($this->input('type')) {
             case 'photo':
-                return [
-                    'file' => 'required|file|image',
-                    'quantity' => 'required_if:show_quantity,1|integer|min:1',
-                    'show_quantity' => 'required|boolean',
-                    'text' => 'required|min:4|max:60',
-                    'why_participated' => 'required',
-                ];
+                return $this->getPhotoRules();
 
             case 'text':
                 return [
@@ -75,9 +68,32 @@ class PostRequest extends FormRequest
     }
 
     /**
-     * Set validation message for min quantity rule.
+     * Get the validation rules for a photo post.
+     *
+     * @return array
      */
-    private function setMinQuantityMessage()
+    private function getPhotoRules()
+    {
+        $rules = [
+            'file' => 'required|file|image',
+            'show_quantity' => 'required|boolean',
+            'text' => 'required|min:4|max:60',
+            'why_participated' => 'required',
+        ];
+
+        if (filter_var($this->input('show_quantity'), FILTER_VALIDATE_BOOLEAN)) {
+            $rules += [
+                'quantity' => 'required|integer|min:1',
+            ];
+        }
+
+        return $rules;
+    }
+
+    /**
+     * Get validation message for min quantity rule.
+     */
+    private function getMinQuantityMessage()
     {
         $previousQuantity = (int) $this->input('previousQuantity');
 
