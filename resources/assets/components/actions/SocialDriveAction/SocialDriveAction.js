@@ -8,10 +8,12 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
+import { trackPuckEvent } from '../../../helpers/analytics';
 import {
   dynamicString,
-  handleFacebookShareClick,
   handleTwitterShareClick,
+  loadFacebookSDK,
+  showFacebookShareDialog,
   withoutTokens,
 } from '../../../helpers';
 
@@ -29,6 +31,8 @@ class SocialDriveAction extends React.Component {
   }
 
   componentDidMount() {
+    loadFacebookSDK();
+
     const { userId, token } = this.props;
 
     const href = dynamicString(this.props.link, { userId });
@@ -41,6 +45,18 @@ class SocialDriveAction extends React.Component {
   handleCopyLinkClick = () => {
     this.linkInput.current.select();
     document.execCommand('copy');
+  };
+
+  handleFacebookShareClick = url => {
+    trackPuckEvent('clicked facebook share action', { url });
+
+    showFacebookShareDialog(url)
+      .then(() => {
+        trackPuckEvent('share action completed', { url });
+      })
+      .catch(() => {
+        trackPuckEvent('share action cancelled', { url });
+      });
   };
 
   render() {
@@ -87,7 +103,7 @@ class SocialDriveAction extends React.Component {
               className={classnames('button padding-vertical-md', {
                 'bg-dark-blue': shortenedLink,
               })}
-              onClick={() => handleFacebookShareClick(shortenedLink)}
+              onClick={() => this.handleFacebookShareClick(shortenedLink)}
               disabled={!shortenedLink}
             >
               <i className="social-icon -facebook" />
