@@ -89,6 +89,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
             'text' => 'Great text caption!',
             'quantity' => 'not-an-integer',
             'file' => 'not-a-file-upload',
+            'show_quantity' => '1',
             'why_participated' => 'Because testing is very important.',
         ]);
 
@@ -103,6 +104,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
             'caption' => 'Great text caption!',
             'quantity' => '3.5',
             'file' => 'not-a-file-upload',
+            'show_quantity' => '1',
             'why_participated' => 'Because testing is very important.',
         ]);
 
@@ -117,6 +119,7 @@ class StorePhotoReportbackPostTest extends BrowserKitTestCase
             'caption' => 'Great text caption!',
             'quantity' => '0',
             'file' => 'not-a-file-upload',
+            'show_quantity' => '1',
             'why_participated' => 'Because testing is very important.',
         ]);
 
