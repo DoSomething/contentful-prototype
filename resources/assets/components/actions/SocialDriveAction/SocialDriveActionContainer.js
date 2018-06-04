@@ -8,6 +8,7 @@ import { getUserId } from '../../../selectors/user';
  */
 const mapStateToProps = state => ({
   userId: getUserId(state),
+  token: state.user.token,
 });
 
 // Export the container component.
