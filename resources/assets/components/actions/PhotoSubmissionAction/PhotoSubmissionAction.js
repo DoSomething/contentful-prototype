@@ -112,10 +112,19 @@ class PhotoSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const quantity = calculateDifference(
-      get(this.state.signup, 'quantity', null),
-      this.state.quantityValue,
+    const values = mapValues(
+      this.fields(),
+      value => this.state[`${value}Value`],
     );
+
+    if (this.props.showQuantityField) {
+      values['previousQuantity'] = get(this.state.signup, 'quantity', 0);
+
+      values['quantity'] = calculateDifference(
+        get(this.state.signup, 'quantity', null),
+        this.state.quantityValue,
+      );
+    }
 
     const formData = setFormData(
       {
@@ -123,10 +132,8 @@ class PhotoSubmissionAction extends React.Component {
         type,
         id: this.props.id,
         // Associate state values to fields.
-        ...mapValues(this.fields(), value => this.state[`${value}Value`]),
+        ...values,
         file: this.state.mediaValue.file || '',
-        previousQuantity: get(this.state.signup, 'quantity', 0),
-        quantity,
         show_quantity: this.props.showQuantityField ? 1 : 0,
       },
       {
