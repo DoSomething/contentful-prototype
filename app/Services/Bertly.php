@@ -44,9 +44,11 @@ class Bertly extends RestApiClient
     public function shorten($url)
     {
         $shortlink = $this->postForm('/', compact('url'));
+        $stats = $this->get($shortlink['url'] . '/clicks');
 
         return [
             'url' => $shortlink['url'],
+            'count' => $stats['count'],
         ];
     }
 
