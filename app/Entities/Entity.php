@@ -62,6 +62,9 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new Affirmation($block->entry);
             case 'callToAction':
                 return new CallToAction($block->entry);
+            case 'campaignActionStep':
+            case 'componentActionStep':
+                return new CampaignActionStep($block->entry);
             case 'campaignUpdate':
                 return new CampaignUpdate($block->entry);
             case 'contentBlock':
@@ -86,6 +89,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new PhotoSubmissionAction($block->entry);
             case 'photoUploaderAction':
                 return new PhotoUploaderAction($block->entry);
+            case 'quiz':
+                return new Quiz($block->entry);
             case 'referralSubmissionAction':
                 return new ReferralSubmissionAction($block->entry);
             case 'shareAction':
@@ -97,7 +102,7 @@ class Entity implements ArrayAccess, JsonSerializable
             case 'voterRegistrationAction':
                 return new VoterRegistrationAction($block->entry);
             default:
-                return new CampaignActionStep($block->entry);
+                return $block->entry;
         }
     }
 
