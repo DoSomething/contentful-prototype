@@ -37,8 +37,8 @@ class SocialDriveAction extends React.Component {
 
     const href = dynamicString(this.props.link, { userId });
 
-    postRequest('api/v2/links', { url: withoutTokens(href) }, token).then(
-      response => this.setState({ shortenedLink: response.url }),
+    postRequest('/api/v2/links', { url: withoutTokens(href) }, token).then(
+      ({ url, count }) => this.setState({ shortenedLink: url, count }),
     );
   }
 
@@ -143,7 +143,7 @@ class SocialDriveAction extends React.Component {
               <span className="page-views__text caps-lock">
                 total page views
               </span>
-              <h1 className="page-views__amount">5</h1>
+              <h1 className="page-views__amount">{this.state.count || 0}</h1>
             </div>
           </div>
         ) : null}
@@ -160,7 +160,7 @@ SocialDriveAction.propTypes = {
 };
 
 SocialDriveAction.defaultProps = {
-  showPageViews: false,
+  showPageViews: true,
 };
 
 export default SocialDriveAction;
