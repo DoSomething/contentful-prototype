@@ -164,9 +164,9 @@ class PhotoSubmissionAction extends React.Component {
     );
 
     if (this.props.showQuantityField) {
-      values['previousQuantity'] = get(this.state.signup, 'quantity', 0);
+      values.previousQuantity = get(this.state.signup, 'quantity', 0);
 
-      values['quantity'] = calculateDifference(
+      values.quantity = calculateDifference(
         get(this.state.signup, 'quantity', null),
         this.state.quantityValue,
       );
