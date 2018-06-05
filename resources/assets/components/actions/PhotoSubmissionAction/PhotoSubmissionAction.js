@@ -22,6 +22,12 @@ import {
 import './photo-submission-action.scss';
 
 class PhotoSubmissionAction extends React.Component {
+  /**
+   * Lifecycle method invoked before every render.
+   *
+   * @param  {Object} nextProps
+   * @return {Object|null}
+   */
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
@@ -35,6 +41,11 @@ class PhotoSubmissionAction extends React.Component {
     return null;
   }
 
+  /**
+   * Create a new instance.
+   *
+   * @param  {Object} props
+   */
   constructor(props) {
     super(props);
 
@@ -58,6 +69,11 @@ class PhotoSubmissionAction extends React.Component {
     this.props.initPostSubmissionItem(this.props.id);
   }
 
+  /**
+   * Lifecylce method invoked immediately after a component is mounted.
+   *
+   * @return {void}
+   */
   componentDidMount() {
     const request = getUserCampaignSignups(
       this.props.userId,
@@ -71,12 +87,22 @@ class PhotoSubmissionAction extends React.Component {
     });
   }
 
+  /**
+   * Lifecyle method invoked immediately after updating occurs.
+   *
+   * @return {void}
+   */
   componentDidUpdate() {
     if (this.state.shouldResetForm) {
       this.resetForm();
     }
   }
 
+  /**
+   * Fields for the form and their associated references.
+   *
+   * @return {Array}
+   */
   fields = () => {
     const items = {
       file: 'media',
@@ -91,18 +117,38 @@ class PhotoSubmissionAction extends React.Component {
     return items;
   };
 
+  /**
+   * Handle form input change events.
+   *
+   * @param  {Object} event
+   * @return {void}
+   */
   handleChange = event => {
     this.setState({
       [`${event.target.name}Value`]: event.target.value,
     });
   };
 
+  /**
+   * Handle file upload event.
+   *
+   * @param  {Object} media
+   * @return {void}
+   */
   handleFileUpload = media => {
+    console.log(media);
+
     this.setState({
       mediaValue: media,
     });
   };
 
+  /**
+   * Handle form submit event.
+   *
+   * @param  {Object} event
+   * @return {void}
+   */
   handleSubmit = event => {
     event.preventDefault();
 
@@ -152,12 +198,23 @@ class PhotoSubmissionAction extends React.Component {
     });
   };
 
+  /**
+   * Handle receiving a signup response.
+   *
+   * @param  {Object} data
+   * @return {void}
+   */
   handleSignupResponse = data => {
     this.setState({
       signup: data,
     });
   };
 
+  /**
+   * Rest the form fields.
+   *
+   * @return {void}
+   */
   resetForm = () => {
     const signup = get(
       this.props.submissions.items[this.props.id],
@@ -175,6 +232,11 @@ class PhotoSubmissionAction extends React.Component {
     });
   };
 
+  /**
+   * Render the component.
+   *
+   * @return {ReactComponent}
+   */
   render() {
     const submissionItem = this.props.submissions.items[this.props.id];
 
