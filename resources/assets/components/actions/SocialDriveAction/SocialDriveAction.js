@@ -39,7 +39,7 @@ class SocialDriveAction extends React.Component {
 
     postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
       .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
-      .catch(() => this.setState({ shortenedLink: href, count: 0 }));
+      .catch(() => this.setState({ shortenedLink: href, count: 'N/A' }));
   }
 
   handleCopyLinkClick = () => {
@@ -143,7 +143,9 @@ class SocialDriveAction extends React.Component {
               <span className="page-views__text caps-lock">
                 total page views
               </span>
-              <h1 className="page-views__amount">{this.state.count || 0}</h1>
+              <h1 className="page-views__amount">
+                {shortenedLink ? this.state.count : '?'}
+              </h1>
             </div>
           </div>
         ) : null}
