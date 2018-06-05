@@ -56,7 +56,7 @@ const CampaignPageNavigation = ({
     slug: prepareCampaignPageSlug(campaignSlug, page.slug),
   }));
 
-  return (
+  return campaignPages.length ? (
     <PageNavigation pages={campaignPages}>
       {isAffiliated ? null : (
         <SignupButtonContainer
@@ -65,7 +65,7 @@ const CampaignPageNavigation = ({
         />
       )}
     </PageNavigation>
-  );
+  ) : null;
 };
 
 CampaignPageNavigation.propTypes = {
