@@ -44,10 +44,10 @@ class LinkController extends Controller
 
         $url = $request->input('url');
         $host = parse_url($url, PHP_URL_HOST);
-        if (in_array($host, $whitelist)) {
-            $url = $this->bertly->shorten($url);
+        if (! in_array($host, $whitelist)) {
+            return ['url' => $url, 'count' => '0'];
         }
 
-        return response()->json(['url' => $url]);
+        return $this->bertly->shorten($url);
     }
 }
