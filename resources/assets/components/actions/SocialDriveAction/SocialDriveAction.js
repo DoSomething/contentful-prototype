@@ -37,9 +37,9 @@ class SocialDriveAction extends React.Component {
 
     const href = dynamicString(this.props.link, { userId });
 
-    postRequest('/api/v2/links', { url: withoutTokens(href) }, token).then(
-      ({ url, count }) => this.setState({ shortenedLink: url, count }),
-    );
+    postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
+      .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
+      .catch(() => this.setState({ shortenedLink: href, count: 0 }));
   }
 
   handleCopyLinkClick = () => {
