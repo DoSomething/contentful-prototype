@@ -62,6 +62,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new Affirmation($block->entry);
             case 'callToAction':
                 return new CallToAction($block->entry);
+            case 'campaignActionStep':
+                return new CampaignActionStep($block->entry);
             case 'campaignUpdate':
                 return new CampaignUpdate($block->entry);
             case 'contentBlock':
@@ -99,7 +101,7 @@ class Entity implements ArrayAccess, JsonSerializable
             case 'voterRegistrationAction':
                 return new VoterRegistrationAction($block->entry);
             default:
-                return new CampaignActionStep($block->entry);
+                return $block->entry;
         }
     }
 
