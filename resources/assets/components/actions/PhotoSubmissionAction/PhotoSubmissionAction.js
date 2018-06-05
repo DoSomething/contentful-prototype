@@ -136,8 +136,6 @@ class PhotoSubmissionAction extends React.Component {
    * @return {void}
    */
   handleFileUpload = media => {
-    console.log(media);
-
     this.setState({
       mediaValue: media,
     });
