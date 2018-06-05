@@ -63,6 +63,7 @@ class Entity implements ArrayAccess, JsonSerializable
             case 'callToAction':
                 return new CallToAction($block->entry);
             case 'campaignActionStep':
+            case 'componentActionStep':
                 return new CampaignActionStep($block->entry);
             case 'campaignUpdate':
                 return new CampaignUpdate($block->entry);
