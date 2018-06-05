@@ -43,12 +43,27 @@ class Bertly extends RestApiClient
      */
     public function shorten($url)
     {
-        $response = $this->send('POST', '/', [
-            'form_params' => [
-                'url' => $url,
-            ],
-        ]);
+        $shortlink = $this->postForm('/', compact('url'));
 
-        return $response['url'];
+        return [
+            'url' => $shortlink['url'],
+        ];
+    }
+
+    /**
+     * Send a POST request to the given URL.
+     *
+     * @param string $path - URL to make request to (relative to base URL)
+     * @param array $payload - Body of the POST request
+     * @param bool $withAuthorization - Should this request be authorized?
+     * @return array
+     */
+    public function postForm($path, $payload = [], $withAuthorization = true)
+    {
+        $options = [
+            'form_params' => $payload,
+        ];
+
+        return $this->send('POST', $path, $options, $withAuthorization);
     }
 }
