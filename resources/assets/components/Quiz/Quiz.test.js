@@ -81,6 +81,7 @@ const props = {
   slug: 'quiz-slug',
   history,
   location,
+  autoSubmit: false,
 };
 
 test('it should display a placeholder quiz', () => {
