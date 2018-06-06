@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { every, find } from 'lodash';
+import { every } from 'lodash';
 
 import calculateResult from './helpers';
 import { Flex, FlexCell } from '../Flex';
@@ -18,8 +18,8 @@ class Quiz extends React.Component {
     this.state = {
       choices: {},
       results: {
-        resultId: null,
-        resultBlockId: null,
+        result: null,
+        resultBlock: null,
       },
       showResults: false,
     };
@@ -47,7 +47,12 @@ class Quiz extends React.Component {
         responses: this.state.choices,
       });
 
-      const results = calculateResult(this.state.choices, this.props.questions);
+      const results = calculateResult(
+        this.state.choices,
+        this.props.questions,
+        this.props.results,
+        this.props.resultBlocks,
+      );
 
       this.setState({ showResults: true, results });
     }
@@ -99,17 +104,10 @@ class Quiz extends React.Component {
   };
 
   renderResult = () => {
-    const { resultBlocks, results } = this.props;
-
-    const resultBlockId = this.state.results.resultBlockId;
-    const resultBlock = find(resultBlocks, { id: resultBlockId });
-
-    const resultId = this.state.results.resultId;
-    const result = find(results, { id: resultId });
+    const { result, resultBlock } = this.state.results;
 
     if (!resultBlock) {
       // Return the result on it's own when no result block is found.
-
       return result ? (
         <QuizConclusion callToAction={result.content}>
           <Share className="quiz__share" parentSource="quiz" />

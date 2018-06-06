@@ -1,3 +1,5 @@
+import { find } from 'lodash';
+
 /**
  * Tally the amount of times a quiz result content and result block
  * have been opted for via a users choice selection for quiz questions, and
@@ -7,7 +9,7 @@
  * @param  {Array}   questions
  * @return {Object}
  */
-const calculateResult = (selections, questions) => {
+const calculateResult = (selections, questions, results, resultBlocks) => {
   const talliedResults = {};
   const talliedResultBlocks = {};
 
@@ -17,8 +19,8 @@ const calculateResult = (selections, questions) => {
     const selectedChoice = question.choices[selectedChoiceId];
 
     // increment the counter for each result of the selected choice
-    const results = selectedChoice.results;
-    results.forEach(
+    const resultIds = selectedChoice.results;
+    resultIds.forEach(
       resultId =>
         // ensuring a default value of zero for unset result properties
         (talliedResults[resultId] = (talliedResults[resultId] || 0) + 1),
@@ -37,13 +39,19 @@ const calculateResult = (selections, questions) => {
     (resultA, resultB) => talliedResults[resultB] - talliedResults[resultA],
   )[0];
 
+  const result = resultId ? find(results, { id: resultId }) : null;
+
   // sorts results by their selection counter in descending order
   const resultBlockId = Object.keys(talliedResultBlocks).sort(
     (blockA, blockB) =>
       talliedResultBlocks[blockB] - talliedResultBlocks[blockA],
   )[0];
 
-  return { resultId, resultBlockId };
+  const resultBlock = resultBlockId
+    ? find(resultBlocks, { id: resultBlockId })
+    : null;
+
+  return { result, resultBlock };
 };
 
 export default calculateResult;
