@@ -71,8 +71,8 @@ class Quiz extends React.Component {
 
       // Retain the current pathname while replacing the active quiz's slug with the resultBlocks slug
       const newPath = location.pathname.replace(
-        `quiz/${slug}`,
-        `quiz/${resultBlockSlug}`,
+        new RegExp(`/quiz/${slug}$`),
+        `/quiz/${resultBlockSlug}`,
       );
 
       history.push(newPath);
