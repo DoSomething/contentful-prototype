@@ -142,6 +142,7 @@ class Quiz extends React.Component {
 }
 
 Quiz.propTypes = {
+  autoSubmit: PropTypes.bool.isRequired,
   additionalContent: PropTypes.shape({
     callToAction: PropTypes.string.isRequired,
     introduction: PropTypes.string.isRequired,
