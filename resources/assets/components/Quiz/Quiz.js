@@ -21,38 +21,84 @@ class Quiz extends React.Component {
         resultId: null,
         resultBlockId: null,
       },
+      showResults: false,
     };
-
-    this.selectChoice = this.selectChoice.bind(this);
   }
 
-  evaluateQuiz() {
+  componentDidUpdate() {
+    if (!this.props.autoSubmit) {
+      return;
+    }
+
+    if (!this.state.showResults && this.evaluateQuiz()) {
+      this.completeQuiz();
+    }
+  }
+
+  evaluateQuiz = () => {
     const questions = this.props.questions;
 
     return every(questions, question => !!this.state.choices[question.id]);
-  }
+  };
 
-  completeQuiz() {
+  completeQuiz = () => {
     if (this.evaluateQuiz()) {
       this.props.trackEvent('converted on quiz', {
         responses: this.state.choices,
       });
 
       const results = calculateResult(this.state.choices, this.props.questions);
+
       this.setState({ showResults: true, results });
     }
-  }
+  };
 
-  selectChoice(questionId, choiceId) {
+  selectChoice = (questionId, choiceId) => {
     this.setState({
       choices: {
         ...this.state.choices,
         [questionId]: choiceId,
       },
     });
-  }
+  };
 
-  renderResult() {
+  renderQuiz = () => {
+    const { questions } = this.props;
+
+    const { callToAction, introduction, submitButtonText } =
+      this.props.additionalContent || {};
+
+    return (
+      <React.Fragment>
+        {introduction}
+
+        {questions.map(question => (
+          <QuizQuestion
+            key={question.id}
+            id={question.id}
+            title={question.title}
+            choices={question.choices}
+            selectChoice={this.selectChoice}
+            activeChoiceId={this.state.choices[question.id]}
+          />
+        ))}
+
+        {this.props.autoSubmit ? null : (
+          <QuizConclusion callToAction={callToAction}>
+            <button
+              onClick={() => this.completeQuiz()}
+              className="button quiz__submit"
+              disabled={!this.evaluateQuiz()}
+            >
+              {submitButtonText || Quiz.defaultProps.submitButtonText}
+            </button>
+          </QuizConclusion>
+        )}
+      </React.Fragment>
+    );
+  };
+
+  renderResult = () => {
     const { resultBlocks, results } = this.props;
 
     const resultBlockId = this.state.results.resultBlockId;
@@ -79,50 +125,16 @@ class Quiz extends React.Component {
     }
 
     return <ContentfulEntry json={resultBlock} />;
-  }
+  };
 
   render() {
-    const { additionalContent, questions, title } = this.props;
-
-    const { callToAction, introduction, submitButtonText } =
-      additionalContent || {};
-
-    const { choices, showResults } = this.state;
-
     return (
       <Flex className="quiz">
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
-          <h2 className="quiz__title">{title}</h2>
+          <h2 className="quiz__title">{this.props.title}</h2>
 
-          {showResults ? null : introduction}
-
-          {showResults
-            ? null
-            : questions.map(question => (
-                <QuizQuestion
-                  key={question.id}
-                  id={question.id}
-                  title={question.title}
-                  choices={question.choices}
-                  selectChoice={this.selectChoice}
-                  activeChoiceId={choices[question.id]}
-                />
-              ))}
-
-          {showResults ? (
-            this.renderResult()
-          ) : (
-            <QuizConclusion callToAction={callToAction}>
-              <button
-                onClick={() => this.completeQuiz()}
-                className="button quiz__submit"
-                disabled={!this.evaluateQuiz()}
-              >
-                {submitButtonText || Quiz.defaultProps.submitButtonText}
-              </button>
-            </QuizConclusion>
-          )}
+          {this.state.showResults ? this.renderResult() : this.renderQuiz()}
         </FlexCell>
       </Flex>
     );
@@ -130,6 +142,7 @@ class Quiz extends React.Component {
 }
 
 Quiz.propTypes = {
+  autoSubmit: PropTypes.bool.isRequired,
   additionalContent: PropTypes.shape({
     callToAction: PropTypes.string.isRequired,
     introduction: PropTypes.string.isRequired,

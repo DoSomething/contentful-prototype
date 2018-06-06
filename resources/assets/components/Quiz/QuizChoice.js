@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../utilities/Card/Card';
+import { contentfulImageUrl } from '../../helpers';
 
 const QuizChoice = props => {
   const {
@@ -29,7 +30,10 @@ const QuizChoice = props => {
     >
       <Card className={cardClasses}>
         {backgroundImage ? (
-          <img src={backgroundImage} alt="quiz choice background" />
+          <img
+            src={contentfulImageUrl(backgroundImage, 300)}
+            alt="quiz choice background"
+          />
         ) : null}
         <p className="padding-md">{title}</p>
       </Card>
