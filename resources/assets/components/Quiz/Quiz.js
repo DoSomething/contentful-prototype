@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { every } from 'lodash';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import calculateResult from './helpers';
 import { Flex, FlexCell } from '../Flex';
@@ -8,6 +9,7 @@ import QuizQuestion from './QuizQuestion';
 import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
+import ScrollConcierge from '../ScrollConcierge';
 
 import './quiz.scss';
 
@@ -54,9 +56,28 @@ class Quiz extends React.Component {
         this.props.resultBlocks,
       );
 
+      this.quizResultBlockHandler(results.resultBlock);
+
       this.setState({ showResults: true, results });
     }
   };
+
+  // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
+  quizResultBlockHandler(resultBlock) {
+    if (resultBlock && resultBlock.type === 'quiz') {
+      const { location, history, slug } = this.props;
+
+      const resultBlockSlug = resultBlock.fields.slug;
+
+      // Retain the current pathname while replacing the active quiz's slug with the resultBlocks slug
+      const newPath = location.pathname.replace(
+        `quiz/${slug}`,
+        `quiz/${resultBlockSlug}`,
+      );
+
+      history.push(newPath);
+    }
+  }
 
   selectChoice = (questionId, choiceId) => {
     this.setState({
@@ -128,6 +149,8 @@ class Quiz extends React.Component {
   render() {
     return (
       <Flex className="quiz">
+        <ScrollConcierge />
+
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
           <h2 className="quiz__title">{this.props.title}</h2>
@@ -146,6 +169,8 @@ Quiz.propTypes = {
     introduction: PropTypes.string.isRequired,
     submitButtonText: PropTypes.string,
   }).isRequired,
+  history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
   questions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -160,6 +185,7 @@ Quiz.propTypes = {
     }),
   ).isRequired,
   resultBlocks: PropTypes.arrayOf(PropTypes.object),
+  slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
