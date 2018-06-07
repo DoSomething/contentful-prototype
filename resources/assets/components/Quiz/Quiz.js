@@ -63,7 +63,7 @@ class Quiz extends React.Component {
   };
 
   // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
-  quizResultBlockHandler(resultBlock) {
+  quizResultBlockHandler = resultBlock => {
     if (resultBlock && resultBlock.type === 'quiz') {
       const { location, history, slug } = this.props;
 
@@ -77,7 +77,7 @@ class Quiz extends React.Component {
 
       history.push(newPath);
     }
-  }
+  };
 
   selectChoice = (questionId, choiceId) => {
     this.setState({
