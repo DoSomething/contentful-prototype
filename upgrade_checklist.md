@@ -40,7 +40,7 @@ _Laravel 5.5 requires PHP 7.0.0 or higher._
 * [x] Updating Dependencies
 * [x] Artisan
 * [x] Authorization (not applicable)
-* [ ] Cache
+* [x] Cache (not applicable)
 * [ ] Eloquent
 * [ ] Exception Format
 * [ ] Filesystem
