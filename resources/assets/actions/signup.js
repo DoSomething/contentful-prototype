@@ -171,12 +171,15 @@ export function clickedSignUp(
           // If Drupal denied our signup request, check if we already had a signup.
           dispatch(checkForSignup(campaignId));
         } else {
-          // Create signup and track any data before redirects.
-          dispatch(signupCreated(campaignId));
-
-          // Take user to the action page if campaign is open.
           const endDate = get(state.campaign.endDate, 'date', null);
           const isClosed = isCampaignClosed(endDate);
+
+          // Create signup and track any data before redirects.
+          dispatch(
+            signupCreated(campaignId, shouldRedirectToActionTab && !isClosed),
+          );
+
+          // Take user to the action page if campaign is open.
           if (shouldRedirectToActionTab && !isClosed) {
             dispatch({ type: OPENED_POST_SIGNUP_MODAL });
             dispatch(push(campaignActionUrl));
