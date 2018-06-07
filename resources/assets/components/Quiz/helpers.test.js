@@ -21,7 +21,13 @@ const questions = [
 
 const selections = { 0: '0', 1: '1' };
 
-test('it tallies the results and returns the one with the most selections', () => {
-  const expectedResult = { resultId: '1', resultBlockId: '1234' };
-  expect(calculateResult(selections, questions)).toEqual(expectedResult);
+const results = [{ id: '0' }, { id: '1' }, { id: '2' }];
+
+const resultBlocks = [{ id: '1234' }];
+
+test('it tallies the results and returns the ones with the most selections', () => {
+  const expectedResult = { result: results[1], resultBlock: resultBlocks[0] };
+  expect(calculateResult(selections, questions, results, resultBlocks)).toEqual(
+    expectedResult,
+  );
 });

@@ -1,15 +1,30 @@
+/* global location, jsdom */
+
 import React from 'react';
 import { render, shallow } from 'enzyme';
+import { createMemoryHistory } from 'history';
 
 import Quiz from './Quiz';
 import QuizQuestion from './QuizQuestion';
 
-const sampleChoice = {
-  id: '0',
-  title: 'title',
-  results: ['0'],
-  resultBlock: '1',
-};
+const history = createMemoryHistory();
+
+history.push = jest.fn();
+
+const sampleChoices = [
+  {
+    id: '0',
+    title: 'title',
+    results: ['0'],
+    resultBlock: '1',
+  },
+  {
+    id: '1',
+    title: 'title',
+    results: ['0'],
+    resultBlock: '2',
+  },
+];
 
 const props = {
   id: '1',
@@ -23,12 +38,12 @@ const props = {
     {
       id: '0',
       title: 'title',
-      choices: [sampleChoice],
+      choices: sampleChoices,
     },
     {
       id: '1',
       title: 'title',
-      choices: [sampleChoice],
+      choices: sampleChoices,
     },
   ],
   resultBlocks: [
@@ -41,24 +56,32 @@ const props = {
         link: 'https://dosomething.org',
       },
     },
+    {
+      id: '2',
+      type: 'quiz',
+      fields: {
+        slug: 'quiz-slug-2',
+      },
+    },
   ],
   results: [
     {
       id: '0',
       content: 'test question',
-      blockId: '1',
     },
     {
       id: '1',
       content: 'another one',
-      blockId: '1',
     },
     {
       id: '2',
       content: 'another one',
-      blockId: '2',
     },
   ],
+  slug: 'quiz-slug',
+  history,
+  location,
+  autoSubmit: false,
 };
 
 test('it should display a placeholder quiz', () => {
@@ -95,6 +118,26 @@ test('clicking the button hides the quiz, shows the conclusion, and tracks the c
   wrapper.find('button').simulate('click');
 
   expect(tracker).toHaveBeenCalled();
+  expect(history.push).toHaveBeenCalledTimes(0);
   expect(wrapper.find(QuizQuestion)).toHaveLength(0);
   expect(wrapper.find('ContentfulEntry')).toHaveLength(1);
+});
+
+test('a winning quiz resultBlock causes a redirect to the new quiz', () => {
+  const tracker = jest.fn();
+
+  jsdom.reconfigure({
+    url: 'https://phoenix.test/us/campaigns/test-campaign/quiz/quiz-slug',
+  });
+
+  const wrapper = shallow(<Quiz trackEvent={tracker} {...props} />);
+
+  wrapper.setState({ choices: { 0: '1', 1: '1' } });
+
+  wrapper.find('button').simulate('click');
+
+  expect(history.push).toHaveBeenCalled();
+  expect(history.push.mock.calls[0][0]).toEqual(
+    '/us/campaigns/test-campaign/quiz/quiz-slug-2',
+  );
 });
