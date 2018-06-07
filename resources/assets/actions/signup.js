@@ -26,7 +26,7 @@ import {
  */
 
 // Action: a new signup was created for a campaign.
-export function signupCreated(campaignId) {
+export function signupCreated(campaignId, shouldShowAffirmation = true) {
   return (dispatch, getState) => {
     const { user } = getState();
 
@@ -34,6 +34,7 @@ export function signupCreated(campaignId) {
       type: SIGNUP_CREATED,
       campaignId,
       userId: user.id,
+      shouldShowAffirmation,
     });
   };
 }
