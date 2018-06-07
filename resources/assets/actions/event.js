@@ -1,7 +1,7 @@
 import * as actions from '../actions';
-import { isTimestampValid } from '../helpers';
-import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 import { isAuthenticated } from '../selectors/user';
+import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
+import { isTimestampValid, contentfulImageUrl } from '../helpers';
 
 // Action: remove completed event from storage.
 export function completedEvent(index) {
@@ -52,7 +52,9 @@ export function queueEvent(actionCreatorName, ...args) {
       const { callToAction, coverImage, title } = getState().campaign;
 
       northstarOptions.title = encodeURIComponent(title);
-      northstarOptions.coverImage = coverImage.url;
+      northstarOptions.coverImage = encodeURIComponent(
+        contentfulImageUrl(coverImage.url, '800', '600', 'fill'),
+      );
       northstarOptions.callToAction = encodeURIComponent(callToAction);
     }
 
