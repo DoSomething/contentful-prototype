@@ -69,7 +69,7 @@ export const appendResultParams = results => {
 
   // Add result params to persist the quiz results to follow an unauthenticated user login flow
   const params = window.location.search ? `${window.location.search}&` : '?';
-  const quizResultParams = params + resultsParam(resultId, resultBlockId);
+  const quizResultParams = params + resultParams(resultId, resultBlockId);
 
   window.history.pushState(window.history.state, '', quizResultParams);
 };

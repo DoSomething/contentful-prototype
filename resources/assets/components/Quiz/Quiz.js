@@ -27,7 +27,7 @@ class Quiz extends React.Component {
 
     // Scrub the result override parameter from the current URL
     const scrubbedParam = window.location.search.replace(
-      resultParam(resultId, resultBlockId),
+      resultParams(resultId, resultBlockId),
       '',
     );
     window.history.pushState(window.location.state, '', scrubbedParam);
