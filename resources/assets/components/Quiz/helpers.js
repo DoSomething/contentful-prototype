@@ -60,7 +60,7 @@ export const calculateResult = (
   return { result, resultBlock };
 };
 
-export const resultsParam = (resultId, resultBlockId) =>
+export const resultParams = (resultId, resultBlockId) =>
   `resultId=${resultId}&resultBlockId=${resultBlockId}&showResults=true`;
 
 export const appendResultParams = results => {

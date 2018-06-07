@@ -11,7 +11,7 @@ import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
-import { calculateResult, resultsParam, appendResultParams } from './helpers';
+import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
 
@@ -27,7 +27,7 @@ class Quiz extends React.Component {
 
     // Scrub the result override parameter from the current URL
     const scrubbedParam = window.location.search.replace(
-      resultsParam(resultId, resultBlockId),
+      resultParam(resultId, resultBlockId),
       '',
     );
     window.history.pushState(window.location.state, '', scrubbedParam);
