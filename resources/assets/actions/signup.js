@@ -141,7 +141,14 @@ export function clickedSignUp(
 
     // If the user is not logged in, handle this action later.
     if (!isAuthenticated(state)) {
-      return dispatch(queueEvent('clickedSignUp', campaignId, details));
+      return dispatch(
+        queueEvent(
+          'clickedSignUp',
+          campaignId,
+          details,
+          shouldRedirectToActionTab,
+        ),
+      );
     }
 
     // If we already have a signup, just go to the action page.
