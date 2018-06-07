@@ -1,4 +1,5 @@
-import { find } from 'lodash';
+/* global window */
+import { find, get } from 'lodash';
 
 /**
  * Tally the amount of times a quiz result content and result block
@@ -9,7 +10,12 @@ import { find } from 'lodash';
  * @param  {Array}   questions
  * @return {Object}
  */
-const calculateResult = (selections, questions, results, resultBlocks) => {
+export const calculateResult = (
+  selections,
+  questions,
+  results,
+  resultBlocks,
+) => {
   const talliedResults = {};
   const talliedResultBlocks = {};
 
@@ -54,4 +60,16 @@ const calculateResult = (selections, questions, results, resultBlocks) => {
   return { result, resultBlock };
 };
 
-export default calculateResult;
+export const resultsParam = (resultId, resultBlockId) =>
+  `resultId=${resultId}&resultBlockId=${resultBlockId}&showResults=true`;
+
+export const appendResultParams = results => {
+  const resultId = get(results, 'result.id');
+  const resultBlockId = get(results, 'resultBlock.id');
+
+  // Add result params to persist the quiz results to follow an unauthenticated user login flow
+  const params = window.location.search ? `${window.location.search}&` : '?';
+  const quizResultParams = params + resultsParam(resultId, resultBlockId);
+
+  window.history.pushState(window.history.state, '', quizResultParams);
+};
