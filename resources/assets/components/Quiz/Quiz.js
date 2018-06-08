@@ -19,7 +19,7 @@ class Quiz extends React.Component {
   constructor(props) {
     super(props);
 
-    // grab state overrides from the query parameters
+    // Grab state overrides from the query parameters
     const resultId = query('resultId');
     const resultBlockId = query('resultBlockId');
     // Also ensuring user authentication before applying the showResults query param override
