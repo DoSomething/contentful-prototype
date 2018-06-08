@@ -1,29 +1,47 @@
+/* global window */
 import React from 'react';
-import { every } from 'lodash';
 import PropTypes from 'prop-types';
+import { find, every } from 'lodash';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import calculateResult from './helpers';
+import { query } from '../../helpers';
 import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
 import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
+import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
 
 class Quiz extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    // Grab state overrides from the query parameters
+    const resultId = query('resultId');
+    const resultBlockId = query('resultBlockId');
+    // Also ensuring user authentication before applying the showResults query param override
+    const showResults = query('showResults') && props.isAuthenticated;
+
+    // Scrub the result override parameter from the current URL
+    const scrubbedParam = window.location.search.replace(
+      resultParams(resultId, resultBlockId),
+      '',
+    );
+    window.history.pushState(window.location.state, '', scrubbedParam);
+
+    const result = find(props.results, { id: resultId });
+    const resultBlock = find(props.resultBlocks, { id: resultBlockId });
 
     this.state = {
       choices: {},
       results: {
-        result: null,
-        resultBlock: null,
+        result,
+        resultBlock,
       },
-      showResults: false,
+      showResults,
     };
   }
 
@@ -44,22 +62,49 @@ class Quiz extends React.Component {
   };
 
   completeQuiz = () => {
-    if (this.evaluateQuiz()) {
-      this.props.trackEvent('converted on quiz', {
-        responses: this.state.choices,
-      });
-
-      const results = calculateResult(
-        this.state.choices,
-        this.props.questions,
-        this.props.results,
-        this.props.resultBlocks,
-      );
-
-      this.quizResultBlockHandler(results.resultBlock);
-
-      this.setState({ showResults: true, results });
+    // Ensure all quiz questions have been answered
+    if (!this.evaluateQuiz()) {
+      return;
     }
+
+    const {
+      trackEvent,
+      questions,
+      resultBlocks,
+      autoSubmit,
+      isAuthenticated,
+      clickedSignUp,
+      legacyCampaignId,
+    } = this.props;
+
+    const results = calculateResult(
+      this.state.choices,
+      questions,
+      this.props.results,
+      resultBlocks,
+    );
+
+    trackEvent('converted on quiz', {
+      responses: this.state.choices,
+    });
+
+    // Run a quiz conversion (campaign signup) if this quiz is not set to auto submit
+    if (!autoSubmit) {
+      if (!isAuthenticated) {
+        // Append result and resultBlock IDs to URL, so that upon redirect from login flow, we can show their results
+        appendResultParams(results);
+
+        clickedSignUp(legacyCampaignId, null, false);
+        // Hard return so the results won't display before the login redirect
+        return;
+      }
+
+      clickedSignUp(legacyCampaignId, null, false);
+    }
+
+    this.quizResultBlockHandler(results.resultBlock);
+
+    this.setState({ showResults: true, results });
   };
 
   // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
@@ -169,7 +214,10 @@ Quiz.propTypes = {
     introduction: PropTypes.string.isRequired,
     submitButtonText: PropTypes.string,
   }).isRequired,
+  clickedSignUp: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  legacyCampaignId: PropTypes.string.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   questions: PropTypes.arrayOf(
     PropTypes.shape({

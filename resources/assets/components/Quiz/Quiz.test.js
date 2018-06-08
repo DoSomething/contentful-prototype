@@ -11,6 +11,10 @@ const history = createMemoryHistory();
 
 history.push = jest.fn();
 
+jsdom.reconfigure({
+  url: 'https://phoenix.test/us/campaigns/test-campaign/quiz/quiz-slug',
+});
+
 const sampleChoices = [
   {
     id: '0',
@@ -82,6 +86,9 @@ const props = {
   history,
   location,
   autoSubmit: false,
+  clickedSignUp: () => {},
+  isAuthenticated: true,
+  legacyCampaignId: '1',
 };
 
 test('it should display a placeholder quiz', () => {
@@ -125,10 +132,6 @@ test('clicking the button hides the quiz, shows the conclusion, and tracks the c
 
 test('a winning quiz resultBlock causes a redirect to the new quiz', () => {
   const tracker = jest.fn();
-
-  jsdom.reconfigure({
-    url: 'https://phoenix.test/us/campaigns/test-campaign/quiz/quiz-slug',
-  });
 
   const wrapper = shallow(<Quiz trackEvent={tracker} {...props} />);
 
