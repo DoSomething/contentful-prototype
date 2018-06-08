@@ -420,7 +420,7 @@ export function makeUrl(path, queryParameters) {
  *
  * @param  {String}   key
  * @param  {URL|Location}   url
- * @return {String}
+ * @return {String|Undefined}
  */
 export function query(key, url = window.location) {
   // Ensure we have a URL object from the location.
