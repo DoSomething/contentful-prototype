@@ -30,7 +30,7 @@ class Quiz extends React.Component {
       resultParams(resultId, resultBlockId),
       '',
     );
-    window.history.pushState(window.location.state, '', scrubbedParam);
+    window.history.replaceState(window.location.state, '', scrubbedParam);
 
     const result = find(props.results, { id: resultId });
     const resultBlock = find(props.resultBlocks, { id: resultBlockId });
