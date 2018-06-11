@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { isActionPage } from '../../helpers';
 import { prepareCampaignPageSlug } from '../../helpers/campaign';
 import PageNavigation from '../utilities/PageNavigation/PageNavigation';
 import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
@@ -16,9 +17,6 @@ const CampaignPageNavigation = ({
   if (isLegacyTemplate) {
     return null;
   }
-
-  const isActionPage = page =>
-    page.type === 'page' && page.fields.slug.endsWith('action');
 
   const linkablePages = pages
     .filter(page => page.type === 'page')

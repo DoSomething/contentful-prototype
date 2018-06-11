@@ -651,3 +651,13 @@ export function withoutNulls(data) {
 export function withoutUndefined(data) {
   return omitBy(data, isUndefined);
 }
+
+/**
+ * Determine if a page is an 'Action' page.
+ *
+ * @param  {Object} dpage
+ * @return {Boolean}
+ */
+export function isActionPage(page) {
+  return page.type === 'page' && page.fields.slug.endsWith('action');
+}
