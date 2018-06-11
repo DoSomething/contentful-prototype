@@ -3,6 +3,36 @@ const winston = require('winston');
 
 const LOCALE = 'en-US';
 
+// Convert an int to a string. (Supports 0-10)
+function convertNumberToWord(number) {
+  switch (number) {
+    case 0:
+      return 'zero';
+    case 1:
+      return 'one';
+    case 2:
+      return 'two';
+    case 3:
+      return 'three';
+    case 4:
+      return 'four';
+    case 5:
+      return 'five';
+    case 6:
+      return 'six';
+    case 7:
+      return 'seven';
+    case 8:
+      return 'eight';
+    case 9:
+      return 'nine';
+    case 10:
+      return 'ten';
+    default:
+      throw new Error('Number out of range');
+  }
+}
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -92,6 +122,7 @@ module.exports = {
   processEntries,
   createLogger,
   withFields,
+  convertNumberToWord,
   constants: {
     LOCALE,
   },
