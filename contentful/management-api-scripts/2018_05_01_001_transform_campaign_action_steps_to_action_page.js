@@ -4,6 +4,7 @@ const { contentManagementClient } = require('./contentManagementClient');
 const {
   attempt,
   constants,
+  convertNumberToWord,
   createLogger,
   getField,
   processEntries,
@@ -67,7 +68,7 @@ async function addActionPageFromActionSteps(environment, campaign) {
 
       // If the action step is meant to have a step number attached, we'll manually add it as the superTitle
       if (hideStepNumber == null || !hideStepNumber) {
-        superTitle = `Step ${stepIndex}`;
+        superTitle = `Step ${convertNumberToWord(stepIndex)}`;
       }
 
       if (!content) {
