@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { isActionPage } from '../../helpers';
 import { prepareCampaignPageSlug } from '../../helpers/campaign';
 import PageNavigation from '../utilities/PageNavigation/PageNavigation';
 import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
@@ -21,7 +22,9 @@ const CampaignPageNavigation = ({
     .filter(page => page.type === 'page')
     // @TODO: we want to eventually remove the need for hideFromNavigation field
     // in favor of always linking to pages referenced in the `pages` field.
-    .filter(page => !page.fields.hideFromNavigation);
+    .filter(page => !page.fields.hideFromNavigation)
+    // Remove action page from navigaition list if campaign is closed.
+    .filter(page => !isCampaignClosed || !isActionPage(page));
 
   let campaignPages = linkablePages.map(page => ({
     id: page.id,
@@ -38,9 +41,7 @@ const CampaignPageNavigation = ({
     });
   }
 
-  const hasActionPage = pages.find(
-    page => page.type === 'page' && page.fields.slug.endsWith('action'),
-  );
+  const hasActionPage = pages.find(page => isActionPage(page));
 
   // Conditional whether to include Action page.
   if (campaignPages.length && !isCampaignClosed && !hasActionPage) {
