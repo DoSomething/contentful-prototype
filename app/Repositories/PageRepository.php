@@ -28,7 +28,7 @@ class PageRepository
      * Find a page by its slug.
      *
      * @param  string $slug
-     * @return object
+     * @return \Contentful\Delivery\DynamicEntry
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function findBySlug($slug)

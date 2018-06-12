@@ -262,7 +262,7 @@ function useOverrideIfSet($field, $base, $override)
 /**
  * Determine the fields to display in the social share.
  *
- * @param  stdClass|object $entry
+ * @param  \Contentful\Delivery\DynamicEntry|stdClass $entry
  * @return array|null
  */
 function get_social_fields($entry)
