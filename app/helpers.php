@@ -279,7 +279,7 @@ function get_social_fields($entry)
     if (! $socialOverride) {
         return;
     }
- 
+    
     return [
         'title' => $socialOverride->title,
         'callToAction' => $socialOverride->callToAction,
