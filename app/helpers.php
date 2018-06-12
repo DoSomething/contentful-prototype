@@ -274,7 +274,7 @@ function get_social_fields($entry)
         $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
     }
 
-    if (!$socialOverride) {
+    if (! $socialOverride) {
         return;
     }
  
@@ -283,7 +283,7 @@ function get_social_fields($entry)
         'callToAction' => $socialOverride->callToAction,
         'coverImage' => $socialOverride->coverImage,
         'facebookAppId' => config('services.analytics.facebook_id'),
-        'quote' => $socialOverride->quote,  
+        'quote' => $socialOverride->quote,
     ];
 }
 
