@@ -262,13 +262,15 @@ function useOverrideIfSet($field, $base, $override)
 /**
  * Determine the fields to display in the social share.
  *
- * @param  stdClass $entry
+ * @param  stdClass|object $entry
  * @return array|null
  */
 function get_social_fields($entry)
 {
+    // If this is an Entry which has been cast as JSON and thus completely JSON serialized.
     if (get_class($entry) === 'stdClass') {
         $socialOverride = object_get($entry->fields, 'socialOverride.fields');
+    // Otherwise, It should be a non-cast Contentful Entity object.
     } else {
         $socialOverride = $entry->socialOverride;
         $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
