@@ -262,11 +262,39 @@ function useOverrideIfSet($field, $base, $override)
 /**
  * Determine the fields to display in the social share.
  *
+ * @param  stdClass $entry
+ * @return array|null
+ */
+function get_social_fields($entry)
+{
+    if (get_class($entry) === 'stdClass') {
+        $socialOverride = object_get($entry->fields, 'socialOverride.fields');
+    } else {
+        $socialOverride = $entry->socialOverride;
+        $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
+    }
+
+    if (!$socialOverride) {
+        return;
+    }
+ 
+    return [
+        'title' => $socialOverride->title,
+        'callToAction' => $socialOverride->callToAction,
+        'coverImage' => $socialOverride->coverImage,
+        'facebookAppId' => config('services.analytics.facebook_id'),
+        'quote' => $socialOverride->quote,  
+    ];
+}
+
+/**
+ * Determine the fields to display in the social share for a campaign.
+ *
  * @param  stdClass $campaign
  * @param  string   $uri
  * @return array
  */
-function get_social_fields($campaign, $uri)
+function get_campaign_social_fields($campaign, $uri)
 {
     $socialOverride = $campaign->socialOverride ? $campaign->socialOverride->fields : null;
     $blockPath = $campaign->slug . '/blocks';
