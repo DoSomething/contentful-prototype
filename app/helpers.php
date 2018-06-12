@@ -267,6 +267,8 @@ function useOverrideIfSet($field, $base, $override)
  */
 function get_social_fields($entry)
 {
+    // @TODO We'll want to re-assess the following once we re-work caching Contentful queries.
+
     // If this is an Entry which has been cast as JSON and thus completely JSON serialized.
     if (get_class($entry) === 'stdClass') {
         $socialOverride = object_get($entry->fields, 'socialOverride.fields');
