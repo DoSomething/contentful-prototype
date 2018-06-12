@@ -11,7 +11,6 @@ import BlockPageContainer from '../BlockPage/BlockPageContainer';
 import ActionPageContainer from '../ActionPage/ActionPageContainer';
 import CampaignSubPageContainer from '../CampaignSubPage/CampaignSubPageContainer';
 import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
-import GeneralPageContainer from '../../pages/GeneralPage/GeneralPageContainer';
 
 const CampaignPage = props => {
   const {
@@ -88,12 +87,6 @@ const CampaignPage = props => {
           <Route
             path={join(match.url, 'pages/:slug')}
             component={CampaignSubPageContainer}
-          />
-
-          {/* temporary testing route for general pages */}
-          <Route
-            path={join(match.url, 'general-page', ':slug')}
-            component={GeneralPageContainer}
           />
 
           <Route
