@@ -262,11 +262,43 @@ function useOverrideIfSet($field, $base, $override)
 /**
  * Determine the fields to display in the social share.
  *
+ * @param  \Contentful\Delivery\DynamicEntry|stdClass $entry
+ * @return array|null
+ */
+function get_social_fields($entry)
+{
+    // @TODO We'll want to re-assess the following once we re-work caching Contentful queries.
+
+    // If this is an Entry which has been cast as JSON and thus completely JSON serialized.
+    if (get_class($entry) === 'stdClass') {
+        $socialOverride = object_get($entry->fields, 'socialOverride.fields');
+    // Otherwise, It should be a non-cast Contentful Entity object.
+    } else {
+        $socialOverride = $entry->socialOverride;
+        $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
+    }
+
+    if (! $socialOverride) {
+        return;
+    }
+
+    return [
+        'title' => $socialOverride->title,
+        'callToAction' => $socialOverride->callToAction,
+        'coverImage' => $socialOverride->coverImage,
+        'facebookAppId' => config('services.analytics.facebook_id'),
+        'quote' => $socialOverride->quote,
+    ];
+}
+
+/**
+ * Determine the fields to display in the social share for a campaign.
+ *
  * @param  stdClass $campaign
  * @param  string   $uri
  * @return array
  */
-function get_social_fields($campaign, $uri)
+function get_campaign_social_fields($campaign, $uri)
 {
     $socialOverride = $campaign->socialOverride ? $campaign->socialOverride->fields : null;
     $blockPath = $campaign->slug . '/blocks';

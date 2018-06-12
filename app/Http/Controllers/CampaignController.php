@@ -53,7 +53,7 @@ class CampaignController extends Controller
             'campaign' => $campaign,
             // We render social metatags server-side because Facebook & Twitter
             // do not render JavaScript when crawling pages like Google does.
-            'socialFields' => get_social_fields($campaign, $request->url()),
+            'socialFields' => get_campaign_social_fields($campaign, $request->url()),
         ])->with('state', [
             'campaign' => $campaign,
         ]);
