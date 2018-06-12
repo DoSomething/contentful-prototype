@@ -62,6 +62,7 @@ class Page extends Entity implements JsonSerializable
                 // @TODO: we want to eventually remove the need for hideFromNavigation field
                 // in favor of always linking to pages referenced in the `pages` field.
                 'hideFromNavigation' => $this->hideFromNavigation,
+                'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             ],
         ];
     }
