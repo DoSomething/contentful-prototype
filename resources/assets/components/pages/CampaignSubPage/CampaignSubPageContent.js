@@ -60,7 +60,9 @@ const CampaignSubPageContent = props => {
         <article className="padded bordered rounded bg-white">
           <h2 className="visually-hidden">{subPage.fields.title}</h2>
 
-          <Markdown>{subPage.fields.content}</Markdown>
+          {subPage.fields.content ? (
+            <Markdown>{subPage.fields.content}</Markdown>
+          ) : null}
         </article>
       </div>
 

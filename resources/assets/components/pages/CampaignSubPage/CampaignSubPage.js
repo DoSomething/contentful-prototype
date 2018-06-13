@@ -29,7 +29,7 @@ const CampaignSubPage = props => (
         {!props.entryContent ? (
           <CampaignSubPageContent {...props} />
         ) : (
-          <ContentfulEntry entryContent={props.entryContent} />
+          <ContentfulEntry json={props.entryContent} />
         )}
       </Enclosure>
       <CallToActionContainer sticky hideIfSignedUp />
