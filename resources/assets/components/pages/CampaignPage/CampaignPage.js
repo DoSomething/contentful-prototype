@@ -80,7 +80,7 @@ const CampaignPage = props => {
 
           <Route
             path={join(match.url, 'quiz/:slug')}
-            component={BlockPageContainer}
+            component={CampaignSubPageContainer}
           />
 
           {/* @deprecate: remove this Route specification with `/pages/:slug` */}
