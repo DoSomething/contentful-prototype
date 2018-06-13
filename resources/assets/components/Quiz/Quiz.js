@@ -193,6 +193,12 @@ class Quiz extends React.Component {
   render() {
     return (
       <Flex className="quiz">
+        {/*
+          @TODO: removed the ScrollConcierge because with the lede banner, the scroll would
+          always go past the banner to the content of the quiz. Initially, added so after a
+          potential logic jump with nested quiz, the quiz would scroll back up to see the
+          first question in the next, connected quiz. Need to find a better solution.
+        */}
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
           <h2 className="quiz__title">{this.props.title}</h2>

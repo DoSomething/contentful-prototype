@@ -10,12 +10,13 @@ import { findContentfulEntry } from '../../../helpers';
 const mapStateToProps = (state, ownProps) => {
   const { id, slug } = ownProps.match.params;
 
-  const json = findContentfulEntry(state, id || slug);
+  // @TODO: temporary retrieval of single camapaign page (quiz) based on matched id or slug.
+  const entryContent = findContentfulEntry(state, id || slug);
 
   return {
     campaignEndDate: get(state.campaign.endDate, 'date', null),
     dashboard: state.campaign.dashboard,
-    json,
+    entryContent,
     noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
     tagline: get(state.campaign.additionalContent, 'tagline'),

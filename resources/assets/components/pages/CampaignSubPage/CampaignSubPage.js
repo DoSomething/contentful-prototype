@@ -16,31 +16,26 @@ import './campaign-subpage.scss';
  *
  * @returns {XML}
  */
-const CampaignSubPage = props => {
-  // @TODO: after Action page migration, determine a better solution (Page has own gate toggle? etc).
-  const displaySignup = !props.json ? true : false; // eslint-disable-line no-unneeded-ternary
+const CampaignSubPage = props => (
+  <div>
+    <LedeBannerContainer displaySignup={Boolean(props.entryContent)} />
+    <div className="main clearfix">
+      {props.dashboard ? <DashboardContainer /> : null}
 
-  return (
-    <div>
-      <LedeBannerContainer displaySignup={displaySignup} />
-      <div className="main clearfix">
-        {props.dashboard ? <DashboardContainer /> : null}
+      {!props.entryContent ? <CampaignPageNavigationContainer /> : null}
 
-        {!props.json ? <CampaignPageNavigationContainer /> : null}
-
-        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-          {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
-          {!props.json ? (
-            <CampaignSubPageContent {...props} />
-          ) : (
-            <ContentfulEntry json={props.json} />
-          )}
-        </Enclosure>
-        <CallToActionContainer sticky hideIfSignedUp />
-      </div>
+      <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+        {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
+        {!props.entryContent ? (
+          <CampaignSubPageContent {...props} />
+        ) : (
+          <ContentfulEntry entryContent={props.entryContent} />
+        )}
+      </Enclosure>
+      <CallToActionContainer sticky hideIfSignedUp />
     </div>
-  );
-};
+  </div>
+);
 
 CampaignSubPage.propTypes = {
   dashboard: PropTypes.shape({
@@ -48,12 +43,12 @@ CampaignSubPage.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  json: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  entryContent: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 CampaignSubPage.defaultProps = {
   dashboard: null,
-  json: null,
+  entryContent: null,
 };
 
 export default CampaignSubPage;
