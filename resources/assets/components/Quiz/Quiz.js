@@ -199,7 +199,9 @@ class Quiz extends React.Component {
 
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
-          <h2 className="quiz__title">{this.props.title}</h2>
+          {this.props.title ? (
+            <h2 className="quiz__title">{this.props.title}</h2>
+          ) : null}
 
           {this.state.showResults ? this.renderResult() : this.renderQuiz()}
         </FlexCell>
