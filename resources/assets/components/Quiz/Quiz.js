@@ -51,7 +51,7 @@ class Quiz extends React.Component {
     }
 
     if (!this.state.showResults && this.evaluateQuiz()) {
-      this.completeQuiz();
+      setTimeout(this.completeQuiz, 300);
     }
   }
 
