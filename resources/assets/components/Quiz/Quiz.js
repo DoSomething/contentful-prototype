@@ -10,7 +10,6 @@ import QuizQuestion from './QuizQuestion';
 import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
-import ScrollConcierge from '../ScrollConcierge';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
@@ -194,8 +193,6 @@ class Quiz extends React.Component {
   render() {
     return (
       <Flex className="quiz">
-        <ScrollConcierge />
-
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
           <h2 className="quiz__title">{this.props.title}</h2>
@@ -211,7 +208,7 @@ Quiz.propTypes = {
   autoSubmit: PropTypes.bool.isRequired,
   additionalContent: PropTypes.shape({
     callToAction: PropTypes.string.isRequired,
-    introduction: PropTypes.string.isRequired,
+    introduction: PropTypes.string,
     submitButtonText: PropTypes.string,
   }).isRequired,
   clickedSignUp: PropTypes.func.isRequired,
@@ -239,6 +236,9 @@ Quiz.propTypes = {
 };
 
 Quiz.defaultProps = {
+  additionalContent: {
+    introduction: null,
+  },
   resultBlocks: null,
   submitButtonText: 'Get Results',
 };

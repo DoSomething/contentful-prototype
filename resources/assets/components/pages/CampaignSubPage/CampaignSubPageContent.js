@@ -94,7 +94,7 @@ CampaignSubPageContent.propTypes = {
       fields: PropTypes.shape({
         title: PropTypes.string,
         slug: PropTypes.string,
-        content: PropTypes.string.isRequired,
+        content: PropTypes.string,
       }),
     }),
   ),
