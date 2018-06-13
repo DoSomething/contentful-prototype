@@ -275,11 +275,16 @@ function get_social_fields($entry)
     // Otherwise, It should be a non-cast Contentful Entity object.
     } else {
         $socialOverride = $entry->socialOverride;
-        $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
     }
 
     if (! $socialOverride) {
         return;
+    }
+
+    // If the socialOverride is pulled from an Entity object, the cover image field
+    // will be an Asset object from which we'll need to pull a URL string.
+    if (gettype($socialOverride->coverImage) === 'object') {
+        $socialOverride->coverImage = get_image_url($socialOverride->coverImage, 'landscape');
     }
 
     return [
