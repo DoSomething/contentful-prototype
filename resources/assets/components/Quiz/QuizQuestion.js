@@ -6,7 +6,14 @@ import SectionHeader from '../SectionHeader';
 import { convertNumberToWord } from '../../helpers';
 
 const QuizQuestion = props => {
-  const { activeChoiceId, choices, id, selectChoice, title } = props;
+  const {
+    activeChoiceId,
+    choices,
+    hideQuestionNumber,
+    id,
+    selectChoice,
+    title,
+  } = props;
 
   const quizChoices = choices.map(choice => (
     <QuizChoice
@@ -19,13 +26,13 @@ const QuizQuestion = props => {
     />
   ));
 
+  const preTitle = hideQuestionNumber
+    ? null
+    : `Question ${convertNumberToWord(Number(id) + 1)}`;
+
   return (
     <div className="question">
-      <SectionHeader
-        preTitle={`Question ${convertNumberToWord(Number(id) + 1)}`}
-        title={title}
-        hideStepNumber
-      />
+      <SectionHeader preTitle={preTitle} title={title} hideStepNumber />
       <div className="question__choices">{quizChoices}</div>
     </div>
   );
@@ -36,11 +43,13 @@ QuizQuestion.propTypes = {
   choices: PropTypes.arrayOf(PropTypes.object).isRequired,
   id: PropTypes.string.isRequired,
   selectChoice: PropTypes.func.isRequired,
+  hideQuestionNumber: PropTypes.bool,
   title: PropTypes.string.isRequired,
 };
 
 QuizQuestion.defaultProps = {
   activeChoiceId: null,
+  hideQuestionNumber: false,
 };
 
 export default QuizQuestion;

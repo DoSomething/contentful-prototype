@@ -134,7 +134,7 @@ class Quiz extends React.Component {
   };
 
   renderQuiz = () => {
-    const { questions } = this.props;
+    const { questions, hideQuestionNumber } = this.props;
 
     const { callToAction, introduction, submitButtonText } =
       this.props.additionalContent || {};
@@ -150,6 +150,7 @@ class Quiz extends React.Component {
             title={question.title}
             choices={question.choices}
             selectChoice={this.selectChoice}
+            hideQuestionNumber={hideQuestionNumber}
             activeChoiceId={this.state.choices[question.id]}
           />
         ))}
@@ -234,12 +235,14 @@ Quiz.propTypes = {
   ).isRequired,
   resultBlocks: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
+  hideQuestionNumber: PropTypes.bool,
   title: PropTypes.string.isRequired,
   trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
   resultBlocks: null,
+  hideQuestionNumber: false,
   submitButtonText: 'Get Results',
 };
 
