@@ -202,7 +202,9 @@ class Quiz extends React.Component {
         */}
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
-          <h2 className="quiz__title">{this.props.title}</h2>
+          {this.props.title ? (
+            <h2 className="quiz__title">{this.props.title}</h2>
+          ) : null}
 
           {this.state.showResults ? this.renderResult() : this.renderQuiz()}
         </FlexCell>
@@ -239,7 +241,7 @@ Quiz.propTypes = {
   resultBlocks: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
   hideQuestionNumber: PropTypes.bool,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   trackEvent: PropTypes.func.isRequired,
 };
 
@@ -250,6 +252,7 @@ Quiz.defaultProps = {
   resultBlocks: null,
   hideQuestionNumber: false,
   submitButtonText: 'Get Results',
+  title: null,
 };
 
 export default Quiz;
