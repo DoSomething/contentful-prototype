@@ -18,7 +18,7 @@ import './campaign-subpage.scss';
  */
 const CampaignSubPage = props => (
   <div>
-    <LedeBannerContainer displaySignup={Boolean(props.entryContent)} />
+    <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
     <div className="main clearfix">
       {props.dashboard ? <DashboardContainer /> : null}
 
