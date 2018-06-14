@@ -1,7 +1,7 @@
 /* global window */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { find, every } from 'lodash';
+import { find, every, get } from 'lodash';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import { query } from '../../helpers';
@@ -10,6 +10,7 @@ import QuizQuestion from './QuizQuestion';
 import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
+import ScrollConcierge from '../ScrollConcierge';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
@@ -41,7 +42,12 @@ class Quiz extends React.Component {
         resultBlock,
       },
       showResults,
+      // Show the scroll concierge for nested quizzes
+      renderScrollConcierge: get(props.additionalContent, 'isNestedQuiz'),
     };
+
+    // Quickly hide scroll concierge so that we can re-render it when showing the quiz results
+    setTimeout(() => this.setState({ renderScrollConcierge: false }), 500);
   }
 
   componentDidUpdate() {
@@ -103,7 +109,7 @@ class Quiz extends React.Component {
 
     this.quizResultBlockHandler(results.resultBlock);
 
-    this.setState({ showResults: true, results });
+    this.setState({ showResults: true, results, renderScrollConcierge: true });
   };
 
   // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
@@ -194,12 +200,7 @@ class Quiz extends React.Component {
   render() {
     return (
       <Flex className="quiz">
-        {/*
-          @TODO: removed the ScrollConcierge because with the lede banner, the scroll would
-          always go past the banner to the content of the quiz. Initially, added so after a
-          potential logic jump with nested quiz, the quiz would scroll back up to see the
-          first question in the next, connected quiz. Need to find a better solution.
-        */}
+        {this.state.renderScrollConcierge ? <ScrollConcierge /> : null}
         <FlexCell width="two-thirds">
           <h1 className="quiz__heading">Quiz</h1>
           {this.props.title ? (
@@ -219,6 +220,7 @@ Quiz.propTypes = {
     callToAction: PropTypes.string.isRequired,
     introduction: PropTypes.string,
     submitButtonText: PropTypes.string,
+    isNestedQuiz: PropTypes.bool,
   }).isRequired,
   clickedSignUp: PropTypes.func.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
@@ -248,6 +250,7 @@ Quiz.propTypes = {
 Quiz.defaultProps = {
   additionalContent: {
     introduction: null,
+    isNestedQuiz: false,
   },
   resultBlocks: null,
   hideQuestionNumber: false,
