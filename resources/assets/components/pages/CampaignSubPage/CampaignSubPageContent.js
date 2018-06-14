@@ -84,7 +84,7 @@ const CampaignSubPageContent = props => {
 };
 
 CampaignSubPageContent.propTypes = {
-  campaignEndDate: PropTypes.string.isRequired,
+  campaignEndDate: PropTypes.string,
   isCommunity: PropTypes.bool,
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   noun: PropTypes.shape({
@@ -108,6 +108,7 @@ CampaignSubPageContent.propTypes = {
 };
 
 CampaignSubPageContent.defaultProps = {
+  campaignEndDate: null,
   isCommunity: false,
   pages: [],
   match: {

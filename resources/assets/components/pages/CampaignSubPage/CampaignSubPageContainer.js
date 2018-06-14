@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, has } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignSubPage from './CampaignSubPage';
@@ -8,10 +8,14 @@ import { findContentfulEntry } from '../../../helpers';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, ownProps) => {
-  const { id, slug } = ownProps.match.params;
+  let entryContent = null;
 
-  // @TODO: temporary retrieval of single camapaign page (quiz) based on matched id or slug.
-  const entryContent = findContentfulEntry(state, id || slug);
+  if (has(ownProps, 'match.props', null)) {
+    const { id, slug } = ownProps.match.params;
+
+    // @TODO: temporary retrieval of single campaign page (quiz) based on matched id or slug.
+    entryContent = findContentfulEntry(state, id || slug);
+  }
 
   return {
     campaignEndDate: get(state.campaign.endDate, 'date', null),
