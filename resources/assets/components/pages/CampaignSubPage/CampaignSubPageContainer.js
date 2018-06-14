@@ -10,7 +10,7 @@ import { findContentfulEntry } from '../../../helpers';
 const mapStateToProps = (state, ownProps) => {
   let entryContent = null;
 
-  if (has(ownProps, 'match.props', null)) {
+  if (has(ownProps, 'match.params', null)) {
     const { id, slug } = ownProps.match.params;
 
     // @TODO: temporary retrieval of single campaign page (quiz) based on matched id or slug.
