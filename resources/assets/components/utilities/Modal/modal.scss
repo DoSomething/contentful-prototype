@@ -2,10 +2,12 @@
 
 .modal-portal {
   background-color: $dark-background-color-transparent;
+  display: none;
   overflow-y: scroll;
   z-index: 10000;
 
   &.is-active {
+    display: block;
     height: 100%;
     left: 0;
     position: fixed;
