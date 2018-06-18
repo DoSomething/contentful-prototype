@@ -145,9 +145,9 @@ class CampaignRepository
             ->where('fields.legacyCampaignId', $ids, 'in')
             ->setInclude(1);
 
-        $campaignsArray = iterator_to_array($this->contentful->getEntries($query));
+        $results = $this->contentful->getEntries($query);
 
-        $contentfulCampaigns = collect($campaignsArray)->map(function ($campaign) {
+        $contentfulCampaigns = collect($results->getIterator())->map(function ($campaign) {
             return new Campaign($campaign);
         });
 
