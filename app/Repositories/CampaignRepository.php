@@ -93,9 +93,9 @@ class CampaignRepository
     {
         $query['ids'] = implode(',', $ids);
 
-        $campaigns = $this->phoenixLegacy->getCampaigns($query);
+        $results = $this->phoenixLegacy->getCampaigns($query);
 
-        $campaigns = collect($campaigns['data'])->map(function ($campaign) {
+        $campaigns = collect($results['data'])->map(function ($campaign) {
             return new LegacyCampaign($campaign);
         });
     }
