@@ -84,6 +84,23 @@ class CampaignRepository
     }
 
     /**
+     * Get a list of campaigns by IDs from Phoenix Ashes.
+     *
+     * @param  array $ids
+     * @return \Illuminate\Support\Collection
+     */
+    public function getLegacyCampaigns($ids)
+    {
+        $query['ids'] = implode(',', $ids);
+
+        $campaigns = $this->phoenixLegacy->getCampaigns($query);
+
+        $campaigns = collect($campaigns['data'])->map(function ($campaign) {
+            return new LegacyCampaign($campaign);
+        });
+    }
+
+    /**
      * Find a campaign by its legacy ID.
      *
      * @param  string $id
