@@ -133,19 +133,30 @@ class CampaignRepository
 
     /**
      * Find a list of campaigns by their legacy IDs.
+     * Attempts to fetch campaigns from Contentful and falls back to Phoenix Ashes.
      *
      * @param  array $ids
      * @return \Illuminate\Support\Collection
      */
     public function findByLegacyCampaignIds($ids)
     {
-        $query['ids'] = implode(',', $ids);
+        $query = (new Query)
+            ->setContentType('campaign')
+            ->where('fields.legacyCampaignId', $ids, 'in')
+            ->setInclude(1);
 
-        $legacyCampaigns = $this->phoenixLegacy->getCampaigns($query);
+        $campaignsArray = iterator_to_array($this->contentful->getEntries($query));
 
-        return collect($legacyCampaigns['data'])->map(function ($legacyCampaign) {
-            return new LegacyCampaign($legacyCampaign);
+        $contentfulCampaigns = collect($campaignsArray)->map(function ($campaign) {
+            return new Campaign($campaign);
         });
+
+        // List of IDs returned from Contentful.
+        $foundIds = $contentfulCampaigns->pluck('legacyCampaignId')->all();
+        // Query from Phoenix Ashes using remaining IDs.
+        $legacyCampaigns = $this->getLegacyCampaigns(array_diff($ids, $foundIds));
+
+        return $contentfulCampaigns->merge($legacyCampaigns);
     }
 
     /**
