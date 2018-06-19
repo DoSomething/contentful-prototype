@@ -160,6 +160,26 @@ class CampaignRepository
     }
 
     /**
+     * Find a list of campaigns by their IDs.
+     *
+     * @param  array $ids
+     * @return \Illuminate\Support\Collection
+     */
+    public function findByIds($ids)
+    {
+        $query = (new Query)
+            ->setContentType('campaign')
+            ->where('sys.id', $ids, 'in')
+            ->setInclude(1);
+
+        $results = $this->contentful->getEntries($query);
+
+        return collect($results->getIterator())->map(function ($campaign) {
+            return new Campaign($campaign);
+        });
+    }
+
+    /**
      * Find a campaign by its slug.
      *
      * @param  string $slug
