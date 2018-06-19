@@ -45,7 +45,7 @@ _Laravel 5.5 requires PHP 7.0.0 or higher._
 * [x] Exception Format
 * [x] Filesystem
 * [x] Mail
-* [ ] Queues
+* [x] Queues
 * [ ] Requests
 * [ ] Testing
 * [ ] Translation
