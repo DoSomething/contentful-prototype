@@ -5,7 +5,6 @@ import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
-import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyActionContainer';
@@ -14,20 +13,6 @@ import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/Pho
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
-
-/**
- * Render the user Submissions Gallery.
- *
- * @param  {Boolean} isSignedUp
- * @return {Component}
- */
-export function renderSubmissionGallery(isSignedUp) {
-  if (!isSignedUp) {
-    return null;
-  }
-
-  return <SubmissionGalleryContainer key="submission_gallery" />;
-}
 
 /**
  * Render a Third Party Action step.
@@ -188,6 +173,7 @@ export function renderPhotoSubmissionAction(data) {
   return (
     <div className="margin-horizontal-md margin-bottom-lg">
       <PhotoSubmissionActionContainer id={data.id} {...fields} />
+      <SubmissionGalleryBlockContainer type="photo" />
     </div>
   );
 }

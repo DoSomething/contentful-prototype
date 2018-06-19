@@ -20,7 +20,6 @@ import {
   renderShareAction,
   renderContentBlock,
   renderThirdPartyAction,
-  renderSubmissionGallery,
   renderLegacyContentBlock,
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
@@ -153,9 +152,6 @@ class ContentfulEntry extends React.Component<Props, State> {
             title={json.fields.title}
           />
         );
-
-      case 'submission-gallery':
-        return renderSubmissionGallery(isSignedUp);
 
       case 'textSubmissionAction':
         return renderTextSubmissionAction(json);

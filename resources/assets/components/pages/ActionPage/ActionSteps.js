@@ -87,7 +87,6 @@ const ActionSteps = props => {
     if (
       [
         'photoSubmissionAction',
-        'submission-gallery',
         'legacyContentBlock',
         'gallery',
         'imagesBlock',
