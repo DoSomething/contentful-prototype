@@ -104,11 +104,7 @@ const ActionSteps = props => {
       <Flex id={`step-${json.id}`} key={json.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
-          <ContentfulEntry
-            json={json}
-            stepIndex={stepIndex}
-            isSignedUp={isSignedUp}
-          />
+          <ContentfulEntry json={json} stepIndex={stepIndex} />
         </FlexCell>
       </Flex>
     );

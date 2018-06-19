@@ -33,7 +33,6 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 type Props = {
   json: ContentfulEntryJson,
   stepIndex: number,
-  isSignedUp: boolean,
 };
 type State = { hasError: boolean };
 
