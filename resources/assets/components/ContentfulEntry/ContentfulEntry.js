@@ -54,7 +54,7 @@ class ContentfulEntry extends React.Component<Props, State> {
     }
 
     // Otherwise, find the corresponding component & render it!
-    const { json = DEFAULT_BLOCK, stepIndex = 1, isSignedUp } = this.props;
+    const { json = DEFAULT_BLOCK, stepIndex = 1 } = this.props;
     const type = parseContentfulType(json);
 
     switch (type) {
