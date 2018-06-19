@@ -20,7 +20,6 @@ import {
   renderShareAction,
   renderContentBlock,
   renderThirdPartyAction,
-  renderSubmissionGallery,
   renderLegacyContentBlock,
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
@@ -34,7 +33,6 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 type Props = {
   json: ContentfulEntryJson,
   stepIndex: number,
-  isSignedUp: boolean,
 };
 type State = { hasError: boolean };
 
@@ -55,7 +53,7 @@ class ContentfulEntry extends React.Component<Props, State> {
     }
 
     // Otherwise, find the corresponding component & render it!
-    const { json = DEFAULT_BLOCK, stepIndex = 1, isSignedUp } = this.props;
+    const { json = DEFAULT_BLOCK, stepIndex = 1 } = this.props;
     const type = parseContentfulType(json);
 
     switch (type) {
@@ -153,9 +151,6 @@ class ContentfulEntry extends React.Component<Props, State> {
             title={json.fields.title}
           />
         );
-
-      case 'submission-gallery':
-        return renderSubmissionGallery(isSignedUp);
 
       case 'textSubmissionAction':
         return renderTextSubmissionAction(json);
