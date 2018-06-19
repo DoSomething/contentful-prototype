@@ -87,8 +87,6 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new Page($block->entry);
             case 'photoSubmissionAction':
                 return new PhotoSubmissionAction($block->entry);
-            case 'photoUploaderAction':
-                return new PhotoUploaderAction($block->entry);
             case 'quiz':
                 return new Quiz($block->entry);
             case 'referralSubmissionAction':

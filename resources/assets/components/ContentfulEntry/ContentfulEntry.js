@@ -19,7 +19,6 @@ import {
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
-  renderPhotoUploader,
   renderThirdPartyAction,
   renderSubmissionGallery,
   renderLegacyContentBlock,
@@ -115,10 +114,6 @@ class ContentfulEntry extends React.Component<Props, State> {
             title={json.fields.title}
           />
         );
-
-      case 'photoUploaderAction':
-      case 'photo-uploader':
-        return renderPhotoUploader(json, isSignedUp);
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);

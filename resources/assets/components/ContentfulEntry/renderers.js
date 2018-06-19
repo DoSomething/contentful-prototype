@@ -5,7 +5,6 @@ import Affirmation from '../Affirmation';
 import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
-import { ReportbackUploaderContainer } from '../ReportbackUploader';
 import { SubmissionGalleryContainer } from '../Gallery/SubmissionGallery';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
@@ -15,29 +14,6 @@ import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/Pho
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
-
-/**
- * Render the Photo Uploader step.
- *
- * @param  {Object}  step       Photo Uploader Action
- * @param  {Boolean} isSignedUp
- * @return {Component}
- */
-export function renderPhotoUploader(step, isSignedUp) {
-  if (!isSignedUp) {
-    return null;
-  }
-
-  return (
-    <div key="reportback_uploader" className="margin-bottom-lg">
-      <PuckWaypoint name="photo_uploader_action-top" />
-      <div className="margin-horizontal-md">
-        <ReportbackUploaderContainer actionType={step.type} {...step.fields} />
-      </div>
-      <PuckWaypoint name="photo_uploader_action-bottom" />
-    </div>
-  );
-}
 
 /**
  * Render the user Submissions Gallery.
