@@ -50,7 +50,7 @@ _Laravel 5.5 requires PHP 7.0.0 or higher._
 * [x] Testing
 * [x] Translation
 * [x] Validation
-* [ ] Views
+* [x] Views
 * [ ] Miscellaneous
 
 [GitHub diff between laravel/laravel 5.4 -> 5.5](https://github.com/laravel/laravel/compare/5.4...5.5)
