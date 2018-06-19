@@ -42,7 +42,6 @@ class CampaignsController extends Controller
 
         // We limit filter[id] requests to a maximum of 10 IDs.
         if (count($idsArray) > 10) {
-            // Not sure that this is the right thing to do here:
             return response()->json('Exceeded limit of 10 IDs', 422);
         }
 
