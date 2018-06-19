@@ -47,6 +47,8 @@ class StorePostRequest extends FormRequest
     {
         $additionalRules = [];
 
+        // @TODO: likely can remove this whole form request file since PhotoUploaderAction
+        // has been removed, but need to confirm on referralAction.
         if ($this->input('actionType') === 'photoUploaderAction') {
             $additionalRules = [
                 'whyParticipated' => 'required',
