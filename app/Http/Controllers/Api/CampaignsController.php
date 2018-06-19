@@ -34,7 +34,7 @@ class CampaignsController extends Controller
     {
         $ids = array_get($request->query('filter'), 'id');
 
-        if (!$ids) {
+        if (! $ids) {
             return response()->json(['data' => []]);
         }
 
@@ -54,7 +54,7 @@ class CampaignsController extends Controller
         // All remaining IDs are presumed to be Contentful IDs.
         $contentfulIds = array_diff($idsArray, $legacyIds);
 
-        $legacyCampaigns = count($legacyIds) ? $this->campaignRepository->findByLegacyCampaignIds($legacyIds): collect();
+        $legacyCampaigns = count($legacyIds) ? $this->campaignRepository->findByLegacyCampaignIds($legacyIds) : collect();
 
         $contentfulCampaigns = count($contentfulIds) ? $this->campaignRepository->findByIds($contentfulIds) : collect();
 
