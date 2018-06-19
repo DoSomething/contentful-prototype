@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\CampaignRepository;
 
@@ -29,11 +30,38 @@ class CampaignsController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->campaignRepository->getAll();
+        $this->validate($request, [
+            // We're only supporting requests with an ID filter query.
+            'filter.id' => 'required',
+        ]);
 
-        return response()->json(['data' => $data]);
+        $ids = $request->query('filter')['id'];
+
+        $idsArray = explode(',', $ids);
+
+        // We limit filter[id] requests to a maximum of 10 IDs.
+        if (count($idsArray) > 10) {
+            // Not sure that this is the right thing to do here:
+            return response()->json('Exceeded limit of 10 IDs', 422);
+        }
+
+        // Extract the legacy IDs.
+        $legacyIds = collect($idsArray)->filter(function($id) {
+            return is_legacy_id($id);
+        })->all();
+
+        // All remaining IDs are presumed to be Contentful IDs.
+        $contentfulIds = array_diff($idsArray, $legacyIds);
+
+        $contentfulCampaigns = $this->campaignRepository->findByLegacyCampaignIds($legacyIds);
+
+        $legacyCampaigns = $this->campaignRepository->findByIds($contentfulIds);
+
+        $campaigns = $contentfulCampaigns->merge($legacyCampaigns);
+
+        return response()->json(['data' => $campaigns]);
     }
 
     /**
