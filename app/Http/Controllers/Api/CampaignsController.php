@@ -34,6 +34,9 @@ class CampaignsController extends Controller
     {
         $ids = array_get($request->query('filter'), 'id');
 
+        if (!$ids) {
+            return response()->json(['data' => []]);
+        }
 
         $idsArray = explode(',', $ids);
 
@@ -44,16 +47,16 @@ class CampaignsController extends Controller
         }
 
         // Extract the legacy IDs.
-        $legacyIds = collect($idsArray)->filter(function($id) {
+        $legacyIds = collect($idsArray)->filter(function ($id) {
             return is_legacy_id($id);
         })->all();
 
         // All remaining IDs are presumed to be Contentful IDs.
         $contentfulIds = array_diff($idsArray, $legacyIds);
 
-        $legacyCampaigns = $this->campaignRepository->findByLegacyCampaignIds($legacyIds);
+        $legacyCampaigns = count($legacyIds) ? $this->campaignRepository->findByLegacyCampaignIds($legacyIds): collect();
 
-        $contentfulCampaigns = $this->campaignRepository->findByIds($contentfulIds);
+        $contentfulCampaigns = count($contentfulIds) ? $this->campaignRepository->findByIds($contentfulIds) : collect();
 
         $campaigns = $contentfulCampaigns->merge($legacyCampaigns);
 
