@@ -32,12 +32,8 @@ class CampaignsController extends Controller
      */
     public function index(Request $request)
     {
-        $this->validate($request, [
-            // We're only supporting requests with an ID filter query.
-            'filter.id' => 'required',
-        ]);
+        $ids = array_get($request->query('filter'), 'id');
 
-        $ids = $request->query('filter')['id'];
 
         $idsArray = explode(',', $ids);
 
