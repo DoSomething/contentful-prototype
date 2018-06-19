@@ -49,7 +49,7 @@ _Laravel 5.5 requires PHP 7.0.0 or higher._
 * [x] Requests
 * [x] Testing
 * [x] Translation
-* [ ] Validation
+* [x] Validation
 * [ ] Views
 * [ ] Miscellaneous
 
