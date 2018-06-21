@@ -27,6 +27,10 @@ $router->redirect('campaigns', 'us/campaigns');
 
 // Non campaign pages
 $router->get('/us/{slug}', 'PageController@show');
+// Redirect routes for campaign specific URLs containing "/pages/".
+$router->get('/{slug}', function ($slug) {
+    return redirect('/us/'.$slug);
+});
 
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
