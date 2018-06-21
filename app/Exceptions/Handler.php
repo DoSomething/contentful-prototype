@@ -17,7 +17,7 @@ class Handler extends ExceptionHandler
     const PRODUCTION_ERROR_MESSAGE = 'Looks like something went wrong. We\'ve noted the problem and will try to get it fixed!';
 
     /**
-     * A list of the exception types that should not be reported.
+     * A list of the exception types that are not reported.
      *
      * @var array
      */
@@ -29,6 +29,13 @@ class Handler extends ExceptionHandler
         \Illuminate\Session\TokenMismatchException::class,
         ValidationException::class,
     ];
+
+    /**
+     * A list of the inputs that are never flashed for validation exceptions.
+     *
+     * @var array
+     */
+    protected $dontFlash = [];
 
     /**
      * Report or log an exception.
