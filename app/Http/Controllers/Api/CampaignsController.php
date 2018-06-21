@@ -43,7 +43,7 @@ class CampaignsController extends Controller
         $request->query('filter')['id'] = $idsArray;
 
         $this->validate($request, [
-            'filter.id' => 'max:10'
+            'filter.id' => 'max:10',
         ]);
 
         // Extract the legacy IDs.
