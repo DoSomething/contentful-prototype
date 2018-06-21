@@ -40,10 +40,11 @@ class CampaignsController extends Controller
 
         $idsArray = explode(',', $ids);
 
-        // We limit filter[id] requests to a maximum of 10 IDs.
-        if (count($idsArray) > 10) {
-            return response()->json('Exceeded limit of 10 IDs', 422);
-        }
+        $request->query('filter')['id'] = $idsArray;
+
+        $this->validate($request, [
+            'filter.id' => 'max:10'
+        ]);
 
         // Extract the legacy IDs.
         $legacyIds = array_filter($idsArray, 'is_legacy_id');
