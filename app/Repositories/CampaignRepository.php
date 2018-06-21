@@ -90,7 +90,7 @@ class CampaignRepository
 
         $results = $this->phoenixLegacy->getCampaigns($query);
 
-        $campaigns = collect($results['data'])->map(function ($campaign) {
+        return collect($results['data'])->map(function ($campaign) {
             return new LegacyCampaign($campaign);
         });
     }
