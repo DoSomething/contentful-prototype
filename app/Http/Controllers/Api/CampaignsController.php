@@ -46,9 +46,7 @@ class CampaignsController extends Controller
         }
 
         // Extract the legacy IDs.
-        $legacyIds = collect($idsArray)->filter(function ($id) {
-            return is_legacy_id($id);
-        })->all();
+        $legacyIds = array_filter($idsArray, 'is_legacy_id');
 
         // All remaining IDs are presumed to be Contentful IDs.
         $contentfulIds = array_diff($idsArray, $legacyIds);
