@@ -24,7 +24,7 @@
     "phpunit/phpunit": "~6.0",
     "symfony/css-selector": "3.1.*",
     "symfony/dom-crawler": "3.1.*",
-    "laravel/browser-kit-testing": "1.*"
+    "laravel/browser-kit-testing": "2.*"
   },
   "autoload": {
     "classmap": ["database"],
