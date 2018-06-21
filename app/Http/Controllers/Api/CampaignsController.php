@@ -34,7 +34,7 @@ class CampaignsController extends Controller
     {
         $ids = array_get($request->query('filter'), 'id');
 
-        $idsArray = count($ids) ? explode(',', $ids) : [];
+        $idsArray = $ids ? explode(',', $ids) : [];
 
         // Resetting the filter[id] param value to an array so that we can properly validate.
         $request->query('filter')['id'] = $idsArray;
