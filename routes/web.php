@@ -26,17 +26,18 @@ $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
 // Non campaign pages
-$router->redirect('/{slug}', 'us/{slug}');
 $router->get('/us/{slug}', 'PageController@show');
 
 // Redirect routes for campaign specific URLs containing "/pages/".
-$router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute) {
+$router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
     return redirect('/us/campaigns/'.$slug.'/'.$clientRoute);
 });
 
 $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
-$router->redirect('campaigns/{slug}', 'us/campaigns/{slug}');
+$router->get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = '') {
+    return redirect('/us/campaigns/'.$slug.'/'.$clientRoute);
+});
 
 // Campaigns cache clear
 $router->get('next/cache/{cacheId}', 'CacheController');
