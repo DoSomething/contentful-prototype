@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\CampaignRepository;
 
@@ -29,11 +30,32 @@ class CampaignsController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->campaignRepository->getAll();
+        $ids = array_get($request->query('filter'), 'id');
 
-        return response()->json(['data' => $data]);
+        $idsArray = count($ids) ? explode(',', $ids) : [];
+
+        // Resetting the filter[id] param value to an array so that we can properly validate.
+        $request->query('filter')['id'] = $idsArray;
+
+        $this->validate($request, [
+            'filter.id' => 'max:10',
+        ]);
+
+        // Extract the legacy IDs.
+        $legacyIds = array_filter($idsArray, 'is_legacy_id');
+
+        // All remaining IDs are presumed to be Contentful IDs.
+        $contentfulIds = array_diff($idsArray, $legacyIds);
+
+        $legacyCampaigns = $this->campaignRepository->findByLegacyCampaignIds($legacyIds);
+
+        $contentfulCampaigns = $this->campaignRepository->findByIds($contentfulIds);
+
+        $campaigns = $contentfulCampaigns->merge($legacyCampaigns);
+
+        return response()->json(['data' => $campaigns]);
     }
 
     /**
