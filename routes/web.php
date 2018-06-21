@@ -17,17 +17,14 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
 // Profile
-$router->get('/us/profile', function () {
-    return view('app');
-});
+$router->view('/us/profile', 'app');
 
-// Campaigns
+// Campaigns index
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
-// Non campaign pages
+// Non-campaign pages
 $router->get('/us/{slug}', 'PageController@show');
-// Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('/{slug}', function ($slug) {
     return redirect('/us/'.$slug);
 });
@@ -37,6 +34,7 @@ $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clien
     return redirect('/us/campaigns/'.$slug.'/'.$clientRoute);
 });
 
+// Campaign pages
 $router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
     ->where('clientRoute', '.*');
 $router->get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = '') {
