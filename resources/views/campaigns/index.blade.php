@@ -13,7 +13,7 @@
                     @foreach($campaigns as $item)
                         <li>
                             <article class="tile">
-                                <a class="wrapper" href="{{ url('campaigns/'.$item->slug) }}">
+                                <a class="wrapper" href="{{ url('us/campaigns/'.$item->slug) }}">
                                     <div class="tile__meta">
                                         <h1 class="tile__title">{{ $item->title }}</h1>
                                     </div>
