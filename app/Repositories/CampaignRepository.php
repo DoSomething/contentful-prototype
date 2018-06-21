@@ -6,6 +6,7 @@ use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use App\Services\PhoenixLegacy;
 use App\Entities\LegacyCampaign;
+use App\Entities\TruncatedCampaign;
 use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -49,13 +50,7 @@ class CampaignRepository
             // Transform & cast as JSON so we can cache this. One little gotcha -
             // we don't want full campaigns, that'd be a monstrous object!
             $results = collect($array)->map(function ($entity) {
-                return [
-                    'id' => $entity->getId(),
-                    'slug' => $entity->getSlug(),
-                    'title' => $entity->getTitle(),
-                    'callToAction' => $entity->getCallToAction(),
-                    'coverImage' => get_image_url($entity->getCoverImage(), 'square'),
-                ];
+                return new TruncatedCampaign($entity);
             });
 
             return $results->toJson();
@@ -152,7 +147,7 @@ class CampaignRepository
         $results = $this->contentful->getEntries($query);
 
         $contentfulCampaigns = collect($results->getIterator())->map(function ($campaign) {
-            return new Campaign($campaign);
+            return new TruncatedCampaign($campaign);
         });
 
         // List of IDs returned from Contentful.
@@ -183,7 +178,7 @@ class CampaignRepository
         $results = $this->contentful->getEntries($query);
 
         return collect($results->getIterator())->map(function ($campaign) {
-            return new Campaign($campaign);
+            return new TruncatedCampaign($campaign);
         });
     }
 
