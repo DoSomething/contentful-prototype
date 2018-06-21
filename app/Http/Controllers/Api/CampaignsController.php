@@ -51,9 +51,9 @@ class CampaignsController extends Controller
         // All remaining IDs are presumed to be Contentful IDs.
         $contentfulIds = array_diff($idsArray, $legacyIds);
 
-        $legacyCampaigns = count($legacyIds) ? $this->campaignRepository->findByLegacyCampaignIds($legacyIds) : collect();
+        $legacyCampaigns = $this->campaignRepository->findByLegacyCampaignIds($legacyIds);
 
-        $contentfulCampaigns = count($contentfulIds) ? $this->campaignRepository->findByIds($contentfulIds) : collect();
+        $contentfulCampaigns = $this->campaignRepository->findByIds($contentfulIds);
 
         $campaigns = $contentfulCampaigns->merge($legacyCampaigns);
 

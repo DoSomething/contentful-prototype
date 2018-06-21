@@ -140,6 +140,10 @@ class CampaignRepository
      */
     public function findByLegacyCampaignIds($ids)
     {
+        if (empty($ids)) {
+            return collect();
+        }
+
         $query = (new Query)
             ->setContentType('campaign')
             ->where('fields.legacyCampaignId', $ids, 'in')
@@ -167,6 +171,10 @@ class CampaignRepository
      */
     public function findByIds($ids)
     {
+        if (empty($ids)) {
+            return collect();
+        }
+
         $query = (new Query)
             ->setContentType('campaign')
             ->where('sys.id', $ids, 'in')
