@@ -1,17 +1,20 @@
 # Campaigns
 
-## Retrieve all Campaigns
-
-This returns an abridged set of primary campaign fields to reduce the data load.
+## Retrieve a list of Campaigns
 
 ```
-GET /api/v2/campaigns
+GET /api/v2/campaigns?filter[id]=
 ```
+
+Currently, this endpoint only supports a filtered ID query and returns an abridged set of primary campaign fields to reduce the data load.
+There is a limit of 10 IDs per request.
+
+The IDs provided can be Contentful IDs, or Ashes Legacy IDs.
 
 Example Request:
 
 ```
-https://next.dosomething.org/api/v2/campaigns
+https://next.dosomething.org/api/v2/campaigns?filter[id]=37,6LQzMvDNQcYQYwso8qSkQ8
 ```
 
 Example Response:
@@ -21,20 +24,72 @@ Example Response:
   "data": [
     {
       "id": "6LQzMvDNQcYQYwso8qSkQ8",
-      "slug": "test-teens-for-jeans",
+      "legacyCampaignId": "1144",
+      "legacyCampaignRunId": "7430",
+      "type": "campaign",
       "title": "[Test] Teens for Jeans",
+      "slug": "test-teens-for-jeans",
+      "status": null,
+      "endDate": {
+        "date": "2019-01-01 12:00:00.000000",
+        "timezone_type": 1,
+        "timezone": "-06:00"
+      },
       "callToAction": "Let's collect another million jeans TOGETHER.",
-      "coverImage":
-        "https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?w=600&h=600&fm=jpg&fit=fill"
+      "tagline": "Let's collect another million jeans TOGETHER.",
+      "coverImage": {
+        "description": null,
+        "url":
+          "https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg",
+        "landscapeUrl":
+          "https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?w=1440&h=620&fm=jpg&fit=fill"
+      },
+      "actionText": "Join Now",
+      "staffPick": null,
+      "cause": null,
+      "scholarshipAmount": null,
+      "additionalContent": {
+        "noun": {
+          "plural": "jeans",
+          "singular": "jean"
+        },
+        "verb": {
+          "plural": "collected",
+          "singular": "collected"
+        }
+      }
     },
     {
-      "id": "5bUfbCp98sicAKSoscqUUO",
-      "slug": "legacy-test-thumb-wars",
-      "title": "[LegacyTest] Thumb Wars",
+      "id": null,
+      "legacyCampaignId": "37",
+      "legacyCampaignRunId": "6188",
+      "type": "campaign",
+      "title": "Music March Out",
+      "slug": null,
+      "status": "active",
       "callToAction":
-        "Share Thumb Socks with a friend to remind them not to text and drive.",
-      "coverImage":
-        "https://images.ctfassets.net/81iqaqpfd8fy/56IbQd5sBGSSASAA8a6oQ4/e0a772998ec2e1e183f6cbee843ed032/thumb_wars.jpg?w=600&h=600&fm=jpg&fit=fill"
+        "Run a musical walk out to defend music program funding at school.",
+      "tagline":
+        "Run a musical walk out to defend music program funding at school.",
+      "coverImage": {
+        "description": null,
+        "url":
+          "https://thor.dosomething.org/sites/default/files/styles/300x300/public/images/Music%20March%20Out%20square.jpg?itok=luE_GV4M",
+        "landscapeUrl":
+          "https://thor.dosomething.org/sites/default/files/styles/1440x810/public/images/Music%20March%20Out%20landscape.jpg?itok=EzoA7Zvn"
+      },
+      "staffPick": false,
+      "cause": "education",
+      "additionalContent": {
+        "noun": {
+          "singular": null,
+          "plural": "Protesters"
+        },
+        "verb": {
+          "singular": null,
+          "plural": "Attended"
+        }
+      }
     }
   ]
 }
