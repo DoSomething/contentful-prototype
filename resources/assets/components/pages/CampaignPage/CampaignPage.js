@@ -18,7 +18,6 @@ const CampaignPage = props => {
     affiliateSponsors,
     campaignLead,
     clickedHideAffirmation,
-    hasActivityFeed,
     hasCommunityPage,
     isAdmin,
     isCampaignClosed,
@@ -65,11 +64,7 @@ const CampaignPage = props => {
                 return <Redirect to={join(match.url, 'action')} />;
               }
 
-              return hasActivityFeed ? (
-                <FeedContainer />
-              ) : (
-                <CampaignSubPageContainer isCommunity />
-              );
+              return <CampaignSubPageContainer isCommunity />;
             }}
           />
 
@@ -112,7 +107,6 @@ CampaignPage.propTypes = {
     email: PropTypes.string,
   }),
   clickedHideAffirmation: PropTypes.func.isRequired,
-  hasActivityFeed: PropTypes.bool.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
