@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c2cf02e882e559505002e3474a7d6b7c",
+    "content-hash": "db38d291c058f3fa3b9ef05e4f1a9566",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1441,6 +1441,57 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "jtant/laravel-env-sync",
+            "version": "1.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JulienTant/Laravel-Env-Sync.git",
+                "reference": "0351e8bb6223706bc5767a3d3f90bfd1262e13e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JulienTant/Laravel-Env-Sync/zipball/0351e8bb6223706bc5767a3d3f90bfd1262e13e6",
+                "reference": "0351e8bb6223706bc5767a3d3f90bfd1262e13e6",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*",
+                "php": ">=7.0",
+                "vlucas/phpdotenv": "~2.2"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "mockery/mockery": "^0.9.5",
+                "orchestra/testbench": "~3.3",
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jtant\\LaravelEnvSync\\EnvSyncServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jtant\\LaravelEnvSync\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Julien Tant",
+                    "email": "julien@craftyx.fr"
+                }
+            ],
+            "description": "A package that makes sure that your .env file is in sync with your .env.example",
+            "time": "2017-09-10T23:13:57+00:00"
         },
         {
             "name": "laravel/framework",

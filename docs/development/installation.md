@@ -4,6 +4,14 @@ Fork and clone this repository to your computer, and then [add to your local Hom
 
 We use [Contentful](https://www.contentful.com/) as our content management platform. Please setup an account and request access to the _space_ used for this project.
 
+Before setting everything up, make sure to run the following command from within the repository so that the shared Git Hooks can be triggered properly:
+
+```bash
+$ git config core.hooksPath githooks
+```
+
+Next, SSH into the Homestead environment and from within the respository directory, run:
+
 ```bash
 # Install dependencies:
 $ composer install && npm install
