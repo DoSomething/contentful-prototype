@@ -49,7 +49,10 @@
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
     ],
-    "post-install-cmd": ["php artisan env:check"],
+    "post-install-cmd": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+      "php artisan env:check"
+    ],
     "warmup": ["php artisan gateway:key", "php artisan config:cache"]
   },
   "config": {
