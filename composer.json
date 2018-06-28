@@ -7,7 +7,7 @@
     "contentful/contentful": "1.0.*",
     "contentful/laravel": "1.0.*",
     "dfurnes/environmentalist": "^0.0.2",
-    "doctrine/dbal": "^2.5",
+    "doctrine/dbal": "~2.5.0",
     "dosomething/gateway": "^1.14.7",
     "embed/embed": "3.2.*",
     "erusev/parsedown": "^1.6",
