@@ -11,7 +11,7 @@ Please note that though this was the original use case for Pages, this will soon
 
 ## 2. General Page
 
-The philosophy behind Pages is that they exist as an amalgamation of blocks pieced together to create some a cohesive whole. This can be utilized to create a "sub page" for a campaign (Campaign Page), or to create a general independent piece of content (Content Page). We shall address both cases:
+The philosophy behind Pages is that they exist as an amalgamation of blocks pieced together to create a cohesive whole. They can be utilized to create a "sub page" for a campaign (Campaign Page), or to create general independent content (Content Page). We shall address both cases:
 
 ### Campaign Page
 
