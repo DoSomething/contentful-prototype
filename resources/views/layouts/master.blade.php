@@ -19,6 +19,10 @@
     @if(isset($socialFields))
         @include('partials.social')
     @endif
+
+    @if(config('services.analytics.facebook_pixel_id'))
+        @include('partials.facebook_pixel_script')
+    @endif
 </head>
 
 <body>
