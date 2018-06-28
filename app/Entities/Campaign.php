@@ -20,90 +20,6 @@ use Contentful\Delivery\Asset;
 class Campaign extends Entity implements JsonSerializable
 {
     /**
-     * Fill with specified number of Reportback Post items.
-     *
-     * @param  \Contentful\Delivery\DynamicEntry $entry
-     * @return array
-     *
-     * @todo Temporary reportback post item filler based on
-     * desired layout display option. Eventually, we'll be
-     * using a different system to fill in reportback post
-     * items. May eventually use a ReportbackPost entity.
-     */
-    public function fillReportbackPosts($entry)
-    {
-        $posts = [];
-
-        switch ($entry->getType()) {
-            case 'one-third':
-                $count = 1;
-                break;
-
-            case 'two-thirds':
-                $count = 2;
-                break;
-
-            default:
-                $count = 3;
-        }
-
-        for ($i = 0; $i < $count; $i++) {
-            $posts[] = [
-                'id' => str_random(22),
-                'type' => 'reportbacks', // @TODO: reporbackPost?
-                'fields' => [
-                    'displayOptions' => 'one-third',
-                ],
-            ];
-        }
-
-        return $posts;
-    }
-
-    /**
-     * Parse and extract activity feed item data based on content type.
-     *
-     * @param  array $activityItems
-     * @return array
-     */
-    public function parseActivityFeed($activityItems, $reverseActivityFeedOrder = true)
-    {
-        $parsedActivityItems = collect($activityItems)->map(function ($item) {
-            switch ($item->getContentType()) {
-                case 'campaignUpdate':
-                    return new CampaignUpdate($item->entry);
-
-                case 'callToAction':
-                    return new CallToAction($item->entry);
-
-                case 'customBlock':
-                    if ($item->entry->getType() === 'join_cta') {
-                        return new CallToAction($item->entry);
-                    }
-
-                    if ($item->entry->getType() === 'campaign_update') {
-                        return new CampaignUpdate($item->entry);
-                    }
-
-                    if ($item->entry->getType() === 'reportbacks') {
-                        return  $this->fillReportbackPosts($item->entry);
-                    }
-
-                    return new CustomBlock($item->entry);
-
-                default:
-                    return $item;
-            }
-        });
-
-        if ($reverseActivityFeedOrder) {
-            $parsedActivityItems = $parsedActivityItems->reverse();
-        }
-
-        return $parsedActivityItems->flatten(1);
-    }
-
-    /**
      * Parse and extract data for quizzes.
      *
      * @param  array $quizzes
@@ -190,11 +106,6 @@ class Campaign extends Entity implements JsonSerializable
             'campaignLead' => $this->parseCampaignLead($this->campaignLead, $this->additionalContent),
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
-            // @TODO: Why is it 'activity_feed' oy? ;/
-            'activityFeed' => $this->parseActivityFeed(
-                $this->activity_feed,
-                array_get($this->additionalContent, 'reverseActivityFeedOrder', true)
-            ),
             'actionSteps' => $this->parseBlocks($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { FeedContainer } from '../../Feed'; // @TODO: rename to ActivityFeed or ActivityPage...
 import Modal from '../../utilities/Modal/Modal';
 import CampaignFooter from '../../CampaignFooter';
 import BlockPageContainer from '../BlockPage/BlockPageContainer';
@@ -18,7 +17,6 @@ const CampaignPage = props => {
     affiliateSponsors,
     campaignLead,
     clickedHideAffirmation,
-    hasActivityFeed,
     hasCommunityPage,
     isAdmin,
     isCampaignClosed,
@@ -65,11 +63,7 @@ const CampaignPage = props => {
                 return <Redirect to={join(match.url, 'action')} />;
               }
 
-              return hasActivityFeed ? (
-                <FeedContainer />
-              ) : (
-                <CampaignSubPageContainer isCommunity />
-              );
+              return <CampaignSubPageContainer isCommunity />;
             }}
           />
 
@@ -112,7 +106,6 @@ CampaignPage.propTypes = {
     email: PropTypes.string,
   }),
   clickedHideAffirmation: PropTypes.func.isRequired,
-  hasActivityFeed: PropTypes.bool.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
