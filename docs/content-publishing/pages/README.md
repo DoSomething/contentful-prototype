@@ -1,6 +1,6 @@
 # Pages
 
-The 'Page' Content Type is multi-purpose, and has gone through a few phases. We'll list the three relavant ways to use a Page:
+The 'Page' Content Type is multi-purpose, and has gone through a few phases. We'll list the relavant ways to use a Page:
 
 ## 1. Campaign Sub Page
 
