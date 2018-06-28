@@ -17,6 +17,7 @@ return [
     'analytics' => [
         'google_id' => env('GOOGLE_ANALYTICS_ID'),
         'facebook_id' => env('FACEBOOK_APP_ID'),
+        'facebook_pixel_id' => env('FACEBOOK_PIXEL_ID'),
         'customer_io_id' => env('CUSTOMER_IO_ID'),
         'puck_url' => env('PUCK_URL'),
     ],
@@ -74,6 +75,7 @@ return [
     'contentful' => [
         'cache' => env('CONTENTFUL_CACHE', true),
     ],
+
     'timed_modals' => [
         'nps_survey' => [
             'enabled' => env('NPS_SURVEY_ENABLED', false),
