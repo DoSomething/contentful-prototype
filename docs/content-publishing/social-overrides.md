@@ -1,17 +1,30 @@
 #Social Overrides
 
-This is how you edit the information that shows up in the Facebook post. The Facebook share is sharing the entire campaign page, so if someone clicks on the post it will bring them to the campaign page, not a specific block.
+There are certain times throughout the DoSomething.org experience, where a user might see a preview of some destination URL or link.
 
-The Facebook buttons on each block will take them to the specific block, but if you want to add special overrides for specific blocks you can follow this same procedure, just use the custom share in the block rather than on the full campaign.
+This includes:
 
-If you don't customize the Facebook share, it will just default to the campaign page information.
+* _when clicking one of our assorted Facebook share buttons, they'll see the link preview embed in the Facebook editor:_
 
-The two locations that a user can share from is the **Affirmation Component** ("Thanks for Joining" that pops up post-affiliation) and in the **Dashboard** if the campaign contains a dashboard.
+![Facebook Share Editor](_assets/facebook-share-editor.png)
 
-1.  Open your campaign page in Contentful
-2.  Find the section that's called "SOCIAL OVERRIDES"
+* _when actually sharing the link to social media (Twitter, Facebook etc.), the embed will be visible:_
+
+![Facebook Share Editor](_assets/facebook-share-example.png)
+
+* _in any link embed on our site, be it a Share Action, Link Action, Campaign Update, etc._
+
+![Social Override](_assets/social-override-example.png)
+
+We allow the option of editing this embedded content using the "Social Override" field on **Campaigns**, Content **Pages**, and **Campaign Updates**.
+
+In any of the above mentioned Content Types, to create a Social Override:
+
+1.  Open your entry in Contentful
+2.  Find the field that's called "SOCIAL OVERRIDE"
 3.  Click "Create new entry and link"
 4.  Click the pencil to edit
-5.  Here's a breakdown of what each of the fields on the edit page refers to on the Facebook share post. This is what the post looks like when it's shared on Facebook:
-    ![Social Overrides](_assets/social-override.png)
-6.  Fill in the fields with the information you want shown on the Facebook post!
+5.  Fill in the fields with the information you want shown on the embed!
+
+Here's the example embedded link, with the corresponding Social Override fields:
+![Social Override](_assets/social-override-example-arrows.png)
