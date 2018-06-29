@@ -7,7 +7,6 @@ import { isSignedUp } from '../../selectors/signup';
 import CampaignPageNavigation from './CampaignPageNavigation';
 
 const mapStateToProps = state => ({
-  hasCommunityPage: Boolean(state.campaign.activityFeed.length),
   isAffiliated: isSignedUp(state),
   isCampaignClosed: isCampaignClosed(get(state.campaign.endDate, 'date', null)),
   isLegacyTemplate: Boolean(state.campaign.template === 'legacy'),

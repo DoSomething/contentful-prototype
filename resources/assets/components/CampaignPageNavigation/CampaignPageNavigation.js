@@ -8,7 +8,6 @@ import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 
 const CampaignPageNavigation = ({
   campaignSlug,
-  hasCommunityPage,
   isAffiliated,
   isCampaignClosed,
   isLegacyTemplate,
@@ -26,35 +25,10 @@ const CampaignPageNavigation = ({
     // Remove action page from navigaition list if campaign is closed.
     .filter(page => !isCampaignClosed || !isActionPage(page));
 
-  let campaignPages = linkablePages.map(page => ({
+  const campaignPages = linkablePages.map(page => ({
     id: page.id,
-    slug: page.fields.slug,
+    slug: prepareCampaignPageSlug(campaignSlug, page.fields.slug),
     title: page.fields.title,
-  }));
-
-  // Conditional whether to include Community page.
-  if (hasCommunityPage) {
-    campaignPages.unshift({
-      id: 'community-page',
-      slug: 'community',
-      title: 'Community',
-    });
-  }
-
-  const hasActionPage = pages.find(page => isActionPage(page));
-
-  // Conditional whether to include Action page.
-  if (campaignPages.length && !isCampaignClosed && !hasActionPage) {
-    campaignPages.unshift({
-      id: 'action-page',
-      slug: 'action',
-      title: 'Action',
-    });
-  }
-
-  campaignPages = campaignPages.map(page => ({
-    ...page,
-    slug: prepareCampaignPageSlug(campaignSlug, page.slug),
   }));
 
   return campaignPages.length ? (
@@ -71,7 +45,6 @@ const CampaignPageNavigation = ({
 
 CampaignPageNavigation.propTypes = {
   campaignSlug: PropTypes.string.isRequired,
-  hasCommunityPage: PropTypes.bool.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
   isLegacyTemplate: PropTypes.bool.isRequired,
