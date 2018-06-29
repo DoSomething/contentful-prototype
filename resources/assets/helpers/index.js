@@ -578,12 +578,7 @@ export function handleTwitterShareClick(href, trackingData, quote = '') {
 export function findContentfulEntry(state, identifier) {
   const campaign = state.campaign;
 
-  const contentfulEntries = [].concat(
-    campaign.actionSteps,
-    campaign.activityFeed,
-    campaign.pages,
-    campaign.quizzes,
-  );
+  const contentfulEntries = [].concat(campaign.pages, campaign.quizzes);
 
   return find(
     contentfulEntries,

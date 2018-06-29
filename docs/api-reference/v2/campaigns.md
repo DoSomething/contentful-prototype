@@ -149,8 +149,6 @@ Example Response:
     },
     "affiliateSponsors": [],
     "affiliatePartners": [],
-    "activityFeed": [],
-    "actionSteps": [],
     "quizzes": [],
     "dashboard": null,
     "affirmation": null,

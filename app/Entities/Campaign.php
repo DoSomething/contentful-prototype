@@ -106,7 +106,6 @@ class Campaign extends Entity implements JsonSerializable
             'campaignLead' => $this->parseCampaignLead($this->campaignLead, $this->additionalContent),
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
-            'actionSteps' => $this->parseBlocks($this->actionSteps),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
             'affirmation' => $this->parseBlock($this->affirmation),
