@@ -311,7 +311,7 @@ function get_campaign_social_fields($campaign, $uri)
 
     if (str_contains($uri, [$blockPath, $modalPath])) {
         $blockId = last(explode('/', $uri));
-
+        // @TODO with the activityFeed field now deprecated, we need to re-visit this.
         $block = array_first($campaign->activityFeed, function ($value) use ($blockId) {
             return $value->id === $blockId;
         });
