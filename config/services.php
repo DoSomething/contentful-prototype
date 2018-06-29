@@ -15,10 +15,11 @@ return [
     */
 
     'analytics' => [
-        'google_id' => env('GOOGLE_ANALYTICS_ID'),
+        'customer_io_id' => env('CUSTOMER_IO_ID'),
         'facebook_id' => env('FACEBOOK_APP_ID'),
         'facebook_pixel_id' => env('FACEBOOK_PIXEL_ID'),
-        'customer_io_id' => env('CUSTOMER_IO_ID'),
+        'google_id' => env('GOOGLE_ANALYTICS_ID'),
+        'google_tag_manager_id' => env('GOOGLE_TAG_MANAGER_ID'),
         'puck_url' => env('PUCK_URL'),
     ],
 
