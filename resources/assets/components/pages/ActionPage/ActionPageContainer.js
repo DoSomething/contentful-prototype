@@ -2,22 +2,17 @@ import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import ActionPage from './ActionPage';
+import { isActionPage } from '../../../helpers';
 import { isSignedUp } from '../../../selectors/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => {
-  const actionPage = state.campaign.pages.find(
-    page => page.type === 'page' && page.fields.slug.endsWith('action'),
-  );
-
-  const steps = state.campaign.actionSteps.length
-    ? state.campaign.actionSteps
-    : get(actionPage, 'fields.blocks', []);
+  const actionPage = state.campaign.pages.find(isActionPage);
 
   return {
-    steps,
+    steps: get(actionPage, 'fields.blocks', []),
     dashboard: state.campaign.dashboard,
     signedUp: isSignedUp(state),
     featureFlags: get(state.campaign.additionalContent, 'featureFlags'),
