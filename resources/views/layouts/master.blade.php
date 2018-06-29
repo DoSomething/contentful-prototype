@@ -20,6 +20,10 @@
         @include('partials.social')
     @endif
 
+    @if(config('services.analytics.google_tag_manager_id'))
+        @include('partials.google_tag_manager_script')
+    @endif
+
     @if(config('services.analytics.facebook_pixel_id'))
         @include('partials.facebook_pixel_script')
     @endif
