@@ -6,4 +6,4 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-{{config('services.analytics.google_tag_manager_id')}}');
 </script>
-<?php // When/if we implement server-side rendering of React, we should add the noscript code back in! ?>
+{{-- When/if we implement server-side rendering of React, we should add the noscript code back in! --}}

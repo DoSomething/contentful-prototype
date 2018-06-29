@@ -11,4 +11,4 @@
     fbq('init', '{{config('services.analytics.facebook_pixel_id')}}');
     fbq('track', 'PageView');
 </script>
-<?php // When/if we implement server-side rendering of React, we should add the noscript code back in! ?>
+{{-- When/if we implement server-side rendering of React, we should add the noscript code back in! --}}
