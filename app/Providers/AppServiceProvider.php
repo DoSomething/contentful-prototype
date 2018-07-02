@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
                 'APP_ENV' => config('app.env'),
                 'FACEBOOK_APP_ID' => config('services.analytics.facebook_id'),
                 'GRAPHQL_URL' => config('services.graphql.url'),
-                'GLADIATOR_URL' => config('services.gladiator.url'),
                 'NORTHSTAR_URL' => config('services.northstar.url'),
                 'NPS_SURVEY_ENABLED' => config('services.timed_modals.nps_survey.enabled'),
                 'PHOENIX_LEGACY_URL' => config('services.phoenix-legacy.url'),

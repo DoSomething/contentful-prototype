@@ -26,11 +26,6 @@ return [
         'url' => env('GRAPHQL_URL', 'https://graphql-qa.dosomething.org/graphql'),
     ],
 
-    'gladiator' => [
-        'url' => env('GLADIATOR_URL', 'https://gladiator-qa.dosomething.org'),
-        'key' => env('GLADIATOR_API_KEY'),
-    ],
-
     'rogue' => [
         'url' => env('ROGUE_URL', 'https://rogue-qa.dosomething.org'),
         'key' => env('ROGUE_API_KEY'),
