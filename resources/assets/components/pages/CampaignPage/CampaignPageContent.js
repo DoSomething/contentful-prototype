@@ -10,15 +10,7 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import { CallToActionContainer } from '../../CallToAction';
 
 const CampaignPageContent = props => {
-  const {
-    campaignEndDate,
-    isCommunity,
-    match,
-    noun,
-    pages,
-    tagline,
-    verb,
-  } = props;
+  const { campaignEndDate, isCommunity, match, pages } = props;
 
   const pageSlug = isCommunity ? 'community' : match.params.slug;
 
@@ -33,10 +25,6 @@ const CampaignPageContent = props => {
   }
 
   const isClosed = isCampaignClosed(campaignEndDate);
-
-  const ctaContent = `${tagline} Join hundreds of members and ${verb.plural} ${
-    noun.plural
-  }!`;
 
   return (
     <div className="clearfix padded campaign-page" id={subPage.id}>
@@ -64,24 +52,16 @@ CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
   isCommunity: PropTypes.bool,
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  noun: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
         title: PropTypes.string,
         slug: PropTypes.string,
         content: PropTypes.string,
+        blocks: PropTypes.arrayOf(PropTypes.object),
       }),
     }),
   ),
-  tagline: PropTypes.string,
-  verb: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
 };
 
 CampaignPageContent.defaultProps = {
@@ -90,15 +70,6 @@ CampaignPageContent.defaultProps = {
   pages: [],
   match: {
     params: {},
-  },
-  noun: {
-    singular: 'action',
-    plural: 'action',
-  },
-  tagline: 'Ready to start?',
-  verb: {
-    singular: 'take',
-    plural: 'take',
   },
 };
 
