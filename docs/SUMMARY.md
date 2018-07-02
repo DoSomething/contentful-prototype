@@ -67,6 +67,7 @@
   * [Share Action](content-publishing/actions/share-action.md)
   * [Text Submission Action](content-publishing/actions/text-submission-action.md)
   * [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
+  * [Social Drive Action](content-publishing/actions/social-drive-action.md)
 * [Community](content-publishing/community/README.md)
   * [Campaign Update](content-publishing/community/campaign-update.md)
     * [Affiliate Update](content-publishing/community/campaign-update.md)
