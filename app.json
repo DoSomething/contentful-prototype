@@ -2,11 +2,7 @@
   "name": "phoenix",
   "description": ":sparkles:",
   "formation": {},
-  "addons": [
-    "jawsdb-maria",
-    "heroku-redis",
-    "papertrail"
-  ],
+  "addons": ["jawsdb-maria", "heroku-redis", "papertrail"],
   "buildpacks": [
     {
       "url": "heroku/php"
@@ -36,12 +32,6 @@
       "required": true
     },
     "FACEBOOK_APP_ID": {
-      "required": true
-    },
-    "GLADIATOR_URL": {
-      "required": true
-    },
-    "GLADIATOR_API_KEY": {
       "required": true
     },
     "GOOGLE_ANALYTICS_ID": {
