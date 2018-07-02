@@ -38,43 +38,20 @@ const CampaignPageContent = props => {
     noun.plural
   }!`;
 
-  if (isCommunity) {
-    return (
-      <div className="clearfix padded campaign-subpage" id={subPage.id}>
-        <div>
-          <ScrollConcierge />
-          {subPage.fields.blocks.map(block => (
+  return (
+    <div className="clearfix padded campaign-page" id={subPage.id}>
+      <div>
+        <ScrollConcierge />
+        {subPage.fields.content ? (
+          <Markdown>{subPage.fields.content}</Markdown>
+        ) : (
+          subPage.fields.blocks.map(block => (
             <div className="margin-vertical" key={block.id}>
               <ContentfulEntry json={block} />
             </div>
-          ))}
-        </div>
+          ))
+        )}
       </div>
-    );
-  }
-
-  return (
-    <div className="clearfix padded campaign-page" id={subPage.id}>
-      <div className="primary">
-        <ScrollConcierge />
-        <article className="padded bordered rounded bg-white">
-          <h2 className="visually-hidden">{subPage.fields.title}</h2>
-
-          {subPage.fields.content ? (
-            <Markdown>{subPage.fields.content}</Markdown>
-          ) : null}
-        </article>
-      </div>
-
-      {isClosed ? null : (
-        <div className="secondary">
-          <CallToActionContainer
-            content={ctaContent}
-            useCampaignTagline
-            visualStyle="dark"
-          />
-        </div>
-      )}
 
       {isClosed ? null : (
         <CallToActionContainer useCampaignTagline visualStyle="transparent" />
