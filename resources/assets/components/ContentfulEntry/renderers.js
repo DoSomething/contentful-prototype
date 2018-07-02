@@ -168,12 +168,21 @@ export function renderTextSubmissionAction(data) {
 }
 
 export function renderPhotoSubmissionAction(data) {
+  const contentfulId = data.id;
   const fields = withoutNulls(data.fields);
 
   return (
     <div className="margin-horizontal-md margin-bottom-lg">
-      <PhotoSubmissionActionContainer id={data.id} {...fields} />
+      <PuckWaypoint
+        name="photo_submission_action-top"
+        waypointData={{ contentfulId }}
+      />
+      <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
       <SubmissionGalleryBlockContainer type="photo" />
+      <PuckWaypoint
+        name="photo_submission_action-bottom"
+        waypointData={{ contentfulId }}
+      />
     </div>
   );
 }
