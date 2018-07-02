@@ -11,7 +11,7 @@ import ActionPageContainer from '../../pages/ActionPage/ActionPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
 
-const CampaignPage = props => {
+const CampaignRoute = props => {
   const {
     affiliatePartners,
     affiliateSponsors,
@@ -98,7 +98,7 @@ const CampaignPage = props => {
   );
 };
 
-CampaignPage.propTypes = {
+CampaignRoute.propTypes = {
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   campaignLead: PropTypes.shape({
@@ -113,8 +113,8 @@ CampaignPage.propTypes = {
   shouldShowSignupAffirmation: PropTypes.bool.isRequired,
 };
 
-CampaignPage.defaultProps = {
+CampaignRoute.defaultProps = {
   campaignLead: null,
 };
 
-export default CampaignPage;
+export default CampaignRoute;
