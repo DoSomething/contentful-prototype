@@ -28,18 +28,16 @@ const CampaignPageContent = props => {
 
   return (
     <div className="clearfix padded campaign-page" id={subPage.id}>
-      <div>
-        <ScrollConcierge />
-        {subPage.fields.content ? (
-          <Markdown>{subPage.fields.content}</Markdown>
-        ) : (
-          subPage.fields.blocks.map(block => (
-            <div className="margin-vertical" key={block.id}>
-              <ContentfulEntry json={block} />
-            </div>
-          ))
-        )}
-      </div>
+      <ScrollConcierge />
+      {subPage.fields.content ? (
+        <Markdown>{subPage.fields.content}</Markdown>
+      ) : (
+        subPage.fields.blocks.map(block => (
+          <div className="margin-vertical" key={block.id}>
+            <ContentfulEntry json={block} />
+          </div>
+        ))
+      )}
 
       {isClosed ? null : (
         <CallToActionContainer useCampaignTagline visualStyle="transparent" />
