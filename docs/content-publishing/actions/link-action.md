@@ -1,6 +1,6 @@
 # Link Action
 
-The `LinkAction` renders a visual component which features an embedded link renderable in various ways. It allows us to present a link that we'd like DoSomething.org members to follow in a clear and actionable format.
+The `LinkAction` renders a visual component which features an embedded link render-able in various ways. It allows us to present a link that we'd like DoSomething.org members to follow in a clear and actionable format.
 
 ## Embed
 
@@ -30,7 +30,7 @@ Be sure to add some Content via the `content` field if you're linking to a telep
 
 ## CTA Link Action
 
-You can have the Link Action render as a Call To Action-esque component by selecting the `cta` value in the Template field.
+You can have the Link Action render as a Call To Action-like component by selecting the `cta` value in the Template field.
 
 ![CTA Link Action component](../_assets/link-action-cta.png)
 
