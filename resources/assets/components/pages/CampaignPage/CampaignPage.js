@@ -1,120 +1,56 @@
 import React from 'react';
-import { join } from 'path';
 import PropTypes from 'prop-types';
-import ReactRouterPropTypes from 'react-router-prop-types';
-import { Switch, Route, Redirect } from 'react-router-dom';
 
-import Modal from '../../utilities/Modal/Modal';
-import CampaignFooter from '../../CampaignFooter';
-import BlockPageContainer from '../BlockPage/BlockPageContainer';
-import ActionPageContainer from '../ActionPage/ActionPageContainer';
-import CampaignSubPageContainer from '../CampaignSubPage/CampaignSubPageContainer';
-import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
+import Enclosure from '../../Enclosure';
+import ContentfulEntry from '../../ContentfulEntry';
+import { CallToActionContainer } from '../../CallToAction';
+import CampaignPageContent from './CampaignPageContent';
+import DashboardContainer from '../../Dashboard/DashboardContainer';
+import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
-const CampaignPage = props => {
-  const {
-    affiliatePartners,
-    affiliateSponsors,
-    campaignLead,
-    clickedHideAffirmation,
-    hasCommunityPage,
-    isAdmin,
-    isCampaignClosed,
-    match,
-    shouldShowSignupAffirmation,
-  } = props;
+import './campaign-page.scss';
 
-  return (
-    <div>
-      <div>
-        {shouldShowSignupAffirmation ? (
-          <Modal onClose={clickedHideAffirmation}>
-            <PostSignupModalContainer />
-          </Modal>
-        ) : null}
+/**
+ * Render the page & chrome.
+ *
+ * @returns {XML}
+ */
+const CampaignPage = props => (
+  <div>
+    <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
+    <div className="main clearfix">
+      {props.dashboard ? <DashboardContainer /> : null}
 
-        <Switch>
-          <Route
-            path={`${match.url}`}
-            exact
-            render={() => {
-              const path =
-                isCampaignClosed && hasCommunityPage ? 'community' : 'action';
+      {!props.entryContent ? <CampaignPageNavigationContainer /> : null}
 
-              return <Redirect to={join(match.url, path)} />;
-            }}
-          />
-
-          <Route
-            path={join(match.url, 'action')}
-            render={() => {
-              if (isCampaignClosed && hasCommunityPage && !isAdmin) {
-                return <Redirect to={join(match.url, 'community')} />;
-              }
-
-              return <ActionPageContainer />;
-            }}
-          />
-
-          <Route
-            path={join(match.url, 'community')}
-            render={() => {
-              if (!hasCommunityPage) {
-                return <Redirect to={join(match.url, 'action')} />;
-              }
-
-              return <CampaignSubPageContainer isCommunity />;
-            }}
-          />
-
-          <Route
-            path={join(match.url, 'blocks/:id')}
-            component={BlockPageContainer}
-          />
-
-          <Route
-            path={join(match.url, 'quiz/:slug')}
-            component={CampaignSubPageContainer}
-          />
-
-          {/* @deprecate: remove this Route specification with `/pages/:slug` */}
-          <Route
-            path={join(match.url, 'pages/:slug')}
-            component={CampaignSubPageContainer}
-          />
-
-          <Route
-            path={join(match.url, ':slug')}
-            component={CampaignSubPageContainer}
-          />
-        </Switch>
-      </div>
-      <CampaignFooter
-        affiliateSponsors={affiliateSponsors}
-        affiliatePartners={affiliatePartners}
-        campaignLead={campaignLead}
-      />
+      <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+        {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
+        {!props.entryContent ? (
+          <CampaignPageContent {...props} />
+        ) : (
+          <ContentfulEntry json={props.entryContent} />
+        )}
+      </Enclosure>
+      {!props.entryContent ? (
+        <CallToActionContainer sticky hideIfSignedUp />
+      ) : null}
     </div>
-  );
-};
+  </div>
+);
 
 CampaignPage.propTypes = {
-  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  campaignLead: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
   }),
-  clickedHideAffirmation: PropTypes.func.isRequired,
-  hasCommunityPage: PropTypes.bool.isRequired,
-  isAdmin: PropTypes.bool.isRequired,
-  isCampaignClosed: PropTypes.bool.isRequired,
-  match: ReactRouterPropTypes.match.isRequired,
-  shouldShowSignupAffirmation: PropTypes.bool.isRequired,
+  entryContent: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 CampaignPage.defaultProps = {
-  campaignLead: null,
+  dashboard: null,
+  entryContent: null,
 };
 
 export default CampaignPage;

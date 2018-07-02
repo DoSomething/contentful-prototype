@@ -9,7 +9,7 @@ import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
 import { CallToActionContainer } from '../../CallToAction';
 
-const CampaignSubPageContent = props => {
+const CampaignPageContent = props => {
   const {
     campaignEndDate,
     isCommunity,
@@ -54,7 +54,7 @@ const CampaignSubPageContent = props => {
   }
 
   return (
-    <div className="clearfix padded campaign-subpage" id={subPage.id}>
+    <div className="clearfix padded campaign-page" id={subPage.id}>
       <div className="primary">
         <ScrollConcierge />
         <article className="padded bordered rounded bg-white">
@@ -83,7 +83,7 @@ const CampaignSubPageContent = props => {
   );
 };
 
-CampaignSubPageContent.propTypes = {
+CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
   isCommunity: PropTypes.bool,
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
@@ -107,7 +107,7 @@ CampaignSubPageContent.propTypes = {
   }),
 };
 
-CampaignSubPageContent.defaultProps = {
+CampaignPageContent.defaultProps = {
   campaignEndDate: null,
   isCommunity: false,
   pages: [],
@@ -125,4 +125,4 @@ CampaignSubPageContent.defaultProps = {
   },
 };
 
-export default CampaignSubPageContent;
+export default CampaignPageContent;

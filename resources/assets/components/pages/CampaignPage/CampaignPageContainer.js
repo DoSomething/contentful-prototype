@@ -1,41 +1,33 @@
-import get from 'lodash/get';
+import { get, has } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import { isCampaignClosed } from '../../../helpers';
-import { userHasRole } from '../../../selectors/user';
-import { convertExperiment, clickedHideAffirmation } from '../../../actions';
+import { findContentfulEntry } from '../../../helpers';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = state => ({
-  affiliateSponsors: state.campaign.affiliateSponsors,
-  affiliatePartners: state.campaign.affiliatePartners,
-  campaignLead: get(state, 'campaign.campaignLead.fields', null),
-  hasCommunityPage: Boolean(
-    state.campaign.pages.find(
-      page => page.type === 'page' && page.fields.slug.endsWith('community'),
-    ),
-  ),
-  isAdmin: userHasRole(state, 'admin'),
-  isCampaignClosed: isCampaignClosed(
-    get(state.campaign.endDate, 'date', false),
-  ),
-  legacyCampaignId: state.campaign.legacyCampaignId,
-  shouldShowSignupAffirmation: state.signups.shouldShowAffirmation,
-});
+const mapStateToProps = (state, ownProps) => {
+  let entryContent = null;
 
-/**
- * Provide pre-bound functions that allow the component to dispatch
- * actions to the Redux store as props for this component.
- */
-const mapActionsToProps = {
-  convertExperiment,
-  clickedHideAffirmation,
+  if (has(ownProps, 'match.params', null)) {
+    const { id, slug } = ownProps.match.params;
+
+    // @TODO: temporary retrieval of single campaign page (quiz) based on matched id or slug.
+    entryContent = findContentfulEntry(state, id || slug);
+  }
+
+  return {
+    campaignEndDate: get(state.campaign.endDate, 'date', null),
+    dashboard: state.campaign.dashboard,
+    entryContent,
+    noun: get(state.campaign.additionalContent, 'noun'),
+    pages: state.campaign.pages,
+    tagline: get(state.campaign.additionalContent, 'tagline'),
+    title: state.campaign.title,
+    verb: get(state.campaign.additionalContent, 'verb'),
+  };
 };
 
-/**
- * Export the container component.
- */
-export default connect(mapStateToProps, mapActionsToProps)(CampaignPage);
+// Export the container component.
+export default connect(mapStateToProps)(CampaignPage);
