@@ -8,12 +8,6 @@ import { getDaysBetween } from '../../helpers';
 import './dashboard.scss';
 
 class Dashboard extends React.Component {
-  componentDidMount() {
-    if (this.props.totalCampaignSignups === 0) {
-      this.props.getTotalSignups(this.props.legacyCampaignId);
-    }
-  }
-
   /**
    * Replace the given text with variables from the props.
    * @TODO: This should not be defined in the render function.
@@ -22,16 +16,10 @@ class Dashboard extends React.Component {
    * @return {String}
    */
   replaceTemplateVars(text) {
-    const totalCampaignSignups = (
-      this.props.totalCampaignSignups || 0
-    ).toLocaleString();
-
-    return text
-      .replace('{totalSignups}', totalCampaignSignups)
-      .replace(
-        '{endDate}',
-        getDaysBetween(new Date(), new Date(this.props.endDate.date)),
-      );
+    return text.replace(
+      '{endDate}',
+      getDaysBetween(new Date(), new Date(this.props.endDate.date)),
+    );
   }
 
   /**
@@ -94,9 +82,6 @@ class Dashboard extends React.Component {
 }
 
 Dashboard.propTypes = {
-  totalCampaignSignups: PropTypes.number,
-  getTotalSignups: PropTypes.func.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
   endDate: PropTypes.shape({
     date: PropTypes.string,
   }).isRequired,
@@ -113,7 +98,6 @@ Dashboard.propTypes = {
 };
 
 Dashboard.defaultProps = {
-  totalCampaignSignups: 0,
   content: {
     fields: {
       // ...!
