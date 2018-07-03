@@ -5,7 +5,6 @@ import { Phoenix } from '@dosomething/gateway';
 
 import { isCampaignClosed } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
-import { isSignedUp } from '../selectors/signup';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
