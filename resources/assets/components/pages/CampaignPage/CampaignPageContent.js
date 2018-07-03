@@ -10,14 +10,14 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import { CallToActionContainer } from '../../CallToAction';
 
 const CampaignPageContent = props => {
-  const { campaignEndDate, isCommunity, match, pages } = props;
-
-  const pageSlug = isCommunity ? 'community' : match.params.slug;
+  const { campaignEndDate, match, pages } = props;
 
   const subPage = find(
     pages,
     page =>
-      page.type === 'page' ? page.fields.slug.endsWith(pageSlug) : false,
+      page.type === 'page'
+        ? page.fields.slug.endsWith(match.params.slug)
+        : false,
   );
 
   if (!subPage) {
@@ -26,17 +26,27 @@ const CampaignPageContent = props => {
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
+  const renderBlocks = blocks =>
+    blocks.map(block => (
+      <div className="margin-vertical" key={block.id}>
+        <ContentfulEntry json={block} />
+      </div>
+    ));
+
   return (
     <div className="clearfix padded campaign-page" id={subPage.id}>
       <ScrollConcierge />
       {subPage.fields.content ? (
-        <Markdown>{subPage.fields.content}</Markdown>
-      ) : (
-        subPage.fields.blocks.map(block => (
-          <div className="margin-vertical" key={block.id}>
-            <ContentfulEntry json={block} />
+        <div className="row">
+          <div className="primary">
+            <Markdown>{subPage.fields.content}</Markdown>
           </div>
-        ))
+          <div className="secondary">
+            {renderBlocks(subPage.fields.sidebar)}
+          </div>
+        </div>
+      ) : (
+        renderBlocks(subPage.fields.blocks)
       )}
 
       {isClosed ? null : (
@@ -48,7 +58,6 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
-  isCommunity: PropTypes.bool,
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   pages: PropTypes.arrayOf(
     PropTypes.shape({
@@ -64,7 +73,6 @@ CampaignPageContent.propTypes = {
 
 CampaignPageContent.defaultProps = {
   campaignEndDate: null,
-  isCommunity: false,
   pages: [],
   match: {
     params: {},
