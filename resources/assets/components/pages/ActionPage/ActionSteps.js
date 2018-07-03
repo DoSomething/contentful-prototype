@@ -60,10 +60,10 @@ const ActionSteps = props => {
   let stepIndex = 0;
 
   const stepComponents = actionSteps.map(json => {
-    const type = parseContentfulType(json, 'legacyContentBlock');
+    const type = parseContentfulType(json);
 
     // Is this a "numbered" step? If so, increment our step index.
-    if (['third-party-action', 'legacyContentBlock'].includes(type)) {
+    if (['third-party-action'].includes(type)) {
       stepIndex += 1;
     }
 
@@ -84,14 +84,7 @@ const ActionSteps = props => {
     }
 
     let columnWidth = 'two-thirds';
-    if (
-      [
-        'photoSubmissionAction',
-        'legacyContentBlock',
-        'gallery',
-        'imagesBlock',
-      ].includes(type)
-    ) {
+    if (['photoSubmissionAction', 'gallery', 'imagesBlock'].includes(type)) {
       columnWidth = 'full';
     }
 

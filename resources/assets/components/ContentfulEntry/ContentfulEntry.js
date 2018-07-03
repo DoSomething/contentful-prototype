@@ -20,7 +20,6 @@ import {
   renderShareAction,
   renderContentBlock,
   renderThirdPartyAction,
-  renderLegacyContentBlock,
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
   renderVoterRegistrationAction,
@@ -97,9 +96,6 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'imagesBlock':
         return <ImagesBlock images={json.fields.images} />;
-
-      case 'legacyContentBlock':
-        return renderLegacyContentBlock(json, stepIndex);
 
       case 'linkAction':
         return renderLinkAction(json);
