@@ -598,19 +598,12 @@ export function findContentfulEntry(state, identifier) {
 export function parseContentfulType(json, defaultType) {
   // Figure out the "type" of this entry based on 'customType' field, Contentful machine name,
   // or the 'type' set in the API transformer. If none of those match, use the given default.
-  let type =
+  return (
     get(json, 'fields.customType') ||
     get(json, 'type.sys.id') ||
     get(json, 'type') ||
-    defaultType;
-
-  // Re-map old custom types to their new counterparts.
-  // @TODO: Change this for old entries on Contentful!
-  if (type === 'campaignActionStep') {
-    type = 'legacyContentBlock';
-  }
-
-  return type;
+    defaultType
+  );
 }
 
 /**
