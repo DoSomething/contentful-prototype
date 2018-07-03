@@ -40,7 +40,7 @@ const CampaignPageContent = props => {
 
   if (isCommunity) {
     return (
-      <div className="clearfix padded campaign-subpage" id={subPage.id}>
+      <div className="clearfix padded campaign-page" id={subPage.id}>
         <div>
           <ScrollConcierge />
           {subPage.fields.blocks.map(block => (

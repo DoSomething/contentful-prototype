@@ -5,7 +5,7 @@ import Card from '../../../utilities/Card/Card';
 import Markdown from '../../../utilities/Markdown/Markdown';
 
 const PitchTemplate = ({ pitchContent, sidebarCTA }) => (
-  <div className="campaign-subpage">
+  <div className="campaign-page">
     <div className="primary">
       <Markdown>{pitchContent}</Markdown>
     </div>
