@@ -321,7 +321,7 @@ function get_campaign_social_fields($campaign, $uri)
         if ($communityPage) {
             // Find the block within the community page block if available.
             $block = array_first($communityPage->fields->blocks, function ($value) use ($blockId) {
-                return $value->id = $blockId;
+                return $value->id === $blockId;
             });
         }
 
