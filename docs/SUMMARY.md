@@ -75,6 +75,7 @@
 * [Pages](content-publishing/pages/README.md)
   * [Page Creation](content-publishing/pages/page-creation.md)
   * [Making Pages Modals](content-publishing/pages/making-pages-modals.md)
+* [Quizzes](content-publishing/quiz.md)
 
 ## Contributing Instructions
 
