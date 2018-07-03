@@ -310,11 +310,20 @@ function get_campaign_social_fields($campaign, $uri)
     $modalPath = $campaign->slug . '/modal';
 
     if (str_contains($uri, [$blockPath, $modalPath])) {
+        $block = null;
         $blockId = last(explode('/', $uri));
-        // @TODO with the activityFeed field now deprecated, we need to re-visit this.
-        $block = array_first($campaign->activityFeed, function ($value) use ($blockId) {
-            return $value->id === $blockId;
+
+        // Find the community page.
+        $communityPage = array_first($campaign->pages, function ($value) {
+            return ends_with($value->fields->slug, 'community');
         });
+
+        if ($communityPage) {
+            // Find the block within the community page block if available.
+            $block = array_first($communityPage->fields->blocks, function ($value) use ($blockId) {
+                return $value->id === $blockId;
+            });
+        }
 
         if ($block && isset($block->fields->socialOverride)) {
             $socialOverride = $block->fields->socialOverride->fields;
