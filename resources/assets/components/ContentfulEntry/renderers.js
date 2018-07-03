@@ -2,7 +2,6 @@ import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
-import { LegacyContentBlock } from '../Block';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -34,46 +33,6 @@ export function renderThirdPartyAction(step, stepIndex) {
       dynamicLink={additionalContent.dynamicLink || null}
       hideStepNumber={hideStepNumber}
       dynamicUrlParams={additionalContent.dynamicUrlParams || null}
-    />
-  );
-}
-
-/**
- * Render a Campaign Action Step.
- *
- * @param  {Object} step      Campaign Action Step.
- * @param  {Integer} stepIndex Index of the current step.
- * @param  {String} template The current campaign template.
- * @return {Component}
- */
-export function renderLegacyContentBlock(step, stepIndex, template) {
-  const { id, fields } = step;
-  const {
-    title,
-    content,
-    background,
-    photos,
-    displayOptions,
-    hideStepNumber,
-    truncate,
-    additionalContent,
-  } = fields;
-
-  const preTitle = additionalContent && additionalContent.preTitle;
-
-  return (
-    <LegacyContentBlock
-      key={id}
-      preTitle={preTitle}
-      title={title}
-      content={content}
-      stepIndex={stepIndex}
-      background={background}
-      photos={photos}
-      photoWidth={displayOptions === 'full' ? 'full' : 'one-third'}
-      hideStepNumber={hideStepNumber}
-      shouldTruncate={truncate}
-      template={template}
     />
   );
 }
@@ -168,12 +127,21 @@ export function renderTextSubmissionAction(data) {
 }
 
 export function renderPhotoSubmissionAction(data) {
+  const contentfulId = data.id;
   const fields = withoutNulls(data.fields);
 
   return (
     <div className="margin-horizontal-md margin-bottom-lg">
-      <PhotoSubmissionActionContainer id={data.id} {...fields} />
+      <PuckWaypoint
+        name="photo_submission_action-top"
+        waypointData={{ contentfulId }}
+      />
+      <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
       <SubmissionGalleryBlockContainer type="photo" />
+      <PuckWaypoint
+        name="photo_submission_action-bottom"
+        waypointData={{ contentfulId }}
+      />
     </div>
   );
 }

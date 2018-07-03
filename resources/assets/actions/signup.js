@@ -5,7 +5,6 @@ import { Phoenix } from '@dosomething/gateway';
 
 import { isCampaignClosed } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
-import { isSignedUp } from '../selectors/signup';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -91,25 +90,6 @@ export function checkForSignup(campaignId) {
 // Action: Set the total signups in the store.
 export function setTotalSignups(total) {
   return { type: SET_TOTAL_SIGNUPS, total };
-}
-
-// Async Action: get the total signups for this campaign.
-export function getTotalSignups(campaignId) {
-  return (dispatch, getState) => {
-    new Phoenix().get(`next/signups/total/${campaignId}`).then(response => {
-      if (!response || !response.meta || !response.meta.pagination) {
-        throw new Error('no signup metadata found');
-      }
-
-      let total = response.meta.pagination.total;
-      // @TODO: Not ideal, but the browser doesn't know if this is an old cached response or not.
-      if (isSignedUp(getState())) {
-        total += 1;
-      }
-
-      dispatch(setTotalSignups(total));
-    });
-  };
 }
 
 // Async Action: send signup to phoenix and

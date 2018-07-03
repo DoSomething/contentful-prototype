@@ -66,7 +66,6 @@ $router->resource('next/reportbackItems', 'ReportbackItemsController', ['only' =
 $router->resource('next/referrals', 'ReferralController', ['only' => ['store']]);
 
 // Signups
-$router->get('next/signups/total/{campaignId}', 'SignupController@total');
 $router->resource('next/signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
 
 // Activity

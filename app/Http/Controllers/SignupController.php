@@ -33,18 +33,6 @@ class SignupController extends Controller
     }
 
     /**
-     * Get the total signups for this campaign.
-     *
-     * @param  int $campaignId
-     * @return \Illuminate\Http\Response
-     */
-    public function total($campaignId)
-    {
-        // Count = 1 is a hack to make the API actually return something. Don't ask.
-        return response()->json($this->phoenixLegacy->getAllSignupsCached(['campaigns' => $campaignId, 'count' => 1]));
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
