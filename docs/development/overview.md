@@ -1,5 +1,5 @@
 ---
-description: This section provides development instructions for setting up and working with the Phoenix platform.
+description: The _development_ section provides development instructions for setting up and working with the Phoenix platform.
 ---
 
 # Overview

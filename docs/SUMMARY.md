@@ -23,7 +23,7 @@
 
 ## API Reference
 
-* [Introduction](api-reference/introduction.md)
+* [Overview](api-reference/overview.md)
 * [API v1](api-reference/api-v1.md)
 * [API v2](api-reference/api-v2/README.md)
   * [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
