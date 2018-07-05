@@ -2,7 +2,7 @@
 description: This section provides development instructions for setting up and working with the Phoenix platform.
 ---
 
-# Introduction
+# Development
 
 ## Table Of Contents
 

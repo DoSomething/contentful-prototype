@@ -12,7 +12,7 @@ Phoenix is maintained by [Team Rocket](https://github.com/orgs/DoSomething/teams
 
 ## Getting Started
 
-Please refer to the following sections for information on either developing for the platform, or for instructions on how to edit content on the platform.
+Please refer to the following sections for information on either developing for the platform, or for instructions on how to publish content on the platform.
 
 ### Development Information
 
@@ -20,7 +20,7 @@ Please refer to the following sections for information on either developing for 
 * [API Reference](api-reference/introduction.md)
 * [Philosophical Overview](philosophical-overview/introduction.md)
 
-### Content Editing Information
+### Publishing Information
 
 * [Content Publishing](content-publishing/introduction.md)
 

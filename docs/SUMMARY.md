@@ -4,6 +4,7 @@
 
 ## Development
 
+* [Development](development/introduction.md)
 * [Installation](development/installation.md)
 * [Developer Onboarding](development/developer-onboarding.md)
 * [Architecture](development/architecture.md)
@@ -46,7 +47,7 @@
 
 ## Content Publishing
 
-* [Introduction](content-publishing/introduction.md)
+* [Content Publishing](content-publishing/introduction.md)
 * [General Tips](content-publishing/general-tips.md)
 * [Environment Details & Behaviors](content-publishing/environment-details-and-behaviors.md)
 * [Social Overrides](content-publishing/social-overrides.md)
