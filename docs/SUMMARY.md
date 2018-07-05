@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Phoenix Information](README.md)
+* [🔥 Phoenix 🔥](README.md)
 
 ## Welcome
 
@@ -86,4 +86,3 @@
   * [Editing Docs Locally](contributing-instructions/edit-this-documentation/editing-docs-locally.md)
   * [Editing Docs On GitHub](contributing-instructions/edit-this-documentation/editing-docs-on-github.md)
 * [Glossary](contributing-instructions/glossary.md)
-
