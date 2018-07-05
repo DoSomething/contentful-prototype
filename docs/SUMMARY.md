@@ -4,7 +4,7 @@
 
 ## Development
 
-* [Development](development/introduction.md)
+* [Overview](development/overview.md)
 * [Installation](development/installation.md)
 * [Developer Onboarding](development/developer-onboarding.md)
 * [Architecture](development/architecture.md)

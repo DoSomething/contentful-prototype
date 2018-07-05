@@ -2,8 +2,9 @@
 description: This section provides development instructions for setting up and working with the Phoenix platform.
 ---
 
-# Development
+# Overview
 
 ## Table Of Contents
 
 * [Installation](installation.md)
+* [Developer Onboarding](developer-onboarding.md)
