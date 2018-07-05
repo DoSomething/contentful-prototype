@@ -18,11 +18,11 @@ Please refer to the following sections for information on either developing for 
 
 * [Development](development/overview.md)
 * [API Reference](api-reference/overview.md)
-* [Philosophical Overview](philosophical-overview/introduction.md)
+* [Philosophical Overview](philosophical-overview/overview.md)
 
 ### Publishing Information
 
-* [Content Publishing](content-publishing/introduction.md)
+* [Content Publishing](content-publishing/overview.md)
 
 ## License
 

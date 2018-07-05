@@ -2,7 +2,7 @@
 description: This section provides publishing instructions for publishing content on the DoSomething.org Phoenix content platform.
 ---
 
-# Content Publishing
+# Overview
 
 ## Table Of Contents
 

@@ -232,4 +232,3 @@ Example Response
 ```
 
 Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
-

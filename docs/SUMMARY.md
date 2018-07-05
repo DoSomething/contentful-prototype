@@ -24,10 +24,10 @@
 ## API Reference
 
 * [Overview](api-reference/overview.md)
-* [API v1](api-reference/api-v1.md)
-* [API v2](api-reference/api-v2/README.md)
-  * [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
-  * [Posts Resource](api-reference/api-v2/posts-resource.md)
+* [API v1](api-reference/v1/README.md)
+* [API v2](api-reference/v2/README.md)
+  * [Campaigns Resource](api-reference/v2/campaigns-resource.md)
+  * [Posts Resource](api-reference/v2/posts-resource.md)
 
 ## Philosophical Overview
 
