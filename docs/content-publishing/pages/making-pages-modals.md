@@ -1,4 +1,4 @@
-# Adding an FAQ or Scholarship Page
+# Adding a Page as a modal
 
 1.  Open your Campaign in Contentful.
 
@@ -17,3 +17,5 @@ https://app.contentful.com/spaces/81iqaqpfd8fy/entries/52mLWF8lbO06q8ouuSUEkg
 ```
 /us/campaigns/campaign_name/modal/contentful_id
 ```
+
+_The page must be linked to in the parent Campaigns 'Pages' field to be accessible. (You can select Hide From Navigation to ensure it doesn't show up in the campaign tabbed navigation bar)_
