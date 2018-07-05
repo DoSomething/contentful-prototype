@@ -2,10 +2,6 @@
 
 * [🔥 Phoenix 🔥](README.md)
 
-## Welcome
-
-* [Introduction](welcome/introduction.md)
-
 ## Development
 
 * [Installation](development/installation.md)

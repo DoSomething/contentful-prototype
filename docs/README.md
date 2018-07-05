@@ -1,6 +1,6 @@
-# 🔥 Phoenix
+# 🔥 Phoenix 🔥
 
-This is **Phoenix**, the new campaign experience for [DoSomething.org](https://www.dosomething.org)! Phoenix is built using [Laravel 5.4](https://laravel.com/docs/5.4), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org) and plays nicely with the rest of our team \([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.\)
+Welcome! This is **Phoenix**, the new campaign experience for [DoSomething.org](https://www.dosomething.org)! Phoenix is built using [Laravel 5.4](https://laravel.com/docs/5.4), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org) and plays nicely with the rest of our team \([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.\)
 
 Phoenix is maintained by [Team Rocket](https://github.com/orgs/DoSomething/teams/team-rocket):
 
@@ -12,11 +12,16 @@ Phoenix is maintained by [Team Rocket](https://github.com/orgs/DoSomething/teams
 
 ## Getting Started
 
-For information on installation and other usage please head over to one of the following sections:
+Please refer to the following sections for information on either developing for the platform, or for instructions on how to edit content on the platform.
 
-* [Installation Instructions](development/installation.md)
+### Development Information
+
+* [Development](development/introduction.md)
 * [API Reference](api-reference/introduction.md)
 * [Philosophical Overview](philosophical-overview/introduction.md)
+
+### Content Editing Information
+
 * [Content Publishing](content-publishing/introduction.md)
 
 ## License
