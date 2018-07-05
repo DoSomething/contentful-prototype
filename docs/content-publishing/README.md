@@ -12,3 +12,4 @@ This section provides publishing instructions for publishing content on the DoSo
 * [Actions](actions/README.md)
 * [Community](community/README.md)
 * [Pages](pages/README.md)
+* [Quizzes](quiz.md)
