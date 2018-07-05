@@ -1,5 +1,5 @@
 ---
-description: The _api reference_ section provides documentation on the available Phoenix API endpoints.
+description: This section provides documentation on the available Phoenix API endpoints.
 ---
 
 # Overview
