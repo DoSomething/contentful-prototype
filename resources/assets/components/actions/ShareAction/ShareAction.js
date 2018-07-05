@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
@@ -6,6 +7,7 @@ import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
+import { setFormData } from '../../../helpers/forms';
 import Markdown from '../../utilities/Markdown/Markdown';
 import { trackPuckEvent } from '../../../helpers/analytics';
 import {
@@ -25,11 +27,42 @@ class ShareAction extends React.Component {
     }
   }
 
+  storeSharePost = url => {
+    const type = '?';
+
+    const action = get(this.props.additionalContent, 'action', 'default');
+
+    const { id, campaignId, campaignRunId, legacyCampaignId } = this.props;
+
+    const formData = setFormData(
+      {
+        action,
+        type,
+        id,
+      },
+      {
+        url,
+        campaign_id: campaignId,
+        legacy_campaign_id: legacyCampaignId,
+        legacy_campaign_run_id: campaignRunId,
+      },
+    );
+    // Send request to store the social share post.
+    this.props.storeCampaignPost(campaignId, {
+      action,
+      body: formData,
+      id,
+      type,
+    });
+  };
+
   handleFacebookClick = url => {
     trackPuckEvent('clicked facebook share action', { url });
 
     showFacebookShareDialog(url)
       .then(() => {
+        // @TODO: Once Rogue is ready to accept this post we'll activate.
+        // this.storeSharePost(url);
         trackPuckEvent('share action completed', { url });
         this.setState({ showModal: true });
       })
@@ -47,10 +80,10 @@ class ShareAction extends React.Component {
     const {
       affirmation, // @TODO: Rename me to 'affirmationText'?
       affirmationBlock,
-      campaignId,
       campaignRunId,
       content,
       hideEmbed,
+      legacyCampaignId,
       link,
       socialPlatform,
       title,
@@ -65,7 +98,7 @@ class ShareAction extends React.Component {
     const href = dynamicString(link, {
       userId,
       northstarId: userId, // @TODO: Remove!
-      campaignId,
+      campaignId: legacyCampaignId,
       campaignRunId,
       source: 'web',
     });
@@ -105,21 +138,28 @@ class ShareAction extends React.Component {
 }
 
 ShareAction.propTypes = {
+  additionalContent: PropTypes.shape({
+    action: PropTypes.string,
+  }),
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
-  campaignId: PropTypes.string,
+  campaignId: PropTypes.string.isRequired,
   campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  legacyCampaignId: PropTypes.string,
   link: PropTypes.string.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
+  storeCampaignPost: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
 
 ShareAction.defaultProps = {
+  additionalContent: null,
   affirmation: 'Thanks for rallying your friends on Facebook!',
-  campaignId: null,
+  legacyCampaignId: null,
   content: null,
   hideEmbed: false,
   userId: null,
