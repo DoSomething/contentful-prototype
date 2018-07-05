@@ -1,4 +1,6 @@
-<h1 align="center">🔥 Phoenix 🔥</h1>
+# Welcome
+
+<h2 align="center">🔥 Phoenix 🔥</h2>
 
 This is **Phoenix**, the new campaign experience for [DoSomething.org](https://www.dosomething.org)! Phoenix is built using [Laravel 5.4](https://laravel.com/docs/5.4), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org) and plays nicely with the rest of our team ([Northstar](https://github.com/DoSomething/northstar), [Rogue](https://github.com/DoSomething/rogue), and co.)
 
