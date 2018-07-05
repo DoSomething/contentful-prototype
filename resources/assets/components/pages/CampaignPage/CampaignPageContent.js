@@ -33,20 +33,20 @@ const CampaignPageContent = props => {
       </div>
     ));
 
+  const { content, sidebar, blocks } = subPage.fields;
+
   return (
     <div className="clearfix padded campaign-page" id={subPage.id}>
       <ScrollConcierge />
-      {subPage.fields.content ? (
+      {content ? (
         <div className="row">
           <div className="primary">
-            <Markdown>{subPage.fields.content}</Markdown>
+            <Markdown>{content}</Markdown>
           </div>
-          <div className="secondary">
-            {renderBlocks(subPage.fields.sidebar)}
-          </div>
+          <div className="secondary">{renderBlocks(sidebar)}</div>
         </div>
       ) : (
-        renderBlocks(subPage.fields.blocks)
+        renderBlocks(blocks)
       )}
 
       {isClosed ? null : (
