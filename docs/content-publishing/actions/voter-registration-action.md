@@ -2,7 +2,7 @@
 
 The `VoterRegistrationAction` component renders a visual component which allows DoSomething.org members to register to vote via a link to an external voter registration partner.
 
-![Voter Registration Action component](../../.gitbook/assets/voter-registration-action-component.png)
+![Voter Registration Action component](../../.gitbook/assets/voter-registration-action-component%20%281%29.png)
 
 ## Usage Instructions
 
@@ -44,3 +44,4 @@ The resulting URL for the rendered button on the page will be:
 ```http
 https://turbonotes.xyz/?r=user:551a2b3c4d5e6f7g8h9i0j1k2,campaign:1234,source:web
 ```
+

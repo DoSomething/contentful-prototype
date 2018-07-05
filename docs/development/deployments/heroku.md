@@ -19,3 +19,4 @@ Review apps are spun up everytime a pull request is made by using the [app.json]
 Phoenix \(next\) Heroku apps also execute a [post-deploy script](https://github.com/DoSomething/phoenix-next/blob/dev/bootstrap/setup.sh) that we created, which handles running tasks such database migrations.
 
 In order to make the MySql connection work in Heroku, we had to make some changes to how Laravel connects to MySql. [Here](https://github.com/DoSomething/phoenix-next/blob/dev/config/database.php#L3) is the code for how that works. We also had to change the [Trusted Proxy](https://github.com/DoSomething/phoenix-next/blob/dev/config/trustedproxy.php) in order for the app to work smoothly with Heroku's load balancer.
+

@@ -23,3 +23,4 @@ $ gitbook serve
 You can view the local version by heading to `http://localhost:4000`.
 
 Additional instructions can be found in the [GitBook setup instructions](https://toolchain.gitbook.com/setup.html).
+

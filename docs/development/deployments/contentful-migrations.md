@@ -35,3 +35,4 @@ Instead of applying the migration, push up a pull request with the script. Make 
 ### 4\) Merge approved pull request
 
 ### 5\) Run and apply the migration script
+

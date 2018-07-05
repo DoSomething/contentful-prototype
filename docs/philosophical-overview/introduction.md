@@ -12,3 +12,4 @@ Some common questions you might answer with the philosophical system overview:
 * [Overview](overview/)
 * [Goals](goals.md)
 * [Decisions](historical-decisions.md)
+

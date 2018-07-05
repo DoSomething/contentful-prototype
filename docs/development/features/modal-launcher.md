@@ -15,7 +15,7 @@ It will launch the specified modal type, after the specified amount of time, und
 
 Let's use our Survey example.
 
-If we only want to launch this FUN_SURVEY_MODAL modal type after 60 seconds:
+If we only want to launch this FUN\_SURVEY\_MODAL modal type after 60 seconds:
 
 ```jsx
 <ModalLauncher countdown={60} type="fun_survey" modalType="FUN_SURVEY_MODAL" />
@@ -33,3 +33,4 @@ Please note, that you are in charge of setting up the localstorage to track user
 * `set('[user id]_hide_[modal feature name]', 'boolean', true)`
 
 You can also have the 'hide' data stored automatically by redirecting the user to any page on PN with the following query parameter: `hide_[modal feature name]=1`
+

@@ -2,7 +2,7 @@
 
 The `TextSubmissionAction` component renders a visual component which allows DoSomething.org members to submit a message indicating how they take action in a particular campaign.
 
-![Text Submission Action](../../.gitbook/assets/text-submission-action-component%20%281%29.png)
+![Text Submission Action](../../.gitbook/assets/text-submission-action-component-1.png)
 
 ## Usage Instructions
 
@@ -17,3 +17,4 @@ _For all the fields below designated as "\(optional\)", a default value will be 
 * **buttonText** _\(optional\)_: the text for the submit button in the form action.
 * **affirmationContent** _\(optional\)_: the content in Markdown format that is displayed in the affirmation modal pop-up after a successful Text Submission Action is completed.
 * **additionalContent** _\(optional\)_: used to specify additional options in JSON format; currently no options supported.
+

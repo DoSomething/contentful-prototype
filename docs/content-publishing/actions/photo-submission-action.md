@@ -2,7 +2,7 @@
 
 The `PhotoSubmissionAction` component renders a visual component which allows DoSomething.org members to upload a photo and provide some additional information regarding the photo they are submitting.
 
-![Photo Submission Action component](../../.gitbook/assets/photo-submission-action-component%20%281%29.png)
+![Photo Submission Action component](../../.gitbook/assets/photo-submission-action-component-1.png)
 
 The component can optionally show or hide the quantity field, which allows members to enter a quantity for campaigns that require collecting items \(e.g. jeans, cards, etc\).
 
@@ -28,3 +28,4 @@ _For all the fields below designated as "\(optional\)", a default value will be 
 * **informationContent** _\(optional\)_: the content in Markdown format that will appear in the information sidebar next to the Photo Submission Action.
 * **affirmationContent** _\(optional\)_: the content in Markdown format that is displayed in the affirmation modal pop-up after a successful Photo Submission Action is completed.
 * **additionalContent** _\(optional\)_: used to specify additional options in JSON format; currently no options supported.
+

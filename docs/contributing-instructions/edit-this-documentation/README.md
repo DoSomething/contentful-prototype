@@ -4,3 +4,4 @@ There are two main options for editing this documentation, either using GitHub's
 
 * [Editing the docs locally](editing-docs-locally.md)
 * [Editing the docs on github](editing-docs-on-github.md)
+

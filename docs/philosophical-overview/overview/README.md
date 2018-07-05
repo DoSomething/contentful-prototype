@@ -193,3 +193,4 @@ We can present content from other static pages in a modal. The common use for th
 ... More to come...
 
 Templates Legacy Legacy style header Removing tabs for community, FAQ, Scholarship Embedding gallery in the campaign page
+

@@ -45,3 +45,4 @@ We use [Prettier](https://prettier.io/) to format our code & [ESLint](http://esl
 * Code linting also runs via [Wercker](http://www.wercker.com/), our continuous integration service, when a new pull request is made for the repository.
 
 We use [StyleCI](https://styleci.io/repos/75642790) service to lint our PHP code when a new pull request is made for the respository.
+

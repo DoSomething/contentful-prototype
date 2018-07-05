@@ -6,13 +6,13 @@ The `LinkAction` renders a visual component which features an embedded link rend
 
 If the Content field is left blank, the Link Action will render as an plain embedded link:
 
-![Link Action component](../../.gitbook/assets/link-action-component-plain-embed%20%281%29.png)
+![Link Action component](../../.gitbook/assets/link-action-component-plain-embed-1.png)
 
 ## Link Action Card
 
 If you fill in the Content field, instead of rendering an embedded link, the Link Action will be featured within a Card, and render a button \(the button text can be edited via the Button Text field\):
 
-![Link Action Card](../../.gitbook/assets/link-action-component-button-text.png)
+![Link Action Card](../../.gitbook/assets/link-action-component-button-text%20%282%29.png)
 
 ## Affiliate Logo
 
@@ -44,3 +44,4 @@ The Link Action consists of the following fields:
 * **buttonText \(optional\)**: text for button to link when Link Action is in Card or CTA mode. \(_this is required for a telephone link action!_\)
 * **affiliateLogo \(optional\)**: an image URL which will be featured on bottom of the action. \(adding this property will also cause a color change in the title of the link action if it's in Card mode\)
 * **template \(optional\)**: toggle between Default and CTA modes.
+

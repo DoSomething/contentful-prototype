@@ -6,7 +6,7 @@ When implementing an A/B test using Sixpack in Phoenix-Next on the front-end, th
 
 First, you need to edit the experiments JSON file located in the `/resources/assets` directory, and designate the relavant data for the experiment. The hierarchy is as follows:
 
-* **Experiment Name**: the name of the experiment. e.g. "lede_banner_number_of_buttons"
+* **Experiment Name**: the name of the experiment. e.g. "lede\_banner\_number\_of\_buttons"
 * **Meta-data**:
   * **Pre-Test** \(`preTest`\): the condition or conditions that need to be met before an experiment can execute
 * **Alternatives**: all of the alternatives for this AB test
@@ -93,3 +93,4 @@ http://example.com?sixpack-force-experiment_name=name_of_alternative_to_show
 ```
 
 The forced alternative will not end up sending any data to Sixpack, so it will not affect the conversion!
+
