@@ -1,21 +1,23 @@
-# Table of Contents
+# Table of contents
+
+* [Introduction](README.md)
 
 ## Welcome
 
-* [Introduction](/README.md)
+* [Introduction](welcome/introduction.md)
 
 ## Development
 
 * [Installation](development/installation.md)
-* [Developer Onboarding](development/developer_onboarding.md)
+* [Developer Onboarding](development/developer-onboarding.md)
 * [Architecture](development/architecture.md)
 * [Deployments](development/deployments/README.md)
   * [Contentful Migrations](development/deployments/contentful-migrations.md)
-  * [Contentful Content Management API Scripts](development/deployments/contentful-content-management-api.md)
+  * [Contentful Content Management API Scripts](development/deployments/contentful-content-management-api-scripts.md)
   * [Heroku](development/deployments/heroku.md)
 * [Features](development/features/README.md)
   * [Routing](development/features/routing.md)
-  * [Sixpack A/B Testing](development/features/sixpack-ab-testing.md)
+  * [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
   * [Traffic Distribution](development/features/traffic-distribution.md)
   * [Modal Launcher](development/features/modal-launcher.md)
 * [Monitoring](development/monitoring.md)
@@ -24,37 +26,37 @@
 
 ## API Reference
 
-* [Introduction](api-reference/README.md)
-* [API v1](api-reference/v1/README.md)
-* [API v2](api-reference/v2/README.md)
-  * [Campaigns Resource](api-reference/v2/campaigns.md)
-  * [Posts Resource](api-reference/v2/posts.md)
+* [Introduction](api-reference/introduction.md)
+* [API v1](api-reference/api-v1.md)
+* [API v2](api-reference/api-v2/README.md)
+  * [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
+  * [Posts Resource](api-reference/api-v2/posts-resource.md)
 
 ## Philosophical Overview
 
-* [Introduction](philosophical-overview/README.md)
-* [Overview](philosophical-overview/overview.md)
-  * [Affiliation Flow](philosophical-overview/overview.md#affiliation-flow)
-  * [Pages](philosophical-overview/overview.md#pages)
-  * [Components](philosophical-overview/overview.md#components)
-  * [Tabs](philosophical-overview/overview.md#tabs)
-  * [Blocks](philosophical-overview/overview.md#blocks)
-  * [Actions](philosophical-overview/overview.md#actions)
-  * [Contentful](philosophical-overview/overview.md#contentful)
-  * [Sharing](philosophical-overview/overview.md#sharing)
-  * [Modals](philosophical-overview/overview.md#modals)
+* [Introduction](philosophical-overview/introduction.md)
+* [Overview](philosophical-overview/overview/README.md)
+  * [Affiliation Flow](philosophical-overview/overview/affiliation-flow.md)
+  * [Pages](philosophical-overview/overview/pages.md)
+  * [Components](philosophical-overview/overview/components.md)
+  * [Tabs](philosophical-overview/overview/tabs.md)
+  * [Blocks](philosophical-overview/overview/blocks.md)
+  * [Actions](philosophical-overview/overview/actions.md)
+  * [Contentful](philosophical-overview/overview/contentful.md)
+  * [Sharing](philosophical-overview/overview/sharing.md)
+  * [Modals](philosophical-overview/overview/modals.md)
 * [Goals](philosophical-overview/goals.md)
 * [Historical Decisions](philosophical-overview/historical-decisions.md)
 
 ## Content Publishing
 
-* [Introduction](content-publishing/README.md)
+* [Introduction](content-publishing/introduction.md)
 * [General Tips](content-publishing/general-tips.md)
-* [Environment Details & Behaviors](content-publishing/environment-details-and-behavior.md)
+* [Environment Details & Behaviors](content-publishing/environment-details-and-behaviors.md)
 * [Social Overrides](content-publishing/social-overrides.md)
 * [Initial Campaign Publication](content-publishing/initial-campaign-publication/README.md)
-  * [Ashes Publication](content-publishing/initial-campaign-publication/phoenix-ashes-publication.md)
-  * [Next Publication](content-publishing/initial-campaign-publication/phoenix-next-publication.md)
+  * [Ashes Publication](content-publishing/initial-campaign-publication/ashes-publication.md)
+  * [Next Publication](content-publishing/initial-campaign-publication/next-publication.md)
 * [Landing Page](content-publishing/landing-page/README.md)
   * [Campaign Lead](content-publishing/landing-page/campaign-lead.md)
   * [Campaign Settings](content-publishing/landing-page/campaign-settings.md)
@@ -69,8 +71,8 @@
   * [Voter Registration Action](content-publishing/actions/voter-registration-action.md)
   * [Social Drive Action](content-publishing/actions/social-drive-action.md)
 * [Community](content-publishing/community/README.md)
-  * [Campaign Update](content-publishing/community/campaign-update.md)
-    * [Affiliate Update](content-publishing/community/campaign-update.md)
+  * [Campaign Update](content-publishing/community/campaign-update/README.md)
+    * [Affiliate Update](content-publishing/community/campaign-update/affiliate-update.md)
   * [Community Update](content-publishing/community/community-update.md)
   * [Feed Order](content-publishing/community/feed-order.md)
 * [Pages](content-publishing/pages/README.md)
@@ -79,11 +81,9 @@
 
 ## Contributing Instructions
 
-* [Getting Started](contributing-instructions/README.md)
-* [Edit This Documentation](contributing-instructions/editing/README.md)
-  * [Editing Docs Locally](contributing-instructions/editing/editing-docs-locally.md)
-  * [Editing Docs On GitHub](contributing-instructions/editing/editing-docs-on-github.md)
+* [Getting Started](contributing-instructions/getting-started.md)
+* [Edit This Documentation](contributing-instructions/edit-this-documentation/README.md)
+  * [Editing Docs Locally](contributing-instructions/edit-this-documentation/editing-docs-locally.md)
+  * [Editing Docs On GitHub](contributing-instructions/edit-this-documentation/editing-docs-on-github.md)
+* [Glossary](contributing-instructions/glossary.md)
 
----
-
-* [Glossary](GLOSSARY.md)
