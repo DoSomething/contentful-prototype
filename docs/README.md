@@ -15,12 +15,10 @@ Phoenix is maintained by [Team Rocket](https://github.com/orgs/DoSomething/teams
 For information on installation and other usage please head over to one of the following sections:
 
 * [Installation Instructions](development/installation.md)
-* [API Reference](api-reference/README.md)
-* [Philosophical Overview](philosophical-overview/README.md)
-* [Content Publishing](content-publishing/README.md)
+* [API Reference](api-reference/introduction.md)
+* [Philosophical Overview](philosophical-overview/introduction.md)
+* [Content Publishing](content-publishing/introduction.md)
 
 ## License
 
-&copy;2017 DoSomething.org. Phoenix is free software, and may be redistributed under the terms specified
-in the [LICENSE](https://github.com/DoSomething/phoenix/blob/dev/LICENSE) file. The name and logo for
-DoSomething.org are trademarks of Do Something, Inc and may not be used without permission.
+©2017 DoSomething.org. Phoenix is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/DoSomething/phoenix/blob/dev/LICENSE) file. The name and logo for DoSomething.org are trademarks of Do Something, Inc and may not be used without permission.

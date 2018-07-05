@@ -8,13 +8,13 @@ However, we need to establish a proper process for how we run these migrations, 
 
 For the time being, follow these steps when creating Contentful migrations and subsequently running them:
 
-### 1) Create the migration file
+### 1\) Create the migration file
 
 Create a new migration file in `/contentful/migrations`.
 
 Use the following the naming convention `20XX_XX_XX_001_what_this_migration_does.js`. If there are multiple migrations created on a single calendar date, just keep increasing the three digit reference number `001`.
 
-### 2) Perform a test run of the migration.
+### 2\) Perform a test run of the migration.
 
 Run the migration from the project root using:
 
@@ -24,14 +24,14 @@ $ contentful-migration --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMEN
 
 If you have a `.contentfulrc.json` file setup in your home directory you can ommit specifying the `--access-token`.
 
-You can obtain your user specific access token on Contentful within the Space Settings > API Keys > Personal Access Tokens.
+You can obtain your user specific access token on Contentful within the Space Settings &gt; API Keys &gt; Personal Access Tokens.
 
 When the Migration CLI runs, it will parse the script supplied, validate it, and then show you an execution plan if everything looks ok. Fix any errors, but DO NOT apply the migration when it prompts you.
 
-### 3) Push up a pull request with the migration script
+### 3\) Push up a pull request with the migration script
 
 Instead of applying the migration, push up a pull request with the script. Make sure to also include any necessary code updates to account for the changes if either the code deploys before the script or the script is run before the code. Keep in mind that the migration script, once run will affect all content, including that on Production. So don't run a script that changes a content type without supporting code updates and deploys that would otherwise break the site!
 
-### 4) Merge approved pull request
+### 4\) Merge approved pull request
 
-### 5) Run and apply the migration script
+### 5\) Run and apply the migration script

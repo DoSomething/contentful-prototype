@@ -2,7 +2,7 @@
 
 The `VoterRegistrationAction` component renders a visual component which allows DoSomething.org members to register to vote via a link to an external voter registration partner.
 
-![Voter Registration Action component](../_assets/voter-registration-action-component.png)
+![Voter Registration Action component](../../.gitbook/assets/voter-registration-action-component.png)
 
 ## Usage Instructions
 
