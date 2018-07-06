@@ -4,13 +4,13 @@
 
 When a visitor lands on a **Phoenix** campaign, they will see a Landing Page. This page offers a small summary of the campaign action, prize incentives and a couple buttons or call to actions for the user to sign up, or affiliate, with the campaign. This page looks the same whether the visitor is an authenticated member or not.
 
-After the visitor clicks on a signup button, the path branches a little bit. Unauthenticated visitors are taken to **Northstar** to log in or create a DoSomething account. Upon successfully logging in or creating an account, users are taken to the Action tab.
+After the visitor clicks on a signup button, the path branches a little bit. Unauthenticated visitors are taken to **Northstar** to log in or create a DoSomething account. Upon successfully logging in or creating an account, users are taken to the _Action_ tab.
 
 Users who are already authenticated are taken directly to the Action tab.
 
-When a member first affiliates with a campaign, they will be presented with the Affirmation Modal. This is a modal that appears over the Action tab and provides positive messaging; a message of impact from the campaign lead and a chance to share the campaign on Facebook.
+When a member first affiliates with a campaign, they will be presented with the _Affirmation Modal_. This is a modal that appears over the Action tab and provides positive messaging; a message of impact from the campaign lead and a chance to share the campaign on Facebook.
 
-The affirmation modal content does not exist anywhere on the page and can only been seen on the first viewing of the affiliated campaign page.
+The Affirmation Modal content does not exist anywhere on the page and can only been seen on the first viewing of the affiliated campaign page.
 
 After closing the Affirmation modal, all campaign content is available to the user. This is the first time they will see the tab navigation controller and they will be placed on the Action tab by default.
 
