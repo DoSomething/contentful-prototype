@@ -1,5 +1,9 @@
 # Contributing
 
+{% hint style="warning" %}
+Pivotal Tracker has updated their interface to easily allow connecting tickets with GitHub pull requests. Please use their UI instead of the approach described on this page, which will be removed in the near future.
+{% endhint %}
+
 ## Issues And Pull Requests
 
 We use an integration between Pivotal and GitHub to keep track of progress on our work.
