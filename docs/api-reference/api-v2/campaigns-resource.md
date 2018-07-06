@@ -1,3 +1,7 @@
+---
+description: List of API endpoints for the Campaigns resource.
+---
+
 # Campaigns Resource
 
 {% api-method method="get" host="https://www.dosomething.org" path="/api/v2/campaigns" %}
