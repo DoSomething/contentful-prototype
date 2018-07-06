@@ -1,5 +1,7 @@
 ---
-description: This section provides publishing instructions for publishing content on the DoSomething.org Phoenix content platform.
+description: >-
+  This section provides publishing instructions for publishing content on the
+  DoSomething.org Phoenix content platform.
 ---
 
 # Overview
@@ -14,3 +16,4 @@ description: This section provides publishing instructions for publishing conten
 * [Actions](actions/)
 * [Community](community/)
 * [Pages](pages/)
+

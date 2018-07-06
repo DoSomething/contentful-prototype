@@ -1,21 +1,19 @@
 # Campaigns Resource
 
-{% api-method method="get" host="" path="/api/v2/campaigns" %}
+{% api-method method="get" host="https://www.dosomething.org" path="/api/v2/campaigns" %}
 {% api-method-summary %}
 Retrieve all Campaigns
 {% endapi-method-summary %}
 
 {% api-method-description %}
-Get an index list of all campaigns. Currently, this endpoint only supports a filtered ID query and returns an abridged set of primary campaign fields to reduce the data load. There is a limit of 10 IDs per request.
-
-The IDs provided can be Contentful IDs, or Ashes Legacy IDs.
+Get an index list of all campaigns, filterable using query parameters.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-query-parameters %}
-{% api-method-parameter name="filter[id]" type="string" required=false %}
-37,6LQzMvDNQcYQYwso8qSkQ8
+{% api-method-parameter name="filter\[id\]" type="string" required=true %}
+e.g.: 37,6LQzMvDNQcYQYwso8qSkQ8
 {% endapi-method-parameter %}
 {% endapi-method-query-parameters %}
 {% endapi-method-request %}
@@ -26,7 +24,7 @@ The IDs provided can be Contentful IDs, or Ashes Legacy IDs.
 
 {% endapi-method-response-example-description %}
 
-```
+```javascript
 {
   "data": [
     {
@@ -101,27 +99,38 @@ The IDs provided can be Contentful IDs, or Ashes Legacy IDs.
   ]
 }
 ```
-
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
 
-## Retrieve a Campaign
+{% hint style="warning" %}
+Currently, this endpoint only supports a filtered ID query and returns an abridged set of primary campaign fields to reduce the data load. There is a limit of 10 IDs per request; both Ashes and Contentful Campaign IDs are supported.
+{% endhint %}
 
-```text
-GET /api/v2/campaigns/{id}
-```
+{% api-method method="get" host="https://www.dosomething.org" path="/api/v2/campaigns/:id" %}
+{% api-method-summary %}
+Retrieve a single Campaign
+{% endapi-method-summary %}
 
-The `id` can be either a Contentful ID or an Ashes Legacy ID.
+{% api-method-description %}
+Get a single campaign using a specified id.
+{% endapi-method-description %}
 
-Example Request:
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="id" type="string" required=true %}
+e.g.: 6LQzMvDNQcYQYwso8qSkQ8
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
 
-```text
-https://next.dosomething.org/api/v2/campaigns/6LQzMvDNQcYQYwso8qSkQ8
-```
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
 
-Example Response:
+{% endapi-method-response-example-description %}
 
 ```javascript
 {
@@ -176,32 +185,74 @@ Example Response:
   }
 }
 ```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
 
-## Retrieve all Posts for a Campaign
+{% hint style="info" %}
+The `id` can be either a Contentful ID or an Ashes Legacy ID.
+{% endhint %}
 
-```text
-GET /api/v2/campaigns/{id}/posts
+{% api-method method="get" host="https://www.dosomething.org" path="/api/v2/campaigns/:id/posts" %}
+{% api-method-summary %}
+Retrieve all Posts for a Campaign
+{% endapi-method-summary %}
+
+{% api-method-description %}
+Get an index list of all posts for a specified campaign.
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="id" type="string" required=true %}
+e.g.: 6LQzMvDNQcYQYwso8qSkQ8
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
 ```
 
-The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:$id` to the query params.
-
-// @TODO add link to corresponding url params and response example from Rogue
-
-## Create a Post for a Campaign
-
-```text
-POST /api/v2/campaigns/{id}/posts
 ```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
 
-The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:$id` to the query params.
+{% hint style="info" %}
+The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:id` to the query params.
+{% endhint %}
 
-Example Request:
+{% api-method method="post" host="https://www.dosomething.org" path="/api/v2/campaigns/:id/posts" %}
+{% api-method-summary %}
+Create a Post for a Campaign
+{% endapi-method-summary %}
 
-```text
-https://next.dosomething.org/api/v2/campaigns/3455/posts
-```
+{% api-method-description %}
 
-Example Response
+{% endapi-method-description %}
+
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-path-parameters %}
+{% api-method-parameter name="id" type="string" required=true %}
+e.g.: 3455
+{% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
+{% endapi-method-request %}
+
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
 
 ```javascript
 {
@@ -243,5 +294,14 @@ Example Response
   }
 }
 ```
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
+
+{% hint style="info" %}
+The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:id` to the query params. 
 
 Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
+{% endhint %}
+
