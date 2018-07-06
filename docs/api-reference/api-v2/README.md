@@ -1,3 +1,7 @@
+---
+description: API v2 endpoints documentation.
+---
+
 # API v2
 
 ## Campaigns
