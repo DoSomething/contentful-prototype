@@ -29,6 +29,7 @@ class ShareAction extends React.Component {
 
   storeSharePost = url => {
     const type = '?';
+    const type = 'share-social';
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
@@ -42,6 +43,7 @@ class ShareAction extends React.Component {
       },
       {
         url,
+        platform: 'facebook',
         campaign_id: campaignId,
         legacy_campaign_id: legacyCampaignId,
         legacy_campaign_run_id: campaignRunId,
