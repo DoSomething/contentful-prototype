@@ -13,3 +13,4 @@ Some common questions you might answer with this platform philosophy section:
 * [System Outline](system-outline.md)
 * [Goals](goals.md)
 * [Historical Decisions](historical-decisions.md)
+
