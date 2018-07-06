@@ -1,5 +1,7 @@
 ---
-description: This section provides development instructions for setting up and working with the Phoenix platform.
+description: >-
+  This section provides development instructions for setting up and working with
+  the Phoenix platform.
 ---
 
 # Overview
@@ -8,3 +10,4 @@ description: This section provides development instructions for setting up and w
 
 * [Installation](installation.md)
 * [Developer Onboarding](developer-onboarding.md)
+

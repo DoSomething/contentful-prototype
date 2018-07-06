@@ -24,7 +24,7 @@
 ## API Reference
 
 * [Overview](api-reference/overview.md)
-* [API v1](api-reference/api-v1/README.md)
+* [API v1](api-reference/api-v1.md)
 * [API v2](api-reference/api-v2/README.md)
   * [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
   * [Posts Resource](api-reference/api-v2/posts-resource.md)
@@ -47,7 +47,7 @@
 
 ## Content Publishing
 
-* [Content Publishing](content-publishing/introduction.md)
+* [Content Publishing](content-publishing/content-publishing.md)
 * [General Tips](content-publishing/general-tips.md)
 * [Environment Details & Behaviors](content-publishing/environment-details-and-behaviors.md)
 * [Social Overrides](content-publishing/social-overrides.md)
@@ -83,3 +83,4 @@
   * [Editing Docs Locally](contributing-instructions/edit-this-documentation/editing-docs-locally.md)
   * [Editing Docs On GitHub](contributing-instructions/edit-this-documentation/editing-docs-on-github.md)
 * [Glossary](contributing-instructions/glossary.md)
+

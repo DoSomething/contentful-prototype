@@ -18,12 +18,13 @@ Please refer to the following sections for information on either developing for 
 
 * [Development](development/overview.md)
 * [API Reference](api-reference/overview.md)
-* [Philosophical Overview](philosophical-overview/overview.md)
+* [Philosophical Overview](https://github.com/DoSomething/phoenix-next/tree/376e8a33eec2f32e6759332b22b85d25911dfff6/docs/philosophical-overview/overview.md)
 
 ### Publishing Information
 
-* [Content Publishing](content-publishing/overview.md)
+* [Content Publishing](https://github.com/DoSomething/phoenix-next/tree/376e8a33eec2f32e6759332b22b85d25911dfff6/docs/content-publishing/overview.md)
 
 ## License
 
 ©2017 DoSomething.org. Phoenix is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/DoSomething/phoenix/blob/dev/LICENSE) file. The name and logo for DoSomething.org are trademarks of Do Something, Inc and may not be used without permission.
+
