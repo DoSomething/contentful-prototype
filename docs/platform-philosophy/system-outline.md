@@ -1,20 +1,8 @@
-# Overview
-
-## Table Of Contents
-
-* [Affiliation Flow](./#affiliation-flow)
-* [Pages](./#pages)
-* [Components](./#components)
-* [Tabs](https://github.com/DoSomething/phoenix-next/tree/0c17d93e692197937af6ec336df98e8f12202dd9/docs/philosophical-overview/philosophical-overview/overview.md#tabs)
-* [Blocks](https://github.com/DoSomething/phoenix-next/tree/0c17d93e692197937af6ec336df98e8f12202dd9/docs/philosophical-overview/philosophical-overview/overview.md#blocks)
-* [Actions](https://github.com/DoSomething/phoenix-next/tree/0c17d93e692197937af6ec336df98e8f12202dd9/docs/philosophical-overview/philosophical-overview/overview.md#actions)
-* [Contentful](https://github.com/DoSomething/phoenix-next/tree/0c17d93e692197937af6ec336df98e8f12202dd9/docs/philosophical-overview/philosophical-overview/overview.md#contentful)
-* [Sharing](https://github.com/DoSomething/phoenix-next/tree/0c17d93e692197937af6ec336df98e8f12202dd9/docs/philosophical-overview/philosophical-overview/overview.md#sharing)
-* [Modals](https://github.com/DoSomething/phoenix-next/tree/0c17d93e692197937af6ec336df98e8f12202dd9/docs/philosophical-overview/philosophical-overview/overview.md#modals)
+# System Outline
 
 ## Affiliation Flow
 
-When a visitor lands on a **Phoenix \(next\)** campaign, they will see a Landing Page. This page offers a small summary of the campaign action, prize incentives and a couple buttons or call to actions for the user to sign up, or affiliate, with the campaign. This page looks the same whether the visitor is an authenticated member or not.
+When a visitor lands on a **Phoenix** campaign, they will see a Landing Page. This page offers a small summary of the campaign action, prize incentives and a couple buttons or call to actions for the user to sign up, or affiliate, with the campaign. This page looks the same whether the visitor is an authenticated member or not.
 
 After the visitor clicks on a signup button, the path branches a little bit. Unauthenticated visitors are taken to **Northstar** to log in or create a DoSomething account. Upon successfully logging in or creating an account, users are taken to the Action tab.
 
@@ -28,7 +16,7 @@ After closing the Affirmation modal, all campaign content is available to the us
 
 ## Pages
 
-The “pages” of the **Phoenix \(next\)** campaign experience are organized as tabs and all share the same header. We are using the _Page_ construct here as the [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) term for a fully assembled group of components. You can read more about tab navigation in the Components section. The Community and Action tabs are the most flexible tabs. None of these are available until a user successfully signs up for the campaign.
+The “pages” of the **Phoenix** campaign experience are organized as tabs and all share the same header. We are using the _Page_ construct here as the [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) term for a fully assembled group of components. You can read more about tab navigation in the Components section. The Community and Action tabs are the most flexible tabs. None of these are available until a user successfully signs up for the campaign.
 
 ### Action
 
@@ -58,15 +46,15 @@ There are no custom blocks for static tabs right now.
 
 ## Components
 
-**Phoenix \(next\)** pages and tabs are constructed from components, groups of stylistic and functional objects. Each component is composed of specific parts and serves a specific purpose.
+**Phoenix** pages and tabs are constructed from components, groups of stylistic and functional objects. Each component is composed of specific parts and serves a specific purpose.
 
 ### Header
 
-The **Phoenix \(next\)** header was designed to solve a number of problems from the Ashes template. Especially at smaller screen sizes, the overlaid text of the old template prevented a user from reading properly or obscured almost the entire image. Beyond readability issues, the emphasis on the campaign name didn’t strongly register with users compared to information about the campaign action.
+The **Phoenix** header was designed to solve a number of problems from the Ashes template. Especially at smaller screen sizes, the overlaid text of the old template prevented a user from reading properly or obscured almost the entire image. Beyond readability issues, the emphasis on the campaign name didn’t strongly register with users compared to information about the campaign action.
 
 ### Navigation
 
-From the very top of the page, **Phoenix \(next\)** has moved the navigation into it’s own opaque bar, eliminating the awkward overlap of photos and navigation. In all cases the bar is \#FFFFFF white and contains the same information.
+From the very top of the page, **Phoenix** has moved the navigation into it’s own opaque bar, eliminating the awkward overlap of photos and navigation. In all cases the bar is \#FFFFFF white and contains the same information.
 
 ### Titles and Photos
 
@@ -148,7 +136,7 @@ _\* = designates required item_
 
 The primary way for a user to complete a DoSomething campaign is to complete a verified social good action.
 
-Actions are structured inside of **Phoenix \(next\)**...
+Actions are structured inside of **Phoenix**...
 
 Multiple actions...
 
@@ -172,7 +160,7 @@ Rogue counts the quantity on a per post level. Then this information is given to
 
 ## Modals
 
-**Phoenix \(next\)** can place specific components into a modal, presented on top of the campaign page with a darkened background. These modals are created through a url structure that includes /modal/. All modals share the same visual style, a white card with a yellow title bar. The title bar also contains an X in the top right corner to dismiss the modal. Modals can also be dismissed by clicking or tapping the area outside the modal.
+**Phoenix** can place specific components into a modal, presented on top of the campaign page with a darkened background. These modals are created through a url structure that includes /modal/. All modals share the same visual style, a white card with a yellow title bar. The title bar also contains an X in the top right corner to dismiss the modal. Modals can also be dismissed by clicking or tapping the area outside the modal.
 
 ### Affirmation Modal
 

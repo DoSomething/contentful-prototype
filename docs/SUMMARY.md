@@ -29,30 +29,12 @@
   * [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
   * [Posts Resource](api-reference/api-v2/posts-resource.md)
 
-## Philosophical Overview
+## Platform Philosophy
 
-* [Overview](philosophical-overview/overview-1/README.md)
-  * [Affiliation Flow](philosophical-overview/overview-1/affiliation-flow%20%281%29.md)
-  * [Pages](philosophical-overview/overview-1/pages%20%281%29.md)
-  * [Components](philosophical-overview/overview-1/components%20%281%29.md)
-  * [Tabs](philosophical-overview/overview-1/tabs%20%281%29.md)
-  * [Blocks](philosophical-overview/overview-1/blocks%20%281%29.md)
-  * [Actions](philosophical-overview/overview-1/actions%20%281%29.md)
-  * [Contentful](philosophical-overview/overview-1/contentful%20%281%29.md)
-  * [Sharing](philosophical-overview/overview-1/sharing%20%281%29.md)
-  * [Modals](philosophical-overview/overview-1/modals%20%281%29.md)
-* [Overview](philosophical-overview/overview-1/README.md)
-  * [Affiliation Flow](philosophical-overview/overview-1/affiliation-flow%20%281%29.md)
-  * [Pages](philosophical-overview/overview-1/pages%20%281%29.md)
-  * [Components](philosophical-overview/overview-1/components%20%281%29.md)
-  * [Tabs](philosophical-overview/overview-1/tabs%20%281%29.md)
-  * [Blocks](philosophical-overview/overview-1/blocks%20%281%29.md)
-  * [Actions](philosophical-overview/overview-1/actions%20%281%29.md)
-  * [Contentful](philosophical-overview/overview-1/contentful%20%281%29.md)
-  * [Sharing](philosophical-overview/overview-1/sharing%20%281%29.md)
-  * [Modals](philosophical-overview/overview-1/modals%20%281%29.md)
-* [Goals](philosophical-overview/goals.md)
-* [Historical Decisions](philosophical-overview/historical-decisions.md)
+* [Overview](platform-philosophy/overview.md)
+* [System Outline](platform-philosophy/system-outline.md)
+* [Goals](platform-philosophy/goals.md)
+* [Historical Decisions](platform-philosophy/historical-decisions.md)
 
 ## Content Publishing
 

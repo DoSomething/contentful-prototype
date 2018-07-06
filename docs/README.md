@@ -18,11 +18,11 @@ Please refer to the following sections for information on either developing for 
 
 * [Development](development/overview.md)
 * [API Reference](api-reference/overview.md)
-* [Philosophical Overview](https://github.com/DoSomething/phoenix-next/tree/376e8a33eec2f32e6759332b22b85d25911dfff6/docs/philosophical-overview/overview.md)
+* [Platform Philosophy](platform-philosophy/overview.md)
 
 ### Publishing Information
 
-* [Content Publishing](https://github.com/DoSomething/phoenix-next/tree/376e8a33eec2f32e6759332b22b85d25911dfff6/docs/content-publishing/overview.md)
+* [Content Publishing](content-publishing/overview.md)
 
 ## License
 
