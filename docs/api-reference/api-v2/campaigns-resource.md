@@ -1,24 +1,32 @@
 # Campaigns Resource
 
-## Retrieve a list of Campaigns
+{% api-method method="get" host="" path="/api/v2/campaigns" %}
+{% api-method-summary %}
+Retrieve all Campaigns
+{% endapi-method-summary %}
 
-```text
-GET /api/v2/campaigns?filter[id]=
-```
-
-Currently, this endpoint only supports a filtered ID query and returns an abridged set of primary campaign fields to reduce the data load. There is a limit of 10 IDs per request.
+{% api-method-description %}
+Get an index list of all campaigns. Currently, this endpoint only supports a filtered ID query and returns an abridged set of primary campaign fields to reduce the data load. There is a limit of 10 IDs per request.
 
 The IDs provided can be Contentful IDs, or Ashes Legacy IDs.
+{% endapi-method-description %}
 
-Example Request:
+{% api-method-spec %}
+{% api-method-request %}
+{% api-method-query-parameters %}
+{% api-method-parameter name="filter[id]" type="string" required=false %}
+37,6LQzMvDNQcYQYwso8qSkQ8
+{% endapi-method-parameter %}
+{% endapi-method-query-parameters %}
+{% endapi-method-request %}
 
-```text
-https://next.dosomething.org/api/v2/campaigns?filter[id]=37,6LQzMvDNQcYQYwso8qSkQ8
+{% api-method-response %}
+{% api-method-response-example httpCode=200 %}
+{% api-method-response-example-description %}
+
+{% endapi-method-response-example-description %}
+
 ```
-
-Example Response:
-
-```javascript
 {
   "data": [
     {
@@ -93,6 +101,11 @@ Example Response:
   ]
 }
 ```
+
+{% endapi-method-response-example %}
+{% endapi-method-response %}
+{% endapi-method-spec %}
+{% endapi-method %}
 
 ## Retrieve a Campaign
 
@@ -232,4 +245,3 @@ Example Response
 ```
 
 Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
-

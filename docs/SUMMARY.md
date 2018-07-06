@@ -31,7 +31,7 @@
 
 ## Philosophical Overview
 
-* [Introduction](philosophical-overview/introduction.md)
+* [Overview](philosophical-overview/overview.md)
 * [Overview](philosophical-overview/overview/README.md)
   * [Affiliation Flow](philosophical-overview/overview/affiliation-flow.md)
   * [Pages](philosophical-overview/overview/pages.md)
@@ -47,7 +47,7 @@
 
 ## Content Publishing
 
-* [Content Publishing](content-publishing/content-publishing.md)
+* [Overview](content-publishing/overview.md)
 * [General Tips](content-publishing/general-tips.md)
 * [Environment Details & Behaviors](content-publishing/environment-details-and-behaviors.md)
 * [Social Overrides](content-publishing/social-overrides.md)
@@ -83,4 +83,3 @@
   * [Editing Docs Locally](contributing-instructions/edit-this-documentation/editing-docs-locally.md)
   * [Editing Docs On GitHub](contributing-instructions/edit-this-documentation/editing-docs-on-github.md)
 * [Glossary](contributing-instructions/glossary.md)
-
