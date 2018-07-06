@@ -27,8 +27,7 @@ class ShareAction extends React.Component {
     }
   }
 
-  storeSharePost = url => {
-    const type = '?';
+  storeSharePost = () => {
     const type = 'share-social';
 
     const action = get(this.props.additionalContent, 'action', 'default');
@@ -42,7 +41,6 @@ class ShareAction extends React.Component {
         id,
       },
       {
-        url,
         platform: 'facebook',
         campaign_id: campaignId,
         legacy_campaign_id: legacyCampaignId,
@@ -64,7 +62,7 @@ class ShareAction extends React.Component {
     showFacebookShareDialog(url)
       .then(() => {
         // @TODO: Once Rogue is ready to accept this post we'll activate.
-        // this.storeSharePost(url);
+        this.storeSharePost();
         trackPuckEvent('share action completed', { url });
         this.setState({ showModal: true });
       })
