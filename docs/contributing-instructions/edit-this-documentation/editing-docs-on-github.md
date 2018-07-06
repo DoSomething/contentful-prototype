@@ -6,11 +6,11 @@ You can use GitHub's interface to create or edit documentation files.
 
 When creating a new file, make sure to specify the directory path in the input that GitHub provides at the top.
 
-![Creating A New File On GitHub](../../.gitbook/assets/creating-a-new-file-on-github.gif)
+![Creating A New File On GitHub](../../.gitbook/assets/creating-a-new-file-on-github%20%282%29.gif)
 
 ## Editing An Existing File
 
-![Editing An Existing File On GitHub](../../.gitbook/assets/editing-an-existing-file-on-github.gif)
+![Editing An Existing File On GitHub](../../.gitbook/assets/editing-an-existing-file-on-github%20%281%29.gif)
 
 ## Committing An Edit
 

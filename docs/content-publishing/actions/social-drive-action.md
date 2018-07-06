@@ -4,7 +4,7 @@ The `SocialDriveAction` component renders a dashboard interface to share and tra
 
 Behind the scenes, this component will shorten and track the provided link using our in house [Bertly™](https://github.com/DoSomething/bertly) system.
 
-![Social Drive Action component](../../.gitbook/assets/social-drive-action-component.png)
+![Social Drive Action component](../../.gitbook/assets/social-drive-action-component%20%281%29.png)
 
 ## Usage Instructions
 

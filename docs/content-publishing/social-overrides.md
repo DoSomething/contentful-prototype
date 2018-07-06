@@ -8,12 +8,13 @@ If you don't customize the Facebook share, it will just default to the campaign 
 
 The two locations that a user can share from is the **Affirmation Component** \("Thanks for Joining" that pops up post-affiliation\) and in the **Dashboard** if the campaign contains a dashboard.
 
-1.  Open your campaign page in Contentful
-2.  Find the section that's called "SOCIAL OVERRIDES"
-3.  Click "Create new entry and link"
-4.  Click the pencil to edit
-5.  Fill in the fields with the information you want shown on the Facebook post!
+1. Open your campaign page in Contentful
+2. Find the section that's called "SOCIAL OVERRIDES"
+3. Click "Create new entry and link"
+4. Click the pencil to edit
+5. Fill in the fields with the information you want shown on the Facebook post!
 
 Here's a breakdown of what each of the fields on the edit page refers to on the Facebook share post. This is what the post looks like when it's shared on Facebook:
 
-![Social Overrides](../.gitbook/assets/social-override.png)
+![Social Overrides](../.gitbook/assets/social-override%20%282%29.png)
+
