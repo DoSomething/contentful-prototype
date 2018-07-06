@@ -1,6 +1,6 @@
 # Getting Started
 
-The documentation for Phoenix \(next\) is generated from the `/docs` directory in the Phoenix repository using [GitBook](https://www.gitbook.com/).
+The documentation for Phoenix is generated from the `/docs` directory in the Phoenix repository using [GitBook](https://www.gitbook.com/).
 
 You can contribute to editing this documentation either by editing the `/docs` files locally and submitting a pull request or by editing the files on [GitHub](https://github.com/) and using their interface to submit a pull request.
 

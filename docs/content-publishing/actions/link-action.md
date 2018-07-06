@@ -6,13 +6,13 @@ The `LinkAction` renders a visual component which features an embedded link rend
 
 If the Content field is left blank, the Link Action will render as an plain embedded link:
 
-![Link Action component](../../.gitbook/assets/link-action-component-plain-embed-1.png)
+![Link Action component](../../.gitbook/assets/link-action-component-plain-embed.png)
 
 ## Link Action Card
 
 If you fill in the Content field, instead of rendering an embedded link, the Link Action will be featured within a Card, and render a button \(the button text can be edited via the Button Text field\):
 
-![Link Action Card](../../.gitbook/assets/link-action-component-button-text%20%282%29.png)
+![Link Action Card](../../.gitbook/assets/link-action-component-button-text.png)
 
 ## Affiliate Logo
 

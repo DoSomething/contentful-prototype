@@ -2,7 +2,7 @@
 
 The `PhotoSubmissionAction` component renders a visual component which allows DoSomething.org members to upload a photo and provide some additional information regarding the photo they are submitting.
 
-![Photo Submission Action component](../../.gitbook/assets/photo-submission-action-component-1.png)
+![Photo Submission Action component](../../.gitbook/assets/photo-submission-action-component.png)
 
 The component can optionally show or hide the quantity field, which allows members to enter a quantity for campaigns that require collecting items \(e.g. jeans, cards, etc\).
 
