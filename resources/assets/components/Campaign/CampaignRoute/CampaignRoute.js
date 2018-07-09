@@ -57,29 +57,12 @@ const CampaignRoute = props => {
           />
 
           <Route
-            path={join(match.url, 'community')}
-            render={() => {
-              if (!hasCommunityPage) {
-                return <Redirect to={join(match.url, 'action')} />;
-              }
-
-              return <CampaignPageContainer isCommunity />;
-            }}
-          />
-
-          <Route
             path={join(match.url, 'blocks/:id')}
             component={BlockPageContainer}
           />
 
           <Route
             path={join(match.url, 'quiz/:slug')}
-            component={CampaignPageContainer}
-          />
-
-          {/* @deprecate: remove this Route specification with `/pages/:slug` */}
-          <Route
-            path={join(match.url, 'pages/:slug')}
             component={CampaignPageContainer}
           />
 

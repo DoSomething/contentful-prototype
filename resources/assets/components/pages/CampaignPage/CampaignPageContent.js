@@ -10,22 +10,14 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import { CallToActionContainer } from '../../CallToAction';
 
 const CampaignPageContent = props => {
-  const {
-    campaignEndDate,
-    isCommunity,
-    match,
-    noun,
-    pages,
-    tagline,
-    verb,
-  } = props;
-
-  const pageSlug = isCommunity ? 'community' : match.params.slug;
+  const { campaignEndDate, match, pages } = props;
 
   const subPage = find(
     pages,
     page =>
-      page.type === 'page' ? page.fields.slug.endsWith(pageSlug) : false,
+      page.type === 'page'
+        ? page.fields.slug.endsWith(match.params.slug)
+        : false,
   );
 
   if (!subPage) {
@@ -34,46 +26,27 @@ const CampaignPageContent = props => {
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
-  const ctaContent = `${tagline} Join hundreds of members and ${verb.plural} ${
-    noun.plural
-  }!`;
-
-  if (isCommunity) {
-    return (
-      <div className="clearfix padded campaign-page" id={subPage.id}>
-        <div>
-          <ScrollConcierge />
-          {subPage.fields.blocks.map(block => (
-            <div className="margin-vertical" key={block.id}>
-              <ContentfulEntry json={block} />
-            </div>
-          ))}
-        </div>
+  const renderBlocks = blocks =>
+    blocks.map(block => (
+      <div className="margin-vertical" key={block.id}>
+        <ContentfulEntry json={block} />
       </div>
-    );
-  }
+    ));
+
+  const { content, sidebar, blocks } = subPage.fields;
 
   return (
     <div className="clearfix padded campaign-page" id={subPage.id}>
-      <div className="primary">
-        <ScrollConcierge />
-        <article className="padded bordered rounded bg-white">
-          <h2 className="visually-hidden">{subPage.fields.title}</h2>
-
-          {subPage.fields.content ? (
-            <Markdown>{subPage.fields.content}</Markdown>
-          ) : null}
-        </article>
-      </div>
-
-      {isClosed ? null : (
-        <div className="secondary">
-          <CallToActionContainer
-            content={ctaContent}
-            useCampaignTagline
-            visualStyle="dark"
-          />
+      <ScrollConcierge />
+      {content ? (
+        <div className="row">
+          <div className="primary">
+            <Markdown>{content}</Markdown>
+          </div>
+          <div className="secondary">{renderBlocks(sidebar)}</div>
         </div>
+      ) : (
+        renderBlocks(blocks)
       )}
 
       {isClosed ? null : (
@@ -85,43 +58,24 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
-  isCommunity: PropTypes.bool,
   match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  noun: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
         title: PropTypes.string,
         slug: PropTypes.string,
         content: PropTypes.string,
+        blocks: PropTypes.arrayOf(PropTypes.object),
       }),
     }),
   ),
-  tagline: PropTypes.string,
-  verb: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
 };
 
 CampaignPageContent.defaultProps = {
   campaignEndDate: null,
-  isCommunity: false,
   pages: [],
   match: {
     params: {},
-  },
-  noun: {
-    singular: 'action',
-    plural: 'action',
-  },
-  tagline: 'Ready to start?',
-  verb: {
-    singular: 'take',
-    plural: 'take',
   },
 };
 
