@@ -32,4 +32,4 @@ Once completed, speak with Ashley to setup a redirect to the slug of this page. 
 
 Example general content page without the use of the **Content** field:
 
-![General Content Page](../_assets/general-content-page.png)
+![General Content Page](../../.gitbook/assets/general-content-page.png)
