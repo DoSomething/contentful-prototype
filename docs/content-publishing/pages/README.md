@@ -6,7 +6,7 @@ The philosophy behind Pages is that they exist as an amalgamation of rows of blo
 
 The following sections provide information on setting up a variety of page types.
 
-* [General Content Page](page-creation.md)
+* [General Content Page](general-content-page.md)
 * [Campaign Page](campaign-page.md)
 * [Campaign Page Modals](campaign-page-modals.md)
 
