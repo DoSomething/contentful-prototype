@@ -17,6 +17,8 @@
 
 4\) Hit Back.
 
-5\) Cover Image should be uploaded in that area for the field. ![Header image](../../.gitbook/assets/cover-image-field.png)
+5\) Cover Image should be uploaded in that area for the field.
+
+![Header image](../../.gitbook/assets/cover-image-field.png)
 
 _Publish_ changes for the Campaign, the lede banner will show up on your campaign page!

@@ -14,7 +14,7 @@ The Share Action consists of three fields:
 * **link \(required\)**: a valid URL which will be embedded within the card, and used as the URL for the social share button.
 * To add a second action after the social share, instead of using the affirmation block, you can add in an affirmation action.
 
-  ![Social Share Second Action](../../.gitbook/assets/affirmation-socialshare.png)
+  ![Social Share Second Action](../../.gitbook/assets/affirmation-social-share.png)
 
 ## Share Action for SMS Flow
 
@@ -22,7 +22,7 @@ To create a share action for SMS, each of the steps above are the same, but it i
 
 ![Pages](../../.gitbook/assets/pages.png)
 
-![Social Share](../../.gitbook/assets/socialshare.png)
+![Social Share](../../.gitbook/assets/social-share.png)
 
 To be able to grab the URL for SMS, clock the _preview_ button on the right hand side, underneath publish. This will show you the share on _phoenix-preview_ you need to change the url to unclude www before sending it out.
 

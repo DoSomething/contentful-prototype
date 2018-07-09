@@ -63,8 +63,9 @@
   * [Community Update](content-publishing/community/community-update.md)
   * [Feed Order](content-publishing/community/feed-order.md)
 * [Pages](content-publishing/pages/README.md)
-  * [Page Creation](content-publishing/pages/page-creation.md)
-  * [Making Pages Modals](content-publishing/pages/making-pages-modals.md)
+  * [General Content Page](content-publishing/pages/general-content-page.md)
+  * [Campaign Page](content-publishing/pages/campaign-page.md)
+  * [Campaign Page Modals](content-publishing/pages/campaign-page-modals.md)
 
 ## Contributing Instructions
 
