@@ -19,6 +19,6 @@ To create pages for a campaign use the following steps:
 
 6\) Add any desired blocks to the **Blocks** field, to expand on the content shown on the page beyond what is in the **Content** field.
 
-Example FAQ page for a campaign:
+Example FAQ page for a campaign, utilizing the **Content** and **Sidebar** fields:
 
 ![CampaignPage](../../.gitbook/assets/campaign-page.png)
