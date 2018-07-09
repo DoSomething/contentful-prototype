@@ -13,7 +13,7 @@ To create a independent, general content page use the following steps:
 * **Subtitle**: this is the displayed subtitle for the page.
 * **Slug**: this is the slug for the page; this field affects the URL address of this content on site, so a slug of `voting-is-cool` would be reached through `www.dosomething.org/us/voting-is-cool`.
 
-3\) The **Content** field is optional but should ideally be used for any initial content on the page. If additional blocks are added (with images or other components) they can be added in the **Block** section and will immediately follow the content in the **Content** field.
+3\) The **Content** field is optional but should ideally be used for any initial content on the page. If additional blocks are added (with images or other components) they can be added in the **Blocks** section and will immediately follow the content in the **Content** field.
 
 4\) The **Sidebar** field is optional and will add sidebar related content to the right of the information in the **Content** field, but only _if_ content was added to the **Content** field. If the **Content** field is left empty, then the **Sidebar** content will not be output on the page.
 
