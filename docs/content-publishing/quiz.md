@@ -38,35 +38,47 @@ In our fine example, this might mean us attaching a Link Action to the Result Bl
 
 Now that we've got our results and result blocks all listed out, it's time to hit the drawing board and start chalking up some Quiz Questions!
 
-### The Question Quest
+### Adding A Question
 
-Head on over to the **Questions** field and let's fill out the first question together. Hit "Add Question" and gleefully add your question to the **Title** field. For our wonderful example, the question will be "What is your drink of choice?".
+Head on over to the **Questions** field and let's fill out the first question together. Hit **Add Question** and gleefully add your question to the **Title** field. For our wonderful example, the question will be "What is your drink of choice?".
 
-### Choice And Free Will
+![Quiz Questions Field](../.gitbook/assets/quiz-questions-field.png)
 
-Now we can start adding "Choices" to our question. This part is critical, so let's do this properly: First we add the choice content to the **Title**. We're adding "Lemonade." Simple. Here's the tricky part -- we now need to add all the IDs of the results we'd like this choice to influence (Remember the ole Result IDs we mentioned earlier??) So for our example, as you may have astutely assumed, we want this selected choice to influence the "Lemonade" album result. We'll pretend we have that in Result ID B and add `B` to the list of Results. Since we want this to display in that ole Link Action result block, we'll also add the entry ID of the result block -- which can be obtained via the info section of the result block entry page:
+### Adding Available Choices For Question
+
+Now we can start adding "Choices" to our question. This part is critical, so let's do this properly:
+
+1\) First we add the choice content to the **Title**. We're adding "Lemonade." Simple.
+
+2\) Here's the tricky part -- we now need to add all the IDs of the results we'd like this choice to influence (Remember the ole Result IDs we mentioned earlier??) So for our example, as you may have astutely assumed, we want this selected choice to influence the "Lemonade" album result. We'll pretend we have that in Result ID B and add `B` to the list of Results.
+
+3\) Since we want this to display in that ole Link Action result block, we'll also add the entry ID of the result block -- which can be obtained via the info section of the result block entry page:
 
 ![Quiz Result Block Entry ID](../.gitbook/assets/quiz-result-block-entry-id.png)
 
 Here's how Question 1 is looking for us so far:
 
-![Quiz Question](../.gitbook/assets/quiz-question-example.png)
+![Quiz Question](../.gitbook/assets/quiz-question-example-info.png)
 
-### A Moment Please
+### Calculating The Winning Result
 
 Let's take a moment and quickly lay out how the quiz results get calculated:
 
-So we have a list of Results, and optionally -- Result Blocks. Each starts off with 0 points (sad!). Every time the user makes a selection (by selecting a Choice for a Question), we add a point to each Result whos ID is listed in that choices Result IDs. So in our example, by selecting Choice 1 -- "Lemonade," we'd be adding a point to "Result B" (which was the Lemonade album quite coincidentally).
+So we have a list of Results, and optionally -- Result Blocks. Each starts off with 0 points (sad!). Every time the user makes a selection (by selecting a Choice for a Question), we add a point to each Result whos ID is listed in that choices Result IDs.
+
+So in our example, by selecting Choice 1 -- "Lemonade," we'd be adding a point to "Result B" (which was the Lemonade album quite coincidentally).
 
 The same goes for Result Blocks -- selecting a specific choice, adds a point to the Result Block with the Entry ID of the one listed in the Choice.
 
-Once the quiz is completed, we tally for the Result - and if applicable Result Block - with the most points, and append the winning Result Content to the Content field of the winning Result Block, and display it to the user! If there is no Result Block added (It's optional), then we just display the winning result content in a share block like this:
+Once the quiz is completed, we tally for the Result - and if applicable Result Block - with the most points, and append the winning Result Content to the Content field of the winning Result Block, and display it to the user! If there is no Result Block added (it's optional), then we just display the winning result content in a share block like this:
 
-![Quiz Result](../.gitbook/assets/quiz-result-example-2.png)
+![Quiz Result](../.gitbook/assets/quiz-result-example-share-result.png)
 
-_In case of a tie we favor the first result or result block on the list_
+{% hint style="info" %}
+In case of a tie we favor the first result or result block on the list
+{% endhit %}
 
-### Fill 'em Out
+### Finishing Up
 
 You can now fill out the rest of your questions and choices. You can make this as complex as you want to, though we recommend keeping it dead simple. Sometimes we've found that we only needed _one_ of the questions/choices to influence the quiz result, with the rest of the questions merely colorful adornments to ensure a fun experience!
 
@@ -74,25 +86,25 @@ You can now fill out the rest of your questions and choices. You can make this a
 
 The Quiz consists of the following fields:
 
-* **internalTitle** _(required)_: the title used internally to find this component in Contentful; please follow helper text displayed under the field for suggested naming convention.
-* **title** _(optional)_: the title that will show up atop the Quiz.
-* **slug** _(required)_: the slug for the quiz. This should be a hyphenated address, e.g., `beyonce-quiz`. This is the address through which the quiz will be reached, e.g. `https://dosomething.org/us/campaigns/example-campaign/quiz/beyonce-quiz`.
-* **autoSubmitQuiz** _(required)_: if set to _Yes_, the quiz will auto submit when all questions are completed. If set to _No_, there will be a submission button, _and the quiz result will be gated (only accessible post authentication), and completion will result in campaign signup for the user_
-* **hideQuestionNumber** _(optional)_: toggle to show the question number atop the questions (e.g., Question One)
-* **results** _(required)_: the list of results for the quiz.
-  * **content** _(required)_: The content field for the results
-* **resultBlocks** _(optional)_: the entries within which the results will be returned.
-* **questions** _(required)_: the questions for the quiz.
-  * **title** _(required)_: the question title.
-  * **choices** _(required)_: the available choices for the question.
-    * **title** _(required)_: the title for the choice.
-    * **results** _(optional)_: the list of result IDs to be influenced by the choice.
-      * **resultId** _(required)_: the ID of the result to be influenced. (You can find the ID next to the desired result in the Quiz **Results** field).
-    * **resultBlockId** _(optional)_: the Entry ID of the Result Block to be influenced.
-    * **backgroundImage** _(optional)_: the asset URL of the background image for this choice. _this must be a valid Contentful image URL (you can find this on the asset in Contentful) it should start with `https://images.ctfassets.net...`_
-* **additionalContent** _(required)_: used to specify additional options in JSON format.
-  * **callToAction** _(required)_: the text to be displayed next to the quiz submission button. _this is required for non-auto submitted quizzes_.
-  * **introduction** _(optional)_: intro text for the quiz, displayed under the quiz title.
+* **internalTitle** _\(required\)_: the title used internally to find this component in Contentful; please follow helper text displayed under the field for suggested naming convention.
+* **title** _\(optional\)_: the title that will show up atop the Quiz.
+* **slug** _\(required\)_: the slug for the quiz. This should be a hyphenated address, e.g., `beyonce-quiz`. This is the address through which the quiz will be reached, e.g. `https://dosomething.org/us/campaigns/example-campaign/quiz/beyonce-quiz`.
+* **autoSubmitQuiz** _\(required\)_: if set to _Yes_, the quiz will auto submit when all questions are completed. If set to _No_, there will be a submission button, _and the quiz result will be gated (only accessible post authentication), and completion will result in campaign signup for the user_
+* **hideQuestionNumber** _\(optional\)_: toggle to show the question number atop the questions (e.g., Question One)
+* **results** _\(required\)_: the list of results for the quiz.
+  * **content** _\(required\)_: The content field for the results
+* **resultBlocks** _\(optional\)_: the entries within which the results will be returned.
+* **questions** _\(required\)_: the questions for the quiz.
+  * **title** _\(required\)_: the question title.
+  * **choices** _\(required\)_: the available choices for the question.
+    * **title** _\(required\)_: the title for the choice.
+    * **results** _\(optional\)_: the list of result IDs to be influenced by the choice.
+      * **resultId** _\(required\)_: the ID of the result to be influenced. (You can find the ID next to the desired result in the Quiz **Results** field).
+    * **resultBlockId** _\(optional\)_: the Entry ID of the Result Block to be influenced.
+    * **backgroundImage** _\(optional\)_: the asset URL of the background image for this choice. _this must be a valid Contentful image URL (you can find this on the asset in Contentful) it should start with `https://images.ctfassets.net...`_
+* **additionalContent** _\(required\)_: used to specify additional options in JSON format.
+  * **callToAction** _\(required\)_: the text to be displayed next to the quiz submission button. _this is required for non-auto submitted quizzes_.
+  * **introduction** _\(optional\)_: intro text for the quiz, displayed under the quiz title.
 
 ## Coming Soon
 
