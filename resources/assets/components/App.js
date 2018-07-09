@@ -10,7 +10,7 @@ import { env } from '../helpers';
 import graphqlClient from '../graphql';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import { initializeStore } from '../store/store';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
+// import ProfilePage from './pages/ProfilePage/ProfilePage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
 import AccountQueryContainer from './AccountQueryContainer';
