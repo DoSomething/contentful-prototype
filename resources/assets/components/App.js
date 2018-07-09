@@ -8,7 +8,7 @@ import { PuckProvider } from '@dosomething/puck-client';
 
 import { env } from '../helpers';
 import graphqlClient from '../graphql';
-import { getUserId } from '../selectors/user';
+import { getUserId, isAuthenticated } from '../selectors/user';
 import { initializeStore } from '../store/store';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import CampaignContainer from './Campaign/CampaignContainer';
@@ -17,11 +17,14 @@ import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
 const App = ({ store, history }) => {
   initializeStore(store);
 
+  const state = store.getState();
+
   return (
     <Provider store={store}>
       <PuckProvider
         source="phoenix-next"
-        getUser={() => getUserId(store.getState())}
+        getUser={() => getUserId(state)}
+        isAuthenticated={() => isAuthenticated(state)}
         history={history}
         puckUrl={env('PUCK_URL')}
       >

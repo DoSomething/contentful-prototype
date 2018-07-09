@@ -30,6 +30,7 @@ export function analyzeWithPuck(name, data) {
   const Puck = new PuckClient({
     source: 'phoenix-next',
     getUser: () => window.AUTH.id,
+    isAuthenticated: () => window.AUTH.isAuthenticated,
     puckUrl: PUCK_URL,
     history: getHistory(),
   });
