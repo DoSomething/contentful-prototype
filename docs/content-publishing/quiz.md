@@ -75,8 +75,8 @@ Once the quiz is completed, we tally for the Result - and if applicable Result B
 ![Quiz Result](../.gitbook/assets/quiz-result-example-share-result.png)
 
 {% hint style="info" %}
-In case of a tie we favor the first result or result block on the list
-{% endhit %}
+In case of a tie we favor the first result or result block on the list.
+{% endhint %}
 
 ### Finishing Up
 
