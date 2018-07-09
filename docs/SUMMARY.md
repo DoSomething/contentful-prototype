@@ -66,6 +66,7 @@
   * [General Content Page](content-publishing/pages/general-content-page.md)
   * [Campaign Page](content-publishing/pages/campaign-page.md)
   * [Campaign Page Modals](content-publishing/pages/campaign-page-modals.md)
+* [Quiz](content-publishing/quiz.md)
 
 ## Contributing Instructions
 
