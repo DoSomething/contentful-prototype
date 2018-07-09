@@ -2,9 +2,7 @@
 
 The **Quiz** component is a results-based quiz inspired by the _BuzzFeed_ personality quiz format. We use the Quiz to promote campaigns, drive traffic, and engage our members around issues that matter. It's somewhat involved to build correctly, but we'll attempt to keep it as simple and clear as we can. So, as the youths say: let's get quizzin'!
 
-## Getting Started
-
-### Results are the Major Key!
+## Quiz Results
 
 The first thing you'll want to do is assemble a list of quiz results. This step is super important, and is the crux of the entire quiz! To get started with this, you may want to ask yourself:
 
@@ -20,13 +18,19 @@ But first, let's quickly chat about the difference between the **Results** and *
 
 The **Results** field is the core result content that you want to display to the user once they've completed the quiz (i.e., filled out all the quiz questions). A piece of result content might be: "Your Beyoncé album is: I Am...Sasha Fierce" for the old school fan. We'd add _all_ the potential results -- namely the full list of the Bey's albums -- each to a new Result item in the **Results** field.
 
+![Quiz Results Field](../.gitbook/assets/quiz-results-field.png)
+
 {% hint style="info" %}
 You may notice that we auto-append a Result ID (A, B, C...) to each result you add. This is no accident, and we'll discuss it's importance later on.
 {% endhint %}
 
 ### Result Blocks
 
-Result Blocks are any content type within which you want to present the users result content. This could be a [Link Action](actions/link-action.md), [Share Action](actions/share-action.md), you name it! Simply add the desired entries to the **Result Block** field to have them available for the quiz. In our fine example, this might mean us attaching a Link Action to the Result Block field. We might fill in the Link Action **Content** field with "Check out your album and jam like it's the Superbowl halftime show again!". Now, whichever result is the winner will be appended to the beginning of the Link Action Content. So in our example, this could turn out as:
+Result Blocks are any content type within which you want to present the users result content. This could be a [Link Action](actions/link-action.md), [Share Action](actions/share-action.md), you name it! Simply add the desired entries to the **Result Block** field to have them available for the quiz.
+
+![Quiz Result Blocks Field](../.gitbook/assets/quiz-result-blocks-field.png)
+
+In our fine example, this might mean us attaching a Link Action to the Result Block field. We might fill in the Link Action **Content** field with "Check out your album and jam like it's the Superbowl halftime show again!". Now, whichever result is the winner will be appended to the beginning of the Link Action Content. So in our example, this could turn out as:
 
 ![Quiz Result](../.gitbook/assets/quiz-result.png)
 
