@@ -1,3 +1,7 @@
+---
+description: API v1 endpoints documentation.
+---
+
 # API v1
 
 {% hint style="warning" %}
