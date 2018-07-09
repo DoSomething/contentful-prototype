@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from '../../utilities/Button/Button';
-import AccountQuery from '../../AccountQuery';
+// import AccountQuery from '../../AccountQuery';
 
 const Account = props => (
   <div>
@@ -14,7 +14,7 @@ const Account = props => (
     <div className="margin-top-lg">
       <h5>Birthday</h5>
       <div className="margin-top-md">
-        <p> June 2 </p>
+        <p> {props.user.birthdate} </p>
       </div>
     </div>
     <div className="margin-top-lg">
@@ -26,7 +26,7 @@ const Account = props => (
     <div className="margin-top-lg">
       <h5>Email</h5>
       <div className="margin-top-md">
-        <p>test@gmail.com</p>
+        <p>{props.user.email}</p>
       </div>
     </div>
     <div className="margin-top-lg">
@@ -37,13 +37,13 @@ const Account = props => (
     </div>
     <div className="margin-top-lg">
       <a
-        href="https://profile.dosomething.org"
+        href="https://identity-qa.dosomething.org"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Button className="button" type="button">
+        <button className="button" type="button">
           Edit Profile
-        </Button>
+        </button>
       </a>
     </div>
   </div>

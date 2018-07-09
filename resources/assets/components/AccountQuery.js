@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import ProfileNavigation from './pages/ProfileNavigation/ProfileNavigation';
+import ProfileNavigation from './pages/ProfilePage/ProfileNavigation';
 // import ProfilePage from './pages/ProfilePage/ProfilePage';
 // import ErrorBlock from './ErrorBlock/ErrorBlock';
 // import { NetworkStatus } from '../constants';
@@ -13,6 +13,8 @@ const ACCOUNT_QUERY = gql`
       firstName
       lastName
       mobile
+      birthdate
+      email
     }
   }
 `;
@@ -20,15 +22,19 @@ const ACCOUNT_QUERY = gql`
 const AccountQuery = ({ userId }) => (
   <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
     {({ loading, error, data }) => {
+      console.log(data);
       if (loading) return 'Loading...';
       if (error) return `Error! ${error.message}`;
 
       return (
         <div>
           <ProfileNavigation {...data} />
+
           <h1> {data.user.firstName}</h1>
           <h1> {data.user.lastName}</h1>
           <h2> {data.user.mobile} </h2>
+          <h2> {data.user.birthdate} </h2>
+          <h2> {data.user.email} </h2>
         </div>
       );
     }}

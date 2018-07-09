@@ -51,7 +51,7 @@ class ProfileNavigation extends React.Component {
   render() {
     let thing;
     if (this.state.accountActive) {
-      thing = <Account {...props} />;
+      thing = <Account {...this.props} />;
     } else {
       thing = <TestCampaign />;
     }
