@@ -18,3 +18,7 @@ To create pages for a campaign use the following steps:
 5\) The **Sidebar** field is optional and will add sidebar related content to the right of the information in the **Content** field, but only _if_ content was added to the **Content** field. If the **Content** field is left empty, then the **Sidebar** content will not be output on the page.
 
 6\) Add any desired blocks to the **Blocks** field, to expand on the content shown on the page beyond what is in the **Content** field.
+
+Example FAQ page for a campaign:
+
+![CampaignPage](../../.gitbook/assets/campaign-page.png)
