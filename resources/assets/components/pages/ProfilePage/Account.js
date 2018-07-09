@@ -37,7 +37,7 @@ const Account = props => (
     </div>
     <div className="margin-top-lg">
       <a
-        href="https://identity-qa.dosomething.org"
+        href="https://identity-qa.dosomething.org" //profile.dosomething.org for prod
         target="_blank"
         rel="noopener noreferrer"
       >
