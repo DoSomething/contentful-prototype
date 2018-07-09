@@ -32,6 +32,7 @@ export function analyzeWithPuck(name, data) {
     getUser: () => window.AUTH.id,
     puckUrl: PUCK_URL,
     history: getHistory(),
+    isAuthenticated: () => window.AUTH.isAuthenticated,
   });
 
   Puck.trackEvent(name, data);
