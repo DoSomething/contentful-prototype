@@ -12,13 +12,13 @@ If the Content field is left blank, the Link Action will render as an plain embe
 
 If you fill in the Content field, instead of rendering an embedded link, the Link Action will be featured within a Card, and render a button \(the button text can be edited via the Button Text field\):
 
-![Link Action Card](../../.gitbook/assets/link-action-component-button-text%20%283%29.png)
+![Link Action Card](../../.gitbook/assets/link-action-component-button-text.png)
 
 ## Affiliate Logo
 
 If you add an affiliate logo via the Affiliate Logo field, the Link Action will feature the logo, and will change the background color of the card title to purple:
 
-![Affiliate Link Action component](../../.gitbook/assets/link-action-affiliate-logo%20%282%29.png)
+![Affiliate Link Action component](../../.gitbook/assets/link-action-affiliate-logo.png)
 
 ## Link Action = Call Action!
 
@@ -32,7 +32,7 @@ Be sure to add some Content via the `content` field if you're linking to a telep
 
 You can have the Link Action render as a Call To Action-like component by selecting the `cta` value in the Template field.
 
-![CTA Link Action component](../../.gitbook/assets/link-action-cta%20%281%29.png)
+![CTA Link Action component](../../.gitbook/assets/link-action-cta.png)
 
 ## Usage Instructions
 

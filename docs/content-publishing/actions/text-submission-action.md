@@ -2,7 +2,7 @@
 
 The `TextSubmissionAction` component renders a visual component which allows DoSomething.org members to submit a message indicating how they take action in a particular campaign.
 
-![Text Submission Action](../../.gitbook/assets/text-submission-action-component%20%282%29.png)
+![Text Submission Action](../../.gitbook/assets/text-submission-action-component.png)
 
 ## Usage Instructions
 

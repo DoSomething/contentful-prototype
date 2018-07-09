@@ -10,7 +10,7 @@ The `CampaignUpdate` component renders a visual component which can feature camp
 
 The Campaign Update can also be equipped with an affiliate logo. If this field is set, the campaign update will render in 'Affiliate' mode, highlighting the Campaign Update with purple coloring in the title, as well as replacing the author Byline with a promotion for the affiliate, featuring the provided logo.
 
-![Campaign Update Affiliate component](../../../.gitbook/assets/campaign-update-affiliate-component%20%281%29.png)
+![Campaign Update Affiliate component](../../../.gitbook/assets/campaign-update-affiliate-component.png)
 
 ## Usage Instructions
 
