@@ -20,7 +20,7 @@ But first, let's quickly chat about the difference between the **Results** and *
 
 The **Results** field is the core result content that you want to display to the user once they've completed the quiz (i.e., filled out all the quiz questions). A piece of result content might be: "Your Beyoncé album is: I Am...Sasha Fierce" for the old school fan. We'd add _all_ the potential results -- namely the full list of the Bey's albums -- each to a new Result item in the **Results** field.
 
-{% hint style="info"}
+{% hint style="info" %}
 You may notice that we auto-append a Result ID (A, B, C...) to each result you add. This is no accident, and we'll discuss it's importance later on.
 {% endhint %}
 
