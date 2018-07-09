@@ -4,8 +4,6 @@ The **Community Feed** provides a place where campaign leads can provide updates
 
 **Notice:** Historically, the Community Feed was updated via the 'Activity Feed' field on Campaigns in Contentful. This has been changed to simply creating/updating a standalone 'community' [page](../pages/) on a campaign.
 
-* [Campaign Update](campaign-update/affiliate-update.md)
-  * [Affiliate Update](campaign-update/affiliate-update.md#affiliate-update)
+* [Campaign Update](campaign-update.md)
 * [Community Update](community-update.md)
 * [Feed Order](feed-order.md)
-
