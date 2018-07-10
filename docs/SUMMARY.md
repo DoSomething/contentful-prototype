@@ -70,9 +70,5 @@
 
 ## Contributing Instructions
 
-* [Getting Started](contributing-instructions/getting-started.md)
-* [Edit This Documentation](contributing-instructions/edit-this-documentation/README.md)
-  * [Editing Docs Locally](contributing-instructions/edit-this-documentation/editing-docs-locally.md)
-  * [Editing Docs On GitHub](contributing-instructions/edit-this-documentation/editing-docs-on-github.md)
+* [Edit This Documentation](contributing-instructions/edit-this-documentation.md)
 * [Glossary](contributing-instructions/glossary.md)
-
