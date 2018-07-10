@@ -57,8 +57,6 @@ const ActionSteps = props => {
     template,
   } = props;
 
-  const stepIndex = 0;
-
   const stepComponents = actionSteps.map(json => {
     const type = parseContentfulType(json);
 
@@ -66,16 +64,7 @@ const ActionSteps = props => {
     // @TODO: These should be split out into separate "content" blocks.
     let prefixComponent = null;
     if (['voterRegistrationAction'].includes(type)) {
-      const title = get(json, 'fields.title', '');
-
-      // @HACK: We have some blank titles " "... just hide those.
-      prefixComponent = title.trim().length ? (
-        <SectionHeader
-          title={title}
-          hideStepNumber={get(json, 'fields.hideStepNumber', true)}
-          step={stepIndex}
-        />
-      ) : null;
+      prefixComponent = <SectionHeader title={get(json, 'fields.title', '')} />;
     }
 
     let columnWidth = 'two-thirds';
@@ -92,7 +81,7 @@ const ActionSteps = props => {
       <Flex id={`step-${json.id}`} key={json.id}>
         {prefixComponent}
         <FlexCell width={columnWidth}>
-          <ContentfulEntry json={json} stepIndex={stepIndex} />
+          <ContentfulEntry json={json} />
         </FlexCell>
       </Flex>
     );
