@@ -1,10 +1,9 @@
 import React from 'react';
-
-import Button from '../../utilities/Button/Button';
-// import AccountQuery from '../../AccountQuery';
+import PropTypes from 'prop-types';
 
 const Account = props => (
   <div>
+    <h1> Your Account </h1>
     <div className="margin-top-lg">
       <h5>Name</h5>
       <div className="margin-top-md">
@@ -37,7 +36,7 @@ const Account = props => (
     </div>
     <div className="margin-top-lg">
       <a
-        href="https://identity-qa.dosomething.org" //profile.dosomething.org for prod
+        href="https://identity-qa.dosomething.org" // profile.dosomething.org for prod, should there be a redirect once profile is edited?
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -50,3 +49,16 @@ const Account = props => (
 );
 
 export default Account;
+
+Account.propTypes = {
+  user: {
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    mobile: PropTypes.string,
+  },
+};
+
+Account.defaultProps = {
+  user: PropTypes.object,
+};

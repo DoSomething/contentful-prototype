@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
-import AccountQuery from './AccountQuery';
+import ProfilePage from './ProfilePage';
 
 const mapStateToProps = state => ({
   userId: String(state.user.id),
 });
 
-export default connect(mapStateToProps)(AccountQuery);
+export default connect(mapStateToProps)(ProfilePage);
