@@ -1,10 +1,8 @@
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Revealer from '../../Revealer';
 import { Flex, FlexCell } from '../../Flex';
-import SectionHeader from '../../SectionHeader';
 import ContentfulEntry from '../../ContentfulEntry';
 import { parseContentfulType } from '../../../helpers';
 import { PostGalleryContainer } from '../../Gallery/PostGallery';
@@ -57,26 +55,8 @@ const ActionSteps = props => {
     template,
   } = props;
 
-  const stepIndex = 0;
-
   const stepComponents = actionSteps.map(json => {
     const type = parseContentfulType(json);
-
-    // Some components have built-in section headers. For those, append it.
-    // @TODO: These should be split out into separate "content" blocks.
-    let prefixComponent = null;
-    if (['voterRegistrationAction'].includes(type)) {
-      const title = get(json, 'fields.title', '');
-
-      // @HACK: We have some blank titles " "... just hide those.
-      prefixComponent = title.trim().length ? (
-        <SectionHeader
-          title={title}
-          hideStepNumber={get(json, 'fields.hideStepNumber', true)}
-          step={stepIndex}
-        />
-      ) : null;
-    }
 
     let columnWidth = 'two-thirds';
     if (['photoSubmissionAction', 'gallery', 'imagesBlock'].includes(type)) {
@@ -90,9 +70,8 @@ const ActionSteps = props => {
 
     return (
       <Flex id={`step-${json.id}`} key={json.id}>
-        {prefixComponent}
         <FlexCell width={columnWidth}>
-          <ContentfulEntry json={json} stepIndex={stepIndex} />
+          <ContentfulEntry json={json} />
         </FlexCell>
       </Flex>
     );

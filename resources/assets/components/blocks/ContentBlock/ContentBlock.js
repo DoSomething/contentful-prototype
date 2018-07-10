@@ -16,7 +16,7 @@ const ContentBlock = props => {
     <div className="content-block">
       {title ? (
         <div className="margin-horizontal-md">
-          <SectionHeader preTitle={superTitle} title={title} hideStepNumber />
+          <SectionHeader preTitle={superTitle} title={title} />
         </div>
       ) : null}
 

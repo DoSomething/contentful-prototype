@@ -17,7 +17,7 @@ import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionActi
  *
  * @return {Component}
  */
-export function renderVoterRegistrationAction(step, stepIndex) {
+export function renderVoterRegistrationAction(step) {
   const { title, content, link } = step.fields;
   const key = `voter-registration-action-${step.id}`;
 
@@ -29,7 +29,6 @@ export function renderVoterRegistrationAction(step, stepIndex) {
         content={content}
         title={title}
         link={link}
-        stepIndex={stepIndex}
       />
       <PuckWaypoint name="voter_registration_action-bottom" />
     </div>

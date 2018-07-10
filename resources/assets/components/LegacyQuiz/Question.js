@@ -13,7 +13,7 @@ const Question = props => {
 
   return (
     <div className="question">
-      <SectionHeader title={title} hideStepNumber />
+      <SectionHeader title={title} />
       <div className="question__choices">
         {answers.map(answer => (
           <Answer
