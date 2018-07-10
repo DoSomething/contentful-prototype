@@ -31,33 +31,37 @@ class AccountNavigation extends React.Component {
 
     return (
       <div>
-        <div>
+        <div className="container bg-white">
           <div className="wrapper">
-            <h1> Welcome, {this.props.user.firstName}!</h1>
-            <div id="page-navigation" className="page-navigation bg-white">
-              <div className="nav-items">
-                <NavLink
-                  className="nav-link"
-                  activeClassName="is-active"
-                  to="/us/profile/campaigns"
-                  onClick={this.handleCampaignClick}
-                >
-                  Campaigns
-                </NavLink>
-                <NavLink
-                  className="nav-link"
-                  activeClassName="is-active"
-                  to="/us/profile/account"
-                  onClick={this.handleAccountClick}
-                >
-                  Account
-                </NavLink>
+            <div class="margin-bottom-lg">
+              <h1> Welcome, {this.props.user.firstName}!</h1>
+              <div id="page-navigation" className="page-navigation bg-white">
+                <div className="nav-items">
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="is-active"
+                    to="/us/profile/campaigns"
+                    onClick={this.handleCampaignClick}
+                  >
+                    Campaigns
+                  </NavLink>
+                  <NavLink
+                    className="nav-link"
+                    activeClassName="is-active"
+                    to="/us/profile/account"
+                    onClick={this.handleAccountClick}
+                  >
+                    Account
+                  </NavLink>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="">
-          <Enclosure className="padding-top-lg">{component}</Enclosure>
+        <div className="container bg-gray margin-top-lg">
+          <div className="wrapper bg-gray">
+            <Enclosure className="">{component}</Enclosure>
+          </div>
         </div>
       </div>
     );
