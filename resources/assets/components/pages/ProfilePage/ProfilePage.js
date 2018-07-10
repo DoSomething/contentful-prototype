@@ -4,7 +4,7 @@ import AccountQuery from './AccountQuery';
 import Enclosure from '../../Enclosure';
 
 const ProfilePage = props => (
-  <Enclosure className="container bg-white padding-top-lg">
+  <Enclosure className="container">
     <AccountQuery {...props} />
   </Enclosure>
 );

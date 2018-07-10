@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Account = props => (
-  <div className="bg-light-gray padding-bottom-lg">
+  <div className="bg-gray padding-bottom-lg wrapper">
     <h2> Your Account </h2>
     <div className="margin-top-lg">
       <h5>Name</h5>
