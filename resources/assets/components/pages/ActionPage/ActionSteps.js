@@ -57,7 +57,7 @@ const ActionSteps = props => {
     template,
   } = props;
 
-  let stepIndex = 0;
+  const stepIndex = 0;
 
   const stepComponents = actionSteps.map(json => {
     const type = parseContentfulType(json);
