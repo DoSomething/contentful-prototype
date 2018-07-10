@@ -1,15 +1,12 @@
 import React from 'react';
 
+import AccountQuery from './AccountQuery';
 import Enclosure from '../../Enclosure';
-import ProfileNavigation from './ProfileNavigation';
 
 const ProfilePage = props => (
-  <div className="main clearfix">
-    <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-      <h1>Hey, it&apos;s your profile!</h1>
-      <ProfileNavigation {...props} />
-    </Enclosure>
-  </div>
+  <Enclosure className="">
+    <AccountQuery {...props} />
+  </Enclosure>
 );
 
 export default ProfilePage;
