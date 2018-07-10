@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { convertNumberToWord } from '../../helpers';
 import './section-header.scss';
 
 // @TODO: change preTitle prop to superTitle.
