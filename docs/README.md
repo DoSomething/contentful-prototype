@@ -24,7 +24,10 @@ Please refer to the following sections for information on either developing for 
 
 * [Content Publishing](content-publishing/overview.md)
 
+---
+
+If you would like to contribute to this documentation, please refer to the instructions on how to [edit this documentation](contributing-instructions/edit-this-documentation.md).
+
 ## License
 
 ©2017 DoSomething.org. Phoenix is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/DoSomething/phoenix/blob/dev/LICENSE) file. The name and logo for DoSomething.org are trademarks of Do Something, Inc and may not be used without permission.
-
