@@ -32,7 +32,7 @@ const QuizQuestion = props => {
 
   return (
     <div className="question">
-      <SectionHeader preTitle={preTitle} title={title} hideStepNumber />
+      <SectionHeader preTitle={preTitle} title={title} />
       <div className="question__choices">{quizChoices}</div>
     </div>
   );
