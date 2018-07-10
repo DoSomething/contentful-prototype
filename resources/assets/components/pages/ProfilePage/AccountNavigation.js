@@ -31,32 +31,34 @@ class AccountNavigation extends React.Component {
 
     return (
       <div>
-        <Enclosure className="bg-white">
-          <h1> Welcome, {this.props.user.firstName}!</h1>
-          <div id="page-navigation" className="page-navigation bg-white">
-            <div className="nav-items">
-              <NavLink
-                className="nav-link"
-                activeClassName="is-active"
-                to="/us/profile/campaigns"
-                onClick={this.handleCampaignClick}
-              >
-                Campaigns
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                activeClassName="is-active"
-                to="/us/profile/account"
-                onClick={this.handleAccountClick}
-              >
-                Account
-              </NavLink>
+        <div>
+          <div className="wrapper">
+            <h1> Welcome, {this.props.user.firstName}!</h1>
+            <div id="page-navigation" className="page-navigation bg-white">
+              <div className="nav-items">
+                <NavLink
+                  className="nav-link"
+                  activeClassName="is-active"
+                  to="/us/profile/campaigns"
+                  onClick={this.handleCampaignClick}
+                >
+                  Campaigns
+                </NavLink>
+                <NavLink
+                  className="nav-link"
+                  activeClassName="is-active"
+                  to="/us/profile/account"
+                  onClick={this.handleAccountClick}
+                >
+                  Account
+                </NavLink>
+              </div>
             </div>
           </div>
-        </Enclosure>
-        <Enclosure className="default-container bg-gray margin-top-lg margin-bottom-lg">
-          {component}
-        </Enclosure>
+        </div>
+        <div className="">
+          <Enclosure className="padding-top-lg">{component}</Enclosure>
+        </div>
       </div>
     );
   }
