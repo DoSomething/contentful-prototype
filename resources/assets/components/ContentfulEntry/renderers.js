@@ -6,36 +6,11 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
-import ThirdPartyActionContainer from '../actions/ThirdPartyAction/ThirdPartyActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
-
-/**
- * Render a Third Party Action step.
- *
- * @param  {Object} step      CustomBlock action
- * @param  {Integer} stepIndex Index of the given step
- * @return {Component}
- */
-export function renderThirdPartyAction(step, stepIndex) {
-  const { id, fields } = step;
-  const { title, content, hideStepNumber, additionalContent } = fields;
-
-  return (
-    <ThirdPartyActionContainer
-      key={id}
-      title={title}
-      content={content}
-      stepIndex={stepIndex}
-      dynamicLink={additionalContent.dynamicLink || null}
-      hideStepNumber={hideStepNumber}
-      dynamicUrlParams={additionalContent.dynamicUrlParams || null}
-    />
-  );
-}
 
 /**
  * Render the voter registration action container.

@@ -62,11 +62,6 @@ const ActionSteps = props => {
   const stepComponents = actionSteps.map(json => {
     const type = parseContentfulType(json);
 
-    // Is this a "numbered" step? If so, increment our step index.
-    if (['third-party-action'].includes(type)) {
-      stepIndex += 1;
-    }
-
     // Some components have built-in section headers. For those, append it.
     // @TODO: These should be split out into separate "content" blocks.
     let prefixComponent = null;

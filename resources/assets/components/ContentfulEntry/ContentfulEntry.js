@@ -19,7 +19,6 @@ import {
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
-  renderThirdPartyAction,
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
   renderVoterRegistrationAction,
@@ -150,9 +149,6 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'textSubmissionAction':
         return renderTextSubmissionAction(json);
-
-      case 'third-party-action':
-        return renderThirdPartyAction(json, stepIndex);
 
       case 'voterRegistrationAction':
         return renderVoterRegistrationAction(json, stepIndex);
