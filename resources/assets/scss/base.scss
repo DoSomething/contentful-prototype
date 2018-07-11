@@ -194,6 +194,9 @@ p {
     font-size: $font-large;
   }
 }
+.font-size-xxlg {
+  font-size: xx-large;
+}
 
 .caps-lock {
   text-transform: uppercase;
@@ -370,5 +373,16 @@ p {
 .hide-on-mobile {
   @include media($small) {
     display: none;
+  }
+}
+
+.league-gothic {
+  &-sm {
+    font-size: 50px;
+    font-family: $secondary-font-family;
+  }
+  &-lg {
+    font-size: 75px;
+    font-family: $secondary-font-family;
   }
 }

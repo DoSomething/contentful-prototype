@@ -17,18 +17,19 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
 // Profile
-$router->get('/us/profile', 'ProfileController@show');
+$router->redirect('/us/profile', '/us/profile/account');
+$router->redirect('/us/us/profile/account', '/us/profile/account');
 $router->get('/us/profile/account', 'ProfileController@show');
-$router->redirect('/northstar/{id}', '/us/profile');
+$router->redirect('/northstar/{id}', '/us/profile/account');
 // Campaigns index
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
 // Non-campaign pages
-$router->get('/us/{slug}', 'PageController@show');
-$router->get('/{slug}', function ($slug) {
-    return redirect('/us/'.$slug);
-});
+// $router->get('/us/{slug}', 'PageController@show');
+// $router->get('/{slug}', function ($slug) {
+    // return redirect('/us/'.$slug);
+// });
 
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
