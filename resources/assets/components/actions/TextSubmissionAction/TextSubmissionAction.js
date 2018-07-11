@@ -16,6 +16,7 @@ class TextSubmissionAction extends React.Component {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
     if (has(response, 'status.success')) {
+      // Resetting the submission item so that this won't be triggered continually for further renders.
       nextProps.resetPostSubmissionItem(nextProps.id);
 
       return {
