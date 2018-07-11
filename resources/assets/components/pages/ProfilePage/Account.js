@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 const Account = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
-    <h2> Your Account </h2>
+    <h2 className="caps-lock league-gothic-sm">Your Account </h2>
+    <div className="margin-top-lg">
+      <h3>Account Info</h3>
+    </div>
     <div className="margin-top-lg">
       <h5>Name</h5>
       <div className="margin-top-md">

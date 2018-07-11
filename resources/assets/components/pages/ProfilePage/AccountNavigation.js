@@ -31,10 +31,12 @@ class AccountNavigation extends React.Component {
 
     return (
       <div>
-        <div className="container bg-white">
+        <div className="container bg-white padding-top-lg">
           <div className="wrapper">
-            <div class="margin-bottom-lg">
-              <h1> Welcome, {this.props.user.firstName}!</h1>
+            <div className="margin-bottom-lg">
+              <h1 className="league-gothic-lg">
+                Welcome, {this.props.user.firstName}!
+              </h1>
               <div id="page-navigation" className="page-navigation bg-white">
                 <div className="nav-items">
                   <NavLink
