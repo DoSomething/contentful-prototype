@@ -16,6 +16,8 @@ class ReferralSubmissionAction extends React.Component {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
     if (has(response, 'status.success')) {
+      nextProps.resetPostSubmissionItem(nextProps.id);
+
       return {
         showModal: true,
         firstNameValue: '',
