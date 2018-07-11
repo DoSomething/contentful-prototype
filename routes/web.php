@@ -18,9 +18,10 @@ $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in
 
 // Profile
 $router->redirect('/us/profile', '/us/profile/account');
-$router->redirect('/us/us/profile/account', '/us/profile/account');
-$router->get('/us/profile/account', 'ProfileController@show');
 $router->redirect('/northstar/{id}', '/us/profile/account');
+$router->view('/us/profile/account', 'app');
+$router->redirect('/us/profile/campaigns', '/us/profile/account'); // hacky fix for not knowing how to do /campaigns state thing
+
 // Campaigns index
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
@@ -28,7 +29,7 @@ $router->redirect('campaigns', 'us/campaigns');
 // Non-campaign pages
 // $router->get('/us/{slug}', 'PageController@show');
 // $router->get('/{slug}', function ($slug) {
-    // return redirect('/us/'.$slug);
+//     return redirect('/us/'.$slug);
 // });
 
 // Redirect routes for campaign specific URLs containing "/pages/".

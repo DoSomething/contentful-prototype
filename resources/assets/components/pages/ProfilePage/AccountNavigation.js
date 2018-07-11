@@ -22,7 +22,6 @@ class AccountNavigation extends React.Component {
 
   render() {
     let component;
-
     if (this.state.accountActive) {
       component = <Account {...this.props} />;
     } else {
@@ -34,7 +33,7 @@ class AccountNavigation extends React.Component {
         <div className="container bg-white padding-top-lg">
           <div className="wrapper">
             <div className="margin-bottom-lg">
-              <h1 className="league-gothic-lg">
+              <h1 className="league-gothic-lg caps-lock">
                 Welcome, {this.props.user.firstName}!
               </h1>
               <div id="page-navigation" className="page-navigation bg-white">

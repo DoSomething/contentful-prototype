@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import Enclosure from '../../Enclosure';
 import AccountNavigation from './AccountNavigation';
 
 const ACCOUNT_QUERY = gql`
@@ -24,7 +23,8 @@ const AccountQuery = ({ userId }) => (
       if (loading) {
         return 'Loading...';
       }
-      if (error) {
+      if (error || !userId) {
+        console.log('must be signed in!');
         return `Error! ${error.message}`;
       }
       return <AccountNavigation {...data} />;
