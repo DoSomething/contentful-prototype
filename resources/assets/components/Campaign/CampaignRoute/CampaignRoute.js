@@ -7,7 +7,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Modal from '../../utilities/Modal/Modal';
 import CampaignFooter from '../../CampaignFooter';
 import BlockPageContainer from '../../pages/BlockPage/BlockPageContainer';
-import ActionPageContainer from '../../pages/ActionPage/ActionPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
 
@@ -18,7 +17,6 @@ const CampaignRoute = props => {
     campaignLead,
     clickedHideAffirmation,
     hasCommunityPage,
-    isAdmin,
     isCampaignClosed,
     match,
     shouldShowSignupAffirmation,
@@ -79,7 +77,6 @@ CampaignRoute.propTypes = {
   }),
   clickedHideAffirmation: PropTypes.func.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
-  isAdmin: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   shouldShowSignupAffirmation: PropTypes.bool.isRequired,
