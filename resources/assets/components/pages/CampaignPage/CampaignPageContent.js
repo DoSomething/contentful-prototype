@@ -3,11 +3,12 @@ import { find } from 'lodash';
 import PropTypes from 'prop-types';
 
 import NotFound from '../../NotFound';
-import { isCampaignClosed } from '../../../helpers';
+import { Flex, FlexCell } from '../../Flex';
 import ScrollConcierge from '../../ScrollConcierge';
 import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
 import { CallToActionContainer } from '../../CallToAction';
+import { isCampaignClosed, parseContentfulType } from '../../../helpers';
 
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages } = props;
@@ -26,28 +27,51 @@ const CampaignPageContent = props => {
 
   const isClosed = isCampaignClosed(campaignEndDate);
 
-  const renderBlocks = blocks =>
-    blocks.map(block => (
-      <div className="margin-vertical" key={block.id}>
-        <ContentfulEntry json={block} />
-      </div>
-    ));
+  const renderBlock = json => {
+    const type = parseContentfulType(json);
+
+    let columnWidth = 'two-thirds';
+    if (['photoSubmissionAction', 'gallery', 'imagesBlock'].includes(type)) {
+      columnWidth = 'full';
+    }
+
+    // Only setting full column width for Content Blocks with an image
+    if (type === 'contentBlock' && json.fields.image) {
+      columnWidth = 'full';
+    }
+
+    return (
+      <Flex id={`${json.id}`} key={json.id} className="margin-vertical">
+        <FlexCell width={columnWidth}>
+          <ContentfulEntry json={json} />
+        </FlexCell>
+      </Flex>
+    );
+  };
 
   const { content, sidebar, blocks } = subPage.fields;
 
   return (
-    <div className="clearfix padded campaign-page" id={subPage.id}>
+    <div className="campaign-page" id={subPage.id}>
       <ScrollConcierge />
       {content ? (
         <div className="row">
           <div className="primary">
             <Markdown>{content}</Markdown>
           </div>
-          <div className="secondary">{renderBlocks(sidebar)}</div>
+          <div className="secondary">
+            {sidebar.map(block => (
+              <div className="margin-bottom-lg" key={block.id}>
+                <ContentfulEntry json={block} />
+              </div>
+            ))}
+          </div>
         </div>
-      ) : (
-        renderBlocks(blocks)
-      )}
+      ) : null}
+
+      <div className={`blocks clear-both`}>
+        {blocks.map(block => renderBlock(block))}
+      </div>
 
       {isClosed ? null : (
         <CallToActionContainer useCampaignTagline visualStyle="transparent" />
