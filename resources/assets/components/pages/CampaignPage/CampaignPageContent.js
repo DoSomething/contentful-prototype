@@ -1,9 +1,9 @@
 import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import NotFound from '../../NotFound';
-import { Flex, FlexCell } from '../../Flex';
 import ScrollConcierge from '../../ScrollConcierge';
 import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
@@ -30,22 +30,23 @@ const CampaignPageContent = props => {
   const renderBlock = json => {
     const type = parseContentfulType(json);
 
-    let columnWidth = 'two-thirds';
+    let fullWidth = false;
     if (['photoSubmissionAction', 'gallery', 'imagesBlock'].includes(type)) {
-      columnWidth = 'full';
+      fullWidth = true;
     }
 
     // Only setting full column width for Content Blocks with an image
     if (type === 'contentBlock' && json.fields.image) {
-      columnWidth = 'full';
+      fullWidth = true;
     }
 
     return (
-      <Flex id={`${json.id}`} key={json.id} className="margin-vertical">
-        <FlexCell width={columnWidth}>
-          <ContentfulEntry json={json} />
-        </FlexCell>
-      </Flex>
+      <div
+        className={classnames('margin-bottom-lg', { primary: !fullWidth })}
+        key={json.id}
+      >
+        <ContentfulEntry json={json} />
+      </div>
     );
   };
 
@@ -57,7 +58,7 @@ const CampaignPageContent = props => {
       {content ? (
         <div className="row">
           <div className="primary">
-            <Markdown>{content}</Markdown>
+            <Markdown className="margin-horizontal-md">{content}</Markdown>
           </div>
           <div className="secondary">
             {sidebar.map(block => (
