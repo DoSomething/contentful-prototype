@@ -49,7 +49,7 @@ class AccountNavigation extends React.Component {
                   <NavLink
                     className="nav-link"
                     activeClassName="is-active"
-                    to="/us/profile/account"
+                    to="/us/profile/info"
                     onClick={this.handleAccountClick}
                   >
                     Account

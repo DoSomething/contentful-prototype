@@ -19,9 +19,9 @@ $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in
 // Profile
 // $router->redirect('/us/profile', '/us/profile/account');
 // $router->redirect('/us/profile/account', '/us/profile/campaigns');
-// $router->redirect('/northstar/{id}', '/us/profile/account');
+$router->redirect('/northstar/{id}', '/us/profile/account');
 // $router->redirect('/us/profile/campaigns', '/us/profile/account'); // hacky fix because of how I implemented the profile nav bar
-$router->get('/us/profile/account', 'ProfileController@show');
+$router->get('/us/profile/info', 'ProfileController@show');
 $router->redirect('/us/profile/', '/us/profile/account');
 
 // Campaigns index
