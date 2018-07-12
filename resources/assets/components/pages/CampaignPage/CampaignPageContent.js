@@ -42,7 +42,9 @@ const CampaignPageContent = props => {
 
     return (
       <div
-        className={classnames('margin-bottom-lg', { primary: !fullWidth })}
+        className={classnames('margin-bottom-lg clear-both', {
+          primary: !fullWidth,
+        })}
         key={json.id}
       >
         <ContentfulEntry json={json} />
