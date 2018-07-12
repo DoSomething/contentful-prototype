@@ -6,7 +6,7 @@
  * @var \Illuminate\Routing\Router $router
  * @see \App\Providers\RouteServiceProvider
  */
-
+// $router->redirect('/us/profile', 'https://identity-qa.dosomething.org');
 // Homepage
 $router->redirect('/', 'us/campaigns');
 $router->redirect('/us', 'us/campaigns');
@@ -17,14 +17,16 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
 // Profile
-$router->redirect('/us/profile', '/us/profile/account');
-$router->redirect('/northstar/{id}', '/us/profile/account');
-$router->view('/us/profile/account', 'app');
-$router->redirect('/us/profile/campaigns', '/us/profile/account'); // hacky fix for not knowing how to do /campaigns state thing
+// $router->redirect('/us/profile', '/us/profile/account');
+// $router->redirect('/us/profile/account', '/us/profile/campaigns');
+// $router->redirect('/northstar/{id}', '/us/profile/account');
+// $router->redirect('/us/profile/campaigns', '/us/profile/account'); // hacky fix because of how I implemented the profile nav bar
+$router->get('/us/profile/account', 'ProfileController@show');
+$router->redirect('/us/profile/', '/us/profile/account');
 
 // Campaigns index
-$router->get('us/campaigns', 'CampaignController@index');
-$router->redirect('campaigns', 'us/campaigns');
+// $router->get('us/campaigns', 'CampaignController@index');
+// $router->redirect('campaigns', 'us/campaigns');
 
 // Non-campaign pages
 // $router->get('/us/{slug}', 'PageController@show');

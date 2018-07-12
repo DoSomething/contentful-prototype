@@ -23,10 +23,12 @@ const AccountQuery = ({ userId }) => (
       if (loading) {
         return 'Loading...';
       }
-      if (error || !userId) {
-        console.log('must be signed in!');
+      if (error) {
         return `Error! ${error.message}`;
       }
+      // if (userId == "null") {
+      //   return
+      // }
       return <AccountNavigation {...data} />;
     }}
   </Query>
