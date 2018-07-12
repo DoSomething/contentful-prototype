@@ -72,7 +72,7 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      <div className={`blocks clear-both`}>
+      <div className="blocks clear-both">
         {blocks.map(block => renderBlock(block))}
       </div>
 
