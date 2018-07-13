@@ -19,7 +19,7 @@ class ProfileController extends Controller
             return view('app');
         }
 
-       return view('app');
-        // return redirect('https://identity-qa.dosomething.org/login'); 
+        return view('app');
+        // return redirect('https://identity-qa.dosomething.org/login');
     }
 }
