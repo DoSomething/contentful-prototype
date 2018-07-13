@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class ProfileController extends Controller
 {
 
@@ -20,9 +18,8 @@ class ProfileController extends Controller
         if ($user) {
             return view('app');
         }
-        
+
        return view('app');
         // return redirect('https://identity-qa.dosomething.org/login'); 
     }
-    
 }
