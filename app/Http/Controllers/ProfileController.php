@@ -20,6 +20,7 @@ class ProfileController extends Controller
         if ($user) {
             return view('app');
         }
+        
        return view('app');
         // return redirect('https://identity-qa.dosomething.org/login'); 
     }
