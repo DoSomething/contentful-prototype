@@ -19,18 +19,7 @@ const ACCOUNT_QUERY = gql`
 
 const AccountQuery = ({ userId }) => (
   <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
-    {({ loading, error, data }) => {
-      if (loading) {
-        return 'Loading...';
-      }
-      if (error) {
-        return `Error! ${error.message}`;
-      }
-      // if (userId == "null") {
-      //   return
-      // }
-      return <AccountNavigation {...data} />;
-    }}
+    {({ data }) => <AccountNavigation {...data} />};
   </Query>
 );
 

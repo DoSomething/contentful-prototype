@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import Account from './Account';
@@ -70,3 +71,13 @@ class AccountNavigation extends React.Component {
 }
 
 export default AccountNavigation;
+
+AccountNavigation.propTypes = {
+  user: {
+    firstName: PropTypes.string,
+  },
+};
+
+AccountNavigation.defaultProps = {
+  user: PropTypes.object,
+};
