@@ -75,9 +75,5 @@ export default AccountNavigation;
 AccountNavigation.propTypes = {
   user: {
     firstName: PropTypes.string,
-  },
-};
-
-AccountNavigation.defaultProps = {
-  user: PropTypes.object,
+  }.isRequired,
 };
