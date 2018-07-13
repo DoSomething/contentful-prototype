@@ -19,20 +19,20 @@ $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in
 // Profile
 // $router->redirect('/us/profile', '/us/profile/account');
 // $router->redirect('/us/profile/account', '/us/profile/campaigns');
-$router->redirect('/northstar/{id}', '/us/profile/account');
+$router->get('/northstar/{id}', 'ProfileController@show');
+$router->redirect('/us/profile/campaigns', '/us/profile/info');
 // $router->redirect('/us/profile/campaigns', '/us/profile/account'); // hacky fix because of how I implemented the profile nav bar
 $router->get('/us/profile/info', 'ProfileController@show');
-$router->redirect('/us/profile/', '/us/profile/account');
 
 // Campaigns index
-// $router->get('us/campaigns', 'CampaignController@index');
-// $router->redirect('campaigns', 'us/campaigns');
+$router->get('us/campaigns', 'CampaignController@index');
+$router->redirect('campaigns', 'us/campaigns');
 
 // Non-campaign pages
-// $router->get('/us/{slug}', 'PageController@show');
-// $router->get('/{slug}', function ($slug) {
-//     return redirect('/us/'.$slug);
-// });
+$router->get('/us/{slug}', 'PageController@show');
+$router->get('/{slug}', function ($slug) {
+    return redirect('/us/'.$slug);
+});
 
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
