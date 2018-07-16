@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormItem from './FormItem';
+import { env } from '../../../helpers/index';
 
 const Account = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
@@ -18,11 +19,7 @@ const Account = props => (
     <FormItem title="Email" value={props.user.email} />
     <FormItem title="Phone Number" value={props.user.mobile} />
     <div className="margin-top-lg">
-      <a
-        href="https://identity-qa.dosomething.org" // profile.dosomething.org for prod, should there be a redirect once profile is edited?
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={env('NORTHSTAR_URL')} target="_blank" rel="noopener noreferrer">
         <button className="button" type="button">
           Edit Profile
         </button>

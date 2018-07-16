@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 class ProfileController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
