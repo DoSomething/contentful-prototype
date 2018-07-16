@@ -95,13 +95,17 @@ Here's how Question 1 is looking for us so far:
 
 Let's take a moment and quickly lay out how the quiz **results** get calculated:
 
-So we have a list of **Results**, and optionally -- **Result Blocks**. Each starts off with **0** **points** \(sad!\). Every time the user makes a selection \(by selecting any **Choice** for a quiz **Question**\), we add a point to each **Result** with a **Result ID** listed in that choices **Result IDs** field.
+So we have a list of **Results**, and / or -- **Result Blocks**. Each starts off with **0** **points** \(sad!\). Every time the user makes a selection \(by selecting any **Choice** for a quiz **Question**\), we add a point to each **Result** with a **Result ID** listed in that choices **Result IDs** field.
 
 So in our example, by selecting _Choice 1 -- "Lemonade,"_ we'd be adding a point to _"Result B"_ \(which was the Lemonade album quite coincidentally\).
 
 The same goes for **Result Blocks** -- selecting a specific choice, adds a point to the **Result Block** with the **Entry ID** of the one listed in the Choice's **Result Block ID** field.
 
-Once the quiz is completed, we tally for the **Result** - and if applicable **Result Block** - with the most points, and append the winning **Result Content** to the **Content** field of the winning **Result Block**, and display it to the user! If there is no **Result Block** added \(it's optional\), then we just display the winning result content in a share block like this:
+{% hint style="info" %}
+Instead of combining the two, you can totally use **Result Blocks** only, in favor of **Results**. Just fill in the **Result Block ID** fields for your choices and leave the **Result IDs** blank!
+{% endhint %}
+
+Once the quiz is completed, we tally for the **Result** - and / or **Result Block** - with the most points, and append the winning **Result Content** to the **Content** field of the winning **Result Block**, and display it to the user! If there is no **Result Block** added \(it's optional\), then we just display the winning result content in a share block like this:
 
 ![Quiz Result Share Block](../.gitbook/assets/quiz-result-example-share-result%20%283%29.png)
 
