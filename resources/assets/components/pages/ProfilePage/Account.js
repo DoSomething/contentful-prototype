@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
 
+const login = '/login';
 const Account = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic-sm">Your Account </h2>
@@ -20,7 +21,7 @@ const Account = props => (
     <FormItem title="Phone Number" value={props.user.mobile} />
     <div className="margin-top-lg">
       <a
-        href={env('NORTHSTAR_URL')}
+        href={env('NORTHSTAR_URL') + login}
         target="_blank"
         rel="noopener noreferrer"
         className="button"
