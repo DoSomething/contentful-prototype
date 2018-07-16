@@ -21,6 +21,7 @@ describe('ShareAction component', () => {
         content="This is a great link"
         socialPlatform={socialPlatform}
         link={url}
+        campaignRunId="1234"
       />,
     );
 

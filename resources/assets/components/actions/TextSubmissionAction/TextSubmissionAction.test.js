@@ -9,6 +9,8 @@ describe('TextSubmissionAction component', () => {
   const wrapper = shallow(
     <TextSubmissionAction
       campaignId="1234"
+      legacyCampaignId="1234"
+      legacyCampaignRunId="1234"
       campaignRunId="6789"
       contentfulId="1122334455667788990011"
       id={id}

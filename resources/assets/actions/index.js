@@ -34,10 +34,6 @@ export const TOGGLE_REPORTBACK_AFFIRMATION = 'TOGGLE_REPORTBACK_AFFIRMATION';
 // @TODO: Split submission actions & reducers into separate file.
 // export * from './submission';
 
-// Feed Action Names & Creators
-export const FEED_INCREMENT_PAGE = 'FEED_INCREMENT_PAGE';
-export * from './feed';
-
 // Signup Action Names & Creators
 export const SIGNUP_CREATED = 'SIGNUP_CREATED';
 export const SIGNUP_FOUND = 'SIGNUP_FOUND';

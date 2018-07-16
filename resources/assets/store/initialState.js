@@ -9,12 +9,7 @@ const initialState = {
     shouldShowLandingPage: false,
     shouldShowActionPage: false,
   },
-  blocks: {
-    page: 1,
-  },
-  campaign: {
-    activityFeed: [],
-  },
+  campaign: {},
   events: {
     queue: [],
   },
