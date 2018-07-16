@@ -1,42 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import FormItem from './FormItem';
+
 const Account = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic-sm">Your Account </h2>
     <div className="margin-top-lg">
       <h3>Account Info</h3>
     </div>
-    <div className="margin-top-lg">
-      <h5>Name</h5>
-      <div className="margin-top-md">
-        <p> {props.user.firstName} </p>
-      </div>
-    </div>
-    <div className="margin-top-lg">
-      <h5>Birthday</h5>
-      <div className="margin-top-md">
-        <p> {props.user.birthdate} </p>
-      </div>
-    </div>
-    <div className="margin-top-lg">
-      <h5>Password</h5>
-      <div className="margin-top-md">
-        <p>&#9679; &#9679; &#9679; &#9679; &#9679; &#9679;</p>
-      </div>
-    </div>
-    <div className="margin-top-lg">
-      <h5>Email</h5>
-      <div className="margin-top-md">
-        <p>{props.user.email}</p>
-      </div>
-    </div>
-    <div className="margin-top-lg">
-      <h5>Phone Number</h5>
-      <div className="margin-top-md">
-        <p>{props.user.mobile}</p>
-      </div>
-    </div>
+    <FormItem title="Name" value={props.user.firstName} />
+    <FormItem title="Birthday" value={props.user.birthdate} />
+    <FormItem
+      title="Password"
+      value="&#9679; &#9679; &#9679; &#9679; &#9679; &#9679;"
+    />
+    <FormItem title="Email" value={props.user.email} />
+    <FormItem title="Phone Number" value={props.user.mobile} />
     <div className="margin-top-lg">
       <a
         href="https://identity-qa.dosomething.org" // profile.dosomething.org for prod, should there be a redirect once profile is edited?
