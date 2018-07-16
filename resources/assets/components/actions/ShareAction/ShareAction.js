@@ -148,6 +148,7 @@ ShareAction.propTypes = {
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.func.isRequired,
   legacyCampaignId: PropTypes.string,
   link: PropTypes.string.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,

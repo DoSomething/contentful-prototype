@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import ShareAction from './ShareAction';
-import { getUserId } from '../../../selectors/user';
+import { getUserId, isAuthenticated } from '../../../selectors/user';
 import { storeCampaignPost } from '../../../actions/post';
 
 /**
@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   userId: getUserId(state),
   campaignId: state.campaign.id,
   campaignRunId: state.campaign.legacyCampaignRunId,
+  isAuthenticated: isAuthenticated(state),
   legacyCampaignId: state.campaign.legacyCampaignId,
 });
 
@@ -23,4 +24,7 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(ShareAction);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(ShareAction);
