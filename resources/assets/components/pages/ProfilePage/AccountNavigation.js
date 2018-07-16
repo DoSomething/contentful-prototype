@@ -73,7 +73,7 @@ class AccountNavigation extends React.Component {
 export default AccountNavigation;
 
 AccountNavigation.propTypes = {
-  user: {
+  user: PropTypes.shape({
     firstName: PropTypes.string,
-  }.isRequired,
+  }).isRequired,
 };

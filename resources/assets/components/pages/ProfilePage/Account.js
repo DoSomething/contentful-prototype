@@ -34,14 +34,11 @@ const Account = props => (
 export default Account;
 
 Account.propTypes = {
-  user: {
+  user: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
     email: PropTypes.string,
     mobile: PropTypes.string,
-  },
-};
-
-Account.defaultProps = {
-  user: PropTypes.object,
+    birthdate: PropTypes.string,
+  }).isRequired,
 };
