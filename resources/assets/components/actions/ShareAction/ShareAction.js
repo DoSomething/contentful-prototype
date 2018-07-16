@@ -61,8 +61,11 @@ class ShareAction extends React.Component {
 
     showFacebookShareDialog(url)
       .then(() => {
-        // @TODO: Once Rogue is ready to accept this post we'll activate.
-        this.storeSharePost();
+        // Send share post to Rogue for authenticated users
+        if (this.props.isAuthenticated && this.props.campaignId) {
+          this.storeSharePost();
+        }
+
         trackPuckEvent('share action completed', { url });
         this.setState({ showModal: true });
       })
