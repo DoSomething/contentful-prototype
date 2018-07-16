@@ -1,5 +1,4 @@
 export admin from './admin';
-export blocks from './blocks';
 export campaign from './campaign';
 export events from './events';
 export experiments from './experiments';
