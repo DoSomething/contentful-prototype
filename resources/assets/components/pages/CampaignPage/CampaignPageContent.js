@@ -28,6 +28,8 @@ const CampaignPageContent = props => {
   const isClosed = isCampaignClosed(campaignEndDate);
 
   const renderBlock = json => {
+    console.log(json);
+
     const type = parseContentfulType(json);
 
     let fullWidth = false;
@@ -54,6 +56,46 @@ const CampaignPageContent = props => {
   };
 
   const { content, sidebar, blocks } = subPage.fields;
+
+  // @REMOVE temporary content for SixpackExperiment.
+  blocks.unshift({
+    id: 'sometestytesttestcontent',
+    type: 'sixpackExperiment',
+    fields: {
+      title: 'Some Experiment Title',
+      alternatives: [
+        {
+          id: 'testcontentblockid1',
+          type: 'contentBlock',
+          fields: {
+            additionalContent: null,
+            content:
+              'Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+            image: null,
+            imageAlignment: null,
+            subTitle: null,
+            superTitle: null,
+            title: 'Alternative A title here',
+          },
+        },
+        {
+          id: 'testcontentblockid2',
+          type: 'contentBlock',
+          fields: {
+            additionalContent: null,
+            content: 'Donec id elit non mi porta gravida at eget metus.',
+            image: null,
+            imageAlignment: null,
+            subTitle: null,
+            superTitle: null,
+            title: 'Alternative B title here',
+          },
+        },
+      ],
+    },
+  });
+
+  console.log(blocks);
 
   return (
     <div className="campaign-page" id={subPage.id}>

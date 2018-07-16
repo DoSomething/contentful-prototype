@@ -19,6 +19,7 @@ import {
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
+  renderSixpackExperiment,
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
   renderVoterRegistrationAction,
@@ -129,6 +130,9 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'shareAction':
         return renderShareAction(json);
+
+      case 'sixpackExperiment':
+        return renderSixpackExperiment(json);
 
       case 'socialDriveAction':
         return (
