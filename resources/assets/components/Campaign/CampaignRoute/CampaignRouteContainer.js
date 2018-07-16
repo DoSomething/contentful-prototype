@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import CampaignRoute from './CampaignRoute';
 import { isCampaignClosed } from '../../../helpers';
-import { userHasRole } from '../../../selectors/user';
 import { convertExperiment, clickedHideAffirmation } from '../../../actions';
 
 /**
@@ -18,7 +17,6 @@ const mapStateToProps = state => ({
       page => page.type === 'page' && page.fields.slug.endsWith('community'),
     ),
   ),
-  isAdmin: userHasRole(state, 'admin'),
   isCampaignClosed: isCampaignClosed(
     get(state.campaign.endDate, 'date', false),
   ),
@@ -38,4 +36,7 @@ const mapActionsToProps = {
 /**
  * Export the container component.
  */
-export default connect(mapStateToProps, mapActionsToProps)(CampaignRoute);
+export default connect(
+  mapStateToProps,
+  mapActionsToProps,
+)(CampaignRoute);
