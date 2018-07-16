@@ -19,10 +19,13 @@ const Account = props => (
     <FormItem title="Email" value={props.user.email} />
     <FormItem title="Phone Number" value={props.user.mobile} />
     <div className="margin-top-lg">
-      <a href={env('NORTHSTAR_URL')} target="_blank" rel="noopener noreferrer">
-        <button className="button" type="button">
-          Edit Profile
-        </button>
+      <a
+        href={env('NORTHSTAR_URL')}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="button"
+      >
+        Edit Profile
       </a>
     </div>
   </div>
