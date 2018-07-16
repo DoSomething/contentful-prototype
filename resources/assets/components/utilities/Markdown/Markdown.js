@@ -8,7 +8,7 @@ import { markdown, contentfulImageUrl } from '../../../helpers';
 
 import './markdown.scss';
 
-const pattern = /\/\/images\.contentful\.com.+\.(jpg|png)/g;
+const pattern = /\/\/images\.ctfassets\.net.+\.(jpg|png)/g;
 const contentfulImageFormat = url => contentfulImageUrl(url, '1000');
 const formatImageUrls = string =>
   string.replace(pattern, contentfulImageFormat);
