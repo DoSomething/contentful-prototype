@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import AccountNavigation from './AccountNavigation';
+import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {
@@ -21,10 +22,10 @@ const AccountQuery = ({ userId }) => (
   <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
     {({ loading, error, data }) => {
       if (loading) {
-        return 'Loading...';
+        return <div className="spinner -centered" />;
       }
       if (error) {
-        return `Error! ${error.message}`;
+        return <ErrorBlock />;
       }
       return <AccountNavigation {...data} />;
     }}
