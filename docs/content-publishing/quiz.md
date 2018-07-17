@@ -35,7 +35,7 @@ The **Results** field is the core result content that you want to display to the
 
 We'd add _all_ the potential results \(which we've already assembled\) -- namely the full list of the Bey's albums -- each to a new Result item in the **Results** field.
 
-![Quiz Results Field](../.gitbook/assets/quiz-results-field%20%281%29.png)
+![Quiz Results Field](../.gitbook/assets/quiz-results-field.png)
 
 {% hint style="info" %}
 You may notice that we auto-append a Result ID \(A, B, C...\) to each result you add. This is no accident, and we'll discuss it's importance later on.
@@ -55,7 +55,7 @@ In our fine example, we've attached a **Link Action** to the **Result Blocks** f
 
 The winning **result** will be appended to the beginning of the Link Action **Content**. So in our example, this would turn out as:
 
-![Quiz Result](../.gitbook/assets/quiz-result%20%281%29.png)
+![Quiz Result](../.gitbook/assets/quiz-result.png)
 
 ## Quiz Questions
 
@@ -67,7 +67,7 @@ Head on over to the **Questions** field and let's fill out the first question to
 
 > "What is your drink of choice?".
 
-![Quiz Questions Field](../.gitbook/assets/quiz-questions-field%20%281%29.png)
+![Quiz Questions Field](../.gitbook/assets/quiz-questions-field.png)
 
 ### Adding Available Choices For Question
 
@@ -85,11 +85,11 @@ If this is confusing, check out the _Quiz Question_ image \_\_below step 3
 
 Here's the **Result Block**, we're pasting the **Entry ID** into the **Result Block ID** field:
 
-![Quiz Result Block Entry ID](../.gitbook/assets/quiz-result-block-entry-id%20%283%29.png)
+![Quiz Result Block Entry ID](../.gitbook/assets/quiz-result-block-entry-id.png)
 
 Here's how Question 1 is looking for us so far:
 
-![Quiz Question](../.gitbook/assets/quiz-question-example-info%20%283%29.png)
+![Quiz Question](../.gitbook/assets/quiz-question-example-info.png)
 
 ### Calculating The Winning Result
 
@@ -107,7 +107,7 @@ Instead of combining the two, you can totally use **Result Blocks** only, in fav
 
 Once the quiz is completed, we tally for the **Result** - and / or **Result Block** - with the most points, and append the winning **Result Content** to the **Content** field of the winning **Result Block**, and display it to the user! If there is no **Result Block** added \(it's optional\), then we just display the winning result content in a share block like this:
 
-![Quiz Result Share Block](../.gitbook/assets/quiz-result-example-share-result%20%283%29.png)
+![Quiz Result Share Block](../.gitbook/assets/quiz-result-example-share-result.png)
 
 {% hint style="info" %}
 In case of a tie we favor the first **result** or **result block** on the winning list.
