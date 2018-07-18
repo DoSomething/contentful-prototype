@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import { PuckProvider } from '@dosomething/puck-client';
 
@@ -12,6 +12,7 @@ import { getUserId, isAuthenticated } from '../selectors/user';
 import { initializeStore } from '../store/store';
 import CampaignContainer from './Campaign/CampaignContainer';
 import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
+import ProfileContainer from './pages/ProfilePage/ProfileContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);
