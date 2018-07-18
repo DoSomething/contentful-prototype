@@ -20,7 +20,7 @@ $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in
 $router->redirect('/northstar/{id}', '/us/profile/info');
 $router->redirect('/us/profile/campaigns', '/us/profile/info'); //placeholder for now while figuring out routing
 $router->get('/us/profile/info', function () {
-	return auth()->user() ? view('app') : redirect('/next/login');
+    return auth()->user() ? view('app') : redirect('/next/login');
 });
 
 // Campaigns index
