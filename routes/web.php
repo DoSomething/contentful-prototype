@@ -6,7 +6,7 @@
  * @var \Illuminate\Routing\Router $router
  * @see \App\Providers\RouteServiceProvider
  */
-// $router->redirect('/us/profile', 'https://identity-qa.dosomething.org');
+
 // Homepage
 $router->redirect('/', 'us/campaigns');
 $router->redirect('/us', 'us/campaigns');
@@ -17,10 +17,8 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
 // Profile
-
-// $router->view('/us/profile', 'app');
-$router->redirect('/northstar/{id}', '/us/profile/info');
-$router->redirect('/us/profile/campaigns', '/us/profile/info');
+$router->redirect('/northstar/{id}', '/us/profile/info'); 
+$router->redirect('/us/profile/campaigns', '/us/profile/info'); //placeholder for now while figuring out routing
 $router->get('/us/profile/info', function() {
 	return (auth()->user() ? view('app') : redirect('/next/login'));
 });
@@ -30,10 +28,10 @@ $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
 // Non-campaign pages
-// $router->get('/us/{slug}', 'PageController@show');
-// $router->get('/{slug}', function ($slug) {
-//     return redirect('/us/'.$slug);
-// });
+$router->get('/us/{slug}', 'PageController@show');
+$router->get('/{slug}', function ($slug) {
+    return redirect('/us/'.$slug);
+});
 
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
