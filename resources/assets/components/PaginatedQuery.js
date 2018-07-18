@@ -33,7 +33,10 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
             variables: {
               // The value in `variables.page` doesn't get updated here on
               // subsequent clicks, so we have to recalculate each time...
-              page: result.data[queryName].length / result.variables.count + 1,
+              page:
+                Math.ceil(
+                  result.data[queryName].length / result.variables.count,
+                ) + 1,
             },
             updateQuery: (previousResult, { fetchMoreResult }) => {
               if (!fetchMoreResult[queryName]) {
