@@ -20,7 +20,6 @@ class AccountNavigation extends React.Component {
   handleAccountClick() {
     this.setState({ accountActive: true });
   }
-
   render() {
     let component;
     if (this.state.accountActive) {
