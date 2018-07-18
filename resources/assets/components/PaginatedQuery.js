@@ -34,6 +34,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
               // The value in `variables.page` doesn't get updated here on
               // subsequent clicks, so we have to recalculate each time...
               page:
+                // Use ceil to force an integer in case we have less results data than the count!
                 Math.ceil(
                   result.data[queryName].length / result.variables.count,
                 ) + 1,
