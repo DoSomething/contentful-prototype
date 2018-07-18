@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import AccountQuery from './AccountQuery';
 import TestCampaign from './TestCampaign';
 
-const ProfileRoute = props => (
+const ProfileRoute = () => (
   <div>
     <Switch>
       <Route path="/us/profile/info" component={AccountQuery} />
@@ -13,3 +13,5 @@ const ProfileRoute = props => (
     </Switch>
   </div>
 );
+
+export default ProfileRoute;
