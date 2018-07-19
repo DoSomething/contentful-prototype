@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import ProfilePage from './ProfilePage';
-import { getUserId } from '../../../selectors/user';
+import ProfileRoute from './ProfileRoute';
+import { isAuthenticated } from '../../../selectors/user';
 
 const mapStateToProps = state => ({
-  userId: getUserId(state),
+  isAuthenticated: isAuthenticated(state),
 });
 
-export default connect(mapStateToProps)(ProfilePage);
+export default connect(mapStateToProps)(ProfileRoute);
