@@ -46,6 +46,7 @@ const CampaignPageContent = props => {
           primary: !fullWidth,
         })}
         key={json.id}
+        id={`block-${json.id}`}
       >
         <ContentfulEntry json={json} />
       </div>
