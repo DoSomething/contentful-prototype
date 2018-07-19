@@ -315,7 +315,7 @@ function get_campaign_social_fields($campaign, $uri)
 
         // Find the community page.
         $communityPage = array_first($campaign->pages, function ($value) {
-            return ends_with($value->fields->slug, 'community');
+            return isset($value->fields->slug) && ends_with($value->fields->slug, 'community');
         });
 
         if ($communityPage) {
