@@ -10,9 +10,9 @@ import { env } from '../helpers';
 import graphqlClient from '../graphql';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import { initializeStore } from '../store/store';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
+import ProfileContainer from './pages/ProfilePage/ProfileContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -31,7 +31,7 @@ const App = ({ store, history }) => {
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           <ConnectedRouter history={history}>
             <Switch>
-              <Route path="/us/profile" component={ProfilePage} />
+              <Route path="/us/profile" component={ProfileContainer} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/:slug" component={GeneralPageContainer} />
             </Switch>

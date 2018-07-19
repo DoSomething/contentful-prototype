@@ -1,17 +1,12 @@
 import React from 'react';
 
+import AccountQuery from './AccountQuery';
 import Enclosure from '../../Enclosure';
-import Card from '../../utilities/Card/Card';
 
-const ProfilePage = () => (
-  <div className="main clearfix">
-    <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-      <h1>Hey, it&apos;s your profile!</h1>
-      <Card className="bordered rounded" title="My Campaigns">
-        <div className="padded">My campaigns will be here</div>
-      </Card>
-    </Enclosure>
-  </div>
+const ProfilePage = props => (
+  <Enclosure className="container margin-bottom-lg">
+    <AccountQuery {...props} />
+  </Enclosure>
 );
 
 export default ProfilePage;

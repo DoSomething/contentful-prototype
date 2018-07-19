@@ -329,6 +329,14 @@ p {
   margin-right: $half-spacing;
 }
 
+.margin-left-xlg {
+  margin-left: $section-spacing;
+}
+
+.margin-left-md {
+  margin-left: $half-spacing;
+}
+
 .rounded {
   border-radius: $lg-border-radius;
   overflow: hidden;
@@ -362,5 +370,16 @@ p {
 .hide-on-mobile {
   @include media($small) {
     display: none;
+  }
+}
+
+.league-gothic {
+  &-sm {
+    font-size: 50px;
+    font-family: $secondary-font-family;
+  }
+  &-lg {
+    font-size: 75px;
+    font-family: $secondary-font-family;
   }
 }
