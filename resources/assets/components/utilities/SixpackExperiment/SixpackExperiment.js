@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { snakeCase } from 'lodash';
 
+import { participate } from '../../../helpers/sixpack';
 import ContentfulEntry from '../../ContentfulEntry';
 
 const SixpackExperiment = props => {
   const { alternatives, campaignId, title } = props;
 
-  console.log(snakeCase(title));
-  console.log(alternatives);
+  participate(
+    snakeCase(title),
+    alternatives.map(item => snakeCase(item.fields.title)),
+  );
 
   const selectedAlternativeJson = alternatives[1];
 

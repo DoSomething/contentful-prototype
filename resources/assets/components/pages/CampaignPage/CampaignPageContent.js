@@ -59,7 +59,7 @@ const CampaignPageContent = props => {
 
   // @REMOVE temporary content for SixpackExperiment.
   blocks.unshift({
-    id: 'sometestytesttestcontent',
+    id: '0099887766554433221100',
     type: 'sixpackExperiment',
     fields: {
       title: 'Some Experiment Title',
@@ -75,7 +75,7 @@ const CampaignPageContent = props => {
             imageAlignment: null,
             subTitle: null,
             superTitle: null,
-            title: 'Alternative A title here',
+            title: 'Some title for Alternative A here',
           },
         },
         {
@@ -88,7 +88,7 @@ const CampaignPageContent = props => {
             imageAlignment: null,
             subTitle: null,
             superTitle: null,
-            title: 'Alternative B title here',
+            title: 'Some title for Alternative B here',
           },
         },
       ],

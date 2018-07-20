@@ -6,6 +6,8 @@ import { addToStore, updateStore } from '../actions';
 import { participate, convert } from '../helpers/experiments';
 
 const experimentsMiddleware = ({ getState, dispatch }) => next => action => {
+  console.log('2️⃣');
+
   const state = getState();
 
   if (action.type === EXPERIMENT_INIT_PARTICIPATION) {
