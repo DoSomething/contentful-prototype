@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Enclosure from '../../Enclosure';
+
 import AccountQueryContainer from './AccountQueryContainer';
 
 const ProfilePage = props => (
