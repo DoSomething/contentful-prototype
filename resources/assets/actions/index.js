@@ -7,10 +7,11 @@
  * of application logic or user input).
  */
 
-export const PARTICIPATE_IN_EXPERIMENT = 'PARTICIPATE_IN_EXPERIMENT';
-export const ADD_TO_EXPERIMENTS_STORE = 'ADD_TO_EXPERIMENTS_STORE';
-export const UPDATE_EXPERIMENTS_STORE = 'UPDATE_EXPERIMENTS_STORE';
-export const CONVERT_EXPERIMENT = 'CONVERT_EXPERIMENT';
+// export const PARTICIPATE_IN_EXPERIMENT = 'PARTICIPATE_IN_EXPERIMENT';
+// export const ADD_TO_EXPERIMENTS_STORE = 'ADD_TO_EXPERIMENTS_STORE';
+// export const UPDATE_EXPERIMENTS_STORE = 'UPDATE_EXPERIMENTS_STORE';
+// export const CONVERT_EXPERIMENT = 'CONVERT_EXPERIMENT';
+// Experiments Creators
 export * from './experiments';
 
 // Reportback Action Names & Creators
