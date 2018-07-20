@@ -3,7 +3,7 @@ import {
   EXPERIMENT_CONVERT_ON_TEST,
 } from '../constants/action-types';
 import { addToStore, updateStore } from '../actions';
-import { participate, convert } from '../helpers/sixpack';
+import { participate, convert } from '../helpers/experiments';
 
 const experimentsMiddleware = ({ getState, dispatch }) => next => action => {
   const state = getState();
