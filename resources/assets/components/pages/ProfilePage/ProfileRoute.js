@@ -1,14 +1,16 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import AccountQuery from './AccountQuery';
+import AccountContainer from './AccountContainer';
 import TestCampaign from './TestCampaign';
 
-const ProfileRoute = () => (
+const ProfileRoute = props => (
   <div>
     <Switch>
-      <Route path="/us/profile/info" component={AccountQuery} />
-
+      <Route
+        path="/us/profile/info"
+        render={() => <AccountContainer {...props} />}
+      />
       <Route path="/us/profile/campaigns" component={TestCampaign} />
     </Switch>
   </div>

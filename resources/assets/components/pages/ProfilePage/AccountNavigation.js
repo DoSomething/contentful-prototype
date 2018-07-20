@@ -5,29 +5,14 @@ import PropTypes from 'prop-types';
 import Enclosure from '../../Enclosure';
 import Account from './Account';
 import TestCampaign from './TestCampaign';
+import ProfileRoute from './ProfileRoute';
 
 class AccountNavigation extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { accountActive: true };
-    this.handleCampaignClick = this.handleCampaignClick.bind(this);
-    this.handleAccountClick = this.handleAccountClick.bind(this);
   }
 
-  handleCampaignClick() {
-    this.setState({ accountActive: false });
-  }
-  handleAccountClick() {
-    this.setState({ accountActive: true });
-  }
   render() {
-    let component;
-    if (this.state.accountActive) {
-      component = <Account {...this.props} />;
-    } else {
-      component = <TestCampaign />;
-    }
-
     return (
       <div>
         <div className="container bg-white padding-top-lg">
@@ -42,7 +27,6 @@ class AccountNavigation extends React.Component {
                     className="nav-link"
                     activeClassName="is-active"
                     to="/us/profile/campaigns"
-                    onClick={this.handleCampaignClick}
                   >
                     Campaigns
                   </NavLink>
@@ -50,7 +34,6 @@ class AccountNavigation extends React.Component {
                     className="nav-link"
                     activeClassName="is-active"
                     to="/us/profile/info"
-                    onClick={this.handleAccountClick}
                   >
                     Account
                   </NavLink>
@@ -61,7 +44,9 @@ class AccountNavigation extends React.Component {
         </div>
         <div className="container bg-gray margin-top-lg">
           <div className="wrapper bg-gray">
-            <Enclosure className="">{component}</Enclosure>
+            <Enclosure className="">
+              <ProfileRoute {...this.props} />
+            </Enclosure>
           </div>
         </div>
       </div>
