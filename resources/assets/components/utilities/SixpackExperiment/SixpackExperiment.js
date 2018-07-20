@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { snakeCase } from 'lodash';
 
-import { participate } from '../../../helpers/sixpack';
+import { participate } from '../../../helpers/experiments';
 import ContentfulEntry from '../../ContentfulEntry';
 
 const SixpackExperiment = props => {
