@@ -99,7 +99,8 @@ export function getFormData(formData) {
 
   const formDataObject = {};
 
-  for (let entry of formData.entries()) {
+  for (const entry of formData.entries()) {
+    // eslint-disable-line no-restricted-syntax
     formDataObject[entry[0]] = entry[1];
   }
 
