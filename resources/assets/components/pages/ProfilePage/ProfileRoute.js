@@ -5,12 +5,10 @@ import Account from './Account';
 import TestCampaign from './TestCampaign';
 
 const ProfileRoute = props => (
-  <div>
-    <Switch>
-      <Route path="/us/profile/info" render={() => <Account {...props} />} />
-      <Route path="/us/profile/campaigns" component={TestCampaign} />
-    </Switch>
-  </div>
+  <Switch>
+    <Route path="/us/profile/info" render={() => <Account {...props} />} />
+    <Route path="/us/profile/campaigns" component={TestCampaign} />
+  </Switch>
 );
 
 export default ProfileRoute;
