@@ -84,3 +84,24 @@ export function setFormData(values, details = null) {
 
   return formData;
 }
+
+/**
+ * Extract all FormData entries into an Object.
+ *
+ * @param {FormData} formData
+ * @return Object|Null
+ */
+export function getFormData(formData) {
+  // Catch for browsers which don't support the entries method.
+  if (!formData.hasOwnProperty('entries')) {
+    return null;
+  }
+
+  const formDataObject = {};
+
+  for (let entry of formData.entries()) {
+    formDataObject[entry[0]] = entry[1];
+  }
+
+  return formDataObject;
+}
