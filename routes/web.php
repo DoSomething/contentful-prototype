@@ -18,9 +18,9 @@ $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in
 
 // Profile
 $router->redirect('/northstar/{id}', '/us/profile/info');
-$router->get('/us/profile/{slug}', function () {
-    return auth()->user() ? view('app') : redirect('/next/login');
-})->where('slug', 'campaigns|info');
+// $router->get('/us/profile/{slug}', function () {
+//     return auth()->user() ? view('app') : redirect('/next/login');
+// })->where('slug', 'campaigns|info');
 
 // Campaigns index
 $router->get('us/campaigns', 'CampaignController@index');
