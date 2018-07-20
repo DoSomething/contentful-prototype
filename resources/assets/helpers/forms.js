@@ -93,7 +93,7 @@ export function setFormData(values, details = null) {
  */
 export function getFormData(formData) {
   // Catch for browsers which don't support the entries method.
-  if (!formData.hasOwnProperty('entries')) {
+  if (!('entries' in FormData.prototype)) {
     return null;
   }
 
