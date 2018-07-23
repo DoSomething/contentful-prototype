@@ -6,20 +6,18 @@ import gql from 'graphql-tag';
 import AccountNavigation from './AccountNavigation';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
-const ACCOUNT_QUERY = gql`
-  query AccountQuery($userId: String!) {
-    user(id: $userId) {
-      firstName
-      lastName
-      mobile
-      birthdate
-      email
+const POSTS_QUERY = gql`
+  query PostsQuery($userId: String!) {
+    postsByUserId(id: $userId) {
+      status
+      url(w: 300, h: 300)
+      text
     }
   }
 `;
 
-const AccountQuery = ({ userId }) => (
-  <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
+const PostsQuery = ({ userId }) => (
+  <Query query={POSTS_QUERY} queryName="user" variables={{ userId }}>
     {({ loading, error, data }) => {
       if (loading) {
         return <div className="spinner -centered" />;
@@ -27,13 +25,13 @@ const AccountQuery = ({ userId }) => (
       if (error) {
         return <ErrorBlock />;
       }
-      return <AccountNavigation {...data} userId={userId} />;
+      return <Posts {...data} />;
     }}
   </Query>
 );
 
-AccountQuery.propTypes = {
+PostsQuery.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default AccountQuery;
+export default PostsQuery;
