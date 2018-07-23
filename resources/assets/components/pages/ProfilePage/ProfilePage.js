@@ -1,11 +1,11 @@
 import React from 'react';
 
-import AccountQuery from './AccountQuery';
 import Enclosure from '../../Enclosure';
+import AccountQueryContainer from './AccountQueryContainer';
 
 const ProfilePage = props => (
   <Enclosure className="container margin-bottom-lg">
-    <AccountQuery {...props} />
+    <AccountQueryContainer {...props} />
   </Enclosure>
 );
 
