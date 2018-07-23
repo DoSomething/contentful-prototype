@@ -45,6 +45,9 @@ class SocialDriveAction extends React.Component {
   handleCopyLinkClick = () => {
     this.linkInput.current.select();
     document.execCommand('copy');
+    trackPuckEvent('phoenix_clicked_copy_to_clipboard', {
+      url: this.props.link,
+    });
   };
 
   handleFacebookShareClick = url => {
