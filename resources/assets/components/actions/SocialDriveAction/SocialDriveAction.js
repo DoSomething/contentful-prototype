@@ -45,17 +45,22 @@ class SocialDriveAction extends React.Component {
   handleCopyLinkClick = () => {
     this.linkInput.current.select();
     document.execCommand('copy');
+    trackPuckEvent('phoenix_clicked_copy_to_clipboard', {
+      url: this.props.link,
+    });
   };
 
   handleFacebookShareClick = url => {
-    trackPuckEvent('clicked facebook share action', { url });
+    const trackingData = { url: this.props.link };
+
+    trackPuckEvent('clicked facebook share action', trackingData);
 
     showFacebookShareDialog(url)
       .then(() => {
-        trackPuckEvent('share action completed', { url });
+        trackPuckEvent('share action completed', trackingData);
       })
       .catch(() => {
-        trackPuckEvent('share action cancelled', { url });
+        trackPuckEvent('share action cancelled', trackingData);
       });
   };
 
@@ -114,7 +119,9 @@ class SocialDriveAction extends React.Component {
           <div className="share-button padded">
             <button
               className="button padding-vertical-md"
-              onClick={() => handleTwitterShareClick(shortenedLink)}
+              onClick={() =>
+                handleTwitterShareClick(shortenedLink, { url: link })
+              }
               disabled={!shortenedLink}
             >
               <i className="social-icon -twitter" />
