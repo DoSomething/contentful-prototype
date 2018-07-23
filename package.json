@@ -52,7 +52,7 @@
     "@dosomething/analytics": "^2.1.2",
     "@dosomething/forge": "^6.8.0",
     "@dosomething/gateway": "^1.4.0",
-    "@dosomething/puck-client": "^1.5.0",
+    "@dosomething/puck-client": "^1.5.2",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link": "^1.2.2",
@@ -109,7 +109,7 @@
   "devDependencies": {
     "@dosomething/babel-config": "^2.2.2",
     "@dosomething/eslint-config": "^4.0.0",
-    "@dosomething/webpack-config": "^4.1.0",
+    "@dosomething/webpack-config": "^4.1.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "contentful-management": "^5.1.4",
     "eslint-loader": "^2.0.0",

@@ -50,6 +50,7 @@ const VoterRegistrationAction = props => {
             href={parsedLink}
             onClick={handleClick}
             target="_blank"
+            rel="noopener noreferrer"
           >
             Start Registration
           </a>
