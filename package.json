@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "test": "jest --watch",
-    "test:ci": "jest",
+    "test": "NODE_ENV=test && jest --watch",
+    "test:ci": "NODE_ENV=test && jest",
     "lint": "eslint --ext .js resources/assets",
     "flow": "flow",
     "start": "webpack --env=development --hide-modules --watch",
@@ -52,7 +52,7 @@
     "@dosomething/analytics": "^2.1.2",
     "@dosomething/forge": "^6.8.0",
     "@dosomething/gateway": "^1.4.0",
-    "@dosomething/puck-client": "^1.5.0",
+    "@dosomething/puck-client": "^1.5.2",
     "apollo-cache-inmemory": "^1.2.5",
     "apollo-client": "^2.3.5",
     "apollo-link": "^1.2.2",
