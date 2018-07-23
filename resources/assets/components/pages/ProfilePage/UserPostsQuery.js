@@ -28,20 +28,23 @@ const USER_POSTS_QUERY = gql`
 `;
 
 const UserPostsQuery = ({ userId }) => (
-  <PaginatedQuery
-    query={USER_POSTS_QUERY}
-    queryName="postsByUserId"
-    variables={{ userId }}
-    count={3}
-  >
-    {({ result, fetching, fetchMore }) => (
-      <PostGallery
-        posts={result}
-        loading={fetching}
-        loadMorePosts={fetchMore}
-      />
-    )}
-  </PaginatedQuery>
+  <div>
+    <h2 className="caps-lock league-gothic-sm">Your Posts</h2>
+    <PaginatedQuery
+      query={USER_POSTS_QUERY}
+      queryName="postsByUserId"
+      variables={{ userId }}
+      count={3}
+    >
+      {({ result, fetching, fetchMore }) => (
+        <PostGallery
+          posts={result}
+          loading={fetching}
+          loadMorePosts={fetchMore}
+        />
+      )}
+    </PaginatedQuery>
+  </div>
 );
 
 UserPostsQuery.propTypes = {
