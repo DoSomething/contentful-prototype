@@ -8,8 +8,8 @@ const ProfileRoute = props => (
   <Switch>
     <Route path="/us/profile/info" render={() => <Account {...props} />} />
     <Route
-      path="/us/profile/campaigns"
-      render={() => <UserPostsQuery userId="5ad573afa0bfad27697e5068" />}
+      path="/us/profile/posts"
+      render={() => <UserPostsQuery userId="5709bd59469c6455168b47b8" />}
     />
   </Switch>
 );

@@ -18,9 +18,9 @@ const AccountNavigation = props => (
               <NavLink
                 className="nav-link"
                 activeClassName="is-active"
-                to="/us/profile/campaigns"
+                to="/us/profile/posts"
               >
-                Campaigns
+                Posts
               </NavLink>
               <NavLink
                 className="nav-link"
