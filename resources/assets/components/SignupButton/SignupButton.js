@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { convertOnSignupIntent } from '../../helpers/sixpack';
+import { convertOnSignupIntent } from '../../helpers/experiments';
 
 const SignupButton = props => {
   const {

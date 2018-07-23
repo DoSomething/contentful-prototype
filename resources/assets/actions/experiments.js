@@ -1,14 +1,14 @@
 import {
-  PARTICIPATE_IN_EXPERIMENT,
-  ADD_TO_EXPERIMENTS_STORE,
-  UPDATE_EXPERIMENTS_STORE,
-  CONVERT_EXPERIMENT,
-} from '../actions';
+  EXPERIMENT_INIT_PARTICIPATION,
+  EXPERIMENT_ADD_TEST_TO_STORE,
+  EXPERIMENT_UPDATE_TEST_IN_STORE,
+  EXPERIMENT_CONVERT_ON_TEST,
+} from '../constants/action-types';
 
 export function convertExperiment(name) {
   return dispatch => {
     dispatch({
-      type: CONVERT_EXPERIMENT,
+      type: EXPERIMENT_CONVERT_ON_TEST,
       name,
     });
   };
@@ -17,7 +17,7 @@ export function convertExperiment(name) {
 export function participateInExperiment(name) {
   return dispatch => {
     dispatch({
-      type: PARTICIPATE_IN_EXPERIMENT,
+      type: EXPERIMENT_INIT_PARTICIPATION,
       name,
     });
   };
@@ -26,7 +26,7 @@ export function participateInExperiment(name) {
 export function addToStore(name) {
   return dispatch => {
     dispatch({
-      type: ADD_TO_EXPERIMENTS_STORE,
+      type: EXPERIMENT_ADD_TEST_TO_STORE,
       name,
     });
   };
@@ -35,7 +35,7 @@ export function addToStore(name) {
 export function updateStore(name, alternative) {
   return dispatch => {
     dispatch({
-      type: UPDATE_EXPERIMENTS_STORE,
+      type: EXPERIMENT_UPDATE_TEST_IN_STORE,
       name,
       alternative,
     });
