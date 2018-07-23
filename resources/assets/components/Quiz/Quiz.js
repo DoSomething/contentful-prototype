@@ -1,4 +1,6 @@
 /* global window */
+/* eslint-disable jsx-a11y/heading-has-content */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { find, every, get } from 'lodash';
@@ -198,6 +200,8 @@ class Quiz extends React.Component {
   };
 
   render() {
+    // @TODO: The `h1` in this render method was causing 'jsx-a11y/heading-has-content'
+    // to complain. This seems like a known issue pending release: https://git.io/fN814
     return (
       <Flex className="quiz">
         {this.state.renderScrollConcierge ? <ScrollConcierge /> : null}
