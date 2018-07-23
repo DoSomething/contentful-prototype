@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { snakeCase } from 'lodash';
 
-import { participate } from '../../../helpers/experiments';
+import { participateBeta } from '../../../helpers/experiments';
 import ContentfulEntry from '../../ContentfulEntry';
 
 const SixpackExperiment = props => {
   const { alternatives, campaignId, title } = props;
 
-  participate(
+  participateBeta(
     snakeCase(title),
     alternatives.map(item => snakeCase(item.fields.title)),
   );

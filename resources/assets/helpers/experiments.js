@@ -56,35 +56,35 @@ export function convertOnSignupIntent(name) {
   return experimentsDefinitions[name].meta.convertOnSignupIntent;
 }
 
-// /**
-//  * Participate current client to specified experiment.
-//  *
-//  * @param  {String} name
-//  * @return {Promise}
-//  */
-// export function participate(name) {
-//   return new Promise((resolve, reject) => {
-//     const alternatives = Object.values(
-//       experimentsDefinitions[name].alternatives,
-//     );
-//     const trafficFraction = experimentsDefinitions[name].trafficFraction;
+/**
+ * Participate current client to specified experiment.
+ *
+ * @param  {String} name
+ * @return {Promise}
+ */
+export function participate(name) {
+  return new Promise((resolve, reject) => {
+    const alternatives = Object.values(
+      experimentsDefinitions[name].alternatives,
+    );
+    const trafficFraction = experimentsDefinitions[name].trafficFraction;
 
-//     sixpack().participate(
-//       name,
-//       alternatives,
-//       trafficFraction,
-//       (error, response) => {
-//         if (error) {
-//           reject(error);
-//         }
+    sixpack().participate(
+      name,
+      alternatives,
+      trafficFraction,
+      (error, response) => {
+        if (error) {
+          reject(error);
+        }
 
-//         resolve(response.alternative.name);
-//       },
-//     );
-//   });
-// }
+        resolve(response.alternative.name);
+      },
+    );
+  });
+}
 
-export function participate(experimentName, alternatives = []) {
+export function participateBeta(experimentName, alternatives = []) {
   console.log('♨️');
   console.log(experimentName);
   console.log(alternatives);
