@@ -51,14 +51,16 @@ class SocialDriveAction extends React.Component {
   };
 
   handleFacebookShareClick = url => {
-    trackPuckEvent('clicked facebook share action', { url });
+    const trackingData = { url: this.props.link };
+
+    trackPuckEvent('clicked facebook share action', trackingData);
 
     showFacebookShareDialog(url)
       .then(() => {
-        trackPuckEvent('share action completed', { url });
+        trackPuckEvent('share action completed', trackingData);
       })
       .catch(() => {
-        trackPuckEvent('share action cancelled', { url });
+        trackPuckEvent('share action cancelled', trackingData);
       });
   };
 
