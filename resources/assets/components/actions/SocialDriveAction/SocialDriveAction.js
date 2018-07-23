@@ -119,7 +119,9 @@ class SocialDriveAction extends React.Component {
           <div className="share-button padded">
             <button
               className="button padding-vertical-md"
-              onClick={() => handleTwitterShareClick(shortenedLink)}
+              onClick={() =>
+                handleTwitterShareClick(shortenedLink, { url: link })
+              }
               disabled={!shortenedLink}
             >
               <i className="social-icon -twitter" />
