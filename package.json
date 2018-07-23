@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "test": "NODE_ENV=test && jest --watch",
-    "test:ci": "NODE_ENV=test && jest",
+    "test": "jest --watch",
+    "test:ci": "jest",
     "lint": "eslint --ext .js resources/assets",
     "flow": "flow",
     "start": "webpack --env=development --hide-modules --watch",
