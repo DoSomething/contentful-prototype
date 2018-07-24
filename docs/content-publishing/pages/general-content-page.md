@@ -2,7 +2,7 @@
 
 We're creating a lot of content that isn't campaigns nowadays. These are our articles, updates, campaign guides and more. To create a independent, general content page use the following steps:
 
-{% hint style="warning" %} In order to use your page in a Link Action, you will need to redirect it from `next.dosomething` to `www.dosomething`. Once you finish editing your page peak with Ashley to setup a redirect to the slug of the page. {% endhint %}
+{% hint style="warning" %} In order to use your page in a Link Action, you will need to redirect it from `next.dosomething` to `www.dosomething`. Once you finish editing your page speak with Ashley to setup a redirect to the slug of the page. {% endhint %}
 
 ### 1. Create the page
 
@@ -12,7 +12,7 @@ In Contentful, head to the **Content** section, and click the **Add entry** butt
 
 ### 2. Fill out the required fields 
 
-There are a number of required fields that you'll need to fill out before you can even save a draft. These are neccesary for the page toi exist in our system at all.
+There are a number of required fields that you'll need to fill out before you can even save a draft. These are neccesary for the page to exist in our system at all.
 * **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and the title of the page to help find this content in the system.
 * **Title**: This is the displayed title for the page.
 * **Slug**: This is the slug for the page; this field affects the URL address of this content on site, so a slug of `voting-is-cool` would be reached through `www.dosomething.org/us/voting-is-cool`.
@@ -37,6 +37,6 @@ A social override will change the default image, text blurb and title when the p
 ### 5. Talk to Ashley to redirect the page
 Once completed, speak with Ashley to setup a redirect to the slug of this page. In order for your awesome General Content Page to be accessible from `dosomething.org/us/your-awesome-content`, some URL redirecting magic needs to be coordinated with the dev-ops team. Please see Ashley or Team Rocket to get this done!
 
-This is an example general content page that doesn't use of the **Content** field:
+This is an example general content page that doesn't use the **Content** field:
 
 ![General Content Page](../../.gitbook/assets/general-content-page.png)
