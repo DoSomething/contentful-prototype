@@ -134,6 +134,7 @@ export function renderReferralSubmissionAction(data) {
 export function renderSixpackExperiment(data) {
   const fields = withoutNulls(data.fields);
 
+  // return null;
   return <SixpackExperimentContainer id={data.id} {...fields} />;
 }
 

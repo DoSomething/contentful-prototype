@@ -89,7 +89,7 @@ export function participateBeta(experimentName, alternatives = []) {
   console.log(experimentName);
   console.log(alternatives);
 
-  return new Promise((resolve, reject) => {
+  const result = new Promise((resolve, reject) => {
     sixpack().participate(experimentName, alternatives, (error, response) => {
       if (error) {
         reject(error);
@@ -98,6 +98,8 @@ export function participateBeta(experimentName, alternatives = []) {
       resolve(response.alternative.name);
     });
   });
+
+  return result;
 }
 
 /**
