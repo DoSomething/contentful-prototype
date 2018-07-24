@@ -1,7 +1,7 @@
 /* global window */
 
 // Regenerator runtime, for async/await.
-import 'regenerator-runtime';
+import 'regenerator-runtime/runtime';
 
 // `window.location.origin` polyfill for IE 10
 // @see: http://tosbourn.com/a-fix-for-window-location-origin-in-internet-explorer/
