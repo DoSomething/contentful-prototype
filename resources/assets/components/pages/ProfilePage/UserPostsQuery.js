@@ -6,6 +6,7 @@ import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
+import EmptyStateBlock from './EmptyStateBlock';
 
 const USER_POSTS_QUERY = gql`
   query UserPostsQuery($userId: String!, $count: Int, $page: Int) {
@@ -29,20 +30,26 @@ const USER_POSTS_QUERY = gql`
 
 const UserPostsQuery = ({ userId }) => (
   <div>
-    <h2 className="caps-lock league-gothic-sm">Your Posts</h2>
+    <h2 className="caps-lock league-gothic-sm">Your Uploads</h2>
     <PaginatedQuery
       query={USER_POSTS_QUERY}
       queryName="postsByUserId"
       variables={{ userId }}
       count={3}
     >
-      {({ result, fetching, fetchMore }) => (
-        <PostGallery
-          posts={result}
-          loading={fetching}
-          loadMorePosts={fetchMore}
-        />
-      )}
+      {({ result, fetching, fetchMore }) => {
+        if (result.length === 0) {
+          return <EmptyStateBlock />;
+        }
+
+        return (
+          <PostGallery
+            posts={result}
+            loading={fetching}
+            loadMorePosts={fetchMore}
+          />
+        );
+      }}
     </PaginatedQuery>
   </div>
 );
