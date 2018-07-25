@@ -48,7 +48,7 @@ const UserPostsQuery = ({ userId }) => (
 );
 
 UserPostsQuery.propTypes = {
-  userId: PropTypes.String.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default UserPostsQuery;

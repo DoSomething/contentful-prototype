@@ -16,7 +16,7 @@ const ProfileRoute = props => (
 );
 
 ProfileRoute.propTypes = {
-  userId: PropTypes.String.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default ProfileRoute;
