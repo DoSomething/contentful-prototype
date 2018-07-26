@@ -12,6 +12,17 @@ import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 class TextSubmissionAction extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      textValue: '',
+    };
+
+    this.props.initPostSubmissionItem(this.props.id);
+  }
+
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
@@ -26,17 +37,6 @@ class TextSubmissionAction extends React.Component {
     }
 
     return null;
-  }
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showModal: false,
-      textValue: '',
-    };
-
-    this.props.initPostSubmissionItem(this.props.id);
   }
 
   fields = {

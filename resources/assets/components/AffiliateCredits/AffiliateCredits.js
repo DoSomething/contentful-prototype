@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const AffiliateCredit = ({ title, link }) => {
   const affiliate = link ? (
-    <a href={link} target="_blank">
+    <a href={link} target="_blank" rel="noopener noreferrer">
       {title}
     </a>
   ) : (
