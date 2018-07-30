@@ -5,28 +5,6 @@
   font-size: $font-regular;
   line-height: 1.4;
 
-  .primary {
-    margin: 0 0 $base-spacing;
-
-    @include media($large) {
-      float: left;
-      padding-right: $half-spacing;
-      width: 66.6666666666666%;
-    }
-  }
-
-  .secondary {
-    display: none;
-
-    @include media($large) {
-      display: block;
-      float: right;
-      padding-left: $half-spacing;
-      margin: 0 0 $base-spacing;
-      width: 33.3333333333333%;
-    }
-  }
-
   > div {
     margin: $base-spacing 0;
   }

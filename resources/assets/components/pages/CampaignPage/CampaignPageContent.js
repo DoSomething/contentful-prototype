@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import NotFound from '../../NotFound';
+import Row from '../../utilities/Row/Row';
 import ScrollConcierge from '../../ScrollConcierge';
 import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
@@ -59,18 +60,16 @@ const CampaignPageContent = props => {
     <div className="campaign-page" id={subPage.id}>
       <ScrollConcierge />
       {content ? (
-        <div className="row">
-          <div className="primary">
-            <Markdown className="margin-horizontal-md">{content}</Markdown>
-          </div>
-          <div className="secondary">
+        <Row>
+          <Markdown className="margin-horizontal-md">{content}</Markdown>
+          <div className="blocks">
             {sidebar.map(block => (
               <div className="margin-bottom-lg" key={block.id}>
                 <ContentfulEntry json={block} />
               </div>
             ))}
           </div>
-        </div>
+        </Row>
       ) : null}
 
       <div className="blocks clear-both">
