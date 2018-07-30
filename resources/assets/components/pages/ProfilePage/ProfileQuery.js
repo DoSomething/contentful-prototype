@@ -5,9 +5,10 @@ import gql from 'graphql-tag';
 
 import AccountNavigation from './AccountNavigation';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import ProfileRoute from './ProfileRoute';
 
-const ACCOUNT_QUERY = gql`
-  query AccountQuery($userId: String!) {
+const PROFILE_QUERY = gql`
+  query ProfileQuery($userId: String!) {
     user(id: $userId) {
       firstName
       lastName
@@ -18,8 +19,8 @@ const ACCOUNT_QUERY = gql`
   }
 `;
 
-const AccountQuery = ({ userId }) => (
-  <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
+const ProfileQuery = ({ userId }) => (
+  <Query query={PROFILE_QUERY} queryName="user" variables={{ userId }}>
     {({ loading, error, data }) => {
       if (loading) {
         return <div className="spinner -centered" />;
@@ -27,13 +28,14 @@ const AccountQuery = ({ userId }) => (
       if (error) {
         return <ErrorBlock />;
       }
-      return <AccountNavigation {...data} userId={userId} />;
+
+      return <ProfileRoute {...data} userId={userId} />;
     }}
   </Query>
 );
 
-AccountQuery.propTypes = {
+ProfileQuery.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default AccountQuery;
+export default ProfileQuery;

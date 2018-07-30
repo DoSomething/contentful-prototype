@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Enclosure from '../../Enclosure';
-import ProfileQueryContainer from './ProfileQueryContainer';
+import ProfileQuery from './ProfileQuery';
 
 const ProfilePage = props => (
   <Enclosure className="container margin-bottom-lg">
-    <ProfileQueryContainer {...props} />
+    <ProfileQuery userId={props.userId} />
   </Enclosure>
 );
 
