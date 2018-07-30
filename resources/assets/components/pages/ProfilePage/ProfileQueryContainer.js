@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import AccountQuery from './AccountQuery';
+import ProfileRoute from './ProfileRoute';
 import { getUserId } from '../../../selectors/user';
 
 const mapStateToProps = state => ({
   userId: getUserId(state),
 });
 
-export default connect(mapStateToProps)(AccountQuery);
+export default connect(mapStateToProps)(ProfileRoute);
