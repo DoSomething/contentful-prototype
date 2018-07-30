@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 
 import AccountNavigation from './AccountNavigation';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
-import ProfileRoute from './ProfileRoute';
+import ProfilePage from './ProfilePage';
 
 const PROFILE_QUERY = gql`
   query ProfileQuery($userId: String!) {
@@ -29,7 +29,7 @@ const ProfileQuery = ({ userId }) => (
         return <ErrorBlock />;
       }
 
-      return <ProfileRoute {...data} userId={userId} />;
+      return <ProfilePage {...data} userId={userId} />;
     }}
   </Query>
 );

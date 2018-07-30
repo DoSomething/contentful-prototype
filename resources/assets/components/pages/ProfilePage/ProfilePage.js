@@ -1,11 +1,14 @@
 import React from 'react';
 
 import Enclosure from '../../Enclosure';
-import ProfileQuery from './ProfileQuery';
+import AccountNavigation from './AccountNavigation';
 
 const ProfilePage = props => (
   <Enclosure className="container margin-bottom-lg">
-    <ProfileQuery userId={props.userId} />
+    <h1 className="league-gothic-lg caps-lock">
+      Welcome, {props.user.firstName}!
+    </h1>
+    <AccountNavigation {...props} />;
   </Enclosure>
 );
 
