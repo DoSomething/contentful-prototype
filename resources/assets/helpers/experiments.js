@@ -81,12 +81,17 @@ export function participate(name) {
   });
 }
 
+/**
+ * Participate current client to specified experiment. (Beta)
+ *
+ * @param  {String} experimentName
+ * @param  {Array}  alternatives
+ * @return {Promise} The promise returns the string name of the selected alternative.
+ *
+ * @todo   Include trafficFraction as optional argument!
+ */
 export function participateBeta(experimentName, alternatives = []) {
-  console.log('♨️');
-  console.log(experimentName);
-  console.log(alternatives);
-
-  const result = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     sixpack().participate(experimentName, alternatives, (error, response) => {
       if (error) {
         reject(error);
@@ -95,8 +100,6 @@ export function participateBeta(experimentName, alternatives = []) {
       resolve(response.alternative.name);
     });
   });
-
-  return result;
 }
 
 /**

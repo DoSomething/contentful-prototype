@@ -28,8 +28,6 @@ const CampaignPageContent = props => {
   const isClosed = isCampaignClosed(campaignEndDate);
 
   const renderBlock = json => {
-    console.log(json);
-
     const type = parseContentfulType(json);
 
     let fullWidth = false;
@@ -61,6 +59,7 @@ const CampaignPageContent = props => {
   blocks.unshift({
     id: '0099887766554433221100',
     type: 'sixpackExperiment',
+    trafficFraction: null,
     fields: {
       title: 'Some Experiment Title',
       alternatives: [
@@ -94,8 +93,6 @@ const CampaignPageContent = props => {
       ],
     },
   });
-
-  console.log(blocks);
 
   return (
     <div className="campaign-page" id={subPage.id}>
