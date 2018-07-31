@@ -43,9 +43,9 @@ class SixpackExperiment extends React.Component {
   }
 }
 
-export default SixpackExperiment;
-
 SixpackExperiment.propTypes = {
   title: PropTypes.string.isRequired,
   alternatives: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
+
+export default SixpackExperiment;
