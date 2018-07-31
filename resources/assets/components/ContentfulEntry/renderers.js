@@ -6,7 +6,6 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
-import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -129,13 +128,6 @@ export function renderReferralSubmissionAction(data) {
       <ReferralSubmissionActionContainer id={data.id} {...fields} />
     </div>
   );
-}
-
-export function renderSixpackExperiment(data) {
-  const fields = withoutNulls(data.fields);
-
-  // return null;
-  return <SixpackExperimentContainer id={data.id} {...fields} />;
 }
 
 /**
