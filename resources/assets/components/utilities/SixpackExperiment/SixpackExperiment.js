@@ -22,16 +22,22 @@ class SixpackExperiment extends React.Component {
       snakeCase(item.fields.title),
     );
 
-    const selectedAlternative = participateBeta(
-      snakeCase(title),
-      alternativeOptions,
-    );
+    const selectedAlternative = participateBeta(snakeCase(title));
 
-    selectedAlternative.then(response => {
-      this.setState({
-        selectedAlternative: alternatives[alternativeOptions.indexOf(response)],
+    selectedAlternative
+      .then(response => {
+        this.setState({
+          selectedAlternative:
+            alternatives[alternativeOptions.indexOf(response)],
+        });
+      })
+      .catch(error => {
+        // @TODO: Log this error somewhere so we know if a Sixpack Experiment
+        // is having issues.
+        this.setState({
+          selectedAlternative: alternatives[0],
+        });
       });
-    });
   }
 
   render() {
