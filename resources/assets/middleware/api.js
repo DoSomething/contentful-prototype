@@ -74,7 +74,6 @@ const postRequest = (payload, dispatch) => {
       report(error);
       trackPuckEvent('phoenix_failed_post_request', {
         url: payload.url,
-        body: getFormData(payload.body),
         error,
       });
       console.log('🚫 failed response; caught the error!');
