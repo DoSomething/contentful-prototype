@@ -5,13 +5,12 @@ import React from 'react';
 import NotFound from '../NotFound';
 import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
-import { withoutNulls } from '../../helpers';
 import ReportbackBlock from '../ReportbackBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
-import { parseContentfulType, report } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
+import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
@@ -21,7 +20,6 @@ import {
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
-  renderSixpackExperiment,
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
   renderVoterRegistrationAction,
