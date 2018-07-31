@@ -32,8 +32,6 @@ const Account = props => (
   </div>
 );
 
-export default Account;
-
 Account.propTypes = {
   user: PropTypes.shape({
     firstName: PropTypes.string,
@@ -43,3 +41,5 @@ Account.propTypes = {
     birthdate: PropTypes.string,
   }).isRequired,
 };
+
+export default Account;

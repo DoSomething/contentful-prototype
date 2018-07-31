@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import AccountNavigation from './AccountNavigation';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import ProfilePage from './ProfilePage';
 

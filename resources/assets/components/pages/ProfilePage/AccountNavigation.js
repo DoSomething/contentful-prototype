@@ -1,11 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-import Enclosure from '../../Enclosure';
-import ProfileRoute from './ProfileRoute';
-
-const AccountNavigation = props => (
+const AccountNavigation = () => (
   <div id="page-navigation" className="page-navigation bg-white">
     <div className="nav-items">
       <NavLink
@@ -27,9 +23,3 @@ const AccountNavigation = props => (
 );
 
 export default AccountNavigation;
-
-AccountNavigation.propTypes = {
-  user: PropTypes.shape({
-    firstName: PropTypes.string,
-  }).isRequired,
-};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import AccountNavigation from './AccountNavigation';
@@ -24,5 +25,11 @@ const ProfilePage = props => (
     </div>
   </Enclosure>
 );
+
+ProfilePage.propTypes = {
+  user: PropTypes.shape({
+    firstName: PropTypes.string,
+  }).isRequired,
+};
 
 export default ProfilePage;
