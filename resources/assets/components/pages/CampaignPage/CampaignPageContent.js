@@ -55,45 +55,6 @@ const CampaignPageContent = props => {
 
   const { content, sidebar, blocks } = subPage.fields;
 
-  // @REMOVE temporary content for SixpackExperiment.
-  blocks.unshift({
-    id: '0099887766554433221100',
-    type: 'sixpackExperiment',
-    trafficFraction: null,
-    fields: {
-      title: 'Some Experiment Title',
-      alternatives: [
-        {
-          id: 'testcontentblockid1',
-          type: 'contentBlock',
-          fields: {
-            additionalContent: null,
-            content:
-              'Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
-            image: null,
-            imageAlignment: null,
-            subTitle: null,
-            superTitle: null,
-            title: 'Some title for Alternative A here',
-          },
-        },
-        {
-          id: 'testcontentblockid2',
-          type: 'contentBlock',
-          fields: {
-            additionalContent: null,
-            content: 'Donec id elit non mi porta gravida at eget metus.',
-            image: null,
-            imageAlignment: null,
-            subTitle: null,
-            superTitle: null,
-            title: 'Some title for Alternative B here',
-          },
-        },
-      ],
-    },
-  });
-
   return (
     <div className="campaign-page" id={subPage.id}>
       <ScrollConcierge />
