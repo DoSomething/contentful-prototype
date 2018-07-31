@@ -22,7 +22,10 @@ class SixpackExperiment extends React.Component {
       snakeCase(item.fields.title),
     );
 
-    const selectedAlternative = participateBeta(snakeCase(title));
+    const selectedAlternative = participateBeta(
+      snakeCase(title),
+      alternativeOptions,
+    );
 
     selectedAlternative
       .then(response => {
@@ -31,7 +34,7 @@ class SixpackExperiment extends React.Component {
             alternatives[alternativeOptions.indexOf(response)],
         });
       })
-      .catch(error => {
+      .catch(() => {
         // @TODO: Log this error somewhere so we know if a Sixpack Experiment
         // is having issues.
         this.setState({
