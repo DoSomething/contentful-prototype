@@ -7,6 +7,7 @@ import SixpackExperiment from './SixpackExperiment';
  */
 const mapStateToProps = state => ({
   campaignId: state.campaign.id,
+  slug: state.campaign.slug,
 });
 
 /**

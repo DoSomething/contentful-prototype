@@ -16,7 +16,7 @@ class SixpackExperiment extends React.Component {
   }
 
   componentDidMount() {
-    const { alternatives, campaignId, title } = this.props;
+    const { alternatives, title } = this.props;
 
     const alternativeOptions = alternatives.map(item =>
       snakeCase(item.fields.title),
@@ -28,9 +28,6 @@ class SixpackExperiment extends React.Component {
     );
 
     selectedAlternative.then(response => {
-      console.log(response);
-      // console.log(alternatives[alternativeOptions.indexOf(response)]);
-
       this.setState({
         selectedAlternative: alternatives[alternativeOptions.indexOf(response)],
       });
@@ -46,8 +43,9 @@ class SixpackExperiment extends React.Component {
   }
 }
 
-SixpackExperiment.propType = {
-  title: PropTypes.string.isRequired,
-};
-
 export default SixpackExperiment;
+
+SixpackExperiment.propTypes = {
+  title: PropTypes.string.isRequired,
+  alternatives: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
