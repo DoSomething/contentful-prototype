@@ -12,19 +12,6 @@ import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 class ReferralSubmissionAction extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showModal: false,
-      firstNameValue: '',
-      // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
-      emailValue: '',
-    };
-
-    this.props.initPostSubmissionItem(this.props.id);
-  }
-
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
@@ -40,6 +27,19 @@ class ReferralSubmissionAction extends React.Component {
     }
 
     return null;
+  }
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      firstNameValue: '',
+      // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
+      emailValue: '',
+    };
+
+    this.props.initPostSubmissionItem(this.props.id);
   }
 
   fields = {
