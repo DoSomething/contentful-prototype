@@ -7,7 +7,6 @@ import { PHOENIX_URL } from '../constants';
 import { getRequest } from '../helpers/api';
 import { API } from '../constants/action-types';
 import { trackPuckEvent } from '../helpers/analytics';
-import { getFormData } from '../helpers/forms';
 
 /**
  * Send a GET request and dispatch actions.
@@ -74,7 +73,6 @@ const postRequest = (payload, dispatch) => {
       report(error);
       trackPuckEvent('phoenix_failed_post_request', {
         url: payload.url,
-        body: getFormData(payload.body),
         error,
       });
       console.log('🚫 failed response; caught the error!');
