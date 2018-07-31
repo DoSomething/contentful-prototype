@@ -7,7 +7,6 @@ import { PHOENIX_URL } from '../constants';
 import { getRequest } from '../helpers/api';
 import { API } from '../constants/action-types';
 import { trackPuckEvent } from '../helpers/analytics';
-import { getFormData } from '../helpers/forms';
 
 /**
  * Send a GET request and dispatch actions.
