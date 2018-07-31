@@ -6,40 +6,22 @@ import Enclosure from '../../Enclosure';
 import ProfileRoute from './ProfileRoute';
 
 const AccountNavigation = props => (
-  <div>
-    <div className="container bg-white padding-top-lg">
-      <div className="wrapper">
-        <div className="margin-bottom-lg">
-          <h1 className="league-gothic-lg caps-lock">
-            Welcome, {props.user.firstName}!
-          </h1>
-          <div id="page-navigation" className="page-navigation bg-white">
-            <div className="nav-items">
-              <NavLink
-                className="nav-link"
-                activeClassName="is-active"
-                to="/us/profile/posts"
-              >
-                Posts
-              </NavLink>
-              <NavLink
-                className="nav-link"
-                activeClassName="is-active"
-                to="/us/profile/info"
-              >
-                Account
-              </NavLink>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div className="container bg-gray margin-top-lg">
-      <div className="wrapper bg-gray">
-        <Enclosure className="">
-          <ProfileRoute {...props} />
-        </Enclosure>
-      </div>
+  <div id="page-navigation" className="page-navigation bg-white">
+    <div className="nav-items">
+      <NavLink
+        className="nav-link"
+        activeClassName="is-active"
+        to="/us/profile/posts"
+      >
+        Posts
+      </NavLink>
+      <NavLink
+        className="nav-link"
+        activeClassName="is-active"
+        to="/us/profile/info"
+      >
+        Account
+      </NavLink>
     </div>
   </div>
 );
