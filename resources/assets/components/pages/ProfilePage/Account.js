@@ -7,7 +7,7 @@ import { env } from '../../../helpers/index';
 const login = '/login';
 const Account = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
-    <h2 className="caps-lock league-gothic-sm">Your Account </h2>
+    <h2 className="caps-lock league-gothic-sm">Your Account</h2>
     <div className="margin-top-lg">
       <h3>Account Info</h3>
     </div>

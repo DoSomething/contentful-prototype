@@ -27,7 +27,7 @@ const AccountQuery = ({ userId }) => (
       if (error) {
         return <ErrorBlock />;
       }
-      return <AccountNavigation {...data} />;
+      return <AccountNavigation {...data} userId={userId} />;
     }}
   </Query>
 );
