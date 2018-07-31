@@ -8,11 +8,12 @@ import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
-import { parseContentfulType, report } from '../../helpers';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
+import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
+import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
   renderLinkAction,
@@ -129,6 +130,14 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'shareAction':
         return renderShareAction(json);
+
+      case 'sixpackExperiment':
+        return (
+          <SixpackExperimentContainer
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'socialDriveAction':
         return (
