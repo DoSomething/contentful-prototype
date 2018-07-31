@@ -12,8 +12,9 @@ class SixpackExperiment extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $this->getContentType(),
             'fields' => [
-                'title' => $this->title,
                 'alternatives' => $this->parseBlocks($this->alternatives),
+                'title' => $this->title,
+                'trafficFraction' => $this->trafficFraction, // @TODO: divide number by 100 for decimal indication.
             ],
         ];
     }
