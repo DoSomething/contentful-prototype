@@ -18,9 +18,7 @@ const ProfilePage = props => (
 
     <div className="container bg-gray margin-top-lg">
       <div className="wrapper bg-gray">
-        <Enclosure className="">
-          <ProfileRoute {...props} />
-        </Enclosure>
+        <ProfileRoute {...props} />
       </div>
     </div>
   </Enclosure>
