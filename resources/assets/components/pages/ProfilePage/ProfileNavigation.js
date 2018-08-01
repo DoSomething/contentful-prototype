@@ -14,7 +14,7 @@ const ProfileNavigation = () => (
       <NavLink
         className="nav-link"
         activeClassName="is-active"
-        to="/us/profile/info"
+        to="/us/profile/account"
       >
         Account
       </NavLink>

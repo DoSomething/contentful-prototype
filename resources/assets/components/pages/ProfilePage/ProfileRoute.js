@@ -7,7 +7,7 @@ import UserPostsQuery from './UserPostsQuery';
 
 const ProfileRoute = props => (
   <Switch>
-    <Route path="/us/profile/info" render={() => <Account {...props} />} />
+    <Route path="/us/profile/account" render={() => <Account {...props} />} />
     <Route
       path="/us/profile/posts"
       render={() => <UserPostsQuery userId={props.userId} />}
