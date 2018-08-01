@@ -17,7 +17,7 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 $router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
 // Profile
-$router->redirect('/northstar/{id}', '/us/profile/info');
+$router->redirect('/northstar/{id}', '/us/profile/account');
 $router->get('/us/profile/{slug}', function () {
     return auth()->user() ? view('app') : redirect('/next/login');
 })->where('slug', 'posts|account');
