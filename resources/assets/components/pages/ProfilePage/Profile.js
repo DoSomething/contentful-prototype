@@ -5,7 +5,7 @@ import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
 
 const login = '/login';
-const Account = props => (
+const Profile = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic-sm">Your Account</h2>
     <div className="margin-top-lg">
@@ -32,7 +32,7 @@ const Account = props => (
   </div>
 );
 
-Account.propTypes = {
+Profile.propTypes = {
   user: PropTypes.shape({
     firstName: PropTypes.string,
     lastName: PropTypes.string,
@@ -42,4 +42,4 @@ Account.propTypes = {
   }).isRequired,
 };
 
-export default Account;
+export default Profile;

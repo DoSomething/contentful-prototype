@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const AccountNavigation = () => (
+const ProfileNavigation = () => (
   <div id="page-navigation" className="page-navigation bg-white">
     <div className="nav-items">
       <NavLink
@@ -22,4 +22,4 @@ const AccountNavigation = () => (
   </div>
 );
 
-export default AccountNavigation;
+export default ProfileNavigation;

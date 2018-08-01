@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
-import AccountNavigation from './AccountNavigation';
+import ProfileNavigation from './ProfileNavigation';
 import ProfileRoute from './ProfileRoute';
 
 const ProfilePage = props => (
@@ -12,7 +12,7 @@ const ProfilePage = props => (
         <h1 className="league-gothic-lg caps-lock">
           Welcome, {props.user.firstName}!
         </h1>
-        <AccountNavigation {...props} />
+        <ProfileNavigation {...props} />
       </div>
     </div>
 
