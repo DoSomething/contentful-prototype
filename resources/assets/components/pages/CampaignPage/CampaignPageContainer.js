@@ -2,7 +2,7 @@ import { get, has } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import { findContentfulEntry } from '../../../helpers';
+import { findContentfulEntry, shouldShowLandingPage } from '../../../helpers';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    shouldShowLandingPage: shouldShowLandingPage(state, entryContent),
     campaignEndDate: get(state.campaign.endDate, 'date', null),
     dashboard: state.campaign.dashboard,
     entryContent,
