@@ -33,13 +33,15 @@ const GeneralPage = props => {
                 <Markdown className="margin-horizontal-md">{content}</Markdown>
               </div>
 
-              <div className="secondary">
-                {sidebar.map(block => (
-                  <div className="margin-bottom-lg" key={block.id}>
-                    <ContentfulEntry json={block} />
-                  </div>
-                ))}
-              </div>
+              {sidebar.length ? (
+                <div className="secondary">
+                  {sidebar.map(block => (
+                    <div className="margin-bottom-lg" key={block.id}>
+                      <ContentfulEntry json={block} />
+                    </div>
+                  ))}
+                </div>
+              ) : null}
             </div>
           ) : null}
 
