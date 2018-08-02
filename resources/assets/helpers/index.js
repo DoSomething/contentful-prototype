@@ -385,18 +385,19 @@ export function isCampaignClosed(endDate) {
  * Check if the Landing Page should be shown for campaign.
  *
  * @param  {Object}       state
- * @param  {Boolean|null} shouldIgnore
+ * @param  {Boolean|null} ignoreLandingPage
  * @return {Boolean}
  */
-export function shouldShowLandingPage(state, shouldIgnore) {
+export function shouldShowLandingPage(state, ignoreLandingPage) {
   const hasLandingPage = state.campaign.landingPage !== null;
 
-  const ignoreLandingPage = state.admin.shouldShowActionPage || shouldIgnore;
+  const shouldIgnoreLandingPage =
+    state.admin.shouldShowActionPage || ignoreLandingPage;
   let shouldShow = false;
 
   if (state.admin.shouldShowLandingPage) {
     shouldShow = true;
-  } else if (hasLandingPage && !ignoreLandingPage) {
+  } else if (hasLandingPage && !shouldIgnoreLandingPage) {
     shouldShow =
       !isSignedUp(state) &&
       !isCampaignClosed(get(state.campaign.endDate, 'date', null));
