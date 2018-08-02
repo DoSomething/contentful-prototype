@@ -6,7 +6,6 @@ import NotificationContainer from '../Notification';
 import ModalLauncherContainer from '../ModalLauncher';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
-import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import SurveyModalContainer from '../pages/SurveyModal/SurveyModalContainer';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
@@ -45,16 +44,11 @@ const Campaign = props => (
       </TrafficDistribution>
     ) : null}
 
-    {props.shouldShowLandingPage ? (
-      <LandingPageContainer {...props} />
-    ) : (
-      <CampaignRouteContainer {...props} />
-    )}
+    <CampaignRouteContainer {...props} />
   </ModalRoute>
 );
 
 Campaign.propTypes = {
-  shouldShowLandingPage: PropTypes.bool.isRequired,
   featureFlags: PropTypes.objectOf(PropTypes.bool),
   location: ReactRouterPropTypes.location.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
