@@ -8,6 +8,7 @@ import markdownItFootnote from 'markdown-it-footnote';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import { trackPuckEvent } from './analytics';
+import { isSignedUp } from '../selectors/signup';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -378,6 +379,30 @@ export function isCampaignClosed(endDate) {
   }
 
   return isBefore(endDate, new Date());
+}
+
+/**
+ * Check if the Landing Page should be shown for campaign
+ *
+ * @param  {Object}       state
+ * @param  {Boolean|null} shouldIgnore
+ * @return {Boolean}
+ */
+export function shouldShowLandingPage(state, shouldIgnore) {
+  const hasLandingPage = state.campaign.landingPage !== null;
+
+  const ignoreLandingPage = state.admin.shouldShowActionPage || shouldIgnore;
+  let shouldShow = false;
+
+  if (state.admin.shouldShowLandingPage) {
+    shouldShow = true;
+  } else if (hasLandingPage && !ignoreLandingPage) {
+    shouldShow =
+      !isSignedUp(state) &&
+      !isCampaignClosed(get(state.campaign.endDate, 'date', null));
+  }
+
+  return shouldShow;
 }
 
 /**
