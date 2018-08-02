@@ -384,8 +384,8 @@ export function isCampaignClosed(endDate) {
 /**
  * Check if the Landing Page should be shown for campaign.
  *
- * @param  {Object}       state
- * @param  {Boolean|null} ignoreLandingPage
+ * @param  {Object}  state
+ * @param  {Boolean} ignoreLandingPage - optional additional boolean to ignore landing page.
  * @return {Boolean}
  */
 export function shouldShowLandingPage(state, ignoreLandingPage) {
