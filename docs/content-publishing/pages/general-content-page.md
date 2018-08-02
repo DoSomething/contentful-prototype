@@ -1,8 +1,10 @@
 # General Content Page
 
-We're creating a lot of content that isn't campaigns nowadays. These are our articles, updates, campaign guides and more. To create a independent, general content page use the following steps:
+We're creating a lot of content that isn't campaigns nowadays. These are articles, updates, lists, guides and more. They exist outside the campaign structure and are useful campaign guides as they don't require a user to be signed in or signed up to view.. They're also frequently sent out in broadcasts or posted on social media as content pieces to encourage campaign conversion.
 
 {% hint style="warning" %} In order to use your page in a Link Action, you will need to redirect it from `next.dosomething` to `www.dosomething`. Once you finish editing your page speak with Ashley to setup a redirect to the slug of the page. {% endhint %}
+
+## Creating a general content page
 
 ### 1. Create the page
 
