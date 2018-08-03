@@ -37,27 +37,32 @@ const SUBMISSION_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) => (
-  <PaginatedQuery
-    query={SUBMISSION_GALLERY_QUERY}
-    queryName="posts"
-    variables={{ campaignId, userId, type }}
-    count={6}
-  >
-    {({ result, fetching, fetchMore }) => (
-      <PostGallery
-        posts={result}
-        loading={fetching}
-        loadMorePosts={fetchMore}
-      />
-    )}
-  </PaginatedQuery>
-);
+const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) =>
+  userId ? (
+    <PaginatedQuery
+      query={SUBMISSION_GALLERY_QUERY}
+      queryName="posts"
+      variables={{ campaignId, userId, type }}
+      count={6}
+    >
+      {({ result, fetching, fetchMore }) => (
+        <PostGallery
+          posts={result}
+          loading={fetching}
+          loadMorePosts={fetchMore}
+        />
+      )}
+    </PaginatedQuery>
+  ) : null;
 
 SubmissionGalleryBlockQuery.propTypes = {
   campaignId: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
+};
+
+SubmissionGalleryBlockQuery.defaultProps = {
+  userId: null,
 };
 
 // Export the GraphQL query component.
