@@ -64,7 +64,9 @@ class ShareAction extends React.Component {
   };
 
   handleFacebookClick = url => {
-    trackPuckEvent('clicked facebook share action', { url });
+    const { link } = this.props;
+
+    trackPuckEvent('clicked facebook share action', { url: link });
 
     showFacebookShareDialog(url)
       .then(() => {
@@ -73,16 +75,16 @@ class ShareAction extends React.Component {
           this.storeSharePost();
         }
 
-        trackPuckEvent('share action completed', { url });
+        trackPuckEvent('share action completed', { url: link });
         this.setState({ showModal: true });
       })
       .catch(() => {
-        trackPuckEvent('share action cancelled', { url });
+        trackPuckEvent('share action cancelled', { url: link });
       });
   };
 
   handleTwitterClick = url => {
-    trackPuckEvent('clicked twitter share action', { url });
+    trackPuckEvent('clicked twitter share action', { url: this.props.link });
     showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
   };
 
