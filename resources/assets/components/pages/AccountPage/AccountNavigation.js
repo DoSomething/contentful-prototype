@@ -1,25 +1,25 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const ProfileNavigation = () => (
+const AccountNavigation = () => (
   <div id="page-navigation" className="page-navigation bg-white">
     <div className="nav-items">
       <NavLink
         className="nav-link"
         activeClassName="is-active"
-        to="/us/profile/posts"
+        to="/us/account/posts"
       >
         Posts
       </NavLink>
       <NavLink
         className="nav-link"
         activeClassName="is-active"
-        to="/us/profile/account"
+        to="/us/account/profile"
       >
-        Account
+        Profile
       </NavLink>
     </div>
   </div>
 );
 
-export default ProfileNavigation;
+export default AccountNavigation;

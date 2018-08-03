@@ -4,10 +4,10 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
-import ProfilePage from './ProfilePage';
+import Account from './Account';
 
-const PROFILE_QUERY = gql`
-  query ProfileQuery($userId: String!) {
+const ACCOUNT_QUERY = gql`
+  query AccountQuery($userId: String!) {
     user(id: $userId) {
       firstName
       lastName
@@ -18,8 +18,8 @@ const PROFILE_QUERY = gql`
   }
 `;
 
-const ProfileQuery = ({ userId }) => (
-  <Query query={PROFILE_QUERY} queryName="user" variables={{ userId }}>
+const AccountQuery = ({ userId }) => (
+  <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
     {({ loading, error, data }) => {
       if (loading) {
         return <div className="spinner -centered" />;
@@ -28,13 +28,13 @@ const ProfileQuery = ({ userId }) => (
         return <ErrorBlock />;
       }
 
-      return <ProfilePage {...data} userId={userId} />;
+      return <Account {...data} userId={userId} />;
     }}
   </Query>
 );
 
-ProfileQuery.propTypes = {
+AccountQuery.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default ProfileQuery;
+export default AccountQuery;

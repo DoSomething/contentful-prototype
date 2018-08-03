@@ -2,32 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
-import ProfileNavigation from './ProfileNavigation';
-import ProfileRoute from './ProfileRoute';
+import AccountNavigation from './AccountNavigation';
+import AccountRoute from './AccountRoute';
 
-const ProfilePage = props => (
+const Account = props => (
   <Enclosure className="container margin-bottom-lg ">
     <div className="container bg-white padding-top-lg padding-horizontal-md">
       <div className="wrapper padding-bottom-lg">
         <h1 className="league-gothic-lg caps-lock">
           Welcome, {props.user.firstName}!
         </h1>
-        <ProfileNavigation {...props} />
+        <AccountNavigation {...props} />
       </div>
     </div>
 
     <div className="container bg-gray margin-top-lg padding-horizontal-md">
       <div className="wrapper bg-gray">
-        <ProfileRoute {...props} />
+        <AccountRoute {...props} />
       </div>
     </div>
   </Enclosure>
 );
 
-ProfilePage.propTypes = {
+Account.propTypes = {
   user: PropTypes.shape({
     firstName: PropTypes.string,
   }).isRequired,
 };
 
-export default ProfilePage;
+export default Account;

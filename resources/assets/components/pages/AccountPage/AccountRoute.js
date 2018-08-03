@@ -2,21 +2,21 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Account from './Account';
+import Profile from './Profile';
 import UserPostsQuery from './UserPostsQuery';
 
-const ProfileRoute = props => (
+const AccountRoute = props => (
   <Switch>
-    <Route path="/us/profile/account" render={() => <Account {...props} />} />
+    <Route path="/us/account/profile" render={() => <Profile {...props} />} />
     <Route
-      path="/us/profile/posts"
+      path="/us/account/posts"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
   </Switch>
 );
 
-ProfileRoute.propTypes = {
+AccountRoute.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default ProfileRoute;
+export default AccountRoute;
