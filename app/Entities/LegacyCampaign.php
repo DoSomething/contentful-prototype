@@ -24,6 +24,29 @@ class LegacyCampaign implements JsonSerializable
     }
 
     /**
+     * Parse the cover image data.
+     *
+     * @param  array $coverImage
+     * @return array
+     */
+    public function parseCoverImage($coverImage)
+    {
+        $url = null;
+        $landscapeUrl = null;
+
+        if (isset($coverImage['default'])) {
+            $url = $coverImage['default']['uri'];
+            $landscapeUrl = isset($coverImage['default']['sizes']['landscape']) ? $coverImage['default']['sizes']['landscape']['uri'] : null;
+        }
+
+        return [
+            'description' => null,
+            'url' => $url,
+            'landscapeUrl' => $landscapeUrl,
+        ];
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -40,11 +63,7 @@ class LegacyCampaign implements JsonSerializable
             'status' => $this->legacyCampaign['status'],
             'callToAction' => $this->legacyCampaign['tagline'],
             'tagline' => $this->legacyCampaign['tagline'],
-            'coverImage' => [
-                'description' => null,
-                'url' => $this->legacyCampaign['cover_image']['default']['uri'],
-                'landscapeUrl' => $this->legacyCampaign['cover_image']['default']['sizes']['landscape']['uri'],
-            ],
+            'coverImage' => $this->parseCoverImage($this->legacyCampaign['cover_image']),
             'staffPick' => $this->legacyCampaign['staff_pick'],
             'cause' => $this->legacyCampaign['causes']['primary']['name'],
             'additionalContent' => [
