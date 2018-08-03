@@ -32,7 +32,13 @@ class ShareAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const { id, campaignId, campaignRunId, legacyCampaignId } = this.props;
+    const {
+      id,
+      campaignId,
+      campaignRunId,
+      legacyCampaignId,
+      link,
+    } = this.props;
 
     const formData = setFormData(
       {
@@ -41,6 +47,7 @@ class ShareAction extends React.Component {
         id,
       },
       {
+        url: link,
         platform: 'facebook',
         campaign_id: campaignId,
         legacy_campaign_id: legacyCampaignId,
