@@ -52,7 +52,8 @@ class LegacyCampaign implements JsonSerializable
      * @param  array $campaignRuns
      * @return string
      */
-    public function parseCampaignRunId($campaignRuns) {
+    public function parseCampaignRunId($campaignRuns)
+    {
         $current = array_shift($campaignRuns['current']);
 
         return $current['id'];
