@@ -31,18 +31,10 @@ class LegacyCampaign implements JsonSerializable
      */
     public function parseCoverImage($coverImage)
     {
-        $url = null;
-        $landscapeUrl = null;
-
-        if (isset($coverImage['default'])) {
-            $url = $coverImage['default']['uri'];
-            $landscapeUrl = isset($coverImage['default']['sizes']['landscape']) ? $coverImage['default']['sizes']['landscape']['uri'] : null;
-        }
-
         return [
             'description' => null,
-            'url' => $url,
-            'landscapeUrl' => $landscapeUrl,
+            'url' => array_get($coverImage, 'default.uri', null),
+            'landscapeUrl' => array_get($coverImage, 'default.sizes.landscape.uri', null),
         ];
     }
 
