@@ -14,9 +14,9 @@ const AccountNavigation = () => (
       <NavLink
         className="nav-link"
         activeClassName="is-active"
-        to="/us/account/profile"
+        to="/us/account/campaigns"
       >
-        Profile
+        Campaigns
       </NavLink>
     </div>
   </div>

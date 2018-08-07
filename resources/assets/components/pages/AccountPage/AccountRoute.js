@@ -9,7 +9,7 @@ const AccountRoute = props => (
   <Switch>
     <Route path="/us/account/profile" render={() => <Profile {...props} />} />
     <Route
-      path="/us/account/posts"
+      path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}
     />
   </Switch>
