@@ -1,4 +1,4 @@
-/* eslint-ignore import/prefer-default-export */
+/* eslint-disable import/prefer-default-export */
 
 export function sixpackLog(client, action, experimentName, experiment) {
   console.groupCollapsed(
