@@ -24,6 +24,34 @@ class LegacyCampaign implements JsonSerializable
     }
 
     /**
+     * Parse the cover image data.
+     *
+     * @param  array $coverImage
+     * @return array
+     */
+    public function parseCoverImage($coverImage)
+    {
+        return [
+            'description' => null,
+            'url' => array_get($coverImage, 'default.uri', null),
+            'landscapeUrl' => array_get($coverImage, 'default.sizes.landscape.uri', null),
+        ];
+    }
+
+    /**
+     * Parse the campaign run ID.
+     *
+     * @param  array $campaignRuns
+     * @return string
+     */
+    public function parseCampaignRunId($campaignRuns)
+    {
+        $current = array_shift($campaignRuns['current']);
+
+        return $current['id'];
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -33,18 +61,14 @@ class LegacyCampaign implements JsonSerializable
         return [
             'id' => null,
             'legacyCampaignId' => $this->legacyCampaign['id'],
-            'legacyCampaignRunId' => $this->legacyCampaign['campaign_runs']['current']['en']['id'],
+            'legacyCampaignRunId' => $this->parseCampaignRunId($this->legacyCampaign['campaign_runs']),
             'type' => 'campaign',
             'title' => $this->legacyCampaign['title'],
             'slug' => null,
             'status' => $this->legacyCampaign['status'],
             'callToAction' => $this->legacyCampaign['tagline'],
             'tagline' => $this->legacyCampaign['tagline'],
-            'coverImage' => [
-                'description' => null,
-                'url' => $this->legacyCampaign['cover_image']['default']['uri'],
-                'landscapeUrl' => $this->legacyCampaign['cover_image']['default']['sizes']['landscape']['uri'],
-            ],
+            'coverImage' => $this->parseCoverImage($this->legacyCampaign['cover_image']),
             'staffPick' => $this->legacyCampaign['staff_pick'],
             'cause' => $this->legacyCampaign['causes']['primary']['name'],
             'additionalContent' => [
