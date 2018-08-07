@@ -85,7 +85,7 @@ class Sixpack {
   convertOnAction(action) {
     const matchingExperiments = Object.keys(this.experiments).filter(
       experimentName =>
-        this.experiments[experimentName].convertOn.includes(action),
+        this.experiments[experimentName].convertableActions.includes(action),
     );
 
     matchingExperiments.forEach(experimentName => this.convert(experimentName));
