@@ -7,16 +7,16 @@ const AccountNavigation = () => (
       <NavLink
         className="nav-link"
         activeClassName="is-active"
-        to="/us/account/posts"
+        to="/us/account/campaigns"
       >
-        Posts
+        Campaigns
       </NavLink>
       <NavLink
         className="nav-link"
         activeClassName="is-active"
-        to="/us/account/campaigns"
+        to="/us/account/profile"
       >
-        Campaigns
+        Profile
       </NavLink>
     </div>
   </div>
