@@ -20,3 +20,7 @@ export const NetworkStatus = {
   READY: 7,
   ERROR: 8,
 };
+
+export const SIXPACK_EXPERIMENT_SIGNUP_ACTION = 'signup';
+export const SIXPACK_EXPERIMENT_REPORTBACK_POST_ACTION = 'reportbackPost';
+export const SIXPACK_EXPERIMENT_CLICKED_BUTTON_ACTION = 'clickedButton';

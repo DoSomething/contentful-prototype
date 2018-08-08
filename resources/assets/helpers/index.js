@@ -7,6 +7,7 @@ import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
+import Sixpack from '../services/Sixpack';
 import { trackPuckEvent } from './analytics';
 
 // Helper Constants
@@ -617,6 +618,24 @@ export function report(error) {
   }
 
   window.newrelic.noticeError(error);
+}
+
+/*
+ * Variable that stores single instance of Sixpack.
+ */
+let sixpackInstance = null;
+
+/**
+ * Get instance of Sixpack class.
+ *
+ * @return {Sixpack}
+ */
+export function sixpack() {
+  if (!sixpackInstance) {
+    sixpackInstance = new Sixpack();
+  }
+
+  return sixpackInstance;
 }
 
 /**
