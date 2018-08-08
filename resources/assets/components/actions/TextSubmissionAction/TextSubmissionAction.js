@@ -11,6 +11,8 @@ import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
+import './text-submission-action.scss';
+
 class TextSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
