@@ -35,6 +35,7 @@ module.exports = function(migration) {
     .createField('trafficFraction')
     .name('Traffic Fraction')
     .type('Integer')
+    .validations([{ range: { min: 1, max: 100 } }])
     .required(false)
     .localized(false);
 
