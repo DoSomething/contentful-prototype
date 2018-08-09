@@ -15,7 +15,7 @@ class SixpackExperiment extends React.Component {
     };
 
     this.experimentName =
-      snakeCase(this.props.campaignSlug) + '_' + snakeCase(this.props.title);
+      snakeCase(this.props.campaignSlug) + '_' + snakeCase(this.props.title); // eslint-disable-line prefer-template
   }
 
   componentDidMount() {
