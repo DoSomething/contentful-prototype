@@ -13,9 +13,8 @@ module.exports = function(migration) {
         },
       ],
     })
-    .validations([{ size: { min: 1 } }]);
     .required(true)
-    .localized(false)
+    .localized(false);
 
   sixpackExperiment.moveField('convertableActions').afterField('alternatives');
 };
