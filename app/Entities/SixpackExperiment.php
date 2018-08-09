@@ -7,6 +7,16 @@ use JsonSerializable;
 class SixpackExperiment extends Entity implements JsonSerializable
 {
     /**
+     * Parse traffic fraction to set as decimal value.
+     *
+     * @return int
+     */
+    private function parseTrafficFraction($trafficFraction)
+    {
+        return ($trafficFraction ?: 100) / 100;
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -21,7 +31,7 @@ class SixpackExperiment extends Entity implements JsonSerializable
                 'convertableActions' => $this->convertableActions,
                 'kpi' => $this->kpi,
                 'title' => $this->title,
-                'trafficFraction' => $this->trafficFraction, // @TODO: divide number by 100 for decimal indication.
+                'trafficFraction' => $this->parseTrafficFraction($this->trafficFraction),
             ],
         ];
     }
