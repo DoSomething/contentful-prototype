@@ -378,12 +378,12 @@ p {
 }
 
 .league-gothic {
-  &-sm {
+  &.-sm {
     font-size: 50px;
     font-family: $secondary-font-family;
     font-weight: 400;
   }
-  &-lg {
+  &.-lg {
     font-size: 75px;
     font-family: $secondary-font-family;
     font-weight: 400;
