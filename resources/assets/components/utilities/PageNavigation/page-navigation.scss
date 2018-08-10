@@ -38,11 +38,6 @@
     }
   }
 
-  &::after {
-    clear: both;
-    content: '';
-    display: table;
-  }
   &.is-stuck {
     background-color: $white;
     border-bottom: 1px solid $primary-border-color;
