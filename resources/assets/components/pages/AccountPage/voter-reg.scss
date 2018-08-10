@@ -1,27 +1,18 @@
 .voter-reg {
+  background: #fff;
+  padding: 12px;
+  border-radius: 4px;
+  height: 55px;
+  width: 460px;
+  border: 1px solid;
   &.-red {
-    background: #fff;
-    padding: 12px;
-    border: 1px solid #ff4747;
-    border-radius: 4px;
-    height: 55px;
-    width: 460px;
+    border-color: #ff4747;
   }
   &.-green {
-    background: #fff;
-    padding: 12px;
-    border: 1px solid #80de19;
-    border-radius: 4px;
-    height: 55px;
-    width: 460px;
+    border-color: #80de19;
   }
   &.-yellow {
-    background: #fff;
-    padding: 12px;
-    border: 1px solid #ffec04;
-    border-radius: 4px;
-    height: 55px;
-    width: 460px;
+    border-color: #ffec04;
   }
 }
 .icon {
