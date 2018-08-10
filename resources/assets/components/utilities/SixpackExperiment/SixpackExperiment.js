@@ -84,7 +84,7 @@ SixpackExperiment.propTypes = {
 };
 
 SixpackExperiment.defaultProps = {
-  campaignSlug: '',
+  campaignSlug: null,
   kpi: null,
   trafficFraction: 1,
 };
