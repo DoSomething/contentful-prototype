@@ -9,7 +9,7 @@ const Account = props => (
   <Enclosure className="container margin-bottom-lg ">
     <div className="container bg-white padding-top-lg padding-horizontal-md">
       <div className="wrapper padding-bottom-lg">
-        <h1 className="league-gothic-lg caps-lock">
+        <h1 className="league-gothic -lg caps-lock">
           Welcome, {props.user.firstName}!
         </h1>
         <AccountNavigation {...props} />
