@@ -12,6 +12,12 @@
     z-index: $tabbed-navigation-zindex;
   }
 
+  &.-no-fade {
+    &::before {
+      display: none; // go away!
+    }
+  }
+
   &::before {
     content: '';
     background: linear-gradient(
@@ -32,6 +38,11 @@
     }
   }
 
+  &::after {
+    clear: both;
+    content: '';
+    display: table;
+  }
   &.is-stuck {
     background-color: $white;
     border-bottom: 1px solid $primary-border-color;

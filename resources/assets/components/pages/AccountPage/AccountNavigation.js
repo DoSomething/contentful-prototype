@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const AccountNavigation = () => (
-  <div id="page-navigation" className="page-navigation bg-white">
+  <div className="page-navigation -no-fade">
     <div className="nav-items">
       <NavLink
         className="nav-link"
