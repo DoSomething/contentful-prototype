@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import AccountNavigation from './AccountNavigation';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import Account from './Account';
 
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {
@@ -27,7 +27,8 @@ const AccountQuery = ({ userId }) => (
       if (error) {
         return <ErrorBlock />;
       }
-      return <AccountNavigation {...data} />;
+
+      return <Account {...data} userId={userId} />;
     }}
   </Query>
 );

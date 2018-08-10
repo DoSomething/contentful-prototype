@@ -12,6 +12,12 @@
     z-index: $tabbed-navigation-zindex;
   }
 
+  &.-no-fade {
+    &::before {
+      display: none;
+    }
+  }
+
   &::before {
     content: '';
     background: linear-gradient(
