@@ -36,7 +36,7 @@ const VoterRegStatusBlock = ({ status }) => {
     <div className="voter-reg-red display-flex flex-align-center">
       <img className="post-badge icon-x" src={rejectedIcon} alt="hello" />
       <div className="margin-left-md">
-        We {"don't"} have your voter registration. Register here!
+        We don&#39;t have your voter registration. Register here!
       </div>
     </div>
   );
