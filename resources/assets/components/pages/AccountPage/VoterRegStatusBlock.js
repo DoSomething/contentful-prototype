@@ -5,6 +5,8 @@ import checkmark from './checkmark.svg';
 import rejectedIcon from './rejectedIcon.svg';
 import pendingIcon from './pendingIcon.svg';
 
+import './voter-reg.scss';
+
 const VoterRegStatusBlock = ({ status }) => {
   if (status === 'PENDING') {
     return (

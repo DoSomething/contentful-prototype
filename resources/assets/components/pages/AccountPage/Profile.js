@@ -9,7 +9,7 @@ const login = '/login';
 const Profile = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic -sm">Your Profile</h2>
-    <div className="margin-top-lg">
+    <div className="margin-top-lg float-left">
       <h3>Profile Info</h3>
 
       <FormItem title="Name" value={props.user.firstName} />
