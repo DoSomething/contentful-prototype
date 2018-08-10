@@ -7,7 +7,7 @@ import SixpackExperiment from './SixpackExperiment';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  campaignSlug: get(state.campaign, 'slugy', null),
+  campaignSlug: get(state.campaign, 'slug', null),
 });
 
 /**
