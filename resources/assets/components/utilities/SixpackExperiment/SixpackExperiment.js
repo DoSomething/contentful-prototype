@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { snakeCase } from 'lodash';
 
+import { sixpack } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
 import Placeholder from '../../utilities/Placeholder';
-import { participateBeta } from '../../../helpers/experiments';
 
 class SixpackExperiment extends React.Component {
   constructor(props) {
@@ -13,18 +13,36 @@ class SixpackExperiment extends React.Component {
     this.state = {
       selectedAlternative: null,
     };
+
+    const { campaignSlug, title } = this.props;
+
+    this.experimentName = campaignSlug
+      ? `${snakeCase(campaignSlug)}_${snakeCase(title)}`
+      : `${snakeCase(title)}`;
   }
 
   componentDidMount() {
-    const { alternatives, title } = this.props;
+    const {
+      alternatives,
+      convertableActions,
+      kpi,
+      trafficFraction,
+    } = this.props;
 
     const alternativeOptions = alternatives.map(item =>
-      snakeCase(item.fields.title),
+      // @TODO: probably want to use internalTitle but not all entities expose that.
+      // Defaults to title field, but we should aim to start exposing internalTitle on entities!
+      snakeCase(item.fields.internalTitle || item.fields.title),
     );
 
-    const selectedAlternative = participateBeta(
-      snakeCase(title),
+    const selectedAlternative = sixpack().participate(
+      this.experimentName,
       alternativeOptions,
+      {
+        convertableActions,
+        kpi,
+        trafficFraction,
+      },
     );
 
     selectedAlternative
@@ -43,6 +61,10 @@ class SixpackExperiment extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    sixpack().removeExperiment(this.experimentName);
+  }
+
   render() {
     return this.state.selectedAlternative ? (
       <ContentfulEntry json={this.state.selectedAlternative} />
@@ -53,8 +75,18 @@ class SixpackExperiment extends React.Component {
 }
 
 SixpackExperiment.propTypes = {
-  title: PropTypes.string.isRequired,
   alternatives: PropTypes.arrayOf(PropTypes.object).isRequired,
+  campaignSlug: PropTypes.string,
+  convertableActions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  kpi: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  trafficFraction: PropTypes.number,
+};
+
+SixpackExperiment.defaultProps = {
+  campaignSlug: null,
+  kpi: null,
+  trafficFraction: 1,
 };
 
 export default SixpackExperiment;

@@ -2,11 +2,6 @@
 
 import client from 'sixpack-client';
 
-import {
-  SIXPACK_EXPERIMENT_SIGNUP_ACTION,
-  SIXPACK_EXPERIMENT_REPORTBACK_POST_ACTION,
-  SIXPACK_EXPERIMENT_CLICKED_BUTTON_ACTION,
-} from '../constants';
 import { sixpackLog } from '../helpers/loggers';
 
 class Sixpack {
@@ -23,14 +18,17 @@ class Sixpack {
       base_url: env.SIXPACK_BASE_URL,
       cookie_name: env.SIXPACK_COOKIE_PREFIX || 'sixpack',
     });
+
+    if (window.ENV.APP_ENV !== 'production') {
+      window.SixpackExperiment = this;
+    }
   }
 
-  conversions = [
-    SIXPACK_EXPERIMENT_SIGNUP_ACTION,
-    SIXPACK_EXPERIMENT_REPORTBACK_POST_ACTION,
-    SIXPACK_EXPERIMENT_CLICKED_BUTTON_ACTION,
-  ];
-
+  /**
+   * Key-value store of current experiments.
+   *
+   * @type {Object}
+   */
   experiments = {};
 
   /**
@@ -40,13 +38,7 @@ class Sixpack {
    * @param {Object} experimentSettings
    */
   addExperiment(experimentName, experimentSettings) {
-    const values = experimentSettings;
-
-    if (!values.convertableActions || !values.convertableActions.length) {
-      values.convertableActions = this.conversions;
-    }
-
-    this.experiments[experimentName] = { ...values };
+    this.experiments[experimentName] = { ...experimentSettings };
   }
 
   /**
@@ -125,6 +117,16 @@ class Sixpack {
         },
       );
     });
+  }
+
+  /**
+   * Remove specified experiment from the experiments list.
+   *
+   * @param  {String} experimentName
+   * @return {Void}
+   */
+  removeExperiment(experimentName) {
+    delete this.experiments[experimentName];
   }
 
   /**
