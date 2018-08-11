@@ -1,7 +1,11 @@
 import apiMiddleware from '../middleware/api';
 import analyticsMiddleware from '../middleware/analytics';
-import experimentsMiddleware from '../middleware/experiments';
+import sixpackExperimentsMiddleware from '../middleware/sixpackExperiments';
 
-const middlewares = [analyticsMiddleware, apiMiddleware, experimentsMiddleware];
+const middlewares = [
+  analyticsMiddleware,
+  apiMiddleware,
+  sixpackExperimentsMiddleware,
+];
 
 export default middlewares;
