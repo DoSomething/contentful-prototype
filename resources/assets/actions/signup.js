@@ -57,8 +57,18 @@ export function signupNotFound() {
 }
 
 // Action: waiting on a signup response.
+// @TODO: cleanup the signup actions to use approach established in "post" action.
 export function signupPending() {
-  return { type: SIGNUP_PENDING };
+  return {
+    type: SIGNUP_PENDING,
+    payload: {
+      meta: {
+        sixpackExperiments: {
+          conversion: 'signup',
+        },
+      },
+    },
+  };
 }
 
 // Async Action: check if user already signed up for the campaign
