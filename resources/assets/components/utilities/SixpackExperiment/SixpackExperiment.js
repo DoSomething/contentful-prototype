@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get, snakeCase } from 'lodash';
+import { isPlainObject, snakeCase } from 'lodash';
 
 import { sixpack } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -72,8 +72,7 @@ class SixpackExperiment extends React.Component {
       return <Placeholder />;
     }
 
-    return typeof selectedAlternative === 'object' &&
-      get(selectedAlternative, 'id', null) ? (
+    return isPlainObject(selectedAlternative) ? (
       <ContentfulEntry json={selectedAlternative} />
     ) : (
       selectedAlternative
