@@ -11,19 +11,21 @@ const mapStateToProps = state => {
   const landingPage = state.campaign.landingPage.fields;
 
   return {
-    pitchContent: landingPage.content,
+    affiliateSponsors: state.campaign.affiliateSponsors,
     blurb: state.campaign.blurb,
+    campaignId: state.campaign.id,
     coverImage: state.campaign.coverImage,
     dashboard: state.campaign.dashboard,
     endDate: state.campaign.endDate,
     isAffiliated: isSignedUp(state),
-    affiliateSponsors: state.campaign.affiliateSponsors,
     legacyCampaignId: state.campaign.legacyCampaignId,
+    pitchContent: landingPage.content,
     showPartnerMsgOptIn: get(
       state.campaign.additionalContent,
       'displayAffilitateOptOut',
       false,
     ),
+    sidebar: landingPage.sidebar,
     signupArrowContent: get(
       state.campaign.additionalContent,
       'signupArrowContent',
@@ -33,7 +35,6 @@ const mapStateToProps = state => {
     tagline: get(state.campaign.additionalContent, 'tagline'),
     template: state.campaign.template,
     title: state.campaign.title,
-    sidebar: landingPage.sidebar,
   };
 };
 
