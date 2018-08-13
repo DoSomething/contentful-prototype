@@ -88,6 +88,10 @@ export function storeCampaignPost(campaignId, data) {
     },
   };
 
+  const sixpackExperiments = {
+    conversion: 'reportbackPost',
+  };
+
   // Separate endpoint for 'referral' actions since we don't post them to rogue.
   const url =
     type === 'referral'
@@ -105,6 +109,7 @@ export function storeCampaignPost(campaignId, data) {
           id,
           type,
           analytics,
+          sixpackExperiments,
         },
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
