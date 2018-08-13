@@ -40,7 +40,6 @@ const LandingPage = props => {
               }}
               template="cover"
             />,
-            <LedeBannerContainer title="Something awesome!" />,
           ]}
         />
       ) : (
