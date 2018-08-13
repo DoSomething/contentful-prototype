@@ -14,17 +14,12 @@ const CoverTemplate = props => {
     affiliatedActionLink,
     affiliatedActionText,
     affiliateSponsors,
+    blurb,
     coverImage,
     isAffiliated,
+    subtitle,
     title,
   } = props;
-
-  const blurb =
-    'Fight anti-immigrant hate speech online, and you’ll unlock a Kiva loan for an immigrant entrepreneur. (You could even win a $3,000 scholarship!)';
-
-  // Overriding with specific coverImage URL for A/B test.
-  coverImage.url =
-    'https://images.ctfassets.net/81iqaqpfd8fy/5u4wqT1Vte2SAWO0sK0oCS/78d47661fd65d2dc98235fe9fde221a6/grab-the-mic.png';
 
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(
@@ -52,9 +47,7 @@ const CoverTemplate = props => {
       <div className="wrapper margin-horizontal-auto">
         <h1 className="cover-lede-banner__headline-title">{title}</h1>
 
-        <h2 className="cover-lede-banner__headline-subtitle">
-          Get Loud In Support Of Immmigrants Online And At The Polls
-        </h2>
+        <h2 className="cover-lede-banner__headline-subtitle">{subtitle}</h2>
 
         {blurb ? (
           <Markdown className="cover-lede-banner__blurb">{blurb}</Markdown>
@@ -84,11 +77,13 @@ CoverTemplate.propTypes = {
   affiliatedActionLink: PropTypes.string,
   affiliatedActionText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  blurb: PropTypes.string,
   coverImage: PropTypes.shape({
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
   isAffiliated: PropTypes.bool.isRequired,
+  subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 
