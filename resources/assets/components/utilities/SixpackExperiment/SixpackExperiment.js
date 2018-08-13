@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { snakeCase } from 'lodash';
+import { get, snakeCase } from 'lodash';
 
 import { sixpack } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -66,10 +66,17 @@ class SixpackExperiment extends React.Component {
   }
 
   render() {
-    return this.state.selectedAlternative ? (
-      <ContentfulEntry json={this.state.selectedAlternative} />
+    const selectedAlternative = this.state.selectedAlternative;
+
+    if (!selectedAlternative) {
+      return <Placeholder />;
+    }
+
+    return typeof selectedAlternative === 'object' &&
+      get(selectedAlternative, 'id', null) ? (
+      <ContentfulEntry json={selectedAlternative} />
     ) : (
-      <Placeholder />
+      selectedAlternative
     );
   }
 }
