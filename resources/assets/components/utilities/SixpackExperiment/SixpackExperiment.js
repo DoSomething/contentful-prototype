@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isPlainObject, snakeCase } from 'lodash';
+import { get, snakeCase } from 'lodash';
 
 import { sixpack } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -29,11 +29,23 @@ class SixpackExperiment extends React.Component {
       trafficFraction,
     } = this.props;
 
-    const alternativeOptions = alternatives.map(item =>
-      // @TODO: probably want to use internalTitle but not all entities expose that.
-      // Defaults to title field, but we should aim to start exposing internalTitle on entities!
-      snakeCase(item.fields.internalTitle || item.fields.title),
-    );
+    const alternativeOptions = alternatives.map((item, index) => {
+      let testAlternativeName;
+      const fallbackName = `Test Alternative ${index + 1}`;
+
+      if (React.isValidElement(item)) {
+        testAlternativeName = get(item.props, 'testName', fallbackName);
+      } else {
+        // @TODO: probably want to use internalTitle but not all entities expose that.
+        // Defaults to title field, but we should aim to start exposing internalTitle on entities!
+        testAlternativeName =
+          get(item, 'fields.internalTitle') ||
+          get(item, 'fields.title') ||
+          fallbackName;
+      }
+
+      return snakeCase(testAlternativeName);
+    });
 
     const selectedAlternative = sixpack().participate(
       this.experimentName,
@@ -72,10 +84,10 @@ class SixpackExperiment extends React.Component {
       return <Placeholder />;
     }
 
-    return isPlainObject(selectedAlternative) ? (
-      <ContentfulEntry json={selectedAlternative} />
-    ) : (
+    return React.isValidElement(selectedAlternative) ? (
       selectedAlternative
+    ) : (
+      <ContentfulEntry json={selectedAlternative} />
     );
   }
 }
