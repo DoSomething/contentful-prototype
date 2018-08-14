@@ -55,4 +55,28 @@
       margin-left: 25%;
     }
   }
+
+  .row {
+    .primary {
+      margin: 0 0 $base-spacing;
+
+      @include media($large) {
+        float: left;
+        padding-right: $half-spacing;
+        width: 66.6666666666666%;
+      }
+    }
+
+    .secondary {
+      display: none;
+
+      @include media($large) {
+        display: block;
+        float: right;
+        padding-left: $half-spacing;
+        margin: 0 0 $base-spacing;
+        width: 33.3333333333333%;
+      }
+    }
+  }
 }
