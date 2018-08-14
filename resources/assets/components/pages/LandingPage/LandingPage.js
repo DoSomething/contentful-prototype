@@ -33,12 +33,12 @@ const LandingPage = props => {
           alternatives={[
             <LedeBannerContainer testName="Mosaic Layout Template" />,
             <LedeBannerContainer
-              testName="Cover Layout Template"
+              testName="Jumbo Layout Template"
               coverImage={{
                 url:
                   'https://images.ctfassets.net/81iqaqpfd8fy/6TaMCndXygSscGkOWKg6uY/6f0829ba82220be1f5ec501a41870e99/LYVC_Test_Banner.jpg',
               }}
-              template="cover"
+              template="jumbo"
             />,
           ]}
         />
