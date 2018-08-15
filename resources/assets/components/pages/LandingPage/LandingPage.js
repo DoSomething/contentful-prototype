@@ -36,7 +36,7 @@ const LandingPage = props => {
               testName="Jumbo Layout Template"
               coverImage={{
                 url:
-                  'https://images.ctfassets.net/81iqaqpfd8fy/6TaMCndXygSscGkOWKg6uY/6f0829ba82220be1f5ec501a41870e99/LYVC_Test_Banner.jpg',
+                  'https://images.ctfassets.net/81iqaqpfd8fy/6TaMCndXygSscGkOWKg6uY/155753d51b7f0278fb3a2fd9d592901b/VoterRegIllustration.png',
               }}
               template="jumbo"
             />,

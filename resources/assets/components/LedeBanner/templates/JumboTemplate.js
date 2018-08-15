@@ -22,7 +22,7 @@ const JumboTemplate = props => {
     backgroundImage: `url(${contentfulImageUrl(
       coverImage.url,
       '1440',
-      '810',
+      '500',
       'fill',
     )})`,
   };
