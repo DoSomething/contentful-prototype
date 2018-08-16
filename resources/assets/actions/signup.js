@@ -24,6 +24,41 @@ import {
  * to the state tree (either as a result of application logic or user input).
  */
 
+// Action: no existing signup was found for the campaign.
+export function clickedHideAffirmation() {
+  return { type: CLOSED_POST_SIGNUP_MODAL };
+}
+
+export function clickedSignupButton() {
+  return {
+    type: 'CLICKED_SIGNUP_BUTTON',
+    payload: {
+      meta: {
+        sixpackExperiments: {
+          conversion: 'signup',
+        },
+      },
+    },
+  };
+}
+
+// Action: triggers the post signup affirmation modal.
+// This is for admin usage.
+export function clickedShowAffirmation() {
+  return { type: OPENED_POST_SIGNUP_MODAL };
+}
+
+// Action: sends whether the user opted out of affiliate messaging.
+export function clickedOptOut() {
+  return { type: SIGNUP_CLICKED_OPT_OUT };
+}
+
+// Action: removes the current signup from campaign
+// for admin to preview content
+export function clickedRemoveSignUp(campaignId) {
+  return { type: CLICKED_REMOVE_SIGN_UP, campaignId };
+}
+
 // Action: a new signup was created for a campaign.
 export function signupCreated(campaignId, shouldShowAffirmation = true) {
   return (dispatch, getState) => {
@@ -59,16 +94,7 @@ export function signupNotFound() {
 // Action: waiting on a signup response.
 // @TODO: cleanup the signup actions to use approach established in "post" action.
 export function signupPending() {
-  return {
-    type: SIGNUP_PENDING,
-    payload: {
-      meta: {
-        sixpackExperiments: {
-          conversion: 'signup',
-        },
-      },
-    },
-  };
+  return { type: SIGNUP_PENDING };
 }
 
 // Async Action: check if user already signed up for the campaign
@@ -130,6 +156,10 @@ export function clickedSignUp(
         : null;
     }
 
+    // @TODO: Once we refactor this file, hopefully will not need this action
+    // dispatch any longer, or flow will be more logical!
+    dispatch(clickedSignupButton());
+
     // If the user is not logged in, handle this action later.
     if (!isAuthenticated(state)) {
       return dispatch(
@@ -177,26 +207,4 @@ export function clickedSignUp(
         }
       });
   };
-}
-
-// Action: removes the current signup from campaign
-// for admin to preview content
-export function clickedRemoveSignUp(campaignId) {
-  return { type: CLICKED_REMOVE_SIGN_UP, campaignId };
-}
-
-// Action: triggers the post signup affirmation modal.
-// This is for admin usage.
-export function clickedShowAffirmation() {
-  return { type: OPENED_POST_SIGNUP_MODAL };
-}
-
-// Action: no existing signup was found for the campaign.
-export function clickedHideAffirmation() {
-  return { type: CLOSED_POST_SIGNUP_MODAL };
-}
-
-// Action: sends whether the user opted out of affiliate messaging.
-export function clickedOptOut() {
-  return { type: SIGNUP_CLICKED_OPT_OUT };
 }
