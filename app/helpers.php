@@ -5,7 +5,6 @@ use Contentful\ImageOptions;
 use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * Get Heroku database configuration variables from supplied
