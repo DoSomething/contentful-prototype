@@ -7,9 +7,6 @@
  * of application logic or user input).
  */
 
-// Experiments Creators
-export * from './experiments';
-
 // Reportback Action Names & Creators
 export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
 export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';

@@ -13,7 +13,6 @@ const initialState = {
   events: {
     queue: [],
   },
-  experiments: {},
   notifications: {
     items: [],
   },
