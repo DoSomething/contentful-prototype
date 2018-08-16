@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>DoSomething.org</title>
+    <title>{{ $pageTitle or 'Let\'s Do this!' }} | DoSomething.org</title>
 
     <link rel="preload" href="{{ elixir('vendors~app.js', 'next/assets') }}" as="script" />
     <link rel="preload" href="{{ elixir('app.js', 'next/assets') }}" as="script" />
