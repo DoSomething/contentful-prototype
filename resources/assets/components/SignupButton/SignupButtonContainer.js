@@ -3,7 +3,6 @@ import { PuckConnector } from '@dosomething/puck-client';
 import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
-import { convertExperiment } from '../../actions';
 import { clickedSignUp } from '../../actions/signup';
 
 /**
@@ -12,7 +11,6 @@ import { clickedSignUp } from '../../actions/signup';
 const mapStateToProps = state => ({
   campaignActionText: state.campaign.actionText,
   disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
-  experiments: state.experiments,
   legacyCampaignId: state.campaign.legacyCampaignId,
   sourceActionText: get(state.campaign, 'additionalContent.sourceActionText'),
   template: state.campaign.template,
@@ -25,10 +23,10 @@ const mapStateToProps = state => ({
  */
 const actionCreators = {
   clickedSignUp,
-  convertExperiment,
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(
-  PuckConnector(SignupButton),
-);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(PuckConnector(SignupButton));
