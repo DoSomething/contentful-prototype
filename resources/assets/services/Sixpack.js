@@ -19,9 +19,10 @@ class Sixpack {
       cookie_name: env.SIXPACK_COOKIE_PREFIX || 'sixpack',
     });
 
-    if (window.ENV.APP_ENV !== 'production') {
-      window.SixpackExperiment = this;
-    }
+    // Unsetting the default sixpack object added to the window by the sixpack package.
+    delete window.sixpack;
+
+    window.Sixpack = this;
   }
 
   /**

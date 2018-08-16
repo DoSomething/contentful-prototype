@@ -5,8 +5,6 @@ use Contentful\ImageOptions;
 use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
-use Illuminate\Support\Facades\Storage;
-use SeatGeek\Sixpack\Session\Base as Sixpack;
 
 /**
  * Get Heroku database configuration variables from supplied
@@ -125,44 +123,6 @@ function markdown($source)
     $markup = $parsedown->setMarkupEscaped(true)->text($source);
 
     return new HtmlString($markup);
-}
-
-/**
- * Get all Sixpack experiments from specified experiments definition file.
- *
- * @return array
- */
-function get_experiments($file = 'experiments.json')
-{
-    $filePath = 'assets/'.$file;
-
-    if (! Storage::disk('resources')->exists($filePath)) {
-        return [];
-    }
-
-    $experiments = Storage::disk('resources')->get($filePath);
-
-    return json_decode($experiments, true);
-}
-
-/**
- * Get selection of alternatives for all Sixpack experiments for the current client.
- *
- * @return array
- */
-function get_experiment_alternatives_selection()
-{
-    if (! config('services.sixpack.enabled')) {
-        return [];
-    }
-
-    $sixpack = app(Sixpack::class);
-
-    $experiments = get_experiments();
-
-    return collect($experiments)->map(function ($alternatives, $name) use ($sixpack) {
-        return $data[$name] = $sixpack->participate($name, array_values($alternatives))->getAlternative();
-    })->toArray();
 }
 
 /**

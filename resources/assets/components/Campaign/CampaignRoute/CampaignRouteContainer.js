@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import CampaignRoute from './CampaignRoute';
 import { isCampaignClosed } from '../../../helpers';
-import { convertExperiment, clickedHideAffirmation } from '../../../actions';
+import { clickedHideAffirmation } from '../../../actions';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -29,7 +29,6 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const mapActionsToProps = {
-  convertExperiment,
   clickedHideAffirmation,
 };
 

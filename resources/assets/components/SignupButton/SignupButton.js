@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { convertOnSignupIntent } from '../../helpers/experiments';
 
 const SignupButton = props => {
   const {
@@ -11,7 +10,6 @@ const SignupButton = props => {
     className,
     clickedSignUp,
     disableSignup,
-    experiments,
     source,
     sourceActionText,
     template,
@@ -19,20 +17,10 @@ const SignupButton = props => {
     trackEvent,
     trafficSource,
     legacyCampaignId,
-    convertExperiment,
   } = props;
-
-  const convertExperiments = () => {
-    Object.keys(experiments).forEach(experiment => {
-      if (convertOnSignupIntent(experiment)) {
-        convertExperiment(experiment);
-      }
-    });
-  };
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
-    convertExperiments();
     clickedSignUp(legacyCampaignId);
     trackEvent('signup', {
       template,
@@ -63,8 +51,6 @@ SignupButton.propTypes = {
   className: PropTypes.string,
   clickedSignUp: PropTypes.func.isRequired,
   disableSignup: PropTypes.bool,
-  convertExperiment: PropTypes.func.isRequired,
-  experiments: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   legacyCampaignId: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
