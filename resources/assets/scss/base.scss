@@ -248,6 +248,10 @@ p {
   padding-top: $base-spacing;
 }
 
+.margin-sm {
+  margin: $half-spacing / 2;
+}
+
 .margin-md {
   margin: $half-spacing;
 }
