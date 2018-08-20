@@ -1,0 +1,80 @@
+@import '../../../scss/next-toolbox.scss';
+
+// Sets a background color for social share buttons without overriding
+// the inherited 'disabled' and 'hover' .button states
+@mixin button-background($color) {
+  &:not([disabled]) {
+    background-color: $color;
+
+    &:hover {
+      background-color: lighten($color, $color-tint);
+    }
+  }
+}
+
+// Social share button background colors
+$email-background-color: #0ab6fe;
+$twitter-background-color: #00aced;
+$facebook-background-color: #39579a;
+$messenger-background-color: #0084ff;
+
+.social-share-tray {
+  .title {
+    font-weight: $weight-bold;
+  }
+
+  .share-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    button.share-button {
+      &.facebook {
+        @include button-background($facebook-background-color);
+      }
+
+      &.twitter {
+        @include button-background($twitter-background-color);
+      }
+
+      &.messenger {
+        @include button-background($messenger-background-color);
+      }
+
+      &.email {
+        @include button-background($email-background-color);
+      }
+
+      height: 55px;
+      padding-right: 22px;
+      padding-left: 22px;
+      text-transform: none;
+      font-size: $font-regular;
+
+      .icon-bounding-box {
+        float: left;
+        padding-right: 10px;
+
+        img {
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      .button-text {
+        padding-left: 10px;
+        border-left: 1px solid #ffffff;
+      }
+
+      // Hide button text and relevant spacing on small screens
+      @include media($small) {
+        .button-text {
+          display: none;
+        }
+        .icon-bounding-box {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

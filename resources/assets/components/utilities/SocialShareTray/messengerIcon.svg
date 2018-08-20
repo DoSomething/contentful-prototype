@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>Messenger</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Messenger" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="messengerIcon" fill="#FFFFFF" fill-rule="nonzero">
+            <path d="M16,0 C7.16344446,0 0,6.63107795 0,14.8109779 C0,19.4642952 2.3183597,23.616331 5.94407153,26.3315856 L5.94407153,32 L11.4043186,29.0017418 C12.8599447,29.4051287 14.4026137,29.6219558 16,29.6219558 C24.8365555,29.6219558 32,22.9908375 32,14.8109376 C32,6.63103765 24.8365555,0 16,0 Z M17.6851212,19.8612337 L13.5469641,15.6055401 L5.57766118,19.9683979 L14.3148788,10.7898846 L18.4530766,15.0455783 L26.4223388,10.6827205 L17.6851212,19.8612337 Z" id="Bubble_Shape"></path>
+        </g>
+    </g>
+</svg>
