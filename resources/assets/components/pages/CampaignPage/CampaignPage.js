@@ -8,6 +8,7 @@ import CampaignPageContent from './CampaignPageContent';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
+import LandingPageContainer from '../../pages/LandingPage/LandingPageContainer';
 
 import './campaign-page.scss';
 
@@ -16,28 +17,31 @@ import './campaign-page.scss';
  *
  * @returns {XML}
  */
-const CampaignPage = props => (
-  <div>
-    <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
-    <div className="main clearfix">
-      {props.dashboard ? <DashboardContainer /> : null}
+const CampaignPage = props =>
+  props.shouldShowLandingPage ? (
+    <LandingPageContainer {...props} />
+  ) : (
+    <div>
+      <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
+      <div className="main clearfix">
+        {props.dashboard ? <DashboardContainer /> : null}
 
-      {!props.entryContent ? <CampaignPageNavigationContainer /> : null}
+        {!props.entryContent ? <CampaignPageNavigationContainer /> : null}
 
-      <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-        {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
+        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+          {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
+          {!props.entryContent ? (
+            <CampaignPageContent {...props} />
+          ) : (
+            <ContentfulEntry json={props.entryContent} />
+          )}
+        </Enclosure>
         {!props.entryContent ? (
-          <CampaignPageContent {...props} />
-        ) : (
-          <ContentfulEntry json={props.entryContent} />
-        )}
-      </Enclosure>
-      {!props.entryContent ? (
-        <CallToActionContainer sticky hideIfSignedUp />
-      ) : null}
+          <CallToActionContainer sticky hideIfSignedUp />
+        ) : null}
+      </div>
     </div>
-  </div>
-);
+  );
 
 CampaignPage.propTypes = {
   dashboard: PropTypes.shape({
@@ -46,6 +50,7 @@ CampaignPage.propTypes = {
     fields: PropTypes.object,
   }),
   entryContent: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  shouldShowLandingPage: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {

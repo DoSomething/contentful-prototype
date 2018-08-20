@@ -9,6 +9,7 @@ import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
 import { trackPuckEvent } from './analytics';
+import { isSignedUp } from '../selectors/signup';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -379,6 +380,31 @@ export function isCampaignClosed(endDate) {
   }
 
   return isBefore(endDate, new Date());
+}
+
+/**
+ * Check if the Landing Page should be shown for campaign.
+ *
+ * @param  {Object}  state
+ * @param  {Boolean} ignoreLandingPage - optional additional boolean to ignore landing page.
+ * @return {Boolean}
+ */
+export function shouldShowLandingPage(state, ignoreLandingPage) {
+  const hasLandingPage = state.campaign.landingPage !== null;
+
+  const shouldIgnoreLandingPage =
+    state.admin.shouldShowActionPage || ignoreLandingPage;
+  let shouldShow = false;
+
+  if (state.admin.shouldShowLandingPage) {
+    shouldShow = true;
+  } else if (hasLandingPage && !shouldIgnoreLandingPage) {
+    shouldShow =
+      !isSignedUp(state) &&
+      !isCampaignClosed(get(state.campaign.endDate, 'date', null));
+  }
+
+  return shouldShow;
 }
 
 /**
