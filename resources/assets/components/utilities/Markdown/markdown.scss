@@ -103,6 +103,14 @@
   tbody tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+  hr {
+    background-color: $purple;
+    border: none;
+    height: 5px;
+    margin: 60px auto;
+    width: 33.333333333%;
+  }
 }
 
 .footnotes {
