@@ -19,10 +19,6 @@ $facebook-background-color: #39579a;
 $messenger-background-color: #0084ff;
 
 .social-share-tray {
-  .title {
-    font-weight: $weight-bold;
-  }
-
   .share-buttons {
     button.share-button {
       &.facebook {
@@ -47,28 +43,17 @@ $messenger-background-color: #0084ff;
       text-transform: none;
       font-size: $font-regular;
 
-      img {
-        float: left;
+      img.icon-image {
         width: 25px;
         height: 25px;
       }
 
-      .button-text {
-        padding-left: 10px;
-        border-left: 1px solid #ffffff;
-      }
-
-      @include media($medium) {
-        img {
-          margin-right: 10px;
-        }
-      }
-
-      // Hide button text and relevant spacing on small screens
-      @include media($small) {
-        .button-text {
-          display: none;
-        }
+      // Divider between text and icon
+      .button-text::before {
+        margin-left: 10px;
+        margin-right: 10px;
+        content: '';
+        border-left: 1px solid $white;
       }
     }
   }
