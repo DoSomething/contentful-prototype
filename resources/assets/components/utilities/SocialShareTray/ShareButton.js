@@ -8,9 +8,7 @@ const ShareButton = ({ className, onClick, disabled, icon, text }) => (
     onClick={onClick}
     disabled={disabled}
   >
-    <div className="icon-bounding-box">
-      <img src={icon} alt="share icon" />
-    </div>
+    <img src={icon} alt="share icon" />
     <span className="button-text">{text}</span>
   </button>
 );
