@@ -34,6 +34,9 @@ class SocialShareTray extends React.Component {
       });
   };
 
+  handleEmailShareClick = shareLink =>
+    window.open(`mailto:?body=${encodeURIComponent(shareLink)}`);
+
   render() {
     const { shareLink } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
@@ -74,7 +77,7 @@ class SocialShareTray extends React.Component {
             disabled={!shareLink}
             icon={emailIcon}
             text="Email"
-            // @TODO add onClick prop with click handler
+            onClick={() => this.handleEmailShareClick(shareLink)}
           />
         </div>
       </div>
