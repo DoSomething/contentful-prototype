@@ -9,7 +9,7 @@ const ShareButton = ({ className, onClick, disabled, icon, text }) => (
     disabled={disabled}
   >
     <img className="icon-image float-left" src={icon} alt="share icon" />
-    <span className="button-text hide-on-mobile">{text}</span>
+    <span className="button-text">{text}</span>
   </button>
 );
 

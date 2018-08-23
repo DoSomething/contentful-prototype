@@ -55,6 +55,13 @@ $messenger-background-color: #0084ff;
         content: '';
         border-left: 1px solid $white;
       }
+
+      // Hide button text unless on desktop
+      @include media('(max-width: 960px)') {
+        .button-text {
+          display: none;
+        }
+      }
     }
   }
 }
