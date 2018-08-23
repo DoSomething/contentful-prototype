@@ -25,7 +25,7 @@
       grid-template-columns: repeat(2, auto);
     }
 
-    button.share-button {
+    .share-button {
       &.facebook {
         @include button-background($facebook-background-color);
       }
@@ -48,7 +48,7 @@
       text-transform: none;
       font-size: $font-regular;
 
-      img.icon-image {
+      .icon-image {
         width: 25px;
         height: 25px;
       }
