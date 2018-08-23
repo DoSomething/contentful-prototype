@@ -12,12 +12,6 @@
   }
 }
 
-// Social share button background colors
-$email-background-color: #0ab6fe;
-$twitter-background-color: #00aced;
-$facebook-background-color: #39579a;
-$messenger-background-color: #0084ff;
-
 .social-share-tray {
   .share-buttons {
     @include media($large) {
