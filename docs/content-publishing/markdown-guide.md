@@ -10,7 +10,7 @@ These are rules to absolutely follow and never ever break. Luke will be very ups
 - Do not bold more than a single sentence at a time.
 
 ## Generally
-Very few things in typography and layout design are absoulte, but there are a number of things are generally accepted pracitces that might be broken if you have a good reason. If you want to break these rules, you might want to check with Luke first. 
+Very few things in typography and layout design are absolute, but there are a number of things are generally accepted practices that might be broken if you have a good reason. If you want to break these rules, you might want to check with Luke first. 
 
 - Work your way down the header elements one at a time like an outline. Don't jump from `#` to `####` directly.
 - Do not stack headers without content between them.
@@ -28,11 +28,10 @@ As you create more and more pages you'll begin to get a feel for how a page shou
 The less content you have between titles, the smaller the title should be. For instance, if you have small paragraphs with headings, you would want to use third (`###`) or fourth (`####`) level headers since larger headers would break up the reading flow too much.
 
 ### Drawing Attention
-The more bolding or italic you use, the less effective it becomes in drawing attention. Think about the texture of the overall content. What pieces are going to rise up and draw attention? Headers already have a premium on size and weight, so too much extra attunement turns a paragraph into a mess.
+The more bolding or italic you use, the less effective it becomes in drawing attention. Think about the texture of the overall content. What pieces are going to rise up and draw attention? Headers already have a premium on size and weight, so too much extra attention turns a paragraph into a mess.
 
 ### Add More Space
 Don't be afraid to use line breaks and new paragraphs to even out the flow of your content. If your content is looking too cluttered by bold headings you can try to use plain text with more line breaks. 
 
-
 ### The Eyes Have It
-A simple trick for feeling out your content's flow is to let your eyes relax and blur a little bit. How does the content look? Are your eyes easliy able to distinguish different levels of importance? 
+A simple trick for feeling out your content's flow is to let your eyes relax and blur a little bit. How does the content look? Are your eyes easily able to distinguish different levels of importance? 
