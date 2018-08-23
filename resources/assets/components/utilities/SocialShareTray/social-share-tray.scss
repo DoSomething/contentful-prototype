@@ -20,6 +20,17 @@ $messenger-background-color: #0084ff;
 
 .social-share-tray {
   .share-buttons {
+    @include media($large) {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: repeat(4, auto);
+    }
+
+    // Hack to avoid ugly button layout with 3 / 1 per row.
+    @include media('(max-width: 1300px)') {
+      grid-template-columns: repeat(2, auto);
+    }
+
     button.share-button {
       &.facebook {
         @include button-background($facebook-background-color);
