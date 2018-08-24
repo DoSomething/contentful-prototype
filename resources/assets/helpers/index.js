@@ -547,6 +547,7 @@ export function facebookMessengerShare(href) {
       // they presumably don't have the Messenger app.
       if (!switchedToApp && window.document.hasFocus()) {
         reject();
+        // eslint-disable-next-line no-alert
         window.alert(
           'Sorry, you need to have the Facebook Messenger app installed, to send a message.',
         );
