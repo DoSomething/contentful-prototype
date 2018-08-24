@@ -1,0 +1,72 @@
+@import '../../../scss/next-toolbox.scss';
+
+// Sets a background color for social share buttons without overriding
+// the inherited 'disabled' and 'hover' .button states
+@mixin button-background($color) {
+  &:not([disabled]) {
+    background-color: $color;
+
+    &:hover {
+      background-color: lighten($color, $color-tint);
+    }
+  }
+}
+
+.social-share-tray {
+  .share-buttons {
+    @include media($large) {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: repeat(4, auto);
+    }
+
+    // Hack to avoid ugly button layout with 3 / 1 per row.
+    @include media('(max-width: 1300px)') {
+      grid-template-columns: repeat(2, auto);
+    }
+
+    .share-button {
+      &.facebook {
+        @include button-background($facebook-background-color);
+      }
+
+      &.twitter {
+        @include button-background($twitter-background-color);
+      }
+
+      &.messenger {
+        @include button-background($messenger-background-color);
+      }
+
+      &.email {
+        @include button-background($email-background-color);
+      }
+
+      height: 55px;
+      padding-right: 20px;
+      padding-left: 20px;
+      text-transform: none;
+      font-size: $font-regular;
+
+      .icon-image {
+        width: 25px;
+        height: 25px;
+      }
+
+      // Divider between text and icon
+      .button-text::before {
+        margin-left: 10px;
+        margin-right: 10px;
+        content: '';
+        border-left: 1px solid $white;
+      }
+
+      // Hide button text unless on desktop
+      @include media('(max-width: 960px)') {
+        .button-text {
+          display: none;
+        }
+      }
+    }
+  }
+}
