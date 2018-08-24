@@ -27,6 +27,13 @@ module.exports = function(migration) {
   person.changeEditorInterface('type', 'radio');
 
   person
+    .createField('active')
+    .name('Active')
+    .type('Boolean')
+    .required(true)
+    .localized(false);
+
+  person
     .createField('jobTitle')
     .name('Job Title')
     .type('Symbol')
