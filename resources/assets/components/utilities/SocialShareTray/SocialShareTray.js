@@ -13,6 +13,9 @@ import {
   loadFacebookSDK,
   handleTwitterShareClick,
   showFacebookShareDialog,
+  showFacebookSendDialog,
+  facebookMessengerShare,
+  getFormattedScreenSize,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
@@ -34,6 +37,32 @@ class SocialShareTray extends React.Component {
       .catch(() => {
         trackPuckEvent('share action cancelled', trackingData);
       });
+  };
+
+  handleFacebookMessengerClick = (shareLink, trackLink) => {
+    const trackingData = { url: trackLink };
+
+    trackPuckEvent('clicked ??', trackingData);
+
+    if (getFormattedScreenSize() === 'large') {
+      // Show Send Dialog for Desktop clients.
+      showFacebookSendDialog(shareLink)
+        .then(() => {
+          trackPuckEvent('??', trackingData);
+        })
+        .catch(() => {
+          trackPuckEvent('??', trackingData);
+        });
+    } else {
+      // Redirect mobile / tablet clients to the Messenger app.
+      facebookMessengerShare(shareLink)
+        .then(() => {
+          trackPuckEvent('??');
+        })
+        .catch(() => {
+          trackPuckEvent('??');
+        });
+    }
   };
 
   handleEmailShareClick = shareLink =>
@@ -71,7 +100,9 @@ class SocialShareTray extends React.Component {
             disabled={!shareLink}
             icon={messengerIcon}
             text="Send"
-            // @TODO add onClick prop with click handler
+            onClick={() =>
+              this.handleFacebookMessengerClick(shareLink, trackLink)
+            }
           />
 
           <ShareButton
