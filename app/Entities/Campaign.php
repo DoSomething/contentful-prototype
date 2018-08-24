@@ -78,6 +78,21 @@ class Campaign extends Entity implements JsonSerializable
         ];
     }
 
+    public function parseLandingPage($landingPage)
+    {
+        if (!$landingPage) {
+            return null;
+        }
+
+        // dd($landingPage->entry->getContentType()->getId());
+
+        if ($landingPage->entry->getContentType()->getId() === 'sixpackExperiment') {
+            return new SixpackExperiment($landingPage->entry);
+        }
+
+        return Page($landingPage->entry);
+    }
+
     /**
      * Parse the landing page for the campaign.
      *
