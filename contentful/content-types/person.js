@@ -41,16 +41,16 @@ module.exports = function(migration) {
     .localized(false);
 
   person
-    .createField('avatar')
-    .name('Avatar')
+    .createField('photo')
+    .name('Photo')
     .type('Link')
     .linkType('Asset')
     .required(false)
     .localized(false);
 
   person
-    .createField('alternateAvatar')
-    .name('Alternate Avatar')
+    .createField('alternatePhoto')
+    .name('Alternate Photo')
     .type('Link')
     .linkType('Asset')
     .required(false)
@@ -62,18 +62,4 @@ module.exports = function(migration) {
     .type('Text')
     .required(false)
     .localized(true);
-
-  person
-    .createField('advisoryCommittee')
-    .name('Type')
-    .type('Symbol')
-    .validations([
-      {
-        in: ['tech', 'corporate', 'finance', 'marketing', 'civic engagement'],
-      },
-    ])
-    .required(false)
-    .localized(true);
-
-  person.changeEditorInterface('advisoryCommittee', 'radio');
 };
