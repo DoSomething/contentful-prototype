@@ -49,9 +49,31 @@ module.exports = function(migration) {
     .localized(false);
 
   person
+    .createField('alternateAvatar')
+    .name('Alternate Avatar')
+    .type('Link')
+    .linkType('Asset')
+    .required(false)
+    .localized(false);
+
+  person
     .createField('description')
     .name('Description')
     .type('Text')
     .required(false)
     .localized(true);
+
+  person
+    .createField('advisoryCommittee')
+    .name('Type')
+    .type('Symbol')
+    .validations([
+      {
+        in: ['tech', 'corporate', 'finance', 'marketing', 'civic engagement'],
+      },
+    ])
+    .required(false)
+    .localized(true);
+
+  person.changeEditorInterface('advisoryCommittee', 'radio');
 };
