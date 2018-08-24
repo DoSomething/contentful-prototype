@@ -42,25 +42,40 @@ class SocialShareTray extends React.Component {
   handleFacebookMessengerClick = (shareLink, trackLink) => {
     const trackingData = { url: trackLink };
 
-    trackPuckEvent('clicked ??', trackingData);
+    trackPuckEvent(
+      'phoenix_clicked_share_facebook_messenger_action',
+      trackingData,
+    );
 
     if (getFormattedScreenSize() === 'large') {
       // Show Send Dialog for Desktop clients.
       showFacebookSendDialog(shareLink)
         .then(() => {
-          trackPuckEvent('??', trackingData);
+          trackPuckEvent(
+            'phoenix_completed_share_facebook_messenger_action',
+            trackingData,
+          );
         })
         .catch(() => {
-          trackPuckEvent('??', trackingData);
+          trackPuckEvent(
+            'phoenix_cancelled_share_facebook_messenger_action',
+            trackingData,
+          );
         });
     } else {
       // Redirect mobile / tablet clients to the Messenger app.
       facebookMessengerShare(shareLink)
         .then(() => {
-          trackPuckEvent('??');
+          trackPuckEvent(
+            'phoenix_redirected_facebook_messenger_app_share',
+            trackingData,
+          );
         })
         .catch(() => {
-          trackPuckEvent('??');
+          trackPuckEvent(
+            'phoenix_failed_facebook_messenger_app_share',
+            trackingData,
+          );
         });
     }
   };
