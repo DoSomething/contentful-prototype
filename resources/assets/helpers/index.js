@@ -483,6 +483,20 @@ export function loadFacebookSDK() {
 }
 
 /**
+ * Share a link by generating a Facebook dialog.
+ * Get a callback if the share is successful or not.
+ *
+ * @param  {Object}  options
+ * @return {Promise}
+ */
+export function showFacebookDialog(options) {
+  return new Promise((resolve, reject) => {
+    const handler = success => (success ? resolve() : reject());
+    return window.FB.ui(options, handler);
+  });
+}
+
+/**
  * Generate a Facebook Share Dialog
  *
  * @param {String} href
@@ -505,20 +519,6 @@ export function showFacebookSendDialog(href) {
   return showFacebookDialog({
     method: 'send',
     link: href,
-  });
-}
-
-/**
- * Share a link by generating a Facebook dialog.
- * Get a callback if the share is successful or not.
- *
- * @param  {Object}  options
- * @return {Promise}
- */
-export function showFacebookDialog(options) {
-  return new Promise((resolve, reject) => {
-    const handler = success => (success ? resolve() : reject());
-    return window.FB.ui(options, handler);
   });
 }
 
