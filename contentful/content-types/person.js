@@ -24,8 +24,6 @@ module.exports = function(migration) {
     .required(true)
     .localized(true);
 
-  person.changeEditorInterface('type', 'radio');
-
   person
     .createField('active')
     .name('Active')
@@ -69,4 +67,6 @@ module.exports = function(migration) {
     .type('Text')
     .required(false)
     .localized(true);
+
+  person.changeEditorInterface('type', 'radio');
 };
