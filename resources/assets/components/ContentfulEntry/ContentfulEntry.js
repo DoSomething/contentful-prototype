@@ -115,7 +115,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'poll_locator':
         return (
           <div className="margin-horizontal-md">
-            <PollLocator />
+            <PollLocator {...withoutNulls(json.fields)} />
           </div>
         );
 
