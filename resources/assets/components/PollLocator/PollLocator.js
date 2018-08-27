@@ -1,5 +1,7 @@
 /* global window, document, MutationObserver */
 import React from 'react';
+import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
 import { trackPuckEvent } from '../../helpers/analytics';
 
@@ -68,6 +70,7 @@ class PollLocator extends React.Component {
         landscapeBackgroundHeader: '#228a9d',
       },
       language: 'en',
+      electionId: get(this.props.additionalContent, 'electionId'),
     });
   };
 
@@ -83,5 +86,18 @@ class PollLocator extends React.Component {
     );
   }
 }
+
+PollLocator.propTypes = {
+  additionalContent: PropTypes.shape({
+    electionId: PropTypes.number,
+  }),
+};
+
+PollLocator.defaultProps = {
+  additionalContent: {
+    // Election ID defaults to 2000 -- the standard VIP test Election ID.
+    electionId: 2000,
+  },
+};
 
 export default PollLocator;
