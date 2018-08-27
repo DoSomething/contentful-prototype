@@ -40,6 +40,7 @@
 
 * [Overview](content-publishing/overview.md)
 * [General Tips](content-publishing/general-tips.md)
+* [Markdown Guide](content-publishing/markdown-guide.md)
 * [Environment Details & Behaviors](content-publishing/environment-details-and-behaviors.md)
 * [Social Overrides](content-publishing/social-overrides.md)
 * [Initial Campaign Publication](content-publishing/initial-campaign-publication/README.md)
