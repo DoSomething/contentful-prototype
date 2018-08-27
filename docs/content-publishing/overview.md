@@ -9,6 +9,7 @@ description: >-
 ## Table Of Contents
 
 * [General Tips](general-tips.md)
+* [Markdown Guide](markdown-guide.md)
 * [Environment Details & Behavior](environment-details-and-behaviors.md)
 * [Social Overrides](social-overrides.md)
 * [Initial Campaign Publication](initial-campaign-publication/)
