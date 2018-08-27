@@ -28,6 +28,7 @@ class CustomBlock extends Entity implements JsonSerializable
                 // Reportbacks block additional content
                 'count' => isset($this->additionalContent['count']) ? $this->additionalContent['count'] : null,
                 'filter' => isset($this->additionalContent['filter']) ? $this->additionalContent['filter'] : null,
+                'additionalContent' => $this->additionalContent,
             ],
         ];
     }
