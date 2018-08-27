@@ -6,8 +6,8 @@ import LandingPage from './LandingPage';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = state => {
-  const landingPage = state.campaign.landingPage.fields;
+const mapStateToProps = (state, ownProps) => {
+  console.log(ownProps);
 
   return {
     campaignId: state.campaign.id,
@@ -17,7 +17,7 @@ const mapStateToProps = state => {
       'displayAffilitateOptOut',
       false,
     ),
-    sidebar: landingPage.sidebar,
+    sidebar: ownProps.sidebar,
     signupArrowContent: get(
       state.campaign.additionalContent,
       'signupArrowContent',
