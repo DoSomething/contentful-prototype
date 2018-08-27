@@ -8,6 +8,7 @@ import StaticBlock from '../StaticBlock';
 import ReportbackBlock from '../ReportbackBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
+import PollLocator from '../PollLocator/PollLocator';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
@@ -110,6 +111,13 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);
+
+      case 'poll_locator':
+        return (
+          <div className="margin-horizontal-md">
+            <PollLocator {...withoutNulls(json.fields)} />
+          </div>
+        );
 
       case 'quiz': {
         const QuizContainer = Loader(import('../Quiz/QuizContainer'));
