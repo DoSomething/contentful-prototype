@@ -26,8 +26,16 @@ class PollLocator extends React.Component {
   addObserver = () => {
     // Select the node that will be observed for mutations
     const vitNode = document.getElementById('_vit');
+
     // Create an observer instance linked to the callback function
-    this.observer = new MutationObserver(() => {
+    this.vitObserver = new MutationObserver(mutationsList => {
+      const addressNotFoundModal = document
+        .getElementById('_vit')
+        .querySelector('#address-not-found');
+      if (get(addressNotFoundModal, 'style.display') === 'block') {
+        trackPuckEvent('phoenix_opened_poll_locator_not_found_modal');
+      }
+
       const searchButton = document.getElementById('submit-address-button');
 
       if (!searchButton) {
@@ -36,8 +44,20 @@ class PollLocator extends React.Component {
 
       searchButton.addEventListener('click', this.handleSearchButtonClick);
     });
+
     // Start observing the target node for configured mutations
-    this.observer.observe(vitNode, { childList: true });
+    this.vitObserver.observe(vitNode, { childList: true, subtree: true });
+
+    this.vitModalObserver = new MutationObserver(mutationsList => {
+      const modal = document.querySelector('html > #_vitModal');
+      if (modal) {
+        trackPuckEvent('phoenix_opened_poll_locator_modal');
+      }
+    });
+
+    this.vitModalObserver.observe(document.querySelector('html'), {
+      childList: true,
+    });
   };
 
   /**
