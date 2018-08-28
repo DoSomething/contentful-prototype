@@ -18,12 +18,13 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    shouldShowLandingPage: shouldShowLandingPage(state, entryContent),
     campaignEndDate: get(state.campaign.endDate, 'date', null),
     dashboard: state.campaign.dashboard,
     entryContent,
+    landingPage: get(state.campaign, 'landingPage', null),
     noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
+    shouldShowLandingPage: shouldShowLandingPage(state, entryContent),
     tagline: get(state.campaign.additionalContent, 'tagline'),
     title: state.campaign.title,
     verb: get(state.campaign.additionalContent, 'verb'),

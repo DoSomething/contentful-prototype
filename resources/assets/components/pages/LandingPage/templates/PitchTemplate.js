@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import Markdown from '../../../utilities/Markdown/Markdown';
 
-const PitchTemplate = ({ pitchContent, sidebarCTA }) => (
+const PitchTemplate = ({ content, sidebarCTA }) => (
   <div className="campaign-page">
     <div className="primary">
-      <Markdown>{pitchContent}</Markdown>
+      <Markdown>{content}</Markdown>
     </div>
     <div className="secondary">
       <Card title={sidebarCTA.title} className="rounded bordered">
@@ -18,7 +18,7 @@ const PitchTemplate = ({ pitchContent, sidebarCTA }) => (
 );
 
 PitchTemplate.propTypes = {
-  pitchContent: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   sidebarCTA: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
