@@ -49,6 +49,7 @@
     <div class="footer__column -links">
         <h4>Get Involved</h4>
         <ul>
+          <li><a href="https://vote.dosomething.org/workwithus">Get Out the Vote!</a></li>
           <li><a href="{{ phoenixLink('us/about/easy-scholarships') }}">Scholarships</a></li>
           <li><a href="{{ phoenixLink('us/about/join-our-team') }}">Jobs</a></li>
           <li><a href="{{ phoenixLink('us/about/internships') }}">Internships</a></li>
