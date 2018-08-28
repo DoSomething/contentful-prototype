@@ -42,23 +42,20 @@ class SocialShareTray extends React.Component {
   handleFacebookMessengerClick = (shareLink, trackLink) => {
     const trackingData = { url: trackLink };
 
-    trackPuckEvent(
-      'phoenix_clicked_share_facebook_messenger_action',
-      trackingData,
-    );
+    trackPuckEvent('phoenix_clicked_share_facebook_messenger', trackingData);
 
     if (getFormattedScreenSize() === 'large') {
       // Show Send Dialog for Desktop clients.
       showFacebookSendDialog(shareLink)
         .then(() => {
           trackPuckEvent(
-            'phoenix_completed_share_facebook_messenger_action',
+            'phoenix_completed_share_facebook_messenger',
             trackingData,
           );
         })
         .catch(() => {
           trackPuckEvent(
-            'phoenix_cancelled_share_facebook_messenger_action',
+            'phoenix_cancelled_share_facebook_messenger',
             trackingData,
           );
         });
@@ -67,13 +64,13 @@ class SocialShareTray extends React.Component {
       facebookMessengerShare(shareLink)
         .then(() => {
           trackPuckEvent(
-            'phoenix_redirected_facebook_messenger_app_share',
+            'phoenix_redirected_share_facebook_messenger_app',
             trackingData,
           );
         })
         .catch(() => {
           trackPuckEvent(
-            'phoenix_failed_facebook_messenger_app_share',
+            'phoenix_failed_share_facebook_messenger_app',
             trackingData,
           );
         });
