@@ -18,9 +18,9 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
-  // @TODO: temporary variable to select component to use based on type.
+  // @TODO: temporary fucntion to select component to use based on type.
   // Will be removed once all landing pages use the LandingPage content type.
-  const landingPageComponent =
+  const landingPageComponent = () =>
     props.landingPage.type === 'page' ? (
       <LandingPageContainer {...props} />
     ) : (
@@ -28,7 +28,7 @@ const CampaignPage = props => {
     );
 
   return props.shouldShowLandingPage ? (
-    landingPageComponent
+    landingPageComponent()
   ) : (
     <div>
       <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
