@@ -86,7 +86,7 @@ class Campaign extends Entity implements JsonSerializable
      */
     public function parseLandingPage($landingPage)
     {
-        if (!$landingPage) {
+        if (! $landingPage) {
             return null;
         }
 
