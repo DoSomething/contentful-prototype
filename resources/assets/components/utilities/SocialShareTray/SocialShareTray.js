@@ -77,8 +77,10 @@ class SocialShareTray extends React.Component {
     }
   };
 
-  handleEmailShareClick = shareLink =>
+  handleEmailShareClick = (shareLink, trackLink) => {
+    trackPuckEvent('phoenix_clicked_share_email', { url: trackLink });
     window.open(`mailto:?body=${encodeURIComponent(shareLink)}`);
+  };
 
   render() {
     const { shareLink } = this.props;
@@ -122,7 +124,7 @@ class SocialShareTray extends React.Component {
             disabled={!shareLink}
             icon={emailIcon}
             text="Email"
-            onClick={() => this.handleEmailShareClick(shareLink)}
+            onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
           />
         </div>
       </div>
