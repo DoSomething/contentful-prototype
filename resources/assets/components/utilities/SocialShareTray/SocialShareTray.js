@@ -64,13 +64,13 @@ class SocialShareTray extends React.Component {
       facebookMessengerShare(shareLink)
         .then(() => {
           trackPuckEvent(
-            'phoenix_redirected_share_facebook_messenger_app',
+            'phoenix_successful_redirect_facebook_messenger_app',
             trackingData,
           );
         })
         .catch(() => {
           trackPuckEvent(
-            'phoenix_failed_share_facebook_messenger_app',
+            'phoenix_failed_redirect_facebook_messenger_app',
             trackingData,
           );
         });
