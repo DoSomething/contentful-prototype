@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import ContentfulEntry from '../../ContentfulEntry';
-import { CallToActionContainer } from '../../CallToAction';
 import CampaignPageContent from './CampaignPageContent';
+import { CallToActionContainer } from '../../CallToAction';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 import LandingPageContainer from '../../pages/LandingPage/LandingPageContainer';
+import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
 
@@ -17,9 +17,18 @@ import './campaign-page.scss';
  *
  * @returns {XML}
  */
-const CampaignPage = props =>
-  props.shouldShowLandingPage ? (
-    <LandingPageContainer {...props} />
+const CampaignPage = props => {
+  // @TODO: temporary fucntion to select component to use based on type.
+  // Will be removed once all landing pages use the LandingPage content type.
+  const landingPageComponent = () =>
+    props.landingPage.type === 'page' ? (
+      <LandingPageContainer {...props} />
+    ) : (
+      <ContentfulEntry json={props.landingPage} />
+    );
+
+  return props.shouldShowLandingPage ? (
+    landingPageComponent()
   ) : (
     <div>
       <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
@@ -42,6 +51,7 @@ const CampaignPage = props =>
       </div>
     </div>
   );
+};
 
 CampaignPage.propTypes = {
   dashboard: PropTypes.shape({
@@ -50,12 +60,18 @@ CampaignPage.propTypes = {
     fields: PropTypes.object,
   }),
   entryContent: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  landingPage: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   shouldShowLandingPage: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {
   dashboard: null,
   entryContent: null,
+  landingPage: null,
 };
 
 export default CampaignPage;

@@ -15,13 +15,14 @@ import './landing-page.scss';
 const LandingPage = props => {
   const {
     campaignId,
-    pitchContent,
+    content,
     showPartnerMsgOptIn,
     sidebar,
     signupArrowContent,
     tagline,
   } = props;
 
+  // @TODO: allow outputting multiple blocks in the sidebar.
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
 
   return (
@@ -51,7 +52,7 @@ const LandingPage = props => {
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          <PitchTemplate pitchContent={pitchContent} sidebarCTA={sidebarCTA} />
+          <PitchTemplate content={content} sidebarCTA={sidebarCTA} />
         </Enclosure>
 
         <CallToActionContainer content={tagline} sticky />
@@ -76,7 +77,7 @@ const LandingPage = props => {
 
 LandingPage.propTypes = {
   campaignId: PropTypes.string.isRequired,
-  pitchContent: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   showPartnerMsgOptIn: PropTypes.bool,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,

@@ -13,6 +13,7 @@ import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
@@ -99,6 +100,9 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'linkAction':
         return renderLinkAction(json);
+
+      case 'landingPage':
+        return <LandingPageContainer {...json.fields} />;
 
       case 'page':
         return (

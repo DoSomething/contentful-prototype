@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 
   return {
     campaignId: state.campaign.id,
-    pitchContent: landingPage.content,
+    content: landingPage.content,
     showPartnerMsgOptIn: get(
       state.campaign.additionalContent,
       'displayAffilitateOptOut',

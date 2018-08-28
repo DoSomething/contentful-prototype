@@ -79,6 +79,30 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse the landing page for the campaign.
+     *
+     * @param  DynamicEntry $landingPage
+     * @return array
+     */
+    public function parseLandingPage($landingPage)
+    {
+        if (! $landingPage) {
+            return null;
+        }
+
+        if ($landingPage->getContentType() === 'sixpackExperiment') {
+            return new SixpackExperiment($landingPage->entry);
+        }
+
+        // @TODO: remove once all landing pages use the LandingPage content type.
+        if ($landingPage->getContentType() === 'page') {
+            return new Page($landingPage->entry);
+        }
+
+        return new LandingPage($landingPage->entry);
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -110,7 +134,7 @@ class Campaign extends Entity implements JsonSerializable
             'dashboard' => $this->dashboard,
             'affirmation' => $this->parseBlock($this->affirmation),
             'pages' => $this->parseBlocks($this->pages),
-            'landingPage' => $this->landingPage ? new Page($this->landingPage->entry) : null,
+            'landingPage' => $this->parseLandingPage($this->landingPage),
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,
             'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,
