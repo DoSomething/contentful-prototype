@@ -34,9 +34,10 @@ class Page extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'type' => $this->getContentType(),
             'fields' => [
-                'slug' => $this->slug,
+                'internalTitle' => $this->internalTitle,
                 'title' => $this->title,
                 'subTitle' => $this->subTitle,
+                'slug' => $this->slug,
                 'content' => $this->content,
                 'sidebar' => $this->parseBlocks($this->sidebar),
                 'blocks' => $this->parseBlocks($this->blocks),
