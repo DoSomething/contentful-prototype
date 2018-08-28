@@ -90,12 +90,12 @@ class Campaign extends Entity implements JsonSerializable
             return null;
         }
 
-        if ($landingPage->entry->getContentType()->getId() === 'sixpackExperiment') {
+        if ($landingPage->getContentType() === 'sixpackExperiment') {
             return new SixpackExperiment($landingPage->entry);
         }
 
         // @TODO: remove once all landing pages use the LandingPage content type.
-        if ($landingPage->entry->getContentType()->getId() === 'page') {
+        if ($landingPage->getContentType() === 'page') {
             return new Page($landingPage->entry);
         }
 
