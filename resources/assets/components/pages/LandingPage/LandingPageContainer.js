@@ -7,6 +7,9 @@ import LandingPage from './LandingPage';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, ownProps) => {
+  // @TODO: while we have landing pages as either a page content type
+  // or a landingPage content type, the ownProps is structured a bit
+  // differently. Revise once all landing pages use landingPage type.
   const landingPage = get(ownProps, 'landingPage.fields', ownProps);
 
   return {
