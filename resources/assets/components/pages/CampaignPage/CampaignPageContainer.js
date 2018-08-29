@@ -17,8 +17,6 @@ const mapStateToProps = (state, ownProps) => {
     entryContent = findContentfulEntry(state, id || slug);
   }
 
-  console.log(state.campaign.landingPage);
-
   return {
     campaignEndDate: get(state.campaign.endDate, 'date', null),
     dashboard: state.campaign.dashboard,
