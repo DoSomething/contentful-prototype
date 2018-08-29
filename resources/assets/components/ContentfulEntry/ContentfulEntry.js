@@ -98,11 +98,11 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'imagesBlock':
         return <ImagesBlock images={json.fields.images} />;
 
-      case 'linkAction':
-        return renderLinkAction(json);
-
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
+
+      case 'linkAction':
+        return renderLinkAction(json);
 
       case 'page':
         return (

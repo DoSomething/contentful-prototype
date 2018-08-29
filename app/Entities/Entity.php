@@ -78,6 +78,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new CustomBlock($block->entry);
             case 'imagesBlock':
                 return new ImagesBlock($block->entry);
+            case 'landingPage':
+                return new LandingPage($block->entry);
             case 'linkAction':
                 return new LinkAction($block->entry);
             case 'page':
