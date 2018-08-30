@@ -62,34 +62,6 @@
       }
     }
   }
-
-  hr {
-    border: 0.5px solid $light-gray;
-  }
-
-  .share-buttons {
-    @include media($large) {
-      display: flex;
-
-      .share-button {
-        flex: 1;
-      }
-    }
-
-    .share-button button {
-      width: 100%;
-      text-transform: none;
-      font-size: $font-regular;
-    }
-
-    .social-icon {
-      margin-right: 8px;
-    }
-  }
-
-  .bg-dark-blue {
-    background-color: #39579a;
-  }
 }
 
 .social-drive-information {

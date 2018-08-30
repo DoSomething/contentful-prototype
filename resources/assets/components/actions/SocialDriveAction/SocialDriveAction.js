@@ -2,20 +2,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import { trackPuckEvent } from '../../../helpers/analytics';
-import {
-  dynamicString,
-  handleTwitterShareClick,
-  loadFacebookSDK,
-  showFacebookShareDialog,
-  withoutTokens,
-} from '../../../helpers';
+import { dynamicString, withoutTokens } from '../../../helpers';
+import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
 import './social-drive.scss';
 
@@ -31,8 +25,6 @@ class SocialDriveAction extends React.Component {
   }
 
   componentDidMount() {
-    loadFacebookSDK();
-
     const { userId, token } = this.props;
 
     const href = dynamicString(this.props.link, { userId });
@@ -48,20 +40,6 @@ class SocialDriveAction extends React.Component {
     trackPuckEvent('phoenix_clicked_copy_to_clipboard', {
       url: this.props.link,
     });
-  };
-
-  handleFacebookShareClick = url => {
-    const trackingData = { url: this.props.link };
-
-    trackPuckEvent('clicked facebook share action', trackingData);
-
-    showFacebookShareDialog(url)
-      .then(() => {
-        trackPuckEvent('share action completed', trackingData);
-      })
-      .catch(() => {
-        trackPuckEvent('share action cancelled', trackingData);
-      });
   };
 
   render() {
@@ -101,33 +79,7 @@ class SocialDriveAction extends React.Component {
               </div>
             </div>
 
-            <div className="share-buttons">
-              <div className="share-button padded">
-                <button
-                  className={classnames('button padding-vertical-md', {
-                    'bg-dark-blue': shortenedLink,
-                  })}
-                  onClick={() => this.handleFacebookShareClick(shortenedLink)}
-                  disabled={!shortenedLink}
-                >
-                  <i className="social-icon -facebook" />
-                  Share on Facebook
-                </button>
-              </div>
-
-              <div className="share-button padded">
-                <button
-                  className="button padding-vertical-md"
-                  onClick={() =>
-                    handleTwitterShareClick(shortenedLink, { url: link })
-                  }
-                  disabled={!shortenedLink}
-                >
-                  <i className="social-icon -twitter" />
-                  <span>Share on Twitter</span>
-                </button>
-              </div>
-            </div>
+            <SocialShareTray shareLink={shortenedLink} trackLink={link} />
           </Card>
         </div>
 
