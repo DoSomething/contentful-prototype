@@ -1,6 +1,12 @@
 @import '../../../scss/next-toolbox.scss';
 
 .social-drive-action {
+  @include media($large) {
+    float: left;
+    padding-right: $half-spacing;
+    width: 66.6666666666666%;
+  }
+
   .link-area {
     @include media($large) {
       display: flex;
@@ -61,6 +67,41 @@
     border: 0.5px solid $light-gray;
   }
 
+  .share-buttons {
+    @include media($large) {
+      display: flex;
+
+      .share-button {
+        flex: 1;
+      }
+    }
+
+    .share-button button {
+      width: 100%;
+      text-transform: none;
+      font-size: $font-regular;
+    }
+
+    .social-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .bg-dark-blue {
+    background-color: #39579a;
+  }
+}
+
+.social-drive-information {
+  margin-top: $base-spacing;
+
+  @include media($large) {
+    float: right;
+    margin-top: 0;
+    padding-left: $half-spacing;
+    width: 33.3333333333333%;
+  }
+
   .link-info {
     .info__title {
       font-family: $primary-font-family;
@@ -88,29 +129,5 @@
       font-weight: $weight-normal;
       line-height: $font-hero;
     }
-  }
-
-  .share-buttons {
-    @include media($large) {
-      display: flex;
-
-      .share-button {
-        flex: 1;
-      }
-    }
-
-    .share-button button {
-      width: 100%;
-      text-transform: none;
-      font-size: $font-regular;
-    }
-
-    .social-icon {
-      margin-right: 8px;
-    }
-  }
-
-  .bg-dark-blue {
-    background-color: #39579a;
   }
 }
