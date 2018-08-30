@@ -79,7 +79,7 @@ class SocialShareTray extends React.Component {
 
   handleEmailShareClick = (shareLink, trackLink) => {
     trackPuckEvent('phoenix_clicked_share_email', { url: trackLink });
-    window.open(`mailto:?body=${encodeURIComponent(shareLink)}`);
+    window.location = `mailto:?body=${encodeURIComponent(shareLink)}`;
   };
 
   render() {
