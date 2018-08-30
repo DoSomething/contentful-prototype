@@ -31,7 +31,14 @@ const CampaignPageContent = props => {
     const type = parseContentfulType(json);
 
     let fullWidth = false;
-    if (['photoSubmissionAction', 'gallery', 'imagesBlock'].includes(type)) {
+    if (
+      [
+        'photoSubmissionAction',
+        'gallery',
+        'imagesBlock',
+        'socialDriveAction',
+      ].includes(type)
+    ) {
       fullWidth = true;
     }
 

@@ -69,94 +69,93 @@ class SocialDriveAction extends React.Component {
     const shortenedLink = this.state.shortenedLink;
 
     return (
-      <Card
-        title="Your Online Drive"
-        className="social-drive-action rounded bordered"
-      >
-        <div className="padded">
-          <Embed url={link} />
-        </div>
+      <div className="clearfix padding-bottom-lg">
+        <div className="social-drive-action">
+          <Card title="Your Online Drive" className="rounded bordered">
+            <div className="padded">
+              <Embed url={link} />
+            </div>
 
-        <div className="padded link-area">
-          <div className="share-text">
-            <p>Share your link:</p>
-          </div>
+            <div className="padded link-area">
+              <div className="share-text">
+                <p>Share your link:</p>
+              </div>
 
-          <div className="link-bar">
-            <input
-              readOnly
-              type="text"
-              ref={this.linkInput}
-              className="text-field link"
-              value={shortenedLink || 'Loading...'}
-              disabled={!shortenedLink}
-            />
-            <button
-              className="text-field link-copy-button"
-              onClick={this.handleCopyLinkClick}
-              disabled={!shortenedLink}
-            >
-              <img src={linkIcon} alt="link" />
-              <p>Copy link</p>
-            </button>
-          </div>
-        </div>
+              <div className="link-bar">
+                <input
+                  readOnly
+                  type="text"
+                  ref={this.linkInput}
+                  className="text-field link"
+                  value={shortenedLink || 'Loading...'}
+                  disabled={!shortenedLink}
+                />
+                <button
+                  className="text-field link-copy-button"
+                  onClick={this.handleCopyLinkClick}
+                  disabled={!shortenedLink}
+                >
+                  <img src={linkIcon} alt="link" />
+                  <p>Copy link</p>
+                </button>
+              </div>
+            </div>
 
-        <div className="share-buttons">
-          <div className="share-button padded">
-            <button
-              className={classnames('button padding-vertical-md', {
-                'bg-dark-blue': shortenedLink,
-              })}
-              onClick={() => this.handleFacebookShareClick(shortenedLink)}
-              disabled={!shortenedLink}
-            >
-              <i className="social-icon -facebook" />
-              Share on Facebook
-            </button>
-          </div>
+            <div className="share-buttons">
+              <div className="share-button padded">
+                <button
+                  className={classnames('button padding-vertical-md', {
+                    'bg-dark-blue': shortenedLink,
+                  })}
+                  onClick={() => this.handleFacebookShareClick(shortenedLink)}
+                  disabled={!shortenedLink}
+                >
+                  <i className="social-icon -facebook" />
+                  Share on Facebook
+                </button>
+              </div>
 
-          <div className="share-button padded">
-            <button
-              className="button padding-vertical-md"
-              onClick={() =>
-                handleTwitterShareClick(shortenedLink, { url: link })
-              }
-              disabled={!shortenedLink}
-            >
-              <i className="social-icon -twitter" />
-              <span>Share on Twitter</span>
-            </button>
-          </div>
+              <div className="share-button padded">
+                <button
+                  className="button padding-vertical-md"
+                  onClick={() =>
+                    handleTwitterShareClick(shortenedLink, { url: link })
+                  }
+                  disabled={!shortenedLink}
+                >
+                  <i className="social-icon -twitter" />
+                  <span>Share on Twitter</span>
+                </button>
+              </div>
+            </div>
+          </Card>
         </div>
 
         {showPageViews ? (
-          <div>
-            <div className="padding-horizontal-md">
-              <hr className="border" />
-            </div>
+          <div className="social-drive-information">
+            <Card className="bordered rounded" title="More info">
+              <div className="link-info padded">
+                <p className="info__title">What happens next?</p>
 
-            <div className="link-info padded">
-              <p className="info__title">What happens next?</p>
+                <p className="info__text">
+                  As you share your voter registration page, we&#39;ll keep
+                  track of how many people you bring in. Check back often and
+                  try to get as many views as possible!
+                </p>
+              </div>
 
-              <p className="info__text">
-                As you share your voter registration page, we&#39;ll keep track
-                of how many people you bring in. Check back often and try to get
-                as many views as possible!
-              </p>
-            </div>
-
-            <div className="padded page-views">
-              <span className="page-views__text caps-lock">
-                total page views
-              </span>
-              <h1 className="page-views__amount">
-                {shortenedLink ? this.state.count : '?'}
-              </h1>
-            </div>
+              <div className="padded page-views">
+                <span className="page-views__text caps-lock">
+                  total page views
+                </span>
+                <h1 className="page-views__amount">
+                  {shortenedLink ? this.state.count : '?'}
+                </h1>
+              </div>
+            </Card>
           </div>
         ) : null}
-      </Card>
+      </div>
     );
   }
 }
