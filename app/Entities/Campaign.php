@@ -60,9 +60,12 @@ class Campaign extends Entity implements JsonSerializable
     public function parseCampaignLead($campaignlead, $additionalContent)
     {
         if ($campaignlead) {
-            return new Staff($campaignlead->entry);
+            // @TODO (2018-08-29): Staff should eventually be removed and replaced by the
+            // Person content type and class for all entries.
+            return $campaignlead->getContentType() === 'staff' ? new Staff($campaignlead->entry) : new Person($campaignlead->entry);
         }
 
+        // @TODO (2018-08-29): we should do away with this additional content item.
         $email = $additionalContent['campaignLead']['email'] ?? 'help@dosomething.org';
         $name = $additionalContent['campaignLead']['name'] ?? 'Us';
 
