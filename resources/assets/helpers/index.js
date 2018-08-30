@@ -483,22 +483,79 @@ export function loadFacebookSDK() {
 }
 
 /**
- * Share a link by generating a Facebook share dialog.
+ * Share a link by generating a Facebook dialog.
  * Get a callback if the share is successful or not.
  *
- * @param  {Object}   share
- * @param  {Function} callback
+ * @param  {Object}  options
+ * @return {Promise}
  */
-export function showFacebookShareDialog(href, quote = null) {
-  const options = {
-    method: 'share',
-    quote,
-    href,
-  };
-
+export function showFacebookDialog(options) {
   return new Promise((resolve, reject) => {
     const handler = success => (success ? resolve() : reject());
     return window.FB.ui(options, handler);
+  });
+}
+
+/**
+ * Generate a Facebook Share Dialog
+ *
+ * @param {String} href
+ * @param {String} quote
+ */
+export function showFacebookShareDialog(href, quote = null) {
+  return showFacebookDialog({
+    method: 'share',
+    quote,
+    href,
+  });
+}
+
+/**
+ * Generate a Facebook Send Dialog
+ *
+ * @param {String} href
+ */
+export function showFacebookSendDialog(href) {
+  return showFacebookDialog({
+    method: 'send',
+    link: href,
+  });
+}
+
+/**
+ * Share a link via the Facebook Messenger app (for mobile devices).
+ * Get a callback if the user is presumed to have been redirected to the
+ * application or not.
+ *
+ * @param  {String}  href
+ * @return {Promise}
+ */
+export function facebookMessengerShare(href) {
+  // Capture if the user leaves the page (presumably meaning they've been successfully redirected to the Messenger app.)
+  let switchedToApp = false;
+  window.onblur = () => (switchedToApp = true);
+
+  return new Promise((resolve, reject) => {
+    const messengerAppUrl = makeUrl('fb-messenger://share', {
+      link: href,
+      app_id: env('FACEBOOK_APP_ID'),
+    });
+    window.location = messengerAppUrl.href;
+
+    setTimeout(() => {
+      // If our client still has not left the page, and the page is still in focus,
+      // they presumably don't have the Messenger app.
+      if (!switchedToApp && window.document.hasFocus()) {
+        reject();
+        // eslint-disable-next-line no-alert
+        window.alert(
+          'Sorry, you need to have the Facebook Messenger app installed, to send a message.',
+        );
+      } else {
+        window.onblur = null;
+        resolve();
+      }
+    }, 1500);
   });
 }
 

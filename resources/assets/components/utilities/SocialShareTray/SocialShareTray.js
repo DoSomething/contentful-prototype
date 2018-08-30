@@ -13,6 +13,9 @@ import {
   loadFacebookSDK,
   handleTwitterShareClick,
   showFacebookShareDialog,
+  showFacebookSendDialog,
+  facebookMessengerShare,
+  getFormattedScreenSize,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
@@ -36,8 +39,48 @@ class SocialShareTray extends React.Component {
       });
   };
 
-  handleEmailShareClick = shareLink =>
+  handleFacebookMessengerClick = (shareLink, trackLink) => {
+    const trackingData = { url: trackLink };
+
+    trackPuckEvent('phoenix_clicked_share_facebook_messenger', trackingData);
+
+    if (getFormattedScreenSize() === 'large') {
+      // Show Send Dialog for Desktop clients.
+      showFacebookSendDialog(shareLink)
+        .then(() => {
+          trackPuckEvent(
+            'phoenix_completed_share_facebook_messenger',
+            trackingData,
+          );
+        })
+        .catch(() => {
+          trackPuckEvent(
+            'phoenix_cancelled_share_facebook_messenger',
+            trackingData,
+          );
+        });
+    } else {
+      // Redirect mobile / tablet clients to the Messenger app.
+      facebookMessengerShare(shareLink)
+        .then(() => {
+          trackPuckEvent(
+            'phoenix_successful_redirect_facebook_messenger_app',
+            trackingData,
+          );
+        })
+        .catch(() => {
+          trackPuckEvent(
+            'phoenix_failed_redirect_facebook_messenger_app',
+            trackingData,
+          );
+        });
+    }
+  };
+
+  handleEmailShareClick = (shareLink, trackLink) => {
+    trackPuckEvent('phoenix_clicked_share_email', { url: trackLink });
     window.open(`mailto:?body=${encodeURIComponent(shareLink)}`);
+  };
 
   render() {
     const { shareLink } = this.props;
@@ -71,7 +114,9 @@ class SocialShareTray extends React.Component {
             disabled={!shareLink}
             icon={messengerIcon}
             text="Send"
-            // @TODO add onClick prop with click handler
+            onClick={() =>
+              this.handleFacebookMessengerClick(shareLink, trackLink)
+            }
           />
 
           <ShareButton
@@ -79,7 +124,7 @@ class SocialShareTray extends React.Component {
             disabled={!shareLink}
             icon={emailIcon}
             text="Email"
-            onClick={() => this.handleEmailShareClick(shareLink)}
+            onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
           />
         </div>
       </div>
