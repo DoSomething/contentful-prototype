@@ -22,8 +22,8 @@ class Person extends Entity implements JsonSerializable
                 'active' => $this->active,
                 'jobTitle' => $this->jobTitle,
                 'email' => $this->email,
-                'photo' => get_image_url($this->photo, 'square'),
-                'alternatePhoto' => get_image_url($this->alternatePhoto, 'square'),
+                'photo' => get_image_url($this->photo),
+                'alternatePhoto' => get_image_url($this->alternatePhoto),
                 'description' => $this->description,
             ],
         ];
