@@ -549,7 +549,7 @@ export function facebookMessengerShare(href) {
         reject();
         // eslint-disable-next-line no-alert
         window.alert(
-          'Sorry, you need to have the Facebook Messenger app installed, to send a message.',
+          'Sorry, you need to have the Facebook Messenger app installed to send a message.',
         );
       } else {
         window.onblur = null;
