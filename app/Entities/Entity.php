@@ -5,7 +5,7 @@ namespace App\Entities;
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
-use Contentful\Delivery\Asset;
+use Contentful\Delivery\Resource\Asset;
 use Contentful\Delivery\Resource\Entry;
 
 /**

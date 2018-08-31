@@ -1,10 +1,10 @@
 <?php
 
 use App\Entities\Campaign;
-use Contentful\Delivery\Asset;
 use App\Services\PhoenixLegacy;
 use Contentful\File\ImageOptions;
 use Illuminate\Support\HtmlString;
+use Contentful\Delivery\Resource\Asset;
 
 /**
  * Get Heroku database configuration variables from supplied
