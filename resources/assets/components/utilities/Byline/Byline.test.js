@@ -15,7 +15,7 @@ test('Byline with props snapshot test', () => {
     <Byline
       author="Braümhilda Snosages"
       jobTitle="Campaign Tester"
-      avatar="http://placeimg.com/150/150/people"
+      photo="http://placeimg.com/150/150/people"
     />,
   );
   const tree = shallowToJson(component);

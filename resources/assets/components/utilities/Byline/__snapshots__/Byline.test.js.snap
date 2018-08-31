@@ -8,7 +8,7 @@ exports[`Byline default snapshot test 1`] = `
     alignment="left"
     alt="picture of Puppet Sloth"
     className="margin-bottom-none"
-    image={Object {}}
+    image="http://placekitten.com/300/300"
     imageClassName="avatar"
     size="small"
   >

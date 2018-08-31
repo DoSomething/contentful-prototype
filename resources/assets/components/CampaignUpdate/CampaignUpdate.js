@@ -9,6 +9,7 @@ import Embed from '../utilities/Embed/Embed';
 // import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
+import { contentfulImageUrl } from '../../helpers';
 import Markdown from '../utilities/Markdown/Markdown';
 
 const CampaignUpdate = props => {
@@ -26,6 +27,7 @@ const CampaignUpdate = props => {
   } = props;
 
   const authorFields = get(author, 'fields', {});
+  const authorPhoto = authorFields.photo || undefined;
 
   const isTweet = content && content.length < 144;
 
@@ -61,7 +63,11 @@ const CampaignUpdate = props => {
         ) : (
           <Byline
             author={authorFields.name}
-            avatar={authorFields.avatar || undefined}
+            photo={
+              authorPhoto
+                ? contentfulImageUrl(authorPhoto, 175, 175, 'fill')
+                : undefined
+            }
             jobTitle={authorFields.jobTitle || undefined}
             className="float-left"
           />
