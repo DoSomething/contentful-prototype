@@ -2,8 +2,8 @@
 
 use App\Entities\Campaign;
 use App\Services\PhoenixLegacy;
-use Contentful\File\ImageOptions;
 use Illuminate\Support\HtmlString;
+use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
 
 /**
@@ -138,10 +138,10 @@ function get_image_url($asset, $style = null)
         return null;
     }
 
-    /** @var \Contentful\File\ImageFile $file */
+    /** @var \Contentful\Core\File\ImageFile $file */
     $file = $asset->getFile();
 
-    if (! $file instanceof \Contentful\File\ImageFile) {
+    if (! $file instanceof \Contentful\Core\File\ImageFile) {
         throw new \InvalidArgumentException('Cannot use file ' . $file->getFileName() . ' as an image.');
     }
 
