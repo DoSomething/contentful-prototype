@@ -120,7 +120,7 @@ class Entity implements ArrayAccess, JsonSerializable
         // @see: Entry's __call implementation.
         try {
             $value = $this->entry->{'get'.ucwords($property)}();
-        } catch (\Contentful\Exception\NotFoundException $error) {
+        } catch (\Contentful\Core\Exception\NotFoundException $error) {
             // If the linked resource is not published, return null.
             $value = null;
         } catch (\ErrorException $error) {
