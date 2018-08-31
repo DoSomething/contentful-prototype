@@ -4,8 +4,8 @@
   "require": {
     "php": ">=7.0.0",
     "barryvdh/laravel-debugbar": "^2.3",
-    "contentful/contentful": "2.0.*",
-    "contentful/laravel": "2.0.*",
+    "contentful/contentful": "3.3.*",
+    "contentful/laravel": "3.0.*",
     "dfurnes/environmentalist": "^0.0.2",
     "doctrine/dbal": "^2.5",
     "dosomething/gateway": "^1.14.7",
