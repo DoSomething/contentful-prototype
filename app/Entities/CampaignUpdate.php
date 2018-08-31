@@ -15,12 +15,18 @@ class CampaignUpdate extends Entity implements JsonSerializable
     {
         switch ($this->getContentType()) {
             case 'campaignUpdate':
+                $author = null;
+
+                if ($this->author) {
+                    $author = $this->author->getContentType() === 'staff' ? new Staff($this->author->entry) : new Person($this->author->entry);
+                }
+
                 $type = $this->getContentType();
-                $author = $this->author ? new Staff($this->author->entry) : null;
                 $content = $this->content;
                 $socialOverride = $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null;
                 break;
 
+            // @TODO (2018-08-30): We should aim to remove the old campaign update customBlocks.
             case 'customBlock':
                 $type = 'campaignUpdate';
                 $author = [
@@ -29,7 +35,7 @@ class CampaignUpdate extends Entity implements JsonSerializable
                     'fields' => [
                         'name' => isset($this->additionalContent['author']) ? $this->additionalContent['author'] : null,
                         'jobTitle' => isset($this->additionalContent['jobTitle']) ? $this->additionalContent['jobTitle'] : null,
-                        'avatar' => null,
+                        'photo' => null,
                     ],
                 ];
                 $content = "## {$this->title}\n\n {$this->content}";

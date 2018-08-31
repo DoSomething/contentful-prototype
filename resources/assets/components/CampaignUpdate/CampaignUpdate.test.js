@@ -6,7 +6,7 @@ import CampaignUpdate from './CampaignUpdate';
 
 const author = {
   fields: {
-    avatar: 'http://example.com/avatar-aang.jpg',
+    photo: 'http://example.com/avatar-aang.jpg',
     jobTitle: 'The Last Airbender',
     name: 'Aang',
   },

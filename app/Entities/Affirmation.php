@@ -23,7 +23,7 @@ class Affirmation extends Entity implements JsonSerializable
                 'fields' => [
                     'name' => $authorValue,
                     'jobTitle' => 'Campaign Lead',
-                    'avatar' => null,
+                    'photo' => null,
                 ],
             ];
         } else {

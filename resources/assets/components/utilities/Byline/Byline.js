@@ -12,12 +12,12 @@ import './byline.scss';
  * about an author and the option to add a
  * Facebook share.
  */
-const Byline = ({ author, jobTitle, avatar, share, className }) => (
+const Byline = ({ author, jobTitle, photo, share, className }) => (
   <div className={classnames('byline', className)}>
     <Figure
       size="small"
       alignment="left"
-      image={avatar}
+      image={photo}
       alt={`picture of ${author}`}
       imageClassName="avatar"
       className="margin-bottom-none"
@@ -34,7 +34,7 @@ Byline.propTypes = {
   author: PropTypes.string,
   className: PropTypes.string,
   jobTitle: PropTypes.string,
-  avatar: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  photo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   share: PropTypes.node,
 };
 
@@ -42,7 +42,7 @@ Byline.defaultProps = {
   author: 'Puppet Sloth',
   className: null,
   jobTitle: 'DoSomething.org Staff',
-  avatar: DEFAULT_AVATAR,
+  photo: DEFAULT_AVATAR,
   share: null,
 };
 
