@@ -53,7 +53,7 @@ class Campaign extends Entity implements JsonSerializable
     /**
      * Parse the campaign lead from other
      *
-     * @param  DynamicEntry $campaignlead
+     * @param  Entry $campaignlead
      * @param  array $additionalContent
      * @return array
      */
@@ -84,7 +84,7 @@ class Campaign extends Entity implements JsonSerializable
     /**
      * Parse the landing page for the campaign.
      *
-     * @param  DynamicEntry $landingPage
+     * @param  Entry $landingPage
      * @return array
      */
     public function parseLandingPage($landingPage)

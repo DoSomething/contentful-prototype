@@ -6,7 +6,7 @@ use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
 use Contentful\Delivery\Asset;
-use Contentful\Delivery\DynamicEntry;
+use Contentful\Delivery\Resource\Entry;
 
 /**
  * A convenience wrapper for Contentful's DynamicEntity.
@@ -16,16 +16,16 @@ class Entity implements ArrayAccess, JsonSerializable
     /**
      * The Contentful entry.
      *
-     * @var \Contentful\Delivery\DynamicEntry
+     * @var \Contentful\Delivery\Resource\Entry
      */
     protected $entry;
 
     /**
      * Create instance of the Campaign class.
      *
-     * @param \Contentful\Delivery\DynamicEntry $entry
+     * @param \Contentful\Delivery\Resource\Entry $entry
      */
-    public function __construct(DynamicEntry $entry)
+    public function __construct(Entry $entry)
     {
         $this->entry = $entry;
 
@@ -117,7 +117,7 @@ class Entity implements ArrayAccess, JsonSerializable
             return null;
         }
 
-        // @see: DynamicEntry's __call implementation.
+        // @see: Entry's __call implementation.
         try {
             $value = $this->entry->{'get'.ucwords($property)}();
         } catch (\Contentful\Exception\NotFoundException $error) {
@@ -133,13 +133,13 @@ class Entity implements ArrayAccess, JsonSerializable
             return $value;
         }
 
-        if ($value instanceof DynamicEntry) {
+        if ($value instanceof Entry) {
             return new self($value);
         }
 
         if (is_array($value)) {
             return collect($value)->map(function ($value) {
-                if ($value instanceof DynamicEntry) {
+                if ($value instanceof Entry) {
                     return new self($value);
                 } else {
                     return $value;
@@ -151,7 +151,7 @@ class Entity implements ArrayAccess, JsonSerializable
     }
 
     /**
-     * Get the ContentType for the DynamicEntry.
+     * Get the ContentType for the Entry.
      *
      * @return string
      */
