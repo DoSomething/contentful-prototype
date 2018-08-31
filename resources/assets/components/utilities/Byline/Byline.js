@@ -34,7 +34,7 @@ Byline.propTypes = {
   author: PropTypes.string,
   className: PropTypes.string,
   jobTitle: PropTypes.string,
-  photo: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  photo: PropTypes.string,
   share: PropTypes.node,
 };
 
