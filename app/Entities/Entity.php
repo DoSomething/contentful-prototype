@@ -225,7 +225,7 @@ class Entity implements ArrayAccess, JsonSerializable
         return (object) [
             'id' => $this->entry->getId(),
             'type' => $this->entry->getContentType()->getId(),
-            'fields' => $json->fields,
+            'fields' => $json['fields'],
         ];
     }
 }
