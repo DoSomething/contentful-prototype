@@ -16,6 +16,11 @@ return [
     'delivery.token' => env('CONTENTFUL_CONTENT_API_KEY'),
 
     /*
+     * Controls which Contentful Environment is accessed (defaults to 'master')
+     */
+    'delivery.environment' => env('CONTENTFUL_ENVIRONMENT_ID', 'master'),
+
+    /*
      * Controls whether Contentful's Delivery or Preview API is accessed
      */
     'delivery.preview' => env('CONTENTFUL_USE_PREVIEW_API', false),
