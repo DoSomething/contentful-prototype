@@ -3,7 +3,6 @@
 namespace App\Entities;
 
 use JsonSerializable;
-use Contentful\Delivery\Resource\Asset;
 
 /**
  * The Campaign entity.
