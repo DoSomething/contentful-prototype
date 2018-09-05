@@ -14,7 +14,7 @@ class CustomBlock extends Entity implements JsonSerializable
     public function jsonSerialize()
     {
         // Custom Block type field, which -if set- overrides the Content Type's type.
-        $type = $this->entry->type();
+        $type = $this->entry->type;
 
         return [
             'id' => $this->entry->getId(),
