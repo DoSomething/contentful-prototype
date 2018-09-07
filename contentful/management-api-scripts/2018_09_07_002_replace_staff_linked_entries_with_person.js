@@ -80,14 +80,15 @@ async function replaceStaffLinkedEntriesWithPerson(environment, staff) {
         break;
     }
 
-    // Determine if the linked entry was already published to prevent publishing a draft entry.
-    const wasLinkedEntryPublished = await linkedEntry.isPublished();
-
     // If the linked entry is archived, we can't update it.
     const isLinkedEntryArchived = await linkedEntry.isArchived();
     if (isLinkedEntryArchived) {
       logger.info(`-- Skipping Archived Link! [ID: ${linkedEntry.sys.id}]\n`);
+      continue;
     }
+
+    // Determine if the linked entry was already published to prevent publishing a draft entry.
+    const wasLinkedEntryPublished = await linkedEntry.isPublished();
 
     // Replace the link to Staff entry with a link to the Person.
     linkedEntry.fields[authorField][LOCALE] = personLink;
