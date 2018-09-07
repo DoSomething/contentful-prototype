@@ -34,7 +34,7 @@ async function derivePersonFromStaff(environment, staff) {
   );
 
   if (person) {
-    console.log(`-   Created  Person! [ID: ${person.sys.id}]\n`);
+    logger.info(`-   Created  Person! [ID: ${person.sys.id}]\n`);
   }
 
   logger.info(`Processed Staff! [ID: ${staff.sys.id}]\n`);
