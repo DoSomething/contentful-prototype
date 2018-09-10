@@ -27,7 +27,7 @@ class Affirmation extends Entity implements JsonSerializable
                 ],
             ];
         } else {
-            $author = new Staff($authorValue->entry);
+            $author = $authorValue->getContentType() === 'staff' ? new Staff($authorValue->entry) : new Person($authorValue->entry);
         }
 
         return [
