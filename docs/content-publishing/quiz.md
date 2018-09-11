@@ -18,10 +18,10 @@ A somewhat cheerful example might be:
 
 Once we have this core question crystallized, we can quickly assemble a pool of results -- in our example, this would be the full list of Beyoncé albums.
 
-1. [Dangerously in Love](https://en.wikipedia.org/wiki/Dangerously_in_Love)
-2. [B'Day](https://en.wikipedia.org/wiki/B'Day_%28Beyoncé_album%29)
-3. [I Am... Sasha Fierce](https://en.wikipedia.org/wiki/I_Am..._Sasha_Fierce)
-4. ...
+1.  [Dangerously in Love](https://en.wikipedia.org/wiki/Dangerously_in_Love)
+2.  [B'Day](https://en.wikipedia.org/wiki/B'Day_%28Beyoncé_album%29)
+3.  [I Am... Sasha Fierce](https://en.wikipedia.org/wiki/I_Am..._Sasha_Fierce)
+4.  ...
 
 Once we have our results all listed out, we can start to figure out how we're going to lead the user to the proper result based on quiz _questions_ and _question-choices_.
 
@@ -47,7 +47,7 @@ You may notice that we auto-append a Result ID \(A, B, C...\) to each result you
 
 Here we add a Link Action as one of the result blocks:
 
-![Quiz Result Blocks Field](../.gitbook/assets/quiz-result-blocks-field%20%284%29.png)
+![Quiz Result Blocks Field](../.gitbook/assets/quiz-result-blocks-field.png)
 
 In our fine example, we've attached a **Link Action** to the **Result Blocks** field. We might fill in the Link Action's **Content** field with
 
@@ -55,7 +55,7 @@ In our fine example, we've attached a **Link Action** to the **Result Blocks** f
 
 The winning **result** will be appended to the beginning of the Link Action **Content**. So in our example, this would turn out as:
 
-![Quiz Result](../.gitbook/assets/quiz-result%20%283%29.png)
+![Quiz Result](../.gitbook/assets/quiz-result.png)
 
 ## Quiz Questions
 
@@ -67,7 +67,7 @@ Head on over to the **Questions** field and let's fill out the first question to
 
 > "What is your drink of choice?".
 
-![Quiz Questions Field](../.gitbook/assets/quiz-questions-field%20%281%29.png)
+![Quiz Questions Field](../.gitbook/assets/quiz-questions-field.png)
 
 ### Adding Available Choices For Question
 
@@ -85,11 +85,11 @@ If this is confusing, check out the _Quiz Question_ image \_\_below step 3
 
 Here's the **Result Block**, we're pasting the **Entry ID** into the **Result Block ID** field:
 
-![Quiz Result Block Entry ID](../.gitbook/assets/quiz-result-block-entry-id%20%282%29.png)
+![Quiz Result Block Entry ID](../.gitbook/assets/quiz-result-block-entry-id.png)
 
 Here's how Question 1 is looking for us so far:
 
-![Quiz Question](../.gitbook/assets/quiz-question-example-info%20%284%29.png)
+![Quiz Question](../.gitbook/assets/quiz-question-example-info.png)
 
 ### Calculating The Winning Result
 
@@ -107,7 +107,7 @@ Instead of combining the two, you can totally use **Result Blocks** only, in fav
 
 Once the quiz is completed, we tally for the **Result** - and / or **Result Block** - with the most points, and append the winning **Result Content** to the **Content** field of the winning **Result Block**, and display it to the user! If there is no **Result Block** added \(it's optional\), then we just display the winning result content in a share block like this:
 
-![Quiz Result Share Block](../.gitbook/assets/quiz-result-example-share-result%20%283%29.png)
+![Quiz Result Share Block](../.gitbook/assets/quiz-result-example-share-result.png)
 
 {% hint style="info" %}
 In case of a tie we favor the first **result** or **result block** on the winning list.
@@ -123,16 +123,16 @@ You can now fill out the rest of your **Questions** and **Choices**. You can mak
 
 For each Quiz **Choice,** you can add a **Background Image URL**, to decorate the choice:
 
-![Quiz Choices with Background Images](../.gitbook/assets/quiz-question-background-images%20%281%29.png)
+![Quiz Choices with Background Images](../.gitbook/assets/quiz-question-background-images.png)
 
 You can do this by filling out the **Choices - Background Image** field with a valid Contentful Asset URL for the desired image:
 
-1. Add the image to the Contentful Asset suit
-2. Visit the Asset entry from the **Contentful Media** section
-3. Hover over the **File** field of the asset and click the **Download File** button
-4. The file will then open in a new tab
-5. Copy the URL of that new tab
-6. Paste that URL in the **Choices - Background Image** field**.**
+1.  Add the image to the Contentful Asset suit
+2.  Visit the Asset entry from the **Contentful Media** section
+3.  Hover over the **File** field of the asset and click the **Download File** button
+4.  The file will then open in a new tab
+5.  Copy the URL of that new tab
+6.  Paste that URL in the **Choices - Background Image** field**.**
 
 Yes, unfortunately for the time being, these steps are somewhat tedious and involved, but on the \#mrBrightside you do get super fresh looking **Quiz Choices!**
 
@@ -174,24 +174,23 @@ The only extra step you need to take is to attach the nested quiz to the parent 
 
 The Quiz consists of the following fields:
 
-* **internalTitle** _\(required\)_: the title used internally to find this component in Contentful; please follow helper text displayed under the field for suggested naming convention.
-* **title** _\(optional\)_: the title that will show up atop the Quiz.
-* **slug** _\(required\)_: the slug for the quiz. This should be a hyphenated address, e.g., `beyonce-quiz`. This is the address through which the quiz will be reached, e.g. `https://dosomething.org/us/campaigns/example-campaign/quiz/beyonce-quiz`.
-* **autoSubmitQuiz** _\(required\)_: if set to _Yes_, the quiz will auto submit when all questions are completed. If set to _No_, there will be a submission button, _and the quiz result will be gated \(only accessible post authentication\), and completion will result in campaign signup for the user_
-* **hideQuestionNumber** _\(optional\)_: toggle to show the question number atop the questions \(e.g., Question One\)
-* **results** _\(required\)_: the list of results for the quiz.
-  * **content** _\(required\)_: The content field for the results
-* **resultBlocks** _\(optional\)_: the entries within which the results will be returned.
-* **questions** _\(required\)_: the questions for the quiz.
-  * **title** _\(required\)_: the question title.
-  * **choices** _\(required\)_: the available choices for the question.
-    * **title** _\(required\)_: the title for the choice.
-    * **results** _\(optional\)_: the list of result IDs to be influenced by the choice.
-      * **resultId** _\(required\)_: the ID of the result to be influenced. \(You can find the ID next to the desired result in the Quiz **Results** field\).
-    * **resultBlockId** _\(optional\)_: the Entry ID of the Result Block to be influenced.
-    * **backgroundImage** _\(optional\)_: the asset URL of the background image for this choice. _this must be a valid Contentful image URL \(you can find this on the asset in Contentful\) it should start with_ `https://images.ctfassets.net...`
-* **additionalContent** _\(required\)_: used to specify additional options in JSON format.
-  * **callToAction** _\(required\)_: the text to be displayed next to the quiz submission button. _this is required for non-auto submitted quizzes_.
-  * **introduction** _\(optional\)_: intro text for the quiz, displayed under the quiz title.
-  * **hideTitle** _\(optional\):_ If set to **true**, the Quiz **title** field will be hidden.
-
+- **internalTitle** _\(required\)_: the title used internally to find this component in Contentful; please follow helper text displayed under the field for suggested naming convention.
+- **title** _\(optional\)_: the title that will show up atop the Quiz.
+- **slug** _\(required\)_: the slug for the quiz. This should be a hyphenated address, e.g., `beyonce-quiz`. This is the address through which the quiz will be reached, e.g. `https://dosomething.org/us/campaigns/example-campaign/quiz/beyonce-quiz`.
+- **autoSubmitQuiz** _\(required\)_: if set to _Yes_, the quiz will auto submit when all questions are completed. If set to _No_, there will be a submission button, _and the quiz result will be gated \(only accessible post authentication\), and completion will result in campaign signup for the user_
+- **hideQuestionNumber** _\(optional\)_: toggle to show the question number atop the questions \(e.g., Question One\)
+- **results** _\(required\)_: the list of results for the quiz.
+  - **content** _\(required\)_: The content field for the results
+- **resultBlocks** _\(optional\)_: the entries within which the results will be returned.
+- **questions** _\(required\)_: the questions for the quiz.
+  - **title** _\(required\)_: the question title.
+  - **choices** _\(required\)_: the available choices for the question.
+    - **title** _\(required\)_: the title for the choice.
+    - **results** _\(optional\)_: the list of result IDs to be influenced by the choice.
+      - **resultId** _\(required\)_: the ID of the result to be influenced. \(You can find the ID next to the desired result in the Quiz **Results** field\).
+    - **resultBlockId** _\(optional\)_: the Entry ID of the Result Block to be influenced.
+    - **backgroundImage** _\(optional\)_: the asset URL of the background image for this choice. _this must be a valid Contentful image URL \(you can find this on the asset in Contentful\) it should start with_ `https://images.ctfassets.net...`
+- **additionalContent** _\(required\)_: used to specify additional options in JSON format.
+  - **callToAction** _\(required\)_: the text to be displayed next to the quiz submission button. _this is required for non-auto submitted quizzes_.
+  - **introduction** _\(optional\)_: intro text for the quiz, displayed under the quiz title.
+  - **hideTitle** _\(optional\):_ If set to **true**, the Quiz **title** field will be hidden.
