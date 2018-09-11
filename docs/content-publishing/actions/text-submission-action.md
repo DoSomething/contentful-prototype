@@ -2,9 +2,11 @@
 
 The `TextSubmissionAction` component renders a visual component which allows DoSomething.org members to submit a message indicating how they take action in a particular campaign.
 
-{% hint style="info" %} The message has a 256 character limit {% endhint %}
+{% hint style="info" %}
+The message has a 256 character limit
+{% endhint %}
 
-![Text Submission Action](../../.gitbook/assets/text-submission-action-component.png)
+![Text Submission Action](../../.gitbook/assets/text-submission-action-component%20%283%29.png)
 
 ## Usage Instructions
 

@@ -4,15 +4,15 @@ There are certain times throughout the DoSomething.org experience, where a user 
 
 When a user clicks one of our assorted Facebook share buttons, they'll see the link preview embed in the Facebook editor.
 
-![Facebook Share Editor](../.gitbook/assets/facebook-share-editor.png)
+![Facebook Share Editor](../.gitbook/assets/facebook-share-editor%20%283%29.png)
 
-When a user is shares a link to social media (Twitter, Facebook etc.), the embed will be visible:
+When a user is shares a link to social media \(Twitter, Facebook etc.\), the embed will be visible:
 
-![Facebook Share Editor](../.gitbook/assets/facebook-share-example.png)
+![Facebook Share Editor](../.gitbook/assets/facebook-share-example%20%284%29.png)
 
 Any link embed on our site; be it a Share Action, Link Action, Campaign Update, etc...
 
-![Social Override](../.gitbook/assets/social-override-example.png)
+![Social Override](../.gitbook/assets/social-override-example%20%283%29.png)
 
 We allow the option of editing this embedded content using the **Social Override** field on Campaigns, Pages, and Campaign Updates.
 

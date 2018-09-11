@@ -6,7 +6,7 @@ The `LinkAction` renders a visual component which features an embedded link rend
 
 If the Content field is left blank, the Link Action will render as an plain embedded link:
 
-![Link Action component](../../.gitbook/assets/link-action-component-plain-embed.png)
+![Link Action component](../../.gitbook/assets/link-action-component-plain-embed%20%285%29.png)
 
 ## Link Action Card
 
@@ -18,7 +18,7 @@ If you fill in the Content field, instead of rendering an embedded link, the Lin
 
 If you add an affiliate logo via the Affiliate Logo field, the Link Action will feature the logo, and will change the background color of the card title to purple:
 
-![Affiliate Link Action component](../../.gitbook/assets/link-action-affiliate-logo.png)
+![Affiliate Link Action component](../../.gitbook/assets/link-action-affiliate-logo%20%284%29.png)
 
 ## Link Action = Call Action!
 
@@ -32,7 +32,7 @@ Be sure to add some Content via the `content` field if you're linking to a telep
 
 You can have the Link Action render as a Call To Action-like component by selecting the `cta` value in the Template field.
 
-![CTA Link Action component](../../.gitbook/assets/link-action-cta.png)
+![CTA Link Action component](../../.gitbook/assets/link-action-cta%20%287%29.png)
 
 ## Usage Instructions
 

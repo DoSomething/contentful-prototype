@@ -5,30 +5,6 @@ description: List of API endpoints for the Posts resource.
 # Posts Resource
 
 {% api-method method="get" host="https://www.dosomething.org" path="/api/v2/posts" %}
-{% api-method-summary %}
-Retrieve all Posts
-{% endapi-method-summary %}
-
-{% api-method-description %}
-Get index list of all posts.
-{% endapi-method-description %}
-
-{% api-method-spec %}
-{% api-method-request %}
-
-{% api-method-response %}
-{% api-method-response-example httpCode=200 %}
-{% api-method-response-example-description %}
-
-{% endapi-method-response-example-description %}
-
-```
-
-```
-{% endapi-method-response-example %}
-{% endapi-method-response %}
-{% endapi-method-spec %}
-{% endapi-method %}
 
 {% hint style="info" %}
 The request is proxied to Rogue.
@@ -36,7 +12,7 @@ The request is proxied to Rogue.
 
 {% api-method method="get" host="https://www.dosomething.org" path="/api/v2/posts/:id" %}
 {% api-method-summary %}
-Retrieve a Post
+
 {% endapi-method-summary %}
 
 {% api-method-description %}
@@ -58,7 +34,7 @@ e.g.: 123456
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 
 ```
 {% endapi-method-response-example %}
