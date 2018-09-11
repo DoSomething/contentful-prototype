@@ -1,6 +1,6 @@
 # Community Update
 
-Updates in the _Community Feed_ currently consist of [Campaign Updates](https://github.com/DoSomething/phoenix-next/tree/95c8851f5f308f342a1cd577545d551eda6d8fc3/docs/content-publishing/community/campaign-update/affiliate-update.md) and reportbacks.
+Updates in the _Community Feed_ currently consist of [Campaign Updates](campaign-update/affiliate-update.md) and reportbacks.
 
 ## Campaign Updates
 

@@ -2,7 +2,7 @@
 
 The `VoterRegistrationAction` component renders a visual component which allows DoSomething.org members to register to vote via a link to an external voter registration partner.
 
-![Voter Registration Action component](../../.gitbook/assets/voter-registration-action-component%20%281%29.png)
+![Voter Registration Action component](../../.gitbook/assets/voter-registration-action-component.png)
 
 ## Usage Instructions
 
@@ -14,10 +14,10 @@ You can use select _tokens_ in the specified URL to include dynamic information.
 
 The following tokens are available for use in the `link` field:
 
-* `{campaignId}`: will be replaced with the campaign ID.
-* `{campaignRunId}`: will be replaced with the campaign run ID.
-* `{northstarId}`: will be replaced with the user's Northstar ID.
-* `{source}`: will be replaced with a value of `web`.
+- `{campaignId}`: will be replaced with the campaign ID.
+- `{campaignRunId}`: will be replaced with the campaign run ID.
+- `{northstarId}`: will be replaced with the user's Northstar ID.
+- `{source}`: will be replaced with a value of `web`.
 
 ### Examples:
 
@@ -44,4 +44,3 @@ The resulting URL for the rendered button on the page will be:
 ```http
 https://turbonotes.xyz/?r=user:551a2b3c4d5e6f7g8h9i0j1k2,campaign:1234,source:web
 ```
-
