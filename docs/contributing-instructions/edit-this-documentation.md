@@ -12,19 +12,19 @@ Make sure you have a GitBooks account and that your account has been added as a 
 
 You will need to create a new branch on [GitHub](https://github.com/) and prefix the name of the branch with `docs-`.
 
-![Documentation Creating Branch On GitHub](../.gitbook/assets/documentation-creating-branch-on-github%20%283%29.png)
+![Documentation Creating Branch On GitHub](../.gitbook/assets/documentation-creating-branch-on-github.png)
 
 Sign into your GitBooks account and if you have the correct permissions you should be able to edit the documentation.
 
 Select the branch name you created for your edits using the dropdown menu on the top left of the GitBooks interface.
 
-![Documentation Version Dropdown Menu](../.gitbook/assets/documentation-version-dropdown-menu%20%283%29.png)
+![Documentation Version Dropdown Menu](../.gitbook/assets/documentation-version-dropdown-menu.png)
 
 You are now free to edit the documentation using the interface tools GitBooks provides. Your edits will automatically sync with the branch you created on GitHub.
 
 Once completed, head to [GitHub Phoenix Branches](https://github.com/DoSomething/phoenix-next/branches) and click to create a pull request from the branch you created.
 
-![Documentation Create New Pull Request From Branch.png](../.gitbook/assets/documentation-create-new-pull-request-from-branch%20%282%29.png)
+![Documentation Create New Pull Request From Branch.png](../.gitbook/assets/documentation-create-new-pull-request-from-branch.png)
 
 Once the pull request is reviewed, approved, and merged, you will see your contributions on the **Primary version** of the Phoenix Documentation.
 
@@ -36,7 +36,7 @@ Once your edits are complete, submit a pull request with your contributions.
 
 If you would like to preview how your edits show up on the rendered GitBooks documentation, you can prefix `docs-` to the name of the branch for the pull request, and GitBooks will automatically include this as a selectable version of the documentation from the dropdown menu on the top left of the GitBooks interface. With each commit you push up to your branch, GitBooks will sync and show you the updates visually.
 
-![Documentation Version Dropdown Menu](../.gitbook/assets/documentation-version-dropdown-menu%20%283%29.png)
+![Documentation Version Dropdown Menu](../.gitbook/assets/documentation-version-dropdown-menu.png)
 
 Once the pull request is reviewed, approved, and merged, you will see your contributions on the **Primary version** of the Phoenix Documentation.
 
