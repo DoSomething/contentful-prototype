@@ -12,23 +12,23 @@ In order to use your page in a Link Action, you will need to redirect it from `n
 
 In Contentful, head to the **Content** section, and click the **Add entry** button in the top right, and select the **Page** content type.
 
-![Create General Content Page](../../.gitbook/assets/create-general-content-page%20%284%29.png)
+![Create General Content Page](../../.gitbook/assets/create-general-content-page.png)
 
 ### 2. Fill out the required fields
 
 There are a number of required fields that you'll need to fill out before you can even save a draft. These are neccesary for the page to exist in our system at all.
 
-* **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and the title of the page to help find this content in the system.
-* **Title**: This is the displayed title for the page.
-* **Slug**: This is the slug for the page; this field affects the URL address of this content on site, so a slug of `voting-is-cool` would be reached through `www.dosomething.org/us/voting-is-cool`.
+- **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and the title of the page to help find this content in the system.
+- **Title**: This is the displayed title for the page.
+- **Slug**: This is the slug for the page; this field affects the URL address of this content on site, so a slug of `voting-is-cool` would be reached through `www.dosomething.org/us/voting-is-cool`.
 
 ### 3. Add your content
 
 Your page will have other blank fields you can use for your content. All of these fields are optional.
 
-* **Subtitle**: This is the displayed subtitle for the page.
-* **Content**: A field that can be used for any initial content on the page. Additional blocks are added \(with images or other components\) in the **Blocks** section and will immediately follow the content in the **Content** field.
-* **Sidebar**: A field for pages appearing on campaigns like FAQs and Scholarships, this field is will add sidebar related content to the right of the information in the **Content** field, but only _if_ content was added to the **Content** field. If the **Content** field is left empty, then the **Sidebar** content will not be output on the page.
+- **Subtitle**: This is the displayed subtitle for the page.
+- **Content**: A field that can be used for any initial content on the page. Additional blocks are added \(with images or other components\) in the **Blocks** section and will immediately follow the content in the **Content** field.
+- **Sidebar**: A field for pages appearing on campaigns like FAQs and Scholarships, this field is will add sidebar related content to the right of the information in the **Content** field, but only _if_ content was added to the **Content** field. If the **Content** field is left empty, then the **Sidebar** content will not be output on the page.
 
 **Adding additional blocks**  
 Add any desired blocks to the **Blocks** field, to expand on the content shown on the page beyond what is in the **Content** field. This is where you can add Link Actions and Image Blocks. If you're writing an article that contains a lot of media you'll probably end up threading Link Actions and Content Blocks.
@@ -47,5 +47,4 @@ Once completed, speak with Ashley to setup a redirect to the slug of this page. 
 
 This is an example general content page that doesn't use the **Content** field:
 
-![General Content Page](../../.gitbook/assets/general-content-page%20%283%29.png)
-
+![General Content Page](../../.gitbook/assets/general-content-page.png)

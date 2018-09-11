@@ -19,7 +19,7 @@ A somewhat cheerful example might be:
 Once we have this core question crystallized, we can quickly assemble a pool of results -- in our example, this would be the full list of Beyoncé albums.
 
 1.  [Dangerously in Love](https://en.wikipedia.org/wiki/Dangerously_in_Love)
-2.  [B'Day](https://en.wikipedia.org/wiki/B'Day_%28Beyoncé_album%29)
+2.  [B'Day](https://en.wikipedia.org/wiki/B%27Day_%28Beyonc%C3%A9_album%29)
 3.  [I Am... Sasha Fierce](https://en.wikipedia.org/wiki/I_Am..._Sasha_Fierce)
 4.  ...
 
