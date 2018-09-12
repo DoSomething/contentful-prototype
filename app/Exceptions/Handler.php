@@ -3,9 +3,9 @@
 namespace App\Exceptions;
 
 use Exception;
-use Contentful\Exception\NotFoundException;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
+use Contentful\Core\Exception\NotFoundException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

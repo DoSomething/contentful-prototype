@@ -3,19 +3,9 @@
 namespace App\Entities;
 
 use JsonSerializable;
-use Contentful\Delivery\Asset;
 
 /**
  * The Campaign entity.
- *
- * @property string $title
- * @property string $callToAction
- * @property Asset $coverImage
- * @property array $problemFact
- * @property array $solutionFact
- * @property array $solutionStatement
- * @property array $facts
- * @property string $faqs
  */
 class Campaign extends Entity implements JsonSerializable
 {
@@ -53,7 +43,7 @@ class Campaign extends Entity implements JsonSerializable
     /**
      * Parse the campaign lead from other
      *
-     * @param  DynamicEntry $campaignlead
+     * @param  Entry $campaignlead
      * @param  array $additionalContent
      * @return array
      */
@@ -84,7 +74,7 @@ class Campaign extends Entity implements JsonSerializable
     /**
      * Parse the landing page for the campaign.
      *
-     * @param  DynamicEntry $landingPage
+     * @param  Entry $landingPage
      * @return array
      */
     public function parseLandingPage($landingPage)

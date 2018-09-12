@@ -5,8 +5,8 @@ namespace App\Entities;
 use ArrayAccess;
 use JsonSerializable;
 use InvalidArgumentException;
-use Contentful\Delivery\Asset;
-use Contentful\Delivery\DynamicEntry;
+use Contentful\Delivery\Resource\Asset;
+use Contentful\Delivery\Resource\Entry;
 
 /**
  * A convenience wrapper for Contentful's DynamicEntity.
@@ -16,16 +16,16 @@ class Entity implements ArrayAccess, JsonSerializable
     /**
      * The Contentful entry.
      *
-     * @var \Contentful\Delivery\DynamicEntry
+     * @var \Contentful\Delivery\Resource\Entry
      */
     protected $entry;
 
     /**
      * Create instance of the Campaign class.
      *
-     * @param \Contentful\Delivery\DynamicEntry $entry
+     * @param \Contentful\Delivery\Resource\Entry $entry
      */
-    public function __construct(DynamicEntry $entry)
+    public function __construct(Entry $entry)
     {
         $this->entry = $entry;
 
@@ -67,11 +67,11 @@ class Entity implements ArrayAccess, JsonSerializable
             case 'contentBlock':
                 return new ContentBlock($block->entry);
             case 'customBlock':
-                if ($block->entry->getType() === 'join_cta') {
+                if ($block->entry->type === 'join_cta') {
                     return new CallToAction($block->entry);
                 }
 
-                if ($block->entry->getType() === 'campaign_update') {
+                if ($block->entry->type === 'campaign_update') {
                     return new CampaignUpdate($block->entry);
                 }
 
@@ -117,10 +117,10 @@ class Entity implements ArrayAccess, JsonSerializable
             return null;
         }
 
-        // @see: DynamicEntry's __call implementation.
+        // @see: Entry's __call implementation.
         try {
             $value = $this->entry->{'get'.ucwords($property)}();
-        } catch (\Contentful\Exception\NotFoundException $error) {
+        } catch (\Contentful\Core\Exception\NotFoundException $error) {
             // If the linked resource is not published, return null.
             $value = null;
         } catch (\ErrorException $error) {
@@ -133,13 +133,13 @@ class Entity implements ArrayAccess, JsonSerializable
             return $value;
         }
 
-        if ($value instanceof DynamicEntry) {
+        if ($value instanceof Entry) {
             return new self($value);
         }
 
         if (is_array($value)) {
             return collect($value)->map(function ($value) {
-                if ($value instanceof DynamicEntry) {
+                if ($value instanceof Entry) {
                     return new self($value);
                 } else {
                     return $value;
@@ -151,7 +151,7 @@ class Entity implements ArrayAccess, JsonSerializable
     }
 
     /**
-     * Get the ContentType for the DynamicEntry.
+     * Get the ContentType for the Entry.
      *
      * @return string
      */
@@ -225,7 +225,7 @@ class Entity implements ArrayAccess, JsonSerializable
         return (object) [
             'id' => $this->entry->getId(),
             'type' => $this->entry->getContentType()->getId(),
-            'fields' => $json->fields,
+            'fields' => $json['fields'],
         ];
     }
 }
