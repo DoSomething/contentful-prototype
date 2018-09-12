@@ -18,7 +18,13 @@ module.exports = function(migration) {
     .type('Symbol')
     .validations([
       {
-        in: ['staff', 'intern', 'board member', 'advisory board member'],
+        in: [
+          'staff',
+          'intern',
+          'board member',
+          'advisory board member',
+          'member',
+        ],
       },
     ])
     .required(true)
