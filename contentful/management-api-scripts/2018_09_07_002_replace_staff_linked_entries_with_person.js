@@ -20,21 +20,11 @@ async function replaceStaffLinkedEntriesWithPerson(environment, staff) {
 
   logger.info(`Processing Staff! [ID: ${staff.sys.id}] [Name: ${staffName}]\n`);
 
-  let people;
-
-  if (staffName === 'Margot') {
-    // Special case to account for two Staff entries for Margot.
-    people = await environment.getEntries({
-      content_type: 'person',
-      'fields.name[match]': 'Margot Harris',
-    });
-  } else {
-    // Find the Person entries of the same name.
-    people = await environment.getEntries({
-      content_type: 'person',
-      'fields.name[match]': staffName,
-    });
-  }
+  // Find the Person entries of the same name.
+  const people = await environment.getEntries({
+    content_type: 'person',
+    'fields.name[match]': staffName,
+  });
 
   // Hard return if there is no Person equivalent.
   if (!people.items.length) {
