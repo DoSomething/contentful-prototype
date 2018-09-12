@@ -14,10 +14,9 @@ Unless you are new, you should already be in the system, so _please check "link 
 
 If the campaign lead does not exist, Create a new entry.
 
-* **Internal Title**: Full name of Campaign Lead
-* **Name**: Full name
-* **Title**: Campaign Lead
-* **Photo**: upload a new photo if photo does not exist in contentful yet
+- **Internal Title**: Full name of Campaign Lead
+- **Name**: Full name
+- **Title**: Campaign Lead
+- **Photo**: upload a new photo if photo does not exist in contentful yet
 
 ![Campaign Lead Photo File Field](../../.gitbook/assets/photo-file-field.png)
-

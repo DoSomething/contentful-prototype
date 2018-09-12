@@ -10,8 +10,8 @@ Behind the scenes, this component will shorten and track the provided link using
 
 The Social Drive Action consists of two fields:
 
-* **internalTitle** _\(required\)_: the title used internally to find this component in Contentful; please follow helper text displayed under the field for suggested naming convention.
-* **link \(required\)**: a valid URL which will be processed and displayed by the component.
+- **internalTitle** _\(required\)_: the title used internally to find this component in Contentful; please follow helper text displayed under the field for suggested naming convention.
+- **link \(required\)**: a valid URL which will be processed and displayed by the component.
 
 ### Link Tokens
 
@@ -20,4 +20,3 @@ The **link** field can be equipped with a `{userId}` token, which will be replac
 ### What Happened to What Happens Next?
 
 As of now this component is specifically coded for Voter Registration Social Drives, which consequentially means - as you may have noted that - that the info displayed atop the Total Page Views section is not editable. This will be updated soon!
-

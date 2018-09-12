@@ -38,10 +38,9 @@ You can have the Link Action render as a Call To Action-like component by select
 
 The Link Action consists of the following fields:
 
-* **title \(required\)**: the title that will show up in the yellow bar atop the Link Action Card \(If Content is provided\), or the CTA title.
-* **content \(optional\)**: content in Markdown format that will appear within the card atop the link. _Filling this out will cause the Link Action to render as a Card_.
-* **link \(required\)**: a valid URL which will be embedded within the card, or a telephone link which will be linked to through the button.
-* **buttonText \(optional\)**: text for button to link when Link Action is in Card or CTA mode. \(_this is required for a telephone link action!_\)
-* **affiliateLogo \(optional\)**: an image URL which will be featured on bottom of the action. \(adding this property will also cause a color change in the title of the link action if it's in Card mode\)
-* **template \(optional\)**: toggle between Default and CTA modes.
-
+- **title \(required\)**: the title that will show up in the yellow bar atop the Link Action Card \(If Content is provided\), or the CTA title.
+- **content \(optional\)**: content in Markdown format that will appear within the card atop the link. _Filling this out will cause the Link Action to render as a Card_.
+- **link \(required\)**: a valid URL which will be embedded within the card, or a telephone link which will be linked to through the button.
+- **buttonText \(optional\)**: text for button to link when Link Action is in Card or CTA mode. \(_this is required for a telephone link action!_\)
+- **affiliateLogo \(optional\)**: an image URL which will be featured on bottom of the action. \(adding this property will also cause a color change in the title of the link action if it's in Card mode\)
+- **template \(optional\)**: toggle between Default and CTA modes.

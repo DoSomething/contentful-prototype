@@ -68,8 +68,10 @@
   * [Campaign Page](content-publishing/pages/campaign-page.md)
   * [Campaign Page Modals](content-publishing/pages/campaign-page-modals.md)
 * [Quiz](content-publishing/quiz.md)
+* [Sixpack Experiments](content-publishing/sixpack-experiments.md)
 
 ## Contributing Instructions
 
 * [Edit This Documentation](contributing-instructions/edit-this-documentation.md)
 * [Glossary](contributing-instructions/glossary.md)
+

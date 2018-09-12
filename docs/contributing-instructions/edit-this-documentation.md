@@ -1,4 +1,4 @@
-# Getting Started
+# Edit This Documentation
 
 The documentation for Phoenix is generated from the `/docs` directory in the Phoenix repository using [GitBook](https://www.gitbook.com/).
 
@@ -51,3 +51,4 @@ All links in a file are relative to that file's location in the directory struct
 {% hint style="info" %}
 All image assets are stored in a hidden directory in `/docs/.gitbooks/assets/`.
 {% endhint %}
+

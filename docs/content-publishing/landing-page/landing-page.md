@@ -12,9 +12,9 @@ To add a Landing page to a Campaign, find the field called **Landing Page** at t
 
 Within the Landing Page entry, some of the initial fields include:
 
-* **Internal Title** should be: "Campaign Name Year-Month Pitch Page.
-* **Title** should match the lede banner title.
-* **Slug** should match the slug of the campaign.
+- **Internal Title** should be: "Campaign Name Year-Month Pitch Page.
+- **Title** should match the lede banner title.
+- **Slug** should match the slug of the campaign.
 
 ![Title/Slug](../../.gitbook/assets/landing-page-data.png)
 
@@ -39,4 +39,3 @@ Click "Publish” to publish the "What You Get" content and head back to the Lan
 Click "Publish" on the Landing Page entry. Once the Campaign is published as well, you should be able to see the Landing Page when heading to the campaign's URL:
 
 ![Rendered landing page output](../../.gitbook/assets/landing-page-rendered-output.png)
-

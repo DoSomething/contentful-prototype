@@ -23,5 +23,6 @@ Alternatively, you can also find the Contentful ID for the page entry, or any en
 ```
 
 {% hint style="info" %}
-The page must be linked to in the parent Campaigns **Pages** field to be accessible. (You can select **Hide From Navigation** to ensure it doesn't show up in the campaign tabbed navigation bar)
+The page must be linked to in the parent Campaigns **Pages** field to be accessible. \(You can select **Hide From Navigation** to ensure it doesn't show up in the campaign tabbed navigation bar\)
 {% endhint %}
+

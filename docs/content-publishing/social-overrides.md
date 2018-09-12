@@ -6,7 +6,7 @@ When a user clicks one of our assorted Facebook share buttons, they'll see the l
 
 ![Facebook Share Editor](../.gitbook/assets/facebook-share-editor.png)
 
-When a user is shares a link to social media (Twitter, Facebook etc.), the embed will be visible:
+When a user shares a link to social media \(Twitter, Facebook etc.\), the embed will be visible:
 
 ![Facebook Share Editor](../.gitbook/assets/facebook-share-example.png)
 

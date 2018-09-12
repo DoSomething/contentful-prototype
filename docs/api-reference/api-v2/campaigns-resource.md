@@ -222,7 +222,7 @@ e.g.: 6LQzMvDNQcYQYwso8qSkQ8
 
 {% endapi-method-response-example-description %}
 
-```
+```text
 
 ```
 {% endapi-method-response-example %}
@@ -304,7 +304,7 @@ e.g.: 3455
 {% endapi-method %}
 
 {% hint style="info" %}
-The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:id` to the query params. 
+The request is proxied to Rogue and automatically adds the `filter[campaign_id]=:id` to the query params.
 
 Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
 {% endhint %}

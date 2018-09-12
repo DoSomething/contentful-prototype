@@ -6,10 +6,9 @@ Actions are typically found on the **Action Page**. Please refer to the [instruc
 
 ## Available Reportback Actions
 
-* [Link Action](link-action.md)
-* [Photo Submission Action](photo-submission-action.md)
-* [Share Action](share-action.md)
-* [Text Submission Action](text-submission-action.md)
-* [Voter Registration Action](voter-registration-action.md)
-* [Social Drive Action](social-drive-action.md)
-
+- [Link Action](link-action.md)
+- [Photo Submission Action](photo-submission-action.md)
+- [Share Action](share-action.md)
+- [Text Submission Action](text-submission-action.md)
+- [Voter Registration Action](voter-registration-action.md)
+- [Social Drive Action](social-drive-action.md)

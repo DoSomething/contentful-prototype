@@ -154,7 +154,7 @@ The **CTA** text is editable via the \`additionalContent.callToAction\` field \(
 
 **Super Important:**
 
-For a _non_ auto submittable quiz, the **results** will be **gated**, which means that they will be auto signed up for the Campaign the quiz belongs to when they click the **Get Results** button. If they're not authenticated, they will be redirected to the **Northstar** authentication flow at https://identity.dosomething.org before being proceeded to the **results.**
+For a _non_ auto submittable quiz, the **results** will be **gated**, which means that they will be auto signed up for the Campaign the quiz belongs to when they click the **Get Results** button. If they're not authenticated, they will be redirected to the **Northstar** authentication flow at [https://identity.dosomething.org](https://identity.dosomething.org) before being proceeded to the **results.**
 
 ### Logic Jumping
 
