@@ -182,6 +182,7 @@ The Quiz consists of the following fields:
 - **results** _\(required\)_: the list of results for the quiz.
   - **content** _\(required\)_: The content field for the results
 - **resultBlocks** _\(optional\)_: the entries within which the results will be returned.
+- **defaultResultBlock** _\(optional\)_: the default entry to be rendered if none of the `results` or `resultBlocks` are determined as the winning result based on the user selections.
 - **questions** _\(required\)_: the questions for the quiz.
   - **title** _\(required\)_: the question title.
   - **choices** _\(required\)_: the available choices for the question.

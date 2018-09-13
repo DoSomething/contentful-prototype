@@ -178,15 +178,23 @@ class Quiz extends React.Component {
   };
 
   renderResult = () => {
+    const { defaultResultBlock } = this.props;
     const { result, resultBlock } = this.state.results;
 
+    const defaultResult = defaultResultBlock ? (
+      <ContentfulEntry json={defaultResultBlock} />
+    ) : null;
+
     if (!resultBlock) {
-      // Return the result on it's own when no result block is found.
+      // Return the result on it's own when no result block is found,
+      // or the 'default result block' if no result is determined.
       return result ? (
         <QuizConclusion callToAction={result.content}>
           <Share className="quiz__share" parentSource="quiz" />
         </QuizConclusion>
-      ) : null;
+      ) : (
+        defaultResult
+      );
     }
 
     if (result) {
@@ -227,6 +235,7 @@ Quiz.propTypes = {
     isNestedQuiz: PropTypes.bool,
   }).isRequired,
   clickedSignUp: PropTypes.func.isRequired,
+  defaultResultBlock: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   history: ReactRouterPropTypes.history.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   legacyCampaignId: PropTypes.string.isRequired,
@@ -257,6 +266,7 @@ Quiz.defaultProps = {
     isNestedQuiz: false,
   },
   resultBlocks: null,
+  defaultResultBlock: null,
   hideQuestionNumber: false,
   submitButtonText: 'Get Results',
   title: null,
