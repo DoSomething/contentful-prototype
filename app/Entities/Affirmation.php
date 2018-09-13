@@ -18,16 +18,21 @@ class Affirmation extends Entity implements JsonSerializable
 
         if (is_string($authorValue)) {
             $author = [
-                'id' => null,
-                'type' => 'staff',
+                'id' => str_random(22),
+                'type' => 'person',
                 'fields' => [
                     'name' => $authorValue,
+                    'type' => 'staff',
+                    'active' => true,
                     'jobTitle' => 'Campaign Lead',
+                    'email' => 'help@dosomething.org',
                     'photo' => null,
+                    'alternatePhoto' => null,
+                    'description' => null,
                 ],
             ];
         } else {
-            $author = $authorValue->getContentType() === 'staff' ? new Staff($authorValue->entry) : new Person($authorValue->entry);
+            $author = new Person($authorValue->entry);
         }
 
         return [

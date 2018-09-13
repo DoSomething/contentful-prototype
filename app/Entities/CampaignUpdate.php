@@ -18,7 +18,7 @@ class CampaignUpdate extends Entity implements JsonSerializable
                 $author = null;
 
                 if ($this->author) {
-                    $author = $this->author->getContentType() === 'staff' ? new Staff($this->author->entry) : new Person($this->author->entry);
+                    $author = new Person($this->author->entry);
                 }
 
                 $type = $this->getContentType();
@@ -30,12 +30,17 @@ class CampaignUpdate extends Entity implements JsonSerializable
             case 'customBlock':
                 $type = 'campaignUpdate';
                 $author = [
-                    'id' => null,
-                    'type' => 'staff',
+                    'id' => str_random(22),
+                    'type' => 'person',
                     'fields' => [
                         'name' => isset($this->additionalContent['author']) ? $this->additionalContent['author'] : null,
+                        'type' => 'staff',
+                        'active' => true,
                         'jobTitle' => isset($this->additionalContent['jobTitle']) ? $this->additionalContent['jobTitle'] : null,
+                        'email' => 'help@dosomething.org',
                         'photo' => null,
+                        'alternatePhoto' => null,
+                        'description' => null,
                     ],
                 ];
                 $content = "## {$this->title}\n\n {$this->content}";
