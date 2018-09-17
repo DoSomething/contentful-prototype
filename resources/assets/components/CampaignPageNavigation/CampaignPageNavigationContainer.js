@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
@@ -8,7 +7,7 @@ import CampaignPageNavigation from './CampaignPageNavigation';
 
 const mapStateToProps = state => ({
   isAffiliated: isSignedUp(state),
-  isCampaignClosed: isCampaignClosed(get(state.campaign.endDate, 'date', null)),
+  isCampaignClosed: isCampaignClosed(state.campaign.endDate),
   isLegacyTemplate: Boolean(state.campaign.template === 'legacy'),
   pages: state.campaign.pages,
   campaignSlug: state.campaign.slug,
