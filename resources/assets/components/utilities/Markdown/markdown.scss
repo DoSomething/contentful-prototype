@@ -69,6 +69,10 @@
     font-weight: 700;
   }
 
+  p a {
+    font-weight: $weight-normal;
+  }
+
   h2,
   h3 {
     font-family: $primary-font-family;
