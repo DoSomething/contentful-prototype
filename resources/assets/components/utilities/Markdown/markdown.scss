@@ -70,17 +70,32 @@
     font-weight: $weight-normal;
   }
 
+  h1 {
+    font-family: $secondary-font-family;
+    font-size: 41px;
+    font-weight: $weight-normal;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
   h2,
-  h3 {
+  h3,
+  h4 {
     font-family: $primary-font-family;
+    font-weight: $weight-bold;
+    color: $black;
   }
 
   h2 {
-    font-size: 28px;
+    font-size: 41px;
   }
 
   h3 {
-    font-size: 22px;
+    font-size: 27px;
+  }
+
+  h4 {
+    font-size: 18px;
   }
 
   table {
