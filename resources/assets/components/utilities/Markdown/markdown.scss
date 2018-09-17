@@ -64,9 +64,13 @@
     }
   }
 
-  strong,
-  a {
+  strong {
     font-weight: 700;
+  }
+
+  // Overrides Forge rule adding a bold weight to a tags.
+  a {
+    font-weight: $weight-normal;
   }
 
   h2,
