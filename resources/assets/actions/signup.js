@@ -1,5 +1,4 @@
 import { join } from 'path';
-import { get } from 'lodash';
 import { push } from 'react-router-redux';
 import { Phoenix } from '@dosomething/gateway';
 
@@ -191,8 +190,7 @@ export function clickedSignUp(
           // If Drupal denied our signup request, check if we already had a signup.
           dispatch(checkForSignup(campaignId));
         } else {
-          const endDate = get(state.campaign.endDate, 'date', null);
-          const isClosed = isCampaignClosed(endDate);
+          const isClosed = isCampaignClosed(state.campaign.endDate);
 
           // Create signup and track any data before redirects.
           dispatch(

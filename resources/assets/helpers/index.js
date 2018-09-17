@@ -400,8 +400,7 @@ export function shouldShowLandingPage(state, ignoreLandingPage) {
     shouldShow = true;
   } else if (hasLandingPage && !shouldIgnoreLandingPage) {
     shouldShow =
-      !isSignedUp(state) &&
-      !isCampaignClosed(get(state.campaign.endDate, 'date', null));
+      !isSignedUp(state) && !isCampaignClosed(state.campaign.endDate);
   }
 
   return shouldShow;

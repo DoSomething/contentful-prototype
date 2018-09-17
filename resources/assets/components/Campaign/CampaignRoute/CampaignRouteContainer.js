@@ -17,9 +17,7 @@ const mapStateToProps = state => ({
       page => page.type === 'page' && page.fields.slug.endsWith('community'),
     ),
   ),
-  isCampaignClosed: isCampaignClosed(
-    get(state.campaign.endDate, 'date', false),
-  ),
+  isCampaignClosed: isCampaignClosed(state.campaign.endDate),
   legacyCampaignId: state.campaign.legacyCampaignId,
   shouldShowSignupAffirmation: state.signups.shouldShowAffirmation,
 });
