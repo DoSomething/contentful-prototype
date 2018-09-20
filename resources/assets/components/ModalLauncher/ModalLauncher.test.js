@@ -31,14 +31,17 @@ const toggleHideModal = value => {
   set(`${userId}_hide_${type}`, 'boolean', value);
 };
 
+// Set a mock localStorage object for testing.
+global.localStorage = new LocalStorageMock();
+
 describe('The ModalLauncher component', () => {
-  // Before each test, we'll toggle the env survey enabled prop, and set a fresh localStorage mock
+  // Before each test, we'll toggle the env survey enabled prop, and clear localStorage
   beforeEach(() => {
     global.ENV = {
       FUN_SURVEY_ENABLED: true,
     };
 
-    global.localStorage = new LocalStorageMock();
+    global.localStorage.clear();
   });
 
   it('waits the alotted countdown time to launch modal', () => {

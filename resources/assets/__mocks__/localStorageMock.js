@@ -11,6 +11,10 @@ class LocalStorageMock {
   setItem(key, value) {
     this.store[key] = value.toString();
   }
+
+  clear() {
+    this.store = {};
+  }
 }
 
 export default LocalStorageMock;

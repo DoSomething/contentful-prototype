@@ -1,13 +1,18 @@
+/* global */
+
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import TrafficDistribution from './TrafficDistribution';
 import { get, set } from '../../../helpers/storage';
+import TrafficDistribution from './TrafficDistribution';
 import LocalStorageMock from '../../../__mocks__/localStorageMock';
 
-// Before each test, we set a fresh localStorage mock
+// Set a mock localStorage object for testing.
+global.localStorage = new LocalStorageMock();
+
+// Before each test, clear the localStorage.
 beforeEach(() => {
-  global.localStorage = new LocalStorageMock();
+  global.localStorage.clear();
 });
 
 // Set some constants for consistent traffic percentage math across the tests.
