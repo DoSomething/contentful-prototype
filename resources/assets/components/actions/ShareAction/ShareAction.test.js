@@ -22,6 +22,10 @@ describe('ShareAction component', () => {
         socialPlatform={socialPlatform}
         link={url}
         campaignRunId="1234"
+        campaignId="1234"
+        id="1234"
+        isAuthenticated={false}
+        storeCampaignPost={jest.fn()}
       />,
     );
 
