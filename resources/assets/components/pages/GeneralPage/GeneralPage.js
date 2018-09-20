@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import Enclosure from '../../Enclosure';
 import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
+import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
 import './general-page.scss';
 
@@ -50,6 +51,12 @@ const GeneralPage = props => {
               <ContentfulEntry json={block} />
             </div>
           ))}
+
+          <SocialShareTray
+            shareLink={window.location.href}
+            platforms={['facebook', 'twitter']}
+            title="found this useful?"
+          />
         </Enclosure>
       </div>
     </div>
