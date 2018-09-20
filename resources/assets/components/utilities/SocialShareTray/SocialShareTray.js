@@ -83,12 +83,12 @@ class SocialShareTray extends React.Component {
   };
 
   render() {
-    const { shareLink, platforms } = this.props;
+    const { shareLink, platforms, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
       <div className="social-share-tray padded text-centered">
-        <p className="title caps-lock font-bold">Share on Social Media</p>
+        <p className="title caps-lock font-bold">{title}</p>
 
         <div className="share-buttons">
           {platforms.includes('facebook') ? (
@@ -146,12 +146,14 @@ SocialShareTray.propTypes = {
   shareLink: PropTypes.string,
   trackLink: PropTypes.string,
   platforms: PropTypes.arrayOf(PropTypes.string),
+  title: PropTypes.string,
 };
 
 SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
   platforms: ['facebook', 'twitter', 'messenger', 'email'],
+  title: 'Share on Social Media',
 };
 
 export default SocialShareTray;
