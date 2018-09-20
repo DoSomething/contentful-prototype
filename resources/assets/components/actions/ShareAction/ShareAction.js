@@ -27,7 +27,7 @@ class ShareAction extends React.Component {
     }
   }
 
-  storeSharePost = () => {
+  storeSharePost = puckId => {
     const type = 'share-social';
 
     const action = get(this.props.additionalContent, 'action', 'default');
@@ -52,6 +52,7 @@ class ShareAction extends React.Component {
         campaign_id: campaignId,
         legacy_campaign_id: legacyCampaignId,
         legacy_campaign_run_id: campaignRunId,
+        puck_id: puckId,
       },
     );
     // Send request to store the social share post.
@@ -64,22 +65,26 @@ class ShareAction extends React.Component {
   };
 
   handleFacebookClick = url => {
-    const { link } = this.props;
+    const { link, userId } = this.props;
 
-    trackPuckEvent('clicked facebook share action', { url: link });
+    let trackingData = { url: link };
+
+    trackPuckEvent('clicked facebook share action', trackingData);
 
     showFacebookShareDialog(url)
       .then(() => {
         // Send share post to Rogue for authenticated users
         if (this.props.isAuthenticated && this.props.campaignId) {
-          this.storeSharePost();
+          const puckId = `phoenix_${userId}_${Date.now()}`;
+          trackingData = { ...trackingData, puck_id: puckId };
+          this.storeSharePost(puckId);
         }
 
-        trackPuckEvent('share action completed', { url: link });
+        trackPuckEvent('share action completed', trackingData);
         this.setState({ showModal: true });
       })
       .catch(() => {
-        trackPuckEvent('share action cancelled', { url: link });
+        trackPuckEvent('share action cancelled', trackingData);
       });
   };
 
