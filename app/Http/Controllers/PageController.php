@@ -24,7 +24,6 @@ class PageController extends Controller
         $this->pageRepository = $pageRepository;
     }
 
-
     /**
      * Handle legacy Page routes with no taxonomy prefix
      *
