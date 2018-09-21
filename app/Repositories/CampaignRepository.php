@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CampaignRepository
 {
+    use QueriesContentful;
+
     /**
      * Contentful client instance.
      */
@@ -191,31 +193,18 @@ class CampaignRepository
      */
     public function findBySlug($slug)
     {
-        $skipCache = ! config('services.contentful.cache');
+        if (! config('services.contentful.cache')) {
+            $campaign = $this->getEntryFromSlugAsJson('campaign', $slug);
+        } else {
+            $campaign = remember($slug, 15, function () use ($slug) {
+                return $this->getEntryFromSlugAsJson('campaign', $slug);
+            });
+        }
 
-        $flattenedCampaign = remember('campaign_'.$slug, 15, function () use ($slug) {
-            $query = (new Query)
-                ->setContentType('campaign')
-                ->where('fields.slug', $slug)
-                ->setInclude(3)
-                ->setLimit(1);
-
-            $campaigns = $this->contentful->getEntries($query);
-
-            if (! $campaigns->count()) {
-                return 'not_found';
-            } else {
-                $campaign = new Campaign($campaigns[0]);
-
-                // Cast as JSON so we can cache this.
-                return json_encode($campaign);
-            }
-        }, $skipCache);
-
-        if ($flattenedCampaign == 'not_found') {
+        if ($campaign === 'not_found') {
             throw new ModelNotFoundException;
         }
 
-        return json_decode($flattenedCampaign);
+        return json_decode($campaign);
     }
 }

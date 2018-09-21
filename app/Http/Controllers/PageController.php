@@ -36,7 +36,7 @@ class PageController extends Controller
 
         return view('app', [
             'socialFields' => get_social_fields($page),
-            'pageTitle' => $page->title,
+            'pageTitle' => $page->fields->title,
         ])->with('state', [
             'page' => $page,
         ]);

@@ -2,27 +2,11 @@
 
 namespace App\Repositories;
 
-use App\Entities\Page;
-use Contentful\Delivery\Query;
-use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PageRepository
 {
-    /**
-     * Contentful client instance.
-     */
-    private $contentful;
-
-    /**
-     * PageRepository constructor.
-     *
-     * @param Contentful $contentful
-     */
-    public function __construct(Contentful $contentful)
-    {
-        $this->contentful = $contentful;
-    }
+    use QueriesContentful;
 
     /**
      * Find a page by its slug.
@@ -33,18 +17,18 @@ class PageRepository
      */
     public function findBySlug($slug)
     {
-        $query = (new Query)
-            ->setContentType('page')
-            ->where('fields.slug', $slug)
-            ->setInclude(1)
-            ->setLimit(1);
+        if (! config('services.contentful.cache')) {
+            $page = $this->getEntryFromSlugAsJson('page', $slug);
+        } else {
+            $page = remember($slug, 15, function () use ($slug) {
+                return $this->getEntryFromSlugAsJson('page', $slug);
+            });
+        }
 
-        $pages = $this->contentful->getEntries($query);
-
-        if (! $pages->count()) {
+        if ($page === 'not_found') {
             throw new ModelNotFoundException;
         }
 
-        return new Page($pages[0]);
+        return json_decode($page);
     }
 }
