@@ -26,8 +26,8 @@ $router->get('/us/account/{slug}', function () {
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
-// Non-campaign pages
-$router->get('/us/{slug}', 'PageController@show');
+// Legacy non-campaign pages
+$router->get('/us/{slug}', 'PageController@legacyPageShow');
 $router->get('/{slug}', function ($slug) {
     return redirect('/us/'.$slug);
 });
