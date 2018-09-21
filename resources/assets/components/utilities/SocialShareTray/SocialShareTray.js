@@ -83,49 +83,59 @@ class SocialShareTray extends React.Component {
   };
 
   render() {
-    const { shareLink } = this.props;
+    const { shareLink, platforms, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
       <div className="social-share-tray padded text-centered">
-        <p className="title caps-lock font-bold">Share on Social Media</p>
+        <p className="title caps-lock font-bold">{title}</p>
 
         <div className="share-buttons">
-          <ShareButton
-            className="facebook"
-            onClick={() => this.handleFacebookShareClick(shareLink, trackLink)}
-            disabled={!shareLink}
-            icon={facebookIcon}
-            text="Share"
-          />
+          {platforms.includes('facebook') ? (
+            <ShareButton
+              className="facebook"
+              onClick={() =>
+                this.handleFacebookShareClick(shareLink, trackLink)
+              }
+              disabled={!shareLink}
+              icon={facebookIcon}
+              text="Share"
+            />
+          ) : null}
 
-          <ShareButton
-            className="twitter"
-            onClick={() =>
-              handleTwitterShareClick(shareLink, { url: trackLink })
-            }
-            disabled={!shareLink}
-            icon={twitterIcon}
-            text="Tweet"
-          />
+          {platforms.includes('twitter') ? (
+            <ShareButton
+              className="twitter"
+              onClick={() =>
+                handleTwitterShareClick(shareLink, { url: trackLink })
+              }
+              disabled={!shareLink}
+              icon={twitterIcon}
+              text="Tweet"
+            />
+          ) : null}
 
-          <ShareButton
-            className="messenger"
-            disabled={!shareLink}
-            icon={messengerIcon}
-            text="Send"
-            onClick={() =>
-              this.handleFacebookMessengerClick(shareLink, trackLink)
-            }
-          />
+          {platforms.includes('messenger') ? (
+            <ShareButton
+              className="messenger"
+              disabled={!shareLink}
+              icon={messengerIcon}
+              text="Send"
+              onClick={() =>
+                this.handleFacebookMessengerClick(shareLink, trackLink)
+              }
+            />
+          ) : null}
 
-          <ShareButton
-            className="email"
-            disabled={!shareLink}
-            icon={emailIcon}
-            text="Email"
-            onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
-          />
+          {platforms.includes('email') ? (
+            <ShareButton
+              className="email"
+              disabled={!shareLink}
+              icon={emailIcon}
+              text="Email"
+              onClick={() => this.handleEmailShareClick(shareLink, trackLink)}
+            />
+          ) : null}
         </div>
       </div>
     );
@@ -135,11 +145,15 @@ class SocialShareTray extends React.Component {
 SocialShareTray.propTypes = {
   shareLink: PropTypes.string,
   trackLink: PropTypes.string,
+  platforms: PropTypes.arrayOf(PropTypes.string),
+  title: PropTypes.string,
 };
 
 SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
+  platforms: ['facebook', 'twitter', 'messenger', 'email'],
+  title: 'Share on Social Media',
 };
 
 export default SocialShareTray;
