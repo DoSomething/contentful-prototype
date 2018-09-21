@@ -32,6 +32,12 @@ $router->get('/{slug}', function ($slug) {
     return redirect('/us/'.$slug);
 });
 
+// Articles and Facts Pages
+$router->get('us/{prefix}/{slug}', 'PageController@show')->where('prefix', 'articles|facts');
+$router->get('{prefix}/{slug}', function ($slug) {
+    return redirect('us/'.$prefix.'/'.$slug);
+});
+
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
     return redirect('/us/campaigns/'.$slug.'/'.$clientRoute);
