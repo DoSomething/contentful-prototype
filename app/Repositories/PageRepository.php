@@ -2,27 +2,11 @@
 
 namespace App\Repositories;
 
-use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PageRepository
 {
     use QueriesContentful;
-
-    /**
-     * Contentful client instance.
-     */
-    private $contentful;
-
-    /**
-     * PageRepository constructor.
-     *
-     * @param Contentful $contentful
-     */
-    public function __construct(Contentful $contentful)
-    {
-        $this->contentful = $contentful;
-    }
 
     /**
      * Find a page by its slug.

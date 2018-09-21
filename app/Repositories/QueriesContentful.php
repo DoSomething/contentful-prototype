@@ -23,7 +23,7 @@ trait QueriesContentful
                 ->setInclude(3)
                 ->setLimit(1);
 
-        $entry = $this->contentful->getEntries($query);
+        $entry = app('contentful.delivery')->getEntries($query);
 
         if (! $entry->count()) {
             return 'not_found';
