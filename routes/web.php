@@ -34,7 +34,7 @@ $router->get('/{slug}', function ($slug) {
 
 // Articles and Facts Pages
 $router->get('us/{prefix}/{slug}', 'PageController@show')->where('prefix', 'articles|facts');
-$router->get('{prefix}/{slug}', function ($slug) {
+$router->get('{prefix}/{slug}', function ($prefix, $slug) {
     return redirect('us/'.$prefix.'/'.$slug);
 });
 
