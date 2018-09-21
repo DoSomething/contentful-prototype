@@ -30,9 +30,11 @@ class PageController extends Controller
      * @param  string  $slug
      * @return \Illuminate\View\View
      */
-    public function show($slug)
+    public function show($prefix, $slug)
     {
-        $page = $this->pageRepository->findBySlug($slug);
+        $query = $prefix ? $prefix.'/'.$slug : $slug;
+
+        $page = $this->pageRepository->findBySlug($query);
 
         return view('app', [
             'socialFields' => get_social_fields($page),
