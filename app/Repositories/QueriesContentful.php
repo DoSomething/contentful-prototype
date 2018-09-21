@@ -36,6 +36,5 @@ trait QueriesContentful
             case 'page':
                 return json_encode(new Page($entry[0]));
         }
-
     }
 }
