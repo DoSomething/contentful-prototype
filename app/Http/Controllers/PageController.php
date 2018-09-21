@@ -31,7 +31,7 @@ class PageController extends Controller
      * @param string $slug
      * @return \Illuminate\View\View
      */
-    public function legacyPage($slug)
+    public function legacyPageShow($slug)
     {
         return $this->show(null, $slug);
     }
