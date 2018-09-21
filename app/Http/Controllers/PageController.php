@@ -24,6 +24,18 @@ class PageController extends Controller
         $this->pageRepository = $pageRepository;
     }
 
+
+    /**
+     * Handle legacy Page routes with no taxonomy prefix
+     *
+     * @param string $slug
+     * @return \Illuminate\View\View
+     */
+    public function legacyPage($slug)
+    {
+        return $this->show(null, $slug);
+    }
+
     /**
      * Display the specified resource.
      *
