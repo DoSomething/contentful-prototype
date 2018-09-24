@@ -7,17 +7,22 @@
   .general-page__heading {
     .general-page__title {
       font-family: $secondary-font-family;
-      font-size: $font-superhero;
+      font-size: $font-larger;
       font-weight: $weight-normal;
 
       @include media($medium) {
-        font-size: $font-gigantic;
+        font-size: $font-hero;
+      }
+
+      @include media($large) {
+        font-size: $font-superhero;
       }
     }
 
     .general-page__subtitle {
       font-family: $primary-font-family;
       font-weight: $weight-bold;
+      margin-top: $half-spacing;
 
       @include media($medium) {
         font-size: $font-large;
@@ -48,15 +53,6 @@
 
     @include media($large) {
       margin-top: 36px;
-    }
-
-    .byline {
-      padding: $half-spacing 0;
-
-      @include media($medium) {
-        float: left;
-        padding: 0 $base-spacing;
-      }
     }
   }
 
