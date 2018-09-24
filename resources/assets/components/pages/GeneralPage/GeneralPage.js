@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Enclosure from '../../Enclosure';
+import { withoutNulls } from '../../../helpers';
+import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
 
@@ -14,7 +16,7 @@ import './general-page.scss';
  * @returns {XML}
  */
 const GeneralPage = props => {
-  const { title, subTitle, content, sidebar, blocks } = props;
+  const { authors, title, subTitle, content, sidebar, blocks } = props;
 
   return (
     <div>
@@ -24,6 +26,18 @@ const GeneralPage = props => {
             <h1 className="general-page__title caps-lock">{title}</h1>
             {subTitle ? (
               <p className="general-page__subtitle">{subTitle}</p>
+            ) : null}
+
+            {authors ? (
+              <div className="general-page__authors">
+                {authors.map(author => (
+                  <Byline
+                    author={author.fields.name}
+                    {...withoutNulls(author.fields)}
+                    key={author.id}
+                  />
+                ))}
+              </div>
             ) : null}
           </div>
 
@@ -57,6 +71,7 @@ const GeneralPage = props => {
 };
 
 GeneralPage.propTypes = {
+  authors: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
   content: PropTypes.string,
@@ -65,9 +80,10 @@ GeneralPage.propTypes = {
 };
 
 GeneralPage.defaultProps = {
-  subTitle: null,
+  authors: [],
   content: null,
   sidebar: [],
+  subTitle: null,
 };
 
 export default GeneralPage;

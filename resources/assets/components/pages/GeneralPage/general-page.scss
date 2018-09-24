@@ -41,6 +41,25 @@
     }
   }
 
+  .general-page__authors {
+    display: inline-block;
+    margin: $base-spacing auto 0;
+    text-align: left;
+
+    @include media($large) {
+      margin-top: 36px;
+    }
+
+    .byline {
+      padding: $half-spacing 0;
+
+      @include media($medium) {
+        float: left;
+        padding: 0 $base-spacing;
+      }
+    }
+  }
+
   .default-container {
     width: 95%;
     margin-left: 2.5%;
