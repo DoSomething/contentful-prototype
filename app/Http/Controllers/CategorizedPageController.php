@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\PageRepository;
 
-class PageController extends Controller
+class CategorizedPageController extends Controller
 {
     /**
      * The page repository.
@@ -14,7 +14,7 @@ class PageController extends Controller
     protected $pageRepository;
 
     /**
-     * Make a new PageController, inject dependencies,
+     * Make a new CategorizedPageController, inject dependencies,
      * and set middleware for this controller's methods.
      *
      * @param PageRepository $pageRepository
@@ -27,12 +27,13 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  string  $category
      * @param  string  $slug
      * @return \Illuminate\View\View
      */
-    public function show($slug)
+    public function show($category, $slug)
     {
-        $page = $this->pageRepository->findBySlug($slug);
+        $page = $this->pageRepository->findBySlug($category.'/'.$slug);
 
         return view('app', [
             'socialFields' => get_social_fields($page),

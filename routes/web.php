@@ -26,28 +26,27 @@ $router->get('/us/account/{slug}', function () {
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
 
-// Legacy non-campaign pages
-$router->get('/us/{slug}', 'PageController@legacyPageShow');
-$router->get('/{slug}', function ($slug) {
-    return redirect('/us/'.$slug);
-});
-
-// Articles and Facts Pages
-$router->get('us/{prefix}/{slug}', 'PageController@show')->where('prefix', 'articles|facts');
-$router->get('{prefix}/{slug}', function ($prefix, $slug) {
-    return redirect('us/'.$prefix.'/'.$slug);
-});
-
 // Redirect routes for campaign specific URLs containing "/pages/".
 $router->get('us/campaigns/{slug}/pages/{clientRoute?}', function ($slug, $clientRoute = '') {
-    return redirect('/us/campaigns/'.$slug.'/'.$clientRoute);
+    return redirect('us/campaigns/'.$slug.'/'.$clientRoute);
 });
 
 // Campaign pages
-$router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')
-    ->where('clientRoute', '.*');
+$router->get('us/campaigns/{slug}/{clientRoute?}', 'CampaignController@show')->where('clientRoute', '.*');
 $router->get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = '') {
-    return redirect('/us/campaigns/'.$slug.'/'.$clientRoute);
+    return redirect('us/campaigns/'.$slug.'/'.$clientRoute);
+});
+
+// Categorized Pages (articles, facts)
+$router->get('us/{category}/{slug}', 'CategorizedPageController@show')->where('category', 'articles|facts');
+$router->get('{category}/{slug}', function ($category, $slug) {
+    return redirect('us/'.$category.'/'.$slug);
+})->where('category', 'articles|facts');
+
+// Pages
+$router->get('us/{slug}', 'PageController@show');
+$router->get('{slug}', function ($slug) {
+    return redirect('us/'.$slug);
 });
 
 // Campaigns cache clear
