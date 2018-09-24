@@ -37,6 +37,7 @@ const GeneralPage = props => {
                   <Byline
                     author={author.fields.name}
                     {...withoutNulls(author.fields)}
+                    className="byline--page-author"
                     key={author.id}
                   />
                 ))}
