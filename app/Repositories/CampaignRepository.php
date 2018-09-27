@@ -69,8 +69,8 @@ class CampaignRepository
         $campaigns = $this->getAll();
 
         // Partition into list of open and closed campaigns for sorting.
-        list($openCampaigns, $closedCampaigns) = collect($campaigns)->partition(function($campaign) {
-            return ((!$campaign->endDate) || $campaign->endDate > Carbon::now());
+        list($openCampaigns, $closedCampaigns) = collect($campaigns)->partition(function ($campaign) {
+            return ! $campaign->endDate || $campaign->endDate > Carbon::now();
         });
 
         // Sort open campaigns by staff pick.
