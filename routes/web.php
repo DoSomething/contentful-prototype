@@ -38,10 +38,12 @@ $router->get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = 
 });
 
 // Categorized Pages (articles, facts)
-$router->get('us/{category}/{slug}', 'CategorizedPageController@show')->where('category', 'articles|facts');
+$categories = 'articles|facts|about';
+
+$router->get('us/{category}/{slug}', 'CategorizedPageController@show')->where('category', $categories);
 $router->get('{category}/{slug}', function ($category, $slug) {
     return redirect('us/'.$category.'/'.$slug);
-})->where('category', 'articles|facts');
+})->where('category', $categories);
 
 // Pages
 $router->get('us/{slug}', 'PageController@show');
