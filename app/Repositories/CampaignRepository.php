@@ -55,9 +55,7 @@ class CampaignRepository
 
             // Transform & cast as JSON so we can cache this. One little gotcha -
             // we don't want full campaigns, that'd be a monstrous object!
-            $results = collect($array)->map(function ($entity) {
-                return new TruncatedCampaign($entity);
-            });
+            $results = collect($array)->mapInto(TruncatedCampaign::class);
 
             return $results->toJson();
         });
