@@ -32,7 +32,7 @@ class CampaignController extends Controller
      */
     public function index()
     {
-        $campaigns = $this->campaignRepository->getAll();
+        $campaigns = $this->campaignRepository->getAllCampaignsSorted();
 
         return view('campaigns.index', ['campaigns' => $campaigns]);
     }
