@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Enclosure from '../../Enclosure';
-import { withoutNulls } from '../../../helpers';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
 import Markdown from '../../utilities/Markdown/Markdown';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
 import './general-page.scss';
@@ -37,6 +37,12 @@ const GeneralPage = props => {
                   <Byline
                     author={author.fields.name}
                     {...withoutNulls(author.fields)}
+                    photo={contentfulImageUrl(
+                      author.fields.photo,
+                      175,
+                      175,
+                      'fill',
+                    )}
                     className="byline--page-author"
                     key={author.id}
                   />
