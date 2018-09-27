@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use App\Services\PhoenixLegacy;
@@ -61,6 +62,21 @@ class CampaignRepository
         });
 
         return json_decode($flattenedCampaign);
+    }
+
+    public function getAllCampaignsSorted()
+    {
+        $campaigns = $this->getAll();
+
+        // Partition into list of open and closed campaigns for sorting.
+        list($openCampaigns, $closedCampaigns) = collect($campaigns)->partition(function($campaign) {
+            return ((!$campaign->endDate) || $campaign->endDate > Carbon::now());
+        });
+
+        // Sort open campaigns by staff pick.
+        $sortedOpenCampaigns = $openCampaigns->sortByDesc('staffPick');
+
+        return $sortedOpenCampaigns->merge($closedCampaigns);
     }
 
     /**
