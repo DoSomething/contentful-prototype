@@ -45,7 +45,11 @@ class CampaignRepository
     public function getAll()
     {
         $flattenedCampaign = remember('campaigns', 15, function () {
-            $query = (new Query)->setContentType('campaign')->setInclude(0);
+            $query = (new Query)
+                ->setContentType('campaign')
+                ->setInclude(0)
+                ->orderBy('sys.updatedAt', true);
+
             $campaigns = $this->contentful->getEntries($query);
             $array = iterator_to_array($campaigns);
 
