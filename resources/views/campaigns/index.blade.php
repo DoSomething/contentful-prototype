@@ -4,9 +4,7 @@
     <div class="container -padded">
         <div class="wrapper">
             <div class="container__block">
-                <h1>Campaigns</h1>
-                <p>Here's all the campaigns available on <strong>Phoenix Next</strong>, the new DoSomething.org
-                    web experience.</p>
+                <h1>Explore Campaigns</h1>
             </div>
             <ul class="gallery -quartet">
                 @foreach($campaigns as $item)
