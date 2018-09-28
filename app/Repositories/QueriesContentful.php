@@ -5,9 +5,33 @@ namespace App\Repositories;
 use App\Entities\Page;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
+use App\Entities\TruncatedCampaign;
 
 trait QueriesContentful
 {
+    /**
+     * Get entries from a Contentful Query and return data as JSON.
+     *
+     * @param  string $type
+     * @return string
+     */
+    protected function getEntriesAsJson($type)
+    {
+        $query = (new Query)
+                ->setContentType($type)
+                ->setInclude(0)
+                ->orderBy('sys.updatedAt', true);
+
+        $entries = app('contentful.delivery')->getEntries($query)->getItems();
+
+        switch ($type) {
+            case 'campaign':
+                // Using the TruncatedCampaign Entity to avoid returning a monstrous object.
+                $results = collect($entries)->mapInto(TruncatedCampaign::class);
+                return $results->toJson();
+        }
+    }
+
     /**
      * Get a single entry from a Contentful Query and return data as JSON.
      *
