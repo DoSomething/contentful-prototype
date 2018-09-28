@@ -45,11 +45,11 @@ class CampaignRepository
      */
     public function getAll()
     {
-        $flattenedCampaigns = remember('campaigns', 15, function () {
+        $campaigns = remember('campaigns', 15, function () {
             return $this->getEntriesAsJson('campaign');
         });
 
-        return json_decode($flattenedCampaigns);
+        return json_decode($campaigns);
     }
 
     public function getAllCampaignsSorted()
