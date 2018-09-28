@@ -46,19 +46,7 @@ class CampaignRepository
     public function getAll()
     {
         $flattenedCampaign = remember('campaigns', 15, function () {
-            $query = (new Query)
-                ->setContentType('campaign')
-                ->setInclude(0)
-                ->orderBy('sys.updatedAt', true);
-
-            $campaigns = $this->contentful->getEntries($query);
-            $array = iterator_to_array($campaigns);
-
-            // Transform & cast as JSON so we can cache this. One little gotcha -
-            // we don't want full campaigns, that'd be a monstrous object!
-            $results = collect($array)->mapInto(TruncatedCampaign::class);
-
-            return $results->toJson();
+            return $this->getEntriesAsJson('campaign');
         });
 
         return json_decode($flattenedCampaign);
