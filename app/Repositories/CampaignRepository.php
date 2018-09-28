@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
 use App\Services\PhoenixLegacy;
@@ -44,21 +45,31 @@ class CampaignRepository
      */
     public function getAll()
     {
-        $flattenedCampaign = remember('campaigns', 15, function () {
-            $query = (new Query)->setContentType('campaign')->setInclude(0);
-            $campaigns = $this->contentful->getEntries($query);
-            $array = iterator_to_array($campaigns);
-
-            // Transform & cast as JSON so we can cache this. One little gotcha -
-            // we don't want full campaigns, that'd be a monstrous object!
-            $results = collect($array)->map(function ($entity) {
-                return new TruncatedCampaign($entity);
-            });
-
-            return $results->toJson();
+        $campaigns = remember('campaigns', 15, function () {
+            return $this->getEntriesAsJson('campaign');
         });
 
-        return json_decode($flattenedCampaign);
+        return json_decode($campaigns);
+    }
+
+    /**
+     * Get all campaigns sorted by open status, and staff pick status.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAllCampaignsSorted()
+    {
+        $campaigns = $this->getAll();
+
+        // Partition into list of open and closed campaigns for sorting.
+        list($openCampaigns, $closedCampaigns) = collect($campaigns)->partition(function ($campaign) {
+            return ! $campaign->endDate || $campaign->endDate > Carbon::now();
+        });
+
+        // Sort open campaigns by staff pick.
+        $sortedOpenCampaigns = $openCampaigns->sortByDesc('staffPick');
+
+        return $sortedOpenCampaigns->merge($closedCampaigns);
     }
 
     /**
@@ -92,9 +103,7 @@ class CampaignRepository
 
         $results = $this->phoenixLegacy->getCampaigns($query);
 
-        return collect($results['data'])->map(function ($campaign) {
-            return new LegacyCampaign($campaign);
-        });
+        return collect($results['data'])->mapInto(LegacyCampaign::class);
     }
 
     /**
@@ -146,11 +155,9 @@ class CampaignRepository
             ->where('fields.legacyCampaignId', $ids, 'in')
             ->setInclude(1);
 
-        $results = $this->contentful->getEntries($query);
+        $results = $this->contentful->getEntries($query)->getItems();
 
-        $contentfulCampaigns = collect($results->getIterator())->map(function ($campaign) {
-            return new TruncatedCampaign($campaign);
-        });
+        $contentfulCampaigns = collect($results)->mapInto(TruncatedCampaign::class);
 
         // List of IDs returned from Contentful.
         $foundIds = $contentfulCampaigns->pluck('legacyCampaignId')->all();
@@ -177,11 +184,9 @@ class CampaignRepository
             ->where('sys.id', $ids, 'in')
             ->setInclude(1);
 
-        $results = $this->contentful->getEntries($query);
+        $results = $this->contentful->getEntries($query)->getItems();
 
-        return collect($results->getIterator())->map(function ($campaign) {
-            return new TruncatedCampaign($campaign);
-        });
+        return collect($results)->mapInto(TruncatedCampaign::class);
     }
 
     /**
