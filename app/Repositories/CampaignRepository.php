@@ -52,6 +52,11 @@ class CampaignRepository
         return json_decode($campaigns);
     }
 
+    /**
+     * Get all campaigns sorted by open status, and staff pick status.
+     *
+     * @return \Illuminate\Support\Collection
+     */
     public function getAllCampaignsSorted()
     {
         $campaigns = $this->getAll();
