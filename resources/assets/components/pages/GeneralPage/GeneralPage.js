@@ -83,20 +83,22 @@ const GeneralPage = props => {
           />
 
           {authors ? (
-            <div className="general-page__author-bios">
+            <ul className="general-page__author-bios">
               {authors.map(author => (
-                <AuthorBio
-                  key={author.id}
-                  {...withoutNulls(author.fields)}
-                  photo={contentfulImageUrl(
-                    author.fields.photo,
-                    175,
-                    175,
-                    'fill',
-                  )}
-                />
+                <li className="padding-vertical-md">
+                  <AuthorBio
+                    key={author.id}
+                    {...withoutNulls(author.fields)}
+                    photo={contentfulImageUrl(
+                      author.fields.photo,
+                      175,
+                      175,
+                      'fill',
+                    )}
+                  />
+                </li>
               ))}
-            </div>
+            </ul>
           ) : null}
         </Enclosure>
       </div>

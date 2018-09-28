@@ -5,28 +5,22 @@ import classnames from 'classnames';
 import { Figure } from '../../Figure';
 import DEFAULT_AVATAR from './default-avatar.png';
 
-import './author-bio.scss';
-
-const AuthorBio = ({ className, description, jobTitle, name, photo }) => {
-  console.log([name, description, jobTitle, photo]);
-
-  return (
-    <div className={classnames('author-bio', className)}>
-      <Figure
-        size="small"
-        alignment="left"
-        image={photo}
-        alt={`picture of ${name}`}
-        imageClassName="avatar"
-        className="margin-bottom-none"
-      >
-        <p>
-          <em>{description || `${jobTitle} at DoSomething.org.`}</em>
-        </p>
-      </Figure>
-    </div>
-  );
-};
+const AuthorBio = ({ className, description, jobTitle, name, photo }) => (
+  <div className={classnames('author-bio', className)}>
+    <Figure
+      size="small"
+      alignment="left"
+      image={photo}
+      alt={`picture of ${name}`}
+      imageClassName="avatar"
+      className="margin-bottom-none"
+    >
+      <p>
+        <em>{description || `${jobTitle} at DoSomething.org.`}</em>
+      </p>
+    </Figure>
+  </div>
+);
 
 export default AuthorBio;
 
