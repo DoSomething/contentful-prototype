@@ -58,4 +58,5 @@ Once completed, speak with a Product Manager to setup a redirect to the slug of 
 
 This is an example general content page that uses the **Content** and additional **Blocks** field:
 
-![General Content Page](../../.gitbook/assets/general-content-page.png)
+![General Content Page top](../../.gitbook/assets/general-content-page-part-1.png)
+![General Content Page bottom](../../.gitbook/assets/general-content-page-part-2.png)
