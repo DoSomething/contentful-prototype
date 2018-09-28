@@ -152,11 +152,9 @@ class CampaignRepository
             ->where('fields.legacyCampaignId', $ids, 'in')
             ->setInclude(1);
 
-        $results = $this->contentful->getEntries($query);
+        $results = $this->contentful->getEntries($query)->getItems();
 
-        $contentfulCampaigns = collect($results->getIterator())->map(function ($campaign) {
-            return new TruncatedCampaign($campaign);
-        });
+        $contentfulCampaigns = collect($results)->mapInto(TruncatedCampaign::class);
 
         // List of IDs returned from Contentful.
         $foundIds = $contentfulCampaigns->pluck('legacyCampaignId')->all();
@@ -183,11 +181,9 @@ class CampaignRepository
             ->where('sys.id', $ids, 'in')
             ->setInclude(1);
 
-        $results = $this->contentful->getEntries($query);
+        $results = $this->contentful->getEntries($query)->getItems();
 
-        return collect($results->getIterator())->map(function ($campaign) {
-            return new TruncatedCampaign($campaign);
-        });
+        return collect($results)->mapInto(TruncatedCampaign::class);
     }
 
     /**
