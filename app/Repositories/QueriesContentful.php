@@ -28,6 +28,7 @@ trait QueriesContentful
             case 'campaign':
                 // Using the TruncatedCampaign Entity to avoid returning a monstrous object.
                 $results = collect($entries)->mapInto(TruncatedCampaign::class);
+
                 return $results->toJson();
         }
     }
