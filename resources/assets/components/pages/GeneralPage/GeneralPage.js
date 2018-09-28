@@ -32,7 +32,7 @@ const GeneralPage = props => {
               <p className="general-page__subtitle">{subTitle}</p>
             ) : null}
 
-            {authors ? (
+            {authors.length ? (
               <div className="general-page__authors">
                 {authors.map(author => (
                   <Byline
@@ -82,7 +82,7 @@ const GeneralPage = props => {
             title="found this useful?"
           />
 
-          {authors ? (
+          {authors.length ? (
             <ul className="general-page__author-bios">
               {authors.map(author => (
                 <li className="padding-vertical-md">
