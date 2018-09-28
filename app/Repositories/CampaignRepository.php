@@ -201,7 +201,7 @@ class CampaignRepository
         if (! config('services.contentful.cache')) {
             $campaign = $this->getEntryFromSlugAsJson('campaign', $slug);
         } else {
-            $campaign = remember($slug, 15, function () use ($slug) {
+            $campaign = remember('campaign_'.$slug, 15, function () use ($slug) {
                 return $this->getEntryFromSlugAsJson('campaign', $slug);
             });
         }
