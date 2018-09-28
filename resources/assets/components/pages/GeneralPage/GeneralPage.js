@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import Enclosure from '../../Enclosure';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
+import AuthorBio from '../../utilities/Author/AuthorBio';
 import Markdown from '../../utilities/Markdown/Markdown';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
@@ -35,6 +36,7 @@ const GeneralPage = props => {
               <div className="general-page__authors">
                 {authors.map(author => (
                   <Byline
+                    key={author.id}
                     author={author.fields.name}
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(
@@ -44,7 +46,6 @@ const GeneralPage = props => {
                       'fill',
                     )}
                     className="byline--page-author"
-                    key={author.id}
                   />
                 ))}
               </div>
@@ -80,6 +81,25 @@ const GeneralPage = props => {
             platforms={['facebook', 'twitter']}
             title="found this useful?"
           />
+
+          {authors ? (
+            <ul className="general-page__author-bios">
+              {authors.map(author => (
+                <li className="padding-vertical-md">
+                  <AuthorBio
+                    key={author.id}
+                    {...withoutNulls(author.fields)}
+                    photo={contentfulImageUrl(
+                      author.fields.photo,
+                      175,
+                      175,
+                      'fill',
+                    )}
+                  />
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </Enclosure>
       </div>
     </div>
