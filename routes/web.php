@@ -77,6 +77,3 @@ $router->resource('next/referrals', 'ReferralController', ['only' => ['store']])
 
 // Signups
 $router->resource('next/signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
-
-// Activity
-$router->get('next/activity/{campaignId}', 'ActivityController@show');
