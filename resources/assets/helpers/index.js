@@ -43,6 +43,10 @@ export function contentfulImageUrl(
   height = null,
   fit = null,
 ) {
+  if (!url) {
+    return undefined;
+  }
+
   const params = [];
 
   if (width) {

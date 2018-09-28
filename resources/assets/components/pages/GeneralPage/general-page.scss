@@ -56,6 +56,12 @@
     }
   }
 
+  .general-page__author-bios {
+    border-top: 2px solid #dcdcdc;
+    margin-top: $base-spacing;
+    padding: $half-spacing 0;
+  }
+
   .default-container {
     width: 95%;
     margin-left: 2.5%;
