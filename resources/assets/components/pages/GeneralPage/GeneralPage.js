@@ -11,6 +11,8 @@ import AuthorBio from '../../utilities/Author/AuthorBio';
 import Markdown from '../../utilities/Markdown/Markdown';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import AdminDashboardContainer from '../../AdminDashboard/AdminDashboardContainer';
+import PageDashboardContainer from '../../AdminDashboard/PageDashboard/PageDashboardContainer';
 
 import './general-page.scss';
 
@@ -24,6 +26,10 @@ const GeneralPage = props => {
 
   return (
     <div>
+      <AdminDashboardContainer>
+        <PageDashboardContainer />
+      </AdminDashboardContainer>
+
       <div className="main clearfix general-page">
         <Enclosure className="default-container margin-vertical">
           <div className="general-page__heading text-centered">
