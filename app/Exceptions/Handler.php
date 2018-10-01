@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Contentful\Core\Exception\NotFoundException;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use DoSomething\Gateway\Exceptions\ValidationException as GatewayValidationException;
+use DoSomething\Gateway\Server\Exceptions\AccessDeniedException as GatewayAccessDeniedException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,6 +49,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        if ($exception instanceof GatewayAccessDeniedException) {
+            // Log the contents of 'Authorization' header for any malformed JWTs.
+            Log::warning('malformed_jwt', ['hint' => $exception->hint, 'jwt' => request()->header('Authorization')]);
+        }
+
         parent::report($exception);
     }
 
