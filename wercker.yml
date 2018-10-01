@@ -1,30 +1,31 @@
-box: dosomething/ds-docker-php
+box: dosomething/ds-docker-php:7.2
+
 build:
-    # The steps that will be executed on build
-    steps:
-      - script:
-          name: configure environment
-          code: cp .env.example .env
-      - leipert/composer-install@0.9.1
-      - wercker/npm-install
-      - script:
-          name: run phpunit test suite
-          code: |-
-            php artisan key:generate
-            php artisan gateway:key
-            vendor/bin/phpunit
-      - script:
-          name: check code style
-          code: npm run lint
-      - script:
-          name: run type checker
-          code: npm run flow
-      - script:
-          name: test javascript code
-          code: npm run test:ci
-      - script:
-          name: build front-end assets
-          code: npm run build
+  # The steps that will be executed on build
+  steps:
+    - script:
+        name: configure environment
+        code: cp .env.example .env
+    - leipert/composer-install@0.9.1
+    - wercker/npm-install
+    - script:
+        name: run phpunit test suite
+        code: |-
+          php artisan key:generate
+          php artisan gateway:key
+          vendor/bin/phpunit
+    - script:
+        name: check code style
+        code: npm run lint
+    - script:
+        name: run type checker
+        code: npm run flow
+    - script:
+        name: test javascript code
+        code: npm run test:ci
+    - script:
+        name: build front-end assets
+        code: npm run build
 
 deploy:
   steps:
