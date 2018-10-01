@@ -1,42 +1,27 @@
-box: dosomething/ds-docker-php
-build:
-    # The steps that will be executed on build
-    steps:
-      - script:
-          name: configure environment
-          code: cp .env.example .env
-      - leipert/composer-install@0.9.1
-      - wercker/npm-install
-      - script:
-          name: run phpunit test suite
-          code: |-
-            php artisan key:generate
-            php artisan gateway:key
-            vendor/bin/phpunit
-      - script:
-          name: check code style
-          code: npm run lint
-      - script:
-          name: run type checker
-          code: npm run flow
-      - script:
-          name: test javascript code
-          code: npm run test:ci
-      - script:
-          name: build front-end assets
-          code: npm run build
+box: dosomething/ds-docker-php:7.2
 
-deploy:
+build:
   steps:
-    - bundle-install
     - script:
-        name: write private key env var
+        name: configure environment
+        code: cp .env.example .env
+    - leipert/composer-install@0.9.1
+    - wercker/npm-install
+    - script:
+        name: run phpunit test suite
         code: |-
-          export CAP_PRIVATE_KEY=`mktemp`
-          echo -e $WERCKER_APP_KEY_PRIVATE > $CAP_PRIVATE_KEY
-    - cap
-  after-steps:
-    - sherzberg/slack-notify:
-        subdomain: dosomething
-        token: $SLACK_TOKEN
-        channel: $SLACK_ROOM
+          php artisan key:generate
+          php artisan gateway:key
+          vendor/bin/phpunit
+    - script:
+        name: check code style
+        code: npm run lint
+    - script:
+        name: run type checker
+        code: npm run flow
+    - script:
+        name: test javascript code
+        code: npm run test:ci
+    - script:
+        name: build front-end assets
+        code: npm run build
