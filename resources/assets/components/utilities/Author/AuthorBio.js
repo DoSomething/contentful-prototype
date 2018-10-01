@@ -27,7 +27,7 @@ export default AuthorBio;
 AuthorBio.propTypes = {
   className: PropTypes.string,
   description: PropTypes.string,
-  jobTitle: PropTypes.string.isRequired,
+  jobTitle: PropTypes.string,
   name: PropTypes.string.isRequired,
   photo: PropTypes.string,
 };
@@ -35,5 +35,6 @@ AuthorBio.propTypes = {
 AuthorBio.defaultProps = {
   className: null,
   description: null,
+  jobTitle: 'Staff',
   photo: DEFAULT_AVATAR,
 };
