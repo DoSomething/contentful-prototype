@@ -20,7 +20,7 @@ class PageRepository
         if (! config('services.contentful.cache')) {
             $page = $this->getEntryFromSlugAsJson('page', $slug);
         } else {
-            $page = remember($slug, 15, function () use ($slug) {
+            $page = remember('page_'.$slug, 15, function () use ($slug) {
                 return $this->getEntryFromSlugAsJson('page', $slug);
             });
         }
