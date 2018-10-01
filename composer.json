@@ -2,7 +2,7 @@
   "type": "project",
   "license": "MIT",
   "require": {
-    "php": ">=7.0.0",
+    "php": "~7.2.0",
     "barryvdh/laravel-debugbar": "^2.3",
     "contentful/contentful": "3.3.*",
     "contentful/laravel": "3.0.*",
