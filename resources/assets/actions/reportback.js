@@ -156,53 +156,6 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
   };
 }
 
-// Async Action: submit a new reportback and place in submissions gallery.
-export function submitReportback(url, reportback) {
-  return dispatch => {
-    dispatch(storeReportback(reportback));
-
-    const token = document.querySelector('meta[name="csrf-token"]');
-
-    // @TODO: Refactor once update to Gateway JS is made
-    // to allow overriding header configs properly.
-    return window
-      .fetch(url, {
-        method: 'POST',
-        headers: {
-          'X-CSRF-Token': token ? token.getAttribute('content') : null,
-          Accept: 'application/json',
-        },
-        credentials: 'same-origin',
-        body: reportback.formData,
-      })
-      .then(response => {
-        if (response.status >= 300) {
-          response.json().then(json => {
-            dispatch(storeReportbackFailed(json));
-          });
-        } else {
-          dispatch(storeReportbackSuccessful());
-
-          response.json().then(json => {
-            dispatch(addSubmissionMetadata(reportback, json.shift()));
-            dispatch(addSubmissionItemToList(reportback));
-          });
-        }
-      })
-      .catch(error => console.log(error));
-  };
-}
-
-export function submitReferralPost(post) {
-  const url = `${window.location.origin}/next/referrals`;
-  return submitReportback(url, post);
-}
-
-export function submitPhotoPost(post) {
-  const url = `${window.location.origin}/next/reportbacks`;
-  return submitReportback(url, post);
-}
-
 export function fetchUserReportbacks(userId, campaignId, campaignRunId) {
   if (!userId) {
     return dispatch => {
