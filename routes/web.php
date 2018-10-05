@@ -70,7 +70,6 @@ $router->post('next/reactions', 'ReactionController@store');
 $router->delete('next/reactions/{id}', 'ReactionController@delete');
 
 // Reportbacks
-$router->resource('next/reportbacks', 'ReportbackController', ['except' => ['create', 'edit', 'destroy']]);
 $router->resource('next/reportbackItems', 'ReportbackItemsController', ['only' => ['index']]);
 
 $router->resource('next/referrals', 'ReferralController', ['only' => ['store']]);
