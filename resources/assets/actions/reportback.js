@@ -59,59 +59,6 @@ export function reactionComplete(reportbackItemId, reactionId) {
   return { type: REACTION_COMPLETE, reportbackItemId, reactionId };
 }
 
-// Action: store new user submitted reportback.
-export function storeReportback(reportback) {
-  return {
-    type: STORE_REPORTBACK_PENDING,
-    reportback,
-  };
-}
-
-// Action: storing new user submitted reportback failed.
-export function storeReportbackFailed(error) {
-  return {
-    type: STORE_REPORTBACK_FAILED,
-    error,
-  };
-}
-
-// Action: storing new user submitted reportback was successful.
-export function storeReportbackSuccessful(reportbackAffirmation) {
-  return {
-    type: STORE_REPORTBACK_SUCCESSFUL,
-    reportbackAffirmation,
-  };
-}
-
-export function requestingUserReportbacks() {
-  return { type: REQUESTED_USER_SUBMISSIONS };
-}
-
-export function requestingUserReportbacksFailed() {
-  return { type: REQUESTED_USER_SUBMISSIONS_FAILED };
-}
-
-export function receivedUserReportbacks() {
-  return { type: RECEIVED_USER_SUBMISSIONS };
-}
-
-// Action: add user reportback submission metadata to submissions store.
-export function addSubmissionMetadata(reportback, id) {
-  return {
-    type: ADD_SUBMISSION_METADATA,
-    reportback,
-    id,
-  };
-}
-
-// Action: add user reportback item submission to submissions store list.
-export function addSubmissionItemToList(reportbackItem) {
-  return {
-    type: ADD_SUBMISSION_ITEM_TO_LIST,
-    reportbackItem,
-  };
-}
-
 // Async Action: user reacted to a photo.
 export function toggleReactionOn(reportbackItemId, termId) {
   return (dispatch, getState) => {
@@ -153,41 +100,6 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
         dispatch(reactionComplete(reportbackItemId, null));
       })
       .catch(() => dispatch(reactionChanged(reportbackItemId, true)));
-  };
-}
-
-export function fetchUserReportbacks(userId, campaignId, campaignRunId) {
-  if (!userId) {
-    return dispatch => {
-      dispatch(requestingUserReportbacksFailed());
-    };
-  }
-
-  return dispatch => {
-    dispatch(requestingUserReportbacks());
-
-    return new Phoenix()
-      .get('next/signups', {
-        campaigns: campaignId,
-        users: userId,
-        runs: campaignRunId,
-      })
-      .then(json => {
-        dispatch(receivedUserReportbacks());
-
-        if (json.data.length) {
-          const reportback = json.data.shift().reportback;
-
-          if (!reportback) {
-            return;
-          }
-
-          dispatch(addSubmissionMetadata(reportback));
-          reportback.reportback_items.data.forEach(reportbackItem => {
-            dispatch(addSubmissionItemToList(reportbackItem));
-          });
-        }
-      });
   };
 }
 
