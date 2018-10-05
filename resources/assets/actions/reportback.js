@@ -1,5 +1,3 @@
-/* global window, document */
-
 import { Phoenix } from '@dosomething/gateway';
 import { has, get } from 'lodash';
 
@@ -10,14 +8,6 @@ import {
   RECEIVED_REPORTBACKS,
   REACTION_CHANGED,
   REACTION_COMPLETE,
-  STORE_REPORTBACK_PENDING,
-  STORE_REPORTBACK_FAILED,
-  STORE_REPORTBACK_SUCCESSFUL,
-  ADD_SUBMISSION_METADATA,
-  ADD_SUBMISSION_ITEM_TO_LIST,
-  REQUESTED_USER_SUBMISSIONS,
-  REQUESTED_USER_SUBMISSIONS_FAILED,
-  RECEIVED_USER_SUBMISSIONS,
   queueEvent,
 } from '../actions';
 
