@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FormItem from './FormItem';
-import VoterRegStatusBlock from './VoterRegStatusBlock';
 import { env } from '../../../helpers/index';
+import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 const login = '/login';
+
 const Profile = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic -sm">Your Profile</h2>
