@@ -42,6 +42,7 @@ class Page extends Entity implements JsonSerializable
                 'content' => $this->content,
                 'sidebar' => $this->parseBlocks($this->sidebar),
                 'blocks' => $this->parseBlocks($this->blocks),
+                'displaySocialShare' => $this->displaySocialShare,
                 // @TODO: we want to eventually remove the need for hideFromNavigation field
                 // in favor of always linking to pages referenced in the `pages` field.
                 'hideFromNavigation' => $this->hideFromNavigation,

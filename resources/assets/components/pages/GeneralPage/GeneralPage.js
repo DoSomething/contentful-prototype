@@ -22,7 +22,15 @@ import './general-page.scss';
  * @returns {XML}
  */
 const GeneralPage = props => {
-  const { authors, title, subTitle, content, sidebar, blocks } = props;
+  const {
+    authors,
+    title,
+    subTitle,
+    content,
+    sidebar,
+    blocks,
+    displaySocialShare,
+  } = props;
 
   return (
     <div>
@@ -82,11 +90,13 @@ const GeneralPage = props => {
             </div>
           ))}
 
-          <SocialShareTray
-            shareLink={window.location.href}
-            platforms={['facebook', 'twitter']}
-            title="found this useful?"
-          />
+          {displaySocialShare ? (
+            <SocialShareTray
+              shareLink={window.location.href}
+              platforms={['facebook', 'twitter']}
+              title="found this useful?"
+            />
+          ) : null}
 
           {authors.length ? (
             <ul className="general-page__author-bios">
@@ -119,6 +129,7 @@ GeneralPage.propTypes = {
   content: PropTypes.string,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  displaySocialShare: PropTypes.bool,
 };
 
 GeneralPage.defaultProps = {
@@ -126,6 +137,7 @@ GeneralPage.defaultProps = {
   content: null,
   sidebar: [],
   subTitle: null,
+  displaySocialShare: false,
 };
 
 export default GeneralPage;
