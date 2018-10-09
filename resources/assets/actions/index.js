@@ -12,9 +12,6 @@ export const REACTION_CHANGED = 'REACTION_CHANGED';
 export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 export * from './reportback';
 
-// Submissions
-export const TOGGLE_REPORTBACK_AFFIRMATION = 'TOGGLE_REPORTBACK_AFFIRMATION';
-
 // Signup Action Names & Creators
 export const SIGNUP_CREATED = 'SIGNUP_CREATED';
 export const SIGNUP_FOUND = 'SIGNUP_FOUND';
