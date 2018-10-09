@@ -1,0 +1,28 @@
+.voter-reg {
+  background: #fff;
+  padding: 12px;
+  border-radius: 4px;
+  height: 55px;
+  width: 460px;
+  border: 1px solid;
+  &.-red {
+    border-color: #ff4747;
+  }
+  &.-green {
+    border-color: #80de19;
+  }
+  &.-yellow {
+    border-color: #ffec04;
+  }
+}
+.icon {
+  &.-x,
+  &.-clock {
+    height: 25px;
+    width: 25px;
+  }
+  &.-check {
+    height: 22.22;
+    width: 29.75;
+  }
+}

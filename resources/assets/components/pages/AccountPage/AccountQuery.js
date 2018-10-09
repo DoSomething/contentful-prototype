@@ -14,6 +14,7 @@ const ACCOUNT_QUERY = gql`
       mobile
       birthdate
       email
+      voterRegistrationStatus
     }
   }
 `;
