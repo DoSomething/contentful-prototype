@@ -69,9 +69,7 @@ $router->get('next/referrals/export', 'ReferralController@csvExport');
 $router->post('next/reactions', 'ReactionController@store');
 $router->delete('next/reactions/{id}', 'ReactionController@delete');
 
-// Reportbacks
-$router->resource('next/reportbackItems', 'ReportbackItemsController', ['only' => ['index']]);
-
+// Referrals
 $router->resource('next/referrals', 'ReferralController', ['only' => ['store']]);
 
 // Signups

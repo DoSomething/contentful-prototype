@@ -1,43 +1,13 @@
 import { Phoenix } from '@dosomething/gateway';
-import { has, get } from 'lodash';
+import { has } from 'lodash';
 
-import { normalizeReportbackItemResponse } from '../normalizers';
 import { isAuthenticated } from '../selectors/user';
-import {
-  REQUESTED_REPORTBACKS,
-  RECEIVED_REPORTBACKS,
-  REACTION_CHANGED,
-  REACTION_COMPLETE,
-  queueEvent,
-} from '../actions';
+import { REACTION_CHANGED, REACTION_COMPLETE, queueEvent } from '../actions';
 
 /**
  * Action Creators: these functions create actions, which describe changes
  * to the state tree (either as a result of application logic or user input).
  */
-
-// Action: reportback fetch initiated.
-export function requestedReportbacks(node) {
-  return { type: REQUESTED_REPORTBACKS, node };
-}
-
-// Action: new reportback data received.
-export function receivedReportbacks(
-  { reportbacks, reportbackItems, reactions },
-  currentPage,
-  totalPages,
-  total,
-) {
-  return {
-    type: RECEIVED_REPORTBACKS,
-    reportbacks,
-    reportbackItems,
-    reactions,
-    currentPage,
-    totalPages,
-    total,
-  };
-}
 
 // Action: toggled a reaction
 export function reactionChanged(reportbackItemId, value) {
@@ -90,29 +60,5 @@ export function toggleReactionOff(reportbackItemId, reactionId) {
         dispatch(reactionComplete(reportbackItemId, null));
       })
       .catch(() => dispatch(reactionChanged(reportbackItemId, true)));
-  };
-}
-
-// Async Action: fetch another page of reportbacks.
-export function fetchReportbacks() {
-  return (dispatch, getState) => {
-    const count = 24; // Count of items divisible by 2, 3, and 4,for full gallery rows!
-    const node = getState().campaign.legacyCampaignId;
-    const page = getState().reportbacks.currentPage + 1;
-
-    dispatch(requestedReportbacks(node));
-
-    new Phoenix()
-      .get('next/reportbackItems', { campaigns: node, count, page })
-      .then(json => {
-        const normalizedData = normalizeReportbackItemResponse(json.data);
-        const currentPage = get(json, 'meta.pagination.current_page', 1);
-        const totalPages = get(json, 'meta.pagination.total_pages', 1);
-        const total = get(json, 'meta.pagination.total', 0);
-
-        dispatch(
-          receivedReportbacks(normalizedData, currentPage, totalPages, total),
-        );
-      });
   };
 }

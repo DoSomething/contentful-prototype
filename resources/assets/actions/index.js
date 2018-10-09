@@ -8,8 +8,6 @@
  */
 
 // Reportback Action Names & Creators
-export const REQUESTED_REPORTBACKS = 'REQUESTED_REPORTBACKS';
-export const RECEIVED_REPORTBACKS = 'RECEIVED_REPORTBACKS';
 export const REACTION_CHANGED = 'REACTION_CHANGED';
 export const REACTION_COMPLETE = 'REACTION_COMPLETE';
 export * from './reportback';
