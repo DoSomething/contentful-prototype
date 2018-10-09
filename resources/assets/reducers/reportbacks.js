@@ -1,36 +1,12 @@
-import { merge } from 'lodash';
 import update from 'react-addons-update';
 
-import {
-  REQUESTED_REPORTBACKS,
-  RECEIVED_REPORTBACKS,
-  REACTION_CHANGED,
-  REACTION_COMPLETE,
-} from '../actions';
+import { REACTION_CHANGED, REACTION_COMPLETE } from '../actions';
 
 /**
  * Reportback reducer:
  */
 const reportbacks = (state = {}, action) => {
   switch (action.type) {
-    case REQUESTED_REPORTBACKS:
-      return {
-        ...state,
-        isFetching: true,
-      };
-
-    case RECEIVED_REPORTBACKS:
-      return {
-        ...state,
-        currentPage: action.currentPage,
-        isFetching: false,
-        totalPages: action.totalPages,
-        total: action.total,
-        ids: state.ids.concat(Object.keys(action.reportbacks)),
-        entities: merge(state.entities, action.reportbacks),
-        itemEntities: merge(state.itemEntities, action.reportbackItems),
-      };
-
     case REACTION_CHANGED: {
       if (!state.itemEntities[action.reportbackItemId]) {
         return state;
