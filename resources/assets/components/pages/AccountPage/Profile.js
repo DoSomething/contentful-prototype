@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
-import VoterRegStatusBlock from './VoterRegStatusBlock';
+// import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 const login = '/login';
 
