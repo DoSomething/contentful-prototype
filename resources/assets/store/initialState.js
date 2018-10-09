@@ -41,13 +41,6 @@ const initialState = {
     affiliateMessagingOptOut: false,
   },
   slideshow: {},
-  submissions: {
-    reportback: {},
-    isFetching: false,
-    isStoring: false,
-    items: [],
-    messaging: null,
-  },
   uploads: {},
   user: {
     id: null,

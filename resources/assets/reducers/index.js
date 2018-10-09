@@ -8,7 +8,6 @@ export quiz from './quiz';
 export reportbacks from './reportbacks';
 export signups from './signups';
 export slideshow from './slideshow';
-export submissions from './submissions';
 export uploads from './uploads';
 export user from './user';
 export page from './page';
