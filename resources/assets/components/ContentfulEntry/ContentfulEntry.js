@@ -5,7 +5,6 @@ import React from 'react';
 import NotFound from '../NotFound';
 import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
-import ReportbackBlock from '../ReportbackBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
@@ -135,10 +134,6 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'referralSubmissionAction':
         return renderReferralSubmissionAction(json);
-
-      // @TODO: Will be refactored when switching to Rogue!
-      case 'reportbacks':
-        return <ReportbackBlock reportbacks={json.reportbacks} />;
 
       case 'shareAction':
         return renderShareAction(json);

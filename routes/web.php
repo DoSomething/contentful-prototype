@@ -65,10 +65,6 @@ $router->get('next/referrals/export', 'ReferralController@csvExport');
  * until the implementation of JWT tokens.
  */
 
-// Reactions
-$router->post('next/reactions', 'ReactionController@store');
-$router->delete('next/reactions/{id}', 'ReactionController@delete');
-
 // Referrals
 $router->resource('next/referrals', 'ReferralController', ['only' => ['store']]);
 

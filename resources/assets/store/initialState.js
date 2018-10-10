@@ -23,15 +23,6 @@ const initialState = {
     items: {},
   },
   quiz: {},
-  reportbacks: {
-    currentPage: 0,
-    isFetching: false,
-    total: 0,
-    totalPages: 1,
-    ids: [],
-    entities: {},
-    itemEntities: {},
-  },
   signups: {
     data: [],
     thisCampaign: false,
