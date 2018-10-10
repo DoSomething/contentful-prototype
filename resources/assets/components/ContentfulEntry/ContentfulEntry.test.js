@@ -47,17 +47,6 @@ test('it can display a static block', () => {
   expect(wrapper.find('StaticBlock')).toHaveLength(1);
 });
 
-test('it can display a reportback block', () => {
-  const json = {
-    id: '12345',
-    type: 'reportbacks',
-    fields: {},
-    reportbacks: [],
-  };
-  const wrapper = shallow(<ContentfulEntry json={json} />);
-  expect(wrapper.find('ReportbackBlock')).toHaveLength(1);
-});
-
 test('it should display a placeholder for an unknown block type', () => {
   const wrapper = shallow(
     <ContentfulEntry json={{ id: '12345', type: 'tongue_cat' }} />,
