@@ -10,6 +10,7 @@ import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
+import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
@@ -93,6 +94,9 @@ class ContentfulEntry extends React.Component<Props, State> {
             <CampaignGalleryBlockContainer />
           </div>
         );
+
+      case 'galleryBlock':
+        return <GalleryBlock {...json.fields} />;
 
       case 'imagesBlock':
         return <ImagesBlock images={json.fields.images} />;
