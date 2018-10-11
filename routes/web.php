@@ -69,4 +69,4 @@ $router->get('next/referrals/export', 'ReferralController@csvExport');
 $router->resource('next/referrals', 'ReferralController', ['only' => ['store']]);
 
 // Signups
-$router->resource('next/signups', 'SignupController', ['except' => ['create', 'edit', 'destroy']]);
+$router->resource('next/signups', 'SignupController', ['except' => ['create', 'edit', 'destroy', 'show', 'update']]);
