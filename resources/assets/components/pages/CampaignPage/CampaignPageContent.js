@@ -34,6 +34,7 @@ const CampaignPageContent = props => {
     if (
       [
         'photoSubmissionAction',
+        'textSubmissionAction',
         'gallery',
         'imagesBlock',
         'socialDriveAction',
