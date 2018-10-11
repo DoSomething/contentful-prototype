@@ -30,10 +30,12 @@ const CampaignPageContent = props => {
   const renderBlock = json => {
     const type = parseContentfulType(json);
 
+    // @TODO (2018-10-11) Would like to rethink this approach with fullWidth.
     let fullWidth = false;
     if (
       [
         'photoSubmissionAction',
+        'textSubmissionAction',
         'gallery',
         'imagesBlock',
         'socialDriveAction',

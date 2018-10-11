@@ -100,53 +100,52 @@ class TextSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
-        <Card
-          id={this.props.id}
-          className={classnames(
-            'bordered rounded text-submission-action',
-            this.props.className,
-          )}
-          title={this.props.title}
-        >
-          {formResponse ? <FormValidation response={formResponse} /> : null}
+        <div className="text-submission-action">
+          <Card
+            id={this.props.id}
+            className={classnames('bordered rounded', this.props.className)}
+            title={this.props.title}
+          >
+            {formResponse ? <FormValidation response={formResponse} /> : null}
 
-          <form onSubmit={this.handleSubmit}>
-            <div className="padded">
-              <div className="form-item">
-                <label
-                  className={classnames('field-label', {
-                    'has-error': has(errors, 'text'),
-                  })}
-                  htmlFor="text"
-                >
-                  {this.props.textFieldLabel}
-                </label>
-                <input
-                  className={classnames('text-field', {
-                    'has-error shake': has(errors, 'text'),
-                  })}
-                  type="text"
-                  id="text"
-                  name="text"
-                  placeholder={this.props.textFieldPlaceholder}
-                  value={this.state.textValue}
-                  onChange={this.handleChange}
-                />
+            <form onSubmit={this.handleSubmit}>
+              <div className="padded">
+                <div className="form-item">
+                  <label
+                    className={classnames('field-label', {
+                      'has-error': has(errors, 'text'),
+                    })}
+                    htmlFor="text"
+                  >
+                    {this.props.textFieldLabel}
+                  </label>
+                  <input
+                    className={classnames('text-field', {
+                      'has-error shake': has(errors, 'text'),
+                    })}
+                    type="text"
+                    id="text"
+                    name="text"
+                    placeholder={this.props.textFieldPlaceholder}
+                    value={this.state.textValue}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <p className="footnote">
+                  Your submission will be reviewed by a DoSomething.org staffer
+                  and added to our public gallery.
+                </p>
               </div>
-              <p className="footnote">
-                Your submission will be reviewed by a DoSomething.org staffer
-                and added to our public gallery.
-              </p>
-            </div>
-            <Button
-              type="submit"
-              loading={submissionItem ? submissionItem.isPending : true}
-              attached
-            >
-              {this.props.buttonText}
-            </Button>
-          </form>
-        </Card>
+              <Button
+                type="submit"
+                loading={submissionItem ? submissionItem.isPending : true}
+                attached
+              >
+                {this.props.buttonText}
+              </Button>
+            </form>
+          </Card>
+        </div>
 
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
