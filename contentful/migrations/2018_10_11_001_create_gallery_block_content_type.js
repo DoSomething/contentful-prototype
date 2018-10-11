@@ -23,6 +23,13 @@ module.exports = function(migration) {
     .createField('blocks')
     .name('Blocks')
     .type('Array')
+    .validations([
+      {
+        size: {
+          min: 2,
+        },
+      },
+    ])
     .items({
       type: 'Link',
       validations: [
