@@ -48,11 +48,15 @@ Add any desired blocks to the **Blocks** field, to expand on the content shown o
 For content pages we find Content Blocks, Images Blocks, and Link Actions to work best. \(@todo add links to respective documentation\)
 {% endhint %}
 
-### 4. Optionally add a [Social Override](../social-overrides.md) to the "Social Override" field.
+### 4. Optionally display Social Share buttons on your page
+
+If the **Display Social Share** field is set to 'Yes', Facebook and Twitter share buttons will be displayed at the bottom of the page (as shown in the screenshot in step 6), allowing the user to share a link to the current page. _Defaults to hidden_.
+
+### 5. Optionally add a [Social Override](../social-overrides.md) to the "Social Override" field.
 
 A social override will change the default image, text blurb and title when the page url is shared on a social network or used in a Link Action. We have a separate page for adding a social override [here](../social-overrides.md).
 
-### 5. Talk to Product Manager to redirect the page
+### 6. Talk to Product Manager to redirect the page
 
 Once completed, speak with a Product Manager to setup a redirect to the slug of this page. In order for your awesome General Content Page to be accessible from `dosomething.org/us/category-prefix/your-awesome-content`, some URL redirecting magic needs to be coordinated with the dev-ops team. Please see a PM or Team Rocket to get this done!
 
