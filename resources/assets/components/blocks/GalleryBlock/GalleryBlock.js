@@ -37,7 +37,7 @@ const renderBlock = block => {
 
 const GalleryBlock = ({ title, blocks }) => (
   <div className="gallery-block">
-    <h1 className="text-centered">{title}</h1>
+    {title ? <h1 className="text-centered">{title}</h1> : null}
 
     <Gallery type="triad">{blocks.map(renderBlock)}</Gallery>
   </div>
