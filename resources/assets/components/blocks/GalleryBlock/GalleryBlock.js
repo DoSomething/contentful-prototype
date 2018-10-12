@@ -27,7 +27,6 @@ const renderBlock = block => {
   return (
     <Figure
       key={block.id}
-      alignment="vertical"
       alt={`${block.type}-${text}`}
       image={contentfulImageUrl(imageUrl, '400', '400', 'fill')}
     >
