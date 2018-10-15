@@ -78,7 +78,7 @@ class PollLocator extends React.Component {
       return;
     }
 
-    window.vit.load({
+    let vitConfig = {
       modal: true,
       officialOnly: false,
       title: 'Find Where to Vote',
@@ -90,8 +90,18 @@ class PollLocator extends React.Component {
         landscapeBackgroundHeader: '#228a9d',
       },
       language: 'en',
-      electionId: get(this.props.additionalContent, 'electionId'),
-    });
+    };
+
+    const electionId = get(this.props.additionalContent, 'electionId');
+
+    if (electionId) {
+      vitConfig = {
+        ...vitConfig,
+        electionId,
+      };
+    }
+
+    window.vit.load(vitConfig);
   };
 
   render() {
@@ -115,8 +125,7 @@ PollLocator.propTypes = {
 
 PollLocator.defaultProps = {
   additionalContent: {
-    // Election ID defaults to 2000 -- the standard VIP test Election ID.
-    electionId: 2000,
+    electionId: null,
   },
 };
 
