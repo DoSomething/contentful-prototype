@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import StaffTemplate from './templates/StaffTemplate/StaffTemplate';
 
 const Person = ({ json }) => {
   switch (json.fields.type) {
+    case 'staff':
+      return <StaffTemplate {...json.fields} />;
     default:
       return null;
   }
