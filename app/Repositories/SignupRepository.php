@@ -31,4 +31,9 @@ class SignupRepository
     {
         return $this->rogue->get('v3/signups', $query);
     }
+
+    public function storeSignup()
+    {
+
+    }
 }
