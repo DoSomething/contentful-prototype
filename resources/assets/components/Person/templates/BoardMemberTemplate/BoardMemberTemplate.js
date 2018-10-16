@@ -5,7 +5,7 @@ import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../helpers';
 import Markdown from '../../../utilities/Markdown/Markdown';
 
-const BoardTemplate = props => {
+const BoardMemberTemplate = props => {
   const { name, alternatePhoto, description } = props;
 
   return (
@@ -20,10 +20,10 @@ const BoardTemplate = props => {
   );
 };
 
-BoardTemplate.propTypes = {
+BoardMemberTemplate.propTypes = {
   name: PropTypes.string.isRequired,
   alternatePhoto: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
-export default BoardTemplate;
+export default BoardMemberTemplate;
