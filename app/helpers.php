@@ -271,7 +271,7 @@ function get_metadata($entry)
 
     $image = $entry->metadata->fields->image;
 
-    if (!$image && data_get($entry, 'coverImage')) {
+    if (! $image && data_get($entry, 'coverImage')) {
         $image = $entry->coverImage->url.'?w=1200&h=1200&fm=jpg&fit=fill';
     }
 
