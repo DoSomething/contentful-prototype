@@ -7,10 +7,10 @@ use JsonSerializable;
 class Metadata implements JsonSerializable
 {
     /**
-    * Convert the object into something JSON serializable.
-    *
-    * @return array
-    */
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
     public function jsonSerialize()
     {
         // @TODO: using placeholers for now. Upcoming PR will flesh these out!
