@@ -7,7 +7,7 @@ import Gallery from '../../utilities/Gallery/Gallery';
 const renderBlock = block => {
   switch (block.type) {
     case 'person':
-      return <Person key={block.id} json={block} />;
+      return <Person key={block.id} {...block.fields} />;
 
     case 'campaign':
       return null;

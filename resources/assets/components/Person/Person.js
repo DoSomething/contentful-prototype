@@ -4,13 +4,13 @@ import PropTypes from 'prop-types';
 import StaffTemplate from './templates/StaffTemplate/StaffTemplate';
 import BoardMemberTemplate from './templates/BoardMemberTemplate/BoardMemberTemplate';
 
-const Person = ({ json }) => {
-  switch (json.fields.type) {
+const Person = props => {
+  switch (props.type) {
     case 'staff':
-      return <StaffTemplate {...json.fields} />;
+      return <StaffTemplate {...props} />;
 
     case 'board member':
-      return <BoardMemberTemplate {...json.fields} />;
+      return <BoardMemberTemplate {...props} />;
 
     default:
       return null;
@@ -18,11 +18,7 @@ const Person = ({ json }) => {
 };
 
 Person.propTypes = {
-  json: PropTypes.shape({
-    fields: PropTypes.shape({
-      type: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default Person;
