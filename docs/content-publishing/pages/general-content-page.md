@@ -2,10 +2,6 @@
 
 We're creating a lot of content that isn't campaigns nowadays. These are articles, updates, lists, guides and more. They exist outside the campaign structure and are useful campaign guides as they don't require a user to be signed in or signed up to view. They're also frequently sent out in broadcasts or posted on social media as content pieces to encourage campaign conversion.
 
-{% hint style="warning" %}
-In order to use your page in a Link Action, you will need to redirect it from `next.dosomething` to `www.dosomething`. Once you finish editing your page speak with a Product Manager to setup a redirect to the slug of the page. (@TODO remove once Ashes migration is complete.)
-{% endhint %}
-
 ## Creating a general content page
 
 ### 1. Create the page
@@ -55,10 +51,6 @@ If the **Display Social Share** field is set to 'Yes', Facebook and Twitter shar
 ### 5. Optionally add a [Social Override](../social-overrides.md) to the "Social Override" field.
 
 A social override will change the default image, text blurb and title when the page url is shared on a social network or used in a Link Action. We have a separate page for adding a social override [here](../social-overrides.md).
-
-### 6. Talk to Product Manager to redirect the page
-
-Once completed, speak with a Product Manager to setup a redirect to the slug of this page. In order for your awesome General Content Page to be accessible from `dosomething.org/us/category-prefix/your-awesome-content`, some URL redirecting magic needs to be coordinated with the dev-ops team. Please see a PM or Team Rocket to get this done!
 
 This is an example general content page that uses the **Content** and additional **Blocks** field:
 
