@@ -224,6 +224,7 @@ function useOverrideIfSet($field, $base, $override)
  *
  * @param  \Contentful\Delivery\Resource\Entry|stdClass $entry
  * @return array|null
+ * @deprecated Will be removed; use get_metadata() instead.
  */
 function get_social_fields($entry)
 {
@@ -254,6 +255,36 @@ function get_social_fields($entry)
         'facebookAppId' => config('services.analytics.facebook_id'),
         'quote' => $socialOverride->quote,
     ];
+}
+
+/**
+ * Get metadata associated with a page or campaign.
+ *
+ * @param  \Contentful\Delivery\Resource\Entry|stdClass $entry
+ * @return array
+ */
+function get_metadata($entry)
+{
+    if ($entry->type !== 'campaign') {
+        $entry = $entry->fields;
+    }
+
+    $image = $entry->metadata->fields->image;
+
+    if (!$image && data_get($entry, 'coverImage')) {
+        $image = $entry->coverImage->url.'?w=1200&h=1200&fm=jpg&fit=fill';
+    }
+
+    $data = [
+        'title' => $entry->metadata->fields->title ?: $entry->title,
+        'type' => 'article',
+        'description' => $entry->metadata->fields->description ?: null,
+        'url' => config('services.phoenix.url').'/us/'.$entry->slug,
+        'facebook_app_id' => config('services.analytics.facebook_id'),
+        'image' => $image ?: 'https://forge.dosomething.org/resources/ds-logo-highres.png',
+    ];
+
+    return $data;
 }
 
 /**

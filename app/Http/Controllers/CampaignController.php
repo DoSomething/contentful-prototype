@@ -51,6 +51,7 @@ class CampaignController extends Controller
             // This is used to build campaign-specific login links in the
             // server-rendered top navigation bar.
             'campaign' => $campaign,
+            'metadata' => get_metadata($campaign),
             // We render social metatags server-side because Facebook & Twitter
             // do not render JavaScript when crawling pages like Google does.
             'socialFields' => get_campaign_social_fields($campaign, $request->url()),

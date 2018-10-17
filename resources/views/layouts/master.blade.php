@@ -8,6 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $pageTitle or 'Let\'s Do this!' }} | DoSomething.org</title>
 
+    @if(isset($metadata))
+        @include('partials.metadata')
+    @endif
+
     <link rel="preload" href="{{ elixir('vendors~app.js', 'next/assets') }}" as="script" />
     <link rel="preload" href="{{ elixir('app.js', 'next/assets') }}" as="script" />
 
