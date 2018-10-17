@@ -18,13 +18,14 @@ class Person extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'name' => $this->name,
-                'type' => $this->type,
+                'type' => $this->entry->type, // $this->type would result in 'Entry' (the `sys` type) being returned (https://git.io/fx2NH).
                 'active' => $this->active,
                 'jobTitle' => $this->jobTitle,
                 'email' => $this->email,
                 'photo' => get_image_url($this->photo),
                 'alternatePhoto' => get_image_url($this->alternatePhoto),
                 'description' => $this->description,
+                'twitterId' => $this->twitterId,
             ],
         ];
     }
