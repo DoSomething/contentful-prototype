@@ -1,6 +1,6 @@
 module.exports = function(migration) {
   const galleryBlock = migration
-    .createContentType('galleryBlock')
+    .editContentType('galleryBlock')
     .name('Gallery Block')
     .description('Displays a gallery of referenced entries')
     .displayField('internalTitle');
