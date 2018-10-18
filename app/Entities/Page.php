@@ -38,7 +38,7 @@ class Page extends Entity implements JsonSerializable
                 'title' => $this->title,
                 'subTitle' => $this->subTitle,
                 'slug' => $this->slug,
-                'metadata' => new Metadata(),
+                'metadata' => $this->metadata ? new Metadata($this->metadata->entry) : null,
                 'authors' => $this->parseBlocks($this->authors),
                 'content' => $this->content,
                 'sidebar' => $this->parseBlocks($this->sidebar),

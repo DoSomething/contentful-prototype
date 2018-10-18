@@ -269,19 +269,19 @@ function get_metadata($entry)
         $entry = $entry->fields;
     }
 
-    $image = $entry->metadata->fields->image;
+    $image = $entry->metadata ? $entry->metadata->fields->image : null;
 
     if (! $image && data_get($entry, 'coverImage')) {
-        $image = $entry->coverImage->url.'?w=1200&h=1200&fm=jpg&fit=fill';
+        $image = $entry->coverImage->url;
     }
 
     $data = [
-        'title' => $entry->metadata->fields->title ?: $entry->title,
+        'title' => $entry->metadata ? $entry->metadata->fields->title : $entry->title,
         'type' => 'article',
-        'description' => $entry->metadata->fields->description ?: null,
+        'description' => $entry->metadata ? $entry->metadata->fields->description : null,
         'url' => config('services.phoenix.url').'/us/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
-        'image' => $image ?: 'https://forge.dosomething.org/resources/ds-logo-highres.png',
+        'image' => $image ? $image.'?w=1200&h=1200&fm=jpg&fit=fill' : 'https://forge.dosomething.org/resources/ds-logo-highres.png',
     ];
 
     return $data;

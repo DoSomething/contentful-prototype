@@ -114,7 +114,7 @@ class Campaign extends Entity implements JsonSerializable
             'template' => $this->template->first() ?: 'mosaic',
             'title' => $this->title,
             'slug' => $this->slug,
-            'metadata' => new Metadata(),
+            'metadata' => $this->metadata ? new Metadata($this->metadata->entry) : null,
             'status' => null, // @TODO: calculate status based on the endDate!
             'endDate' => $this->endDate,
             'callToAction' => $this->callToAction, //@TODO: deprecate in favor of tagline.
