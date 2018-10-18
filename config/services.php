@@ -46,7 +46,7 @@ return [
     ],
 
     'phoenix' => [
-        'url' => env('PHOENIX_URL'),
+        'url' => env('APP_URL'),
     ],
 
     'phoenix-legacy' => [
