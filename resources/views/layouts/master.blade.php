@@ -20,10 +20,6 @@
     <link rel="icon" type="image/ico" href={{config('app.url') . "/favicon.ico?v1" }}>
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
-    @if(isset($socialFields))
-        @include('partials.social')
-    @endif
-
     @if(config('services.analytics.google_tag_manager_id'))
         @include('partials.google_tag_manager_script')
     @endif
