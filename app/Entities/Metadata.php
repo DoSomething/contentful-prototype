@@ -13,7 +13,6 @@ class Metadata extends Entity implements JsonSerializable
      */
     public function jsonSerialize()
     {
-        // @TODO: using placeholers for now. Upcoming PR will flesh these out!
         return [
             'id' => $this->entry->getId(),
             'type' => $this->getContentType(),
