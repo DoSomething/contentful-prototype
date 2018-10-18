@@ -269,16 +269,16 @@ function get_metadata($entry)
         $entry = $entry->fields;
     }
 
-    $image = $entry->metadata ? $entry->metadata->fields->image : null;
+    $image = data_get($entry, 'metadata.fields.image', null);
 
     if (! $image && data_get($entry, 'coverImage')) {
         $image = $entry->coverImage->url;
     }
 
     $data = [
-        'title' => data_get($entry, 'metadata.fields.title, $entry->title)
+        'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
-        'description' => $entry->metadata ? $entry->metadata->fields->description : null,
+        'description' => data_get($entry, 'metadata.fields.description', null),
         'url' => config('services.phoenix.url').'/us/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => $image ? $image.'?w=1200&h=1200&fm=jpg&fit=fill' : 'https://forge.dosomething.org/resources/ds-logo-highres.png',
