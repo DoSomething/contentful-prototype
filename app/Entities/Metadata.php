@@ -4,7 +4,7 @@ namespace App\Entities;
 
 use JsonSerializable;
 
-class Metadata implements JsonSerializable
+class Metadata extends Entity implements JsonSerializable
 {
     /**
      * Convert the object into something JSON serializable.
@@ -13,15 +13,14 @@ class Metadata implements JsonSerializable
      */
     public function jsonSerialize()
     {
-        // @TODO: using placeholers for now. Upcoming PR will flesh these out!
         return [
-            'id' => str_random(24),
-            'type' => 'metadata',
+            'id' => $this->entry->getId(),
+            'type' => $this->getContentType(),
             'fields' => [
-                'internalTitle' => null,
-                'title' => null,
-                'description' => null,
-                'image' => null,
+                'internalTitle' => $this->internalTitle,
+                'title' => $this->title,
+                'description' => $this->description,
+                'image' => get_image_url($this->image),
             ],
         ];
     }
