@@ -17,17 +17,24 @@ const renderBlock = block => {
   }
 };
 
-const GalleryBlock = ({ title, blocks }) => (
-  <div className="gallery-block">
-    {title ? <h1>{title}</h1> : null}
+const galleryTypes = ['duo', 'triad', 'quartet'];
 
-    <Gallery type="triad">{blocks.map(renderBlock)}</Gallery>
-  </div>
-);
+const GalleryBlock = ({ title, blocks, itemsPerRow }) => {
+  const galleryType = galleryTypes[itemsPerRow - 2];
+
+  return (
+    <div className="gallery-block">
+      {title ? <h1 className="padding-horizontal-md">{title}</h1> : null}
+
+      <Gallery type={galleryType}>{blocks.map(renderBlock)}</Gallery>
+    </div>
+  );
+};
 
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  itemsPerRow: PropTypes.number.isRequired,
 };
 
 GalleryBlock.defaultProps = {
