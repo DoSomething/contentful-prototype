@@ -20,6 +20,7 @@ const renderBlock = block => {
 const galleryTypes = ['duo', 'triad', 'quartet'];
 
 const GalleryBlock = ({ title, blocks, itemsPerRow }) => {
+  // Subtract 2 from itemsPerRow to map properly to the galleryTypes indices (see propTypes).
   const galleryType = galleryTypes[itemsPerRow - 2];
 
   return (
