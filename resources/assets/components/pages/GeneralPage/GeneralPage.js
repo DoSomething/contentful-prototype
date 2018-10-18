@@ -101,9 +101,8 @@ const GeneralPage = props => {
           {authors.length ? (
             <ul className="general-page__author-bios">
               {authors.map(author => (
-                <li className="padding-vertical-md">
+                <li className="padding-vertical-md" key={author.id}>
                   <AuthorBio
-                    key={author.id}
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(
                       author.fields.photo,
