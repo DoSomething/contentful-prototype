@@ -34,7 +34,7 @@ const GalleryBlock = ({ title, blocks, itemsPerRow }) => {
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  itemsPerRow: PropTypes.number.isRequired,
+  itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
 };
 
 GalleryBlock.defaultProps = {
