@@ -41,4 +41,21 @@ module.exports = function(migration) {
     })
     .required(true)
     .localized(false);
+
+  galleryBlock
+    .createField('itemsPerRow')
+    .name('Items Per Row')
+    .type('Integer')
+    .validations([
+      {
+        in: [2, 3, 4],
+      },
+    ])
+    .required(true)
+    .localized(false);
+
+  galleryBlock.changeEditorInterface('galleryBlock', 'radio', {
+    helpText:
+      'The maximum number of items in a single row when viewing the gallery in a large display. (small screens are limited to one per row).',
+  });
 };
