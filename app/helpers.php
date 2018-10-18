@@ -276,7 +276,7 @@ function get_metadata($entry)
     }
 
     $data = [
-        'title' => $entry->metadata ? $entry->metadata->fields->title : $entry->title,
+        'title' => data_get($entry, 'metadata.fields.title, $entry->title)
         'type' => 'article',
         'description' => $entry->metadata ? $entry->metadata->fields->description : null,
         'url' => config('services.phoenix.url').'/us/'.$entry->slug,
