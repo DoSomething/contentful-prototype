@@ -265,9 +265,14 @@ function get_social_fields($entry)
  */
 function get_metadata($entry)
 {
-    if ($entry->type !== 'campaign') {
+    $entryType = data_get($entry, 'type');
+
+    // Unify $entry object properties structure between campaigns and pages.
+    if ($entryType !== 'campaign') {
         $entry = $entry->fields;
     }
+
+    $baseUrl = config('services.phoenix.url').'/us';
 
     $image = data_get($entry, 'metadata.fields.image', null);
 
@@ -279,7 +284,7 @@ function get_metadata($entry)
         'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
         'description' => data_get($entry, 'metadata.fields.description', null),
-        'url' => config('services.phoenix.url').'/us/'.$entry->slug,
+        'url' => $entryType === 'campaign' ? $baseUrl.'/campaigns/'.$entry->slug : $baseUrl.'/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => [
             // Recommended social share image size is 1200x1200.
