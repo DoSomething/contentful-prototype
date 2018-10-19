@@ -19,6 +19,7 @@ class GalleryBlock extends Entity implements JsonSerializable
             'fields' => [
                 'title' => $this->title,
                 'blocks' => $this->parseBlocks($this->blocks),
+                'itemsPerRow' => $this->itemsPerRow,
             ],
         ];
     }
