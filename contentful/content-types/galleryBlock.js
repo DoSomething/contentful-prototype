@@ -54,7 +54,7 @@ module.exports = function(migration) {
     .required(true)
     .localized(false);
 
-  galleryBlock.changeEditorInterface('galleryBlock', 'radio', {
+  galleryBlock.changeEditorInterface('itemsPerRow', 'radio', {
     helpText:
       'The maximum number of items in a single row when viewing the gallery in a large display. (small screens are limited to one per row).',
   });
