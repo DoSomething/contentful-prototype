@@ -10,7 +10,7 @@
 @endif
 <meta name="twitter:site" content="@dosomething">
 <meta name="twitter:creator" content="@dosomething">
-<meta name="twitter:image" content="{{ $metadata['image'] }}">
+<meta name="twitter:image" content="{{ $metadata['image']['url'] }}">
 
 {{-- Open Graph data --}}
 <meta property="og:title" content="{{ $metadata['title'] }}" />
@@ -20,5 +20,7 @@
 @endif
 <meta property="og:url" content="{{ $metadata['url'] }}" />
 <meta property="og:site_name" content="DoSomething.org" />
-<meta property="og:image" content="{{ $metadata['image'] }}" />
-<meta property="fb:admins" content="{{ $metadata['facebook_app_id'] }}" />
+<meta property="og:image" content="{{ $metadata['image']['url'] }}" />
+<meta property="og:image:width" content="{{ $metadata['image']['width'] }}" />
+<meta property="og:image:height" content="{{ $metadata['image']['height'] }}" />
+<meta property="fb:app_id" content="{{ $metadata['facebook_app_id'] }}" />
