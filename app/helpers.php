@@ -282,8 +282,10 @@ function get_metadata($entry)
         'url' => config('services.phoenix.url').'/us/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => [
+            // Recommended social share image size is 1200x1200.
             'url' => $image ? $image.'?w=1200&h=1200&fm=jpg&fit=fill' : 'https://forge.dosomething.org/resources/ds-logo-landscape.png',
             'width' => '1200',
+            // Images will have height of 1200px, unless defaulting to DS Landscape Logo which is 630px.
             'height' => $image ? '1200' : '630',
         ],
     ];
