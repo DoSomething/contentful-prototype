@@ -265,8 +265,9 @@ function get_social_fields($entry)
  */
 function get_metadata($entry)
 {
-    $entryType = data_get($entry, 'type', null);
+    $entryType = data_get($entry, 'type');
 
+    // Unify $entry property structure between campaigns and pages.
     if ($entryType !== 'campaign') {
         $entry = $entry->fields;
     }
