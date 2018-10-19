@@ -267,7 +267,7 @@ function get_metadata($entry)
 {
     $entryType = data_get($entry, 'type');
 
-    // Unify $entry property structure between campaigns and pages.
+    // Unify $entry object properties structure between campaigns and pages.
     if ($entryType !== 'campaign') {
         $entry = $entry->fields;
     }
