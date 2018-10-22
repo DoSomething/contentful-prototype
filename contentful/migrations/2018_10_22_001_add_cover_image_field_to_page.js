@@ -13,6 +13,6 @@ module.exports = function(migration) {
   page.moveField('coverImage').beforeField('content');
 
   page.changeEditorInterface('coverImage', 'assetLinkEditor', {
-    helpText: 'The cover Image will display on the page before the content',
+    helpText: 'The cover image will display on the page before the content.',
   });
 };
