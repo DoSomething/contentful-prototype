@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { modifiers } from '../../helpers';
+import { modifiers, isExternal } from '../../helpers';
 import LazyImage from '../utilities/LazyImage';
 
 import './figure.scss';
@@ -13,6 +13,7 @@ export const BaseFigure = ({
   media,
   size,
   className,
+  link,
   children,
 }) => (
   <article
@@ -22,7 +23,19 @@ export const BaseFigure = ({
       modifiers(alignment, verticalAlignment, size),
     )}
   >
-    <div className="figure__media">{media}</div>
+    <div className="figure__media">
+      {link ? (
+        <a
+          target={isExternal(link) ? '_blank' : '_self'}
+          rel="noopener noreferrer"
+          href={link}
+        >
+          {media}
+        </a>
+      ) : (
+        media
+      )}
+    </div>
     <div className="figure__body">{children}</div>
   </article>
 );
@@ -39,6 +52,7 @@ BaseFigure.propTypes = {
   verticalAlignment: PropTypes.oneOf(['center']),
   size: PropTypes.oneOf(['small', 'medium', 'large', 'one-third']),
   media: PropTypes.node,
+  link: PropTypes.string,
 };
 
 BaseFigure.defaultProps = {
@@ -48,6 +62,7 @@ BaseFigure.defaultProps = {
   verticalAlignment: null,
   size: null,
   media: null,
+  link: null,
 };
 
 export const Figure = props => {
