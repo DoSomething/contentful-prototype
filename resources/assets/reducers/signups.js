@@ -19,6 +19,8 @@ import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 const signupReducer = (state = {}, action) => {
   let signups = [];
 
+  // console.log([state, action]);
+
   switch (action.type) {
     case SIGNUP_CREATED:
       signups = [...state.data, action.campaignId];
@@ -62,6 +64,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case SIGNUP_NOT_FOUND:
+      // Not sure why we don't also set thisCampaign to false here?
       return { ...state, isPending: false };
 
     case SET_TOTAL_SIGNUPS:

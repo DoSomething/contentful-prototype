@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Services\Rogue;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
+use Illuminate\Support\Facades\Log;
 
 class SignupController extends Controller
 {
@@ -29,6 +30,8 @@ class SignupController extends Controller
      */
     public function index(Request $request)
     {
+        Log::info('🌲 SignupController@index()', $request->all());
+
         return response()->json($this->phoenixLegacy->getAllSignups($request->query()));
     }
 
