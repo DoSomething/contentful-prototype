@@ -7,7 +7,7 @@ import { contentfulImageUrl } from '../../../../../helpers';
 import './page-gallery-item.scss';
 
 const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
-  <a className="page-gallery-item" href={`/us/${slug}`}>
+  <a className="page-gallery-item display-block" href={`/us/${slug}`}>
     <Figure
       alt={`${coverImage.description || title}-photo`}
       image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
