@@ -4,15 +4,17 @@ import PropTypes from 'prop-types';
 import { Figure } from '../../../../Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
+import './page-gallery-item.scss';
+
 const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
-  <a href={`/us/${slug}`}>
+  <a className="page-gallery-item" href={`/us/${slug}`}>
     <Figure
       alt={`${coverImage.description || title}-photo`}
       image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
     >
       <h3>{title}</h3>
 
-      {subTitle ? <p>{subTitle}</p> : null}
+      {subTitle ? <p className="description">{subTitle}</p> : null}
     </Figure>
   </a>
 );
