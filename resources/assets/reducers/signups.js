@@ -64,8 +64,10 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case SIGNUP_NOT_FOUND:
-      // Not sure why we don't also set thisCampaign to false here?
-      return { ...state, isPending: false };
+      console.log('⬇️ Reduction: Signup Not Found...');
+
+      // Not sure why we don't also set thisCampaign to false here? So trying it out.
+      return { ...state, isPending: false, thisCampaign: false };
 
     case SET_TOTAL_SIGNUPS:
       return { ...state, total: action.total };

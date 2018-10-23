@@ -102,7 +102,7 @@ export function signupPending() {
 
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
-  console.log('🌂 Checking for signup...');
+  console.log(`📋 Checking for signup on campaign ID: ${campaignId}`);
 
   return (dispatch, getState) => {
     const state = getState();
@@ -113,7 +113,7 @@ export function checkForSignup(campaignId) {
       return dispatch(signupNotFound());
     }
 
-    console.log('🍩 about to hit up next/signups...');
+    console.log('🍩 About to hit up next/signups...');
 
     return new Phoenix()
       .get('next/signups', {

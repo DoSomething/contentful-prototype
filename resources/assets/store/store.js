@@ -16,6 +16,10 @@ import customMiddlewares from './middlewares';
  * @returns {Store<S>}
  */
 export function configureStore(reducers, middleware, preloadedState = {}) {
+  console.log('💁🏻‍♂️ Configuring Store');
+  console.log('Initial State:', initialState);
+  console.log('Preloaded State:', preloadedState);
+
   // Log actions to the console in development & track state changes.
   if (process.env.NODE_ENV !== 'production') {
     const createLogger = require('redux-logger'); // eslint-disable-line global-require
@@ -31,6 +35,8 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 
   // @TODO: Let's just merge all 3 states at once
   const transformedState = loadStorage(initialState, preloadedState);
+
+  console.log('Transformed State:', transformedState);
 
   return createStore(
     combineReducers(reducers),
@@ -48,11 +54,20 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 export function initializeStore(store) {
   const state = store.getState();
 
-  const campaignId = state.campaign.legacyCampaignId;
+  console.log('🏁 Initializing Store');
+  console.log(state);
+
+  const campaignId = state.campaign.campaignId;
   const haveSignup = state.signups.data.includes(campaignId);
+
+  console.log('campaign ID:', campaignId);
+  console.log('user has signup:', haveSignup);
 
   // If we don't already have a signup cached in local storage, check.
   if (campaignId && !haveSignup) {
+    console.log(
+      `🚖 Dispatching checkForSignup() for camapign ID: ${campaignId}`,
+    );
     store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
   }
 
