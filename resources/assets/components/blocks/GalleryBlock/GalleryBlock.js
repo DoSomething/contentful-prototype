@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Person from '../../Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
+import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
 const renderBlock = block => {
   switch (block.type) {
@@ -15,6 +16,9 @@ const renderBlock = block => {
 
     case 'page':
       return <PageGalleryItem key={block.id} {...block.fields} />;
+
+    case 'contentBlock':
+      return <ContentBlockGalleryItem key={block.id} {...block.fields} />;
 
     default:
       return null;
