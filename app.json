@@ -24,6 +24,9 @@
     "CONTENTFUL_CONTENT_API_KEY": {
       "required": true
     },
+    "CONTENTFUL_ENVIRONMENT_ID": {
+      "required": true
+    },
     "CONTENTFUL_SPACE_ID": {
       "required": true
     },
@@ -32,6 +35,9 @@
       "required": true
     },
     "FACEBOOK_APP_ID": {
+      "required": true
+    },
+    "GRAPHQL_URL": {
       "required": true
     },
     "GOOGLE_ANALYTICS_ID": {
