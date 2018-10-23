@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../Figure';
-import { contentfulImageUrl } from '../../helpers';
+import { Figure } from '../../../../Figure';
+import { contentfulImageUrl } from '../../../../../helpers';
 
 const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
   <a href={`/us/${slug}`}>
@@ -12,7 +12,7 @@ const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
     >
       <h3>{title}</h3>
 
-      {subTitle ? <p className="description">{subTitle}</p> : null}
+      {subTitle ? <p>{subTitle}</p> : null}
     </Figure>
   </a>
 );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Person from '../../Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
-import PageGalleryItem from '../../utilities/PageGalleryItem';
+import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 
 const renderBlock = block => {
   switch (block.type) {
