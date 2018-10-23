@@ -5,17 +5,16 @@ import { Figure } from '../Figure';
 import { contentfulImageUrl } from '../../helpers';
 
 const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
-  <Figure
-    alt={`${coverImage.description || title}-photo`}
-    image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
-    link={`/us/${slug}`}
-  >
-    <h3>
-      <a href={`/us/${slug}`}>{title}</a>
-    </h3>
+  <a href={`/us/${slug}`}>
+    <Figure
+      alt={`${coverImage.description || title}-photo`}
+      image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
+    >
+      <h3>{title}</h3>
 
-    {subTitle ? <p>{subTitle}</p> : null}
-  </Figure>
+      {subTitle ? <p className="description">{subTitle}</p> : null}
+    </Figure>
+  </a>
 );
 
 PageGalleryItem.propTypes = {
