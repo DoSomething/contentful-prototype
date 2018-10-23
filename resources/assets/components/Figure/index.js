@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { modifiers, isExternal } from '../../helpers';
+import { modifiers } from '../../helpers';
 import LazyImage from '../utilities/LazyImage';
 
 import './figure.scss';
