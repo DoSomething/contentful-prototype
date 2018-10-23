@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Enclosure from '../../Enclosure';
+import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
 import AuthorBio from '../../utilities/Author/AuthorBio';
@@ -26,6 +27,7 @@ const GeneralPage = props => {
     authors,
     title,
     subTitle,
+    coverImage,
     content,
     sidebar,
     blocks,
@@ -65,6 +67,14 @@ const GeneralPage = props => {
               </div>
             ) : null}
           </div>
+
+          {coverImage.url ? (
+            <LazyImage
+              className="padding-vertical-md margin-horizontal-auto"
+              alt={coverImage.description || 'Page Cover Image'}
+              src={contentfulImageUrl(coverImage.url, 1440, 620)}
+            />
+          ) : null}
 
           {content ? (
             <div className={classnames({ row: sidebar.length })}>
@@ -125,6 +135,10 @@ GeneralPage.propTypes = {
   authors: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
+  coverImage: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }),
   content: PropTypes.string,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -133,6 +147,7 @@ GeneralPage.propTypes = {
 
 GeneralPage.defaultProps = {
   authors: [],
+  coverImage: {},
   content: null,
   sidebar: [],
   subTitle: null,

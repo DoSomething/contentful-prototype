@@ -18,6 +18,10 @@ import {
   addNotification,
 } from '../actions';
 
+export function fetchCampaignSignup() {}
+
+export function storeCampaignSignup() {}
+
 /**
  * Action Creators: these functions create actions, which describe changes
  * to the state tree (either as a result of application logic or user input).
@@ -98,11 +102,18 @@ export function signupPending() {
 
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
+  console.log('🌂 Checking for signup...');
+
   return (dispatch, getState) => {
     const state = getState();
+
+    console.log(state);
+
     if (!isAuthenticated(state)) {
       return dispatch(signupNotFound());
     }
+
+    console.log('🍩 about to hit up next/signups...');
 
     return new Phoenix()
       .get('next/signups', {
@@ -124,6 +135,7 @@ export function checkForSignup(campaignId) {
 
 // Action: Set the total signups in the store.
 export function setTotalSignups(total) {
+  console.log('🌵 setting total signups...');
   return { type: SET_TOTAL_SIGNUPS, total };
 }
 
@@ -134,6 +146,7 @@ export function clickedSignUp(
   options = null,
   shouldRedirectToActionTab = true,
 ) {
+  console.log('☂️ Clicked signup...');
   return (dispatch, getState) => {
     const state = getState();
     const campaignActionUrl = join(
