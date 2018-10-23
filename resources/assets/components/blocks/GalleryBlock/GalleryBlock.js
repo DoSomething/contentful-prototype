@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Person from '../../Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
+import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 
 const renderBlock = block => {
   switch (block.type) {
@@ -11,6 +12,9 @@ const renderBlock = block => {
 
     case 'campaign':
       return null;
+
+    case 'page':
+      return <PageGalleryItem key={block.id} {...block.fields} />;
 
     default:
       return null;
