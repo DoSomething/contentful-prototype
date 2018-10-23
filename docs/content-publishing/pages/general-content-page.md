@@ -26,7 +26,7 @@ Supported categories currently include, `articles/`, `facts/` and `about/`.
 
 ### 3. Add a Cover Image (optional)
 
-If you would like an image displayed atop your page content, you can link an Asset image in the **Cover Image** field. This field will also be added to the metadata of the page, and will thus appear in the social media and link previews for the page (unless overriden by the **Social Override**).
+If you would like an image displayed atop your page content, you can link an Asset image in the **Cover Image** field. This field will also be added to the metadata of the page, and will thus appear in the social media and link previews for the page (unless overridden by including a **Metadata** block to the Page and adding an image to that block specifically for showcasing on social media platforms).
 
 ![General Content Page With Cover Image](../../.gitbook/assets/general-content-page-cover-image.png)
 
