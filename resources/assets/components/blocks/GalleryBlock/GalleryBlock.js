@@ -5,6 +5,7 @@ import Person from '../../Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
+import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
 
 const renderBlock = (block, imageAlignment) => {
   switch (block.type) {
@@ -12,7 +13,7 @@ const renderBlock = (block, imageAlignment) => {
       return <Person key={block.id} {...block.fields} />;
 
     case 'campaign':
-      return null;
+      return <CampaignGalleryItem key={block.id} {...block} />;
 
     case 'page':
       return <PageGalleryItem key={block.id} {...block.fields} />;
