@@ -49,6 +49,7 @@ const signupReducer = (state = {}, action) => {
       };
 
     case SIGNUP_FOUND:
+      console.log('✅ Signup found!');
       signups = [...state.data, action.campaignId];
 
       storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
@@ -64,7 +65,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case SIGNUP_NOT_FOUND:
-      console.log('⬇️ Reduction: Signup Not Found...');
+      console.log('⬇️ Reducer: Signup Not Found...');
 
       // Not sure why we don't also set thisCampaign to false here? So trying it out.
       return { ...state, isPending: false, thisCampaign: false };

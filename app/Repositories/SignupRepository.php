@@ -29,7 +29,13 @@ class SignupRepository
      */
     public function getSignups($query = [])
     {
-        return $this->rogue->get('v3/signups', $query);
+        \Log::info('💈 SignupRepository@getSignups()', [$query]);
+
+        $data = $this->rogue->get('v3/signups', $query);
+
+        \Log::info('💈 SignupRepository@getSignups() response:', [$data]);
+
+        return $data;
     }
 
     /**

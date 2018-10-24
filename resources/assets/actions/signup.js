@@ -1,7 +1,10 @@
+/* global window */
+
 import { join } from 'path';
 import { push } from 'react-router-redux';
 import { Phoenix } from '@dosomething/gateway';
 
+import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
 import {
@@ -17,10 +20,6 @@ import {
   queueEvent,
   addNotification,
 } from '../actions';
-
-export function fetchCampaignSignup() {}
-
-export function storeCampaignSignup() {}
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -100,6 +99,30 @@ export function signupPending() {
   return { type: SIGNUP_PENDING };
 }
 
+export function fetchCampaignSignups(query = {}) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const campaignId = state.campaign.campaignId;
+
+    // @TODO: refactor and remove this conditional; fetchCampaignSignups() should not be
+    // called if user is not authenticated.
+    if (!isAuthenticated(state)) {
+      console.log('🚷 Not authenticated!');
+      return dispatch(signupFound());
+    }
+
+    console.log('✨ fetchCampaignSignups() state', getState());
+
+    dispatch(
+      apiRequest('GET', {
+        campaignId,
+        query,
+        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+      }),
+    );
+  };
+}
+
 // Async Action: check if user already signed up for the campaign
 export function checkForSignup(campaignId) {
   console.log(`📋 Checking for signup on campaign ID: ${campaignId}`);
@@ -138,6 +161,8 @@ export function setTotalSignups(total) {
   console.log('🌵 setting total signups...');
   return { type: SET_TOTAL_SIGNUPS, total };
 }
+
+export function storeCampaignSignup() {}
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.

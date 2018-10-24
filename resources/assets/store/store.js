@@ -1,10 +1,10 @@
 import merge from 'lodash/merge';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { checkForSignup, startQueue } from '../actions';
-import { loadStorage } from '../helpers/storage';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
+import { loadStorage } from '../helpers/storage';
+import { checkForSignup, fetchCampaignSignups, startQueue } from '../actions';
 
 /**
  * Create a new instance of the Redux store using the given
@@ -65,6 +65,11 @@ export function initializeStore(store) {
 
   // If we don't already have a signup cached in local storage, check.
   if (campaignId && !haveSignup) {
+    console.log(
+      `🚖 Dispatching fetchCampaignSignups() for camapign ID: ${campaignId}`,
+    );
+    store.dispatch(fetchCampaignSignups());
+
     console.log(
       `🚖 Dispatching checkForSignup() for camapign ID: ${campaignId}`,
     );
