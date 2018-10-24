@@ -12,7 +12,7 @@
     }
   ],
   "env": {
-    "APP_ENV": "staging",
+    "APP_ENV": "development",
     "APP_DEBUG": "false",
     "APP_KEY": {
       "required": true
