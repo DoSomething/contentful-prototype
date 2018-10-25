@@ -83,11 +83,12 @@ class PollLocator extends React.Component {
       officialOnly: false,
       title: 'Find Where to Vote',
       width: '640px',
-      height: '350px',
-      logo: '',
+      height: '480px',
+      logo:
+        'https://user-images.githubusercontent.com/2658867/44488732-7e6fed80-a627-11e8-8d84-866c17144642.png',
       colors: {
-        header: '#229acd',
-        landscapeBackgroundHeader: '#228a9d',
+        header: '#ad1b1b',
+        landscapeBackgroundHeader: '#8d1919',
       },
       language: 'en',
     };
