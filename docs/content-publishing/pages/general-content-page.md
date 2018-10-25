@@ -24,7 +24,13 @@ We now support categorizing content pages using a prefix on the slug. So, if a p
 Supported categories currently include, `articles/`, `facts/` and `about/`.
 {% endhint %}
 
-### 3. Add your content
+### 3. Add a Cover Image (optional)
+
+If you would like an image displayed atop your page content, you can link an Asset image in the **Cover Image** field. This field will also be added to the metadata of the page, and will thus appear in the social media and link previews for the page (unless overridden by including a **Metadata** block to the Page and adding an image to that block specifically for showcasing on social media platforms).
+
+![General Content Page With Cover Image](../../.gitbook/assets/general-content-page-cover-image.png)
+
+### 4. Add your content
 
 Your page will have other blank fields you can use for your content. All of these fields are optional.
 
@@ -44,11 +50,11 @@ Add any desired blocks to the **Blocks** field, to expand on the content shown o
 For content pages we find Content Blocks, Images Blocks, and Link Actions to work best. \(@todo add links to respective documentation\)
 {% endhint %}
 
-### 4. Optionally display Social Share buttons on your page
+### 5. Optionally display Social Share buttons on your page
 
 If the **Display Social Share** field is set to 'Yes', Facebook and Twitter share buttons will be displayed at the bottom of the page (as shown in the screenshot in step 6), allowing the user to share a link to the current page. _Defaults to hidden_.
 
-### 5. Optionally add a [Social Override](../social-overrides.md) to the "Social Override" field.
+### 6. Optionally add a [Social Override](../social-overrides.md) to the "Social Override" field.
 
 A social override will change the default image, text blurb and title when the page url is shared on a social network or used in a Link Action. We have a separate page for adding a social override [here](../social-overrides.md).
 
