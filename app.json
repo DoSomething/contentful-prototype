@@ -31,16 +31,10 @@
       "required": true
     },
     "CONTENTFUL_USE_PREVIEW_API": "true",
-    "CUSTOMER_IO_ID": {
-      "required": true
-    },
     "FACEBOOK_APP_ID": {
       "required": true
     },
     "GRAPHQL_URL": {
-      "required": true
-    },
-    "GOOGLE_ANALYTICS_ID": {
       "required": true
     },
     "NORTHSTAR_AUTHORIZATION_ID": {
