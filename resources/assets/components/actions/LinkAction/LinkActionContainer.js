@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
   userId: getUserId(state),
   campaignId: state.campaign.legacyCampaignId,
   campaignRunId: state.campaign.legacyCampaignRunId,
+  source: state.user.source || undefined,
 });
 
 // Export the container component.
