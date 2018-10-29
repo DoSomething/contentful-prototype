@@ -26,6 +26,7 @@ const DefaultTemplate = props => {
     campaignRunId,
     buttonText,
     affiliateLogo,
+    source,
   } = props;
 
   // The affiliate logo specific text is hard-coded for OZY. Though we can set this title
@@ -38,7 +39,7 @@ const DefaultTemplate = props => {
     northstarId: userId, // @TODO: Remove!
     campaignId,
     campaignRunId,
-    source: 'web',
+    source,
   });
 
   // If no content is provided, show as an embed.
@@ -93,6 +94,7 @@ DefaultTemplate.defaultProps = {
   campaignId: null,
   campaignRunId: null,
   userId: null,
+  source: 'web',
 };
 
 DefaultTemplate.propTypes = {
@@ -104,6 +106,7 @@ DefaultTemplate.propTypes = {
   campaignId: PropTypes.string,
   campaignRunId: PropTypes.string,
   userId: PropTypes.string,
+  source: PropTypes.string,
 };
 
 export default DefaultTemplate;
