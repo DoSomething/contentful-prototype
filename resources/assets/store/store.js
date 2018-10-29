@@ -4,7 +4,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { checkForSignup, fetchCampaignSignups, startQueue } from '../actions';
+import { getUserId, isAuthenticated } from '../selectors/user';
+import { checkForSignup, getCampaignSignups, startQueue } from '../actions';
 
 /**
  * Create a new instance of the Redux store using the given
@@ -58,17 +59,21 @@ export function initializeStore(store) {
   console.log(state);
 
   const campaignId = state.campaign.campaignId;
-  const haveSignup = state.signups.data.includes(campaignId);
+  const storedSignup = state.signups.data.includes(campaignId);
 
-  console.log('campaign ID:', campaignId);
-  console.log('user has signup:', haveSignup);
+  console.log('Campaign ID:', campaignId);
+  console.log('User has signup:', storedSignup);
+  console.log('User is authenticated:', isAuthenticated(state));
 
-  // If we don't already have a signup cached in local storage, check.
-  if (campaignId && !haveSignup) {
+  // Fetch user signup for current campaign if user is authenticated and we don't
+  // already have signup cached in the store.
+  if (campaignId && isAuthenticated(state) && !storedSignup) {
     console.log(
-      `🚖 Dispatching fetchCampaignSignups() for camapign ID: ${campaignId}`,
+      `🚖 Dispatching getCampaignSignups() for camapign ID: ${campaignId}`,
     );
-    store.dispatch(fetchCampaignSignups());
+    store.dispatch(
+      getCampaignSignups({ filter: { northstar_id: getUserId(state) } }),
+    );
 
     console.log(
       `🚖 Dispatching checkForSignup() for camapign ID: ${campaignId}`,

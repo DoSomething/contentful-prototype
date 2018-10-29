@@ -99,19 +99,13 @@ export function signupPending() {
   return { type: SIGNUP_PENDING };
 }
 
-export function fetchCampaignSignups(query = {}) {
+// New and shiny ✨
+export function getCampaignSignups(query = {}) {
   return (dispatch, getState) => {
     const state = getState();
     const campaignId = state.campaign.campaignId;
 
-    // @TODO: refactor and remove this conditional; fetchCampaignSignups() should not be
-    // called if user is not authenticated.
-    if (!isAuthenticated(state)) {
-      console.log('🚷 Not authenticated!');
-      return dispatch(signupFound());
-    }
-
-    console.log('✨ fetchCampaignSignups() state', getState());
+    console.log('✨ getCampaignSignups() state', getState());
 
     dispatch(
       apiRequest('GET', {

@@ -12,12 +12,13 @@ import { PHOENIX_URL } from '../constants';
  * @return {Object}
  */
 export function getRequest(url, query) {
-  const client = new RestApiClient(PHOENIX_URL);
+  const client = new RestApiClient(PHOENIX_URL, {
+    headers: {
+      Authorization: `Bearer ${window.AUTH.token}`,
+      'Content-Type': 'application/json',
+    },
+  });
 
-  // @TODO: modify headers to add token so Rogue returns all
-  // data, including why_participated.
-
-  // @TODO: handle success/error and add messages.
   return client.get(url, query);
 }
 

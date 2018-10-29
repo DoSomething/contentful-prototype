@@ -30,7 +30,7 @@ class SignupController extends Controller
      */
     public function index(Request $request)
     {
-        Log::info('🌲 SignupController@index()', $request->all());
+        // Log::info('🌲 SignupController@index()', $request->all());
 
         return response()->json($this->phoenixLegacy->getAllSignups($request->query()));
     }

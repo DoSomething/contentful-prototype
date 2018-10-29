@@ -14,7 +14,7 @@ import { trackPuckEvent } from '../helpers/analytics';
  * @param  {Object} payload
  * @return {void}
  */
-const getRequestAction = payload => {
+const getRequestAction = (payload, dispatch) => {
   if (window.ENV.APP_ENV !== 'production') {
     getRequest(payload.url, payload.query).then(response => {
       // @TODO: more to come with handling the response!
@@ -33,7 +33,7 @@ const getRequestAction = payload => {
 };
 
 /**
- * Send a POST request.
+ * Send a POST request and dispatch actions.
  *
  * @param  {Object} payload
  * @return {Object}
