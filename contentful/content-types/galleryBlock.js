@@ -43,6 +43,14 @@ module.exports = function(migration) {
     .localized(false);
 
   galleryBlock
+    .createField('imageAlignment')
+    .name('Image Alignment')
+    .type('Symbol')
+    .validations([{ in: ['top', 'left'] }])
+    .required(true)
+    .localized(false);
+
+  galleryBlock
     .createField('itemsPerRow')
     .name('Items Per Row')
     .type('Integer')
@@ -53,6 +61,11 @@ module.exports = function(migration) {
     ])
     .required(true)
     .localized(false);
+
+  galleryBlock.changeEditorInterface('imageAlignment', 'radio', {
+    helpText:
+      "Determines where the gallery item's images are aligned relative to their text.",
+  });
 
   galleryBlock.changeEditorInterface('itemsPerRow', 'radio', {
     helpText:
