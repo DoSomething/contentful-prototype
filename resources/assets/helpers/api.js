@@ -5,6 +5,26 @@ import { RestApiClient } from '@dosomething/gateway';
 import { PHOENIX_URL } from '../constants';
 
 /**
+ * Set properties for request headers object.
+ *
+ * @param  {Object} options
+ * @return {Object}
+ */
+export function setRequestHeaders(options = {}) {
+  const headers = {};
+
+  if (options.token) {
+    headers['Authorization'] = `Bearer ${options.token}`; // eslint-disable-line dot-notation
+  }
+
+  headers['Content-Type'] = options.contentType
+    ? options.contentType
+    : 'application/json';
+
+  return headers;
+}
+
+/**
  * Send a GET request.
  *
  * @param  {String} url
@@ -12,12 +32,10 @@ import { PHOENIX_URL } from '../constants';
  * @return {Object}
  */
 export function getRequest(url, query) {
-  const client = new RestApiClient(PHOENIX_URL, {
-    headers: {
-      Authorization: `Bearer ${window.AUTH.token}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  const client = new RestApiClient(
+    PHOENIX_URL,
+    setRequestHeaders({ token: window.AUTH.token }),
+  );
 
   return client.get(url, query);
 }
@@ -63,24 +81,4 @@ export function getUserCampaignSignups(
       },
     },
   );
-}
-
-/**
- * Set properties for request headers object.
- *
- * @param  {Object} options
- * @return {Object}
- */
-export function setRequestHeaders(options = {}) {
-  const headers = {};
-
-  if (options.token) {
-    headers['Authorization'] = `Bearer ${options.token}`; // eslint-disable-line dot-notation
-  }
-
-  options.contentType
-    ? (headers['Content-Type'] = options.contentType)
-    : (headers['Content-Type'] = 'application/json');
-
-  return headers;
 }

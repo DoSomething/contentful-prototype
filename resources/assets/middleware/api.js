@@ -4,8 +4,9 @@ import { RestApiClient } from '@dosomething/gateway';
 
 import { report } from '../helpers';
 import { PHOENIX_URL } from '../constants';
-import { getRequest } from '../helpers/api';
+import { getRequest, setRequestHeaders } from '../helpers/api';
 import { API } from '../constants/action-types';
+import { getUserToken } from '../selectors/user';
 import { trackPuckEvent } from '../helpers/analytics';
 
 /**
@@ -15,21 +16,40 @@ import { trackPuckEvent } from '../helpers/analytics';
  * @return {void}
  */
 const getRequestAction = (payload, dispatch) => {
-  if (window.ENV.APP_ENV !== 'production') {
-    getRequest(payload.url, payload.query).then(response => {
-      // @TODO: more to come with handling the response!
-      if (response && response.data) {
-        console.groupCollapsed(
-          '%c API Middleware Response: ',
-          'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
-        );
-        console.table(response.data);
-        console.groupEnd();
-      } else {
-        console.log('Nope, nothing to see here for now...');
-      }
-    });
-  }
+  console.log('🔮 getRequestAction()');
+  console.log(payload);
+
+  dispatch({ type: payload.pending });
+
+  return getRequest(payload.url, payload.query)
+    .then(response => {
+      console.log('🤩', response);
+    })
+    .catch(error => {});
+
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  // if (window.ENV.APP_ENV !== 'production') {
+  //   getRequest(payload.url, payload.query).then(response => {
+  //     // @TODO: more to come with handling the response!
+  //     if (response && response.data) {
+  //       console.groupCollapsed(
+  //         '%c API Middleware Response: ',
+  //         'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
+  //       );
+  //       console.table(response.data);
+  //       console.groupEnd();
+  //     } else {
+  //       console.log('Nope, nothing to see here for now...');
+  //     }
+  //   });
+  // }
 };
 
 /**
@@ -38,13 +58,13 @@ const getRequestAction = (payload, dispatch) => {
  * @param  {Object} payload
  * @return {Object}
  */
-const postRequest = (payload, dispatch) => {
-  const client = new RestApiClient(PHOENIX_URL, {
-    headers: {
-      Authorization: `Bearer ${payload.token}`,
-      'Content-Type': 'multipart/form-data',
-    },
-  });
+const postRequest = (payload, dispatch, getState) => {
+  const token = getUserToken(getState()) || window.AUTH.token;
+
+  const client = new RestApiClient(
+    PHOENIX_URL,
+    setRequestHeaders({ token, contentType: 'multipart/form-data' }),
+  );
 
   dispatch({
     id: payload.meta.id,
@@ -90,7 +110,7 @@ const postRequest = (payload, dispatch) => {
 /**
  * Middleware for handling API actions.
  */
-const apiMiddleware = ({ dispatch }) => next => action => {
+const apiMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type !== API) {
     return next(action);
   }
@@ -103,7 +123,7 @@ const apiMiddleware = ({ dispatch }) => next => action => {
       break;
 
     case 'POST':
-      postRequest(payload, dispatch);
+      postRequest(payload, dispatch, getState);
       break;
 
     default:

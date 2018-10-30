@@ -1,5 +1,6 @@
 import { pull } from 'lodash';
 
+import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -11,7 +12,11 @@ import {
   SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
-import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
+import {
+  GET_CAMPAIGN_SIGNUPS_FAILED,
+  GET_CAMPAIGN_SIGNUPS_PENDING,
+  GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+} from '../constants/action-types';
 
 /**
  * Signup reducer:
@@ -22,6 +27,28 @@ const signupReducer = (state = {}, action) => {
   // console.log([state, action]);
 
   switch (action.type) {
+    case GET_CAMPAIGN_SIGNUPS_FAILED:
+      console.log('♻️ reducers/signups');
+      console.log(action);
+
+      return { ...state, isPending: false, thisCampaign: false };
+
+    case GET_CAMPAIGN_SIGNUPS_PENDING:
+      console.log('♻️ reducers/signups');
+      console.log(action);
+
+      // return { ...state, isPending: true };
+
+      return state;
+
+    case GET_CAMPAIGN_SIGNUPS_SUCCESSFUL:
+      console.log('♻️ reducers/signups');
+      console.log(action);
+
+      // return { ...state }
+
+      return state;
+
     case SIGNUP_CREATED:
       signups = [...state.data, action.campaignId];
 

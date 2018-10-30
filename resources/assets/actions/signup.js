@@ -20,6 +20,11 @@ import {
   queueEvent,
   addNotification,
 } from '../actions';
+import {
+  GET_CAMPAIGN_SIGNUPS_FAILED,
+  GET_CAMPAIGN_SIGNUPS_PENDING,
+  GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+} from '../constants/action-types';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -102,15 +107,17 @@ export function signupPending() {
 // New and shiny ✨
 export function getCampaignSignups(query = {}) {
   return (dispatch, getState) => {
-    const state = getState();
-    const campaignId = state.campaign.campaignId;
+    const campaignId = getState().campaign.campaignId;
 
     console.log('✨ getCampaignSignups() state', getState());
 
     dispatch(
       apiRequest('GET', {
         campaignId,
+        failure: GET_CAMPAIGN_SIGNUPS_FAILED,
+        pending: GET_CAMPAIGN_SIGNUPS_PENDING,
         query,
+        success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
       }),
     );

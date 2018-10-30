@@ -98,9 +98,7 @@ export function storeCampaignPost(campaignId, data) {
       ? `/next/referrals`
       : `/api/v2/campaigns/${campaignId}/posts`;
 
-  return (dispatch, getState) => {
-    const token = getState().user.token;
-
+  return dispatch => {
     dispatch(
       apiRequest('POST', {
         body,
@@ -113,7 +111,6 @@ export function storeCampaignPost(campaignId, data) {
         },
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
-        token,
         url,
       }),
     );
