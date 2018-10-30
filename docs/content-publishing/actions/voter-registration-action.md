@@ -10,6 +10,6 @@ When creating a new _Voter Registration Action_ on Contentful, you are required 
 
 Enter a full URL where the member should be directed to upon clicking on the button to start their registration.
 
-## Dynamic Tokens
+## Dynamic URL Tokens
 
-Dynamic tokens are supported in the `link` field. Instructions can be found [here](../dynamic-link-tokens.md)
+The Voter Registration Action supports dynamic token substitution in the `link` field. Instructions can be found [here](../dynamic-link-tokens.md)

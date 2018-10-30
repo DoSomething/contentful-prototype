@@ -36,7 +36,7 @@ You can have the Link Action render as a Call To Action-like component by select
 
 ## Dynamic URL Tokens
 
-The Link Action supports dynamic tokens in the `link` field. Instructions can be found [here](../dynamic-link-tokens.md)
+The Link Action supports dynamic token substitution in the `link` field. Instructions can be found [here](../dynamic-link-tokens.md)
 
 ## Usage Instructions
 

@@ -1,6 +1,6 @@
 # Dynamic Link Tokens
 
-You can use select _tokens_ in the specified URL within certain Content Types' **Link** field to include dynamic information. These tokens will be replaced with actual values.
+You can use select _tokens_ in the specified URL within certain Content Types' **Link** field to substitute dynamic information. These tokens will be replaced with actual values.
 
 The following tokens are available for use in the `link` field:
 
