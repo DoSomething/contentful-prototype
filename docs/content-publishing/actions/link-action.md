@@ -34,6 +34,10 @@ You can have the Link Action render as a Call To Action-like component by select
 
 ![CTA Link Action component](../../.gitbook/assets/link-action-cta.png)
 
+## Dynamic URL Tokens
+
+The Link Action supports dynamic token substitution in the `link` field. Instructions can be found [here](../dynamic-link-tokens.md)
+
 ## Usage Instructions
 
 The Link Action consists of the following fields:
