@@ -21,7 +21,7 @@ class AffiliateOption extends React.Component {
 
   render() {
     return (
-      <div className="form-wrapper affiliate-option">
+      <div className="form-wrapper affiliate-option clear-both">
         <label className="option -checkbox" htmlFor="affiliate_opt_in">
           <input
             type="checkbox"
