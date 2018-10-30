@@ -64,3 +64,23 @@ export function getUserCampaignSignups(
     },
   );
 }
+
+/**
+ * Set properties for request headers object.
+ *
+ * @param  {Object} options
+ * @return {Object}
+ */
+export function setRequestHeaders(options = {}) {
+  const headers = {};
+
+  if (options.token) {
+    headers['Authorization'] = `Bearer ${options.token}`; // eslint-disable-line dot-notation
+  }
+
+  options.contentType
+    ? (headers['Content-Type'] = options.contentType)
+    : (headers['Content-Type'] = 'application/json');
+
+  return headers;
+}
