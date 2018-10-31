@@ -6,7 +6,7 @@ import Gallery from '../../utilities/Gallery/Gallery';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 
-const renderBlock = block => {
+const renderBlock = (block, imageAlignment) => {
   switch (block.type) {
     case 'person':
       return <Person key={block.id} {...block.fields} />;
@@ -18,7 +18,13 @@ const renderBlock = block => {
       return <PageGalleryItem key={block.id} {...block.fields} />;
 
     case 'contentBlock':
-      return <ContentBlockGalleryItem key={block.id} {...block.fields} />;
+      return (
+        <ContentBlockGalleryItem
+          key={block.id}
+          {...block.fields}
+          imageAlignment={imageAlignment}
+        />
+      );
 
     default:
       return null;
@@ -27,14 +33,16 @@ const renderBlock = block => {
 
 const galleryTypes = { '2': 'duo', '3': 'triad', '4': 'quartet' };
 
-const GalleryBlock = ({ title, blocks, itemsPerRow }) => {
+const GalleryBlock = ({ title, blocks, imageAlignment, itemsPerRow }) => {
   const galleryType = galleryTypes[itemsPerRow];
 
   return (
     <div className="gallery-block">
       {title ? <h1 className="padding-horizontal-md">{title}</h1> : null}
 
-      <Gallery type={galleryType}>{blocks.map(renderBlock)}</Gallery>
+      <Gallery type={galleryType}>
+        {blocks.map(block => renderBlock(block, imageAlignment))}
+      </Gallery>
     </div>
   );
 };
@@ -42,6 +50,7 @@ const GalleryBlock = ({ title, blocks, itemsPerRow }) => {
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
 };
 
