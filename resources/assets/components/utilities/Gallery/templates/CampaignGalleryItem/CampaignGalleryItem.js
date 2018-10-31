@@ -7,7 +7,10 @@ import { contentfulImageUrl } from '../../../../../helpers';
 import './campaign-gallery-item.scss';
 
 const CampaignGalleryItem = ({ title, tagline, coverImage, slug }) => (
-  <a className="page-gallery-item display-block" href={`/us/campaigns/${slug}`}>
+  <a
+    className="campaign-gallery-item display-block"
+    href={`/us/campaigns/${slug}`}
+  >
     <Figure
       alt={`${coverImage.description || title}-photo`}
       image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
