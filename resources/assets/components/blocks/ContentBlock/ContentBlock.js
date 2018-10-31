@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Figure } from '../../Figure';
 import SectionHeader from '../../SectionHeader';
+import { contentfulImageUrl } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
 
 import './content-block.scss';
@@ -23,7 +24,7 @@ const ContentBlock = props => {
       <div className="margin-horizontal-md">
         {image ? (
           <Figure
-            image={image}
+            image={contentfulImageUrl(image, '600', '600', 'fill')}
             alt="content-block"
             alignment={`${imageAlignment}-collapse`}
             size="one-third"

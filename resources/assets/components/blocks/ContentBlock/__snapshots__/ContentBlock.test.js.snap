@@ -10,7 +10,7 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
     <Figure
       alignment="right-collapse"
       alt="content-block"
-      image="image.com"
+      image="image.com?w=600&h=600&fit=fill"
       imageClassName={null}
       size="one-third"
     >
@@ -42,7 +42,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
     <Figure
       alignment="right-collapse"
       alt="content-block"
-      image="image.com"
+      image="image.com?w=600&h=600&fit=fill"
       imageClassName={null}
       size="one-third"
     >
