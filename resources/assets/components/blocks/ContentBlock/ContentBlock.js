@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import requiredIf from 'react-required-if';
 
 import { Figure } from '../../Figure';
 import SectionHeader from '../../SectionHeader';
@@ -45,13 +46,13 @@ ContentBlock.propTypes = {
     url: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-  imageAlignment: PropTypes.string,
+  imageAlignment: requiredIf(PropTypes.string, props => props.image.url),
   superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 ContentBlock.defaultProps = {
-  imageAlignment: 'right',
+  imageAlignment: null,
   superTitle: null,
   title: null,
 };
