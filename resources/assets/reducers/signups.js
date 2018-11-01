@@ -45,6 +45,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
+        thisCampaign: data.length,
       };
 
     case SIGNUP_CREATED:
