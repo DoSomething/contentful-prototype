@@ -1,5 +1,6 @@
 /* global window */
 
+import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { report } from '../helpers';
@@ -10,52 +11,65 @@ import { getUserToken } from '../selectors/user';
 import { trackPuckEvent } from '../helpers/analytics';
 
 /**
+ * Console log a table of data.
+ *
+ * @param  {Array} data
+ * @return {void}
+ * @todo   Move this to a dedicated Debugger or Logger service class.
+ */
+function tabularLog(data) {
+  if (!data) {
+    return;
+  }
+
+  // Console log response Data for debugging.
+  if (window.ENV.APP_ENV !== 'production') {
+    console.groupCollapsed(
+      '%c API Middleware Response: ',
+      'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
+    );
+    console.table(data);
+    console.groupEnd();
+  }
+}
+
+/**
  * Send a GET request and dispatch actions.
  *
  * @param  {Object} payload
+ * @param  {Function} dispatch
  * @return {void}
  */
 const getRequestAction = (payload, dispatch) => {
-  console.log('🔮 getRequestAction()');
-  console.log(payload);
-
   dispatch({ type: payload.pending });
 
   return getRequest(payload.url, payload.query)
     .then(response => {
-      console.log('🤩', response);
-    })
-    .catch(error => {});
+      tabularLog(get(response, 'data', null));
 
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  //
-  // if (window.ENV.APP_ENV !== 'production') {
-  //   getRequest(payload.url, payload.query).then(response => {
-  //     // @TODO: more to come with handling the response!
-  //     if (response && response.data) {
-  //       console.groupCollapsed(
-  //         '%c API Middleware Response: ',
-  //         'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
-  //       );
-  //       console.table(response.data);
-  //       console.groupEnd();
-  //     } else {
-  //       console.log('Nope, nothing to see here for now...');
-  //     }
-  //   });
-  // }
+      dispatch({
+        meta: get(payload, 'meta', {}),
+        response,
+        type: payload.success,
+      });
+    })
+    .catch(error => {
+      if (window.ENV.APP_ENV !== 'production') {
+        console.log('🚫 failed response? caught the error!', error);
+      }
+
+      dispatch({
+        response: error.response,
+        type: payload.failure,
+      });
+    });
 };
 
 /**
  * Send a POST request and dispatch actions.
  *
  * @param  {Object} payload
+ * @param  {Function} dispatch
  * @return {Object}
  */
 const postRequest = (payload, dispatch, getState) => {
@@ -74,7 +88,7 @@ const postRequest = (payload, dispatch, getState) => {
   return client
     .post(payload.url, payload.body)
     .then(response => {
-      console.log('✅ successful response!');
+      tabularLog(get(response, 'data', null));
 
       response.status = {
         success: {
@@ -95,13 +109,13 @@ const postRequest = (payload, dispatch, getState) => {
         url: payload.url,
         error,
       });
-      console.log('🚫 failed response; caught the error!');
-
-      const response = error.response;
+      if (window.ENV.APP_ENV !== 'production') {
+        console.log('🚫 failed response? caught the error!', error);
+      }
 
       dispatch({
         meta: payload.meta,
-        response,
+        response: error.response,
         type: payload.failure,
       });
     });
