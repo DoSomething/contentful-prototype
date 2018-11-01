@@ -7,7 +7,6 @@ import {
   SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
-  SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
 import {
@@ -74,9 +73,6 @@ const signupReducer = (state = {}, action) => {
 
     case SIGNUP_PENDING:
       return { ...state, isPending: true };
-
-    case SET_TOTAL_SIGNUPS:
-      return { ...state, total: action.total };
 
     case SIGNUP_CLICKED_OPT_OUT:
       return {
