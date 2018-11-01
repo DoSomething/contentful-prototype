@@ -13,7 +13,6 @@ import {
   SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
-  SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
   queueEvent,
   addNotification,
@@ -110,11 +109,6 @@ export function getCampaignSignups(id = null, query = {}) {
       }),
     );
   };
-}
-
-// Action: Set the total signups in the store.
-export function setTotalSignups(total) {
-  return { type: SET_TOTAL_SIGNUPS, total };
 }
 
 export function storeCampaignSignup() {}
