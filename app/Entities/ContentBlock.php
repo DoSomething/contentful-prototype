@@ -25,7 +25,7 @@ class ContentBlock extends Entity implements JsonSerializable
                     'url' => get_image_url($this->image),
                     'description' => $this->image ? $this->image->getDescription() : null,
                 ],
-                'imageAlignment' => $this->imageAlignment ? strtolower($this->imageAlignment) : null,
+                'imageAlignment' => $this->imageAlignment ? strtolower($this->imageAlignment) : 'right',
                 'additionalContent' => $this->additionalContent,
             ],
         ];
