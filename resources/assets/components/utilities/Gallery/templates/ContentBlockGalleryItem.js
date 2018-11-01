@@ -13,9 +13,9 @@ const ContentBlockGalleryItem = ({ title, image, content, imageAlignment }) => {
 
   return (
     <Figure
-      alt={`${title}-photo`}
+      alt={image.description || `${title}-photo`}
       image={contentfulImageUrl(
-        image,
+        image.url,
         imageFormatting,
         imageFormatting,
         'fill',
@@ -31,13 +31,12 @@ const ContentBlockGalleryItem = ({ title, image, content, imageAlignment }) => {
 
 ContentBlockGalleryItem.propTypes = {
   title: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  image: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
   content: PropTypes.string.isRequired,
   imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
-};
-
-ContentBlockGalleryItem.defaultProps = {
-  image: null,
 };
 
 export default ContentBlockGalleryItem;

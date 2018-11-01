@@ -24,8 +24,8 @@ const ContentBlock = props => {
       <div className="margin-horizontal-md">
         {image ? (
           <Figure
-            image={contentfulImageUrl(image, '600', '600', 'fill')}
-            alt="content-block"
+            image={contentfulImageUrl(image.url, '600', '600', 'fill')}
+            alt={image.description || 'content-block'}
             alignment={`${imageAlignment}-collapse`}
             size="one-third"
           >
@@ -41,14 +41,16 @@ const ContentBlock = props => {
 
 ContentBlock.propTypes = {
   content: PropTypes.string.isRequired,
-  image: PropTypes.string,
+  image: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
   imageAlignment: PropTypes.string,
   superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 ContentBlock.defaultProps = {
-  image: null,
   imageAlignment: 'right',
   superTitle: null,
   title: null,
