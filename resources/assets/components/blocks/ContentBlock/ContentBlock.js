@@ -22,7 +22,7 @@ const ContentBlock = props => {
       ) : null}
 
       <div className="margin-horizontal-md">
-        {image ? (
+        {image.url ? (
           <Figure
             image={contentfulImageUrl(image.url, '600', '600', 'fill')}
             alt={image.description || 'content-block'}
