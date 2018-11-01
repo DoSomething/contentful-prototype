@@ -3,9 +3,7 @@ import { get, pull } from 'lodash';
 import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 import {
   SIGNUP_CREATED,
-  SIGNUP_FOUND,
   SIGNUP_PENDING,
-  SIGNUP_NOT_FOUND,
   SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
@@ -74,23 +72,8 @@ const signupReducer = (state = {}, action) => {
         shouldShowAffirmation: false,
       };
 
-    case SIGNUP_FOUND:
-      signups = [...state.data, action.campaignId];
-
-      storageSet(action.userId, SIGNUP_STORAGE_KEY, signups);
-
-      return {
-        ...state,
-        data: signups,
-        isPending: false,
-        thisCampaign: true,
-      };
-
     case SIGNUP_PENDING:
       return { ...state, isPending: true };
-
-    case SIGNUP_NOT_FOUND:
-      return { ...state, isPending: false, thisCampaign: false };
 
     case SET_TOTAL_SIGNUPS:
       return { ...state, total: action.total };

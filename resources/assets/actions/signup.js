@@ -9,8 +9,6 @@ import { isCampaignClosed } from '../helpers';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import {
   SIGNUP_CREATED,
-  SIGNUP_FOUND,
-  SIGNUP_NOT_FOUND,
   SIGNUP_PENDING,
   SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
@@ -78,24 +76,6 @@ export function signupCreated(campaignId, shouldShowAffirmation = true) {
       shouldShowAffirmation,
     });
   };
-}
-
-// Action: an existing signup was found for a campaign.
-export function signupFound(campaignId) {
-  return (dispatch, getState) => {
-    const { user } = getState();
-
-    dispatch({
-      type: SIGNUP_FOUND,
-      campaignId,
-      userId: user.id,
-    });
-  };
-}
-
-// Action: no existing signup was found for the campaign.
-export function signupNotFound() {
-  return { type: SIGNUP_NOT_FOUND };
 }
 
 // Action: waiting on a signup response.
