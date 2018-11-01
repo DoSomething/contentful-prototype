@@ -65,8 +65,6 @@ class PhoenixLegacy extends RestApiClient
     {
         $path = 'v1/signups';
 
-        $data = $this->get($path, $query);
-
-        return $data;
+        return $this->get($path, $query);
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Services\Rogue;
 use Illuminate\Http\Request;
 use App\Services\PhoenixLegacy;
-use Illuminate\Support\Facades\Log;
 
 class SignupController extends Controller
 {
