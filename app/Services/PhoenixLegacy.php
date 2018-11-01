@@ -63,13 +63,9 @@ class PhoenixLegacy extends RestApiClient
      */
     public function getAllSignups(array $query = [])
     {
-        \Log::info('👵🏻 ➡️ PhoenixLegacy@getAllSignups() query', $query);
-
         $path = 'v1/signups';
 
         $data = $this->get($path, $query);
-
-        \Log::info('👵🏻 ⬅️ PhoenixLegacy@getAllSignups() response data', $data);
 
         return $data;
     }

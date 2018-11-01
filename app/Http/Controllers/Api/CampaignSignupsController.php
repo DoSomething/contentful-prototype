@@ -40,8 +40,6 @@ class CampaignSignupsController extends Controller
 
         $query['filter']['campaign_id'] = $id;
 
-        \Log::info('👻 CampaignSignupsController@index()', [$id, $request->all(), $query]);
-
         return $this->signupRepository->getSignups($query);
     }
 }
