@@ -42,10 +42,6 @@ import { bindNavigationEvents } from './helpers/navigation';
 
 // Configure store & history.
 ready(() => {
-  console.log('🚩');
-  console.log('Window State:', window.STATE);
-  console.log('Window Auth:', window.AUTH);
-
   const history = historyInit();
   const middleware = [thunk, routerMiddleware(history)];
   const preloadedState = window.STATE || {};
