@@ -5,10 +5,10 @@ import { RestApiClient } from '@dosomething/gateway';
 
 import { report } from '../helpers';
 import { PHOENIX_URL } from '../constants';
-import { getRequest, setRequestHeaders } from '../helpers/api';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
 import { trackPuckEvent } from '../helpers/analytics';
+import { getRequest, setRequestHeaders } from '../helpers/api';
 
 /**
  * Console log a table of data.
