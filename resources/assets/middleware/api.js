@@ -71,6 +71,7 @@ const getRequestAction = (payload, dispatch) => {
  * @param  {Object} payload
  * @param  {Function} dispatch
  * @return {Object}
+ * @todo   rename to postRequestAction
  */
 const postRequest = (payload, dispatch, getState) => {
   const token = getUserToken(getState()) || window.AUTH.token;
