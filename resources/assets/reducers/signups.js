@@ -45,7 +45,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        thisCampaign: data.length,
+        thisCampaign: data.length ? true : false, // eslint-disable-line no-unneeded-ternary
       };
 
     case SIGNUP_CREATED:
