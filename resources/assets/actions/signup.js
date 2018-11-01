@@ -6,7 +6,7 @@ import { Phoenix } from '@dosomething/gateway';
 
 import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
-import { isAuthenticated } from '../selectors/user';
+import { getUserId, isAuthenticated } from '../selectors/user';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -104,19 +104,27 @@ export function signupPending() {
   return { type: SIGNUP_PENDING };
 }
 
-// New and shiny ✨
-export function getCampaignSignups(query = {}) {
+/**
+ * Get signups for a campaign; allows filtering via query options.
+ *
+ * @param  {Object} query
+ * @param  {String} id
+ * @return {Function}
+ */
+export function getCampaignSignups(id = null, query = {}) {
   return (dispatch, getState) => {
-    const campaignId = getState().campaign.campaignId;
-
-    console.log('✨ getCampaignSignups() state', getState());
+    const state = getState();
+    const campaignId = id || state.campaign.campaignId;
 
     dispatch(
       apiRequest('GET', {
         campaignId,
         failure: GET_CAMPAIGN_SIGNUPS_FAILED,
+        meta: {
+          northstarId: getUserId(state),
+        },
         pending: GET_CAMPAIGN_SIGNUPS_PENDING,
-        query,
+        query: { ...query, filter: { northstar_id: getUserId(state) } },
         success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
       }),
@@ -124,42 +132,8 @@ export function getCampaignSignups(query = {}) {
   };
 }
 
-// Async Action: check if user already signed up for the campaign
-export function checkForSignup(campaignId) {
-  console.log(`📋 Checking for signup on campaign ID: ${campaignId}`);
-
-  return (dispatch, getState) => {
-    const state = getState();
-
-    console.log(state);
-
-    if (!isAuthenticated(state)) {
-      return dispatch(signupNotFound());
-    }
-
-    console.log('🍩 About to hit up next/signups...');
-
-    return new Phoenix()
-      .get('next/signups', {
-        campaigns: campaignId,
-        user: state.user.id,
-      })
-      .then(response => {
-        if (!response || !response.data || !response.data[0]) {
-          throw new Error('no signup found');
-        }
-
-        dispatch(signupFound(campaignId));
-      })
-      .catch(() => {
-        dispatch(signupNotFound());
-      });
-  };
-}
-
 // Action: Set the total signups in the store.
 export function setTotalSignups(total) {
-  console.log('🌵 setting total signups...');
   return { type: SET_TOTAL_SIGNUPS, total };
 }
 
@@ -172,7 +146,6 @@ export function clickedSignUp(
   options = null,
   shouldRedirectToActionTab = true,
 ) {
-  console.log('☂️ Clicked signup...');
   return (dispatch, getState) => {
     const state = getState();
     const campaignActionUrl = join(
@@ -227,7 +200,7 @@ export function clickedSignUp(
           dispatch(addNotification('error'));
         } else if (response[0] === false) {
           // If Drupal denied our signup request, check if we already had a signup.
-          dispatch(checkForSignup(campaignId));
+          dispatch(getCampaignSignups());
         } else {
           const isClosed = isCampaignClosed(state.campaign.endDate);
 
