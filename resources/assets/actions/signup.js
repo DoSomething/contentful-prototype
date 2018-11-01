@@ -124,7 +124,7 @@ export function getCampaignSignups(id = null, query = {}) {
           northstarId: getUserId(state),
         },
         pending: GET_CAMPAIGN_SIGNUPS_PENDING,
-        query: { ...query, filter: { northstar_id: getUserId(state) } },
+        query,
         success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
       }),
@@ -200,7 +200,11 @@ export function clickedSignUp(
           dispatch(addNotification('error'));
         } else if (response[0] === false) {
           // If Drupal denied our signup request, check if we already had a signup.
-          dispatch(getCampaignSignups());
+          dispatch(
+            getCampaignSignups(campaignId, {
+              filter: { northstar_id: getUserId(state) },
+            }),
+          );
         } else {
           const isClosed = isCampaignClosed(state.campaign.endDate);
 

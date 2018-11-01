@@ -33,8 +33,6 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
   // @TODO: Let's just merge all 3 states at once
   const transformedState = loadStorage(initialState, preloadedState);
 
-  console.log('Transformed State:', transformedState);
-
   return createStore(
     combineReducers(reducers),
     merge(transformedState, preloadedState),
@@ -56,7 +54,11 @@ export function initializeStore(store) {
   // Fetch user signup for current campaign if user is authenticated and we don't
   // already have signup cached in the store.
   if (campaignId && isAuthenticated(state) && !storedSignup) {
-    store.dispatch(getCampaignSignups());
+    store.dispatch(
+      getCampaignSignups(campaignId, {
+        filter: { northstar_id: getUserId(state) },
+      }),
+    );
   }
 
   // Start the event queue.
