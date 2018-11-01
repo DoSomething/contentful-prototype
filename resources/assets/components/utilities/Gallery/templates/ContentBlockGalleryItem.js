@@ -9,6 +9,7 @@ const ContentBlockGalleryItem = ({ title, image, content, imageAlignment }) => {
   // Image formatting needs to be smaller if they are left-aligned.
   const imageFormatting = imageAlignment === 'left' ? '100' : '400';
   // Ensure we don't pass the unsupported 'top' as the alignment prop to Figure.
+  // @TODO (11/01/2018) Update this logic once we refactor the Figure component!
   const alignment = imageAlignment === 'top' ? null : imageAlignment;
 
   return (
