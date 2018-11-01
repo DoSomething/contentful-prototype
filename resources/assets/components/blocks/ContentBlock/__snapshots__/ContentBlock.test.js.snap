@@ -9,7 +9,7 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
   >
     <Figure
       alignment="right-collapse"
-      alt="content-block"
+      alt="cool image of image.com"
       image="image.com?w=600&h=600&fit=fill"
       imageClassName={null}
       size="one-third"
@@ -41,7 +41,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
   >
     <Figure
       alignment="right-collapse"
-      alt="content-block"
+      alt="cool image of image.com"
       image="image.com?w=600&h=600&fit=fill"
       imageClassName={null}
       size="one-third"
@@ -56,7 +56,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
 </div>
 `;
 
-exports[`ContentBlock component it works beautifully with a mere content prop 1`] = `
+exports[`ContentBlock component it works beautifully with content and an empty image prop 1`] = `
 <div
   className="content-block"
 >
