@@ -5,18 +5,20 @@ import { shallowToJson } from 'enzyme-to-json';
 import ContentBlock from './ContentBlock';
 
 const emptyImage = { url: null, description: null };
-const image = { url: 'image.com', description: 'cool image of image.com' };
 
 const props = {
   superTitle: 'Test Super Title',
   title: 'Test Title',
   content: 'Test Content',
-  image: emptyImage,
+  image: {
+    url: 'image.com',
+    description: 'cool image of image.com',
+  },
 };
 
 describe('ContentBlock component', () => {
   test('is rendered with the proper child components when image is set', () => {
-    const wrapper = shallow(<ContentBlock {...props} image={image} />);
+    const wrapper = shallow(<ContentBlock {...props} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
     expect(wrapper.find('Figure').length).toEqual(1);
@@ -26,9 +28,7 @@ describe('ContentBlock component', () => {
   });
 
   test("does not include SectionHeader when there's no title", () => {
-    const wrapper = shallow(
-      <ContentBlock {...props} image={image} title={undefined} />,
-    );
+    const wrapper = shallow(<ContentBlock {...props} title={undefined} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(0);
 
@@ -36,7 +36,7 @@ describe('ContentBlock component', () => {
   });
 
   test('is rendered with the proper child components when image is not set', () => {
-    const wrapper = shallow(<ContentBlock {...props} />);
+    const wrapper = shallow(<ContentBlock {...props} image={emptyImage} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
     expect(wrapper.find('Figure').length).toEqual(0);
@@ -44,19 +44,15 @@ describe('ContentBlock component', () => {
   });
 
   test('it renders the correct alignment class for "left" and "right" image props', () => {
-    let wrapper = shallow(
-      <ContentBlock {...props} image={image} imageAlignment="left" />,
-    );
+    let wrapper = shallow(<ContentBlock {...props} imageAlignment="left" />);
     expect(wrapper.find('Figure').props().alignment).toEqual('left-collapse');
 
-    wrapper = shallow(
-      <ContentBlock {...props} image={image} imageAlignment="right" />,
-    );
+    wrapper = shallow(<ContentBlock {...props} imageAlignment="right" />);
     expect(wrapper.find('Figure').props().alignment).toEqual('right-collapse');
   });
 
   test('it defaults to "right" image alignment', () => {
-    const wrapper = shallow(<ContentBlock {...props} image={image} />);
+    const wrapper = shallow(<ContentBlock {...props} />);
     expect(wrapper.find('Figure').props().alignment).toEqual('right-collapse');
   });
 
