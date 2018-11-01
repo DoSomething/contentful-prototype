@@ -1,9 +1,12 @@
+/* global window */
+
 import { join } from 'path';
 import { push } from 'react-router-redux';
 import { Phoenix } from '@dosomething/gateway';
 
+import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
-import { isAuthenticated } from '../selectors/user';
+import { getUserId, isAuthenticated } from '../selectors/user';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -17,6 +20,11 @@ import {
   queueEvent,
   addNotification,
 } from '../actions';
+import {
+  GET_CAMPAIGN_SIGNUPS_FAILED,
+  GET_CAMPAIGN_SIGNUPS_PENDING,
+  GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+} from '../constants/action-types';
 
 /**
  * Action Creators: these functions create actions, which describe changes
@@ -96,29 +104,31 @@ export function signupPending() {
   return { type: SIGNUP_PENDING };
 }
 
-// Async Action: check if user already signed up for the campaign
-export function checkForSignup(campaignId) {
+/**
+ * Get signups for a campaign; allows filtering via query options.
+ *
+ * @param  {Object} query
+ * @param  {String} id
+ * @return {Function}
+ */
+export function getCampaignSignups(id = null, query = {}) {
   return (dispatch, getState) => {
     const state = getState();
-    if (!isAuthenticated(state)) {
-      return dispatch(signupNotFound());
-    }
+    const campaignId = id || state.campaign.campaignId;
 
-    return new Phoenix()
-      .get('next/signups', {
-        campaigns: campaignId,
-        user: state.user.id,
-      })
-      .then(response => {
-        if (!response || !response.data || !response.data[0]) {
-          throw new Error('no signup found');
-        }
-
-        dispatch(signupFound(campaignId));
-      })
-      .catch(() => {
-        dispatch(signupNotFound());
-      });
+    dispatch(
+      apiRequest('GET', {
+        campaignId,
+        failure: GET_CAMPAIGN_SIGNUPS_FAILED,
+        meta: {
+          northstarId: getUserId(state),
+        },
+        pending: GET_CAMPAIGN_SIGNUPS_PENDING,
+        query,
+        success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+      }),
+    );
   };
 }
 
@@ -126,6 +136,8 @@ export function checkForSignup(campaignId) {
 export function setTotalSignups(total) {
   return { type: SET_TOTAL_SIGNUPS, total };
 }
+
+export function storeCampaignSignup() {}
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
@@ -188,7 +200,11 @@ export function clickedSignUp(
           dispatch(addNotification('error'));
         } else if (response[0] === false) {
           // If Drupal denied our signup request, check if we already had a signup.
-          dispatch(checkForSignup(campaignId));
+          dispatch(
+            getCampaignSignups(campaignId, {
+              filter: { northstar_id: getUserId(state) },
+            }),
+          );
         } else {
           const isClosed = isCampaignClosed(state.campaign.endDate);
 

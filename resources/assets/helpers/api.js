@@ -5,6 +5,26 @@ import { RestApiClient } from '@dosomething/gateway';
 import { PHOENIX_URL } from '../constants';
 
 /**
+ * Set properties for request headers object.
+ *
+ * @param  {Object} options
+ * @return {Object}
+ */
+export function setRequestHeaders(options = {}) {
+  const headers = {};
+
+  if (options.token) {
+    headers['Authorization'] = `Bearer ${options.token}`; // eslint-disable-line dot-notation
+  }
+
+  headers['Content-Type'] = options.contentType
+    ? options.contentType
+    : 'application/json';
+
+  return headers;
+}
+
+/**
  * Send a GET request.
  *
  * @param  {String} url
@@ -12,12 +32,11 @@ import { PHOENIX_URL } from '../constants';
  * @return {Object}
  */
 export function getRequest(url, query) {
-  const client = new RestApiClient(PHOENIX_URL);
+  const client = new RestApiClient(
+    PHOENIX_URL,
+    setRequestHeaders({ token: window.AUTH.token }),
+  );
 
-  // @TODO: modify headers to add token so Rogue returns all
-  // data, including why_participated.
-
-  // @TODO: handle success/error and add messages.
   return client.get(url, query);
 }
 

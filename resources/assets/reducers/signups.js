@@ -1,5 +1,6 @@
-import { pull } from 'lodash';
+import { get, pull } from 'lodash';
 
+import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 import {
   SIGNUP_CREATED,
   SIGNUP_FOUND,
@@ -11,15 +12,42 @@ import {
   SET_TOTAL_SIGNUPS,
   CLICKED_REMOVE_SIGN_UP,
 } from '../actions';
-import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
+import {
+  GET_CAMPAIGN_SIGNUPS_FAILED,
+  GET_CAMPAIGN_SIGNUPS_PENDING,
+  GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+} from '../constants/action-types';
 
 /**
  * Signup reducer:
  */
 const signupReducer = (state = {}, action) => {
+  const data = get(action, 'response.data', []);
   let signups = [];
 
   switch (action.type) {
+    case GET_CAMPAIGN_SIGNUPS_FAILED:
+      return { ...state, isPending: false, thisCampaign: false };
+
+    case GET_CAMPAIGN_SIGNUPS_PENDING:
+      return { ...state, isPending: true };
+
+    case GET_CAMPAIGN_SIGNUPS_SUCCESSFUL:
+      if (data.length) {
+        // @TODO: I think this should be an array of objects, with the key being the
+        // campaign ID and the value being an object with info properties like "quantity".
+        signups = [...state.data, data[0].campaign_id];
+
+        storageSet(action.meta.northstarId, SIGNUP_STORAGE_KEY, signups);
+      }
+
+      return {
+        ...state,
+        data: signups,
+        isPending: false,
+        thisCampaign: Boolean(data.length),
+      };
+
     case SIGNUP_CREATED:
       signups = [...state.data, action.campaignId];
 
@@ -62,7 +90,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case SIGNUP_NOT_FOUND:
-      return { ...state, isPending: false };
+      return { ...state, isPending: false, thisCampaign: false };
 
     case SET_TOTAL_SIGNUPS:
       return { ...state, total: action.total };

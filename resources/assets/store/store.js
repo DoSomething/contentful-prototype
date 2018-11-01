@@ -1,10 +1,11 @@
 import merge from 'lodash/merge';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import { checkForSignup, startQueue } from '../actions';
-import { loadStorage } from '../helpers/storage';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
+import { loadStorage } from '../helpers/storage';
+import { getUserId, isAuthenticated } from '../selectors/user';
+import { getCampaignSignups, startQueue } from '../actions';
 
 /**
  * Create a new instance of the Redux store using the given
@@ -47,13 +48,17 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
  */
 export function initializeStore(store) {
   const state = store.getState();
+  const campaignId = state.campaign.campaignId;
+  const storedSignup = state.signups.data.includes(campaignId);
 
-  const campaignId = state.campaign.legacyCampaignId;
-  const haveSignup = state.signups.data.includes(campaignId);
-
-  // If we don't already have a signup cached in local storage, check.
-  if (campaignId && !haveSignup) {
-    store.dispatch(checkForSignup(state.campaign.legacyCampaignId));
+  // Fetch user signup for current campaign if user is authenticated and we don't
+  // already have signup cached in the store.
+  if (campaignId && isAuthenticated(state) && !storedSignup) {
+    store.dispatch(
+      getCampaignSignups(campaignId, {
+        filter: { northstar_id: getUserId(state) },
+      }),
+    );
   }
 
   // Start the event queue.
