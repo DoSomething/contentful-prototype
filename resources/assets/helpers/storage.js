@@ -95,7 +95,6 @@ export function loadStorage(initialState, preloadedState) {
   const state = initialState;
 
   const userId = preloadedState.user.id;
-
   if (userId) {
     const signups = getArray(userId, SIGNUP_STORAGE_KEY);
     state.signups.data = signups;
