@@ -4,7 +4,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { isAuthenticated } from '../selectors/user';
+import { getUserId, isAuthenticated } from '../selectors/user';
 import { getCampaignSignups, startQueue } from '../actions';
 
 /**
