@@ -14,14 +14,16 @@ trait QueriesContentful
      * Get entries from a Contentful Query and return data as JSON.
      *
      * @param  string $type
+     * @param  integer $limit
      * @return string
      */
-    protected function getEntriesAsJson($type)
+    protected function getEntriesAsJson($type, $limit = null)
     {
         $query = (new Query)
                 ->setContentType($type)
                 ->setInclude(0)
-                ->orderBy('sys.updatedAt', true);
+                ->orderBy('sys.updatedAt', true)
+                ->setLimit($limit);
 
         $entries = app('contentful.delivery')->getEntries($query)->getItems();
 
