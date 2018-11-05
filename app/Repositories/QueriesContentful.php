@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Entities\Page;
 use App\Entities\Campaign;
+use App\Entities\HomePage;
 use Contentful\Delivery\Query;
 use App\Entities\TruncatedCampaign;
 
@@ -28,6 +29,11 @@ trait QueriesContentful
             case 'campaign':
                 // Using the TruncatedCampaign Entity to avoid returning a monstrous object.
                 $results = collect($entries)->mapInto(TruncatedCampaign::class);
+
+                return $results->toJson();
+
+            case 'homePage':
+                $results = collect($entries)->mapInto(HomePage::class);
 
                 return $results->toJson();
         }
