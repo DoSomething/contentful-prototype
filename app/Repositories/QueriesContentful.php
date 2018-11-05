@@ -14,7 +14,7 @@ trait QueriesContentful
      * Get entries from a Contentful Query and return data as JSON.
      *
      * @param  string $type
-     * @param  integer $limit
+     * @param  int $limit
      * @return string
      */
     protected function getEntriesAsJson($type, $limit = null)
