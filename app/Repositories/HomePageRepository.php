@@ -14,10 +14,10 @@ class HomePageRepository
     public function getFirst()
     {
         if (! config('services.contentful.cache')) {
-            $homePages = $this->getEntriesAsJson('homePage');
+            $homePages = $this->getEntriesAsJson('homePage', 1);
         } else {
             $homePages = remember('home_pages', 15, function () {
-                return $this->getEntriesAsJson('homePage');
+                return $this->getEntriesAsJson('homePage', 1);
             });
         }
 
