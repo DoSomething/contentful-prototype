@@ -69,5 +69,14 @@
 }
 
 .gallery-block .figure {
-  text-align: left;
+  .figure__body {
+    text-align: left;
+  }
+
+  @include media($small) {
+    // Counteract the margin 0 auto set by Forge since we want the image left-aligned.
+    .figure__media img {
+      margin-left: 0;
+    }
+  }
 }
