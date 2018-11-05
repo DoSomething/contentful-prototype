@@ -41,7 +41,7 @@ class CampaignRepository
     /**
      * Get all campaigns.
      *
-     * @return \Illuminate\Support\Collection
+     * @return array
      */
     public function getAll()
     {
