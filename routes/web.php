@@ -8,8 +8,8 @@
  */
 
 // Homepage
-$router->redirect('/', 'us/campaigns');
-$router->redirect('/us', 'us/campaigns');
+$router->redirect('/', '/us');
+$router->get('/us', 'HomePageController');
 
 // Authentication
 $router->get('next/login', 'AuthController@getLogin')->name('login');
