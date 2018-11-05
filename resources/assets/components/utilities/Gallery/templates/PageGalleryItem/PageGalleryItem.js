@@ -10,8 +10,7 @@ const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
       alt={`${coverImage.description || title}-photo`}
       image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
     >
-      <span className="font-bold">{title}</span>
-      <br />
+      <h4 className="color-blue">{title}</h4>
       {subTitle ? <p className="font-normal">{subTitle}</p> : null}
     </Figure>
   </a>

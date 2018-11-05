@@ -12,23 +12,20 @@ const StaffTemplate = props => {
       alt={`${name}-photo`}
       image={contentfulImageUrl(alternatePhoto, '400', '400', 'fill')}
     >
-      <p>
-        <span className="font-bold">
-          {twitterId ? (
-            <a
-              href={`https://twitter.com/${twitterId}`}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {name}
-            </a>
-          ) : (
-            name
-          )}
-        </span>
-        <br />
-        {jobTitle}
-      </p>
+      <h4>
+        {twitterId ? (
+          <a
+            href={`https://twitter.com/${twitterId}`}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {name}
+          </a>
+        ) : (
+          name
+        )}
+      </h4>
+      <p>{jobTitle}</p>
     </Figure>
   );
 };
