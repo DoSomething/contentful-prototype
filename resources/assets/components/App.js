@@ -31,6 +31,7 @@ const App = ({ store, history }) => {
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           <ConnectedRouter history={history}>
             <Switch>
+              <Route path="/us" component={() => <div>Home Page</div>} />
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/:slug" component={GeneralPageContainer} />
