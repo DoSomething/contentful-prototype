@@ -71,6 +71,10 @@
 .gallery-block .figure {
   .figure__body {
     text-align: left;
+
+    h4 {
+      font-family: $primary-font-family;
+    }
   }
 
   @include media($small) {
