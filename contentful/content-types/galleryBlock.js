@@ -62,6 +62,14 @@ module.exports = function(migration) {
     .required(true)
     .localized(false);
 
+  galleryBlock
+    .createField('imageCrop')
+    .name('Image Crop')
+    .type('Symbol')
+    .validations([{ in: ['fill', 'pad'] }])
+    .required(false)
+    .localized(false);
+
   galleryBlock.changeEditorInterface('imageAlignment', 'radio', {
     helpText:
       "Determines where the gallery item's images are aligned relative to their text.",
@@ -70,5 +78,11 @@ module.exports = function(migration) {
   galleryBlock.changeEditorInterface('itemsPerRow', 'radio', {
     helpText:
       'The maximum number of items in a single row when viewing the gallery in a large display.',
+  });
+
+  galleryBlock.changeEditorInterface('imageCrop', 'radio', {
+    helpText: `Controls the cropping method for the gallery images. "Fill" will resize the images to ensure they
+      fit neatly into a square, cropping the image if needed. "Pad" will do that same but will add padding
+      to the image instead of cropping it.`,
   });
 };
