@@ -81,8 +81,8 @@ module.exports = function(migration) {
   });
 
   galleryBlock.changeEditorInterface('imageFit', 'radio', {
-    helpText: `Controls the cropping method for the gallery images. "Fill" will resize the images to ensure they
-      fit neatly into a square, cropping the image if needed. "Pad" will do the same but will add padding
+    helpText: `Controls the cropping method for the gallery images. 'Fill' will resize the images to ensure they
+      fit neatly into a square, cropping the image if needed. 'Pad' will do the same but will add padding
       to the image instead of cropping it.`,
   });
 };
