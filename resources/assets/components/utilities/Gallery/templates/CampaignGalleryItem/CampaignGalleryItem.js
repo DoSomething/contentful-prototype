@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { Figure } from '../../../../Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
-import './campaign-gallery-item.scss';
-
 const CampaignGalleryItem = ({ title, tagline, coverImage, slug }) => (
   <a
     className="campaign-gallery-item display-block"
@@ -15,9 +13,8 @@ const CampaignGalleryItem = ({ title, tagline, coverImage, slug }) => (
       alt={`${coverImage.description || title}-photo`}
       image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
     >
-      <h3>{title}</h3>
-
-      {tagline ? <p className="description">{tagline}</p> : null}
+      <h4>{title}</h4>
+      {tagline ? <p className="font-normal">{tagline}</p> : null}
     </Figure>
   </a>
 );

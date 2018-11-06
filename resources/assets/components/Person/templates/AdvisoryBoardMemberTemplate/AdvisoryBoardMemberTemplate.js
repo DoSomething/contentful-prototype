@@ -14,7 +14,7 @@ const AdvisoryBoardMemberTemplate = props => {
       image={contentfulImageUrl(photo, '100', '100', 'fill')}
       alignment="left"
     >
-      <h3>{name}</h3>
+      <h4>{name}</h4>
 
       {description ? <Markdown>{description}</Markdown> : null}
     </Figure>

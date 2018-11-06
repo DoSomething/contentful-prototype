@@ -23,7 +23,7 @@ const ContentBlockGalleryItem = ({ title, image, content, imageAlignment }) => {
       )}
       alignment={alignment}
     >
-      <h3>{title}</h3>
+      <h4>{title}</h4>
 
       {content ? <Markdown>{content}</Markdown> : null}
     </Figure>
