@@ -33,6 +33,10 @@ class HomePageController extends Controller
     {
         $homePage = $this->homePageRepository->getFirst();
 
+        if (! $homePage) {
+            return redirect('/us/campaigns');
+        }
+
         return view('app', [
             'pageTitle' => $homePage->fields->title,
         ])->with('state', [
