@@ -43,14 +43,6 @@ module.exports = function(migration) {
     .localized(false);
 
   galleryBlock
-    .createField('imageAlignment')
-    .name('Image Alignment')
-    .type('Symbol')
-    .validations([{ in: ['top', 'left'] }])
-    .required(true)
-    .localized(false);
-
-  galleryBlock
     .createField('itemsPerRow')
     .name('Items Per Row')
     .type('Integer')
@@ -63,6 +55,14 @@ module.exports = function(migration) {
     .localized(false);
 
   galleryBlock
+    .createField('imageAlignment')
+    .name('Image Alignment')
+    .type('Symbol')
+    .validations([{ in: ['top', 'left'] }])
+    .required(true)
+    .localized(false);
+
+  galleryBlock
     .createField('imageCrop')
     .name('Image Crop')
     .type('Symbol')
@@ -70,14 +70,14 @@ module.exports = function(migration) {
     .required(false)
     .localized(false);
 
-  galleryBlock.changeEditorInterface('imageAlignment', 'radio', {
-    helpText:
-      "Determines where the gallery item's images are aligned relative to their text.",
-  });
-
   galleryBlock.changeEditorInterface('itemsPerRow', 'radio', {
     helpText:
       'The maximum number of items in a single row when viewing the gallery in a large display.',
+  });
+
+  galleryBlock.changeEditorInterface('imageAlignment', 'radio', {
+    helpText:
+      "Determines where the gallery item's images are aligned relative to their text.",
   });
 
   galleryBlock.changeEditorInterface('imageCrop', 'radio', {
