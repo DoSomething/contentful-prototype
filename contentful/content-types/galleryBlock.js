@@ -63,8 +63,8 @@ module.exports = function(migration) {
     .localized(false);
 
   galleryBlock
-    .createField('imageCrop')
-    .name('Image Crop')
+    .createField('imageFit')
+    .name('Image Fit')
     .type('Symbol')
     .validations([{ in: ['fill', 'pad'] }])
     .required(false)
@@ -80,7 +80,7 @@ module.exports = function(migration) {
       "Determines where the gallery item's images are aligned relative to their text.",
   });
 
-  galleryBlock.changeEditorInterface('imageCrop', 'radio', {
+  galleryBlock.changeEditorInterface('imageFit', 'radio', {
     helpText: `Controls the cropping method for the gallery images. "Fill" will resize the images to ensure they
       fit neatly into a square, cropping the image if needed. "Pad" will do the same but will add padding
       to the image instead of cropping it.`,
