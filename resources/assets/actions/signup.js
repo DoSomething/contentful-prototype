@@ -8,6 +8,7 @@ import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
+import { addToQueue } from '../actions/queue';
 import {
   SIGNUP_CREATED,
   SIGNUP_PENDING,
@@ -132,7 +133,7 @@ export function storeCampaignSignup(campaignId, data) {
   const sixpackExperiments = { conversion: 'signup' };
 
   return (dispatch, getState) => {
-    console.log('🤬');
+    console.log('💀');
 
     dispatch(
       apiRequest('POST', {
@@ -175,11 +176,13 @@ export function clickedSignupAction(options = {}) {
     if (!isAuthenticated(state)) {
       console.log('🚷');
 
-      // queue in local cache
       return dispatch(
-        addToQueue({
-          name: 'some_event_name',
-          options: {},
+        addToQueue('postAuthActions', {
+          deferredAction: {
+            name: 'storeCampaignSignup',
+            args: [campaignId, { details }],
+          },
+          meta: {},
         }),
       );
     }
