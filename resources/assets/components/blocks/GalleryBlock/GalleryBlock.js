@@ -35,13 +35,9 @@ const renderBlock = (block, imageAlignment, imageFit) => {
 
 const galleryTypes = { '2': 'duo', '3': 'triad', '4': 'quartet' };
 
-const GalleryBlock = ({
-  title,
-  blocks,
-  imageAlignment,
-  itemsPerRow,
-  imageFit,
-}) => {
+const GalleryBlock = props => {
+  const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
+
   const galleryType = galleryTypes[itemsPerRow];
 
   return (
@@ -58,8 +54,8 @@ const GalleryBlock = ({
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
+  imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
   imageFit: PropTypes.oneOf(['fill', 'pad']).isRequired,
 };
 
