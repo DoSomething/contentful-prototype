@@ -4,6 +4,7 @@ export events from './events';
 export notifications from './notifications';
 export posts from './posts';
 export postSubmissions from './postSubmissions';
+export queue from './queue';
 export quiz from './quiz';
 export signups from './signups';
 export slideshow from './slideshow';

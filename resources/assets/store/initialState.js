@@ -22,6 +22,7 @@ const initialState = {
   postSubmissions: {
     items: {},
   },
+  queue: {},
   quiz: {},
   signups: {
     data: [],

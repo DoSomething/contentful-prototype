@@ -29,6 +29,23 @@ class SignupRepository
      */
     public function getSignups($query = [])
     {
-        return $this->rogue->get('v3/signups', $query);
+        \Log::info('🌂 SignupRepository@getSignups()', [$query]);
+
+        $data = $this->rogue->get('v3/signups', $query);
+
+        \Log::info('☂️ SignupRepository@getSignups() response:', [$data]);
+
+        return $data;
+    }
+
+    /**
+     * Store signup in Rogue.
+     *
+     * @param  array  $payload
+     * @return array - JSON response
+     */
+    public function storeSignup($payload = [])
+    {
+        return response()->json(['status' => 'working!']);
     }
 }
