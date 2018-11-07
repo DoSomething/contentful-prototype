@@ -9,6 +9,7 @@ const SignupButton = props => {
     campaignActionText,
     className,
     clickedSignUp,
+    clickedSignupAction,
     disableSignup,
     source,
     sourceActionText,
@@ -21,7 +22,8 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
-    clickedSignUp(legacyCampaignId);
+    // clickedSignUp(legacyCampaignId);
+    clickedSignupAction();
     trackEvent('signup', {
       template,
       legacyCampaignId,

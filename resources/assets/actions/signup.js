@@ -6,6 +6,7 @@ import { Phoenix } from '@dosomething/gateway';
 
 import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
+import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import {
   SIGNUP_CREATED,
@@ -33,7 +34,7 @@ export function clickedHideAffirmation() {
   return { type: CLOSED_POST_SIGNUP_MODAL };
 }
 
-export function clickedSignupButton() {
+export function convertOnSignupAction() {
   return {
     type: 'CLICKED_SIGNUP_BUTTON',
     payload: {
@@ -111,7 +112,86 @@ export function getCampaignSignups(id = null, query = {}) {
   };
 }
 
-export function storeCampaignSignup() {}
+/**
+ * [storeCampaignSignup description]
+ * @param  {String} campaignId
+ * @param  {Object} data
+ * @return {Function}
+ */
+export function storeCampaignSignup(campaignId, data) {
+  // if no id or data let's throw an error!
+
+  const analytics = {
+    name: 'phoenix_clicked_signup',
+    service: 'puck',
+    payload: {
+      campaignId,
+    },
+  };
+
+  const sixpackExperiments = { conversion: 'signup' };
+
+  return (dispatch, getState) => {
+    console.log('🤬');
+
+    dispatch(
+      apiRequest('POST', {
+        body: {},
+        failure: 'failure_message',
+        meta: {
+          analytics,
+          sixpackExperiments,
+        },
+        pending: 'pending_message',
+        success: 'success_message',
+        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+      }),
+    );
+  };
+}
+
+/**
+ * [clickedSignupAction description]
+ *
+ * @param  {Object} options
+ * @param  {String} options.campaignId
+ * @param  {String} options.slug
+ * @return {String|Function}
+ */
+export function clickedSignupAction(options = {}) {
+  console.log('👻');
+
+  return (dispatch, getState) => {
+    const state = getState();
+    const slug = options.slug || state.campaign.slug;
+    const campaignId = options.campaignId || state.campaign.campaignId;
+
+    const details = {}; // @TODO: get details
+
+    // Convert Sixpack Experiments on signup action clicks.
+    dispatch(convertOnSignupAction());
+
+    // Queue signup action if user is not logged in.
+    if (!isAuthenticated(state)) {
+      console.log('🚷');
+
+      // queue in local cache
+      return dispatch(
+        addToQueue({
+          name: 'some_event_name',
+          options: {},
+        }),
+      );
+    }
+
+    // If signup already exists in state store (after authentication is confirmed) head to campaign action page; still necessary?
+    if (isCampaignSignUpInState(state, campaignId)) {
+      return join(`/us/campaigns/${state.campaign.slug}/action`);
+    }
+
+    dispatch(storeCampaignSignup(campaignId, { details }));
+  };
+}
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
@@ -143,7 +223,7 @@ export function clickedSignUp(
 
     // @TODO: Once we refactor this file, hopefully will not need this action
     // dispatch any longer, or flow will be more logical!
-    dispatch(clickedSignupButton());
+    dispatch(convertOnSignupAction());
 
     // If the user is not logged in, handle this action later.
     if (!isAuthenticated(state)) {
