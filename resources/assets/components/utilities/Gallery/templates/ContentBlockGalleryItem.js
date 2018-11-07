@@ -5,7 +5,13 @@ import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../helpers';
 import Markdown from '../../../utilities/Markdown/Markdown';
 
-const ContentBlockGalleryItem = ({ title, image, content, imageAlignment }) => {
+const ContentBlockGalleryItem = ({
+  title,
+  image,
+  content,
+  imageAlignment,
+  imageFit,
+}) => {
   // Image formatting needs to be smaller if they are left-aligned.
   const imageFormatting = imageAlignment === 'left' ? '100' : '400';
   // Ensure we don't pass the unsupported 'top' as the alignment prop to Figure.
@@ -19,7 +25,7 @@ const ContentBlockGalleryItem = ({ title, image, content, imageAlignment }) => {
         image.url,
         imageFormatting,
         imageFormatting,
-        'fill',
+        imageFit,
       )}
       alignment={alignment}
     >
@@ -38,6 +44,7 @@ ContentBlockGalleryItem.propTypes = {
   }).isRequired,
   content: PropTypes.string.isRequired,
   imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
+  imageFit: PropTypes.oneOf(['fill', 'pad']).isRequired,
 };
 
 export default ContentBlockGalleryItem;
