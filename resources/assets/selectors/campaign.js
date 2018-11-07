@@ -1,3 +1,5 @@
+import { get } from 'lodash';
+
 /**
  * Get the Campaign additional content from the state.
  *
@@ -5,7 +7,7 @@
  * @return {Object}
  */
 export function getCampaignAdditionalContent(state) {
-  return state.campaign.additionalContent;
+  return get(state, 'campaign.additionalContent', {});
 }
 
 export default null;

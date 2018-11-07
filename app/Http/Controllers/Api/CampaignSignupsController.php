@@ -22,7 +22,7 @@ class CampaignSignupsController extends Controller
      */
     public function __construct(SignupRepository $signupRepository)
     {
-        $this->middleware('auth:api')->except(['index']);
+        $this->middleware('auth:api')->except(['index', 'store']); // @REMOVE
 
         $this->signupRepository = $signupRepository;
     }
@@ -41,5 +41,18 @@ class CampaignSignupsController extends Controller
         $query['filter']['campaign_id'] = $id;
 
         return $this->signupRepository->getSignups($query);
+    }
+
+    /**
+     * [store description]
+     * @param  string  $id
+     * @param  Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store($id, Request $request)
+    {
+        \Illuminate\Support\Facades\Log::info('😝 CampaignSignupsController@store', [$id, $request->all()]);
+
+        return response()->json([$id, $request->all()]);
     }
 }

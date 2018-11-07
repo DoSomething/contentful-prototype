@@ -4,8 +4,9 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { getUserId, isAuthenticated } from '../selectors/user';
+import { isCampaignSignUpInState } from '../selectors/signup';
 import { getCampaignSignups, startQueue } from '../actions';
+import { getUserId, isAuthenticated } from '../selectors/user';
 
 /**
  * Create a new instance of the Redux store using the given
@@ -49,11 +50,14 @@ export function configureStore(reducers, middleware, preloadedState = {}) {
 export function initializeStore(store) {
   const state = store.getState();
   const campaignId = state.campaign.campaignId;
-  const storedSignup = state.signups.data.includes(campaignId);
 
   // Fetch user signup for current campaign if user is authenticated and we don't
-  // already have signup cached in the store.
-  if (campaignId && isAuthenticated(state) && !storedSignup) {
+  // already have signup record in the state store.
+  if (
+    campaignId &&
+    isAuthenticated(state) &&
+    !isCampaignSignUpInState(state, campaignId)
+  ) {
     store.dispatch(
       getCampaignSignups(campaignId, {
         filter: { northstar_id: getUserId(state) },
