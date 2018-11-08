@@ -24,7 +24,7 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
   logger.info('3. Got HTML from 11 Facts list page');
 
   // Push the each 11 Facts url into an array
-  var factsLinks = [];
+  let factsLinks = [];
   factsLinksHTML.map(factPage => {
     factsLinks.push(factPage.href);
   });
@@ -33,49 +33,49 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
   logger.info(
     '4. Getting HTML from each 11 Facts page: ' + factsLinks.length + ' total',
   );
-  var factsHtml = [];
-  var allSlugs = [];
-  var html = '';
+  let factsHtml = [];
+  let allSlugs = [];
+  // let html = '';
   // @TODO: use factsLinks.length for i < _____  *****************************
   for (i = 0; i < 5; i++) {
-    html = await JSDOM.fromURL(factsLinks[i], '');
-    splitUrl = factsLinks[i].split('/');
+    let html = await JSDOM.fromURL(factsLinks[i], '');
+    let splitUrl = factsLinks[i].split('/');
     allSlugs.push(splitUrl[splitUrl.length - 1]);
     factsHtml.push(html);
   }
   logger.info('5. Got HTML from all 11 Facts pages');
 
   // Format the HTML into the markdown that we want for the page body for each 11 Facts page
-  var allMarkdown = [];
-  var allTitles = [];
-  var boilerplate =
+  let allMarkdown = [];
+  let allTitles = [];
+  let boilerplate =
     'Welcome to [DoSomething.org](https://www.dosomething.org), a global movement of 6 million young people making positive change, online and off! The 11 facts you want are below, and the sources for the facts are at the very bottom of the page. After you learn something, Do Something! Find out how to [take action here](https://www.dosomething.org/us/campaigns).\n\n';
-  var turndownService = new TurndownService();
+  let turndownService = new TurndownService();
 
   logger.info('6. Starting to format markdown');
   factsHtml.map(factHtml => {
     // Grab the title and add to array of all titles
-    var title = [
+    let title = [
       ...factHtml.window.document.querySelectorAll('.header__title'),
     ];
     title = turndownService.turndown(title[0]);
     allTitles.push(title);
 
     // Grab the 11 facts themselves
-    var elevenFacts = [...factHtml.window.document.querySelectorAll('ol > li')];
+    let elevenFacts = [...factHtml.window.document.querySelectorAll('ol > li')];
 
     // Grab the sources
-    var sources = [
+    let sources = [
       ...factHtml.window.document.querySelectorAll(
         'ul.js-footnote-hidden > li',
       ),
     ];
 
     // Make a counter so we can number the facts
-    var counter = 1;
+    let counter = 1;
 
     // Store the markdown for this page here
-    var markdown = boilerplate;
+    let markdown = boilerplate;
 
     // For each fact, format it!
     elevenFacts.map(fact => {
@@ -83,8 +83,8 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
       source = turndownService.turndown(sources[counter - 1]);
 
       // Remove the numbers and newlines from the beginning of the source
-      var noNewLines = source.split('\n');
-      var plainSource = noNewLines[noNewLines.length - 1];
+      let noNewLines = source.split('\n');
+      let plainSource = noNewLines[noNewLines.length - 1];
 
       // Put it all together!
       markdown +=
@@ -118,7 +118,7 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
 
   logger.info('7. Creating Contentful pages for each 11 Facts page');
   for (i = 0; i < allMarkdown.length; i++) {
-    var factPage = await attempt(() =>
+    let factPage = await attempt(() =>
       environment.createEntry(
         'page',
         withFields({
