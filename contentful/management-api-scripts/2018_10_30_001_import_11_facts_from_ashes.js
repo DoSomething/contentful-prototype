@@ -1,13 +1,11 @@
 const { contentManagementClient } = require('./contentManagementClient');
 const { attempt, createLogger, sleep, withFields } = require('./helpers');
+const { JSDOM } = require('jsdom');
+const TurndownService = require('turndown');
 
 const logger = createLogger('migrate_11_facts_from_ashes');
 
 logger.info('1. Starting 11 Facts import script...');
-// var iconvLite = require('iconv-lite');
-const jsdom = require('jsdom');
-var TurndownService = require('turndown');
-const { JSDOM } = jsdom;
 
 async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
   // Get the raw HTML from here: https://www.dosomething.org/us/about/here-are-all-11-facts
@@ -134,9 +132,7 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
 
     if (factPage) {
       logger.info(
-        '-   Created Fact Page! ' +
-          allTitles[i] +
-          ` [ ID: ${factPage.sys.id}]\n`,
+        '-   Created Fact Page! ' + allTitles[i] + ` [ ID: ${factPage.sys.id}]`,
       );
     }
   }
