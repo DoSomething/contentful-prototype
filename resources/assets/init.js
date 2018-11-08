@@ -40,6 +40,9 @@ import { init as historyInit } from './history';
 import { googleAnalyticsInit } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
 
+// Display environment badge on local, dev, or QA:
+require('environment-badge')();
+
 // Configure store & history.
 ready(() => {
   const history = historyInit();
