@@ -35,9 +35,8 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
   );
   let factsHtml = [];
   let allSlugs = [];
-  // let html = '';
-  // @TODO: use factsLinks.length for i < _____  *****************************
-  for (i = 0; i < 5; i++) {
+
+  for (i = 0; i < factsLinks.length; i++) {
     let html = await JSDOM.fromURL(factsLinks[i], '');
     let splitUrl = factsLinks[i].split('/');
     allSlugs.push(splitUrl[splitUrl.length - 1]);
