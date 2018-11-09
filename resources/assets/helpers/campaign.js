@@ -20,20 +20,4 @@ export function prepareCampaignPageSlug(campaignSlug, pageSlug) {
   return join('/us/campaigns', pageSlug);
 }
 
-/**
- * Build redirect URL from Campaign to login with Campaign information.
- *
- * @param  {Null|Object} campaignData
- * @return {String}
- */
-export function buildCampaignLoginRedirectUrl(campaignData = null) {
-  let url = `${window.location.origin}/next/login`;
-
-  if (campaignData) {
-    url += `?jsonOptions=${JSON.stringify(campaignData)}`;
-  }
-
-  return url;
-}
-
 export default null;

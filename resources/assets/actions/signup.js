@@ -8,9 +8,7 @@ import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
-import { buildCampaignLoginRedirectUrl } from '../helpers/campaign';
-import { getCampaignDataForNorthstar } from '../selectors/campaign';
-import { addToQueue } from '../actions/queue';
+import { addToCachedQueue } from '../actions/queue';
 import {
   SIGNUP_CREATED,
   SIGNUP_PENDING,
@@ -132,8 +130,6 @@ export function storeCampaignSignup(campaignId, data) {
     },
   };
 
-  const sixpackExperiments = { conversion: 'signup' };
-
   return (dispatch, getState) => {
     console.log('💀');
 
@@ -143,9 +139,10 @@ export function storeCampaignSignup(campaignId, data) {
         failure: 'failure_message',
         meta: {
           analytics,
-          sixpackExperiments,
+          sixpackExperiments: { conversion: 'signup' },
         },
         pending: 'pending_message',
+        requiresAuthentication: true,
         success: 'success_message',
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
       }),
@@ -174,29 +171,34 @@ export function clickedSignupAction(options = {}) {
     // Convert Sixpack Experiments on signup action clicks.
     dispatch(convertOnSignupAction());
 
-    // Queue signup action if user is not logged in.
-    if (!isAuthenticated(state)) {
-      console.log('🚷');
+    // // Queue signup action if user is not logged in.
+    // if (!isAuthenticated(state)) {
+    //   console.log('🚷');
 
-      return dispatch(
-        addToQueue('postAuthActions', {
-          action: {
-            name: 'storeCampaignSignup',
-            args: [campaignId, { details }],
-          },
-          meta: {
-            redirectUrl: buildCampaignLoginRedirectUrl(
-              getCampaignDataForNorthstar(state),
-            ),
-          },
-        }),
-      );
-    }
+    //   return dispatch(
+    //     addToCachedQueue('postAuthActions', {
+    //       action: {
+    //         name: 'storeCampaignSignup',
+    //         args: [campaignId, { details }],
+    //       },
+    //       meta: {
+    //         redirectUrl: buildCampaignLoginRedirectUrl(
+    //           getCampaignDataForNorthstar(state),
+    //         ),
+    //       },
+    //     }),
+    //   );
+    // }
 
-    // If signup already exists in state store (after authentication is confirmed) head to campaign action page; still necessary?
-    if (isCampaignSignUpInState(state, campaignId)) {
-      return join(`/us/campaigns/${state.campaign.slug}/action`);
-    }
+    // // If signup already exists in state store (after authentication is confirmed) head to campaign action page; still necessary?
+    // if (isCampaignSignUpInState(state, campaignId)) {
+    //   return join(`/us/campaigns/${state.campaign.slug}/action`);
+    // }
+
+    // dispatch({
+    //   ...storeCampaignSignup(campaignId, { details }),
+    //   requireAuthentication: true,
+    // });
 
     dispatch(storeCampaignSignup(campaignId, { details }));
   };

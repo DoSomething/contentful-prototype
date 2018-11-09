@@ -4,9 +4,9 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { isCampaignSignUpInState } from '../selectors/signup';
+import { queue } from '../helpers';
 import { getCampaignSignups, startQueue } from '../actions';
-import { removeFromQueue } from '../actions/queue';
+import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
 
 /**
@@ -66,7 +66,7 @@ export function initializeStore(store) {
     );
   }
 
-  store.dispatch(removeFromQueue('postAuthActions'));
+  queue();
 
   // Start the event queue.
   store.dispatch(startQueue());

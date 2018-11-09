@@ -7,6 +7,7 @@ import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
+import Queue from '../services/Queue';
 import Sixpack from '../services/Sixpack';
 import { trackPuckEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
@@ -14,6 +15,22 @@ import { isSignedUp } from '../selectors/signup';
 // Helper Constants
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+/**
+ * Build login redirect URL with data in parameter.
+ *
+ * @param  {Null|Object} data
+ * @return {String}
+ */
+export function buildLoginRedirectUrl(data = null) {
+  let url = `${window.location.origin}/next/login`;
+
+  if (data) {
+    url += `?jsonOptions=${JSON.stringify(data)}`;
+  }
+
+  return url;
+}
 
 /**
  * Return a boolean indicating as to whether the provided URL is external to the site.
@@ -691,6 +708,16 @@ export function parseContentfulType(json, defaultType) {
     get(json, 'type') ||
     defaultType
   );
+}
+
+let queueInstance = null;
+
+export function queue() {
+  if (!queueInstance) {
+    queueInstance = new Queue();
+  }
+
+  return queueInstance;
 }
 
 /**

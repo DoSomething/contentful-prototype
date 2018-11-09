@@ -13,9 +13,10 @@ export function getCampaignAdditionalContent(state) {
 }
 
 /**
- * [getCampaignDataForNorthstar description]
- * @param  {[type]} state [description]
- * @return {[type]}       [description]
+ * Get Campaign data to showcase campaign context in Northstar login interface.
+ *
+ * @param  {Object} state
+ * @return {Object}
  */
 export function getCampaignDataForNorthstar(state) {
   const data = {};

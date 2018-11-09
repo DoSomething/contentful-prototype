@@ -41,8 +41,5 @@ export const SHOW_LANDING_PAGE = 'SHOW_LANDING_PAGE';
 export const SHOW_ACTION_PAGE = 'SHOW_ACTION_PAGE';
 export * from './admin';
 
-// Queue Creators
-export * from './queue';
-
 // Post Creators
 export * from './post';
