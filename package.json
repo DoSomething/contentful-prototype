@@ -70,7 +70,7 @@
     "css-module-flow": "^1.0.0",
     "date-fns": "^2.0.0-alpha.25",
     "dom-delegate": "^2.0.3",
-    "environment-badge": "^1.0.1",
+    "environment-badge": "^1.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.4",
