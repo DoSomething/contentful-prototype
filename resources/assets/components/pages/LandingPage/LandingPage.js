@@ -22,8 +22,14 @@ const LandingPage = props => {
     tagline,
   } = props;
 
-  // @TODO: allow outputting multiple blocks in the sidebar.
-  const sidebarCTA = sidebar[0] && sidebar[0].fields;
+  const sidebarBlocks = sidebar.map(block => {
+    // @TODO: Remove the pseudo-custom blocks we'd embedded here:
+    if (!block.type) {
+      return { ...block, type: 'static' };
+    }
+
+    return block;
+  });
 
   return (
     <div>
@@ -52,7 +58,7 @@ const LandingPage = props => {
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          <PitchTemplate content={content} sidebarCTA={sidebarCTA} />
+          <PitchTemplate content={content} sidebarBlocks={sidebarBlocks} />
         </Enclosure>
 
         <CallToActionContainer content={tagline} sticky />
