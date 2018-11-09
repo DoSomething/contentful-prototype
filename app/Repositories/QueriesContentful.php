@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Entities\Page;
 use App\Entities\Campaign;
+use App\Entities\HomePage;
 use Contentful\Delivery\Query;
 use App\Entities\TruncatedCampaign;
 
@@ -13,14 +14,16 @@ trait QueriesContentful
      * Get entries from a Contentful Query and return data as JSON.
      *
      * @param  string $type
+     * @param  int $limit
      * @return string
      */
-    protected function getEntriesAsJson($type)
+    protected function getEntriesAsJson($type, $limit = null)
     {
         $query = (new Query)
                 ->setContentType($type)
                 ->setInclude(0)
-                ->orderBy('sys.updatedAt', true);
+                ->orderBy('sys.updatedAt', true)
+                ->setLimit($limit);
 
         $entries = app('contentful.delivery')->getEntries($query)->getItems();
 
@@ -28,6 +31,11 @@ trait QueriesContentful
             case 'campaign':
                 // Using the TruncatedCampaign Entity to avoid returning a monstrous object.
                 $results = collect($entries)->mapInto(TruncatedCampaign::class);
+
+                return $results->toJson();
+
+            case 'homePage':
+                $results = collect($entries)->mapInto(HomePage::class);
 
                 return $results->toJson();
         }

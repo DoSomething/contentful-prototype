@@ -13,7 +13,7 @@ const BoardMemberTemplate = props => {
       alt={`${name}-photo`}
       image={contentfulImageUrl(alternatePhoto, '400', '400', 'fill')}
     >
-      <h3>{name}</h3>
+      <h4>{name}</h4>
 
       {description ? <Markdown>{description}</Markdown> : null}
     </Figure>

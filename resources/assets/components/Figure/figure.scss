@@ -67,3 +67,20 @@
     }
   }
 }
+
+.gallery-block .figure {
+  .figure__body {
+    text-align: left;
+
+    h4 {
+      font-family: $primary-font-family;
+    }
+  }
+
+  @include media($small) {
+    // Counteract the margin 0 auto set by Forge since we want the image left-aligned.
+    .figure__media img {
+      margin-left: 0;
+    }
+  }
+}

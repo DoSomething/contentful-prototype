@@ -4,14 +4,13 @@ export function addToQueue(key = 'default', payload) {
   return {
     type: QUEUE_ADD_ITEM,
     key,
-    ...payload,
+    payload,
   };
 }
 
-export function processQueue() {}
-
-export function removeFromQueue() {
+export function removeFromQueue(key = 'default') {
   return {
     type: QUEUE_REMOVE_ITEM,
+    key,
   };
 }

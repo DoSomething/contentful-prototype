@@ -1,5 +1,7 @@
 import { get } from 'lodash';
 
+import { contentfulImageUrl } from '../helpers';
+
 /**
  * Get the Campaign additional content from the state.
  *
@@ -8,6 +10,25 @@ import { get } from 'lodash';
  */
 export function getCampaignAdditionalContent(state) {
   return get(state, 'campaign.additionalContent', {});
+}
+
+/**
+ * [getCampaignDataForNorthstar description]
+ * @param  {[type]} state [description]
+ * @return {[type]}       [description]
+ */
+export function getCampaignDataForNorthstar(state) {
+  const data = {};
+
+  if (state.campaign) {
+    data.callToAction = encodeURIComponent(state.campaign.callToAction);
+    data.coverImage = encodeURIComponent(
+      contentfulImageUrl(state.campaign.coverImage.url, '800', '600', 'fill'),
+    );
+    data.title = encodeURIComponent(state.campaign.title);
+  }
+
+  return data;
 }
 
 export default null;

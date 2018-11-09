@@ -22,7 +22,9 @@ const initialState = {
   postSubmissions: {
     items: {},
   },
-  queue: {},
+  queue: {
+    default: [],
+  },
   quiz: {},
   signups: {
     data: [],
