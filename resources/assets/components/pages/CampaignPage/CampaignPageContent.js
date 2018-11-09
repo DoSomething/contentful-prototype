@@ -1,5 +1,5 @@
 import React from 'react';
-import { find } from 'lodash';
+import { find, get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -13,12 +13,8 @@ import { isCampaignClosed, parseContentfulType } from '../../../helpers';
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages } = props;
 
-  const subPage = find(
-    pages,
-    page =>
-      page.type === 'page'
-        ? page.fields.slug.endsWith(match.params.slug)
-        : false,
+  const subPage = find(pages, page =>
+    page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
   );
 
   if (!subPage) {
@@ -45,7 +41,7 @@ const CampaignPageContent = props => {
     }
 
     // Only setting full column width for Content Blocks with an image
-    if (type === 'contentBlock' && json.fields.image) {
+    if (type === 'contentBlock' && get(json.fields.image, 'url')) {
       fullWidth = true;
     }
 
