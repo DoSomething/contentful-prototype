@@ -129,11 +129,35 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
       ),
     );
 
-    if (factPage) {
+    if (!factPage) {
       logger.info(
-        '-   Created Fact Page! ' + allTitles[i] + ` [ ID: ${factPage.sys.id}]`,
+        'FAILURE!!!!!!! Failed to create Page in Contentful for ' +
+          allTitles[i],
       );
+
+      return;
     }
+
+    logger.info(
+      '-   Created Fact Page! ' + allTitles[i] + ` [ ID: ${factPage.sys.id}]`,
+    );
+
+    // Publish the newly created page
+    const publishedFactPage = await attempt(() => factPage.publish());
+    if (!publishedFactPage) {
+      logger.info(
+        'FAILURE!!!!!!! Failed to PUBLISH Page in Contentful for ' +
+          allTitles[i] +
+          ` [ ID: ${factPage.sys.id}]`,
+      );
+
+      return;
+    }
+    logger.info(
+      '    -   Published Fact Page! ' +
+        allTitles[i] +
+        ` [ ID: ${factPage.sys.id}]`,
+    );
   }
 }
 
