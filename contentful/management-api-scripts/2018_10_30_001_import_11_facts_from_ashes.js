@@ -48,7 +48,7 @@ async function getElevenFactsFromAshesAndCreatePagesInContentful(environment) {
   let allMarkdown = [];
   let allTitles = [];
   let boilerplate =
-    'Welcome to [DoSomething.org](https://www.dosomething.org), a global movement of 6 million young people making positive change, online and off! The 11 facts you want are below, and the sources for the facts are at the very bottom of the page. After you learn something, Do Something! Find out how to [take action here](https://www.dosomething.org/us/campaigns).\n\n';
+    'Welcome to [DoSomething.org](https://www.dosomething.org), a global movement of 6 million young people making positive change, online and off! The 11 facts you want are below, and the sources for the facts are at the very bottom of the page. After you learn something, Do Something! Find out how to [take action here](https://www.dosomething.org/us/campaigns).\n &nbsp; \n &#32;&#32; \n &nbsp; \n &#32;&#32; \n';
   let turndownService = new TurndownService();
 
   logger.info('6. Starting to format markdown');
