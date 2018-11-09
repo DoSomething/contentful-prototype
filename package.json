@@ -82,6 +82,7 @@
     "history": "^4.7.2",
     "jest-environment-jsdom": "^22.4.3",
     "jest-environment-jsdom-global": "^1.1.0",
+    "localforage": "^1.7.3",
     "lodash": "^4.17.10",
     "markdown-it": "^8.4.0",
     "markdown-it-footnote": "^3.0.1",
