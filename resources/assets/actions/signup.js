@@ -8,6 +8,8 @@ import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
+import { buildCampaignLoginRedirectUrl } from '../helpers/campaign';
+import { getCampaignDataForNorthstar } from '../selectors/campaign';
 import { addToQueue } from '../actions/queue';
 import {
   SIGNUP_CREATED,
@@ -178,11 +180,15 @@ export function clickedSignupAction(options = {}) {
 
       return dispatch(
         addToQueue('postAuthActions', {
-          deferredAction: {
+          action: {
             name: 'storeCampaignSignup',
             args: [campaignId, { details }],
           },
-          meta: {},
+          meta: {
+            redirectUrl: buildCampaignLoginRedirectUrl(
+              getCampaignDataForNorthstar(state),
+            ),
+          },
         }),
       );
     }

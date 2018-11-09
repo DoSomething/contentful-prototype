@@ -6,6 +6,7 @@ import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getCampaignSignups, startQueue } from '../actions';
+import { removeFromQueue } from '../actions/queue';
 import { getUserId, isAuthenticated } from '../selectors/user';
 
 /**
@@ -64,6 +65,8 @@ export function initializeStore(store) {
       }),
     );
   }
+
+  store.dispatch(removeFromQueue('postAuthActions'));
 
   // Start the event queue.
   store.dispatch(startQueue());
