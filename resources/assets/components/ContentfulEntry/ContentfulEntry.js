@@ -4,10 +4,10 @@ import React from 'react';
 
 import NotFound from '../NotFound';
 import Loader from '../utilities/Loader';
-import StaticBlock from '../StaticBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
+import CardBlock from '../blocks/CardBlock/CardBlock';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
@@ -73,6 +73,17 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
 
+      case 'cardBlock':
+        return (
+          <CardBlock
+            id={json.id}
+            title={json.fields.title}
+            content={json.fields.content}
+            author={json.fields.author}
+            link={json.fields.link}
+          />
+        );
+
       case 'campaignUpdate':
         return (
           <CampaignUpdateContainer
@@ -109,11 +120,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'page':
         return (
-          <StaticBlock
-            content={json.fields.content}
-            source={json.fields.source}
-            title={json.fields.title}
-          />
+          <CardBlock content={json.fields.content} title={json.fields.title} />
         );
 
       case 'photoSubmissionAction':
@@ -159,11 +166,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'static':
         return (
-          <StaticBlock
-            content={json.fields.content}
-            source={json.fields.source}
-            title={json.fields.title}
-          />
+          <CardBlock title={json.fields.title} content={json.fields.content} />
         );
 
       case 'textSubmissionAction':

@@ -11,7 +11,7 @@ const PitchTemplate = ({ content, sidebarBlocks }) => (
     </div>
     <div className="secondary">
       {sidebarBlocks.map(json => (
-        <div className="margin-bottom-lg">
+        <div key={json.id} className="margin-bottom-lg">
           <ContentfulEntry json={json} />
         </div>
       ))}

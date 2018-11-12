@@ -68,6 +68,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new CampaignUpdate($block->entry);
             case 'contentBlock':
                 return new ContentBlock($block->entry);
+            case 'cardBlock':
+                return new CardBlock($block->entry);
             case 'customBlock':
                 if ($block->entry->type === 'join_cta') {
                     return new CallToAction($block->entry);
