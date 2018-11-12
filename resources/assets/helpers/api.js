@@ -32,10 +32,9 @@ export function setRequestHeaders(options = {}) {
  * @return {Object}
  */
 export function getRequest(url, query) {
-  const client = new RestApiClient(
-    PHOENIX_URL,
-    setRequestHeaders({ token: window.AUTH.token }),
-  );
+  const client = new RestApiClient(PHOENIX_URL, {
+    headers: setRequestHeaders({ token: window.AUTH.token }),
+  });
 
   return client.get(url, query);
 }
