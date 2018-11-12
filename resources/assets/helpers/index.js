@@ -22,11 +22,11 @@ export const EMPTY_IMAGE =
  * @param  {Null|Object} data
  * @return {String}
  */
-export function buildLoginRedirectUrl(data = null) {
+export function buildLoginRedirectUrl(data = null, actionHash) {
   let url = `${window.location.origin}/next/login`;
 
   if (data) {
-    url += `?jsonOptions=${JSON.stringify(data)}`;
+    url += `?jsonOptions=${JSON.stringify(data)}&action=${actionHash}`;
   }
 
   return url;

@@ -10,19 +10,27 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
   const requiresAuth = get(action, 'payload.requiresAuthentication', false);
 
   if (requiresAuth && !isAuthenticated(state)) {
-    console.log('😎');
+    // queue()
+    //   .reset()
+    //   .then(() => {
+    //     queue()
+    //       .enqueue(action)
+    //       .then(() => {
+    //         console.log('💫 go to Northstar login...');
 
-    queue()
-      .enqueue(action)
-      .then(() => {
-        console.log('💫 go to Northstar login...');
+    //         window.location.href = buildLoginRedirectUrl(
+    //           getCampaignDataForNorthstar(state),
+    //         );
+    //       });
+    //   });
 
-        window.location.href = buildLoginRedirectUrl(
-          getCampaignDataForNorthstar(state),
-        );
+    localforage.setItem(`auth:${hash(action)}`, action).then(() => {
+      console.log('💫 go to Northstar login...');
 
-        return;
-      });
+      window.location.href = buildLoginRedirectUrl(
+        getCampaignDataForNorthstar(state),
+      );
+    });
   }
 
   return next(action);

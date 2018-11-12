@@ -66,7 +66,12 @@ export function initializeStore(store) {
     );
   }
 
-  queue();
+  if (isAuthenticated(state)) {
+    // 1. See if we have a '?action={hash}' query string
+    // 2. Find if there's an action stored in localforage for that hash
+    // 3. Dispatch that action, if so.
+    // 4. Clear out any other actions (from incompleted logins) if we want.
+  }
 
   // Start the event queue.
   store.dispatch(startQueue());

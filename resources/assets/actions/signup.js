@@ -8,7 +8,6 @@ import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
-import { addToCachedQueue } from '../actions/queue';
 import {
   SIGNUP_CREATED,
   SIGNUP_PENDING,
