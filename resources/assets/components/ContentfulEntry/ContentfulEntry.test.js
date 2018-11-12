@@ -44,7 +44,7 @@ test('it can display a static block', () => {
       }}
     />,
   );
-  expect(wrapper.find('StaticBlock')).toHaveLength(1);
+  expect(wrapper.find('CardBlock')).toHaveLength(1);
 });
 
 test('it should display a placeholder for an unknown block type', () => {
