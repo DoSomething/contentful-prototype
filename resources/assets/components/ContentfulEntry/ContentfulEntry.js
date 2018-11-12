@@ -166,7 +166,11 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'static':
         return (
-          <CardBlock title={json.fields.title} content={json.fields.content} />
+          <CardBlock
+            id={json.id}
+            title={json.fields.title}
+            content={json.fields.content}
+          />
         );
 
       case 'textSubmissionAction':
