@@ -76,10 +76,9 @@ const getRequestAction = (payload, dispatch) => {
 const postRequest = (payload, dispatch, getState) => {
   const token = getUserToken(getState()) || window.AUTH.token;
 
-  const client = new RestApiClient(
-    PHOENIX_URL,
-    setRequestHeaders({ token, contentType: 'multipart/form-data' }),
-  );
+  const client = new RestApiClient(PHOENIX_URL, {
+    headers: setRequestHeaders({ token, contentType: 'multipart/form-data' }),
+  });
 
   dispatch({
     id: payload.meta.id,
