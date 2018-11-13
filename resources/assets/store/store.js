@@ -1,10 +1,11 @@
 import merge from 'lodash/merge';
+import localforage from 'localforage';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { queue } from '../helpers';
+import { queue, query } from '../helpers';
 import { getCampaignSignups, startQueue } from '../actions';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
@@ -66,11 +67,19 @@ export function initializeStore(store) {
     );
   }
 
-  if (isAuthenticated(state)) {
-    // 1. See if we have a '?action={hash}' query string
-    // 2. Find if there's an action stored in localforage for that hash
-    // 3. Dispatch that action, if so.
-    // 4. Clear out any other actions (from incompleted logins) if we want.
+  // Dispatch and queued post-auth actions if available.
+  if (isAuthenticated(state) && query('actionId')) {
+    const actionId = decodeURIComponent(query('actionId'));
+
+    localforage.getItem(actionId).then(action => {
+      store.dispatch(action);
+
+      // Remove any old queued post-auth actions from storage.
+      localforage.keys().then(keys => {
+        const actions = keys.filter(key => key.indexOf('auth:') !== -1);
+        actions.forEach(key => localforage.removeItem(key));
+      });
+    });
   }
 
   // Start the event queue.

@@ -17,19 +17,16 @@ export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 /**
- * Build login redirect URL with data in parameter.
+ * Build login redirect URL with optional context data.
  *
- * @param  {Null|Object} data
+ * @param  {Null|Object} jsonOptions
+ * @param  {Null|String} actionId
  * @return {String}
  */
-export function buildLoginRedirectUrl(data = null, actionHash) {
-  let url = `${window.location.origin}/next/login`;
+export function buildLoginRedirectUrl(jsonOptions = null, actionId = null) {
+  const query = queryString.stringify({ actionId, jsonOptions });
 
-  if (data) {
-    url += `?jsonOptions=${JSON.stringify(data)}&action=${actionHash}`;
-  }
-
-  return url;
+  return `${window.location.origin}/next/login?${query}`;
 }
 
 /**
