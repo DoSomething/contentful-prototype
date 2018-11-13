@@ -1,7 +1,4 @@
-/* global window */
-
 import { join } from 'path';
-import { has } from 'lodash';
 
 /**
  * Prepare a campaign subpage's slug.

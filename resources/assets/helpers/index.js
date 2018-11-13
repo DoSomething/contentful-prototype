@@ -7,7 +7,6 @@ import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
-import Queue from '../services/Queue';
 import Sixpack from '../services/Sixpack';
 import { trackPuckEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
@@ -24,9 +23,9 @@ export const EMPTY_IMAGE =
  * @return {String}
  */
 export function buildLoginRedirectUrl(jsonOptions = null, actionId = null) {
-  const query = queryString.stringify({ actionId, jsonOptions });
+  const params = queryString.stringify({ actionId, jsonOptions });
 
-  return `${window.location.origin}/next/login?${query}`;
+  return `${window.location.origin}/next/login?${params}`;
 }
 
 /**
@@ -705,16 +704,6 @@ export function parseContentfulType(json, defaultType) {
     get(json, 'type') ||
     defaultType
   );
-}
-
-let queueInstance = null;
-
-export function queue() {
-  if (!queueInstance) {
-    queueInstance = new Queue();
-  }
-
-  return queueInstance;
 }
 
 /**

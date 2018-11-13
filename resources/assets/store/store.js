@@ -5,7 +5,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import initialState from './initialState';
 import customMiddlewares from './middlewares';
 import { loadStorage } from '../helpers/storage';
-import { queue, query } from '../helpers';
+import { query } from '../helpers';
 import { getCampaignSignups, startQueue } from '../actions';
 import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';

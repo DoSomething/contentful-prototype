@@ -1,7 +1,8 @@
+/* global window */
+
 import { get } from 'lodash';
 import localforage from 'localforage';
 
-import { queue, makeHash } from '../helpers';
 import { buildLoginRedirectUrl } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
 import { getCampaignDataForNorthstar } from '../selectors/campaign';
