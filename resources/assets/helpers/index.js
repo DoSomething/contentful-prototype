@@ -16,6 +16,19 @@ export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 /**
+ * Build login redirect URL with optional context data.
+ *
+ * @param  {Null|Object} jsonOptions
+ * @param  {Null|String} actionId
+ * @return {String}
+ */
+export function buildLoginRedirectUrl(jsonOptions = null, actionId = null) {
+  const params = queryString.stringify({ actionId, jsonOptions });
+
+  return `${window.location.origin}/next/login?${params}`;
+}
+
+/**
  * Return a boolean indicating as to whether the provided URL is external to the site.
  *
  * @param  {String} url

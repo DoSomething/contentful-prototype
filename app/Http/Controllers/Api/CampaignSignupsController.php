@@ -42,4 +42,17 @@ class CampaignSignupsController extends Controller
 
         return $this->signupRepository->getSignups($query);
     }
+
+    /**
+     * Store a newly created resource.
+     *
+     * @param  string  $id
+     * @param  Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store($id, Request $request)
+    {
+        // @TODO: implement sending request to Rogue.
+        return response()->json([$id, $request->all()]);
+    }
 }

@@ -46,10 +46,14 @@ class AuthController extends Controller
         if (! array_has($request->getQueryParams(), 'code')) {
             $intended = session()->pull('url.intended', url()->previous());
             session(['login.intended' => $intended]);
+
+            // If starting the login process, see if we have a "queued" action.
+            $actionId = array_get($request->getQueryParams(), 'actionId');
+            session()->flash('actionId', $actionId);
         }
 
         $options = [];
-        $jsonOptions = array_get($request->getQueryParams(), 'jsonOptions') ?: null;
+        $jsonOptions = array_get($request->getQueryParams(), 'jsonOptions');
 
         // Check if the JS added auth options.
         if ($jsonOptions) {
@@ -63,6 +67,11 @@ class AuthController extends Controller
 
         $destination = array_get($request->getQueryParams(), 'destination');
         $url = session('login.intended', $this->redirectTo);
+
+        // Do we have an action ID in the session? If so, set it on to the destination URL.
+        if (session('actionId')) {
+            $url .= '?actionId=' . urlencode(session('actionId'));
+        }
 
         return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
     }

@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import { join } from 'path';
 
 /**
@@ -18,3 +16,5 @@ export function prepareCampaignPageSlug(campaignSlug, pageSlug) {
 
   return join('/us/campaigns', pageSlug);
 }
+
+export default null;

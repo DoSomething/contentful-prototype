@@ -23,6 +23,7 @@ $router->group(['prefix' => 'v2'], function () {
 
     // Campaign Signups
     $this->get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
+    $this->post('/campaigns/{id}/signups', 'Api\CampaignSignupsController@store');
 
     // Posts
     $this->get('/posts', 'Api\PostsController@index');

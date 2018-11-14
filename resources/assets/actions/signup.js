@@ -7,6 +7,7 @@ import { Phoenix } from '@dosomething/gateway';
 import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { getUserId, isAuthenticated } from '../selectors/user';
+import { getCampaignAffiliateMessagingOptOutFlag } from '../selectors/campaign';
 import {
   SIGNUP_CREATED,
   SIGNUP_PENDING,
@@ -33,7 +34,12 @@ export function clickedHideAffirmation() {
   return { type: CLOSED_POST_SIGNUP_MODAL };
 }
 
-export function clickedSignupButton() {
+/**
+ * Action to trigger converting Sixpack experiments on signup.
+ *
+ * @return {Object}
+ */
+export function convertOnSignupAction() {
   return {
     type: 'CLICKED_SIGNUP_BUTTON',
     payload: {
@@ -84,7 +90,7 @@ export function signupPending() {
 }
 
 /**
- * Get signups for a campaign; allows filtering via query options.
+ * Dispatch action to get signups for a campaign; allows filtering via query options.
  *
  * @param  {Object} query
  * @param  {String} id
@@ -111,10 +117,65 @@ export function getCampaignSignups(id = null, query = {}) {
   };
 }
 
-export function storeCampaignSignup() {}
+/**
+ * Dispatch action to store signup for a campaign.
+ *
+ * @param  {String} campaignId
+ * @param  {Object} data
+ * @return {Function}
+ */
+export function storeCampaignSignup(campaignId, data) {
+  // @TODO: if no campaignId or data let's throw an error!
+
+  const analytics = {
+    name: 'phoenix_clicked_signup',
+    service: 'puck',
+    payload: {
+      campaignId,
+    },
+  };
+
+  return dispatch => {
+    dispatch(
+      apiRequest('POST', {
+        body: { ...data },
+        failure: 'failure_message',
+        meta: {
+          analytics,
+          sixpackExperiments: { conversion: 'signup' },
+        },
+        pending: 'pending_message',
+        requiresAuthentication: true,
+        success: 'success_message',
+        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+      }),
+    );
+  };
+}
+
+/**
+ * Dispatch actions related to clicking a signup action.
+ *
+ * @param  {Object} options
+ * @param  {String} options.campaignId
+ * @param  {String} options.slug
+ * @return {Function}
+ */
+export function clickedSignupAction(options = {}) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const campaignId = options.campaignId || state.campaign.campaignId;
+    const details = getCampaignAffiliateMessagingOptOutFlag(state); // @TODO: readdress affiliate messaging stuff.
+
+    dispatch(convertOnSignupAction());
+
+    dispatch(storeCampaignSignup(campaignId, { details }));
+  };
+}
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
+// @deprecate: use clickedSignupAction() instead.
 export function clickedSignUp(
   campaignId,
   options = null,
@@ -143,7 +204,7 @@ export function clickedSignUp(
 
     // @TODO: Once we refactor this file, hopefully will not need this action
     // dispatch any longer, or flow will be more logical!
-    dispatch(clickedSignupButton());
+    dispatch(convertOnSignupAction());
 
     // If the user is not logged in, handle this action later.
     if (!isAuthenticated(state)) {
