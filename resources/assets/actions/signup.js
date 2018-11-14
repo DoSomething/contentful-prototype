@@ -34,6 +34,11 @@ export function clickedHideAffirmation() {
   return { type: CLOSED_POST_SIGNUP_MODAL };
 }
 
+/**
+ * Action to trigger converting Sixpack experiments on signup.
+ *
+ * @return {Object}
+ */
 export function convertOnSignupAction() {
   return {
     type: 'CLICKED_SIGNUP_BUTTON',
@@ -170,6 +175,7 @@ export function clickedSignupAction(options = {}) {
 
 // Async Action: send signup to phoenix and
 // check if the user is logged in or has an existing signup.
+// @deprecate: use clickedSignupAction() instead.
 export function clickedSignUp(
   campaignId,
   options = null,

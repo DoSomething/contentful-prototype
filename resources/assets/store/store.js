@@ -67,7 +67,7 @@ export function initializeStore(store) {
     );
   }
 
-  // Dispatch and queued post-auth actions if available.
+  // Dispatch any queued post-auth actions if available.
   if (isAuthenticated(state) && query('actionId')) {
     const actionId = decodeURIComponent(query('actionId'));
 

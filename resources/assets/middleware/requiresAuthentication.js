@@ -7,6 +7,9 @@ import { buildLoginRedirectUrl } from '../helpers';
 import { isAuthenticated } from '../selectors/user';
 import { getCampaignDataForNorthstar } from '../selectors/campaign';
 
+/**
+ * Middleware for handling Authenticated actions.
+ */
 const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
   const state = getState();
   const requiresAuth = get(action, 'payload.requiresAuthentication', false);
