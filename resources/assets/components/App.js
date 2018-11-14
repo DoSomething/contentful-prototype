@@ -8,11 +8,12 @@ import { PuckProvider } from '@dosomething/puck-client';
 
 import { env } from '../helpers';
 import graphqlClient from '../graphql';
-import { getUserId, isAuthenticated } from '../selectors/user';
 import { initializeStore } from '../store/store';
 import CampaignContainer from './Campaign/CampaignContainer';
-import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
+import { getUserId, isAuthenticated } from '../selectors/user';
+import HomePageContainer from './pages/HomePage/HomePageContainer';
 import AccountContainer from './pages/AccountPage/AccountContainer';
+import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -31,7 +32,7 @@ const App = ({ store, history }) => {
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           <ConnectedRouter history={history}>
             <Switch>
-              <Route exact path="/us" render={() => <div>Home Page</div>} />
+              <Route exact path="/us" component={HomePageContainer} />
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/:slug" component={GeneralPageContainer} />
