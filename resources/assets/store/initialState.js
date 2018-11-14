@@ -16,6 +16,7 @@ const initialState = {
   notifications: {
     items: [],
   },
+  homePage: {},
   // standalone (campaign independent) pages
   page: {},
   posts: {},
