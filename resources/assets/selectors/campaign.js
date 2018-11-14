@@ -32,4 +32,30 @@ export function getCampaignDataForNorthstar(state) {
   return data;
 }
 
+/**
+ * Get flag to pass along to data and messaging related to affiliate messaging.
+ *
+ * @param  {Object} state
+ * @return {String|Null}
+ */
+export function getCampaignAffiliateMessagingOptOutFlag(state) {
+  const additionalContent = getCampaignAdditionalContent(state);
+
+  // Is opt-out displayed on campaign?
+  const displayAffilitateOptOut = get(
+    additionalContent,
+    'displayAffilitateOptOut',
+    false,
+  );
+
+  if (!displayAffilitateOptOut) {
+    return null;
+  }
+
+  // User's preference whether to opt-out or opt-in.
+  return get(state, 'signups.affiliateMessagingOptOut', false)
+    ? 'affiliate-opt-out'
+    : null;
+}
+
 export default null;

@@ -6,8 +6,8 @@ import { Phoenix } from '@dosomething/gateway';
 
 import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
-import { isCampaignSignUpInState } from '../selectors/signup';
 import { getUserId, isAuthenticated } from '../selectors/user';
+import { getCampaignAffiliateMessagingOptOutFlag } from '../selectors/campaign';
 import {
   SIGNUP_CREATED,
   SIGNUP_PENDING,
@@ -85,7 +85,7 @@ export function signupPending() {
 }
 
 /**
- * Get signups for a campaign; allows filtering via query options.
+ * Dispatch action to get signups for a campaign; allows filtering via query options.
  *
  * @param  {Object} query
  * @param  {String} id
@@ -113,13 +113,14 @@ export function getCampaignSignups(id = null, query = {}) {
 }
 
 /**
- * [storeCampaignSignup description]
+ * Dispatch action to store signup for a campaign.
+ *
  * @param  {String} campaignId
  * @param  {Object} data
  * @return {Function}
  */
 export function storeCampaignSignup(campaignId, data) {
-  // if no id or data let's throw an error!
+  // @TODO: if no campaignId or data let's throw an error!
 
   const analytics = {
     name: 'phoenix_clicked_signup',
@@ -129,12 +130,10 @@ export function storeCampaignSignup(campaignId, data) {
     },
   };
 
-  return (dispatch, getState) => {
-    console.log('💀');
-
+  return dispatch => {
     dispatch(
       apiRequest('POST', {
-        body: {},
+        body: { ...data },
         failure: 'failure_message',
         meta: {
           analytics,
@@ -150,54 +149,20 @@ export function storeCampaignSignup(campaignId, data) {
 }
 
 /**
- * [clickedSignupAction description]
+ * Dispatch actions related to clicking a signup action.
  *
  * @param  {Object} options
  * @param  {String} options.campaignId
  * @param  {String} options.slug
- * @return {String|Function}
+ * @return {Function}
  */
 export function clickedSignupAction(options = {}) {
-  console.log('👻');
-
   return (dispatch, getState) => {
     const state = getState();
-    const slug = options.slug || state.campaign.slug;
     const campaignId = options.campaignId || state.campaign.campaignId;
+    const details = getCampaignAffiliateMessagingOptOutFlag(state); // @TODO: readdress affiliate messaging stuff.
 
-    const details = {}; // @TODO: get details
-
-    // Convert Sixpack Experiments on signup action clicks.
     dispatch(convertOnSignupAction());
-
-    // // Queue signup action if user is not logged in.
-    // if (!isAuthenticated(state)) {
-    //   console.log('🚷');
-
-    //   return dispatch(
-    //     addToCachedQueue('postAuthActions', {
-    //       action: {
-    //         name: 'storeCampaignSignup',
-    //         args: [campaignId, { details }],
-    //       },
-    //       meta: {
-    //         redirectUrl: buildCampaignLoginRedirectUrl(
-    //           getCampaignDataForNorthstar(state),
-    //         ),
-    //       },
-    //     }),
-    //   );
-    // }
-
-    // // If signup already exists in state store (after authentication is confirmed) head to campaign action page; still necessary?
-    // if (isCampaignSignUpInState(state, campaignId)) {
-    //   return join(`/us/campaigns/${state.campaign.slug}/action`);
-    // }
-
-    // dispatch({
-    //   ...storeCampaignSignup(campaignId, { details }),
-    //   requireAuthentication: true,
-    // });
 
     dispatch(storeCampaignSignup(campaignId, { details }));
   };

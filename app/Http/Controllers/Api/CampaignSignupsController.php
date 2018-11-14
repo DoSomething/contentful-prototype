@@ -22,7 +22,7 @@ class CampaignSignupsController extends Controller
      */
     public function __construct(SignupRepository $signupRepository)
     {
-        $this->middleware('auth:api')->except(['index', 'store']); // @REMOVE
+        $this->middleware('auth:api')->except(['index']);
 
         $this->signupRepository = $signupRepository;
     }
@@ -44,15 +44,15 @@ class CampaignSignupsController extends Controller
     }
 
     /**
-     * [store description]
+     * Store a newly created resource.
+     *
      * @param  string  $id
      * @param  Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function store($id, Request $request)
     {
-        \Illuminate\Support\Facades\Log::info('😝 CampaignSignupsController@store', [$id, $request->all()]);
-
+        // @TODO: implement sending request to Rogue.
         return response()->json([$id, $request->all()]);
     }
 }
