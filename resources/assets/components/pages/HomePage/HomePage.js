@@ -3,7 +3,6 @@
 import React from 'react';
 import { get } from 'lodash';
 
-const HomePage = () => <h1>Home Page</h1>;
 class HomePage extends React.Component {
   constructor() {
     super();
