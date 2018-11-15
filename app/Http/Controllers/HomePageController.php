@@ -39,8 +39,6 @@ class HomePageController extends Controller
 
         return view('app', [
             'pageTitle' => $homePage->fields->title,
-        ])->with('state', [
-            'homePage' => $homePage,
-        ]);
+        ])->with('homePage', $homePage);
     }
 }

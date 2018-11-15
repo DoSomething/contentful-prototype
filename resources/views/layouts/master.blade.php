@@ -47,6 +47,9 @@
     {{ isset($state) ? scriptify($state) : scriptify() }}
     {{ scriptify($env, 'ENV') }}
     {{ scriptify($auth, 'AUTH') }}
+    @isset($homePage)
+        {{ scriptify($homePage, 'HOMEPAGE') }}
+    @endisset
 
     @stack('scripts')
 </body>
