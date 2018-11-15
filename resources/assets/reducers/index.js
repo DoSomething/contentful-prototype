@@ -1,7 +1,6 @@
 export admin from './admin';
 export campaign from './campaign';
 export events from './events';
-export homePage from './homePage';
 export notifications from './notifications';
 export page from './page';
 export posts from './posts';
