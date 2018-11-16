@@ -40,7 +40,6 @@ class SignupRepository
      */
     public function storeSignup($payload = [])
     {
-        // @TODO: implement sending request to Rogue.
-        return response()->json(['status' => 'working!']);
+        return $this->rogue->withToken(token())->post('v3/signups', $payload);
     }
 }
