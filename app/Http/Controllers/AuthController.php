@@ -75,8 +75,6 @@ class AuthController extends Controller
             $url .= str_contains($url, '?') ? '&'.$actionIdParam : '?'.$actionIdParam;
         }
 
-        \Illuminate\Support\Facades\Log::info('AuthController@getLogin', [$url]);
-
         return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
     }
 
