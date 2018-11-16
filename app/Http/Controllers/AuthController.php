@@ -70,8 +70,12 @@ class AuthController extends Controller
 
         // If there is an actionId in the session, set it as a query param on to the intended URL.
         if (session('actionId')) {
-            $url .= '?actionId=' . urlencode(session('actionId'));
+            $actionIdParam = 'actionId='.urlencode(session('actionId'));
+
+            $url .= str_contains($url, '?') ? '&'.$actionIdParam : '?'.$actionIdParam;
         }
+
+        \Illuminate\Support\Facades\Log::info('AuthController@getLogin', [$url]);
 
         return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
     }
