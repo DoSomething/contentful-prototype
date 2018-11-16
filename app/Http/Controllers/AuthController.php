@@ -40,35 +40,35 @@ class AuthController extends Controller
      */
     public function getLogin(ServerRequestInterface $request, ResponseInterface $response)
     {
+        $queryParams = $request->getQueryParams();
+
         // Save the post-login redirect for when the user completes the flow: either to the intended
         // page (if logging in to view a page protected by the 'auth' middleware), or the previous
         // page (if the user clicked "Log In" in the top navigation).
-        if (! array_has($request->getQueryParams(), 'code')) {
+        if (! array_has($queryParams, 'code')) {
             $intended = session()->pull('url.intended', url()->previous());
+
             session(['login.intended' => $intended]);
 
             // If starting the login process, see if we have a "queued" action.
-            $actionId = array_get($request->getQueryParams(), 'actionId');
+            $actionId = array_get($queryParams, 'actionId');
+
             session()->flash('actionId', $actionId);
         }
 
-        $options = [];
-        $jsonOptions = array_get($request->getQueryParams(), 'jsonOptions');
+        // Set options containing metadata for Northstar login.
+        $options = array_get($queryParams, 'options', []);
 
-        // Check if the JS added auth options.
-        if ($jsonOptions) {
-            $options = (array) json_decode($jsonOptions);
+        if (is_string($options)) {
+            $options = (array) json_decode($options);
         }
 
-        // As a backup check the Blade template.
-        if (! $options) {
-            $options = array_get($request->getQueryParams(), 'options') ?: [];
-        }
+        // Set destination metadata for Northstar login; defaults to "title" in $options or null.
+        $destination = array_get($queryParams, 'destination', array_get($options, 'title'));
 
-        $destination = array_get($request->getQueryParams(), 'destination');
         $url = session('login.intended', $this->redirectTo);
 
-        // Do we have an action ID in the session? If so, set it on to the destination URL.
+        // If there is an actionId in the session, set it as a query param on to the intended URL.
         if (session('actionId')) {
             $url .= '?actionId=' . urlencode(session('actionId'));
         }

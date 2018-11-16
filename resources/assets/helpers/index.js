@@ -18,12 +18,15 @@ export const EMPTY_IMAGE =
 /**
  * Build login redirect URL with optional context data.
  *
- * @param  {Null|Object} jsonOptions
+ * @param  {Null|Object} options
  * @param  {Null|String} actionId
  * @return {String}
  */
-export function buildLoginRedirectUrl(jsonOptions = null, actionId = null) {
-  const params = queryString.stringify({ actionId, jsonOptions });
+export function buildLoginRedirectUrl(options = null, actionId = null) {
+  const params = queryString.stringify({
+    actionId,
+    options: JSON.stringify(options),
+  });
 
   return `${window.location.origin}/next/login?${params}`;
 }

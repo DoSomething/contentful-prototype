@@ -23,6 +23,8 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
         actionId,
       );
     });
+
+    return null;
   }
 
   return next(action);
