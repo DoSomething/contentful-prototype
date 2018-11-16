@@ -22,11 +22,14 @@ export function getCampaignDataForNorthstar(state) {
   const data = {};
 
   if (state.campaign) {
-    data.callToAction = encodeURIComponent(state.campaign.callToAction);
-    data.coverImage = encodeURIComponent(
-      contentfulImageUrl(state.campaign.coverImage.url, '800', '600', 'fill'),
+    data.callToAction = state.campaign.callToAction;
+    data.coverImage = contentfulImageUrl(
+      state.campaign.coverImage.url,
+      '800',
+      '600',
+      'fill',
     );
-    data.title = encodeURIComponent(state.campaign.title);
+    data.title = state.campaign.title;
   }
 
   return data;
