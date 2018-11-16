@@ -73,7 +73,7 @@ export function getFieldErrorMessages(response) {
  * @param {Null|Object} details
  * @return FormData
  */
-export function setFormData(values, details = null) {
+export function setFormData(values = {}, details = null) {
   const formData = new FormData();
 
   forEach(values, (value, key) => formData.append(key, value));

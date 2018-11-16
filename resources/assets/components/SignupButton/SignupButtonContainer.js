@@ -10,8 +10,9 @@ import { clickedSignupAction } from '../../actions/signup';
  */
 const mapStateToProps = state => ({
   campaignActionText: state.campaign.actionText,
-  disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
   campaignId: state.campaign.campaignId,
+  campaignContentfulId: state.campaign.id,
+  disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
   sourceActionText: get(state.campaign, 'additionalContent.sourceActionText'),
   template: state.campaign.template,
   trafficSource: state.user.source,

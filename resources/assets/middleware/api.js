@@ -93,7 +93,7 @@ const postRequest = (payload, dispatch, getState) => {
       response.status = {
         success: {
           code: 201,
-          message: 'Thanks for your submission!',
+          message: get(payload, 'meta.messaging.success', 'Thanks!'),
         },
       };
 

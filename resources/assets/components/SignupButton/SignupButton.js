@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
+import { setFormData } from '../../helpers/forms';
 
 const SignupButton = props => {
   const {
@@ -17,11 +18,14 @@ const SignupButton = props => {
     trackEvent,
     trafficSource,
     campaignId,
+    campaignContentfulId,
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
-    clickedSignupAction({ campaignId });
+    const formData = setFormData({}, { campaignContentfulId });
+
+    clickedSignupAction(campaignId, { body: formData });
 
     trackEvent('signup', {
       template,
@@ -53,6 +57,7 @@ SignupButton.propTypes = {
   clickedSignupAction: PropTypes.func.isRequired,
   disableSignup: PropTypes.bool,
   campaignId: PropTypes.string.isRequired,
+  campaignContentfulId: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   template: PropTypes.string,

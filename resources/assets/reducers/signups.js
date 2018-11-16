@@ -13,13 +13,16 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+  STORE_CAMPAIGN_SIGNUPS_FAILED,
+  STORE_CAMPAIGN_SIGNUPS_PENDING,
+  STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
 } from '../constants/action-types';
 
 /**
  * Signup reducer:
  */
 const signupReducer = (state = {}, action) => {
-  const data = get(action, 'response.data', []);
+  const data = get(action, 'response.data');
   let signups = [];
 
   switch (action.type) {
@@ -43,6 +46,35 @@ const signupReducer = (state = {}, action) => {
         data: signups,
         isPending: false,
         thisCampaign: Boolean(data.length),
+      };
+
+    case STORE_CAMPAIGN_SIGNUPS_FAILED:
+      return state;
+
+    case STORE_CAMPAIGN_SIGNUPS_PENDING:
+      console.log('⏱', action);
+
+      return {
+        ...state,
+        isPending: true,
+      };
+
+    case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
+      console.log('⚙️', data);
+      if (data) {
+        signups = [...state.data, data.campaign_id];
+
+        // @TODO: also store locally via localforage
+      }
+
+      console.log('✅', action);
+      console.log('📝', signups);
+
+      return {
+        ...state,
+        data: signups,
+        isPending: false,
+        thisCampaign: true, // @TODO: remove from state; use a selector instead
       };
 
     case SIGNUP_CREATED:
