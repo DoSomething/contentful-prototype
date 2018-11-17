@@ -33,7 +33,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case GET_CAMPAIGN_SIGNUPS_SUCCESSFUL:
-      if (data.length) {
+      if (data && data.length) {
         // @TODO: I think this should be an array of objects, with the key being the
         // campaign ID and the value being an object with info properties like "quantity".
         signups = [...state.data, data[0].campaign_id];
@@ -61,6 +61,7 @@ const signupReducer = (state = {}, action) => {
 
     case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
       console.log('⚙️', data);
+
       if (data) {
         signups = [...state.data, data.campaign_id];
 
