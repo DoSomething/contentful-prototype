@@ -4,11 +4,10 @@ Welcome! This is **Phoenix**, the new campaign experience for [DoSomething.org](
 
 Phoenix is maintained by [Team Rocket](https://github.com/orgs/DoSomething/teams/team-rocket):
 
-* 💁 [Ashley](https://github.com/ashleybaldwin) - Product Manager
-* 👨‍💻 [Diego](https://github.com/weerd) - Technical Lead
-* 👨‍💻 [Mendel](https://github.com/mendelB) - Engineer
-* 👨‍🎨 [Luke](https://github.com/lkpttn) - Product Designer
-* 👨‍🔬 [Dave](https://github.com/DFurnes) - Staff Engineer
+- 👨‍💻 [Diego](https://github.com/weerd) - Technical Lead
+- 👨‍💻 [Mendel](https://github.com/mendelB) - Engineer
+- 👨‍🎨 [Luke](https://github.com/lkpttn) - Product Designer
+- 👨‍🔬 [Dave](https://github.com/DFurnes) - Staff Engineer
 
 ## Getting Started
 
@@ -16,17 +15,16 @@ Please refer to the following sections for information on either developing for 
 
 ### Development Information
 
-* [Development](development/overview.md)
-* [API Reference](api-reference/overview.md)
-* [Platform Philosophy](platform-philosophy/overview.md)
+- [Development](development/overview.md)
+- [API Reference](api-reference/overview.md)
+- [Platform Philosophy](platform-philosophy/overview.md)
 
 ### Publishing Information
 
-* [Content Publishing](content-publishing/overview.md)
+- [Content Publishing](content-publishing/overview.md)
 
 If you would like to contribute to this documentation, please refer to the instructions on how to [edit this documentation](contributing-instructions/edit-this-documentation.md).
 
 ## License
 
 ©2017 DoSomething.org. Phoenix is free software, and may be redistributed under the terms specified in the [LICENSE](https://github.com/DoSomething/phoenix/blob/dev/LICENSE) file. The name and logo for DoSomething.org are trademarks of Do Something, Inc and may not be used without permission.
-
