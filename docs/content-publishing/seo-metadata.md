@@ -17,13 +17,13 @@ Any link embed on our site; be it a Share Action, Link Action, Campaign Update, 
 
 ----
 
-This social information and SEO content is managed with the **Metadata** content type. This feature is the updated version of **Social Overrides**, has a wider support for important SEO fields. We allow for **Metadata** content to be added to Campaigns, Pages and Campaign Updates.
+This social information and SEO content is managed with the **Metadata** content type. This feature is the updated version of **Social Overrides**, has a wider support for important SEO fields. We allow for **Metadata** content to be added to Campaigns and Pages.
 
 When you add descriptions, titles and images to the **Metadata** block attached to a page, you’re actually placing invisible descriptors and links in the page code. When Facebook, Twitter or another site take a look at the page though an embedded link, it uses the code the Metadata block provides. This way you can use different photos for Facebook than the article header, or a custom description for a campaign page.
 
 You can create **Metadata** objects directly from any of the supported content types:
 
-### 1\) Open your entry in Contentful and find the **Metadata** field
+### 1\) Open your Page or Campaign entry in Contentful and find the **Metadata** field
 When you click **+ Create entry and link** you'll be taken to a new **Metadata** object.
 
 ### 2\) Fill in the fields with the information you want shown on the embed.
