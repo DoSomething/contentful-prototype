@@ -15,7 +15,7 @@ The Share Action consists of the following fields:
 - **blocks \(required\)**: The blocks which will be rendered by the gallery. A minimum of 2 entries must be attached.
 - **imageAlignment \(required\)**: Specify where the image should be aligned relative to the text.
 - **itemsPerRow \(required\)**: The maximum number of items in a single row of the gallery.
-- **imageFit**: Determines the cropping method used for the Gallery Block items images. Defaults to "Fill", which will resize the images to ensure they fit neatly into a square, cropping the image if needed - and which is probably be perfectly fine for most galleries. "Pad" will do the same but will add padding to the image instead of cropping it, which is useful for images with a particular shape (e.g. a wide rectangle) which would be improperly cropped with "Fill".
+- **imageFit** \(optional\): Determines the cropping method used for the Gallery Block item's images. Defaults to "Fill", which will resize the images to ensure they fit neatly into a square, cropping the image if needed - and which is probably be perfectly fine for most galleries. "Pad" will do the same but will add padding to the image instead of cropping it, which is useful for images with a particular shape (e.g. a wide rectangle) which would be improperly cropped with "Fill".
 
 _Gallery of DoSomething Tech Advisory Board (left aligned, two items per row.)_
 ![Advisory Board Gallery](../.gitbook/assets/advisory-board-gallery-block.png)
