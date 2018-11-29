@@ -32,6 +32,7 @@ const Affirmation = ({ content }) => (
 Affirmation.propTypes = {
   content: PropTypes.shape({
     header: PropTypes.string,
+    photo: PropTypes.string,
     author: PropTypes.object,
     quote: PropTypes.string,
     callToActionHeader: PropTypes.string,
