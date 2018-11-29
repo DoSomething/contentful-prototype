@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
 import Share from '../utilities/Share/Share';
+import { withoutNulls } from '../../helpers';
 import Byline from '../utilities/Byline/Byline';
 import Markdown from '../utilities/Markdown/Markdown';
 
@@ -23,7 +24,7 @@ const Affirmation = ({ content }) => (
     </Flex>
     <Byline
       author={content.author.fields.name}
-      {...content.author.fields}
+      {...withoutNulls(content.author.fields)}
       className="padded"
     />
   </Card>
