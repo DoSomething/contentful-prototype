@@ -26,7 +26,7 @@ class HomePage extends React.Component {
       <article className="tile" key={id}>
         <a
           className="wrapper"
-          href={`/us/${isCampaign ? '/campaigns/' : ''}${slug}`}
+          href={`/us/${isCampaign ? 'campaigns/' : ''}${slug}`}
         >
           {staffPick ? (
             <div className="tile__flag -staff-pick">STAFF PICK</div>
