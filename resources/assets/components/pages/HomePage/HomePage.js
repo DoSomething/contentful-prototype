@@ -76,7 +76,7 @@ class HomePage extends React.Component {
                 {sponsorList.map(sponsor => (
                   <li key={sponsor.name}>
                     <img
-                      src={sponsor.image}
+                      src={contentfulImageUrl(sponsor.image, '125', '40')}
                       title={sponsor.name}
                       alt={sponsor.name}
                     />

@@ -49,15 +49,12 @@
     }
 
     img {
-      max-width: 90px;
-      max-height: 30px;
       vertical-align: middle;
       opacity: 0.2;
 
-      @include media($tablet) {
-        // retina sizing, see Image Style preset
-        max-width: 125px;
-        max-height: 40px;
+      @include media($mobile) {
+        max-width: 90px;
+        max-height: 30px;
       }
     }
   }
