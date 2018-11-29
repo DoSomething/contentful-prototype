@@ -52,24 +52,15 @@ const signupReducer = (state = {}, action) => {
       return state;
 
     case STORE_CAMPAIGN_SIGNUPS_PENDING:
-      console.log('⏱', action);
-
       return {
         ...state,
         isPending: true,
       };
 
     case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
-      console.log('⚙️', data);
-
       if (data) {
         signups = [...state.data, data.campaign_id];
-
-        // @TODO: also store locally via localforage
       }
-
-      console.log('✅', action);
-      console.log('📝', signups);
 
       return {
         ...state,
