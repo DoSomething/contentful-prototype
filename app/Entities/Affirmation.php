@@ -26,7 +26,7 @@ class Affirmation extends Entity implements JsonSerializable
                     'active' => true,
                     'jobTitle' => 'Campaign Lead',
                     'email' => 'help@dosomething.org',
-                    'photo' => get_image_url($this->photo, 'square'),
+                    'photo' => null,
                     'alternatePhoto' => null,
                     'description' => null,
                 ],
@@ -40,6 +40,7 @@ class Affirmation extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'header' => $this->header,
+                'photo' => get_image_url($this->photo, 'square'),
                 'quote' => $this->quote,
                 'author' => $author,
                 'callToActionHeader' => $this->callToActionHeader,
