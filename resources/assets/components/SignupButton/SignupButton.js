@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { setFormData } from '../../helpers/forms';
 
 const SignupButton = props => {
   const {
@@ -23,9 +22,9 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
-    const formData = setFormData({}, { campaignContentfulId });
-
-    clickedSignupAction(campaignId, { body: formData });
+    clickedSignupAction(campaignId, {
+      body: { details: { campaignContentfulId } },
+    });
 
     trackEvent('signup', {
       template,

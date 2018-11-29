@@ -1,4 +1,4 @@
-/* global window FormData */
+/* global window */
 
 import { join } from 'path';
 import { push } from 'react-router-redux';
@@ -127,14 +127,6 @@ export function getCampaignSignups(id = null, query = {}) {
  * @return {Function}
  */
 export function storeCampaignSignup(campaignId, data) {
-  if (data.body && !(data.body instanceof FormData)) {
-    throw Error(
-      `The supplied data.body must be an instance of FormData, instead it is an instance of ${
-        data.body.constructor.name
-      }.`,
-    );
-  }
-
   const analytics = {
     name: 'phoenix_clicked_signup',
     service: 'puck',
