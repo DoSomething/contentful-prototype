@@ -86,9 +86,9 @@ const props = {
   history,
   location,
   autoSubmit: false,
-  clickedSignUpAction: () => {},
+  clickedSignupAction: () => {},
   isAuthenticated: true,
-  legacyCampaignId: '1',
+  campaignId: '1',
 };
 
 test('it should display a placeholder quiz', () => {
