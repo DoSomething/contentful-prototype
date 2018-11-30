@@ -86,7 +86,7 @@ const props = {
   history,
   location,
   autoSubmit: false,
-  clickedSignUp: () => {},
+  clickedSignUpAction: () => {},
   isAuthenticated: true,
   legacyCampaignId: '1',
 };
