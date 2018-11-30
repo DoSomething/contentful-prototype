@@ -3,7 +3,6 @@ import { get, pull } from 'lodash';
 import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 import {
   SIGNUP_CREATED,
-  SIGNUP_PENDING,
   SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
@@ -94,9 +93,6 @@ const signupReducer = (state = {}, action) => {
         ...state,
         shouldShowAffirmation: false,
       };
-
-    case SIGNUP_PENDING:
-      return { ...state, isPending: true };
 
     case SIGNUP_CLICKED_OPT_OUT:
       return {
