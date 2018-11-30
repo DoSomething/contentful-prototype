@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Repositories\SignupRepository;
 
@@ -52,7 +53,19 @@ class CampaignSignupsController extends Controller
      */
     public function store($id, Request $request)
     {
-        // @TODO: implement sending request to Rogue.
-        return response()->json([$id, $request->all()]);
+        $request->merge(['campaign_id' => $id]);
+
+        $request->validate([
+            'campaign_id' => 'required',
+            'details' => 'string',
+        ]);
+
+        Log::info('[Phoenix] CampaignSignupsController@store request data:', $request->all());
+
+        $data = $this->signupRepository->storeSignup($request->all());
+
+        Log::info('[Phoenix] CampaignSignupsController@store response data:', $data);
+
+        return response()->json($data, 201);
     }
 }

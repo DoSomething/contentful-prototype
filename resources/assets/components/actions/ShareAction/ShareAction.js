@@ -40,13 +40,11 @@ class ShareAction extends React.Component {
       link,
     } = this.props;
 
-    const formData = setFormData(
-      {
-        action,
-        type,
-        id,
-      },
-      {
+    const formData = setFormData({
+      action,
+      type,
+      id,
+      details: {
         url: link,
         platform: 'facebook',
         campaign_id: campaignId,
@@ -54,7 +52,8 @@ class ShareAction extends React.Component {
         legacy_campaign_run_id: campaignRunId,
         puck_id: puckId,
       },
-    );
+    });
+
     // Send request to store the social share post.
     this.props.storeCampaignPost(campaignId, {
       action,

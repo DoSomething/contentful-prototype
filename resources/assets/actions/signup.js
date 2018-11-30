@@ -7,7 +7,6 @@ import { Phoenix } from '@dosomething/gateway';
 import apiRequest from './api';
 import { isCampaignClosed } from '../helpers';
 import { getUserId, isAuthenticated } from '../selectors/user';
-import { getCampaignAffiliateMessagingOptOutFlag } from '../selectors/campaign';
 import {
   SIGNUP_CREATED,
   SIGNUP_PENDING,
@@ -22,6 +21,9 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+  STORE_CAMPAIGN_SIGNUPS_FAILED,
+  STORE_CAMPAIGN_SIGNUPS_PENDING,
+  STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
 } from '../constants/action-types';
 
 /**
@@ -125,8 +127,6 @@ export function getCampaignSignups(id = null, query = {}) {
  * @return {Function}
  */
 export function storeCampaignSignup(campaignId, data) {
-  // @TODO: if no campaignId or data let's throw an error!
-
   const analytics = {
     name: 'phoenix_clicked_signup',
     service: 'puck',
@@ -138,15 +138,20 @@ export function storeCampaignSignup(campaignId, data) {
   return dispatch => {
     dispatch(
       apiRequest('POST', {
-        body: { ...data },
-        failure: 'failure_message',
+        body: data.body,
+        failure: STORE_CAMPAIGN_SIGNUPS_FAILED,
         meta: {
+          id: campaignId,
           analytics,
           sixpackExperiments: { conversion: 'signup' },
+          messaging: {
+            success: 'Thanks for signing up!',
+            failure: 'Whoops! Something went wrong!',
+          },
         },
-        pending: 'pending_message',
+        pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,
-        success: 'success_message',
+        success: STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
         url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
       }),
     );
@@ -156,20 +161,15 @@ export function storeCampaignSignup(campaignId, data) {
 /**
  * Dispatch actions related to clicking a signup action.
  *
- * @param  {Object} options
- * @param  {String} options.campaignId
- * @param  {String} options.slug
+ * @param  {String} campaignId
+ * @param  {Object} data
  * @return {Function}
  */
-export function clickedSignupAction(options = {}) {
-  return (dispatch, getState) => {
-    const state = getState();
-    const campaignId = options.campaignId || state.campaign.campaignId;
-    const details = getCampaignAffiliateMessagingOptOutFlag(state); // @TODO: readdress affiliate messaging stuff.
-
+export function clickedSignupAction(campaignId, data = {}) {
+  return dispatch => {
     dispatch(convertOnSignupAction());
 
-    dispatch(storeCampaignSignup(campaignId, { details }));
+    dispatch(storeCampaignSignup(campaignId, data));
   };
 }
 

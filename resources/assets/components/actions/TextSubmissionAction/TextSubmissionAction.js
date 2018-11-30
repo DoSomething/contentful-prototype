@@ -60,20 +60,18 @@ class TextSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const formData = setFormData(
-      {
-        action,
-        type,
-        id: this.props.id,
-        // Associate state values to fields.
-        ...mapValues(this.fields, value => this.state[`${value}Value`]),
-      },
-      {
+    const formData = setFormData({
+      action,
+      type,
+      id: this.props.id,
+      // Associate state values to fields.
+      ...mapValues(this.fields, value => this.state[`${value}Value`]),
+      details: {
         campaign_id: this.props.campaignId,
         legacy_campaign_id: this.props.legacyCampaignId,
         legacy_campaign_run_id: this.props.legacyCampaignRunId,
       },
-    );
+    });
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {

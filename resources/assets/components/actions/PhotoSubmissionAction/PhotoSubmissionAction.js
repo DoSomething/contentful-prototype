@@ -173,22 +173,20 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
-    const formData = setFormData(
-      {
-        action,
-        type,
-        id: this.props.id,
-        // Associate state values to fields.
-        ...values,
-        file: this.state.mediaValue.file || '',
-        show_quantity: this.props.showQuantityField ? 1 : 0,
-      },
-      {
+    const formData = setFormData({
+      action,
+      type,
+      id: this.props.id,
+      // Associate state values to fields.
+      ...values,
+      file: this.state.mediaValue.file || '',
+      show_quantity: this.props.showQuantityField ? 1 : 0,
+      details: {
         campaign_id: this.props.campaignId,
         legacy_campaign_id: this.props.legacyCampaignId,
         legacy_campaign_run_id: this.props.legacyCampaignRunId,
       },
-    );
+    });
 
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {

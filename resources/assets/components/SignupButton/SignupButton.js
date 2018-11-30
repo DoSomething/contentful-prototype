@@ -8,7 +8,7 @@ const SignupButton = props => {
   const {
     campaignActionText,
     className,
-    clickedSignUp,
+    clickedSignupAction,
     disableSignup,
     source,
     sourceActionText,
@@ -16,15 +16,19 @@ const SignupButton = props => {
     text,
     trackEvent,
     trafficSource,
-    legacyCampaignId,
+    campaignId,
+    campaignContentfulId,
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
-    clickedSignUp(legacyCampaignId);
+    clickedSignupAction(campaignId, {
+      body: { details: { campaignContentfulId } },
+    });
+
     trackEvent('signup', {
       template,
-      legacyCampaignId,
+      legacyCampaignId: campaignId, // @TODO: confirm it's ok to send as campaignID and not legacyCampaignId
       source,
       sourceData: { text: buttonText },
     });
@@ -49,9 +53,10 @@ const SignupButton = props => {
 SignupButton.propTypes = {
   campaignActionText: PropTypes.string,
   className: PropTypes.string,
-  clickedSignUp: PropTypes.func.isRequired,
+  clickedSignupAction: PropTypes.func.isRequired,
   disableSignup: PropTypes.bool,
-  legacyCampaignId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  campaignContentfulId: PropTypes.string.isRequired,
   source: PropTypes.string.isRequired,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   template: PropTypes.string,

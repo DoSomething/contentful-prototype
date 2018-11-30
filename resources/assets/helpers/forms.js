@@ -67,20 +67,24 @@ export function getFieldErrorMessages(response) {
 }
 
 /**
- * Set form data for the provided values.
+ * Set form data for the provided data values.
  *
- * @param {Object} values
- * @param {Null|Object} details
+ * @param {Object} data
+ * @param {Undefined|Object} data.details
  * @return FormData
  */
-export function setFormData(values, details = null) {
+export function setFormData(data = {}) {
   const formData = new FormData();
 
-  forEach(values, (value, key) => formData.append(key, value));
+  const details = get(data, 'details', null);
 
   if (details) {
+    delete data.details; // eslint-disable-line no-param-reassign
+
     formData.append('details', JSON.stringify(details));
   }
+
+  forEach(data, (value, key) => formData.append(key, value));
 
   return formData;
 }

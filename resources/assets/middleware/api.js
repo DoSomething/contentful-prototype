@@ -1,10 +1,11 @@
-/* global window */
+/* global window FormData */
 
 import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { report } from '../helpers';
 import { PHOENIX_URL } from '../constants';
+import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
 import { trackPuckEvent } from '../helpers/analytics';
@@ -80,13 +81,16 @@ const postRequest = (payload, dispatch, getState) => {
     headers: setRequestHeaders({ token, contentType: 'multipart/form-data' }),
   });
 
+  const body =
+    payload.body instanceof FormData ? payload.body : setFormData(payload.body);
+
   dispatch({
     id: payload.meta.id,
     type: payload.pending,
   });
 
   return client
-    .post(payload.url, payload.body)
+    .post(payload.url, body)
     .then(response => {
       tabularLog(get(response, 'data', null));
 

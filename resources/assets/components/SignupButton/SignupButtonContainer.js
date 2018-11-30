@@ -3,15 +3,16 @@ import { PuckConnector } from '@dosomething/puck-client';
 import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
-import { clickedSignUp } from '../../actions/signup';
+import { clickedSignupAction } from '../../actions/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
   campaignActionText: state.campaign.actionText,
+  campaignId: state.campaign.campaignId,
+  campaignContentfulId: state.campaign.id,
   disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
-  legacyCampaignId: state.campaign.legacyCampaignId,
   sourceActionText: get(state.campaign, 'additionalContent.sourceActionText'),
   template: state.campaign.template,
   trafficSource: state.user.source,
@@ -22,7 +23,7 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  clickedSignUp,
+  clickedSignupAction,
 };
 
 // Export the container component.

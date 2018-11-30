@@ -13,13 +13,16 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+  STORE_CAMPAIGN_SIGNUPS_FAILED,
+  STORE_CAMPAIGN_SIGNUPS_PENDING,
+  STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
 } from '../constants/action-types';
 
 /**
  * Signup reducer:
  */
 const signupReducer = (state = {}, action) => {
-  const data = get(action, 'response.data', []);
+  const data = get(action, 'response.data');
   let signups = [];
 
   switch (action.type) {
@@ -30,7 +33,7 @@ const signupReducer = (state = {}, action) => {
       return { ...state, isPending: true };
 
     case GET_CAMPAIGN_SIGNUPS_SUCCESSFUL:
-      if (data.length) {
+      if (data && data.length) {
         // @TODO: I think this should be an array of objects, with the key being the
         // campaign ID and the value being an object with info properties like "quantity".
         signups = [...state.data, data[0].campaign_id];
@@ -43,6 +46,27 @@ const signupReducer = (state = {}, action) => {
         data: signups,
         isPending: false,
         thisCampaign: Boolean(data.length),
+      };
+
+    case STORE_CAMPAIGN_SIGNUPS_FAILED:
+      return state;
+
+    case STORE_CAMPAIGN_SIGNUPS_PENDING:
+      return {
+        ...state,
+        isPending: true,
+      };
+
+    case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
+      if (data) {
+        signups = [...state.data, data.campaign_id];
+      }
+
+      return {
+        ...state,
+        data: signups,
+        isPending: false,
+        thisCampaign: true, // @TODO: remove from state; use a selector instead
       };
 
     case SIGNUP_CREATED:

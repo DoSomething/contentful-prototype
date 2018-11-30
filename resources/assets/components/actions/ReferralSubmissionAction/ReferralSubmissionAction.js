@@ -62,16 +62,14 @@ class ReferralSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const formData = setFormData(
-      {
-        action,
-        type,
-        id: this.props.id,
-        // Associate state values to fields.
-        ...mapValues(this.fields, value => this.state[`${value}Value`]),
-      },
-      this.props,
-    );
+    const formData = setFormData({
+      action,
+      type,
+      id: this.props.id,
+      // Associate state values to fields.
+      ...mapValues(this.fields, value => this.state[`${value}Value`]),
+      details: this.props,
+    });
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
