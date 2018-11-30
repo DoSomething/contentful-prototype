@@ -80,8 +80,8 @@ class Quiz extends React.Component {
       resultBlocks,
       autoSubmit,
       isAuthenticated,
-      clickedSignUp,
-      legacyCampaignId,
+      clickedSignupAction,
+      campaignId,
     } = this.props;
 
     const results = calculateResult(
@@ -101,12 +101,13 @@ class Quiz extends React.Component {
         // Append result and resultBlock IDs to URL, so that upon redirect from login flow, we can show their results
         appendResultParams(results);
 
-        clickedSignUp(legacyCampaignId, null, false);
+        clickedSignupAction(campaignId);
+
         // Hard return so the results won't display before the login redirect
         return;
       }
 
-      clickedSignUp(legacyCampaignId, null, false);
+      clickedSignupAction(campaignId);
     }
 
     this.quizResultBlockHandler(results.resultBlock);
@@ -234,11 +235,11 @@ Quiz.propTypes = {
     submitButtonText: PropTypes.string,
     isNestedQuiz: PropTypes.bool,
   }).isRequired,
-  clickedSignUp: PropTypes.func.isRequired,
+  clickedSignupAction: PropTypes.func.isRequired,
   defaultResultBlock: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   history: ReactRouterPropTypes.history.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
   questions: PropTypes.arrayOf(
     PropTypes.shape({

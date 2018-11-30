@@ -1,21 +1,13 @@
 /* global window */
 
-import { join } from 'path';
-import { push } from 'react-router-redux';
-import { Phoenix } from '@dosomething/gateway';
-
 import apiRequest from './api';
-import { isCampaignClosed } from '../helpers';
-import { getUserId, isAuthenticated } from '../selectors/user';
+import { getUserId } from '../selectors/user';
 import {
   SIGNUP_CREATED,
-  SIGNUP_PENDING,
   SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
   CLICKED_REMOVE_SIGN_UP,
-  queueEvent,
-  addNotification,
 } from '../actions';
 import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
@@ -83,12 +75,6 @@ export function signupCreated(campaignId, shouldShowAffirmation = true) {
       shouldShowAffirmation,
     });
   };
-}
-
-// Action: waiting on a signup response.
-// @TODO: cleanup the signup actions to use approach established in "post" action.
-export function signupPending() {
-  return { type: SIGNUP_PENDING };
 }
 
 /**
@@ -170,90 +156,5 @@ export function clickedSignupAction(campaignId, data = {}) {
     dispatch(convertOnSignupAction());
 
     dispatch(storeCampaignSignup(campaignId, data));
-  };
-}
-
-// Async Action: send signup to phoenix and
-// check if the user is logged in or has an existing signup.
-// @deprecate: use clickedSignupAction() instead.
-export function clickedSignUp(
-  campaignId,
-  options = null,
-  shouldRedirectToActionTab = true,
-) {
-  return (dispatch, getState) => {
-    const state = getState();
-    const campaignActionUrl = join(
-      '/us/campaigns',
-      getState().campaign.slug,
-      '/action',
-    );
-
-    // get campagin run id from state.
-    const campaignRunId = state.campaign.legacyCampaignRunId;
-
-    // If we show an affiliate option, send the value over to Rogue as details
-    let details = options;
-
-    const additionalContent = state.campaign.additionalContent || {};
-    if (additionalContent.displayAffilitateOptOut && !details) {
-      details = state.signups.affiliateMessagingOptOut
-        ? 'affiliate-opt-out'
-        : null;
-    }
-
-    // @TODO: Once we refactor this file, hopefully will not need this action
-    // dispatch any longer, or flow will be more logical!
-    dispatch(convertOnSignupAction());
-
-    // If the user is not logged in, handle this action later.
-    if (!isAuthenticated(state)) {
-      return dispatch(
-        queueEvent(
-          'clickedSignUp',
-          campaignId,
-          details,
-          shouldRedirectToActionTab,
-        ),
-      );
-    }
-
-    // If we already have a signup, just go to the action page.
-    if (state.signups.data.includes(campaignId)) {
-      return shouldRedirectToActionTab
-        ? dispatch(push(campaignActionUrl))
-        : null;
-    }
-
-    dispatch(signupPending());
-
-    return new Phoenix()
-      .post('next/signups', { campaignId, campaignRunId, details })
-      .then(response => {
-        // Handle a bad signup response...
-        if (!response) {
-          dispatch(addNotification('error'));
-        } else if (response[0] === false) {
-          // If Drupal denied our signup request, check if we already had a signup.
-          dispatch(
-            getCampaignSignups(campaignId, {
-              filter: { northstar_id: getUserId(state) },
-            }),
-          );
-        } else {
-          const isClosed = isCampaignClosed(state.campaign.endDate);
-
-          // Create signup and track any data before redirects.
-          dispatch(
-            signupCreated(campaignId, shouldRedirectToActionTab && !isClosed),
-          );
-
-          // Take user to the action page if campaign is open.
-          if (shouldRedirectToActionTab && !isClosed) {
-            dispatch({ type: OPENED_POST_SIGNUP_MODAL });
-            dispatch(push(campaignActionUrl));
-          }
-        }
-      });
   };
 }

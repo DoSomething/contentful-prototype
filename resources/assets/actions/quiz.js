@@ -3,7 +3,7 @@
 import { find, get } from 'lodash';
 
 import {
-  clickedSignUp,
+  clickedSignUpAction,
   PICK_QUIZ_ANSWER,
   COMPARE_QUIZ_ANSWER,
   VIEW_QUIZ_RESULT,
@@ -32,7 +32,11 @@ export function quizConvert(quizId, resultActionId) {
   return (dispatch, getState) => {
     const campaignId = getState().campaign.legacyCampaignId;
 
-    dispatch(clickedSignUp(campaignId, 'source:quiz', false));
+    dispatch(
+      clickedSignUpAction(campaignId, {
+        body: { details: { source: 'quiz' } },
+      }),
+    );
 
     return dispatch(viewQuizResult(quizId, resultActionId));
   };

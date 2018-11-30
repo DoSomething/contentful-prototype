@@ -3,15 +3,16 @@ import { withRouter } from 'react-router';
 import { PuckConnector } from '@dosomething/puck-client';
 
 import Quiz from './Quiz';
-import { clickedSignUp } from '../../actions/signup';
+import { clickedSignupAction } from '../../actions/signup';
 import { isAuthenticated } from '../../selectors/user';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
+  campaignId: state.campaign.campaignId,
+  campaignContentfulId: state.campaign.id,
   isAuthenticated: isAuthenticated(state),
-  legacyCampaignId: state.campaign.legacyCampaignId,
 });
 
 /**
@@ -19,9 +20,12 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  clickedSignUp,
+  clickedSignupAction,
 };
 
 export default withRouter(
-  connect(mapStateToProps, actionCreators)(PuckConnector(Quiz)),
+  connect(
+    mapStateToProps,
+    actionCreators,
+  )(PuckConnector(Quiz)),
 );
