@@ -41,7 +41,13 @@ class CampaignSignupsController extends Controller
 
         $query['filter']['campaign_id'] = $id;
 
-        return $this->signupRepository->getSignups($query);
+        Log::info('[Phoenix] CampaignSignupsController@index request data:', $query);
+
+        $data = $this->signupRepository->getSignups($query);
+
+        Log::info('[Phoenix] CampaignSignupsController@index response data:', $data);
+
+        return $data;
     }
 
     /**
