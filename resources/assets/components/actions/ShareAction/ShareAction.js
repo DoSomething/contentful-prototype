@@ -32,13 +32,7 @@ class ShareAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const {
-      id,
-      campaignId,
-      campaignRunId,
-      legacyCampaignId,
-      link,
-    } = this.props;
+    const { id, campaignId, link } = this.props;
 
     const formData = setFormData({
       action,
@@ -48,8 +42,6 @@ class ShareAction extends React.Component {
         url: link,
         platform: 'facebook',
         campaign_id: campaignId,
-        legacy_campaign_id: legacyCampaignId,
-        legacy_campaign_run_id: campaignRunId,
         puck_id: puckId,
       },
     });
@@ -96,10 +88,9 @@ class ShareAction extends React.Component {
     const {
       affirmation, // @TODO: Rename me to 'affirmationText'?
       affirmationBlock,
-      campaignRunId,
       content,
       hideEmbed,
-      legacyCampaignId,
+      campaignId,
       link,
       socialPlatform,
       title,
@@ -114,8 +105,7 @@ class ShareAction extends React.Component {
     const href = dynamicString(link, {
       userId,
       northstarId: userId, // @TODO: Remove!
-      campaignId: legacyCampaignId,
-      campaignRunId,
+      campaignId,
       source: 'web',
     });
 
@@ -160,12 +150,10 @@ ShareAction.propTypes = {
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
   campaignId: PropTypes.string.isRequired,
-  campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
   id: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  legacyCampaignId: PropTypes.string,
   link: PropTypes.string.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
@@ -176,7 +164,6 @@ ShareAction.propTypes = {
 ShareAction.defaultProps = {
   additionalContent: null,
   affirmation: 'Thanks for rallying your friends on Facebook!',
-  legacyCampaignId: null,
   content: null,
   hideEmbed: false,
   userId: null,

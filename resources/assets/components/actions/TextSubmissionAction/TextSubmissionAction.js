@@ -66,11 +66,6 @@ class TextSubmissionAction extends React.Component {
       id: this.props.id,
       // Associate state values to fields.
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
-      details: {
-        campaign_id: this.props.campaignId,
-        legacy_campaign_id: this.props.legacyCampaignId,
-        legacy_campaign_run_id: this.props.legacyCampaignRunId,
-      },
     });
 
     // Send request to store the campaign text submission post.
@@ -170,8 +165,6 @@ TextSubmissionAction.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   initPostSubmissionItem: PropTypes.func.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
-  legacyCampaignRunId: PropTypes.string.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({

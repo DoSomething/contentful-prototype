@@ -204,8 +204,6 @@ ReferralSubmissionAction.defaultProps = {
     "Thanks for joining the movement, and inviting your friend! We'll get in touch with them and make this world a better place together.",
   buttonText: 'Send Email',
   className: null,
-  legacyCampaignId: null,
-  legacyCampaignRunId: null,
   title: 'Invite your friends',
 };
 

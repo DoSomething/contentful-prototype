@@ -23,7 +23,6 @@ const DefaultTemplate = props => {
     link,
     userId,
     campaignId,
-    campaignRunId,
     buttonText,
     affiliateLogo,
     source,
@@ -38,7 +37,6 @@ const DefaultTemplate = props => {
     userId,
     northstarId: userId, // @TODO: Remove!
     campaignId,
-    campaignRunId,
     source,
   });
 
@@ -92,7 +90,6 @@ DefaultTemplate.defaultProps = {
   affiliateLogo: null,
   buttonText: 'Visit Link',
   campaignId: null,
-  campaignRunId: null,
   userId: null,
   source: 'web',
 };
@@ -104,7 +101,6 @@ DefaultTemplate.propTypes = {
   affiliateLogo: PropTypes.string,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
-  campaignRunId: PropTypes.string,
   userId: PropTypes.string,
   source: PropTypes.string,
 };

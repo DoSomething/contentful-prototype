@@ -22,4 +22,7 @@ const actionCreators = {
   storeCampaignPost,
 };
 
-export default connect(mapStateToProps, actionCreators)(PhotoSubmissionAction);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(PhotoSubmissionAction);
