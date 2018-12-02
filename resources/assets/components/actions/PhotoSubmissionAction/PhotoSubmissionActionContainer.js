@@ -9,8 +9,7 @@ import {
 } from '../../../actions/post';
 
 const mapStateToProps = state => ({
-  campaignId: state.campaign.id,
-  legacyCampaignId: state.campaign.legacyCampaignId,
+  campaignId: state.campaign.campaignId,
   legacyCampaignRunId: state.campaign.legacyCampaignRunId,
   submissions: state.postSubmissions,
   userId: getUserId(state),

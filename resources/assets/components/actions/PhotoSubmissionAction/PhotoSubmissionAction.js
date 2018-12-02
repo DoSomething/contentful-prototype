@@ -80,7 +80,7 @@ class PhotoSubmissionAction extends React.Component {
   componentDidMount() {
     const request = getUserCampaignSignups(
       this.props.userId,
-      this.props.legacyCampaignId,
+      this.props.campaignId,
       this.props.legacyCampaignRunId,
     );
 
@@ -181,11 +181,6 @@ class PhotoSubmissionAction extends React.Component {
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
-      details: {
-        campaign_id: this.props.campaignId,
-        legacy_campaign_id: this.props.legacyCampaignId,
-        legacy_campaign_run_id: this.props.legacyCampaignRunId,
-      },
     });
 
     // Send request to store the campaign photo submission post.
@@ -418,7 +413,6 @@ PhotoSubmissionAction.propTypes = {
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   initPostSubmissionItem: PropTypes.func.isRequired,
-  legacyCampaignId: PropTypes.string.isRequired,
   legacyCampaignRunId: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
