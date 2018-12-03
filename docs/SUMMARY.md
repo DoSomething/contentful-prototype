@@ -67,6 +67,7 @@
   - [General Content Page](content-publishing/pages/general-content-page.md)
   - [Campaign Page](content-publishing/pages/campaign-page.md)
   - [Campaign Page Modals](content-publishing/pages/campaign-page-modals.md)
+- [HomePage](content-publishing/home-page.md)
 - [Quiz](content-publishing/quiz.md)
 - [Sixpack Experiments](content-publishing/sixpack-experiments.md)
 
