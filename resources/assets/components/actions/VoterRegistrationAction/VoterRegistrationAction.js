@@ -11,7 +11,6 @@ import './voter-registration-action.scss';
 const VoterRegistrationAction = props => {
   const {
     campaignId,
-    campaignRunId,
     content,
     contentfulId,
     link,
@@ -24,7 +23,6 @@ const VoterRegistrationAction = props => {
     userId,
     northstarId: userId, // @TODO: Remove!
     campaignId,
-    campaignRunId,
     source: 'web',
   };
 
@@ -62,7 +60,6 @@ const VoterRegistrationAction = props => {
 
 VoterRegistrationAction.propTypes = {
   campaignId: PropTypes.string.isRequired,
-  campaignRunId: PropTypes.string.isRequired,
   content: PropTypes.string,
   contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,

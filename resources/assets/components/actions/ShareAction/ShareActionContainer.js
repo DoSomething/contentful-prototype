@@ -9,10 +9,8 @@ import { storeCampaignPost } from '../../../actions/post';
  */
 const mapStateToProps = state => ({
   userId: getUserId(state),
-  campaignId: state.campaign.id,
-  campaignRunId: state.campaign.legacyCampaignRunId,
+  campaignId: state.campaign.campaignId,
   isAuthenticated: isAuthenticated(state),
-  legacyCampaignId: state.campaign.legacyCampaignId,
 });
 
 /**

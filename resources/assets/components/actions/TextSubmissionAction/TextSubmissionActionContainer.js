@@ -11,9 +11,7 @@ import {
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  campaignId: state.campaign.id,
-  legacyCampaignId: state.campaign.legacyCampaignId,
-  legacyCampaignRunId: state.campaign.legacyCampaignRunId,
+  campaignId: state.campaign.campaignId,
   submissions: state.postSubmissions,
 });
 
@@ -30,4 +28,7 @@ const actionCreators = {
 /**
  * Export the container component.
  */
-export default connect(mapStateToProps, actionCreators)(TextSubmissionAction);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(TextSubmissionAction);

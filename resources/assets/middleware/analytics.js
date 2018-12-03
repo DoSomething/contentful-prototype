@@ -13,17 +13,8 @@ const appendAdditionalData = (data, state) => {
   const updatedData = { ...data };
 
   if (get(state, 'campaign.type', null) === 'campaign') {
-    updatedData.campaignId = get(state, 'campaign.id', null);
-    updatedData.legacyCampaignId = get(
-      state,
-      'campaign.legacyCampaignId',
-      null,
-    );
-    updatedData.legacyCampaignRunId = get(
-      state,
-      'campaign.legacyCampaignRunId',
-      null,
-    );
+    updatedData.campaignId = get(state, 'campaign.campaignId', null);
+    updatedData.contentfulId = get(state, 'campaign.id', null);
   }
 
   return updatedData;
