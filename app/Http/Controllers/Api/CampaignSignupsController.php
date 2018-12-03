@@ -41,11 +41,11 @@ class CampaignSignupsController extends Controller
 
         $query['filter']['campaign_id'] = $id;
 
-        Log::info('[Phoenix] CampaignSignupsController@index request data:', $query);
+        Log::debug('[Phoenix] CampaignSignupsController@index request data:', $query);
 
         $data = $this->signupRepository->getSignups($query);
 
-        Log::info('[Phoenix] CampaignSignupsController@index response data:', $data);
+        Log::debug('[Phoenix] CampaignSignupsController@index response data:', $data);
 
         return $data;
     }
@@ -66,11 +66,11 @@ class CampaignSignupsController extends Controller
             'details' => 'string',
         ]);
 
-        Log::info('[Phoenix] CampaignSignupsController@store request data:', $request->all());
+        Log::debug('[Phoenix] CampaignSignupsController@store request data:', $request->all());
 
         $data = $this->signupRepository->storeSignup($request->all());
 
-        Log::info('[Phoenix] CampaignSignupsController@store response data:', $data);
+        Log::debug('[Phoenix] CampaignSignupsController@store response data:', $data);
 
         return response()->json($data, 201);
     }

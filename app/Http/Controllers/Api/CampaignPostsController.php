@@ -42,7 +42,13 @@ class CampaignPostsController extends Controller
 
         $query['filter']['campaign_id'] = $id;
 
-        return $this->postRepository->getPosts($query);
+        Log::debug('[Phoenix] CampaignPostsController@index request data:', $query);
+
+        $data = $this->postRepository->getPosts($query);
+
+        Log::debug('[Phoenix] CampaignPostsController@index response data:', $data);
+
+        return $data;
     }
 
     /**
@@ -55,11 +61,11 @@ class CampaignPostsController extends Controller
     {
         $request->merge(['campaign_id' => $id]);
 
-        Log::info('Phoenix '.$request->input('type').' submission request data:', $request->all());
+        Log::debug('Phoenix '.$request->input('type').' submission request data:', $request->all());
 
         $data = $this->postRepository->storePost($request->all());
 
-        Log::info('Phoenix '.$request->input('type').' submission response data:', array_except($data, 'data.signup'));
+        Log::debug('Phoenix '.$request->input('type').' submission response data:', array_except($data, 'data.signup'));
 
         return response()->json($data, 201);
     }
