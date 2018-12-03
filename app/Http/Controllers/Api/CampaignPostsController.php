@@ -61,11 +61,11 @@ class CampaignPostsController extends Controller
     {
         $request->merge(['campaign_id' => $id]);
 
-        Log::debug('Phoenix '.$request->input('type').' submission request data:', $request->all());
+        Log::debug('[Phoenix] CampaignPostsController@store '.$request->input('type').' submission request data:', $request->all());
 
         $data = $this->postRepository->storePost($request->all());
 
-        Log::debug('Phoenix '.$request->input('type').' submission response data:', array_except($data, 'data.signup'));
+        Log::debug('[Phoenix] CampaignPostsController@store  '.$request->input('type').' submission response data:', array_except($data, 'data.signup'));
 
         return response()->json($data, 201);
     }
