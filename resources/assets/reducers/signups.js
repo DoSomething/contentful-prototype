@@ -48,7 +48,10 @@ const signupReducer = (state = {}, action) => {
       };
 
     case STORE_CAMPAIGN_SIGNUPS_FAILED:
-      return state;
+      return {
+        ...state,
+        isPending: false,
+      };
 
     case STORE_CAMPAIGN_SIGNUPS_PENDING:
       return {

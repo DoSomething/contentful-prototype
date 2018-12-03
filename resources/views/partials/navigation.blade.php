@@ -4,7 +4,7 @@
     <div class="navigation__menu">
         <ul class="navigation__primary">
             <li>
-                <a href="{{ phoenixLink('us/campaigns') }}">
+                <a href="{{ config('app.url') }}/us/campaigns">
                     <strong class="navigation__title">Explore Campaigns</strong>
                     <span class="navigation__subtitle">Find ways to take action both online and off.</span>
                 </a>
