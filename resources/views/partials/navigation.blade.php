@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="navigation {{isset($legacyNavigation) ? '-white -floating' : 'bg-white'}}">
     <a class="navigation__logo" href="{{ url('/') }}"><span>DoSomething.org</span></a>
     <a  id="js-navigation-toggle" class="navigation__toggle"><span>Show Menu</span></a>
     <div class="navigation__menu">

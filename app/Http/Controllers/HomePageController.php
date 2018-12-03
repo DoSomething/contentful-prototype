@@ -39,6 +39,7 @@ class HomePageController extends Controller
 
         return view('app', [
             'pageTitle' => $homePage->fields->title,
+            'legacyNavigation' => true,
         ])->with('homePage', $homePage);
     }
 }

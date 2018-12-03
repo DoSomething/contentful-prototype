@@ -1,0 +1,60 @@
+@import '../../../scss/next-toolbox';
+
+.home-page {
+  .home-page__gallery {
+    display: grid;
+
+    @include media($medium) {
+      grid-template-columns: repeat(4, 1fr);
+
+      .tile:first-of-type {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    }
+  }
+
+  .header {
+    padding-bottom: 50px;
+  }
+
+  .header--home {
+    .header__title {
+      text-align: center;
+    }
+
+    .header__subtitle {
+      font-size: $font-medium;
+      font-weight: $weight-normal;
+      text-align: center;
+    }
+  }
+
+  .container--sponsors {
+    text-align: center;
+
+    h4 {
+      color: $light-gray;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin: gutter() $base-spacing;
+    }
+
+    img {
+      vertical-align: middle;
+      opacity: 0.2;
+
+      @include media($mobile) {
+        max-width: 90px;
+        max-height: 30px;
+      }
+    }
+  }
+}
