@@ -37,6 +37,7 @@ const DefaultTemplate = props => {
     userId,
     northstarId: userId, // @TODO: Remove!
     campaignId,
+    campaignRunId: 0,
     source,
   });
 

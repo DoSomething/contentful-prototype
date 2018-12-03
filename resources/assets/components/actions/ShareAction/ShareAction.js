@@ -106,6 +106,7 @@ class ShareAction extends React.Component {
       userId,
       northstarId: userId, // @TODO: Remove!
       campaignId,
+      campaignRunId: 0,
       source: 'web',
     });
 

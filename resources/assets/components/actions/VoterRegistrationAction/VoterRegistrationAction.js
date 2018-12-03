@@ -23,6 +23,7 @@ const VoterRegistrationAction = props => {
     userId,
     northstarId: userId, // @TODO: Remove!
     campaignId,
+    campaignRunId: 0,
     source: 'web',
   };
 
