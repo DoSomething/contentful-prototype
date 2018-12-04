@@ -72,15 +72,17 @@ export function initializeStore(store) {
     const actionId = decodeURIComponent(query('actionId'));
 
     localforage.getItem(actionId).then(action => {
-      if (!isNull(action)) {
-        store.dispatch(action);
-
-        // Remove any old queued post-auth actions from storage.
-        localforage.keys().then(keys => {
-          const actions = keys.filter(key => key.indexOf('auth:') !== -1);
-          actions.forEach(key => localforage.removeItem(key));
-        });
+      if (isNull(action)) {
+        return;
       }
+
+      store.dispatch(action);
+
+      // Remove any old queued post-auth actions from storage.
+      localforage.keys().then(keys => {
+        const actions = keys.filter(key => key.indexOf('auth:') !== -1);
+        actions.forEach(key => localforage.removeItem(key));
+      });
     });
   }
 
