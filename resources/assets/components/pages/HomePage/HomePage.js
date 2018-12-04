@@ -5,6 +5,8 @@ import { get } from 'lodash';
 
 import sponsorList from './sponsor-list';
 import { contentfulImageUrl } from '../../../helpers';
+import HomePageDashboard from '../../AdminDashboard/HomePageDashboard';
+import AdminDashboardContainer from '../../AdminDashboard/AdminDashboardContainer';
 
 import './home-page.scss';
 
@@ -61,6 +63,10 @@ class HomePage extends React.Component {
             <h2 className="header__subtitle">{subTitle}</h2>
           </div>
         </header>
+
+        <AdminDashboardContainer>
+          <HomePageDashboard />
+        </AdminDashboardContainer>
 
         <section className="home-page__gallery">
           {blocks.map(this.renderGalleryBlock)}
