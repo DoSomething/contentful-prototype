@@ -1,5 +1,5 @@
-import merge from 'lodash/merge';
 import localforage from 'localforage';
+import { isNull, merge } from 'lodash';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import initialState from './initialState';
@@ -72,13 +72,15 @@ export function initializeStore(store) {
     const actionId = decodeURIComponent(query('actionId'));
 
     localforage.getItem(actionId).then(action => {
-      store.dispatch(action);
+      if (!isNull(action)) {
+        store.dispatch(action);
 
-      // Remove any old queued post-auth actions from storage.
-      localforage.keys().then(keys => {
-        const actions = keys.filter(key => key.indexOf('auth:') !== -1);
-        actions.forEach(key => localforage.removeItem(key));
-      });
+        // Remove any old queued post-auth actions from storage.
+        localforage.keys().then(keys => {
+          const actions = keys.filter(key => key.indexOf('auth:') !== -1);
+          actions.forEach(key => localforage.removeItem(key));
+        });
+      }
     });
   }
 
