@@ -9,30 +9,7 @@ import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
 import { trackPuckEvent } from '../helpers/analytics';
-import { getRequest, setRequestHeaders } from '../helpers/api';
-
-/**
- * Console log a table of data.
- *
- * @param  {Array} data
- * @return {void}
- * @todo   Move this to a dedicated Debugger or Logger service class.
- */
-function tabularLog(data) {
-  if (!data) {
-    return;
-  }
-
-  // Console log response Data for debugging.
-  if (window.ENV.APP_ENV !== 'production') {
-    console.groupCollapsed(
-      '%c API Middleware Response: ',
-      'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
-    );
-    console.table(data);
-    console.groupEnd();
-  }
-}
+import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
 
 /**
  * Send a GET request and dispatch actions.
@@ -72,7 +49,8 @@ const getRequestAction = (payload, dispatch) => {
  * @param  {Object} payload
  * @param  {Function} dispatch
  * @return {Object}
- * @todo   rename to postRequestAction
+ * @todo   rename to postRequestAction and refactor to use helpers/api@postRequest().
+ * @todo   Only use multipart/from-data if sending FormData.
  */
 const postRequest = (payload, dispatch, getState) => {
   const token = getUserToken(getState()) || window.AUTH.token;

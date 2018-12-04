@@ -1,5 +1,5 @@
-import merge from 'lodash/merge';
 import localforage from 'localforage';
+import { isNull, merge } from 'lodash';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import initialState from './initialState';
@@ -72,6 +72,10 @@ export function initializeStore(store) {
     const actionId = decodeURIComponent(query('actionId'));
 
     localforage.getItem(actionId).then(action => {
+      if (isNull(action)) {
+        return;
+      }
+
       store.dispatch(action);
 
       // Remove any old queued post-auth actions from storage.

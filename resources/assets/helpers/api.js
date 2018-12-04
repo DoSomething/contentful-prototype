@@ -1,5 +1,6 @@
 /* global window */
 
+import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { PHOENIX_URL } from '../constants';
@@ -25,6 +26,29 @@ export function setRequestHeaders(options = {}) {
 }
 
 /**
+ * Console log a table of data.
+ *
+ * @param  {Array} data
+ * @return {void}
+ * @todo   Move this to a dedicated Debugger or Logger service class.
+ */
+export function tabularLog(data) {
+  if (!data) {
+    return;
+  }
+
+  // Console log response Data for debugging.
+  if (window.ENV.APP_ENV !== 'production') {
+    console.groupCollapsed(
+      '%c API Middleware Response: ',
+      'background-color: rgba(137,161,188,0.5); color: rgba(33,70,112,1); display: block; font-weight: bold; line-height: 1.5;',
+    );
+    console.table(data);
+    console.groupEnd();
+  }
+}
+
+/**
  * Send a GET request.
  *
  * @param  {String} url
@@ -36,7 +60,11 @@ export function getRequest(url, query) {
     headers: setRequestHeaders({ token: window.AUTH.token }),
   });
 
-  return client.get(url, query);
+  return client.get(url, query).then(response => {
+    tabularLog(get(response, 'data', null));
+
+    return response;
+  });
 }
 
 /**
@@ -55,7 +83,11 @@ export function postRequest(url, query, token) {
     },
   });
 
-  return client.post(url, query);
+  return client.post(url, query).then(response => {
+    tabularLog(get(response, 'data', null));
+
+    return response;
+  });
 }
 
 /**
