@@ -21,12 +21,13 @@ export function fetchCampaignPosts(query = {}) {
   return (dispatch, getState) => {
     const id = getState().campaign.id;
     const campaignId = getState().campaign.campaignId;
+    const path = join('api/v2/campaigns', campaignId, 'posts');
 
     dispatch(
       apiRequest('GET', {
         id,
         query,
-        url: join(PHOENIX_URL, 'api/v2/campaigns', campaignId, 'posts'),
+        url: `${PHOENIX_URL}/${path}`,
       }),
     );
   };
