@@ -3,7 +3,7 @@
 import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
-import { report } from '../helpers';
+import { report, isWithinMinutes } from '../helpers';
 import { PHOENIX_URL } from '../constants';
 import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
@@ -70,12 +70,16 @@ const postRequest = (payload, dispatch, getState) => {
   return client
     .post(payload.url, body)
     .then(response => {
+      console.log('👾 POST request response: ', response);
+
       tabularLog(get(response, 'data', null));
+
+      const dataCreatedAt = get(response, 'data.created_at', Date.now());
 
       response.status = {
         success: {
-          code: 201,
-          message: 'Thanks for your submission!',
+          code: isWithinMinutes(dataCreatedAt, 10) ? 201 : 200,
+          message: get(payload, 'meta.messaging.success', 'Thanks!'),
         },
       };
 
@@ -87,10 +91,12 @@ const postRequest = (payload, dispatch, getState) => {
     })
     .catch(error => {
       report(error);
+
       trackPuckEvent('phoenix_failed_post_request', {
         url: payload.url,
         error,
       });
+
       if (window.ENV.APP_ENV !== 'production') {
         console.log('🚫 failed response? caught the error!', error);
       }

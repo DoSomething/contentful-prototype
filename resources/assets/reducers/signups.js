@@ -60,6 +60,7 @@ const signupReducer = (state = {}, action) => {
       };
 
     case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
+      console.log('👻 STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL', action);
       if (data) {
         signups = [...state.data, data.campaign_id];
       }

@@ -72,6 +72,6 @@ class CampaignSignupsController extends Controller
 
         Log::debug('[Phoenix] CampaignSignupsController@store response data:', $data);
 
-        return response()->json($data, 201);
+        return $data;
     }
 }
