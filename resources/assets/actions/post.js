@@ -1,6 +1,9 @@
-/* global window FormData */
+/* global FormData */
+
+import { join } from 'path';
 
 import apiRequest from './api';
+import { PHOENIX_URL } from '../constants';
 import {
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_INIT_ITEM,
@@ -17,16 +20,14 @@ import {
 export function fetchCampaignPosts(query = {}) {
   return (dispatch, getState) => {
     const id = getState().campaign.id;
-    const legacyId = getState().campaign.legacyCampaignId;
-    // @TODO: for now prefer legacy ID over contentful ID
-    const campaignId = legacyId || id;
+    const campaignId = getState().campaign.campaignId;
+    const path = join('api/v2/campaigns', campaignId, 'posts');
 
     dispatch(
       apiRequest('GET', {
         id,
-        legacyId,
         query,
-        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/posts`,
+        url: `${PHOENIX_URL}/${path}`,
       }),
     );
   };

@@ -1,5 +1,6 @@
 /* global window */
 
+import { join } from 'path';
 import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
@@ -103,13 +104,12 @@ export function getUserCampaignSignups(
   campaignId,
   campaignRunId = null,
 ) {
-  return getRequest(
-    `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
-    {
-      filter: {
-        northstar_id: userId,
-        campaign_run_id: campaignRunId,
-      },
+  const path = join('api/v2/campaigns', campaignId, 'signups');
+
+  return getRequest(`${PHOENIX_URL}/${path}`, {
+    filter: {
+      northstar_id: userId,
+      campaign_run_id: campaignRunId,
     },
-  );
+  });
 }

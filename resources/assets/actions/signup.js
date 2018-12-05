@@ -1,6 +1,9 @@
-/* global window */
+/* global */
+
+import { join } from 'path';
 
 import apiRequest from './api';
+import { PHOENIX_URL } from '../constants';
 import { getUserId } from '../selectors/user';
 import {
   SIGNUP_CREATED,
@@ -88,6 +91,7 @@ export function getCampaignSignups(id = null, query = {}) {
   return (dispatch, getState) => {
     const state = getState();
     const campaignId = id || state.campaign.campaignId;
+    const path = join('api/v2/campaigns', campaignId, 'signups');
 
     dispatch(
       apiRequest('GET', {
@@ -99,7 +103,7 @@ export function getCampaignSignups(id = null, query = {}) {
         pending: GET_CAMPAIGN_SIGNUPS_PENDING,
         query,
         success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+        url: `${PHOENIX_URL}/${path}`,
       }),
     );
   };
@@ -113,6 +117,7 @@ export function getCampaignSignups(id = null, query = {}) {
  * @return {Function}
  */
 export function storeCampaignSignup(campaignId, data) {
+  const path = join('api/v2/campaigns', campaignId, 'signups');
   const analytics = {
     name: 'phoenix_clicked_signup',
     service: 'puck',
@@ -138,7 +143,7 @@ export function storeCampaignSignup(campaignId, data) {
         pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,
         success: STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+        url: `${PHOENIX_URL}/${path}`,
       }),
     );
   };

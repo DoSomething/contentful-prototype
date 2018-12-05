@@ -30,7 +30,6 @@ class AppServiceProvider extends ServiceProvider
                 'NORTHSTAR_URL' => config('services.northstar.url'),
                 'NPS_SURVEY_ENABLED' => config('services.timed_modals.nps_survey.enabled'),
                 'PHOENIX_LEGACY_URL' => config('services.phoenix-legacy.url'),
-                'PHOENIX_URL' => config('services.phoenix.url'),
                 'PUCK_URL' => config('services.analytics.puck_url'),
                 'SIXPACK_BASE_URL' => config('services.sixpack.url'),
                 'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),

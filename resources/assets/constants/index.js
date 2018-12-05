@@ -6,7 +6,7 @@ import { get } from 'lodash';
  */
 export const MEDIA_MEDIUM_SIZE_MIN = 759;
 
-export const PHOENIX_URL = get(window.ENV, 'PHOENIX_URL', null);
+export const PHOENIX_URL = window.location.origin;
 
 export const PUCK_URL = get(window.ENV, 'PUCK_URL', null);
 

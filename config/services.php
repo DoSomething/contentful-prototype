@@ -45,10 +45,6 @@ return [
         ],
     ],
 
-    'phoenix' => [
-        'url' => env('APP_URL'),
-    ],
-
     'phoenix-legacy' => [
         'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
         'username' => env('PHOENIX_LEGACY_USERNAME'),
