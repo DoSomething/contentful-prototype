@@ -99,15 +99,17 @@ export function postRequest(url, query, token) {
  * @param  {String|Null} campaignRunId
  * @return {Object}
  */
-export function getUserCampaignSignups(userId, campaignId, campaignRunId = null) {
+export function getUserCampaignSignups(
+  userId,
+  campaignId,
+  campaignRunId = null,
+) {
   const path = join('api/v2/campaigns', campaignId, 'signups');
 
-  return getRequest(`${PHOENIX_URL}/${path}`
-    {
-      filter: {
-        northstar_id: userId,
-        campaign_run_id: campaignRunId,
-      },
+  return getRequest(`${PHOENIX_URL}/${path}`, {
+    filter: {
+      northstar_id: userId,
+      campaign_run_id: campaignRunId,
     },
-  );
+  });
 }
