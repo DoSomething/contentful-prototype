@@ -272,7 +272,7 @@ function get_metadata($entry)
         $entry = $entry->fields;
     }
 
-    $baseUrl = config('services.phoenix.url').'/us';
+    $baseUrl = config('app.url').'/us';
 
     $image = data_get($entry, 'metadata.fields.image', null);
 
