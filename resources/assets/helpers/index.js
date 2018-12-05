@@ -409,7 +409,7 @@ export function isCampaignClosed(endDate) {
  * @param  {Number}  minutes
  * @return {Boolean}
  */
-export function isWithinMinutes(date, minutes = 5) {
+export function isWithinMinutes(date, minutes = 2) {
   if (!date) {
     return false;
   }
