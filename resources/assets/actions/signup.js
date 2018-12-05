@@ -1,6 +1,9 @@
-/* global window */
+/* global */
+
+import { join } from 'path';
 
 import apiRequest from './api';
+import { PHOENIX_URL } from '../constants';
 import { getUserId } from '../selectors/user';
 import {
   SIGNUP_CREATED,
@@ -99,7 +102,7 @@ export function getCampaignSignups(id = null, query = {}) {
         pending: GET_CAMPAIGN_SIGNUPS_PENDING,
         query,
         success: GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+        url: join(PHOENIX_URL, 'api/v2/campaigns', campaignId, 'signups'),
       }),
     );
   };
@@ -138,7 +141,7 @@ export function storeCampaignSignup(campaignId, data) {
         pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,
         success: STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
-        url: `${window.location.origin}/api/v2/campaigns/${campaignId}/signups`,
+        url: join(PHOENIX_URL, 'api/v2/campaigns', campaignId, 'signups'),
       }),
     );
   };

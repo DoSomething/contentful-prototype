@@ -1,13 +1,14 @@
-/* global window */
+/* global */
 
 import { connect } from 'react-redux';
 
 import CampaignUpdate from './CampaignUpdate';
 import { makeShareLink } from '../../helpers';
+import { PHOENIX_URL } from '../../constants';
 
 const mapStateToProps = (state, props) => {
   const linkOptions = {
-    domain: window.location.origin,
+    domain: PHOENIX_URL,
     slug: state.campaign.slug,
     key: props.id,
   };
