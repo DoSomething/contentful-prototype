@@ -75,7 +75,7 @@ const postRequest = (payload, dispatch, getState) => {
       // @TODO: Not ideal. We would prefer to know the status code from response to know
       // if data was created or not, but Gateway doesn't currently pass this to us. So for
       // now we're resolving to check against the data's created_at value to decide time elapsed.
-      const dataCreatedAt = get(response, 'data.created_at', Date.now());
+      const dataCreatedAt = get(response, 'data.created_at', null);
 
       response.status = {
         success: {
