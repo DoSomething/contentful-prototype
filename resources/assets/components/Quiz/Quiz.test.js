@@ -1,7 +1,7 @@
 /* global location, jsdom */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { createMemoryHistory } from 'history';
 
 import Quiz from './Quiz';
@@ -94,35 +94,26 @@ const props = {
   campaignId: '1',
 };
 
-test('it should display a placeholder quiz', () => {
-  const wrapper = shallow(<Quiz {...props} />);
+let wrapper = shallow(<Quiz {...props} />);
 
+test('it should display a placeholder quiz', () => {
   expect(wrapper.find('.quiz')).toHaveLength(1);
 });
 
 test('the button is disabled when quiz is incomplete', () => {
-  const wrapper = render(<Quiz {...props} />);
-
   expect(wrapper.find('button').prop('disabled')).toBe(true);
 });
 
 test('the questions are displayed', () => {
-  const wrapper = shallow(<Quiz {...props} />);
-
   expect(wrapper.find('QuizQuestion')).toHaveLength(2);
 });
 
 test('the button is not disabled when quiz is complete', () => {
-  const wrapper = shallow(<Quiz {...props} />);
   wrapper.setState({ choices: { 0: '0', 1: '0' } });
   expect(wrapper.find('button').prop('disabled')).toBe(false);
 });
 
 test('clicking the button hides the quiz, shows the conclusion, and tracks the conversion', () => {
-  const wrapper = shallow(<Quiz {...props} />);
-
-  wrapper.setState({ choices: { 0: '0', 1: '0' } });
-
   wrapper.find('button').simulate('click');
 
   expect(trackEventMock).toHaveBeenCalled();
@@ -132,7 +123,7 @@ test('clicking the button hides the quiz, shows the conclusion, and tracks the c
 });
 
 test('a winning quiz resultBlock causes a redirect to the new quiz', () => {
-  const wrapper = shallow(<Quiz {...props} />);
+  wrapper = shallow(<Quiz {...props} />);
 
   wrapper.setState({ choices: { 0: '1', 1: '1' } });
 
