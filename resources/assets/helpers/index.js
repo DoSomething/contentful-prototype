@@ -1,10 +1,10 @@
 /* global window, document, Blob, URL */
 
-import { isBefore } from 'date-fns';
 import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
+import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
@@ -400,6 +400,24 @@ export function isCampaignClosed(endDate) {
   }
 
   return isBefore(endDate, new Date());
+}
+
+/**
+ * Check if specified date occurred within the last specified minutes.
+ *
+ * @param  {Date|String|Number}  date
+ * @param  {Number}  minutes
+ * @return {Boolean}
+ */
+export function isWithinMinutes(date, minutes = 2) {
+  if (!date) {
+    return false;
+  }
+
+  return isWithinInterval(getTime(date), {
+    start: Date.now() - minutes * 60 * 1000,
+    end: Date.now(),
+  });
 }
 
 /**

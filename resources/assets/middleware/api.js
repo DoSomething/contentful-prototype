@@ -3,7 +3,7 @@
 import { get } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
-import { report } from '../helpers';
+import { report, isWithinMinutes } from '../helpers';
 import { PHOENIX_URL } from '../constants';
 import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
@@ -72,10 +72,15 @@ const postRequest = (payload, dispatch, getState) => {
     .then(response => {
       tabularLog(get(response, 'data', null));
 
+      // @TODO: Not ideal. We would prefer to know the status code from response to know
+      // if data was created or not, but Gateway doesn't currently pass this to us. So for
+      // now we're resolving to check against the data's created_at value to decide time elapsed.
+      const dataCreatedAt = get(response, 'data.created_at', null);
+
       response.status = {
         success: {
-          code: 201,
-          message: 'Thanks for your submission!',
+          code: isWithinMinutes(dataCreatedAt, 5) ? 201 : 200,
+          message: get(payload, 'meta.messaging.success', 'Thanks!'),
         },
       };
 
@@ -87,10 +92,12 @@ const postRequest = (payload, dispatch, getState) => {
     })
     .catch(error => {
       report(error);
+
       trackPuckEvent('phoenix_failed_post_request', {
         url: payload.url,
         error,
       });
+
       if (window.ENV.APP_ENV !== 'production') {
         console.log('🚫 failed response? caught the error!', error);
       }

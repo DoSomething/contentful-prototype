@@ -22,6 +22,7 @@ import {
  */
 const signupReducer = (state = {}, action) => {
   const data = get(action, 'response.data');
+  const status = get(action, 'response.status');
   let signups = [];
 
   switch (action.type) {
@@ -68,6 +69,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
+        shouldShowAffirmation: get(status, 'success.code') === 201,
         thisCampaign: true, // @TODO: remove from state; use a selector instead
       };
 
