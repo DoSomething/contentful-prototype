@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="chrome">
+    <div class="chrome -plain">
         <div class="wrapper">
             <a class="construction__logo" href="http://dosomething.org"></a>
             <section class="container -framed">
