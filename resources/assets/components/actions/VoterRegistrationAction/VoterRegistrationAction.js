@@ -5,19 +5,12 @@ import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
+import { trackPuckEvent } from '../../../helpers/analytics';
 
 import './voter-registration-action.scss';
 
 const VoterRegistrationAction = props => {
-  const {
-    campaignId,
-    content,
-    contentfulId,
-    link,
-    modalType,
-    trackEvent,
-    userId,
-  } = props;
+  const { campaignId, content, contentfulId, link, modalType, userId } = props;
 
   const tokens = {
     userId,
@@ -31,7 +24,7 @@ const VoterRegistrationAction = props => {
 
   const handleClick = () => {
     const trackingData = { contentfulId, url: parsedLink, modal: modalType };
-    trackEvent('clicked voter registration action', trackingData);
+    trackPuckEvent('clicked voter registration action', trackingData);
     set(`${props.userId}_hide_voter_reg_modal`, 'boolean', true);
   };
 
@@ -65,7 +58,6 @@ VoterRegistrationAction.propTypes = {
   contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   modalType: PropTypes.string,
-  trackEvent: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

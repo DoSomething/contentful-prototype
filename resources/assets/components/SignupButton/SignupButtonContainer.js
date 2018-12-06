@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { PuckConnector } from '@dosomething/puck-client';
 import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
@@ -30,4 +29,4 @@ const actionCreators = {
 export default connect(
   mapStateToProps,
   actionCreators,
-)(PuckConnector(SignupButton));
+)(SignupButton);
