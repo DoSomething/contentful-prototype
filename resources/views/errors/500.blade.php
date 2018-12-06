@@ -1,4 +1,4 @@
-@extends('layouts.takeover')
+@extends('layouts.master')
 
 @section('content')
     <div class="chrome">
