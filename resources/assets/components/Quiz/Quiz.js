@@ -13,6 +13,7 @@ import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
+import { trackPuckEvent } from '../../helpers/analytics';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
@@ -75,7 +76,6 @@ class Quiz extends React.Component {
     }
 
     const {
-      trackEvent,
       questions,
       resultBlocks,
       autoSubmit,
@@ -91,7 +91,7 @@ class Quiz extends React.Component {
       resultBlocks,
     );
 
-    trackEvent('converted on quiz', {
+    trackPuckEvent('converted on quiz', {
       responses: this.state.choices,
     });
 
@@ -258,7 +258,6 @@ Quiz.propTypes = {
   slug: PropTypes.string.isRequired,
   hideQuestionNumber: PropTypes.bool,
   title: PropTypes.string,
-  trackEvent: PropTypes.func.isRequired,
 };
 
 Quiz.defaultProps = {
