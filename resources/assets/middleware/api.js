@@ -70,15 +70,16 @@ const postRequest = (payload, dispatch, getState) => {
   return client
     .post(payload.url, body)
     .then(response => {
-      console.log('👾 POST request response: ', response);
-
       tabularLog(get(response, 'data', null));
 
+      // @TODO: Not ideal. We would prefer to know the status code from response to know
+      // if data was created or not, but Gateway doesn't currently pass this to us. So for
+      // now we're resolving to check against the data's created_at value to decide time elapsed.
       const dataCreatedAt = get(response, 'data.created_at', Date.now());
 
       response.status = {
         success: {
-          code: isWithinMinutes(dataCreatedAt, 10) ? 201 : 200,
+          code: isWithinMinutes(dataCreatedAt, 5) ? 201 : 200,
           message: get(payload, 'meta.messaging.success', 'Thanks!'),
         },
       };

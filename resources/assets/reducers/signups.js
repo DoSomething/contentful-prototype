@@ -60,7 +60,8 @@ const signupReducer = (state = {}, action) => {
       };
 
     case STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL:
-      console.log('👻 STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL', action);
+      const status = get(action, 'response.status.success.code');
+
       if (data) {
         signups = [...state.data, data.campaign_id];
       }
@@ -69,6 +70,7 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
+        shouldShowAffirmation: status === 201,
         thisCampaign: true, // @TODO: remove from state; use a selector instead
       };
 

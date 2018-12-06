@@ -19,13 +19,13 @@ const CampaignRoute = props => {
     hasCommunityPage,
     isCampaignClosed,
     match,
-    shouldShowSignupAffirmation,
+    shouldShowAffirmation,
   } = props;
 
   return (
     <div>
       <div>
-        {shouldShowSignupAffirmation ? (
+        {shouldShowAffirmation ? (
           <Modal onClose={clickedHideAffirmation}>
             <PostSignupModalContainer />
           </Modal>
@@ -79,7 +79,7 @@ CampaignRoute.propTypes = {
   hasCommunityPage: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
-  shouldShowSignupAffirmation: PropTypes.bool.isRequired,
+  shouldShowAffirmation: PropTypes.bool.isRequired,
 };
 
 CampaignRoute.defaultProps = {
