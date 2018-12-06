@@ -7,6 +7,7 @@ import Conclusion from './Conclusion';
 import Share from '../utilities/Share/Share';
 import ContentfulEntry from '../ContentfulEntry';
 import Markdown from '../utilities/Markdown/Markdown';
+import { trackPuckEvent } from '../../helpers/analytics';
 
 import './legacy-quiz.scss';
 
@@ -17,7 +18,6 @@ const LegacyQuiz = props => {
     data,
     completeQuiz,
     pickQuizAnswer,
-    trackEvent,
     submitButtonText,
   } = props;
   const { error, shouldSeeResult, selectedResult } = data;
@@ -64,7 +64,7 @@ const LegacyQuiz = props => {
   };
 
   if (shouldSeeResult) {
-    trackEvent('converted on quiz', {
+    trackPuckEvent('converted on quiz', {
       responses: data.questions,
     });
   }
@@ -112,7 +112,6 @@ LegacyQuiz.propTypes = {
   completeQuiz: PropTypes.func.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
   submitButtonText: PropTypes.string,
-  trackEvent: PropTypes.func.isRequired,
 };
 
 LegacyQuiz.defaultProps = {
