@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { PuckConnector } from '@dosomething/puck-client';
 import { get } from 'lodash';
 
 import LegacyQuiz from './LegacyQuiz';
@@ -47,4 +46,7 @@ const actions = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actions)(PuckConnector(LegacyQuiz));
+export default connect(
+  mapStateToProps,
+  actions,
+)(LegacyQuiz);

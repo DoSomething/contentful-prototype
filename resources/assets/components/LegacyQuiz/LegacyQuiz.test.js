@@ -20,7 +20,6 @@ test('it should display a placeholder quiz', () => {
       completeQuiz={() => {}}
       viewQuizResult={() => {}}
       startQuiz={() => {}}
-      trackEvent={() => {}}
       pickQuizAnswer={() => {}}
       showLedeBanner={false}
     />,

@@ -1,11 +1,14 @@
 /* global location, jsdom */
 
 import React from 'react';
-import { render, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { createMemoryHistory } from 'history';
 
 import Quiz from './Quiz';
 import QuizQuestion from './QuizQuestion';
+import { trackPuckEvent as trackEventMock } from '../../helpers/analytics';
+
+jest.mock('../../helpers/analytics');
 
 const history = createMemoryHistory();
 
@@ -91,49 +94,36 @@ const props = {
   campaignId: '1',
 };
 
-test('it should display a placeholder quiz', () => {
-  const wrapper = shallow(<Quiz trackEvent={() => {}} {...props} />);
+let wrapper = shallow(<Quiz {...props} />);
 
+test('it should display a placeholder quiz', () => {
   expect(wrapper.find('.quiz')).toHaveLength(1);
 });
 
 test('the button is disabled when quiz is incomplete', () => {
-  const wrapper = render(<Quiz trackEvent={() => {}} {...props} />);
-
   expect(wrapper.find('button').prop('disabled')).toBe(true);
 });
 
 test('the questions are displayed', () => {
-  const wrapper = shallow(<Quiz trackEvent={() => {}} {...props} />);
-
   expect(wrapper.find('QuizQuestion')).toHaveLength(2);
 });
 
 test('the button is not disabled when quiz is complete', () => {
-  const wrapper = shallow(<Quiz trackEvent={() => {}} {...props} />);
   wrapper.setState({ choices: { 0: '0', 1: '0' } });
   expect(wrapper.find('button').prop('disabled')).toBe(false);
 });
 
 test('clicking the button hides the quiz, shows the conclusion, and tracks the conversion', () => {
-  const tracker = jest.fn();
-
-  const wrapper = shallow(<Quiz trackEvent={tracker} {...props} />);
-
-  wrapper.setState({ choices: { 0: '0', 1: '0' } });
-
   wrapper.find('button').simulate('click');
 
-  expect(tracker).toHaveBeenCalled();
+  expect(trackEventMock).toHaveBeenCalled();
   expect(history.push).toHaveBeenCalledTimes(0);
   expect(wrapper.find(QuizQuestion)).toHaveLength(0);
   expect(wrapper.find('ContentfulEntry')).toHaveLength(1);
 });
 
 test('a winning quiz resultBlock causes a redirect to the new quiz', () => {
-  const tracker = jest.fn();
-
-  const wrapper = shallow(<Quiz trackEvent={tracker} {...props} />);
+  wrapper = shallow(<Quiz {...props} />);
 
   wrapper.setState({ choices: { 0: '1', 1: '1' } });
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
+import { trackPuckEvent } from '../../helpers/analytics';
 
 const SignupButton = props => {
   const {
@@ -14,7 +15,6 @@ const SignupButton = props => {
     sourceActionText,
     template,
     text,
-    trackEvent,
     trafficSource,
     campaignId,
     campaignContentfulId,
@@ -26,7 +26,7 @@ const SignupButton = props => {
       body: { details: { campaignContentfulId } },
     });
 
-    trackEvent('signup', {
+    trackPuckEvent('signup', {
       template,
       legacyCampaignId: campaignId, // @TODO: confirm it's ok to send as campaignID and not legacyCampaignId
       source,
@@ -61,7 +61,6 @@ SignupButton.propTypes = {
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   template: PropTypes.string,
   text: PropTypes.string,
-  trackEvent: PropTypes.func.isRequired,
   trafficSource: PropTypes.string,
 };
 

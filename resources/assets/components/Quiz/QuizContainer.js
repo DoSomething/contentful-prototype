@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { PuckConnector } from '@dosomething/puck-client';
 
 import Quiz from './Quiz';
 import { clickedSignupAction } from '../../actions/signup';
@@ -27,5 +26,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     actionCreators,
-  )(PuckConnector(Quiz)),
+  )(Quiz),
 );
