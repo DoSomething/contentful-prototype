@@ -13,16 +13,23 @@ class Affiliate extends Entity implements JsonSerializable
      */
     public function jsonSerialize()
     {
+        $logo = $this->logo;
+
+        if ($logo) {
+            $logo = [
+                'url' => get_image_url($this->logo, 'logo'),
+                'title' => $this->logo->getTitle(),
+                'description' => $this->logo->getDescription(),
+            ];
+        }
+
         return [
             'id' => $this->entry->getId(),
             'type' => $this->getContentType(),
             'fields' => [
                 'link' => $this->link,
                 'title' => $this->title,
-                'logo' => [
-                    'url' => get_image_url($this->logo, 'logo'),
-                    'title' => $this->logo->getTitle(),
-                ],
+                'logo' => $logo,
             ],
         ];
     }
