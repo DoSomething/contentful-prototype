@@ -30,7 +30,7 @@ const Affirmation = ({
     ) : null}
 
     <Flex className="flex-align-center">
-      <FlexCell className="affirmation__cta  padded" width="half">
+      <FlexCell className="affirmation__cta padded" width="half">
         <h3>{callToActionHeader}</h3>
         <p>{callToActionDescription}</p>
       </FlexCell>
