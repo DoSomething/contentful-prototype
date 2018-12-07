@@ -13,7 +13,13 @@ const PostSignupModal = ({ affirmation }) => (
 );
 
 PostSignupModal.propTypes = {
-  affirmation: PropTypes.object.isRequired, // eslint-disable-line
+  affirmation: PropTypes.object, // eslint-disable-line
+};
+
+PostSignupModal.defaultProps = {
+  affirmation: {
+    type: 'affirmation',
+  },
 };
 
 export default PostSignupModal;

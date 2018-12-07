@@ -11,6 +11,7 @@ import { clickedHideAffirmation } from '../../../actions';
 const mapStateToProps = state => ({
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
+  affirmation: state.campaign.affirmation,
   campaignLead: get(state, 'campaign.campaignLead.fields', null),
   hasCommunityPage: Boolean(
     state.campaign.pages.find(
