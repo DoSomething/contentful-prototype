@@ -61,8 +61,13 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
 };
 
 AffiliateCredits.propTypes = {
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
-  affiliatePartners: PropTypes.arrayOf(PropTypes.object).isRequired,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
+};
+
+AffiliateCredits.defaultProps = {
+  affiliateSponsors: [],
+  affiliatePartners: [],
 };
 
 export default AffiliateCredits;
