@@ -48,15 +48,16 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
         link={affiliate.fields.link}
         title={affiliate.fields.title}
         prefix={prefix}
+        key={affiliate.id}
       />
     );
   });
 
-  return (
+  return affiliates.length ? (
     <div className="w-1/2 float-left">
       In partnership with {affiliatesString}
     </div>
-  );
+  ) : null;
 };
 
 AffiliateCredits.propTypes = {
