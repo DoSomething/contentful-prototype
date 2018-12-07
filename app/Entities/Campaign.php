@@ -131,7 +131,7 @@ class Campaign extends Entity implements JsonSerializable
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             'quizzes' => $this->parseQuizzes($this->quizzes),
             'dashboard' => $this->dashboard,
-            'affirmation' => $this->parseBlock($this->affirmation),
+            'affirmation' => $this->affirmation ? $this->parseBlock($this->affirmation) : null,
             'pages' => $this->parseBlocks($this->pages),
             'landingPage' => $this->parseLandingPage($this->landingPage),
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,

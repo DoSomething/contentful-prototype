@@ -100,6 +100,12 @@ export function renderTextSubmissionAction(data) {
   );
 }
 
+/**
+ * Render a photo submission action.
+ *
+ * @param  {Object} data
+ * @return {Component}
+ */
 export function renderPhotoSubmissionAction(data) {
   const contentfulId = data.id;
   const fields = withoutNulls(data.fields);
@@ -120,6 +126,12 @@ export function renderPhotoSubmissionAction(data) {
   );
 }
 
+/**
+ * Render a referral submission action.
+ *
+ * @param  {Object} data
+ * @return {Component}
+ */
 export function renderReferralSubmissionAction(data) {
   const fields = withoutNulls(data.fields);
 
@@ -131,12 +143,15 @@ export function renderReferralSubmissionAction(data) {
 }
 
 /**
- * Render the affirmation step.
+ * Render an affirmation.
  *
+ * @param  {Object} data
  * @return {Component}
  */
-export function renderAffirmation(step) {
-  return <Affirmation content={step.fields} />;
+export function renderAffirmation(data) {
+  const fields = withoutNulls(data.fields);
+
+  return <Affirmation {...fields} />;
 }
 
 /**

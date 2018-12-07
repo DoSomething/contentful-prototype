@@ -6,14 +6,15 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Modal from '../../utilities/Modal/Modal';
 import CampaignFooter from '../../CampaignFooter';
+import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import BlockPageContainer from '../../pages/BlockPage/BlockPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
-import PostSignupModalContainer from '../../pages/PostSignupModal/PostSignupModalContainer';
 
 const CampaignRoute = props => {
   const {
     affiliatePartners,
     affiliateSponsors,
+    affirmation,
     campaignLead,
     clickedHideAffirmation,
     hasCommunityPage,
@@ -27,7 +28,7 @@ const CampaignRoute = props => {
       <div>
         {shouldShowAffirmation ? (
           <Modal onClose={clickedHideAffirmation}>
-            <PostSignupModalContainer />
+            <PostSignupModal affirmation={affirmation || undefined} />
           </Modal>
         ) : null}
 
@@ -71,6 +72,7 @@ const CampaignRoute = props => {
 CampaignRoute.propTypes = {
   affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
   affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  affirmation: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   campaignLead: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
