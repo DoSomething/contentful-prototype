@@ -34,12 +34,12 @@ Affiliate.defaultProps = {
 
 const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
   const affiliates = affiliateSponsors.concat(affiliatePartners);
-  console.log('🙏🏽', affiliates);
 
   const affiliatesString = affiliates.map((affiliate, index, array) => {
     let prefix = null;
 
     if (index !== 0) {
+      // Add commas after the first item, or use "and" for the last item.
       prefix = index !== array.length - 1 ? ', ' : ' and ';
     }
 
