@@ -19,7 +19,6 @@ const Affirmation = ({
   callToActionDescription,
   callToActionHeader,
   header,
-  photo,
   quote,
 }) => (
   <Card className="affirmation rounded" title={header}>
@@ -51,11 +50,10 @@ const Affirmation = ({
 );
 
 Affirmation.propTypes = {
-  author: PropTypes.object,
+  author: PropTypes.object, // eslint-disable-line react/forbid-prop-types
   callToActionDescription: PropTypes.string,
   callToActionHeader: PropTypes.string,
   header: PropTypes.string,
-  photo: PropTypes.string,
   quote: PropTypes.string,
 };
 
@@ -65,7 +63,6 @@ Affirmation.defaultProps = {
     "By joining this campaign, you've teamed up with millions of other members who are making an impact on the causes affecting your world. As a DoSomething.org member, you're part of something bigger. You're part of a global movement for good.",
   callToActionHeader: "Woohoo! You're signed up.",
   header: 'Thanks for joining us!',
-  photo: null,
   quote: null,
 };
 
