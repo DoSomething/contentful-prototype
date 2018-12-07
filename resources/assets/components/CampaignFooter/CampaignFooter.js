@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AffiliateCredits from '../AffiliateCredits';
+import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
 const CampaignFooterContact = ({ email }) => {
   const contactEmail = email || CampaignFooterContact.defaultProps.email;
