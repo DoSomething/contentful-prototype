@@ -1,45 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const AffiliateCredit = ({ title, link }) => {
-  const affiliate = link ? (
-    <a href={link} target="_blank" rel="noopener noreferrer">
-      {title}
-    </a>
+const Affiliate = ({ title, link, prefix = null }) =>
+  link ? (
+    <React.Fragment>
+      {prefix}
+      <a
+        href={link}
+        className="whitespace-no-wrap"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {title}
+      </a>
+    </React.Fragment>
   ) : (
-    title
+    <React.Fragment>
+      {prefix}
+      <span className="whitespace-no-wrap">{title}</span>
+    </React.Fragment>
   );
 
-  return <span>{affiliate}</span>;
-};
-
-AffiliateCredit.propTypes = {
+Affiliate.propTypes = {
   link: PropTypes.string,
   title: PropTypes.string.isRequired,
+  prefix: PropTypes.string,
 };
 
-AffiliateCredit.defaultProps = {
+Affiliate.defaultProps = {
   link: null,
+  prefix: null,
 };
 
 const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
-  const sponsor = affiliateSponsors[0];
-  const partner = affiliatePartners[0];
+  const affiliates = affiliateSponsors.concat(affiliatePartners);
+  console.log('🙏🏽', affiliates);
 
-  const sponsorCredit = sponsor ? (
-    <AffiliateCredit link={sponsor.fields.link} title={sponsor.fields.title} />
-  ) : null;
-  const partnerCredit = partner ? (
-    <AffiliateCredit link={partner.fields.link} title={partner.fields.title} />
-  ) : null;
+  const affiliatesString = affiliates.map((affiliate, index, array) => {
+    let prefix = null;
 
-  const multipleCredits = sponsor && partner ? ' and ' : null;
+    if (index !== 0) {
+      prefix = index !== array.length - 1 ? ', ' : ' and ';
+    }
 
-  return sponsorCredit || partnerCredit ? (
-    <span>
-      In partnership with {sponsorCredit} {multipleCredits} {partnerCredit}
-    </span>
-  ) : null;
+    return (
+      <Affiliate
+        link={affiliate.fields.link}
+        title={affiliate.fields.title}
+        prefix={prefix}
+      />
+    );
+  });
+
+  return (
+    <div className="w-1/2 float-left">
+      In partnership with {affiliatesString}
+    </div>
+  );
 };
 
 AffiliateCredits.propTypes = {
