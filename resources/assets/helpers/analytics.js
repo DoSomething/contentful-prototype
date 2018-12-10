@@ -1,7 +1,12 @@
 /* global window */
 
 import { Engine as PuckClient } from '@dosomething/puck-client';
-import { dimensionByCookie, init, pageview } from '@dosomething/analytics';
+import {
+  dimensionByCookie,
+  init,
+  pageview,
+  analyze,
+} from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
@@ -9,14 +14,22 @@ import { get as getHistory } from '../history';
 /**
  * Send event to analyze with Google Analytics.
  *
- * @param  {String} name
- * @param  {Object} data
+ * @param  {String} category
+ * @param  {String} action
  * @return {void}
  */
-export function analyzeWithGoogleAnalytics(name, data) {
-  console.log('Analyze event using Google Analytics');
-  console.log(name);
-  console.log(data);
+export function analyzeWithGoogleAnalytics(category, action) {
+  if (!category || !action) {
+    console.error('The Category or Action is missing!');
+    return;
+  }
+
+  const label = window.location.pathname;
+
+  // Format the event parameter as expected by the analyze method.
+  const identifier = `${category}:${action}:${label}`;
+
+  analyze(identifier);
 }
 
 /**
