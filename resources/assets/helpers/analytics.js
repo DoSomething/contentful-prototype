@@ -11,6 +11,9 @@ import {
 import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
 
+// App name prefix used for event naming.
+const APP_NAME = 'phoenix';
+
 /**
  * Send event to analyze with Google Analytics.
  *
