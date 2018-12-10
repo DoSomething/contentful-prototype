@@ -113,6 +113,44 @@ export function trackAnalyticsEvent(name, data, service) {
 }
 
 /**
+ * Track an analytics event with a specified service. (Defaults to tracking with all services.)
+ *
+ * @param  {Object}      verb, noun, adjective
+ * @param  {Object}      data
+ * @param  {String|Null} service
+ * @return {Object}
+ */
+export function trackAnalyticsEventBeta(
+  { verb, noun, adjective },
+  data,
+  service,
+) {
+  if (!verb || !noun) {
+    console.error('The Verb or Noun is missing!');
+    return;
+  }
+
+  const eventName = parseEventName(verb, noun, adjective);
+
+  // Define category parameter for Google Analytics.
+  const category = `${APP_NAME}_${noun}`;
+
+  switch (service) {
+    case 'ga':
+      analyzeWithGoogleAnalytics(category, eventName);
+      break;
+
+    case 'puck':
+      analyzeWithPuck(eventName, data);
+      break;
+
+    default:
+      analyzeWithGoogleAnalytics(category, eventName);
+      analyzeWithPuck(eventName, data);
+  }
+}
+
+/**
  * Track an analytics event with Google Analytics.
  *
  * @param  {String} name
