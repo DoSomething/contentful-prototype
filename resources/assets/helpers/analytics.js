@@ -160,19 +160,7 @@ export function trackAnalyticsEventBeta(
   // Define category parameter for Google Analytics.
   const category = `${APP_NAME}_${noun}`;
 
-  switch (service) {
-    case 'ga':
-      analyzeWithGoogleAnalytics(category, eventName);
-      break;
-
-    case 'puck':
-      analyzeWithPuck(eventName, data);
-      break;
-
-    default:
-      analyzeWithGoogleAnalytics(category, eventName);
-      analyzeWithPuck(eventName, data);
-  }
+  dispatchToServices(category, eventName, data, service);
 }
 
 /**
