@@ -15,6 +15,22 @@ import { get as getHistory } from '../history';
 const APP_NAME = 'phoenix';
 
 /**
+ * Parse analytics event name parameters into a snake cased string.
+ *
+ * @param  {String} verb
+ * @param  {String} noun
+ * @param  {String|Null} adjective
+ * @return {void}
+ */
+const parseEventName = (verb, noun, adjective) => {
+  let eventName = `${APP_NAME}_${verb}_${noun}`;
+  // Append adjective if defined.
+  eventName += adjective ? `_${adjective}` : '';
+
+  return eventName;
+};
+
+/**
  * Send event to analyze with Google Analytics.
  *
  * @param  {String} category
