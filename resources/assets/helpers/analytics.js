@@ -17,8 +17,8 @@ const APP_NAME = 'phoenix';
 /**
  * Parse analytics event name parameters into a snake cased string.
  *
- * @param  {String} verb
- * @param  {String} noun
+ * @param  {String}      verb
+ * @param  {String}      noun
  * @param  {String|Null} adjective
  * @return {void}
  */
