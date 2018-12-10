@@ -31,31 +31,6 @@ const parseEventName = (verb, noun, adjective) => {
 };
 
 /**
- * Dispatch analytics event to specified service, or all services by default.
- *
- * @param  {String}      category
- * @param  {String}      name
- * @param  {Object}      data
- * @param  {Object|Null} service
- * @return {void}
- */
-const dispatchToServices = (category, name, data, service) => {
-  switch (service) {
-    case 'ga':
-      analyzeWithGoogleAnalytics(category, name);
-      break;
-
-    case 'puck':
-      analyzeWithPuck(name, data);
-      break;
-
-    default:
-      analyzeWithGoogleAnalytics(category, name);
-      analyzeWithPuck(name, data);
-  }
-};
-
-/**
  * Send event to analyze with Google Analytics.
  *
  * @param  {String} category
@@ -94,6 +69,31 @@ export function analyzeWithPuck(name, data) {
 
   Puck.trackEvent(name, data);
 }
+
+/**
+ * Dispatch analytics event to specified service, or all services by default.
+ *
+ * @param  {String}      category
+ * @param  {String}      name
+ * @param  {Object}      data
+ * @param  {Object|Null} service
+ * @return {void}
+ */
+const dispatchToServices = (category, name, data, service) => {
+  switch (service) {
+    case 'ga':
+      analyzeWithGoogleAnalytics(category, name);
+      break;
+
+    case 'puck':
+      analyzeWithPuck(name, data);
+      break;
+
+    default:
+      analyzeWithGoogleAnalytics(category, name);
+      analyzeWithPuck(name, data);
+  }
+};
 
 /**
  * Watch the given parameters for changes in their state
