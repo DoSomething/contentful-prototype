@@ -79,7 +79,7 @@ export function analyzeWithPuck(name, data) {
  * @param  {String|Null} service
  * @return {void}
  */
-const dispatchToServices = (category, name, data, service) => {
+const sendToServices = (category, name, data, service) => {
   switch (service) {
     case 'ga':
       analyzeWithGoogleAnalytics(category, name);
@@ -161,7 +161,7 @@ export function trackAnalyticsEventBeta(options = {}) {
   // Define category parameter for Google Analytics.
   const category = `${APP_PREFIX}_${noun}`;
 
-  dispatchToServices(category, eventName, data, service);
+  sendToServices(category, eventName, data, service);
 }
 
 /**
