@@ -141,7 +141,7 @@ export function trackAnalyticsEvent(name, data, service) {
  * Track an analytics event with a specified service. (Defaults to tracking with all services.)
  *
  * @param  {Object}      nameParams
- * @param  {Object}      data
+ * @param  {Object|Null} data
  * @param  {String|Null} service
  * @return {Object}
  */
