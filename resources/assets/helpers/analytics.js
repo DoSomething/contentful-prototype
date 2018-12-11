@@ -76,7 +76,7 @@ export function analyzeWithPuck(name, data) {
  * @param  {String}      category
  * @param  {String}      name
  * @param  {Object}      data
- * @param  {Object|Null} service
+ * @param  {String|Null} service
  * @return {void}
  */
 const dispatchToServices = (category, name, data, service) => {
