@@ -23,7 +23,7 @@ const APP_PREFIX = 'phoenix';
  * @return {void}
  */
 const parseEventName = (verb, noun, adjective = null) => {
-  let eventName = `${APP_NAME}_${verb}_${noun}`;
+  let eventName = `${APP_PREFIX}_${verb}_${noun}`;
   // Append adjective if defined.
   eventName += adjective ? `_${adjective}` : '';
 
@@ -156,7 +156,7 @@ export function trackAnalyticsEventBeta(nameParams, data, service) {
   const eventName = parseEventName(verb, noun, adjective);
 
   // Define category parameter for Google Analytics.
-  const category = `${APP_NAME}_${noun}`;
+  const category = `${APP_PREFIX}_${noun}`;
 
   dispatchToServices(category, eventName, data, service);
 }
