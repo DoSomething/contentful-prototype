@@ -146,7 +146,7 @@ export function trackAnalyticsEvent(name, data, service) {
  * @return {Object}
  */
 export function trackAnalyticsEventBeta(nameParams, data, service) {
-  const { verb, noun, adjective } = nameParams;
+  const { verb, noun, adjective } = nameParams || {};
 
   if (!verb || !noun) {
     console.error('The Verb or Noun is missing!');
