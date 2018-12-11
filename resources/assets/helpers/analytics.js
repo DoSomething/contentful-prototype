@@ -12,7 +12,7 @@ import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
-const APP_NAME = 'phoenix';
+const APP_PREFIX = 'phoenix';
 
 /**
  * Parse analytics event name parameters into a snake cased string.
