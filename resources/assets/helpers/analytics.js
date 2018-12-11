@@ -22,7 +22,7 @@ const APP_PREFIX = 'phoenix';
  * @param  {String|Null} adjective
  * @return {void}
  */
-const parseEventName = (verb, noun, adjective) => {
+const parseEventName = (verb, noun, adjective = null) => {
   let eventName = `${APP_NAME}_${verb}_${noun}`;
   // Append adjective if defined.
   eventName += adjective ? `_${adjective}` : '';
