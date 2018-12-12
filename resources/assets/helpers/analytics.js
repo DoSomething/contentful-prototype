@@ -1,5 +1,6 @@
 /* global window */
 
+import { snakeCase } from 'lodash';
 import { Engine as PuckClient } from '@dosomething/puck-client';
 import {
   dimensionByCookie,
@@ -23,9 +24,9 @@ const APP_PREFIX = 'phoenix';
  * @return {void}
  */
 const formatEventName = (verb, noun, adjective = null) => {
-  let eventName = `${APP_PREFIX}_${verb}_${noun}`;
+  let eventName = `${APP_PREFIX}_${snakeCase(verb)}_${snakeCase(noun)}`;
   // Append adjective if defined.
-  eventName += adjective ? `_${adjective}` : '';
+  eventName += adjective ? `_${snakeCase(adjective)}` : '';
 
   return eventName;
 };
@@ -163,7 +164,7 @@ export function trackAnalyticsEventBeta({
   const eventName = formatEventName(verb, noun, adjective);
 
   // Define category parameter for Google Analytics.
-  const category = `${APP_PREFIX}_${noun}`;
+  const category = `${APP_PREFIX}_${snakeCase(noun)}`;
 
   sendToServices(category, eventName, data, service);
 }
