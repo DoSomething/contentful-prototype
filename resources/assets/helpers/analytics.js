@@ -20,7 +20,7 @@ const APP_PREFIX = 'phoenix';
  *
  * @param  {String}      verb
  * @param  {String}      noun
- * @param  {String|Null} adjective
+ * @param  {String|Null} [adjective=null]
  * @return {void}
  */
 const formatEventName = (verb, noun, adjective = null) => {
@@ -76,8 +76,8 @@ export function analyzeWithPuck(name, data) {
  *
  * @param  {String}      category
  * @param  {String}      name
- * @param  {Object}      data
- * @param  {String|Null} service
+ * @param  {Object|Null} [data]
+ * @param  {String|Null} [service]
  * @return {void}
  */
 const sendToServices = (category, name, data, service) => {
