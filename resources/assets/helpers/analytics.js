@@ -141,12 +141,12 @@ export function trackAnalyticsEvent(name, data, service) {
 /**
  * Track an analytics event with a specified service. (Defaults to tracking with all services.)
  *
- * @param  {Object} options
- * @param  {String} options.verb
- * @param  {String} options.noun
- * @param  {String} [options.adjective]
- * @param  {Object} [options.data]
- * @param  {String} [options.service]
+ * @param  {Object}      options
+ * @param  {String}      options.verb
+ * @param  {String}      options.noun
+ * @param  {String}      [options.adjective]
+ * @param  {Object|Null} [options.data]
+ * @param  {String|Null} [options.service]
  * @return {void}
  */
 export function trackAnalyticsEventBeta({
