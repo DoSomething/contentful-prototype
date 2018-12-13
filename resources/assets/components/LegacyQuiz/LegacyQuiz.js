@@ -7,7 +7,7 @@ import Conclusion from './Conclusion';
 import Share from '../utilities/Share/Share';
 import ContentfulEntry from '../ContentfulEntry';
 import Markdown from '../utilities/Markdown/Markdown';
-import { trackAnalyticsEventBeta } from '../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 import './legacy-quiz.scss';
 
@@ -64,7 +64,7 @@ const LegacyQuiz = props => {
   };
 
   if (shouldSeeResult) {
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'submitted',
       noun: 'quiz',
       data: {

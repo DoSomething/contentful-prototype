@@ -7,7 +7,7 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import { trackAnalyticsEventBeta } from '../../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
@@ -37,7 +37,7 @@ class SocialDriveAction extends React.Component {
   handleCopyLinkClick = () => {
     this.linkInput.current.select();
     document.execCommand('copy');
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       noun: 'copy_to_clipboard',
       data: {

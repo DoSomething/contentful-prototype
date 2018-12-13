@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import ShareAction from './ShareAction';
 import setFBshare from '../../../__mocks__/facebookShareMock';
-import { trackAnalyticsEventBeta as trackEventMock } from '../../../helpers/analytics';
+import { trackAnalyticsEvent as trackEventMock } from '../../../helpers/analytics';
 
 jest.mock('./ShareActionContainer', () => 'ShareActionContainer');
 

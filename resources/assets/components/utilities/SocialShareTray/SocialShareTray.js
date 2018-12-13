@@ -8,7 +8,7 @@ import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import messengerIcon from './messengerIcon.svg';
-import { trackAnalyticsEventBeta } from '../../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
   handleTwitterShareClick,
@@ -34,20 +34,20 @@ class SocialShareTray extends React.Component {
       },
     };
 
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       ...trackingOptions,
     });
 
     showFacebookShareDialog(shareLink)
       .then(() => {
-        trackAnalyticsEventBeta({
+        trackAnalyticsEvent({
           verb: 'completed',
           ...trackingOptions,
         });
       })
       .catch(() => {
-        trackAnalyticsEventBeta({
+        trackAnalyticsEvent({
           verb: 'cancelled',
           ...trackingOptions,
         });
@@ -62,7 +62,7 @@ class SocialShareTray extends React.Component {
       data: trackingData,
     };
 
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       ...trackingOptions,
     });
@@ -71,13 +71,13 @@ class SocialShareTray extends React.Component {
       // Show Send Dialog for Desktop clients.
       showFacebookSendDialog(shareLink)
         .then(() => {
-          trackAnalyticsEventBeta({
+          trackAnalyticsEvent({
             verb: 'completed',
             ...trackingOptions,
           });
         })
         .catch(() => {
-          trackAnalyticsEventBeta({
+          trackAnalyticsEvent({
             verb: 'cancelled',
             ...trackingOptions,
           });
@@ -91,13 +91,13 @@ class SocialShareTray extends React.Component {
       // Redirect mobile / tablet clients to the Messenger app.
       facebookMessengerShare(shareLink)
         .then(() => {
-          trackAnalyticsEventBeta({
+          trackAnalyticsEvent({
             verb: 'successful',
             ...trackingOptions,
           });
         })
         .catch(() => {
-          trackAnalyticsEventBeta({
+          trackAnalyticsEvent({
             verb: 'failed',
             ...trackingOptions,
           });
@@ -106,7 +106,7 @@ class SocialShareTray extends React.Component {
   };
 
   handleEmailShareClick = (shareLink, trackLink) => {
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       noun: 'share',
       adjective: 'email',

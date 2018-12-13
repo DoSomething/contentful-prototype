@@ -13,7 +13,7 @@ import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
-import { trackAnalyticsEventBeta } from '../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../helpers/analytics';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
@@ -91,7 +91,7 @@ class Quiz extends React.Component {
       resultBlocks,
     );
 
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'submitted',
       noun: 'quiz',
       data: {

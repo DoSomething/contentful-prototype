@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { get } from '../../../helpers/storage';
 import VoterRegistrationAction from './VoterRegistrationAction';
 import LocalStorageMock from '../../../__mocks__/localStorageMock';
-import { trackAnalyticsEventBeta as trackEventMock } from '../../../helpers/analytics';
+import { trackAnalyticsEvent as trackEventMock } from '../../../helpers/analytics';
 
 jest.mock('../../../helpers/analytics');
 

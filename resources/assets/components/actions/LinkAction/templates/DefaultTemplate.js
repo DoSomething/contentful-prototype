@@ -9,12 +9,12 @@ import Embed from '../../../utilities/Embed/Embed';
 import Button from '../../../utilities/Button/Button';
 import SponsorPromotion from '../../../SponsorPromotion';
 import Markdown from '../../../utilities/Markdown/Markdown';
-import { trackAnalyticsEventBeta } from '../../../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import { isExternal, dynamicString } from '../../../../helpers';
 
 const onLinkClick = link => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
-  trackAnalyticsEventBeta({
+  trackAnalyticsEvent({
     verb: 'clicked',
     noun: 'link_action',
     data: { link },

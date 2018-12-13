@@ -8,7 +8,7 @@ import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
-import { trackAnalyticsEventBeta } from './analytics';
+import { trackAnalyticsEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
 
 // Helper Constants
@@ -672,7 +672,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  * @param {Object} trackingData
  */
 export function handleFacebookShareClick(href, trackingData) {
-  trackAnalyticsEventBeta({
+  trackAnalyticsEvent({
     verb: 'clicked',
     noun: 'share',
     adjective: 'facebook',
@@ -691,7 +691,7 @@ export function handleFacebookShareClick(href, trackingData) {
  * @param {String} quote
  */
 export function handleTwitterShareClick(href, trackingData, quote = '') {
-  trackAnalyticsEventBeta({
+  trackAnalyticsEvent({
     verb: 'clicked',
     noun: 'share',
     adjective: 'twitter',

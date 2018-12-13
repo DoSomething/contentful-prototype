@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { trackAnalyticsEventBeta } from '../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 const SignupButton = props => {
   const {
@@ -26,7 +26,7 @@ const SignupButton = props => {
       body: { details: { campaignContentfulId } },
     });
 
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       noun: 'signup',
       data: {

@@ -8,7 +8,7 @@ import { PHOENIX_URL } from '../constants';
 import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
-import { trackAnalyticsEventBeta } from '../helpers/analytics';
+import { trackAnalyticsEvent } from '../helpers/analytics';
 import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
 
 /**
@@ -93,7 +93,7 @@ const postRequest = (payload, dispatch, getState) => {
     .catch(error => {
       report(error);
 
-      trackAnalyticsEventBeta({
+      trackAnalyticsEvent({
         verb: 'failed',
         noun: 'post_request',
         data: {

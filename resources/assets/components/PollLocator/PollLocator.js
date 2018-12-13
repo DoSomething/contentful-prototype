@@ -3,7 +3,7 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { trackAnalyticsEventBeta } from '../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 class PollLocator extends React.Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class PollLocator extends React.Component {
   }
 
   handleSearchButtonClick = () => {
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       noun: 'poll_locator',
     });
@@ -36,7 +36,7 @@ class PollLocator extends React.Component {
         .getElementById('_vit')
         .querySelector('#address-not-found');
       if (get(addressNotFoundModal, 'style.display') === 'block') {
-        trackAnalyticsEventBeta({
+        trackAnalyticsEvent({
           verb: 'opened',
           noun: 'modal',
           adjective: 'poll_locator_not_found',
@@ -58,7 +58,7 @@ class PollLocator extends React.Component {
     this.vitModalObserver = new MutationObserver(() => {
       const modal = document.querySelector('html > #_vitModal');
       if (modal) {
-        trackAnalyticsEventBeta({
+        trackAnalyticsEvent({
           verb: 'opened',
           noun: 'modal',
           adjective: 'poll_locator',

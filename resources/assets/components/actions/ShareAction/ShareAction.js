@@ -9,7 +9,7 @@ import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
 import { setFormData } from '../../../helpers/forms';
 import Markdown from '../../utilities/Markdown/Markdown';
-import { trackAnalyticsEventBeta } from '../../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import {
   dynamicString,
   loadFacebookSDK,
@@ -65,7 +65,7 @@ class ShareAction extends React.Component {
       data: trackingData,
     };
 
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       ...trackingOptions,
     });
@@ -82,14 +82,14 @@ class ShareAction extends React.Component {
           this.storeSharePost(puckId);
         }
 
-        trackAnalyticsEventBeta({
+        trackAnalyticsEvent({
           verb: 'completed',
           ...trackingOptions,
         });
         this.setState({ showModal: true });
       })
       .catch(() => {
-        trackAnalyticsEventBeta({
+        trackAnalyticsEvent({
           verb: 'cancelled',
           ...trackingOptions,
         });
@@ -97,7 +97,7 @@ class ShareAction extends React.Component {
   };
 
   handleTwitterClick = url => {
-    trackAnalyticsEventBeta({
+    trackAnalyticsEvent({
       verb: 'clicked',
       noun: 'share_action',
       adjective: 'twitter',

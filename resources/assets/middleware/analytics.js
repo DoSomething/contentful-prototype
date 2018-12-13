@@ -1,6 +1,6 @@
 import { has, get } from 'lodash';
 
-import { trackAnalyticsEventBeta } from '../helpers/analytics';
+import { trackAnalyticsEvent } from '../helpers/analytics';
 
 /**
  * Append additional information to the data to decorate it.
@@ -33,7 +33,7 @@ const analyticsMiddleware = ({ getState }) => next => action => {
   // Decorate the data with some additional information if available.
   event.data = appendAdditionalData(event.payload, getState());
 
-  trackAnalyticsEventBeta(event);
+  trackAnalyticsEvent(event);
 
   return next(action);
 };

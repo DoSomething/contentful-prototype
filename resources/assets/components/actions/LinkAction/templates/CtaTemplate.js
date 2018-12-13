@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import Button from '../../../utilities/Button/Button';
 import Markdown from '../../../utilities/Markdown/Markdown';
-import { trackAnalyticsEventBeta } from '../../../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import { isExternal, dynamicString } from '../../../../helpers';
 
 import './cta-template.scss';
 
 const onLinkClick = link => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
-  trackAnalyticsEventBeta({
+  trackAnalyticsEvent({
     verb: 'clicked',
     noun: 'link_action',
     data: { link },
