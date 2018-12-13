@@ -8,10 +8,7 @@ import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import messengerIcon from './messengerIcon.svg';
-import {
-  trackPuckEvent,
-  trackAnalyticsEventBeta,
-} from '../../../helpers/analytics';
+import { trackAnalyticsEventBeta } from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
   handleTwitterShareClick,
@@ -65,7 +62,6 @@ class SocialShareTray extends React.Component {
       data: trackingData,
     };
 
-    trackPuckEvent('phoenix_clicked_share_facebook_messenger', trackingData);
     trackAnalyticsEventBeta({
       verb: 'clicked',
       ...trackingOptions,
