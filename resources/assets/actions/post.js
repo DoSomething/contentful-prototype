@@ -80,8 +80,8 @@ export function storeCampaignPost(campaignId, data) {
   const { action, body, id, type } = data;
 
   const analytics = {
-    name: `${type}-submission-action`,
-    service: 'puck',
+    verb: 'submitted',
+    noun: `${type}_submission_action`,
     payload: {
       action,
       campaignId,
