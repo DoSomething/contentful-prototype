@@ -43,13 +43,37 @@ class CampaignRepository
      *
      * @return array
      */
-    public function getAll()
+    public function getAll($limit = null, $step = null)
     {
-        $campaigns = remember('campaigns', 15, function () {
-            return $this->getEntriesAsJson('campaign');
-        });
+        return json_decode($this->getEntriesAsJson('campaign', $limit, $step));
 
-        return json_decode($campaigns);
+        // $campaigns = remember('campaigns', 15, function () {
+        //     return $this->getEntriesAsJson('campaign');
+        // });
+
+        // return json_decode($campaigns);
+    }
+
+    /**
+     * Get all campaigns using pagination.
+     *
+     * @param  integer $count
+     * @param  integer $page
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAllCampaignsPaginated($count = 24, $page = 1)
+    {
+        if (intval($page) <= 0) {
+            return collect();
+        }
+
+        $page = intval($page) - 1;
+
+        $skip = $page >= 1 ? $count * $page : null;
+
+        $campaigns = $this->getAll($count, $skip);
+
+        return collect($campaigns);
     }
 
     /**

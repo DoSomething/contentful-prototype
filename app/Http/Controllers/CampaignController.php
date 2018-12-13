@@ -30,11 +30,23 @@ class CampaignController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $campaigns = $this->campaignRepository->getAllCampaignsSorted();
+        $count = 24;
+        $page = intval($request->query('page', 1));
 
-        return view('campaigns.index', ['campaigns' => $campaigns]);
+        $campaigns = $this->campaignRepository->getAllCampaignsPaginated($count, $page);
+
+        if (!$campaigns->count()) {
+            return redirect('/us/campaigns');
+        }
+
+        return view('campaigns.index', [
+            'campaigns' => $campaigns,
+            'count' => $count,
+            'nextPage' => $page + 1,
+            'previousPage' => $page - 1,
+        ]);
     }
 
     /**
