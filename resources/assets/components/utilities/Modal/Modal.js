@@ -48,6 +48,17 @@ class Modal extends React.Component {
     window.scroll(0, this.scrollOffset);
     this.modalPortal.classList.remove('is-active');
     this.modalPortal.removeChild(this.el);
+
+    // Track in analytics that the modal closed:
+    if (this.props.trackingId) {
+      trackAnalyticsEventBeta({
+        verb: 'closed',
+        noun: 'modal',
+        data: {
+          modalType: this.props.trackingId,
+        },
+      });
+    }
   }
 
   render() {
