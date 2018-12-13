@@ -1,5 +1,3 @@
-{{-- {{ dump([$nextPage, $previousPage]) }} --}}
-
 @extends('layouts.master')
 
 @section('content')
