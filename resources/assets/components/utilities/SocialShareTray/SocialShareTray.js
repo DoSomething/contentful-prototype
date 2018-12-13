@@ -8,7 +8,10 @@ import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import messengerIcon from './messengerIcon.svg';
-import { trackPuckEvent } from '../../../helpers/analytics';
+import {
+  trackPuckEvent,
+  trackAnalyticsEventBeta,
+} from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
   handleTwitterShareClick,
@@ -26,59 +29,93 @@ class SocialShareTray extends React.Component {
   }
 
   handleFacebookShareClick = (shareLink, trackLink) => {
-    const trackingData = { url: trackLink };
+    const trackingOptions = {
+      noun: 'share',
+      adjective: 'facebook',
+      data: {
+        url: trackLink,
+      },
+    };
 
-    trackPuckEvent('clicked facebook share action', trackingData);
+    trackAnalyticsEventBeta({
+      verb: 'clicked',
+      ...trackingOptions,
+    });
 
     showFacebookShareDialog(shareLink)
       .then(() => {
-        trackPuckEvent('share action completed', trackingData);
+        trackAnalyticsEventBeta({
+          verb: 'completed',
+          ...trackingOptions,
+        });
       })
       .catch(() => {
-        trackPuckEvent('share action cancelled', trackingData);
+        trackAnalyticsEventBeta({
+          verb: 'cancelled',
+          ...trackingOptions,
+        });
       });
   };
 
   handleFacebookMessengerClick = (shareLink, trackLink) => {
     const trackingData = { url: trackLink };
+    let trackingOptions = {
+      noun: 'share',
+      adjective: 'facebook_messenger',
+      data: trackingData,
+    };
 
     trackPuckEvent('phoenix_clicked_share_facebook_messenger', trackingData);
+    trackAnalyticsEventBeta({
+      verb: 'clicked',
+      ...trackingOptions,
+    });
 
     if (getFormattedScreenSize() === 'large') {
       // Show Send Dialog for Desktop clients.
       showFacebookSendDialog(shareLink)
         .then(() => {
-          trackPuckEvent(
-            'phoenix_completed_share_facebook_messenger',
-            trackingData,
-          );
+          trackAnalyticsEventBeta({
+            verb: 'completed',
+            ...trackingOptions,
+          });
         })
         .catch(() => {
-          trackPuckEvent(
-            'phoenix_cancelled_share_facebook_messenger',
-            trackingData,
-          );
+          trackAnalyticsEventBeta({
+            verb: 'cancelled',
+            ...trackingOptions,
+          });
         });
     } else {
+      trackingOptions = {
+        noun: 'redirect',
+        adjective: 'facebook_messenger_app',
+        data: trackingData,
+      };
       // Redirect mobile / tablet clients to the Messenger app.
       facebookMessengerShare(shareLink)
         .then(() => {
-          trackPuckEvent(
-            'phoenix_successful_redirect_facebook_messenger_app',
-            trackingData,
-          );
+          trackAnalyticsEventBeta({
+            verb: 'successful',
+            ...trackingOptions,
+          });
         })
         .catch(() => {
-          trackPuckEvent(
-            'phoenix_failed_redirect_facebook_messenger_app',
-            trackingData,
-          );
+          trackAnalyticsEventBeta({
+            verb: 'failed',
+            ...trackingOptions,
+          });
         });
     }
   };
 
   handleEmailShareClick = (shareLink, trackLink) => {
-    trackPuckEvent('phoenix_clicked_share_email', { url: trackLink });
+    trackAnalyticsEventBeta({
+      verb: 'clicked',
+      noun: 'share',
+      adjective: 'email',
+      data: { url: trackLink },
+    });
     window.location = `mailto:?body=${encodeURIComponent(shareLink)}`;
   };
 

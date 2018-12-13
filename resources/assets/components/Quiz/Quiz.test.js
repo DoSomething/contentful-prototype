@@ -6,7 +6,7 @@ import { createMemoryHistory } from 'history';
 
 import Quiz from './Quiz';
 import QuizQuestion from './QuizQuestion';
-import { trackPuckEvent as trackEventMock } from '../../helpers/analytics';
+import { trackAnalyticsEventBeta as trackEventMock } from '../../helpers/analytics';
 
 jest.mock('../../helpers/analytics');
 

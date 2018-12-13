@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
 
 import ModalContent from './ModalContent';
-import { trackPuckEvent } from '../../../helpers/analytics';
+import { trackAnalyticsEventBeta } from '../../../helpers/analytics';
 
 import './modal.scss';
 
@@ -32,7 +32,13 @@ class Modal extends React.Component {
 
     // Track in analytics that the modal opened:
     if (this.props.trackingId) {
-      trackPuckEvent('open modal', { modalType: this.props.trackingId });
+      trackAnalyticsEventBeta({
+        verb: 'opened',
+        noun: 'modal',
+        data: {
+          modalType: this.props.trackingId,
+        },
+      });
     }
   }
 

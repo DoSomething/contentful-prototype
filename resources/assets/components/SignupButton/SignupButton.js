@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { trackPuckEvent } from '../../helpers/analytics';
+import { trackAnalyticsEventBeta } from '../../helpers/analytics';
 
 const SignupButton = props => {
   const {
@@ -26,11 +26,15 @@ const SignupButton = props => {
       body: { details: { campaignContentfulId } },
     });
 
-    trackPuckEvent('signup', {
-      template,
-      legacyCampaignId: campaignId, // @TODO: confirm it's ok to send as campaignID and not legacyCampaignId
-      source,
-      sourceData: { text: buttonText },
+    trackAnalyticsEventBeta({
+      verb: 'clicked',
+      noun: 'signup',
+      data: {
+        template,
+        legacyCampaignId: campaignId, // @TODO: confirm it's ok to send as campaignID and not legacyCampaignId
+        source,
+        sourceData: { text: buttonText },
+      },
     });
   };
 

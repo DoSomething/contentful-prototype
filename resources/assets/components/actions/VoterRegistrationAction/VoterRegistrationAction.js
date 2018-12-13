@@ -5,7 +5,7 @@ import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
 import Markdown from '../../utilities/Markdown/Markdown';
-import { trackPuckEvent } from '../../../helpers/analytics';
+import { trackAnalyticsEventBeta } from '../../../helpers/analytics';
 
 import './voter-registration-action.scss';
 
@@ -24,7 +24,11 @@ const VoterRegistrationAction = props => {
 
   const handleClick = () => {
     const trackingData = { contentfulId, url: parsedLink, modal: modalType };
-    trackPuckEvent('clicked voter registration action', trackingData);
+    trackAnalyticsEventBeta({
+      verb: 'clicked',
+      noun: 'voter_registration_action',
+      data: trackingData,
+    });
     set(`${props.userId}_hide_voter_reg_modal`, 'boolean', true);
   };
 

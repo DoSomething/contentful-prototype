@@ -13,7 +13,7 @@ import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
 import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
-import { trackPuckEvent } from '../../helpers/analytics';
+import { trackAnalyticsEventBeta } from '../../helpers/analytics';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
@@ -91,8 +91,12 @@ class Quiz extends React.Component {
       resultBlocks,
     );
 
-    trackPuckEvent('converted on quiz', {
-      responses: this.state.choices,
+    trackAnalyticsEventBeta({
+      verb: 'submitted',
+      noun: 'quiz',
+      data: {
+        responses: this.state.choices,
+      },
     });
 
     // Run a quiz conversion (campaign signup) if this quiz is not set to auto submit

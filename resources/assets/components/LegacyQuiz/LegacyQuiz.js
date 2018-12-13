@@ -7,7 +7,7 @@ import Conclusion from './Conclusion';
 import Share from '../utilities/Share/Share';
 import ContentfulEntry from '../ContentfulEntry';
 import Markdown from '../utilities/Markdown/Markdown';
-import { trackPuckEvent } from '../../helpers/analytics';
+import { trackAnalyticsEventBeta } from '../../helpers/analytics';
 
 import './legacy-quiz.scss';
 
@@ -64,8 +64,12 @@ const LegacyQuiz = props => {
   };
 
   if (shouldSeeResult) {
-    trackPuckEvent('converted on quiz', {
-      responses: data.questions,
+    trackAnalyticsEventBeta({
+      verb: 'submitted',
+      noun: 'quiz',
+      data: {
+        responses: data.questions,
+      },
     });
   }
 
