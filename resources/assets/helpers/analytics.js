@@ -137,25 +137,3 @@ export function trackAnalyticsEvent({ verb, noun, adjective, data, service }) {
 
   sendToServices(category, eventName, data, service);
 }
-
-/**
- * Track an analytics event with Google Analytics.
- *
- * @param  {String} name
- * @param  {Object} data
- * @return {Function}
- */
-export function trackGoogleAnalyticsEvent(name, data) {
-  trackAnalyticsEvent(name, data, 'ga');
-}
-
-/**
- * Track an analytics event with Puck.
- *
- * @param  {String} name
- * @param  {Object} data
- * @return {Function}
- */
-export function trackPuckEvent(name, data) {
-  trackAnalyticsEvent(name, data, 'puck');
-}
