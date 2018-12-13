@@ -114,31 +114,6 @@ export function googleAnalyticsInit(history) {
 }
 
 /**
- * Track an analytics event with a specified service.
- *
- * @param  {String} name
- * @param  {Object} data
- * @param  {String} service
- * @return {Object}
- */
-export function trackAnalyticsEvent(name, data, service) {
-  switch (service) {
-    case 'ga':
-      analyzeWithGoogleAnalytics(name, data);
-      break;
-
-    case 'puck':
-      analyzeWithPuck(name, data);
-      break;
-
-    default:
-      console.error(
-        `The "${service}" service is missing, not supported or incorrect!`,
-      );
-  }
-}
-
-/**
  * Track an analytics event with a specified service. (Defaults to tracking with all services.)
  *
  * @param  {Object}      options
@@ -149,13 +124,7 @@ export function trackAnalyticsEvent(name, data, service) {
  * @param  {String|Null} [options.service]
  * @return {void}
  */
-export function trackAnalyticsEventBeta({
-  verb,
-  noun,
-  adjective,
-  data,
-  service,
-}) {
+export function trackAnalyticsEvent({ verb, noun, adjective, data, service }) {
   if (!verb || !noun) {
     console.error('The Verb or Noun is missing!');
     return;
