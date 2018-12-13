@@ -43,15 +43,17 @@ class CampaignRepository
      *
      * @return array
      */
-    public function getAll($limit = null, $step = null)
+    public function getAll($limit = null, $skip = null)
     {
-        return json_decode($this->getEntriesAsJson('campaign', $limit, $step));
+        $cacheKey = 'campaigns';
+        $cacheKey = $limit ? $cacheKey.':limit='.$limit : $cacheKey;
+        $cacheKey = $skip ? $cacheKey.':skip='.$skip : $cacheKey;
 
-        // $campaigns = remember('campaigns', 15, function () {
-        //     return $this->getEntriesAsJson('campaign');
-        // });
+        $campaigns = remember($cacheKey, 15, function () use ($limit, $skip) {
+            return $this->getEntriesAsJson('campaign', $limit, $skip);
+        });
 
-        // return json_decode($campaigns);
+        return json_decode($campaigns);
     }
 
     /**
