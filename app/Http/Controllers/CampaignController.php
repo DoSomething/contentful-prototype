@@ -37,7 +37,7 @@ class CampaignController extends Controller
 
         $campaigns = $this->campaignRepository->getAllCampaignsPaginated($count, $page);
 
-        if (!$campaigns->count()) {
+        if (! $campaigns->count()) {
             return redirect('/us/campaigns');
         }
 

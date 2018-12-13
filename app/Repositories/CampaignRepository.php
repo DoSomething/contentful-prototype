@@ -57,8 +57,8 @@ class CampaignRepository
     /**
      * Get all campaigns using pagination.
      *
-     * @param  integer $count
-     * @param  integer $page
+     * @param  int $count
+     * @param  int $page
      * @return \Illuminate\Support\Collection
      */
     public function getAllCampaignsPaginated($count = 24, $page = 1)
