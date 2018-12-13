@@ -119,8 +119,8 @@ export function getCampaignSignups(id = null, query = {}) {
 export function storeCampaignSignup(campaignId, data) {
   const path = join('api/v2/campaigns', campaignId, 'signups');
   const analytics = {
-    name: 'phoenix_clicked_signup',
-    service: 'puck',
+    verb: 'clicked',
+    noun: 'signup',
     payload: {
       campaignId,
     },
