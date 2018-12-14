@@ -48,9 +48,7 @@ class CampaignRepository
     public function getAll($limit = null, $skip = null)
     {
         $cacheKey = 'campaigns';
-
-        // Append limit and skip values to cache key if skip is defined.
-        $cacheKey = $limit && $skip ? $cacheKey.':limit='.$limit : $cacheKey;
+        $cacheKey = $limit ? $cacheKey.':limit='.$limit : $cacheKey;
         $cacheKey = $skip ? $cacheKey.':skip='.$skip : $cacheKey;
 
         $campaigns = remember($cacheKey, 15, function () use ($limit, $skip) {
