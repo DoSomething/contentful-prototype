@@ -41,15 +41,45 @@ class CampaignRepository
     /**
      * Get all campaigns.
      *
+     * @param  int|null $limit
+     * @param  int|null $skip
      * @return array
      */
-    public function getAll()
+    public function getAll($limit = null, $skip = null)
     {
-        $campaigns = remember('campaigns', 15, function () {
-            return $this->getEntriesAsJson('campaign');
+        $cacheKey = 'campaigns';
+        $cacheKey = $limit ? $cacheKey.':limit='.$limit : $cacheKey;
+        $cacheKey = $skip ? $cacheKey.':skip='.$skip : $cacheKey;
+
+        $campaigns = remember($cacheKey, 15, function () use ($limit, $skip) {
+            return $this->getEntriesAsJson('campaign', $limit, $skip);
         });
 
         return json_decode($campaigns);
+    }
+
+    /**
+     * Get all campaigns using pagination.
+     *
+     * @param  int $count
+     * @param  int $page
+     * @return \Illuminate\Support\Collection
+     */
+    public function getAllCampaignsPaginated($count = 24, $page = 1)
+    {
+        // Return an empty collection if page is 0 or negative.
+        if (intval($page) <= 0) {
+            return collect();
+        }
+
+        // Calculate number to multiply count by, to get number of items to skip in collection query.
+        $multiplier = intval($page) - 1;
+
+        $skip = $count * $multiplier;
+
+        $campaigns = $this->getAll($count, $skip);
+
+        return collect($campaigns);
     }
 
     /**

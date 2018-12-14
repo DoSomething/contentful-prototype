@@ -15,15 +15,17 @@ trait QueriesContentful
      *
      * @param  string $type
      * @param  int $limit
+     * @param  int $skip
      * @return string
      */
-    protected function getEntriesAsJson($type, $limit = null)
+    protected function getEntriesAsJson($type, $limit = null, $skip = null)
     {
         $query = (new Query)
                 ->setContentType($type)
                 ->setInclude(0)
                 ->orderBy('sys.updatedAt', true)
-                ->setLimit($limit);
+                ->setLimit($limit)
+                ->setSkip($skip);
 
         $entries = app('contentful.delivery')->getEntries($query)->getItems();
 

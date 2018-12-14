@@ -24,6 +24,16 @@
                     </li>
                 @endforeach
             </ul>
+
+            <div class="pagination clearfix">
+                @if($previousPage > 0)
+                    <a class="button -tertiary float-left clear-none" href="?page={{$previousPage}}">Previous</a>
+                @endif
+
+                @if($campaigns->count() >= $count)
+                    <a class="button -tertiary float-right clear-none" href="?page={{$nextPage}}">Next</a>
+                @endif
+            </div>
         </div>
     </div>
 @stop
