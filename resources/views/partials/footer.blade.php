@@ -40,9 +40,8 @@
     <div class="footer__column -links">
         <h4>Our Friends</h4>
         <ul>
-          <li><a href="http://www.tmiagency.org">TMI Agency</a></li>
+          <li><a href="http://dosomethingstrategic.org/">DoSomethingStrategic.org</a></li>
           <li><a href="{{ phoenixLink('us/about/our-partners') }}">Partners</a></li>
-          <li><a href="{{ phoenixLink('us/about/old-people') }}">Old People</a></li>
           <li><a href="{{ phoenixLink('us/about/hotline-list') }}">Crisis Hotlines</a></li>
         </ul>
     </div>
@@ -55,6 +54,7 @@
           <li><a href="{{ phoenixLink('us/about/internships') }}">Internships</a></li>
           <li><a href="{{ phoenixLink('us/about/donate') }}">Donate</a></li>
           <li><a href="https://help.dosomething.org/hc/en-us">Help Center</a></li>
+          <li><a href="https://www.dosomething.org/us/about/get-out-vote-bootcamp">Bootcamps</a></li>
         </ul>
     </div>
   </div>
