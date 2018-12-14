@@ -72,10 +72,10 @@ class CampaignRepository
             return collect();
         }
 
-        // Calculate number to multiply count by, to get number to skip in collection query.
+        // Calculate number to multiply count by, to get number of items to skip in collection query.
         $multiplier = intval($page) - 1;
 
-        $skip = $multiplier >= 1 ? $count * $multiplier : null;
+        $skip = $count * $multiplier;
 
         $campaigns = $this->getAll($count, $skip);
 
