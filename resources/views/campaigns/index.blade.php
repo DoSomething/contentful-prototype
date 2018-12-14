@@ -6,7 +6,7 @@
             <div class="container__block">
                 <h1>Explore Campaigns</h1>
             </div>
-            <ul class="gallery -quartet">
+            <ul class="gallery-grid">
                 @foreach($campaigns as $item)
                     <li>
                         <article class="tile">
@@ -21,6 +21,7 @@
                                 @endif
                             </a>
                         </article>
+                        <p>{{ $item->tagline }}</p>
                     </li>
                 @endforeach
             </ul>
