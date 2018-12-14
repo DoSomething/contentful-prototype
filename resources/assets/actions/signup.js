@@ -123,6 +123,7 @@ export function storeCampaignSignup(campaignId, data) {
     noun: 'signup',
     payload: {
       campaignId,
+      ...data.analytics,
     },
   };
 
