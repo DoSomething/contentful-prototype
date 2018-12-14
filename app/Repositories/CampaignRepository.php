@@ -41,12 +41,16 @@ class CampaignRepository
     /**
      * Get all campaigns.
      *
+     * @param  int|null $limit
+     * @param  int|null $skip
      * @return array
      */
     public function getAll($limit = null, $skip = null)
     {
         $cacheKey = 'campaigns';
-        $cacheKey = $limit ? $cacheKey.':limit='.$limit : $cacheKey;
+
+        // Append limit and skip values to cache key if skip is defined.
+        $cacheKey = $limit && $skip ? $cacheKey.':limit='.$limit : $cacheKey;
         $cacheKey = $skip ? $cacheKey.':skip='.$skip : $cacheKey;
 
         $campaigns = remember($cacheKey, 15, function () use ($limit, $skip) {
@@ -65,13 +69,15 @@ class CampaignRepository
      */
     public function getAllCampaignsPaginated($count = 24, $page = 1)
     {
+        // Return an empty collection if page is 0 or negative.
         if (intval($page) <= 0) {
             return collect();
         }
 
-        $page = intval($page) - 1;
+        // Calculate number to multiply count by, to get number to skip in collection query.
+        $multiplier = intval($page) - 1;
 
-        $skip = $page >= 1 ? $count * $page : null;
+        $skip = $multiplier >= 1 ? $count * $multiplier : null;
 
         $campaigns = $this->getAll($count, $skip);
 
