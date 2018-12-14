@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 const SignupButton = props => {
   const {
@@ -24,14 +23,8 @@ const SignupButton = props => {
   const onSignup = buttonText => {
     clickedSignupAction(campaignId, {
       body: { details: { campaignContentfulId } },
-    });
-
-    trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'signup',
-      data: {
+      analytics: {
         template,
-        legacyCampaignId: campaignId, // @TODO: confirm it's ok to send as campaignID and not legacyCampaignId
         source,
         sourceData: { text: buttonText },
       },
