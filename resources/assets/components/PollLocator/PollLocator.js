@@ -3,7 +3,7 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import { trackPuckEvent } from '../../helpers/analytics';
+import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 class PollLocator extends React.Component {
   componentDidMount() {
@@ -17,7 +17,10 @@ class PollLocator extends React.Component {
   }
 
   handleSearchButtonClick = () => {
-    trackPuckEvent('phoenix_clicked_poll_locator');
+    trackAnalyticsEvent({
+      verb: 'clicked',
+      noun: 'poll_locator',
+    });
   };
 
   /**
@@ -33,7 +36,11 @@ class PollLocator extends React.Component {
         .getElementById('_vit')
         .querySelector('#address-not-found');
       if (get(addressNotFoundModal, 'style.display') === 'block') {
-        trackPuckEvent('phoenix_opened_poll_locator_not_found_modal');
+        trackAnalyticsEvent({
+          verb: 'opened',
+          noun: 'modal',
+          adjective: 'poll_locator_not_found',
+        });
       }
 
       const searchButton = document.getElementById('submit-address-button');
@@ -51,7 +58,11 @@ class PollLocator extends React.Component {
     this.vitModalObserver = new MutationObserver(() => {
       const modal = document.querySelector('html > #_vitModal');
       if (modal) {
-        trackPuckEvent('phoenix_opened_poll_locator_modal');
+        trackAnalyticsEvent({
+          verb: 'opened',
+          noun: 'modal',
+          adjective: 'poll_locator',
+        });
       }
     });
 

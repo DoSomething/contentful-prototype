@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import DefaultTemplate from './DefaultTemplate';
-import { trackPuckEvent as trackEventMock } from '../../../../helpers/analytics';
+import { trackAnalyticsEvent as trackEventMock } from '../../../../helpers/analytics';
 
 jest.mock('../../../../helpers/analytics');
 

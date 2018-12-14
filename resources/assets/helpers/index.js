@@ -8,7 +8,7 @@ import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
-import { trackPuckEvent } from './analytics';
+import { trackAnalyticsEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
 
 // Helper Constants
@@ -672,7 +672,14 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  * @param {Object} trackingData
  */
 export function handleFacebookShareClick(href, trackingData) {
-  trackPuckEvent('clicked facebook share', trackingData);
+  trackAnalyticsEvent({
+    verb: 'clicked',
+    noun: 'share',
+    adjective: 'facebook',
+    data: trackingData,
+  });
+  // @todo 12/13/2018: Use the showFacebookShareDialog to track
+  // 'completed' and 'cancelled' events as well.
   showFacebookSharePrompt(href);
 }
 
@@ -684,7 +691,12 @@ export function handleFacebookShareClick(href, trackingData) {
  * @param {String} quote
  */
 export function handleTwitterShareClick(href, trackingData, quote = '') {
-  trackPuckEvent('clicked twitter share', trackingData);
+  trackAnalyticsEvent({
+    verb: 'clicked',
+    noun: 'share',
+    adjective: 'twitter',
+    data: trackingData,
+  });
   showTwitterSharePrompt(href, quote);
 }
 

@@ -8,7 +8,7 @@ import { PHOENIX_URL } from '../constants';
 import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
-import { trackPuckEvent } from '../helpers/analytics';
+import { trackAnalyticsEvent } from '../helpers/analytics';
 import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
 
 /**
@@ -93,9 +93,14 @@ const postRequest = (payload, dispatch, getState) => {
     .catch(error => {
       report(error);
 
-      trackPuckEvent('phoenix_failed_post_request', {
-        url: payload.url,
-        error,
+      trackAnalyticsEvent({
+        verb: 'failed',
+        noun: 'post_request',
+        data: {
+          url: payload.url,
+          error,
+        },
+        service: 'puck',
       });
 
       if (window.ENV.APP_ENV !== 'production') {

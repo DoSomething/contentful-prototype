@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import ShareAction from './ShareAction';
 import setFBshare from '../../../__mocks__/facebookShareMock';
-import { trackPuckEvent as trackEventMock } from '../../../helpers/analytics';
+import { trackAnalyticsEvent as trackEventMock } from '../../../helpers/analytics';
 
 jest.mock('./ShareActionContainer', () => 'ShareActionContainer');
 
@@ -77,8 +77,12 @@ describe('ShareAction component', () => {
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
       expect(trackEventMock.mock.calls[0]).toEqual([
-        'clicked facebook share action',
-        trackingData,
+        {
+          verb: 'clicked',
+          noun: 'share_action',
+          adjective: 'facebook',
+          data: trackingData,
+        },
       ]);
     });
 
@@ -118,8 +122,12 @@ describe('ShareAction component', () => {
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
       expect(trackEventMock.mock.calls[0]).toEqual([
-        'clicked twitter share action',
-        trackingData,
+        {
+          verb: 'clicked',
+          noun: 'share_action',
+          adjective: 'twitter',
+          data: trackingData,
+        },
       ]);
     });
 

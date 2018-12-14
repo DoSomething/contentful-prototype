@@ -31,9 +31,9 @@ const analyticsMiddleware = ({ getState }) => next => action => {
   const event = action.payload.meta.analytics;
 
   // Decorate the data with some additional information if available.
-  const data = appendAdditionalData(event.payload, getState());
+  event.data = appendAdditionalData(event.payload, getState());
 
-  trackAnalyticsEvent(event.name, data, event.service);
+  trackAnalyticsEvent(event);
 
   return next(action);
 };
