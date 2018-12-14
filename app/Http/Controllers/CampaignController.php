@@ -32,7 +32,7 @@ class CampaignController extends Controller
      */
     public function index(Request $request)
     {
-        $count = 12;
+        $count = 36;
         $page = intval($request->query('page', 1));
 
         $campaigns = $this->campaignRepository->getAllCampaignsPaginated($count, $page);
