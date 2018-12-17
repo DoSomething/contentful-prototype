@@ -1,26 +1,92 @@
 @import 'next-toolbox';
 
-// @TODO: Rename to something better :\
-.gallery-grid {
-  background-color: red;
+// @TODO: Rename to something better?
+.gallery-grid-quartet {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 15px;
   padding: 0 12px;
+  overflow: hidden;
 
   @include media('(min-width: 360px)') {
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 15px;
+    grid-row-gap: 15px;
   }
 
   @include media($medium) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @include media($large) {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @include media($larger) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 30px;
+    grid-row-gap: 30px;
+  }
+}
+
+.gallery-item {
+  > .wrapper {
+    display: block;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  img {
+  }
+}
+
+.gallery-item__meta {
+  margin-top: 15px;
+}
+
+.gallery-item__title {
+  color: inherit;
+  font-size: $font-regular;
+  font-weight: $weight-bold;
+  margin-bottom: 5px;
+
+  @include media('(min-width: 360px)') {
+    font-size: $font-small;
+  }
+
+  @include media($medium) {
+    font-size: $font-regular;
+  }
+
+  @include media($larger) {
+    font-size: $font-small;
+  }
+
+  @include media('(min-width: 1300px)') {
+    font-size: $font-regular;
+  }
+}
+
+.gallery-item__tagline {
+  font-size: $font-regular;
+  font-weight: $weight-normal;
+  line-height: 1.3;
+
+  @include media('(min-width: 360px)') {
+    font-size: $font-small;
+  }
+
+  @include media($medium) {
+    font-size: $font-regular;
+  }
+
+  @include media($larger) {
+    font-size: $font-small;
+  }
+
+  @include media('(min-width: 1300px)') {
+    font-size: $font-regular;
   }
 }
