@@ -18,6 +18,7 @@
   - [Traffic Distribution](development/features/traffic-distribution.md)
   - [Modal Launcher](development/features/modal-launcher.md)
 - [Monitoring](development/monitoring.md)
+- [Analytics](development/analytics.md)
 - [Logging](development/logging.md)
 - [Contributing](development/contributing.md)
 
