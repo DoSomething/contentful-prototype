@@ -61,6 +61,10 @@ The following are all events currently tracked across the Phoenix application:
 | `phoenix_clicked_copy_to_clipboard`                  | clicked the clipboard copy button in a Social Drive Action                                                                           | Puck, GA  |
 | `phoenix_failed_post_request`                        | failed to send a POST request                                                                                                        | Puck      |
 
+{% hint style="info" %}
+We also track a Google Analytics [Pageview event](https://support.google.com/analytics/answer/6086080?hl=en) for every page view
+{% endhint %}
+
 ### Events tracked internally by Puck
 
 | Event Name         | Event Description                               | Platforms |
