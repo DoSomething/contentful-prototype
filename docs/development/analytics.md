@@ -34,17 +34,17 @@ The following are all events currently tracked across the Phoenix application:
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------- |
 | `phoenix_clicked_signup`                             | clicked to signup for a campaign on Phoenix                                                                                          | Puck, GA  |
 | `phoenix_clicked_share_facebook`                     | clicked a Facebook share button                                                                                                      | Puck, GA  |
-| `phoenix_cancelled_share_facebook`                   | cancelled (or unsuccessful with) a Facebook share                                                                                    | Puck, GA  |
+| `phoenix_cancelled_share_facebook`                   | canceled (or unsuccessful with) a Facebook share                                                                                     | Puck, GA  |
 | `phoenix_completed_share_facebook`                   | successfully completed sharing on Facebook                                                                                           | Puck, GA  |
 | `phoenix_clicked_share_twitter`                      | clicked a Twitter share button                                                                                                       | Puck, GA  |
 | `phoenix_clicked_share_facebook_messenger`           | clicked a Facebook Messenger share button                                                                                            | Puck, GA  |
-| `phoenix_cancelled_share_facebook_messenger`         | cancelled (or was unsuccessful with) a Facebook Messenger share                                                                      | Puck, GA  |
+| `phoenix_cancelled_share_facebook_messenger`         | canceled (or was unsuccessful with) a Facebook Messenger share                                                                       | Puck, GA  |
 | `phoenix_completed_share_facebook_messenger`         | successfully completed sharing on Facebook Messenger                                                                                 | Puck, GA  |
 | `phoenix_failed_redirect_facebook_messenger_app`     | failed to be redirected to the Facebook Messenger App after clicking on the Facebook Messenger share button (applies to mobile only) | Puck, GA  |
 | `phoenix_successful_redirect_facebook_messenger_app` | successfully redirected to the Facebook Messenger App after clicking on the Facebook Messenger share button (applies to mobile only) | Puck, GA  |
 | `phoenix_clicked_share_email`                        | clicked an Email share button                                                                                                        | Puck, GA  |
 | `phoenix_clicked_share_action_facebook`              | clicked a facebook share button on a Share Action                                                                                    | Puck, GA  |
-| `phoenix_cancelled_share_action_facebook`            | cancelled (or unsuccessful with) a facebook share from a Share Action                                                                | Puck, GA  |
+| `phoenix_cancelled_share_action_facebook`            | canceled (or unsuccessful with) a Facebook share from a Share Action                                                                 | Puck, GA  |
 | `phoenix_completed_share_action_facebook`            | Successfully completed sharing on Facebook from a Share Action                                                                       | Puck, GA  |
 | `phoenix_clicked_share_action_twitter`               | clicked a Twitter share button on a Share Action                                                                                     | Puck, GA  |
 | `phoenix_clicked_link_action`                        | clicked the link on a Link Action                                                                                                    | Puck, GA  |
@@ -56,7 +56,7 @@ The following are all events currently tracked across the Phoenix application:
 | `phoenix_clicked_poll_locator`                       | clicked the search button on a Poll Locator                                                                                          | Puck, GA  |
 | `phoenix_opened_modal`                               | opened a Modal (The specific modal ID is tracked within the Puck payload)                                                            | Puck, GA  |
 | `phoenix_submitted_quiz`                             | submitted a quiz (The quiz results are tracked within the Puck payload)                                                              | Puck, GA  |
-| `phoenix_opened_modal_poll_locator`                  | opened a modal on a Poll Locator (the modal could contain poll location results or be empty)                                         | Puck, GA  |
+| `phoenix_opened_modal_poll_locator`                  | opened a modal on a Poll Locater (the modal could contain poll location results or be empty)                                         | Puck, GA  |
 | `phoenix_opened_modal_poll_locator_not_found`        | opened the 'Not Found' modal from a Poll Locator                                                                                     | Puck, GA  |
 | `phoenix_clicked_copy_to_clipboard`                  | clicked the clipboard copy button in a Social Drive Action                                                                           | Puck, GA  |
 | `phoenix_failed_post_request`                        | failed to send a POST request                                                                                                        | Puck      |
