@@ -4,14 +4,14 @@
 .gallery-grid-quartet {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 15px;
+  grid-row-gap: $half-spacing;
   padding: 0 $half-spacing;
   overflow: hidden;
 
   @include media('(min-width: 360px)') {
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
+    grid-column-gap: $half-spacing;
+    grid-row-gap: $half-spacing;
   }
 
   @include media($medium) {
@@ -24,8 +24,8 @@
 
   @include media($larger) {
     grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
   }
 }
 
@@ -40,14 +40,14 @@
 }
 
 .gallery-item__meta {
-  margin-top: 15px;
+  margin-top: $half-spacing;
 }
 
 .gallery-item__title {
   color: inherit;
   font-size: $font-regular;
   font-weight: $weight-bold;
-  margin-bottom: 5px;
+  margin-bottom: $increment-spacing;
 
   @include media('(min-width: 360px)') {
     font-size: $font-small;
