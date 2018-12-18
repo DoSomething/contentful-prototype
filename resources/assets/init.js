@@ -30,6 +30,7 @@ import './scss/container.scss';
 import './scss/navigation.scss';
 import './scss/placeholder.scss';
 import './scss/fonts.scss';
+import './scss/gallery-grid.scss';
 
 // React Application
 import App from './components/App';

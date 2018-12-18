@@ -1,0 +1,89 @@
+@import 'next-toolbox';
+
+// @TODO: Rename to something better?
+.gallery-grid-quartet {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: $half-spacing;
+  padding: 0 $half-spacing;
+  overflow: hidden;
+
+  @include media('(min-width: 360px)') {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: $half-spacing;
+    grid-row-gap: $half-spacing;
+  }
+
+  @include media($medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
+  }
+}
+
+.gallery-item {
+  > .wrapper {
+    display: block;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.gallery-item__meta {
+  margin-top: $half-spacing;
+}
+
+.gallery-item__title {
+  color: inherit;
+  font-size: $font-regular;
+  font-weight: $weight-bold;
+  margin-bottom: $increment-spacing;
+
+  @include media('(min-width: 360px)') {
+    font-size: $font-small;
+  }
+
+  @include media($medium) {
+    font-size: $font-regular;
+  }
+
+  @include media($larger) {
+    font-size: $font-small;
+  }
+
+  @include media('(min-width: 1300px)') {
+    font-size: $font-regular;
+  }
+}
+
+.gallery-item__tagline {
+  font-size: $font-regular;
+  font-weight: $weight-normal;
+  line-height: 1.3;
+
+  @include media('(min-width: 360px)') {
+    font-size: $font-small;
+  }
+
+  @include media($medium) {
+    font-size: $font-regular;
+  }
+
+  @include media($larger) {
+    font-size: $font-small;
+  }
+
+  @include media('(min-width: 1300px)') {
+    font-size: $font-regular;
+  }
+}
