@@ -32,19 +32,6 @@ const formatEventName = (verb, noun, adjective = null) => {
 };
 
 /**
- * Analyze event with Google Tag Manager.
- * (pushes event into the window's Data Layer array.)
- *
- * @param  {String} event
- * @return {void}
- */
-export function analyzeWithGoogleTagManager(event) {
-  window.dataLayer = window.dataLayer || [];
-
-  window.dataLayer.push({ event });
-}
-
-/**
  * Send event to analyze with Google Analytics.
  *
  * @param  {String} category
@@ -63,7 +50,10 @@ export function analyzeWithGoogleAnalytics(category, action) {
   const identifier = `${category}:${action}:${label}`;
 
   analyze(identifier);
-  analyzeWithGoogleTagManager(action);
+
+  // Push event action to Google Tag Manager's data layer.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: action });
 }
 
 /**
