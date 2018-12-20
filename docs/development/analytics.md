@@ -1,6 +1,6 @@
 # Analytics
 
-We track a series of analytics events and user interactions throughout the user session across the Phoenix application. These events are dispatched to various platforms, consumed by our data team and surfaced in Looker (data.dosomething.org).
+We track a series of analytics events and user interactions throughout the user session across the Phoenix application. These events are dispatched to various platforms, consumed by our data team and surfaced in [Looker](data.dosomething.org).
 
 ## Analytics Services
 
@@ -17,8 +17,8 @@ We've established the following naming conventions for any analytics event track
 **Rules**:
 
 - event names must be snake-cased (lowercase with underscores).
-- pattern: app_verb_noun(\_adjective), the adjective is optional (added app post arch discussion, examples below don't show this pattern; example app = gambit)
-- event names assume a past tense for the verb ("clicked" instead of "click", "visited" instead of "visit", etc)
+- pattern: app_verb_noun(\_adjective), the adjective is optional.
+- event names assume a past tense for the verb ("clicked" instead of "click", "visited" instead of "visit", etc.)
 
 See listed events below for some examples.
 
