@@ -50,6 +50,10 @@ export function analyzeWithGoogleAnalytics(category, action) {
   const identifier = `${category}:${action}:${label}`;
 
   analyze(identifier);
+
+  // Push event action to Google Tag Manager's data layer.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: action });
 }
 
 /**
