@@ -17,7 +17,7 @@ We've established the following naming conventions for any analytics event track
 **Rules**:
 
 - event names must be snake-cased (lowercase with underscores).
-- pattern: app_verb_noun(\_adjective), the adjective is optional.
+- pattern: `app_verb_noun(\_adjective)`, the adjective is optional.
 - event names assume a past tense for the verb ("clicked" instead of "click", "visited" instead of "visit", etc.)
 
 See listed events below for some examples.
