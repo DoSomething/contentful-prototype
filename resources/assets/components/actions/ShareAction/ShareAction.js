@@ -10,6 +10,7 @@ import ContentfulEntry from '../../ContentfulEntry';
 import { setFormData } from '../../../helpers/forms';
 import Markdown from '../../utilities/Markdown/Markdown';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import {
   dynamicString,
   loadFacebookSDK,
@@ -28,15 +29,13 @@ class ShareAction extends React.Component {
   }
 
   storeSharePost = puckId => {
-    const type = 'share_social';
-
     const action = get(this.props.additionalContent, 'action', 'default');
 
     const { id, campaignId, link } = this.props;
 
     const formData = setFormData({
       action,
-      type,
+      type: SOCIAL_SHARE_TYPE,
       id,
       details: {
         url: link,
@@ -51,7 +50,7 @@ class ShareAction extends React.Component {
       action,
       body: formData,
       id,
-      type,
+      type: SOCIAL_SHARE_TYPE,
     });
   };
 
