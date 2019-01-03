@@ -79,9 +79,11 @@ export function storeCampaignPost(campaignId, data) {
 
   const { action, body, id, type } = data;
 
+  // Ensure snake casing on the type field for usage as analytics noun.
+  const analyticsNoun = (type || '').replace(/-/g, '_');
   const analytics = {
     verb: 'submitted',
-    noun: `${type}_submission_action`,
+    noun: `${analyticsNoun}_submission_action`,
     payload: {
       action,
       campaignId,
