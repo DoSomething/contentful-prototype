@@ -109,7 +109,6 @@ class Campaign extends Entity implements JsonSerializable
         return [
             'id' => $this->entry->getId(),
             'campaignId' => $this->legacyCampaignId,
-            'legacyCampaignId' => $this->legacyCampaignId, // @TODO deprecate in favor of campaignId (2018-10-22)
             'type' => $this->entry->getContentType()->getId(),
             'template' => $this->template->first() ?: 'mosaic',
             'title' => $this->title,
