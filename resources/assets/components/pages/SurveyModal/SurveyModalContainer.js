@@ -5,8 +5,7 @@ import { getUserId } from '../../../selectors/user';
 
 const mapStateToProps = state => ({
   northstarId: getUserId(state),
-  campaignId: state.campaign.id,
-  legacyCampaignId: state.campaign.legacyCampaignId,
+  campaignId: state.campaign.campaignId,
 });
 
 export default connect(mapStateToProps)(SurveyModal);

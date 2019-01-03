@@ -24,7 +24,7 @@ const mapStateToProps = state => {
 
   return {
     slug: state.campaign.slug,
-    campaignId: state.campaign.legacyCampaignId,
+    campaignId: state.campaign.campaignId,
     hasReferralRB,
     hasLandingPage,
     isSignedUp: isSignedUp(state),
@@ -40,4 +40,7 @@ const actionCreators = {
   clickedRemoveSignUp,
 };
 
-export default connect(mapStateToProps, actionCreators)(CampaignDashboard);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(CampaignDashboard);

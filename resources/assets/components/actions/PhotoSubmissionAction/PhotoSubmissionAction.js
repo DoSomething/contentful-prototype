@@ -81,7 +81,6 @@ class PhotoSubmissionAction extends React.Component {
     const request = getUserCampaignSignups(
       this.props.userId,
       this.props.campaignId,
-      this.props.legacyCampaignRunId,
     );
 
     // @TODO: handle if errors.
@@ -413,7 +412,6 @@ PhotoSubmissionAction.propTypes = {
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
   initPostSubmissionItem: PropTypes.func.isRequired,
-  legacyCampaignRunId: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,

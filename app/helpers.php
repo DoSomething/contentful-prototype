@@ -1,7 +1,6 @@
 <?php
 
 use App\Entities\Campaign;
-use App\Services\PhoenixLegacy;
 use Illuminate\Support\HtmlString;
 use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
