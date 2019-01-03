@@ -176,31 +176,6 @@ function get_image_url($asset, $style = null)
 }
 
 /**
- * Return all or specific data from legacy campaign.
- *
- * @param  string $id
- * @param  string $key
- * @return mixed
- */
-function get_legacy_campaign_data($id, $key = null)
-{
-    try {
-        $campaign = (new PhoenixLegacy)->getCampaign($id);
-    } catch (\Exception $error) {
-        $handler = app(\App\Exceptions\Handler::class);
-        $handler->report($error);
-
-        return null;
-    }
-
-    if ($campaign && $key) {
-        return data_get($campaign['data'], $key);
-    }
-
-    return $campaign;
-}
-
-/**
  * Return either the field from the override object or the
  * base object.
  *
