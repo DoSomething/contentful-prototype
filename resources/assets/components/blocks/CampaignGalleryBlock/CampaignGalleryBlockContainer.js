@@ -7,7 +7,7 @@ import CampaignGalleryBlockQuery from './CampaignGalleryBlockQuery';
  * this case, we just need the campaign ID for our GraphQL query!)
  */
 const mapStateToProps = state => ({
-  campaignId: String(state.campaign.legacyCampaignId),
+  campaignId: String(state.campaign.campaignId),
 });
 
 // Export the Redux container component.

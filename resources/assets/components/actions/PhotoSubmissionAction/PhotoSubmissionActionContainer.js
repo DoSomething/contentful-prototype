@@ -10,7 +10,6 @@ import {
 
 const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
-  legacyCampaignRunId: state.campaign.legacyCampaignRunId,
   submissions: state.postSubmissions,
   userId: getUserId(state),
 });

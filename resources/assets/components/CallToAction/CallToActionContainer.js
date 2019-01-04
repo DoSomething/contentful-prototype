@@ -7,10 +7,9 @@ import { isSignedUp } from '../../selectors/signup';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  campaignId: state.campaign.id,
+  campaignId: state.campaign.campaignId,
   coverImageUrl: state.campaign.coverImage.url,
   isSignedUp: isSignedUp(state),
-  legacyCampaignId: state.campaign.legacyCampaignId,
   tagline: state.campaign.callToAction,
 });
 

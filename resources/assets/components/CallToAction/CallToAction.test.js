@@ -13,7 +13,6 @@ jest.mock('./CallToActionContainer', () => 'CallToActionContainer');
 const component = shallow(
   <CallToAction
     campaignId="12345"
-    legacyCampaignId="67890"
     tagline="Aenean eu leo quam. Pellentesque ornare sem vestibulum."
     useCampaignTagline
     visualStyle="light"

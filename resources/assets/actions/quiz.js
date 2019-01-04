@@ -30,7 +30,7 @@ export function viewQuizResult(quizId, resultActionId) {
 
 export function quizConvert(quizId, resultActionId) {
   return (dispatch, getState) => {
-    const campaignId = getState().campaign.legacyCampaignId;
+    const campaignId = getState().campaign.campaignId;
 
     dispatch(
       clickedSignupAction(campaignId, {

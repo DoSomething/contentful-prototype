@@ -15,8 +15,7 @@ class TruncatedCampaign extends Campaign implements JsonSerializable
     {
         return [
             'id' => $this->entry->getId(),
-            'legacyCampaignId' => $this->legacyCampaignId,
-            'legacyCampaignRunId' => get_legacy_campaign_data($this->legacyCampaignId, 'campaign_runs.current.en.id'),
+            'campaignId' => $this->legacyCampaignId,
             'type' => $this->entry->getContentType()->getId(),
             'title' => $this->title,
             'slug' => $this->slug,
