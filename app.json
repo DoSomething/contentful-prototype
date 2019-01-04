@@ -59,9 +59,6 @@
     "PUCK_URL": {
       "required": true
     },
-    "ROGUE_API_KEY": {
-      "required": true
-    },
     "ROGUE_URL": {
       "required": true
     },

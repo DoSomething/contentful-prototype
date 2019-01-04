@@ -28,7 +28,6 @@ return [
 
     'rogue' => [
         'url' => env('ROGUE_URL', 'https://rogue-qa.dosomething.org'),
-        'key' => env('ROGUE_API_KEY'),
     ],
 
     'northstar' => [
