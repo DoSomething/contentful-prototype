@@ -30,6 +30,7 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         ValidationException::class,
+        GatewayValidationException::class,
     ];
 
     /**
