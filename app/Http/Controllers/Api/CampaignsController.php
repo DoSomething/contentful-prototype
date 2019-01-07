@@ -32,28 +32,20 @@ class CampaignsController extends Controller
      */
     public function index(Request $request)
     {
-        $ids = array_get($request->query('filter'), 'id');
+        $idString = array_get($request->query('filter'), 'id');
 
-        $idsArray = $ids ? explode(',', $ids) : [];
+        $ids = $idString ? explode(',', $idString) : [];
 
         // Resetting the filter[id] param value to an array so that we can properly validate.
-        $request->merge(['filter' => ['id' => $idsArray]]);
+        $request->merge(['filter' => ['id' => $ids]]);
 
         $this->validate($request, [
             'filter.id' => 'max:10',
+            // @TODO: potentially use a form request to do a bit more processing and
+            // validate that each item in the id array is an integer.
         ]);
 
-        // Extract the legacy IDs.
-        $legacyIds = array_filter($idsArray, 'is_legacy_id');
-
-        // All remaining IDs are presumed to be Contentful IDs.
-        $contentfulIds = array_diff($idsArray, $legacyIds);
-
-        $legacyCampaigns = $this->campaignRepository->findByLegacyCampaignIds($legacyIds);
-
-        $contentfulCampaigns = $this->campaignRepository->findByIds($contentfulIds);
-
-        $campaigns = $contentfulCampaigns->merge($legacyCampaigns);
+        $campaigns = $this->campaignRepository->findByCampaignIds($ids);
 
         return response()->json(['data' => $campaigns]);
     }
@@ -61,16 +53,12 @@ class CampaignsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  string $id - Contentful ID or Ashes ID
+     * @param  string $id - Rogue ID
      * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
-        if (is_legacy_id($id)) {
-            $data = $this->campaignRepository->findByLegacyCampaignId($id);
-        } else {
-            $data = $this->campaignRepository->getCampaign($id);
-        }
+        $data = $this->campaignRepository->findByCampaignId($id);
 
         return response()->json(['data' => $data]);
     }

@@ -103,7 +103,7 @@ class CampaignRepository
     }
 
     /**
-     * Get specified Campaign resource.
+     * Get specified Campaign resource by its Contentful ID.
      *
      * @param  string $id
      * @return stdClass
@@ -117,6 +117,10 @@ class CampaignRepository
             ->setLimit(1);
 
         $campaigns = $this->contentful->getEntries($query);
+
+        if (! $campaigns->count()) {
+            throw new ModelNotFoundException;
+        }
 
         return new Campaign($campaigns[0]);
     }
@@ -168,13 +172,37 @@ class CampaignRepository
     }
 
     /**
-     * Find a list of campaigns by their legacy IDs.
-     * Attempts to fetch campaigns from Contentful and falls back to Phoenix Ashes.
+     * Find a campaign by its ID.
+     *
+     * @param  string $id
+     * @return stdCalss
+     */
+    public function findByCampaignId($id)
+    {
+        // @TODO let's ignore any caching for now, and eventually provide a solution that
+        // can apply to more methods than just the findBySlug() used for the web app.
+        $query = (new Query)
+            ->setContentType('campaign')
+            ->where('fields.legacyCampaignId', $id)
+            ->setInclude(3)
+            ->setLimit(1);
+
+        $campaigns = $this->contentful->getEntries($query);
+
+        if (! $campaigns->count()) {
+            throw new ModelNotFoundException;
+        }
+
+        return new Campaign($campaigns[0]);
+    }
+
+    /**
+     * Find a list of campaigns by their IDs.
      *
      * @param  array $ids
      * @return \Illuminate\Support\Collection
      */
-    public function findByLegacyCampaignIds($ids)
+    public function findByCampaignIds($ids)
     {
         if (empty($ids)) {
             return collect();
@@ -187,14 +215,7 @@ class CampaignRepository
 
         $results = $this->contentful->getEntries($query)->getItems();
 
-        $contentfulCampaigns = collect($results)->mapInto(TruncatedCampaign::class);
-
-        // List of IDs returned from Contentful.
-        $foundIds = $contentfulCampaigns->pluck('legacyCampaignId')->all();
-        // Query from Phoenix Ashes using remaining IDs.
-        $legacyCampaigns = $this->getLegacyCampaigns(array_diff($ids, $foundIds));
-
-        return $contentfulCampaigns->merge($legacyCampaigns);
+        return collect($results)->mapInto(TruncatedCampaign::class);
     }
 
     /**
@@ -203,7 +224,7 @@ class CampaignRepository
      * @param  array $ids
      * @return \Illuminate\Support\Collection
      */
-    public function findByIds($ids)
+    public function findByContentfulIds($ids)
     {
         if (empty($ids)) {
             return collect();
