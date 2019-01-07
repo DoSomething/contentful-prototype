@@ -22,7 +22,6 @@ class CampaignRepository
      * CampaignRepository constructor.
      *
      * @param Contentful $contentful
-     * @param PhoenixLegacy $phoenixLegacy
      */
     public function __construct(Contentful $contentful)
     {
