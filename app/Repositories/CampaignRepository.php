@@ -5,8 +5,6 @@ namespace App\Repositories;
 use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
-use App\Services\PhoenixLegacy;
-use App\Entities\LegacyCampaign;
 use App\Entities\TruncatedCampaign;
 use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -21,21 +19,13 @@ class CampaignRepository
     private $contentful;
 
     /**
-     * PhoenixLegacy service instance.
-     */
-    private $phoenixLegacy;
-
-    /**
      * CampaignRepository constructor.
      *
      * @param Contentful $contentful
-     * @param PhoenixLegacy $phoenixLegacy
      */
-    public function __construct(Contentful $contentful, PhoenixLegacy $phoenixLegacy)
+    public function __construct(Contentful $contentful)
     {
         $this->contentful = $contentful;
-
-        $this->phoenixLegacy = $phoenixLegacy;
     }
 
     /**
@@ -103,7 +93,7 @@ class CampaignRepository
     }
 
     /**
-     * Get specified Campaign resource.
+     * Get specified Campaign resource by its Contentful ID.
      *
      * @param  string $id
      * @return stdClass
@@ -118,31 +108,20 @@ class CampaignRepository
 
         $campaigns = $this->contentful->getEntries($query);
 
+        if (! $campaigns->count()) {
+            throw new ModelNotFoundException;
+        }
+
         return new Campaign($campaigns[0]);
     }
 
     /**
-     * Get a list of campaigns by IDs from Phoenix Ashes.
-     *
-     * @param  array $ids
-     * @return \Illuminate\Support\Collection
-     */
-    public function getLegacyCampaigns($ids)
-    {
-        $query['ids'] = implode(',', $ids);
-
-        $results = $this->phoenixLegacy->getCampaigns($query);
-
-        return collect($results['data'])->mapInto(LegacyCampaign::class);
-    }
-
-    /**
-     * Find a campaign by its legacy ID.
+     * Find a campaign by its ID.
      *
      * @param  string $id
      * @return stdCalss
      */
-    public function findByLegacyCampaignId($id)
+    public function findByCampaignId($id)
     {
         // @TODO let's ignore any caching for now, and eventually provide a solution that
         // can apply to more methods than just the findBySlug() used for the web app.
@@ -155,26 +134,19 @@ class CampaignRepository
         $campaigns = $this->contentful->getEntries($query);
 
         if (! $campaigns->count()) {
-            $legacyCampaign = $this->phoenixLegacy->getCampaign($id);
-
-            if (! $legacyCampaign) {
-                throw new ModelNotFoundException;
-            }
-
-            return new LegacyCampaign($legacyCampaign['data']);
+            throw new ModelNotFoundException;
         }
 
         return new Campaign($campaigns[0]);
     }
 
     /**
-     * Find a list of campaigns by their legacy IDs.
-     * Attempts to fetch campaigns from Contentful and falls back to Phoenix Ashes.
+     * Find a list of campaigns by their IDs.
      *
      * @param  array $ids
      * @return \Illuminate\Support\Collection
      */
-    public function findByLegacyCampaignIds($ids)
+    public function findByCampaignIds($ids)
     {
         if (empty($ids)) {
             return collect();
@@ -187,14 +159,7 @@ class CampaignRepository
 
         $results = $this->contentful->getEntries($query)->getItems();
 
-        $contentfulCampaigns = collect($results)->mapInto(TruncatedCampaign::class);
-
-        // List of IDs returned from Contentful.
-        $foundIds = $contentfulCampaigns->pluck('legacyCampaignId')->all();
-        // Query from Phoenix Ashes using remaining IDs.
-        $legacyCampaigns = $this->getLegacyCampaigns(array_diff($ids, $foundIds));
-
-        return $contentfulCampaigns->merge($legacyCampaigns);
+        return collect($results)->mapInto(TruncatedCampaign::class);
     }
 
     /**
@@ -203,7 +168,7 @@ class CampaignRepository
      * @param  array $ids
      * @return \Illuminate\Support\Collection
      */
-    public function findByIds($ids)
+    public function findByContentfulIds($ids)
     {
         if (empty($ids)) {
             return collect();
