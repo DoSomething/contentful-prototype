@@ -5,8 +5,6 @@ namespace App\Repositories;
 use Carbon\Carbon;
 use App\Entities\Campaign;
 use Contentful\Delivery\Query;
-use App\Services\PhoenixLegacy;
-use App\Entities\LegacyCampaign;
 use App\Entities\TruncatedCampaign;
 use Contentful\Delivery\Client as Contentful;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -21,21 +19,14 @@ class CampaignRepository
     private $contentful;
 
     /**
-     * PhoenixLegacy service instance.
-     */
-    private $phoenixLegacy;
-
-    /**
      * CampaignRepository constructor.
      *
      * @param Contentful $contentful
      * @param PhoenixLegacy $phoenixLegacy
      */
-    public function __construct(Contentful $contentful, PhoenixLegacy $phoenixLegacy)
+    public function __construct(Contentful $contentful)
     {
         $this->contentful = $contentful;
-
-        $this->phoenixLegacy = $phoenixLegacy;
     }
 
     /**
@@ -120,52 +111,6 @@ class CampaignRepository
 
         if (! $campaigns->count()) {
             throw new ModelNotFoundException;
-        }
-
-        return new Campaign($campaigns[0]);
-    }
-
-    /**
-     * Get a list of campaigns by IDs from Phoenix Ashes.
-     *
-     * @param  array $ids
-     * @return \Illuminate\Support\Collection
-     */
-    public function getLegacyCampaigns($ids)
-    {
-        $query['ids'] = implode(',', $ids);
-
-        $results = $this->phoenixLegacy->getCampaigns($query);
-
-        return collect($results['data'])->mapInto(LegacyCampaign::class);
-    }
-
-    /**
-     * Find a campaign by its legacy ID.
-     *
-     * @param  string $id
-     * @return stdCalss
-     */
-    public function findByLegacyCampaignId($id)
-    {
-        // @TODO let's ignore any caching for now, and eventually provide a solution that
-        // can apply to more methods than just the findBySlug() used for the web app.
-        $query = (new Query)
-            ->setContentType('campaign')
-            ->where('fields.legacyCampaignId', $id)
-            ->setInclude(3)
-            ->setLimit(1);
-
-        $campaigns = $this->contentful->getEntries($query);
-
-        if (! $campaigns->count()) {
-            $legacyCampaign = $this->phoenixLegacy->getCampaign($id);
-
-            if (! $legacyCampaign) {
-                throw new ModelNotFoundException;
-            }
-
-            return new LegacyCampaign($legacyCampaign['data']);
         }
 
         return new Campaign($campaigns[0]);
