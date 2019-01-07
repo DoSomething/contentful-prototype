@@ -30,6 +30,7 @@ class Handler extends ExceptionHandler
         \Illuminate\Database\Eloquent\ModelNotFoundException::class,
         \Illuminate\Session\TokenMismatchException::class,
         ValidationException::class,
+        GatewayValidationException::class,
     ];
 
     /**
@@ -52,6 +53,8 @@ class Handler extends ExceptionHandler
         if ($exception instanceof GatewayAccessDeniedException) {
             // Log the contents of 'Authorization' header for any malformed JWTs.
             Log::warning('malformed_jwt', ['hint' => $exception->hint, 'jwt' => request()->header('Authorization')]);
+        } elseif ($exception instanceof GatewayValidationException) {
+            Log::debug($exception->getMessage(), $exception->getErrors());
         }
 
         parent::report($exception);
