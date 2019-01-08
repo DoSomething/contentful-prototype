@@ -41,13 +41,13 @@ There are a couple of other applications and sites that you will want access to 
 
 ## Tips and Tidbits 🍩
 
-### Preview Environment
+### Dev & QA Environments
 
-Once a _Pull Request_ is merged, a deploy to our _Development_ and _Staging (QA)_ environment is automatically triggered.
+Once a _Pull Request_ is merged, a deploy to our _Development_ and _QA (staging)_ environment is automatically triggered.
 
 The Development environment can be accessed at [https://www-dev.dosomething.org](https://www-dev.dosomething.org).
 
-The Staging (QA) environment can be accessed at [https://qa.dosomething.org](https://qa.dosomething.org).
+The QA environment can be accessed at [https://qa.dosomething.org](https://qa.dosomething.org).
 
 ### Review Apps
 
