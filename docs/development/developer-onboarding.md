@@ -2,21 +2,21 @@
 
 ## Install and Set Up Phoenix
 
-You can follow the [instructions](installation.md) to install and set up Phoenix in your local development environment.
+You can follow the [installation instructions](installation.md) to install and set up Phoenix in your local development environment.
 
-However, before running `php artisan phoenix:setup`, you are going to need a few permissions so that you can set the correct application keys and secrets for proper access.
+However, before running `php artisan phoenix:setup`, you are going to need a few permissions so that you can set the correct application keys and secret keys for proper access.
 
 ### Northstar
 
-For the most part, you can use the staging Northstar URL for your development environment: `https://northstar-thor.dosomething.org`
+For your development enviornment you should use the Dev Northstar URL: `https://identity-dev.dosomething.org`
 
-To gain access to an ID and SECRET, you will need to have the proper permissions set on your DoSomething account. Let a developer on the team know if you are unable to access [Aurora \(staging\)](https://aurora-thor.dosomething.org/clients).
+To gain access to a _Client ID_ and _Client Secret_, you will need to have the proper permissions set on your DoSomething account. Let a developer on the team know if you are unable to access [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth) to obtain the two values.
 
 ### Contentful
 
-Be sure to setup your [Contentful account](https://www.contentful.com/sign-up/) and request access to the project _Phoenix_ project space, so that you can set the proper _Contentful Space ID_ and _Contentful API Key_ in your setup.
+Be sure to setup your [Contentful account](https://www.contentful.com/sign-up/) and request access to the _Phoenix_ project space, so that you can set the proper _Contentful Space ID_ and _Contentful API Key_ in your setup.
 
-Once you gain access to Contentful and the _Phoenix_ space, you can find the values you need in the **Space settings** tab and click on **API Keys** in Contentful. Then select the **Phoenix Next - local development** token.
+Once you gain access to Contentful and the _Phoenix_ space, you can find the values you need in the **Settings** tab and click on **Space Settings: API keys** in Contentful. Then click the **Phoenix [Development]** entry to obtain the _Space ID_ and _Content Preview API_ key access token.
 
 ### .ENV \(noun: /Dot EE EN VEE/\)
 
@@ -26,7 +26,7 @@ If running the Phoenix setup from scratch, a copy of this `.env.example` file wi
 
 ### Preview API
 
-For you local development environment, it may be helpful to use the **Content Preview API - access token** instead of the **Content Delivery API - access token**, so you can access unpublished, or "draft mode" work from Contentful. If you choose to do so, be sure to set the `CONTENTFUL_USE_PREVIEW_API` to `true` in your `.env` file.
+For you local development environment, it may be helpful to use the **Content Preview API - access token** instead of the **Content Delivery API - access token**, so you can access unpublished, or "draft mode" work from Contentful. If you choose to do so, be sure to set the `CONTENTFUL_USE_PREVIEW_API` to `true` in your `.env` file, so that the Contentful configuration knows to access preview content.
 
 ### Contentful Caching
 
@@ -36,16 +36,18 @@ By default, the application is set up to cache Campaigns records fetched from Co
 
 There are a couple of other applications and sites that you will want access to for development:
 
-- The [Dosomething Team](https://dashboard.heroku.com/teams/dosomething/overview) on [Heroku](https://www.heroku.com/) \(To access Preview Apps, and more\).
+- The [Dosomething Team](https://dashboard.heroku.com/teams/dosomething/overview) on [Heroku](https://www.heroku.com/) \(To access Preview Apps, Phoenix deployments and more\).
 - The [Dosomething Organization](https://app.wercker.com/dosomething) on [Wercker](https://app.wercker.com) \(To access and re-trigger auto builds for _Pull Requests_\).
 
 ## Tips and Tidbits 🍩
 
 ### Preview Environment
 
-Once a _Pull Request_ is merged, a deploy to our staging environment is automatically triggered.
+Once a _Pull Request_ is merged, a deploy to our _Development_ and _Staging (QA)_ environment is automatically triggered.
 
-The staging environment can be accessed at [https://phoenix-preview.dosomething.org](https://phoenix-preview.dosomething.org).
+The Development environment can be accessed at [https://www-dev.dosomething.org](https://www-dev.dosomething.org).
+
+The Staging (QA) environment can be accessed at [https://qa.dosomething.org](https://qa.dosomething.org).
 
 ### Review Apps
 
