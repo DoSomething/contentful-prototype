@@ -8,7 +8,7 @@ However, before running `php artisan phoenix:setup`, you are going to need a few
 
 ### Northstar
 
-For your development enviornment you should use the Dev Northstar URL: `https://identity-dev.dosomething.org`
+For your development environment you should use the Dev Northstar URL: `https://identity-dev.dosomething.org`
 
 To gain access to a _Client ID_ and _Client Secret_, you will need to have the proper permissions set on your DoSomething account. Let a developer on the team know if you are unable to access [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth) to obtain the two values.
 
