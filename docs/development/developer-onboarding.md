@@ -1,8 +1,8 @@
 # Developer Onboarding
 
-## Install and Set Up Phoenix \(next\)
+## Install and Set Up Phoenix
 
-You can follow the [instructions](installation.md) to install and set up Phoenix \(next\) in your local development environment.
+You can follow the [instructions](installation.md) to install and set up Phoenix in your local development environment.
 
 However, before running `php artisan phoenix:setup`, you are going to need a few permissions so that you can set the correct application keys and secrets for proper access.
 
@@ -36,8 +36,8 @@ By default, the application is set up to cache Campaigns records fetched from Co
 
 There are a couple of other applications and sites that you will want access to for development:
 
-* The [Dosomething Team](https://dashboard.heroku.com/teams/dosomething/overview) on [Heroku](https://www.heroku.com/) \(To access Preview Apps, and more\).
-* The [Dosomething Organization](https://app.wercker.com/dosomething) on [Wercker](https://app.wercker.com) \(To access and re-trigger auto builds for _Pull Requests_\).
+- The [Dosomething Team](https://dashboard.heroku.com/teams/dosomething/overview) on [Heroku](https://www.heroku.com/) \(To access Preview Apps, and more\).
+- The [Dosomething Organization](https://app.wercker.com/dosomething) on [Wercker](https://app.wercker.com) \(To access and re-trigger auto builds for _Pull Requests_\).
 
 ## Tips and Tidbits 🍩
 
@@ -50,4 +50,3 @@ The staging environment can be accessed at [https://phoenix-preview.dosomething.
 ### Review Apps
 
 When a Pull Request is submitted, a temporary deploy is made from the feature branch. Read more about this in the [Heroku documentation for Review Apps](https://github.com/DoSomething/phoenix-next/wiki/Review-apps).
-
