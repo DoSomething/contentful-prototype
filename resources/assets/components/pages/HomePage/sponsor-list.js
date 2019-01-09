@@ -114,6 +114,16 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/6z3TizyUDYCymWQEgCUWGA/6eb48fb4a607f7c7db1845422efe8d1c/CooperTireLogo_stacked.png',
   },
+  {
+    name: 'TikTok',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/2GK6h58sbKGs6QoU46WI6o/784177ae056173ae17e11bd55f660518/tiktok_logo.jpg',
+  },
+  {
+    name: 'TargetTag',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/3KpmgDJDHGOO482eoqckkS/bf348e66f940f513905535e35557fc5a/target_tag_logo.jpg',
+  },
 ];
 
 export default sponsorList;
