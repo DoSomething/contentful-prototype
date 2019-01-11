@@ -4,10 +4,10 @@ import sixpackExperimentsMiddleware from '../middleware/sixpackExperiments';
 import requiresAuthenticationMiddleware from '../middleware/requiresAuthentication';
 
 const middlewares = [
-  requiresAuthenticationMiddleware,
   analyticsMiddleware,
-  apiMiddleware,
   sixpackExperimentsMiddleware,
+  requiresAuthenticationMiddleware,
+  apiMiddleware,
 ];
 
 export default middlewares;
