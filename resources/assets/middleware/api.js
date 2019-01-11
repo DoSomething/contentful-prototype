@@ -131,8 +131,6 @@ const apiMiddleware = ({ dispatch, getState }) => next => action => {
     return next(action);
   }
 
-  console.log('🖕🏽 apiMiddleware firing!');
-
   const { payload } = action;
 
   switch (action.method) {
