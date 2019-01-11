@@ -76,13 +76,21 @@ const postRequest = (payload, dispatch, getState) => {
       // if data was created or not, but Gateway doesn't currently pass this to us. So for
       // now we're resolving to check against the data's created_at value to decide time elapsed.
       const dataCreatedAt = get(response, 'data.created_at', null);
+      const statusCode = isWithinMinutes(dataCreatedAt, 5) ? 201 : 200;
 
       response.status = {
         success: {
-          code: isWithinMinutes(dataCreatedAt, 5) ? 201 : 200,
+          code: statusCode,
           message: get(payload, 'meta.messaging.success', 'Thanks!'),
         },
       };
+
+      trackAnalyticsEvent({
+        verb: statusCode === 200 ? 'found' : 'completed',
+        noun: get(payload, 'meta.analytics.noun', 'post_request'),
+        data: {},
+        service: 'puck',
+      });
 
       dispatch({
         meta: payload.meta,
@@ -122,6 +130,8 @@ const apiMiddleware = ({ dispatch, getState }) => next => action => {
   if (action.type !== API) {
     return next(action);
   }
+
+  console.log('🖕🏽 apiMiddleware firing!');
 
   const { payload } = action;
 
