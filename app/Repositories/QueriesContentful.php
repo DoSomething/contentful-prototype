@@ -14,18 +14,20 @@ trait QueriesContentful
      * Get entries from a Contentful Query and return data as JSON.
      *
      * @param  string $type
-     * @param  int $limit
-     * @param  int $skip
+     * @param  array  $options
+     * @param  int    $options['includeDepth']
+     * @param  string $options['limit']
+     * @param  string $options['skip']
      * @return string
      */
-    protected function getEntriesAsJson($type, $limit = null, $skip = null)
+    protected function getEntriesAsJson($type, $options = [])
     {
         $query = (new Query)
                 ->setContentType($type)
-                ->setInclude(0)
+                ->setInclude(array_get($options, 'includeDepth', 0))
                 ->orderBy('sys.updatedAt', true)
-                ->setLimit($limit)
-                ->setSkip($skip);
+                ->setLimit(array_get($options, 'limit'))
+                ->setSkip(array_get($options, 'skip'));
 
         $entries = app('contentful.delivery')->getEntries($query)->getItems();
 
