@@ -1,5 +1,5 @@
 import localforage from 'localforage';
-import { isNull, merge, set } from 'lodash';
+import { isNull, merge } from 'lodash';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
 import initialState from './initialState';
@@ -75,10 +75,6 @@ export function initializeStore(store) {
       if (isNull(action)) {
         return;
       }
-
-      // Specify that the clicked_signup action about to be dispatched was triggered
-      // after returning from authentication redirect.
-      set(action, 'payload.meta.analytics.adjective', 'triggered_post_auth');
 
       store.dispatch(action);
 
