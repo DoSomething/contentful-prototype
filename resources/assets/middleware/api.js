@@ -88,8 +88,7 @@ const postRequest = (payload, dispatch, getState) => {
       trackAnalyticsEvent({
         verb: statusCode === 200 ? 'found' : 'completed',
         noun: get(payload, 'meta.analytics.noun', 'post_request'),
-        data: {},
-        service: 'puck',
+        data: get(payload, 'meta.analytics.data'),
       });
 
       dispatch({
