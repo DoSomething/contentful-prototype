@@ -13,11 +13,13 @@ class HomePageRepository
      */
     public function getFirst()
     {
+        $options = ['includeDepth' => 2, 'limit' => 1];
+
         if (! config('services.contentful.cache')) {
-            $homePages = $this->getEntriesAsJson('homePage', 1);
+            $homePages = $this->getEntriesAsJson('homePage', $options);
         } else {
-            $homePages = remember('home_pages', 15, function () {
-                return $this->getEntriesAsJson('homePage', 1);
+            $homePages = remember('home_pages', 15, function () use ($options) {
+                return $this->getEntriesAsJson('homePage', $options);
             });
         }
 

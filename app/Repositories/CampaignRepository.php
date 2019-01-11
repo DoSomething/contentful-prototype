@@ -41,8 +41,10 @@ class CampaignRepository
         $cacheKey = $limit ? $cacheKey.':limit='.$limit : $cacheKey;
         $cacheKey = $skip ? $cacheKey.':skip='.$skip : $cacheKey;
 
-        $campaigns = remember($cacheKey, 15, function () use ($limit, $skip) {
-            return $this->getEntriesAsJson('campaign', $limit, $skip);
+        $options = ['includeDepth' => 1, 'limit' => $limit, 'skip' => $skip];
+
+        $campaigns = remember($cacheKey, 15, function () use ($options) {
+            return $this->getEntriesAsJson('campaign', $options);
         });
 
         return json_decode($campaigns);
