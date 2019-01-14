@@ -118,14 +118,6 @@ export function getCampaignSignups(id = null, query = {}) {
  */
 export function storeCampaignSignup(campaignId, data) {
   const path = join('api/v2/campaigns', campaignId, 'signups');
-  const analytics = {
-    verb: 'clicked',
-    noun: 'signup',
-    payload: {
-      campaignId,
-      ...data.analytics,
-    },
-  };
 
   return dispatch => {
     dispatch(
@@ -134,7 +126,6 @@ export function storeCampaignSignup(campaignId, data) {
         failure: STORE_CAMPAIGN_SIGNUPS_FAILED,
         meta: {
           id: campaignId,
-          analytics,
           sixpackExperiments: { conversion: 'signup' },
           messaging: {
             success: 'Thanks for signing up!',
