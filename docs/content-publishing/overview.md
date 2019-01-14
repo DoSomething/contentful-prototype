@@ -19,3 +19,4 @@ description: >-
 - [Pages](pages/)
 - [HomePage](home-page.md)
 - [Quiz](quiz.md)
+- [Dynamic Link Tokens](dynamic-link-tokens)
