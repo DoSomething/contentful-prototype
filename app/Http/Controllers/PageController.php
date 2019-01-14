@@ -35,9 +35,9 @@ class PageController extends Controller
         $page = $this->pageRepository->findBySlug($slug);
 
         return view('app', [
+            'headTitle' => $page->fields->title,
             'metadata' => get_metadata($page),
             'socialFields' => get_social_fields($page),
-            'pageTitle' => $page->fields->title,
         ])->with('state', [
             'page' => $page,
         ]);
