@@ -45,7 +45,7 @@ class CampaignController extends Controller
             'campaigns' => $campaigns,
             'count' => $count,
             'nextPage' => $page + 1,
-            'pageTitle' => 'Explore Campaigns',
+            'pageTitle' => 'Explore Campaigns For Social Change Volunteer Opportunities',
             'previousPage' => $page - 1,
         ]);
     }
