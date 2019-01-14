@@ -44,6 +44,7 @@ class CampaignController extends Controller
         return view('campaigns.index', [
             'campaigns' => $campaigns,
             'count' => $count,
+            'headTitle' => 'Social Change Volunteer Opportunities',
             'nextPage' => $page + 1,
             'previousPage' => $page - 1,
         ]);
@@ -63,11 +64,11 @@ class CampaignController extends Controller
             // This is used to build campaign-specific login links in the
             // server-rendered top navigation bar.
             'campaign' => $campaign,
+            'headTitle' => $campaign->title,
             'metadata' => get_metadata($campaign),
             // We render social metatags server-side because Facebook & Twitter
             // do not render JavaScript when crawling pages like Google does.
             'socialFields' => get_campaign_social_fields($campaign, $request->url()),
-            'pageTitle' => $campaign->title,
         ])->with('state', [
             'campaign' => $campaign,
         ]);
