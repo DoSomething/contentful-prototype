@@ -1,10 +1,5 @@
 const sponsorList = [
   {
-    name: 'Channel One News',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/6SpDVyHrkAAEI0qSqyygIs/ae921b0fa77ea051d69102ca8de81f19/Channel_One_News_logo__28introduced_2013_29_0.png',
-  },
-  {
     name: 'Fastweb',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/3YgDpELTfay2ko4cw2Qw86/af4a645f852898dc5cf048a7ced40859/fastweb-Logo_0.png',
@@ -18,11 +13,6 @@ const sponsorList = [
     name: 'Jet Blue',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/51oT5WIvO0KuseKe8KUUwG/1672e778430cc396a41cbc512f8a288c/JetBlue_grayscale.png',
-  },
-  {
-    name: 'H&M',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/3kuKElQGXKAcaY4c4Wiyym/4e3c89ead5f080387009ebbbd71103aa/HM-1_0.png',
   },
   {
     name: 'Google',
