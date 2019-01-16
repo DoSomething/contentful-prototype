@@ -37,6 +37,13 @@ $router->get('campaigns/{slug}/{clientRoute?}', function ($slug, $clientRoute = 
     return redirect('us/campaigns/'.$slug.'/'.$clientRoute);
 });
 
+// Search
+$router->get('us/search', 'SearchController');
+$router->get('search', function() {
+    $queryString = request()->has('query') ? '?query='.request('query') : '';
+    return redirect('/us/search'.$queryString);
+});
+
 // Categorized Pages (articles, facts)
 $categories = 'articles|facts|about';
 
