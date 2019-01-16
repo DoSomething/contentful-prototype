@@ -223,7 +223,7 @@ class CampaignRepository
         if (! config('services.contentful.cache')) {
             $campaigns = $this->getEntriesAsJson('campaign', $options);
         } else {
-            $campaigns = remember('search_'.$query, 15, function() use ($options) {
+            $campaigns = remember('search_'.$query, 15, function () use ($options) {
                 return $this->getEntriesAsJson('campaign', $options);
             });
         }

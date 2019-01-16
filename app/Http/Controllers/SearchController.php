@@ -25,7 +25,6 @@ class SearchController extends Controller
         $this->campaignRepository = $campaignRepository;
     }
 
-
     /**
      * Run a full-text search by given input. Display results.
      *
