@@ -101,6 +101,35 @@ const sendToServices = (category, name, data, service) => {
 };
 
 /**
+ * Format analytics event noun string.
+ *
+ * @param  {String} string
+ * @return {String}
+ */
+export function formatEventNoun(string) {
+  if (!string) {
+    console.error('Event Noun text string was not provided!');
+    return null;
+  }
+
+  const submissionActions = [
+    'photo',
+    'referral',
+    'share-social',
+    'text',
+    'voter-reg',
+  ];
+
+  let noun = string;
+
+  if (submissionActions.indexOf(noun) >= 0) {
+    noun = `${noun}_submission_action`;
+  }
+
+  return noun.replace(/-/g, '_');
+}
+
+/**
  * Watch the given parameters for changes in their state
  * and record it to Google Analytics.
  */
