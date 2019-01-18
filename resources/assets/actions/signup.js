@@ -1,10 +1,12 @@
 /* global */
 
 import { join } from 'path';
+import { get } from 'lodash';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
 import { getUserId } from '../selectors/user';
+import { trackAnalyticsEvent } from '../helpers/analytics';
 import {
   SIGNUP_CREATED,
   SIGNUP_CLICKED_OPT_OUT,
@@ -117,7 +119,19 @@ export function getCampaignSignups(id = null, query = {}) {
  * @return {Function}
  */
 export function storeCampaignSignup(campaignId, data) {
+  const analytics = get(data, 'analytics', {});
   const path = join('api/v2/campaigns', campaignId, 'signups');
+  const type = 'signup';
+
+  // Track signup click submission event.
+  trackAnalyticsEvent({
+    verb: 'clicked',
+    noun: type,
+    data: {
+      campaignId,
+      ...analytics,
+    },
+  });
 
   return dispatch => {
     dispatch(
@@ -125,8 +139,10 @@ export function storeCampaignSignup(campaignId, data) {
         body: data.body,
         failure: STORE_CAMPAIGN_SIGNUPS_FAILED,
         meta: {
-          id: campaignId,
-          sixpackExperiments: { conversion: 'signup' },
+          campaignId,
+          id: campaignId, // @TODO: update to be campaignContentfulId
+          sixpackExperiments: { conversion: type },
+          type,
           messaging: {
             success: 'Thanks for signing up!',
             failure: 'Whoops! Something went wrong!',

@@ -4,6 +4,7 @@ import { join } from 'path';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
+import { formatEventNoun, trackAnalyticsEvent } from '../helpers/analytics';
 import {
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_INIT_ITEM,
@@ -79,18 +80,6 @@ export function storeCampaignPost(campaignId, data) {
 
   const { action, body, id, type } = data;
 
-  // Ensure snake casing on the type field for usage as analytics noun.
-  const analyticsNoun = (type || '').replace(/-/g, '_');
-  const analytics = {
-    verb: 'submitted',
-    noun: `${analyticsNoun}_submission_action`,
-    payload: {
-      action,
-      campaignId,
-      id,
-    },
-  };
-
   const sixpackExperiments = {
     conversion: 'reportbackPost',
   };
@@ -101,16 +90,28 @@ export function storeCampaignPost(campaignId, data) {
       ? `/next/referrals`
       : `/api/v2/campaigns/${campaignId}/posts`;
 
+  // Track post submission event.
+  trackAnalyticsEvent({
+    verb: 'submitted',
+    noun: formatEventNoun(type),
+    data: {
+      action,
+      campaignId,
+      campaignContentfulId: id,
+    },
+  });
+
   return dispatch => {
     dispatch(
       apiRequest('POST', {
         body,
         failure: POST_SUBMISSION_FAILED,
         meta: {
+          action,
+          campaignId,
           id,
-          type,
-          analytics,
           sixpackExperiments,
+          type,
         },
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
