@@ -8,8 +8,8 @@ import { PHOENIX_URL } from '../constants';
 import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
-import { trackAnalyticsEvent } from '../helpers/analytics';
 import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
+import { formatEventNoun, trackAnalyticsEvent } from '../helpers/analytics';
 
 /**
  * Send a GET request and dispatch actions.
@@ -61,9 +61,12 @@ const postRequest = (payload, dispatch, getState) => {
 
   const body =
     payload.body instanceof FormData ? payload.body : setFormData(payload.body);
+  const campaignContentfulId = get(payload, 'meta.id', null);
+  const campaignId = get(payload, 'meta.campaignId');
+  const postType = get(payload, 'meta.type', 'post_request');
 
   dispatch({
-    id: payload.meta.id,
+    id: payload.meta.id, // @TODO: rename to campaignContentfulId or campaignId
     type: payload.pending,
   });
 
@@ -76,7 +79,7 @@ const postRequest = (payload, dispatch, getState) => {
       // if data was created or not, but Gateway doesn't currently pass this to us. So for
       // now we're resolving to check against the data's created_at value to decide time elapsed.
       const dataCreatedAt = get(response, 'data.created_at', null);
-      const statusCode = isWithinMinutes(dataCreatedAt, 5) ? 201 : 200;
+      const statusCode = isWithinMinutes(dataCreatedAt, 2) ? 201 : 200;
 
       response.status = {
         success: {
@@ -86,10 +89,13 @@ const postRequest = (payload, dispatch, getState) => {
       };
 
       trackAnalyticsEvent({
-        verb: statusCode === 200 ? 'found' : 'completed',
-        noun: get(payload, 'meta.analytics.noun', 'post_request'),
+        verb:
+          statusCode === 200 && postType === 'signup' ? 'found' : 'completed',
+        noun: formatEventNoun(postType),
         data: {
-          campaignId: payload.meta.id,
+          activityId: response.data.id,
+          campaignContentfulId,
+          campaignId,
         },
       });
 
@@ -104,12 +110,12 @@ const postRequest = (payload, dispatch, getState) => {
 
       trackAnalyticsEvent({
         verb: 'failed',
-        noun: 'post_request',
+        noun: formatEventNoun(postType),
         data: {
-          url: payload.url,
+          campaignContentfulId,
+          campaignId,
           error,
         },
-        service: 'puck',
       });
 
       if (window.ENV.APP_ENV !== 'production') {

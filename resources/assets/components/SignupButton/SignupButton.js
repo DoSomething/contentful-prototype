@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 const SignupButton = props => {
   const {
@@ -22,20 +21,14 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
-    trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'signup',
-      data: {
-        campaignId,
+    clickedSignupAction(campaignId, {
+      body: { details: { campaignContentfulId } },
+      analytics: {
         campaignContentfulId,
         source,
         sourceData: { text: buttonText },
         template,
       },
-    });
-
-    clickedSignupAction(campaignId, {
-      body: { details: { campaignContentfulId } },
     });
   };
 
