@@ -112,7 +112,6 @@ const postRequest = (payload, dispatch, getState) => {
         verb: 'failed',
         noun: formatEventNoun(postType),
         data: {
-          body,
           campaignContentfulId,
           campaignId,
           error,
