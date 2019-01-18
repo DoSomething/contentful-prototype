@@ -61,7 +61,7 @@ const postRequest = (payload, dispatch, getState) => {
 
   const body =
     payload.body instanceof FormData ? payload.body : setFormData(payload.body);
-  const campaignContentfulId = get(payload, 'meta.id', 'post_request');
+  const campaignContentfulId = get(payload, 'meta.id', null);
   const campaignId = get(payload, 'meta.campaignId');
   const postType = get(payload, 'meta.type', 'post_request');
 
