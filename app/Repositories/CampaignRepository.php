@@ -209,4 +209,25 @@ class CampaignRepository
 
         return json_decode($campaign);
     }
+
+    /**
+     * Search for all Campaigns with fields matching specified string.
+     *
+     * @param  string $query
+     * @return array
+     */
+    public function searchByFullText($query)
+    {
+        $options = ['includeDepth' => 1, 'query' => $query];
+
+        if (! config('services.contentful.cache')) {
+            $campaigns = $this->getEntriesAsJson('campaign', $options);
+        } else {
+            $campaigns = remember('search_'.$query, 15, function () use ($options) {
+                return $this->getEntriesAsJson('campaign', $options);
+            });
+        }
+
+        return json_decode($campaigns);
+    }
 }
