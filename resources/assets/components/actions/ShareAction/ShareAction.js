@@ -31,12 +31,12 @@ class ShareAction extends React.Component {
   storeSharePost = puckId => {
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const { id, campaignId, link } = this.props;
+    const { campaignContentfulId, campaignId, link } = this.props;
 
     const formData = setFormData({
       action,
       type: SOCIAL_SHARE_TYPE,
-      id,
+      id: campaignContentfulId,
       details: {
         url: link,
         platform: 'facebook',
@@ -49,7 +49,7 @@ class ShareAction extends React.Component {
     this.props.storeCampaignPost(campaignId, {
       action,
       body: formData,
-      id,
+      id: campaignContentfulId,
       type: SOCIAL_SHARE_TYPE,
     });
   };
@@ -172,9 +172,9 @@ ShareAction.propTypes = {
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
   campaignId: PropTypes.string.isRequired,
+  campaignContentfulId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
-  id: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
