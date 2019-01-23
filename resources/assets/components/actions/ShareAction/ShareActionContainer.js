@@ -11,6 +11,7 @@ const mapStateToProps = state => ({
   userId: getUserId(state),
   campaignId: state.campaign.campaignId,
   isAuthenticated: isAuthenticated(state),
+  campaignContentfulId: state.campaign.id,
 });
 
 /**
