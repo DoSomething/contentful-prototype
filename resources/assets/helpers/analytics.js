@@ -11,7 +11,7 @@ import {
 
 import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
-import { getFormattedScreenSize, report } from '../helpers';
+import { report } from '../helpers';
 
 // App name prefix used for event naming.
 const APP_PREFIX = 'phoenix';
@@ -35,7 +35,6 @@ export function puckErrorReport(errorName, error) {
   report(error, {
     errorName: `Puck Error: ${errorName}`,
     deviceId,
-    browserSize: getFormattedScreenSize(),
     // Puck doesn't expose the actual session ID, but this is how it's generated.
     sessionId: `${deviceId}${puckClient.landingTimestamp}`,
   });
