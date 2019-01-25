@@ -10,6 +10,7 @@ import { env } from '../helpers';
 import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
+import { puckErrorReport } from '../helpers/analytics';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import AccountContainer from './pages/AccountPage/AccountContainer';
@@ -28,6 +29,7 @@ const App = ({ store, history }) => {
         isAuthenticated={() => isAuthenticated(state)}
         history={history}
         puckUrl={env('PUCK_URL')}
+        onError={puckErrorReport}
       >
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           <ConnectedRouter history={history}>
