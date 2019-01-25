@@ -742,14 +742,15 @@ export function parseContentfulType(json, defaultType) {
 /**
  * Report a caught error to New Relic.
  *
- * @param {Error} error
+ * @param {Error}  error
+ * @param {Object} customAttributes
  */
-export function report(error) {
+export function report(error, customAttributes = null) {
   if (!window.newrelic) {
     return;
   }
 
-  window.newrelic.noticeError(error);
+  window.newrelic.noticeError(error, customAttributes);
 }
 
 /*
