@@ -5,6 +5,7 @@ import { Mutation } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 
 import { BaseFigure } from '../../Figure';
+import './reaction.scss';
 
 export const reactionButtonFragment = gql`
   fragment ReactionButton on Post {
