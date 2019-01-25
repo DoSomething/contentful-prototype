@@ -401,3 +401,12 @@ p {
 .whitespace-no-wrap {
   white-space: nowrap;
 }
+
+// Search page form
+.search-form {
+  .text-field {
+    @include media($medium) {
+      min-width: 400px;
+    }
+  }
+}

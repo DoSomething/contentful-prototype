@@ -42,7 +42,10 @@ class SearchController extends Controller
 
         $entries = $this->campaignRepository->searchByFullText($query);
 
-        // @TODO render index blade view with found entries.
-        return $entries;
+        return view('search.results', [
+            'headTitle' => 'Search',
+            'campaigns' => $entries,
+            'query' => $query,
+        ]);
     }
 }

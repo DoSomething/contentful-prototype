@@ -10,19 +10,6 @@
   @include media($medium) {
     height: 110px;
   }
-
-  .button {
-    display: none;
-
-    @include media($large) {
-      color: $white;
-      display: block;
-      float: left;
-      margin: 5px 0;
-      text-shadow: none;
-      text-transform: none;
-    }
-  }
 }
 
 .navigation__logo {
@@ -36,12 +23,6 @@
 
 .navigation__menu {
   overflow: auto;
-
-  > .wrapper {
-    @include media($medium) {
-      float: right;
-    }
-  }
 }
 
 .navigation__primary {
