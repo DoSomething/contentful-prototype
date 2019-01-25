@@ -30,7 +30,7 @@
     "CONTENTFUL_SPACE_ID": {
       "required": true
     },
-    "CONTENTFUL_USE_PREVIEW_API": "true",
+    "CONTENTFUL_USE_PREVIEW_API": "false",
     "FACEBOOK_APP_ID": {
       "required": true
     },
