@@ -14,6 +14,8 @@ import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
 const APP_PREFIX = 'phoenix';
+// Variable that stores the instance of PuckClient.
+let puckClient = null;
 
 /**
  * Parse analytics event name parameters into a snake cased string.
@@ -64,15 +66,17 @@ export function analyzeWithGoogleAnalytics(category, action) {
  * @return {void}
  */
 export function analyzeWithPuck(name, data) {
-  const Puck = new PuckClient({
-    source: 'phoenix-next',
-    getUser: () => window.AUTH.id,
-    isAuthenticated: () => window.AUTH.isAuthenticated,
-    puckUrl: PUCK_URL,
-    history: getHistory(),
-  });
+  if (!puckClient) {
+    puckClient = new PuckClient({
+      source: 'phoenix-next',
+      getUser: () => window.AUTH.id,
+      isAuthenticated: () => window.AUTH.isAuthenticated,
+      puckUrl: PUCK_URL,
+      history: getHistory(),
+    });
+  }
 
-  Puck.trackEvent(name, data);
+  puckClient.trackEvent(name, data);
 }
 
 /**
