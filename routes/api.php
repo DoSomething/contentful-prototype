@@ -34,3 +34,8 @@ $router->group(['prefix' => 'v2'], function () {
     // Signups
     $this->get('/signups', 'Api\SignupsController@index');
 });
+
+// Simple health check endpoint
+$router->get('/status', function () {
+    return ['status' => 'good'];
+});
