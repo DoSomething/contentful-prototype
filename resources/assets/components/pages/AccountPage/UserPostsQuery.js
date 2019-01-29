@@ -21,6 +21,8 @@ const USER_POSTS_QUERY = gql`
       user {
         firstName
       }
+      ...PostCard
+      ...ReactionButton
     }
   }
 
