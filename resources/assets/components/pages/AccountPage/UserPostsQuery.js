@@ -18,9 +18,8 @@ const USER_POSTS_QUERY = gql`
       text
       tags
       quantity
-      user {
-        firstName
-      }
+      ...PostCard
+      ...ReactionButton
     }
   }
 
