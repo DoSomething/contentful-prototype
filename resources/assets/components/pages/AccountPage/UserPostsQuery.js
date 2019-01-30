@@ -11,13 +11,6 @@ import EmptyStateBlock from './EmptyStateBlock';
 const USER_POSTS_QUERY = gql`
   query UserPostsQuery($userId: String!, $count: Int, $page: Int) {
     postsByUserId(id: $userId, count: $count, page: $page) {
-      id
-      type
-      status
-      url
-      text
-      tags
-      quantity
       ...PostCard
       ...ReactionButton
     }
