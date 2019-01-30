@@ -6,7 +6,7 @@ import Card from '../utilities/Card/Card';
 import Markdown from '../utilities/Markdown/Markdown';
 
 const ErrorBlock = () => (
-  <Card className="rounded bordered padded">
+  <Card className="error-block rounded bordered padded">
     <Figure image={errorIcon}>
       <Markdown>
         __Something went wrong!__ Try refreshing the page or [reach
