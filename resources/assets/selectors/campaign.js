@@ -32,10 +32,7 @@ export function getCampaignDataForNorthstar(state) {
     data.title = state.campaign.title;
   }
 
-  // Pass along the utm_medium to Northstar
-  if (query('utm_medium')) {
-    data.trafficSource = query('utm_medium');
-  }
+  data.trafficSource = query('utm_medium');
 
   return data;
 }
