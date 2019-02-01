@@ -147,6 +147,7 @@ export function storeCampaignSignup(campaignId, data) {
             success: 'Thanks for signing up!',
             failure: 'Whoops! Something went wrong!',
           },
+          shouldShowAffirmation: get(data, 'shouldShowAffirmation', true),
         },
         pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,
