@@ -111,7 +111,7 @@ class Quiz extends React.Component {
         return;
       }
 
-      clickedSignupAction(campaignId);
+      clickedSignupAction(campaignId, { shouldShowAffirmation: false });
     }
 
     this.quizResultBlockHandler(results.resultBlock);
