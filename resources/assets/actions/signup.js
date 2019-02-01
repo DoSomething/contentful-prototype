@@ -122,6 +122,7 @@ export function storeCampaignSignup(campaignId, data) {
   const analytics = get(data, 'analytics', {});
   const path = join('api/v2/campaigns', campaignId, 'signups');
   const type = 'signup';
+  const shouldShowAffirmation = get(data, 'shouldShowAffirmation', true);
 
   // Track signup click submission event.
   trackAnalyticsEvent({
@@ -147,7 +148,7 @@ export function storeCampaignSignup(campaignId, data) {
             success: 'Thanks for signing up!',
             failure: 'Whoops! Something went wrong!',
           },
-          shouldShowAffirmation: get(data, 'shouldShowAffirmation', true),
+          shouldShowAffirmation,
         },
         pending: STORE_CAMPAIGN_SIGNUPS_PENDING,
         requiresAuthentication: true,
