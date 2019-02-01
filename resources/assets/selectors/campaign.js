@@ -1,6 +1,6 @@
 import { get } from 'lodash';
 
-import { contentfulImageUrl } from '../helpers';
+import { contentfulImageUrl, query } from '../helpers';
 
 /**
  * Get the Campaign additional content from the state.
@@ -31,6 +31,8 @@ export function getCampaignDataForNorthstar(state) {
     );
     data.title = state.campaign.title;
   }
+
+  data.trafficSource = query('utm_medium');
 
   return data;
 }
