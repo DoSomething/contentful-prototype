@@ -99,19 +99,21 @@ class Quiz extends React.Component {
       },
     });
 
+    const clickedSignupActionData = { shouldShowAffirmation: false };
+
     // Run a quiz conversion (campaign signup) if this quiz is not set to auto submit
     if (!autoSubmit) {
       if (!isAuthenticated) {
         // Append result and resultBlock IDs to URL, so that upon redirect from login flow, we can show their results
         appendResultParams(results);
 
-        clickedSignupAction(campaignId);
+        clickedSignupAction(campaignId, clickedSignupActionData);
 
         // Hard return so the results won't display before the login redirect
         return;
       }
 
-      clickedSignupAction(campaignId, { shouldShowAffirmation: false });
+      clickedSignupAction(campaignId, clickedSignupActionData);
     }
 
     this.quizResultBlockHandler(results.resultBlock);
