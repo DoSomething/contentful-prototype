@@ -69,7 +69,9 @@ const signupReducer = (state = {}, action) => {
         ...state,
         data: signups,
         isPending: false,
-        shouldShowAffirmation: get(status, 'success.code') === 201,
+        shouldShowAffirmation:
+          get(data, 'shouldShowAffirmation', true) &&
+          get(status, 'success.code') === 201,
         thisCampaign: true, // @TODO: remove from state; use a selector instead
       };
 
