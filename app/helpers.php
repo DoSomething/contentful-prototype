@@ -5,6 +5,17 @@ use Illuminate\Support\HtmlString;
 use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
 
+function get_content_type_by_category($category)
+{
+    $types = [
+        'about' => 'companyPage',
+        'articles' => 'page',
+        'facts' => 'page',
+    ];
+
+    return data_get($types, $category, 'page');
+}
+
 /**
  * Get Heroku database configuration variables from supplied
  * database url.

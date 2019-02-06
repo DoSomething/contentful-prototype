@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Entities\Page;
-use App\Entities\Campaign;
 use App\Entities\HomePage;
 use Contentful\Delivery\Query;
 use App\Entities\TruncatedCampaign;
@@ -68,12 +66,11 @@ trait QueriesContentful
             return 'not_found';
         }
 
-        switch ($type) {
-            case 'campaign':
-                return json_encode(new Campaign($entry[0]));
+        // Eg: campaign -> Campaign
+        // Eg: companyPage -> CompanyPage
+        // Eg: page -> Page
+        $entityClass = '\\App\\Entities\\'.ucwords($type);
 
-            case 'page':
-                return json_encode(new Page($entry[0]));
-        }
+        return json_encode(new $entityClass($entry[0]));
     }
 }
