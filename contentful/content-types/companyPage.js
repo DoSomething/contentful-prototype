@@ -76,6 +76,7 @@ module.exports = function(migration) {
     .omitted(false)
     .linkType('Entry');
 
+  // @TODO: remove linkAction from accepted types.
   companyPage
     .createField('content')
     .name('Content')
@@ -96,28 +97,6 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  // @TODO: remove linkAction from accepted types.
-  companyPage
-    .createField('blocks')
-    .name('Blocks')
-    .type('Array')
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false)
-    .items({
-      type: 'Link',
-
-      validations: [
-        {
-          linkContentType: ['galleryBlock', 'imagesBlock', 'linkAction'],
-        },
-      ],
-
-      linkType: 'Entry',
-    });
-
   companyPage.changeEditorInterface('internalTitle', 'singleLine', {});
   companyPage.changeEditorInterface('title', 'singleLine', {});
   companyPage.changeEditorInterface('subTitle', 'singleLine', {});
@@ -128,8 +107,4 @@ module.exports = function(migration) {
 
   companyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
   companyPage.changeEditorInterface('content', 'richTextEditor', {});
-
-  companyPage.changeEditorInterface('blocks', 'entryLinksEditor', {
-    bulkEditing: false,
-  });
 };
