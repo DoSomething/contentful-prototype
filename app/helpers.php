@@ -8,7 +8,7 @@ use Contentful\Delivery\Resource\Asset;
 function get_content_type_by_category($category)
 {
     $types = [
-        'about' => 'companyPage',
+        'about' => 'page',
         'articles' => 'page',
         'facts' => 'page',
     ];
