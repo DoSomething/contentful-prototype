@@ -51,7 +51,7 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^(?!/)[a-zA-z0-9-/]+$',
+          pattern: '^(?!/)[a-zA-Z0-9-/]+$',
         },
 
         message:
