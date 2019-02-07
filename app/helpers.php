@@ -5,6 +5,12 @@ use Illuminate\Support\HtmlString;
 use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
 
+/**
+ * Get the appropriate page content type by page category.
+ *
+ * @param  string $category
+ * @return string
+ */
 function get_content_type_by_category($category)
 {
     $types = [
