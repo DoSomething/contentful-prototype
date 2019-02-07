@@ -15,13 +15,13 @@ class PageRepository
      * @return \Contentful\Delivery\Resource\Entry
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function findBySlug($slug)
+    public function findBySlug($slug, $type)
     {
         if (! config('services.contentful.cache')) {
-            $page = $this->getEntryFromSlugAsJson('page', $slug);
+            $page = $this->getEntryFromSlugAsJson($type, $slug);
         } else {
             $page = remember('page_'.str_replace('/', '_', $slug), 15, function () use ($slug) {
-                return $this->getEntryFromSlugAsJson('page', $slug);
+                return $this->getEntryFromSlugAsJson($type, $slug);
             });
         }
 

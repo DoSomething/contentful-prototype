@@ -51,11 +51,11 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^[a-zA-Z0-9-/]+$',
+          pattern: '^(?!/)[a-zA-Z0-9-/]+$',
         },
 
         message:
-          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs!',
+          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry cannot start with a forward-slash.',
       },
     ])
     .disabled(false)

@@ -33,7 +33,7 @@ class CategorizedPageController extends Controller
      */
     public function show($category, $slug)
     {
-        $page = $this->pageRepository->findBySlug($category.'/'.$slug);
+        $page = $this->pageRepository->findBySlug($category.'/'.$slug, get_content_type_by_category($category));
 
         return view('app', [
             'headTitle' => $page->fields->title,
