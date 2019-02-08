@@ -14,7 +14,7 @@ import { puckErrorReport } from '../helpers/analytics';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import AccountContainer from './pages/AccountPage/AccountContainer';
-import GeneralPageContainer from './pages/GeneralPage/GeneralPageContainer';
+import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -37,7 +37,7 @@ const App = ({ store, history }) => {
               <Route exact path="/us" component={HomePage} />
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
-              <Route path="/us/:slug" component={GeneralPageContainer} />
+              <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
           </ConnectedRouter>
         </ApolloProvider>
