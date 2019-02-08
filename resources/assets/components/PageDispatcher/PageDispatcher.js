@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CompanyPageContainer from '../pages/CompanyPage/CompanyPageContainer';
-import GeneralPageContainer from '../pages/GeneralPage/GeneralPageContainer';
+import CompanyPage from '../pages/CompanyPage/CompanyPage';
+import GeneralPage from '../pages/GeneralPage/GeneralPage';
 
-const PageDispatcher = ({ type }) => {
-  switch (type) {
+const PageDispatcher = props => {
+  switch (props.type) {
     case 'companyPage':
-      return <CompanyPageContainer />;
+      return <CompanyPage {...props.fields} />;
 
     default:
-      return <GeneralPageContainer />;
+      return <GeneralPage {...props.fields} />;
   }
 };
 
