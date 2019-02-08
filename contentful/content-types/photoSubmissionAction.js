@@ -16,6 +16,18 @@ module.exports = function(migration) {
     .omitted(false);
 
   photoSubmissionAction
+    .createField('actionId')
+    .name('Action ID')
+    .type('Integer')
+    .required(false)
+    .localized(false)
+    .validations([
+      {
+        unique: true,
+      },
+    ]);
+
+  photoSubmissionAction
     .createField('title')
     .name('Title')
     .type('Symbol')
@@ -148,6 +160,10 @@ module.exports = function(migration) {
   photoSubmissionAction.changeEditorInterface('internalTitle', 'singleLine', {
     helpText:
       '(Example: "Teens for Jeans 2017 Photo Submission Action") Use the campaign title, year and append "Photo Submission Action".',
+  });
+
+  photoSubmissionAction.changeEditorInterface('actionId', 'numberEditor', {
+    helpText: 'The Action ID associated with this action in Rogue',
   });
 
   photoSubmissionAction.changeEditorInterface('title', 'singleLine', {

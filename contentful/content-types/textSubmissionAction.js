@@ -16,6 +16,18 @@ module.exports = function(migration) {
     .omitted(false);
 
   textSubmissionAction
+    .createField('actionId')
+    .name('Action ID')
+    .type('Integer')
+    .required(false)
+    .localized(false)
+    .validations([
+      {
+        unique: true,
+      },
+    ]);
+
+  textSubmissionAction
     .createField('title')
     .name('Title')
     .type('Symbol')
@@ -88,6 +100,10 @@ module.exports = function(migration) {
     .omitted(false);
 
   textSubmissionAction.changeEditorInterface('internalTitle', 'singleLine', {});
+
+  textSubmissionAction.changeEditorInterface('actionId', 'numberEditor', {
+    helpText: 'The Action ID associated with this action in Rogue',
+  });
 
   textSubmissionAction.changeEditorInterface('title', 'singleLine', {});
 

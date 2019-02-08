@@ -18,6 +18,18 @@ module.exports = function(migration) {
     .omitted(false);
 
   shareAction
+    .createField('actionId')
+    .name('Action ID')
+    .type('Integer')
+    .required(false)
+    .localized(false)
+    .validations([
+      {
+        unique: true,
+      },
+    ]);
+
+  shareAction
     .createField('title')
     .name('Title')
     .type('Symbol')
@@ -130,6 +142,10 @@ module.exports = function(migration) {
     .omitted(false);
 
   shareAction.changeEditorInterface('internalTitle', 'singleLine', {});
+
+  shareAction.changeEditorInterface('actionId', 'numberEditor', {
+    helpText: 'The Action ID associated with this action in Rogue',
+  });
 
   shareAction.changeEditorInterface('title', 'singleLine', {
     helpText: 'Eg: "Share this link"',
