@@ -163,7 +163,7 @@ module.exports = function(migration) {
   });
 
   photoSubmissionAction.changeEditorInterface('actionId', 'numberEditor', {
-    helpText: 'The Action ID associated with this action in Rogue',
+    helpText: 'The Action ID associated with this action in Rogue.',
   });
 
   photoSubmissionAction.changeEditorInterface('title', 'singleLine', {

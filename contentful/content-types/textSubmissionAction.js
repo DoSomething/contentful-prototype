@@ -102,7 +102,7 @@ module.exports = function(migration) {
   textSubmissionAction.changeEditorInterface('internalTitle', 'singleLine', {});
 
   textSubmissionAction.changeEditorInterface('actionId', 'numberEditor', {
-    helpText: 'The Action ID associated with this action in Rogue',
+    helpText: 'The Action ID associated with this action in Rogue.',
   });
 
   textSubmissionAction.changeEditorInterface('title', 'singleLine', {});

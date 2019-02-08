@@ -144,7 +144,7 @@ module.exports = function(migration) {
   shareAction.changeEditorInterface('internalTitle', 'singleLine', {});
 
   shareAction.changeEditorInterface('actionId', 'numberEditor', {
-    helpText: 'The Action ID associated with this action in Rogue',
+    helpText: 'The Action ID associated with this action in Rogue.',
   });
 
   shareAction.changeEditorInterface('title', 'singleLine', {
