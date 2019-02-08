@@ -50,6 +50,7 @@
     "testURL": "http://localhost"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.0.0",
     "@dosomething/analytics": "^2.1.2",
     "@dosomething/forge": "^6.8.0",
     "@dosomething/gateway": "^1.4.0",
