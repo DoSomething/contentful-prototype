@@ -63,7 +63,7 @@ function getMarkdownItInstance() {
  * @param  {Object} markdown
  * @return {String}
  */
-function parseRichTextMarkdown(markdown) {
+export function parseRichTextMarkdown(markdown) {
   // @TODO: more to come here. Stay tuned!
 
   return documentToHtmlString(markdown);
@@ -75,7 +75,7 @@ function parseRichTextMarkdown(markdown) {
  * @param  {String|Array} markdown
  * @return {String}
  */
-function parseStandardMarkdown(markdown = '') {
+export function parseStandardMarkdown(markdown = '') {
   const markdownIt = getMarkdownItInstance();
 
   return markdownIt.render(formatStandardMarkdown(markdown));

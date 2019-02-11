@@ -20,5 +20,3 @@ CompanyPage.propTypes = {
 };
 
 export default CompanyPage;
-
-// <div dangerouslySetInnerHTML={{__html: documentToHtmlString(props.content)}} />
