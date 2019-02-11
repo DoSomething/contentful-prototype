@@ -1,9 +1,6 @@
 /* global window, document, Blob, URL */
 
-import MarkdownIt from 'markdown-it';
 import queryString from 'query-string';
-import iterator from 'markdown-it-for-inline';
-import markdownItFootnote from 'markdown-it-footnote';
 import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
@@ -132,31 +129,6 @@ export function ready(fn) {
   } else {
     document.addEventListener('DOMContentLoaded', fn);
   }
-}
-
-/**
- * Render Markdown for a React component.
- *
- * @param {String} source - Markdown source
- * @returns {{__html}} - Prepared object for React's dangerouslySetInnerHtml
- */
-export function markdown(source = '') {
-  const markdownIt = new MarkdownIt();
-  markdownIt.use(markdownItFootnote);
-
-  markdownIt.use(iterator, 'url_new_win', 'link_open', (tokens, index) => {
-    const token = tokens[index];
-    const hrefIndex = token.attrIndex('href');
-    const url = token.attrs[hrefIndex][1];
-
-    if (isExternal(url)) {
-      token.attrPush(['target', '_blank']);
-    }
-  });
-
-  return {
-    __html: markdownIt.render(source),
-  };
 }
 
 /**
