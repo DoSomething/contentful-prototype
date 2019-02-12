@@ -19,19 +19,19 @@ function formatImageUrls(string) {
 }
 
 /**
- * Format Standard Markdown to a standard markdown string.
+ * Cleanup the provided markdown.
  *
  * @param  {String|Array} markdown
  * @return {String}
  */
-function formatStandardMarkdown(markdown) {
+function cleanupStandardMarkdown(markdown) {
   // When directly writing content into a Markdown component, React may pass it as an
   // array of strings; if so, combine them to get the Markdown source!
-  const formattedMarkdown = Array.isArray(markdown)
+  const flattenedMarkdown = Array.isArray(markdown)
     ? markdown.join('')
     : markdown;
 
-  return formatImageUrls(formattedMarkdown);
+  return formatImageUrls(flattenedMarkdown);
 }
 
 /**
@@ -77,5 +77,5 @@ export function parseRichTextDocument(document) {
 export function parseStandardMarkdown(markdown = '') {
   const markdownIt = getMarkdownItInstance();
 
-  return markdownIt.render(formatStandardMarkdown(markdown));
+  return markdownIt.render(cleanupStandardMarkdown(markdown));
 }

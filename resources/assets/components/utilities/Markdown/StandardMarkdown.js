@@ -14,12 +14,13 @@ import { parseStandardMarkdown } from '../../../helpers/text';
  * @param  {String|Array} options.children
  * @return {Object}
  */
-const StandardMarkdown = ({ className = null, children }) => (
-  <div
-    className={classnames('markdown', 'with-lists', className)}
-    dangerouslySetInnerHTML={{ __html: parseStandardMarkdown(children) }}
-  />
-);
+const StandardMarkdown = ({ className = null, children }) =>
+  children ? (
+    <div
+      className={classnames('markdown', 'with-lists', className)}
+      dangerouslySetInnerHTML={{ __html: parseStandardMarkdown(children) }}
+    />
+  ) : null;
 
 StandardMarkdown.propTypes = {
   children: PropTypes.oneOfType([
