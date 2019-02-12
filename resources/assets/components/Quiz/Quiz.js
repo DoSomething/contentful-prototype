@@ -79,7 +79,7 @@ class Quiz extends React.Component {
     }
 
     trackAnalyticsEvent({
-      verb: 'left',
+      verb: 'abandoned',
       noun: 'quiz',
       data: {
         responses: this.state.choices,
