@@ -56,6 +56,7 @@ The following are all events currently tracked across the Phoenix application:
 | `phoenix_clicked_poll_locator`                       | clicked the search button on a Poll Locator                                                                                          | Puck, GA  |
 | `phoenix_opened_modal`                               | opened a Modal (The specific modal ID is tracked within the Puck payload)                                                            | Puck, GA  |
 | `phoenix_submitted_quiz`                             | submitted a quiz (The quiz results are tracked within the Puck payload)                                                              | Puck, GA  |
+| `phoenix_left_quiz`                                  | left a quiz before completion                                                                                                        | Puck, GA  |
 | `phoenix_opened_modal_poll_locator`                  | opened a modal on a Poll Locater (the modal could contain poll location results or be empty)                                         | Puck, GA  |
 | `phoenix_opened_modal_poll_locator_not_found`        | opened the 'Not Found' modal from a Poll Locator                                                                                     | Puck, GA  |
 | `phoenix_clicked_copy_to_clipboard`                  | clicked the clipboard copy button in a Social Drive Action                                                                           | Puck, GA  |
