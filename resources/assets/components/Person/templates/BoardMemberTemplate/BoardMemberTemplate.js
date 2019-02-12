@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../helpers';
-import Markdown from '../../../utilities/Markdown/Markdown';
+import TextContent from '../../../utilities/TextContent/TextContent';
 
 const BoardMemberTemplate = props => {
   const { name, alternatePhoto, description } = props;
@@ -15,7 +15,7 @@ const BoardMemberTemplate = props => {
     >
       <h4>{name}</h4>
 
-      {description ? <Markdown>{description}</Markdown> : null}
+      {description ? <TextContent>{description}</TextContent> : null}
     </Figure>
   );
 };

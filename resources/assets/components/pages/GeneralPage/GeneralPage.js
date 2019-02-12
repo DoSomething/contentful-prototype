@@ -9,7 +9,7 @@ import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
 import AuthorBio from '../../utilities/Author/AuthorBio';
-import Markdown from '../../utilities/Markdown/Markdown';
+import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import AdminDashboardContainer from '../../AdminDashboard/AdminDashboardContainer';
@@ -79,7 +79,9 @@ const GeneralPage = props => {
           {content ? (
             <div className={classnames({ row: sidebar.length })}>
               <div className="primary">
-                <Markdown className="margin-horizontal-md">{content}</Markdown>
+                <TextContent className="margin-horizontal-md">
+                  {content}
+                </TextContent>
               </div>
 
               {sidebar.length ? (

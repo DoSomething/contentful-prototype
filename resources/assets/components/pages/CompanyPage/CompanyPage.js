@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Markdown from '../../utilities/Markdown/Markdown';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 const CompanyPage = props => {
   const { title } = props;
@@ -9,7 +9,7 @@ const CompanyPage = props => {
   return (
     <div>
       <h1>{title}</h1>
-      <Markdown>{props.content}</Markdown>
+      <TextContent>{props.content}</TextContent>
     </div>
   );
 };

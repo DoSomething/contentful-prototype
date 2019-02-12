@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 import Card from '../../../utilities/Card/Card';
 import Button from '../../../utilities/Button/Button';
-import Markdown from '../../../utilities/Markdown/Markdown';
-import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import { isExternal, dynamicString } from '../../../../helpers';
+import { trackAnalyticsEvent } from '../../../../helpers/analytics';
+import TextContent from '../../../utilities/TextContent/TextContent';
 
 import './cta-template.scss';
 
@@ -29,7 +29,7 @@ const CtaTemplate = ({ title, content, link, buttonText, source }) => {
     <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
       <h3 className="cta-template__title margin-top-lg">{title}</h3>
 
-      <Markdown className="cta-template__content">{content}</Markdown>
+      <TextContent className="cta-template__content">{content}</TextContent>
 
       <Button className="margin-vertical-md" onClick={() => onLinkClick(href)}>
         {buttonText}

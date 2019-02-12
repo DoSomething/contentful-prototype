@@ -10,7 +10,7 @@ import Embed from '../utilities/Embed/Embed';
 import Byline from '../utilities/Byline/Byline';
 import SponsorPromotion from '../SponsorPromotion';
 import { contentfulImageUrl } from '../../helpers';
-import Markdown from '../utilities/Markdown/Markdown';
+import TextContent from '../utilities/TextContent/TextContent';
 
 const CampaignUpdate = props => {
   const {
@@ -47,9 +47,11 @@ const CampaignUpdate = props => {
       title={title}
       onClose={closeModal}
     >
-      <Markdown className={classnames('padded', { 'font-size-lg': isTweet })}>
+      <TextContent
+        className={classnames('padded', { 'font-size-lg': isTweet })}
+      >
         {content || 'Placeholder'}
-      </Markdown>
+      </TextContent>
 
       {link ? (
         <div className="padded">

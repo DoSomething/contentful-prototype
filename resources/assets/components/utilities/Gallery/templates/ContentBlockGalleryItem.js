@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../helpers';
-import Markdown from '../../../utilities/Markdown/Markdown';
+import TextContent from '../../../utilities/TextContent/TextContent';
 
 const ContentBlockGalleryItem = ({
   title,
@@ -31,7 +31,7 @@ const ContentBlockGalleryItem = ({
     >
       <h4>{title}</h4>
 
-      {content ? <Markdown>{content}</Markdown> : null}
+      {content ? <TextContent>{content}</TextContent> : null}
     </Figure>
   );
 };

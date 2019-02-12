@@ -8,9 +8,9 @@ import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
 import { setFormData } from '../../../helpers/forms';
-import Markdown from '../../utilities/Markdown/Markdown';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
+import TextContent from '../../utilities/TextContent/TextContent';
 import {
   dynamicString,
   loadFacebookSDK,
@@ -135,7 +135,9 @@ class ShareAction extends React.Component {
       <React.Fragment>
         <div className="share-action margin-bottom-lg">
           <Card title={title} className="rounded bordered">
-            {content ? <Markdown className="padded">{content}</Markdown> : null}
+            {content ? (
+              <TextContent className="padded">{content}</TextContent>
+            ) : null}
             {hideEmbed ? null : (
               <div className="padded">
                 <Embed url={link} />
@@ -155,7 +157,7 @@ class ShareAction extends React.Component {
                 title="Thanks for sharing!"
                 className="modal__slide bordered rounded"
               >
-                <Markdown className="padded">{affirmation}</Markdown>
+                <TextContent className="padded">{affirmation}</TextContent>
               </Card>
             )}
           </Modal>

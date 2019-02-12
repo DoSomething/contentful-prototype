@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 import './voter-registration-action.scss';
 
@@ -38,7 +38,7 @@ const VoterRegistrationAction = props => {
       title="Register to vote"
     >
       <div className="padded clearfix">
-        <Markdown>{content}</Markdown>
+        <TextContent>{content}</TextContent>
 
         {parsedLink ? (
           <a

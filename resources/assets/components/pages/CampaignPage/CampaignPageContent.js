@@ -6,8 +6,8 @@ import classnames from 'classnames';
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import ContentfulEntry from '../../ContentfulEntry';
-import Markdown from '../../utilities/Markdown/Markdown';
 import { CallToActionContainer } from '../../CallToAction';
+import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
 
 const CampaignPageContent = props => {
@@ -66,7 +66,9 @@ const CampaignPageContent = props => {
       {content ? (
         <div className="row">
           <div className="primary">
-            <Markdown className="margin-horizontal-md">{content}</Markdown>
+            <TextContent className="margin-horizontal-md">
+              {content}
+            </TextContent>
           </div>
           {sidebar.length ? (
             <div className="secondary">

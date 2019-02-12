@@ -2,16 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../../utilities/Card/Card';
-import Markdown from '../../../utilities/Markdown/Markdown';
+import TextContent from '../../../utilities/TextContent/TextContent';
 
 const PitchTemplate = ({ content, sidebarCTA }) => (
   <div className="campaign-page">
     <div className="primary">
-      <Markdown>{content}</Markdown>
+      <TextContent>{content}</TextContent>
     </div>
     <div className="secondary">
       <Card title={sidebarCTA.title} className="rounded bordered">
-        <Markdown className="padded">{sidebarCTA.content}</Markdown>
+        <TextContent className="padded">{sidebarCTA.content}</TextContent>
       </Card>
     </div>
   </div>
