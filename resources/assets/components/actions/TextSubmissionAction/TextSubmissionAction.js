@@ -60,18 +60,26 @@ class TextSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const formData = setFormData({
+    let formFields = {
       action,
       type,
       id: this.props.id,
       // Associate state values to fields.
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
-    });
+    };
+
+    // @TODO: Once Rogue/Contentful requires this field, we can do away with this conditional logic.
+    if (this.props.actionId) {
+      formFields = {
+        ...formFields,
+        action_id: this.props.actionId,
+      };
+    }
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
       action,
-      body: formData,
+      body: setFormData(formFields),
       id: this.props.id,
       type,
     });
