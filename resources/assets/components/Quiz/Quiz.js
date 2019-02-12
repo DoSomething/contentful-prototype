@@ -54,6 +54,10 @@ class Quiz extends React.Component {
     setTimeout(() => this.setState({ renderScrollConcierge: false }), 500);
   }
 
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.trackUnfinishedQuiz);
+  }
+
   componentDidUpdate() {
     if (!this.props.autoSubmit) {
       return;
@@ -63,6 +67,25 @@ class Quiz extends React.Component {
       setTimeout(this.completeQuiz, 300);
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('beforeunload', this.trackUnfinishedQuiz);
+    this.trackUnfinishedQuiz();
+  }
+
+  trackUnfinishedQuiz = () => {
+    if (this.state.completedQuiz) {
+      return;
+    }
+
+    trackAnalyticsEvent({
+      verb: 'left',
+      noun: 'quiz',
+      data: {
+        responses: this.state.choices,
+      },
+    });
+  };
 
   evaluateQuiz = () => {
     const questions = this.props.questions;
