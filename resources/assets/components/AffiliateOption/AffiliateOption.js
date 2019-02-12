@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Markdown from '../utilities/Markdown/Markdown';
+import TextContent from '../utilities/TextContent/TextContent';
 
 import './affiliateOption.scss';
 
@@ -44,7 +44,7 @@ class AffiliateOption extends React.Component {
               'is-expanded': this.state.expanded,
             })}
           >
-            <Markdown>{this.props.moreInformationMessage}</Markdown>
+            <TextContent>{this.props.moreInformationMessage}</TextContent>
           </div>
         </div>
       </div>

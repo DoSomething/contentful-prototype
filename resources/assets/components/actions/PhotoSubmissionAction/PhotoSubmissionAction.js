@@ -9,10 +9,10 @@ import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
+import TextContent from '../../utilities/TextContent/TextContent';
 import {
   calculateDifference,
   getFieldErrors,
@@ -375,9 +375,9 @@ class PhotoSubmissionAction extends React.Component {
                 title={this.props.informationTitle}
                 className="bordered rounded"
               >
-                <Markdown className="padding-md">
+                <TextContent className="padding-md">
                   {this.props.informationContent}
-                </Markdown>
+                </TextContent>
               </Card>
             </div>
           ) : null}
@@ -386,10 +386,10 @@ class PhotoSubmissionAction extends React.Component {
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
             <Card className="bordered rounded" title="We got your photo!">
-              <Markdown className="padded">
+              <TextContent className="padded">
                 {this.props.affirmationContent ||
                   PhotoSubmissionAction.defaultProps.affirmationContent}
-              </Markdown>
+              </TextContent>
             </Card>
           </Modal>
         ) : null}

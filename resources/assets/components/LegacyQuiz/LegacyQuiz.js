@@ -6,8 +6,8 @@ import Question from './Question';
 import Conclusion from './Conclusion';
 import Share from '../utilities/Share/Share';
 import ContentfulEntry from '../ContentfulEntry';
-import Markdown from '../utilities/Markdown/Markdown';
 import { trackAnalyticsEvent } from '../../helpers/analytics';
+import TextContent from '../utilities/TextContent/TextContent';
 
 import './legacy-quiz.scss';
 
@@ -23,7 +23,9 @@ const LegacyQuiz = props => {
   const { error, shouldSeeResult, selectedResult } = data;
 
   const introduction = shouldSeeResult ? null : (
-    <Markdown className="quiz__description">{fields.introduction}</Markdown>
+    <TextContent className="quiz__description">
+      {fields.introduction}
+    </TextContent>
   );
 
   const questions = shouldSeeResult

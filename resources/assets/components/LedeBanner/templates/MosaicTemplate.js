@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import AffiliateOptionContainer from '../../AffiliateOption';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 import './mosaic-lede-banner.scss';
 
@@ -82,7 +82,9 @@ const MosaicTemplate = props => {
           </div>
 
           {blurb ? (
-            <Markdown className="mosaic-lede-banner__blurb">{blurb}</Markdown>
+            <TextContent className="mosaic-lede-banner__blurb">
+              {blurb}
+            </TextContent>
           ) : null}
 
           {isAffiliated ? actionButton : signupButton}

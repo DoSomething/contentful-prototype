@@ -7,8 +7,8 @@ import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
 import FormValidation from '../../utilities/Form/FormValidation';
+import TextContent from '../../utilities/TextContent/TextContent';
 import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 import './text-submission-action.scss';
@@ -143,10 +143,10 @@ class TextSubmissionAction extends React.Component {
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
             <Card className="bordered rounded" title="We got your message!">
-              <Markdown className="padded">
+              <TextContent className="padded">
                 {this.props.affirmationContent ||
                   TextSubmissionAction.defaultProps.affirmationContent}
-              </Markdown>
+              </TextContent>
             </Card>
           </Modal>
         ) : null}

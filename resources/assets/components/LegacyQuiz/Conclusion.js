@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../utilities/Card/Card';
-import Markdown from '../utilities/Markdown/Markdown';
+import TextContent from '../utilities/TextContent/TextContent';
 
 const Conclusion = props => {
   const { children, callToAction } = props;
@@ -11,7 +11,7 @@ const Conclusion = props => {
     <Card className="conclusion rounded bordered padding-lg">
       <div className="conclusion__item -one-third padding-lg">{children}</div>
       <div className="conclusion__item -two-thirds padding-lg">
-        <Markdown className="conclusion__cta">{callToAction}</Markdown>
+        <TextContent className="conclusion__cta">{callToAction}</TextContent>
       </div>
     </Card>
   );

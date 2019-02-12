@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import BlockWrapper from '../Block/BlockWrapper';
-import Markdown from '../utilities/Markdown/Markdown';
+import TextContent from '../utilities/TextContent/TextContent';
 
 import './static-block.scss';
 
 const StaticBlock = ({ content, source, title }) => (
   <BlockWrapper title={title}>
-    <Markdown>{content}</Markdown>
+    <TextContent>{content}</TextContent>
     {source ? (
       <div className="static-block__citation">
         <p className="footnote">{source}</p>

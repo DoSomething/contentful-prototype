@@ -5,14 +5,14 @@ import requiredIf from 'react-required-if';
 import { Figure } from '../../Figure';
 import SectionHeader from '../../SectionHeader';
 import { contentfulImageUrl } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 import './content-block.scss';
 
 const ContentBlock = props => {
   const { content, image, imageAlignment, superTitle, title } = props;
 
-  const contentNode = content ? <Markdown>{content}</Markdown> : null;
+  const contentNode = content ? <TextContent>{content}</TextContent> : null;
 
   return (
     <div className="content-block">

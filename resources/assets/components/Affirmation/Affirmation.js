@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
 import Share from '../utilities/Share/Share';
-import { contentfulImageUrl, withoutNulls } from '../../helpers';
 import Byline from '../utilities/Byline/Byline';
-import Markdown from '../utilities/Markdown/Markdown';
+import TextContent from '../utilities/TextContent/TextContent';
+import { contentfulImageUrl, withoutNulls } from '../../helpers';
 
 import './affirmation.scss';
 
@@ -23,9 +23,9 @@ const Affirmation = ({
 }) => (
   <Card className="affirmation rounded" title={header}>
     {quote ? (
-      <Markdown className="padding-top-md padding-horizontal-md">
+      <TextContent className="padding-top-md padding-horizontal-md">
         {quote}
-      </Markdown>
+      </TextContent>
     ) : null}
 
     <Flex className="flex-align-center">

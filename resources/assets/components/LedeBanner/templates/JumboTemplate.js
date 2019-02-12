@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 import './jumbo-lede-banner.scss';
 
@@ -39,7 +39,9 @@ const JumboTemplate = props => {
         <h2 className="jumbo-lede-banner__headline-subtitle">{subtitle}</h2>
 
         {blurb ? (
-          <Markdown className="jumbo-lede-banner__blurb">{blurb}</Markdown>
+          <TextContent className="jumbo-lede-banner__blurb">
+            {blurb}
+          </TextContent>
         ) : null}
 
         {isAffiliated ? null : (

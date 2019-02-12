@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
-import Markdown from '../../utilities/Markdown/Markdown';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 import './cover-lede-banner.scss';
 
@@ -50,7 +50,9 @@ const CoverTemplate = props => {
         <h2 className="cover-lede-banner__headline-subtitle">{subtitle}</h2>
 
         {blurb ? (
-          <Markdown className="cover-lede-banner__blurb">{blurb}</Markdown>
+          <TextContent className="cover-lede-banner__blurb">
+            {blurb}
+          </TextContent>
         ) : null}
 
         {isAffiliated ? (

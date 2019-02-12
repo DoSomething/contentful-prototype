@@ -8,9 +8,9 @@ import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
 import Button from '../../../utilities/Button/Button';
 import SponsorPromotion from '../../../SponsorPromotion';
-import Markdown from '../../../utilities/Markdown/Markdown';
-import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import { isExternal, dynamicString } from '../../../../helpers';
+import { trackAnalyticsEvent } from '../../../../helpers/analytics';
+import TextContent from '../../../utilities/TextContent/TextContent';
 
 const onLinkClick = link => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
@@ -73,7 +73,9 @@ const DefaultTemplate = props => {
           'affiliate-content': affiliateLogo,
         })}
       >
-        {content ? <Markdown className="padded">{content}</Markdown> : null}
+        {content ? (
+          <TextContent className="padded">{content}</TextContent>
+        ) : null}
 
         {affiliateLogo ? (
           <SponsorPromotion
