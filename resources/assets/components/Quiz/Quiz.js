@@ -47,6 +47,7 @@ class Quiz extends React.Component {
       showResults,
       // Show the scroll concierge for nested quizzes
       renderScrollConcierge: get(props.additionalContent, 'isNestedQuiz'),
+      completedQuiz: false,
     };
 
     // Quickly hide scroll concierge so that we can re-render it when showing the quiz results
@@ -58,7 +59,7 @@ class Quiz extends React.Component {
       return;
     }
 
-    if (!this.state.showResults && this.evaluateQuiz()) {
+    if (!this.state.completedQuiz && this.evaluateQuiz()) {
       setTimeout(this.completeQuiz, 300);
     }
   }
@@ -74,6 +75,9 @@ class Quiz extends React.Component {
     if (!this.evaluateQuiz()) {
       return;
     }
+
+    // This signifier is necessary to cover various post-completion states (auto submit quizzes, gated quizzes, etc.)
+    this.setState({ completedQuiz: true });
 
     const {
       questions,
