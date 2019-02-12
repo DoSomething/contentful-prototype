@@ -1,8 +1,7 @@
-import { has } from 'lodash';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
 import markdownItFootnote from 'markdown-it-footnote';
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { contentfulImageUrl, isExternal } from '../helpers';
 
@@ -58,15 +57,15 @@ function getMarkdownItInstance() {
 }
 
 /**
- * Parse RichText Markdown to Markup.
+ * Parse RichText Document to React components.
  *
- * @param  {Object} markdown
+ * @param  {Object} document
  * @return {String}
  */
-export function parseRichTextMarkdown(markdown) {
+export function parseRichTextDocument(document) {
   // @TODO: more to come here. Stay tuned!
 
-  return documentToHtmlString(markdown);
+  return documentToReactComponents(document);
 }
 
 /**
@@ -79,16 +78,4 @@ export function parseStandardMarkdown(markdown = '') {
   const markdownIt = getMarkdownItInstance();
 
   return markdownIt.render(formatStandardMarkdown(markdown));
-}
-
-/**
- * Create Markup from provided Markdown.
- *
- * @param  {String|Array|Object} markdown
- * @return {String}
- */
-export function createMarkup(markdown) {
-  return has(markdown, 'nodeType')
-    ? parseRichTextMarkdown(markdown)
-    : parseStandardMarkdown(markdown);
 }

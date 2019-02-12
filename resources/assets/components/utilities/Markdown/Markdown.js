@@ -1,27 +1,31 @@
-/* eslint-disable react/no-danger */
-
 import React from 'react';
+import { has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { createMarkup } from '../../../helpers/markdown';
+import RichTextDocument from './RichTextDocument';
+import StandardMarkdown from './StandardMarkdown';
 
 import './markdown.scss';
 
 /**
  * Render Markdown as Markup prepared for a React Component
- * @see  https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
  *
- * @param  {String} props.className
- * @param  {String|Array|Object} props.children
+ * @TODO: rename component to <TextContent>
+ * @param  {String} options.className
+ * @param  {String|Array|Object} options.children
  * @return {Object}
  */
-const Markdown = ({ className = null, children }) => (
-  <div
-    className={classnames('markdown', 'with-lists', className)}
-    dangerouslySetInnerHTML={{ __html: createMarkup(children) }}
-  />
-);
+const Markdown = ({ className = null, children }) =>
+  has(children, 'nodeType') ? (
+    <RichTextDocument className={classnames(className)}>
+      {children}
+    </RichTextDocument>
+  ) : (
+    <StandardMarkdown className={classnames(className)}>
+      {children}
+    </StandardMarkdown>
+  );
 
 Markdown.propTypes = {
   children: PropTypes.oneOfType([
