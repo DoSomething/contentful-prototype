@@ -168,6 +168,7 @@ class ShareAction extends React.Component {
 }
 
 ShareAction.propTypes = {
+  actionId: PropTypes.number,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
@@ -186,6 +187,7 @@ ShareAction.propTypes = {
 };
 
 ShareAction.defaultProps = {
+  actionId: null,
   additionalContent: null,
   affirmation: 'Thanks for rallying your friends on Facebook!',
   content: null,

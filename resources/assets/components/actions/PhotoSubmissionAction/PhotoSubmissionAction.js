@@ -399,6 +399,7 @@ class PhotoSubmissionAction extends React.Component {
 }
 
 PhotoSubmissionAction.propTypes = {
+  actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
@@ -428,6 +429,7 @@ PhotoSubmissionAction.propTypes = {
 };
 
 PhotoSubmissionAction.defaultProps = {
+  actionId: null,
   additionalContent: null,
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",

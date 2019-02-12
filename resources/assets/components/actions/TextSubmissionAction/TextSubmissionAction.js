@@ -156,6 +156,7 @@ class TextSubmissionAction extends React.Component {
 }
 
 TextSubmissionAction.propTypes = {
+  actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
@@ -177,6 +178,7 @@ TextSubmissionAction.propTypes = {
 };
 
 TextSubmissionAction.defaultProps = {
+  actionId: null,
   additionalContent: null,
   affirmationContent:
     "Thanks for joining the movement, and submitting your message! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
