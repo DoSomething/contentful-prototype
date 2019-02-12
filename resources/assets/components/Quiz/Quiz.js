@@ -55,7 +55,7 @@ class Quiz extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('beforeunload', this.trackUnfinishedQuiz);
+    window.addEventListener('beforeunload', this.trackAbandonedQuiz);
   }
 
   componentDidUpdate() {
@@ -69,16 +69,16 @@ class Quiz extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('beforeunload', this.trackUnfinishedQuiz);
-    this.trackUnfinishedQuiz();
     /*
       Users would primarily be abandoning a quiz by exiting the page completely.
       This addresses the edge case, where the quiz is abandoned while remaining within the page
       (thus triggering the componentWillUnmount.)
     */
+    window.removeEventListener('beforeunload', this.trackAbandonedQuiz);
+    this.trackAbandonedQuiz();
   }
 
-  trackUnfinishedQuiz = () => {
+  trackAbandonedQuiz = () => {
     if (this.state.completedQuiz) {
       return;
     }
