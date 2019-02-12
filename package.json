@@ -50,6 +50,7 @@
     "testURL": "http://localhost"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.0.1",
     "@dosomething/analytics": "^2.1.2",
     "@dosomething/forge": "^6.8.0",
     "@dosomething/gateway": "^1.4.0",
@@ -87,7 +88,7 @@
     "markdown-it": "^8.4.0",
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-for-inline": "^0.1.1",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.4",
     "prop-types": "^15.6.2",
     "query-string": "^5.1.1",
     "react": "^16.6.3",
