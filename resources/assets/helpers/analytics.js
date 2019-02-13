@@ -11,34 +11,11 @@ import {
 
 import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
-import { report } from '../helpers';
 
 // App name prefix used for event naming.
 const APP_PREFIX = 'phoenix';
 // Variable that stores the instance of PuckClient.
 let puckClient = null;
-
-/**
- * Report Puck error to New Relic with identifying custom attributes.
- *
- * @param  {String} errorName
- * @param  {Error}  error
- * @return {void}
- */
-export function puckErrorReport(errorName, error) {
-  if (!puckClient) {
-    return;
-  }
-
-  const deviceId = puckClient.deviceId;
-
-  report(error, {
-    errorName: `Puck Error: ${errorName}`,
-    deviceId,
-    // Puck doesn't expose the actual session ID, but this is how it's generated.
-    sessionId: `${deviceId}${puckClient.landingTimestamp}`,
-  });
-}
 
 /**
  * Parse analytics event name parameters into a snake cased string.
@@ -96,7 +73,6 @@ export function analyzeWithPuck(name, data) {
       isAuthenticated: () => window.AUTH.isAuthenticated,
       puckUrl: PUCK_URL,
       history: getHistory(),
-      onError: puckErrorReport,
     });
   }
 
