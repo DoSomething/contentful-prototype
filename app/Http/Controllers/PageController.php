@@ -32,7 +32,7 @@ class PageController extends Controller
      */
     public function show($slug)
     {
-        $page = $this->pageRepository->findBySlug($slug);
+        $page = $this->pageRepository->findBySlug('page', $slug);
 
         return view('app', [
             'headTitle' => $page->fields->title,
