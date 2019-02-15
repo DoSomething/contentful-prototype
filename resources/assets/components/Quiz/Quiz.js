@@ -47,10 +47,15 @@ class Quiz extends React.Component {
       showResults,
       // Show the scroll concierge for nested quizzes
       renderScrollConcierge: get(props.additionalContent, 'isNestedQuiz'),
+      completedQuiz: false,
     };
 
     // Quickly hide scroll concierge so that we can re-render it when showing the quiz results
     setTimeout(() => this.setState({ renderScrollConcierge: false }), 500);
+  }
+
+  componentDidMount() {
+    window.addEventListener('beforeunload', this.trackAbandonedQuiz);
   }
 
   componentDidUpdate() {
@@ -58,10 +63,34 @@ class Quiz extends React.Component {
       return;
     }
 
-    if (!this.state.showResults && this.evaluateQuiz()) {
+    if (!this.state.completedQuiz && this.evaluateQuiz()) {
       setTimeout(this.completeQuiz, 300);
     }
   }
+
+  componentWillUnmount() {
+    /*
+      Users would primarily be abandoning a quiz by exiting the page completely.
+      This addresses the edge case, where the quiz is abandoned while remaining within the page
+      (thus triggering the componentWillUnmount.)
+    */
+    window.removeEventListener('beforeunload', this.trackAbandonedQuiz);
+    this.trackAbandonedQuiz();
+  }
+
+  trackAbandonedQuiz = () => {
+    if (this.state.completedQuiz) {
+      return;
+    }
+
+    trackAnalyticsEvent({
+      verb: 'abandoned',
+      noun: 'quiz',
+      data: {
+        responses: this.state.choices,
+      },
+    });
+  };
 
   evaluateQuiz = () => {
     const questions = this.props.questions;
@@ -74,6 +103,9 @@ class Quiz extends React.Component {
     if (!this.evaluateQuiz()) {
       return;
     }
+
+    // This signifier is necessary to cover various post-completion states (auto submit quizzes, gated quizzes, etc.)
+    this.setState({ completedQuiz: true });
 
     const {
       questions,
