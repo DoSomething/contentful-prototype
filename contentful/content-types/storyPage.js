@@ -1,13 +1,13 @@
 module.exports = function(migration) {
-  const narrativePage = migration
-    .createContentType('narrativePage')
-    .name('NarrativePage')
+  const storyPage = migration
+    .createContentType('storyPage')
+    .name('StoryPage')
     .description(
-      'Narrative pages are used for helping craft a story or experience on a single web page.',
+      'Story pages are used for helping craft a story or experience on a single web page.',
     )
     .displayField('internalTitle');
 
-  narrativePage
+  storyPage
     .createField('internalTitle')
     .name('Internal Title')
     .type('Symbol')
@@ -16,7 +16,7 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  narrativePage
+  storyPage
     .createField('title')
     .name('Title')
     .type('Symbol')
@@ -25,7 +25,7 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  narrativePage
+  storyPage
     .createField('subTitle')
     .name('Subtitle')
     .type('Symbol')
@@ -35,7 +35,7 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  narrativePage
+  storyPage
     .createField('slug')
     .name('Slug')
     .type('Symbol')
@@ -52,18 +52,18 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '(?!/)[a-zA-Z0-9-/]+$',
+          pattern: '^(?!/)story/[a-zA-Z0-9-/]+$',
           flags: '',
         },
 
         message:
-          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry cannot start with a forward-slash.',
+          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry must begin with "story/".',
       },
     ])
     .disabled(false)
     .omitted(false);
 
-  narrativePage
+  storyPage
     .createField('metadata')
     .name('Metadata')
     .type('Link')
@@ -78,7 +78,7 @@ module.exports = function(migration) {
     .omitted(false)
     .linkType('Entry');
 
-  narrativePage
+  storyPage
     .createField('content')
     .name('Content')
     .type('RichText')
@@ -112,19 +112,19 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  narrativePage.changeEditorInterface('internalTitle', 'singleLine', {
+  storyPage.changeEditorInterface('internalTitle', 'singleLine', {
     helpText:
       'This title is used internally to help find this content. It will not be displayed anywhere on the rendered web page.',
   });
 
-  narrativePage.changeEditorInterface('title', 'singleLine', {});
-  narrativePage.changeEditorInterface('subTitle', 'singleLine', {});
+  storyPage.changeEditorInterface('title', 'singleLine', {});
+  storyPage.changeEditorInterface('subTitle', 'singleLine', {});
 
-  narrativePage.changeEditorInterface('slug', 'slugEditor', {
+  storyPage.changeEditorInterface('slug', 'slugEditor', {
     helpText:
       'If it applies, add an appropriate category prefix for the slug, e.g. "articles/", "about/", "facts/", etc.',
   });
 
-  narrativePage.changeEditorInterface('metadata', 'entryLinkEditor', {});
-  narrativePage.changeEditorInterface('content', 'richTextEditor', {});
+  storyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
+  storyPage.changeEditorInterface('content', 'richTextEditor', {});
 };
