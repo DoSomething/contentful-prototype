@@ -122,7 +122,7 @@ module.exports = function(migration) {
 
   storyPage.changeEditorInterface('slug', 'slugEditor', {
     helpText:
-      'If it applies, add an appropriate category prefix for the slug, e.g. "articles/", "about/", "facts/", etc.',
+      'For story pages, please add the required "story/" category prefix for the slug, e.g. "story/page-name-here".',
   });
 
   storyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
