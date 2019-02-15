@@ -31,9 +31,9 @@ class ShareAction extends React.Component {
   storeSharePost = puckId => {
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const { campaignContentfulId, campaignId, link } = this.props;
+    const { actionId, campaignContentfulId, campaignId, link } = this.props;
 
-    const formData = setFormData({
+    let formFields = {
       action,
       type: SOCIAL_SHARE_TYPE,
       id: campaignContentfulId,
@@ -43,12 +43,20 @@ class ShareAction extends React.Component {
         campaign_id: campaignId,
         puck_id: puckId,
       },
-    });
+    };
+
+    // @TODO: Once Rogue/Contentful requires this field, we can do away with this conditional logic.
+    if (actionId) {
+      formFields = {
+        ...formFields,
+        action_id: actionId,
+      };
+    }
 
     // Send request to store the social share post.
     this.props.storeCampaignPost(campaignId, {
       action,
-      body: formData,
+      body: setFormData(formFields),
       id: campaignContentfulId,
       type: SOCIAL_SHARE_TYPE,
     });
@@ -168,6 +176,7 @@ class ShareAction extends React.Component {
 }
 
 ShareAction.propTypes = {
+  actionId: PropTypes.number,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
   }),
@@ -186,6 +195,7 @@ ShareAction.propTypes = {
 };
 
 ShareAction.defaultProps = {
+  actionId: null,
   additionalContent: null,
   affirmation: 'Thanks for rallying your friends on Facebook!',
   content: null,
