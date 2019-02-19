@@ -17,7 +17,7 @@ function get_content_type_by_category($category)
         'about' => 'page',
         'articles' => 'page',
         'facts' => 'page',
-        'story' => 'storyPage',
+        'stories' => 'storyPage',
     ];
 
     return data_get($types, $category, 'page');

@@ -52,12 +52,12 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^(?!/)story/[a-zA-Z0-9-/]+$',
+          pattern: '^(?!/)stories/[a-zA-Z0-9-/]+$',
           flags: '',
         },
 
         message:
-          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry must begin with "story/".',
+          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry must begin with "stories/".',
       },
     ])
     .disabled(false)
@@ -122,7 +122,7 @@ module.exports = function(migration) {
 
   storyPage.changeEditorInterface('slug', 'slugEditor', {
     helpText:
-      'For story pages, please add the required "story/" category prefix for the slug, e.g. "story/page-name-here".',
+      'Must begin with the "stories/" category prefix for the slug, e.g. "stories/page-name-here".',
   });
 
   storyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
