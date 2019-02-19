@@ -18,7 +18,7 @@
     @include('partials.script_loading')
 
     <link rel="icon" type="image/ico" href={{config('app.url') . "/favicon.ico?v1" }}>
-    <link rel="icon" sizes="144x144" href="/apple-touch-icon-precomposed.png">
+    <link rel="icon" sizes="144x144" href={{config('app.url') . "apple-touch-icon-precomposed.png"}}>
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
     @if(config('services.analytics.google_tag_manager_id'))
