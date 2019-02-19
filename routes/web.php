@@ -44,7 +44,7 @@ $router->get('search', function () {
 });
 
 // Categorized Pages (articles, facts)
-$categories = 'articles|facts|about|story';
+$categories = 'articles|facts|about|stories';
 
 $router->get('us/{category}/{slug}', 'CategorizedPageController@show')->where('category', $categories);
 $router->get('{category}/{slug}', function ($category, $slug) {
