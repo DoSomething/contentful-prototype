@@ -4,6 +4,10 @@ We want to provide DoSomething.org members with multiple actions they can decide
 
 Actions are typically found on the **Action Page**. Please refer to the [instructions](../pages/page-creation.md) on how to create an Action Page for a campaign to add actions to it.
 
+{% hint style="warning" %}
+For new Photo, Share, and Text Submission Actions, make sure that you create a new Action on your campaign in Rogue so that you have a valid Action ID for your new action!
+{% endhint %}
+
 ## Available Reportback Actions
 
 - [Link Action](link-action.md)
