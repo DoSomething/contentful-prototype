@@ -79,7 +79,7 @@ class TextSubmissionAction extends React.Component {
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
       action,
-      body: setFormData(formFields),
+      body: formFields,
       id: this.props.id,
       type,
     });
