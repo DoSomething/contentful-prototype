@@ -70,14 +70,6 @@ export function resetPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  if (!(data.body instanceof FormData)) {
-    throw Error(
-      `The supplied data.body must be an instance of FormData, instead it is an instance of ${
-        data.body.constructor.name
-      }.`,
-    );
-  }
-
   const { action, body, id, type } = data;
 
   const sixpackExperiments = {
