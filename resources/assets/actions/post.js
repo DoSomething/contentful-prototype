@@ -1,5 +1,3 @@
-/* global FormData */
-
 import { join } from 'path';
 
 import apiRequest from './api';
