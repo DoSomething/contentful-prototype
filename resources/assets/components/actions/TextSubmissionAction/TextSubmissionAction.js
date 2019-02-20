@@ -7,9 +7,9 @@ import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
+import { getFieldErrors } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { getFieldErrors, setFormData } from '../../../helpers/forms';
 
 import './text-submission-action.scss';
 
