@@ -70,7 +70,8 @@ export function resetPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  const { action, body, id, type } = data;
+  const { action, id, type } = data;
+  let { body } = data;
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
@@ -82,7 +83,11 @@ export function storeCampaignPost(campaignId, data) {
 
   // Attach location information, provided by Fastly.
   if (window.AUTH.location) {
-    body.append('location', window.AUTH.location);
+    if (body instanceof FormData) {
+      body.append('location', window.AUTH.location);
+    } else {
+      body = { ...body, location: window.AUTH.location };
+    }
   }
 
   const sixpackExperiments = {
