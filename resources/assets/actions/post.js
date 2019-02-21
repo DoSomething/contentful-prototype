@@ -1,4 +1,4 @@
-/* global FormData, window */
+/* global FormData */
 
 import { join } from 'path';
 
@@ -70,8 +70,7 @@ export function resetPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  const { action, id, type } = data;
-  let { body } = data;
+  const { action, body, id, type } = data;
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
@@ -79,15 +78,6 @@ export function storeCampaignPost(campaignId, data) {
         body.constructor.name
       }.`,
     );
-  }
-
-  // Attach location information, provided by Fastly.
-  if (window.AUTH.location) {
-    if (body instanceof FormData) {
-      body.append('location', window.AUTH.location);
-    } else {
-      body = { ...body, location: window.AUTH.location };
-    }
   }
 
   const sixpackExperiments = {
