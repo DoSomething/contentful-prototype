@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Entities\Entity;
 use App\Entities\HomePage;
 use Contentful\Delivery\Query;
 use App\Entities\TruncatedCampaign;
@@ -43,6 +44,23 @@ trait QueriesContentful
 
                 return $results->toJson();
         }
+    }
+
+    /**
+     * Get a single entry from Contentful by ID.
+     *
+     * @param  string $id
+     * @return mixed
+     */
+    protected function getEntryFromIdAsJson($id)
+    {
+        $entry = app('contentful.delivery')->getEntry($id);
+
+        $entity = new Entity($entry);
+
+        $block = $entity->parseBlock($entity);
+
+        return $block;
     }
 
     /**
