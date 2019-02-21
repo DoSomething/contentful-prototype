@@ -1,4 +1,4 @@
-/* global FormData */
+/* global FormData, window */
 
 import { forEach, get, isInteger } from 'lodash';
 
@@ -70,19 +70,10 @@ export function getFieldErrorMessages(response) {
  * Set form data for the provided data values.
  *
  * @param {Object} data
- * @param {Undefined|Object} data.details
  * @return FormData
  */
 export function setFormData(data = {}) {
   const formData = new FormData();
-
-  const details = get(data, 'details', null);
-
-  if (details) {
-    delete data.details; // eslint-disable-line no-param-reassign
-
-    formData.append('details', JSON.stringify(details));
-  }
 
   forEach(data, (value, key) => formData.append(key, value));
 
@@ -109,4 +100,33 @@ export function getFormData(formData) {
   }
 
   return formDataObject;
+}
+
+/**
+ * Format and furnish RB post data.
+ *
+ * @param {Object} data
+ * @param {Undefined|Object} data.details
+ * @param {Undefined|String} data.type
+ * @return FormData|Object
+ */
+export function formatFormFields(data = {}) {
+  let formattedData = data;
+
+  // JSON serialize details field which gets validated as JSON.
+  if (data.details) {
+    formattedData.details = JSON.stringify(data.details);
+  }
+
+  // Attach location information, provided by Fastly.
+  if (window.AUTH.location) {
+    formattedData = { ...formattedData, location: window.AUTH.location };
+  }
+
+  // Photo RBs contain file uploads and thus need to be converted to a FormData object.
+  if (data.type === 'photo') {
+    formattedData = setFormData(formattedData);
+  }
+
+  return formattedData;
 }
