@@ -22,7 +22,7 @@ const SignupButton = props => {
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
     clickedSignupAction(campaignId, {
-      body: { details: { campaignContentfulId } },
+      body: { details: JSON.stringify({ campaignContentfulId }) },
       analytics: {
         campaignContentfulId,
         source,
