@@ -49,7 +49,6 @@ const getRequestAction = (payload, dispatch) => {
  * @param  {Function} dispatch
  * @return {Object}
  * @todo   rename to postRequestAction and refactor to use helpers/api@postRequest().
- * @todo   Only use multipart/from-data if sending FormData.
  */
 const postRequest = (payload, dispatch, getState) => {
   const token = getUserToken(getState()) || window.AUTH.token;
