@@ -1,4 +1,4 @@
-/* global FormData */
+/* global FormData, window */
 
 import { join } from 'path';
 
@@ -79,6 +79,11 @@ export function storeCampaignPost(campaignId, data) {
   }
 
   const { action, body, id, type } = data;
+
+  // Attach location information, provided by Fastly.
+  if (window.AUTH.location) {
+    body.append('location', window.AUTH.location);
+  }
 
   const sixpackExperiments = {
     conversion: 'reportbackPost',

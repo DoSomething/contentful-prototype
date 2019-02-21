@@ -40,11 +40,16 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
+            // Read Fastly's geolocation headers for location-based features.
+            $country = request()->header('X-Fastly-Country-Code');
+            $region = request()->header('X-Fastly-Region-Code');
+
             $view->with('auth', [
                 'isAuthenticated' => auth()->check(),
                 'id' => auth()->id() ?: request()->query('user_id'),
                 'token' => auth()->user() ? auth()->user()->access_token : null,
                 'role' => auth()->user() ? auth()->user()->role : 'user',
+                'location' => $country && $region ? $country . '-' . $region : null,
                 'source' => request()->query('utm_source'),
             ]);
         });
