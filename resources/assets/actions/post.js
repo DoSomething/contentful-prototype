@@ -1,4 +1,4 @@
-/* global window */
+/* global FormData, window */
 
 import { join } from 'path';
 
@@ -71,6 +71,14 @@ export function resetPostSubmissionItem(id) {
  */
 export function storeCampaignPost(campaignId, data) {
   const { action, body, id, type } = data;
+
+  if (type === 'photo' && !(body instanceof FormData)) {
+    throw Error(
+      `The supplied data.body must be an instance of FormData, instead it is an instance of ${
+        body.constructor.name
+      }.`,
+    );
+  }
 
   // Attach location information, provided by Fastly.
   if (window.AUTH.location) {
