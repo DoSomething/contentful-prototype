@@ -16,7 +16,7 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import {
   calculateDifference,
   getFieldErrors,
-  setFormData,
+  formatFormFields,
 } from '../../../helpers/forms';
 
 import './photo-submission-action.scss';
@@ -193,7 +193,7 @@ class PhotoSubmissionAction extends React.Component {
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
       action,
-      body: setFormData(formFields),
+      body: formatFormFields(formFields),
       id: this.props.id,
       type,
     });

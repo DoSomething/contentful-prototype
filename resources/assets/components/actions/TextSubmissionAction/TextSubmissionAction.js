@@ -9,7 +9,7 @@ import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { getFieldErrors, setFormData } from '../../../helpers/forms';
+import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
 
 import './text-submission-action.scss';
 
@@ -79,7 +79,7 @@ class TextSubmissionAction extends React.Component {
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
       action,
-      body: setFormData(formFields),
+      body: formatFormFields(formFields),
       id: this.props.id,
       type,
     });
