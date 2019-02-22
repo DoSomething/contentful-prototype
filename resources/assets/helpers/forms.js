@@ -72,7 +72,7 @@ export function getFieldErrorMessages(response) {
  * @param {Object} data
  * @return FormData
  */
-export function setFormData(data = {}) {
+export function createFormData(data = {}) {
   const formData = new FormData();
 
   forEach(data, (value, key) => formData.append(key, value));
@@ -125,7 +125,7 @@ export function formatFormFields(data = {}) {
 
   // Photo RBs contain file uploads and thus need to be converted to a FormData object.
   if (data.type === 'photo') {
-    formattedData = setFormData(formattedData);
+    formattedData = createFormData(formattedData);
   }
 
   return formattedData;
