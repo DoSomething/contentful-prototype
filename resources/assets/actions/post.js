@@ -113,6 +113,7 @@ export function storeCampaignPost(campaignId, data) {
           sixpackExperiments,
           type,
         },
+        requiresAuthentication: type === 'text',
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
         url,
