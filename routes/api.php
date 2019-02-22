@@ -18,6 +18,9 @@ $router->group(['prefix' => 'v2'], function () {
         return ['status' => 'good'];
     });
 
+    // Blocks
+    $this->get('/blocks/{id}', 'Api\BlocksController@show');
+
     // Campaigns
     $this->get('/campaigns', 'Api\CampaignsController@index');
     $this->get('/campaigns/{id}', 'Api\CampaignsController@show');
@@ -30,11 +33,11 @@ $router->group(['prefix' => 'v2'], function () {
     $this->get('/campaigns/{id}/signups', 'Api\CampaignSignupsController@index');
     $this->post('/campaigns/{id}/signups', 'Api\CampaignSignupsController@store');
 
-    // Posts
-    $this->get('/posts', 'Api\PostsController@index');
-
     // Shortlinks
     $this->post('/links', 'Api\LinkController@store');
+
+    // Posts
+    $this->get('/posts', 'Api\PostsController@index');
 
     // Signups
     $this->get('/signups', 'Api\SignupsController@index');

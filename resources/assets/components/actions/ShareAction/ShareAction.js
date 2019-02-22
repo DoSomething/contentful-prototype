@@ -7,7 +7,7 @@ import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
-import { setFormData } from '../../../helpers/forms';
+import { formatFormFields } from '../../../helpers/forms';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -56,7 +56,7 @@ class ShareAction extends React.Component {
     // Send request to store the social share post.
     this.props.storeCampaignPost(campaignId, {
       action,
-      body: setFormData(formFields),
+      body: formatFormFields(formFields),
       id: campaignContentfulId,
       type: SOCIAL_SHARE_TYPE,
     });

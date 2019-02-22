@@ -7,9 +7,9 @@ import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
-import { getFieldErrors } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
 
 import './text-submission-action.scss';
 
@@ -79,7 +79,7 @@ class TextSubmissionAction extends React.Component {
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
       action,
-      body: formFields,
+      body: formatFormFields(formFields),
       id: this.props.id,
       type,
     });

@@ -5,7 +5,6 @@ import { RestApiClient } from '@dosomething/gateway';
 
 import { report, isWithinMinutes } from '../helpers';
 import { PHOENIX_URL } from '../constants';
-import { setFormData } from '../helpers/forms';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
 import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
@@ -50,17 +49,19 @@ const getRequestAction = (payload, dispatch) => {
  * @param  {Function} dispatch
  * @return {Object}
  * @todo   rename to postRequestAction and refactor to use helpers/api@postRequest().
- * @todo   Only use multipart/from-data if sending FormData.
  */
 const postRequest = (payload, dispatch, getState) => {
   const token = getUserToken(getState()) || window.AUTH.token;
 
+  const contentType =
+    payload.body instanceof FormData
+      ? 'multipart/form-data'
+      : 'application/json';
+
   const client = new RestApiClient(PHOENIX_URL, {
-    headers: setRequestHeaders({ token, contentType: 'multipart/form-data' }),
+    headers: setRequestHeaders({ token, contentType }),
   });
 
-  const body =
-    payload.body instanceof FormData ? payload.body : setFormData(payload.body);
   const campaignContentfulId = get(payload, 'meta.id', null);
   const campaignId = get(payload, 'meta.campaignId');
   const postType = get(payload, 'meta.type', 'post_request');
@@ -71,7 +72,7 @@ const postRequest = (payload, dispatch, getState) => {
   });
 
   return client
-    .post(payload.url, body)
+    .post(payload.url, payload.body)
     .then(response => {
       tabularLog(get(response, 'data', null));
 

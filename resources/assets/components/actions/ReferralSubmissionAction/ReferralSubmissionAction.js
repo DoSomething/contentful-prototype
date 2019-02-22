@@ -9,7 +9,7 @@ import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { getFieldErrors, setFormData } from '../../../helpers/forms';
+import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
 
 class ReferralSubmissionAction extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class ReferralSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const formData = setFormData({
+    const formData = formatFormFields({
       action,
       type,
       id: this.props.id,
