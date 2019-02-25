@@ -68,9 +68,9 @@ function getMarkdownItInstance() {
 export function parseRichTextDocument(document) {
   const options = {
     renderNode: {
-      [BLOCKS.EMBEDDED_ENTRY]: node => {
-        return <ContentfulEntryLoader id={node.data.target.sys.id} />;
-      },
+      [BLOCKS.EMBEDDED_ENTRY]: node => (
+        <ContentfulEntryLoader id={node.data.target.sys.id} />
+      ),
     },
   };
 

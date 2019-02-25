@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '../Card/Card';
+import { report } from '../../../helpers';
 import { getBlock } from '../../../helpers/api';
 import ContentfulEntry from '../../ContentfulEntry';
-import Card from '../Card/Card';
 import TextContent from '../TextContent/TextContent';
 
 class ContentfulEntryLoader extends React.Component {
@@ -29,6 +30,8 @@ class ContentfulEntryLoader extends React.Component {
         this.setState({
           hasError: true,
         });
+
+        report(error);
       });
   }
 
