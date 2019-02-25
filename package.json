@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.0.1",
+    "@contentful/rich-text-types": "^13.0.0",
     "@dosomething/analytics": "^2.1.2",
     "@dosomething/forge": "^6.8.0",
     "@dosomething/gateway": "^1.4.0",

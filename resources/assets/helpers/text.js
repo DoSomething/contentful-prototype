@@ -1,9 +1,12 @@
+import React from 'react';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
+import { BLOCKS } from '@contentful/rich-text-types';
 import markdownItFootnote from 'markdown-it-footnote';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { contentfulImageUrl, isExternal } from '../helpers';
+import ContentfulEntryLoader from '../components/utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
  * Format any Contentful image URLs in Markdown string to resize them.
@@ -63,9 +66,15 @@ function getMarkdownItInstance() {
  * @return {String}
  */
 export function parseRichTextDocument(document) {
-  // @TODO: more to come here. Stay tuned!
+  const options = {
+    renderNode: {
+      [BLOCKS.EMBEDDED_ENTRY]: node => {
+        return <ContentfulEntryLoader id={node.data.target.sys.id} />;
+      },
+    },
+  };
 
-  return documentToReactComponents(document);
+  return documentToReactComponents(document, options);
 }
 
 /**
