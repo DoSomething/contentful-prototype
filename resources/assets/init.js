@@ -38,6 +38,7 @@ import App from './components/App';
 // DOM Helpers
 import { ready } from './helpers';
 import { init as historyInit } from './history';
+import { bindTokenRefreshEvent } from './helpers/auth';
 import { googleAnalyticsInit } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
 
@@ -54,6 +55,9 @@ ready(() => {
     middleware,
     { ...preloadedState, user: window.AUTH },
   );
+
+  // Add periodic check that our token hasn't expired.
+  bindTokenRefreshEvent();
 
   // Add event listeners for top-level navigation.
   bindNavigationEvents();
