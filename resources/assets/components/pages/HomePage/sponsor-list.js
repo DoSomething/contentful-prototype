@@ -35,11 +35,6 @@ const sponsorList = [
       'https://images.ctfassets.net/81iqaqpfd8fy/Q4v63LdpsIkoAkgkUAEOe/213a574b5cf8cce7131537c5677935b6/Ford-Foundation_logo.jpg',
   },
   {
-    name: 'Coke',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/2VJuWzmYyIEyqgOcYEYSQC/ed5ab329fb68a359e36c2159385f6213/800px-Coca-Cola_logo.svg_202_0.png',
-  },
-  {
     name: 'Takis',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/4GFSZpoDtme4AqAMOeAc8a/1f255a7c5a0197ace5ff49ce8ffd2cdc/takis-3.png',
@@ -83,11 +78,6 @@ const sponsorList = [
     name: 'Chevrolet',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/2HQ3xouauciK8oUwgEqyaE/e5c554e7eff7a98e7051ccfe59a050fd/chevy_0.png',
-  },
-  {
-    name: 'Ozy',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/44ChBO6fAsU8KGQKYGgOYE/4e1958f320b8a68dc64cd5e41f194c24/ozy_logo.png',
   },
   {
     name: 'Power Rangers',
