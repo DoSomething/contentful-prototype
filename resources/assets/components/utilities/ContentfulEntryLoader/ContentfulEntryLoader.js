@@ -18,18 +18,10 @@ class ContentfulEntryLoader extends React.Component {
   }
 
   componentDidMount() {
-    const request = getBlock(this.props.id);
-
-    request
-      .then(response => {
-        this.setState({
-          entryData: response,
-        });
-      })
+    getBlock(this.props.id)
+      .then(entryData => this.setState({ entryData }))
       .catch(error => {
-        this.setState({
-          hasError: true,
-        });
+        this.setState({ hasError: true });
 
         report(error);
       });
