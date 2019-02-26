@@ -124,7 +124,9 @@ module.exports = function(migration) {
   petitionSubmissionAction.changeEditorInterface(
     'internalTitle',
     'singleLine',
-    {},
+    {
+      helpText: 'This title is used internally to help find this content.',
+    },
   );
 
   petitionSubmissionAction.changeEditorInterface('actionId', 'numberEditor', {
