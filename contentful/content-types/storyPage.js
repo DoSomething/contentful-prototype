@@ -57,7 +57,7 @@ module.exports = function(migration) {
         },
 
         message:
-          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry cannot start with a forward-slash.',
+          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry must begin with "stories/".',
       },
     ])
     .disabled(false)
