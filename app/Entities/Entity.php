@@ -92,6 +92,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new Page($block->entry);
             case 'person':
                 return new Person($block->entry);
+            case 'petitionSubmissionAction':
+                return new PetitionSubmissionAction($block->entry);
             case 'photoSubmissionAction':
                 return new PhotoSubmissionAction($block->entry);
             case 'quiz':
