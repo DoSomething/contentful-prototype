@@ -20,7 +20,7 @@ module.exports = function(migration) {
     .createField('title')
     .name('Title')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(true)
     .validations([])
     .disabled(false)
@@ -29,7 +29,7 @@ module.exports = function(migration) {
     .createField('subTitle')
     .name('Subtitle')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(false)
     .validations([])
     .disabled(false)
@@ -52,7 +52,7 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^(?!/)stories/[a-zA-Z0-9-/]+$',
+          pattern: '^(?!\\/)stories\\/[a-zA-Z0-9-/]+$',
           flags: '',
         },
 
@@ -79,38 +79,25 @@ module.exports = function(migration) {
     .linkType('Entry');
 
   storyPage
-    .createField('content')
-    .name('Content')
-    .type('RichText')
+    .createField('blocks')
+    .name('Blocks')
+    .type('Array')
     .localized(false)
     .required(false)
-    .validations([
-      {
-        nodes: {},
-      },
-      {
-        enabledMarks: ['bold', 'italic', 'underline'],
-        message: 'Only bold, italic, and underline marks are allowed',
-      },
-      {
-        enabledNodeTypes: [
-          'heading-2',
-          'heading-3',
-          'heading-4',
-          'heading-5',
-          'heading-6',
-          'unordered-list',
-          'ordered-list',
-          'blockquote',
-          'hr',
-        ],
-
-        message:
-          'Only heading 2, heading 3, heading 4, heading 5, heading 6, unordered list, ordered list, quote, and horizontal rule nodes are allowed',
-      },
-    ])
+    .validations([])
     .disabled(false)
-    .omitted(false);
+    .omitted(false)
+    .items({
+      type: 'Link',
+
+      validations: [
+        {
+          linkContentType: ['sectionBlock'],
+        },
+      ],
+
+      linkType: 'Entry',
+    });
 
   storyPage.changeEditorInterface('internalTitle', 'singleLine', {
     helpText:
@@ -126,5 +113,8 @@ module.exports = function(migration) {
   });
 
   storyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
-  storyPage.changeEditorInterface('content', 'richTextEditor', {});
+
+  storyPage.changeEditorInterface('blocks', 'entryLinksEditor', {
+    bulkEditing: false,
+  });
 };

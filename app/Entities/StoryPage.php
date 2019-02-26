@@ -17,7 +17,7 @@ class StoryPage extends Entity implements JsonSerializable
                 'subTitle' => $this->subTitle,
                 'slug' => $this->slug,
                 'metadata' => $this->metadata ? new Metadata($this->metadata->entry) : null,
-                'content' => $this->content,
+                'blocks' => $this->parseBlocks($this->blocks),
             ],
         ];
     }
