@@ -98,6 +98,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new Quiz($block->entry);
             case 'referralSubmissionAction':
                 return new ReferralSubmissionAction($block->entry);
+            case 'sectionBlock':
+                return new SectionBlock($block->entry);
             case 'shareAction':
                 return new ShareAction($block->entry);
             case 'sixpackExperiment':
