@@ -16,6 +16,7 @@ import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
+import PetitionSubmissionAction from '../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
   renderLinkAction,
@@ -114,6 +115,13 @@ class ContentfulEntry extends React.Component<Props, State> {
             source={json.fields.source}
             title={json.fields.title}
           />
+        );
+
+      case 'petitionSubmissionAction':
+        return (
+          <div className="margin-horizontal-md margin-bottom-lg">
+            <PetitionSubmissionAction {...withoutNulls(json.fields)} />
+          </div>
         );
 
       case 'photoSubmissionAction':
