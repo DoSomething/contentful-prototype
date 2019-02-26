@@ -48,9 +48,11 @@ class AppServiceProvider extends ServiceProvider
                 'isAuthenticated' => auth()->check(),
                 'id' => auth()->id() ?: request()->query('user_id'),
                 'token' => auth()->user() ? auth()->user()->access_token : null,
+                'expiresAt' => auth()->user() ? auth()->user()->access_token_expiration : null,
                 'role' => auth()->user() ? auth()->user()->role : 'user',
                 'location' => $country && $region ? $country . '-' . $region : null,
                 'source' => request()->query('utm_source'),
+                'now' => now()->timestamp,
             ]);
         });
     }
