@@ -1,5 +1,7 @@
 /* global window */
 
+import { trackAnalyticsEvent } from './analytics';
+
 /**
  * Get the current UNIX timestamp (in seconds), optionally
  * adjusted by the given clock skew.
@@ -31,6 +33,11 @@ export function bindTokenRefreshEvent() {
 
       if (expiresIn < 0) {
         console.log('Token has expired! Refreshing...');
+        trackAnalyticsEvent({
+          verb: 'refreshed',
+          noun: 'token',
+          data: { skew },
+        });
 
         clearInterval(authCheck);
         window.location.reload(true);
