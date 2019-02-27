@@ -11,6 +11,7 @@ import PollLocator from '../PollLocator/PollLocator';
 import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
+import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
@@ -138,6 +139,12 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'referralSubmissionAction':
         return renderReferralSubmissionAction(json);
+
+      case 'sectionBlock': {
+        const fields = withoutNulls(json.fields);
+
+        return <SectionBlock id={json.id} {...fields} />;
+      }
 
       case 'shareAction':
         return renderShareAction(json);

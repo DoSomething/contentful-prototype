@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ContentfulEntry from '../../ContentfulEntry';
+
 const StoryPage = props => {
   const { blocks, subTitle, title } = props;
 
@@ -10,7 +12,7 @@ const StoryPage = props => {
       {subTitle ? <h2>{subTitle}</h2> : null}
 
       {blocks.map(block => (
-        <div>{block.id}</div>
+        <ContentfulEntry key={block.id} json={block} />
       ))}
     </div>
   );

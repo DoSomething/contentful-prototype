@@ -113,3 +113,15 @@ export function getUserCampaignSignups(
     },
   });
 }
+
+/**
+ * Get specified Contentful block entry.
+ *
+ * @param  {String}
+ * @return {Object}
+ */
+export function getBlock(id) {
+  const path = join('api/v2/blocks', id);
+
+  return getRequest(`${PHOENIX_URL}/${path}`);
+}
