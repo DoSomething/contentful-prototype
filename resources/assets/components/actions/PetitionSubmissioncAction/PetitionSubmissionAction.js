@@ -16,8 +16,7 @@ const PetitionSubmissionAction = props => (
         <form>
           <div className="padded">
             <textarea
-              className="text-field"
-              id="text"
+              className="text-field petition-textarea"
               placeholder={props.textFieldPlaceholder}
             />
             <p className="footnote">500 character limit</p>
