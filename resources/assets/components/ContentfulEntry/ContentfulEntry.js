@@ -143,13 +143,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'sectionBlock': {
         const fields = withoutNulls(json.fields);
 
-        return (
-          <SectionBlock
-            key={`section-block-${json.id}`}
-            id={json.id}
-            {...fields}
-          />
-        );
+        return <SectionBlock id={json.id} {...fields} />;
       }
 
       case 'shareAction':
