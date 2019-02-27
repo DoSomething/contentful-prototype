@@ -6,6 +6,7 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
+import PetitionSubmissionAction from '../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -120,6 +121,31 @@ export function renderPhotoSubmissionAction(data) {
       <SubmissionGalleryBlockContainer type="photo" />
       <PuckWaypoint
         name="photo_submission_action-bottom"
+        waypointData={{ contentfulId }}
+      />
+    </div>
+  );
+}
+
+/**
+ * Render a petition submission action.
+ *
+ * @param  {Object} data
+ * @return {Component}
+ */
+export function renderPetitionSubmissionAction(data) {
+  const contentfulId = data.id;
+  const fields = withoutNulls(data.fields);
+
+  return (
+    <div className="margin-horizontal-md margin-bottom-lg">
+      <PuckWaypoint
+        name="petition_submission_action-top"
+        waypointData={{ contentfulId }}
+      />
+      <PetitionSubmissionAction id={contentfulId} {...fields} />
+      <PuckWaypoint
+        name="petition_submission_action-bottom"
         waypointData={{ contentfulId }}
       />
     </div>
