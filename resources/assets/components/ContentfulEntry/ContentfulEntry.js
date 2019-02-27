@@ -26,6 +26,7 @@ import {
   renderPhotoSubmissionAction,
   renderTextSubmissionAction,
   renderVoterRegistrationAction,
+  renderPetitionSubmissionAction,
   renderReferralSubmissionAction,
 } from './renderers';
 
@@ -116,6 +117,9 @@ class ContentfulEntry extends React.Component<Props, State> {
             title={json.fields.title}
           />
         );
+
+      case 'petitionSubmissionAction':
+        return renderPetitionSubmissionAction(json);
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);
