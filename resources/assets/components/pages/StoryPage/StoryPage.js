@@ -45,7 +45,7 @@ StoryPage.propTypes = {
   blocks: PropTypes.arrayOf(PropTypes.object),
   coverImage: PropTypes.shape({
     url: PropTypes.string,
-    descsription: PropTypes.string,
+    description: PropTypes.string,
   }),
   subTitle: PropTypes.string,
   title: PropTypes.string.isRequired,
