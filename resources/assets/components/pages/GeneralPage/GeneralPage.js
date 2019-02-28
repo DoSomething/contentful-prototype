@@ -42,7 +42,7 @@ const GeneralPage = props => {
 
       <div className="main clearfix general-page">
         <Enclosure className="default-container margin-vertical">
-          <div className="general-page__heading text-centered">
+          <div className="general-page__heading text-center">
             <h1 className="general-page__title caps-lock">{title}</h1>
             {subTitle ? (
               <p className="general-page__subtitle">{subTitle}</p>

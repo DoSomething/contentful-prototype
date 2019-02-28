@@ -22,7 +22,7 @@ const PostGallery = props => {
       </Gallery>
       <LoadMore
         buttonClassName="-tertiary"
-        className="padding-lg text-centered"
+        className="padding-lg text-center"
         text="view more"
         onClick={loadMorePosts}
         isLoading={loading}

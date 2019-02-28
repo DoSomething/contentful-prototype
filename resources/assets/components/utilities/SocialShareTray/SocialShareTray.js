@@ -120,7 +120,7 @@ class SocialShareTray extends React.Component {
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
-      <div className="social-share-tray padded text-centered">
+      <div className="social-share-tray padded text-center">
         <p className="title caps-lock font-bold">{title}</p>
 
         <div className="share-buttons">
