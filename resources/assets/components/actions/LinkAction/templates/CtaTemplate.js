@@ -26,7 +26,7 @@ const CtaTemplate = ({ title, content, link, buttonText, source }) => {
   });
 
   return (
-    <Card className="cta-template rounded padded text-centered bg-black dark caps-lock">
+    <Card className="cta-template rounded padded text-center bg-black dark caps-lock">
       <h3 className="cta-template__title margin-top-lg">{title}</h3>
 
       <TextContent className="cta-template__content">{content}</TextContent>

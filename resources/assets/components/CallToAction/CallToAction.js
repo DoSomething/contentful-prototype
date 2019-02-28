@@ -52,7 +52,7 @@ const CallToAction = ({
   return (
     <Card
       className={classnames(
-        'call-to-action rounded padded text-centered',
+        'call-to-action rounded padded text-center',
         className,
         {
           '-sticky': sticky,

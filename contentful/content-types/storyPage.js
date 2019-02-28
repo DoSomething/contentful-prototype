@@ -79,6 +79,37 @@ module.exports = function(migration) {
     .linkType('Entry');
 
   storyPage
+    .createField('coverImage')
+    .name('Cover Image')
+    .type('Link')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
+      {
+        assetImageDimensions: {
+          width: {
+            min: 1440,
+            max: null,
+          },
+
+          height: {
+            min: 610,
+            max: null,
+          },
+        },
+
+        message:
+          'The provided image needs to be at least 1440px wide by 610px tall.',
+      },
+    ])
+    .disabled(false)
+    .omitted(false)
+    .linkType('Asset');
+
+  storyPage
     .createField('blocks')
     .name('Blocks')
     .type('Array')
@@ -113,6 +144,11 @@ module.exports = function(migration) {
   });
 
   storyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
+
+  storyPage.changeEditorInterface('coverImage', 'assetLinkEditor', {
+    helpText:
+      'This cover image is used in the banner at the top of the Story Page, as well as for the tile on home page and explore campaigns.',
+  });
 
   storyPage.changeEditorInterface('blocks', 'entryLinksEditor', {
     bulkEditing: false,
