@@ -16,7 +16,7 @@
   }
 
   > .figure__media {
-    background-color: $med-gray;
+    background-color: $white;
 
     & > img {
       width: 480px; // HACK: Expand smaller images to fit in card.
@@ -32,32 +32,22 @@
   }
 }
 
+.post-text {
+  border-left: $half-spacing solid #7069d8;
+}
+
 .chat-bubble.-post-bubble {
-  font-family: $font-league-gothic;
-  min-height: 340px; // HACK: short text posts should be same height as photos.
-  background-color: $purple;
-
-  &:before {
-    // Offset the 'tail' from bottom with a 1px overlap to avoid
-    // sub-pixel rendering issue w/ slight gap between elements.
-    top: auto;
-    bottom: -19px;
-
-    border-color: $purple transparent transparent $purple;
-    left: 25%;
-  }
-
-  h4 {
-    @include media($only-medium) {
-      font-size: $font-small;
-    }
-  }
+  min-height: 332px; // HACK: short text posts should be same height as photos.
+  color: $black;
+  background-color: $white;
+  padding: $base-spacing $half-spacing;
 
   p {
-    font-size: 42px;
+    color: $black;
+    font-size: $font-medium;
 
     @include media($only-medium) {
-      font-size: $font-medium;
+      font-size: $font-regular;
     }
   }
 }
