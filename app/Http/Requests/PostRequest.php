@@ -66,7 +66,7 @@ class PostRequest extends FormRequest
 
             case 'text':
                 return [
-                    'text' => 'max:256',
+                    'text' => 'max:500',
                 ];
 
             default:
