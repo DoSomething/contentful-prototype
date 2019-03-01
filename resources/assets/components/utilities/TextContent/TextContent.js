@@ -14,11 +14,12 @@ import './markdown.scss';
  * @TODO: rename component to <TextContent>
  * @param  {String} options.className
  * @param  {String|Array|Object} options.children
+ * @param  {Object} options.styles
  * @return {Object}
  */
-const Markdown = ({ className = null, children }) =>
+const Markdown = ({ className = null, children, styles }) =>
   has(children, 'nodeType') ? (
-    <RichTextDocument className={classnames(className)}>
+    <RichTextDocument className={classnames(className)} styles={styles}>
       {children}
     </RichTextDocument>
   ) : (
@@ -34,10 +35,12 @@ Markdown.propTypes = {
     PropTypes.object,
   ]).isRequired,
   className: PropTypes.string,
+  styles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
 
 Markdown.defaultProps = {
   className: null,
+  styles: {},
 };
 
 export default Markdown;

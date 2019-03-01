@@ -30,7 +30,11 @@ const StoryPage = props => {
           <h1 className="lede-banner__headline-title color-white caps-lock">
             {title}
           </h1>
-          {subTitle ? <h2 className="color-yellow">{subTitle}</h2> : null}
+          {subTitle ? (
+            <h2 className="lede-banner__headline-subtitle color-yellow">
+              {subTitle}
+            </h2>
+          ) : null}
         </div>
       </header>
 

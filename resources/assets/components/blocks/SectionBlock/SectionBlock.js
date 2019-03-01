@@ -14,6 +14,8 @@ const SectionBlock = props => {
     color: textColor,
   };
 
+  // console.log(styles);
+
   return (
     <section
       id={id}
@@ -21,7 +23,7 @@ const SectionBlock = props => {
       style={withoutNulls(styles)}
     >
       <div className="wrapper">
-        <TextContent>{content}</TextContent>
+        <TextContent styles={styles}>{content}</TextContent>
       </div>
     </section>
   );
