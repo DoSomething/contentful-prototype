@@ -1,7 +1,8 @@
 @import 'next-toolbox';
 
 // @TODO: Rename to something better?
-.gallery-grid-quartet {
+.gallery-grid-quartet,
+.gallery-grid-triad {
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: $half-spacing;
@@ -13,7 +14,9 @@
     grid-column-gap: $half-spacing;
     grid-row-gap: $half-spacing;
   }
+}
 
+.gallery-grid-quartet {
   @include media($medium) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -24,6 +27,22 @@
 
   @include media($larger) {
     grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
+  }
+}
+
+.gallery-grid-triad {
+  @include media($medium) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(3, 1fr);
     grid-column-gap: $base-spacing;
     grid-row-gap: $base-spacing;
   }
