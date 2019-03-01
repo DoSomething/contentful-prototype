@@ -188,6 +188,7 @@ class PhotoSubmissionAction extends React.Component {
       action,
       body: formatFormFields(formFields),
       id: this.props.id,
+      campaignContentfulId: this.props.campaignContentfulId,
       type,
     });
   };
@@ -407,6 +408,7 @@ PhotoSubmissionAction.propTypes = {
   }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
+  campaignContentfulId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,

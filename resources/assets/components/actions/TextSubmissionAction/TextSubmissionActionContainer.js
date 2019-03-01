@@ -12,6 +12,7 @@ import {
  */
 const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
+  campaignContentfulId: state.campaign.id,
   submissions: state.postSubmissions,
 });
 

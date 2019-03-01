@@ -74,6 +74,7 @@ class TextSubmissionAction extends React.Component {
       action,
       body: formatFormFields(formFields),
       id: this.props.id,
+      campaignContentfulId: this.props.campaignContentfulId,
       type,
     });
   };
@@ -164,6 +165,7 @@ TextSubmissionAction.propTypes = {
   }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
+  campaignContentfulId: PropTypes.string.isRequired,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   initPostSubmissionItem: PropTypes.func.isRequired,

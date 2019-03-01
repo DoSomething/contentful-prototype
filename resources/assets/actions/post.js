@@ -70,7 +70,7 @@ export function resetPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  const { action, body, id, type } = data;
+  const { action, body, campaignContentfulId, id, type } = data;
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
@@ -97,7 +97,7 @@ export function storeCampaignPost(campaignId, data) {
     data: {
       action,
       campaignId,
-      campaignContentfulId: id,
+      campaignContentfulId,
     },
   });
 
@@ -109,6 +109,7 @@ export function storeCampaignPost(campaignId, data) {
         meta: {
           action,
           campaignId,
+          campaignContentfulId,
           id,
           sixpackExperiments,
           type,

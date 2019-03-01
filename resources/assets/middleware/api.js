@@ -62,12 +62,12 @@ const postRequest = (payload, dispatch, getState) => {
     headers: setRequestHeaders({ token, contentType }),
   });
 
-  const campaignContentfulId = get(payload, 'meta.id', null);
+  const campaignContentfulId = get(payload, 'meta.campaignContentfulId', null);
   const campaignId = get(payload, 'meta.campaignId');
   const postType = get(payload, 'meta.type', 'post_request');
 
   dispatch({
-    id: payload.meta.id, // @TODO: rename to campaignContentfulId or campaignId
+    id: payload.meta.id,
     type: payload.pending,
   });
 
