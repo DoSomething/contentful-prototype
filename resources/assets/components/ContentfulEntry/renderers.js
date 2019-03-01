@@ -6,12 +6,12 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
-import PetitionSubmissionAction from '../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
+import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 
 /**
  * Render the voter registration action container.
@@ -143,7 +143,7 @@ export function renderPetitionSubmissionAction(data) {
         name="petition_submission_action-top"
         waypointData={{ contentfulId }}
       />
-      <PetitionSubmissionAction id={contentfulId} {...fields} />
+      <PetitionSubmissionActionContainer id={contentfulId} {...fields} />
       <PuckWaypoint
         name="petition_submission_action-bottom"
         waypointData={{ contentfulId }}
