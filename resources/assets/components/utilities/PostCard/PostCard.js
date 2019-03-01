@@ -57,7 +57,8 @@ const PostCard = ({ post, noun }) => {
   }
 
   return (
-    <BaseFigure className={`post post-${post.type}`} media={media}>
+    <div className={`post post-${post.type}`}>
+      <div className="flex-grow">{media}</div>
       <BaseFigure
         media={reactionElement}
         alignment="right"
@@ -75,7 +76,7 @@ const PostCard = ({ post, noun }) => {
         ) : null}
         {post.type !== 'text' && post.text ? <p>{post.text}</p> : null}
       </BaseFigure>
-    </BaseFigure>
+    </div>
   );
 };
 
