@@ -12,9 +12,10 @@
   .reaction__button {
     display: inline-block;
     width: 24px;
-    height: 24px;
+    height: 18px; // Prevent this from "expanding" below the count text.
     background: url('./heart-empty.svg') no-repeat;
     background-size: contain;
+    background-position: center;
 
     &.-reacted {
       background-image: url('./heart-filled.svg');
