@@ -1,0 +1,21 @@
+@import '../../../scss/next-toolbox';
+
+.section-block {
+  padding: $base-spacing $half-spacing;
+
+  @include media($medium) {
+    padding: (2 * $base-spacing) $base-spacing;
+  }
+
+  > .wrapper {
+    grid-column: 1 / -1;
+
+    @include media($medium) {
+      grid-column: 2 / -2;
+    }
+
+    @include media($large) {
+      grid-column: 5 / -5;
+    }
+  }
+}
