@@ -1,5 +1,12 @@
+@import '../../../scss/next-toolbox.scss';
+
 .petition-submission-action {
   .petition-textarea {
     height: 122px;
+  }
+
+  .affirmation-message {
+    color: $success-color;
+    font-size: $font-medium;
   }
 }
