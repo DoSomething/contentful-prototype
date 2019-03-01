@@ -1,0 +1,44 @@
+@import '../../../scss/next-toolbox';
+
+.section-block {
+  text-align: center;
+
+  > .wrapper {
+    grid-column: 1 / -1;
+    padding: $half-spacing 0;
+
+    @include media($medium) {
+      grid-column: 2 / -2;
+      padding: $base-spacing 0;
+    }
+
+    @include media($large) {
+      grid-column: 5 / -5;
+    }
+  }
+
+  h1 {
+    border-bottom: 5px solid $yellow;
+    display: inline-block;
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: $base-spacing;
+
+    @include media($medium) {
+      font-size: 60px;
+    }
+  }
+
+  h2 {
+    font-size: $font-larger;
+  }
+
+  h3 {
+    font-size: $font-large;
+  }
+
+  ul,
+  ol {
+    text-align: left;
+  }
+}

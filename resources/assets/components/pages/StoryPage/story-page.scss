@@ -2,7 +2,21 @@
 
 .story-page {
   .lede-banner {
+    align-items: center;
     min-height: 500px;
+
+    > .wrapper {
+      grid-column: 1 / -1;
+      padding: 0 $half-spacing;
+
+      @include media($medium) {
+        grid-column: 2 / -2;
+      }
+
+      @include media($large) {
+        grid-column: 3 / -3;
+      }
+    }
 
     @include media($medium) {
       min-height: 610px;
@@ -13,6 +27,17 @@
       font-family: $secondary-font-family;
       font-size: 97px;
       font-weight: normal;
+      line-height: 1;
+      margin: $half-spacing 0;
+
+      @include media($medium) {
+        font-size: 123px;
+      }
+    }
+
+    .lede-banner__headline-subtitle {
+      font-size: 30px;
+      margin: $half-spacing 0;
     }
   }
 }

@@ -422,3 +422,32 @@ p {
     }
   }
 }
+
+/*
+|-------------------------------------------------------------------------------
+| Base 16 Grid
+|-------------------------------------------------------------------------------
+|
+| Small - 4 columns
+| Medium - 8 columns
+| Large - 16 columns
+*/
+
+.base-16-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: $half-spacing;
+  grid-row-gap: $half-spacing;
+  padding: $half-spacing;
+
+  @include media($medium) {
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
+    padding: $base-spacing;
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(16, 1fr);
+  }
+}

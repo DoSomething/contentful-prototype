@@ -23,15 +23,19 @@ const StoryPage = props => {
     <article className="story-page">
       <header
         role="banner"
-        className="lede-banner"
+        className="lede-banner base-16-grid"
         style={withoutNulls(styles)}
       >
-        <wrapper className="text-center">
+        <div className="wrapper text-center">
           <h1 className="lede-banner__headline-title color-white caps-lock">
             {title}
           </h1>
-          {subTitle ? <h2 className="color-yellow">{subTitle}</h2> : null}
-        </wrapper>
+          {subTitle ? (
+            <h2 className="lede-banner__headline-subtitle color-yellow">
+              {subTitle}
+            </h2>
+          ) : null}
+        </div>
       </header>
 
       {blocks.map(block => (

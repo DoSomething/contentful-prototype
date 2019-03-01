@@ -1,4 +1,5 @@
 import React from 'react';
+import { pick } from 'lodash';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
 import { BLOCKS } from '@contentful/rich-text-types';
@@ -63,13 +64,40 @@ function getMarkdownItInstance() {
  * Parse RichText Document to React components.
  *
  * @param  {Object} document
+ * @param  {Object} styles
  * @return {String}
  */
-export function parseRichTextDocument(document) {
+export function parseRichTextDocument(document, styles) {
+  const textColor = pick(styles, 'color');
+
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: node => (
         <ContentfulEntryLoader id={node.data.target.sys.id} />
+      ),
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1 style={textColor}>{children}</h1>
+      ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 style={textColor}>{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3 style={textColor}>{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4 style={textColor}>{children}</h4>
+      ),
+      [BLOCKS.HEADING_5]: (node, children) => (
+        <h5 style={textColor}>{children}</h5>
+      ),
+      [BLOCKS.HEADING_6]: (node, children) => (
+        <h6 style={textColor}>{children}</h6>
+      ),
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="list">{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol className="list">{children}</ol>
       ),
     },
   };

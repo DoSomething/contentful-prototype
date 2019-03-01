@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 
+import './section-block.scss';
+
 const SectionBlock = props => {
   const { id, content, backgroundColor, textColor } = props;
 
@@ -13,8 +15,14 @@ const SectionBlock = props => {
   };
 
   return (
-    <section id={id} className="story-section" style={withoutNulls(styles)}>
-      <TextContent>{content}</TextContent>
+    <section
+      id={id}
+      className="section-block story-section base-16-grid"
+      style={withoutNulls(styles)}
+    >
+      <div className="wrapper">
+        <TextContent styles={styles}>{content}</TextContent>
+      </div>
     </section>
   );
 };
