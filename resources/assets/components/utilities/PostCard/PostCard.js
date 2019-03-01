@@ -20,6 +20,8 @@ export const postCardFragment = gql`
     text
     tags
     quantity
+    location(format: HUMAN_FORMAT)
+
     user {
       firstName
     }
@@ -27,7 +29,11 @@ export const postCardFragment = gql`
 `;
 
 const PostCard = ({ post, noun }) => {
-  const firstName = post.user ? post.user.firstName : 'A Doer';
+  // If this post isn't anonymous, show first name. Otherwise, state or fallback to "A Doer".
+  const displayName = post.user
+    ? post.user.firstName
+    : post.location || 'A Doer';
+
   const reactionElement = isAuthenticated() ? (
     <ReactionButton post={post} />
   ) : null;
@@ -37,13 +43,13 @@ const PostCard = ({ post, noun }) => {
   switch (post.type) {
     case 'text':
       media = (
-        <div className="chat-bubble -post-bubble flex-center-y margin-bottom-none rounded-top">
-          <p className="color-white">{post.text}</p>
+        <div className="chat-bubble -post-bubble margin-bottom-none rounded-top">
+          <p className="font-italic">{post.text}</p>
         </div>
       );
       break;
     case 'photo':
-      media = <LazyImage alt={`${firstName}'s photo`} src={post.url} />;
+      media = <LazyImage alt={`${displayName}'s photo`} src={post.url} />;
       break;
 
     default:
@@ -51,14 +57,14 @@ const PostCard = ({ post, noun }) => {
   }
 
   return (
-    <BaseFigure className="post" media={media}>
+    <BaseFigure className={`post post-${post.type}`} media={media}>
       <BaseFigure
         media={reactionElement}
         alignment="right"
         className="padded margin-bottom-none"
       >
         <h4>
-          {firstName}
+          {displayName}
           <PostBadge status={post.status} tags={post.tags} />
         </h4>
         {post.quantity ? (
