@@ -1,13 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
 import PostBadge from './PostBadge';
 import { BaseFigure } from '../../Figure';
 import LazyImage from '../../utilities/LazyImage';
 import ReactionButton from '../ReactionButton/ReactionButton';
-import { isAuthenticated, pluralize } from '../../../helpers';
+import { isAuthenticated } from '../../../helpers';
 
 import './post.scss';
 
@@ -25,6 +24,7 @@ export const postCardFragment = gql`
 
     actionDetails {
       anonymous
+      noun
     }
 
     user {
@@ -75,8 +75,7 @@ const PostCard = ({ post }) => {
         </h4>
         {post.quantity ? (
           <p className="footnote">
-            {post.quantity}{' '}
-            {pluralize(post.quantity, noun.singular, noun.plural)}
+            {post.quantity} {post.actionDetails.noun}
           </p>
         ) : null}
         {post.type !== 'text' && post.text ? <p>{post.text}</p> : null}
@@ -87,17 +86,6 @@ const PostCard = ({ post }) => {
 
 PostCard.propTypes = {
   post: propType(postCardFragment).isRequired,
-  noun: PropTypes.shape({
-    singular: PropTypes.string,
-    plural: PropTypes.string,
-  }),
-};
-
-PostCard.defaultProps = {
-  noun: {
-    singular: 'item',
-    plural: 'items',
-  },
 };
 
 export default PostCard;
