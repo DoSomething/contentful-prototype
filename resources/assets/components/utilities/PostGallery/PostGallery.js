@@ -15,7 +15,7 @@ const PostGallery = props => {
     <div>
       <Gallery type="triad" className="post-gallery expand-horizontal-md">
         {posts.map(post => (
-          <Card className="rounded height-100" key={post.id}>
+          <Card className="rounded h-full" key={post.id}>
             <PostCard post={post} />
           </Card>
         ))}
