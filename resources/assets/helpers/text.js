@@ -93,6 +93,12 @@ export function parseRichTextDocument(document, styles) {
       [BLOCKS.HEADING_6]: (node, children) => (
         <h6 style={textColor}>{children}</h6>
       ),
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="list">{children}</ul>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol className="list">{children}</ol>
+      ),
     },
   };
 
