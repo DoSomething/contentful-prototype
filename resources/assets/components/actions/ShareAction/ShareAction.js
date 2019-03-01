@@ -16,6 +16,7 @@ import {
   loadFacebookSDK,
   showFacebookShareDialog,
   showTwitterSharePrompt,
+  withoutNulls,
 } from '../../../helpers';
 
 class ShareAction extends React.Component {
@@ -33,25 +34,18 @@ class ShareAction extends React.Component {
 
     const { actionId, campaignContentfulId, campaignId, link } = this.props;
 
-    let formFields = {
+    const formFields = withoutNulls({
       action,
       type: SOCIAL_SHARE_TYPE,
       id: campaignContentfulId,
+      action_id: actionId,
       details: {
         url: link,
         platform: 'facebook',
         campaign_id: campaignId,
         puck_id: puckId,
       },
-    };
-
-    // @TODO: Once Rogue/Contentful requires this field, we can do away with this conditional logic.
-    if (actionId) {
-      formFields = {
-        ...formFields,
-        action_id: actionId,
-      };
-    }
+    });
 
     // Send request to store the social share post.
     this.props.storeCampaignPost(campaignId, {

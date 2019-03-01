@@ -8,7 +8,7 @@ import { get, has, invert, mapValues } from 'lodash';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
-import { withoutUndefined } from '../../../helpers';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
@@ -172,23 +172,16 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
-    let formFields = {
+    const formFields = withoutNulls({
       action,
       type,
       id: this.props.id,
+      action_id: this.props.actionId,
       // Associate state values to fields.
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
-    };
-
-    // @TODO: Once Rogue/Contentful requires this field, we can do away with this conditional logic.
-    if (this.props.actionId) {
-      formFields = {
-        ...formFields,
-        action_id: this.props.actionId,
-      };
-    }
+    });
 
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {

@@ -6,7 +6,7 @@ import { get, has, invert, mapValues } from 'lodash';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
-import { withoutUndefined } from '../../../helpers';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
@@ -60,21 +60,14 @@ class TextSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    let formFields = {
+    const formFields = withoutNulls({
       action,
       type,
       id: this.props.id,
+      action_id: this.props.actionId,
       // Associate state values to fields.
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
-    };
-
-    // @TODO: Once Rogue/Contentful requires this field, we can do away with this conditional logic.
-    if (this.props.actionId) {
-      formFields = {
-        ...formFields,
-        action_id: this.props.actionId,
-      };
-    }
+    });
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
