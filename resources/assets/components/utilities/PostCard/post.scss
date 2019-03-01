@@ -4,6 +4,9 @@
   position: relative;
   font-family: $primary-font-family;
   margin-bottom: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 
   h4 {
     display: inline;
@@ -37,7 +40,6 @@
 }
 
 .chat-bubble.-post-bubble {
-  min-height: 332px; // HACK: short text posts should be same height as photos.
   color: $black;
   background-color: $white;
   padding: $base-spacing $half-spacing;
