@@ -51,8 +51,9 @@ class ShareAction extends React.Component {
     this.props.storeCampaignPost(campaignId, {
       action,
       actionId,
+      campaignContentfulId,
       body: formatFormFields(formFields),
-      id: campaignContentfulId,
+      id: this.props.id,
       type: SOCIAL_SHARE_TYPE,
     });
   };
@@ -181,6 +182,7 @@ ShareAction.propTypes = {
   campaignContentfulId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
+  id: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,
