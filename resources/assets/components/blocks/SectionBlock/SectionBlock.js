@@ -14,8 +14,6 @@ const SectionBlock = props => {
     color: textColor,
   };
 
-  // console.log(styles);
-
   return (
     <section
       id={id}
