@@ -124,3 +124,49 @@ export function storeCampaignPost(campaignId, data) {
     );
   };
 }
+
+/**
+ * Store action posts.
+ *
+ * @param  {Object} data
+ * @param  {Number} data.actionId
+ * @param  {Object} data.body
+ * @param  {String} data.id
+ * @param  {String} data.type
+ * @return {function}
+ */
+export function storePost(data) {
+  const { actionId, body, id, type } = data;
+
+  const sixpackExperiments = {
+    conversion: 'reportbackPost',
+  };
+
+  // Track post submission event.
+  trackAnalyticsEvent({
+    verb: 'submitted',
+    noun: formatEventNoun(type),
+    data: {
+      actionId,
+    },
+  });
+
+  return dispatch => {
+    dispatch(
+      apiRequest('POST', {
+        body,
+        failure: POST_SUBMISSION_FAILED,
+        meta: {
+          sixpackExperiments,
+          actionId,
+          type,
+          id,
+        },
+        requiresAuthentication: type === 'text',
+        pending: POST_SUBMISSION_PENDING,
+        success: POST_SUBMISSION_SUCCESSFUL,
+        url: '/api/v2/posts',
+      }),
+    );
+  };
+}
