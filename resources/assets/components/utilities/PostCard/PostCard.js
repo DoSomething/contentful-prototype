@@ -21,6 +21,11 @@ export const postCardFragment = gql`
     tags
     quantity
     location(format: HUMAN_FORMAT)
+    signupId
+
+    actionDetails {
+      anonymous
+    }
 
     user {
       firstName
@@ -28,11 +33,11 @@ export const postCardFragment = gql`
   }
 `;
 
-const PostCard = ({ post, noun }) => {
-  // If this post isn't anonymous, show first name. Otherwise, state or fallback to "A Doer".
-  const displayName = post.user
-    ? post.user.firstName
-    : post.location || 'A Doer';
+const PostCard = ({ post }) => {
+  // For anonymous posts, label with state if available. Otherwise, the user's first name.
+  const authorLabel = post.actionDetails.anonymous
+    ? post.location || 'Anonymous'
+    : post.user.firstName || 'A Doer';
 
   const reactionElement = isAuthenticated() ? (
     <ReactionButton post={post} />
@@ -49,7 +54,7 @@ const PostCard = ({ post, noun }) => {
       );
       break;
     case 'photo':
-      media = <LazyImage alt={`${displayName}'s photo`} src={post.url} />;
+      media = <LazyImage alt={`${authorLabel}'s photo`} src={post.url} />;
       break;
 
     default:
@@ -65,7 +70,7 @@ const PostCard = ({ post, noun }) => {
         className="padded margin-bottom-none"
       >
         <h4>
-          {displayName}
+          {authorLabel}
           <PostBadge status={post.status} tags={post.tags} />
         </h4>
         {post.quantity ? (
