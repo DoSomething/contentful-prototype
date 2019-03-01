@@ -62,6 +62,7 @@ const postRequest = (payload, dispatch, getState) => {
     headers: setRequestHeaders({ token, contentType }),
   });
 
+  const actionId = get(payload, 'meta.actionId', null);
   const campaignContentfulId = get(payload, 'meta.campaignContentfulId', null);
   const campaignId = get(payload, 'meta.campaignId');
   const postType = get(payload, 'meta.type', 'post_request');
@@ -95,6 +96,7 @@ const postRequest = (payload, dispatch, getState) => {
         noun: formatEventNoun(postType),
         data: {
           activityId: response.data.id,
+          actionId,
           campaignContentfulId,
           campaignId,
         },
@@ -113,6 +115,7 @@ const postRequest = (payload, dispatch, getState) => {
         verb: 'failed',
         noun: formatEventNoun(postType),
         data: {
+          actionId,
           campaignContentfulId,
           campaignId,
           error,

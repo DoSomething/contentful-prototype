@@ -50,6 +50,7 @@ class ShareAction extends React.Component {
     // Send request to store the social share post.
     this.props.storeCampaignPost(campaignId, {
       action,
+      actionId,
       body: formatFormFields(formFields),
       id: campaignContentfulId,
       type: SOCIAL_SHARE_TYPE,

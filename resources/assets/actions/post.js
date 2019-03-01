@@ -70,7 +70,7 @@ export function resetPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  const { action, body, campaignContentfulId, id, type } = data;
+  const { action, actionId, body, campaignContentfulId, id, type } = data;
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
@@ -96,6 +96,7 @@ export function storeCampaignPost(campaignId, data) {
     noun: formatEventNoun(type),
     data: {
       action,
+      actionId,
       campaignId,
       campaignContentfulId,
     },
@@ -108,6 +109,7 @@ export function storeCampaignPost(campaignId, data) {
         failure: POST_SUBMISSION_FAILED,
         meta: {
           action,
+          actionId,
           campaignId,
           campaignContentfulId,
           id,
