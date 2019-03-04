@@ -44,9 +44,9 @@ const PostCard = ({ post }) => {
   const reactionElement = isAuthenticated() ? (
     <ReactionButton post={post} />
   ) : null;
-  let media = null;
 
   // Render the appropriate media for this post:
+  let media = null;
   switch (post.type) {
     case 'text':
       media = (
