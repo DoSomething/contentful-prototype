@@ -80,6 +80,26 @@ module.exports = function(migration) {
     .omitted(false);
 
   textSubmissionAction
+    .createField('informationTitle')
+    .name('Information Title')
+    .type('Symbol')
+    .localized(true)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  textSubmissionAction
+    .createField('informationContent')
+    .name('Information Content')
+    .type('Text')
+    .localized(true)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  textSubmissionAction
     .createField('affirmationContent')
     .name('Affirmation Content')
     .type('Text')
@@ -120,6 +140,16 @@ module.exports = function(migration) {
         'The placeholder for the "text" field, providing an example of what a text submission should look like.',
     },
   );
+
+  textSubmissionAction.changeEditorInterface('informationTitle', 'singleLine', {
+    helpText:
+      'Title to display for the information block (defaults to "More Info").',
+  });
+
+  textSubmissionAction.changeEditorInterface('informationContent', 'markdown', {
+    helpText:
+      'Content to display for the information block (this block will be hidden by default unless content is provided).',
+  });
 
   textSubmissionAction.changeEditorInterface('buttonText', 'singleLine', {});
 
