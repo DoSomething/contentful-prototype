@@ -3,6 +3,9 @@
 .story-page {
   .lede-banner {
     align-items: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 500px;
 
     > .wrapper {

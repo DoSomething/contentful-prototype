@@ -18,13 +18,13 @@
   }
 
   h1 {
-    border-bottom: 5px solid $yellow;
-    display: inline-block;
     font-size: 42px;
     line-height: 1;
     margin-bottom: $base-spacing;
 
     @include media($medium) {
+      border-bottom: 5px solid $yellow;
+      display: inline-block;
       font-size: 60px;
     }
   }
