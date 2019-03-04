@@ -143,6 +143,19 @@ class TextSubmissionAction extends React.Component {
           </Card>
         </div>
 
+        {this.props.informationContent ? (
+          <div className="text-submission-information margin-top-lg">
+            <Card
+              className="bordered rounded"
+              title={this.props.informationTitle}
+            >
+              <TextContent className="padding-md">
+                {this.props.informationContent}
+              </TextContent>
+            </Card>
+          </div>
+        ) : null}
+
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
             <Card className="bordered rounded" title="We got your message!">
@@ -169,6 +182,8 @@ TextSubmissionAction.propTypes = {
   campaignContentfulId: PropTypes.string.isRequired,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
+  informationTitle: PropTypes.string,
+  informationContent: PropTypes.string,
   initPostSubmissionItem: PropTypes.func.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
@@ -188,6 +203,8 @@ TextSubmissionAction.defaultProps = {
     "Thanks for joining the movement, and submitting your message! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit',
   className: null,
+  informationContent: null,
+  informationTitle: 'More Info',
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',
   title: 'Submit your text',
