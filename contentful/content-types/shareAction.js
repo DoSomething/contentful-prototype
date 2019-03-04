@@ -21,7 +21,7 @@ module.exports = function(migration) {
     .createField('actionId')
     .name('Action ID')
     .type('Integer')
-    .required(false)
+    .required(true)
     .localized(false)
     .validations([
       {
