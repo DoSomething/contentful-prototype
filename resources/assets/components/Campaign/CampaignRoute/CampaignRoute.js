@@ -6,8 +6,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Modal from '../../utilities/Modal/Modal';
 import CampaignFooter from '../../CampaignFooter';
+import BlockPage from '../../pages/BlockPage/BlockPage';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
-import BlockPageContainer from '../../pages/BlockPage/BlockPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 
 const CampaignRoute = props => {
@@ -44,10 +44,7 @@ const CampaignRoute = props => {
             }}
           />
 
-          <Route
-            path={join(match.url, 'blocks/:id')}
-            component={BlockPageContainer}
-          />
+          <Route path={join(match.url, 'blocks/:id')} component={BlockPage} />
 
           <Route
             path={join(match.url, 'quiz/:slug')}
