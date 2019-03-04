@@ -17,6 +17,7 @@ class PetitionSubmissionAction extends React.Component {
 
     this.state = {
       showAffirmation: false,
+      textValue: '',
     };
 
     this.props.initPostSubmissionItem(this.props.id);
@@ -38,6 +39,8 @@ class PetitionSubmissionAction extends React.Component {
 
     return null;
   }
+
+  handleChange = event => this.setState({ textValue: event.target.value });
 
   handleSubmit = event => {
     event.preventDefault();
@@ -100,6 +103,8 @@ class PetitionSubmissionAction extends React.Component {
                     'has-error shake': has(formErrors, 'text'),
                   })}
                   placeholder={textFieldPlaceholder}
+                  value={this.state.textValue}
+                  onChange={this.handleChange}
                 />
                 <p className="footnote">500 character limit</p>
               </div>
