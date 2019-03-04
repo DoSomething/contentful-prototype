@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Enclosure from '../../Enclosure';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -9,16 +9,16 @@ import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/Content
  *
  * @returns {ReactElement}
  */
-const BlockPage = ({ id }) => (
+const BlockPage = ({ match }) => (
   <div className="main clearfix">
     <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-      <ContentfulEntryLoader id={id} />
+      <ContentfulEntryLoader id={match.params.id} />
     </Enclosure>
   </div>
 );
 
 BlockPage.propTypes = {
-  id: PropTypes.string.isRequired,
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
 export default BlockPage;

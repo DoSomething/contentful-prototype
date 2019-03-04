@@ -1,1 +1,1 @@
-export default from './BlockPageContainer';
+export default from './BlockPage';
