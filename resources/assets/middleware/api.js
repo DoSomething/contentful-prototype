@@ -62,12 +62,13 @@ const postRequest = (payload, dispatch, getState) => {
     headers: setRequestHeaders({ token, contentType }),
   });
 
-  const campaignContentfulId = get(payload, 'meta.id', null);
+  const actionId = get(payload, 'meta.actionId', null);
+  const campaignContentfulId = get(payload, 'meta.campaignContentfulId', null);
   const campaignId = get(payload, 'meta.campaignId');
   const postType = get(payload, 'meta.type', 'post_request');
 
   dispatch({
-    id: payload.meta.id, // @TODO: rename to campaignContentfulId or campaignId
+    id: payload.meta.id,
     type: payload.pending,
   });
 
@@ -95,6 +96,7 @@ const postRequest = (payload, dispatch, getState) => {
         noun: formatEventNoun(postType),
         data: {
           activityId: response.data.id,
+          actionId,
           campaignContentfulId,
           campaignId,
         },
@@ -113,6 +115,7 @@ const postRequest = (payload, dispatch, getState) => {
         verb: 'failed',
         noun: formatEventNoun(postType),
         data: {
+          actionId,
           campaignContentfulId,
           campaignId,
           error,
