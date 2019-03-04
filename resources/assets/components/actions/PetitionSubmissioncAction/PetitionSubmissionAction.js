@@ -1,12 +1,13 @@
 import React from 'react';
 import { has } from 'lodash';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
-import { formatFormFields } from '../../../helpers/forms';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { formatFormFields, getFieldErrors } from '../../../helpers/forms';
 
 import './petition-submission-action.scss';
 
@@ -77,6 +78,8 @@ class PetitionSubmissionAction extends React.Component {
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
+    const formErrors = getFieldErrors(formResponse);
+
     return (
       <React.Fragment>
         <div className="petition-submission-action margin-bottom-lg" id={id}>
@@ -93,7 +96,9 @@ class PetitionSubmissionAction extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <div className="padded">
                 <textarea
-                  className="text-field petition-textarea"
+                  className={classnames('text-field petition-textarea', {
+                    'has-error shake': has(formErrors, 'text'),
+                  })}
                   placeholder={textFieldPlaceholder}
                 />
                 <p className="footnote">500 character limit</p>
