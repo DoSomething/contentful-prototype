@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
 
@@ -36,8 +37,8 @@ export const postCardFragment = gql`
 const PostCard = ({ post }) => {
   // For anonymous posts, label with state if available. Otherwise, the user's first name.
   const authorLabel = post.actionDetails.anonymous
-    ? post.location || 'Anonymous'
-    : post.user.firstName || 'A Doer';
+    ? get(post, 'location', 'Anonymous')
+    : get(post, 'user.firstName', 'A Doer');
 
   const reactionElement = isAuthenticated() ? (
     <ReactionButton post={post} />
