@@ -38,7 +38,7 @@ const PostCard = ({ post }) => {
   // If this post is for an anonymous action, label it with the state (if available).
   // For non-anonymous posts (default), label with the user's first name.
   const authorLabel = post.actionDetails.anonymous
-    ? get(post, 'location', 'Anonymous')
+    ? post.location || 'Anonymous'
     : get(post, 'user.firstName', 'A Doer');
 
   const reactionElement = isAuthenticated() ? (
