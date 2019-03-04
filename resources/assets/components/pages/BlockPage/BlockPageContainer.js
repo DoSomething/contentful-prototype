@@ -1,18 +1,13 @@
-import { connect } from 'react-redux';
+import React from 'react';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import BlockPage from './BlockPage';
-import { findContentfulEntry } from '../../../helpers';
 
-/**
- * Provide state from the Redux store as props for this component.
- */
-const mapStateToProps = (state, ownProps) => {
-  const { id, slug } = ownProps.match.params;
+// @TODO: Remove this component!
+const BlockPageContainer = ({ match }) => <BlockPage id={match.params.id} />;
 
-  const json = findContentfulEntry(state, id || slug);
-
-  return { json };
+BlockPageContainer.propTypes = {
+  match: ReactRouterPropTypes.match.isRequired,
 };
 
-// Export the container component.
-export default connect(mapStateToProps)(BlockPage);
+export default BlockPageContainer;

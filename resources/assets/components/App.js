@@ -12,6 +12,7 @@ import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
+import BlockPageContainer from './pages/BlockPage/BlockPageContainer';
 import AccountContainer from './pages/AccountPage/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 
@@ -35,6 +36,7 @@ const App = ({ store, history }) => {
               <Route exact path="/us" component={HomePage} />
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+              <Route path="/us/blocks/:id" component={BlockPageContainer} />
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
           </ConnectedRouter>

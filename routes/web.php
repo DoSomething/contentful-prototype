@@ -51,6 +51,9 @@ $router->get('{category}/{slug}', function ($category, $slug) {
     return redirect('us/'.$category.'/'.$slug);
 })->where('category', $categories);
 
+// Blocks
+$router->view('us/blocks/{id}', 'app');
+
 // Pages
 $router->get('us/{slug}', 'PageController@show');
 $router->get('{slug}', function ($slug) {

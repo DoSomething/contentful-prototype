@@ -2,34 +2,23 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import Enclosure from '../../Enclosure';
-import ContentfulEntry from '../../ContentfulEntry';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
  * Render the block page.
  *
- * @returns {XML}
+ * @returns {ReactElement}
  */
-const BlockPage = ({ json }) => (
+const BlockPage = ({ id }) => (
   <div className="main clearfix">
     <Enclosure className="default-container margin-top-lg margin-bottom-lg">
-      <ContentfulEntry json={json} />
-      <ul className="form-actions">
-        <li>
-          <a href=".." className="button -tertiary">
-            or take another action
-          </a>
-        </li>
-      </ul>
+      <ContentfulEntryLoader id={id} />
     </Enclosure>
   </div>
 );
 
 BlockPage.propTypes = {
-  json: PropTypes.object, // eslint-disable-line react/forbid-prop-types
-};
-
-BlockPage.defaultProps = {
-  json: null,
+  id: PropTypes.string.isRequired,
 };
 
 export default BlockPage;
