@@ -21,7 +21,7 @@ export function getCampaignAdditionalContent(state) {
 export function getCampaignDataForNorthstar(state) {
   const data = {};
 
-  if (state.campaign) {
+  if (get(state, 'campaign.type', null) === 'campaign') {
     data.callToAction = state.campaign.callToAction;
     data.coverImage = contentfulImageUrl(
       state.campaign.coverImage.url,
