@@ -15,6 +15,7 @@ import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
+import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
@@ -94,6 +95,13 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <div className="margin-horizontal-md">
             <CampaignGalleryBlockContainer />
+          </div>
+        );
+
+      case 'postGallery':
+        return (
+          <div className="margin-horizontal-md">
+            <PostGalleryBlockQuery {...json.fields} />
           </div>
         );
 

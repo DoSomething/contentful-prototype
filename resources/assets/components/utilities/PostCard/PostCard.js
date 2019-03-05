@@ -51,7 +51,7 @@ const PostCard = ({ post }) => {
     case 'text':
       media = (
         <div className="chat-bubble -post-bubble margin-bottom-none rounded-top">
-          <p className="font-italic">{post.text}</p>
+          <p className="font-italic word-break">{post.text}</p>
         </div>
       );
       break;
