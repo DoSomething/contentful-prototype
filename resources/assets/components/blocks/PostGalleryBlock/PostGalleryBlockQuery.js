@@ -10,7 +10,7 @@ import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionB
 /**
  * The GraphQL query to load data for this component.
  */
-const CAMPAIGN_GALLERY_QUERY = gql`
+const POST_GALLERY_QUERY = gql`
   query PostGalleryQuery($actionIds: [String], $count: Int, $page: Int) {
     posts(actionIds: $actionIds, count: $count, page: $page) {
       ...PostCard
@@ -27,7 +27,7 @@ const CAMPAIGN_GALLERY_QUERY = gql`
  */
 const PostGalleryBlockQuery = ({ actionIds }) => (
   <PaginatedQuery
-    query={CAMPAIGN_GALLERY_QUERY}
+    query={POST_GALLERY_QUERY}
     queryName="posts"
     variables={{ actionIds }}
     count={9}
