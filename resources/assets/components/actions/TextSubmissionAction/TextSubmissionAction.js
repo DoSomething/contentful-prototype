@@ -80,9 +80,11 @@ class TextSubmissionAction extends React.Component {
 
     // Send request to store the text submission post.
     // (Use campaign ID independant post method if actionId is provided).
-    this.props.actionId
-      ? this.props.storePost(data)
-      : this.props.storeCampaignPost(this.props.campaignId, data);
+    if (this.props.actionId) {
+      this.props.storePost(data);
+    } else {
+      this.props.storeCampaignPost(this.props.campaignId, data);
+    }
   };
 
   render() {
