@@ -69,15 +69,20 @@ class TextSubmissionAction extends React.Component {
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
     });
 
-    // Send request to store the campaign text submission post.
-    this.props.storeCampaignPost(this.props.campaignId, {
+    const data = {
       action,
       actionId: this.props.actionId,
       body: formatFormFields(formFields),
       id: this.props.id,
       campaignContentfulId: this.props.campaignContentfulId,
       type,
-    });
+    };
+
+    // Send request to store the text submission post.
+    // (Use campaign ID independant post method if actionId is provided).
+    this.props.actionId
+      ? this.props.storePost(data)
+      : this.props.storeCampaignPost(this.props.campaignId, data);
   };
 
   render() {
@@ -166,13 +171,14 @@ TextSubmissionAction.propTypes = {
     action: PropTypes.string,
   }),
   buttonText: PropTypes.string,
-  campaignId: PropTypes.string.isRequired,
-  campaignContentfulId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string,
+  campaignContentfulId: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   initPostSubmissionItem: PropTypes.func.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
+  storePost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
     items: PropTypes.object,
@@ -188,6 +194,8 @@ TextSubmissionAction.defaultProps = {
   affirmationContent:
     "Thanks for joining the movement, and submitting your message! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit',
+  campaignId: null,
+  campaignContentfulId: null,
   className: null,
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',

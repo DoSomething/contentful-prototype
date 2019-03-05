@@ -5,6 +5,7 @@ import {
   initPostSubmissionItem,
   resetPostSubmissionItem,
   storeCampaignPost,
+  storePost,
 } from '../../../actions/post';
 
 /**
@@ -24,6 +25,7 @@ const actionCreators = {
   initPostSubmissionItem,
   resetPostSubmissionItem,
   storeCampaignPost,
+  storePost,
 };
 
 /**
