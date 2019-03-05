@@ -135,6 +135,7 @@ class TextSubmissionAction extends React.Component {
               <Button
                 type="submit"
                 loading={submissionItem ? submissionItem.isPending : true}
+                disabled={!this.state.textValue}
                 attached
               >
                 {this.props.buttonText}

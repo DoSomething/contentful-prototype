@@ -1,61 +1,162 @@
 import React from 'react';
+import { has } from 'lodash';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
+import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { formatFormFields, getFieldErrors } from '../../../helpers/forms';
 
 import './petition-submission-action.scss';
 
-const PetitionSubmissionAction = props => (
-  <React.Fragment>
-    <div className="petition-submission-action margin-bottom-lg" id={props.id}>
-      <Card className="bordered rounded" title={props.title}>
-        <TextContent className="padding-md">{props.content}</TextContent>
+class PetitionSubmissionAction extends React.Component {
+  constructor(props) {
+    super(props);
 
-        <form>
-          <div className="padded">
-            <textarea
-              className="text-field petition-textarea"
-              placeholder={props.textFieldPlaceholder}
-            />
-            <p className="footnote">500 character limit</p>
-          </div>
+    this.state = {
+      showAffirmation: false,
+      textValue: '',
+    };
 
-          <Button type="submit" attached>
-            {props.buttonText}
-          </Button>
-        </form>
-      </Card>
-    </div>
+    this.props.initPostSubmissionItem(this.props.id);
+  }
 
-    <div className="petition-submission-information">
-      <Card className="bordered rounded" title={props.informationTitle}>
-        <TextContent className="padding-md">
-          {props.informationContent}
-        </TextContent>
-      </Card>
-    </div>
-  </React.Fragment>
-);
+  static getDerivedStateFromProps(nextProps) {
+    const response = nextProps.submissions.items[nextProps.id] || null;
+
+    if (has(response, 'status.success')) {
+      // Resetting the submission item so that this won't be triggered continually for further renders.
+      nextProps.resetPostSubmissionItem(nextProps.id);
+
+      return {
+        // @TODO: change this to showModal, and display an affirmation modal in place of the success message.
+        showAffirmation: true,
+        textValue: '',
+      };
+    }
+
+    return null;
+  }
+
+  handleChange = event => this.setState({ textValue: event.target.value });
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const { id, actionId, storePost } = this.props;
+
+    // Reset any straggling post submission data for this action.
+    this.props.resetPostSubmissionItem(id);
+
+    const type = 'text';
+
+    // Send request to store the petition submission post.
+    storePost({
+      body: formatFormFields({
+        action_id: actionId,
+        text: this.state.textValue,
+        type,
+      }),
+      type,
+      actionId,
+      id,
+    });
+  };
+
+  render() {
+    const {
+      buttonText,
+      content,
+      id,
+      informationContent,
+      informationTitle,
+      submissions,
+      title,
+      textFieldPlaceholder,
+    } = this.props;
+
+    const submissionItem = submissions.items[id];
+
+    const formResponse = has(submissionItem, 'status') ? submissionItem : null;
+
+    const formErrors = getFieldErrors(formResponse);
+
+    return (
+      <React.Fragment>
+        <div className="petition-submission-action margin-bottom-lg" id={id}>
+          <Card className="bordered rounded" title={title}>
+            {this.state.showAffirmation ? (
+              <p className="padded affirmation-message">
+                Thanks for signing the petition!
+              </p>
+            ) : null}
+
+            {formResponse ? <FormValidation response={formResponse} /> : null}
+            <TextContent className="padding-md">{content}</TextContent>
+
+            <form onSubmit={this.handleSubmit}>
+              <div className="padded">
+                <textarea
+                  className={classnames('text-field petition-textarea', {
+                    'has-error shake': has(formErrors, 'text'),
+                  })}
+                  placeholder={textFieldPlaceholder}
+                  value={this.state.textValue}
+                  onChange={this.handleChange}
+                />
+                <p className="footnote">500 character limit</p>
+              </div>
+
+              <Button
+                type="submit"
+                attached
+                loading={submissionItem ? submissionItem.isPending : true}
+                disabled={this.state.showAffirmation}
+              >
+                {buttonText}
+              </Button>
+            </form>
+          </Card>
+        </div>
+
+        <div className="petition-submission-information">
+          <Card className="bordered rounded" title={informationTitle}>
+            <TextContent className="padding-md">
+              {informationContent}
+            </TextContent>
+          </Card>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
 
 PetitionSubmissionAction.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  content: PropTypes.string.isRequired,
-  textFieldPlaceholder: PropTypes.string,
+  actionId: PropTypes.number.isRequired,
   buttonText: PropTypes.string,
-  informationTitle: PropTypes.string,
+  content: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
+  informationTitle: PropTypes.string,
+  initPostSubmissionItem: PropTypes.func.isRequired,
+  resetPostSubmissionItem: PropTypes.func.isRequired,
+  storePost: PropTypes.func.isRequired,
+  submissions: PropTypes.shape({
+    items: PropTypes.object,
+  }).isRequired,
+  textFieldPlaceholder: PropTypes.string,
+  title: PropTypes.string,
 };
 
 PetitionSubmissionAction.defaultProps = {
-  title: 'Sign The Petition',
-  textFieldPlaceholder: 'Add your custom message...',
   buttonText: 'Add your name',
-  informationTitle: 'More Info',
+  textFieldPlaceholder: 'Add your custom message...',
+  title: 'Sign The Petition',
   informationContent:
     'Your first name and email will be added to our petition. We do not collect any additional information.',
+  informationTitle: 'More Info',
 };
 
 export default PetitionSubmissionAction;

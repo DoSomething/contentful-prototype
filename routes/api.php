@@ -38,6 +38,7 @@ $router->group(['prefix' => 'v2'], function () {
 
     // Posts
     $this->get('/posts', 'Api\PostsController@index');
+    $this->post('/posts', 'Api\PostsController@store');
 
     // Signups
     $this->get('/signups', 'Api\SignupsController@index');
