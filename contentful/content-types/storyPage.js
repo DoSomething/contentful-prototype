@@ -29,7 +29,7 @@ module.exports = function(migration) {
     .createField('subTitle')
     .name('Subtitle')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(false)
     .validations([])
     .disabled(false)
