@@ -62,7 +62,28 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
-        nodes: {},
+        nodes: {
+          'embedded-entry-block': [
+            {
+              linkContentType: [
+                'callToAction',
+                'campaignUpdate',
+                'cardBlock',
+                'contentBlock',
+                'imagesBlock',
+                'linkAction',
+                'petitionSubmissionAction',
+                'photoSubmissionAction',
+                'postGallery',
+                'referralSubmissionAction',
+                'shareAction',
+                'socialDriveAction',
+                'textSubmissionAction',
+                'voterRegistrationAction',
+              ],
+            },
+          ],
+        },
       },
       {
         enabledMarks: ['bold', 'italic', 'underline'],
@@ -84,7 +105,7 @@ module.exports = function(migration) {
         ],
 
         message:
-          'Only heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, quote, block entry, and asset nodes are allowed',
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, quote, block entry, and asset nodes are allowed',
       },
     ])
     .disabled(false)

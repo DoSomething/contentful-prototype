@@ -104,6 +104,13 @@ module.exports = function(migration) {
         message:
           'The provided image needs to be at least 1440px wide by 610px tall.',
       },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+
+        message: 'Cover images cannot be more than 20 megabytes.',
+      },
     ])
     .disabled(false)
     .omitted(false)
