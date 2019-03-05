@@ -29,7 +29,7 @@ module.exports = function(migration) {
     .createField('subTitle')
     .name('Subtitle')
     .type('Symbol')
-    .localized(true)
+    .localized(false)
     .required(false)
     .validations([])
     .disabled(false)
@@ -103,6 +103,13 @@ module.exports = function(migration) {
 
         message:
           'The provided image needs to be at least 1440px wide by 610px tall.',
+      },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+
+        message: 'Cover images cannot be more than 20 megabytes.',
       },
     ])
     .disabled(false)
