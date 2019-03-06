@@ -116,6 +116,7 @@ class PetitionSubmissionAction extends React.Component {
                   placeholder={textFieldPlaceholder}
                   value={this.state.textValue}
                   onChange={this.handleChange}
+                  disabled={this.state.showAffirmation}
                 />
                 <p className="footnote">500 character limit</p>
               </div>
