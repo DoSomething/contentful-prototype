@@ -60,7 +60,8 @@ $router->get('{slug}', function ($slug) {
     return redirect('us/'.$slug);
 });
 
-// Campaigns cache clear
+// Cache
+$router->get('cache/{cacheId}', 'CacheController');
 $router->get('next/cache/{cacheId}', 'CacheController');
 
 // Embeds
