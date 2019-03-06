@@ -1,7 +1,9 @@
 import React from 'react';
-import { has } from 'lodash';
+import { get, has } from 'lodash';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Query } from 'react-apollo';
 
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
@@ -75,6 +77,7 @@ class PetitionSubmissionAction extends React.Component {
       submissions,
       title,
       textFieldPlaceholder,
+      userId,
     } = this.props;
 
     const submissionItem = submissions.items[id];
@@ -82,6 +85,14 @@ class PetitionSubmissionAction extends React.Component {
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
 
     const formErrors = getFieldErrors(formResponse);
+
+    const FIRST_NAME_QUERY = gql`
+      query AccountQuery($userId: String!) {
+        user(id: $userId) {
+          firstName
+        }
+      }
+    `;
 
     return (
       <React.Fragment>
@@ -108,6 +119,36 @@ class PetitionSubmissionAction extends React.Component {
                 />
                 <p className="footnote">500 character limit</p>
               </div>
+
+              {userId ? (
+                <Query
+                  query={FIRST_NAME_QUERY}
+                  queryName="user"
+                  variables={{ userId }}
+                >
+                  {({ loading, data }) => {
+                    let signature = get(data, 'user.firstName', 'A Doer');
+
+                    if (loading) {
+                      signature = 'Loading name...';
+                    }
+
+                    return (
+                      <div className="padded">
+                        <p className="petition-signature-label padding-bottom-sm">
+                          Signed,
+                        </p>
+                        <input
+                          className="text-field petition-signature"
+                          type="text"
+                          disabled
+                          value={signature}
+                        />
+                      </div>
+                    );
+                  }}
+                </Query>
+              ) : null}
 
               <Button
                 type="submit"
@@ -148,6 +189,7 @@ PetitionSubmissionAction.propTypes = {
   }).isRequired,
   textFieldPlaceholder: PropTypes.string,
   title: PropTypes.string,
+  userId: PropTypes.string,
 };
 
 PetitionSubmissionAction.defaultProps = {
@@ -157,6 +199,7 @@ PetitionSubmissionAction.defaultProps = {
   informationContent:
     'Your first name and email will be added to our petition. We do not collect any additional information.',
   informationTitle: 'More Info',
+  userId: null,
 };
 
 export default PetitionSubmissionAction;
