@@ -25,6 +25,7 @@ import './polyfills';
 
 // Style Components
 import './scss/base.scss';
+import './scss/admin-dashboard.scss';
 import './scss/chrome.scss';
 import './scss/container.scss';
 import './scss/navigation.scss';
@@ -41,6 +42,7 @@ import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
 import { googleAnalyticsInit } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
+import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 
 // Display environment badge on local, dev, or QA:
 require('environment-badge')();
@@ -64,6 +66,11 @@ ready(() => {
 
   // Add event listeners for GA.
   googleAnalyticsInit(history);
+
+  // Add event listeners for the Admin Dashboard.
+  if (window.AUTH.isAuthenticated && window.AUTH.role !== 'user') {
+    bindAdminDashboardEvents();
+  }
 
   // Render the application!
   const appElement = document.getElementById('app');

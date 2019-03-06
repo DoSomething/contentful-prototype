@@ -773,3 +773,23 @@ export function withoutUndefined(data) {
 export function isActionPage(page) {
   return page.type === 'page' && page.fields.slug.endsWith('action');
 }
+
+/**
+ * Toggle the specified class on the given target element
+ * when the button element is clicked or touched.
+ *
+ * @param  {Element} button
+ * @param  {Element} target
+ * @param  {String} toggleClass
+ */
+export function toggleHandler(button, target, toggleClass) {
+  if (!button || !target) {
+    return;
+  }
+
+  function clickHandler() {
+    target.classList.toggle(toggleClass);
+  }
+
+  button.addEventListener('mousedown', clickHandler, false);
+}
