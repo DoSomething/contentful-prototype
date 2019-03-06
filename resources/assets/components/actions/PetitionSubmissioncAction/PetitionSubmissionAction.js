@@ -1,6 +1,6 @@
 import React from 'react';
-import { get, has } from 'lodash';
 import gql from 'graphql-tag';
+import { get, has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Query } from 'react-apollo';
