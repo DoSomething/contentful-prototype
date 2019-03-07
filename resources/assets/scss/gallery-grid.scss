@@ -1,7 +1,8 @@
 @import 'next-toolbox';
 
 .gallery-grid-quartet,
-.gallery-grid-triad {
+.gallery-grid-triad,
+.gallery-grid-duo {
   display: grid;
   grid-template-columns: 1fr;
   grid-row-gap: $half-spacing;
@@ -42,6 +43,18 @@
 
   @include media($larger) {
     grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
+  }
+}
+
+.gallery-grid-duo {
+  @include media($large) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(2, 1fr);
     grid-column-gap: $base-spacing;
     grid-row-gap: $base-spacing;
   }
