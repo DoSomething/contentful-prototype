@@ -84,7 +84,8 @@ function get_heroku_url_vars($url, $key, $default = '')
  *
  * @return bool
  */
-function has_staff_access() {
+function has_staff_access()
+{
     return auth()->user() && auth()->user()->isStaff();
 }
 
