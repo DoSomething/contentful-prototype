@@ -89,8 +89,8 @@ class PetitionSubmissionAction extends React.Component {
 
     const formErrors = getFieldErrors(formResponse);
 
-    const FIRST_NAME_QUERY = gql`
-      query AccountQuery($userId: String!) {
+    const SIGNATURE_QUERY = gql`
+      query SignatureQuery($userId: String!) {
         user(id: $userId) {
           firstName
         }
@@ -126,7 +126,7 @@ class PetitionSubmissionAction extends React.Component {
 
               {userId ? (
                 <Query
-                  query={FIRST_NAME_QUERY}
+                  query={SIGNATURE_QUERY}
                   queryName="user"
                   variables={{ userId }}
                 >
