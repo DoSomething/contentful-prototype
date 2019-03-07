@@ -81,6 +81,7 @@ export function renderLinkAction(step) {
  */
 export function renderTextSubmissionAction(data) {
   const contentfulId = data.id;
+  const fields = withoutNulls(data.fields);
 
   return (
     <div
@@ -91,7 +92,7 @@ export function renderTextSubmissionAction(data) {
         name="text_submission_action-top"
         waypointData={{ contentfulId }}
       />
-      <TextSubmissionActionContainer id={contentfulId} {...data.fields} />
+      <TextSubmissionActionContainer id={contentfulId} {...fields} />
       <SubmissionGalleryBlockContainer type="text" />
       <PuckWaypoint
         name="text_submission_action-bottom"

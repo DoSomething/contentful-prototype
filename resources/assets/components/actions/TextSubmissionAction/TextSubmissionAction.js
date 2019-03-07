@@ -113,31 +113,25 @@ class TextSubmissionAction extends React.Component {
 
             <form onSubmit={this.handleSubmit}>
               <div className="padded">
-                <div className="form-item">
-                  <label
-                    className={classnames('field-label', {
-                      'has-error': has(errors, 'text'),
-                    })}
-                    htmlFor="text"
-                  >
-                    {this.props.textFieldLabel}
-                  </label>
-                  <input
-                    className={classnames('text-field', {
-                      'has-error shake': has(errors, 'text'),
-                    })}
-                    type="text"
-                    id="text"
-                    name="text"
-                    placeholder={this.props.textFieldPlaceholder}
-                    value={this.state.textValue}
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <p className="footnote">
-                  Your submission will be reviewed by a DoSomething.org staffer
-                  and added to our public gallery.
-                </p>
+                <label
+                  className={classnames('field-label', {
+                    'has-error': has(errors, 'text'),
+                  })}
+                  htmlFor="text"
+                >
+                  {this.props.textFieldLabel}
+                </label>
+                <textarea
+                  className={classnames('text-field text-submission-texarea', {
+                    'has-error shake': has(errors, 'text'),
+                  })}
+                  id="text"
+                  name="text"
+                  placeholder={this.props.textFieldPlaceholder}
+                  value={this.state.textValue}
+                  onChange={this.handleChange}
+                />
+                <p className="footnote">500 character limit</p>
               </div>
               <Button
                 type="submit"
@@ -147,9 +141,26 @@ class TextSubmissionAction extends React.Component {
               >
                 {this.props.buttonText}
               </Button>
+              <p className="footnote padding-horizontal-md padding-bottom-md">
+                Your submission will be reviewed by a DoSomething.org staffer
+                and added to our public gallery.
+              </p>
             </form>
           </Card>
         </div>
+
+        {this.props.informationContent ? (
+          <div className="text-submission-information margin-top-lg">
+            <Card
+              className="bordered rounded"
+              title={this.props.informationTitle}
+            >
+              <TextContent className="padding-md">
+                {this.props.informationContent}
+              </TextContent>
+            </Card>
+          </div>
+        ) : null}
 
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
@@ -177,6 +188,8 @@ TextSubmissionAction.propTypes = {
   campaignContentfulId: PropTypes.string,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
+  informationTitle: PropTypes.string,
+  informationContent: PropTypes.string,
   initPostSubmissionItem: PropTypes.func.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
@@ -199,6 +212,8 @@ TextSubmissionAction.defaultProps = {
   campaignId: null,
   campaignContentfulId: null,
   className: null,
+  informationContent: null,
+  informationTitle: 'More Info',
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',
   title: 'Submit your text',

@@ -22,6 +22,8 @@ class TextSubmissionAction extends Entity implements JsonSerializable
                 'textFieldLabel' => $this->textFieldLabel,
                 'textFieldPlaceholder' => $this->textFieldPlaceholder,
                 'buttonText' => $this->buttonText,
+                'informationTitle' => $this->informationTitle,
+                'informationContent' => $this->informationContent,
                 'affirmationContent' => $this->affirmationContent ?: null,
                 'additionalContent' => $this->additionalContent,
             ],

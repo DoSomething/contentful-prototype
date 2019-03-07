@@ -1,12 +1,11 @@
 @import '../../../scss/next-toolbox.scss';
 
 .text-submission-action {
-  @include media($large) {
-    padding-right: $half-spacing;
-    width: 66.6666666666666%;
-  }
-
   .field-label {
     height: auto;
+  }
+
+  .text-submission-texarea {
+    height: 138px;
   }
 }
