@@ -22,7 +22,10 @@ class TextSubmissionAction extends React.Component {
       textValue: '',
     };
 
-    this.props.initPostSubmissionItem(this.props.id);
+    // Initialize post submission item in store if it doesn't yet exist.
+    if (!props.submissions.items[props.id]) {
+      this.props.initPostSubmissionItem(this.props.id);
+    }
   }
 
   static getDerivedStateFromProps(nextProps) {

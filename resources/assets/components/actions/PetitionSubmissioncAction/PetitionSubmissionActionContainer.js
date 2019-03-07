@@ -1,17 +1,19 @@
 import { connect } from 'react-redux';
 
+import { getUserId } from '../../../selectors/user';
+import PetitionSubmissionAction from './PetitionSubmissionAction';
 import {
   initPostSubmissionItem,
   resetPostSubmissionItem,
   storePost,
 } from '../../../actions/post';
-import PetitionSubmissionAction from './PetitionSubmissionAction';
 
 /**
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
   submissions: state.postSubmissions,
+  userId: getUserId(state),
 });
 
 /**
