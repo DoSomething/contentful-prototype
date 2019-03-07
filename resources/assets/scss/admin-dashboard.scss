@@ -4,9 +4,9 @@ $dashboard-background-color: #999;
 
 .admin-dashboard {
   background-color: $dashboard-background-color;
-  position: absolute;
+  position: fixed;
   transform: translateY(-100%);
-  transition: all 0.2s ease-out;
+  transition: all 0.3s ease-out;
   width: 100%;
   z-index: 10000;
 
@@ -14,6 +14,18 @@ $dashboard-background-color: #999;
     margin: 0 auto;
     max-width: 1440px;
     padding: $base-spacing $base-spacing $section-spacing;
+  }
+
+  .icon-bug {
+    fill: rgba(255, 255, 255, 0.5);
+    height: 20px;
+    left: 65%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -10%) rotate(135deg);
+    transform-origin: center center;
+    transition: transform 1s ease-out;
+    width: 20px;
   }
 
   .toggle {
@@ -31,19 +43,11 @@ $dashboard-background-color: #999;
 
     &:hover {
       bottom: -25px;
-    }
-  }
 
-  .icon-bug {
-    fill: rgba(255, 255, 255, 0.7);
-    height: 20px;
-    left: 65%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -10%) rotate(135deg);
-    transform-origin: center center;
-    transition: all 1s ease-out;
-    width: 20px;
+      .icon-bug {
+        fill: rgba(255, 255, 255, 0.7);
+      }
+    }
   }
 
   &.is-visible {
