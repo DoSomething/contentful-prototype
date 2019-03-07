@@ -6,6 +6,36 @@ use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
 
 /**
+ * Get a composed cache ID from a prefix and url slug.
+ *
+ * @param  string $prefix
+ * @param  string $slug
+ * @return string
+ */
+function get_cache_id($prefix, $slug)
+{
+    return $prefix.'_'.str_replace('/', '_', $slug);
+}
+
+/**
+ * Get a composed cache URL with a redirect URL to go to
+ * after clearing the cached item.
+ *
+ * @param  string $prefix
+ * @param  string $slug
+ * @return string
+ */
+function get_cache_url($prefix, $slug)
+{
+    $cacheId = get_cache_id($prefix, $slug);
+
+    $redirectUrl = str_replace(request()->root(), '', request()->fullUrl());
+
+    // Return full cache url, with redirect url encoded to ensure all query parameters are included.
+    return '/cache/'.$cacheId.'?redirect='.urlencode($redirectUrl);
+}
+
+/**
  * Get the appropriate page content type by page category.
  *
  * @param  string $category
@@ -47,6 +77,16 @@ function get_heroku_url_vars($url, $key, $default = '')
     } else {
         return $value;
     }
+}
+
+/**
+ * Determin if the user is authenticated and that they have Staff authorization.
+ *
+ * @return bool
+ */
+function has_staff_access()
+{
+    return auth()->user() && auth()->user()->isStaff();
 }
 
 /**
@@ -95,6 +135,7 @@ function remember($key, $minutes, Closure $callback)
  * @param  string $path
  * @param  array  $query
  * @return string
+ * @deprecated
  */
 function make_cache_key($path, $query = [])
 {

@@ -38,6 +38,7 @@ class PageController extends Controller
             'headTitle' => $page->fields->title,
             'metadata' => get_metadata($page),
             'socialFields' => get_social_fields($page),
+            'cacheUrl' => get_cache_url('page', $slug),
         ])->with('state', [
             'page' => $page,
         ]);

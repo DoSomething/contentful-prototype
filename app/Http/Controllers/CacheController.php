@@ -17,7 +17,7 @@ class CacheController extends Controller
     {
         $redirectUrl = $request->query('redirect') ?: url()->previous();
 
-        if (auth()->user() && auth()->user()->isStaff()) {
+        if (has_staff_access()) {
             cache()->forget($cacheId);
             $message = $cacheId.' has been cleared from the cache';
         } else {

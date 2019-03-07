@@ -27,6 +27,10 @@
 </head>
 
 <body>
+    @if (has_staff_access() && isset($cacheUrl))
+        @include('partials.admin-dashboard')
+    @endif
+
     @if (session('flash_message'))
         <div class="{{session('flash_message')['class']}}">
             <em>{{ session('flash_message')['text'] }}</em>
