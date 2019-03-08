@@ -10,7 +10,6 @@ describe('TextSubmissionAction component', () => {
     <TextSubmissionAction
       campaignId="1234"
       id={id}
-      initPostSubmissionItem={jest.fn()}
       resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{

@@ -21,11 +21,6 @@ class PetitionSubmissionAction extends React.Component {
       showAffirmation: false,
       textValue: '',
     };
-
-    // Initialize post submission item in store if it doesn't yet exist.
-    if (!props.submissions.items[props.id]) {
-      this.props.initPostSubmissionItem(this.props.id);
-    }
   }
 
   static getDerivedStateFromProps(nextProps) {
@@ -157,7 +152,7 @@ class PetitionSubmissionAction extends React.Component {
               <Button
                 type="submit"
                 attached
-                loading={submissionItem ? submissionItem.isPending : true}
+                loading={submissionItem && submissionItem.isPending}
                 disabled={this.state.showAffirmation}
               >
                 {buttonText}
@@ -185,7 +180,6 @@ PetitionSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
-  initPostSubmissionItem: PropTypes.func.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storePost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({

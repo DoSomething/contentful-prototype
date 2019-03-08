@@ -10,7 +10,6 @@ describe('PhotoSubmissionAction component', () => {
     <ReferralSubmissionAction
       campaignId="1234"
       campaignRunId="6789"
-      initPostSubmissionItem={jest.fn()}
       resetPostSubmissionItem={jest.fn()}
       id={id}
       storeCampaignPost={jest.fn()}

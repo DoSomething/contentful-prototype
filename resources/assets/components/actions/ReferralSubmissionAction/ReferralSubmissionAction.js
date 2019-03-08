@@ -21,8 +21,6 @@ class ReferralSubmissionAction extends React.Component {
       // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
       emailValue: '',
     };
-
-    this.props.initPostSubmissionItem(this.props.id);
   }
 
   static getDerivedStateFromProps(nextProps) {
@@ -155,7 +153,7 @@ class ReferralSubmissionAction extends React.Component {
             </div>
             <Button
               type="submit"
-              loading={submissionItem ? submissionItem.isPending : true}
+              loading={submissionItem && submissionItem.isPending}
               attached
             >
               {this.props.buttonText ||
@@ -188,7 +186,6 @@ ReferralSubmissionAction.propTypes = {
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
-  initPostSubmissionItem: PropTypes.func.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
