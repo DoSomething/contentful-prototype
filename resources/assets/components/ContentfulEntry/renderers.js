@@ -93,7 +93,9 @@ export function renderTextSubmissionAction(data) {
         waypointData={{ contentfulId }}
       />
       <TextSubmissionActionContainer id={contentfulId} {...fields} />
-      <SubmissionGalleryBlockContainer type="text" />
+      <div className="margin-vertical-md">
+        <SubmissionGalleryBlockContainer type="text" />
+      </div>
       <PuckWaypoint
         name="text_submission_action-bottom"
         waypointData={{ contentfulId }}
@@ -119,7 +121,9 @@ export function renderPhotoSubmissionAction(data) {
         waypointData={{ contentfulId }}
       />
       <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
-      <SubmissionGalleryBlockContainer type="photo" />
+      <div className="margin-vertical-md">
+        <SubmissionGalleryBlockContainer type="photo" />
+      </div>
       <PuckWaypoint
         name="photo_submission_action-bottom"
         waypointData={{ contentfulId }}
