@@ -21,11 +21,6 @@ class TextSubmissionAction extends React.Component {
       showModal: false,
       textValue: '',
     };
-
-    // Initialize post submission item in store if it doesn't yet exist.
-    if (!props.submissions.items[props.id]) {
-      this.props.initPostSubmissionItem(this.props.id);
-    }
   }
 
   static getDerivedStateFromProps(nextProps) {
@@ -138,7 +133,7 @@ class TextSubmissionAction extends React.Component {
               </div>
               <Button
                 type="submit"
-                loading={submissionItem ? submissionItem.isPending : true}
+                loading={submissionItem && submissionItem.isPending}
                 disabled={!this.state.textValue}
                 attached
               >
@@ -193,7 +188,6 @@ TextSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired,
   informationTitle: PropTypes.string,
   informationContent: PropTypes.string,
-  initPostSubmissionItem: PropTypes.func.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   storePost: PropTypes.func.isRequired,

@@ -68,8 +68,6 @@ class PhotoSubmissionAction extends React.Component {
       showModal: false,
       whyParticipatedValue: '',
     };
-
-    this.props.initPostSubmissionItem(this.props.id);
   }
 
   /**
@@ -363,7 +361,7 @@ class PhotoSubmissionAction extends React.Component {
 
                 <Button
                   type="submit"
-                  loading={submissionItem ? submissionItem.isPending : true}
+                  loading={submissionItem && submissionItem.isPending}
                   attached
                 >
                   {this.props.buttonText}
@@ -416,7 +414,6 @@ PhotoSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
-  initPostSubmissionItem: PropTypes.func.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,
