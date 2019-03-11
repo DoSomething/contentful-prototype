@@ -3,10 +3,15 @@ import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Profile from './Profile';
+import Subscriptions from './Subscriptions';
 import UserPostsQuery from './UserPostsQuery';
 
 const AccountRoute = props => (
   <Switch>
+    <Route
+      path="/us/account/profile/subscriptions"
+      render={() => <Subscriptions {...props} />}
+    />
     <Route path="/us/account/profile" render={() => <Profile {...props} />} />
     <Route
       path="/us/account/campaigns"

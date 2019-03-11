@@ -18,6 +18,13 @@ const AccountNavigation = () => (
       >
         Profile
       </NavLink>
+      <NavLink
+        className="nav-link"
+        activeClassName="is-active"
+        to="/us/account/profile/subscriptions"
+      >
+        Subscriptions
+      </NavLink>
     </div>
   </div>
 );
