@@ -2,6 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
+import { format } from 'date-fns';
 
 import PostBadge from './PostBadge';
 import { BaseFigure } from '../../Figure';
@@ -22,6 +23,7 @@ export const postCardFragment = gql`
     quantity
     location(format: HUMAN_FORMAT)
     signupId
+    createdAt
 
     actionDetails {
       anonymous
@@ -35,9 +37,11 @@ export const postCardFragment = gql`
 `;
 
 const PostCard = ({ post }) => {
+  const isAnonymous = post.actionDetails.anonymous;
+
   // If this post is for an anonymous action, label it with the state (if available).
   // For non-anonymous posts (default), label with the user's first name.
-  const authorLabel = post.actionDetails.anonymous
+  const authorLabel = isAnonymous
     ? post.location || 'Anonymous'
     : get(post, 'user.firstName', 'A Doer');
 
@@ -79,6 +83,9 @@ const PostCard = ({ post }) => {
           <p className="footnote">
             {post.quantity} {post.actionDetails.noun}
           </p>
+        ) : null}
+        {isAnonymous ? (
+          <p className="footnote">{format(post.createdAt, 'PPP')}</p>
         ) : null}
         {post.type !== 'text' && post.text ? <p>{post.text}</p> : null}
       </BaseFigure>
