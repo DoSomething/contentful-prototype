@@ -101,7 +101,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'postGallery':
         return (
           <div className="margin-horizontal-md">
-            <PostGalleryBlockQuery {...json.fields} />
+            <PostGalleryBlockQuery {...withoutNulls(json.fields)} />
           </div>
         );
 

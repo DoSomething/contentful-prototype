@@ -25,17 +25,18 @@ const POST_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const PostGalleryBlockQuery = ({ actionIds }) => (
+const PostGalleryBlockQuery = ({ actionIds, itemsPerRow }) => (
   <PaginatedQuery
     query={POST_GALLERY_QUERY}
     queryName="posts"
     variables={{ actionIds }}
-    count={9}
+    count={itemsPerRow * 3}
   >
     {({ result, fetching, fetchMore }) => (
       <PostGallery
         posts={result}
         loading={fetching}
+        itemsPerRow={itemsPerRow}
         loadMorePosts={fetchMore}
       />
     )}
@@ -43,11 +44,13 @@ const PostGalleryBlockQuery = ({ actionIds }) => (
 );
 
 PostGalleryBlockQuery.propTypes = {
-  actionIds: PropTypes.arrayOf(PropTypes.string),
+  actionIds: PropTypes.arrayOf(PropTypes.number),
+  itemsPerRow: PropTypes.number,
 };
 
 PostGalleryBlockQuery.defaultProps = {
   actionIds: [],
+  itemsPerRow: 3,
 };
 
 // Export the GraphQL query component.
