@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Card from '../Card/Card';
@@ -9,11 +10,20 @@ import PostCard from '../PostCard/PostCard';
 import './post-gallery.scss';
 
 const PostGallery = props => {
-  const { loading, posts, loadMorePosts } = props;
+  const { loading, posts, itemsPerRow, loadMorePosts } = props;
+
+  // Map the desired 'items per row' to a gallery type.
+  const galleryTypes = {
+    2: 'duo',
+    3: 'triad',
+  };
 
   return posts.length ? (
     <div>
-      <Gallery type="triad" className="post-gallery expand-horizontal-md">
+      <Gallery
+        type={get(galleryTypes, itemsPerRow)}
+        className="post-gallery expand-horizontal-md"
+      >
         {posts.map(post => (
           <Card className="rounded h-full" key={post.id}>
             <PostCard post={post} />
@@ -33,6 +43,7 @@ const PostGallery = props => {
 
 PostGallery.propTypes = {
   posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  itemsPerRow: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
 };

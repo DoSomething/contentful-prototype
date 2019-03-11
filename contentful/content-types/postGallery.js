@@ -31,10 +31,27 @@ module.exports = function(migration) {
     .localized(false)
     .required(true);
 
+  postGallery
+    .createField('itemsPerRow')
+    .name('Items Per Row')
+    .type('Integer')
+    .validations([
+      {
+        in: [2, 3],
+      },
+    ])
+    .required(true)
+    .localized(false);
+
   postGallery.changeEditorInterface('internalTitle', 'singleLine', {});
 
   postGallery.changeEditorInterface('actionIds', 'listInput', {
     helpText: `A comma-separated list of one or more Action IDs to display in this gallery. Action IDs
     can be found in Rogue: https://dosome.click/nyshrf`,
+  });
+
+  postGallery.changeEditorInterface('itemsPerRow', 'radio', {
+    helpText:
+      'The maximum number of items in a single row when viewing the gallery in a large display.',
   });
 };
