@@ -7,66 +7,88 @@ import { Mutation } from 'react-apollo';
 import Button from '../../utilities/Button/Button';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
-const EMAIL_SUBSCRIPTIONS_MUTATION = gql`
-  mutation EmailSubscriptionsMutation(
-    $userId: String!
-    $emailSubscriptionTopics: [EmailSubscriptionTopic]!
-  ) {
-    updateEmailSubscriptionTopics(
-      id: $userId
-      emailSubscriptionTopics: $emailSubscriptionTopics
-    ) {
-      emailSubscriptionTopics
-    }
+class EmailSubscriptions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-`;
 
-const EmailSubscriptions = props => (
-  <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
-    {emailSubscriptionsMutation => {
-      const shutUp = 'face';
-      return (
-        <form
-          onSubmit={event => {
-            event.preventDefault();
-            const topics = [];
-            // determine if there should be topics here
-            emailSubscriptionsMutation({
-              variables: {
-                userId: props.user.id,
-                emailSubscriptionTopics: topics,
-              },
-            });
-          }}
-        >
-          <div className="padded">
-            <div className="form-wrapper affiliate-option clear-both">
-              <label className="option -checkbox" htmlFor="email_topics">
-                <input
-                  type="checkbox"
-                  id="opt_in"
-                  name="email_topics"
-                  defaultChecked={
-                    props.user.emailSubscriptionTopics
-                      ? props.user.emailSubscriptionTopics.includes('NEWS')
-                      : false
-                  }
-                  className="form-checkbox"
-                />
-                <span className="option__indicator" />
-                NEWS
-              </label>
+  render() {
+    const EMAIL_SUBSCRIPTIONS_MUTATION = gql`
+      mutation EmailSubscriptionsMutation(
+        $userId: String!
+        $emailSubscriptionTopics: [EmailSubscriptionTopic]!
+      ) {
+        updateEmailSubscriptionTopics(
+          id: $userId
+          emailSubscriptionTopics: $emailSubscriptionTopics
+        ) {
+          emailSubscriptionTopics
+        }
+      }
+    `;
+
+    <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
+      {emailSubscriptionsMutation => {
+        const shutUp = 'face';
+
+        function handleTopicChange(event) {
+          const target = event.target;
+          const value = target.checked;
+
+          const name = target.name;
+
+          this.setState({
+            [name]: value,
+          });
+        }
+
+        return (
+          <form
+            onSubmit={event => {
+              event.preventDefault();
+              const topics = [];
+              // determine if there should be topics here
+              emailSubscriptionsMutation({
+                variables: {
+                  userId: this.props.user.id,
+                  emailSubscriptionTopics: topics,
+                },
+              });
+            }}
+          >
+            <div className="padded">
+              <div className="form-wrapper affiliate-option clear-both">
+                <label className="option -checkbox" htmlFor="email_topics">
+                  <input
+                    type="checkbox"
+                    id="opt_in"
+                    name="news"
+                    defaultChecked={
+                      this.props.user.emailSubscriptionTopics
+                        ? this.props.user.emailSubscriptionTopics.includes(
+                            'NEWS',
+                          )
+                        : false
+                    }
+                    className="form-checkbox"
+                    onChange={handleTopicChange}
+                  />
+                  <span className="option__indicator" />
+                  NEWS
+                </label>
+              </div>
             </div>
-          </div>
 
-          <Button type="submit" attached>
-            Save subscriptions {shutUp}
-          </Button>
-        </form>
-      );
-    }}
-  </Mutation>
-);
+            <Button type="submit" attached>
+              Save subscriptions {shutUp}
+            </Button>
+          </form>
+        );
+      }}
+    </Mutation>;
+  }
+}
 
 EmailSubscriptions.propTypes = {
   user: PropTypes.shape({
