@@ -30,7 +30,7 @@ const PostGalleryBlockQuery = ({ actionIds, itemsPerRow }) => (
     query={POST_GALLERY_QUERY}
     queryName="posts"
     variables={{ actionIds }}
-    count={9}
+    count={itemsPerRow * 3}
   >
     {({ result, fetching, fetchMore }) => (
       <PostGallery
