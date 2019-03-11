@@ -10,9 +10,12 @@ import Button from '../../utilities/Button/Button';
 const EMAIL_SUBSCRIPTIONS_MUTATION = gql`
   mutation EmailSubscriptionsMutation(
     $userId: String!
-    $emailSubscriptionTopics: [EmailSubscriptionTopic]
+    $emailSubscriptionTopics: [EmailSubscriptionTopic]!
   ) {
-    user(id: $userId, emailSubscriptionTopics: $emailSubscriptionTopics) {
+    updateEmailSubscriptionTopics(
+      id: $userId
+      emailSubscriptionTopics: $emailSubscriptionTopics
+    ) {
       emailSubscriptionTopics
     }
   }
@@ -26,10 +29,12 @@ const EmailSubscriptions = props => (
         <form
           onSubmit={event => {
             event.preventDefault();
+            const topics = [];
+            // determine if there should be topics here
             emailSubscriptionsMutation({
               variables: {
-                userId: props.user.userId,
-                emailSubscriptionTopics: null,
+                userId: props.user.id,
+                emailSubscriptionTopics: topics,
               },
             });
           }}
@@ -41,10 +46,11 @@ const EmailSubscriptions = props => (
                   type="checkbox"
                   id="opt_in"
                   name="email_topics"
-                  value="news"
-                  defaultChecked={props.user.emailSubscriptionTopics.includes(
-                    'NEWS',
-                  )}
+                  defaultChecked={
+                    props.user.emailSubscriptionTopics
+                      ? props.user.emailSubscriptionTopics.includes('NEWS')
+                      : false
+                  }
                   className="form-checkbox"
                 />
                 <span className="option__indicator" />
@@ -65,7 +71,7 @@ const EmailSubscriptions = props => (
 EmailSubscriptions.propTypes = {
   user: PropTypes.shape({
     emailSubscriptionTopics: PropTypes.array,
-    userId: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
 };
 
