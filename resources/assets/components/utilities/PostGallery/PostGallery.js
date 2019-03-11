@@ -9,14 +9,14 @@ import PostCard from '../PostCard/PostCard';
 
 import './post-gallery.scss';
 
+// Mapping of 'items per row' to gallery style.
+const galleryTypes = {
+  2: 'duo',
+  3: 'triad',
+};
+
 const PostGallery = props => {
   const { loading, posts, itemsPerRow, loadMorePosts } = props;
-
-  // Map the desired 'items per row' to a gallery type.
-  const galleryTypes = {
-    2: 'duo',
-    3: 'triad',
-  };
 
   return posts.length ? (
     <div>
@@ -43,13 +43,14 @@ const PostGallery = props => {
 
 PostGallery.propTypes = {
   posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  itemsPerRow: PropTypes.number.isRequired,
+  itemsPerRow: PropTypes.oneOf(Object.keys(galleryTypes).map(Number)),
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
 };
 
 PostGallery.defaultProps = {
   posts: [],
+  itemsPerRow: 3,
 };
 
 export default PostGallery;
