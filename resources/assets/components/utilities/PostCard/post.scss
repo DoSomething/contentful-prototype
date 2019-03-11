@@ -18,18 +18,6 @@
     color: $med-gray;
   }
 
-  > .figure__media {
-    background-color: $white;
-
-    & > img {
-      width: 480px; // HACK: Expand smaller images to fit in card.
-    }
-  }
-
-  > .figure__body p {
-    word-break: break-word;
-  }
-
   .figure.-right > .figure__body {
     overflow: unset;
   }
