@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Card from '../Card/Card';
 import Gallery from '../Gallery/Gallery';
 import LoadMore from '../LoadMore/LoadMore';
 import PostCard from '../PostCard/PostCard';
@@ -25,9 +24,7 @@ const PostGallery = props => {
         className="post-gallery expand-horizontal-md"
       >
         {posts.map(post => (
-          <Card className="rounded h-full" key={post.id}>
-            <PostCard post={post} />
-          </Card>
+          <PostCard post={post} />
         ))}
       </Gallery>
       <LoadMore

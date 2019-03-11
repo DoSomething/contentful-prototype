@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { format } from 'date-fns';
 import { propType } from 'graphql-anywhere';
 
+import Card from '../Card/Card';
 import PostBadge from './PostBadge';
 import { BaseFigure } from '../../Figure';
 import LazyImage from '../../utilities/LazyImage';
@@ -74,28 +75,30 @@ const PostCard = ({ post }) => {
   }
 
   return (
-    <div className={`post post-${post.type}`}>
-      <div className="flex-grow">{media}</div>
-      <BaseFigure
-        media={reactionElement}
-        alignment="right"
-        className="padded margin-bottom-none"
-      >
-        <h4>
-          {authorLabel}
-          <PostBadge status={post.status} tags={post.tags} />
-        </h4>
-        {post.quantity ? (
-          <p className="footnote">
-            {post.quantity} {post.actionDetails.noun}
-          </p>
-        ) : null}
-        {isAnonymous ? (
-          <p className="footnote">{format(post.createdAt, 'PPP')}</p>
-        ) : null}
-        {post.type !== 'text' && post.text ? <p>{post.text}</p> : null}
-      </BaseFigure>
-    </div>
+    <Card className={`rounded h-full post-ornament-${post.type}`} key={post.id}>
+      <div className="post">
+        <div className="flex-grow">{media}</div>
+        <BaseFigure
+          media={reactionElement}
+          alignment="right"
+          className="padded margin-bottom-none"
+        >
+          <h4>
+            {authorLabel}
+            <PostBadge status={post.status} tags={post.tags} />
+          </h4>
+          {post.quantity ? (
+            <p className="footnote">
+              {post.quantity} {post.actionDetails.noun}
+            </p>
+          ) : null}
+          {isAnonymous ? (
+            <p className="footnote">{format(post.createdAt, 'PPP')}</p>
+          ) : null}
+          {post.type !== 'text' && post.text ? <p>{post.text}</p> : null}
+        </BaseFigure>
+      </div>
+    </Card>
   );
 };
 
