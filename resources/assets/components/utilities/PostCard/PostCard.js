@@ -1,8 +1,8 @@
 import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
-import { propType } from 'graphql-anywhere';
 import { format } from 'date-fns';
+import { propType } from 'graphql-anywhere';
 
 import PostBadge from './PostBadge';
 import { BaseFigure } from '../../Figure';
