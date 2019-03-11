@@ -60,7 +60,13 @@ const PostCard = ({ post }) => {
       );
       break;
     case 'photo':
-      media = <LazyImage alt={`${authorLabel}'s photo`} src={post.url} />;
+      media = (
+        <LazyImage
+          className="post-photo"
+          alt={`${authorLabel}'s photo`}
+          src={post.url}
+        />
+      );
       break;
 
     default:
