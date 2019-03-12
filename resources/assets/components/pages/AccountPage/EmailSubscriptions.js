@@ -82,44 +82,6 @@ class EmailSubscriptions extends React.Component {
                     <input
                       type="checkbox"
                       id="opt_in"
-                      name="NEWS"
-                      defaultChecked={
-                        this.props.user.emailSubscriptionTopics
-                          ? this.props.user.emailSubscriptionTopics.includes(
-                              'NEWS',
-                            )
-                          : false
-                      }
-                      className="form-checkbox"
-                      onChange={this.handleTopicChange}
-                    />
-                    <span className="option__indicator" />
-                    NEWS
-                  </label>
-
-                  <label className="option -checkbox" htmlFor="email_topics">
-                    <input
-                      type="checkbox"
-                      id="opt_in"
-                      name="SCHOLARSHIPS"
-                      defaultChecked={
-                        this.props.user.emailSubscriptionTopics
-                          ? this.props.user.emailSubscriptionTopics.includes(
-                              'SCHOLARSHIPS',
-                            )
-                          : false
-                      }
-                      className="form-checkbox"
-                      onChange={this.handleTopicChange}
-                    />
-                    <span className="option__indicator" />
-                    SCHOLARSHIPS
-                  </label>
-
-                  <label className="option -checkbox" htmlFor="email_topics">
-                    <input
-                      type="checkbox"
-                      id="opt_in"
                       name="ACTIONS"
                       defaultChecked={
                         this.props.user.emailSubscriptionTopics
@@ -132,9 +94,36 @@ class EmailSubscriptions extends React.Component {
                       onChange={this.handleTopicChange}
                     />
                     <span className="option__indicator" />
-                    ACTIONS
+                    <h4>Community</h4>
+                    <p>
+                      A roundup of writing, photos, and impact from the
+                      DoSomething community, along with updates on DoSomething
+                      staff, events, and office culture.
+                    </p>
                   </label>
-
+                  <label className="option -checkbox" htmlFor="email_topics">
+                    <input
+                      type="checkbox"
+                      id="opt_in"
+                      name="NEWS"
+                      defaultChecked={
+                        this.props.user.emailSubscriptionTopics
+                          ? this.props.user.emailSubscriptionTopics.includes(
+                              'NEWS',
+                            )
+                          : false
+                      }
+                      className="form-checkbox"
+                      onChange={this.handleTopicChange}
+                    />
+                    <span className="option__indicator" />
+                    <h4>News</h4>
+                    <p>
+                      Read the news, change the news. A roundup of current
+                      events, along with ways to take action and impact the
+                      headlines.
+                    </p>
+                  </label>
                   <label className="option -checkbox" htmlFor="email_topics">
                     <input
                       type="checkbox"
@@ -151,7 +140,37 @@ class EmailSubscriptions extends React.Component {
                       onChange={this.handleTopicChange}
                     />
                     <span className="option__indicator" />
-                    LIFESTYLE
+                    <h4>Lifestyle</h4>
+                    <p>
+                      Advice, action guides, social change horoscopes,
+                      inspirational playlists, recommendations, and other
+                      content to live your best life and help others do the
+                      same.
+                    </p>
+                  </label>
+
+                  <label className="option -checkbox" htmlFor="email_topics">
+                    <input
+                      type="checkbox"
+                      id="opt_in"
+                      name="SCHOLARSHIPS"
+                      title="Scholarships"
+                      defaultChecked={
+                        this.props.user.emailSubscriptionTopics
+                          ? this.props.user.emailSubscriptionTopics.includes(
+                              'SCHOLARSHIPS',
+                            )
+                          : false
+                      }
+                      className="form-checkbox"
+                      onChange={this.handleTopicChange}
+                    />
+                    <span className="option__indicator" />
+                    <h4>Scholarships</h4>
+                    <p>
+                      Alerts on new ways to earn scholarships by doing social
+                      good, plus announcements of scholarship winners.
+                    </p>
                   </label>
                 </div>
               </div>
