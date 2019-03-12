@@ -16,10 +16,10 @@
       grid-column: 5 / -5;
     }
   }
+}
 
-  h1 {
-    font-size: 42px;
-    line-height: 1;
+.section-block__content {
+  > h1 {
     margin-bottom: $base-spacing;
 
     @include media($medium) {
@@ -27,18 +27,5 @@
       display: inline-block;
       font-size: 60px;
     }
-  }
-
-  h2 {
-    font-size: $font-larger;
-  }
-
-  h3 {
-    font-size: $font-large;
-  }
-
-  ul,
-  ol {
-    text-align: left;
   }
 }
