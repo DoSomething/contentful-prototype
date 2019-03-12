@@ -33,6 +33,11 @@
   background-clip: padding-box; // Allow border to "see through" background.
 }
 
+// HACK: Ensure text post cards look okay on "classic" campaign pages.
+.campaign-page .post-ornament-text {
+  border-left-color: $light-gray;
+}
+
 .chat-bubble.-post-bubble {
   color: $black;
   background-color: $white;
