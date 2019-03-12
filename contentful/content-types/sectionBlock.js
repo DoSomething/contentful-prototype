@@ -70,6 +70,7 @@ module.exports = function(migration) {
                 'campaignUpdate',
                 'cardBlock',
                 'contentBlock',
+                'embed',
                 'imagesBlock',
                 'linkAction',
                 'petitionSubmissionAction',
