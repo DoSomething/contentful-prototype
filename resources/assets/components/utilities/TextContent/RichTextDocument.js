@@ -14,7 +14,7 @@ import { parseRichTextDocument } from '../../../helpers/text';
  * @return {Object}
  */
 const RichTextDocument = ({ className = null, children, styles }) => (
-  <div className={classnames('markdown rich-text', className)}>
+  <div className={classnames('richtext', className)}>
     {parseRichTextDocument(children, styles)}
   </div>
 );

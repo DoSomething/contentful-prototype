@@ -21,7 +21,9 @@ const SectionBlock = props => {
       style={withoutNulls(styles)}
     >
       <div className="wrapper">
-        <TextContent styles={styles}>{content}</TextContent>
+        <TextContent className="section-block__content" styles={styles}>
+          {content}
+        </TextContent>
       </div>
     </section>
   );

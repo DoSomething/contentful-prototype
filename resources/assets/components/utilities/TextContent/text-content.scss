@@ -1,0 +1,90 @@
+@import '../../../scss/next-toolbox.scss';
+
+.text-content {
+  p {
+    color: inherit;
+  }
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  > h1 + p,
+  > h2 + p,
+  > h3 + p,
+  > h4 + p,
+  > h5 + p,
+  > h6 + p,
+  > p + p,
+  > p + ul,
+  > p + ol,
+  > ul + p,
+  > ul + ul,
+  > ul + ol,
+  > ol + p,
+  > ol + ol,
+  > ol + ul {
+    margin-top: $half-spacing;
+  }
+
+  > h1 {
+    color: $black;
+    font-family: $secondary-font-family;
+    font-size: 42px;
+    font-weight: $weight-normal;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  > h2,
+  > h3,
+  > h4 {
+    color: $black;
+    font-family: $primary-font-family;
+    font-weight: $weight-bold;
+  }
+
+  > h2 {
+    font-size: $font-larger;
+  }
+
+  > h3 {
+    font-size: $font-large;
+  }
+
+  > h4 {
+    font-size: 18px;
+  }
+
+  > ul,
+  > ol {
+    text-align: left;
+  }
+
+  > blockquote {
+    position: relative;
+    text-align: left;
+    margin: $base-spacing 0;
+
+    &:before {
+      content: '';
+      height: 102%;
+      left: 0;
+      top: -1%;
+      width: 4px;
+      background: $primary-color;
+      position: absolute;
+    }
+
+    p {
+      font-size: $font-medium;
+      margin-left: $base-spacing;
+    }
+  }
+}
