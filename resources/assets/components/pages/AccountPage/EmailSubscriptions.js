@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
-// import FormItem from './FormItem';
 import Button from '../../utilities/Button/Button';
-// import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 class EmailSubscriptions extends React.Component {
   constructor(props) {
@@ -14,6 +12,7 @@ class EmailSubscriptions extends React.Component {
       emailSubscriptionTopics: this.props.user.emailSubscriptionTopics
         ? this.props.user.emailSubscriptionTopics
         : [],
+      showAffirmation: false,
     };
 
     this.handleTopicChange = this.handleTopicChange.bind(this);
@@ -35,6 +34,7 @@ class EmailSubscriptions extends React.Component {
 
     this.setState({
       emailSubscriptionTopics: newTopics,
+      showAffirmation: false,
     });
   }
 
@@ -60,15 +60,22 @@ class EmailSubscriptions extends React.Component {
             <form
               onSubmit={event => {
                 event.preventDefault();
-                // determine if there should be topics here
                 emailSubscriptionsMutation({
                   variables: {
                     userId: this.props.user.id,
                     emailSubscriptionTopics: this.state.emailSubscriptionTopics,
                   },
                 });
+                this.setState({
+                  showAffirmation: true,
+                });
               }}
             >
+              {this.state.showAffirmation ? (
+                <p className="padded affirmation-message">
+                  Your subscriptions have been updated!
+                </p>
+              ) : null}
               <div className="padded">
                 <div className="form-wrapper clear-both">
                   <label className="option -checkbox" htmlFor="email_topics">
