@@ -2,6 +2,7 @@ import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
+import Iframe from '../utilities/Iframe';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -196,5 +197,24 @@ export function renderContentBlock(data) {
 
   return (
     <ContentBlock key={`content-block-${data.id}`} id={data.id} {...fields} />
+  );
+}
+
+/**
+ * Render an embed.
+ *
+ * @param {Object} data Embed
+ * @return {Component}
+ */
+export function renderEmbed(data) {
+  const contentfulId = data.id;
+  const fields = withoutNulls(data.fields);
+
+  return (
+    <React.Fragment>
+      <PuckWaypoint name="embed-top" waypointData={{ contentfulId }} />
+      <Iframe id={contentfulId} {...fields} />
+      <PuckWaypoint name="embed-bottom" waypointData={{ contentfulId }} />
+    </React.Fragment>
   );
 }

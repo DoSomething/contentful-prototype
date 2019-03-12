@@ -20,6 +20,7 @@ import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDrive
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import {
+  renderEmbed,
   renderLinkAction,
   renderAffirmation,
   renderShareAction,
@@ -90,6 +91,9 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'contentBlock':
         return renderContentBlock(json);
+
+      case 'embed':
+        return renderEmbed(json);
 
       case 'gallery':
         return (
