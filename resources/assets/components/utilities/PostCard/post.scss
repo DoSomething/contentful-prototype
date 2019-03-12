@@ -2,6 +2,7 @@
 
 .post {
   position: relative;
+  background: #fff;
   font-family: $primary-font-family;
   margin-bottom: 0;
   height: 100%;
@@ -27,8 +28,14 @@
   width: 100%;
 }
 
-.post-text {
-  border-left: $half-spacing solid #7069d8;
+.post-ornament-text {
+  border-left: $half-spacing solid rgba(#fff, 0.3);
+  background-clip: padding-box; // Allow border to "see through" background.
+}
+
+// HACK: Ensure text post cards look okay on "classic" campaign pages.
+.campaign-page .post-ornament-text {
+  border-left-color: $light-gray;
 }
 
 .chat-bubble.-post-bubble {
