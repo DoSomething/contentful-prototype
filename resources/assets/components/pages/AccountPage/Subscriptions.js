@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import FormItem from './FormItem';
-// import VoterRegStatusBlock from './VoterRegStatusBlock';
 import EmailSubscriptions from './EmailSubscriptions';
 
 const Subscriptions = props => (
@@ -15,10 +13,6 @@ const Subscriptions = props => (
     </div>
   </div>
 );
-
-// Subscriptions.propTypes = {
-//   emailSubscriptionTopics: PropTypes.shape({}).isRequired,
-// };
 
 Subscriptions.propTypes = {
   user: PropTypes.shape({
