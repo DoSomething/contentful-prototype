@@ -51,10 +51,12 @@ class Iframe extends React.Component {
 
     if (this.state.isMobile) {
       return (
-        <LazyImage
-          src={this.state.imagePreview}
-          alt="Preview image for embedded content"
-        />
+        <div className="margin-horizontal-md">
+          <LazyImage
+            src={this.state.imagePreview}
+            alt="Preview image for embedded content"
+          />
+        </div>
       );
     }
 
