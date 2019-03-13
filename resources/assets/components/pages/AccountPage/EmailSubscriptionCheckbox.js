@@ -14,8 +14,6 @@ const EmailSubscriptionCheckbox = props => (
         onChange={props.onChange}
       />
       <span className="option__indicator" />
-      {/* Workaround for this jsx-a11y bug https://git.io/fN814 */}
-      {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
       <h4>{props.title}</h4>
       <p>{props.description}</p>
     </label>
