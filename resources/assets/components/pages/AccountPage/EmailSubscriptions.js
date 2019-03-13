@@ -4,6 +4,21 @@ import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
 
 import Button from '../../utilities/Button/Button';
+import EmailSubscriptionCheckbox from './EmailSubscriptionCheckbox';
+
+const EMAIL_SUBSCRIPTIONS_MUTATION = gql`
+  mutation EmailSubscriptionsMutation(
+    $userId: String!
+    $emailSubscriptionTopics: [EmailSubscriptionTopic]!
+  ) {
+    updateEmailSubscriptionTopics(
+      id: $userId
+      emailSubscriptionTopics: $emailSubscriptionTopics
+    ) {
+      emailSubscriptionTopics
+    }
+  }
+`;
 
 class EmailSubscriptions extends React.Component {
   constructor(props) {
@@ -27,7 +42,7 @@ class EmailSubscriptions extends React.Component {
     if (target.checked) {
       newTopics.push(name);
     } else {
-      newTopics.pop(name);
+      newTopics.splice(newTopics.indexOf(name), 1);
     }
 
     this.setState({
@@ -37,20 +52,6 @@ class EmailSubscriptions extends React.Component {
   }
 
   render() {
-    const EMAIL_SUBSCRIPTIONS_MUTATION = gql`
-      mutation EmailSubscriptionsMutation(
-        $userId: String!
-        $emailSubscriptionTopics: [EmailSubscriptionTopic]!
-      ) {
-        updateEmailSubscriptionTopics(
-          id: $userId
-          emailSubscriptionTopics: $emailSubscriptionTopics
-        ) {
-          emailSubscriptionTopics
-        }
-      }
-    `;
-
     return (
       <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
         {emailSubscriptionsMutation => (
@@ -75,115 +76,41 @@ class EmailSubscriptions extends React.Component {
             ) : null}
             <div className="padded">
               <div className="form-wrapper clear-both">
-                <div className="padded">
-                  <label className="option -checkbox" htmlFor="email_topics">
-                    <input
-                      type="checkbox"
-                      id="opt_in"
-                      name="ACTIONS"
-                      defaultChecked={
-                        this.props.user.emailSubscriptionTopics
-                          ? this.props.user.emailSubscriptionTopics.includes(
-                              'ACTIONS',
-                            )
-                          : false
-                      }
-                      className="form-checkbox"
-                      onChange={this.handleTopicChange}
-                    />
-                    <span className="option__indicator" />
-                    {/* Workaround for this jsx-a11y bug https://git.io/fN814 */}
-                    {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                    <h4>Community</h4>
-                    <p>
-                      A roundup of writing, photos, and impact from the
-                      DoSomething community, along with updates on DoSomething
-                      staff, events, and office culture.
-                    </p>
-                  </label>
-                </div>
-                <div className="padded">
-                  <label className="option -checkbox" htmlFor="email_topics">
-                    <input
-                      type="checkbox"
-                      id="opt_in"
-                      name="NEWS"
-                      defaultChecked={
-                        this.props.user.emailSubscriptionTopics
-                          ? this.props.user.emailSubscriptionTopics.includes(
-                              'NEWS',
-                            )
-                          : false
-                      }
-                      className="form-checkbox"
-                      onChange={this.handleTopicChange}
-                    />
-                    <span className="option__indicator" />
-                    {/* Workaround for this jsx-a11y bug https://git.io/fN814 */}
-                    {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                    <h4>News</h4>
-                    <p>
-                      Read the news, change the news. A roundup of current
+                <EmailSubscriptionCheckbox
+                  identifier="ACTIONS"
+                  title="Community"
+                  description="A roundup of writing, photos, and impact from the DoSomething community,
+        along with updates on DoSomething staff, events, and office culture."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+                <EmailSubscriptionCheckbox
+                  identifier="NEWS"
+                  title="News"
+                  description="Read the news, change the news. A roundup of current
                       events, along with ways to take action and impact the
-                      headlines.
-                    </p>
-                  </label>
-                </div>
-                <div className="padded">
-                  <label className="option -checkbox" htmlFor="email_topics">
-                    <input
-                      type="checkbox"
-                      id="opt_in"
-                      name="LIFESTYLE"
-                      defaultChecked={
-                        this.props.user.emailSubscriptionTopics
-                          ? this.props.user.emailSubscriptionTopics.includes(
-                              'LIFESTYLE',
-                            )
-                          : false
-                      }
-                      className="form-checkbox"
-                      onChange={this.handleTopicChange}
-                    />
-                    <span className="option__indicator" />
-                    {/* Workaround for this jsx-a11y bug https://git.io/fN814 */}
-                    {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                    <h4>Lifestyle</h4>
-                    <p>
-                      Advice, action guides, social change horoscopes,
+                      headlines."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+                <EmailSubscriptionCheckbox
+                  identifier="LIFESTYLE"
+                  title="Lifestyle"
+                  description="Advice, action guides, social change horoscopes,
                       inspirational playlists, recommendations, and other
                       content to live your best life and help others do the
-                      same.
-                    </p>
-                  </label>
-                </div>
-                <div className="padded">
-                  <label className="option -checkbox" htmlFor="email_topics">
-                    <input
-                      type="checkbox"
-                      id="opt_in"
-                      name="SCHOLARSHIPS"
-                      title="Scholarships"
-                      defaultChecked={
-                        this.props.user.emailSubscriptionTopics
-                          ? this.props.user.emailSubscriptionTopics.includes(
-                              'SCHOLARSHIPS',
-                            )
-                          : false
-                      }
-                      className="form-checkbox"
-                      onChange={this.handleTopicChange}
-                    />
-                    <span className="option__indicator" />
-                    {/* Workaround for this jsx-a11y bug https://git.io/fN814 */}
-                    {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-                    <h4>Scholarships</h4>
-                    <p>
-                      Alerts on new ways to earn scholarships by doing social
-                      good, plus announcements of scholarship winners.
-                    </p>
-                  </label>
-                </div>
+                      same."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+                <EmailSubscriptionCheckbox
+                  identifier="SCHOLARSHIPS"
+                  title="Scholarships"
+                  description="Alerts on new ways to earn scholarships by doing social
+                      good, plus announcements of scholarship winners."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
               </div>
             </div>
 
