@@ -102,12 +102,11 @@ class TextSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="text-submission-action">
-          <Card
-            id={this.props.id}
-            className={classnames('bordered rounded', this.props.className)}
-            title={this.props.title}
-          >
+        <div
+          className={classnames('text-submission-action', this.props.className)}
+          id={this.props.id}
+        >
+          <Card className="bordered rounded" title={this.props.title}>
             {formResponse ? <FormValidation response={formResponse} /> : null}
 
             <form onSubmit={this.handleSubmit}>
@@ -149,7 +148,13 @@ class TextSubmissionAction extends React.Component {
         </div>
 
         {this.props.informationContent ? (
-          <div className="text-submission-information margin-top-lg">
+          <div
+            className={classnames(
+              'text-submission-information',
+              'margin-top-lg',
+              this.props.className,
+            )}
+          >
             <Card
               className="bordered rounded"
               title={this.props.informationTitle}

@@ -447,19 +447,38 @@ p {
 
 .base-16-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  // 4 columns
+  grid-template-columns: [full-start] 1fr 1fr 1fr 1fr [full-end];
   grid-column-gap: $half-spacing;
-  grid-row-gap: $half-spacing;
+  grid-row-gap: 0; //$half-spacing;
   padding: $half-spacing;
 
   @include media($medium) {
-    grid-template-columns: repeat(8, 1fr);
+    // 8 columns
+    grid-template-columns: [full-start] 1fr [main-start] 1fr 1fr 1fr 1fr 1fr 1fr [main-end] 1fr [full-end];
     grid-column-gap: $base-spacing;
-    grid-row-gap: $base-spacing;
+    grid-row-gap: 0; //$base-spacing;
     padding: $base-spacing;
   }
 
   @include media($large) {
-    grid-template-columns: repeat(16, 1fr);
+    // 16 columns
+    grid-template-columns: [full-start] 1fr 1fr [wide-start] 1fr 1fr [main-start] 1fr [narrow-start] 1fr 1fr 1fr 1fr 1fr 1fr [narrow-end] 1fr [main-end] 1fr 1fr [wide-end] 1fr 1fr [full-end];
   }
+}
+
+.grid-full {
+  grid-column: full-start / full-end;
+}
+
+.grid-main {
+  grid-column: main-start / main-end;
+}
+
+.grid-narrow {
+  grid-column: narrow-start / narrow-end;
+}
+
+.grid-wide {
+  grid-column: wide-start / wide-end;
 }

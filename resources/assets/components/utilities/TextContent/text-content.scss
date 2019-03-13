@@ -1,10 +1,6 @@
 @import '../../../scss/next-toolbox.scss';
 
 .text-content {
-  p {
-    color: inherit;
-  }
-
   strong,
   b {
     font-weight: 700;
@@ -29,7 +25,10 @@
   > ul + ol,
   > ol + p,
   > ol + ol,
-  > ol + ul {
+  > ol + ul,
+  > div + h1,
+  > p + .component-entry,
+  > div + .component-entry {
     margin-top: $half-spacing;
   }
 

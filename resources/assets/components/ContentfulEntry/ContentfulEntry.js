@@ -93,7 +93,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return renderContentBlock(json);
 
       case 'embed':
-        return renderEmbed(json);
+        return renderEmbed(json, this.props.className);
 
       case 'gallery':
         return (
@@ -104,16 +104,22 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'postGallery':
         return (
-          <div className="margin-horizontal-md">
-            <PostGalleryBlockQuery {...withoutNulls(json.fields)} />
-          </div>
+          <PostGalleryBlockQuery
+            className={this.props.className}
+            {...withoutNulls(json.fields)}
+          />
         );
 
       case 'galleryBlock':
         return <GalleryBlock {...json.fields} />;
 
       case 'imagesBlock':
-        return <ImagesBlock images={json.fields.images} />;
+        return (
+          <ImagesBlock
+            className={this.props.className}
+            images={json.fields.images}
+          />
+        );
 
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
@@ -131,7 +137,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'petitionSubmissionAction':
-        return renderPetitionSubmissionAction(json);
+        return renderPetitionSubmissionAction(json, this.props.className);
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);
@@ -190,7 +196,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'textSubmissionAction':
-        return renderTextSubmissionAction(json);
+        return renderTextSubmissionAction(json, this.props.className);
 
       case 'voterRegistrationAction':
         return renderVoterRegistrationAction(json);

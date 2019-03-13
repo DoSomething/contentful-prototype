@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
@@ -80,28 +81,31 @@ export function renderLinkAction(step) {
  * @param {Object} data
  * @return {Component}
  */
-export function renderTextSubmissionAction(data) {
+export function renderTextSubmissionAction(data, className = null) {
   const contentfulId = data.id;
   const fields = withoutNulls(data.fields);
 
   return (
-    <div
-      key={`text-submission-action-${contentfulId}`}
-      className="margin-horizontal-md margin-bottom-lg"
-    >
+    <React.Fragment>
       <PuckWaypoint
         name="text_submission_action-top"
         waypointData={{ contentfulId }}
       />
-      <TextSubmissionActionContainer id={contentfulId} {...fields} />
-      <div className="margin-vertical-md">
-        <SubmissionGalleryBlockContainer type="text" />
-      </div>
+      <TextSubmissionActionContainer
+        className={classnames(className)}
+        id={contentfulId}
+        key={`text-submission-action-${contentfulId}`}
+        {...fields}
+      />
+      <SubmissionGalleryBlockContainer
+        className={classnames(className)}
+        type="text"
+      />
       <PuckWaypoint
         name="text_submission_action-bottom"
         waypointData={{ contentfulId }}
       />
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -139,22 +143,26 @@ export function renderPhotoSubmissionAction(data) {
  * @param  {Object} data
  * @return {Component}
  */
-export function renderPetitionSubmissionAction(data) {
+export function renderPetitionSubmissionAction(data, className = null) {
   const contentfulId = data.id;
   const fields = withoutNulls(data.fields);
 
   return (
-    <div className="margin-horizontal-md margin-bottom-lg">
+    <React.Fragment>
       <PuckWaypoint
         name="petition_submission_action-top"
         waypointData={{ contentfulId }}
       />
-      <PetitionSubmissionActionContainer id={contentfulId} {...fields} />
+      <PetitionSubmissionActionContainer
+        className={classnames(className)}
+        id={contentfulId}
+        {...fields}
+      />
       <PuckWaypoint
         name="petition_submission_action-bottom"
         waypointData={{ contentfulId }}
       />
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -206,14 +214,14 @@ export function renderContentBlock(data) {
  * @param {Object} data Embed
  * @return {Component}
  */
-export function renderEmbed(data) {
+export function renderEmbed(data, className = null) {
   const contentfulId = data.id;
   const fields = withoutNulls(data.fields);
 
   return (
     <React.Fragment>
       <PuckWaypoint name="embed-top" waypointData={{ contentfulId }} />
-      <Iframe id={contentfulId} {...fields} />
+      <Iframe className={classnames(className)} id={contentfulId} {...fields} />
       <PuckWaypoint name="embed-bottom" waypointData={{ contentfulId }} />
     </React.Fragment>
   );

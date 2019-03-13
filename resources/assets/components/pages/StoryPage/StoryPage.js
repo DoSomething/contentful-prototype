@@ -17,8 +17,6 @@ const StoryPage = props => {
     backgroundImage,
   };
 
-  console.log(styles);
-
   return (
     <article className="story-page">
       <header

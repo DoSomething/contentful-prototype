@@ -9,22 +9,18 @@ import './section-block.scss';
 const SectionBlock = props => {
   const { id, content, backgroundColor, textColor } = props;
 
-  const styles = {
-    backgroundColor,
-    color: textColor,
-  };
-
   return (
     <section
       id={id}
-      className="section-block story-section base-16-grid"
-      style={withoutNulls(styles)}
+      className="section-block story-section"
+      style={withoutNulls({ backgroundColor })}
     >
-      <div className="wrapper">
-        <TextContent className="section-block__content" styles={styles}>
-          {content}
-        </TextContent>
-      </div>
+      <TextContent
+        className="section-block__content base-16-grid"
+        styles={withoutNulls({ color: textColor })}
+      >
+        {content}
+      </TextContent>
     </section>
   );
 };
