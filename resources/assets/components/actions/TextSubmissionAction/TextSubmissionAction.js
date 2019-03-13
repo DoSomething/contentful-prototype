@@ -10,6 +10,7 @@ import { withoutUndefined, withoutNulls } from '../../../helpers';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
+import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './text-submission-action.scss';
 
@@ -129,7 +130,7 @@ class TextSubmissionAction extends React.Component {
                   value={this.state.textValue}
                   onChange={this.handleChange}
                 />
-                <p className="footnote">500 character limit</p>
+                <CharacterLimit limit={500} text={this.state.textValue} />
               </div>
               <Button
                 type="submit"
