@@ -40,6 +40,7 @@ class HomePageController extends Controller
         return view('app', [
             'headTitle' => $homePage->fields->title,
             'legacyNavigation' => true,
+            'cacheUrl' => get_cache_url('homepages'),
         ])->with('homePage', $homePage);
     }
 }
