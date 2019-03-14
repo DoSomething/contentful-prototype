@@ -95,7 +95,14 @@ class PetitionSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="petition-submission-action margin-bottom-lg" id={id}>
+        <div
+          className={classnames(
+            'petition-submission-action',
+            'margin-bottom-lg',
+            this.props.className,
+          )}
+          id={id}
+        >
           <Card className="bordered rounded" title={title}>
             {this.state.showAffirmation ? (
               <p className="padded affirmation-message">
@@ -162,13 +169,21 @@ class PetitionSubmissionAction extends React.Component {
           </Card>
         </div>
 
-        <div className="petition-submission-information">
-          <Card className="bordered rounded" title={informationTitle}>
-            <TextContent className="padding-md">
-              {informationContent}
-            </TextContent>
-          </Card>
-        </div>
+        {this.props.informationContent ? (
+          <div
+            className={classnames(
+              'petition-submission-information',
+              'margin-bottom-md',
+              this.props.className,
+            )}
+          >
+            <Card className="bordered rounded" title={informationTitle}>
+              <TextContent className="padding-md">
+                {informationContent}
+              </TextContent>
+            </Card>
+          </div>
+        ) : null}
       </React.Fragment>
     );
   }
@@ -177,6 +192,7 @@ class PetitionSubmissionAction extends React.Component {
 PetitionSubmissionAction.propTypes = {
   actionId: PropTypes.number.isRequired,
   buttonText: PropTypes.string,
+  className: PropTypes.string,
   content: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   informationContent: PropTypes.string,
@@ -193,6 +209,7 @@ PetitionSubmissionAction.propTypes = {
 
 PetitionSubmissionAction.defaultProps = {
   buttonText: 'Add your name',
+  className: null,
   textFieldPlaceholder: 'Add your custom message...',
   title: 'Sign The Petition',
   informationContent:

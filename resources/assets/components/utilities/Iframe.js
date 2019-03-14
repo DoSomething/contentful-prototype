@@ -1,6 +1,7 @@
 import React from 'react';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import LazyImage from './LazyImage';
 import { getRequest } from '../../helpers/api';
@@ -44,7 +45,7 @@ IframePreview.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-const Iframe = ({ id, url }) => {
+const Iframe = ({ className, id, url }) => {
   const hostname = new URL(url).hostname;
 
   if (!permittedHostnames.includes(hostname)) {
@@ -53,7 +54,7 @@ const Iframe = ({ id, url }) => {
   }
 
   return (
-    <div id={id}>
+    <div id={id} className={classnames('embed', className)}>
       <Media query="(max-width: 759px)">
         {matches =>
           matches ? (
@@ -68,8 +69,13 @@ const Iframe = ({ id, url }) => {
 };
 
 Iframe.propTypes = {
+  className: PropTypes.string,
   id: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+};
+
+Iframe.defaultProps = {
+  className: null,
 };
 
 export default Iframe;

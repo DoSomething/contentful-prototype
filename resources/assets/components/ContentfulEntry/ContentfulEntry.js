@@ -37,6 +37,7 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
 type Props = {
   json: ContentfulEntryJson,
+  className: String,
 };
 type State = { hasError: boolean };
 
@@ -57,7 +58,7 @@ class ContentfulEntry extends React.Component<Props, State> {
     }
 
     // Otherwise, find the corresponding component & render it!
-    const { json = DEFAULT_BLOCK } = this.props;
+    const { json = DEFAULT_BLOCK, className = null } = this.props;
     const type = parseContentfulType(json);
 
     switch (type) {
@@ -90,10 +91,10 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'contentBlock':
-        return renderContentBlock(json);
+        return renderContentBlock(json, className);
 
       case 'embed':
-        return renderEmbed(json);
+        return renderEmbed(json, className);
 
       case 'gallery':
         return (
@@ -104,16 +105,19 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'postGallery':
         return (
-          <div className="margin-horizontal-md">
-            <PostGalleryBlockQuery {...withoutNulls(json.fields)} />
-          </div>
+          <PostGalleryBlockQuery
+            className={className}
+            {...withoutNulls(json.fields)}
+          />
         );
 
       case 'galleryBlock':
         return <GalleryBlock {...json.fields} />;
 
       case 'imagesBlock':
-        return <ImagesBlock images={json.fields.images} />;
+        return (
+          <ImagesBlock className={className} images={json.fields.images} />
+        );
 
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
@@ -131,7 +135,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'petitionSubmissionAction':
-        return renderPetitionSubmissionAction(json);
+        return renderPetitionSubmissionAction(json, className);
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);
@@ -190,7 +194,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'textSubmissionAction':
-        return renderTextSubmissionAction(json);
+        return renderTextSubmissionAction(json, className);
 
       case 'voterRegistrationAction':
         return renderVoterRegistrationAction(json);
