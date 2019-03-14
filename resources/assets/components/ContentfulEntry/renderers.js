@@ -94,7 +94,6 @@ export function renderTextSubmissionAction(data, className = null) {
       <TextSubmissionActionContainer
         className={classnames(className)}
         id={contentfulId}
-        key={`text-submission-action-${contentfulId}`}
         {...fields}
       />
       <SubmissionGalleryBlockContainer
@@ -204,12 +203,7 @@ export function renderContentBlock(data, className = null) {
   const fields = withoutNulls(data.fields);
 
   return (
-    <ContentBlock
-      className={classnames(className)}
-      id={data.id}
-      key={`content-block-${data.id}`}
-      {...fields}
-    />
+    <ContentBlock className={classnames(className)} id={data.id} {...fields} />
   );
 }
 

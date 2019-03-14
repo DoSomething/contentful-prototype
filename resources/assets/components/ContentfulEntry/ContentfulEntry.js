@@ -37,6 +37,7 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
 type Props = {
   json: ContentfulEntryJson,
+  className: String,
 };
 type State = { hasError: boolean };
 
