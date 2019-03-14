@@ -35,7 +35,7 @@ module.exports = function(migration) {
       linkType: 'Entry',
       validations: [
         {
-          linkContentType: ['campaign', 'page'],
+          linkContentType: ['campaign', 'page', 'storyPage'],
         },
       ],
     })
