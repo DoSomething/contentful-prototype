@@ -97,6 +97,7 @@
     "react-apollo": "^2.3.2",
     "react-dom": "^16.6.3",
     "react-loadable": "^5.4.0",
+    "react-media": "^1.9.2",
     "react-portal": "^4.2.0",
     "react-redux": "^5.1.1",
     "react-required-if": "^1.0.3",
