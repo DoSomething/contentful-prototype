@@ -450,14 +450,12 @@ p {
   // 4 columns
   grid-template-columns: [full-start] 1fr 1fr 1fr 1fr [full-end];
   grid-column-gap: $half-spacing;
-  // grid-row-gap: 0; //$half-spacing;
   padding: $half-spacing;
 
   @include media($medium) {
     // 8 columns
     grid-template-columns: [full-start] 1fr [main-start] 1fr 1fr 1fr 1fr 1fr 1fr [main-end] 1fr [full-end];
     grid-column-gap: $base-spacing;
-    // grid-row-gap: 0; //$base-spacing;
     padding: $base-spacing;
   }
 
