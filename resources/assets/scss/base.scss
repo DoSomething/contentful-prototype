@@ -450,14 +450,14 @@ p {
   // 4 columns
   grid-template-columns: [full-start] 1fr 1fr 1fr 1fr [full-end];
   grid-column-gap: $half-spacing;
-  grid-row-gap: 0; //$half-spacing;
+  // grid-row-gap: 0; //$half-spacing;
   padding: $half-spacing;
 
   @include media($medium) {
     // 8 columns
     grid-template-columns: [full-start] 1fr [main-start] 1fr 1fr 1fr 1fr 1fr 1fr [main-end] 1fr [full-end];
     grid-column-gap: $base-spacing;
-    grid-row-gap: 0; //$base-spacing;
+    // grid-row-gap: 0; //$base-spacing;
     padding: $base-spacing;
   }
 
@@ -472,13 +472,25 @@ p {
 }
 
 .grid-main {
-  grid-column: main-start / main-end;
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: main-start / main-end;
+  }
 }
 
 .grid-narrow {
-  grid-column: narrow-start / narrow-end;
+  grid-column: full-start / full-end;
+
+  @include media($large) {
+    grid-column: narrow-start / narrow-end;
+  }
 }
 
 .grid-wide {
-  grid-column: wide-start / wide-end;
+  grid-column: full-start / full-end;
+
+  @include media($large) {
+    grid-column: wide-start / wide-end;
+  }
 }

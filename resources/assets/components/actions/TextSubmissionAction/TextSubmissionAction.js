@@ -152,6 +152,7 @@ class TextSubmissionAction extends React.Component {
             className={classnames(
               'text-submission-information',
               'margin-top-lg',
+              'margin-bottom-lg',
               this.props.className,
             )}
           >

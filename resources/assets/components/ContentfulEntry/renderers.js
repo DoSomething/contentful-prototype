@@ -4,8 +4,8 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
 import Iframe from '../utilities/Iframe';
-import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { withoutNulls } from '../../helpers';
+import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
@@ -200,11 +200,16 @@ export function renderAffirmation(data) {
  * @param {Object} data ContentBlock
  * @return {Component}
  */
-export function renderContentBlock(data) {
+export function renderContentBlock(data, className = null) {
   const fields = withoutNulls(data.fields);
 
   return (
-    <ContentBlock key={`content-block-${data.id}`} id={data.id} {...fields} />
+    <ContentBlock
+      className={classnames(className)}
+      id={data.id}
+      key={`content-block-${data.id}`}
+      {...fields}
+    />
   );
 }
 

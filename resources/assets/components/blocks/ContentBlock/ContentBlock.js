@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import requiredIf from 'react-required-if';
 
 import { Figure } from '../../Figure';
@@ -10,12 +11,19 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import './content-block.scss';
 
 const ContentBlock = props => {
-  const { content, image, imageAlignment, superTitle, title } = props;
+  const {
+    className,
+    content,
+    image,
+    imageAlignment,
+    superTitle,
+    title,
+  } = props;
 
   const contentNode = content ? <TextContent>{content}</TextContent> : null;
 
   return (
-    <div className="content-block">
+    <div className={classnames('content-block', className)}>
       {title ? (
         <div className="margin-horizontal-md">
           <SectionHeader preTitle={superTitle} title={title} />
@@ -41,6 +49,7 @@ const ContentBlock = props => {
 };
 
 ContentBlock.propTypes = {
+  className: PropTypes.string,
   content: PropTypes.string.isRequired,
   image: PropTypes.shape({
     url: PropTypes.string,
@@ -52,6 +61,7 @@ ContentBlock.propTypes = {
 };
 
 ContentBlock.defaultProps = {
+  className: null,
   imageAlignment: null,
   superTitle: null,
   title: null,

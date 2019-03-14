@@ -90,7 +90,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'contentBlock':
-        return renderContentBlock(json);
+        return renderContentBlock(json, this.props.className);
 
       case 'embed':
         return renderEmbed(json, this.props.className);

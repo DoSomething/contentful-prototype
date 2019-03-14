@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -15,6 +16,12 @@ class ContentfulEntryLoader extends React.Component {
     this.state = {
       entryData: null,
       hasError: null,
+    };
+
+    // Specify entries that require custom grid class that is not the default of "grid-main".
+    this.entryGridMapping = {
+      embed: 'grid-wide', // @TODO: may need to reassess, since maybe not all embeds should align to wide?
+      postGallery: 'grid-wide',
     };
   }
 
@@ -44,9 +51,11 @@ class ContentfulEntryLoader extends React.Component {
       return <div className="grid-main spinner -centered margin-vertical-md" />;
     }
 
-    // @TODO: turn this into a function with an object of which grid class to use.
-    const gridClass =
-      this.state.entryData.type === 'postGallery' ? 'grid-wide' : 'grid-main';
+    const gridClass = get(
+      this.entryGridMapping,
+      this.state.entryData.type,
+      'grid-main',
+    );
 
     return (
       <ContentfulEntry

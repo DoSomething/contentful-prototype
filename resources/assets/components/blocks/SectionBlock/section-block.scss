@@ -1,25 +1,5 @@
 @import '../../../scss/next-toolbox';
 
-// .section-block {
-//   text-align: center;
-
-//   > .wrapper {
-//     grid-column: 1 / -1;
-//     padding: $half-spacing 0;
-
-//     @include media($medium) {
-//       grid-column: 2 / -2;
-//       padding: $base-spacing 0;
-//     }
-
-//     @include media($large) {
-//       background-color: fuchsia;
-
-//       grid-column: main-start / main-end;
-//     }
-//   }
-// }
-
 .section-block__content {
   > *:not(ul):not(ol):not(blockquote):not(.component-entry) {
     text-align: center;
