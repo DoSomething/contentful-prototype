@@ -52,7 +52,7 @@ const CampaignPageContent = props => {
         key={json.id}
         id={`block-${json.id}`}
       >
-        <ContentfulEntry json={json} />
+        <ContentfulEntry className="margin-horizontal-md" json={json} />
       </div>
     );
   };

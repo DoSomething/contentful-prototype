@@ -1,10 +1,6 @@
 @import '../../../scss/next-toolbox.scss';
 
 .text-content {
-  p {
-    color: inherit;
-  }
-
   strong,
   b {
     font-weight: 700;
@@ -29,7 +25,10 @@
   > ul + ol,
   > ol + p,
   > ol + ol,
-  > ol + ul {
+  > ol + ul,
+  > div + h1, // @TODO: should be able to remove the "div +" items after we nest PuckWaypoints inside components.
+  > p + .component-entry,
+  > div + .component-entry {
     margin-top: $half-spacing;
   }
 
@@ -38,7 +37,7 @@
     font-family: $secondary-font-family;
     font-size: 42px;
     font-weight: $weight-normal;
-    line-height: 1;
+    line-height: 1.4;
     text-transform: uppercase;
   }
 

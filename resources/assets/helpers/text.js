@@ -73,31 +73,60 @@ export function parseRichTextDocument(document, styles) {
   const options = {
     renderNode: {
       [BLOCKS.EMBEDDED_ENTRY]: node => (
-        <ContentfulEntryLoader id={node.data.target.sys.id} />
+        <ContentfulEntryLoader
+          id={node.data.target.sys.id}
+          className="component-entry"
+        />
       ),
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 style={textColor}>{children}</h1>
+        <h1 className="grid-main" style={textColor}>
+          <span>{children}</span>
+        </h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 style={textColor}>{children}</h2>
+        <h2 className="grid-main" style={textColor}>
+          {children}
+        </h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 style={textColor}>{children}</h3>
+        <h3 className="grid-main" style={textColor}>
+          {children}
+        </h3>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 style={textColor}>{children}</h4>
+        <h4 className="grid-main" style={textColor}>
+          {children}
+        </h4>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 style={textColor}>{children}</h5>
+        <h5 className="grid-main" style={textColor}>
+          {children}
+        </h5>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 style={textColor}>{children}</h6>
+        <h6 className="grid-main" style={textColor}>
+          {children}
+        </h6>
+      ),
+      [BLOCKS.PARAGRAPH]: (node, children) => (
+        <p className="grid-main" style={textColor}>
+          {children}
+        </p>
       ),
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="list">{children}</ul>
+        <ul className="grid-main text-left list" style={textColor}>
+          {children}
+        </ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="list">{children}</ol>
+        <ol className="grid-main text-left list" style={textColor}>
+          {children}
+        </ol>
+      ),
+      [BLOCKS.QUOTE]: (node, children) => (
+        <blockquote className="grid-main list" style={textColor}>
+          {children}
+        </blockquote>
       ),
     },
   };

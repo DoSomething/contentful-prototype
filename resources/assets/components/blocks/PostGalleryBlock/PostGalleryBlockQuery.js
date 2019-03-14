@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
@@ -25,7 +26,7 @@ const POST_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const PostGalleryBlockQuery = ({ actionIds, itemsPerRow }) => (
+const PostGalleryBlockQuery = ({ actionIds, className, itemsPerRow }) => (
   <PaginatedQuery
     query={POST_GALLERY_QUERY}
     queryName="posts"
@@ -34,6 +35,7 @@ const PostGalleryBlockQuery = ({ actionIds, itemsPerRow }) => (
   >
     {({ result, fetching, fetchMore }) => (
       <PostGallery
+        className={classnames(className)}
         posts={result}
         loading={fetching}
         itemsPerRow={itemsPerRow}
@@ -45,11 +47,13 @@ const PostGalleryBlockQuery = ({ actionIds, itemsPerRow }) => (
 
 PostGalleryBlockQuery.propTypes = {
   actionIds: PropTypes.arrayOf(PropTypes.number),
+  className: PropTypes.string,
   itemsPerRow: PropTypes.number,
 };
 
 PostGalleryBlockQuery.defaultProps = {
   actionIds: [],
+  className: null,
   itemsPerRow: 3,
 };
 
