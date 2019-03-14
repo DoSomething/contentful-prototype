@@ -23,7 +23,7 @@
     margin-bottom: $base-spacing;
 
     @include media($medium) {
-      border-bottom: 5px solid $yellow;
+      border-bottom: 5px solid $primary-color;
       display: inline-block;
       font-size: 60px;
     }
