@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
@@ -92,14 +91,11 @@ export function renderTextSubmissionAction(data, className = null) {
         waypointData={{ contentfulId }}
       />
       <TextSubmissionActionContainer
-        className={classnames(className)}
+        className={className}
         id={contentfulId}
         {...fields}
       />
-      <SubmissionGalleryBlockContainer
-        className={classnames(className)}
-        type="text"
-      />
+      <SubmissionGalleryBlockContainer className={className} type="text" />
       <PuckWaypoint
         name="text_submission_action-bottom"
         waypointData={{ contentfulId }}
@@ -153,7 +149,7 @@ export function renderPetitionSubmissionAction(data, className = null) {
         waypointData={{ contentfulId }}
       />
       <PetitionSubmissionActionContainer
-        className={classnames(className)}
+        className={className}
         id={contentfulId}
         {...fields}
       />
@@ -202,9 +198,7 @@ export function renderAffirmation(data) {
 export function renderContentBlock(data, className = null) {
   const fields = withoutNulls(data.fields);
 
-  return (
-    <ContentBlock className={classnames(className)} id={data.id} {...fields} />
-  );
+  return <ContentBlock className={className} id={data.id} {...fields} />;
 }
 
 /**
@@ -220,7 +214,7 @@ export function renderEmbed(data, className = null) {
   return (
     <React.Fragment>
       <PuckWaypoint name="embed-top" waypointData={{ contentfulId }} />
-      <Iframe className={classnames(className)} id={contentfulId} {...fields} />
+      <Iframe className={className} id={contentfulId} {...fields} />
       <PuckWaypoint name="embed-bottom" waypointData={{ contentfulId }} />
     </React.Fragment>
   );
