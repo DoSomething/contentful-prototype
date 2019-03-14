@@ -21,13 +21,13 @@ function get_cache_id($prefix, $slug)
  * Get a composed cache URL with a redirect URL to go to
  * after clearing the cached item.
  *
- * @param  string $prefix
- * @param  string $slug
+ * @param  string      $prefix
+ * @param  string|null $slug
  * @return string
  */
-function get_cache_url($prefix, $slug)
+function get_cache_url($prefix, $slug = null)
 {
-    $cacheId = get_cache_id($prefix, $slug);
+    $cacheId = $slug ? get_cache_id($prefix, $slug) : $prefix;
 
     $redirectUrl = str_replace(request()->root(), '', request()->fullUrl());
 
