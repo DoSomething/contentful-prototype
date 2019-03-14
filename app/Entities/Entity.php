@@ -108,6 +108,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new SectionBlock($block->entry);
             case 'shareAction':
                 return new ShareAction($block->entry);
+            case 'storyPage':
+                return new TruncatedStoryPage($block->entry);
             case 'sixpackExperiment':
                 return new SixpackExperiment($block->entry);
             case 'socialDriveAction':
