@@ -10,6 +10,7 @@ import Button from '../../utilities/Button/Button';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { formatFormFields, getFieldErrors } from '../../../helpers/forms';
+import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './petition-submission-action.scss';
 
@@ -116,7 +117,7 @@ class PetitionSubmissionAction extends React.Component {
                   onChange={this.handleChange}
                   disabled={this.state.showAffirmation}
                 />
-                <p className="footnote">500 character limit</p>
+                <CharacterLimit limit={500} text={this.state.textValue} />
               </div>
 
               {userId ? (
