@@ -57,7 +57,7 @@ class ContentfulEntry extends React.Component<Props, State> {
     }
 
     // Otherwise, find the corresponding component & render it!
-    const { json = DEFAULT_BLOCK } = this.props;
+    const { json = DEFAULT_BLOCK, className = null } = this.props;
     const type = parseContentfulType(json);
 
     switch (type) {
@@ -90,10 +90,10 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'contentBlock':
-        return renderContentBlock(json, this.props.className);
+        return renderContentBlock(json, className);
 
       case 'embed':
-        return renderEmbed(json, this.props.className);
+        return renderEmbed(json, className);
 
       case 'gallery':
         return (
@@ -105,7 +105,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'postGallery':
         return (
           <PostGalleryBlockQuery
-            className={this.props.className}
+            className={className}
             {...withoutNulls(json.fields)}
           />
         );
@@ -115,10 +115,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'imagesBlock':
         return (
-          <ImagesBlock
-            className={this.props.className}
-            images={json.fields.images}
-          />
+          <ImagesBlock className={className} images={json.fields.images} />
         );
 
       case 'landingPage':
@@ -137,7 +134,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'petitionSubmissionAction':
-        return renderPetitionSubmissionAction(json, this.props.className);
+        return renderPetitionSubmissionAction(json, className);
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);
@@ -196,7 +193,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'textSubmissionAction':
-        return renderTextSubmissionAction(json, this.props.className);
+        return renderTextSubmissionAction(json, className);
 
       case 'voterRegistrationAction':
         return renderVoterRegistrationAction(json);
