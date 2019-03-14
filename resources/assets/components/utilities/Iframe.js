@@ -1,76 +1,71 @@
 import React from 'react';
+import Media from 'react-media';
 import PropTypes from 'prop-types';
 
 import LazyImage from './LazyImage';
 import { getRequest } from '../../helpers/api';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
-import { getFormattedScreenSize } from '../../helpers';
 
 const permittedHostnames = ['dosomething.carto.com'];
 
-class Iframe extends React.Component {
+class IframePreview extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isMobile: getFormattedScreenSize() === 'small',
-      imagePreview: null,
+      image: null,
       hasError: false,
     };
-
-    const hostname = new URL(this.props.url).hostname;
-    if (!permittedHostnames.includes(hostname)) {
-      console.warn(
-        `Invalid URL ${this.props.url} supplied to Iframe component`,
-      );
-      this.state = {
-        ...this.state,
-        hasError: true,
-      };
-    }
   }
 
   componentDidMount() {
-    if (this.state.isMobile && !this.state.hasError) {
-      getRequest('next/embed', { url: this.props.url })
-        .then(({ image }) =>
-          image
-            ? this.setState({ imagePreview: image })
-            : this.setState({ hasError: true }),
-        )
-        .catch(() => {
-          this.setState({ hasError: true });
-        });
-    }
+    getRequest('next/embed', { url: this.props.url })
+      .then(({ image }) =>
+        image ? this.setState({ image }) : this.setState({ hasError: true }),
+      )
+      .catch(() => this.setState({ hasError: true }));
   }
 
   render() {
-    if (this.state.hasError) {
-      return <ErrorBlock />;
-    }
-
-    if (this.state.isMobile) {
-      return (
-        <div className="margin-horizontal-md">
-          <LazyImage
-            src={this.state.imagePreview}
-            alt="Preview image for embedded content"
-          />
-        </div>
-      );
-    }
-
-    return (
-      <iframe
-        id={this.props.id}
-        title={`embed ${this.props.id}`}
-        src={this.props.url}
-        width="100%"
-        height="520"
-      />
+    return this.state.hasError ? (
+      <ErrorBlock />
+    ) : (
+      <div className="margin-horizontal-md">
+        <LazyImage
+          src={this.state.image}
+          alt="Preview image for embedded content"
+        />
+      </div>
     );
   }
 }
+
+IframePreview.propTypes = {
+  url: PropTypes.string.isRequired,
+};
+
+const Iframe = ({ id, url }) => {
+  const hostname = new URL(url).hostname;
+
+  if (!permittedHostnames.includes(hostname)) {
+    console.warn(`Invalid URL ${url} supplied to Iframe component`);
+    return <ErrorBlock />;
+  }
+
+  return (
+    <div id={id}>
+      <Media query="(max-width: 759px)">
+        {matches =>
+          matches ? (
+            <IframePreview url={url} />
+          ) : (
+            <iframe title={`embed ${id}`} src={url} width="100%" height="520" />
+          )
+        }
+      </Media>
+    </div>
+  );
+};
 
 Iframe.propTypes = {
   id: PropTypes.string.isRequired,
