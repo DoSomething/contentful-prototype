@@ -1,7 +1,13 @@
 @import '../../../scss/next-toolbox';
 
 .section-block__content {
-  > *:not(ul):not(ol):not(blockquote):not(.component-entry) {
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6,
+  > p {
     text-align: center;
   }
 
