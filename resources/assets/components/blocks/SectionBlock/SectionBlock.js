@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -7,12 +8,12 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import './section-block.scss';
 
 const SectionBlock = props => {
-  const { id, content, backgroundColor, textColor } = props;
+  const { backgroundColor, className, content, id, textColor } = props;
 
   return (
     <section
       id={id}
-      className="section-block story-section"
+      className={classnames('section-block', className)}
       style={withoutNulls({ backgroundColor })}
     >
       <TextContent

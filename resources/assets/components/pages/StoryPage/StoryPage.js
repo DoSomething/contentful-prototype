@@ -37,7 +37,11 @@ const StoryPage = props => {
       </header>
 
       {blocks.map(block => (
-        <ContentfulEntry key={block.id} json={block} />
+        <ContentfulEntry
+          className="story-section"
+          key={block.id}
+          json={block}
+        />
       ))}
     </article>
   );
