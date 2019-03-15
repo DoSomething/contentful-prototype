@@ -69,7 +69,10 @@ class HomePage extends React.Component {
         <section className="container container--sponsors">
           <div className="wrapper">
             <div className="container__block">
-              {/* Workaround for this jsx-a11y bug https://git.io/fN814 */}
+              {/*
+                Workaround for this jsx-a11y bug https://git.io/fN814.
+                @TODO: Update once the eslint-config package is updated (https://git.io/fjejY).
+               */}
               {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
               <h4>Sponsors</h4>
               <ul>
