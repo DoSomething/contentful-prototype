@@ -1,6 +1,6 @@
 /* @flow */
 
-import React from 'react';
+import * as React from 'react';
 
 import NotFound from '../NotFound';
 import Iframe from '../utilities/Iframe';
