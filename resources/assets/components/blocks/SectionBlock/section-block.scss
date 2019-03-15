@@ -14,12 +14,12 @@
   > h1 {
     margin-bottom: $base-spacing;
 
-    span {
-      border-bottom: 5px solid $primary-color;
-    }
-
     @include media($medium) {
       font-size: 60px;
+
+      span {
+        border-bottom: 5px solid $primary-color;
+      }
     }
   }
 }
