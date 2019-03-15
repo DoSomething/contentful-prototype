@@ -40,9 +40,17 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            // Read Fastly's geolocation headers for location-based features.
+            // Read Fastly's geolocation headers for location-based features,
+            // and check that they look like valid ISO-3601-2 codes.
             $country = request()->header('X-Fastly-Country-Code');
+            if (strlen($country) !== 2) {
+                $country = null;
+            }
+
             $region = request()->header('X-Fastly-Region-Code');
+            if (! in_array(strlen($region), [2, 3])) {
+                $region = null;
+            }
 
             $view->with('auth', [
                 'isAuthenticated' => auth()->check(),
