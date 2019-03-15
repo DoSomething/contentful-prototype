@@ -102,7 +102,6 @@ class ContentfulEntry extends React.Component<Props, State> {
             {...withoutNulls(json.fields)}
           />
         );
-      // return renderEmbed(json, className);
 
       case 'gallery':
         return (
