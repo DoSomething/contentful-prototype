@@ -174,9 +174,13 @@ class ContentfulEntry extends React.Component<Props, State> {
         return renderReferralSubmissionAction(json);
 
       case 'sectionBlock': {
-        const fields = withoutNulls(json.fields);
-
-        return <SectionBlock id={json.id} {...fields} />;
+        return (
+          <SectionBlock
+            className={className}
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
       }
 
       case 'shareAction':

@@ -44,3 +44,11 @@
     }
   }
 }
+
+.story-section {
+  padding: $half-spacing 0;
+
+  @include media($medium) {
+    padding: $base-spacing 0;
+  }
+}
