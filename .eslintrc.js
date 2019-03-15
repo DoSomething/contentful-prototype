@@ -8,6 +8,8 @@ module.exports = {
     'jsx-a11y/alt-text': 'warn',
     'jsx-a11y/media-has-caption': 'warn',
 
+    'no-underscore-dangle': ['warn', { allow: ['__typename'] }],
+
     // Require multi-line curly braces for all conditionals.
     curly: ['error', 'all'],
     'brace-style': ['error', '1tbs', { allowSingleLine: false }],
