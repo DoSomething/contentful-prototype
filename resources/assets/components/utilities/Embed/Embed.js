@@ -1,89 +1,109 @@
 /* eslint-disable react/no-danger */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 import { truncate } from 'lodash';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Phoenix } from '@dosomething/gateway';
+import { Query } from 'react-apollo';
 
 import linkIcon from './linkIcon.svg';
-import { isExternal, withoutTokens } from '../../../helpers';
+import { isExternal } from '../../../helpers';
 import LazyImage from '../LazyImage';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 
 import './embed.scss';
 
-class Embed extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { data: null };
-    this.phoenix = new Phoenix();
+const EMBED_QUERY = gql`
+  query EmbedQuery($url: AbsoluteUrl!) {
+    embed(url: $url) {
+      title
+      providerName
+      thumbnailUrl
+      description
+      html
+    }
   }
+`;
 
-  componentDidMount() {
-    this.phoenix
-      .get('next/embed', { url: withoutTokens(this.props.url) })
-      .then(data => this.setState({ data }));
-  }
+const Embed = props => {
+  const { url, badged, className } = props;
 
-  render() {
-    const { url, badged, className } = this.props;
-    const { data } = this.state;
+  return (
+    <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
+      <Query query={EMBED_QUERY} variables={{ url }}>
+        {({ loading, error, data }) => {
+          const finishedLoading = !loading;
+          const embed = data.embed;
 
-    const code = data ? data.code : null;
-    const image = data ? data.image : null;
+          console.log('EMBED_QUERY', { url, loading, embed });
 
-    // If an <iframe> code snippet is provided, use that.
-    // Otherwise, fill in our "embed card".
-    const embed = code ? (
-      <div className="media-video" dangerouslySetInnerHTML={{ __html: code }} />
-    ) : (
-      <a
-        href={url}
-        className="embed__linker"
-        target={isExternal(url) ? '_blank' : '_self'}
-        rel="noopener noreferrer"
-      >
-        <div className="embed">
-          <LazyImage className="embed__image" src={image} asBackground />
-          <div className="embed__content padded">
-            <div className="margin-vertical-md margin-right-md">
-              <h3 className="line-break">
-                {data ? (
-                  truncate(data.title, { length: 60 })
-                ) : (
-                  <PlaceholderText size="medium" />
-                )}
-              </h3>
-              <p className="color-gray">
-                {data ? (
-                  truncate(data.description, { length: 240 })
-                ) : (
-                  <PlaceholderText size="large" />
-                )}
-              </p>
-              <p className="footnote font-bold caps-lock">
-                {data ? data.provider.name : <PlaceholderText size="small" />}
-              </p>
-            </div>
-          </div>
-          {badged ? (
-            <div className="button embed__badge flex-center-xy">
-              <img src={linkIcon} alt="link" />
-            </div>
-          ) : null}
-        </div>
-      </a>
-    );
+          if (error) {
+            return `Error! ${error.message}`;
+          }
 
-    return (
-      <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
-        {embed}
-      </div>
-    );
-  }
-}
+          // If an <iframe> code snippet is provided, use that.
+          // Otherwise, fill in our "embed card".
+          return finishedLoading && embed && embed.html ? (
+            <div
+              className="media-video"
+              dangerouslySetInnerHTML={{ __html: embed.html }}
+            />
+          ) : (
+            <a
+              href={url}
+              className="embed__linker"
+              target={isExternal(url) ? '_blank' : '_self'}
+              rel="noopener noreferrer"
+            >
+              <div className="embed">
+                <LazyImage
+                  className="embed__image"
+                  src={finishedLoading && embed ? embed.thumbnailUrl : null}
+                  asBackground
+                />
+                <div className="embed__content padded">
+                  <div className="margin-vertical-md margin-right-md">
+                    <h3 className="line-break">
+                      {finishedLoading ? (
+                        truncate(embed ? embed.title : url, { length: 60 })
+                      ) : (
+                        <PlaceholderText size="medium" />
+                      )}
+                    </h3>
+                    <p className="color-gray">
+                      {finishedLoading ? (
+                        truncate(embed ? embed.description : '', {
+                          length: 240,
+                        })
+                      ) : (
+                        <PlaceholderText size="large" />
+                      )}
+                    </p>
+                    <p className="footnote font-bold caps-lock">
+                      {finishedLoading ? (
+                        truncate(embed ? embed.providerName : 'External Link', {
+                          length: 60,
+                        })
+                      ) : (
+                        <PlaceholderText size="small" />
+                      )}
+                    </p>
+                  </div>
+                </div>
+                {badged ? (
+                  <div className="button embed__badge flex-center-xy">
+                    <img src={linkIcon} alt="link" />
+                  </div>
+                ) : null}
+              </div>
+            </a>
+          );
+        }}
+      </Query>
+    </div>
+  );
+};
 
 Embed.propTypes = {
   className: PropTypes.string,
