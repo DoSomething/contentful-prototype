@@ -1,6 +1,6 @@
 /* @flow */
 
-import { React, Fragment } from 'react';
+import React from 'react';
 
 import NotFound from '../NotFound';
 import Iframe from '../utilities/Iframe';
@@ -208,7 +208,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'textSubmissionAction':
         return (
-          <Fragment>
+          <React.Fragment>
             <TextSubmissionActionContainer
               className={className}
               id={json.id}
@@ -218,7 +218,7 @@ class ContentfulEntry extends React.Component<Props, State> {
               className={className}
               type="text"
             />
-          </Fragment>
+          </React.Fragment>
         );
 
       case 'voterRegistrationAction':
