@@ -3,6 +3,7 @@
 import React from 'react';
 
 import NotFound from '../NotFound';
+import Iframe from '../utilities/Iframe';
 import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
@@ -19,16 +20,16 @@ import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQu
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
+import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
+import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
+import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import {
-  renderEmbed,
   renderLinkAction,
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
   renderPhotoSubmissionAction,
-  renderTextSubmissionAction,
   renderVoterRegistrationAction,
-  renderPetitionSubmissionAction,
   renderReferralSubmissionAction,
 } from './renderers';
 
@@ -94,7 +95,14 @@ class ContentfulEntry extends React.Component<Props, State> {
         return renderContentBlock(json, className);
 
       case 'embed':
-        return renderEmbed(json, className);
+        return (
+          <Iframe
+            className={className}
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
+      // return renderEmbed(json, className);
 
       case 'gallery':
         return (
@@ -135,7 +143,13 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'petitionSubmissionAction':
-        return renderPetitionSubmissionAction(json, className);
+        return (
+          <PetitionSubmissionActionContainer
+            className={className}
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'photoSubmissionAction':
         return renderPhotoSubmissionAction(json);
@@ -194,7 +208,19 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'textSubmissionAction':
-        return renderTextSubmissionAction(json, className);
+        return (
+          <React.Fragment>
+            <TextSubmissionActionContainer
+              className={className}
+              id={json.id}
+              {...withoutNulls(json.fields)}
+            />
+            <SubmissionGalleryBlockContainer
+              className={className}
+              type="text"
+            />
+          </React.Fragment>
+        );
 
       case 'voterRegistrationAction':
         return renderVoterRegistrationAction(json);

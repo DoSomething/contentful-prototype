@@ -2,17 +2,14 @@ import React from 'react';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Affirmation from '../Affirmation';
-import Iframe from '../utilities/Iframe';
 import { withoutNulls } from '../../helpers';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
-import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
-import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 
 /**
  * Render the voter registration action container.
@@ -75,36 +72,6 @@ export function renderLinkAction(step) {
 }
 
 /**
- * Render a text submission action.
- *
- * @param {Object} data
- * @return {Component}
- */
-export function renderTextSubmissionAction(data, className = null) {
-  const contentfulId = data.id;
-  const fields = withoutNulls(data.fields);
-
-  return (
-    <React.Fragment>
-      <PuckWaypoint
-        name="text_submission_action-top"
-        waypointData={{ contentfulId }}
-      />
-      <TextSubmissionActionContainer
-        className={className}
-        id={contentfulId}
-        {...fields}
-      />
-      <SubmissionGalleryBlockContainer className={className} type="text" />
-      <PuckWaypoint
-        name="text_submission_action-bottom"
-        waypointData={{ contentfulId }}
-      />
-    </React.Fragment>
-  );
-}
-
-/**
  * Render a photo submission action.
  *
  * @param  {Object} data
@@ -129,35 +96,6 @@ export function renderPhotoSubmissionAction(data) {
         waypointData={{ contentfulId }}
       />
     </div>
-  );
-}
-
-/**
- * Render a petition submission action.
- *
- * @param  {Object} data
- * @return {Component}
- */
-export function renderPetitionSubmissionAction(data, className = null) {
-  const contentfulId = data.id;
-  const fields = withoutNulls(data.fields);
-
-  return (
-    <React.Fragment>
-      <PuckWaypoint
-        name="petition_submission_action-top"
-        waypointData={{ contentfulId }}
-      />
-      <PetitionSubmissionActionContainer
-        className={className}
-        id={contentfulId}
-        {...fields}
-      />
-      <PuckWaypoint
-        name="petition_submission_action-bottom"
-        waypointData={{ contentfulId }}
-      />
-    </React.Fragment>
   );
 }
 
@@ -199,23 +137,4 @@ export function renderContentBlock(data, className = null) {
   const fields = withoutNulls(data.fields);
 
   return <ContentBlock className={className} id={data.id} {...fields} />;
-}
-
-/**
- * Render an embed.
- *
- * @param {Object} data Embed
- * @return {Component}
- */
-export function renderEmbed(data, className = null) {
-  const contentfulId = data.id;
-  const fields = withoutNulls(data.fields);
-
-  return (
-    <React.Fragment>
-      <PuckWaypoint name="embed-top" waypointData={{ contentfulId }} />
-      <Iframe className={className} id={contentfulId} {...fields} />
-      <PuckWaypoint name="embed-bottom" waypointData={{ contentfulId }} />
-    </React.Fragment>
-  );
 }

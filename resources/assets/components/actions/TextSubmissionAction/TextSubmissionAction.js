@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
@@ -103,9 +104,16 @@ class TextSubmissionAction extends React.Component {
     return (
       <React.Fragment>
         <div
-          className={classnames('text-submission-action', this.props.className)}
+          className={classnames(
+            'text-submission-action margin-bottom-lg',
+            this.props.className,
+          )}
           id={this.props.id}
         >
+          <PuckWaypoint
+            name="text_submission_action-top"
+            waypointData={{ contentfulId: this.props.id }}
+          />
           <Card className="bordered rounded" title={this.props.title}>
             {formResponse ? <FormValidation response={formResponse} /> : null}
 
@@ -145,14 +153,16 @@ class TextSubmissionAction extends React.Component {
               </p>
             </form>
           </Card>
+          <PuckWaypoint
+            name="text_submission_action-bottom"
+            waypointData={{ contentfulId: this.props.id }}
+          />
         </div>
 
         {this.props.informationContent ? (
           <div
             className={classnames(
-              'text-submission-information',
-              'margin-top-lg',
-              'margin-bottom-lg',
+              'text-submission-information margin-bottom-lg',
               this.props.className,
             )}
           >
