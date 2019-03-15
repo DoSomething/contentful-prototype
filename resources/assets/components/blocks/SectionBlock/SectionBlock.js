@@ -27,6 +27,7 @@ const SectionBlock = props => {
 };
 
 SectionBlock.propTypes = {
+  className: PropTypes.string,
   backgroundColor: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.object]).isRequired,
   id: PropTypes.string.isRequired,
@@ -34,6 +35,7 @@ SectionBlock.propTypes = {
 };
 
 SectionBlock.defaultProps = {
+  className: null,
   backgroundColor: null,
   textColor: null,
 };
