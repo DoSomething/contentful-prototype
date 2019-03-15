@@ -7,9 +7,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Query } from 'react-apollo';
 
+import LazyImage from '../LazyImage';
 import linkIcon from './linkIcon.svg';
 import { isExternal } from '../../../helpers';
-import LazyImage from '../LazyImage';
+import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 
 import './embed.scss';
@@ -17,6 +18,7 @@ import './embed.scss';
 const EMBED_QUERY = gql`
   query EmbedQuery($url: AbsoluteUrl!) {
     embed(url: $url) {
+      type
       title
       providerName
       thumbnailUrl
@@ -33,20 +35,18 @@ const Embed = props => {
     <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
       <Query query={EMBED_QUERY} variables={{ url }}>
         {({ loading, error, data }) => {
-          const finishedLoading = !loading;
-          const embed = data.embed;
-
-          console.log('EMBED_QUERY', { url, loading, embed });
+          const isLoaded = !loading;
+          const { embed } = data;
 
           if (error) {
-            return `Error! ${error.message}`;
+            return <ErrorBlock />;
           }
 
           // If an <iframe> code snippet is provided, use that.
           // Otherwise, fill in our "embed card".
-          return finishedLoading && embed && embed.html ? (
+          return isLoaded && embed && embed.html ? (
             <div
-              className="media-video"
+              className={classnames({ 'media-video': embed.type === 'VIDEO' })}
               dangerouslySetInnerHTML={{ __html: embed.html }}
             />
           ) : (
@@ -59,20 +59,20 @@ const Embed = props => {
               <div className="embed">
                 <LazyImage
                   className="embed__image"
-                  src={finishedLoading && embed ? embed.thumbnailUrl : null}
+                  src={isLoaded && embed ? embed.thumbnailUrl : null}
                   asBackground
                 />
                 <div className="embed__content padded">
                   <div className="margin-vertical-md margin-right-md">
                     <h3 className="line-break">
-                      {finishedLoading ? (
+                      {isLoaded ? (
                         truncate(embed ? embed.title : url, { length: 60 })
                       ) : (
                         <PlaceholderText size="medium" />
                       )}
                     </h3>
                     <p className="color-gray">
-                      {finishedLoading ? (
+                      {isLoaded ? (
                         truncate(embed ? embed.description : '', {
                           length: 240,
                         })
@@ -81,7 +81,7 @@ const Embed = props => {
                       )}
                     </p>
                     <p className="footnote font-bold caps-lock">
-                      {finishedLoading ? (
+                      {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,
                         })
