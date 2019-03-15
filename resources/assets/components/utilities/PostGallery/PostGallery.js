@@ -25,7 +25,7 @@ const PostGallery = props => {
         className="post-gallery expand-horizontal-md"
       >
         {posts.map(post => (
-          <PostCard post={post} />
+          <PostCard key={post.id} post={post} />
         ))}
       </Gallery>
       <LoadMore
