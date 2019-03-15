@@ -5,6 +5,7 @@ stats.json
 /public/next/assets
 /public/next/uploads
 /public/storage
+/resources/assets/fragmentTypes.json
 /storage/debugbar
 /vendor
 /_book

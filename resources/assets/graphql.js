@@ -4,9 +4,18 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { ApolloClient } from 'apollo-client';
 import { setContext } from 'apollo-link-context';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import { BatchHttpLink } from 'apollo-link-batch-http';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from 'apollo-cache-inmemory';
+
+import introspectionQueryResultData from './fragmentTypes.json';
+
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData,
+});
 
 // Create an authentication link with the user's access token.
 const authLink = setContext((request, context) => {
@@ -48,6 +57,6 @@ export default uri => {
 
   return new ApolloClient({
     link: ApolloLink.from([errorLink, authLink, persistedLink, httpLink]),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({ fragmentMatcher }),
   });
 };

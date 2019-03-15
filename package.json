@@ -11,6 +11,7 @@
     "stat": "webpack --env=production --profile --json > stats.json",
     "analyze": "npm run stat && webpack-bundle-analyzer stats.json",
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
+    "schema:load": "node bootstrap/getFragmentTypes.js",
     "precommit": "pretty-quick --staged",
     "heroku-postbuild": "npm run build"
   },
@@ -72,6 +73,7 @@
     "css-module-flow": "^1.0.0",
     "date-fns": "^2.0.0-alpha.25",
     "dom-delegate": "^2.0.3",
+    "dotenv": "^7.0.0",
     "environment-badge": "^1.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
@@ -89,6 +91,7 @@
     "markdown-it": "^8.4.0",
     "markdown-it-footnote": "^3.0.1",
     "markdown-it-for-inline": "^0.1.1",
+    "node-fetch": "^2.3.0",
     "prettier": "^1.16.4",
     "prop-types": "^15.6.2",
     "query-string": "^5.1.1",
