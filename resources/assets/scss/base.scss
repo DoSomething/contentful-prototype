@@ -57,6 +57,11 @@ p {
   }
 }
 
+// Override Forge rule for .text-field font-family (https://git.io/fjeFh).
+.text-field {
+  font-family: $primary-font-family;
+}
+
 // Utility classes.
 // @TODO: Move over to Forge 7 soon!
 .background-image-centered {
