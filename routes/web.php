@@ -64,9 +64,6 @@ $router->get('{slug}', function ($slug) {
 $router->get('cache/{cacheId}', 'CacheController');
 $router->get('next/cache/{cacheId}', 'CacheController');
 
-// Embeds
-$router->get('next/embed', 'EmbedController@index');
-
 // Referrals CSV export
 $router->get('next/referrals/export', 'ReferralController@csvExport');
 
