@@ -2,6 +2,7 @@ import React from 'react';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import LazyImage from './LazyImage';
 import { getRequest } from '../../helpers/api';
@@ -54,7 +55,8 @@ const Iframe = ({ className, id, url }) => {
   }
 
   return (
-    <div id={id} className={classnames('embed', className)}>
+    <div id={id} className={classnames('embed margin-bottom-lg', className)}>
+      <PuckWaypoint name="embed-top" waypointData={{ contentfulId: id }} />
       <Media query="(max-width: 759px)">
         {matches =>
           matches ? (
@@ -64,6 +66,7 @@ const Iframe = ({ className, id, url }) => {
           )
         }
       </Media>
+      <PuckWaypoint name="embed-bottom" waypointData={{ contentfulId: id }} />
     </div>
   );
 };

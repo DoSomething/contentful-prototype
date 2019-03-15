@@ -108,11 +108,12 @@ export function parseRichTextDocument(document, styles) {
           {children}
         </h6>
       ),
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="grid-main" style={textColor}>
-          {children}
-        </p>
-      ),
+      [BLOCKS.PARAGRAPH]: (node, children) =>
+        children[0] ? (
+          <p className="grid-main" style={textColor}>
+            {children}
+          </p>
+        ) : null,
       [BLOCKS.UL_LIST]: (node, children) => (
         <ul className="grid-main text-left list" style={textColor}>
           {children}

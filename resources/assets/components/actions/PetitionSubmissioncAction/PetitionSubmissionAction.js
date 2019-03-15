@@ -4,6 +4,7 @@ import { get, has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Query } from 'react-apollo';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
@@ -97,12 +98,15 @@ class PetitionSubmissionAction extends React.Component {
       <React.Fragment>
         <div
           className={classnames(
-            'petition-submission-action',
-            'margin-bottom-lg',
+            'petition-submission-action margin-bottom-lg',
             this.props.className,
           )}
           id={id}
         >
+          <PuckWaypoint
+            name="petition_submission_action-top"
+            waypointData={{ contentfulId: id }}
+          />
           <Card className="bordered rounded" title={title}>
             {this.state.showAffirmation ? (
               <p className="padded affirmation-message">
@@ -167,13 +171,16 @@ class PetitionSubmissionAction extends React.Component {
               </Button>
             </form>
           </Card>
+          <PuckWaypoint
+            name="petition_submission_action-bottom"
+            waypointData={{ contentfulId: id }}
+          />
         </div>
 
         {this.props.informationContent ? (
           <div
             className={classnames(
-              'petition-submission-information',
-              'margin-bottom-md',
+              'petition-submission-information margin-bottom-lg',
               this.props.className,
             )}
           >
