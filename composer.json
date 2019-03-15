@@ -9,7 +9,6 @@
     "dfurnes/environmentalist": "^0.0.2",
     "doctrine/dbal": "^2.5",
     "dosomething/gateway": "^1.14.7",
-    "embed/embed": "3.2.*",
     "erusev/parsedown": "^1.6",
     "fideloper/proxy": "^3.3",
     "laravel/framework": "5.5.*",
