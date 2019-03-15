@@ -52,6 +52,12 @@ class AppServiceProvider extends ServiceProvider
                 $region = null;
             }
 
+            // Fix improper ISO-3601-2 format for American territories:
+            if (in_array($country, ['AS', 'GU', 'MP', 'PR'])) {
+                $region = $country;
+                $country = 'US';
+            }
+
             $view->with('auth', [
                 'isAuthenticated' => auth()->check(),
                 'id' => auth()->id() ?: request()->query('user_id'),
