@@ -42,18 +42,18 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             // Read Fastly's geolocation headers for location-based features,
             // and check that they look like valid ISO-3601-2 codes.
-            $country = request()->header('X-Fastly-Country-Code');
+            $country = 'CA';
             if (strlen($country) !== 2) {
                 $country = null;
             }
 
-            $region = request()->header('X-Fastly-Region-Code');
+            $region = 'ON';
             if (! in_array(strlen($region), [2, 3])) {
                 $region = null;
             }
 
-            // Fix improper ISO-3601-2 format for American territories:
-            if (in_array($country, ['AS', 'GU', 'MP', 'PR'])) {
+            // Fix improper format for American territories <https://goo.gl/qzcMyb>:
+            if (in_array($country, ['AS', 'GU', 'MP', 'PR', 'UM', 'VI'])) {
                 $region = $country;
                 $country = 'US';
             }
