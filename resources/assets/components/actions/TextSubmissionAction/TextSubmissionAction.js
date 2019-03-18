@@ -15,6 +15,8 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './text-submission-action.scss';
 
+const CHARACTER_LIMIT = 500;
+
 class TextSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
@@ -137,12 +139,18 @@ class TextSubmissionAction extends React.Component {
                   value={this.state.textValue}
                   onChange={this.handleChange}
                 />
-                <CharacterLimit limit={500} text={this.state.textValue} />
+                <CharacterLimit
+                  limit={CHARACTER_LIMIT}
+                  text={this.state.textValue}
+                />
               </div>
               <Button
                 type="submit"
                 loading={submissionItem && submissionItem.isPending}
-                disabled={!this.state.textValue}
+                disabled={
+                  !this.state.textValue ||
+                  this.state.textValue.length > CHARACTER_LIMIT
+                }
                 attached
               >
                 {this.props.buttonText}

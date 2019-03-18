@@ -27,6 +27,8 @@ const USER_POSTS_QUERY = gql`
   }
 `;
 
+const CHARACTER_LIMIT = 500;
+
 class PetitionSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
@@ -152,7 +154,10 @@ class PetitionSubmissionAction extends React.Component {
                         onChange={this.handleChange}
                         disabled={submitted}
                       />
-                      <CharacterLimit limit={500} text={this.state.textValue} />
+                      <CharacterLimit
+                        limit={CHARACTER_LIMIT}
+                        text={this.state.textValue}
+                      />
                     </div>
 
                     <div className="padded">
@@ -171,7 +176,10 @@ class PetitionSubmissionAction extends React.Component {
                       type="submit"
                       attached
                       loading={submissionItem && submissionItem.isPending}
-                      disabled={submitted}
+                      disabled={
+                        submitted ||
+                        this.state.textValue.length > CHARACTER_LIMIT
+                      }
                     >
                       {buttonText}
                     </Button>
