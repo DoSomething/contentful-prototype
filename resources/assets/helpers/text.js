@@ -1,8 +1,8 @@
 import React from 'react';
-import { pick } from 'lodash';
+import { get } from 'lodash';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
-import { BLOCKS } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import markdownItFootnote from 'markdown-it-footnote';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
@@ -68,66 +68,72 @@ function getMarkdownItInstance() {
  * @return {String}
  */
 export function parseRichTextDocument(document, styles) {
-  const textColor = pick(styles, 'color');
+  const hyperlinkColor = get(styles, 'hyperlinkColor', null);
+  const textColor = get(styles, 'textColor', null);
 
   const options = {
     renderNode: {
+      [BLOCKS.HEADING_1]: (node, children) => (
+        <h1 className="grid-main" style={{ color: textColor }}>
+          <span>{children}</span>
+        </h1>
+      ),
+      [BLOCKS.HEADING_2]: (node, children) => (
+        <h2 className="grid-main" style={{ color: textColor }}>
+          {children}
+        </h2>
+      ),
+      [BLOCKS.HEADING_3]: (node, children) => (
+        <h3 className="grid-main" style={{ color: textColor }}>
+          {children}
+        </h3>
+      ),
+      [BLOCKS.HEADING_4]: (node, children) => (
+        <h4 className="grid-main" style={{ color: textColor }}>
+          {children}
+        </h4>
+      ),
+      [BLOCKS.HEADING_5]: (node, children) => (
+        <h5 className="grid-main" style={{ color: textColor }}>
+          {children}
+        </h5>
+      ),
+      [BLOCKS.HEADING_6]: (node, children) => (
+        <h6 className="grid-main" style={{ color: textColor }}>
+          {children}
+        </h6>
+      ),
+      [BLOCKS.PARAGRAPH]: (node, children) =>
+        children[0] ? (
+          <p className="grid-main" style={{ color: textColor }}>
+            {children}
+          </p>
+        ) : null,
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="grid-main text-left list" style={{ color: textColor }}>
+          {children}
+        </ul>
+      ),
+      [BLOCKS.OL_LIST]: (node, children) => (
+        <ol className="grid-main text-left list" style={{ color: textColor }}>
+          {children}
+        </ol>
+      ),
+      [BLOCKS.QUOTE]: (node, children) => (
+        <blockquote className="grid-main list" style={{ color: textColor }}>
+          {children}
+        </blockquote>
+      ),
       [BLOCKS.EMBEDDED_ENTRY]: node => (
         <ContentfulEntryLoader
           id={node.data.target.sys.id}
           className="component-entry"
         />
       ),
-      [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="grid-main" style={textColor}>
-          <span>{children}</span>
-        </h1>
-      ),
-      [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="grid-main" style={textColor}>
-          {children}
-        </h2>
-      ),
-      [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 className="grid-main" style={textColor}>
-          {children}
-        </h3>
-      ),
-      [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 className="grid-main" style={textColor}>
-          {children}
-        </h4>
-      ),
-      [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 className="grid-main" style={textColor}>
-          {children}
-        </h5>
-      ),
-      [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 className="grid-main" style={textColor}>
-          {children}
-        </h6>
-      ),
-      [BLOCKS.PARAGRAPH]: (node, children) =>
-        children[0] ? (
-          <p className="grid-main" style={textColor}>
-            {children}
-          </p>
-        ) : null,
-      [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="grid-main text-left list" style={textColor}>
-          {children}
-        </ul>
-      ),
-      [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="grid-main text-left list" style={textColor}>
-          {children}
-        </ol>
-      ),
-      [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="grid-main list" style={textColor}>
-          {children}
-        </blockquote>
+      [INLINES.HYPERLINK]: node => (
+        <a href={node.data.uri} style={{ color: hyperlinkColor }}>
+          {node.content[0].value}
+        </a>
       ),
     },
   };

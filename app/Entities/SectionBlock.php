@@ -14,6 +14,7 @@ class SectionBlock extends Entity implements JsonSerializable
             'fields' => [
                 'internalTitle' => $this->internalTitle,
                 'backgroundColor' => $this->backgroundColor,
+                'hyperlinkColor' => $this->hyperlinkColor,
                 'textColor' => $this->textColor,
                 'content' => $this->content,
             ],
