@@ -2,23 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 
 import './section-block.scss';
 
 const SectionBlock = props => {
-  const { backgroundColor, className, content, id, textColor } = props;
+  const {
+    backgroundColor,
+    className,
+    content,
+    hyperlinkColor,
+    id,
+    textColor,
+  } = props;
+
+  const styles = {
+    hyperlinkColor,
+    textColor,
+  };
 
   return (
     <section
       id={id}
       className={classnames('section-block', className)}
-      style={withoutNulls({ backgroundColor })}
+      style={{ backgroundColor }}
     >
       <TextContent
         className="section-block__content base-16-grid"
-        styles={withoutNulls({ color: textColor })}
+        styles={styles}
       >
         {content}
       </TextContent>
@@ -27,16 +38,18 @@ const SectionBlock = props => {
 };
 
 SectionBlock.propTypes = {
-  className: PropTypes.string,
   backgroundColor: PropTypes.string,
+  className: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  hyperlinkColor: PropTypes.string,
   id: PropTypes.string.isRequired,
   textColor: PropTypes.string,
 };
 
 SectionBlock.defaultProps = {
-  className: null,
   backgroundColor: null,
+  className: null,
+  hyperlinkColor: null,
   textColor: null,
 };
 
