@@ -7,6 +7,7 @@ import { Query } from 'react-apollo';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
+import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -21,6 +22,7 @@ class PetitionSubmissionAction extends React.Component {
 
     this.state = {
       showAffirmation: false,
+      showModal: false,
       textValue: '',
     };
   }
@@ -35,6 +37,7 @@ class PetitionSubmissionAction extends React.Component {
       return {
         // @TODO: change this to showModal, and display an affirmation modal in place of the success message.
         showAffirmation: true,
+        showModal: true,
         textValue: '',
       };
     }
@@ -191,6 +194,16 @@ class PetitionSubmissionAction extends React.Component {
             </Card>
           </div>
         ) : null}
+
+        {this.state.showModal ? (
+          <Modal onClose={() => this.setState({ showModal: false })}>
+            <Card className="bordered rounded" title="We got your signature!">
+              <TextContent className="padded">
+                {this.props.affirmationContent}
+              </TextContent>
+            </Card>
+          </Modal>
+        ) : null}
       </React.Fragment>
     );
   }
@@ -198,6 +211,7 @@ class PetitionSubmissionAction extends React.Component {
 
 PetitionSubmissionAction.propTypes = {
   actionId: PropTypes.number.isRequired,
+  affirmationContent: PropTypes.string,
   buttonText: PropTypes.string,
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
@@ -215,6 +229,7 @@ PetitionSubmissionAction.propTypes = {
 };
 
 PetitionSubmissionAction.defaultProps = {
+  affirmationContent: 'Thanks for signing the petition!',
   buttonText: 'Add your name',
   className: null,
   textFieldPlaceholder: 'Add your custom message...',
