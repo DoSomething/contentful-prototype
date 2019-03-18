@@ -55,6 +55,26 @@ module.exports = function(migration) {
     .omitted(false);
 
   sectionBlock
+    .createField('hyperlinkColor')
+    .name('Hyperlink Color')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        regexp: {
+          pattern: '^#[0-9a-f]{6}$',
+          flags: 'i',
+        },
+
+        message:
+          'Hexadecimal value, must start with a "#" and follow it with 6 characters.',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  sectionBlock
     .createField('content')
     .name('Content')
     .type('RichText')
@@ -92,7 +112,6 @@ module.exports = function(migration) {
       },
       {
         enabledNodeTypes: [
-          'heading-1',
           'heading-2',
           'heading-3',
           'heading-4',
@@ -103,10 +122,12 @@ module.exports = function(migration) {
           'blockquote',
           'embedded-entry-block',
           'embedded-asset-block',
+          'heading-1',
+          'hyperlink',
         ],
 
         message:
-          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, quote, block entry, and asset nodes are allowed',
+          'Only heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, quote, block entry, asset, heading 1, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
@@ -119,5 +140,6 @@ module.exports = function(migration) {
 
   sectionBlock.changeEditorInterface('backgroundColor', 'singleLine', {});
   sectionBlock.changeEditorInterface('textColor', 'singleLine', {});
+  sectionBlock.changeEditorInterface('hyperlinkColor', 'singleLine', {});
   sectionBlock.changeEditorInterface('content', 'richTextEditor', {});
 };
