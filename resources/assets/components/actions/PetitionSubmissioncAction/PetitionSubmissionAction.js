@@ -118,7 +118,7 @@ class PetitionSubmissionAction extends React.Component {
           <Query
             query={USER_POSTS_QUERY}
             variables={{ userId, actionIds: String(actionId) }}
-            queryName="posts"
+            queryName="userPosts"
             skip={!userId}
           >
             {({ loading, data }) => {
