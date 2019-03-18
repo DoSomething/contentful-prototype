@@ -7,6 +7,7 @@ import { Query } from 'react-apollo';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
+import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -15,12 +16,26 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './petition-submission-action.scss';
 
+const USER_POSTS_QUERY = gql`
+  query UserPostsQuery($userId: String!, $actionIds: [String]!) {
+    posts(userId: $userId, actionIds: $actionIds) {
+      text
+    }
+    user(id: $userId) {
+      firstName
+    }
+  }
+`;
+
+const CHARACTER_LIMIT = 500;
+
 class PetitionSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showAffirmation: false,
+      submitted: false,
+      showModal: false,
       textValue: '',
     };
   }
@@ -33,8 +48,8 @@ class PetitionSubmissionAction extends React.Component {
       nextProps.resetPostSubmissionItem(nextProps.id);
 
       return {
-        // @TODO: change this to showModal, and display an affirmation modal in place of the success message.
-        showAffirmation: true,
+        submitted: true,
+        showModal: true,
         textValue: '',
       };
     }
@@ -69,6 +84,7 @@ class PetitionSubmissionAction extends React.Component {
 
   render() {
     const {
+      actionId,
       buttonText,
       content,
       id,
@@ -86,14 +102,6 @@ class PetitionSubmissionAction extends React.Component {
 
     const formErrors = getFieldErrors(formResponse);
 
-    const SIGNATURE_QUERY = gql`
-      query SignatureQuery($userId: String!) {
-        user(id: $userId) {
-          firstName
-        }
-      }
-    `;
-
     return (
       <React.Fragment>
         <div
@@ -107,70 +115,79 @@ class PetitionSubmissionAction extends React.Component {
             name="petition_submission_action-top"
             waypointData={{ contentfulId: id }}
           />
-          <Card className="bordered rounded" title={title}>
-            {this.state.showAffirmation ? (
-              <p className="padded affirmation-message">
-                Thanks for signing the petition!
-              </p>
-            ) : null}
+          <Query
+            query={USER_POSTS_QUERY}
+            variables={{ userId, actionIds: String(actionId) }}
+            queryName="userPosts"
+            skip={!userId}
+          >
+            {({ loading, data }) => {
+              const signature = loading
+                ? 'Loading name...'
+                : get(data, 'user.firstName', 'A Doer');
 
-            {formResponse ? <FormValidation response={formResponse} /> : null}
-            <TextContent className="padding-md">{content}</TextContent>
+              const post = get(data, 'posts', [])[0];
+              const message = post && post.text;
+              const submitted = Boolean(post || this.state.submitted);
 
-            <form onSubmit={this.handleSubmit}>
-              <div className="padded">
-                <textarea
-                  className={classnames('text-field petition-textarea', {
-                    'has-error shake': has(formErrors, 'text'),
-                  })}
-                  placeholder={textFieldPlaceholder}
-                  value={this.state.textValue}
-                  onChange={this.handleChange}
-                  disabled={this.state.showAffirmation}
-                />
-                <CharacterLimit limit={500} text={this.state.textValue} />
-              </div>
+              return (
+                <Card className="bordered rounded" title={title}>
+                  {submitted ? (
+                    <p className="padded affirmation-message">
+                      Thanks for signing the petition!
+                    </p>
+                  ) : null}
 
-              {userId ? (
-                <Query
-                  query={SIGNATURE_QUERY}
-                  queryName="user"
-                  variables={{ userId }}
-                >
-                  {({ loading, data }) => {
-                    let signature = get(data, 'user.firstName', 'A Doer');
+                  {formResponse ? (
+                    <FormValidation response={formResponse} />
+                  ) : null}
+                  <TextContent className="padding-md">{content}</TextContent>
 
-                    if (loading) {
-                      signature = 'Loading name...';
-                    }
+                  <form onSubmit={this.handleSubmit}>
+                    <div className="padded">
+                      <textarea
+                        className={classnames('text-field petition-textarea', {
+                          'has-error shake': has(formErrors, 'text'),
+                        })}
+                        placeholder={textFieldPlaceholder}
+                        value={message || this.state.textValue}
+                        onChange={this.handleChange}
+                        disabled={submitted}
+                      />
+                      <CharacterLimit
+                        limit={CHARACTER_LIMIT}
+                        text={this.state.textValue}
+                      />
+                    </div>
 
-                    return (
-                      <div className="padded">
-                        <p className="petition-signature-label padding-bottom-sm">
-                          Signed,
-                        </p>
-                        <input
-                          className="text-field petition-signature"
-                          type="text"
-                          disabled
-                          value={signature}
-                        />
-                      </div>
-                    );
-                  }}
-                </Query>
-              ) : null}
+                    <div className="padded">
+                      <p className="petition-signature-label padding-bottom-sm">
+                        Signed,
+                      </p>
+                      <input
+                        className="text-field petition-signature"
+                        type="text"
+                        disabled
+                        value={signature}
+                      />
+                    </div>
 
-              <Button
-                type="submit"
-                attached
-                loading={submissionItem && submissionItem.isPending}
-                disabled={this.state.showAffirmation}
-              >
-                {buttonText}
-              </Button>
-            </form>
-          </Card>
+                    <Button
+                      type="submit"
+                      attached
+                      loading={submissionItem && submissionItem.isPending}
+                      disabled={
+                        submitted ||
+                        this.state.textValue.length > CHARACTER_LIMIT
+                      }
+                    >
+                      {buttonText}
+                    </Button>
+                  </form>
+                </Card>
+              );
+            }}
+          </Query>
           <PuckWaypoint
             name="petition_submission_action-bottom"
             waypointData={{ contentfulId: id }}
@@ -191,6 +208,16 @@ class PetitionSubmissionAction extends React.Component {
             </Card>
           </div>
         ) : null}
+
+        {this.state.showModal ? (
+          <Modal onClose={() => this.setState({ showModal: false })}>
+            <Card className="bordered rounded" title="We got your signature!">
+              <TextContent className="padded">
+                {this.props.affirmationContent}
+              </TextContent>
+            </Card>
+          </Modal>
+        ) : null}
       </React.Fragment>
     );
   }
@@ -198,6 +225,7 @@ class PetitionSubmissionAction extends React.Component {
 
 PetitionSubmissionAction.propTypes = {
   actionId: PropTypes.number.isRequired,
+  affirmationContent: PropTypes.string,
   buttonText: PropTypes.string,
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
@@ -215,6 +243,7 @@ PetitionSubmissionAction.propTypes = {
 };
 
 PetitionSubmissionAction.defaultProps = {
+  affirmationContent: 'Thanks for signing the petition!',
   buttonText: 'Add your name',
   className: null,
   textFieldPlaceholder: 'Add your custom message...',
