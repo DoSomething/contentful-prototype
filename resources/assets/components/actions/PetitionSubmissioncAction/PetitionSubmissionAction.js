@@ -16,12 +16,23 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './petition-submission-action.scss';
 
+const USER_POSTS_QUERY = gql`
+  query UserPostsQuery($userId: String!, $actionIds: [String]!) {
+    posts(userId: $userId, actionIds: $actionIds) {
+      text
+    }
+    user(id: $userId) {
+      firstName
+    }
+  }
+`;
+
 class PetitionSubmissionAction extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showAffirmation: false,
+      submitted: false,
       showModal: false,
       textValue: '',
     };
@@ -35,8 +46,7 @@ class PetitionSubmissionAction extends React.Component {
       nextProps.resetPostSubmissionItem(nextProps.id);
 
       return {
-        // @TODO: change this to showModal, and display an affirmation modal in place of the success message.
-        showAffirmation: true,
+        submitted: true,
         showModal: true,
         textValue: '',
       };
@@ -72,6 +82,7 @@ class PetitionSubmissionAction extends React.Component {
 
   render() {
     const {
+      actionId,
       buttonText,
       content,
       id,
@@ -89,14 +100,6 @@ class PetitionSubmissionAction extends React.Component {
 
     const formErrors = getFieldErrors(formResponse);
 
-    const SIGNATURE_QUERY = gql`
-      query SignatureQuery($userId: String!) {
-        user(id: $userId) {
-          firstName
-        }
-      }
-    `;
-
     return (
       <React.Fragment>
         <div
@@ -110,70 +113,73 @@ class PetitionSubmissionAction extends React.Component {
             name="petition_submission_action-top"
             waypointData={{ contentfulId: id }}
           />
-          <Card className="bordered rounded" title={title}>
-            {this.state.showAffirmation ? (
-              <p className="padded affirmation-message">
-                Thanks for signing the petition!
-              </p>
-            ) : null}
+          <Query
+            query={USER_POSTS_QUERY}
+            variables={{ userId, actionIds: String(actionId) }}
+            queryName="posts"
+            skip={!userId}
+          >
+            {({ loading, data }) => {
+              const signature = loading
+                ? 'Loading name...'
+                : get(data, 'user.firstName', 'A Doer');
 
-            {formResponse ? <FormValidation response={formResponse} /> : null}
-            <TextContent className="padding-md">{content}</TextContent>
+              const post = get(data, 'posts', [])[0];
+              const message = post && post.text;
+              const submitted = Boolean(post || this.state.submitted);
 
-            <form onSubmit={this.handleSubmit}>
-              <div className="padded">
-                <textarea
-                  className={classnames('text-field petition-textarea', {
-                    'has-error shake': has(formErrors, 'text'),
-                  })}
-                  placeholder={textFieldPlaceholder}
-                  value={this.state.textValue}
-                  onChange={this.handleChange}
-                  disabled={this.state.showAffirmation}
-                />
-                <CharacterLimit limit={500} text={this.state.textValue} />
-              </div>
+              return (
+                <Card className="bordered rounded" title={title}>
+                  {submitted ? (
+                    <p className="padded affirmation-message">
+                      Thanks for signing the petition!
+                    </p>
+                  ) : null}
 
-              {userId ? (
-                <Query
-                  query={SIGNATURE_QUERY}
-                  queryName="user"
-                  variables={{ userId }}
-                >
-                  {({ loading, data }) => {
-                    let signature = get(data, 'user.firstName', 'A Doer');
+                  {formResponse ? (
+                    <FormValidation response={formResponse} />
+                  ) : null}
+                  <TextContent className="padding-md">{content}</TextContent>
 
-                    if (loading) {
-                      signature = 'Loading name...';
-                    }
+                  <form onSubmit={this.handleSubmit}>
+                    <div className="padded">
+                      <textarea
+                        className={classnames('text-field petition-textarea', {
+                          'has-error shake': has(formErrors, 'text'),
+                        })}
+                        placeholder={textFieldPlaceholder}
+                        value={message || this.state.textValue}
+                        onChange={this.handleChange}
+                        disabled={submitted}
+                      />
+                      <CharacterLimit limit={500} text={this.state.textValue} />
+                    </div>
 
-                    return (
-                      <div className="padded">
-                        <p className="petition-signature-label padding-bottom-sm">
-                          Signed,
-                        </p>
-                        <input
-                          className="text-field petition-signature"
-                          type="text"
-                          disabled
-                          value={signature}
-                        />
-                      </div>
-                    );
-                  }}
-                </Query>
-              ) : null}
+                    <div className="padded">
+                      <p className="petition-signature-label padding-bottom-sm">
+                        Signed,
+                      </p>
+                      <input
+                        className="text-field petition-signature"
+                        type="text"
+                        disabled
+                        value={signature}
+                      />
+                    </div>
 
-              <Button
-                type="submit"
-                attached
-                loading={submissionItem && submissionItem.isPending}
-                disabled={this.state.showAffirmation}
-              >
-                {buttonText}
-              </Button>
-            </form>
-          </Card>
+                    <Button
+                      type="submit"
+                      attached
+                      loading={submissionItem && submissionItem.isPending}
+                      disabled={submitted}
+                    >
+                      {buttonText}
+                    </Button>
+                  </form>
+                </Card>
+              );
+            }}
+          </Query>
           <PuckWaypoint
             name="petition_submission_action-bottom"
             waypointData={{ contentfulId: id }}
