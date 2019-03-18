@@ -127,7 +127,7 @@ module.exports = function(migration) {
         ],
 
         message:
-          'Only heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, quote, block entry, asset, heading 1, and link to Url nodes are allowed',
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, quote, block entry, asset, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
