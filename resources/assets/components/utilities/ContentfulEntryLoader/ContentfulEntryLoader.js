@@ -72,11 +72,12 @@ const ContentfulEntryLoader = ({ id, className }) => (
       }
 
       const entryGridMapping = {
-        embed: 'grid-wide', // @TODO: may need to reassess, since maybe not all embeds should align to wide?
-        postGallery: 'grid-wide',
+        EmbedBlock: 'grid-wide', // @TODO: may need to reassess, since maybe not all embeds should align to wide?
+        PostGalleryBlock: 'grid-wide',
       };
 
-      const gridClass = get(entryGridMapping, data.block.type, 'grid-main');
+      const blockType = data.block.__typeName; // eslint-disable-line no-underscore-dangle
+      const gridClass = get(entryGridMapping, blockType, 'grid-main');
 
       return (
         <ContentfulEntry

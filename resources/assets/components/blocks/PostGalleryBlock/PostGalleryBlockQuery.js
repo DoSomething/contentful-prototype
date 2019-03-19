@@ -46,7 +46,7 @@ const PostGalleryBlockQuery = ({ actionIds, className, itemsPerRow }) => (
 );
 
 PostGalleryBlockQuery.propTypes = {
-  actionIds: PropTypes.arrayOf(PropTypes.number),
+  actionIds: PropTypes.arrayOf(PropTypes.string),
   className: PropTypes.string,
   itemsPerRow: PropTypes.number,
 };

@@ -224,7 +224,7 @@ class PetitionSubmissionAction extends React.Component {
 }
 
 PetitionSubmissionAction.propTypes = {
-  actionId: PropTypes.number.isRequired,
+  actionId: PropTypes.string.isRequired,
   affirmationContent: PropTypes.string,
   buttonText: PropTypes.string,
   className: PropTypes.string,
