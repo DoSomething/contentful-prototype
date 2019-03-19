@@ -29,4 +29,6 @@ build:
     #     code: npm run test:ci
     - script:
         name: build front-end assets
-        code: npm run build
+        code: |-
+          export GRAPHQL_URL=https://graphql-dev.dosomething.org/graphql
+          npm run build
