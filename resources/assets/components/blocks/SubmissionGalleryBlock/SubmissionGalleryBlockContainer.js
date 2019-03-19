@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 
+import { getUserId } from '../../../selectors/user';
 import SubmissionGalleryBlockQuery from './SubmissionGalleryBlockQuery';
 
 /**
@@ -8,7 +9,7 @@ import SubmissionGalleryBlockQuery from './SubmissionGalleryBlockQuery';
  */
 const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
-  userId: state.user.id,
+  userId: getUserId(state),
 });
 
 // Export the Redux container component.
