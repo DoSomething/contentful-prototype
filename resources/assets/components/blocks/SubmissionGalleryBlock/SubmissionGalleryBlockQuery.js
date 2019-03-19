@@ -12,7 +12,7 @@ import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionB
  */
 const SUBMISSION_GALLERY_QUERY = gql`
   query SubmissionGalleryQuery(
-    $campaignId: String!
+    $campaignId: String
     $userId: String!
     $type: String!
     $count: Int
@@ -56,12 +56,13 @@ const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) =>
   ) : null;
 
 SubmissionGalleryBlockQuery.propTypes = {
-  campaignId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string,
   type: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
 
 SubmissionGalleryBlockQuery.defaultProps = {
+  campaignId: null,
   userId: null,
 };
 

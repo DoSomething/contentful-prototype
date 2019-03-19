@@ -7,7 +7,7 @@ import SubmissionGalleryBlockQuery from './SubmissionGalleryBlockQuery';
  * case, we just need the campaign ID and user ID for our GraphQL query!)
  */
 const mapStateToProps = state => ({
-  campaignId: String(state.campaign.campaignId),
+  campaignId: state.campaign.campaignId,
   userId: state.user.id,
 });
 
