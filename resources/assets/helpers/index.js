@@ -2,7 +2,7 @@
 
 import queryString from 'query-string';
 import { getTime, isBefore, isWithinInterval } from 'date-fns';
-import { camelCase, get, find, isNull, isUndefined, omitBy } from 'lodash';
+import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
 import { trackAnalyticsEvent } from './analytics';
@@ -704,7 +704,7 @@ export function parseContentfulType(json, defaultType) {
   // Figure out the "type" of this entry based on 'customType' field, Contentful machine name,
   // or the 'type' set in the API transformer. If none of those match, use the given default.
   return (
-    camelCase(json.__typename) ||
+    json.__typename ||
     get(json, 'fields.customType') ||
     get(json, 'type.sys.id') ||
     get(json, 'type') ||

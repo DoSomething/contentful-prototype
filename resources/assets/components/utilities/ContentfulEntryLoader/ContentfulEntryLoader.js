@@ -14,10 +14,20 @@ const CONTENTFUL_BLOCK_QUERY = gql`
     block(id: $id) {
       id
 
-      ... on PostGallery {
+      ... on ImagesBlock {
+        images {
+          url(w: 500, h: 500, fit: CROP)
+        }
+      }
+
+      ... on EmbedBlock {
+        url
+      }
+
+      ... on PostGalleryBlock {
         actionIds
       }
-      ... on TextSubmissionAction {
+      ... on TextSubmissionBlock {
         actionId
         title
         textFieldLabel
@@ -27,7 +37,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
         informationContent
         affirmationContent
       }
-      ... on PetitionSubmissionAction {
+      ... on PetitionSubmissionBlock {
         actionId
         title
         content
