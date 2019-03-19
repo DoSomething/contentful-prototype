@@ -76,7 +76,7 @@ const ContentfulEntryLoader = ({ id, className }) => (
         PostGalleryBlock: 'grid-wide',
       };
 
-      const blockType = data.block.__typeName; // eslint-disable-line no-underscore-dangle
+      const blockType = data.block.__typename;
       const gridClass = get(entryGridMapping, blockType, 'grid-main');
 
       return (
