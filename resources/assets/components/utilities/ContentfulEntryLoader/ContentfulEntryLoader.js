@@ -54,8 +54,8 @@ const ContentfulEntryLoader = ({ id, className }) => (
       if (error) {
         return (
           // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-          <Card className="rounded bordered">
-            <TextContent className="padded">
+          <Card className="component-entry grid-main margin-bottom-lg rounded bordered">
+            <TextContent className="padded text-center">
               Sorry! The specified content was not found.
             </TextContent>
           </Card>
