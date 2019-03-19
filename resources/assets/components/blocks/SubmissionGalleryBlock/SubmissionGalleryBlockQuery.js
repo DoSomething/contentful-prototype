@@ -49,6 +49,7 @@ const SubmissionGalleryBlockQuery = ({
 }) => {
   let variables = withoutNulls({ campaignId, userId, type });
 
+  // @TODO remove this logic and campaignId support when we backfill all TSA's with actionIds.
   // Prefer -the more specific- actionId if available, removing campaignId to prevent clash.
   if (actionId) {
     delete variables.campaignId;
