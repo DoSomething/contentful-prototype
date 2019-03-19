@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
+import { withoutNulls } from '../../../helpers';
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
@@ -12,6 +13,7 @@ import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionB
  */
 const SUBMISSION_GALLERY_QUERY = gql`
   query SubmissionGalleryQuery(
+    $actionIds: [String]
     $campaignId: String
     $userId: String!
     $type: String!
@@ -19,6 +21,7 @@ const SUBMISSION_GALLERY_QUERY = gql`
     $page: Int
   ) {
     posts(
+      actionIds: $actionIds
       campaignId: $campaignId
       userId: $userId
       type: $type
@@ -37,12 +40,28 @@ const SUBMISSION_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) =>
-  userId ? (
+const SubmissionGalleryBlockQuery = ({
+  actionId,
+  campaignId,
+  userId,
+  type,
+}) => {
+  let variables = withoutNulls({ campaignId, userId, type });
+
+  // Prefer -the more specific- actionId if available, removing campaignId to prevent clash.
+  if (actionId) {
+    delete variables.campaignId;
+    variables = {
+      ...variables,
+      actionIds: String(actionId),
+    };
+  }
+
+  return userId ? (
     <PaginatedQuery
       query={SUBMISSION_GALLERY_QUERY}
       queryName="posts"
-      variables={{ campaignId, userId, type }}
+      variables={variables}
       count={6}
     >
       {({ result, fetching, fetchMore }) => (
@@ -54,14 +73,17 @@ const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) =>
       )}
     </PaginatedQuery>
   ) : null;
+};
 
 SubmissionGalleryBlockQuery.propTypes = {
+  actionId: PropTypes.number,
   campaignId: PropTypes.string,
   type: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
 
 SubmissionGalleryBlockQuery.defaultProps = {
+  actionId: null,
   campaignId: null,
   userId: null,
 };
