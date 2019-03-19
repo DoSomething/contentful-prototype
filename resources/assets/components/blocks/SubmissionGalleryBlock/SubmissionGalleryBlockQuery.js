@@ -43,6 +43,7 @@ const SUBMISSION_GALLERY_QUERY = gql`
 const SubmissionGalleryBlockQuery = ({
   actionId,
   campaignId,
+  className,
   userId,
   type,
 }) => {
@@ -66,6 +67,7 @@ const SubmissionGalleryBlockQuery = ({
     >
       {({ result, fetching, fetchMore }) => (
         <PostGallery
+          className={className}
           posts={result}
           loading={fetching}
           loadMorePosts={fetchMore}
@@ -78,6 +80,7 @@ const SubmissionGalleryBlockQuery = ({
 SubmissionGalleryBlockQuery.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
+  className: PropTypes.string,
   type: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
@@ -85,6 +88,7 @@ SubmissionGalleryBlockQuery.propTypes = {
 SubmissionGalleryBlockQuery.defaultProps = {
   actionId: null,
   campaignId: null,
+  className: null,
   userId: null,
 };
 
