@@ -16,7 +16,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
 
       ... on ImagesBlock {
         images {
-          url(w: 500, h: 500, fit: CROP)
+          url(w: 500, h: 500, fit: FILL)
         }
       }
 
