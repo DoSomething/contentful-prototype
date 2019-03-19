@@ -89,7 +89,10 @@ export function renderPhotoSubmissionAction(data) {
       />
       <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
       <div className="margin-vertical-md">
-        <SubmissionGalleryBlockContainer type="photo" />
+        <SubmissionGalleryBlockContainer
+          type="photo"
+          actionId={fields.actionId}
+        />
       </div>
       <PuckWaypoint
         name="photo_submission_action-bottom"
