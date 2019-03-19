@@ -8,7 +8,8 @@ module.exports = {
     'jsx-a11y/alt-text': 'warn',
     'jsx-a11y/media-has-caption': 'warn',
 
-    'no-underscore-dangle': ['warn', { allow: ['__typename'] }],
+    // Don't warn when using GraphQL's meta fields.
+    'no-underscore-dangle': ['warn', { allow: ['__typename', '__schema'] }],
 
     // Require multi-line curly braces for all conditionals.
     curly: ['error', 'all'],

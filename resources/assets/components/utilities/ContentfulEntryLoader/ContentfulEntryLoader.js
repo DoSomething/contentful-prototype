@@ -13,17 +13,14 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!) {
     block(id: $id) {
       id
-
       ... on ImagesBlock {
         images {
           url(w: 500, h: 500, fit: FILL)
         }
       }
-
       ... on EmbedBlock {
         url
       }
-
       ... on PostGalleryBlock {
         actionIds
       }

@@ -1,6 +1,14 @@
-/* eslint-disable no-underscore-dangle,no-param-reassign */
+//
+// This script pre-loads information on GraphQL unions & interfaces so that
+// Apollo Client's "introspection fragment matcher" can know how to cache
+// incoming objects (e.g. that PostGalleryBlock is a Block).
+//
+// This follows Apollo's official documentation <https://goo.gl/UQeuMc> for
+// how to handle this problem, with a few tweaks for readability.
+//
+// This will run on local, Wercker, and Heroku builds, using GRAPHQL_URL.
+//
 
-// Load environment variables so we can run this on Heroku post-build.
 require('dotenv').config();
 
 const fs = require('fs');
@@ -31,9 +39,8 @@ const writeFile = promisify(fs.writeFile);
     }),
   });
 
+  // Filter out only the unions & interfaces we need for introspection matcher:
   const { data } = await response.json();
-
-  // here we're filtering out any type information unrelated to unions or interfaces
   const unionsAndInterfaces = data.__schema.types.filter(
     ({ possibleTypes }) => possibleTypes !== null,
   );
