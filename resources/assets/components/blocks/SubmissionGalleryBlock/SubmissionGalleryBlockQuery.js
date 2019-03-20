@@ -13,7 +13,7 @@ import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionB
  */
 const SUBMISSION_GALLERY_QUERY = gql`
   query SubmissionGalleryQuery(
-    $actionIds: [String]
+    $actionIds: [Int]
     $campaignId: String
     $userId: String!
     $type: String!
@@ -55,7 +55,7 @@ const SubmissionGalleryBlockQuery = ({
     delete variables.campaignId;
     variables = {
       ...variables,
-      actionIds: String(actionId),
+      actionIds: [actionId],
     };
   }
 
