@@ -77,7 +77,7 @@ class EmailSubscriptions extends React.Component {
             <div className="padded">
               <div className="form-wrapper clear-both">
                 <EmailSubscriptionCheckbox
-                  identifier="ACTIONS"
+                  identifier="COMMUNITY"
                   title="Community"
                   description="A roundup of writing, photos, and impact from the DoSomething community,
         along with updates on DoSomething staff, events, and office culture."
