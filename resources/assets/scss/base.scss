@@ -358,6 +358,16 @@ p {
   margin-bottom: $half-spacing;
 }
 
+.margin-vertical-lg {
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
+}
+
+.margin-vertical-xlg {
+  margin-top: $section-spacing;
+  margin-bottom: $section-spacing;
+}
+
 .margin-right {
   margin-right: $base-spacing;
 }

@@ -8,6 +8,7 @@ import { Query } from 'react-apollo';
 import Card from '../Card/Card';
 import ContentfulEntry from '../../ContentfulEntry';
 import TextContent from '../TextContent/TextContent';
+import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
 const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!) {
@@ -51,20 +52,28 @@ const CONTENTFUL_BLOCK_QUERY = gql`
 const ContentfulEntryLoader = ({ id, className }) => (
   <Query query={CONTENTFUL_BLOCK_QUERY} variables={{ id }}>
     {({ loading, error, data }) => {
+      if (loading) {
+        return (
+          <div className="grid-main spinner -centered margin-vertical-xlg" />
+        );
+      }
+
       if (error) {
         return (
+          <div className="component-entry grid-main margin-bottom-md">
+            <ErrorBlock />
+          </div>
+        );
+      }
+
+      if (!data.block) {
+        return (
           // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-          <Card className="component-entry grid-main margin-bottom-lg rounded bordered">
+          <Card className="component-entry grid-main margin-bottom-md rounded bordered">
             <TextContent className="padded text-center">
               Sorry! The specified content was not found.
             </TextContent>
           </Card>
-        );
-      }
-
-      if (loading) {
-        return (
-          <div className="grid-main spinner -centered margin-vertical-md" />
         );
       }
 
