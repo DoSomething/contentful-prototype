@@ -12,7 +12,7 @@ import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionB
  * The GraphQL query to load data for this component.
  */
 const POST_GALLERY_QUERY = gql`
-  query PostGalleryQuery($actionIds: [String], $count: Int, $page: Int) {
+  query PostGalleryQuery($actionIds: [Int], $count: Int, $page: Int) {
     posts(actionIds: $actionIds, count: $count, page: $page) {
       ...PostCard
       ...ReactionButton
@@ -46,7 +46,7 @@ const PostGalleryBlockQuery = ({ actionIds, className, itemsPerRow }) => (
 );
 
 PostGalleryBlockQuery.propTypes = {
-  actionIds: PropTypes.arrayOf(PropTypes.string),
+  actionIds: PropTypes.arrayOf(PropTypes.number),
   className: PropTypes.string,
   itemsPerRow: PropTypes.number,
 };

@@ -214,7 +214,7 @@ class TextSubmissionAction extends React.Component {
 }
 
 TextSubmissionAction.propTypes = {
-  actionId: PropTypes.string,
+  actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
   additionalContent: PropTypes.shape({
     action: PropTypes.string,
