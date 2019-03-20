@@ -134,16 +134,14 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'imagesBlock':
         return (
-          <ImagesBlock className={className} images={json.fields.images} />
+          <ImagesBlock
+            className={className}
+            images={json.fields.images.map(url => ({ url }))}
+          />
         );
 
       case 'ImagesBlock':
-        return (
-          <ImagesBlock
-            className={className}
-            images={json.images.map(asset => asset.url)}
-          />
-        );
+        return <ImagesBlock className={className} images={json.images} />;
 
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
