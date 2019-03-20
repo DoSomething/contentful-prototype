@@ -221,6 +221,7 @@ class ContentfulEntry extends React.Component<Props, State> {
             <SubmissionGalleryBlockContainer
               className={className}
               type="text"
+              actionId={json.fields.actionId}
             />
           </React.Fragment>
         );

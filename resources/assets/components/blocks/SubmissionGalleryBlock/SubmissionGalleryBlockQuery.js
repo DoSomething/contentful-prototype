@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
+import { withoutNulls } from '../../../helpers';
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
@@ -12,13 +13,15 @@ import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionB
  */
 const SUBMISSION_GALLERY_QUERY = gql`
   query SubmissionGalleryQuery(
-    $campaignId: String!
+    $actionIds: [String]
+    $campaignId: String
     $userId: String!
     $type: String!
     $count: Int
     $page: Int
   ) {
     posts(
+      actionIds: $actionIds
       campaignId: $campaignId
       userId: $userId
       type: $type
@@ -37,16 +40,35 @@ const SUBMISSION_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) =>
-  userId ? (
+const SubmissionGalleryBlockQuery = ({
+  actionId,
+  campaignId,
+  className,
+  userId,
+  type,
+}) => {
+  let variables = withoutNulls({ campaignId, userId, type });
+
+  // @TODO remove this logic and campaignId support when we backfill all TSA's with actionIds.
+  // Prefer -the more specific- actionId if available, removing campaignId to prevent clash.
+  if (actionId) {
+    delete variables.campaignId;
+    variables = {
+      ...variables,
+      actionIds: String(actionId),
+    };
+  }
+
+  return userId ? (
     <PaginatedQuery
       query={SUBMISSION_GALLERY_QUERY}
       queryName="posts"
-      variables={{ campaignId, userId, type }}
+      variables={variables}
       count={6}
     >
       {({ result, fetching, fetchMore }) => (
         <PostGallery
+          className={className}
           posts={result}
           loading={fetching}
           loadMorePosts={fetchMore}
@@ -54,14 +76,20 @@ const SubmissionGalleryBlockQuery = ({ campaignId, userId, type }) =>
       )}
     </PaginatedQuery>
   ) : null;
+};
 
 SubmissionGalleryBlockQuery.propTypes = {
-  campaignId: PropTypes.string.isRequired,
+  actionId: PropTypes.number,
+  campaignId: PropTypes.string,
+  className: PropTypes.string,
   type: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
 
 SubmissionGalleryBlockQuery.defaultProps = {
+  actionId: null,
+  campaignId: null,
+  className: null,
   userId: null,
 };
 
