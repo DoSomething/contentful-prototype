@@ -17,7 +17,7 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import './petition-submission-action.scss';
 
 const USER_POSTS_QUERY = gql`
-  query UserPostsQuery($userId: String!, $actionIds: [String]!) {
+  query UserPostsQuery($userId: String!, $actionIds: [Int]!) {
     posts(userId: $userId, actionIds: $actionIds) {
       text
     }
@@ -117,7 +117,7 @@ class PetitionSubmissionAction extends React.Component {
           />
           <Query
             query={USER_POSTS_QUERY}
-            variables={{ userId, actionIds: String(actionId) }}
+            variables={{ userId, actionIds: [actionId] }}
             queryName="userPosts"
             skip={!userId}
           >

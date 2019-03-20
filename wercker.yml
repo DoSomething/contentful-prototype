@@ -14,6 +14,11 @@ build:
           php artisan gateway:key
           vendor/bin/phpunit
     - script:
+        name: build front-end assets
+        code: |-
+          export GRAPHQL_URL=https://graphql-dev.dosomething.org/graphql
+          npm run build
+    - script:
         name: check code style
         code: npm run lint
     - script:
@@ -27,6 +32,3 @@ build:
     # - script:
     #     name: test javascript code
     #     code: npm run test:ci
-    - script:
-        name: build front-end assets
-        code: npm run build

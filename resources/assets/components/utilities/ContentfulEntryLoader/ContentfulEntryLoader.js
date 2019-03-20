@@ -1,70 +1,90 @@
 import React from 'react';
 import { get } from 'lodash';
-import classnames from 'classnames';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import { Query } from 'react-apollo';
 
 import Card from '../Card/Card';
-import { report } from '../../../helpers';
-import { getBlock } from '../../../helpers/api';
 import ContentfulEntry from '../../ContentfulEntry';
 import TextContent from '../TextContent/TextContent';
 
-class ContentfulEntryLoader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      entryData: null,
-      hasError: null,
-    };
-
-    // Specify entries that require custom grid class that is not the default of "grid-main".
-    this.entryGridMapping = {
-      embed: 'grid-wide', // @TODO: may need to reassess, since maybe not all embeds should align to wide?
-      postGallery: 'grid-wide',
-    };
+const CONTENTFUL_BLOCK_QUERY = gql`
+  query ContentfulBlockQuery($id: String!) {
+    block(id: $id) {
+      id
+      ... on ImagesBlock {
+        images {
+          url(w: 500, h: 500, fit: FILL)
+        }
+      }
+      ... on EmbedBlock {
+        url
+      }
+      ... on PostGalleryBlock {
+        actionIds
+      }
+      ... on TextSubmissionBlock {
+        actionId
+        title
+        textFieldLabel
+        textFieldPlaceholderMessage
+        buttonText
+        informationTitle
+        informationContent
+        affirmationContent
+      }
+      ... on PetitionSubmissionBlock {
+        actionId
+        title
+        content
+        textFieldPlaceholderMessage
+        buttonText
+        informationTitle
+        informationContent
+        affirmationContent
+      }
+    }
   }
+`;
 
-  componentDidMount() {
-    getBlock(this.props.id)
-      .then(entryData => this.setState({ entryData }))
-      .catch(error => {
-        this.setState({ hasError: true });
+const ContentfulEntryLoader = ({ id, className }) => (
+  <Query query={CONTENTFUL_BLOCK_QUERY} variables={{ id }}>
+    {({ loading, error, data }) => {
+      if (error) {
+        return (
+          // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
+          <Card className="component-entry grid-main margin-bottom-lg rounded bordered">
+            <TextContent className="padded text-center">
+              Sorry! The specified content was not found.
+            </TextContent>
+          </Card>
+        );
+      }
 
-        report(error);
-      });
-  }
+      if (loading) {
+        return (
+          <div className="grid-main spinner -centered margin-vertical-md" />
+        );
+      }
 
-  render() {
-    if (this.state.hasError) {
+      const entryGridMapping = {
+        EmbedBlock: 'grid-wide', // @TODO: may need to reassess, since maybe not all embeds should align to wide?
+        PostGalleryBlock: 'grid-wide',
+      };
+
+      const blockType = data.block.__typename;
+      const gridClass = get(entryGridMapping, blockType, 'grid-main');
+
       return (
-        // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-        <Card className="rounded bordered">
-          <TextContent className="padded">
-            Sorry! The specified content was not found.
-          </TextContent>
-        </Card>
+        <ContentfulEntry
+          className={classnames(className, gridClass)}
+          json={data.block}
+        />
       );
-    }
-
-    if (!this.state.entryData) {
-      return <div className="grid-main spinner -centered margin-vertical-md" />;
-    }
-
-    const gridClass = get(
-      this.entryGridMapping,
-      this.state.entryData.type,
-      'grid-main',
-    );
-
-    return (
-      <ContentfulEntry
-        className={classnames(this.props.className, gridClass)}
-        json={this.state.entryData}
-      />
-    );
-  }
-}
+    }}
+  </Query>
+);
 
 ContentfulEntryLoader.propTypes = {
   id: PropTypes.string.isRequired,

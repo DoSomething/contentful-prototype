@@ -103,6 +103,9 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
 
+      case 'EmbedBlock':
+        return <Iframe className={className} url={json.url} id={json.id} />;
+
       case 'gallery':
         return (
           <div className="margin-horizontal-md">
@@ -118,12 +121,28 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
 
+      case 'PostGalleryBlock':
+        return (
+          <PostGalleryBlockQuery
+            className={className}
+            {...withoutNulls(json)}
+          />
+        );
+
       case 'galleryBlock':
         return <GalleryBlock {...json.fields} />;
 
       case 'imagesBlock':
         return (
           <ImagesBlock className={className} images={json.fields.images} />
+        );
+
+      case 'ImagesBlock':
+        return (
+          <ImagesBlock
+            className={className}
+            images={json.images.map(asset => asset.url)}
+          />
         );
 
       case 'landingPage':
@@ -147,6 +166,15 @@ class ContentfulEntry extends React.Component<Props, State> {
             className={className}
             id={json.id}
             {...withoutNulls(json.fields)}
+          />
+        );
+
+      case 'PetitionSubmissionBlock':
+        return (
+          <PetitionSubmissionActionContainer
+            className={className}
+            id={json.id}
+            {...withoutNulls(json)}
           />
         );
 
@@ -222,6 +250,22 @@ class ContentfulEntry extends React.Component<Props, State> {
               className={className}
               type="text"
               actionId={json.fields.actionId}
+            />
+          </React.Fragment>
+        );
+
+      case 'TextSubmissionBlock':
+        return (
+          <React.Fragment>
+            <TextSubmissionActionContainer
+              className={className}
+              id={json.id}
+              {...withoutNulls(json)}
+            />
+            <SubmissionGalleryBlockContainer
+              className={className}
+              actionId={json.actionId}
+              type="text"
             />
           </React.Fragment>
         );
