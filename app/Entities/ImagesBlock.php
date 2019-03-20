@@ -15,7 +15,10 @@ class ImagesBlock extends Entity implements JsonSerializable
     public function parseImages($images)
     {
         return collect($images)->map(function ($image) {
-            return get_image_url($image, 'square');
+            return [
+                'description' => $image ? $image->getDescription() : null,
+                'url' => get_image_url($image, 'square'),
+            ];
         });
     }
 
