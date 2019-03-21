@@ -2,7 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { Query } from 'react-apollo';
 
 import ContentfulEntry from '../../ContentfulEntry';
@@ -59,7 +59,7 @@ const ContentfulEntryLoader = ({ id, className }) => (
 
       if (error || !data.block) {
         return (
-          <div className={classNames(className, 'grid-main')}>
+          <div className={classnames(className, 'grid-main')}>
             <ErrorBlock />
           </div>
         );
@@ -75,7 +75,7 @@ const ContentfulEntryLoader = ({ id, className }) => (
 
       return (
         <ContentfulEntry
-          className={classNames(className, gridClass)}
+          className={classnames(className, gridClass)}
           json={data.block}
         />
       );
