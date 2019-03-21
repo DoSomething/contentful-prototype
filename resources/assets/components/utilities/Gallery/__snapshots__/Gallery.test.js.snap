@@ -2,7 +2,7 @@
 
 exports[`it renders correctly with children 1`] = `
 <ul
-  className="gallery -quartet"
+  className="gallery-grid gallery-grid-quartet"
 >
   <li>
     <div>
