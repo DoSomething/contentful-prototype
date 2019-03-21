@@ -18,6 +18,7 @@ describe('TextSubmissionAction component', () => {
       }}
       type="text"
       userId="666655554444333322221111"
+      storePost={jest.fn()}
     />,
   );
 

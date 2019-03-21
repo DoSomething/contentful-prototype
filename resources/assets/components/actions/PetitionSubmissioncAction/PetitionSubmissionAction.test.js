@@ -1,14 +1,45 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { MockedProvider } from 'react-apollo/test-utils';
 
-import PetitionSubmissionAction from './PetitionSubmissionAction';
+import { USER_POSTS_QUERY } from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
+import PetitionSubmissionAction from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
+
+const mocks = [
+  {
+    request: {
+      query: USER_POSTS_QUERY,
+      variables: {
+        userId: '1',
+        actionIds: [1],
+      },
+    },
+    result: {
+      data: {
+        posts: {},
+        user: {},
+      },
+    },
+  },
+];
 
 describe('PetitionSubmissionAction component', () => {
-  const wrapper = shallow(
-    <PetitionSubmissionAction
-      id="abcdefghi123456789"
-      content="Test Petition"
-    />,
+  const wrapper = mount(
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <PetitionSubmissionAction
+        id="abcdefghi123456789"
+        campaignContentfulId="1"
+        content="Test Petition"
+        submissions={{
+          isPending: false,
+          items: {},
+        }}
+        userId="666655554444333322221111"
+        actionId={1}
+        resetPostSubmissionItem={jest.fn()}
+        storePost={jest.fn()}
+      />
+    </MockedProvider>,
   );
 
   test('is rendered as a card component with a form, textarea, submit button, and addtional info card', () => {

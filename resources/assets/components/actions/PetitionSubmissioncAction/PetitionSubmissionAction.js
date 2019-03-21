@@ -16,7 +16,7 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './petition-submission-action.scss';
 
-const USER_POSTS_QUERY = gql`
+export const USER_POSTS_QUERY = gql`
   query UserPostsQuery($userId: String!, $actionIds: [Int]!) {
     posts(userId: $userId, actionIds: $actionIds) {
       text
