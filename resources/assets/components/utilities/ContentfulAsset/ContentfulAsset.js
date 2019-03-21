@@ -47,7 +47,7 @@ const ContentfulAsset = ({ className, id, width, height }) => (
       }
 
       return (
-        <div className={className} style={{ width: '100%' }}>
+        <div className={className}>
           <LazyImage src={data.asset.url} alt={data.asset.description} />
         </div>
       );
