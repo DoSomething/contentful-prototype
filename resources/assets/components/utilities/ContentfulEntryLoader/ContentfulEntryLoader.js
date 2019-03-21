@@ -52,12 +52,14 @@ const ContentfulEntryLoader = ({ id, className }) => (
   <Query query={CONTENTFUL_BLOCK_QUERY} variables={{ id }}>
     {({ loading, error, data }) => {
       if (loading) {
-        return <div className="spinner -centered margin-vertical-xlg" />;
+        return (
+          <div className="grid-main spinner -centered margin-vertical-xlg" />
+        );
       }
 
       if (error || !data.block) {
         return (
-          <div className={className}>
+          <div className={classNames(className, 'grid-main')}>
             <ErrorBlock />
           </div>
         );
