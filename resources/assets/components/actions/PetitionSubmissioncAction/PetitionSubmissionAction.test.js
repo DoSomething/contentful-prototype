@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import { MockedProvider } from 'react-apollo/test-utils';
 
 import { USER_POSTS_QUERY } from './PetitionSubmissionAction';
-import PetitionSubmissionAction from './PetitionSubmissionAction';
+import PetitionSubmissionAction from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
 
 const mocks = [
   {
