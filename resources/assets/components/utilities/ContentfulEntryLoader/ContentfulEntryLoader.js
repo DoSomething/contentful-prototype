@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Query } from 'react-apollo';
 
-import Card from '../Card/Card';
 import ContentfulEntry from '../../ContentfulEntry';
-import TextContent from '../TextContent/TextContent';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
 const CONTENTFUL_BLOCK_QUERY = gql`
@@ -60,22 +58,11 @@ const ContentfulEntryLoader = ({ id, className }) => (
         );
       }
 
-      if (error) {
+      if (error || !data.block) {
         return (
-          <div className="component-entry grid-main margin-bottom-md">
+          <div className={classnames(className, 'grid-main')}>
             <ErrorBlock />
           </div>
-        );
-      }
-
-      if (!data.block) {
-        return (
-          // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-          <Card className="component-entry grid-main margin-bottom-md rounded bordered">
-            <TextContent className="padded text-center">
-              Sorry! The specified content was not found.
-            </TextContent>
-          </Card>
         );
       }
 

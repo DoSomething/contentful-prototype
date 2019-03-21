@@ -7,6 +7,7 @@ import markdownItFootnote from 'markdown-it-footnote';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { contentfulImageUrl, isExternal } from '../helpers';
+import ContentfulAsset from '../components/utilities/ContentfulAsset/ContentfulAsset';
 import ContentfulEntryLoader from '../components/utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
@@ -126,9 +127,14 @@ export function parseRichTextDocument(document, styles) {
       ),
       [BLOCKS.EMBEDDED_ENTRY]: node => (
         <ContentfulEntryLoader
+          className="component-entry margin-bottom-md"
           id={node.data.target.sys.id}
-          className="component-entry"
         />
+      ),
+      [BLOCKS.EMBEDDED_ASSET]: node => (
+        <p className="grid-main component-entry text-center">
+          <ContentfulAsset id={node.data.target.sys.id} />
+        </p>
       ),
       [INLINES.HYPERLINK]: node => (
         <a href={node.data.uri} style={{ color: hyperlinkColor }}>
