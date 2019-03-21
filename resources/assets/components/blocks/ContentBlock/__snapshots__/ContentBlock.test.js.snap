@@ -14,11 +14,12 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
       imageClassName={null}
       size="one-third"
     >
-      <Markdown
+      <TextContent
         className={null}
+        styles={Object {}}
       >
         Test Content
-      </Markdown>
+      </TextContent>
     </Figure>
   </div>
 </div>
@@ -46,11 +47,12 @@ exports[`ContentBlock component is rendered with the proper child components whe
       imageClassName={null}
       size="one-third"
     >
-      <Markdown
+      <TextContent
         className={null}
+        styles={Object {}}
       >
         Test Content
-      </Markdown>
+      </TextContent>
     </Figure>
   </div>
 </div>
@@ -63,11 +65,12 @@ exports[`ContentBlock component it works beautifully with content and an empty i
   <div
     className="margin-horizontal-md"
   >
-    <Markdown
+    <TextContent
       className={null}
+      styles={Object {}}
     >
       hi there
-    </Markdown>
+    </TextContent>
   </div>
 </div>
 `;

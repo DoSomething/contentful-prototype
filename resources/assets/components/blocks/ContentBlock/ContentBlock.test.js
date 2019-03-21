@@ -23,7 +23,7 @@ describe('ContentBlock component', () => {
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
     expect(wrapper.find('Figure').length).toEqual(1);
-    expect(wrapper.find('Markdown').length).toEqual(1);
+    expect(wrapper.find('TextContent').length).toEqual(1);
 
     expect(shallowToJson(wrapper)).toMatchSnapshot();
   });
@@ -41,7 +41,7 @@ describe('ContentBlock component', () => {
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
     expect(wrapper.find('Figure').length).toEqual(0);
-    expect(wrapper.find('Markdown').length).toEqual(1);
+    expect(wrapper.find('TextContent').length).toEqual(1);
   });
 
   test('it renders the correct alignment class for "left" and "right" image props', () => {
