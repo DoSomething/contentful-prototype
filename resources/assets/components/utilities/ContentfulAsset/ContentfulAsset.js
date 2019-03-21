@@ -3,9 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import Card from '../Card/Card';
 import LazyImage from '../LazyImage';
-import TextContent from '../TextContent/TextContent';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
 const CONTENTFUL_ASSET_QUERY = gql`
@@ -25,19 +23,8 @@ const ContentfulAsset = ({ id, width, height }) => (
         return <div className="spinner -centered margin-vertical-xlg" />;
       }
 
-      if (error) {
+      if (error || !data.asset) {
         return <ErrorBlock />;
-      }
-
-      if (!data.asset) {
-        return (
-          // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-          <Card>
-            <TextContent className="padded text-center">
-              Sorry! The specified asset was not found.
-            </TextContent>
-          </Card>
-        );
       }
 
       const { url, description } = data.asset;
