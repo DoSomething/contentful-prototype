@@ -146,10 +146,16 @@ p {
   clear: none;
 }
 
+// @TODO: Rename to match Tailwind's .block.
 .display-block {
   display: block;
 }
 
+.inline {
+  display: inline;
+}
+
+// @TODO: Rename to match Tailwind's .flex.
 .display-flex {
   display: flex;
 }

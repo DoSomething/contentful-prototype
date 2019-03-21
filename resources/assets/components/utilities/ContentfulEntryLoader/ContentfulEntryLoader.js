@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { Query } from 'react-apollo';
 
 import Card from '../Card/Card';
@@ -50,27 +49,21 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   }
 `;
 
-const ContentfulEntryLoader = ({ id, className }) => (
+const ContentfulEntryLoader = ({ id }) => (
   <Query query={CONTENTFUL_BLOCK_QUERY} variables={{ id }}>
     {({ loading, error, data }) => {
       if (loading) {
-        return (
-          <div className="grid-main spinner -centered margin-vertical-xlg" />
-        );
+        return <div className="spinner -centered margin-vertical-xlg" />;
       }
 
       if (error) {
-        return (
-          <div className="component-entry grid-main margin-bottom-md">
-            <ErrorBlock />
-          </div>
-        );
+        return <ErrorBlock />;
       }
 
       if (!data.block) {
         return (
           // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-          <Card className="component-entry grid-main margin-bottom-md rounded bordered">
+          <Card className="margin-bottom-md rounded bordered">
             <TextContent className="padded text-center">
               Sorry! The specified content was not found.
             </TextContent>
@@ -86,19 +79,13 @@ const ContentfulEntryLoader = ({ id, className }) => (
       const blockType = data.block.__typename;
       const gridClass = get(entryGridMapping, blockType, 'grid-main');
 
-      return (
-        <ContentfulEntry
-          className={classnames(className, gridClass)}
-          json={data.block}
-        />
-      );
+      return <ContentfulEntry className={gridClass} json={data.block} />;
     }}
   </Query>
 );
 
 ContentfulEntryLoader.propTypes = {
   id: PropTypes.string.isRequired,
-  className: PropTypes.string,
 };
 
 ContentfulEntryLoader.defaultProps = {

@@ -126,16 +126,14 @@ export function parseRichTextDocument(document, styles) {
         </blockquote>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: node => (
-        <ContentfulEntryLoader
-          id={node.data.target.sys.id}
-          className="component-entry"
-        />
+        <div className="grid-main component-entry">
+          <ContentfulEntryLoader id={node.data.target.sys.id} />
+        </div>
       ),
       [BLOCKS.EMBEDDED_ASSET]: node => (
-        <ContentfulAsset
-          id={node.data.target.sys.id}
-          className="grid-main component-entry margin-bottom-lg flex-center-xy"
-        />
+        <p className="grid-main component-entry margin-bottom-lg text-center">
+          <ContentfulAsset id={node.data.target.sys.id} />
+        </p>
       ),
       [INLINES.HYPERLINK]: node => (
         <a href={node.data.uri} style={{ color: hyperlinkColor }}>

@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import LazyImage from '../LazyImage';
 import Card from '../Card/Card';
+import LazyImage from '../LazyImage';
 import TextContent from '../TextContent/TextContent';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
@@ -18,27 +18,21 @@ const CONTENTFUL_ASSET_QUERY = gql`
   }
 `;
 
-const ContentfulAsset = ({ className, id, width, height }) => (
+const ContentfulAsset = ({ id, width, height }) => (
   <Query query={CONTENTFUL_ASSET_QUERY} variables={{ id, width, height }}>
     {({ loading, error, data }) => {
       if (loading) {
-        return (
-          <div className="grid-main spinner -centered margin-vertical-xlg" />
-        );
+        return <div className="spinner -centered margin-vertical-xlg" />;
       }
 
       if (error) {
-        return (
-          <div className="component-entry grid-main margin-bottom-md">
-            <ErrorBlock />
-          </div>
-        );
+        return <ErrorBlock />;
       }
 
       if (!data.asset) {
         return (
           // @TODO: repurpose NotFound component to be customizeable; using basic Card component for now.
-          <Card className="component-entry grid-main margin-bottom-md rounded bordered">
+          <Card>
             <TextContent className="padded text-center">
               Sorry! The specified asset was not found.
             </TextContent>
@@ -46,18 +40,15 @@ const ContentfulAsset = ({ className, id, width, height }) => (
         );
       }
 
-      return (
-        <div className={className}>
-          <LazyImage src={data.asset.url} alt={data.asset.description} />
-        </div>
-      );
+      const { url, description } = data.asset;
+
+      return <LazyImage className="inline" src={url} alt={description} />;
     }}
   </Query>
 );
 
 ContentfulAsset.propTypes = {
   id: PropTypes.string.isRequired,
-  className: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
 };
