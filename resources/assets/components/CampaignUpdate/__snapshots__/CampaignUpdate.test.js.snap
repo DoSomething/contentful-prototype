@@ -8,11 +8,12 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
   onClose={null}
   title="See More Be More Do More"
 >
-  <Markdown
+  <TextContent
     className="padded"
+    styles={Object {}}
   >
     Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum.
-  </Markdown>
+  </TextContent>
   <footer
     className="padded clearfix"
   >
@@ -33,11 +34,12 @@ exports[`it generates a campaign update snapshot 1`] = `
   onClose={null}
   title="See More Be More Do More"
 >
-  <Markdown
+  <TextContent
     className="padded"
+    styles={Object {}}
   >
     Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Sed posuere consectetur est at lobortis. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum.
-  </Markdown>
+  </TextContent>
   <footer
     className="padded clearfix"
   >
