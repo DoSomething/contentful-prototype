@@ -3,6 +3,9 @@ import { shallow } from 'enzyme';
 
 import ContentfulEntry from './ContentfulEntry';
 
+// Override the mock of this component declared in jest-setup for this test file.
+jest.unmock('./ContentfulEntry');
+
 // Mock Redux containers so we don't need Provider context.
 jest.mock(
   '../CallToAction/CallToActionContainer',
