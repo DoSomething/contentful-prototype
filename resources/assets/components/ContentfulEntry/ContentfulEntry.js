@@ -116,6 +116,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'postGallery':
         return (
           <PostGalleryBlockQuery
+            id={json.id}
             className={className}
             {...withoutNulls(json.fields)}
           />
@@ -124,6 +125,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'PostGalleryBlock':
         return (
           <PostGalleryBlockQuery
+            id={json.id}
             className={className}
             {...withoutNulls(json)}
           />
