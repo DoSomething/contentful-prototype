@@ -41,6 +41,7 @@ const PostGalleryBlockQuery = ({ id, actionIds, className, itemsPerRow }) => (
           waypointData={{ contentfulId: id }}
         />
         <PostGallery
+          id={id}
           className={classnames(className)}
           posts={result}
           loading={fetching}

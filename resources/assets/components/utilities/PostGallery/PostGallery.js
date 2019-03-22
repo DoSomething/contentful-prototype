@@ -16,10 +16,10 @@ const galleryTypes = {
 };
 
 const PostGallery = props => {
-  const { className, loading, posts, itemsPerRow, loadMorePosts } = props;
+  const { id, className, loading, posts, itemsPerRow, loadMorePosts } = props;
 
   return posts.length ? (
-    <div className={classnames(className)}>
+    <div id={id} className={classnames(className)}>
       <Gallery
         type={get(galleryTypes, itemsPerRow)}
         className="post-gallery expand-horizontal-md"
@@ -40,6 +40,7 @@ const PostGallery = props => {
 };
 
 PostGallery.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   itemsPerRow: PropTypes.oneOf(Object.keys(galleryTypes).map(Number)),
@@ -48,6 +49,7 @@ PostGallery.propTypes = {
 };
 
 PostGallery.defaultProps = {
+  id: null,
   className: null,
   posts: [],
   itemsPerRow: 3,
