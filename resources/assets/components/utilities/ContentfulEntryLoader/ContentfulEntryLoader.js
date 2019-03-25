@@ -26,7 +26,10 @@ const CONTENTFUL_BLOCK_QUERY = gql`
         content
         link
         buttonText
-        affiliateLogo
+        affiliateLogo {
+          url(w: 400, h: 200)
+          description
+        }
         template
         additionalContent
       }

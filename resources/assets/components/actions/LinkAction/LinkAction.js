@@ -1,18 +1,34 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
 
-const LinkAction = props => {
-  const { template } = props;
+const templates = {
+  cta: CtaTemplate,
+  default: DefaultTemplate,
+};
 
-  switch (template) {
-    case 'cta':
-      return <CtaTemplate {...props} />;
-    default:
-      return <DefaultTemplate {...props} />;
-  }
+const LinkAction = props => {
+  const { id, template } = props;
+
+  const LinkActionTemplate = get(templates, template, DefaultTemplate);
+
+  return (
+    <div key={`link-action-${id}`} className="margin-horizontal-md">
+      <PuckWaypoint
+        name="link_action-top"
+        waypointData={{ contentfulId: id }}
+      />
+      <LinkActionTemplate {...props} />
+      <PuckWaypoint
+        name="link_action-bottom"
+        waypointData={{ contentfulId: id }}
+      />
+    </div>
+  );
 };
 
 LinkAction.propTypes = {

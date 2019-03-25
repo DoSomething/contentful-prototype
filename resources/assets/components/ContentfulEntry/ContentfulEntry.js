@@ -15,6 +15,7 @@ import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
@@ -24,7 +25,6 @@ import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextS
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import {
-  renderLinkAction,
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
@@ -145,8 +145,13 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
 
+      case 'LinkBlock':
+        return <LinkActionContainer {...withoutNulls(json)} />;
+
       case 'linkAction':
-        return renderLinkAction(json);
+        return (
+          <LinkActionContainer id={json.id} {...withoutNulls(json.fields)} />
+        );
 
       case 'page':
         return (

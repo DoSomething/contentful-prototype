@@ -4,7 +4,6 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Affirmation from '../Affirmation';
 import { withoutNulls } from '../../helpers';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
-import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -50,23 +49,6 @@ export function renderShareAction(step) {
         name="share_action-bottom"
         waypointData={{ contentfulId }}
       />
-    </div>
-  );
-}
-
-/**
- * Render a link action.
- *
- * @return {Component}
- */
-export function renderLinkAction(step) {
-  const contentfulId = step.id;
-
-  return (
-    <div key={`link-action-${contentfulId}`} className="margin-horizontal-md">
-      <PuckWaypoint name="link_action-top" waypointData={{ contentfulId }} />
-      <LinkActionContainer {...withoutNulls(step.fields)} />
-      <PuckWaypoint name="link_action-bottom" waypointData={{ contentfulId }} />
     </div>
   );
 }
