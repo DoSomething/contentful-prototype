@@ -2,6 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Gallery from '../Gallery/Gallery';
 import LoadMore from '../LoadMore/LoadMore';
@@ -16,10 +17,25 @@ const galleryTypes = {
 };
 
 const PostGallery = props => {
-  const { id, className, loading, posts, itemsPerRow, loadMorePosts } = props;
+  const {
+    id,
+    className,
+    loading,
+    posts,
+    itemsPerRow,
+    loadMorePosts,
+    waypointName,
+  } = props;
 
   return posts.length ? (
     <div id={id} className={classnames(className)}>
+      {waypointName ? (
+        <PuckWaypoint
+          name={`${waypointName}-top`}
+          waypointData={{ contentfulId: id }}
+        />
+      ) : null}
+
       <Gallery
         type={get(galleryTypes, itemsPerRow)}
         className="post-gallery expand-horizontal-md"
@@ -35,6 +51,13 @@ const PostGallery = props => {
         onClick={loadMorePosts}
         isLoading={loading}
       />
+
+      {waypointName ? (
+        <PuckWaypoint
+          name={`${waypointName}-bottom`}
+          waypointData={{ contentfulId: id }}
+        />
+      ) : null}
     </div>
   ) : null;
 };
@@ -46,6 +69,7 @@ PostGallery.propTypes = {
   itemsPerRow: PropTypes.oneOf(Object.keys(galleryTypes).map(Number)),
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
+  waypointName: PropTypes.string,
 };
 
 PostGallery.defaultProps = {
@@ -53,6 +77,7 @@ PostGallery.defaultProps = {
   className: null,
   posts: [],
   itemsPerRow: 3,
+  waypointName: null,
 };
 
 export default PostGallery;
