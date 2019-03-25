@@ -32,12 +32,14 @@ const SectionBlock = props => {
         name="section_block-top"
         waypointData={{ contentfulId: id }}
       />
+
       <TextContent
         className="section-block__content base-16-grid"
         styles={styles}
       >
         {content}
       </TextContent>
+
       <PuckWaypoint
         name="section_block-bottom"
         waypointData={{ contentfulId: id }}
