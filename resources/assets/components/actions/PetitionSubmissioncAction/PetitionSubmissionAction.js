@@ -160,17 +160,19 @@ class PetitionSubmissionAction extends React.Component {
                       />
                     </div>
 
-                    <div className="padded">
-                      <p className="petition-signature-label padding-bottom-sm">
-                        Signed,
-                      </p>
-                      <input
-                        className="text-field petition-signature"
-                        type="text"
-                        disabled
-                        value={signature}
-                      />
-                    </div>
+                    {userId ? (
+                      <div className="padded">
+                        <p className="petition-signature-label padding-bottom-sm">
+                          Signed,
+                        </p>
+                        <input
+                          className="text-field petition-signature"
+                          type="text"
+                          disabled
+                          value={signature}
+                        />
+                      </div>
+                    ) : null}
 
                     <Button
                       type="submit"
