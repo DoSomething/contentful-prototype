@@ -74,6 +74,23 @@ We also track a Google Analytics [Pageview event](https://support.google.com/ana
 | `view`             | viewed a page                                   | Puck      |
 | `waypoint reached` | reached a waypoint embedded on page             | Puck      |
 
+### List of Waypoint events being tracked in Phoenix
+
+{% hint style="info" %}
+These events would be categorized under the `waypoint reached` event name.
+The event's `data.waypointData` field will contain the `contentfulId` (ID of the contentful entry) for the specific block on the page. The following list will contain the individual `data.waypointName` values paired by the events being tracked for the viewport reaching the top and bottom of the respective blocks.
+{% endhint %}
+
+- `petition_submission_action-top`, `petition_submission_action-bottom`
+- `text_submission_action-top`, `text_submission_action-top`
+- `section_block-top`, `section_block-bottom`
+- `voter_registration_action-top`, `voter_registration_action-bottom`
+- `share_action-top`, `share_action-bottom`
+- `link_action-top`, `link_action-bottom`
+- `photo_submission_action-top`, `photo_submission_action-bottom`
+- `landing_page_cta-top`, `landing_page_cta-bottom`
+- `embed-top`, `embed-bottom`
+
 ### Events tracked by [Northstar](https://github.com/DoSomething/northstar)
 
 | Event Name                         | Event Description                 | Platforms |
