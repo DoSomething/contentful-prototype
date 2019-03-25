@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
@@ -36,10 +35,6 @@ const PostGalleryBlockQuery = ({ id, actionIds, className, itemsPerRow }) => (
   >
     {({ result, fetching, fetchMore }) => (
       <React.Fragment>
-        <PuckWaypoint
-          name="post_gallery_block-top"
-          waypointData={{ contentfulId: id }}
-        />
         <PostGallery
           id={id}
           className={classnames(className)}
@@ -47,10 +42,7 @@ const PostGalleryBlockQuery = ({ id, actionIds, className, itemsPerRow }) => (
           loading={fetching}
           itemsPerRow={itemsPerRow}
           loadMorePosts={fetchMore}
-        />
-        <PuckWaypoint
-          name="post_gallery_block-bottom"
-          waypointData={{ contentfulId: id }}
+          waypointName={'post_gallery_block'}
         />
       </React.Fragment>
     )}
