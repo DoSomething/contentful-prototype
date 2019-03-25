@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
@@ -249,6 +250,10 @@ class PhotoSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
+        <PuckWaypoint
+          name="photo_submission_action-top"
+          waypointData={{ contentfulId: this.props.id }}
+        />
         <div className="clearfix">
           <div className="photo-submission-action">
             <Card
@@ -394,6 +399,10 @@ class PhotoSubmissionAction extends React.Component {
             </Card>
           </Modal>
         ) : null}
+        <PuckWaypoint
+          name="photo_submission_action-bottom"
+          waypointData={{ contentfulId: this.props.id }}
+        />
       </React.Fragment>
     );
   }

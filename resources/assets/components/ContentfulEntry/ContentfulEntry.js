@@ -22,13 +22,13 @@ import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDrive
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
+import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import {
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
-  renderPhotoSubmissionAction,
   renderVoterRegistrationAction,
   renderReferralSubmissionAction,
 } from './renderers';
@@ -181,7 +181,33 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'photoSubmissionAction':
-        return renderPhotoSubmissionAction(json);
+        return (
+          <div className="margin-horizontal-md margin-bottom-lg">
+            <PhotoSubmissionActionContainer
+              id={json.id}
+              {...withoutNulls(json.fields)}
+            />
+            <div className="margin-vertical-md">
+              <SubmissionGalleryBlockContainer
+                type="photo"
+                actionId={json.fields.actionId}
+              />
+            </div>
+          </div>
+        );
+
+      case 'PhotoSubmissionBlock':
+        return (
+          <div className="margin-horizontal-md margin-bottom-lg">
+            <PhotoSubmissionActionContainer {...withoutNulls(json)} />
+            <div className="margin-vertical-md">
+              <SubmissionGalleryBlockContainer
+                type="photo"
+                actionId={json.actionId}
+              />
+            </div>
+          </div>
+        );
 
       case 'poll_locator':
         return (

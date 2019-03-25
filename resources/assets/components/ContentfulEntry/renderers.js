@@ -5,8 +5,6 @@ import Affirmation from '../Affirmation';
 import { withoutNulls } from '../../helpers';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
-import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
-import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
 
@@ -47,37 +45,6 @@ export function renderShareAction(step) {
       <ShareActionContainer id={step.id} {...withoutNulls(step.fields)} />
       <PuckWaypoint
         name="share_action-bottom"
-        waypointData={{ contentfulId }}
-      />
-    </div>
-  );
-}
-
-/**
- * Render a photo submission action.
- *
- * @param  {Object} data
- * @return {Component}
- */
-export function renderPhotoSubmissionAction(data) {
-  const contentfulId = data.id;
-  const fields = withoutNulls(data.fields);
-
-  return (
-    <div className="margin-horizontal-md margin-bottom-lg">
-      <PuckWaypoint
-        name="photo_submission_action-top"
-        waypointData={{ contentfulId }}
-      />
-      <PhotoSubmissionActionContainer id={contentfulId} {...fields} />
-      <div className="margin-vertical-md">
-        <SubmissionGalleryBlockContainer
-          type="photo"
-          actionId={fields.actionId}
-        />
-      </div>
-      <PuckWaypoint
-        name="photo_submission_action-bottom"
         waypointData={{ contentfulId }}
       />
     </div>
