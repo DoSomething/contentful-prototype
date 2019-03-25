@@ -17,7 +17,7 @@ const LinkAction = props => {
   const LinkActionTemplate = get(templates, template, DefaultTemplate);
 
   return (
-    <div key={`link-action-${id}`} className="margin-horizontal-md">
+    <div className="margin-horizontal-md">
       <PuckWaypoint
         name="link_action-top"
         waypointData={{ contentfulId: id }}
