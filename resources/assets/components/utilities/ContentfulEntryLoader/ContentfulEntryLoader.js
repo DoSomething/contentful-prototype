@@ -21,9 +21,44 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ... on EmbedBlock {
         url
       }
+      ... on LinkBlock {
+        title
+        content
+        link
+        buttonText
+        affiliateLogo
+        template
+        additionalContent
+      }
       ... on PostGalleryBlock {
         actionIds
         itemsPerRow
+      }
+      ... on PhotoSubmissionBlock {
+        actionId
+        title
+        captionFieldLabel
+        captionFieldPlaceholderMessage
+        showQuantityField
+        quantityFieldLabel
+        quantityFieldPlaceholder
+        whyParticipatedFieldLabel
+        whyParticipatedFieldPlaceholder
+        buttonText
+        informationTitle
+        informationContent
+        affirmationContent
+        additionalContent
+      }
+      ... on ShareBlock {
+        actionId
+        title
+        socialPlatform
+        content
+        hideEmbed
+        affirmationBlock
+        affirmation
+        additionalContent
       }
       ... on TextSubmissionBlock {
         actionId
@@ -44,6 +79,12 @@ const CONTENTFUL_BLOCK_QUERY = gql`
         informationTitle
         informationContent
         affirmationContent
+      }
+      ... on VoterRegistrationBlock {
+        title
+        content
+        link
+        additionalContent
       }
     }
   }
