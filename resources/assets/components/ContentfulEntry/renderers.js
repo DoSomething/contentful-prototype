@@ -5,31 +5,7 @@ import Affirmation from '../Affirmation';
 import { withoutNulls } from '../../helpers';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
-import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
-
-/**
- * Render the voter registration action container.
- *
- * @return {Component}
- */
-export function renderVoterRegistrationAction(step) {
-  const { title, content, link } = step.fields;
-  const key = `voter-registration-action-${step.id}`;
-
-  return (
-    <div key={key} className="margin-bottom-lg margin-horizontal-md">
-      <PuckWaypoint name="voter_registration_action-top" />
-      <VoterRegistrationActionContainer
-        contentfulId={step.id}
-        content={content}
-        title={title}
-        link={link}
-      />
-      <PuckWaypoint name="voter_registration_action-bottom" />
-    </div>
-  );
-}
 
 /**
  * Render a share action.

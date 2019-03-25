@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
@@ -33,26 +34,30 @@ const VoterRegistrationAction = props => {
   };
 
   return (
-    <Card
-      className="rounded bordered voter-registration"
-      title="Register to vote"
-    >
-      <div className="padded clearfix">
-        <TextContent>{content}</TextContent>
+    <div className="margin-bottom-lg margin-horizontal-md">
+      <PuckWaypoint name="voter_registration_action-top" />
+      <Card
+        className="rounded bordered voter-registration"
+        title="Register to vote"
+      >
+        <div className="padded clearfix">
+          <TextContent>{content}</TextContent>
 
-        {parsedLink ? (
-          <a
-            className="button"
-            href={parsedLink}
-            onClick={handleClick}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Start Registration
-          </a>
-        ) : null}
-      </div>
-    </Card>
+          {parsedLink ? (
+            <a
+              className="button"
+              href={parsedLink}
+              onClick={handleClick}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Start Registration
+            </a>
+          ) : null}
+        </div>
+      </Card>
+      <PuckWaypoint name="voter_registration_action-bottom" />
+    </div>
   );
 };
 

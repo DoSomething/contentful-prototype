@@ -24,12 +24,12 @@ import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/Campai
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
+import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import {
   renderAffirmation,
   renderShareAction,
   renderContentBlock,
-  renderVoterRegistrationAction,
   renderReferralSubmissionAction,
 } from './renderers';
 
@@ -299,7 +299,17 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'voterRegistrationAction':
-        return renderVoterRegistrationAction(json);
+        return (
+          <VoterRegistrationActionContainer
+            contentfulId={json.id}
+            {...json.fields}
+          />
+        );
+
+      case 'VoterRegistrationBlock':
+        return (
+          <VoterRegistrationActionContainer contentfulId={json.id} {...json} />
+        );
 
       default:
         return <NotFound />;
