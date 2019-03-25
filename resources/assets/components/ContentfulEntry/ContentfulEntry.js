@@ -17,6 +17,7 @@ import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
+import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
@@ -28,7 +29,6 @@ import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import {
   renderAffirmation,
-  renderShareAction,
   renderContentBlock,
   renderReferralSubmissionAction,
 } from './renderers';
@@ -240,7 +240,12 @@ class ContentfulEntry extends React.Component<Props, State> {
       }
 
       case 'shareAction':
-        return renderShareAction(json);
+        return (
+          <ShareActionContainer id={json.id} {...withoutNulls(json.fields)} />
+        );
+
+      case 'ShareBlock':
+        return <ShareActionContainer id={json.id} {...withoutNulls(json)} />;
 
       case 'sixpackExperiment':
         return (

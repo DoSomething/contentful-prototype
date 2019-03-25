@@ -58,8 +58,11 @@ const CONTENTFUL_BLOCK_QUERY = gql`
         title
         socialPlatform
         content
+        link
         hideEmbed
-        affirmationBlock
+        affirmationBlock {
+          id
+        }
         affirmation
         additionalContent
       }

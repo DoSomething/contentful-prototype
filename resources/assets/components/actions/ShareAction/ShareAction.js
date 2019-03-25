@@ -1,6 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
@@ -111,6 +112,7 @@ class ShareAction extends React.Component {
 
   render() {
     const {
+      id,
       affirmation, // @TODO: Rename me to 'affirmationText'?
       affirmationBlock,
       content,
@@ -137,7 +139,11 @@ class ShareAction extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="share-action margin-bottom-lg">
+        <div className="share-action margin-bottom-lg margin-horizontal-md">
+          <PuckWaypoint
+            name="share_action-top"
+            waypointData={{ contentfulId: id }}
+          />
           <Card title={title} className="rounded bordered">
             {content ? (
               <TextContent className="padded">{content}</TextContent>
@@ -151,6 +157,10 @@ class ShareAction extends React.Component {
               Share on {isFacebook ? 'Facebook' : 'Twitter'}
             </Button>
           </Card>
+          <PuckWaypoint
+            name="share_action-bottom"
+            waypointData={{ contentfulId: id }}
+          />
         </div>
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
