@@ -17,7 +17,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
     {result => {
       // On initial load, just display a loading spinner.
       if (result.networkStatus === NetworkStatus.LOADING) {
-        return <div className="spinner -centered" />;
+        return <div className="spinner -centered grid-main" />;
       }
 
       if (result.error) {

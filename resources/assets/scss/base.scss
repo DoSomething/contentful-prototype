@@ -501,6 +501,10 @@ p {
 .grid-narrow {
   grid-column: full-start / full-end;
 
+  @include media($medium) {
+    grid-column: main-start / main-end;
+  }
+
   @include media($large) {
     grid-column: narrow-start / narrow-end;
   }
