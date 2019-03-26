@@ -44,6 +44,7 @@ class PostGalleryBlockQuery extends React.Component {
 
     const filterType =
       this.props.filterType === 'none' ? null : this.props.filterType;
+
     this.state = {
       filterValue: null,
       enableFiltering: Boolean(filterType),
