@@ -15,21 +15,21 @@ import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
+import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
+import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
+import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import {
-  renderLinkAction,
   renderAffirmation,
-  renderShareAction,
   renderContentBlock,
-  renderPhotoSubmissionAction,
-  renderVoterRegistrationAction,
   renderReferralSubmissionAction,
 } from './renderers';
 
@@ -145,8 +145,13 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
 
+      case 'LinkBlock':
+        return <LinkActionContainer {...withoutNulls(json)} />;
+
       case 'linkAction':
-        return renderLinkAction(json);
+        return (
+          <LinkActionContainer id={json.id} {...withoutNulls(json.fields)} />
+        );
 
       case 'page':
         return (
@@ -176,7 +181,33 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'photoSubmissionAction':
-        return renderPhotoSubmissionAction(json);
+        return (
+          <div className="margin-horizontal-md margin-bottom-lg">
+            <PhotoSubmissionActionContainer
+              id={json.id}
+              {...withoutNulls(json.fields)}
+            />
+            <div className="margin-vertical-md">
+              <SubmissionGalleryBlockContainer
+                type="photo"
+                actionId={json.fields.actionId}
+              />
+            </div>
+          </div>
+        );
+
+      case 'PhotoSubmissionBlock':
+        return (
+          <div className="margin-horizontal-md margin-bottom-lg">
+            <PhotoSubmissionActionContainer {...withoutNulls(json)} />
+            <div className="margin-vertical-md">
+              <SubmissionGalleryBlockContainer
+                type="photo"
+                actionId={json.actionId}
+              />
+            </div>
+          </div>
+        );
 
       case 'poll_locator':
         return (
@@ -209,7 +240,12 @@ class ContentfulEntry extends React.Component<Props, State> {
       }
 
       case 'shareAction':
-        return renderShareAction(json);
+        return (
+          <ShareActionContainer id={json.id} {...withoutNulls(json.fields)} />
+        );
+
+      case 'ShareBlock':
+        return <ShareActionContainer id={json.id} {...withoutNulls(json)} />;
 
       case 'sixpackExperiment':
         return (
@@ -268,7 +304,17 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'voterRegistrationAction':
-        return renderVoterRegistrationAction(json);
+        return (
+          <VoterRegistrationActionContainer
+            contentfulId={json.id}
+            {...json.fields}
+          />
+        );
+
+      case 'VoterRegistrationBlock':
+        return (
+          <VoterRegistrationActionContainer contentfulId={json.id} {...json} />
+        );
 
       default:
         return <NotFound />;

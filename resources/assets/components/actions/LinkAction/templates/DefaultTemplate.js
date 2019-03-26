@@ -58,7 +58,8 @@ const DefaultTemplate = props => {
         {affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
-            imgUrl={affiliateLogo}
+            imgUrl={affiliateLogo.url}
+            title={affiliateLogo.description}
           />
         ) : null}
       </div>
@@ -80,7 +81,8 @@ const DefaultTemplate = props => {
         {affiliateLogo ? (
           <SponsorPromotion
             className="affiliate-logo -padded"
-            imgUrl={affiliateLogo}
+            imgUrl={affiliateLogo.url}
+            title={affiliateLogo.description}
           />
         ) : null}
 
@@ -105,7 +107,10 @@ DefaultTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
   link: PropTypes.string.isRequired,
-  affiliateLogo: PropTypes.string,
+  affiliateLogo: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
   userId: PropTypes.string,

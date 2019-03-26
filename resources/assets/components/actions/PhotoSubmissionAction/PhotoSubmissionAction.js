@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
+import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
@@ -251,6 +252,10 @@ class PhotoSubmissionAction extends React.Component {
       <React.Fragment>
         <div className="clearfix">
           <div className="photo-submission-action">
+            <PuckWaypoint
+              name="photo_submission_action-top"
+              waypointData={{ contentfulId: this.props.id }}
+            />
             <Card
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
@@ -368,6 +373,10 @@ class PhotoSubmissionAction extends React.Component {
                 </Button>
               </form>
             </Card>
+            <PuckWaypoint
+              name="photo_submission_action-bottom"
+              waypointData={{ contentfulId: this.props.id }}
+            />
           </div>
 
           {this.props.informationContent ? (
