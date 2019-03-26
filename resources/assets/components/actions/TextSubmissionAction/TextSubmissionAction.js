@@ -8,6 +8,7 @@ import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
@@ -50,6 +51,17 @@ class TextSubmissionAction extends React.Component {
   handleChange = event => {
     this.setState({
       textValue: event.target.value,
+    });
+  };
+
+  handleFocus = () => {
+    trackAnalyticsEvent({
+      verb: 'focused',
+      noun: 'text_submission_action',
+      adjective: 'text',
+      data: {
+        contentfulId: this.props.id,
+      },
     });
   };
 
@@ -138,6 +150,7 @@ class TextSubmissionAction extends React.Component {
                   placeholder={this.props.textFieldPlaceholder}
                   value={this.state.textValue}
                   onChange={this.handleChange}
+                  onFocus={this.handleFocus}
                 />
                 <CharacterLimit
                   limit={CHARACTER_LIMIT}

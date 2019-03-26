@@ -60,7 +60,8 @@ The following are all events currently tracked across the Phoenix application:
 | `phoenix_opened_modal_poll_locator`                  | opened a modal on a Poll Locater (the modal could contain poll location results or be empty)                                         | Puck, GA  |
 | `phoenix_opened_modal_poll_locator_not_found`        | opened the 'Not Found' modal from a Poll Locator                                                                                     | Puck, GA  |
 | `phoenix_clicked_copy_to_clipboard`                  | clicked the clipboard copy button in a Social Drive Action                                                                           | Puck, GA  |
-| `phoenix_failed_post_request`                        | failed to send a POST request                                                                                                        | Puck      |
+| `phoenix_failed_post_request`                        | failed to send a POST request                                                                                                        | Puck, GA  |
+| `phoenix_focused_text_submission_action_text`        | focused on the text field in a Text Submission Action form                                                                           | Puck, GA  |
 
 {% hint style="info" %}
 We also track a Google Analytics [Pageview event](https://support.google.com/analytics/answer/6086080?hl=en) for every page view
