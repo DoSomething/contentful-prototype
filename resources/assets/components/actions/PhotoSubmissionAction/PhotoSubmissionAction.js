@@ -250,12 +250,12 @@ class PhotoSubmissionAction extends React.Component {
 
     return (
       <React.Fragment>
-        <PuckWaypoint
-          name="photo_submission_action-top"
-          waypointData={{ contentfulId: this.props.id }}
-        />
         <div className="clearfix">
           <div className="photo-submission-action">
+            <PuckWaypoint
+              name="photo_submission_action-top"
+              waypointData={{ contentfulId: this.props.id }}
+            />
             <Card
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
@@ -373,6 +373,10 @@ class PhotoSubmissionAction extends React.Component {
                 </Button>
               </form>
             </Card>
+            <PuckWaypoint
+              name="photo_submission_action-bottom"
+              waypointData={{ contentfulId: this.props.id }}
+            />
           </div>
 
           {this.props.informationContent ? (
@@ -399,10 +403,6 @@ class PhotoSubmissionAction extends React.Component {
             </Card>
           </Modal>
         ) : null}
-        <PuckWaypoint
-          name="photo_submission_action-bottom"
-          waypointData={{ contentfulId: this.props.id }}
-        />
       </React.Fragment>
     );
   }
