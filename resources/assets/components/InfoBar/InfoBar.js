@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
 const InfoBar = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
-  <footer className="info-bar">
+  <div className="info-bar">
     <div className="default-container padding-vertical-lg padding-horizontal-md">
       <AffiliateCredits
         affiliateSponsors={affiliateSponsors}
@@ -15,7 +15,7 @@ const InfoBar = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
         Questions? <a href={`mailto:${contactEmail}`}>Contact {contactEmail}</a>
       </div>
     </div>
-  </footer>
+  </div>
 );
 
 InfoBar.propTypes = {
