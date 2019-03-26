@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
-const Footer = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
+const InfoBar = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
   <footer className="info-bar">
     <div className="default-container padding-vertical-lg padding-horizontal-md">
       <AffiliateCredits
@@ -18,16 +18,16 @@ const Footer = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
   </footer>
 );
 
-Footer.propTypes = {
+InfoBar.propTypes = {
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
   contactEmail: PropTypes.string,
 };
 
-Footer.defaultProps = {
+InfoBar.defaultProps = {
   affiliateSponsors: [],
   affiliatePartners: [],
   contactEmail: 'help@dosomething.org',
 };
 
-export default Footer;
+export default InfoBar;

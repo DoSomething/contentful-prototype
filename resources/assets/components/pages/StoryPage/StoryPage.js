@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Footer from '../../Footer/Footer';
+import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 
@@ -47,7 +47,7 @@ const StoryPage = props => {
         ))}
       </article>
 
-      <Footer />
+      <InfoBar />
     </React.Fragment>
   );
 };
