@@ -58,7 +58,7 @@ class PostGalleryBlockQuery extends React.Component {
   };
 
   render() {
-    const { actionIds, className, filterType, itemsPerRow } = this.props;
+    const { actionIds, className, filterType, id, itemsPerRow } = this.props;
 
     return (
       <React.Fragment>
@@ -83,12 +83,14 @@ class PostGalleryBlockQuery extends React.Component {
         >
           {({ result, fetching, fetchMore }) => (
             <PostGallery
+              id={id}
               className={classnames(className)}
               posts={result}
               loading={fetching}
               itemsPerRow={itemsPerRow}
               filterType={filterType}
               loadMorePosts={fetchMore}
+              waypointName={'post_gallery_block'}
             />
           )}
         </PaginatedQuery>
