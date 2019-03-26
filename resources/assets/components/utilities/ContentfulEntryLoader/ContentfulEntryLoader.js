@@ -122,9 +122,10 @@ const ContentfulEntryLoader = ({ id, className }) => (
       const gridClass = get(entryGridMapping, blockType, 'grid-main');
 
       return (
-        <div className={classnames(className, gridClass)}>
-          <ContentfulEntry json={data.block} />
-        </div>
+        <ContentfulEntry
+          className={classnames(className, gridClass)}
+          json={data.block}
+        />
       );
     }}
   </Query>
