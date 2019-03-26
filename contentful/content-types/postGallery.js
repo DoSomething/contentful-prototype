@@ -43,6 +43,16 @@ module.exports = function(migration) {
     .required(true)
     .localized(false);
 
+  postGallery
+    .createField('hideReactions')
+    .name('Hide Reactions')
+    .type('Boolean')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
   postGallery.changeEditorInterface('internalTitle', 'singleLine', {});
 
   postGallery.changeEditorInterface('actionIds', 'listInput', {
@@ -53,5 +63,11 @@ module.exports = function(migration) {
   postGallery.changeEditorInterface('itemsPerRow', 'radio', {
     helpText:
       'The maximum number of items in a single row when viewing the gallery in a large display.',
+  });
+
+  postGallery.changeEditorInterface('hideReactions', 'boolean', {
+    helpText: 'Hide post reactions in this gallery.',
+    trueLabel: 'Yes',
+    falseLabel: 'No',
   });
 };
