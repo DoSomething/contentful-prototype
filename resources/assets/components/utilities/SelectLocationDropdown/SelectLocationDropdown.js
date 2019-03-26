@@ -8,10 +8,11 @@ class SelectLocationDropdown extends React.Component {
     this.state = {
       locations: [],
       prefix: '',
+      defaultText: this.props.defaultText,
     };
 
     if (this.props.locationList === 'domestic') {
-      this.addDomesticOptions();
+      this.addDomesticOptions({ includeTerritories: true });
     }
   }
 
@@ -23,6 +24,7 @@ class SelectLocationDropdown extends React.Component {
       });
 
       this.setState({
+        defaultText: 'Select a state',
         locations: states,
         prefix: 'US-',
       });
@@ -37,7 +39,7 @@ class SelectLocationDropdown extends React.Component {
           onChange={this.props.onSelect}
         >
           <option key="default" value="">
-            Select a state
+            {this.state.defaultText}
           </option>
           {this.state.locations.map(location => (
             <option
@@ -54,12 +56,14 @@ class SelectLocationDropdown extends React.Component {
 }
 
 SelectLocationDropdown.propTypes = {
+  defaultText: PropTypes.string,
   locationList: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
   selectedOption: PropTypes.string,
 };
 
 SelectLocationDropdown.defaultProps = {
+  defaultText: 'All Locations',
   locationList: null,
   selectedOption: '',
 };

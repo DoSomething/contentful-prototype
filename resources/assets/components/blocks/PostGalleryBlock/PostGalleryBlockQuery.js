@@ -42,32 +42,30 @@ class PostGalleryBlockQuery extends React.Component {
   constructor(props) {
     super(props);
 
-    const filterType =
-      this.props.filterType === 'none' ? null : this.props.filterType;
-
     this.state = {
-      filterValue: null,
-      enableFiltering: Boolean(filterType),
+      filterValue: '',
+      filterType:
+        this.props.filterType === 'none' ? null : this.props.filterType,
     };
   }
 
   handleSelect = event => {
     this.setState({
-      filterValue: event.target.value || null,
+      filterValue: event.target.value,
     });
   };
 
   render() {
-    const { actionIds, className, filterType, id, itemsPerRow } = this.props;
+    const { actionIds, className, id, itemsPerRow } = this.props;
 
     return (
       <React.Fragment>
-        {this.state.enableFiltering ? (
+        {this.state.filterType === 'location' ? (
           <div className="grid-narrow margin-bottom-lg">
             <SelectLocationDropdown
               locationList="domestic"
               onSelect={this.handleSelect}
-              selectedOption={this.state.filterValue || ''}
+              selectedOption={this.state.filterValue}
             />
           </div>
         ) : null}
@@ -77,7 +75,7 @@ class PostGalleryBlockQuery extends React.Component {
           queryName="posts"
           variables={withoutNulls({
             actionIds,
-            location: this.state.filterValue,
+            location: this.state.filterValue || null,
           })}
           count={itemsPerRow * 3}
         >
@@ -88,7 +86,6 @@ class PostGalleryBlockQuery extends React.Component {
               posts={result}
               loading={fetching}
               itemsPerRow={itemsPerRow}
-              filterType={filterType}
               loadMorePosts={fetchMore}
               waypointName={'post_gallery_block'}
             />
