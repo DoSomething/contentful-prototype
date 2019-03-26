@@ -2,13 +2,13 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { UsaStates } from 'usa-states';
 
+import { withoutNulls } from '../../../helpers';
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
-import { withoutNulls } from '../../../helpers';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
+import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/SelectLocationDropdown';
 
 /**
  * The GraphQL query to load data for this component.
@@ -44,10 +44,6 @@ class PostGalleryBlockQuery extends React.Component {
 
     const filterType =
       this.props.filterType === 'none' ? null : this.props.filterType;
-
-    // console.log('⛩', filterType);
-    // console.log('⛩ Filtering enabled: ', Boolean(filterType));
-
     this.state = {
       filterValue: null,
       enableFiltering: Boolean(filterType),
@@ -55,46 +51,23 @@ class PostGalleryBlockQuery extends React.Component {
   }
 
   handleSelect = event => {
-    console.log(`US-${event.target.value}`);
-
     this.setState({
-      filterValue: `US-${event.target.value}`,
+      filterValue: event.target.value || null,
     });
   };
 
-  componentDidMount() {
-    console.log('🗿 PostGalleryBlockQuery mounted...');
-  }
-
-  componentDidUpdate() {
-    console.log('🗿 PostGalleryBlockQuery updated...');
-  }
-
   render() {
-    console.log('🗿 PostGalleryBlockQuery render...');
-
     const { actionIds, className, filterType, itemsPerRow } = this.props;
-    console.log('💎', { actionIds, className, filterType, itemsPerRow });
-
-    const states = new UsaStates({ exclude: ['DC'] }).format({
-      $abbreviation: 'abbr',
-      $name: 'name',
-    });
 
     return (
       <React.Fragment>
         {this.state.enableFiltering ? (
-          <div className="select grid-narrow margin-bottom-lg">
-            <select value={this.state.filterValue} onChange={this.handleSelect}>
-              <option key="default" value="">
-                Select a state
-              </option>
-              {states.map(state => (
-                <option key={state.name} value={state.abbreviation}>
-                  {state.name}
-                </option>
-              ))}
-            </select>
+          <div className="grid-narrow margin-bottom-lg">
+            <SelectLocationDropdown
+              locationList="domestic"
+              onSelect={this.handleSelect}
+              selectedOption={this.state.filterValue || ''}
+            />
           </div>
         ) : null}
 
@@ -127,6 +100,7 @@ PostGalleryBlockQuery.propTypes = {
   id: PropTypes.string,
   actionIds: PropTypes.arrayOf(PropTypes.number),
   className: PropTypes.string,
+  filterType: PropTypes.string,
   itemsPerRow: PropTypes.number,
 };
 
@@ -134,6 +108,7 @@ PostGalleryBlockQuery.defaultProps = {
   id: null,
   actionIds: [],
   className: null,
+  filterType: null,
   itemsPerRow: 3,
 };
 
