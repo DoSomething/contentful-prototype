@@ -42,9 +42,9 @@ const GalleryBlock = props => {
 
   return (
     <div className="gallery-block">
-      {title ? <h1 className="padding-horizontal-md">{title}</h1> : null}
+      {title ? <h1>{title}</h1> : null}
 
-      <Gallery type={galleryType}>
+      <Gallery type={galleryType} className="expand-horizontal-md">
         {blocks.map(block => renderBlock(block, imageAlignment, imageFit))}
       </Gallery>
     </div>

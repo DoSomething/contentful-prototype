@@ -107,11 +107,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <Iframe className={className} url={json.url} id={json.id} />;
 
       case 'gallery':
-        return (
-          <div className="margin-horizontal-md">
-            <CampaignGalleryBlockContainer />
-          </div>
-        );
+        return <CampaignGalleryBlockContainer />;
 
       case 'postGallery':
         return (
@@ -182,39 +178,35 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'photoSubmissionAction':
         return (
-          <div className="margin-horizontal-md margin-bottom-lg">
+          <React.Fragment>
             <PhotoSubmissionActionContainer
               id={json.id}
               {...withoutNulls(json.fields)}
             />
-            <div className="margin-vertical-md">
+            <div className="margin-top-md">
               <SubmissionGalleryBlockContainer
                 type="photo"
                 actionId={json.fields.actionId}
               />
             </div>
-          </div>
+          </React.Fragment>
         );
 
       case 'PhotoSubmissionBlock':
         return (
-          <div className="margin-horizontal-md margin-bottom-lg">
+          <React.Fragment>
             <PhotoSubmissionActionContainer {...withoutNulls(json)} />
-            <div className="margin-vertical-md">
+            <div className="margin-top-md">
               <SubmissionGalleryBlockContainer
                 type="photo"
                 actionId={json.actionId}
               />
             </div>
-          </div>
+          </React.Fragment>
         );
 
       case 'poll_locator':
-        return (
-          <div className="margin-horizontal-md">
-            <PollLocator {...withoutNulls(json.fields)} />
-          </div>
-        );
+        return <PollLocator {...withoutNulls(json.fields)} />;
 
       case 'quiz': {
         const QuizContainer = Loader(import('../Quiz/QuizContainer'));
@@ -256,11 +248,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'socialDriveAction':
-        return (
-          <div className="margin-horizontal-md margin-bottom-lg">
-            <SocialDriveActionContainer {...json.fields} />
-          </div>
-        );
+        return <SocialDriveActionContainer {...json.fields} />;
 
       case 'static':
         return (

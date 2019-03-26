@@ -4,24 +4,20 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
 <div
   className="content-block"
 >
-  <div
-    className="margin-horizontal-md"
+  <Figure
+    alignment="right-collapse"
+    alt="cool image of image.com"
+    image="image.com?w=600&h=600&fit=fill"
+    imageClassName={null}
+    size="one-third"
   >
-    <Figure
-      alignment="right-collapse"
-      alt="cool image of image.com"
-      image="image.com?w=600&h=600&fit=fill"
-      imageClassName={null}
-      size="one-third"
+    <TextContent
+      className={null}
+      styles={Object {}}
     >
-      <TextContent
-        className={null}
-        styles={Object {}}
-      >
-        Test Content
-      </TextContent>
-    </Figure>
-  </div>
+      Test Content
+    </TextContent>
+  </Figure>
 </div>
 `;
 
@@ -29,32 +25,24 @@ exports[`ContentBlock component is rendered with the proper child components whe
 <div
   className="content-block"
 >
-  <div
-    className="margin-horizontal-md"
+  <SectionHeader
+    preTitle="Test Super Title"
+    title="Test Title"
+  />
+  <Figure
+    alignment="right-collapse"
+    alt="cool image of image.com"
+    image="image.com?w=600&h=600&fit=fill"
+    imageClassName={null}
+    size="one-third"
   >
-    <SectionHeader
-      preTitle="Test Super Title"
-      title="Test Title"
-    />
-  </div>
-  <div
-    className="margin-horizontal-md"
-  >
-    <Figure
-      alignment="right-collapse"
-      alt="cool image of image.com"
-      image="image.com?w=600&h=600&fit=fill"
-      imageClassName={null}
-      size="one-third"
+    <TextContent
+      className={null}
+      styles={Object {}}
     >
-      <TextContent
-        className={null}
-        styles={Object {}}
-      >
-        Test Content
-      </TextContent>
-    </Figure>
-  </div>
+      Test Content
+    </TextContent>
+  </Figure>
 </div>
 `;
 
@@ -62,15 +50,11 @@ exports[`ContentBlock component it works beautifully with content and an empty i
 <div
   className="content-block"
 >
-  <div
-    className="margin-horizontal-md"
+  <TextContent
+    className={null}
+    styles={Object {}}
   >
-    <TextContent
-      className={null}
-      styles={Object {}}
-    >
-      hi there
-    </TextContent>
-  </div>
+    hi there
+  </TextContent>
 </div>
 `;

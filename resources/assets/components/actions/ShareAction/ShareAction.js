@@ -139,7 +139,7 @@ class ShareAction extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="share-action margin-bottom-lg margin-horizontal-md">
+        <div className="share-action">
           <PuckWaypoint
             name="share_action-top"
             waypointData={{ contentfulId: id }}

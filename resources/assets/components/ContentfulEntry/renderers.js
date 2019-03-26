@@ -14,11 +14,7 @@ import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionActi
 export function renderReferralSubmissionAction(data) {
   const fields = withoutNulls(data.fields);
 
-  return (
-    <div className="margin-horizontal-md margin-bottom-lg">
-      <ReferralSubmissionActionContainer id={data.id} {...fields} />
-    </div>
-  );
+  return <ReferralSubmissionActionContainer id={data.id} {...fields} />;
 }
 
 /**

@@ -6,8 +6,6 @@
   line-height: 1.4;
 
   .primary {
-    margin: 0 0 $base-spacing;
-
     @include media($large) {
       float: left;
       padding-right: $half-spacing;

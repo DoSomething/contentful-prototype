@@ -46,13 +46,18 @@ const CampaignPageContent = props => {
 
     return (
       <div
-        className={classnames('margin-bottom-lg clear-both', {
-          primary: !fullWidth,
-        })}
         key={json.id}
         id={`block-${json.id}`}
+        className={classnames(
+          'margin-bottom-lg',
+          'margin-horizontal-md',
+          'clear-both',
+          {
+            primary: !fullWidth,
+          },
+        )}
       >
-        <ContentfulEntry className="margin-horizontal-md" json={json} />
+        <ContentfulEntry json={json} />
       </div>
     );
   };
@@ -72,7 +77,10 @@ const CampaignPageContent = props => {
           {sidebar.length ? (
             <div className="secondary">
               {sidebar.map(block => (
-                <div className="margin-bottom-lg" key={block.id}>
+                <div
+                  className="margin-bottom-lg margin-horizontal-md"
+                  key={block.id}
+                >
                   <ContentfulEntry json={block} />
                 </div>
               ))}
