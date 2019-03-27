@@ -2,6 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 import { propType } from 'graphql-anywhere';
 
 import Card from '../Card/Card';
@@ -37,7 +38,7 @@ export const postCardFragment = gql`
   }
 `;
 
-const PostCard = ({ post }) => {
+const PostCard = ({ post, hideReactions }) => {
   const isAnonymous = post.actionDetails.anonymous;
 
   // If this post is for an anonymous action, label it with the state (if available).
@@ -46,9 +47,8 @@ const PostCard = ({ post }) => {
     ? post.location || 'Anonymous'
     : get(post, 'user.firstName', 'A Doer');
 
-  const reactionElement = isAuthenticated() ? (
-    <ReactionButton post={post} />
-  ) : null;
+  const reactionElement =
+    !hideReactions && isAuthenticated() ? <ReactionButton post={post} /> : null;
 
   // Render the appropriate media for this post:
   let media = null;
@@ -103,7 +103,12 @@ const PostCard = ({ post }) => {
 };
 
 PostCard.propTypes = {
+  hideReactions: PropTypes.bool,
   post: propType(postCardFragment).isRequired,
+};
+
+PostCard.defaultProps = {
+  hideReactions: false,
 };
 
 export default PostCard;
