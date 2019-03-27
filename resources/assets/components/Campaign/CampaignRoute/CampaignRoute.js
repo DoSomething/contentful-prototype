@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import InfoBar from '../../InfoBar/InfoBar';
 import Modal from '../../utilities/Modal/Modal';
-import CampaignFooter from '../../CampaignFooter';
 import BlockPage from '../../pages/BlockPage/BlockPage';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
@@ -57,10 +57,10 @@ const CampaignRoute = props => {
           />
         </Switch>
       </div>
-      <CampaignFooter
+      <InfoBar
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
-        campaignLead={campaignLead}
+        contactEmail={campaignLead.email || undefined}
       />
     </div>
   );

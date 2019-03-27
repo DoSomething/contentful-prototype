@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 
@@ -18,32 +19,36 @@ const StoryPage = props => {
   };
 
   return (
-    <article className="story-page">
-      <header
-        role="banner"
-        className="lede-banner base-16-grid"
-        style={withoutNulls(styles)}
-      >
-        <div className="wrapper text-center">
-          <h1 className="lede-banner__headline-title color-white caps-lock">
-            {title}
-          </h1>
-          {subTitle ? (
-            <h2 className="lede-banner__headline-subtitle color-yellow">
-              {subTitle}
-            </h2>
-          ) : null}
-        </div>
-      </header>
+    <React.Fragment>
+      <article className="story-page">
+        <header
+          role="banner"
+          className="lede-banner base-16-grid"
+          style={withoutNulls(styles)}
+        >
+          <div className="wrapper text-center">
+            <h1 className="lede-banner__headline-title color-white caps-lock">
+              {title}
+            </h1>
+            {subTitle ? (
+              <h2 className="lede-banner__headline-subtitle color-yellow">
+                {subTitle}
+              </h2>
+            ) : null}
+          </div>
+        </header>
 
-      {blocks.map(block => (
-        <ContentfulEntry
-          className="story-section"
-          key={block.id}
-          json={block}
-        />
-      ))}
-    </article>
+        {blocks.map(block => (
+          <ContentfulEntry
+            className="story-section"
+            key={block.id}
+            json={block}
+          />
+        ))}
+      </article>
+
+      <InfoBar />
+    </React.Fragment>
   );
 };
 
