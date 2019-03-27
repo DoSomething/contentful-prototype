@@ -36,6 +36,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ... on PostGalleryBlock {
         actionIds
         itemsPerRow
+        filterType
       }
       ... on PhotoSubmissionBlock {
         actionId

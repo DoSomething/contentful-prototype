@@ -3,17 +3,29 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import { withoutNulls } from '../../../helpers';
 import PaginatedQuery from '../../PaginatedQuery';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
+import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/SelectLocationDropdown';
 
 /**
  * The GraphQL query to load data for this component.
  */
 const POST_GALLERY_QUERY = gql`
-  query PostGalleryQuery($actionIds: [Int], $count: Int, $page: Int) {
-    posts(actionIds: $actionIds, count: $count, page: $page) {
+  query PostGalleryQuery(
+    $actionIds: [Int]
+    $location: String
+    $count: Int
+    $page: Int
+  ) {
+    posts(
+      actionIds: $actionIds
+      location: $location
+      count: $count
+      page: $page
+    ) {
       ...PostCard
       ...ReactionButton
     }
@@ -26,33 +38,69 @@ const POST_GALLERY_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const PostGalleryBlockQuery = ({ id, actionIds, className, itemsPerRow }) => (
-  <PaginatedQuery
-    query={POST_GALLERY_QUERY}
-    queryName="posts"
-    variables={{ actionIds }}
-    count={itemsPerRow * 3}
-  >
-    {({ result, fetching, fetchMore }) => (
+class PostGalleryBlockQuery extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      filterValue: '',
+      filterType:
+        this.props.filterType === 'none' ? null : this.props.filterType,
+    };
+  }
+
+  handleSelect = event => {
+    this.setState({
+      filterValue: event.target.value,
+    });
+  };
+
+  render() {
+    const { actionIds, className, id, itemsPerRow } = this.props;
+
+    return (
       <React.Fragment>
-        <PostGallery
-          id={id}
-          className={classnames(className)}
-          posts={result}
-          loading={fetching}
-          itemsPerRow={itemsPerRow}
-          loadMorePosts={fetchMore}
-          waypointName={'post_gallery_block'}
-        />
+        {this.state.filterType === 'location' ? (
+          <div className="grid-narrow margin-bottom-lg">
+            <SelectLocationDropdown
+              locationList="domestic"
+              onSelect={this.handleSelect}
+              selectedOption={this.state.filterValue}
+            />
+          </div>
+        ) : null}
+
+        <PaginatedQuery
+          query={POST_GALLERY_QUERY}
+          queryName="posts"
+          variables={withoutNulls({
+            actionIds,
+            location: this.state.filterValue || null,
+          })}
+          count={itemsPerRow * 3}
+        >
+          {({ result, fetching, fetchMore }) => (
+            <PostGallery
+              id={id}
+              className={classnames(className)}
+              posts={result}
+              loading={fetching}
+              itemsPerRow={itemsPerRow}
+              loadMorePosts={fetchMore}
+              waypointName={'post_gallery_block'}
+            />
+          )}
+        </PaginatedQuery>
       </React.Fragment>
-    )}
-  </PaginatedQuery>
-);
+    );
+  }
+}
 
 PostGalleryBlockQuery.propTypes = {
   id: PropTypes.string,
   actionIds: PropTypes.arrayOf(PropTypes.number),
   className: PropTypes.string,
+  filterType: PropTypes.string,
   itemsPerRow: PropTypes.number,
 };
 
@@ -60,6 +108,7 @@ PostGalleryBlockQuery.defaultProps = {
   id: null,
   actionIds: [],
   className: null,
+  filterType: null,
   itemsPerRow: 3,
 };
 

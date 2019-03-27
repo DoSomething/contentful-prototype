@@ -20,6 +20,7 @@ class PostGallery extends Entity implements JsonSerializable
                 'internalTitle' => $this->internalTitle,
                 'actionIds' => $this->actionIds,
                 'itemsPerRow' => $this->itemsPerRow,
+                'filterType' => $this->filterType === 'none' ? null : $this->filterType,
             ],
         ];
     }
