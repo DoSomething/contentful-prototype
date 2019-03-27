@@ -33,7 +33,7 @@
           <li><a href="{{ phoenixLink('us/about/sexy-financials') }}">Sexy Financials</a></li>
           <li><a href="http://xyzfactor.org/">XYZ Factor</a></li>
           <li><a href="{{ phoenixLink('us/about/our-press') }}">Press</a></li>
-          <li><a href="https://blog.dosomething.org/">Blog</a></li>
+          <li><a href="https://lets.dosomething.org/">Blog</a></li>
           <li><a href="{{ phoenixLink('us/about/contact-us') }}">Contact Us</a></li>
          </ul>
     </div>
