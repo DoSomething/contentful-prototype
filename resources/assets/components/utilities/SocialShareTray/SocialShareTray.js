@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
@@ -116,14 +117,14 @@ class SocialShareTray extends React.Component {
   };
 
   render() {
-    const { shareLink, platforms, title } = this.props;
+    const { shareLink, platforms, responsive, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
 
     return (
       <div className="social-share-tray padded text-center">
         {title ? <p className="title caps-lock font-bold">{title}</p> : null}
 
-        <div className="share-buttons">
+        <div className={classNames('share-buttons', { responsive })}>
           {platforms.includes('facebook') ? (
             <ShareButton
               className="facebook"
@@ -180,6 +181,7 @@ SocialShareTray.propTypes = {
   trackLink: PropTypes.string,
   platforms: PropTypes.arrayOf(PropTypes.string),
   title: PropTypes.string,
+  responsive: PropTypes.bool,
 };
 
 SocialShareTray.defaultProps = {
@@ -187,6 +189,7 @@ SocialShareTray.defaultProps = {
   trackLink: null,
   platforms: ['facebook', 'twitter', 'messenger', 'email'],
   title: null,
+  responsive: false,
 };
 
 export default SocialShareTray;

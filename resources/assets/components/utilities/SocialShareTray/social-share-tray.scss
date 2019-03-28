@@ -60,7 +60,9 @@
         content: '';
         border-left: 1px solid $white;
       }
+    }
 
+    &.responsive .share-button {
       // Hide button text unless on desktop
       @include media('(max-width: 960px)') {
         .button-text {
