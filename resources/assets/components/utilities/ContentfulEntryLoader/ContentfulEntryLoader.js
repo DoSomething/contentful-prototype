@@ -37,6 +37,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
         actionIds
         itemsPerRow
         filterType
+        hideReactions
       }
       ... on PhotoSubmissionBlock {
         actionId
