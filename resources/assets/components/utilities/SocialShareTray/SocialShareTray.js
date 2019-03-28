@@ -121,7 +121,7 @@ class SocialShareTray extends React.Component {
 
     return (
       <div className="social-share-tray padded text-center">
-        <p className="title caps-lock font-bold">{title}</p>
+        {title ? <p className="title caps-lock font-bold">{title}</p> : null}
 
         <div className="share-buttons">
           {platforms.includes('facebook') ? (
@@ -186,7 +186,7 @@ SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
   platforms: ['facebook', 'twitter', 'messenger', 'email'],
-  title: 'Share on Social Media',
+  title: null,
 };
 
 export default SocialShareTray;
