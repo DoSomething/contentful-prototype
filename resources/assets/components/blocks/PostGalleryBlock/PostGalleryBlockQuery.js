@@ -1,10 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { split } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { withoutNulls } from '../../../helpers';
 import PaginatedQuery from '../../PaginatedQuery';
+import ScrollConcierge from '../../ScrollConcierge';
+import { query, withoutNulls } from '../../../helpers';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
@@ -42,17 +44,73 @@ class PostGalleryBlockQuery extends React.Component {
   constructor(props) {
     super(props);
 
+    // FilterType specified on Contentful PostGallery entry.
+    const filterType =
+      this.props.filterType === 'none' ? null : this.props.filterType;
+
+    let filterValue = '';
+    let hasUrlOptions = false;
+    let options = query(`options[${this.props.id}]`);
+
+    options = options ? split(options, ':') : null;
+
+    if (this.validQueryOptions(options, filterType)) {
+      filterValue = options[1];
+      hasUrlOptions = true;
+    }
+
     this.state = {
-      filterValue: '',
-      filterType:
-        this.props.filterType === 'none' ? null : this.props.filterType,
+      filterValue,
+      filterType,
+      hasUrlOptions,
+      shouldScrollToFilter: false,
     };
   }
 
+  /**
+   * Validate the supplied URL options.
+   *
+   * @param  {Array} options
+   * @param  {String} filterType
+   * @return {Boolean}
+   */
+  validQueryOptions = (options, filterType) => {
+    const validFilterType = options && options[0] === filterType;
+
+    let validFilterValue = false;
+
+    if (filterType === 'location') {
+      const regex = new RegExp(`^US-[A-Z]{2}$`, 'g');
+
+      validFilterValue = options[1].match(regex);
+    }
+
+    return Boolean(validFilterType && validFilterValue);
+  };
+
+  /**
+   * Handle select dropdown filter changes.
+   *
+   * @param  {Object} event
+   * @return {Void}
+   */
   handleSelect = event => {
     this.setState({
       filterValue: event.target.value,
     });
+  };
+
+  /**
+   * Callback for when PostGallery has rendered.
+   *
+   * @return {Void}
+   */
+  galleryReady = () => {
+    if (this.state.hasUrlOptions && !this.state.shouldScrollToFilter) {
+      this.setState({
+        shouldScrollToFilter: true,
+      });
+    }
   };
 
   render() {
@@ -62,6 +120,7 @@ class PostGalleryBlockQuery extends React.Component {
       <React.Fragment>
         {this.state.filterType === 'location' ? (
           <div className="grid-narrow margin-bottom-lg">
+            {this.state.shouldScrollToFilter ? <ScrollConcierge /> : null}
             <SelectLocationDropdown
               locationList="domestic"
               onSelect={this.handleSelect}
@@ -87,6 +146,7 @@ class PostGalleryBlockQuery extends React.Component {
               loading={fetching}
               itemsPerRow={itemsPerRow}
               loadMorePosts={fetchMore}
+              onRender={this.galleryReady}
               waypointName={'post_gallery_block'}
             />
           )}
