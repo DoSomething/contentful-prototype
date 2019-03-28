@@ -21,11 +21,17 @@ const PostGallery = props => {
     id,
     className,
     loading,
+    onRender,
     posts,
     itemsPerRow,
     loadMorePosts,
     waypointName,
   } = props;
+
+  // If specified, execute callback to let parent component know PostGallery is rendered.
+  if (onRender) {
+    onRender();
+  }
 
   return posts.length ? (
     <div id={id} className={classnames(className)}>
@@ -59,24 +65,30 @@ const PostGallery = props => {
         />
       ) : null}
     </div>
-  ) : null;
+  ) : (
+    <div className="rounded bg-white grid-narrow padding-lg margin-bottom-md color-gray">
+      <em>No Results Found</em>
+    </div>
+  );
 };
 
 PostGallery.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   itemsPerRow: PropTypes.oneOf(Object.keys(galleryTypes).map(Number)),
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
+  onRender: PropTypes.func,
+  posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
   waypointName: PropTypes.string,
 };
 
 PostGallery.defaultProps = {
   id: null,
   className: null,
-  posts: [],
   itemsPerRow: 3,
+  onRender: null,
+  posts: [],
   waypointName: null,
 };
 
