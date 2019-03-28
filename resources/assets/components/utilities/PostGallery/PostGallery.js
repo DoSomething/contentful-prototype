@@ -25,6 +25,7 @@ const PostGallery = props => {
     posts,
     itemsPerRow,
     loadMorePosts,
+    hideReactions,
     waypointName,
   } = props;
 
@@ -47,7 +48,7 @@ const PostGallery = props => {
         className="post-gallery expand-horizontal-md"
       >
         {posts.map(post => (
-          <PostCard key={post.id} post={post} />
+          <PostCard key={post.id} post={post} hideReactions={hideReactions} />
         ))}
       </Gallery>
       <LoadMore
@@ -80,6 +81,7 @@ PostGallery.propTypes = {
   loadMorePosts: PropTypes.func.isRequired,
   onRender: PropTypes.func,
   posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  hideReactions: PropTypes.bool,
   waypointName: PropTypes.string,
 };
 
@@ -89,6 +91,7 @@ PostGallery.defaultProps = {
   itemsPerRow: 3,
   onRender: null,
   posts: [],
+  hideReactions: false,
   waypointName: null,
 };
 

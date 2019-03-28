@@ -114,7 +114,7 @@ class PostGalleryBlockQuery extends React.Component {
   };
 
   render() {
-    const { actionIds, className, id, itemsPerRow } = this.props;
+    const { actionIds, className, id, hideReactions, itemsPerRow } = this.props;
 
     return (
       <React.Fragment>
@@ -147,6 +147,7 @@ class PostGalleryBlockQuery extends React.Component {
               itemsPerRow={itemsPerRow}
               loadMorePosts={fetchMore}
               onRender={this.galleryReady}
+              hideReactions={hideReactions}
               waypointName={'post_gallery_block'}
             />
           )}
@@ -161,6 +162,7 @@ PostGalleryBlockQuery.propTypes = {
   actionIds: PropTypes.arrayOf(PropTypes.number),
   className: PropTypes.string,
   filterType: PropTypes.string,
+  hideReactions: PropTypes.bool,
   itemsPerRow: PropTypes.number,
 };
 
@@ -169,6 +171,7 @@ PostGalleryBlockQuery.defaultProps = {
   actionIds: [],
   className: null,
   filterType: null,
+  hideReactions: false,
   itemsPerRow: 3,
 };
 
