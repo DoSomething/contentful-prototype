@@ -16,16 +16,24 @@ const galleryTypes = {
   3: 'triad',
 };
 
+const noPostsOutput = shouldShowNoResults =>
+  shouldShowNoResults ? (
+    <div className="rounded bg-white grid-narrow padding-lg margin-bottom-lg color-gray">
+      <em>No Results Found</em>
+    </div>
+  ) : null;
+
 const PostGallery = props => {
   const {
     id,
     className,
+    hideReactions,
+    itemsPerRow,
     loading,
+    loadMorePosts,
     onRender,
     posts,
-    itemsPerRow,
-    loadMorePosts,
-    hideReactions,
+    shouldShowNoResults,
     waypointName,
   } = props;
 
@@ -67,31 +75,31 @@ const PostGallery = props => {
       ) : null}
     </div>
   ) : (
-    <div className="rounded bg-white grid-narrow padding-lg margin-bottom-lg color-gray">
-      <em>No Results Found</em>
-    </div>
+    noPostsOutput(shouldShowNoResults)
   );
 };
 
 PostGallery.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
+  hideReactions: PropTypes.bool,
   itemsPerRow: PropTypes.oneOf(Object.keys(galleryTypes).map(Number)),
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
   onRender: PropTypes.func,
   posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
-  hideReactions: PropTypes.bool,
+  shouldShowNoResults: PropTypes.bool,
   waypointName: PropTypes.string,
 };
 
 PostGallery.defaultProps = {
   id: null,
   className: null,
+  hideReactions: false,
   itemsPerRow: 3,
   onRender: null,
   posts: [],
-  hideReactions: false,
+  shouldShowNoResults: false,
   waypointName: null,
 };
 
