@@ -66,7 +66,7 @@ const PostGallery = props => {
       ) : null}
     </div>
   ) : (
-    <div className="rounded bg-white grid-narrow padding-lg margin-bottom-md color-gray">
+    <div className="rounded bg-white grid-narrow padding-lg margin-bottom-lg color-gray">
       <em>No Results Found</em>
     </div>
   );
