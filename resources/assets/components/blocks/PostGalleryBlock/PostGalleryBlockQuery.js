@@ -75,7 +75,11 @@ class PostGalleryBlockQuery extends React.Component {
    * @return {Boolean}
    */
   validQueryOptions = (options, filterType) => {
-    const validFilterType = options && options[0] === filterType;
+    if (!options || options.length <= 1) {
+      return false;
+    }
+
+    const validFilterType = options[0] === filterType;
 
     let validFilterValue = false;
 
@@ -114,7 +118,7 @@ class PostGalleryBlockQuery extends React.Component {
   };
 
   render() {
-    const { actionIds, className, id, hideReactions, itemsPerRow } = this.props;
+    const { actionIds, className, hideReactions, id, itemsPerRow } = this.props;
 
     return (
       <React.Fragment>
@@ -142,12 +146,13 @@ class PostGalleryBlockQuery extends React.Component {
             <PostGallery
               id={id}
               className={classnames(className)}
-              posts={result}
-              loading={fetching}
+              hideReactions={hideReactions}
               itemsPerRow={itemsPerRow}
+              loading={fetching}
               loadMorePosts={fetchMore}
               onRender={this.galleryReady}
-              hideReactions={hideReactions}
+              posts={result}
+              shouldShowNoResults
               waypointName={'post_gallery_block'}
             />
           )}

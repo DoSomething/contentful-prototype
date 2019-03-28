@@ -6,7 +6,7 @@ import Card from '../utilities/Card/Card';
 import TextContent from '../utilities/TextContent/TextContent';
 
 const ErrorBlock = () => (
-  <Card className="error-block rounded bordered padded">
+  <Card className="error-block rounded bordered padded margin-bottom-lg grid-main">
     <Figure image={errorIcon}>
       <TextContent>
         __Something went wrong!__ Try refreshing the page or [reach
