@@ -83,7 +83,12 @@ class SocialDriveAction extends React.Component {
               </div>
             </div>
 
-            <SocialShareTray shareLink={shortenedLink} trackLink={link} />
+            <SocialShareTray
+              shareLink={shortenedLink}
+              trackLink={link}
+              title="Share on Social Media"
+              responsive
+            />
           </Card>
         </div>
 
