@@ -12,6 +12,8 @@ import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
 import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/SelectLocationDropdown';
 
+import './post-gallery-block.scss';
+
 /**
  * The GraphQL query to load data for this component.
  */
@@ -123,7 +125,7 @@ class PostGalleryBlockQuery extends React.Component {
     return (
       <React.Fragment>
         {this.state.filterType === 'location' ? (
-          <div className="grid-narrow margin-bottom-lg">
+          <div className="post-gallery-block-filter margin-horizontal-auto margin-bottom-lg">
             {this.state.shouldScrollToFilter ? <ScrollConcierge /> : null}
             <SelectLocationDropdown
               locationList="domestic"
