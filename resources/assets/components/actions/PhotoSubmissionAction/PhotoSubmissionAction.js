@@ -1,6 +1,7 @@
 /* eslint-disable react/sort-comp */
 
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
@@ -21,6 +22,25 @@ import {
 } from '../../../helpers/forms';
 
 import './photo-submission-action.scss';
+
+export const PhotoSubmissionBlockFragment = gql`
+  fragment PhotoSubmissionBlockFragment on PhotoSubmissionBlock {
+    actionId
+    title
+    captionFieldLabel
+    captionFieldPlaceholderMessage
+    showQuantityField
+    quantityFieldLabel
+    quantityFieldPlaceholder
+    whyParticipatedFieldLabel
+    whyParticipatedFieldPlaceholder
+    buttonText
+    informationTitle
+    informationContent
+    affirmationContent
+    additionalContent
+  }
+`;
 
 class PhotoSubmissionAction extends React.Component {
   /**

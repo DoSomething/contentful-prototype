@@ -1,5 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
@@ -19,6 +20,22 @@ import {
   showTwitterSharePrompt,
   withoutNulls,
 } from '../../../helpers';
+
+export const ShareBlockFragment = gql`
+  fragment ShareBlockFragment on ShareBlock {
+    actionId
+    title
+    socialPlatform
+    content
+    link
+    hideEmbed
+    affirmationBlock {
+      id
+    }
+    affirmation
+    additionalContent
+  }
+`;
 
 class ShareAction extends React.Component {
   state = { showModal: false };

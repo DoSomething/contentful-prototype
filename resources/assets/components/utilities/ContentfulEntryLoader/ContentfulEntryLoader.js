@@ -7,95 +7,41 @@ import { Query } from 'react-apollo';
 
 import ContentfulEntry from '../../ContentfulEntry';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import { EmbedBlockFragment } from '../../utilities/Iframe';
+import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
+import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
+import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
+import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
+import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
+import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
+import { VoterRegistrationBlockFragment } from '../../actions/VoterRegistrationAction/VoterRegistrationAction';
+import { PetitionSubmissionBlockFragment } from '../../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
 
 const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!) {
     block(id: $id) {
       id
-      ... on ImagesBlock {
-        images {
-          description
-          url(w: 500, h: 500, fit: FILL)
-        }
-      }
-      ... on EmbedBlock {
-        url
-      }
-      ... on LinkBlock {
-        title
-        content
-        link
-        buttonText
-        affiliateLogo {
-          url(w: 200, h: 100)
-          description
-        }
-        template
-        additionalContent
-      }
-      ... on PostGalleryBlock {
-        actionIds
-        itemsPerRow
-        filterType
-        hideReactions
-      }
-      ... on PhotoSubmissionBlock {
-        actionId
-        title
-        captionFieldLabel
-        captionFieldPlaceholderMessage
-        showQuantityField
-        quantityFieldLabel
-        quantityFieldPlaceholder
-        whyParticipatedFieldLabel
-        whyParticipatedFieldPlaceholder
-        buttonText
-        informationTitle
-        informationContent
-        affirmationContent
-        additionalContent
-      }
-      ... on ShareBlock {
-        actionId
-        title
-        socialPlatform
-        content
-        link
-        hideEmbed
-        affirmationBlock {
-          id
-        }
-        affirmation
-        additionalContent
-      }
-      ... on TextSubmissionBlock {
-        actionId
-        title
-        textFieldLabel
-        textFieldPlaceholderMessage
-        buttonText
-        informationTitle
-        informationContent
-        affirmationContent
-      }
-      ... on PetitionSubmissionBlock {
-        actionId
-        title
-        content
-        textFieldPlaceholderMessage
-        buttonText
-        informationTitle
-        informationContent
-        affirmationContent
-      }
-      ... on VoterRegistrationBlock {
-        title
-        content
-        link
-        additionalContent
-      }
+      ...LinkBlockFragment
+      ...ShareBlockFragment
+      ...EmbedBlockFragment
+      ...ImagesBlockFragment
+      ...PostGalleryBlockFragment
+      ...TextSubmissionBlockFragment
+      ...PhotoSubmissionBlockFragment
+      ...VoterRegistrationBlockFragment
+      ...PetitionSubmissionBlockFragment
     }
   }
+
+  ${LinkBlockFragment}
+  ${ShareBlockFragment}
+  ${EmbedBlockFragment}
+  ${ImagesBlockFragment}
+  ${PostGalleryBlockFragment}
+  ${TextSubmissionBlockFragment}
+  ${PhotoSubmissionBlockFragment}
+  ${VoterRegistrationBlockFragment}
+  ${PetitionSubmissionBlockFragment}
 `;
 
 const ContentfulEntryLoader = ({ id, className }) => (

@@ -11,6 +11,12 @@ import ErrorBlock from '../ErrorBlock/ErrorBlock';
 
 const PERMITTED_HOSTNAMES = ['dosomething.carto.com'];
 
+export const EmbedBlockFragment = gql`
+  fragment EmbedBlockFragment on EmbedBlock {
+    url
+  }
+`;
+
 const EMBED_QUERY = gql`
   query EmbedQuery($url: AbsoluteUrl!) {
     embed(url: $url) {
