@@ -25,7 +25,6 @@
   > ul + ol,
   > ol + p,
   > ol + ol,
-  > div + h1, // @TODO: should be able to remove the "div +" items after we nest PuckWaypoints inside components.
   > ol + ul {
     margin-top: $half-spacing;
   }
