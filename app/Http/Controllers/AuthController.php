@@ -42,12 +42,14 @@ class AuthController extends Controller
     {
         $queryParams = $request->getQueryParams();
 
-        // Save the post-login redirect for when the user completes the flow: either to the intended
-        // page (if logging in to view a page protected by the 'auth' middleware), or the previous
-        // page (if the user clicked "Log In" in the top navigation).
+        // Save the post-login redirect for when the user completes the flow.
         if (! array_has($queryParams, 'code')) {
+            // The default post-login redirect will be to the previous page (if the user clicked
+            // "Log In" in the top navigation), or to the path defined in the $redirectTo property.
             $defaultIntended = is_same_origin(url()->previous()) ? url()->previous() : $this->redirectTo;
 
+            // The post-login redirect will be to the intended page (if logging in to view a page
+            // protected by the 'auth' middleware), or to the default path determined above.
             $intended = session()->pull('url.intended', $defaultIntended);
 
             session(['login.intended' => $intended]);
