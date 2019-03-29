@@ -443,3 +443,16 @@ function generate_streamed_csv($columns, $records)
 
     return fclose($file);
 }
+
+/**
+ * Determine if URL is of the same origin as the app's URL.
+ *
+ * @param  string $url
+ * @return boolean
+ */
+function is_same_origin($url) {
+    $urlHost = parse_url($url)['host'];
+    $appUrlHost = parse_url(config('app.url'))['host'];
+
+    return $urlHost === $appUrlHost;
+}
