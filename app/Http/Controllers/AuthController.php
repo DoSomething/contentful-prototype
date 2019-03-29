@@ -46,7 +46,9 @@ class AuthController extends Controller
         // page (if logging in to view a page protected by the 'auth' middleware), or the previous
         // page (if the user clicked "Log In" in the top navigation).
         if (! array_has($queryParams, 'code')) {
-            $intended = session()->pull('url.intended', url()->previous());
+            $defaultIntended = is_same_origin(url()->previous()) ? url()->previous() : $this->redirectTo;
+
+            $intended = session()->pull('url.intended', $defaultIntended);
 
             session(['login.intended' => $intended]);
 
