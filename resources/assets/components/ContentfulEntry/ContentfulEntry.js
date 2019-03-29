@@ -5,6 +5,7 @@ import * as React from 'react';
 import NotFound from '../NotFound';
 import Iframe from '../utilities/Iframe';
 import Loader from '../utilities/Loader';
+import Affirmation from '../Affirmation';
 import StaticBlock from '../StaticBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
@@ -13,6 +14,7 @@ import { CampaignUpdateContainer } from '../CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
+import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -27,11 +29,7 @@ import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/Pho
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
-import {
-  renderAffirmation,
-  renderContentBlock,
-  renderReferralSubmissionAction,
-} from './renderers';
+import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
 
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
@@ -64,7 +62,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
     switch (type) {
       case 'affirmation':
-        return renderAffirmation(json);
+        return <Affirmation {...withoutNulls(json.fields)} />;
 
       case 'callToAction':
         return (
@@ -92,7 +90,13 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'contentBlock':
-        return renderContentBlock(json, className);
+        return (
+          <ContentBlock
+            className={className}
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'embed':
         return (
@@ -107,11 +111,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <Iframe className={className} url={json.url} id={json.id} />;
 
       case 'gallery':
-        return (
-          <div className="margin-horizontal-md">
-            <CampaignGalleryBlockContainer />
-          </div>
-        );
+        return <CampaignGalleryBlockContainer />;
 
       case 'postGallery':
         return (
@@ -182,39 +182,35 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'photoSubmissionAction':
         return (
-          <div className="margin-horizontal-md margin-bottom-lg">
+          <React.Fragment>
             <PhotoSubmissionActionContainer
               id={json.id}
               {...withoutNulls(json.fields)}
             />
-            <div className="margin-vertical-md">
+            <div className="margin-top-md">
               <SubmissionGalleryBlockContainer
                 type="photo"
                 actionId={json.fields.actionId}
               />
             </div>
-          </div>
+          </React.Fragment>
         );
 
       case 'PhotoSubmissionBlock':
         return (
-          <div className="margin-horizontal-md margin-bottom-lg">
+          <React.Fragment>
             <PhotoSubmissionActionContainer {...withoutNulls(json)} />
-            <div className="margin-vertical-md">
+            <div className="margin-top-md">
               <SubmissionGalleryBlockContainer
                 type="photo"
                 actionId={json.actionId}
               />
             </div>
-          </div>
+          </React.Fragment>
         );
 
       case 'poll_locator':
-        return (
-          <div className="margin-horizontal-md">
-            <PollLocator {...withoutNulls(json.fields)} />
-          </div>
-        );
+        return <PollLocator {...withoutNulls(json.fields)} />;
 
       case 'quiz': {
         const QuizContainer = Loader(import('../Quiz/QuizContainer'));
@@ -227,7 +223,12 @@ class ContentfulEntry extends React.Component<Props, State> {
       }
 
       case 'referralSubmissionAction':
-        return renderReferralSubmissionAction(json);
+        return (
+          <ReferralSubmissionActionContainer
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'sectionBlock': {
         return (
@@ -256,11 +257,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'socialDriveAction':
-        return (
-          <div className="margin-horizontal-md margin-bottom-lg">
-            <SocialDriveActionContainer {...json.fields} />
-          </div>
-        );
+        return <SocialDriveActionContainer {...json.fields} />;
 
       case 'static':
         return (

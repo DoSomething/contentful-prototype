@@ -24,26 +24,20 @@ const ContentBlock = props => {
 
   return (
     <div className={classnames('content-block', className)}>
-      {title ? (
-        <div className="margin-horizontal-md">
-          <SectionHeader preTitle={superTitle} title={title} />
-        </div>
-      ) : null}
+      {title ? <SectionHeader preTitle={superTitle} title={title} /> : null}
 
-      <div className="margin-horizontal-md">
-        {image.url ? (
-          <Figure
-            image={contentfulImageUrl(image.url, '600', '600', 'fill')}
-            alt={image.description || 'content-block'}
-            alignment={`${imageAlignment}-collapse`}
-            size="one-third"
-          >
-            {contentNode}
-          </Figure>
-        ) : (
-          contentNode
-        )}
-      </div>
+      {image.url ? (
+        <Figure
+          image={contentfulImageUrl(image.url, '600', '600', 'fill')}
+          alt={image.description || 'content-block'}
+          alignment={`${imageAlignment}-collapse`}
+          size="one-third"
+        >
+          {contentNode}
+        </Figure>
+      ) : (
+        contentNode
+      )}
     </div>
   );
 };

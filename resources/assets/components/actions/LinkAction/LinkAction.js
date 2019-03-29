@@ -17,7 +17,7 @@ const LinkAction = props => {
   const LinkActionTemplate = get(templates, template, DefaultTemplate);
 
   return (
-    <div className="margin-horizontal-md">
+    <React.Fragment>
       <PuckWaypoint
         name="link_action-top"
         waypointData={{ contentfulId: id }}
@@ -27,7 +27,7 @@ const LinkAction = props => {
         name="link_action-bottom"
         waypointData={{ contentfulId: id }}
       />
-    </div>
+    </React.Fragment>
   );
 };
 

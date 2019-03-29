@@ -34,30 +34,28 @@ const VoterRegistrationAction = props => {
   };
 
   return (
-    <div className="margin-bottom-lg margin-horizontal-md">
+    <Card
+      className="rounded bordered voter-registration"
+      title="Register to vote"
+    >
       <PuckWaypoint name="voter_registration_action-top" />
-      <Card
-        className="rounded bordered voter-registration"
-        title="Register to vote"
-      >
-        <div className="padded clearfix">
-          <TextContent>{content}</TextContent>
+      <div className="padded clearfix">
+        <TextContent>{content}</TextContent>
 
-          {parsedLink ? (
-            <a
-              className="button"
-              href={parsedLink}
-              onClick={handleClick}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Start Registration
-            </a>
-          ) : null}
-        </div>
-      </Card>
+        {parsedLink ? (
+          <a
+            className="button"
+            href={parsedLink}
+            onClick={handleClick}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Start Registration
+          </a>
+        ) : null}
+      </div>
       <PuckWaypoint name="voter_registration_action-bottom" />
-    </div>
+    </Card>
   );
 };
 

@@ -52,7 +52,7 @@ const DefaultTemplate = props => {
         role="button"
         tabIndex="0"
         onClick={() => onLinkClick(href)}
-        className="link-wrapper margin-bottom-lg"
+        className="link-wrapper"
       >
         <Embed url={link} badged />
         {affiliateLogo ? (
@@ -67,7 +67,7 @@ const DefaultTemplate = props => {
   }
 
   return (
-    <div className="link-action margin-bottom-lg">
+    <div className="link-action">
       <Card
         title={title}
         className={classnames('rounded bordered', {

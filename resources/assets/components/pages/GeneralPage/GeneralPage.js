@@ -81,7 +81,10 @@ const GeneralPage = props => {
               {sidebar.length ? (
                 <div className="secondary">
                   {sidebar.map(block => (
-                    <div className="margin-bottom-lg" key={block.id}>
+                    <div
+                      className="margin-horizontal-md margin-bottom-lg"
+                      key={block.id}
+                    >
                       <ContentfulEntry json={block} />
                     </div>
                   ))}
@@ -91,7 +94,10 @@ const GeneralPage = props => {
           ) : null}
 
           {blocks.map(block => (
-            <div className="general-page__block margin-vertical" key={block.id}>
+            <div
+              className="general-page__block margin-vertical margin-horizontal-md"
+              key={block.id}
+            >
               <ContentfulEntry json={block} />
             </div>
           ))}
