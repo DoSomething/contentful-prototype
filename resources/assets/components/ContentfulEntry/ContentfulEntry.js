@@ -187,12 +187,11 @@ class ContentfulEntry extends React.Component<Props, State> {
               id={json.id}
               {...withoutNulls(json.fields)}
             />
-            <div className="margin-top-md">
-              <SubmissionGalleryBlockContainer
-                type="photo"
-                actionId={json.fields.actionId}
-              />
-            </div>
+            <SubmissionGalleryBlockContainer
+              type="photo"
+              className="margin-top-md"
+              actionId={json.fields.actionId}
+            />
           </React.Fragment>
         );
 
@@ -200,12 +199,11 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <React.Fragment>
             <PhotoSubmissionActionContainer {...withoutNulls(json)} />
-            <div className="margin-top-md">
-              <SubmissionGalleryBlockContainer
-                type="photo"
-                actionId={json.actionId}
-              />
-            </div>
+            <SubmissionGalleryBlockContainer
+              type="photo"
+              className="margin-top-md"
+              actionId={json.actionId}
+            />
           </React.Fragment>
         );
 
@@ -272,12 +270,11 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <React.Fragment>
             <TextSubmissionActionContainer
-              className={className}
               id={json.id}
               {...withoutNulls(json.fields)}
             />
             <SubmissionGalleryBlockContainer
-              className={className}
+              className="margin-top-md"
               type="text"
               actionId={json.fields.actionId}
             />
@@ -288,12 +285,11 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <React.Fragment>
             <TextSubmissionActionContainer
-              className={className}
               id={json.id}
               {...withoutNulls(json)}
             />
             <SubmissionGalleryBlockContainer
-              className={className}
+              className="margin-top-md"
               actionId={json.actionId}
               type="text"
             />
