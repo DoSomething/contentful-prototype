@@ -196,7 +196,7 @@ class TextSubmissionAction extends React.Component {
         {this.props.informationContent ? (
           <div
             className={classnames(
-              'text-submission-information margin-bottom-lg',
+              'text-submission-information',
               this.props.className,
             )}
           >

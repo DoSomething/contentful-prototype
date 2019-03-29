@@ -199,7 +199,7 @@ class PetitionSubmissionAction extends React.Component {
         {this.props.informationContent ? (
           <div
             className={classnames(
-              'petition-submission-information margin-bottom-lg',
+              'petition-submission-information',
               this.props.className,
             )}
           >

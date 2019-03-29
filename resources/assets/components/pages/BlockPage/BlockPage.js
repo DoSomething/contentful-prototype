@@ -11,7 +11,7 @@ import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/Content
  */
 const BlockPage = ({ match }) => (
   <div className="main clearfix">
-    <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+    <Enclosure className="default-container margin-vertical-lg">
       <ContentfulEntryLoader id={match.params.id} />
     </Enclosure>
   </div>

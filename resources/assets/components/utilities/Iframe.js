@@ -28,7 +28,7 @@ const Iframe = ({ className, id, url }) => {
   }
 
   return (
-    <div id={id} className={classnames('embed margin-bottom-lg', className)}>
+    <div id={id} className={classnames('embed', className)}>
       <PuckWaypoint name="embed-top" waypointData={{ contentfulId: id }} />
       <Media query="(max-width: 759px)">
         {matches =>

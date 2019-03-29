@@ -18,7 +18,7 @@ const galleryTypes = {
 
 const noPostsOutput = shouldShowNoResults =>
   shouldShowNoResults ? (
-    <div className="rounded bg-white grid-narrow padding-lg margin-bottom-lg color-gray">
+    <div className="rounded bg-white padding-lg color-gray">
       <em>No Results Found</em>
     </div>
   ) : null;

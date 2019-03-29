@@ -67,7 +67,7 @@ const DefaultTemplate = props => {
   }
 
   return (
-    <div className="link-action margin-bottom-lg">
+    <div className="link-action">
       <Card
         title={title}
         className={classnames('rounded bordered', {
