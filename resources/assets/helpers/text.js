@@ -127,7 +127,7 @@ export function parseRichTextDocument(document, styles) {
       ),
       [BLOCKS.EMBEDDED_ENTRY]: node => (
         <ContentfulEntryLoader
-          className="component-entry margin-bottom-md"
+          className="component-entry margin-bottom-lg"
           id={node.data.target.sys.id}
         />
       ),
