@@ -1,9 +1,12 @@
+/* global window */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
 import './story-page.scss';
 
@@ -37,6 +40,12 @@ const StoryPage = props => {
             ) : null}
           </div>
         </header>
+
+        <SocialShareTray
+          // Pass through the current URL without the query parameters.
+          shareLink={window.location.href.split('?')[0]}
+          platforms={['facebook', 'twitter']}
+        />
 
         {blocks.map(block => (
           <ContentfulEntry

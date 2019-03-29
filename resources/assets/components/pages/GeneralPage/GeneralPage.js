@@ -101,6 +101,7 @@ const GeneralPage = props => {
               shareLink={window.location.href}
               platforms={['facebook', 'twitter']}
               title="found this useful?"
+              responsive
             />
           ) : null}
 
