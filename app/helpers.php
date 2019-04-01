@@ -450,7 +450,7 @@ function generate_streamed_csv($columns, $records)
  * @param  string $url
  * @return bool
  */
-function is_same_origin($url)
+function is_same_domain($url)
 {
     $urlHost = parse_url($url)['host'];
     $appUrlHost = parse_url(config('app.url'))['host'];
