@@ -1,9 +1,10 @@
 <?php
 
 use App\Entities\Campaign;
-use Illuminate\Support\HtmlString;
+use Illuminate\Support\Str;
 use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
+use Illuminate\Support\HtmlString;
 
 /**
  * Get a composed cache ID from a prefix and url slug.
@@ -33,6 +34,26 @@ function get_cache_url($prefix, $slug = null)
 
     // Return full cache url, with redirect url encoded to ensure all query parameters are included.
     return '/cache/'.$cacheId.'?redirect='.urlencode($redirectUrl);
+}
+
+function get_contentful_edit_url($contentfulId)
+{
+    $contentful = config('contentful');
+    $spaceId = $contentful['delivery.space'];
+    $envronment = $contentful['delivery.environment'];
+
+    $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
+
+    return 'https://app.contentful.com/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
+}
+
+function get_page_settings($page, $slug)
+{
+    return [
+        'cacheUrl' => get_cache_url('page', $slug),
+        'editUrl' => get_contentful_edit_url($page->id),
+        'type' => readableTitle($page->type),
+    ];
 }
 
 /**
@@ -110,6 +131,11 @@ function is_legacy_id($id)
 function scriptify($json = [], $store = 'STATE')
 {
     return new HtmlString('<script type="text/javascript">window.'.$store.' = '.json_encode($json).'</script>');
+}
+
+function readableTitle($string)
+{
+    return Str::title(str_replace('_', ' ', Str::snake($string)));
 }
 
 /**

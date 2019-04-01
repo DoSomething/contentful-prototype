@@ -37,11 +37,22 @@ class CategorizedPageController extends Controller
 
         $page = $this->pageRepository->findBySlug($contentType, $category.'/'.$slug);
 
+        // dd([
+        //     $page,
+        //     config('contentful')['delivery.space'],
+        //     config('contentful')['delivery.environment'],
+        //     get_contentful_edit_url($page->id),
+        //     get_page_settings($page, $category.'/'.$slug),
+        // ]);
+
         return view('app', [
             'headTitle' => $page->fields->title,
             'metadata' => get_metadata($page),
             'socialFields' => get_social_fields($page),
             'cacheUrl' => get_cache_url('page', $category.'/'.$slug),
+            'admin' => [
+                'page' => get_page_settings($page, $category.'/'.$slug),
+            ],
         ])->with('state', [
             'page' => $page,
         ]);

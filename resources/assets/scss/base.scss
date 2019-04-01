@@ -439,6 +439,34 @@ p {
 }
 
 // Tailwind-esk class names
+.text-xs {
+  font-size: $font-smaller;
+}
+
+.text-sm {
+  font-size: $font-small;
+}
+
+.text-base {
+  font-size: $font-regular;
+}
+
+.text-m {
+  font-size: $font-medium;
+}
+
+.text-lg {
+  font-size: $font-large;
+}
+
+.text-xl {
+  font-size: $font-larger;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -515,5 +543,17 @@ p {
 
   @include media($large) {
     grid-column: wide-start / wide-end;
+  }
+}
+
+.grid-1\/2 {
+  grid-column: auto / span 2;
+
+  @include media($medium) {
+    grid-column: auto / span 4;
+  }
+
+  @include media($large) {
+    grid-column: auto / span 8;
   }
 }

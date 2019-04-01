@@ -16,6 +16,12 @@ $dashboard-background-color: #999;
     padding: $base-spacing $base-spacing $section-spacing;
   }
 
+  .icon {
+    fill: rgba(255, 255, 255, 0.5);
+    height: 15px;
+    width: 15px;
+  }
+
   .icon-bug {
     fill: rgba(255, 255, 255, 0.5);
     height: 20px;
@@ -62,5 +68,9 @@ $dashboard-background-color: #999;
     .icon-bug {
       transform: translate(-50%, -10%) rotate(675deg);
     }
+  }
+
+  .panel-title {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.25);
   }
 }
