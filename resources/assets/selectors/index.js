@@ -7,7 +7,7 @@ export function getDataForNorthstar(state) {
     ...getCampaignDataForNorthstar(state),
     ...getStoryPageDataForNorthstar(state),
     trafficSource: query('utm_medium'),
-    refferalId: state.campaign.id || state.page.id,
+    reffererId: state.campaign.id || state.page.id,
   };
 }
 
