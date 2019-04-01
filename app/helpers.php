@@ -452,8 +452,12 @@ function generate_streamed_csv($columns, $records)
  */
 function is_same_domain($url)
 {
-    $urlHost = parse_url($url)['host'];
-    $appUrlHost = parse_url(config('app.url'))['host'];
+    $urlHost = data_get(parse_url($url), 'host');
+    $appUrlHost = data_get(parse_url(config('app.url')), 'host');
+
+    if (! $urlHost || ! $appUrlHost) {
+        return false;
+    }
 
     return $urlHost === $appUrlHost;
 }
