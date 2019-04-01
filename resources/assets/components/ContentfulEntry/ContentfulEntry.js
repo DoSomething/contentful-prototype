@@ -188,9 +188,9 @@ class ContentfulEntry extends React.Component<Props, State> {
               {...withoutNulls(json.fields)}
             />
             <SubmissionGalleryBlockContainer
-              type="photo"
-              className="margin-top-md"
               actionId={json.fields.actionId}
+              className="photo-submission-user-gallery margin-top-md"
+              type="photo"
             />
           </React.Fragment>
         );
@@ -200,9 +200,9 @@ class ContentfulEntry extends React.Component<Props, State> {
           <React.Fragment>
             <PhotoSubmissionActionContainer {...withoutNulls(json)} />
             <SubmissionGalleryBlockContainer
-              type="photo"
-              className="margin-top-md"
               actionId={json.actionId}
+              className="photo-submission-user-gallery margin-top-md"
+              type="photo"
             />
           </React.Fragment>
         );
@@ -274,9 +274,9 @@ class ContentfulEntry extends React.Component<Props, State> {
               {...withoutNulls(json.fields)}
             />
             <SubmissionGalleryBlockContainer
-              className="margin-top-md"
-              type="text"
               actionId={json.fields.actionId}
+              className="text-submission-user-gallery margin-top-md"
+              type="text"
             />
           </React.Fragment>
         );
@@ -289,8 +289,8 @@ class ContentfulEntry extends React.Component<Props, State> {
               {...withoutNulls(json)}
             />
             <SubmissionGalleryBlockContainer
-              className="margin-top-md"
               actionId={json.actionId}
+              className="text-submission-user-gallery margin-top-md"
               type="text"
             />
           </React.Fragment>
