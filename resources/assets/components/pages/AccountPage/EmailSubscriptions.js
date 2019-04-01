@@ -79,27 +79,21 @@ class EmailSubscriptions extends React.Component {
                 <EmailSubscriptionCheckbox
                   identifier="COMMUNITY"
                   title="Community"
-                  description="A roundup of writing, photos, and impact from the DoSomething community,
-        along with updates on DoSomething staff, events, and office culture."
+                  description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
                   userTopics={this.state.emailSubscriptionTopics}
                   onChange={this.handleTopicChange}
                 />
                 <EmailSubscriptionCheckbox
                   identifier="NEWS"
                   title="News"
-                  description="Read the news, change the news. A roundup of current
-                      events, along with ways to take action and impact the
-                      headlines."
+                  description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
                   userTopics={this.state.emailSubscriptionTopics}
                   onChange={this.handleTopicChange}
                 />
                 <EmailSubscriptionCheckbox
                   identifier="LIFESTYLE"
                   title="Lifestyle"
-                  description="Advice, action guides, social change horoscopes,
-                      inspirational playlists, recommendations, and other
-                      content to live your best life and help others do the
-                      same."
+                  description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
                   userTopics={this.state.emailSubscriptionTopics}
                   onChange={this.handleTopicChange}
                 />
