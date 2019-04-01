@@ -1,10 +1,26 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
+
+export const LinkBlockFragment = gql`
+  fragment LinkBlockFragment on LinkBlock {
+    title
+    content
+    link
+    buttonText
+    affiliateLogo {
+      url(w: 200, h: 100)
+      description
+    }
+    template
+    additionalContent
+  }
+`;
 
 const templates = {
   cta: CtaTemplate,

@@ -16,6 +16,19 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './petition-submission-action.scss';
 
+export const PetitionSubmissionBlockFragment = gql`
+  fragment PetitionSubmissionBlockFragment on PetitionSubmissionBlock {
+    actionId
+    title
+    content
+    textFieldPlaceholderMessage
+    buttonText
+    informationTitle
+    informationContent
+    affirmationContent
+  }
+`;
+
 export const USER_POSTS_QUERY = gql`
   query UserPostsQuery($userId: String!, $actionIds: [Int]!) {
     posts(userId: $userId, actionIds: $actionIds) {

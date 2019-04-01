@@ -14,6 +14,15 @@ import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/Selec
 
 import './post-gallery-block.scss';
 
+export const PostGalleryBlockFragment = gql`
+  fragment PostGalleryBlockFragment on PostGalleryBlock {
+    actionIds
+    itemsPerRow
+    filterType
+    hideReactions
+  }
+`;
+
 /**
  * The GraphQL query to load data for this component.
  */

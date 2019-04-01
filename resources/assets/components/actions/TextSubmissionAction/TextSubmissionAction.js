@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
@@ -17,6 +18,19 @@ import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import './text-submission-action.scss';
 
 const CHARACTER_LIMIT = 500;
+
+export const TextSubmissionBlockFragment = gql`
+  fragment TextSubmissionBlockFragment on TextSubmissionBlock {
+    actionId
+    title
+    textFieldLabel
+    textFieldPlaceholderMessage
+    buttonText
+    informationTitle
+    informationContent
+    affirmationContent
+  }
+`;
 
 class TextSubmissionAction extends React.Component {
   constructor(props) {

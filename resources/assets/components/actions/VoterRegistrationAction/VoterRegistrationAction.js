@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
@@ -9,6 +10,15 @@ import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import TextContent from '../../utilities/TextContent/TextContent';
 
 import './voter-registration-action.scss';
+
+export const VoterRegistrationBlockFragment = gql`
+  fragment VoterRegistrationBlockFragment on VoterRegistrationBlock {
+    title
+    content
+    link
+    additionalContent
+  }
+`;
 
 const VoterRegistrationAction = props => {
   const { campaignId, content, contentfulId, link, modalType, userId } = props;

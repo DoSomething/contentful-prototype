@@ -1,8 +1,18 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Gallery from '../../utilities/Gallery/Gallery';
+
+export const ImagesBlockFragment = gql`
+  fragment ImagesBlockFragment on ImagesBlock {
+    images {
+      description
+      url(w: 500, h: 500, fit: FILL)
+    }
+  }
+`;
 
 const ImagesBlock = ({ className, images }) => (
   <Gallery
