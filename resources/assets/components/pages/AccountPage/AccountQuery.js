@@ -9,11 +9,13 @@ import Account from './Account';
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {
     user(id: $userId) {
+      id
       firstName
       lastName
       mobile
       birthdate
       email
+      emailSubscriptionTopics
     }
   }
 `;
