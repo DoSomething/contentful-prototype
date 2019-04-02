@@ -4,8 +4,8 @@ import { get } from 'lodash';
 import localforage from 'localforage';
 
 import { buildLoginRedirectUrl } from '../helpers';
+import { getDataForNorthstar } from '../selectors';
 import { isAuthenticated } from '../selectors/user';
-import { getCampaignDataForNorthstar } from '../selectors/campaign';
 
 /**
  * Middleware for handling Authenticated actions.
@@ -19,7 +19,7 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
 
     localforage.setItem(actionId, action).then(() => {
       window.location.href = buildLoginRedirectUrl(
-        getCampaignDataForNorthstar(state),
+        getDataForNorthstar(state),
         actionId,
       );
     });
