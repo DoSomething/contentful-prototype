@@ -4,11 +4,17 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 import LazyImage from '../LazyImage';
+import { env } from '../../../helpers';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
 const CONTENTFUL_ASSET_QUERY = gql`
-  query ContentfulAssetQuery($id: String!, $width: Int!, $height: Int!) {
-    asset(id: $id) {
+  query ContentfulAssetQuery(
+    $id: String!
+    $width: Int!
+    $height: Int!
+    $preview: Boolean!
+  ) {
+    asset(id: $id, preview: $preview) {
       id
       description
       url(w: $width, h: $height)
@@ -17,7 +23,15 @@ const CONTENTFUL_ASSET_QUERY = gql`
 `;
 
 const ContentfulAsset = ({ id, width, height }) => (
-  <Query query={CONTENTFUL_ASSET_QUERY} variables={{ id, width, height }}>
+  <Query
+    query={CONTENTFUL_ASSET_QUERY}
+    variables={{
+      id,
+      width,
+      height,
+      preview: env('CONTENTFUL_USE_PREVIEW_API'),
+    }}
+  >
     {({ loading, error, data }) => {
       if (loading) {
         return <div className="spinner -centered margin-vertical-xlg" />;
