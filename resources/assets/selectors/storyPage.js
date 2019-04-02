@@ -9,17 +9,17 @@ import { contentfulImageUrl } from '../helpers';
  * @return {Object}
  */
 export function getStoryPageDataForNorthstar(state) {
-  const data = {};
-
-  if (get(state, 'page.type', null) === 'storyPage') {
-    const { title, subTitle, coverImage } = state.page.fields;
-
-    data.title = title;
-    data.callToAction = subTitle;
-    data.coverImage = contentfulImageUrl(coverImage.url, '800', '600', 'fill');
+  if (get(state, 'page.type', null) !== 'storyPage') {
+    return {};
   }
 
-  return data;
+  const { title, subTitle, coverImage } = state.page.fields;
+
+  return {
+    title,
+    callToAction: subTitle,
+    coverImage: contentfulImageUrl(coverImage.url, '800', '600', 'fill'),
+  };
 }
 
 export default null;

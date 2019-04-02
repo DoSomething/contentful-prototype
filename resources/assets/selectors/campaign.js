@@ -19,20 +19,17 @@ export function getCampaignAdditionalContent(state) {
  * @return {Object}
  */
 export function getCampaignDataForNorthstar(state) {
-  const data = {};
-
-  if (get(state, 'campaign.type', null) === 'campaign') {
-    data.callToAction = state.campaign.callToAction;
-    data.coverImage = contentfulImageUrl(
-      state.campaign.coverImage.url,
-      '800',
-      '600',
-      'fill',
-    );
-    data.title = state.campaign.title;
+  if (get(state, 'campaign.type', null) !== 'campaign') {
+    return {};
   }
 
-  return data;
+  const { title, callToAction, coverImage } = state.campaign;
+
+  return {
+    title,
+    callToAction,
+    coverImage: contentfulImageUrl(coverImage.url, '800', '600', 'fill'),
+  };
 }
 
 export default null;
