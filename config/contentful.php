@@ -23,7 +23,7 @@ return [
     /*
      * Controls whether Contentful's Delivery or Preview API is accessed
      */
-    'delivery.preview' => env('CONTENTFUL_USE_PREVIEW_API', false),
+    'delivery.preview' => (bool) env('CONTENTFUL_USE_PREVIEW_API', false),
 
     /*
      * Sets the locale in which to fetch content by default. NULL means the space'd default locale will be used
