@@ -7,10 +7,11 @@ import { propType } from 'graphql-anywhere';
 
 import Card from '../Card/Card';
 import PostBadge from './PostBadge';
+import ReviewLink from './ReviewLink';
 import { BaseFigure } from '../../Figure';
 import LazyImage from '../../utilities/LazyImage';
 import ReactionButton from '../ReactionButton/ReactionButton';
-import { isAuthenticated } from '../../../helpers';
+import { isAuthenticated, isStaff } from '../../../helpers';
 
 import './post.scss';
 
@@ -30,6 +31,10 @@ export const postCardFragment = gql`
     actionDetails {
       anonymous
       noun
+    }
+
+    signup {
+      permalink
     }
 
     user {
@@ -85,6 +90,7 @@ const PostCard = ({ post, hideReactions }) => {
         >
           <h4>
             {authorLabel}
+            {isStaff() ? <ReviewLink url={post.signup.permalink} /> : null}
             <PostBadge status={post.status} tags={post.tags} />
           </h4>
           {post.quantity ? (

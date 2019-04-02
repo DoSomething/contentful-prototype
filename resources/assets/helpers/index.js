@@ -119,6 +119,17 @@ export function isAuthenticated() {
 }
 
 /**
+ * Check to see if user is a DS.org staffer.
+ *
+ * @return {Boolean}
+ */
+export function isStaff() {
+  const role = get(window.AUTH, 'role', 'user');
+
+  return ['staff', 'admin'].includes(role);
+}
+
+/**
  * Wait until the DOM is ready.
  *
  * @param {Function} fn
