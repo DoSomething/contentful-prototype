@@ -1,6 +1,7 @@
 <?php
 
 use App\Entities\Campaign;
+use Illuminate\Support\Str;
 use Illuminate\Support\HtmlString;
 use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
@@ -33,6 +34,41 @@ function get_cache_url($prefix, $slug = null)
 
     // Return full cache url, with redirect url encoded to ensure all query parameters are included.
     return '/cache/'.$cacheId.'?redirect='.urlencode($redirectUrl);
+}
+
+/**
+ * Get a composed Contentful URL to edit a content entry by
+ * the specified ID.
+ *
+ * @param  string $contentfulId
+ * @return string
+ */
+function get_contentful_edit_url($contentfulId)
+{
+    $contentful = config('contentful');
+    $spaceId = $contentful['delivery.space'];
+    $envronment = $contentful['delivery.environment'];
+
+    $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
+
+    return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
+}
+
+/**
+ * Get page setting variables for the Admin Dashboard.
+ *
+ * @param  object $page
+ * @param  string $prefix
+ * @param  string $slug
+ * @return array
+ */
+function get_page_settings($page, $prefix, $slug = null)
+{
+    return [
+        'cacheUrl' => get_cache_url($prefix, $slug),
+        'editUrl' => get_contentful_edit_url($page->id),
+        'type' => readable_title($page->type),
+    ];
 }
 
 /**
@@ -101,6 +137,24 @@ function is_legacy_id($id)
 }
 
 /**
+ * Determine if URL is of the same origin as the app's URL.
+ *
+ * @param  string $url
+ * @return bool
+ */
+function is_same_domain($url)
+{
+    $urlHost = data_get(parse_url($url), 'host');
+    $appUrlHost = data_get(parse_url(config('app.url')), 'host');
+
+    if (! $urlHost || ! $appUrlHost) {
+        return false;
+    }
+
+    return $urlHost === $appUrlHost;
+}
+
+/**
  * Create a script tag to set a global variable.
  *
  * @param  $json
@@ -110,6 +164,17 @@ function is_legacy_id($id)
 function scriptify($json = [], $store = 'STATE')
 {
     return new HtmlString('<script type="text/javascript">window.'.$store.' = '.json_encode($json).'</script>');
+}
+
+/**
+ * Convert a string into a readable title cased string.
+ *
+ * @param  string $string
+ * @return string
+ */
+function readable_title($string)
+{
+    return Str::title(str_replace('_', ' ', Str::snake($string)));
 }
 
 /**
@@ -442,22 +507,4 @@ function generate_streamed_csv($columns, $records)
     }
 
     return fclose($file);
-}
-
-/**
- * Determine if URL is of the same origin as the app's URL.
- *
- * @param  string $url
- * @return bool
- */
-function is_same_domain($url)
-{
-    $urlHost = data_get(parse_url($url), 'host');
-    $appUrlHost = data_get(parse_url(config('app.url')), 'host');
-
-    if (! $urlHost || ! $appUrlHost) {
-        return false;
-    }
-
-    return $urlHost === $appUrlHost;
 }

@@ -1,9 +1,17 @@
 @import './next-toolbox';
 
-$dashboard-background-color: #999;
+$gray-100: #fafafa;
+$gray-200: #e3e3e3;
+$gray-300: #c7c7c7;
+$gray-400: #b4b4b4;
+$gray-500: #999;
+$gray-600: #7f7f7f;
+$gray-700: #636363;
+$gray-800: #4e4e4e;
+$gray-900: #373737;
 
 .admin-dashboard {
-  background-color: $dashboard-background-color;
+  background-color: $gray-500;
   position: fixed;
   transform: translateY(-100%);
   transition: all 0.3s ease-out;
@@ -14,6 +22,31 @@ $dashboard-background-color: #999;
     margin: 0 auto;
     max-width: 1440px;
     padding: $base-spacing $base-spacing $section-spacing;
+  }
+
+  a {
+    color: $gray-100;
+
+    &:hover {
+      color: $gray-700;
+      text-decoration: none;
+    }
+  }
+
+  .icon-link {
+    .icon {
+      fill: $gray-200;
+      height: 15px;
+      position: relative;
+      top: 1px;
+      width: 15px;
+    }
+
+    &:hover {
+      .icon {
+        fill: $gray-600;
+      }
+    }
   }
 
   .icon-bug {
@@ -29,7 +62,7 @@ $dashboard-background-color: #999;
   }
 
   .toggle {
-    background-color: $dashboard-background-color;
+    background-color: $gray-500;
     bottom: -16px;
     content: '';
     cursor: pointer;
@@ -61,6 +94,54 @@ $dashboard-background-color: #999;
 
     .icon-bug {
       transform: translate(-50%, -10%) rotate(675deg);
+    }
+  }
+
+  .admin-dashboard-title {
+    position: relative;
+
+    &::before {
+      content: '';
+      background-color: rgba(180, 180, 180, 0.6);
+      display: block;
+      height: 4px;
+      position: absolute;
+      top: 40%;
+      width: 100%;
+    }
+
+    > span {
+      background-color: $gray-500;
+      padding-right: 10px;
+      position: relative;
+    }
+  }
+
+  .panel {
+    > .wrapper {
+      padding: 20px;
+    }
+
+    ul {
+      li {
+        margin-bottom: 0;
+      }
+
+      li + li {
+        margin-top: $half-spacing;
+      }
+    }
+  }
+
+  .panel-title {
+    color: $gray-900;
+
+    .icon {
+      fill: $gray-700;
+      height: 20px;
+      position: relative;
+      top: 1px;
+      width: 20px;
     }
   }
 }

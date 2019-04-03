@@ -438,7 +438,118 @@ p {
   }
 }
 
-// Tailwind-esk class names
+/*
+|-------------------------------------------------------------------------------
+| Tailwind-esh Class Names
+|-------------------------------------------------------------------------------
+|
+| Class names above this section will likely go to the chopping block once we
+| implement the use of TailWind in Phoenix, so when possible opt to use class
+| names indicated below.
+|
+*/
+
+.bg-gray-100 {
+  background-color: #fafafa;
+}
+.bg-gray-200 {
+  background-color: #e3e3e3;
+}
+.bg-gray-300 {
+  background-color: #c7c7c7;
+}
+.bg-gray-400 {
+  background-color: #b4b4b4;
+}
+.bg-gray-500 {
+  background-color: #999;
+}
+.bg-gray-600 {
+  background-color: #7f7f7f;
+}
+.bg-gray-700 {
+  background-color: #636363;
+}
+.bg-gray-800 {
+  background-color: #4e4e4e;
+}
+.bg-gray-900 {
+  background-color: #373737;
+}
+
+.font-normal {
+  font-weight: $weight-normal;
+}
+
+.font-semibold {
+  font-weight: $weight-sbold;
+}
+
+.font-bold {
+  font-weight: $weight-bold;
+}
+
+.list-reset {
+  list-style: none;
+  padding: 0;
+}
+
+.text-gray-100 {
+  color: #fafafa;
+}
+.text-gray-200 {
+  color: #e3e3e3;
+}
+.text-gray-300 {
+  color: #c7c7c7;
+}
+.text-gray-400 {
+  color: #b4b4b4;
+}
+.text-gray-500 {
+  color: #999;
+}
+.text-gray-600 {
+  color: #7f7f7f;
+}
+.text-gray-700 {
+  color: #636363;
+}
+.text-gray-800 {
+  color: #4e4e4e;
+}
+.text-gray-900 {
+  color: #373737;
+}
+
+.text-xs {
+  font-size: $font-smaller;
+}
+
+.text-sm {
+  font-size: $font-small;
+}
+
+.text-base {
+  font-size: $font-regular;
+}
+
+.text-m {
+  font-size: $font-medium;
+}
+
+.text-lg {
+  font-size: $font-large;
+}
+
+.text-xl {
+  font-size: $font-larger;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
 .w-1\/2 {
   width: 50%;
 }
@@ -515,5 +626,17 @@ p {
 
   @include media($large) {
     grid-column: wide-start / wide-end;
+  }
+}
+
+.grid-1\/2 {
+  grid-column: auto / span 4;
+
+  @include media($medium) {
+    grid-column: auto / span 4;
+  }
+
+  @include media($large) {
+    grid-column: auto / span 8;
   }
 }

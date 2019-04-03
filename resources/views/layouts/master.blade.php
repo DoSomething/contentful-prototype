@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    @if (has_staff_access() && isset($cacheUrl))
+    @if (has_staff_access() && isset($admin))
         @include('partials.admin-dashboard')
     @endif
 

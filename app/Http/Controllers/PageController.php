@@ -39,6 +39,9 @@ class PageController extends Controller
             'metadata' => get_metadata($page),
             'socialFields' => get_social_fields($page),
             'cacheUrl' => get_cache_url('page', $slug),
+            'admin' => [
+                'page' => get_page_settings($page, 'page', $slug),
+            ],
         ])->with('state', [
             'page' => $page,
         ]);
