@@ -40,8 +40,8 @@ function get_cache_url($prefix, $slug = null)
  * Get a composed Contentful URL to edit a content entry by
  * the specified ID.
  *
- * @param  String $contentfulId
- * @return String
+ * @param  string $contentfulId
+ * @return string
  */
 function get_contentful_edit_url($contentfulId)
 {
@@ -57,10 +57,10 @@ function get_contentful_edit_url($contentfulId)
 /**
  * Get page setting variables for the Admin Dashboard.
  *
- * @param  Object $page
- * @param  String $prefix
- * @param  String $slug
- * @return Array
+ * @param  object $page
+ * @param  string $prefix
+ * @param  string $slug
+ * @return array
  */
 function get_page_settings($page, $prefix, $slug = null)
 {
@@ -169,8 +169,8 @@ function scriptify($json = [], $store = 'STATE')
 /**
  * Convert a string into a readable title cased string.
  *
- * @param  String $string
- * @return String
+ * @param  string $string
+ * @return string
  */
 function readable_title($string)
 {
