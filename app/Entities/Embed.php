@@ -18,7 +18,7 @@ class Embed extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'url' => $this->url,
-            'previewImage' => $this->previewImage ? [
+                'previewImage' => $this->previewImage ? [
                     'description' => $this->previewImage->getDescription(),
                     'url' => get_image_url($this->previewImage, 'square'),
                 ] : null,
