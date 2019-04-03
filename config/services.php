@@ -63,6 +63,7 @@ return [
     ],
 
     'contentful' => [
+        'url' => 'https://app.contentful.com',
         'cache' => env('CONTENTFUL_CACHE', true),
     ],
 

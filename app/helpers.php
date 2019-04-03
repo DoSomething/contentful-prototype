@@ -36,6 +36,13 @@ function get_cache_url($prefix, $slug = null)
     return '/cache/'.$cacheId.'?redirect='.urlencode($redirectUrl);
 }
 
+/**
+ * Get a composed Contentful URL to edit a content entry by
+ * the specified ID.
+ *
+ * @param  String $contentfulId
+ * @return String
+ */
 function get_contentful_edit_url($contentfulId)
 {
     $contentful = config('contentful');
@@ -44,15 +51,23 @@ function get_contentful_edit_url($contentfulId)
 
     $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
 
-    return 'https://app.contentful.com/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
+    return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
 }
 
+/**
+ * Get page setting variables for the Admin Dashboard.
+ *
+ * @param  Object $page
+ * @param  String $prefix
+ * @param  String $slug
+ * @return Array
+ */
 function get_page_settings($page, $prefix, $slug = null)
 {
     return [
         'cacheUrl' => get_cache_url($prefix, $slug),
         'editUrl' => get_contentful_edit_url($page->id),
-        'type' => readableTitle($page->type),
+        'type' => readable_title($page->type),
     ];
 }
 
@@ -122,6 +137,24 @@ function is_legacy_id($id)
 }
 
 /**
+ * Determine if URL is of the same origin as the app's URL.
+ *
+ * @param  string $url
+ * @return bool
+ */
+function is_same_domain($url)
+{
+    $urlHost = data_get(parse_url($url), 'host');
+    $appUrlHost = data_get(parse_url(config('app.url')), 'host');
+
+    if (! $urlHost || ! $appUrlHost) {
+        return false;
+    }
+
+    return $urlHost === $appUrlHost;
+}
+
+/**
  * Create a script tag to set a global variable.
  *
  * @param  $json
@@ -133,7 +166,13 @@ function scriptify($json = [], $store = 'STATE')
     return new HtmlString('<script type="text/javascript">window.'.$store.' = '.json_encode($json).'</script>');
 }
 
-function readableTitle($string)
+/**
+ * Convert a string into a readable title cased string.
+ *
+ * @param  String $string
+ * @return String
+ */
+function readable_title($string)
 {
     return Str::title(str_replace('_', ' ', Str::snake($string)));
 }
