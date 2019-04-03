@@ -41,7 +41,7 @@ module.exports = function(migration) {
     .name('Preview Image')
     .type('Link')
     .localized(false)
-    .required(true)
+    .required(false)
     .validations([
       {
         linkMimetypeGroup: ['image'],
@@ -68,6 +68,6 @@ module.exports = function(migration) {
 
   embed.changeEditorInterface('previewImage', 'assetLinkEditor', {
     helpText:
-      'Preview image for the embed content. Replaces the embed on smaller screens.',
+      'If set, replaces the embed on smaller screens as a preview of the embed content.',
   });
 };
