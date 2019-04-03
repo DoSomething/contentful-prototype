@@ -445,22 +445,6 @@ function get_campaign_social_fields($campaign, $uri)
 }
 
 /**
- * Generate a link to Phoenix Ashes.
- *
- * @param  string $path path/to/something
- * @return string
- */
-function phoenixLink($path)
-{
-    $base = config('services.phoenix-legacy.url');
-    if (substr($base, -1) !== '/') {
-        $base .= '/';
-    }
-
-    return $base . $path;
-}
-
-/**
  * Get the presentation values we should package with our
  * Northstar authorization requests.
  *

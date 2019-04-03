@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ phoenixLink('us/about/who-we-are') }}">
+                <a href="{{ config('app.url') }}/us/about/who-we-are">
                     <strong class="navigation__title">What is DoSomething.org?</strong>
                     <span class="navigation__subtitle">A global movement for good.</span>
                 </a>

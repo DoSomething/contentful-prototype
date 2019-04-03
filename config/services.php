@@ -44,12 +44,6 @@ return [
         ],
     ],
 
-    'phoenix-legacy' => [
-        'url' => env('PHOENIX_LEGACY_URL', 'https://staging.dosomething.org'),
-        'username' => env('PHOENIX_LEGACY_USERNAME'),
-        'password' => env('PHOENIX_LEGACY_PASSWORD'),
-    ],
-
     'sixpack' => [
         'enabled' => env('SIXPACK_ENABLED'),
         'url' => env('SIXPACK_BASE_URL'),

@@ -28,7 +28,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->redirectAfterLogout = config('services.phoenix-legacy.url');
+        $this->redirectAfterLogout = config('app.url');
     }
 
     /**
