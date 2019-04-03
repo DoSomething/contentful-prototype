@@ -47,10 +47,10 @@ function get_contentful_edit_url($contentfulId)
     return 'https://app.contentful.com/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
 }
 
-function get_page_settings($page, $slug)
+function get_page_settings($page, $prefix, $slug = null)
 {
     return [
-        'cacheUrl' => get_cache_url('page', $slug),
+        'cacheUrl' => get_cache_url($prefix, $slug),
         'editUrl' => get_contentful_edit_url($page->id),
         'type' => readableTitle($page->type),
     ];
