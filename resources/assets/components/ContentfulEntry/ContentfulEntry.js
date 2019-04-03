@@ -108,7 +108,13 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'EmbedBlock':
-        return <Iframe className={className} url={json.url} id={json.id} />;
+        return (
+          <Iframe
+            className={className}
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'gallery':
         return <CampaignGalleryBlockContainer />;
