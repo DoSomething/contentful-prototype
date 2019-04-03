@@ -47,15 +47,6 @@
       "required": true
     },
     "NPM_CONFIG_PRODUCTION": "false",
-    "PHOENIX_LEGACY_PASSWORD": {
-      "required": true
-    },
-    "PHOENIX_LEGACY_URL": {
-      "required": true
-    },
-    "PHOENIX_LEGACY_USERNAME": {
-      "required": true
-    },
     "PUCK_URL": {
       "required": true
     },
