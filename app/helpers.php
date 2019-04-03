@@ -2,9 +2,9 @@
 
 use App\Entities\Campaign;
 use Illuminate\Support\Str;
+use Illuminate\Support\HtmlString;
 use Contentful\Core\File\ImageOptions;
 use Contentful\Delivery\Resource\Asset;
-use Illuminate\Support\HtmlString;
 
 /**
  * Get a composed cache ID from a prefix and url slug.
@@ -468,22 +468,4 @@ function generate_streamed_csv($columns, $records)
     }
 
     return fclose($file);
-}
-
-/**
- * Determine if URL is of the same origin as the app's URL.
- *
- * @param  string $url
- * @return bool
- */
-function is_same_domain($url)
-{
-    $urlHost = data_get(parse_url($url), 'host');
-    $appUrlHost = data_get(parse_url(config('app.url')), 'host');
-
-    if (! $urlHost || ! $appUrlHost) {
-        return false;
-    }
-
-    return $urlHost === $appUrlHost;
 }
