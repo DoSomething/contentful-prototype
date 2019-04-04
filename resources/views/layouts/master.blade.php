@@ -32,9 +32,7 @@
     @endif
 
     @if (session('flash_message'))
-        <div class="{{session('flash_message')['class']}}">
-            <em>{{ session('flash_message')['text'] }}</em>
-        </div>
+        @include('partials.flash-message')
     @endif
 
     <div id="fb-root"></div>

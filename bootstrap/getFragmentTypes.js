@@ -18,7 +18,7 @@ const { promisify } = require('util');
 const writeFile = promisify(fs.writeFile);
 
 (async () => {
-  const response = await fetch(`${process.env.GRAPHQL_URL}/graphql`, {
+  const response = await fetch(`${process.env.GRAPHQL_URL}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

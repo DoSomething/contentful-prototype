@@ -450,31 +450,31 @@ p {
 */
 
 .bg-gray-100 {
-  background-color: #fafafa;
+  background-color: $gray-100;
 }
 .bg-gray-200 {
-  background-color: #e3e3e3;
+  background-color: $gray-200;
 }
 .bg-gray-300 {
-  background-color: #c7c7c7;
+  background-color: $gray-300;
 }
 .bg-gray-400 {
-  background-color: #b4b4b4;
+  background-color: $gray-400;
 }
 .bg-gray-500 {
-  background-color: #999;
+  background-color: $gray-500;
 }
 .bg-gray-600 {
-  background-color: #7f7f7f;
+  background-color: $gray-600;
 }
 .bg-gray-700 {
-  background-color: #636363;
+  background-color: $gray-700;
 }
 .bg-gray-800 {
-  background-color: #4e4e4e;
+  background-color: $gray-800;
 }
 .bg-gray-900 {
-  background-color: #373737;
+  background-color: $gray-900;
 }
 
 .font-normal {
@@ -495,31 +495,31 @@ p {
 }
 
 .text-gray-100 {
-  color: #fafafa;
+  color: $gray-100;
 }
 .text-gray-200 {
-  color: #e3e3e3;
+  color: $gray-200;
 }
 .text-gray-300 {
-  color: #c7c7c7;
+  color: $gray-300;
 }
 .text-gray-400 {
-  color: #b4b4b4;
+  color: $gray-400;
 }
 .text-gray-500 {
-  color: #999;
+  color: $gray-500;
 }
 .text-gray-600 {
-  color: #7f7f7f;
+  color: $gray-600;
 }
 .text-gray-700 {
-  color: #636363;
+  color: $gray-700;
 }
 .text-gray-800 {
-  color: #4e4e4e;
+  color: $gray-800;
 }
 .text-gray-900 {
-  color: #373737;
+  color: $gray-900;
 }
 
 .text-xs {
