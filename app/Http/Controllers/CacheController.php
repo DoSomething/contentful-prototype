@@ -24,6 +24,6 @@ class CacheController extends Controller
             $message = 'Hey, staff only please!';
         }
 
-        return redirect($redirectUrl)->with('flash_message', ['class' => 'messages', 'text' => $message]);
+        return redirect($redirectUrl)->with('flash_message', ['text' => $message]);
     }
 }
