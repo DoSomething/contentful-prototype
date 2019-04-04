@@ -1,0 +1,40 @@
+@import './next-toolbox';
+
+.flash-message {
+  background-color: $gray-800;
+  display: none;
+  margin: 0 auto;
+  max-width: 1440px;
+  position: relative;
+
+  &.is-visible {
+    display: block;
+  }
+
+  .flash-content {
+    color: $gray-200;
+    grid-column: full-start / -2;
+  }
+
+  .flash-message-close {
+    cursor: pointer;
+    height: 35px;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 35px;
+
+    @include media($medium) {
+      right: 16px;
+      top: 16px;
+    }
+  }
+
+  .icon-close {
+    fill: $gray-400;
+
+    &:hover {
+      fill: $gray-200;
+    }
+  }
+}
