@@ -2,6 +2,8 @@
 
 import FontFaceObserver from 'fontfaceobserver';
 
+import { queryObserver } from '../helpers';
+
 /**
  * Wait until we're *really* sure page has rendered
  * so we don't read the wrong values for layout.
@@ -74,6 +76,15 @@ export const scrollToElement = element => {
     const VISUAL_OFFSET = 95;
 
     // Wait until the page has finished layout, then scroll.
-    waitForLayout(() => scrollTo(pageOffset - VISUAL_OFFSET));
+    waitForLayout(() => {
+      const queryObserverTimeout = setInterval(() => {
+        if (queryObserver().isLoading()) {
+          return;
+        }
+
+        clearInterval(queryObserverTimeout);
+        scrollTo(pageOffset - VISUAL_OFFSET);
+      }, 500);
+    });
   });
 };
