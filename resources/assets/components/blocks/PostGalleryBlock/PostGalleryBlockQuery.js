@@ -6,9 +6,9 @@ import classnames from 'classnames';
 
 import PaginatedQuery from '../../PaginatedQuery';
 import ScrollConcierge from '../../ScrollConcierge';
-import { query, withoutNulls } from '../../../helpers';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
+import { query, withoutNulls, queryObserver } from '../../../helpers';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
 import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/SelectLocationDropdown';
 
@@ -54,6 +54,8 @@ const POST_GALLERY_QUERY = gql`
 class PostGalleryBlockQuery extends React.Component {
   constructor(props) {
     super(props);
+
+    queryObserver().add('posts');
 
     // FilterType specified on Contentful PostGallery entry.
     const filterType =

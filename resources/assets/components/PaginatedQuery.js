@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import ErrorBlock from './ErrorBlock/ErrorBlock';
+import { queryObserver } from '../helpers';
 import { NetworkStatus } from '../constants';
+import ErrorBlock from './ErrorBlock/ErrorBlock';
 
 /**
  * Fetch results via GraphQL using a query component.
@@ -13,6 +14,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
     query={query}
     variables={{ ...variables, count, page: 1 }}
     notifyOnNetworkStatusChange
+    onCompleted={() => queryObserver().remove(queryName)}
   >
     {result => {
       // On initial load, just display a loading spinner.
