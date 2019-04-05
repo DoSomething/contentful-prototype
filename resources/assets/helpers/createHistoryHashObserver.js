@@ -44,7 +44,7 @@ export default (history, timeout = 1000) => {
     return false;
   };
 
-  history.listen(location => {
+  const run = location => {
     if (timeoutId) {
       reset();
     }
@@ -74,7 +74,13 @@ export default (history, timeout = 1000) => {
 
       timeoutId = setTimeout(reset, timeout);
     });
+  };
+
+  history.listen(location => {
+    run(location);
   });
+
+  run(window.location);
 
   return history;
 };
