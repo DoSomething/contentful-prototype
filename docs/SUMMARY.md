@@ -30,13 +30,6 @@
   - [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
   - [Posts Resource](api-reference/api-v2/posts-resource.md)
 
-## Platform Philosophy
-
-- [Overview](platform-philosophy/overview.md)
-- [System Outline](platform-philosophy/system-outline.md)
-- [Goals](platform-philosophy/goals.md)
-- [Historical Decisions](platform-philosophy/historical-decisions.md)
-
 ## Content Publishing
 
 - [Overview](content-publishing/overview.md)
