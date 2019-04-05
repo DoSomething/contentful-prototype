@@ -5,6 +5,7 @@ import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import { get, find, isNull, isUndefined, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
+import QueryObserver from '../services/QueryObserver';
 import { trackAnalyticsEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
 
@@ -753,6 +754,16 @@ export function sixpack() {
   }
 
   return sixpackInstance;
+}
+
+let queryObserverInstance = null;
+
+export function queryObserver() {
+  if (!queryObserverInstance) {
+    queryObserverInstance = new QueryObserver();
+  }
+
+  return queryObserverInstance;
 }
 
 /**
