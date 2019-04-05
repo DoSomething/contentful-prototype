@@ -17,7 +17,6 @@ Please refer to the following sections for information on either developing for 
 
 - [Development](development/overview.md)
 - [API Reference](api-reference/overview.md)
-- [Platform Philosophy](platform-philosophy/overview.md)
 
 ### Publishing Information
 
