@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $headTitle or 'Let\'s Do this!' }} | DoSomething.org</title>
+    <title>{{ $headTitle or 'Let\'s Do This!' }} | DoSomething.org</title>
 
     @if(isset($metadata))
         @include('partials.metadata')
