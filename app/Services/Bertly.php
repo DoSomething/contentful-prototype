@@ -8,8 +8,7 @@ use DoSomething\Gateway\ForwardsTransactionIds;
 
 class Bertly extends RestApiClient
 {
-    use AuthorizesWithApiKey;
-    use ForwardsTransactionIds;
+    use AuthorizesWithApiKey, ForwardsTransactionIds;
 
     /**
      * The header to provide the API key in.

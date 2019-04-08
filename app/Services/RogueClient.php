@@ -9,8 +9,7 @@ use DoSomething\Gateway\Exceptions\ValidationException;
 
 class RogueClient extends RestApiClient
 {
-    use AuthorizesWithOAuth2;
-    use ForwardsTransactionIds;
+    use AuthorizesWithOAuth2, ForwardsTransactionIds;
 
     /**
      * Create a new RogueClient instance.
