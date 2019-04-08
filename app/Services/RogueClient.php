@@ -4,11 +4,13 @@ namespace App\Services;
 
 use DoSomething\Gateway\AuthorizesWithOAuth2;
 use DoSomething\Gateway\Common\RestApiClient;
+use DoSomething\Gateway\ForwardsTransactionIds;
 use DoSomething\Gateway\Exceptions\ValidationException;
 
 class RogueClient extends RestApiClient
 {
     use AuthorizesWithOAuth2;
+    use ForwardsTransactionIds;
 
     /**
      * Create a new RogueClient instance.
