@@ -24,7 +24,7 @@ export const TextSubmissionBlockFragment = gql`
     actionId
     title
     textFieldLabel
-    textFieldPlaceholderMessage
+    textFieldPlaceholder
     buttonText
     informationTitle
     informationContent
