@@ -4,7 +4,6 @@ We've got loads of cool features we use for development within Phoenix. Here's a
 
 ## Backend Components & Features
 
-- [Routing](routing.md)
 - [Sixpack A/B Testing](sixpack-a-b-testing.md)
 
 ## Frontend Components

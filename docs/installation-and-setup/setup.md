@@ -1,4 +1,4 @@
-# Developer Onboarding
+# Setup
 
 ## Install and Set Up Phoenix
 
