@@ -16,12 +16,10 @@
 ## Development
 
 - [Architecture](development/architecture.md)
-- [Content Types]
-  - [Oveview](#)
+- [Content Types](development/content-types/README.md)
   - [Embed](#)
   - [Metadata](#)
 - [Features](development/features/README.md)
-  - [Oveview](#)
   - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
   - [Modal Launcher](development/features/modal-launcher.md)
