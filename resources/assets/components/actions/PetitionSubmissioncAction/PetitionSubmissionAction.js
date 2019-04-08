@@ -21,7 +21,7 @@ export const PetitionSubmissionBlockFragment = gql`
     actionId
     title
     content
-    textFieldPlaceholderMessage
+    textFieldPlaceholder
     buttonText
     informationTitle
     informationContent
