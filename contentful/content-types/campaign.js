@@ -376,6 +376,35 @@ module.exports = function(migration) {
     .omitted(false);
 
   campaign
+    .createField('affiliateOptInContent')
+    .name('Affiliate Opt In Content')
+    .type('RichText')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        size: {
+          max: 250,
+        },
+
+        message: 'Affiliate Opt In Content may not exceed 250 characters.',
+      },
+      {
+        nodes: {},
+      },
+      {
+        enabledMarks: ['bold', 'italic', 'underline'],
+        message: 'Only bold, italic, and underline marks are allowed',
+      },
+      {
+        enabledNodeTypes: ['hyperlink'],
+        message: 'Only link to Url nodes are allowed',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  campaign
     .createField('additionalContent')
     .name('Additional Content')
     .type('Object')
@@ -470,6 +499,11 @@ module.exports = function(migration) {
 
   campaign.changeEditorInterface('scholarshipAmount', 'numberEditor', {
     helpText: 'e.g. 5000',
+  });
+
+  campaign.changeEditorInterface('affiliateOptInContent', 'richTextEditor', {
+    helpText:
+      'If there is an affiliate opt in for this campaign, input the informational content to display alongside the opt in checkbox. The affiliate opt in checkbox will only appear if this field is populated.',
   });
 
   campaign.changeEditorInterface('additionalContent', 'objectEditor', {});
