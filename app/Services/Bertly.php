@@ -4,10 +4,11 @@ namespace App\Services;
 
 use DoSomething\Gateway\AuthorizesWithApiKey;
 use DoSomething\Gateway\Common\RestApiClient;
+use DoSomething\Gateway\ForwardsTransactionIds;
 
 class Bertly extends RestApiClient
 {
-    use AuthorizesWithApiKey;
+    use AuthorizesWithApiKey, ForwardsTransactionIds;
 
     /**
      * The header to provide the API key in.
