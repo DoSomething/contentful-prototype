@@ -18,7 +18,7 @@
 - [Architecture](development/architecture.md)
 - [Content Types](development/content-types/README.md)
   - [Embed](#)
-  - [Metadata](#)
+  - [Metadata](development/content-types/metadata.md)
 - [Features](development/features/README.md)
   - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
@@ -28,11 +28,11 @@
   - [Contentful Content Management API Scripts](development/deployments/contentful-content-management-api-scripts.md)
   - [Heroku](development/deployments/heroku.md)
 
-## QA + Performance
+## Data + Performance
 
-- [Monitoring](development/monitoring.md)
-- [Analytics](development/analytics.md)
-- [Logging](development/logging.md)
+- [Monitoring](data-and-performance/monitoring.md)
+- [Analytics](data-and-performance/analytics.md)
+- [Logging](data-and-performance/logging.md)
 
 ## Contributing Instructions
 
