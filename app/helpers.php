@@ -264,6 +264,10 @@ function get_image_url($asset, $style = null)
     /** @var \Contentful\Core\File\ImageFile $file */
     $file = $asset->getFile();
 
+    if (! $file) {
+        return null;
+    }
+
     if (! $file instanceof \Contentful\Core\File\ImageFile) {
         throw new \InvalidArgumentException('Cannot use file ' . $file->getFileName() . ' as an image.');
     }
