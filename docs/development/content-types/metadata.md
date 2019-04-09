@@ -28,7 +28,7 @@ The following is an example of the series of `<meta>` tags output for a page:
 
 It is recommended for editors to add a custom **Metadata** for pages so that they can provide more customized SEO friendly copy and better preview image when a preview link is rendered on other platforms like Facebook and Twitter, etc.
 
-## Content Type Fields
+## Contentful Content Type Fields
 
 - **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and the title of the page to help find this content in the system.
 - **Title**: This will be displayed as the headline when embedded and previewed on other sites.
@@ -38,6 +38,40 @@ It is recommended for editors to add a custom **Metadata** for pages so that the
 {% hint style="info" %}
 If there is no metadata image provided, the platform falls back to the Campaign or Page cover photo. If there is no cover photo provided for the Campaign or Page, the platform will fall back to the DS logo in a black square for the preview link image.
 {% endhint %}
+
+## Technical Notes
+
+There is a dedicated **Metadata Entity** that collects the data entered into the fields for the respective Metadata content type entry when retrieving the page date from Contentful and building the object for the page.
+
+The metadata for a page is collected together and organized when a page or campaign controller method returns, calling the `view()` function:
+
+```php
+// Example from: app/Http/Controllers/PageController.php
+
+return view('app', [
+  // ...
+  'metadata' => get_metadata($page),
+  // ...
+]);
+
+```
+
+Within the `view()` function, a `metadata` variable is created, and assigned an array of data by calling the `get_metada()` helper function and passing it the parent page object that contains all the metadata information.
+
+When the page is rendered, the `master.blade.php` includes a partial view which outputs all the `<meta />` tags within the HTML of the page if the `$metadata` variable is available.
+
+```php
+// resources/views/layouts/master.blade.php
+
+// ...
+@if(isset($metadata))
+    @include('partials.metadata')
+@endif
+// ...
+
+```
+
+The partial view for the metadata output can be found in `resources/views/partials/metadata.blade.php`.
 
 ## Additional Information
 
