@@ -2,33 +2,37 @@
 
 - [🔥 Phoenix 🔥](README.md)
 
-## Development
-
-- [Overview](development/overview.md)
-- [Developer Onboarding](development/developer-onboarding.md)
-- [Installation](development/installation.md)
-- [Architecture](development/architecture.md)
-- [Deployments](development/deployments/README.md)
-  - [Contentful Migrations](development/deployments/contentful-migrations.md)
-  - [Contentful Content Management API Scripts](development/deployments/contentful-content-management-api-scripts.md)
-  - [Heroku](development/deployments/heroku.md)
-- [Features](development/features/README.md)
-  - [Routing](development/features/routing.md)
-  - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
-  - [Traffic Distribution](development/features/traffic-distribution.md)
-  - [Modal Launcher](development/features/modal-launcher.md)
-- [Monitoring](development/monitoring.md)
-- [Analytics](development/analytics.md)
-- [Logging](development/logging.md)
-- [Contributing](development/contributing.md)
-
 ## API Reference
 
-- [Overview](api-reference/overview.md)
-- [API v1](api-reference/api-v1.md)
 - [API v2](api-reference/api-v2/README.md)
   - [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
   - [Posts Resource](api-reference/api-v2/posts-resource.md)
+
+## Installation + Setup
+
+- [Installation](installation-and-setup/installation.md)
+- [Setup](installation-and-setup/setup.md)
+
+## Development
+
+- [Architecture](development/architecture/README.md)
+  - [Heroku](development/architecture/heroku.md)
+- [Content Types](development/content-types/README.md)
+  - [Embed](development/content-types/embed.md)
+  - [Metadata](development/content-types/metadata.md)
+- [Features](development/features/README.md)
+  - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
+  - [Traffic Distribution](development/features/traffic-distribution.md)
+  - [Modal Launcher](development/features/modal-launcher.md)
+- [Contentful](development/contentful/README.md)
+  - [Migration Scripts](development/contentful/migration-scripts.md)
+  - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)
+
+## Data + Performance
+
+- [Monitoring](data-and-performance/monitoring.md)
+- [Analytics](data-and-performance/analytics.md)
+- [Logging](data-and-performance/logging.md)
 
 ## Contributing Instructions
 

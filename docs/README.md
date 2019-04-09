@@ -15,8 +15,8 @@ Please refer to the following sections for information on developing for the pla
 
 ### Development Information
 
-- [Development](development/overview.md)
-- [API Reference](api-reference/overview.md)
+- [Development]()
+- [API Reference](api-reference/api-v2/README.md)
 
 If you would like to contribute to this documentation, please refer to the instructions on how to [edit this documentation](contributing-instructions/edit-this-documentation.md).
 
