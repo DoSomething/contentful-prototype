@@ -1,12 +1,3 @@
 # Features
 
-We've got loads of cool features we use for development within Phoenix. Here's a list of some nifty things you mind find useful for you Phoenix Development Arsenal™.
-
-## Backend Components & Features
-
-- [Sixpack A/B Testing](sixpack-a-b-testing.md)
-
-## Frontend Components
-
-- [Traffic Distribution](traffic-distribution.md)
-- [Modal Launcher](modal-launcher.md)
+We've got loads of cool features we use on Phoenix to build out the web platform experience. This section collects most of these features and provides contextual information as well as how they work.
