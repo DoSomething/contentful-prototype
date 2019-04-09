@@ -16,7 +16,7 @@ const CompanyPage = props => {
 
 CompanyPage.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  content: PropTypes.object.isRequired,
 };
 
 export default CompanyPage;

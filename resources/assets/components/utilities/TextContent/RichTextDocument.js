@@ -20,7 +20,7 @@ const RichTextDocument = ({ className = null, children, styles }) => (
 );
 
 RichTextDocument.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  children: PropTypes.object.isRequired,
   className: PropTypes.string,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
