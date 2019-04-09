@@ -1,5 +1,7 @@
 # Metadata
 
+## Overview
+
 All pages and campaigns on DoSomething.org contain a **Metadata** field that references a [`Metadata` content type](https://app.contentful.com/spaces/81iqaqpfd8fy/content_types/metadata/fields). This content type allows an editor to provide data for the page to help with SEO and sharing the content on social platforms.
 
 ![Example Facebook Share With Metadata](../../.gitbook/assets/facebook-share-example.png)
@@ -28,7 +30,7 @@ The following is an example of the series of `<meta>` tags output for a page:
 
 It is recommended for editors to add a custom **Metadata** for pages so that they can provide more customized SEO friendly copy and better preview image when a preview link is rendered on other platforms like Facebook and Twitter, etc.
 
-## Contentful Content Type Fields
+## Content Type Fields
 
 - **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and the title of the page to help find this content in the system.
 - **Title**: This will be displayed as the headline when embedded and previewed on other sites.
