@@ -8,6 +8,9 @@ module.exports = {
     'jsx-a11y/alt-text': 'warn',
     'jsx-a11y/media-has-caption': 'warn',
 
+    // Allowing 'object' since we've deemed that warning more of a nuisance.
+    'react/forbid-prop-types': ['warn', { forbid: ['any', 'array'] }],
+
     // Don't warn when using GraphQL's meta fields.
     'no-underscore-dangle': ['warn', { allow: ['__typename', '__schema'] }],
 
