@@ -41,12 +41,12 @@ If there is no metadata image provided, the platform falls back to the Campaign 
 
 ## Technical Notes
 
-There is a dedicated **Metadata Entity** that collects the data entered into the fields for the respective Metadata content type entry when retrieving the page date from Contentful and building the object for the page.
+There is a dedicated **Metadata Entity**, which can be found in `app/Entities/Metadata.php`, that collects the data entered into the fields for the respective Metadata content type entry when retrieving the page date from Contentful and building the object for the page.
 
 The metadata for a page is collected together and organized when a page or campaign controller method returns, calling the `view()` function:
 
 ```php
-// Example from: app/Http/Controllers/PageController.php
+// app/Http/Controllers/PageController.php and other page/campaign controllers
 
 return view('app', [
   // ...
@@ -65,7 +65,7 @@ When the page is rendered, the `master.blade.php` includes a partial view which 
 
 // ...
 @if(isset($metadata))
-    @include('partials.metadata')
+  @include('partials.metadata')
 @endif
 // ...
 
