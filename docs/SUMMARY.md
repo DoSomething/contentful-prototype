@@ -15,18 +15,18 @@
 
 ## Development
 
-- [Architecture](development/architecture.md)
+- [Architecture](development/architecture/README.md)
+  - [Heroku](development/architecture/heroku.md)
 - [Content Types](development/content-types/README.md)
-  - [Embed](#)
+  - [Embed](development/content-types/embed.md)
   - [Metadata](development/content-types/metadata.md)
 - [Features](development/features/README.md)
   - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
   - [Modal Launcher](development/features/modal-launcher.md)
-- [Deployments](development/deployments/README.md)
-  - [Contentful Migrations](development/deployments/contentful-migrations.md)
-  - [Contentful Content Management API Scripts](development/deployments/contentful-content-management-api-scripts.md)
-  - [Heroku](development/deployments/heroku.md)
+- [Contentful](development/contentful/README.md)
+  - [Migration Scripts](development/contentful/migration-scripts.md)
+  - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)
 
 ## Data + Performance
 
