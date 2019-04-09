@@ -274,7 +274,7 @@ Quiz.propTypes = {
     isNestedQuiz: PropTypes.bool,
   }).isRequired,
   clickedSignupAction: PropTypes.func.isRequired,
-  defaultResultBlock: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  defaultResultBlock: PropTypes.object,
   history: ReactRouterPropTypes.history.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   campaignId: PropTypes.string.isRequired,

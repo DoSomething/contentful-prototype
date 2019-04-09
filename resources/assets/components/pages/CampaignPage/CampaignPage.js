@@ -59,7 +59,7 @@ CampaignPage.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  entryContent: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  entryContent: PropTypes.object,
   landingPage: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,

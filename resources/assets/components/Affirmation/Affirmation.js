@@ -50,7 +50,7 @@ const Affirmation = ({
 );
 
 Affirmation.propTypes = {
-  author: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  author: PropTypes.object,
   callToActionDescription: PropTypes.string,
   callToActionHeader: PropTypes.string,
   header: PropTypes.string,
