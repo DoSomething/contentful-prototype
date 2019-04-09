@@ -67,9 +67,9 @@ const CampaignRoute = props => {
 };
 
 CampaignRoute.propTypes = {
-  affiliatePartners: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  affiliateSponsors: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
-  affirmation: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object).isRequired,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  affirmation: PropTypes.object.isRequired,
   campaignLead: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,

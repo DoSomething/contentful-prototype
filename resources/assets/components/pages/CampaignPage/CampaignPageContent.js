@@ -102,7 +102,11 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
-  match: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
