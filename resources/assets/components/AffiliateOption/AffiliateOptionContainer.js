@@ -1,30 +1,17 @@
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 
 import AffiliateOption from './AffiliateOption';
-import { clickedOptOut } from '../../actions/signup';
+import { clickedOptIn } from '../../actions/signup';
 
 const mapStateToProps = state => ({
-  affiliateMessagingOptOut: state.signups.affiliateMessagingOptOut,
-  affiliateOptionLabel: get(
-    state.campaign.additionalContent.affiliateOption,
-    'label',
-    '',
-  ),
-  moreInformationLabel: get(
-    state.campaign.additionalContent.affiliateOption,
-    'moreInformationLabel',
-    '',
-  ),
-  moreInformationMessage: get(
-    state.campaign.additionalContent.affiliateOption,
-    'moreInformationMessage',
-    '',
-  ),
+  affiliateMessagingOptIn: state.signups.affiliateMessagingOptIn,
 });
 
 const actionCreators = {
-  clickedOptOut,
+  clickedOptIn,
 };
 
-export default connect(mapStateToProps, actionCreators)(AffiliateOption);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(AffiliateOption);

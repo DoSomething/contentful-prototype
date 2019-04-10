@@ -1,63 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import TextContent from '../utilities/TextContent/TextContent';
 
 import './affiliateOption.scss';
 
-class AffiliateOption extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { expanded: false };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(event) {
-    event.preventDefault();
-    this.setState({ expanded: !this.state.expanded });
-  }
-
-  render() {
-    return (
-      <div className="form-wrapper affiliate-option clear-both">
-        <label className="option -checkbox" htmlFor="affiliate_opt_in">
-          <input
-            type="checkbox"
-            id="opt_in"
-            name="affiliate_opt_in"
-            value={this.props.affiliateMessagingOptOut}
-            defaultChecked={!this.props.affiliateMessagingOptOut}
-            className="form-checkbox"
-            onClick={this.props.clickedOptOut}
-          />
-          <span className="option__indicator" />
-          {this.props.affiliateOptionLabel}
-        </label>
-        <div className="footnote">
-          <button onClick={this.handleClick}>
-            {this.props.moreInformationLabel}
-          </button>
-          <div
-            className={classnames('footnote-details', {
-              'is-expanded': this.state.expanded,
-            })}
-          >
-            <TextContent>{this.props.moreInformationMessage}</TextContent>
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+const AffiliateOption = ({
+  affiliateOptInContent,
+  affiliateMessagingOptIn,
+  clickedOptIn,
+}) => (
+  <div className="form-wrapper affiliate-option clear-both padding-top-md">
+    <label className="option -checkbox" htmlFor="affiliate_opt_in">
+      <input
+        type="checkbox"
+        id="opt_in"
+        name="affiliate_opt_in"
+        value={affiliateMessagingOptIn}
+        defaultChecked={affiliateMessagingOptIn}
+        className="form-checkbox opt_in_checkbox"
+        onClick={clickedOptIn}
+      />
+      <TextContent styles={{ textColor: '#fff' }}>
+        {affiliateOptInContent}
+      </TextContent>
+    </label>
+  </div>
+);
 
 AffiliateOption.propTypes = {
-  clickedOptOut: PropTypes.func.isRequired,
-  affiliateMessagingOptOut: PropTypes.bool.isRequired,
-  affiliateOptionLabel: PropTypes.string.isRequired,
-  moreInformationLabel: PropTypes.string.isRequired,
-  moreInformationMessage: PropTypes.string.isRequired,
+  clickedOptIn: PropTypes.func.isRequired,
+  affiliateMessagingOptIn: PropTypes.bool.isRequired,
+  affiliateOptInContent: PropTypes.object.isRequired,
 };
 
 export default AffiliateOption;
