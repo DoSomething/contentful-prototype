@@ -20,6 +20,7 @@
 - [Content Types](development/content-types/README.md)
   - [Embed](development/content-types/embed.md)
   - [Metadata](development/content-types/metadata.md)
+  - [Text Submission Action](development/content-types/metadata.md)
 - [Features](development/features/README.md)
   - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
