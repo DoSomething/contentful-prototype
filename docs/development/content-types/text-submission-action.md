@@ -2,7 +2,9 @@
 
 ## Overview
 
-<!-- General info about what this content type is for. -->
+The **Text Submission Action** is one of many different types of available reportback actions a DoSomething member can perform on the platform.
+
+![Example Text Submission Action](../../.gitbook/assets/text-submission-action-user-interface.png)
 
 ## Content Type Fields
 
@@ -18,7 +20,7 @@
 - **Additional Content** (`additionalContent`):
 
 {% hint style="info" %}
-Most of the fields above related to field that show up in the text submission form will provide sensible defaults if no value is provided, but it is best for the editor to customize these to the campaign.
+Most of the fields above related to user-facing fields that show up in the text submission form will provide sensible defaults if no value is provided, but it is best for the editor to customize these to the campaign.
 {% endhint %}
 
 ## Technical Notes
@@ -28,7 +30,3 @@ Most of the fields above related to field that show up in the text submission fo
 ## Additional Information
 
 <!-- Extra information that could be helpful. -->
-
-## Resources
-
-<!-- Links or information on additional resources that could be useful. -->
