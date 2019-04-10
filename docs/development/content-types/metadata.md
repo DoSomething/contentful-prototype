@@ -32,7 +32,7 @@ It is recommended for editors to add a custom **Metadata** for pages so that the
 
 ## Content Type Fields
 
-- **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and the title of the page to help find this content in the system.
+- **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and a distinctive title to help find this content in the system.
 - **Title**: This will be displayed as the headline when embedded and previewed on other sites.
 - **Description**: This field will most often be styled as smaller text underneath the title. Mozilla and other experts recommend for this to be about 160 characters.
 - **Image**: This image will be displayed alongside the title and description. Implementation differs from site to site, please see the attached image for guidance. The default size should be 1200px x 1200px with centered content.
