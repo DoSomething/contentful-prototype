@@ -18,6 +18,7 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.affiliatedActionLink',
     null,
   ),
+  affiliateOptInContent: state.campaign.affiliateOptInContent,
   blurb: get(props, 'blurb', state.campaign.blurb),
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
   endDate: state.campaign.endDate,
