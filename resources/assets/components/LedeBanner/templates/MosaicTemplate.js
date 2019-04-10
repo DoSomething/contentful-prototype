@@ -38,6 +38,12 @@ const MosaicTemplate = props => {
 
   const signupButton = displaySignup ? (
     <div className="mosaic-lede-banner__signup">
+      {affiliateOptInContent ? (
+        <AffiliateOptionContainer
+          affiliateOptInContent={affiliateOptInContent}
+        />
+      ) : null}
+
       <SignupButton
         className={classnames({ '-float': affiliateSponsors.length })}
         source="lede banner"
@@ -46,12 +52,6 @@ const MosaicTemplate = props => {
         <CampaignSignupArrow
           content={signupArrowContent}
           className="-mosaic-arrow"
-        />
-      ) : null}
-
-      {affiliateOptInContent ? (
-        <AffiliateOptionContainer
-          affiliateOptInContent={affiliateOptInContent}
         />
       ) : null}
     </div>
