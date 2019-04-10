@@ -9,7 +9,7 @@ import { getUserId } from '../selectors/user';
 import { trackAnalyticsEvent } from '../helpers/analytics';
 import {
   SIGNUP_CREATED,
-  SIGNUP_CLICKED_OPT_OUT,
+  SIGNUP_CLICKED_OPT_IN,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
   CLICKED_REMOVE_SIGN_UP,
@@ -57,9 +57,9 @@ export function clickedShowAffirmation() {
   return { type: OPENED_POST_SIGNUP_MODAL };
 }
 
-// Action: sends whether the user opted out of affiliate messaging.
-export function clickedOptOut() {
-  return { type: SIGNUP_CLICKED_OPT_OUT };
+// Action: toggles the user's opt in status for receiving affiliate messaging.
+export function clickedOptIn() {
+  return { type: SIGNUP_CLICKED_OPT_IN };
 }
 
 // Action: removes the current signup from campaign
