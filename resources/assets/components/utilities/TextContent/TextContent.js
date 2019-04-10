@@ -38,7 +38,10 @@ TextContent.propTypes = {
     PropTypes.object,
   ]).isRequired,
   className: PropTypes.string,
-  styles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  styles: PropTypes.shape({
+    textColor: PropTypes.string,
+    hyperlinkColor: PropTypes.string,
+  }),
 };
 
 TextContent.defaultProps = {

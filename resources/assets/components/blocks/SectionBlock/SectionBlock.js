@@ -51,7 +51,7 @@ const SectionBlock = props => {
 SectionBlock.propTypes = {
   backgroundColor: PropTypes.string,
   className: PropTypes.string,
-  content: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  content: PropTypes.object.isRequired,
   hyperlinkColor: PropTypes.string,
   id: PropTypes.string.isRequired,
   textColor: PropTypes.string,

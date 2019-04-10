@@ -36,7 +36,7 @@ Question.propTypes = {
   quizId: PropTypes.string.isRequired,
   pickQuizAnswer: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  answers: PropTypes.array.isRequired, // eslint-disable-line react/forbid-prop-types
+  answers: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeAnswer: PropTypes.string,
 };
 

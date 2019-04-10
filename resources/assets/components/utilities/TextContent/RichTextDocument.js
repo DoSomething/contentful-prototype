@@ -20,9 +20,12 @@ const RichTextDocument = ({ className = null, children, styles }) => (
 );
 
 RichTextDocument.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  children: PropTypes.object.isRequired,
   className: PropTypes.string,
-  styles: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  styles: PropTypes.shape({
+    textColor: PropTypes.string,
+    hyperlinkColor: PropTypes.string,
+  }),
 };
 
 RichTextDocument.defaultProps = {

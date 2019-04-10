@@ -87,7 +87,7 @@ PostGallery.propTypes = {
   loading: PropTypes.bool.isRequired,
   loadMorePosts: PropTypes.func.isRequired,
   onRender: PropTypes.func,
-  posts: PropTypes.array, // eslint-disable-line react/forbid-prop-types
+  posts: PropTypes.arrayOf(PropTypes.object),
   shouldShowNoResults: PropTypes.bool,
   waypointName: PropTypes.string,
 };
