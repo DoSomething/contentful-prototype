@@ -6,6 +6,7 @@ import Button from '../utilities/Button/Button';
 
 const SignupButton = props => {
   const {
+    affiliateMessagingOptIn,
     campaignActionText,
     className,
     clickedSignupAction,
@@ -21,8 +22,15 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const onSignup = buttonText => {
+    const details = { campaignContentfulId };
+
+    // Set affiliate opt in field if user has opted in.
+    if (affiliateMessagingOptIn) {
+      details.affiliateOptIn = true;
+    }
+
     clickedSignupAction(campaignId, {
-      body: { details: JSON.stringify({ campaignContentfulId }) },
+      body: { details: JSON.stringify(details) },
       analytics: {
         campaignContentfulId,
         source,
@@ -49,6 +57,7 @@ const SignupButton = props => {
 };
 
 SignupButton.propTypes = {
+  affiliateMessagingOptIn: PropTypes.bool.isRequired,
   campaignActionText: PropTypes.string,
   className: PropTypes.string,
   clickedSignupAction: PropTypes.func.isRequired,

@@ -7,8 +7,8 @@ import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
-import AffiliateOptionContainer from '../../AffiliateOption';
 import TextContent from '../../utilities/TextContent/TextContent';
+import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 
 import './mosaic-lede-banner.scss';
 
@@ -16,6 +16,7 @@ const MosaicTemplate = props => {
   const {
     affiliatedActionText,
     affiliatedActionLink,
+    affiliateOptInContent,
     affiliateSponsors,
     displaySignup,
     title,
@@ -23,7 +24,6 @@ const MosaicTemplate = props => {
     blurb,
     coverImage,
     isAffiliated,
-    showPartnerMsgOptIn,
     signupArrowContent,
   } = props;
 
@@ -38,6 +38,12 @@ const MosaicTemplate = props => {
 
   const signupButton = displaySignup ? (
     <div className="mosaic-lede-banner__signup">
+      {affiliateOptInContent ? (
+        <AffiliateOptInToggleContainer
+          affiliateOptInContent={affiliateOptInContent}
+        />
+      ) : null}
+
       <SignupButton
         className={classnames({ '-float': affiliateSponsors.length })}
         source="lede banner"
@@ -48,7 +54,6 @@ const MosaicTemplate = props => {
           className="-mosaic-arrow"
         />
       ) : null}
-      {showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null}
     </div>
   ) : null;
 
@@ -105,6 +110,7 @@ const MosaicTemplate = props => {
 MosaicTemplate.propTypes = {
   affiliatedActionText: PropTypes.string,
   affiliatedActionLink: PropTypes.string,
+  affiliateOptInContent: PropTypes.object,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   blurb: PropTypes.string,
   coverImage: PropTypes.shape({
@@ -115,16 +121,15 @@ MosaicTemplate.propTypes = {
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  showPartnerMsgOptIn: PropTypes.bool.isRequired,
   signupArrowContent: PropTypes.string,
 };
 
 MosaicTemplate.defaultProps = {
   affiliatedActionText: null,
   affiliatedActionLink: null,
+  affiliateOptInContent: null,
   blurb: null,
   displaySignup: true,
-  showPartnerMsgOptIn: false,
   signupArrowContent: null,
 };
 

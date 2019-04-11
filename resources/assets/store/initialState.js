@@ -29,7 +29,7 @@ const initialState = {
     shouldShowAffirmation: false,
     isPending: false,
     total: 0,
-    affiliateMessagingOptOut: false,
+    affiliateMessagingOptIn: false,
   },
   slideshow: {},
   uploads: {},

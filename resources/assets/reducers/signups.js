@@ -3,7 +3,6 @@ import { get, pull } from 'lodash';
 import { set as storageSet, SIGNUP_STORAGE_KEY } from '../helpers/storage';
 import {
   SIGNUP_CREATED,
-  SIGNUP_CLICKED_OPT_OUT,
   OPENED_POST_SIGNUP_MODAL,
   CLOSED_POST_SIGNUP_MODAL,
   CLICKED_REMOVE_SIGN_UP,
@@ -12,6 +11,7 @@ import {
   GET_CAMPAIGN_SIGNUPS_FAILED,
   GET_CAMPAIGN_SIGNUPS_PENDING,
   GET_CAMPAIGN_SIGNUPS_SUCCESSFUL,
+  SIGNUP_CLICKED_OPT_IN,
   STORE_CAMPAIGN_SIGNUPS_FAILED,
   STORE_CAMPAIGN_SIGNUPS_PENDING,
   STORE_CAMPAIGN_SIGNUPS_SUCCESSFUL,
@@ -101,10 +101,10 @@ const signupReducer = (state = {}, action) => {
         shouldShowAffirmation: false,
       };
 
-    case SIGNUP_CLICKED_OPT_OUT:
+    case SIGNUP_CLICKED_OPT_IN:
       return {
         ...state,
-        affiliateMessagingOptOut: !state.affiliateMessagingOptOut,
+        affiliateMessagingOptIn: !state.affiliateMessagingOptIn,
       };
 
     case CLICKED_REMOVE_SIGN_UP:
