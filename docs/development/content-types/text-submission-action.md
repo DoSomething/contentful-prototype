@@ -19,6 +19,9 @@ The **Text Submission Action** is one of many different types of available repor
 - **Affirmation Content** | `affirmationContent`: Specifies what to display for the text copy in the affirmation modal that pops up for the user after a successful text submission action is posted to Rogue.
 - **Additional Content** | `additionalContent`: JSON content to pass along additional data as needed; use sparingly.
 
+**Test Item** | `testItem`
+: JSON content to pass along additional data as needed; use sparingly.
+
 {% hint style="info" %}
 Most of the fields above related to user-facing fields that show up in the text submission form will provide sensible defaults if no value is provided, but it is best for the editor to customize these to the campaign.
 {% endhint %}
