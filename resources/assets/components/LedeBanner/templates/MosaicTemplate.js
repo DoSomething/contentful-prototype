@@ -8,7 +8,7 @@ import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import TextContent from '../../utilities/TextContent/TextContent';
-import AffiliateOptInOptionContainer from '../../AffiliateOptInOption/AffiliateOptInOptionContainer';
+import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 
 import './mosaic-lede-banner.scss';
 
@@ -39,7 +39,7 @@ const MosaicTemplate = props => {
   const signupButton = displaySignup ? (
     <div className="mosaic-lede-banner__signup">
       {affiliateOptInContent ? (
-        <AffiliateOptInOptionContainer
+        <AffiliateOptInToggleContainer
           affiliateOptInContent={affiliateOptInContent}
         />
       ) : null}

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import TextContent from '../utilities/TextContent/TextContent';
 
-import './affiliate-opt-in-option.scss';
+import './affiliate-opt-in-toggle.scss';
 
-const AffiliateOptInOption = ({
+const AffiliateOptInToggle = ({
   affiliateOptInContent,
   affiliateMessagingOptIn,
   clickedOptIn,
 }) => (
-  <div className="form-wrapper affiliate-option">
+  <div className="form-wrapper affiliate-opt-in">
     <label className="option -checkbox" htmlFor="affiliate_opt_in">
       <input
         type="checkbox"
@@ -28,10 +28,10 @@ const AffiliateOptInOption = ({
   </div>
 );
 
-AffiliateOptInOption.propTypes = {
+AffiliateOptInToggle.propTypes = {
   clickedOptIn: PropTypes.func.isRequired,
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   affiliateOptInContent: PropTypes.object.isRequired,
 };
 
-export default AffiliateOptInOption;
+export default AffiliateOptInToggle;
