@@ -292,7 +292,7 @@ function get_image_url($asset, $style = null)
 
     $options['logo'] = (new ImageOptions)
         ->setFormat('png')
-        ->setHeight(50)
+        ->setHeight(100)
         ->setResizeFit('scale');
 
     // Provide cropped image if specified, or just the original image by default.
