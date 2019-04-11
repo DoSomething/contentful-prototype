@@ -126,6 +126,13 @@ $btw-mobile-and-tablet: '(min-width: 860px)';
   }
 }
 
+// Sponsor Specific
+.promotion--sponsor {
+  img {
+    height: 50px;
+  }
+}
+
 // Override styling for affiliate logo appearing on affiliate content (LinkAction, CampaignUpdate)
 .affiliate-logo {
   float: left;
