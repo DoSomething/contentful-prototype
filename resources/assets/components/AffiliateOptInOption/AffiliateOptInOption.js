@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import TextContent from '../utilities/TextContent/TextContent';
 
-import './affiliateOption.scss';
+import './affiliate-opt-in-option.scss';
 
-const AffiliateOption = ({
+const AffiliateOpInOption = ({
   affiliateOptInContent,
   affiliateMessagingOptIn,
   clickedOptIn,
@@ -28,10 +28,10 @@ const AffiliateOption = ({
   </div>
 );
 
-AffiliateOption.propTypes = {
+AffiliateOpInOption.propTypes = {
   clickedOptIn: PropTypes.func.isRequired,
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   affiliateOptInContent: PropTypes.object.isRequired,
 };
 
-export default AffiliateOption;
+export default AffiliateOpInOption;

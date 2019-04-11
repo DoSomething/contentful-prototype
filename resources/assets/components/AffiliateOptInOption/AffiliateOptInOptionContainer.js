@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import AffiliateOption from './AffiliateOption';
+import AffiliateOptInOption from './AffiliateOptInOption';
 import { clickedOptIn } from '../../actions/signup';
 
 const mapStateToProps = state => ({
@@ -14,4 +14,4 @@ const actionCreators = {
 export default connect(
   mapStateToProps,
   actionCreators,
-)(AffiliateOption);
+)(AffiliateOptInOption);

@@ -6,7 +6,7 @@ import SignupButton from '../../SignupButton';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
-import AffiliateOptionContainer from '../../AffiliateOption';
+import AffiliateOptInOptionContainer from '../../AffiliateOptInOption/AffiliateOptInOptionContainer';
 
 const LegacyTemplate = props => {
   const {
@@ -53,7 +53,7 @@ const LegacyTemplate = props => {
             ) : null}
             <div>
               <SignupButton source="legacy lede banner" />
-              {showPartnerMsgOptIn ? <AffiliateOptionContainer /> : null}
+              {showPartnerMsgOptIn ? <AffiliateOptInOptionContainer /> : null}
             </div>
           </div>
         )}
