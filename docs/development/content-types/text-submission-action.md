@@ -8,18 +8,25 @@ The **Text Submission Action** is one of many different types of available repor
 
 ## Content Type Fields
 
-- **Internal Title** | `internalTitle`: This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and a distinctive title to help find this content in the system.
-- **Action ID** | `actionId`: Specifies the Action ID associated with this action in Rogue (Activity Service).
-- **Title** | `title`: This will be displayed as the header within the text submission action block.
-- **TextFieldLabel** | `textFieldLabel`: Specifies what the copy for the label on text field should be.
-- **Text Field Placeholder Message** | `textFieldPlaceholder`: Specifies what the copy for the placeholder text in the text field should be; should be used to provide some short, helpful text.
-- **Button Text** | `buttonText`: Specifies what the copy for the button text should be.
-- **Information Title** | `informationTitle`: This will be displayed as the header within the information block.
-- **Information Content** | `informationContent`: Specifies what to display as the text copy for the information block.
-- **Affirmation Content** | `affirmationContent`: Specifies what to display for the text copy in the affirmation modal that pops up for the user after a successful text submission action is posted to Rogue.
-- **Additional Content** | `additionalContent`: JSON content to pass along additional data as needed; use sparingly.
-
-- **Test Item** | `testItem`
+- **Internal Title** | `internalTitle`
+  - This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and a distinctive title to help find this content in the system.
+- **Action ID** | `actionId`
+  - Specifies the Action ID associated with this action in Rogue (Activity Service).
+- **Title** | `title`
+  - This will be displayed as the header within the text submission action block.
+- **TextFieldLabel** | `textFieldLabel`
+  - Specifies what the copy for the label on text field should be.
+- **Text Field Placeholder Message** | `textFieldPlaceholder`
+  - Specifies what the copy for the placeholder text in the text field should be; should be used to provide some short, helpful text.
+- **Button Text** | `buttonText`
+  - Specifies what the copy for the button text should be.
+- **Information Title** | `informationTitle`
+  - This will be displayed as the header within the information block.
+- **Information Content** | `informationContent`
+  - Specifies what to display as the text copy for the information block.
+- **Affirmation Content** | `affirmationContent`
+  - Specifies what to display for the text copy in the affirmation modal that pops up for the user after a successful text submission action is posted to Rogue.
+- **Additional Content** | `additionalContent`
   - JSON content to pass along additional data as needed; use sparingly.
 
 {% hint style="info" %}
