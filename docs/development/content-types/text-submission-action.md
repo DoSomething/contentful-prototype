@@ -50,6 +50,8 @@ When a member submits a text post using the text submission action, the componen
 
 Both of these action can be found in `resources/assets/actions/posts.js`, where they proceed to attach analytics and sixpack experiment metadata to the payload, and dispatch a POST request to the Phoenix API.
 
+Depending on the action used, `storePost()` or `storeCampaignPost()`, the payload will end up at either the `PostsController` or the `CampaignPostsController` respectively.
+
 ## Additional Information
 
 <!-- Extra information that could be helpful. -->
