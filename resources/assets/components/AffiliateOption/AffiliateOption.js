@@ -10,7 +10,7 @@ const AffiliateOption = ({
   affiliateMessagingOptIn,
   clickedOptIn,
 }) => (
-  <div className="form-wrapper affiliate-option clear-both padding-top-md">
+  <div className="form-wrapper affiliate-option">
     <label className="option -checkbox" htmlFor="affiliate_opt_in">
       <input
         type="checkbox"
