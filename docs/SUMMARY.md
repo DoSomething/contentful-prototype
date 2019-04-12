@@ -10,6 +10,7 @@
 
 ## Installation + Setup
 
+- [Requirements](installation-and-setup/requirements.md)
 - [Installation](installation-and-setup/installation.md)
 - [Setup](installation-and-setup/setup.md)
 

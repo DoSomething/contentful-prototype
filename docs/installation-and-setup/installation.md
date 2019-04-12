@@ -1,12 +1,6 @@
 # Installation
 
-Fork and clone the [Phoenix repository](https://github.com/DoSomething/phoenix-next) to your computer, and then [add it to your local Homestead](https://github.com/DoSomething/communal-docs/tree/master/Homestead) installation. Homestead provides a pre-packaged development environment to help get you up and running quickly!
-
-We use [Contentful](https://www.contentful.com/) as our content management platform.
-
-{% hint style="warning" %}
-Please request access to Contentful and setup an account to be able to access the _space_ used for this project.
-{% endhint %}
+Fork and clone the [Phoenix repository](https://github.com/DoSomething/phoenix-next) to your computer, and then [add it to your local Homestead](requrements.md) installation.
 
 Once you have access to Contentful, `ssh` into the Homestead Vagrant box, `cd` into the Phoenix repository location and run:
 
