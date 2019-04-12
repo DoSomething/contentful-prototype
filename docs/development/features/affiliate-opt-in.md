@@ -40,7 +40,7 @@ When a user checks this field and signs up for the campaign, we append an `affil
 
 This marks this user as having opted in to receiving affiliate messaging, and can be used to help compile a list of such users for the affiliate partner.
 
-## Under the Hood
+## Under The Hood
 
 Our [Redux](https://redux.js.org/) state is initialized with a `signups` object containing an `affiliateMessagingOptIn` **Boolean** field (defaults to `false`). Clicking the Affiliate Opt In check box input invokes an action which toggles this value.
 
