@@ -136,11 +136,20 @@ export function parseRichTextDocument(document, styles) {
           <ContentfulAsset id={node.data.target.sys.id} />
         </p>
       ),
-      [INLINES.HYPERLINK]: node => (
-        <a href={node.data.uri} style={{ color: hyperlinkColor }}>
-          {node.content[0].value}
-        </a>
-      ),
+      [INLINES.HYPERLINK]: node => {
+        const external = isExternal(node.data.uri);
+
+        return (
+          <a
+            href={node.data.uri}
+            target={external ? '_blank' : '_self'}
+            rel={external ? 'noopener noreferrer' : ''}
+            style={{ color: hyperlinkColor }}
+          >
+            {node.content[0].value}
+          </a>
+        );
+      },
     },
   };
 
