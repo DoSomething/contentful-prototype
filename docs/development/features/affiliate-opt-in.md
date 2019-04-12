@@ -1,5 +1,7 @@
 # Affiliate Opt In
 
+## Overview
+
 The Affiliate Opt In Feature consists of an Opt In Check-box displayed atop the Signup button in the Lede Banner of a campaign.
 
 This allows a user to opt in to receiving affiliate messaging from the sponsor when signing up.
