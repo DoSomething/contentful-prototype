@@ -35,8 +35,8 @@ const App = ({ store, history }) => {
             <Switch>
               <Route exact path="/us" component={HomePage} />
               <Route path="/us/account" component={AccountContainer} />
-              <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/blocks/:id" component={BlockPage} />
+              <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
           </ConnectedRouter>
