@@ -1,6 +1,6 @@
 # Affiliate Opt In
 
-The Affiliate Opt In Feature consists of an Opt In Checkbox displayed atop the Signup button in the Lede Banner of a campaign.
+The Affiliate Opt In Feature consists of an Opt In Check-box displayed atop the Signup button in the Lede Banner of a campaign.
 
 This allows a user to opt in to receiving affiliate messaging from the sponsor when signing up.
 
@@ -8,9 +8,9 @@ This allows a user to opt in to receiving affiliate messaging from the sponsor w
 
 ## Usage Instructions
 
-The Affiliate Opt In Content (`affiliateOptInContent`) Rich Text field on the Campaign Content Type in Contentful controls whether this checkbox shows up, and the text that appears as the label for the checkbox.
+The Affiliate Opt In Content (`affiliateOptInContent`) Rich Text field on the Campaign Content Type in Contentful controls whether this check-box shows up, and the text that appears as the label for the check-box.
 
-If any content is input into this field, the checkbox will automatically appear above the signup button with the content from this field as the label.
+If any content is input into this field, the check-box will automatically appear above the sign-up button with the content from this field as the label.
 
 ## How It Works
 
@@ -40,6 +40,6 @@ This marks this user as having opted in to receiving affiliate messaging, and ca
 
 ## Under the Hood
 
-Our Redux state is initialized with a `signups` object containing an `affiliateMessagingOptIn` **Boolean** field (defaults to `false`). Clicking the Affiliate Opt In check box input invokes an action which toggles this value.
+Our [Redux](https://redux.js.org/) state is initialized with a `signups` object containing an `affiliateMessagingOptIn` **Boolean** field (defaults to `false`). Clicking the Affiliate Opt In check box input invokes an action which toggles this value.
 
-When the user clicks the Signup button, we use that `signups.affiliateMessagingOptIn` value to determine whether we set the `affiliateOptIn: true` in the `details` field, before triggering the signup request to Rogue.
+When the user clicks the Sign-up button, we use that `signups.affiliateMessagingOptIn` value to determine whether we set the `affiliateOptIn: true` in the `details` field, before triggering the signup request to Rogue.
