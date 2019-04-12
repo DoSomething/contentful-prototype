@@ -449,10 +449,10 @@ export function env(key) {
 }
 
 /**
- * Construct URL with query params
+ * Construct absolute URL with query params.
  *
  * @param {String} url
- * @param {object} query
+ * @param {Object} query
  * @return {URL}
  */
 export function makeUrl(path, queryParameters) {

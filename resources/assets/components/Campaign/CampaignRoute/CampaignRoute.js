@@ -19,6 +19,7 @@ const CampaignRoute = props => {
     clickedHideAffirmation,
     hasCommunityPage,
     isCampaignClosed,
+    location,
     match,
     shouldShowAffirmation,
   } = props;
@@ -40,7 +41,14 @@ const CampaignRoute = props => {
               const path =
                 isCampaignClosed && hasCommunityPage ? 'community' : 'action';
 
-              return <Redirect to={join(match.url, path)} />;
+              return (
+                <Redirect
+                  to={{
+                    pathname: join(match.url, path),
+                    search: location.search,
+                  }}
+                />
+              );
             }}
           />
 
@@ -77,6 +85,7 @@ CampaignRoute.propTypes = {
   clickedHideAffirmation: PropTypes.func.isRequired,
   hasCommunityPage: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
   shouldShowAffirmation: PropTypes.bool.isRequired,
 };
