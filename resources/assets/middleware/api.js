@@ -31,6 +31,8 @@ const getRequestAction = (payload, dispatch) => {
       });
     })
     .catch(error => {
+      report(error);
+
       if (window.ENV.APP_ENV !== 'production') {
         console.log('🚫 failed response? caught the error!', error);
       }
