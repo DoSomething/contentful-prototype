@@ -1,14 +1,16 @@
 # Prerequisites
 
+To obtain access to the accounts described below, please reach out to someone on the Phoenix platform team via the team's channel in DoSomething chat.
+
 ## DoSomething Account
 
-You should have a DoSomething.org account and request admin access persmissions so you can log in and access Aurora, our Admin platform. You will need access to this platform so you can retrieve the Northstar Development OAuth credentials.
+You should have a DoSomething.org account for each of our environments (Dev, QA, Production) and request admin access permissions for them, so you can log in and access Aurora, our Admin platform for each environment.
 
-### Northstar
+### Northstar + Aurora
 
 For your development environment you should use the Northstar Development URL: `https://identity-dev.dosomething.org`
 
-Once you have access to [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth), retrieve the Dev OAuth **Client ID** and **Client Secret** credentials.
+Once you have access to [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth), retrieve the Northstar Dev OAuth **Client ID** and **Client Secret** credentials.
 
 ## Laravel Homestead
 
