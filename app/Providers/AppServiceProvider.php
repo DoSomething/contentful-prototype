@@ -73,13 +73,14 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Attach the user & request ID to context for all log messages.
-        Log::getMonolog()->pushProcessor(function ($record) {
-            $record['extra']['user_id'] = auth()->id();
-            $record['extra']['client_id'] = token()->client();
-            $record['extra']['request_id'] = request()->header('X-Request-Id');
+        // @TODO Re-enable this once we resolve https://www.pivotaltracker.com/story/show/165315689.
+        // Log::getMonolog()->pushProcessor(function ($record) {
+        //     $record['extra']['user_id'] = auth()->id();
+        //     $record['extra']['client_id'] = token()->client();
+        //     $record['extra']['request_id'] = request()->header('X-Request-Id');
 
-            return $record;
-        });
+        //     return $record;
+        // });
     }
 
     /**
