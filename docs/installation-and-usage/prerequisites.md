@@ -8,7 +8,7 @@ You should have a DoSomething.org account and request admin access persmissions 
 
 For your development environment you should use the Northstar Development URL: `https://identity-dev.dosomething.org`
 
-Once you have access to [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth), retrieve the Dev OAuth _Client ID_ and _Client Secret_ credentials.
+Once you have access to [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth), retrieve the Dev OAuth **Client ID** and **Client Secret** credentials.
 
 ## Laravel Homestead
 
