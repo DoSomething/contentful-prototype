@@ -10,7 +10,7 @@
 
 ## Installation + Setup
 
-- [Prerequisite](installation-and-setup/prerequisite.md)
+- [Prerequisites](installation-and-setup/prerequisites.md)
 - [Installation](installation-and-setup/installation.md)
 - [Setup](installation-and-setup/setup.md)
 

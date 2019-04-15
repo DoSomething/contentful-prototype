@@ -2,7 +2,7 @@
 
 Fork and clone the [Phoenix repository](https://github.com/DoSomething/phoenix-next) to your computer, and then [add it to your local Homestead](requrements.md) installation.
 
-Once you have access to Contentful, `ssh` into the Homestead Vagrant box, `cd` into the Phoenix repository location and run:
+Once you have access to Contentful, run `vagrant up` to start Homestead, then `vagrant ssh` into the Vagrant box, and `cd` into the Phoenix repository location and run:
 
 ```bash
 # Install dependencies:

@@ -1,17 +1,5 @@
 # Setup
 
-## Install and Set Up Phoenix
-
-You can follow the [installation instructions](installation.md) to install and set up Phoenix in your local development environment.
-
-However, before running `php artisan phoenix:setup`, you are going to need a few permissions so that you can set the correct application keys and secret keys for proper access.
-
-### Northstar
-
-For your development environment you should use the Dev Northstar URL: `https://identity-dev.dosomething.org`
-
-To gain access to a _Client ID_ and _Client Secret_, you will need to have the proper permissions set on your DoSomething account. Let a developer on the team know if you are unable to access [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth) to obtain the two values.
-
 ### Contentful
 
 Be sure to setup your [Contentful account](https://www.contentful.com/sign-up/) and request access to the _Phoenix_ project space, so that you can set the proper _Contentful Space ID_ and _Contentful API Key_ in your setup.
