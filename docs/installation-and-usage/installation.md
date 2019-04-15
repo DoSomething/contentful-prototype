@@ -17,11 +17,11 @@ You will need the following values on hand for the installation process:
 - Contentful Space ID
 - Contentful API Key (recommended to use the Preview API Key)
 
-## Getting Started
+## Setup
 
 Fork and clone the [Phoenix repository](https://github.com/DoSomething/phoenix-next) to your computer, and then [add it to your local Homestead](prerequisites#laravel-homestead) installation.
 
-Once you have access to [Contentful](prerequisites#contentful-cms), run `vagrant up` to start Homestead, then `vagrant ssh` into the Vagrant box, and `cd` into the Phoenix repository location and run:
+With the above specified environment variable values on hand, start the Homestead Vagrant box, then `ssh` into it, and `cd` into the Phoenix repository location and run:
 
 ```bash
 # Install dependencies:
@@ -34,33 +34,4 @@ $ php artisan phoenix:setup
 $ npm start
 ```
 
-## Testing
-
-### PHP
-
-To run PHP tests locally, `ssh` into the Homestead Vagrant box, `cd` into the Phoenix repository location and use [PHPUnit](https://github.com/sebastianbergmann/phpunit), by running:
-
-```bash
-$ vendor/bin/phpunit
-```
-
-_It would be easier to run the PHPUnit tests from within the Homestead Vagrant box._
-
-### JavaScript
-
-You may run JavaScript tests locally using [Jest](https://github.com/facebook/jest), by running:
-
-```bash
-$ npm test
-```
-
-## Code Style
-
-We use [Prettier](https://prettier.io/) to format our code & [ESLint](http://eslint.org/) to catch common mistakes. They run in the following scenarios:
-
-- When using the `npm start` command, your files will be "watched" for changes, and when a change is detected, the JS code will be linted and only compiled if it passes.
-- Code will be automatically formatted when committing changes. You can also install an [editor plugin](https://prettier.io/docs/en/editors.html) to reformat code as you write it, or manually format the project with `npm run format`.
-- You can manually lint code by running `npm run lint -s`. The `-s` option lets you suppress the verbose NPM warnings that follows when there are linting errors.
-- Code linting also runs via [Wercker](http://www.wercker.com/), our continuous integration service, when a new pull request is made for the repository.
-
-We use [StyleCI](https://styleci.io/repos/75642790) service to lint our PHP code when a new pull request is made for the respository.
+Once the above commands finish executing, you should be able to go to `http://phoenix.test` in your browser and load the Phoenix platform! 🔥
