@@ -8,10 +8,11 @@
   - [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
   - [Posts Resource](api-reference/api-v2/posts-resource.md)
 
-## Installation + Setup
+## Installation + Usage
 
-- [Installation](installation-and-setup/installation.md)
-- [Setup](installation-and-setup/setup.md)
+- [Prerequisites](installation-and-usage/prerequisites.md)
+- [Installation](installation-and-usage/installation.md)
+- [Usage](installation-and-usage/usage.md)
 
 ## Development
 
