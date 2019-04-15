@@ -1,5 +1,7 @@
 # Usage
 
+Information regarding daily usage and typical services that will be used during development of the Phoenix platform.
+
 ## Testing
 
 ### PHP
