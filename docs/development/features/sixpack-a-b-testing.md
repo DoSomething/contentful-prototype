@@ -10,6 +10,13 @@ To perform all these A/B Test Experiments, we utilize an open-source, language-a
 
 To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in `/resources/assets/services/Sixpack.js`.
 
+## Test Types
+
+Depending on the context for the kind of test being performed, there are 2 test types that Phoenix supports:
+
+- [Code Tests](sixpack-code-tests.md)
+- [Contentful Tests](sixpack-contentful-tests.md)
+
 ## Usage Tips
 
 When testing to confirm that an experiment is set up properly, you can **force** a specific alternative by passing a URL parameter in the URL:

@@ -1,1 +1,0 @@
-# Sixpack Code Experiments
