@@ -72,6 +72,36 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        // Attach admin tool variables to 404 pages rendered via the ModelNotFoundException.
+        View::composer('errors::404', function ($view) {
+            // Split path string by '/', and remove the 'us' prefix.
+            $path = explode('/', str_replace('us/', '', request()->path()));
+
+            // Safely hard return in case we end up here with no path elements.
+            if (! count($path)) {
+                return;
+            }
+
+            if (count($path) === 1) {
+                // Paths with a single :slug are processed as pages.
+                $content_type = 'page';
+                $slug = $path[0];
+            } else {
+                // Otherwise, we presume a path of ':category/:slug'.
+                $content_type = get_content_type_by_category($path[0]);
+                // For campaigns, the :category will not be part of the actual entry's slug (used in the cache ID).
+                $slug = $content_type === 'campaign' ? $path[1] : $path[0].'/'.$path[1];
+            }
+
+            $view->with('admin', [
+                'page' => [
+                    'cacheUrl' => get_cache_url($content_type, $slug),
+                    'type' => request()->path(),
+                    'editUrl' => get_contentful_url().'entries?searchText='.$slug,
+                ],
+            ]);
+        });
+
         // Attach the user & request ID to context for all log messages.
         // @TODO Re-enable this once we resolve https://www.pivotaltracker.com/story/show/165315689.
         // Log::getMonolog()->pushProcessor(function ($record) {
