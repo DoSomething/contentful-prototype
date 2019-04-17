@@ -23,6 +23,8 @@
   - [Metadata](development/content-types/metadata.md)
 - [Features](development/features/README.md)
   - [Sixpack A/B Testing](development/features/sixpack-a-b-testing.md)
+    - [Code Experiments](development/features/sixpack-code-experiments.md)
+    - [Contentful Experiments](development/features/sixpack-contentful-experiments.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
   - [Modal Launcher](development/features/modal-launcher.md)
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)

@@ -1,16 +1,28 @@
 # Sixpack A/B Testing
 
+## Overview
+
+The Phoenix platform has the capability of running a variety of A/B Test Experiments to gather insight on what small changes on the web experience between a set of variants perform better. The overall aim is to find what small changes leads to more conversions from our existing website visitor traffic.
+
+## How It Works
+
+To perform all these A/B Test Experiments, we utilize an open-source, language-agnostic A/B testing framework called [Sixpack](https://github.com/sixpack/sixpack). Sixpack runs as an instance on a server that Phoenix communicates with to know what experiments to run and also pass along data to Sixpack regarding conversion on experiments.
+
+To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in `/resources/assets/services/Sixpack.js`.
+
+---
+
 When implementing an A/B test using Sixpack in Phoenix-Next on the front-end, there are a few steps for successfully executing an experiment.
 
 ## Step 1
 
 First, you need to edit the experiments JSON file located in the `/resources/assets` directory, and designate the relavant data for the experiment. The hierarchy is as follows:
 
-* **Experiment Name**: the name of the experiment. e.g. "lede\_banner\_number\_of\_buttons"
-* **Meta-data**:
-  * **Pre-Test** \(`preTest`\): the condition or conditions that need to be met before an experiment can execute
-* **Alternatives**: all of the alternatives for this AB test
-* **Traffic Fraction** \(optional\): The amount of traffic you'd like to expose to this AB test \(The excluded traffic will receive the control alternative, but will not be counted as test participants.\)
+- **Experiment Name**: the name of the experiment. e.g. "lede_banner_number_of_buttons"
+- **Meta-data**:
+  - **Pre-Test** \(`preTest`\): the condition or conditions that need to be met before an experiment can execute
+- **Alternatives**: all of the alternatives for this AB test
+- **Traffic Fraction** \(optional\): The amount of traffic you'd like to expose to this AB test \(The excluded traffic will receive the control alternative, but will not be counted as test participants.\)
 
 ```javascript
 // Example experiments.json
@@ -64,9 +76,9 @@ The `<ExperimentsContainer>` will handle deciding which of the two children comp
 
 Note the `props` passed to each alternative:
 
-* `experiment`: name of experiment these components are a part of.
-* `alternative`: which alternative the component represents.
-* `convert`: method passed down from parent container to the `<Experiment />` component; comes from the `/actions`.
+- `experiment`: name of experiment these components are a part of.
+- `alternative`: which alternative the component represents.
+- `convert`: method passed down from parent container to the `<Experiment />` component; comes from the `/actions`.
 
 ## Step 4
 
@@ -93,4 +105,3 @@ http://example.com?sixpack-force-experiment_name=name_of_alternative_to_show
 ```
 
 The forced alternative will not end up sending any data to Sixpack, so it will not affect the conversion!
-
