@@ -37,6 +37,22 @@ function get_cache_url($prefix, $slug = null)
 }
 
 /**
+ * Get a composed Contentful URL to the current active environment.
+ *
+ * @return string
+ */
+function get_contentful_url()
+{
+    $contentful = config('contentful');
+    $spaceId = $contentful['delivery.space'];
+    $envronment = $contentful['delivery.environment'];
+
+    $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
+
+    return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath;
+}
+
+/**
  * Get a composed Contentful URL to edit a content entry by
  * the specified ID.
  *
@@ -45,13 +61,7 @@ function get_cache_url($prefix, $slug = null)
  */
 function get_contentful_edit_url($contentfulId)
 {
-    $contentful = config('contentful');
-    $spaceId = $contentful['delivery.space'];
-    $envronment = $contentful['delivery.environment'];
-
-    $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
-
-    return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
+    return get_contentful_url().'entries/'.$contentfulId;
 }
 
 /**
@@ -84,6 +94,7 @@ function get_content_type_by_category($category)
         'articles' => 'page',
         'facts' => 'page',
         'stories' => 'storyPage',
+        'campaigns' => 'campaign',
     ];
 
     return data_get($types, $category, 'page');
