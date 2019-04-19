@@ -44,7 +44,6 @@ $router->group(['prefix' => 'v2'], function () {
     $this->get('/signups', 'Api\SignupsController@index');
 
     // Unknown Route Fallback
-    // Ensures JSON response. Complementing fallback in web.php).
     $this->fallback(function () {
         return response()->json(['message' => 'Not Found!'], 404);
     });
