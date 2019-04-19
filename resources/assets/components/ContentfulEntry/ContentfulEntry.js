@@ -59,7 +59,6 @@ class ContentfulEntry extends React.Component<Props, State> {
     // Otherwise, find the corresponding component & render it!
     const { json = DEFAULT_BLOCK, className = null } = this.props;
     const type = parseContentfulType(json);
-    console.log('🐶', type);
 
     switch (type) {
       case 'affirmation':

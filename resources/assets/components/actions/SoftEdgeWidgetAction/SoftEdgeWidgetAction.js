@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Card from '../../utilities/Card/Card';
+
 class SoftEdgeWidgetAction extends React.Component {
   constructor(props) {
     super(props);
-    console.log('🐶', props);
   }
 
   componentDidMount() {
     // this.initSoftEdgeScript();
-    console.log('👍');
   }
 
   /**
@@ -32,8 +32,9 @@ class SoftEdgeWidgetAction extends React.Component {
 
   render() {
     return (
-      // @TODO: Use JS string literal to add SoftEdge ID.
-      <div id="congressweb-action-1" />
+      <Card className="bordered rounded" title={this.props.title}>
+        <div id={`congressweb-action-${this.props.softEdgeId}`} />
+      </Card>
     );
   }
 }
