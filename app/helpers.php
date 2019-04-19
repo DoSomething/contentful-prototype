@@ -82,6 +82,22 @@ function get_page_settings($page, $prefix, $slug = null)
 }
 
 /**
+ * Get page setting variables for the Admin Dashboard for 404 pages.
+ *
+ * @param  string $prefix
+ * @param  string $slug
+ * @return array
+ */
+function get_not_found_page_settings($prefix, $slug)
+{
+    return [
+        'cacheUrl' => get_cache_url($prefix, $slug),
+        'searchUrl'=> get_contentful_url().'entries?searchText='.$slug,
+        'type' => 'Page Not Found',
+    ];
+}
+
+/**
  * Get the appropriate page content type by page category.
  *
  * @param  string $category
