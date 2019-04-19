@@ -53,18 +53,6 @@ function get_contentful_url()
 }
 
 /**
- * Get a composed Contentful URL to edit a content entry by
- * the specified ID.
- *
- * @param  string $contentfulId
- * @return string
- */
-function get_contentful_edit_url($contentfulId)
-{
-    return get_contentful_url().'entries/'.$contentfulId;
-}
-
-/**
  * Get page setting variables for the Admin Dashboard.
  *
  * @param  object $page
@@ -76,7 +64,7 @@ function get_page_settings($page, $prefix, $slug = null)
 {
     return [
         'cacheUrl' => get_cache_url($prefix, $slug),
-        'editUrl' => get_contentful_edit_url($page->id),
+        'editUrl' => get_contentful_url().'entries/'.$page->id,
         'type' => readable_title($page->type),
     ];
 }
