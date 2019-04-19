@@ -9,7 +9,7 @@ class SoftEdgeWidgetAction extends React.Component {
   }
 
   componentDidMount() {
-    // this.initSoftEdgeScript();
+    this.initSoftEdgeScript();
   }
 
   /**
@@ -17,17 +17,36 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   initSoftEdgeScript = () => {
     // Create an item in memory.
-    const script = document.createElement('script');
+    const softEdgeWidget = document.createElement('softEdgeWidget');
 
     // Make the source attribute equal to this URL.
-    script.src = '//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
+    softEdgeWidget.src =
+      '//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
 
     // Attach the new script tag to the head of the document.
-    document.head.append(script);
+    document.head.append(softEdgeWidget);
 
-    // @TODO: in the below this.loadSoftEdgeWidget, that is where you'll run the $cweb function.
-    // Maybe something like window.vit.load.$cweb...
-    script.addEventListener('load', this.loadSoftEdgeWidget);
+    softEdgeWidget.addEventListener('load', this.loadSoftEdgeWidget);
+  };
+
+  /**
+   * Call the SoftEdge method if the congressweb-action-{softEdgeId} object has been added to the window.
+   */
+  loadSoftEdgeWidget = () => {
+    console.log('🍑');
+    let softEdgeWidget = `congressweb-action-${this.props.softEdgeId}`;
+
+    if (!window.softEdgeWidget) {
+      console.log('🙊');
+      return;
+    }
+
+    window.load.$cweb(function() {
+      $cweb('#congressweb-action-1').congressweb({
+        url: '//www.congressweb.com/dosomething/1',
+        responsive: true,
+      });
+    });
   };
 
   render() {
