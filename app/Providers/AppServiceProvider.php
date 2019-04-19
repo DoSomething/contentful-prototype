@@ -72,6 +72,9 @@ class AppServiceProvider extends ServiceProvider
             ]);
         });
 
+        // Attach admin tool variables to 404 pages rendered via the ModelNotFoundException.
+        View::composer('errors::404', 'App\Http\ViewComposers\NotFoundComposer');
+
         // Attach the user & request ID to context for all log messages.
         // @TODO Re-enable this once we resolve https://www.pivotaltracker.com/story/show/165315689.
         // Log::getMonolog()->pushProcessor(function ($record) {

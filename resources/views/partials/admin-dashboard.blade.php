@@ -10,9 +10,15 @@
             <div class="wrapper rounded bg-gray-400">
                 <ul class="list-reset">
                     <li class="margin-bottom-md">
-                        <a class="icon-link font-normal" href="{{ $admin['page']['editUrl'] }}" target="_blank">
-                            @include('svg.edit-pencil-icon', ['class' => 'icon icon-edit-pencil']) Edit this page on Contentful
-                        </a>
+                        @if ($admin['page']['type'] === 'Page Not Found')
+                            <a class="icon-link font-normal" href="{{ $admin['page']['searchUrl'] }}" target="_blank">
+                                @include('svg.search-icon', ['class' => 'icon icon-search']) Search for this page on Contentful
+                            </a>
+                        @else
+                            <a class="icon-link font-normal" href="{{ $admin['page']['editUrl'] }}" target="_blank">
+                                @include('svg.edit-pencil-icon', ['class' => 'icon icon-edit-pencil']) Edit this page on Contentful
+                            </a>
+                        @endif
                     </li>
                     <li class="margin-bottom-md">
                         <a class="icon-link font-normal" href="{{ $admin['page']['cacheUrl'] }}">

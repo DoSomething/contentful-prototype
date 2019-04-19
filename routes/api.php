@@ -42,4 +42,9 @@ $router->group(['prefix' => 'v2'], function () {
 
     // Signups
     $this->get('/signups', 'Api\SignupsController@index');
+
+    // Unknown Route Fallback
+    $this->fallback(function () {
+        return response()->json(['message' => 'Not Found!'], 404);
+    });
 });

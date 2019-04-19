@@ -37,13 +37,11 @@ function get_cache_url($prefix, $slug = null)
 }
 
 /**
- * Get a composed Contentful URL to edit a content entry by
- * the specified ID.
+ * Get a composed Contentful URL to the current active environment.
  *
- * @param  string $contentfulId
  * @return string
  */
-function get_contentful_edit_url($contentfulId)
+function get_contentful_url()
 {
     $contentful = config('contentful');
     $spaceId = $contentful['delivery.space'];
@@ -51,7 +49,7 @@ function get_contentful_edit_url($contentfulId)
 
     $environmentPath = $envronment !== 'master' ? 'environments/'.$envronment.'/' : '';
 
-    return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath.'entries/'.$contentfulId;
+    return config('services.contentful.url').'/spaces/'.$spaceId.'/'.$environmentPath;
 }
 
 /**
@@ -66,8 +64,24 @@ function get_page_settings($page, $prefix, $slug = null)
 {
     return [
         'cacheUrl' => get_cache_url($prefix, $slug),
-        'editUrl' => get_contentful_edit_url($page->id),
+        'editUrl' => get_contentful_url().'entries/'.$page->id,
         'type' => readable_title($page->type),
+    ];
+}
+
+/**
+ * Get page setting variables for the Admin Dashboard for 404 pages.
+ *
+ * @param  string $prefix
+ * @param  string $slug
+ * @return array
+ */
+function get_not_found_page_settings($prefix, $slug)
+{
+    return [
+        'cacheUrl' => get_cache_url($prefix, $slug),
+        'searchUrl'=> get_contentful_url().'entries?searchText='.$slug,
+        'type' => 'Page Not Found',
     ];
 }
 
@@ -84,6 +98,7 @@ function get_content_type_by_category($category)
         'articles' => 'page',
         'facts' => 'page',
         'stories' => 'storyPage',
+        'campaigns' => 'campaign',
     ];
 
     return data_get($types, $category, 'page');
