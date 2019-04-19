@@ -41,7 +41,7 @@ It is recommended for editors to add a custom **Metadata** for pages so that the
 If there is no metadata image provided, the platform falls back to the Campaign or Page cover photo. If there is no cover photo provided for the Campaign or Page, the platform will fall back to the DS logo in a black square for the preview link image.
 {% endhint %}
 
-## Technical Notes
+## Under The Hood
 
 There is a dedicated **Metadata Entity**, which can be found in `app/Entities/Metadata.php`, that collects the data entered into the fields for the respective Metadata content type entry when retrieving the page date from Contentful and building the object for the page.
 
