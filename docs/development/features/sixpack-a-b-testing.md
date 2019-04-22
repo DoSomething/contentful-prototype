@@ -37,7 +37,7 @@ There is a convenient `sixpack()` helper function you should use as an alias, wh
 Regardless of whether a Sixpack A/B Test Experiment is a code test or a Contentful test, in both cases the core component that initiates and participates the current user in the experiment within Phoenix is the `SixpackExperiment` React component.
 
 {% hint style="info"%}
-Within Sixpack and A/B testing in general, the term "participate" indicates that a user is about to take part in an A/B test experiment and will be assigned one of the test alternative varients for the duration of the experiment.
+Within Sixpack and A/B testing in general, the term "participate" indicates that a user is about to take part in an A/B test experiment and will be assigned one of the test alternative variants for the duration of the experiment.
 {% endhint %}
 
 The `SixpackExperiment` component can be found in `/resources/assets/components/utilities/SixpackExperiment/` directory, along with a corresponding `SixpackExperimentContainer.js`.
