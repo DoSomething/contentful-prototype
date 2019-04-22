@@ -376,6 +376,16 @@ module.exports = function(migration) {
     .omitted(false);
 
   campaign
+    .createField('scholarshipDeadline')
+    .name('Scholarship Deadline')
+    .type('Date')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  campaign
     .createField('affiliateOptInContent')
     .name('Affiliate Opt In Content')
     .type('RichText')
@@ -499,6 +509,11 @@ module.exports = function(migration) {
 
   campaign.changeEditorInterface('scholarshipAmount', 'numberEditor', {
     helpText: 'e.g. 5000',
+  });
+
+  campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
+    format: 'dateonly',
+    helpText: 'Deadline to take action and qualify for the scholarship.',
   });
 
   campaign.changeEditorInterface('affiliateOptInContent', 'richTextEditor', {
