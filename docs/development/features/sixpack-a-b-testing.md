@@ -24,6 +24,6 @@ The [Contentful Tests](sixpack-contentful-tests.md) section provides more inform
 
 To perform all these A/B Test Experiments, we utilize an open-source, language-agnostic A/B testing framework called [Sixpack](https://github.com/sixpack/sixpack). Sixpack runs as an instance on a server that Phoenix communicates with to exchange data and also pass along information to Sixpack regarding successful conversions on different experiments.
 
-To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in `/resources/assets/services/Sixpack.js`. This class is only instantiated _once_ during the page request cycle, and contains a key-value store of all the current experiments running on the current page being viewed.
+To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in `/resources/assets/services/Sixpack.js`. This class is only instantiated _once_ during the page request cycle, and contains a key-value store of all the experiments running on the current page being viewed.
 
 _more to come..._
