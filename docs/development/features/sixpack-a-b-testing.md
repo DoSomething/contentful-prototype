@@ -32,13 +32,17 @@ To communicate with the Sixpack server, Phoenix has a `Sixpack` service class lo
 
 There is a convenient `sixpack()` helper function you should use as an alias, which creates a new instance, or retrieves an existing instance of the `Sixpack` service class, ensuring that only one instance of the `Sixpack` is ever called. This function can be found in `/resources/assets/helpers/index.js`.
 
-### SixpackExperiment Component
+### Experiment Participation
 
-Regardless of whether a Sixpack A/B Test Experiment is a code test or a Ccontentful test, in both cases the core component that initiates the experiment in Phoenix is the `SixpackExperiment` React component.
+Regardless of whether a Sixpack A/B Test Experiment is a code test or a Contentful test, in both cases the core component that initiates and participates the current user in the experiment within Phoenix is the `SixpackExperiment` React component.
+
+{% hint style="info"%}
+Within Sixpack and A/B testing in general, the term "participate" indicates that a user is about to take part in an A/B test experiment and will be assigned one of the test alternative varients for the duration of the experiment.
+{% endhint %}
 
 The `SixpackExperiment` component can be found in `/resources/assets/components/utilities/SixpackExperiment/` directory, along with a corresponding `SixpackExperimentContainer.js`.
 
-When a `SixpackExperiment` component is rendered on a page, upon mounting the following takes place:
+When a `SixpackExperiment` component is rendered on a page, upon mounting the following series of steps occur:
 
 1. The component configures some settings to set the name for the experiment, and define what the alternative test options are to choose from.
 2. It then calls the `participate()` method on the `Sixpack` class via the `sixpack()` helper function, which makes an API request to the Sixpack server, and participates the current user in the specified A/B test experiment.
@@ -46,3 +50,10 @@ When a `SixpackExperiment` component is rendered on a page, upon mounting the fo
 4. Within the `Sixpack` service class, this experiment along with the associated alternative test option that was selected for the user is added to the `experiments` object property on the class.
 5. The `participate()` method resolves and returns the name of the selected alternative option for the user to the `SixpackExperiment` component, and assigns it to the `selectedAlternative` component state property.
 6. When the `SixpackExperiment` component state changes with the name of the selected alternative test, it re-renders with the component specified by the selected alternative test name.
+7. On the rendered page, the current user sees one of the various test alternatives; specifically the test alternative that they have been assigned by the Sixpack server.
+
+### Experiment Conversion
+
+A user is converted on a Sixpack A/B test experiment and associated test alternative when they take a particular action that triggers the conversion.
+
+_more about the `sixpackExperiment` middleware..._
