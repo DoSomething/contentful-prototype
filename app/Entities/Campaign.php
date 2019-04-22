@@ -139,6 +139,7 @@ class Campaign extends Entity implements JsonSerializable
             'staffPick' => $this->staffPick,
             'cause' => $this->cause,
             'scholarshipAmount' => $this->scholarshipAmount,
+            'scholarshipDeadline' => $this->scholarshipDeadline,
             'affiliateOptInContent' => $this->affiliateOptInContent,
         ];
     }
