@@ -54,23 +54,22 @@ When a `SixpackExperiment` component is rendered on a page, upon mounting the fo
 
 ### Experiment Conversion
 
-Again, regardless of whether a Sixpack A/B Test Experiment is a code test or a Contentful test, in both cases a user is converted on a Sixpack A/B test experiment and associated test alternative when they take a particular action on a page that triggers the conversion. This action typically involves interacting with a user interface element, like a button, that can programmatically trigger Phoenix to count the conversion on a test.
+Again, regardless of whether a Sixpack A/B Test Experiment is a code test or a Contentful test, in both cases a user is converted on a test alternative for an experiment when they take a particular action on a page that triggers the conversion. This action typically involves interacting with a user interface element, like a button, that can programmatically trigger Phoenix to count the conversion on a test.
 
 {% hint style="info"%}
-...
+Within Sixpack and A/B testing in general, the term "convert" indicates that a user participating in an experiment successfully took action on the test alternative that was assigned to them. The conversion rate for a particular test alternative is based on the number of participants that convert on a test, divided by the total number of participants that experience the test.
 {% endhint %}
 
-Within Phoenix, conversions can be triggered by a variety of actions, like a a campaign signup, a reportback post or clicking a button on a call to action block.
+Within Phoenix, conversions can be triggered by a variety of actions, like a _campaign signup_, a _reportback post_ or clicking a button on a _call to action_ block.
 
-Thus, the following describes how a user is converted on a test within Phoenix within the context of a campaign signup action.
+Thus, the following describes how a user is converted on a test in Phoenix within the context of a campaign signup action.
 
 While on a Campaign landing page, with a Sixpack A/B test experiment running, upon clicking the button to signup for the campaign, the following series of steps occur:
 
-1. `SignupButtonContainer` imports the `clickedSignupAction()` function from `/resources/assets/actions/signup.js` which is used to dispatch actions related to clicking a signup action.
-2. The `SignupButton` calls the `clickedSignupAction()` when the button is clicked.
-3. Along with executing the signup process, the `clickedSignupAction()` function calls the `convertOnSignupAction()` function, which dispatches an action to trigger converting Sixpack experiments on signup.
-4. Next, the `sixpackExperimentMiddleware` catches the dispatched action and it checks for a `payload.meta.sixpackExperiment.conversion` property within the action payload. If it finds a conversion specified on the property, it proceeds to run the `convertOnAction()` method from the `Sixpack` service class.
-5. The `convertOnAction()` method converts all available experiments in the list of registered experiments for a page that match a specified convertible action.
-6. After finding all matching experiments that should convert on the specified action, it calls the `convert()` method on the `Sixpack` service class, which makes an API request to the Sixpack server and coverts the current user on the specified test for the respective A/B experiment.
+1. When clicked, the `SignupButton` component calls the `clickedSignupAction()` function from `/resources/assets/actions/signup.js`.
+2. Along with executing the signup process, the `clickedSignupAction()` function calls the `convertOnSignupAction()` function, which dispatches an action to trigger converting Sixpack experiments on signup; the action payload specifies the `conversion` as `signup`.
+3. Next, the `sixpackExperimentMiddleware` catches the dispatched action and it checks for a `payload.meta.sixpackExperiment.conversion` property within the action payload. If it finds a conversion specified on the property, it proceeds to run the `convertOnAction()` method from the `Sixpack` service class.
+4. The `convertOnAction()` method converts all available experiments within the `experiments` list of registered experiments for a page that match a specified convertable action. For example, this will convert all experiments on the page that specify conversion on a "signup" action.
+5. After finding all matching experiments that should convert on the specified action, it calls the `convert()` method on the `Sixpack` service class, which makes an API request to the Sixpack server for each matching experiment, and coverts the current user on the specified test for a respective A/B experiment.
 
-The conversion happens regardless of whether the user continues with the signup process or not, since we count having simply clicked the button as a successful conversion.
+If the user is anonymous and is prompted to login or register when signing up for a campaign, the test conversion happens regardless of whether the user continues with the signup process or not, since we count having simply clicked the button as a successful conversion.
