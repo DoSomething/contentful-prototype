@@ -4,49 +4,6 @@
 $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 @import '~@dosomething/forge/scss/forge';
 
-.pitch-page {
-  @include media($medium) {
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-
-      border-top: 1px solid $primary-border-color;
-      padding-top: $half-spacing;
-
-      .section-1 {
-        border-right: 1px solid $primary-border-color;
-      }
-
-      .section-2 {
-        padding-left: $half-spacing;
-
-        .section-2a {
-          padding-bottom: $half-spacing;
-        }
-
-        .section-2b {
-          border-top: 1px solid $primary-border-color;
-          padding-top: $half-spacing;
-        }
-      }
-    }
-  }
-
-  @include media($small) {
-    .section-1,
-    .section-2a,
-    .section-2b {
-      border-top: 1px solid $primary-border-color;
-      padding-top: $half-spacing;
-      padding-bottom: $half-spacing;
-    }
-
-    .section-2b {
-      padding-bottom: 0;
-    }
-  }
-}
-
 body,
 html {
   font-family: $primary-font-family;
