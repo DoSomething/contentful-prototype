@@ -1,0 +1,51 @@
+@import '../../../scss/next-toolbox.scss';
+
+.affiliate-scholarship-block {
+  // The border styling used repeatedly throughout this component.
+  $border-style: 1px solid $primary-border-color;
+
+  @include media($medium) {
+    .scholarship-details {
+      display: flex;
+
+      border-top: $border-style;
+      padding-top: $half-spacing;
+
+      .section-1 {
+        flex-basis: 50%;
+        border-right: $border-style;
+      }
+
+      .section-2 {
+        padding-left: $half-spacing;
+
+        .section-2a {
+          padding-bottom: $half-spacing;
+        }
+
+        .section-2b {
+          border-top: $border-style;
+          padding-top: $half-spacing;
+        }
+      }
+    }
+  }
+
+  @include media($small) {
+    .section-1,
+    .section-2a,
+    .section-2b {
+      border-top: $border-style;
+      padding-top: $half-spacing;
+      padding-bottom: $half-spacing;
+    }
+
+    .section-2b {
+      padding-bottom: 0;
+    }
+  }
+
+  .scholarship-amount {
+    font-size: 85px;
+  }
+}
