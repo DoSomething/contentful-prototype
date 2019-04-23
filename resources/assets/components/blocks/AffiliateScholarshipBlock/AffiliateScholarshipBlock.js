@@ -3,17 +3,27 @@ import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
+import { contentfulImageUrl } from '../../../helpers';
 
 import './affiliate-scholarship-block.scss';
 
 const AffiliateScholarshipBlock = ({
+  affiliateLogo,
   affiliateTitle,
   scholarshipAmount,
   scholarshipDeadline,
 }) =>
-  affiliateTitle && scholarshipAmount && scholarshipDeadline ? (
+  affiliateLogo &&
+  affiliateTitle &&
+  scholarshipAmount &&
+  scholarshipDeadline ? (
     <Card className="rounded bordered padded margin-bottom-lg affiliate-scholarship-block">
-      <p className="padding-bottom-md">
+      <img
+        src={contentfulImageUrl(affiliateLogo, '100')}
+        alt="Affiliate logo"
+      />
+
+      <p className="margin-top-sm padding-bottom-md">
         <strong>
           Welcome to DoSomething.org via {affiliateTitle.toUpperCase()}!
         </strong>{' '}
@@ -54,6 +64,7 @@ const AffiliateScholarshipBlock = ({
 
 AffiliateScholarshipBlock.propTypes = {
   affiliateTitle: PropTypes.string.isRequired,
+  affiliateLogo: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number.isRequired,
   scholarshipDeadline: PropTypes.string.isRequired,
 };
