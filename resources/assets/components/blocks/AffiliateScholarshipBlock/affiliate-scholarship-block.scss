@@ -5,25 +5,26 @@
   $border-style: 1px solid $primary-border-color;
 
   @include media($medium) {
-    .scholarship-details {
+    .scholarship-information {
       display: flex;
 
       border-top: $border-style;
       padding-top: $half-spacing;
 
-      .section-1 {
+      .scholarship-information__amount {
         flex-basis: 50%;
         border-right: $border-style;
       }
 
-      .section-2 {
+      .scholarship-information__details {
+        flex-basis: 50%;
         padding-left: $half-spacing;
 
-        .section-2a {
+        .scholarship-deadline {
           padding-bottom: $half-spacing;
         }
 
-        .section-2b {
+        .scholarship-requirements {
           border-top: $border-style;
           padding-top: $half-spacing;
         }
@@ -32,15 +33,15 @@
   }
 
   @include media($small) {
-    .section-1,
-    .section-2a,
-    .section-2b {
+    .scholarship-information__amount,
+    .scholarship-deadline,
+    .scholarship-requirements {
       border-top: $border-style;
       padding-top: $half-spacing;
       padding-bottom: $half-spacing;
     }
 
-    .section-2b {
+    .scholarship-requirements {
       padding-bottom: 0;
     }
   }

@@ -31,16 +31,16 @@ const AffiliateScholarshipBlock = ({
         instructions below for the chance to win. Let’s Do This!
       </p>
 
-      <div className="scholarship-details">
-        <div className="section-1">
+      <div className="scholarship-information">
+        <div className="scholarship-information__amount">
           <p className="font-bold">AMOUNT</p>
           <p className="scholarship-amount league-gothic margin-top-none">
             ${scholarshipAmount.toLocaleString()}
           </p>
         </div>
 
-        <div className="section-2">
-          <div className="section-2a">
+        <div className="scholarship-information__details">
+          <div className="scholarship-deadline">
             <p className="font-bold">DEADLINE</p>
             <p className="margin-top-sm">
               {format(scholarshipDeadline, 'MMMM do, YYYY', {
@@ -49,7 +49,7 @@ const AffiliateScholarshipBlock = ({
             </p>
           </div>
 
-          <div className="section-2b">
+          <div className="scholarship-requirements">
             <p className="font-bold">REQUIREMENTS</p>
             <ul className="margin-top-sm">
               <li>&#8226; 13-25 years old</li>
