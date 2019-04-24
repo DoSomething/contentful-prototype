@@ -17,7 +17,7 @@ const AffiliateScholarshipBlock = ({
   affiliateTitle &&
   scholarshipAmount &&
   scholarshipDeadline ? (
-    <Card className="rounded bordered padded margin-bottom-lg affiliate-scholarship-block">
+    <Card className="rounded bordered padded affiliate-scholarship-block">
       <img
         src={contentfulImageUrl(affiliateLogo, '100')}
         alt="Affiliate logo"
