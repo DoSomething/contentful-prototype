@@ -104,6 +104,11 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/3KpmgDJDHGOO482eoqckkS/bf348e66f940f513905535e35557fc5a/target_tag_logo.jpg',
   },
+  {
+    name: 'NFL',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/4GkuPYrBnKPSKDcfyYppsL/dab4a609b2e5ed03f0bc42fea22ffb8d/nfl_huddle_for_100_dark-01.png',
+  },
 ];
 
 export default sponsorList;
