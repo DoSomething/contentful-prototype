@@ -62,7 +62,7 @@ Within Sixpack and A/B testing in general, the term "convert" indicates that a u
 
 Within Phoenix, conversions can be triggered by a variety of actions, like a _campaign signup_, a _reportback post_ or clicking a button on a _call to action_ block.
 
-Thus, the following describes how a user is converted on a test in Phoenix within the context of a campaign signup action.
+Thus, the following describes how a user is converted on a test in Phoenix within the context of a campaign signup action, but can be applied to other actions and their respective user interface element interaction.
 
 While on a Campaign landing page, with a Sixpack A/B test experiment running, upon clicking the button to signup for the campaign, the following series of steps occur:
 
@@ -72,4 +72,8 @@ While on a Campaign landing page, with a Sixpack A/B test experiment running, up
 4. The `convertOnAction()` method converts all available experiments within the `experiments` list of registered experiments for a page that match a specified convertable action. For example, this will convert all experiments on the page that specify conversion on a "signup" action.
 5. After finding all matching experiments that should convert on the specified action, it calls the `convert()` method on the `Sixpack` service class, which makes an API request to the Sixpack server for each matching experiment, and coverts the current user on the specified test for a respective A/B experiment.
 
+For other types of interface elements that trigger a conversion (other buttons, links, call to action, etc), they will need to ensure they also ultimately dispatch an action, similar to the `convertOnSignupAction()` method mentioned above, that can be caught by the `sixpackExperimentMiddleware` and finalize counting the conversion on the Sixpack server for a specific test alternative.
+
+{% hint style="info"%}
 If the user is anonymous and is prompted to login or register when signing up for a campaign, the test conversion happens regardless of whether the user continues with the signup process or not, since we count having simply clicked the button as a successful conversion.
+{% endhint %}
