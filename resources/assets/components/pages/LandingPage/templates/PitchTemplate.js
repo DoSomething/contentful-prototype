@@ -5,9 +5,8 @@ import Card from '../../../utilities/Card/Card';
 import TextContent from '../../../utilities/TextContent/TextContent';
 
 const PitchTemplate = ({ content, sidebarCTA }) => (
-  <div className="campaign-page pitch-page">
+  <div className="campaign-page">
     <div className="primary">
-
       <TextContent>{content}</TextContent>
     </div>
     <div className="secondary">
