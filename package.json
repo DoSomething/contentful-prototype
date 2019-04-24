@@ -71,7 +71,7 @@
     "classnames": "^2.2.6",
     "core-js": "^2.6.5",
     "css-module-flow": "^1.0.0",
-    "date-fns": "^2.0.0-alpha.27",
+    "date-fns": "2.0.0-alpha.25",
     "dom-delegate": "^2.2.1",
     "dotenv": "^7.0.0",
     "environment-badge": "^1.1.1",
