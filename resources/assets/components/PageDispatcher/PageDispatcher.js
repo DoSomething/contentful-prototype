@@ -20,6 +20,7 @@ const PageDispatcher = props => {
 
 PageDispatcher.propTypes = {
   type: PropTypes.string.isRequired,
+  fields: PropTypes.object.isRequired,
 };
 
 export default PageDispatcher;

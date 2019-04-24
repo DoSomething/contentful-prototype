@@ -48,6 +48,7 @@ const LinkAction = props => {
 };
 
 LinkAction.propTypes = {
+  id: PropTypes.string.isRequired,
   template: PropTypes.string,
 };
 
