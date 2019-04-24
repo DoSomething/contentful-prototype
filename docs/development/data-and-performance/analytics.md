@@ -94,11 +94,23 @@ The event's `data.waypointData` field will contain the `contentfulId` (ID of the
 
 ### Events tracked by [Northstar](https://github.com/DoSomething/northstar)
 
-| Event Name                         | Event Description                 | Platforms |
-| ---------------------------------- | --------------------------------- | --------- |
-| `northstar_clicked_login_facebook` | clicked the Facebook login button | Puck      |
-| `northstar_submitted_login`        | submitted the login form          | Puck      |
-| `northstar_submitted_register`     | submitted the registration form   | Puck      |
+| Event Name                                     | Event Description                                                                           | Platforms |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------- | --------- |
+| `northstar_clicked_login`                      | clicked the 'Log In' button linking to the log in form                                      | Puck, GA  |
+| `northstar_clicked_register`                   | clicked the 'Create a DoSomething.org account' link                                         | Puck, GA  |
+| `northstar_clicked_password_forgot`            | clicked the 'Forgot your password?' link                                                    | Puck, GA  |
+| `northstar_clicked_login_facebook`             | clicked the Facebook auth button                                                            | Puck, GA  |
+| `northstar_failed_validation`                  | Form was submitted but returned with validation errors (from the backend)                   | Puck, GA  |
+| `northstar_focused_field_[field_name]`         | focused on a text field in the form.                                                        | Puck, GA  |
+| `northstar_submitted_edit_profile`             | submitted the edit profile form                                                             | Puck, GA  |
+| `northstar_submitted_forgot_password`          | clicked the Request New Password button or hit Enter key to submit the forgot password form | Puck, GA  |
+| `northstar_submitted_login`                    | submitted the login form                                                                    | Puck, GA  |
+| `northstar_submitted_reset_password`           | submitted the password reset form                                                           | Puck, GA  |
+| `northstar_submitted_register`                 | submitted the registration form                                                             | Puck, GA  |
+| `northstar_triggered_error_field_[field_name]` | inline validation error for specific input field                                            | Puck, GA  |
+| `northstar_triggered_error_submit_register`    | register form was submitted but rejected inline due to validation errors                    | Puck, GA  |
+| `northstar_triggered_suggestion_field_email`   | email field on registration form triggered a domain fix suggestion                          | Puck, GA  |
+| `northstar_used_suggestion_field_email`        | used the suggested fix for the email field                                                  | Puck, GA  |
 
 ## Developer Info
 
