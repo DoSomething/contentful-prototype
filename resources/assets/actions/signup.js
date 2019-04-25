@@ -118,7 +118,7 @@ export function getCampaignSignups(id = null, query = {}) {
  * @param  {Object} data
  * @return {Function}
  */
-export function storeCampaignSignup(campaignId, data) {
+export function storeCampaignSignup(campaignId, data = {}) {
   const analytics = get(data, 'analytics', {});
   const path = join('api/v2/campaigns', campaignId, 'signups');
   const type = 'signup';
