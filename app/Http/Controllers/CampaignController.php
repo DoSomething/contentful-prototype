@@ -60,7 +60,7 @@ class CampaignController extends Controller
     {
         $campaign = $this->campaignRepository->findBySlug($slug);
 
-        return view('app', [
+        return response()->view('app', [
             // This is used to build campaign-specific login links in the
             // server-rendered top navigation bar.
             'campaign' => $campaign,
@@ -69,8 +69,9 @@ class CampaignController extends Controller
             // We render social metatags server-side because Facebook & Twitter
             // do not render JavaScript when crawling pages like Google does.
             'socialFields' => get_campaign_social_fields($campaign, $request->url()),
-        ])->with('state', [
-            'campaign' => $campaign,
-        ]);
+            'state' => [
+                'campaign' => $campaign,
+            ],
+        ])->cacheable();
     }
 }

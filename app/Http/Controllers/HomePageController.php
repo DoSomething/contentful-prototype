@@ -37,12 +37,13 @@ class HomePageController extends Controller
             return redirect('/us/campaigns');
         }
 
-        return view('app', [
+        return response()->view('app', [
             'headTitle' => $homePage->fields->title,
             'legacyNavigation' => true,
+            'homePage' => $homePage,
             'admin' => [
                 'page' => get_page_settings($homePage, 'home_pages'),
             ],
-        ])->with('homePage', $homePage);
+        ])->cacheable();
     }
 }

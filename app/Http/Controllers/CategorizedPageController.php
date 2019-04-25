@@ -37,15 +37,16 @@ class CategorizedPageController extends Controller
 
         $page = $this->pageRepository->findBySlug($contentType, $category.'/'.$slug);
 
-        return view('app', [
+        return response()->view('app', [
             'headTitle' => $page->fields->title,
             'metadata' => get_metadata($page),
             'socialFields' => get_social_fields($page),
             'admin' => [
                 'page' => get_page_settings($page, 'page', $category.'/'.$slug),
             ],
-        ])->with('state', [
-            'page' => $page,
-        ]);
+            'state' => [
+                'page' => $page,
+            ],
+        ])->cacheable();
     }
 }
