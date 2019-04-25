@@ -27,8 +27,7 @@ const LandingPage = props => {
 
   return (
     <div>
-      {campaignId === '3pwxnRZxociqMaQCMcGOyc' ||
-      campaignId === '2YnPcG3G8EgAmWOAC48aWU' ? (
+      {campaignId === '3pwxnRZxociqMaQCMcGOyc' ? (
         <SixpackExperimentContainer
           title="LedeBanner Layout Experiment"
           convertableActions={['signup']}
