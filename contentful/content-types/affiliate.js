@@ -84,7 +84,7 @@ module.exports = function(migration) {
         },
 
         message:
-          'The UTM Label field can only contain lower case letters or numbers and must be snake cased (http://bit.ly/2Pxkxv9).',
+          'The UTM Label field can only contain lower case, alphanumeric characters and must be snake cased (http://bit.ly/2Pxkxv9).',
       },
     ])
     .disabled(false)
