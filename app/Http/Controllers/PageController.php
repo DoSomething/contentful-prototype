@@ -44,7 +44,7 @@ class PageController extends Controller
             ],
             'state' => [
                 'page' => $page,
-            ]
+            ],
         ])->cacheable();
     }
 }
