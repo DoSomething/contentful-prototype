@@ -60,7 +60,47 @@ module.exports = function(migration) {
     .omitted(false)
     .linkType('Asset');
 
+  affiliates
+    .createField('utmLabel')
+    .name('UTM Label')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        unique: true,
+      },
+      {
+        size: {
+          max: 50,
+        },
+
+        message: 'The UTM Label field may not exceed 50 characters.',
+      },
+      {
+        regexp: {
+          pattern: '^[a-z0-9_]*$',
+          flags: null,
+        },
+
+        message:
+          'The UTM Label field can only contain lower case letters or numbers and must be snake cased (http://bit.ly/2Pxkxv9).',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  affiliates.changeEditorInterface('internalTitle', 'singleLine', {
+    helpText:
+      'This title is used internally to help find this content in the CMS. It will not be displayed anywhere on the website.',
+  });
+
   affiliates.changeEditorInterface('title', 'singleLine', {});
   affiliates.changeEditorInterface('link', 'urlEditor', {});
   affiliates.changeEditorInterface('logo', 'assetLinkEditor', {});
+
+  affiliates.changeEditorInterface('utmLabel', 'singleLine', {
+    helpText:
+      'The UTM parameter label identifying this affiliate. (Primarily used to identify referring scholarship affiliate partners).',
+  });
 };
