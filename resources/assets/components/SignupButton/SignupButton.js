@@ -8,16 +8,16 @@ const SignupButton = props => {
   const {
     affiliateMessagingOptIn,
     campaignActionText,
+    campaignContentfulId,
+    campaignId,
     className,
-    clickedSignupAction,
     disableSignup,
     source,
     sourceActionText,
+    storeCampaignSignup,
     template,
     text,
     trafficSource,
-    campaignId,
-    campaignContentfulId,
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
@@ -29,7 +29,7 @@ const SignupButton = props => {
       details.affiliateOptIn = true;
     }
 
-    clickedSignupAction(campaignId, {
+    storeCampaignSignup(campaignId, {
       body: { details: JSON.stringify(details) },
       analytics: {
         campaignContentfulId,
@@ -59,13 +59,13 @@ const SignupButton = props => {
 SignupButton.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   campaignActionText: PropTypes.string,
-  className: PropTypes.string,
-  clickedSignupAction: PropTypes.func.isRequired,
-  disableSignup: PropTypes.bool,
-  campaignId: PropTypes.string.isRequired,
   campaignContentfulId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  disableSignup: PropTypes.bool,
   source: PropTypes.string.isRequired,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
+  storeCampaignSignup: PropTypes.func.isRequired,
   template: PropTypes.string,
   text: PropTypes.string,
   trafficSource: PropTypes.string,

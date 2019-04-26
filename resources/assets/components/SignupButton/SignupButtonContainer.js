@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
-import { clickedSignupAction } from '../../actions/signup';
+import { storeCampaignSignup } from '../../actions/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -23,7 +23,7 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  clickedSignupAction,
+  storeCampaignSignup,
 };
 
 // Export the container component.
