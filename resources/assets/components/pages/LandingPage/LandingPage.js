@@ -16,6 +16,8 @@ const LandingPage = props => {
   const {
     campaignId,
     content,
+    scholarshipAmount,
+    scholarshipDeadline,
     showPartnerMsgOptIn,
     sidebar,
     signupArrowContent,
@@ -52,7 +54,12 @@ const LandingPage = props => {
 
       <div className="clearfix bg-off-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
-          <PitchTemplate content={content} sidebarCTA={sidebarCTA} />
+          <PitchTemplate
+            content={content}
+            sidebarCTA={sidebarCTA}
+            scholarshipAmount={scholarshipAmount}
+            scholarshipDeadline={scholarshipDeadline}
+          />
         </Enclosure>
 
         <CallToActionContainer content={tagline} sticky />
@@ -78,6 +85,8 @@ const LandingPage = props => {
 LandingPage.propTypes = {
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  scholarshipAmount: PropTypes.number,
+  scholarshipDeadline: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,
@@ -85,6 +94,8 @@ LandingPage.propTypes = {
 };
 
 LandingPage.defaultProps = {
+  scholarshipAmount: null,
+  scholarshipDeadline: null,
   showPartnerMsgOptIn: false,
   sidebar: null,
   signupArrowContent: null,

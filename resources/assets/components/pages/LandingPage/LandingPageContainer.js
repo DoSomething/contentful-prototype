@@ -15,6 +15,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     campaignId: state.campaign.id,
     content: landingPage.content,
+    scholarshipAmount: state.campaign.scholarshipAmount,
+    scholarshipDeadline: state.campaign.scholarshipDeadline,
     showPartnerMsgOptIn: get(
       state.campaign.additionalContent,
       'displayAffilitateOptOut',
