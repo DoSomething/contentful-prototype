@@ -50,4 +50,9 @@ class SoftEdgeWidgetAction extends React.Component {
   }
 }
 
+SoftEdgeWidgetAction.propTypes = {
+  title: PropTypes.string,
+  softEdgeId: PropTypes.int,
+};
+
 export default SoftEdgeWidgetAction;
