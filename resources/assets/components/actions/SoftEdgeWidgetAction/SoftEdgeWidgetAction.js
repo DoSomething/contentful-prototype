@@ -17,33 +17,25 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   initSoftEdgeScript = () => {
     // Create an item in memory.
-    const softEdgeWidget = document.createElement('softEdgeWidget');
+    const script = document.createElement('script');
 
     // Make the source attribute equal to this URL.
-    softEdgeWidget.src =
-      '//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
+    script.src = '//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
 
     // Attach the new script tag to the head of the document.
-    document.head.append(softEdgeWidget);
-
-    softEdgeWidget.addEventListener('load', this.loadSoftEdgeWidget);
+    document.head.append(script);
+    script.addEventListener('load', this.loadSoftEdgeWidget);
   };
 
   /**
    * Call the SoftEdge method if the congressweb-action-{softEdgeId} object has been added to the window.
    */
   loadSoftEdgeWidget = () => {
-    console.log('🍑');
-    let softEdgeWidget = `congressweb-action-${this.props.softEdgeId}`;
+    let softEdgeId = this.props.softEdgeId;
 
-    if (!window.softEdgeWidget) {
-      console.log('🙊');
-      return;
-    }
-
-    window.load.$cweb(function() {
-      $cweb('#congressweb-action-1').congressweb({
-        url: '//www.congressweb.com/dosomething/1',
+    window.$cweb(function() {
+      $cweb(`#congressweb-action-${softEdgeId}`).congressweb({
+        url: `//www.congressweb.com/dosomething/${softEdgeId}`,
         responsive: true,
       });
     });
@@ -59,10 +51,3 @@ class SoftEdgeWidgetAction extends React.Component {
 }
 
 export default SoftEdgeWidgetAction;
-
-// <!-- Plugin BEGIN -->
-// <script language="javascript" src="//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js"></script>
-// The below might be the function instead of this.loadVit...play around with this.
-// <script language="javascript">$cweb(function(){ $cweb('#congressweb-action-1').congressweb({ url : '//www.congressweb.com/dosomething/1', responsive  : true }); });</script>
-// <div id="congressweb-action-1"></div>
-// <!-- Plugin END -->
