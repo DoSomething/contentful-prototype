@@ -44,6 +44,6 @@ class HomePageController extends Controller
             'admin' => [
                 'page' => get_page_settings($homePage, 'home_pages'),
             ],
-        ])->cacheable();
+        ])->cacheableWhenAnonymous();
     }
 }

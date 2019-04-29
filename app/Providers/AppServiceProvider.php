@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
         // @see: https://laravel-news.com/laravel-5-4-key-too-long-error
         Schema::defaultStringLength(191);
 
-        // A simple $response->cacheable() macro:
-        Response::macro('cacheable', function ($seconds = 5 * 60) {
+        // A simple $response->cacheableWhenAnonymous() macro:
+        Response::macro('cacheableWhenAnonymous', function ($seconds = 5 * 60) {
             // If this is an anonymous request, this macro tells Fastly to cache for
             // N seconds so we can handle sudden traffic spikes, e.g. https://git.io/fjs2W
             if (Auth::guest()) {

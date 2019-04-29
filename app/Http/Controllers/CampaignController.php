@@ -72,6 +72,6 @@ class CampaignController extends Controller
             'state' => [
                 'campaign' => $campaign,
             ],
-        ])->cacheable();
+        ])->cacheableWhenAnonymous();
     }
 }
