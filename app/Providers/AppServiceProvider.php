@@ -106,6 +106,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton(\App\Http\Middleware\StartSession::class);
+
         $this->app->alias(DeliveryClient::class, 'contentful.delivery');
     }
 }
