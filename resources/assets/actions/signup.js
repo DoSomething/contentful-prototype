@@ -33,24 +33,6 @@ export function clickedHideAffirmation() {
   return { type: CLOSED_POST_SIGNUP_MODAL };
 }
 
-/**
- * Action to trigger converting Sixpack experiments on signup.
- *
- * @return {Object}
- */
-export function convertOnSignupAction() {
-  return {
-    type: 'CLICKED_SIGNUP_BUTTON',
-    payload: {
-      meta: {
-        sixpackExperiments: {
-          conversion: 'signup',
-        },
-      },
-    },
-  };
-}
-
 // Action: triggers the post signup affirmation modal.
 // This is for admin usage.
 export function clickedShowAffirmation() {
@@ -156,20 +138,5 @@ export function storeCampaignSignup(campaignId, data = {}) {
         url: `${PHOENIX_URL}/${path}`,
       }),
     );
-  };
-}
-
-/**
- * Dispatch actions related to clicking a signup action.
- *
- * @param  {String} campaignId
- * @param  {Object} data
- * @return {Function}
- */
-export function clickedSignupAction(campaignId, data = {}) {
-  return dispatch => {
-    dispatch(convertOnSignupAction());
-
-    dispatch(storeCampaignSignup(campaignId, data));
   };
 }

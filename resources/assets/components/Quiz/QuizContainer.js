@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import Quiz from './Quiz';
-import { clickedSignupAction } from '../../actions/signup';
+import { storeCampaignSignup } from '../../actions/signup';
 import { isAuthenticated } from '../../selectors/user';
 
 /**
@@ -19,7 +19,7 @@ const mapStateToProps = state => ({
  * actions to the Redux store as props for this component.
  */
 const actionCreators = {
-  clickedSignupAction,
+  storeCampaignSignup,
 };
 
 export default withRouter(
