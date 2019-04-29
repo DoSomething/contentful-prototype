@@ -18,7 +18,8 @@ class StartSession extends Middleware
         $isAnonymousSession = ! $request->cookies->has(config('session.cookie'));
         $isAuthenticating = $request->path() === 'next/login';
 
-        // If we don't have a session cookie, use the 'array' driver.
+        // If we don't have a session cookie (or otherwise need to persist things
+        // between requests, like in login flow), use the 'array' driver.
         if ($isAnonymousSession && ! $isAuthenticating) {
             config(['session.driver' => 'array']);
         }
