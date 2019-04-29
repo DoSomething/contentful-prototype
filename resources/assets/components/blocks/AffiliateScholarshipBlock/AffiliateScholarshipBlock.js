@@ -51,10 +51,10 @@ const AffiliateScholarshipBlock = ({
 
           <div className="scholarship-requirements">
             <p className="font-bold">REQUIREMENTS</p>
-            <ul className="margin-top-sm">
-              <li>&#8226; 13-25 years old</li>
-              <li>&#8226; No minimum GPA</li>
-              <li>&#8226; No essay</li>
+            <ul className="margin-top-sm list">
+              <li>13-25 years old</li>
+              <li>No minimum GPA</li>
+              <li>No essay</li>
             </ul>
           </div>
         </div>
