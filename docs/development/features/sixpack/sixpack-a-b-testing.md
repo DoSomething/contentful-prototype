@@ -28,9 +28,9 @@ The [Contentful Tests](sixpack-contentful-tests.md) section provides more inform
 
 To perform all these A/B Test Experiments, we utilize an open-source, language-agnostic A/B testing framework called [Sixpack](https://github.com/sixpack/sixpack). Sixpack runs as an instance on a server that Phoenix communicates with to exchange data and also pass along information to Sixpack regarding successful conversions on different experiments.
 
-To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in `/resources/assets/services/Sixpack.js`. This class is only instantiated _once_ during the page request cycle and only if an experiment is initiated; it contains a key-value store of all the experiments running on the current page being viewed.
+To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in [`/resources/assets/services/Sixpack.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/services/Sixpack.js). This class is only instantiated _once_ during the page request cycle and only if an experiment is initiated; it contains a key-value store of all the experiments running on the current page being viewed.
 
-There is a convenient `sixpack()` helper function you should use as an alias, which creates a new instance, or retrieves an existing instance of the `Sixpack` service class, ensuring that only one instance of the `Sixpack` is ever called. This function can be found in `/resources/assets/helpers/index.js`.
+There is a convenient `sixpack()` helper function you should use as an alias, which creates a new instance, or retrieves an existing instance of the `Sixpack` service class, ensuring that only one instance of the `Sixpack` is ever called. This function can be found in [`/resources/assets/helpers/index.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/helpers/index.js).
 
 ### Experiment Participation
 
@@ -40,7 +40,7 @@ Regardless of whether a Sixpack A/B Test Experiment is a code test or a Contentf
 Within Sixpack and A/B testing in general, the term "participate" indicates that a user is about to take part in an A/B test experiment and will be assigned one of the test alternative variants for the duration of the experiment.
 {% endhint %}
 
-The `SixpackExperiment` component can be found in `/resources/assets/components/utilities/SixpackExperiment/` directory, along with a corresponding `SixpackExperimentContainer.js`.
+The `SixpackExperiment` component can be found in [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, along with a corresponding `SixpackExperimentContainer.js`.
 
 When a `SixpackExperiment` component is rendered on a page, upon mounting the following series of steps occur:
 
@@ -66,8 +66,8 @@ Thus, the following describes how a user is converted on a test in Phoenix withi
 
 While on a Campaign landing page, with a Sixpack A/B test experiment running, upon clicking the button to signup for the campaign, the following series of steps occur:
 
-1. When clicked, the `SignupButton` component calls the `clickedSignupAction()` function from `/resources/assets/actions/signup.js`.
-2. Along with executing the signup process, the `clickedSignupAction()` function calls the `convertOnSignupAction()` function, which dispatches an action to trigger converting Sixpack experiments on signup; the action payload specifies the `conversion` as `signup`.
+1. When clicked, the `SignupButton` component calls the `storeCampaignSignup()` function from [`/resources/assets/actions/signup.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/actions/signup.js).
+2. The `storeCampaignSignup()` function dispatches an action to store the signup, and within the payload for the action there is a `sixpackExperiments` property that specifies the `conversion` as `signup` to trigger converting Sixpack experiments on signup.
 3. Next, the `sixpackExperimentMiddleware` catches the dispatched action and it checks for a `payload.meta.sixpackExperiment.conversion` property within the action payload. If it finds a conversion specified on the property, it proceeds to run the `convertOnAction()` method from the `Sixpack` service class.
 4. The `convertOnAction()` method converts all available experiments within the `experiments` list of registered experiments for a page that match a specified convertable action. For example, this will convert all experiments on the page that specify conversion on a "signup" action.
 5. After finding all matching experiments that should convert on the specified action, it calls the `convert()` method on the `Sixpack` service class, which makes an API request to the Sixpack server for each matching experiment, and coverts the current user on the specified test for a respective A/B experiment.
