@@ -1,13 +1,11 @@
+/* global window, document, $cweb */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
 
 class SoftEdgeWidgetAction extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.initSoftEdgeScript();
   }
@@ -31,9 +29,9 @@ class SoftEdgeWidgetAction extends React.Component {
    * Call the SoftEdge method if the congressweb-action-{softEdgeId} object has been added to the window.
    */
   loadSoftEdgeWidget = () => {
-    let softEdgeId = this.props.softEdgeId;
+    const softEdgeId = this.props.softEdgeId;
 
-    window.$cweb(function() {
+    window.$cweb(() => {
       $cweb(`#congressweb-action-${softEdgeId}`).congressweb({
         url: `//www.congressweb.com/dosomething/${softEdgeId}`,
         responsive: true,
@@ -51,8 +49,13 @@ class SoftEdgeWidgetAction extends React.Component {
 }
 
 SoftEdgeWidgetAction.propTypes = {
-  title: PropTypes.string,
-  softEdgeId: PropTypes.int,
+  title: PropTypes.string.isRequired,
+  softEdgeId: PropTypes.number.isRequired,
+};
+
+SoftEdgeWidgetAction.defaultProps = {
+  title: null,
+  softEdgeId: null,
 };
 
 export default SoftEdgeWidgetAction;
