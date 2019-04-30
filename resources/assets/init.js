@@ -15,6 +15,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import thunk from 'redux-thunk';
+import renderEnvironmentBadge from 'environment-badge';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 
 import * as reducers from './reducers';
@@ -46,11 +47,8 @@ import { bindNavigationEvents } from './helpers/navigation';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 
-// Display environment badge on local, dev, or QA:
-require('environment-badge')();
-
-// Configure store & history.
 ready(() => {
+  // Configure store & history.
   const history = historyInit();
   const middleware = [thunk, routerMiddleware(history)];
   const preloadedState = window.STATE || {};
@@ -71,6 +69,9 @@ ready(() => {
 
   // Add event listeners for the Flash Message.
   bindFlashMessageEvents();
+
+  // Display environment badge on local, dev, or QA:
+  renderEnvironmentBadge();
 
   // Add event listeners for the Admin Dashboard.
   if (window.AUTH.isAuthenticated && window.AUTH.role !== 'user') {
