@@ -1,15 +1,23 @@
 @import '../../../scss/next-toolbox.scss';
 
 .affiliate-scholarship-block {
-  // The border styling used repeatedly throughout this component.
+  // The border styling used throughout this component.
   $border-style: 1px solid $primary-border-color;
+
+  .scholarship-information,
+  .scholarship-deadline,
+  .scholarship-requirements {
+    border-top: $border-style;
+    padding-top: $half-spacing;
+  }
+
+  .scholarship-deadline {
+    padding-bottom: $half-spacing;
+  }
 
   @include media($medium) {
     .scholarship-information {
       display: flex;
-
-      border-top: $border-style;
-      padding-top: $half-spacing;
 
       .scholarship-information__amount {
         flex-basis: 50%;
@@ -19,30 +27,12 @@
       .scholarship-information__details {
         flex-basis: 50%;
         padding-left: $half-spacing;
-
-        .scholarship-deadline {
-          padding-bottom: $half-spacing;
-        }
-
-        .scholarship-requirements {
-          border-top: $border-style;
-          padding-top: $half-spacing;
-        }
       }
-    }
-  }
 
-  @include media($small) {
-    .scholarship-information__amount,
-    .scholarship-deadline,
-    .scholarship-requirements {
-      border-top: $border-style;
-      padding-top: $half-spacing;
-      padding-bottom: $half-spacing;
-    }
-
-    .scholarship-requirements {
-      padding-bottom: 0;
+      .scholarship-deadline {
+        border-top: none;
+        padding-top: 0;
+      }
     }
   }
 
