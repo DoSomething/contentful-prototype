@@ -14,19 +14,14 @@ class SoftEdgeWidgetAction extends React.Component {
    * Append the SoftEdge to the DOM and add event listener for when it loads.
    */
   initSoftEdgeScript = () => {
-    // Create an item in memory.
     const script = document.createElement('script');
-
-    // Make the source attribute equal to this URL.
     script.src = '//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
-
-    // Attach the new script tag to the head of the document.
     document.head.append(script);
     script.addEventListener('load', this.loadSoftEdgeWidget);
   };
 
   /**
-   * Call the SoftEdge method if the congressweb-action-{softEdgeId} object has been added to the window.
+   * Call the SoftEdge method once the SoftEdge script has finished loading and appended to the page.
    */
   loadSoftEdgeWidget = () => {
     const softEdgeId = this.props.softEdgeId;
