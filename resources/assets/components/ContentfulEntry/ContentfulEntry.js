@@ -21,6 +21,7 @@ import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
+import SoftEdgeWidgetAction from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetAction';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
@@ -30,7 +31,6 @@ import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/Su
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
-
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
@@ -258,6 +258,9 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'socialDriveAction':
         return <SocialDriveActionContainer {...json.fields} />;
+
+      case 'softEdgeWidgetAction':
+        return <SoftEdgeWidgetAction {...json.fields} />;
 
       case 'static':
         return (
