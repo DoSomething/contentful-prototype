@@ -34,7 +34,7 @@ class PageController extends Controller
     {
         $page = $this->pageRepository->findBySlug('page', $slug);
 
-        return view('app', [
+        return response()->view('app', [
             'headTitle' => $page->fields->title,
             'metadata' => get_metadata($page),
             'socialFields' => get_social_fields($page),
@@ -42,8 +42,9 @@ class PageController extends Controller
             'admin' => [
                 'page' => get_page_settings($page, 'page', $slug),
             ],
-        ])->with('state', [
-            'page' => $page,
-        ]);
+            'state' => [
+                'page' => $page,
+            ],
+        ])->cacheableWhenAnonymous();
     }
 }
