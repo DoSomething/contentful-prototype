@@ -52,7 +52,7 @@ const LandingPage = props => {
         />
       )}
 
-      <div className="clearfix bg-off-white">
+      <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
           <PitchTemplate
             content={content}
