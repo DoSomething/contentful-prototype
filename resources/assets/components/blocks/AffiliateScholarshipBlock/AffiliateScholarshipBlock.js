@@ -38,7 +38,9 @@ const AffiliateScholarshipBlock = ({
         <div className="scholarship-information__amount">
           <p className="font-bold">AMOUNT</p>
           <p className="scholarship-amount league-gothic margin-top-none">
-            ${scholarshipAmount.toLocaleString()}
+            {scholarshipAmount
+              ? `$${scholarshipAmount.toLocaleString()}`
+              : 'N/A'}
           </p>
         </div>
 
@@ -46,9 +48,11 @@ const AffiliateScholarshipBlock = ({
           <div className="scholarship-deadline">
             <p className="font-bold">DEADLINE</p>
             <p className="margin-top-sm">
-              {format(scholarshipDeadline, 'MMMM do, YYYY', {
-                awareOfUnicodeTokens: true,
-              })}
+              {scholarshipDeadline
+                ? format(scholarshipDeadline, 'MMMM do, YYYY', {
+                    awareOfUnicodeTokens: true,
+                  })
+                : 'N/A'}
             </p>
           </div>
 
