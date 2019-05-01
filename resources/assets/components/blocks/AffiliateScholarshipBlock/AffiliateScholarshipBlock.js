@@ -11,63 +11,57 @@ const AffiliateScholarshipBlock = ({
   affiliateTitle,
   scholarshipAmount,
   scholarshipDeadline,
-}) =>
-  affiliateLogo &&
-  affiliateTitle &&
-  scholarshipAmount &&
-  scholarshipDeadline ? (
-    <Card className="rounded bordered padded affiliate-scholarship-block">
-      {affiliateLogo ? (
-        <img
-          className="affiliate-logo"
-          src={affiliateLogo.url}
-          alt={affiliateLogo.description || 'Affiliate logo'}
-        />
-      ) : null}
+}) => (
+  <Card className="rounded bordered padded affiliate-scholarship-block">
+    {affiliateLogo ? (
+      <img
+        className="affiliate-logo"
+        src={affiliateLogo.url}
+        alt={affiliateLogo.description || 'Affiliate logo'}
+      />
+    ) : null}
 
-      <p className="margin-top-sm padding-bottom-md">
-        <strong>
-          Welcome to DoSomething.org
-          {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
-        </strong>{' '}
-        Ready to earn scholarships for doing good? Just follow the simple
-        instructions below for the chance to win. Let’s Do This!
-      </p>
+    <p className="margin-top-sm padding-bottom-md">
+      <strong>
+        Welcome to DoSomething.org
+        {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
+      </strong>{' '}
+      Ready to earn scholarships for doing good? Just follow the simple
+      instructions below for the chance to win. Let’s Do This!
+    </p>
 
-      <div className="scholarship-information">
-        <div className="scholarship-information__amount">
-          <p className="font-bold">AMOUNT</p>
-          <p className="scholarship-amount league-gothic margin-top-none">
-            {scholarshipAmount
-              ? `$${scholarshipAmount.toLocaleString()}`
+    <div className="scholarship-information">
+      <div className="scholarship-information__amount">
+        <p className="font-bold">AMOUNT</p>
+        <p className="scholarship-amount league-gothic margin-top-none">
+          {scholarshipAmount ? `$${scholarshipAmount.toLocaleString()}` : 'N/A'}
+        </p>
+      </div>
+
+      <div className="scholarship-information__details">
+        <div className="scholarship-deadline">
+          <p className="font-bold">DEADLINE</p>
+          <p className="margin-top-sm">
+            {scholarshipDeadline
+              ? format(scholarshipDeadline, 'MMMM do, YYYY', {
+                  awareOfUnicodeTokens: true,
+                })
               : 'N/A'}
           </p>
         </div>
 
-        <div className="scholarship-information__details">
-          <div className="scholarship-deadline">
-            <p className="font-bold">DEADLINE</p>
-            <p className="margin-top-sm">
-              {scholarshipDeadline
-                ? format(scholarshipDeadline, 'MMMM do, YYYY', {
-                    awareOfUnicodeTokens: true,
-                  })
-                : 'N/A'}
-            </p>
-          </div>
-
-          <div className="scholarship-requirements">
-            <p className="font-bold">REQUIREMENTS</p>
-            <ul className="margin-top-sm list">
-              <li>13-25 years old</li>
-              <li>No minimum GPA</li>
-              <li>No essay</li>
-            </ul>
-          </div>
+        <div className="scholarship-requirements">
+          <p className="font-bold">REQUIREMENTS</p>
+          <ul className="margin-top-sm list">
+            <li>13-25 years old</li>
+            <li>No minimum GPA</li>
+            <li>No essay</li>
+          </ul>
         </div>
       </div>
-    </Card>
-  ) : null;
+    </div>
+  </Card>
+);
 
 AffiliateScholarshipBlock.propTypes = {
   affiliateTitle: PropTypes.string,
