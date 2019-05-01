@@ -787,6 +787,20 @@ export function isActionPage(page) {
 }
 
 /**
+ * Get the Scholarship Affiliate Referrer's UTM Label.
+ *
+ * @return {String|Undefined|Null}
+ */
+export function getScholarshipAffiliateLabel() {
+  const utmMedium = query('utm_medium');
+  const utmCampaign = query('utm_campaign');
+
+  // If the utm_medium contains 'scholarship', we assume this visit to be a scholarship
+  // affiliate referral, and use the utm_campaign to determine the affiliate UTM label.
+  return utmMedium && utmMedium.includes('scholarship') ? utmCampaign : null;
+}
+
+/**
  * Toggle the specified class on the given target element
  * when the button element is clicked or touched.
  *
