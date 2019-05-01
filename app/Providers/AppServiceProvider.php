@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
             // If this is an anonymous request, this macro tells Fastly to cache for
             // N seconds so we can handle sudden traffic spikes, e.g. https://git.io/fjs2W
             if (Auth::guest()) {
-                $this->setPublic()->setMaxAge($seconds);
+                $this->setPublic()->setSharedMaxAge($seconds);
             }
 
             return $this;
