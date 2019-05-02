@@ -1,10 +1,10 @@
 # Sixpack Code Tests
 
-To create a Sixpack A/B Test Experiment in code, you first need to determine the component that would be overridden to render out each alternative to be tested.
-
 As an example to help with describing the steps involved, lets consider a Sixpack A/B Test Experiment to test between two alternative variations of the template used for the lede banner on the campaign landing page.
 
 ![Sixpack Lede Banner Template Alternatives](../../../.gitbook/assets/sixpack-lede-banner-template-alternatives.png)
+
+To create a Sixpack A/B Test Experiment in code, you first need to determine the component that would be overridden to render out each alternative to be tested.
 
 Since we would be testing multiple variations of the rendered output of the `LedeBannerContainer` component, we would need to make changes in the `LandingPage` component, which is where the `LedeBannerContainer` component is called and output.
 
@@ -56,9 +56,10 @@ const mapStateToProps = (state, props) => ({
 
 This means, that for the "Jumbo Layout Template" test alternative, a different cover image and a different template will be used for that test, overriding the expected "control" values for the default rendered output.
 
+The only other requirement for the `SixpackExperimentContainer` is to provide a `convertableActions` property with an array of one or more strings specifying the different actions that trigger converting on a test alternative for the experiment, like `signup`, `reportback`, etc.
+
+After that, the rest of the behavior follows what is specified in the [Sixpack A/B Testing - Under The Hood](sixpack-a-b-testing.md#under-the-hood) section regarding experiment participation and conversion.
+
 {% hint style="info"%}
 If you need to isolate a Sixpack Experiment in code to only run in a particular condition, you will likely need to wrap the `SixpackExperimentContainer` component within a conditional. For example, if you want the Lede Banner template experiment to run on only a specific campaign instead of all campaigns, you may need to include a conditional to check against the Campaign ID or Contentful ID.
 {% endhint %}
-
-_notes:_
-To override components that contain a React container, the container needs to allow overriding properties by any props that get passed into it.
