@@ -16,7 +16,7 @@ const AFFILIATE_QUERY = gql`
       title
       logo {
         description
-        url(w: 300, h: 100)
+        url(h: 100)
       }
     }
   }
