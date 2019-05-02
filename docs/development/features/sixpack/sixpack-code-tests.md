@@ -26,9 +26,7 @@ const LandingPage = props => {
         // The jumbo template is the alternative to test against the control.
         <LedeBannerContainer
           testName="Jumbo Layout Template"
-          coverImage={{
-            url: 'https://cdnexample.com/path/to/image/jumbo-template-image.png',
-          }}
+          coverImage={{ url: 'https://example.org/jumbo-template-image.png' }}
           template="jumbo"
         />,
       ]}
