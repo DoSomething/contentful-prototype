@@ -56,7 +56,7 @@ const mapStateToProps = (state, props) => ({
 
 This means, that for the "Jumbo Layout Template" test alternative, a different cover image and a different template will be used for that test, overriding the expected "control" values for the default rendered output.
 
-The only other requirement for the `SixpackExperimentContainer` is to provide a `convertableActions` property with an array of one or more strings specifying the different actions that trigger converting on a test alternative for the experiment, like `signup`, `reportback`, etc.
+The only other requirement for the `SixpackExperimentContainer` is to provide a `title` property to name the overall experiment, along with a `convertableActions` property with an array of one or more strings specifying the different actions that trigger converting on a test alternative for the experiment, like `signup`, `reportback`, etc.
 
 After that, the rest of the behavior follows what is specified in the [Sixpack A/B Testing - Under The Hood](sixpack-a-b-testing.md#under-the-hood) section regarding experiment participation and conversion.
 
