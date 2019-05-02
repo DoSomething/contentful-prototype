@@ -5,8 +5,10 @@
   $border-style: 1px solid $primary-border-color;
 
   .scholarship-information,
-  .scholarship-deadline,
-  .scholarship-requirements {
+  // Only add border-top to first scholarship detail item *if* scholarship amount is present.
+  .scholarship-information__amount + .scholarship-information__details > :first-child,
+  // Any children following the first one should definitely have a border-top.
+  .scholarship-information__details > :nth-child(n+2) {
     border-top: $border-style;
     padding-top: $half-spacing;
   }
@@ -22,14 +24,16 @@
       .scholarship-information__amount {
         flex-basis: 50%;
         border-right: $border-style;
+        margin-right: $half-spacing;
       }
 
       .scholarship-information__details {
         flex-basis: 50%;
-        padding-left: $half-spacing;
+        // Will grow to full width if scholarship amount is missing.
+        flex-grow: 1;
       }
 
-      .scholarship-deadline {
+      .scholarship-information__details > :first-child {
         border-top: none;
         padding-top: 0;
       }
@@ -38,5 +42,9 @@
 
   .scholarship-amount {
     font-size: 85px;
+  }
+
+  .affiliate-logo {
+    max-height: 50px;
   }
 }
