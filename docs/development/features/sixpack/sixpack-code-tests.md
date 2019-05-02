@@ -21,9 +21,9 @@ const LandingPage = props => {
       title="LedeBanner Layout Experiment"
       convertableActions={['signup']}
       alternatives={[
-        // Mosaic Layout Template is the default, or control test alternative.
+        // The mosaic template is the default, or control test alternative.
         <LedeBannerContainer testName="Mosaic Layout Template" />,
-        // Jumbo Layout Template is the alternative we want to test against the default.
+        // The jumbo template is the alternative to test against the control.
         <LedeBannerContainer
           testName="Jumbo Layout Template"
           coverImage={{
