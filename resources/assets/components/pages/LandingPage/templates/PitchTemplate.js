@@ -12,16 +12,16 @@ const PitchTemplate = ({
   scholarshipDeadline,
   sidebarCTA,
 }) => {
-  const scholarshipAffiliate = getScholarshipAffiliateLabel();
+  const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
-    scholarshipAffiliate && scholarshipAmount && scholarshipDeadline;
+    scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
 
   return (
     <div className="campaign-page">
       <div className="primary">
         {displayAffiliateScholarshipBlock ? (
           <AffiliateScholarshipBlockQuery
-            utmLabel={scholarshipAffiliate}
+            utmLabel={scholarshipAffiliateLabel}
             scholarshipAmount={scholarshipAmount}
             scholarshipDeadline={scholarshipDeadline}
             className="margin-bottom-lg"
