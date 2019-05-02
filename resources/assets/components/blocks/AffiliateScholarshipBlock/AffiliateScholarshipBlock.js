@@ -38,24 +38,26 @@ const AffiliateScholarshipBlock = ({
     </p>
 
     <div className="scholarship-information">
-      <div className="scholarship-information__amount">
-        <p className="font-bold">AMOUNT</p>
-        <p className="scholarship-amount league-gothic margin-top-none">
-          {scholarshipAmount ? `$${scholarshipAmount.toLocaleString()}` : 'N/A'}
-        </p>
-      </div>
-
-      <div className="scholarship-information__details">
-        <div className="scholarship-deadline">
-          <p className="font-bold">DEADLINE</p>
-          <p className="margin-top-sm">
-            {scholarshipDeadline
-              ? format(scholarshipDeadline, 'MMMM do, YYYY', {
-                  awareOfUnicodeTokens: true,
-                })
-              : 'N/A'}
+      {scholarshipAmount ? (
+        <div className="scholarship-information__amount">
+          <p className="font-bold">AMOUNT</p>
+          <p className="scholarship-amount league-gothic margin-top-none">
+            ${scholarshipAmount.toLocaleString()}
           </p>
         </div>
+      ) : null}
+
+      <div className="scholarship-information__details">
+        {scholarshipDeadline ? (
+          <div className="scholarship-deadline">
+            <p className="font-bold">DEADLINE</p>
+            <p className="margin-top-sm">
+              {format(scholarshipDeadline, 'MMMM do, YYYY', {
+                awareOfUnicodeTokens: true,
+              })}
+            </p>
+          </div>
+        ) : null}
 
         <div className="scholarship-requirements">
           <p className="font-bold">REQUIREMENTS</p>
