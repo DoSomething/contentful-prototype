@@ -21,7 +21,7 @@ const PitchTemplate = ({
       <div className="primary">
         {displayAffiliateScholarshipBlock ? (
           <AffiliateScholarshipBlockQuery
-            utmLabel={scholarshipAffiliateLabel}
+            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
             scholarshipAmount={scholarshipAmount}
             scholarshipDeadline={scholarshipDeadline}
             className="margin-bottom-lg"
