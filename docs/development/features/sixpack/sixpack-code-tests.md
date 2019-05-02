@@ -4,6 +4,8 @@ To create a Sixpack A/B Test Experiment in code, you first need to determine the
 
 As an example to help with describing the steps involved, lets consider a Sixpack A/B Test Experiment to test between two alternative variations of the template used for the lede banner on the campaign landing page.
 
+![Sixpack Lede Banner Template Alternatives](../../../.gitbook/assets/sixpack-lede-banner-template-alternatives.png)
+
 Since we would be testing multiple variations of the rendered output of the `LedeBannerContainer` component, we would need to make changes in the `LandingPage` component, which is where the `LedeBannerContainer` component is called and output.
 
 To perform the A/B Test Experiment, we would need to replace the `LedeBannerContainer` component with a `SixpackExperimentContainer` component found in the [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, and instead pass the `LedeBannerContainer` variations as array items in the `alternatives` property of the `SixpackExperimentContainer`:
@@ -19,7 +21,9 @@ const LandingPage = props => {
       title="LedeBanner Layout Experiment"
       convertableActions={['signup']}
       alternatives={[
+        // Mosaic Layout Template is the default, or control test alternative.
         <LedeBannerContainer testName="Mosaic Layout Template" />,
+        // Jumbo Layout Template is the alternative we want to test against the default.
         <LedeBannerContainer
           testName="Jumbo Layout Template"
           coverImage={{
