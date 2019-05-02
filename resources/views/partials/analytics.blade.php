@@ -5,7 +5,7 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', '{{ config('services.analytics.google_id') }}', 'auto');
-      ga('require', 'spGaPlugin', { endpoint: 'https://events.fivetran.com/snowplow/beautiful_specimen' });
+      ga('require', 'spGaPlugin', { endpoint: '{{config('services.analytics.snowplow_url')}}' });
     </script>
     <script async src="https://d1fc8wv8zag5ca.cloudfront.net/sp-ga-plugin/0.1.0/sp-ga-plugin.js"></script>
 @endif
