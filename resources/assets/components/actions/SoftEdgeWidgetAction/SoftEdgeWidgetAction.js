@@ -25,10 +25,15 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   loadSoftEdgeWidget = () => {
     const softEdgeId = this.props.softEdgeId;
+    let url = '//www.congressweb.com/dosomething/' + softEdgeId;
+
+    console.log('🍎', this.props);
+
+    // + '?acceptAuthor=true&firstName=Chloe';
 
     window.$cweb(() => {
       $cweb(`#congressweb-action-${softEdgeId}`).congressweb({
-        url: `//www.congressweb.com/dosomething/${softEdgeId}`,
+        url: `${url}`,
         responsive: true,
       });
     });
