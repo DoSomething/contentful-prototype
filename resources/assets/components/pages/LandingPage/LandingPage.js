@@ -8,13 +8,11 @@ import Enclosure from '../../Enclosure';
 import PitchTemplate from './templates/PitchTemplate';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
-import SixpackExperimentContainer from '../../utilities/SixpackExperiment/SixpackExperimentContainer';
 
 import './landing-page.scss';
 
 const LandingPage = props => {
   const {
-    campaignId,
     content,
     scholarshipAmount,
     scholarshipDeadline,
@@ -29,28 +27,10 @@ const LandingPage = props => {
 
   return (
     <div>
-      {campaignId === '3pwxnRZxociqMaQCMcGOyc' ? (
-        <SixpackExperimentContainer
-          title="LedeBanner Layout Experiment"
-          convertableActions={['signup']}
-          alternatives={[
-            <LedeBannerContainer testName="Mosaic Layout Template" />,
-            <LedeBannerContainer
-              testName="Jumbo Layout Template"
-              coverImage={{
-                url:
-                  'https://images.ctfassets.net/81iqaqpfd8fy/6TaMCndXygSscGkOWKg6uY/155753d51b7f0278fb3a2fd9d592901b/VoterRegIllustration.png',
-              }}
-              template="jumbo"
-            />,
-          ]}
-        />
-      ) : (
-        <LedeBannerContainer
-          signupArrowContent={signupArrowContent}
-          showPartnerMsgOptIn={showPartnerMsgOptIn}
-        />
-      )}
+      <LedeBannerContainer
+        signupArrowContent={signupArrowContent}
+        showPartnerMsgOptIn={showPartnerMsgOptIn}
+      />
 
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
@@ -83,7 +63,6 @@ const LandingPage = props => {
 };
 
 LandingPage.propTypes = {
-  campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
