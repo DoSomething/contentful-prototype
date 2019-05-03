@@ -22,7 +22,6 @@ class SixpackExperiment extends React.Component {
       alternatives,
       convertableActions,
       kpi,
-      title,
       trafficFraction,
     } = this.props;
 
