@@ -47,4 +47,11 @@
   .affiliate-logo {
     max-height: 50px;
   }
+
+  .scholarship-requirements .list {
+    // Overrides Forge rule adding margin-top to li tags (https://git.io/fjnGk)
+    li + li {
+      margin-top: 0;
+    }
+  }
 }
