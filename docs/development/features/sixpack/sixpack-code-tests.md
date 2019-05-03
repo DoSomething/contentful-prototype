@@ -8,7 +8,7 @@ To create a Sixpack A/B Test Experiment in code, you first need to determine the
 
 Since we would be testing multiple variations of the rendered output of the `LedeBannerContainer` component, we would need to make changes in the `LandingPage` component, which is where the `LedeBannerContainer` component is called and output.
 
-To perform the A/B Test Experiment, we would need to replace the `LedeBannerContainer` component with a `SixpackExperimentContainer` component found in the [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, and instead pass the `LedeBannerContainer` variations as array items in the `alternatives` property of the `SixpackExperimentContainer`:
+To perform the A/B Test Experiment, we would need to replace the `LedeBannerContainer` component with a `SixpackExperiment` component found in the [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, and instead pass the `LedeBannerContainer` variations as array items in the `alternatives` property of the `SixpackExperiment`:
 
 ```javascript
 // /resources/assets/components/pages/LandingPage/LandingPage.js
@@ -17,7 +17,7 @@ const LandingPage = props => {
   // Placed within the returned JSX/HTML output.
 
   return (
-    <SixpackExperimentContainer
+    <SixpackExperiment
       title="LedeBanner Layout Experiment"
       convertableActions={['signup']}
       alternatives={[
@@ -56,10 +56,10 @@ const mapStateToProps = (state, props) => ({
 
 This means, that for the "Jumbo Layout Template" test alternative, a different cover image and a different template will be used for that test, overriding the expected "control" values for the default rendered output.
 
-The only other requirement for the `SixpackExperimentContainer` is to provide a `title` property to name the overall experiment, along with a `convertableActions` property with an array of one or more strings specifying the different actions that trigger converting on a test alternative for the experiment, like `signup`, `reportback`, etc.
+The only other requirement for the `SixpackExperiment` is to provide a `title` property to name the overall experiment, along with a `convertableActions` property with an array of one or more strings specifying the different actions that trigger converting on a test alternative for the experiment, like `signup`, `reportback`, etc.
 
 After that, the rest of the behavior follows what is specified in the [Sixpack A/B Testing - Under The Hood](sixpack-a-b-testing.md#under-the-hood) section regarding experiment participation and conversion.
 
 {% hint style="info"%}
-If you need to isolate a Sixpack Experiment in code to only run in a particular condition, you will likely need to wrap the `SixpackExperimentContainer` component within a conditional. For example, if you want the Lede Banner template experiment to run on only a specific campaign instead of all campaigns, you may need to include a conditional to check against the Campaign ID or Contentful ID.
+If you need to isolate a Sixpack Experiment in code to only run in a particular condition, you will likely need to wrap the `SixpackExperiment` component within a conditional. For example, if you want the Lede Banner template experiment to run on only a specific campaign instead of all campaigns, you may need to include a conditional to check against the Campaign ID or Contentful ID.
 {% endhint %}

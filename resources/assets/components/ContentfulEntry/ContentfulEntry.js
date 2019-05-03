@@ -23,7 +23,7 @@ import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SoftEdgeWidgetAction from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetAction';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
-import SixpackExperimentContainer from '../utilities/SixpackExperiment/SixpackExperimentContainer';
+import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
@@ -250,10 +250,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'sixpackExperiment':
         return (
-          <SixpackExperimentContainer
-            id={json.id}
-            {...withoutNulls(json.fields)}
-          />
+          <SixpackExperiment id={json.id} {...withoutNulls(json.fields)} />
         );
 
       case 'socialDriveAction':
