@@ -30,7 +30,7 @@ class SixpackExperiment extends Entity implements JsonSerializable
                 'alternatives' => $this->parseBlocks($this->alternatives),
                 'convertableActions' => $this->convertableActions,
                 'kpi' => $this->kpi,
-                'title' => $this->title,
+                'title' => $this->internalTitle,
                 'trafficFraction' => $this->parseTrafficFraction($this->trafficFraction),
             ],
         ];

@@ -14,11 +14,7 @@ class SixpackExperiment extends React.Component {
       selectedAlternative: null,
     };
 
-    const { campaignSlug, title } = this.props;
-
-    this.experimentName = campaignSlug
-      ? `${snakeCase(campaignSlug)}_${snakeCase(title)}`
-      : `${snakeCase(title)}`;
+    this.experimentName = snakeCase(this.props.title);
   }
 
   componentDidMount() {
@@ -94,7 +90,6 @@ class SixpackExperiment extends React.Component {
 
 SixpackExperiment.propTypes = {
   alternatives: PropTypes.arrayOf(PropTypes.object).isRequired,
-  campaignSlug: PropTypes.string,
   convertableActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   kpi: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -102,7 +97,6 @@ SixpackExperiment.propTypes = {
 };
 
 SixpackExperiment.defaultProps = {
-  campaignSlug: null,
   kpi: null,
   trafficFraction: 1,
 };

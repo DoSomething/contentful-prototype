@@ -40,7 +40,7 @@ Regardless of whether a Sixpack A/B Test Experiment is a code test or a Contentf
 Within Sixpack and A/B testing in general, the term "participate" indicates that a user is about to take part in an A/B test experiment and will be assigned one of the test alternative variants for the duration of the experiment.
 {% endhint %}
 
-The `SixpackExperiment` component can be found in [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, along with a corresponding `SixpackExperimentContainer.js`.
+The `SixpackExperiment` component can be found in [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory.
 
 When a `SixpackExperiment` component is rendered on a page, upon mounting the following series of steps occur:
 
