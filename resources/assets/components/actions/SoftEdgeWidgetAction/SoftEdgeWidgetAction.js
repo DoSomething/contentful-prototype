@@ -1,9 +1,12 @@
 /* global window, document, $cweb */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
+
+// const SoftEdgeWidgetAction = props => (
+//   console.log('🔮', props);
+// );
 
 class SoftEdgeWidgetAction extends React.Component {
   componentDidMount() {
@@ -25,15 +28,12 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   loadSoftEdgeWidget = () => {
     const softEdgeId = this.props.softEdgeId;
-    let url = '//www.congressweb.com/dosomething/' + softEdgeId;
-
-    console.log('🍎', this.props);
-
+    // const url = '//www.congressweb.com/dosomething/' + softEdgeId;
     // + '?acceptAuthor=true&firstName=Chloe';
-
+    console.log('🐶', this.props);
     window.$cweb(() => {
       $cweb(`#congressweb-action-${softEdgeId}`).congressweb({
-        url: `${url}`,
+        url: `//www.congressweb.com/dosomething/${softEdgeId}`,
         responsive: true,
       });
     });

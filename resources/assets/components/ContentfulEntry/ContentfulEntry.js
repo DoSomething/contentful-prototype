@@ -22,7 +22,7 @@ import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
-import SoftEdgeWidgetAction from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetAction';
+import SoftEdgeWidgetActionContainer from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetActionContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
@@ -257,7 +257,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <SocialDriveActionContainer {...json.fields} />;
 
       case 'softEdgeWidgetAction':
-        return <SoftEdgeWidgetAction {...json.fields} />;
+        return <SoftEdgeWidgetActionContainer {...json.fields} />;
 
       case 'static':
         return (
