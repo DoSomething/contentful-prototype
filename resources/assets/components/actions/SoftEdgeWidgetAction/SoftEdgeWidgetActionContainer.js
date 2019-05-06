@@ -8,8 +8,6 @@ import { getUserId } from '../../../selectors/user';
  */
 const mapStateToProps = state => ({
   userId: getUserId(state),
-  title: state.title,
-  softEdgeId: state.softEdgeId,
 });
 
 export default connect(mapStateToProps)(UserQuery);

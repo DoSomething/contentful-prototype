@@ -6,8 +6,8 @@ import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import SoftEdgeWidgetAction from './SoftEdgeWidgetAction';
 
 const ACCOUNT_QUERY = gql`
-  query AccountQuery(props.userId: String!) {
-    user(id: props.userId) {
+  query AccountQuery($userId: String!) {
+    user(id: $userId) {
       id
       firstName
       lastName
@@ -17,25 +17,22 @@ const ACCOUNT_QUERY = gql`
   }
 `;
 
-const UserQuery = ({ props }) => (
+const UserQuery = props => (
   <Query
     query={ACCOUNT_QUERY}
     queryName="user"
     variables={{ userId: props.userId }}
   >
-    {({ error, data }) => {
-      // const isLoaded = !loading;
-      // const { embed } = data;
+    {({ loading, error, data }) => {
+      if (loading) {
+        return <div className="spinner -centered" />;
+      }
 
       if (error) {
         return <ErrorBlock />;
       }
 
-      // If an <iframe> code snippet is provided, use that.
-      // Otherwise, fill in our "embed card".
-      // return isLoaded && embed && embed.html ? (
       return <SoftEdgeWidgetAction {...data} {...props} />;
-      // );
     }}
   </Query>
 );

@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
 
-// const SoftEdgeWidgetAction = props => (
-//   console.log('🔮', props);
-// );
-
 class SoftEdgeWidgetAction extends React.Component {
   componentDidMount() {
     this.initSoftEdgeScript();
@@ -28,12 +24,24 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   loadSoftEdgeWidget = () => {
     const softEdgeId = this.props.softEdgeId;
-    // const url = '//www.congressweb.com/dosomething/' + softEdgeId;
-    // + '?acceptAuthor=true&firstName=Chloe';
-    console.log('🐶', this.props);
+    let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true`;
+
+    const prepopulatedFields = {
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName,
+      email: this.props.user.email,
+      mobile: this.props.user.mobile,
+    };
+
+    Object.keys(prepopulatedFields).forEach(key => {
+      if (prepopulatedFields[key] != null) {
+        url += `&${key}=${prepopulatedFields[key]}`;
+      }
+    });
+
     window.$cweb(() => {
       $cweb(`#congressweb-action-${softEdgeId}`).congressweb({
-        url: `//www.congressweb.com/dosomething/${softEdgeId}`,
+        url: `${url}`,
         responsive: true,
       });
     });
@@ -51,11 +59,13 @@ class SoftEdgeWidgetAction extends React.Component {
 SoftEdgeWidgetAction.propTypes = {
   title: PropTypes.string.isRequired,
   softEdgeId: PropTypes.number.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 SoftEdgeWidgetAction.defaultProps = {
   title: null,
   softEdgeId: null,
+  user: null,
 };
 
 export default SoftEdgeWidgetAction;
