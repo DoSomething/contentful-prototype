@@ -47,7 +47,7 @@ class SoftEdgeWidgetAction extends React.Component {
 
     window.$cweb(() => {
       $cweb(`#congressweb-action-${softEdgeId}`).congressweb({
-        url: `${url}`,
+        url,
         responsive: true,
       });
     });
