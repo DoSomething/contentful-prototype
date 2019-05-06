@@ -13,6 +13,10 @@ const ACCOUNT_QUERY = gql`
       lastName
       mobile
       email
+      addrStreet1
+      addrCity
+      addrState
+      addrZip
     }
   }
 `;

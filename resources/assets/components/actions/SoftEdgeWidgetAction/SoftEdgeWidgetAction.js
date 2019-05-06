@@ -31,6 +31,10 @@ class SoftEdgeWidgetAction extends React.Component {
       lastName: this.props.user.lastName,
       email: this.props.user.email,
       mobile: this.props.user.mobile,
+      address: this.props.user.addrStreet1,
+      city: this.props.user.addrCity,
+      state: this.props.user.addrState,
+      zip: this.props.user.addrZip,
     };
 
     Object.keys(prepopulatedFields).forEach(key => {
