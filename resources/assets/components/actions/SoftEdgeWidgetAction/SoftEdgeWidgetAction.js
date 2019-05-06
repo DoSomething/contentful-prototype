@@ -72,7 +72,7 @@ SoftEdgeWidgetAction.propTypes = {
 SoftEdgeWidgetAction.defaultProps = {
   title: null,
   softEdgeId: null,
-  user: null,
+  user: {},
   userId: null,
 };
 
