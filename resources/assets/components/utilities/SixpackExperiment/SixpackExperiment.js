@@ -5,6 +5,7 @@ import { get, snakeCase } from 'lodash';
 import { sixpack } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
 import Placeholder from '../../utilities/Placeholder';
+import Empty from '../../utilities/Empty';
 
 class SixpackExperiment extends React.Component {
   constructor(props) {
@@ -20,32 +21,28 @@ class SixpackExperiment extends React.Component {
   componentDidMount() {
     const {
       alternatives,
+      control,
       convertableActions,
       kpi,
       trafficFraction,
     } = this.props;
 
-    const alternativeOptions = alternatives.map((item, index) => {
-      let testAlternativeName;
-      const fallbackName = `Test Alternative ${index + 1}`;
+    const controlAlternative = control || <Empty testName="No Alternative" />;
+    const alternativeOptions = [controlAlternative, ...alternatives];
 
-      if (React.isValidElement(item)) {
-        testAlternativeName = get(item.props, 'testName', fallbackName);
-      } else {
-        // @TODO: probably want to use internalTitle but not all entities expose that.
-        // Defaults to title field, but we should aim to start exposing internalTitle on entities!
-        testAlternativeName =
-          get(item, 'fields.internalTitle') ||
-          get(item, 'fields.title') ||
-          fallbackName;
-      }
+    // Get names of  all test alternatives
+    const alternativeOptionNames = alternativeOptions.map((item, index) => {
+      let testAlternativeName = `Test Alternative ${index + 1}`;
+
+      testAlternativeName =
+        this.getTestAlternativeName(item) || testAlternativeName;
 
       return snakeCase(testAlternativeName);
     });
 
     const selectedAlternative = sixpack().participate(
       this.experimentName,
-      alternativeOptions,
+      alternativeOptionNames,
       {
         convertableActions,
         kpi,
@@ -57,14 +54,14 @@ class SixpackExperiment extends React.Component {
       .then(response => {
         this.setState({
           selectedAlternative:
-            alternatives[alternativeOptions.indexOf(response)],
+            alternativeOptions[alternativeOptionNames.indexOf(response)],
         });
       })
       .catch(() => {
         // @TODO: Log this error somewhere so we know if a Sixpack Experiment
         // is having issues.
         this.setState({
-          selectedAlternative: alternatives[0],
+          selectedAlternative: alternativeOptions[0],
         });
       });
   }
@@ -72,6 +69,29 @@ class SixpackExperiment extends React.Component {
   componentWillUnmount() {
     sixpack().removeExperiment(this.experimentName);
   }
+
+  /**
+   * Get the name for the provided test alternative.
+   *
+   * @param  {Object} alternative
+   * @return {String}
+   */
+  getTestAlternativeName = alternative => {
+    let testAlternativeName;
+
+    if (React.isValidElement(alternative)) {
+      testAlternativeName = get(alternative.props, 'testName', null);
+    } else {
+      // @TODO: probably want to use internalTitle but not all entities expose that.
+      // Defaults to title field, but we should aim to start exposing internalTitle on entities!
+      testAlternativeName =
+        get(alternative, 'fields.internalTitle') ||
+        get(alternative, 'fields.title') ||
+        null;
+    }
+
+    return testAlternativeName;
+  };
 
   render() {
     const selectedAlternative = this.state.selectedAlternative;
@@ -90,6 +110,7 @@ class SixpackExperiment extends React.Component {
 
 SixpackExperiment.propTypes = {
   alternatives: PropTypes.arrayOf(PropTypes.object).isRequired,
+  control: PropTypes.object,
   convertableActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   kpi: PropTypes.string,
   title: PropTypes.string.isRequired,
@@ -97,6 +118,7 @@ SixpackExperiment.propTypes = {
 };
 
 SixpackExperiment.defaultProps = {
+  control: null,
   kpi: null,
   trafficFraction: 1,
 };
