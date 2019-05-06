@@ -23,11 +23,7 @@ const ACCOUNT_QUERY = gql`
 `;
 
 const UserQuery = props => (
-  <Query
-    query={ACCOUNT_QUERY}
-    queryName="user"
-    variables={{ userId: props.userId }}
-  >
+  <Query query={ACCOUNT_QUERY} variables={{ userId: props.userId }}>
     {({ loading, error, data }) => {
       if (loading) {
         return <div className="spinner -centered" />;
