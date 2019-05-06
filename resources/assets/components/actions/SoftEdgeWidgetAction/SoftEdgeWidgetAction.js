@@ -25,19 +25,20 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   loadSoftEdgeWidget = () => {
     const softEdgeId = this.props.softEdgeId;
+    const user = this.props.user;
     let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true&memberId=${
       this.props.userId
     }`;
 
     const prepopulatedFields = withoutNulls({
-      firstName: this.props.user.firstName,
-      lastName: this.props.user.lastName,
-      email: this.props.user.email,
-      mobile: this.props.user.mobile,
-      address: this.props.user.addrStreet1,
-      city: this.props.user.addrCity,
-      state: this.props.user.addrState,
-      zip: this.props.user.addrZip,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      mobile: user.mobile,
+      address: user.addrStreet1,
+      city: user.addrCity,
+      state: user.addrState,
+      zip: user.addrZip,
     });
 
     Object.keys(prepopulatedFields).forEach(key => {
