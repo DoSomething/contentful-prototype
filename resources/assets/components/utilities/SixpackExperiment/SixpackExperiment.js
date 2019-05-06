@@ -30,7 +30,7 @@ class SixpackExperiment extends React.Component {
     const controlAlternative = control || <Empty testName="No Alternative" />;
     const alternativeOptions = [controlAlternative, ...alternatives];
 
-    // Get names of  all test alternatives
+    // Get names of all test alternatives
     const alternativeOptionNames = alternativeOptions.map((item, index) => {
       let testAlternativeName = `Test Alternative ${index + 1}`;
 
@@ -74,7 +74,7 @@ class SixpackExperiment extends React.Component {
    * Get the name for the provided test alternative.
    *
    * @param  {Object} alternative
-   * @return {String}
+   * @return {String|Null}
    */
   getTestAlternativeName = alternative => {
     let testAlternativeName;
