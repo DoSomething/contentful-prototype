@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
+import { withoutNulls } from '../../../helpers';
 
 class SoftEdgeWidgetAction extends React.Component {
   componentDidMount() {
@@ -28,7 +29,7 @@ class SoftEdgeWidgetAction extends React.Component {
       this.props.userId
     }`;
 
-    const prepopulatedFields = {
+    const prepopulatedFields = withoutNulls({
       firstName: this.props.user.firstName,
       lastName: this.props.user.lastName,
       email: this.props.user.email,
@@ -37,12 +38,10 @@ class SoftEdgeWidgetAction extends React.Component {
       city: this.props.user.addrCity,
       state: this.props.user.addrState,
       zip: this.props.user.addrZip,
-    };
+    });
 
     Object.keys(prepopulatedFields).forEach(key => {
-      if (prepopulatedFields[key] != null) {
-        url += `&${key}=${prepopulatedFields[key]}`;
-      }
+      url += `&${key}=${prepopulatedFields[key]}`;
     });
 
     window.$cweb(() => {
