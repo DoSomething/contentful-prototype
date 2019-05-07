@@ -14,13 +14,16 @@ class HomePage extends React.Component {
     this.state = get(window.HOMEPAGE, 'fields', {});
   }
 
-  renderGalleryBlock = block => {
+  renderGalleryBlock = (block, index) => {
     const { id, type, staffPick } = block;
 
     const isCampaign = type === 'campaign';
 
     const fields = isCampaign ? block : block.fields;
     const { slug, title, coverImage } = fields;
+
+    // Set more generous crop dimensions for 'featured' (first) homepage tile.
+    const imageCrop = index === 0 ? '1600' : '800';
 
     return (
       <article className="tile" key={id}>
@@ -38,7 +41,12 @@ class HomePage extends React.Component {
           </div>
 
           <img
-            src={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
+            src={contentfulImageUrl(
+              coverImage.url,
+              imageCrop,
+              imageCrop,
+              'fill',
+            )}
             alt={coverImage.description || `${title} cover image`}
           />
         </a>
