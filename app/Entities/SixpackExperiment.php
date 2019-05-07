@@ -28,6 +28,7 @@ class SixpackExperiment extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'alternatives' => $this->parseBlocks($this->alternatives),
+                'control' => $this->control ? $this->parseBlock($this->control) : null,
                 'convertableActions' => $this->convertableActions,
                 'kpi' => $this->kpi,
                 'title' => $this->internalTitle,
