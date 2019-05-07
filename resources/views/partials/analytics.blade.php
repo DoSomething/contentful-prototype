@@ -5,9 +5,15 @@
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       ga('create', '{{ config('services.analytics.google_id') }}', 'auto');
-      ga('require', 'spGaPlugin', { endpoint: '{{config('services.analytics.snowplow_url')}}' });
+
+      @if (config('services.analytics.snowplow_url'))
+        ga('require', 'spGaPlugin', { endpoint: '{{config('services.analytics.snowplow_url')}}' });
+      @endif
     </script>
-    <script async src="https://d1fc8wv8zag5ca.cloudfront.net/sp-ga-plugin/0.1.0/sp-ga-plugin.js"></script>
+
+    @if (config('services.analytics.snowplow_url'))
+      <script async src="https://d1fc8wv8zag5ca.cloudfront.net/sp-ga-plugin/0.1.0/sp-ga-plugin.js"></script>
+    @endif
 @endif
 
 @if(config('services.analytics.customer_io_id') && auth()->check())
