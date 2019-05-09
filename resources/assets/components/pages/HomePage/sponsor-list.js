@@ -25,9 +25,9 @@ const sponsorList = [
       'https://images.ctfassets.net/81iqaqpfd8fy/5HS3laXKkoo2QgwOkwuaew/dfdc90ac7fa937777e775f2b441c231f/3M_20logo_20_281_29.png',
   },
   {
-    name: 'Omidyar Network',
+    name: 'Luminate',
     image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/6CTHozYQzSwEQ0qaY8IQSe/db4d0d9f61610a4b56d64e1d01142f15/omidyar-logo_0.jpg',
+      'https://images.ctfassets.net/81iqaqpfd8fy/7izbenndLruNPu0T4p3tB7/c5af0bf310c698fe25e03e676a6e9d0d/Luminate_logo_primary_strapline_BLACK_CMYK.png',
   },
   {
     name: 'Ford Foundation',
