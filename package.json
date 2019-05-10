@@ -9,7 +9,7 @@
     "build:dev": "npm run fragment:load && webpack --env=development --hide-modules",
     "build": "npm run fragment:load && webpack --env=production",
     "stat": "webpack --env=production --profile --json > stats.json",
-    "analyze": "npm run stat && webpack-bundle-analyzer stats.json",
+    "analyze": "npm run stat && webpack-bundle-analyzer stats.json public/next/assets",
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
     "fragment:load": "node bootstrap/getFragmentTypes.js",
     "heroku-postbuild": "npm run build"
@@ -29,7 +29,12 @@
   },
   "babel": {
     "presets": [
-      "@dosomething",
+      [
+        "@dosomething",
+        {
+          "withPolyfills": false
+        }
+      ],
       "@babel/preset-flow"
     ]
   },
@@ -61,7 +66,6 @@
     "apollo-link-persisted-queries": "^0.2.2",
     "babel-jest": "^24.8.0",
     "classnames": "^2.2.6",
-    "core-js": "^3.0.1",
     "css-module-flow": "^1.0.0",
     "date-fns": "2.0.0-alpha.25",
     "dom-delegate": "^2.2.1",
@@ -110,7 +114,7 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-flow": "^7.0.0",
-    "@dosomething/babel-preset": "^3.0.0",
+    "@dosomething/babel-preset": "^3.1.0",
     "@dosomething/eslint-config": "^4.0.0",
     "@dosomething/webpack-config": "^5.0.0",
     "contentful-management": "^5.7.1",
