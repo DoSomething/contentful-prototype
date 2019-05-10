@@ -22,15 +22,17 @@ import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
-import SoftEdgeWidgetActionContainer from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetActionContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
+import SoftEdgeWidgetActionContainer from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
-import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
+import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
+import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
+
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
@@ -239,6 +241,14 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
       }
+
+      case 'selectionSubmissionAction':
+        return (
+          <SelectionSubmissionActionContainer
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'shareAction':
         return (
