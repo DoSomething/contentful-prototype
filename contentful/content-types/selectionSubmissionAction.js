@@ -2,7 +2,9 @@ module.exports = function(migration) {
   const selectionSubmissionAction = migration
     .createContentType('selectionSubmissionAction')
     .name('SelectionSubmissionAction')
-    .description('')
+    .description(
+      'Action block for submitting text posts via a predefined selection drop-down list.',
+    )
     .displayField('internalTitle');
 
   selectionSubmissionAction
