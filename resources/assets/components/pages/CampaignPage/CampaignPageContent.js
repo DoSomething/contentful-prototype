@@ -32,6 +32,7 @@ const CampaignPageContent = props => {
       [
         'photoSubmissionAction',
         'gallery',
+        'postGallery',
         'imagesBlock',
         'socialDriveAction',
       ].includes(type)
