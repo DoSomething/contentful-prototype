@@ -31,6 +31,8 @@ import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/Su
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
+import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
+
 // If no block is passed, just render an empty "placeholder".
 const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 
@@ -239,6 +241,14 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
       }
+
+      case 'selectionSubmissionAction':
+        return (
+          <SelectionSubmissionActionContainer
+            id={json.id}
+            {...withoutNulls(json.fields)}
+          />
+        );
 
       case 'shareAction':
         return (
