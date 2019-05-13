@@ -66,13 +66,12 @@ SoftEdgeWidgetAction.propTypes = {
   softEdgeId: PropTypes.number.isRequired,
   title: PropTypes.string,
   user: PropTypes.object,
-  userId: PropTypes.string,
+  userId: PropTypes.string.isRequired,
 };
 
 SoftEdgeWidgetAction.defaultProps = {
   title: null,
   user: {},
-  userId: null,
 };
 
 export default SoftEdgeWidgetAction;
