@@ -4,30 +4,11 @@ module.exports = {
   extends: ['@dosomething/eslint-config/browser'],
 
   rules: {
-    // For now, only warn on missing alt or caption.
-    'jsx-a11y/alt-text': 'warn',
-    'jsx-a11y/media-has-caption': 'warn',
-
     // Allowing 'object' since we've deemed that warning more of a nuisance.
     'react/forbid-prop-types': ['warn', { forbid: ['any', 'array'] }],
 
-    // Don't warn when using GraphQL's meta fields.
-    'no-underscore-dangle': ['warn', { allow: ['__typename', '__schema'] }],
-
-    // Require multi-line curly braces for all conditionals.
-    curly: ['error', 'all'],
-    'brace-style': ['error', '1tbs', { allowSingleLine: false }],
-
-    // Require imports to be grouped by type (packages, then internal files).
-    'import/order': [
-      'error',
-      {
-        'newlines-between': 'always',
-        groups: [
-          ['builtin', 'external'],
-          ['parent', 'sibling', 'internal', 'index'],
-        ],
-      },
-    ],
+    // For now, disable the following linters:
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'import/no-cycle': 'off',
   },
 };
