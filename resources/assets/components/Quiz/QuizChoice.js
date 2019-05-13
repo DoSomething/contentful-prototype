@@ -22,10 +22,10 @@ const QuizChoice = props => {
   });
 
   return (
-    <a
+    <button
+      type="button"
       className={classnames('choice', { 'background-image': backgroundImage })}
       onClick={() => selectChoice(questionId, id)}
-      role="button"
       tabIndex={0}
     >
       <Card className={cardClasses}>
@@ -37,7 +37,7 @@ const QuizChoice = props => {
         ) : null}
         <p className="padding-md">{title}</p>
       </Card>
-    </a>
+    </button>
   );
 };
 
