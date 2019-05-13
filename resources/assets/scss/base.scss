@@ -13,13 +13,12 @@ html {
 // Reset browser defaults so this behaves like <a>
 // or <input type="button"> elements do.
 button {
+  font-family: $primary-font-family;
   background: transparent;
   border: none;
 }
 
 .button {
-  font-family: $primary-font-family;
-
   &:focus {
     border: none;
     box-shadow: 0 0 3px $blue, inset 0 0 1px rgba(0, 0, 0, 0.4);
