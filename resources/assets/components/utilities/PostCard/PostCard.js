@@ -9,7 +9,7 @@ import Card from '../Card/Card';
 import PostBadge from './PostBadge';
 import ReviewLink from './ReviewLink';
 import { BaseFigure } from '../../Figure';
-import LazyImage from '../../utilities/LazyImage';
+import LazyImage from "../LazyImage";
 import ReactionButton from '../ReactionButton/ReactionButton';
 import { isAuthenticated, isStaff } from '../../../helpers';
 

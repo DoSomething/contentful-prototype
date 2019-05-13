@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../actions';
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from ".";
 
 /**
  * Action Creators: these functions create actions, which describe changes

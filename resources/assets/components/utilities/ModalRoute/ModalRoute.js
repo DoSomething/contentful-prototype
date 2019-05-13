@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom';
 import { StaticRouter } from 'react-router';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import Modal from '../../utilities/Modal/Modal';
+import Modal from "../Modal/Modal";
 import ContentfulEntryContainer from '../../ContentfulEntry/ContentfulEntryContainer';
 
 // Helpers:
