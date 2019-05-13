@@ -9,14 +9,18 @@
     "build:dev": "npm run fragment:load && webpack --env=development --hide-modules",
     "build": "npm run fragment:load && webpack --env=production",
     "stat": "webpack --env=production --profile --json > stats.json",
-    "analyze": "npm run stat && webpack-bundle-analyzer stats.json",
+    "analyze": "npm run stat && webpack-bundle-analyzer stats.json public/next/assets",
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
     "fragment:load": "node bootstrap/getFragmentTypes.js",
-    "precommit": "pretty-quick --staged",
     "heroku-postbuild": "npm run build"
   },
+  "husky": {
+    "hooks": {
+      "precommit": "pretty-quick --staged"
+    }
+  },
   "engines": {
-    "node": "8.x",
+    "node": "10.x",
     "npm": "6.x"
   },
   "prettier": {
@@ -25,25 +29,21 @@
   },
   "babel": {
     "presets": [
-      "@dosomething/babel-config",
-      "flow"
-    ],
-    "plugins": [
-      "graphql-tag",
-      "syntax-dynamic-import"
-    ],
-    "env": {
-      "test": {
-        "plugins": [
-          "babel-plugin-dynamic-import-node"
-        ]
-      }
-    }
+      [
+        "@dosomething",
+        {
+          "withPolyfills": false
+        }
+      ],
+      "@babel/preset-flow"
+    ]
   },
   "jest": {
     "clearMocks": true,
     "testEnvironment": "jest-environment-jsdom-global",
-    "setupTestFrameworkScriptFile": "<rootDir>/jest-setup.js",
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/resources/assets/__mocks__/fileMock.js",
       "\\.(css|scss)$": "identity-obj-proxy"
@@ -55,7 +55,7 @@
     "@contentful/rich-text-types": "^13.1.0",
     "@dosomething/analytics": "^2.1.2",
     "@dosomething/forge": "^6.9.0",
-    "@dosomething/gateway": "^1.5.0",
+    "@dosomething/gateway": "^2.0.0",
     "@dosomething/puck-client": "^1.6.0",
     "apollo-cache-inmemory": "^1.5.1",
     "apollo-client": "^2.5.1",
@@ -64,27 +64,23 @@
     "apollo-link-context": "^1.0.17",
     "apollo-link-error": "^1.1.10",
     "apollo-link-persisted-queries": "^0.2.2",
-    "babel-jest": "^20.0.3",
-    "babel-plugin-dynamic-import-node": "^1.2.0",
-    "babel-plugin-graphql-tag": "^1.6.0",
-    "babel-preset-flow": "^6.23.0",
+    "babel-jest": "^24.8.0",
     "classnames": "^2.2.6",
-    "core-js": "^2.6.5",
     "css-module-flow": "^1.0.0",
     "date-fns": "2.0.0-alpha.25",
     "dom-delegate": "^2.2.1",
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.0.0",
     "environment-badge": "^1.1.1",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "enzyme-to-json": "^3.3.5",
     "eslint-config-prettier": "^2.9.0",
     "fontfaceobserver": "^2.1.0",
-    "graphql": "^0.13.2",
+    "graphql": "^14.3.0",
     "graphql-anywhere": "^4.2.1",
     "graphql-tag": "^2.10.1",
     "history": "^4.9.0",
-    "jest-environment-jsdom": "^22.4.3",
+    "jest-environment-jsdom": "^24.8.0",
     "jest-environment-jsdom-global": "^1.2.0",
     "localforage": "^1.7.3",
     "lodash": "^4.17.10",
@@ -112,30 +108,30 @@
     "redux": "^3.7.2",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.3.0",
-    "regenerator-runtime": "^0.11.1",
     "sixpack-client": "^2.1.0",
     "usa-states": "0.0.5"
   },
   "devDependencies": {
-    "@dosomething/babel-config": "^2.2.2",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-flow": "^7.0.0",
+    "@dosomething/babel-preset": "^3.1.0",
     "@dosomething/eslint-config": "^4.0.0",
-    "@dosomething/webpack-config": "^4.1.1",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "@dosomething/webpack-config": "^5.0.0",
     "contentful-management": "^5.7.1",
     "eslint-loader": "^2.1.2",
     "flow-bin": "0.59.0",
-    "husky": "^0.14.3",
+    "husky": "^2.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^22.4.4",
+    "jest": "^24.8.0",
     "minimist": "^1.2.0",
     "modernizr": "^3.7.1",
     "pretty-quick": "^1.10.0",
     "redux-devtools": "^3.5.0",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
-    "turndown": "5.0.1",
     "webpack": "~4.28.0",
-    "webpack-bundle-analyzer": "^2.13.1",
+    "turndown": "^5.0.3",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.1",
     "winston": "^3.2.1"
   }
