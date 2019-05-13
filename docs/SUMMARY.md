@@ -21,6 +21,7 @@
 - [Content Types](development/content-types/README.md)
   - [Embed](development/content-types/embed.md)
   - [Metadata](development/content-types/metadata.md)
+  - [Selection Submission Action](development/content-types/selection-submission-action.md)
 - [Features](development/features/README.md)
   - [Sixpack A/B Testing](development/features/sixpack/sixpack-a-b-testing.md)
     - [Code Tests](development/features/sixpack/sixpack-code-tests.md)
