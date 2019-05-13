@@ -6,7 +6,7 @@ The Selection Submission Action allows users to submit a text post via a [`<sele
 
 ![Example Selection Submission Action](../../.gitbook/assets/selection-submission-action-example.png)
 
-Once the user submits the form, the block display a post-submission state, showcasing the user's submission along with an editor defined label.
+Once the user submits the form, the block displays a post-submission state, showcasing the user's submission along with an editor defined label.
 
 ![Example Selection Submission Action Post Submission State](../../.gitbook/assets/selection-submission-action-post-submission-example.png)
 
