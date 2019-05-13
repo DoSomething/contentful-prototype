@@ -1,4 +1,4 @@
-/* global window, confirm, alert */
+/* global window, alert */
 /* eslint-disable no-alert */
 
 import React from 'react';
@@ -26,7 +26,7 @@ const CampaignDashboard = props => {
   const onReferralExportClick = () => {
     const message =
       'Please confirm your intent to export this data. This will permanently mark the records as already exported and cannot be undone.';
-    if (confirm(message)) {
+    if (window.confirm(message)) {
       const downloadSizeMessage =
         'Please note: the max export size is 150 records at a time, so if your exported file contains that amount of rows, you may need to repeat the download to receive the rest of the records';
       alert(downloadSizeMessage);
@@ -45,6 +45,7 @@ const CampaignDashboard = props => {
         Clear Cache
       </a>
       <button
+        type="button"
         className="button -secondary margin-md"
         onClick={clickedShowAffirmation}
       >
@@ -52,6 +53,7 @@ const CampaignDashboard = props => {
       </button>
       {hasLandingPage ? (
         <button
+          type="button"
           className="button -secondary margin-md"
           onClick={clickedShowLandingPage}
         >
@@ -65,11 +67,16 @@ const CampaignDashboard = props => {
       >
         Show Action Page
       </Link>
-      <button className="button -secondary margin-md" onClick={onSignUpClick}>
+      <button
+        type="button"
+        className="button -secondary margin-md"
+        onClick={onSignUpClick}
+      >
         {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
       </button>
       {hasReferralRB && isAdmin ? (
         <button
+          type="button"
           className="button -secondary margin-md"
           onClick={onReferralExportClick}
         >

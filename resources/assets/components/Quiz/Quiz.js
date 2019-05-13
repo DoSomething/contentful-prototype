@@ -117,6 +117,8 @@ class Quiz extends React.Component {
     } = this.props;
 
     const results = calculateResult(
+      // @TODO: Refactor so this function's setState doesn't rely on result of `this.state`.
+      // eslint-disable-next-line react/no-access-state-in-setstate
       this.state.choices,
       questions,
       this.props.results,
@@ -171,12 +173,12 @@ class Quiz extends React.Component {
   };
 
   selectChoice = (questionId, choiceId) => {
-    this.setState({
+    this.setState(state => ({
       choices: {
-        ...this.state.choices,
+        ...state.choices,
         [questionId]: choiceId,
       },
-    });
+    }));
   };
 
   renderQuiz = () => {
@@ -204,11 +206,12 @@ class Quiz extends React.Component {
         {this.props.autoSubmit ? null : (
           <QuizConclusion callToAction={callToAction}>
             <button
-              onClick={() => this.completeQuiz()}
+              type="submit"
               className="button quiz__submit"
+              onClick={() => this.completeQuiz()}
               disabled={!this.evaluateQuiz()}
             >
-              {submitButtonText || Quiz.defaultProps.submitButtonText}
+              {submitButtonText || 'Get Results'}
             </button>
           </QuizConclusion>
         )}
@@ -299,14 +302,9 @@ Quiz.propTypes = {
 };
 
 Quiz.defaultProps = {
-  additionalContent: {
-    introduction: null,
-    isNestedQuiz: false,
-  },
   resultBlocks: null,
   defaultResultBlock: null,
   hideQuestionNumber: false,
-  submitButtonText: 'Get Results',
   title: null,
 };
 

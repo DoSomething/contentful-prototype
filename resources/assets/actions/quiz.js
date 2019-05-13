@@ -9,7 +9,7 @@ import {
   VIEW_QUIZ_RESULT,
   LOAD_PREVIOUS_QUIZ_STATE,
   QUIZ_ERROR,
-} from '../actions';
+} from '.';
 import { isAuthenticated } from '../selectors/user';
 
 export function loadPreviousQuizState(quizId, questions) {

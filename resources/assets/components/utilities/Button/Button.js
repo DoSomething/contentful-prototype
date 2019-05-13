@@ -26,6 +26,8 @@ const Button = ({
 
   const buttonText = Array.isArray(children) ? children.join('') : children;
   const button = (
+    // We'll skip this linter because we validate this in proptypes.
+    // eslint-disable-next-line react/button-has-type
     <button
       type={type}
       className={classNames}
@@ -45,7 +47,7 @@ const Button = ({
 };
 
 Button.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['submit', 'button']),
   onClick: requiredIf(PropTypes.func, props => props.type !== 'submit'),
   className: PropTypes.string,
   disabled: PropTypes.bool,
@@ -58,7 +60,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  type: null,
+  type: 'button',
   className: null,
   disabled: false,
   loading: false,

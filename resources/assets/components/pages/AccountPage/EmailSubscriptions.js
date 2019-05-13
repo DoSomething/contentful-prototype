@@ -37,17 +37,19 @@ class EmailSubscriptions extends React.Component {
     const target = event.target;
     const name = target.name;
 
-    const newTopics = this.state.emailSubscriptionTopics;
+    this.setState(state => {
+      const newTopics = state.emailSubscriptionTopics;
 
-    if (target.checked) {
-      newTopics.push(name);
-    } else {
-      newTopics.splice(newTopics.indexOf(name), 1);
-    }
+      if (target.checked) {
+        newTopics.push(name);
+      } else {
+        newTopics.splice(newTopics.indexOf(name), 1);
+      }
 
-    this.setState({
-      emailSubscriptionTopics: newTopics,
-      showAffirmation: false,
+      return {
+        emailSubscriptionTopics: newTopics,
+        showAffirmation: false,
+      };
     });
   }
 

@@ -7,7 +7,7 @@ import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import LandingPageContainer from '../../pages/LandingPage/LandingPageContainer';
+import LandingPageContainer from "../LandingPage/LandingPageContainer";
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';

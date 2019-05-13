@@ -1,4 +1,4 @@
-import * as actions from '../actions';
+import * as actions from '.';
 import { isAuthenticated } from '../selectors/user';
 import { getArray, EVENT_STORAGE_KEY } from '../helpers/storage';
 import { isTimestampValid, contentfulImageUrl } from '../helpers';

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Card from '../components/utilities/Card/Card';
-import TextContent from '../components/utilities/TextContent/TextContent';
+import Card from "./utilities/Card/Card";
+import TextContent from "./utilities/TextContent/TextContent";
 
 const zendeskUrl =
   'https://help.dosomething.org/hc/en-us/articles/115016093488-Help-The-page-I-m-looking-for-says-Page-Not-Found-';

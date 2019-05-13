@@ -45,7 +45,7 @@ PitchTemplate.propTypes = {
   sidebarCTA: PropTypes.shape({
     title: PropTypes.string,
     content: PropTypes.string,
-  }).isRequired,
+  }),
 };
 
 PitchTemplate.defaultProps = {

@@ -1,3 +1,6 @@
+// @TODO: Figure out why this is failing in this particular file...
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -12,17 +15,6 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
 
 class ReferralSubmissionAction extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showModal: false,
-      firstNameValue: '',
-      // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
-      emailValue: '',
-    };
-  }
-
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
@@ -44,6 +36,17 @@ class ReferralSubmissionAction extends React.Component {
     first_name: 'firstName',
     email: 'email',
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      firstNameValue: '',
+      // @todo allow for multiple sorts of referral fields in addition to email. (e.g. phone number.)
+      emailValue: '',
+    };
+  }
 
   handleChange = event => {
     this.setState({

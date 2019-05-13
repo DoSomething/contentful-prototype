@@ -77,7 +77,7 @@ LegacyTemplate.propTypes = {
   endDate: PropTypes.shape({
     date: PropTypes.string,
     timezone: PropTypes.string,
-    timezone_type: PropTypes.int,
+    timezone_type: PropTypes.number,
   }),
   isAffiliated: PropTypes.bool.isRequired,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,

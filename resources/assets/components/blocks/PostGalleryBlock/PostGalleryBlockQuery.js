@@ -164,7 +164,7 @@ class PostGalleryBlockQuery extends React.Component {
               onRender={this.galleryReady}
               posts={result}
               shouldShowNoResults
-              waypointName={'post_gallery_block'}
+              waypointName="post_gallery_block"
             />
           )}
         </PaginatedQuery>

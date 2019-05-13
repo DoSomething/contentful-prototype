@@ -18,7 +18,7 @@ const Reaction = props => {
   );
 
   return (
-    <button className="reaction" onClick={onToggle}>
+    <button type="button" className="reaction" onClick={onToggle}>
       <BaseFigure
         media={reactionButton}
         alignment="left"
