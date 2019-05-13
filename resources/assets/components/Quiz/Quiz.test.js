@@ -1,4 +1,4 @@
-/* global location, jsdom */
+/* global jsdom, window */
 
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -87,7 +87,7 @@ const props = {
   ],
   slug: 'quiz-slug',
   history,
-  location,
+  location: window.location,
   autoSubmit: false,
   storeCampaignSignup: () => {},
   isAuthenticated: true,
