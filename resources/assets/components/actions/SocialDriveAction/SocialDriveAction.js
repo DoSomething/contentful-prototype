@@ -73,6 +73,7 @@ class SocialDriveAction extends React.Component {
                   disabled={!shortenedLink}
                 />
                 <button
+                  type="button"
                   className="text-field link-copy-button"
                   onClick={this.handleCopyLinkClick}
                   disabled={!shortenedLink}

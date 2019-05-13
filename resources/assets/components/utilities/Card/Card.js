@@ -14,7 +14,7 @@ const renderHeader = (title, link, onClose) => (
       <h1>{title}</h1>
     )}
     {onClose ? (
-      <button className="card__exit" onClick={onClose}>
+      <button type="button" className="card__exit" onClick={onClose}>
         &times;
       </button>
     ) : null}

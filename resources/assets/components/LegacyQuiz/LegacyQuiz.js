@@ -44,7 +44,11 @@ const LegacyQuiz = props => {
 
   const submitConclusion = shouldSeeResult ? null : (
     <Conclusion callToAction={fields.callToAction}>
-      <button onClick={() => completeQuiz(id)} className="button quiz__submit">
+      <button
+        type="submit"
+        className="button quiz__submit"
+        onClick={() => completeQuiz(id)}
+      >
         {submitButtonText || LegacyQuiz.defaultProps.submitButtonText}
       </button>
     </Conclusion>

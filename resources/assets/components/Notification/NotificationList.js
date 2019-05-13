@@ -8,7 +8,7 @@ const Notification = ({ message, style, remove }) => (
     <div className="notification__content">
       <p>{message}</p>
     </div>
-    <button className="notification__close" onClick={remove}>
+    <button type="button" className="notification__close" onClick={remove}>
       &times;
     </button>
   </div>

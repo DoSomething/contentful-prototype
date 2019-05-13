@@ -38,7 +38,7 @@ const ReactionButton = ({ post }) => (
       );
 
       return (
-        <button className="reaction" onClick={toggleReaction}>
+        <button type="button" className="reaction" onClick={toggleReaction}>
           <BaseFigure
             media={button}
             alignment="left"

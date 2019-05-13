@@ -204,8 +204,9 @@ class Quiz extends React.Component {
         {this.props.autoSubmit ? null : (
           <QuizConclusion callToAction={callToAction}>
             <button
-              onClick={() => this.completeQuiz()}
+              type="submit"
               className="button quiz__submit"
+              onClick={() => this.completeQuiz()}
               disabled={!this.evaluateQuiz()}
             >
               {submitButtonText || Quiz.defaultProps.submitButtonText}

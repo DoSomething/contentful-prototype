@@ -45,6 +45,7 @@ const CampaignDashboard = props => {
         Clear Cache
       </a>
       <button
+        type="button"
         className="button -secondary margin-md"
         onClick={clickedShowAffirmation}
       >
@@ -52,6 +53,7 @@ const CampaignDashboard = props => {
       </button>
       {hasLandingPage ? (
         <button
+          type="button"
           className="button -secondary margin-md"
           onClick={clickedShowLandingPage}
         >
@@ -65,11 +67,16 @@ const CampaignDashboard = props => {
       >
         Show Action Page
       </Link>
-      <button className="button -secondary margin-md" onClick={onSignUpClick}>
+      <button
+        type="button"
+        className="button -secondary margin-md"
+        onClick={onSignUpClick}
+      >
         {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
       </button>
       {hasReferralRB && isAdmin ? (
         <button
+          type="button"
           className="button -secondary margin-md"
           onClick={onReferralExportClick}
         >

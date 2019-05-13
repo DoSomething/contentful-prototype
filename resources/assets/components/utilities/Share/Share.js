@@ -22,6 +22,7 @@ const Share = props => {
     <div className={classnames({ 'share-tray': isIcon })}>
       {isIcon ? (
         <button
+          type="button"
           className={buttonClassName}
           onClick={() => handleTwitterShareClick(link, trackingData, quote)}
         >
@@ -32,6 +33,7 @@ const Share = props => {
       ) : null}
 
       <button
+        type="button"
         className={buttonClassName}
         onClick={() => handleFacebookShareClick(link, trackingData)}
       >

@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 const ShareButton = ({ className, onClick, disabled, icon, text }) => (
   <button
+    type="button"
     className={classnames('button share-button margin-sm', className)}
     onClick={onClick}
     disabled={disabled}
