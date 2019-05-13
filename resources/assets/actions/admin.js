@@ -1,4 +1,4 @@
-import { SHOW_LANDING_PAGE, SHOW_ACTION_PAGE } from ".";
+import { SHOW_LANDING_PAGE, SHOW_ACTION_PAGE } from '.';
 
 /**
  * Action Creators: these functions create actions, which describe changes
