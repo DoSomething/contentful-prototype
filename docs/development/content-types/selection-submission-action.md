@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Selection Submission Action allows users to submit a text post via a select form field which displays a predefined list of options.
+The Selection Submission Action allows users to submit a text post via a [<select>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) form field which displays a predefined list of options.
 
 ![Example Selection Submission Action](../../.gitbook/assets/selection-submission-action-example.png)
 
