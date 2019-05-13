@@ -2,11 +2,11 @@
 
 ## Overview
 
-The Selection Submission Action allows users to submit a text post via a [<select>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) form field which displays a predefined list of options.
+The Selection Submission Action allows users to submit a text post via a [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) form field displaying a predefined list of options.
 
 ![Example Selection Submission Action](../../.gitbook/assets/selection-submission-action-example.png)
 
-Once the user submits the form, the block will be displayed in post-submission state, showcasing the user's submission along with an editor defined label.
+Once the user submits the form, the block display a post-submission state, showcasing the user's submission along with an editor defined label.
 
 ![Example Selection Submission Action Post Submission State](../../.gitbook/assets/selection-submission-action-post-submission-example.png)
 
@@ -30,8 +30,8 @@ The selection text is submitted using the [`storePost`](https://github.com/DoSom
 
 #### Post Submission State
 
-We wrap the form in an Apollo-GraqhQL [<Query>](https://www.apollographql.com/docs/react/essentials/queries#basic) component, querying Rogue for the user's posts for this Action ID. If we find a pre-existing post, we render the post submission state, otherwise, the form as usual. We err on the side of displaying the form, so if the query returns an error, the user isn't blocked from form submission.
+We wrap the form in an Apollo-GraqhQL [<Query>](https://www.apollographql.com/docs/react/essentials/queries#basic) component, querying Rogue for the user's posts filtered by the Action ID. If we find an existing post, we render the post submission state, otherwise, the form as usual. We err on the side of caution when it comes to displaying the form, so if the query returns an error, the user isn't blocked from form submission.
 
 #### Validation
 
-We run a local validation check before submitting the form to ensure that the selected option matches one of the predefined list. This can help prevent custom / nefarious submissions via dom manipulation.
+We validate the selection before submitting the form to ensure that it matches one of the defined list of selections. This can help prevent custom and/or nefarious submissions that someone might be inclined to finagle via dom manipulation.
