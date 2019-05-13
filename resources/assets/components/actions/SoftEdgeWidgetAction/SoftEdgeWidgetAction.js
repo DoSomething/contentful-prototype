@@ -63,15 +63,14 @@ class SoftEdgeWidgetAction extends React.Component {
 }
 
 SoftEdgeWidgetAction.propTypes = {
-  title: PropTypes.string.isRequired,
   softEdgeId: PropTypes.number.isRequired,
-  user: PropTypes.object.isRequired,
-  userId: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  user: PropTypes.object,
+  userId: PropTypes.string,
 };
 
 SoftEdgeWidgetAction.defaultProps = {
   title: null,
-  softEdgeId: null,
   user: {},
   userId: null,
 };

@@ -55,7 +55,6 @@ ContentfulAsset.propTypes = {
 };
 
 ContentfulAsset.defaultProps = {
-  className: null,
   width: 700,
   height: 700,
 };

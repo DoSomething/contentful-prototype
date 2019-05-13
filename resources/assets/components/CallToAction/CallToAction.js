@@ -1,6 +1,5 @@
-/* @flow */
-
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../utilities/Card/Card';
@@ -18,20 +17,6 @@ const renderImpactContent = (prefix, value, suffix) => {
   );
 };
 
-type CallToActionProps = {
-  className: ?string,
-  content: ?string,
-  impactPrefix: ?string,
-  impactSuffix: ?string,
-  impactValue: ?string,
-  hideIfSignedUp: ?boolean,
-  isSignedUp: boolean,
-  sticky: ?boolean,
-  tagline: string,
-  useCampaignTagline: boolean,
-  visualStyle: string,
-};
-
 const CallToAction = ({
   className,
   content,
@@ -44,7 +29,7 @@ const CallToAction = ({
   tagline,
   useCampaignTagline,
   visualStyle,
-}: CallToActionProps) => {
+}) => {
   if (hideIfSignedUp && isSignedUp) {
     return null;
   }
@@ -78,6 +63,20 @@ const CallToAction = ({
       {isSignedUp ? null : <SignupButton source="call to action" />}
     </Card>
   );
+};
+
+CallToAction.propTypes = {
+  className: PropTypes.string,
+  content: PropTypes.string,
+  impactPrefix: PropTypes.string,
+  impactSuffix: PropTypes.string,
+  impactValue: PropTypes.string,
+  hideIfSignedUp: PropTypes.bool,
+  isSignedUp: PropTypes.bool.isRequired,
+  sticky: PropTypes.bool,
+  tagline: PropTypes.string.isRequired,
+  useCampaignTagline: PropTypes.bool.isRequired,
+  visualStyle: PropTypes.string.isRequired,
 };
 
 CallToAction.defaultProps = {

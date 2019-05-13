@@ -211,7 +211,7 @@ class Quiz extends React.Component {
               onClick={() => this.completeQuiz()}
               disabled={!this.evaluateQuiz()}
             >
-              {submitButtonText || Quiz.defaultProps.submitButtonText}
+              {submitButtonText || 'Get Results'}
             </button>
           </QuizConclusion>
         )}
@@ -302,14 +302,9 @@ Quiz.propTypes = {
 };
 
 Quiz.defaultProps = {
-  additionalContent: {
-    introduction: null,
-    isNestedQuiz: false,
-  },
   resultBlocks: null,
   defaultResultBlock: null,
   hideQuestionNumber: false,
-  submitButtonText: 'Get Results',
   title: null,
 };
 
