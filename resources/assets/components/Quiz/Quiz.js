@@ -117,6 +117,8 @@ class Quiz extends React.Component {
     } = this.props;
 
     const results = calculateResult(
+      // @TODO: Refactor so this function's setState doesn't rely on result of `this.state`.
+      // eslint-disable-next-line react/no-access-state-in-setstate
       this.state.choices,
       questions,
       this.props.results,
@@ -171,12 +173,12 @@ class Quiz extends React.Component {
   };
 
   selectChoice = (questionId, choiceId) => {
-    this.setState({
+    this.setState(state => ({
       choices: {
-        ...this.state.choices,
+        ...state.choices,
         [questionId]: choiceId,
       },
-    });
+    }));
   };
 
   renderQuiz = () => {
