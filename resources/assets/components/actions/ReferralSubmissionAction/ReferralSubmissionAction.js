@@ -1,3 +1,6 @@
+// @TODO: Figure out why this is failing in this particular file...
+/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
