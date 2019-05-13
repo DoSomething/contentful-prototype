@@ -33,15 +33,6 @@ export const TextSubmissionBlockFragment = gql`
 `;
 
 class TextSubmissionAction extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      showModal: false,
-      textValue: '',
-    };
-  }
-
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
@@ -61,6 +52,15 @@ class TextSubmissionAction extends React.Component {
   fields = {
     text: 'text',
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showModal: false,
+      textValue: '',
+    };
+  }
 
   handleChange = event => {
     this.setState({
