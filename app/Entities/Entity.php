@@ -64,6 +64,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new CallToAction($block->entry);
             case 'campaign':
                 return new TruncatedCampaign($block->entry);
+            case 'campaignDashboard':
+                return new CampaignDashboard($block->entry);
             case 'campaignUpdate':
                 return new CampaignUpdate($block->entry);
             case 'postGallery':
