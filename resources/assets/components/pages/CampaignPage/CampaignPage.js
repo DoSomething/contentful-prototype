@@ -5,7 +5,6 @@ import Enclosure from '../../Enclosure';
 import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
-import DashboardContainer from '../../Dashboard/DashboardContainer';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import LandingPageContainer from "../LandingPage/LandingPageContainer";
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
@@ -33,7 +32,7 @@ const CampaignPage = props => {
     <div>
       <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
       <div className="main clearfix">
-        {props.dashboard ? <DashboardContainer /> : null}
+        {props.dashboard ? <ContentfulEntry json={props.dashboard} /> : null}
 
         {!props.entryContent ? <CampaignPageNavigationContainer /> : null}
 
