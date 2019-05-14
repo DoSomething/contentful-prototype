@@ -75,8 +75,8 @@ CallToAction.propTypes = {
   isSignedUp: PropTypes.bool.isRequired,
   sticky: PropTypes.bool,
   tagline: PropTypes.string.isRequired,
-  useCampaignTagline: PropTypes.bool.isRequired,
-  visualStyle: PropTypes.string.isRequired,
+  useCampaignTagline: PropTypes.bool,
+  visualStyle: PropTypes.string,
 };
 
 CallToAction.defaultProps = {
@@ -87,6 +87,8 @@ CallToAction.defaultProps = {
   impactValue: null,
   hideIfSignedUp: false,
   sticky: false,
+  useCampaignTagline: false,
+  visualStyle: null,
 };
 
 export default CallToAction;
