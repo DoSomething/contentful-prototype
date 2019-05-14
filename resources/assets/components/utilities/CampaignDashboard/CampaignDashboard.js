@@ -39,13 +39,13 @@ const CampaignDashboard = props => {
         </p>
       </div>
 
-      <div className="dashboard__segment dashboard--share px-4">
-        <div className="dashboard--share__content">
+      <div className="dashboard__segment dashboard-share px-4">
+        <div className="dashboard-share__content">
           <strong>{shareHeader}</strong>
           <p>{shareCopy}</p>
         </div>
 
-        <div className="dashboard--share__button">
+        <div className="dashboard-share__button">
           <Share variant="black" parentSource="dashboard" />
         </div>
       </div>

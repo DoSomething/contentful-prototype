@@ -34,7 +34,7 @@ $small-to-medium: '(min-width: 600px)';
     }
   }
 
-  .dashboard--share {
+  .dashboard-share {
     border-top: 1px solid $gray-200;
     margin-top: $half-spacing;
     padding-top: $base-spacing;
@@ -53,7 +53,7 @@ $small-to-medium: '(min-width: 600px)';
   }
 }
 
-.dashboard--share__content {
+.dashboard-share__content {
   flex: 1 1;
 
   strong {
@@ -79,7 +79,7 @@ $small-to-medium: '(min-width: 600px)';
   }
 }
 
-.dashboard--share__button {
+.dashboard-share__button {
   flex: 1 1;
   margin-top: $half-spacing;
 
