@@ -10,24 +10,6 @@ use JsonSerializable;
 class Campaign extends Entity implements JsonSerializable
 {
     /**
-     * Parse and extract data for quizzes.
-     *
-     * @param  array $quizzes
-     * @return array
-     */
-    public function parseQuizzes($quizzes)
-    {
-        return collect($quizzes)->map(function ($quiz) {
-            switch ($quiz->getContentType()) {
-                case 'quizBeta':
-                    return new LegacyQuiz($quiz->entry);
-                case 'quiz':
-                    return new Quiz($quiz->entry);
-            }
-        });
-    }
-
-    /**
      * Parse and extract data for affiliates (either affiliateSponser or affiliatePartner).
      *
      * @param  array $affiliates
@@ -38,6 +20,25 @@ class Campaign extends Entity implements JsonSerializable
         return collect($affiliates)->map(function ($affiliate) {
             return new Affiliate($affiliate->entry);
         });
+    }
+
+    /**
+     * Parse the campaign dashboard entry.
+     *
+     * @param  Entry $campaignDashboard
+     * @return array
+     */
+    public function parseCampaignDashboard($campaignDashboard)
+    {
+        if (! $campaignDashboard) {
+            return null;
+        }
+
+        if ($campaignDashboard->getContentType() === 'sixpackExperiment') {
+            return new SixpackExperiment($campaignDashboard->entry);
+        }
+
+        return new CampaignDashboard($campaignDashboard->entry);
     }
 
     /**
@@ -100,6 +101,24 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
+     * Parse and extract data for quizzes.
+     *
+     * @param  array $quizzes
+     * @return array
+     */
+    public function parseQuizzes($quizzes)
+    {
+        return collect($quizzes)->map(function ($quiz) {
+            switch ($quiz->getContentType()) {
+                case 'quizBeta':
+                    return new LegacyQuiz($quiz->entry);
+                case 'quiz':
+                    return new Quiz($quiz->entry);
+            }
+        });
+    }
+
+    /**
      * Convert the object into something JSON serializable.
      *
      * @return array
@@ -128,7 +147,7 @@ class Campaign extends Entity implements JsonSerializable
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             'quizzes' => $this->parseQuizzes($this->quizzes),
-            'dashboard' => $this->dashboard,
+            'dashboard' => $this->parseCampaignDashboard($this->dashboard),
             'affirmation' => $this->affirmation ? $this->parseBlock($this->affirmation) : null,
             'pages' => $this->parseBlocks($this->pages),
             'landingPage' => $this->parseLandingPage($this->landingPage),

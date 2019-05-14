@@ -1,0 +1,89 @@
+@import '../../../scss/next-toolbox.scss';
+
+$small-to-medium: '(min-width: 600px)';
+
+.dashboard {
+  background-color: white;
+
+  display: grid;
+  grid-template-columns: 4fr;
+
+  @include media($small-to-medium) {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  @include media($large) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  .dashboard__segment {
+    text-align: center;
+    padding-top: $half-spacing;
+    padding-bottom: $half-spacing;
+
+    @include media($large) {
+      text-align: left;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  .dashboard__segment + .dashboard__segment {
+    @include media($large) {
+      border-left: 1px solid $gray-300;
+    }
+  }
+
+  .dashboard-share {
+    border-top: 1px solid $gray-200;
+    margin-top: $half-spacing;
+    padding-top: $base-spacing;
+    text-align: left;
+
+    @include media($small-to-medium) {
+      display: flex;
+      grid-column: span 2;
+    }
+
+    @include media($large) {
+      border-top: 0 none;
+      margin-top: 0;
+      padding-top: 0;
+    }
+  }
+}
+
+.dashboard-share__content {
+  flex: 1 1;
+
+  strong {
+    font-size: $font-medium;
+  }
+
+  p {
+    font-size: $font-regular;
+  }
+
+  @include media($small-to-medium) {
+    padding-right: $half-spacing;
+  }
+
+  @include media($large) {
+    strong {
+      font-size: $font-regular;
+    }
+
+    p {
+      font-size: $font-small;
+    }
+  }
+}
+
+.dashboard-share__button {
+  flex: 1 1;
+  margin-top: $half-spacing;
+
+  @include media($small-to-medium) {
+    margin-top: 0;
+  }
+}
