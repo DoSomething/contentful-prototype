@@ -20,6 +20,7 @@ import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
+import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
@@ -77,6 +78,11 @@ class ContentfulEntry extends React.Component<Props, State> {
             visualStyle={json.fields.visualStyle}
             useCampaignTagline={json.fields.useCampaignTagline}
           />
+        );
+
+      case 'campaignDashboard':
+        return (
+          <CampaignDashboard id={json.id} {...withoutNulls(json.fields)} />
         );
 
       case 'campaignUpdate':
