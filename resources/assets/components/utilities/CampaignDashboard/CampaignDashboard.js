@@ -67,7 +67,7 @@ CampaignDashboard.defaultProps = {
   firstValue: null,
   secondDescription: null,
   secondValue: null,
-  shareCopy: 'Get your friends involved to increase our impact.',
+  shareCopy: null,
   shareHeader: null,
 };
 
