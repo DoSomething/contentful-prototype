@@ -2,7 +2,9 @@ module.exports = function(migration) {
   const campaignDashboard = migration
     .createContentType('campaignDashboard')
     .name('Campaign Dashboard')
-    .description('Override the content in the Campaign Dashboard')
+    .description(
+      'Provide quick data points and descriptions for a campaign via a dashboard.',
+    )
     .displayField('internalTitle');
 
   campaignDashboard
@@ -23,7 +25,7 @@ module.exports = function(migration) {
     .createField('shareHeader')
     .name('Share Header')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(false)
     .validations([])
     .disabled(false)
@@ -32,7 +34,7 @@ module.exports = function(migration) {
     .createField('shareCopy')
     .name('Share Copy')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(true)
     .validations([])
     .disabled(false)
@@ -41,7 +43,7 @@ module.exports = function(migration) {
     .createField('firstValue')
     .name('First Value')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(false)
     .validations([])
     .disabled(false)
@@ -50,7 +52,7 @@ module.exports = function(migration) {
     .createField('firstDescription')
     .name('First Description')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(true)
     .validations([])
     .disabled(false)
@@ -59,7 +61,7 @@ module.exports = function(migration) {
     .createField('secondValue')
     .name('Second Value')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(false)
     .validations([])
     .disabled(false)
@@ -68,7 +70,7 @@ module.exports = function(migration) {
     .createField('secondDescription')
     .name('Second Description')
     .type('Symbol')
-    .localized(false)
+    .localized(true)
     .required(true)
     .validations([])
     .disabled(false)
