@@ -41,7 +41,7 @@ const CampaignDashboard = props => {
 
       <div className="dashboard__segment dashboard-share px-4">
         <div className="dashboard-share__content">
-          <strong>{shareHeader}</strong>
+          {shareHeader ? <strong>{shareHeader}</strong> : null}
           <p>{shareCopy}</p>
         </div>
 
@@ -67,7 +67,7 @@ CampaignDashboard.defaultProps = {
   firstValue: null,
   secondDescription: null,
   secondValue: null,
-  shareCopy: null,
+  shareCopy: 'Get your friends involved to increase our impact.',
   shareHeader: null,
 };
 
