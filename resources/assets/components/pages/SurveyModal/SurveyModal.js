@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { makeUrl } from '../../../helpers';
+import { makeUrl, withoutNulls } from '../../../helpers';
 
 class SurveyModal extends React.Component {
   componentDidMount() {
@@ -19,7 +19,7 @@ class SurveyModal extends React.Component {
       location_pathname: window.location.pathname,
     };
 
-    const url = makeUrl(typeformUrl, typeformQuery);
+    const url = makeUrl(typeformUrl, withoutNulls(typeformQuery));
 
     return (
       <div
