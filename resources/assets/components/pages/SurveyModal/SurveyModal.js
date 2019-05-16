@@ -16,7 +16,7 @@ class SurveyModal extends React.Component {
     const typeformQuery = {
       northstar_id: northstarId,
       campaign_id: campaignId,
-      origin: window.location.pathname,
+      location_pathname: window.location.pathname,
     };
 
     const url = makeUrl(typeformUrl, typeformQuery);
