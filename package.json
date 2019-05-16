@@ -126,6 +126,7 @@
     "contentful-management": "^5.7.2",
     "cypress": "^3.2.0",
     "eslint-loader": "^2.1.2",
+    "eslint-plugin-cypress": "^2.2.1",
     "flow-bin": "0.59.0",
     "husky": "^2.4.0",
     "identity-obj-proxy": "^3.0.0",
