@@ -30,7 +30,9 @@ const Campaign = props => (
       <ModalLauncherContainer
         type="nps_survey"
         countdown={60}
-        render={() => <SurveyModalContainer />}
+        render={() => (
+          <SurveyModalContainer typeformUrl="https://dosomething.typeform.com/to/Bvcwvm" />
+        )}
       />
     </TrafficDistribution>
 
