@@ -1,23 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 
-import Modal from '../utilities/Modal/Modal';
-import { get as getStorage, set as setStorage } from '../../helpers/storage';
-import { isTimestampValid, env, query } from '../../helpers';
+import Modal from './Modal';
+import { isTimestampValid, env, query } from '../../../helpers';
+import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 
 class ModalLauncher extends React.Component {
-  state = { showModal: false };
+  constructor(props) {
+    super(props);
+
+    this.state = { showModal: false };
+  }
 
   componentDidMount() {
-    const { type, userId, countdown } = this.props;
+    const { countdown, type } = this.props;
 
     // If the query params indicate to store the feature modal to be hidden, store it.
     if (query(`hide_${type}`) === '1') {
-      setStorage(`${userId}_hide_${type}`, 'boolean', true);
+      setStorage(`hide_${type}`, 'boolean', true);
     }
 
-    if (userId && this.shouldSeeModal()) {
+    if (this.shouldSeeModal()) {
       this.timer = setTimeout(() => {
         this.setState({ showModal: true });
       }, countdown * 1000);
@@ -29,23 +33,16 @@ class ModalLauncher extends React.Component {
   }
 
   shouldSeeModal = () => {
-    const { userId, type, isAuthenticated } = this.props;
+    const { type } = this.props;
 
-    if (!isAuthenticated) {
-      return false;
-    }
-
-    let shouldNotSee = getStorage(`${userId}_hide_${type}`, 'boolean');
+    let shouldNotSee = getStorage(`hide_${type}`, 'boolean');
     // Support for legacy nps survey 'hide feature' storage format.
     if (type === 'nps_survey' && !shouldNotSee) {
-      shouldNotSee = getStorage(`${userId}_finished_survey`, 'boolean');
+      shouldNotSee = getStorage('finished_survey', 'boolean');
     }
 
     // Check if the survey was dismissed over 30 days ago.
-    const dismissalTime = getStorage(
-      `${userId}_dismissed_${type}`,
-      'timestamp',
-    );
+    const dismissalTime = getStorage(`dismissed_${type}`, 'timestamp');
     const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
 
     return (
@@ -54,10 +51,10 @@ class ModalLauncher extends React.Component {
   };
 
   handleClose = () => {
-    const { userId, type } = this.props;
+    const { type } = this.props;
 
     // Mark this modal as "dismissed" in local storage & close.
-    setStorage(`${userId}_dismissed_${type}`, 'timestamp', Date.now());
+    setStorage(`dismissed_${type}`, 'timestamp', Date.now());
     this.setState({ showModal: false });
   };
 
@@ -83,16 +80,11 @@ class ModalLauncher extends React.Component {
 }
 
 ModalLauncher.propTypes = {
-  userId: PropTypes.string,
-  isAuthenticated: PropTypes.bool,
   type: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
   countdown: PropTypes.number.isRequired,
 };
 
-ModalLauncher.defaultProps = {
-  userId: null,
-  isAuthenticated: false,
-};
+ModalLauncher.defaultProps = {};
 
 export default ModalLauncher;
