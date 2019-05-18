@@ -11,19 +11,18 @@ class SurveyModal extends React.Component {
   }
 
   render() {
-    const { campaignId, northstarId, typeformUrl } = this.props;
+    const { typeformUrl, queryParameters } = this.props;
 
     const typeformQuery = {
-      northstar_id: northstarId,
-      campaign_id: campaignId,
-      redirect_pathname: window.location.pathname,
+      redirect_pathname: window.location.href,
+      ...queryParameters,
     };
 
     const url = makeUrl(typeformUrl, withoutNulls(typeformQuery));
 
     return (
       <div
-        className="modal__slide typeform-widget"
+        className=" typeform-widget"
         data-url={url.href}
         style={{ width: '100%', height: '500px' }}
       />
@@ -32,14 +31,12 @@ class SurveyModal extends React.Component {
 }
 
 SurveyModal.propTypes = {
+  queryParameters: PropTypes.object,
   typeformUrl: PropTypes.string.isRequired,
-  northstarId: PropTypes.string,
-  campaignId: PropTypes.string,
 };
 
 SurveyModal.defaultProps = {
-  northstarId: null,
-  campaignId: null,
+  queryParameters: {},
 };
 
 export default SurveyModal;
