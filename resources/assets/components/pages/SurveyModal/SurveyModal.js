@@ -14,7 +14,7 @@ class SurveyModal extends React.Component {
     const { typeformUrl, queryParameters } = this.props;
 
     const typeformQuery = {
-      redirect_pathname: window.location.href,
+      redirect_url: window.location.href,
       ...queryParameters,
     };
 
