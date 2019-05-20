@@ -2,7 +2,7 @@
  * Get the user id from the state.
  *
  * @param  {Object} state
- * @return {String}
+ * @return {Bool}
  */
 export function isAuthenticated(state) {
   return state.user.isAuthenticated;
@@ -22,7 +22,7 @@ export function getUserId(state) {
  * Get the user token from the state.
  *
  * @param  {Object} state
- * @return {string}
+ * @return {String}
  */
 export function getUserToken(state) {
   return state.user.token;
