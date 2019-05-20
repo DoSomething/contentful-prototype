@@ -22,7 +22,7 @@ class SurveyModal extends React.Component {
 
     return (
       <div
-        className=" typeform-widget"
+        className="typeform-widget"
         data-url={url.href}
         style={{ width: '100%', height: '500px' }}
       />
