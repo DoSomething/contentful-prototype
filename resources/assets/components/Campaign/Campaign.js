@@ -36,6 +36,8 @@ const Campaign = props => (
             queryParameters={{
               campaign_id: props.campaignId,
               northstar_id: props.userId,
+            }}
+            redirectParameters={{
               hide_nps_survey: 1,
             }}
           />
