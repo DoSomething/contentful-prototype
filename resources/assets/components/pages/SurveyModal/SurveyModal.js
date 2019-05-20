@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { makeUrl, withoutNulls } from '../../../helpers';
+import { appendToQuery, makeUrl, withoutNulls } from '../../../helpers';
 
 class SurveyModal extends React.Component {
   componentDidMount() {
@@ -11,10 +11,12 @@ class SurveyModal extends React.Component {
   }
 
   render() {
-    const { typeformUrl, queryParameters } = this.props;
+    const { queryParameters, redirectParameters, typeformUrl } = this.props;
+
+    const redirectUrl = appendToQuery(redirectParameters, window.location.href);
 
     const typeformQuery = {
-      redirect_url: window.location.href,
+      redirect_url: redirectUrl.href,
       ...queryParameters,
     };
 
@@ -32,11 +34,13 @@ class SurveyModal extends React.Component {
 
 SurveyModal.propTypes = {
   queryParameters: PropTypes.object,
+  redirectParameters: PropTypes.object,
   typeformUrl: PropTypes.string.isRequired,
 };
 
 SurveyModal.defaultProps = {
   queryParameters: {},
+  redirectParameters: {},
 };
 
 export default SurveyModal;

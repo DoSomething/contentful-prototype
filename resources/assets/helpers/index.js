@@ -2,7 +2,7 @@
 
 import queryString from 'query-string';
 import { getTime, isBefore, isWithinInterval } from 'date-fns';
-import { get, find, isNull, isUndefined, omitBy } from 'lodash';
+import { get, find, isNull, isUndefined, merge, omitBy } from 'lodash';
 
 import Sixpack from '../services/Sixpack';
 import { trackAnalyticsEvent } from './analytics';
@@ -11,6 +11,29 @@ import { isSignedUp } from '../selectors/signup';
 // Helper Constants
 export const EMPTY_IMAGE =
   'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+
+/**
+ * Append query parameters to a URL even if it already has existing parameters.
+ *
+ * @param  {Object} additionalParameters
+ * @param  {String} href
+ * @return {URL}
+ */
+export function appendToQuery(
+  additionalParameters,
+  href = window.location.href,
+) {
+  const urlObject = new URL(href);
+
+  const mergedParameters = merge(
+    queryString.parse(urlObject.search),
+    additionalParameters,
+  );
+
+  urlObject.search = queryString.stringify(mergedParameters);
+
+  return urlObject;
+}
 
 /**
  * Build login redirect URL with optional context data.
