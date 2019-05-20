@@ -5,8 +5,8 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import NotificationContainer from '../Notification';
 import ModalLauncherContainer from '../ModalLauncher';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
+import SurveyModal from '../pages/SurveyModal/SurveyModal';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
-import SurveyModalContainer from '../pages/SurveyModal/SurveyModalContainer';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
 import {
@@ -31,7 +31,14 @@ const Campaign = props => (
         type="nps_survey"
         countdown={60}
         render={() => (
-          <SurveyModalContainer typeformUrl="https://dosomething.typeform.com/to/Bvcwvm" />
+          <SurveyModal
+            typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
+            queryParameters={{
+              campaign_id: props.campaignId,
+              northstar_id: props.userId,
+              hide_nps_survey: 1,
+            }}
+          />
         )}
       />
     </TrafficDistribution>
@@ -51,14 +58,18 @@ const Campaign = props => (
 );
 
 Campaign.propTypes = {
+  campaignId: PropTypes.string,
   featureFlags: PropTypes.objectOf(PropTypes.bool),
-  location: ReactRouterPropTypes.location.isRequired,
   history: ReactRouterPropTypes.history.isRequired,
+  location: ReactRouterPropTypes.location.isRequired,
   match: ReactRouterPropTypes.match.isRequired,
+  userId: PropTypes.string,
 };
 
 Campaign.defaultProps = {
+  campaignId: null,
   featureFlags: null,
+  userId: null,
 };
 
 export default Campaign;
