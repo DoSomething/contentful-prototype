@@ -27,10 +27,10 @@ const Campaign = props => (
     <NotificationContainer />
 
     {props.isAuthenticated ? (
-      <TrafficDistribution percentage={100} feature="nps_survey">
+      <TrafficDistribution percentage={5} feature="nps_survey">
         <ModalLauncher
           type="nps_survey"
-          countdown={1}
+          countdown={60}
           render={() => (
             <SurveyModal
               typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
