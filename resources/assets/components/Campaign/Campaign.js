@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import NotificationContainer from '../Notification';
-import SurveyModal from '../pages/SurveyModal/SurveyModal';
+import TypeFormSurvey from '../utilities/TypeFormSurvey/TypeFormSurvey';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import ModalLauncher from '../utilities/Modal/ModalLauncher';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
@@ -32,7 +32,7 @@ const Campaign = props => (
           type="nps_survey"
           countdown={60}
           render={() => (
-            <SurveyModal
+            <TypeFormSurvey
               typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
               queryParameters={{
                 campaign_id: props.campaignId,
