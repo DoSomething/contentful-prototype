@@ -5,6 +5,9 @@ import { get } from 'lodash';
 
 import sponsorList from './sponsor-list';
 import { contentfulImageUrl } from '../../../helpers';
+import ModalLauncher from '../../utilities/Modal/ModalLauncher';
+import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
+import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
 import './home-page.scss';
 
@@ -62,42 +65,57 @@ class HomePage extends React.Component {
     }
 
     return (
-      <div className="home-page">
-        <header role="banner" className="header header--home">
-          <div className="wrapper">
-            <h1 className="header__title">{title}</h1>
-            <h2 className="header__subtitle">{subTitle}</h2>
-          </div>
-        </header>
-
-        <section className="home-page__gallery">
-          {blocks.map(this.renderGalleryBlock)}
-        </section>
-
-        <section className="container container--sponsors">
-          <div className="wrapper">
-            <div className="container__block">
-              {/*
-                Workaround for this jsx-a11y bug https://git.io/fN814.
-                @TODO: Update once the eslint-config package is updated (https://git.io/fjejY).
-               */}
-              {/* eslint-disable-next-line jsx-a11y/heading-has-content */}
-              <h4>Sponsors</h4>
-              <ul>
-                {sponsorList.map(sponsor => (
-                  <li key={sponsor.name}>
-                    <img
-                      src={contentfulImageUrl(sponsor.image, '125', '40')}
-                      title={sponsor.name}
-                      alt={sponsor.name}
-                    />
-                  </li>
-                ))}
-              </ul>
+      <React.Fragment>
+        <div className="home-page">
+          <header role="banner" className="header header--home">
+            <div className="wrapper">
+              <h1 className="header__title">{title}</h1>
+              <h2 className="header__subtitle">{subTitle}</h2>
             </div>
-          </div>
-        </section>
-      </div>
+          </header>
+
+          <section className="home-page__gallery">
+            {blocks.map(this.renderGalleryBlock)}
+          </section>
+
+          <section className="container container--sponsors">
+            <div className="wrapper">
+              <div className="container__block">
+                <h4>Sponsors</h4>
+                <ul>
+                  {sponsorList.map(sponsor => (
+                    <li key={sponsor.name}>
+                      <img
+                        src={contentfulImageUrl(sponsor.image, '125', '40')}
+                        title={sponsor.name}
+                        alt={sponsor.name}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <TrafficDistribution percentage={5} feature="nps_survey">
+          <ModalLauncher
+            type="nps_survey"
+            countdown={30}
+            render={() => (
+              <TypeFormSurvey
+                typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                queryParameters={{
+                  northstar_id: get(window.AUTH, 'id', null),
+                }}
+                redirectParameters={{
+                  hide_nps_survey: 1,
+                }}
+              />
+            )}
+          />
+        </TrafficDistribution>
+      </React.Fragment>
     );
   }
 }

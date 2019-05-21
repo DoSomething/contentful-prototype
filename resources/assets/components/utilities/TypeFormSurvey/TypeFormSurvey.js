@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { appendToQuery, makeUrl, withoutNulls } from '../../../helpers';
 
-class SurveyModal extends React.Component {
+class TypeFormSurvey extends React.Component {
   componentDidMount() {
     window.typeformInit();
   }
@@ -32,15 +32,15 @@ class SurveyModal extends React.Component {
   }
 }
 
-SurveyModal.propTypes = {
+TypeFormSurvey.propTypes = {
   queryParameters: PropTypes.object,
   redirectParameters: PropTypes.object,
   typeformUrl: PropTypes.string.isRequired,
 };
 
-SurveyModal.defaultProps = {
+TypeFormSurvey.defaultProps = {
   queryParameters: {},
   redirectParameters: {},
 };
 
-export default SurveyModal;
+export default TypeFormSurvey;
