@@ -5,8 +5,8 @@ import { get } from 'lodash';
 
 import sponsorList from './sponsor-list';
 import { contentfulImageUrl } from '../../../helpers';
-import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
 import ModalLauncher from '../../utilities/Modal/ModalLauncher';
+import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
 import './home-page.scss';
