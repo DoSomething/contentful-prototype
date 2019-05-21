@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import NotificationContainer from '../Notification';
-import TypeFormSurvey from '../utilities/TypeFormSurvey/TypeFormSurvey';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import ModalLauncher from '../utilities/Modal/ModalLauncher';
+import TypeFormSurvey from '../utilities/TypeFormSurvey/TypeFormSurvey';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
