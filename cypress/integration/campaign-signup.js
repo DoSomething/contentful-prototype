@@ -2,10 +2,14 @@
 
 describe('Homepage', () => {
   it('Visits a campaign page', () => {
-    cy.visit('/us/test-');
 
-    cy.contains("Let's Do This!");
-    cy.contains('Explore Campaigns');
-    cy.contains('What is DoSomething.org?');
+    cy.visit('/us/campaigns/test-teens-for-jeans');
+
+    cy.contains('[Test] Teens for Jeans');
+    cy.contains("Let's collect another million jeans TOGETHER.");
+
+    cy.contains('button', 'Join Now').click();
+
+    cy.login();
   });
 });

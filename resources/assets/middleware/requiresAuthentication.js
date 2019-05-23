@@ -18,10 +18,19 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
     const actionId = `auth:${Date.now()}`;
 
     localforage.setItem(actionId, action).then(() => {
-      window.location.href = buildLoginRedirectUrl(
+      const redirect = buildLoginRedirectUrl(
         getDataForNorthstar(state),
         actionId,
       );
+
+      // If we're running our test suite, don't automatically initiate
+      // the login redirect flow & leave something to assert on.
+      if (window.Cypress) {
+        document.body.innerHTML = `<div data-test="redirect" data-url="${redirect}" />`;
+        return null;
+      }
+
+      window.location.href = redirect;
     });
 
     return null;

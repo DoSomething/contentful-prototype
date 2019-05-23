@@ -178,7 +178,7 @@ function is_same_domain($url)
  */
 function scriptify($json = [], $store = 'STATE')
 {
-    return new HtmlString('<script type="text/javascript">window.'.$store.' = '.json_encode($json).'</script>');
+    return new HtmlString('<script type="text/javascript">window.'.$store.' = window.'.$store.' || '.json_encode($json).'</script>');
 }
 
 /**
