@@ -8,7 +8,7 @@ import queryString from 'query-string';
 // https://on.cypress.io/custom-commands
 
 // Example "parent" command:
-Cypress.Commands.add('login', email => {
+Cypress.Commands.add('login', userId => {
   Cypress.log({ name: 'Login', message: 'Mocking authentication flow...' });
 
   cy.get('[data-test="redirect"]', { log: false })
@@ -26,7 +26,7 @@ Cypress.Commands.add('login', email => {
         // eslint-disable-next-line no-param-reassign
         window.AUTH = {
           isAuthenticated: true,
-          id: '555123fffaaabbbcccddd456',
+          id: userId,
           expiresAt: now + 3600,
           now,
         };
