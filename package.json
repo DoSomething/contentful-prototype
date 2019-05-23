@@ -124,7 +124,7 @@
     "@dosomething/eslint-config": "^5.0.0",
     "@dosomething/webpack-config": "^5.1.0",
     "contentful-management": "^5.7.2",
-    "cypress": "^3.2.0",
+    "cypress": "^3.3.1",
     "eslint-loader": "^2.1.2",
     "eslint-plugin-cypress": "^2.2.1",
     "flow-bin": "0.59.0",
