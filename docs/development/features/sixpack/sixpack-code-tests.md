@@ -19,10 +19,10 @@ const LandingPage = props => {
   return (
     <SixpackExperiment
       title="LedeBanner Layout Experiment"
+      // The mosaic template is the control, or default test alternative.
+      control={<LedeBannerContainer testName="Mosaic Layout Template" />}
       convertableActions={['signup']}
       alternatives={[
-        // The mosaic template is the default, or control test alternative.
-        <LedeBannerContainer testName="Mosaic Layout Template" />,
         // The jumbo template is the alternative to test against the control.
         <LedeBannerContainer
           testName="Jumbo Layout Template"

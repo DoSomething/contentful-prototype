@@ -30,7 +30,7 @@ To perform all these A/B Test Experiments, we utilize an open-source, language-a
 
 To communicate with the Sixpack server, Phoenix has a `Sixpack` service class located in [`/resources/assets/services/Sixpack.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/services/Sixpack.js). This class is only instantiated _once_ during the page request cycle and only if an experiment is initiated; it contains a key-value store of all the experiments running on the current page being viewed.
 
-There is a convenient `sixpack()` helper function you should use as an alias, which creates a new instance, or retrieves an existing instance of the `Sixpack` service class, ensuring that only one instance of the `Sixpack` is ever called. This function can be found in [`/resources/assets/helpers/index.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/helpers/index.js).
+There is a convenient `sixpack()` helper function you should use as an alias, which creates a new instance, or retrieves an existing instance of the `Sixpack` service class, ensuring that only one instance of the `Sixpack` class is ever called. This function can be found in [`/resources/assets/helpers/index.js`](https://github.com/DoSomething/phoenix-next/blob/master/resources/assets/helpers/index.js).
 
 ### Experiment Participation
 
@@ -44,7 +44,7 @@ The `SixpackExperiment` component can be found in [`/resources/assets/components
 
 When a `SixpackExperiment` component is rendered on a page, upon mounting the following series of steps occur:
 
-1. The component configures some settings to set the name for the experiment, and define what the alternative test options are to choose from.
+1. The component configures some settings to set the name for the experiment, and define what the control and alternative test options are to choose from.
 2. It then calls the `participate()` method on the `Sixpack` class via the `sixpack()` helper function, which makes an API request to the Sixpack server, and participates the current user in the specified A/B test experiment.
 3. The response from the Sixpack server returns with the name of the selected alternative test option that the current user has been participated in.
 4. Within the `Sixpack` service class, this experiment along with the associated alternative test option that was selected for the user is added to the `experiments` object property on the class.
