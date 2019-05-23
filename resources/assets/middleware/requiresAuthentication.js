@@ -27,7 +27,7 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
       // the login redirect flow & leave something to assert on.
       if (window.Cypress) {
         document.body.innerHTML = `<div data-test="redirect" data-url="${redirect}" />`;
-        return null;
+        return;
       }
 
       window.location.href = redirect;

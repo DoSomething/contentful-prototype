@@ -17,7 +17,20 @@ module.exports = {
     'jsx-a11y/click-events-have-key-events': 'off',
     'import/no-cycle': 'off',
 
-    // For Cypress triple-slash type directives:
+    // Allow TypeScript's triple-slash directives:
     'spaced-comment': ['error', 'always', { markers: ['/'] }],
+
+    // Don't complain about using devDependencies in tests:
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          'resources/**/__tests__/*.js',
+          'resources/**/*.test.js',
+          'resources/**/*.spec.js',
+          'cypress/**/*.js',
+        ],
+      },
+    ],
   },
 };
