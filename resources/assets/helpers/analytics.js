@@ -79,6 +79,14 @@ export function analyzeWithPuck(name, data) {
   puckClient.trackEvent(name, data);
 }
 
+export function analyzeWithSnowplow(category, name, data) {
+  const label = window.location.pathname;
+
+  console.log('👋', { category, name, label, data });
+
+  window.snowplow('trackStructEvent', category, name, label);
+}
+
 /**
  * Dispatch analytics event to specified service, or all services by default.
  *
@@ -101,6 +109,7 @@ const sendToServices = (category, name, data, service) => {
     default:
       analyzeWithGoogleAnalytics(category, name);
       analyzeWithPuck(name, data);
+      analyzeWithSnowplow(category, name, data);
   }
 };
 
@@ -166,6 +175,24 @@ export function trackAnalyticsEvent({ verb, noun, adjective, data, service }) {
     console.error('The Verb or Noun is missing!');
     return;
   }
+
+  console.log('🗿', {
+    verb,
+    noun,
+    adjective,
+    data,
+    service,
+  });
+
+  // {verb: "focused", noun: "text_submission_action", adjective: "text", data: {…}, service: undefined}
+  // adjective: "text"
+  // data:
+  // contentfulId: "2kignGID0Qyyy6g08c20uc"
+  // __proto__: Object
+  // noun: "text_submission_action"
+  // service: undefined
+  // verb: "focused"
+  // __proto__: Object
 
   const eventName = formatEventName(verb, noun, adjective);
 
