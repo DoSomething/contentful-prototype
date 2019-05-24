@@ -10,6 +10,7 @@ import {
 } from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
+import snowplowSchema from '../schemas/snowplow.json';
 import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
@@ -79,12 +80,27 @@ export function analyzeWithPuck(name, data) {
   puckClient.trackEvent(name, data);
 }
 
-export function analyzeWithSnowplow(category, name, data) {
+/**
+ * Send event to analyze with Snowplow.
+ *
+ * @param  {String} category
+ * @param  {String} name
+ * @param  {Object} payload
+ * @return {void}
+ */
+export function analyzeWithSnowplow(category, name, payload) {
   const label = window.location.pathname;
 
-  console.log('👋', { category, name, label, data });
+  // https://gist.githubusercontent.com/weerd/f361ce33d27d9072c2d49aafe2494874/raw/c3c5915410ae1ee6b793ff3fa5bd36b61a92d21b/snowplow_schema.json
 
-  window.snowplow('trackStructEvent', category, name, label);
+  window.snowplow('trackStructEvent', category, name, label, null, null, [
+    {
+      schema: snowplowSchema,
+      data: {
+        payload: JSON.stringify(payload),
+      },
+    },
+  ]);
 }
 
 /**
