@@ -8,7 +8,7 @@ To create a Sixpack A/B Test Experiment in code, you first need to determine the
 
 Since we would be testing multiple variations of the rendered output of the `LedeBannerContainer` component, we would need to make changes in the `LandingPage` component, which is where the `LedeBannerContainer` component is called and output.
 
-To perform the A/B Test Experiment, we would need to replace the `LedeBannerContainer` component with a `SixpackExperiment` component found in the [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, and instead pass the `LedeBannerContainer` variations as array items in the `alternatives` property of the `SixpackExperiment`:
+To perform the A/B Test Experiment, we would need to replace the `LedeBannerContainer` component with a `SixpackExperiment` component found in the [`/resources/assets/components/utilities/SixpackExperiment/`](https://github.com/DoSomething/phoenix-next/tree/master/resources/assets/components/utilities/SixpackExperiment) directory, and instead pass a `control` for the default `LedeBannerContainer` and any `LedeBannerContainer` variations as array items in the `alternatives` property of the `SixpackExperiment`:
 
 ```javascript
 // /resources/assets/components/pages/LandingPage/LandingPage.js
@@ -34,7 +34,7 @@ const LandingPage = props => {
   );
 ```
 
-Each component passed as a test alternative needs to specify a `testName` property to help distinguish between the different alternatives; a short yet descriptive name is ideal. This `testName` property will be used by the `SixpackExperiment` component to generate the snake-cased name for the test in the Sixpack web administrative user interface.
+Each component passed as a test alternative needs to specify a `testName` property to help distinguish between the different alternatives; a short yet descriptive name is ideal. This `testName` property will be used by the `SixpackExperiment` component to generate the snake_cased name for the test in the Sixpack web administrative user interface.
 
 When using components for test alternatives that utilize a container, it is required that the container component code be updated so when mapping state to props, the properties can be overridden by properties specified when calling the component container in the `SixpackExperimentContaienr`.
 
