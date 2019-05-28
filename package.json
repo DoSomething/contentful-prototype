@@ -42,7 +42,10 @@
     "projects": [
       {
         "displayName": "unit",
-        "testMatch": ["<rootDir>/**/__test__/**/*.js", "<rootDir>/**/*.test.js"],
+        "testMatch": [
+          "<rootDir>/**/__test__/**/*.js",
+          "<rootDir>/**/*.test.js"
+        ],
         "clearMocks": true,
         "testURL": "http://localhost",
         "testEnvironment": "jest-environment-jsdom-global",
@@ -57,7 +60,9 @@
       {
         "displayName": "browser",
         "preset": "jest-puppeteer",
-        "testMatch": ["<rootDir>/**/__spec__/**/*.js"]
+        "testMatch": [
+          "<rootDir>/**/__spec__/**/*.js"
+        ]
       }
     ]
   },

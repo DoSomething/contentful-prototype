@@ -18,10 +18,17 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
     const actionId = `auth:${Date.now()}`;
 
     localforage.setItem(actionId, action).then(() => {
-      window.location.href = buildLoginRedirectUrl(
+      const redirect = buildLoginRedirectUrl(
         getDataForNorthstar(state),
         actionId,
       );
+
+      if (window.Puppeteer) {
+        document.body.innerHTML = `<div data-test="redirect" data-url="${redirect}" />`;
+        return;
+      }
+
+      window.location.href = redirect;
     });
 
     return null;
