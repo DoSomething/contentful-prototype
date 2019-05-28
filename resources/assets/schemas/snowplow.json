@@ -4,7 +4,7 @@
   "description": "Schema for Snowplow event data payload.",
   "properties": {
     "payload": {
-      "type": "object"
+      "type": "string"
     }
   }
 }

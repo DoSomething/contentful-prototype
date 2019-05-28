@@ -92,10 +92,12 @@ export function analyzeWithSnowplow(category, name, payload) {
   const label = window.location.pathname;
 
   // https://gist.githubusercontent.com/weerd/f361ce33d27d9072c2d49aafe2494874/raw/c3c5915410ae1ee6b793ff3fa5bd36b61a92d21b/snowplow_schema.json
+  // https://gist.githubusercontent.com/weerd/f4395e328ee16a398739f626a4b91b4c/raw/c1f7825eb7d2e4f7b7620a6a4fd1e599cb7476ff/snowplow_schema_string.json
 
   window.snowplow('trackStructEvent', category, name, label, null, null, [
     {
-      schema: snowplowSchema,
+      schema:
+        'https://gist.githubusercontent.com/weerd/f4395e328ee16a398739f626a4b91b4c/raw/c1f7825eb7d2e4f7b7620a6a4fd1e599cb7476ff/snowplow_schema_string.json',
       data: {
         payload: JSON.stringify(payload),
       },
@@ -191,24 +193,6 @@ export function trackAnalyticsEvent({ verb, noun, adjective, data, service }) {
     console.error('The Verb or Noun is missing!');
     return;
   }
-
-  console.log('🗿', {
-    verb,
-    noun,
-    adjective,
-    data,
-    service,
-  });
-
-  // {verb: "focused", noun: "text_submission_action", adjective: "text", data: {…}, service: undefined}
-  // adjective: "text"
-  // data:
-  // contentfulId: "2kignGID0Qyyy6g08c20uc"
-  // __proto__: Object
-  // noun: "text_submission_action"
-  // service: undefined
-  // verb: "focused"
-  // __proto__: Object
 
   const eventName = formatEventName(verb, noun, adjective);
 
