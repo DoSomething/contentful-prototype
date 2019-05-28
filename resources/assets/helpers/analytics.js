@@ -167,6 +167,14 @@ export function trackAnalyticsEvent({ verb, noun, adjective, data, service }) {
     return;
   }
 
+  console.log('🚁', {
+    verb,
+    noun,
+    adjective,
+    data,
+    service,
+  });
+
   const eventName = formatEventName(verb, noun, adjective);
 
   // Define category parameter for Google Analytics.
