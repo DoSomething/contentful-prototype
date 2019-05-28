@@ -39,16 +39,27 @@
     ]
   },
   "jest": {
-    "clearMocks": true,
-    "testEnvironment": "jest-environment-jsdom-global",
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest-setup.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/resources/assets/__mocks__/fileMock.js",
-      "\\.(css|scss)$": "identity-obj-proxy"
-    },
-    "testURL": "http://localhost"
+    "projects": [
+      {
+        "displayName": "unit",
+        "testMatch": ["<rootDir>/**/__test__/**/*.js", "<rootDir>/**/*.test.js"],
+        "clearMocks": true,
+        "testURL": "http://localhost",
+        "testEnvironment": "jest-environment-jsdom-global",
+        "setupFilesAfterEnv": [
+          "<rootDir>/jest-setup.js"
+        ],
+        "moduleNameMapper": {
+          "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/resources/assets/__mocks__/fileMock.js",
+          "\\.(css|scss)$": "identity-obj-proxy"
+        }
+      },
+      {
+        "displayName": "browser",
+        "preset": "jest-puppeteer",
+        "testMatch": ["<rootDir>/**/__spec__/**/*.js"]
+      }
+    ]
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.2.0",
@@ -117,20 +128,26 @@
     "@dosomething/babel-preset": "^3.1.0",
     "@dosomething/eslint-config": "^5.0.0",
     "@dosomething/webpack-config": "^5.0.0",
+    "@pollyjs/adapter-puppeteer": "^2.4.0",
+    "@pollyjs/core": "^2.4.0",
+    "@pollyjs/persister-fs": "^2.1.0",
     "contentful-management": "^5.7.1",
     "eslint-loader": "^2.1.2",
     "flow-bin": "0.59.0",
     "husky": "^2.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
+    "jest-puppeteer": "^4.2.0",
     "minimist": "^1.2.0",
     "modernizr": "^3.7.1",
     "pretty-quick": "^1.10.0",
+    "puppeteer": "^1.17.0",
     "redux-devtools": "^3.5.0",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
-    "webpack": "~4.28.0",
+    "setup-polly-jest": "^0.5.2",
     "turndown": "^5.0.3",
+    "webpack": "~4.28.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.1",
     "winston": "^3.2.1"
