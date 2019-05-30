@@ -27,8 +27,7 @@ class SoftEdgeWidgetAction extends React.Component {
     const softEdgeId = this.props.softEdgeId;
     const user = this.props.user;
     let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true&memberId=${
-      this.props.userId
-    }`;
+      this.props.userId}&dosomething_action_id=${actionId}`;
 
     const prepopulatedFields = withoutNulls({
       firstName: user.firstName,
