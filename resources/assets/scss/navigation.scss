@@ -13,6 +13,11 @@
 }
 
 .navigation__logo {
+  // Temporary overide for Pride 2019!
+  &:after {
+    background: url('./rainbow-logo.svg');
+  }
+
   @include media($mobile) {
     position: relative;
     top: auto;
