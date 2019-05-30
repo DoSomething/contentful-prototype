@@ -4,11 +4,11 @@ import classnames from 'classnames';
 
 import './sponsor-promotion.scss';
 
-const SponsorPromotion = ({ className = null, imgUrl, title }) => (
+const SponsorPromotion = ({ className = null, imgUrl, text, title }) => (
   <div className={classnames('promotions', className)}>
     <div className="promotion promotion--sponsor">
       <div className="wrapper">
-        <p className="__copy">Powered by</p>
+        <p className="__copy">{text}</p>
         <div className="__image">
           <img src={imgUrl} alt={title} />
         </div>
@@ -19,12 +19,14 @@ const SponsorPromotion = ({ className = null, imgUrl, title }) => (
 
 SponsorPromotion.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string,
   imgUrl: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  title: PropTypes.string,
 };
 
 SponsorPromotion.defaultProps = {
   className: null,
+  text: 'Powered by',
   title: 'Campaign Sponsor Logo',
 };
 

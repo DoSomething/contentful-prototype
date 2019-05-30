@@ -12,6 +12,7 @@ import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContaine
 
 const CampaignRoute = props => {
   const {
+    affiliateCreditText,
     affiliatePartners,
     affiliateSponsors,
     affirmation,
@@ -66,6 +67,7 @@ const CampaignRoute = props => {
         </Switch>
       </div>
       <InfoBar
+        affiliateCreditText={affiliateCreditText}
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
         contactEmail={campaignLead.email || undefined}
@@ -75,6 +77,7 @@ const CampaignRoute = props => {
 };
 
 CampaignRoute.propTypes = {
+  affiliateCreditText: PropTypes.string,
   affiliatePartners: PropTypes.arrayOf(PropTypes.object).isRequired,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   affirmation: PropTypes.object.isRequired,
@@ -91,6 +94,7 @@ CampaignRoute.propTypes = {
 };
 
 CampaignRoute.defaultProps = {
+  affiliateCreditText: undefined,
   campaignLead: null,
 };
 

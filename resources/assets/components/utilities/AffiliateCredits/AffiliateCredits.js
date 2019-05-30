@@ -32,7 +32,11 @@ Affiliate.defaultProps = {
   prefix: null,
 };
 
-const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
+const AffiliateCredits = ({
+  affiliateCreditText,
+  affiliatePartners,
+  affiliateSponsors,
+}) => {
   const affiliates = affiliateSponsors.concat(affiliatePartners);
 
   const affiliatesString = affiliates.map((affiliate, index, array) => {
@@ -55,17 +59,19 @@ const AffiliateCredits = ({ affiliatePartners, affiliateSponsors }) => {
 
   return affiliates.length ? (
     <div className="w-1/2 float-left">
-      In partnership with {affiliatesString}
+      {affiliateCreditText} {affiliatesString}
     </div>
   ) : null;
 };
 
 AffiliateCredits.propTypes = {
+  affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
 };
 
 AffiliateCredits.defaultProps = {
+  affiliateCreditText: 'In partnership with',
   affiliateSponsors: [],
   affiliatePartners: [],
 };

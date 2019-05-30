@@ -16,6 +16,7 @@ const MosaicTemplate = props => {
   const {
     affiliatedActionText,
     affiliatedActionLink,
+    affiliateCreditText,
     affiliateOptInContent,
     affiliateSponsors,
     displaySignup,
@@ -99,6 +100,7 @@ const MosaicTemplate = props => {
               className="mosaic-lede-banner__sponsor padding-top-lg clear-both"
               imgUrl={affiliateSponsors[0].fields.logo.url}
               title={affiliateSponsors[0].fields.logo.title}
+              text={affiliateCreditText}
             />
           ) : null}
         </div>
@@ -110,6 +112,7 @@ const MosaicTemplate = props => {
 MosaicTemplate.propTypes = {
   affiliatedActionText: PropTypes.string,
   affiliatedActionLink: PropTypes.string,
+  affiliateCreditText: PropTypes.string,
   affiliateOptInContent: PropTypes.object,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
   blurb: PropTypes.string,
@@ -127,6 +130,7 @@ MosaicTemplate.propTypes = {
 MosaicTemplate.defaultProps = {
   affiliatedActionText: null,
   affiliatedActionLink: null,
+  affiliateCreditText: undefined,
   affiliateOptInContent: null,
   blurb: null,
   displaySignup: true,
