@@ -25,7 +25,9 @@ class SoftEdgeWidgetAction extends React.Component {
    */
   loadSoftEdgeWidget = () => {
     const softEdgeId = this.props.softEdgeId;
+    const actionId = this.props.actionId;
     const user = this.props.user;
+
     let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true&memberId=${
       this.props.userId}&dosomething_action_id=${actionId}`;
 
