@@ -9,6 +9,11 @@ import { clickedHideAffirmation } from '../../../actions';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
+  affiliateCreditText: get(
+    state,
+    'campaign.additionalContent.affiliateCreditText',
+    undefined,
+  ),
   affiliateSponsors: state.campaign.affiliateSponsors,
   affiliatePartners: state.campaign.affiliatePartners,
   affirmation: state.campaign.affirmation,

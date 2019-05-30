@@ -3,10 +3,16 @@ import PropTypes from 'prop-types';
 
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
-const InfoBar = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
+const InfoBar = ({
+  affiliateCreditText,
+  affiliatePartners,
+  affiliateSponsors,
+  contactEmail,
+}) => (
   <div className="info-bar">
     <div className="default-container padding-vertical-lg padding-horizontal-md">
       <AffiliateCredits
+        affiliateCreditText={affiliateCreditText}
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
       />
@@ -19,12 +25,14 @@ const InfoBar = ({ affiliateSponsors, affiliatePartners, contactEmail }) => (
 );
 
 InfoBar.propTypes = {
+  affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
   contactEmail: PropTypes.string,
 };
 
 InfoBar.defaultProps = {
+  affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
   contactEmail: 'help@dosomething.org',
