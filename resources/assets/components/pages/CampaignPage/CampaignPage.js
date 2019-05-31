@@ -6,7 +6,7 @@ import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import LandingPageContainer from "../LandingPage/LandingPageContainer";
+import LandingPageContainer from '../LandingPage/LandingPageContainer';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';

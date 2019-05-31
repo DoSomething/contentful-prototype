@@ -19,4 +19,7 @@ const actionCreators = {
   nextSlide,
 };
 
-export default connect(mapStateToOwnProps, actionCreators)(Slideshow);
+export default connect(
+  mapStateToOwnProps,
+  actionCreators,
+)(Slideshow);
