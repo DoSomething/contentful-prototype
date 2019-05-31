@@ -47,6 +47,20 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
+  softEdgeWidgetAction
+    .createField('actionId')
+    .name('Action Id')
+    .type('Integer')
+    .localized(false)
+    .required(true)
+    .validations([
+      {
+        unique: true
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
   softEdgeWidgetAction.changeEditorInterface('internalTitle', 'singleLine', {
     helpText:
       'This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and a distinctive title to help find this content in the system.',
@@ -60,5 +74,9 @@ module.exports = function(migration) {
   softEdgeWidgetAction.changeEditorInterface('softEdgeId', 'numberEditor', {
     helpText:
       'The ID of the SoftEdge action, given upon creation in SoftEdge. When you click "Publish Now", a URL will appear in the "See the Action" box. The SoftEdge ID is the last digit in the URL. e.g. SoftEdge ID = 3 in http://www.congressweb.com/dosomething/3',
+  });
+
+  softEdgeWidgetAction.changeEditorInterface('actionId', 'numberEditor', {
+    helpText: 'The Action ID associated with this action in Rogue. Action IDs can be found in Rogue: https://dosome.click/nyshrf',
   });
 };

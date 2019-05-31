@@ -19,6 +19,7 @@ class SoftEdgeWidgetAction extends Entity implements JsonSerializable
             'fields' => [
                 'title' => $this->title,
                 'softEdgeId' => $this->softEdgeId,
+                'actionId' => $this->actionId,
             ],
         ];
     }
