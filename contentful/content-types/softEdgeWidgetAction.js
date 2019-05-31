@@ -77,6 +77,6 @@ module.exports = function(migration) {
   });
 
   softEdgeWidgetAction.changeEditorInterface('actionId', 'numberEditor', {
-    helpText: 'The Action ID associated with this action in Rogue.',
+    helpText: 'The Action ID associated with this action in Rogue. Action IDs can be found in Rogue: https://dosome.click/nyshrf',
   });
 };
