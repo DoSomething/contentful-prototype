@@ -3,7 +3,7 @@ module.exports = function(migration) {
     .createContentType('softEdgeWidgetAction')
     .name('SoftEdgeWidgetAction')
     .description(
-      'Actions made via our third party partner, SoftEdge. This can be an email, Tweet, Facebook post, call, etc. to specific targets. ''
+      'Actions made via our third party partner, SoftEdge. This can be an email, Tweet, Facebook post, call, etc. to specific targets. ',
     )
     .displayField('internalTitle');
 
@@ -26,9 +26,9 @@ module.exports = function(migration) {
     .validations([
       {
         size: {
-          max: 65
-        }
-      }
+          max: 65,
+        },
+      },
     ])
     .disabled(false)
     .omitted(false);
@@ -41,8 +41,8 @@ module.exports = function(migration) {
     .required(true)
     .validations([
       {
-        unique: true
-      }
+        unique: true,
+      },
     ])
     .disabled(false)
     .omitted(false);
@@ -56,27 +56,27 @@ module.exports = function(migration) {
     .validations([
       {
         unique: true
-      }
+      },
     ])
     .disabled(false)
     .omitted(false);
 
   softEdgeWidgetAction.changeEditorInterface('internalTitle', 'singleLine', {
     helpText:
-      'This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and a distinctive title to help find this content in the system.'
+      'This is for our internal Contentful organization and will be how the block shows up in search results, etc. It should include the Year-Month and a distinctive title to help find this content in the system.',
   });
 
   softEdgeWidgetAction.changeEditorInterface('title', 'singleLine', {
     helpText:
-      'This will be displayed as the header within the SoftEdge widget action block.'
+      'This will be displayed as the header within the SoftEdge widget action block.',
   });
 
   softEdgeWidgetAction.changeEditorInterface('softEdgeId', 'numberEditor', {
     helpText:
-      'The ID of the SoftEdge action, given upon creation in SoftEdge. When you click "Publish Now", a URL will appear in the "See the Action" box. The SoftEdge ID is the last digit in the URL. e.g. SoftEdge ID = 3 in http://www.congressweb.com/dosomething/3'
+      'The ID of the SoftEdge action, given upon creation in SoftEdge. When you click "Publish Now", a URL will appear in the "See the Action" box. The SoftEdge ID is the last digit in the URL. e.g. SoftEdge ID = 3 in http://www.congressweb.com/dosomething/3',
   });
 
   softEdgeWidgetAction.changeEditorInterface('actionId', 'numberEditor', {
-    helpText: 'The Action ID associated with this action in Rogue.'
+    helpText: 'The Action ID associated with this action in Rogue.',
   });
 };
