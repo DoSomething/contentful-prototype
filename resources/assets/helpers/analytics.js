@@ -1,6 +1,6 @@
 /* global window */
 
-import { snakeCase } from 'lodash';
+import { snakeCase, startCase } from 'lodash';
 import { Engine as PuckClient } from '@dosomething/puck-client';
 import {
   dimensionByCookie,
@@ -14,6 +14,7 @@ import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
 const APP_PREFIX = 'phoenix';
+
 // Variable that stores the instance of PuckClient.
 let puckClient = null;
 
@@ -40,13 +41,17 @@ const formatEventName = (verb, noun, adjective = null) => {
  * @param  {String} action
  * @return {void}
  */
-export function analyzeWithGoogleAnalytics(category, action) {
+export function analyzeWithGoogleAnalytics(
+  name,
+  category,
+  action,
+  label,
+  data,
+) {
   if (!category || !action) {
     console.error('The Category or Action is missing!');
     return;
   }
-
-  const label = window.location.pathname;
 
   // Format the event parameter as expected by the analyze method.
   const identifier = `${category}:${action}:${label}`;
@@ -55,7 +60,13 @@ export function analyzeWithGoogleAnalytics(category, action) {
 
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ category, event: action, label });
+  window.dataLayer.push({
+    eventAction: startCase(action),
+    eventCategory: startCase(category),
+    eventLabel: startCase(label),
+    eventName: name,
+    eventContext: data,
+  });
 }
 
 /**
@@ -88,10 +99,10 @@ export function analyzeWithPuck(name, data) {
  * @param  {String|Null} [service]
  * @return {void}
  */
-const sendToServices = (category, name, data, service) => {
+const sendToServices = (name, category, action, label, data, service) => {
   switch (service) {
     case 'ga':
-      analyzeWithGoogleAnalytics(category, name);
+      analyzeWithGoogleAnalytics(name, category, action, label, data);
       break;
 
     case 'puck':
@@ -99,7 +110,7 @@ const sendToServices = (category, name, data, service) => {
       break;
 
     default:
-      analyzeWithGoogleAnalytics(category, name);
+      analyzeWithGoogleAnalytics(name, category, action, label, data);
       analyzeWithPuck(name, data);
   }
 };
@@ -153,32 +164,26 @@ export function googleAnalyticsInit(history) {
 /**
  * Track an analytics event with a specified service. (Defaults to tracking with all services.)
  *
- * @param  {Object}      options
- * @param  {String}      options.verb
- * @param  {String}      options.noun
- * @param  {String}      [options.adjective]
- * @param  {Object|Null} [options.data]
- * @param  {String|Null} [options.service]
+ * @param  {Object} options
+ * @param  {Object} options.metaData
+ * @param  {Object} options.contextData
+ * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent({ verb, noun, adjective, data, service }) {
-  if (!verb || !noun) {
-    console.error('The Verb or Noun is missing!');
+export function trackAnalyticsEvent({ metaData, contextData, service }) {
+  if (!metaData) {
+    console.error('The metaData object is missing!');
     return;
   }
 
-  console.log('🚁', {
-    verb,
-    noun,
-    adjective,
-    data,
-    service,
-  });
+  const { adjective, category, target, noun, verb } = metaData;
+  let { label } = metaData;
 
-  const eventName = formatEventName(verb, noun, adjective);
+  const name = formatEventName(verb, noun, adjective);
 
-  // Define category parameter for Google Analytics.
-  const category = `${APP_PREFIX}_${snakeCase(noun)}`;
+  const action = snakeCase(`${target}_${verb}`);
 
-  sendToServices(category, eventName, data, service);
+  label = label || noun;
+
+  sendToServices(name, category, action, label, contextData, service);
 }

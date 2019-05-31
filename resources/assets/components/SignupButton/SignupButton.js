@@ -10,18 +10,17 @@ const SignupButton = props => {
     campaignActionText,
     campaignContentfulId,
     campaignId,
+    campaignTitle,
     className,
     disableSignup,
-    source,
     sourceActionText,
     storeCampaignSignup,
-    template,
     text,
     trafficSource,
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
-  const onSignup = buttonText => {
+  const onSignup = () => {
     const details = { campaignContentfulId };
 
     // Set affiliate opt in field if user has opted in.
@@ -32,10 +31,11 @@ const SignupButton = props => {
     storeCampaignSignup(campaignId, {
       body: { details: JSON.stringify(details) },
       analytics: {
-        campaignContentfulId,
-        source,
-        sourceData: { text: buttonText },
-        template,
+        target: 'button',
+        context: {
+          campaignContentfulId,
+        },
+        label: campaignTitle,
       },
     });
   };
@@ -50,7 +50,7 @@ const SignupButton = props => {
   const buttonCopy = text || sourceOverride || campaignActionText;
 
   return (
-    <Button className={className} onClick={() => onSignup(buttonCopy)}>
+    <Button className={className} onClick={() => onSignup()}>
       {buttonCopy}
     </Button>
   );
@@ -61,22 +61,21 @@ SignupButton.propTypes = {
   campaignActionText: PropTypes.string,
   campaignContentfulId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
+  campaignTitle: PropTypes.string,
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
-  source: PropTypes.string.isRequired,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   storeCampaignSignup: PropTypes.func.isRequired,
-  template: PropTypes.string,
   text: PropTypes.string,
   trafficSource: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
   campaignActionText: 'Take Action',
+  campaignTitle: null,
   className: null,
   disableSignup: false,
   sourceActionText: null,
-  template: null,
   text: null,
   trafficSource: null,
 };
