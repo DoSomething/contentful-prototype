@@ -111,9 +111,9 @@ export function storeCampaignSignup(campaignId, data = {}) {
     metaData: {
       adjective: get(analytics, 'adjective', null),
       category: 'signup',
-      element: get(analytics, 'element', null),
       label: get(analytics, 'label', null),
       noun: type,
+      target: get(analytics, 'target', null),
       verb: 'clicked',
     },
     contextData: {

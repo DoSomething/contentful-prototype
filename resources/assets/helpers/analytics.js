@@ -39,6 +39,8 @@ const formatEventName = (verb, noun, adjective = null) => {
  *
  * @param  {String} category
  * @param  {String} action
+ * @param  {String} label
+ * @param  {Object} data
  * @return {void}
  */
 export function analyzeWithGoogleAnalytics(
@@ -170,7 +172,7 @@ export function googleAnalyticsInit(history) {
  * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent({ metaData, contextData, service }) {
+export function trackAnalyticsEvent({ metaData, contextData = {}, service }) {
   if (!metaData) {
     console.error('The metaData object is missing!');
     return;
