@@ -8,7 +8,7 @@ import { Query } from 'react-apollo';
 import { env } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
-import { EmbedBlockFragment } from "../Iframe";
+import { EmbedBlockFragment } from '../Iframe';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
 import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';

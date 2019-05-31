@@ -4,8 +4,8 @@ import { get, snakeCase } from 'lodash';
 
 import { sixpack } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
-import Placeholder from "../Placeholder";
-import Empty from "../Empty";
+import Placeholder from '../Placeholder';
+import Empty from '../Empty';
 
 class SixpackExperiment extends React.Component {
   constructor(props) {

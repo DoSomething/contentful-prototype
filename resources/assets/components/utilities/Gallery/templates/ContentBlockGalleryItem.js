@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../helpers';
-import TextContent from "../../TextContent/TextContent";
+import TextContent from '../../TextContent/TextContent';
 
 const ContentBlockGalleryItem = ({
   title,

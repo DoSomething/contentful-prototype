@@ -16,4 +16,7 @@ const actionCreators = {
 };
 
 // Export the container component.
-export default connect(mapStateToProps, actionCreators)(NotificationList);
+export default connect(
+  mapStateToProps,
+  actionCreators,
+)(NotificationList);
