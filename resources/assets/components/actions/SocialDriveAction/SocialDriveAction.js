@@ -36,12 +36,16 @@ class SocialDriveAction extends React.Component {
 
   handleCopyLinkClick = () => {
     this.linkInput.current.select();
+
     document.execCommand('copy');
+
     trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'copy_to_clipboard',
-      data: {
-        url: this.props.link,
+      contextData: { url: this.props.link },
+      metaData: {
+        category: 'campaign_action',
+        noun: 'copy_to_clipboard',
+        target: 'button',
+        verb: 'clicked',
       },
     });
   };
