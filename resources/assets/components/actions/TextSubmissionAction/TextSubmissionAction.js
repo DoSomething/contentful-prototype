@@ -70,11 +70,13 @@ class TextSubmissionAction extends React.Component {
 
   handleFocus = () => {
     trackAnalyticsEvent({
-      verb: 'focused',
-      noun: 'text_submission_action',
-      adjective: 'text',
-      data: {
-        contentfulId: this.props.id,
+      contextData: { contentfulId: this.props.id },
+      metaData: {
+        adjective: 'text',
+        category: 'campaign_action',
+        noun: 'text_submission_action', // @TODO: maybe set this using the formatEventNoun() helper?
+        target: 'field',
+        verb: 'focused',
       },
     });
   };

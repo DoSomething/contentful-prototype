@@ -21,7 +21,7 @@ export const VoterRegistrationBlockFragment = gql`
 `;
 
 const VoterRegistrationAction = props => {
-  const { campaignId, content, contentfulId, link, modalType, userId } = props;
+  const { campaignId, content, contentfulId, link, userId } = props;
 
   const tokens = {
     userId,
@@ -34,12 +34,20 @@ const VoterRegistrationAction = props => {
   const parsedLink = link && dynamicString(link, tokens);
 
   const handleClick = () => {
-    const trackingData = { contentfulId, url: parsedLink, modal: modalType };
     trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'voter_registration_action',
-      data: trackingData,
+      contextData: {
+        campaignContentfulId: contentfulId,
+        campaignId,
+        url: parsedLink,
+      },
+      metaData: {
+        category: 'campaign_action',
+        label: 'voter_registration',
+        noun: 'voter_registration_action',
+        verb: 'clicked',
+      },
     });
+
     set(`${props.userId}_hide_voter_reg_modal`, 'boolean', true);
   };
 
@@ -74,13 +82,11 @@ VoterRegistrationAction.propTypes = {
   content: PropTypes.string,
   contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  modalType: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };
 
 VoterRegistrationAction.defaultProps = {
   content: 'Register to vote!',
-  modalType: null,
 };
 
 export default VoterRegistrationAction;

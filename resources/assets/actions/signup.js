@@ -108,11 +108,17 @@ export function storeCampaignSignup(campaignId, data = {}) {
 
   // Track signup click submission event.
   trackAnalyticsEvent({
-    verb: 'clicked',
-    noun: type,
-    data: {
+    contextData: {
       campaignId,
-      ...analytics,
+      ...get(analytics, 'context', {}),
+    },
+    metaData: {
+      adjective: get(analytics, 'adjective', null),
+      category: 'signup',
+      label: get(analytics, 'label', null),
+      noun: type,
+      target: get(analytics, 'target', null),
+      verb: 'clicked',
     },
   });
 

@@ -18,8 +18,12 @@ class PollLocator extends React.Component {
 
   handleSearchButtonClick = () => {
     trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'poll_locator',
+      metaData: {
+        category: 'campaign_action',
+        noun: 'poll_locator',
+        target: 'button',
+        verb: 'clicked',
+      },
     });
   };
 
@@ -37,9 +41,14 @@ class PollLocator extends React.Component {
         .querySelector('#address-not-found');
       if (get(addressNotFoundModal, 'style.display') === 'block') {
         trackAnalyticsEvent({
-          verb: 'opened',
-          noun: 'modal',
-          adjective: 'poll_locator_not_found',
+          metaData: {
+            adjective: 'poll_locator_not_found',
+            category: 'modal',
+            label: 'poll_locator',
+            noun: 'modal',
+            target: 'modal',
+            verb: 'opened',
+          },
         });
       }
 
@@ -59,9 +68,15 @@ class PollLocator extends React.Component {
       const modal = document.querySelector('html > #_vitModal');
       if (modal) {
         trackAnalyticsEvent({
-          verb: 'opened',
-          noun: 'modal',
-          adjective: 'poll_locator',
+          contextData: {},
+          metaData: {
+            adjective: 'poll_locator',
+            category: 'modal',
+            label: 'poll_locator',
+            noun: 'modal',
+            target: 'modal',
+            verb: 'opened',
+          },
         });
       }
     });

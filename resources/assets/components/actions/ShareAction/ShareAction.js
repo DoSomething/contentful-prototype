@@ -76,54 +76,65 @@ class ShareAction extends React.Component {
     });
   };
 
+  /**
+   * Component helper method for tracking analytics events.
+   *
+   * @param  {String} service
+   * @param  {String} target
+   * @param  {String} verb
+   * @param  {Object} data
+   * @return {Void}
+   */
+  trackEvent = (service, target, verb, data = {}) => {
+    trackAnalyticsEvent({
+      contextData: { ...data },
+      metaData: {
+        adjective: service,
+        category: 'campaign_action',
+        label: service,
+        noun: 'share_action',
+        target,
+        verb,
+      },
+    });
+  };
+
   handleFacebookClick = url => {
     const { link, userId } = this.props;
 
-    const trackingData = { url: link };
-    let trackingOptions = {
-      noun: 'share_action',
-      adjective: 'facebook',
-      data: trackingData,
-    };
+    let trackingData = { url: link };
 
-    trackAnalyticsEvent({
-      verb: 'clicked',
-      ...trackingOptions,
-    });
+    this.trackEvent('facebook', 'button', 'clicked', { url: link });
 
     showFacebookShareDialog(url)
       .then(() => {
         // Send share post to Rogue for authenticated users
         if (this.props.isAuthenticated && this.props.campaignId) {
           const puckId = `phoenix_${userId}_${Date.now()}`;
-          trackingOptions = {
-            ...trackingOptions,
-            data: { ...trackingData, puck_id: puckId },
-          };
+
+          trackingData = { ...trackingData, puck_id: puckId };
+
           this.storeSharePost(puckId);
         }
 
-        trackAnalyticsEvent({
-          verb: 'completed',
-          ...trackingOptions,
+        this.trackEvent('facebook', 'action', 'completed', {
+          ...trackingData,
         });
+
         this.setState({ showModal: true });
       })
       .catch(() => {
-        trackAnalyticsEvent({
-          verb: 'cancelled',
-          ...trackingOptions,
+        this.trackEvent('facebook', 'action', 'cancelled', {
+          ...trackingData,
         });
       });
   };
 
   handleTwitterClick = url => {
-    trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'share_action',
-      adjective: 'twitter',
-      data: { url: this.props.link },
+    this.trackEvent('twitter', 'button', 'clicked', {
+      url: this.props.link,
     });
+
     showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
   };
 

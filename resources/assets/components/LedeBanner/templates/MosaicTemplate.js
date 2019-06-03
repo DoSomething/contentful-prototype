@@ -47,7 +47,6 @@ const MosaicTemplate = props => {
 
       <SignupButton
         className={classnames({ '-float': affiliateSponsors.length })}
-        source="lede banner"
       />
       {signupArrowContent ? (
         <CampaignSignupArrow

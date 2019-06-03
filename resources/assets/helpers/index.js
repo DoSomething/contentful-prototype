@@ -679,11 +679,17 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  */
 export function handleFacebookShareClick(href, trackingData) {
   trackAnalyticsEvent({
-    verb: 'clicked',
-    noun: 'share',
-    adjective: 'facebook',
-    data: trackingData,
+    contextData: { trackingData, url: href },
+    metaData: {
+      category: 'social_share',
+      adjective: 'facebook',
+      label: 'facebook',
+      noun: 'share',
+      target: 'button',
+      verb: 'clicked',
+    },
   });
+
   // @todo 12/13/2018: Use the showFacebookShareDialog to track
   // 'completed' and 'cancelled' events as well.
   showFacebookSharePrompt(href);
@@ -698,11 +704,17 @@ export function handleFacebookShareClick(href, trackingData) {
  */
 export function handleTwitterShareClick(href, trackingData, quote = '') {
   trackAnalyticsEvent({
-    verb: 'clicked',
-    noun: 'share',
-    adjective: 'twitter',
-    data: trackingData,
+    contextData: { trackingData, url: href },
+    metaData: {
+      category: 'social_share',
+      adjective: 'twitter',
+      label: 'twitter',
+      noun: 'share',
+      target: 'button',
+      verb: 'clicked',
+    },
   });
+
   showTwitterSharePrompt(href, quote);
 }
 

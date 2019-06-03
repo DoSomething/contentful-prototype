@@ -13,10 +13,15 @@ import './cta-template.scss';
 
 const onLinkClick = link => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
+
   trackAnalyticsEvent({
-    verb: 'clicked',
-    noun: 'link_action',
-    data: { link },
+    contextData: { url: link },
+    metaData: {
+      category: 'campaign_action',
+      noun: 'link_action',
+      target: 'button',
+      verb: 'clicked',
+    },
   });
 };
 

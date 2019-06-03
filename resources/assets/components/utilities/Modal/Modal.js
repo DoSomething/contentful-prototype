@@ -31,12 +31,18 @@ class Modal extends React.Component {
     this.modalPortal.appendChild(this.el);
 
     // Track in analytics that the modal opened:
+    // @TODO: A bit of duplication with analytics events; refactor to pass in the verb which
+    // is the only real difference, along with eventually passing modalType as the label.
     if (this.props.trackingId) {
       trackAnalyticsEvent({
-        verb: 'opened',
-        noun: 'modal',
-        data: {
+        contextData: {
           modalType: this.props.trackingId,
+        },
+        metaData: {
+          category: 'modal',
+          noun: 'modal',
+          target: 'modal',
+          verb: 'opened',
         },
       });
     }
@@ -52,10 +58,14 @@ class Modal extends React.Component {
     // Track in analytics that the modal closed:
     if (this.props.trackingId) {
       trackAnalyticsEvent({
-        verb: 'closed',
-        noun: 'modal',
-        data: {
+        contextData: {
           modalType: this.props.trackingId,
+        },
+        metaData: {
+          category: 'modal',
+          noun: 'modal',
+          target: 'modal',
+          verb: 'closed',
         },
       });
     }

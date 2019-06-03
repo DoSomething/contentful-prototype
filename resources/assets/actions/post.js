@@ -92,13 +92,18 @@ export function storeCampaignPost(campaignId, data) {
 
   // Track post submission event.
   trackAnalyticsEvent({
-    verb: 'submitted',
-    noun: formatEventNoun(type),
-    data: {
+    contextData: {
       action,
       actionId,
-      campaignId,
       campaignContentfulId,
+      campaignId,
+    },
+    metaData: {
+      category: 'campaign_action',
+      label: type,
+      noun: formatEventNoun(type),
+      target: 'form',
+      verb: 'submitted',
     },
   });
 
@@ -144,10 +149,15 @@ export function storePost(data) {
 
   // Track post submission event.
   trackAnalyticsEvent({
-    verb: 'submitted',
-    noun: formatEventNoun(type),
-    data: {
+    contextData: {
       actionId,
+    },
+    metaData: {
+      category: 'campaign_action',
+      label: type,
+      noun: formatEventNoun(type),
+      target: 'form',
+      verb: 'submitted',
     },
   });
 

@@ -78,10 +78,15 @@ describe('ShareAction component', () => {
 
       expect(trackEventMock.mock.calls[0]).toEqual([
         {
-          verb: 'clicked',
-          noun: 'share_action',
-          adjective: 'facebook',
-          data: trackingData,
+          contextData: trackingData,
+          metaData: {
+            adjective: 'facebook',
+            category: 'campaign_action',
+            noun: 'share_action',
+            label: 'facebook',
+            target: 'button',
+            verb: 'clicked',
+          },
         },
       ]);
     });
@@ -123,10 +128,15 @@ describe('ShareAction component', () => {
 
       expect(trackEventMock.mock.calls[0]).toEqual([
         {
-          verb: 'clicked',
-          noun: 'share_action',
-          adjective: 'twitter',
-          data: trackingData,
+          contextData: trackingData,
+          metaData: {
+            adjective: 'twitter',
+            category: 'campaign_action',
+            noun: 'share_action',
+            label: 'twitter',
+            target: 'button',
+            verb: 'clicked',
+          },
         },
       ]);
     });

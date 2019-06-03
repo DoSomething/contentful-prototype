@@ -71,10 +71,12 @@ const LegacyQuiz = props => {
 
   if (shouldSeeResult) {
     trackAnalyticsEvent({
-      verb: 'submitted',
-      noun: 'quiz',
-      data: {
-        responses: data.questions,
+      contextData: { responses: data.questions },
+      metaData: {
+        category: 'campaign_action',
+        noun: 'quiz',
+        target: 'form',
+        verb: 'submitted',
       },
     });
   }
