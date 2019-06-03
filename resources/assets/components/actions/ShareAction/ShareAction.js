@@ -87,8 +87,8 @@ class ShareAction extends React.Component {
    */
   trackEvent = (service, target, verb, data = {}) => {
     trackAnalyticsEvent({
-      contextData: { ...data },
-      metaData: {
+      context: { ...data },
+      metadata: {
         adjective: service,
         category: 'campaign_action',
         label: service,

@@ -93,13 +93,13 @@ const postRequest = (payload, dispatch, getState) => {
       };
 
       trackAnalyticsEvent({
-        contextData: {
+        context: {
           actionId,
           activityId: response.data.id,
           campaignContentfulId,
           campaignId,
         },
-        metaData: {
+        metadata: {
           category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
           label: campaignId, // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
           noun: formatEventNoun(postType),
@@ -119,13 +119,13 @@ const postRequest = (payload, dispatch, getState) => {
       report(error);
 
       trackAnalyticsEvent({
-        contextData: {
+        context: {
           actionId,
           campaignContentfulId,
           campaignId,
           error,
         },
-        metaData: {
+        metadata: {
           category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
           label: campaignId, // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
           noun: formatEventNoun(postType),

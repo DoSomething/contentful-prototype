@@ -15,8 +15,8 @@ const onLinkClick = link => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
 
   trackAnalyticsEvent({
-    contextData: { url: link },
-    metaData: {
+    context: { url: link },
+    metadata: {
       category: 'campaign_action',
       noun: 'link_action',
       target: 'button',

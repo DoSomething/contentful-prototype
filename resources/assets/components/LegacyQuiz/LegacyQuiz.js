@@ -71,8 +71,8 @@ const LegacyQuiz = props => {
 
   if (shouldSeeResult) {
     trackAnalyticsEvent({
-      contextData: { responses: data.questions },
-      metaData: {
+      context: { responses: data.questions },
+      metadata: {
         category: 'campaign_action',
         noun: 'quiz',
         target: 'form',

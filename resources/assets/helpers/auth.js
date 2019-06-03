@@ -35,8 +35,8 @@ export function bindTokenRefreshEvent() {
         console.log('Token has expired! Refreshing...');
 
         trackAnalyticsEvent({
-          contextData: { skew },
-          metaData: {
+          context: { skew },
+          metadata: {
             category: 'authentication',
             noun: 'token',
             target: 'token',

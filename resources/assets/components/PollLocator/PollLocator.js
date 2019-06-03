@@ -18,7 +18,7 @@ class PollLocator extends React.Component {
 
   handleSearchButtonClick = () => {
     trackAnalyticsEvent({
-      metaData: {
+      metadata: {
         category: 'campaign_action',
         noun: 'poll_locator',
         target: 'button',
@@ -41,7 +41,7 @@ class PollLocator extends React.Component {
         .querySelector('#address-not-found');
       if (get(addressNotFoundModal, 'style.display') === 'block') {
         trackAnalyticsEvent({
-          metaData: {
+          metadata: {
             adjective: 'poll_locator_not_found',
             category: 'modal',
             label: 'poll_locator',
@@ -68,8 +68,7 @@ class PollLocator extends React.Component {
       const modal = document.querySelector('html > #_vitModal');
       if (modal) {
         trackAnalyticsEvent({
-          contextData: {},
-          metaData: {
+          metadata: {
             adjective: 'poll_locator',
             category: 'modal',
             label: 'poll_locator',

@@ -35,12 +35,12 @@ const VoterRegistrationAction = props => {
 
   const handleClick = () => {
     trackAnalyticsEvent({
-      contextData: {
+      context: {
         campaignContentfulId: contentfulId,
         campaignId,
         url: parsedLink,
       },
-      metaData: {
+      metadata: {
         category: 'campaign_action',
         label: 'voter_registration',
         noun: 'voter_registration_action',

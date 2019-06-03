@@ -70,8 +70,8 @@ class TextSubmissionAction extends React.Component {
 
   handleFocus = () => {
     trackAnalyticsEvent({
-      contextData: { contentfulId: this.props.id },
-      metaData: {
+      context: { contentfulId: this.props.id },
+      metadata: {
         adjective: 'text',
         category: 'campaign_action',
         noun: 'text_submission_action', // @TODO: maybe set this using the formatEventNoun() helper?

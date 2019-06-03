@@ -84,8 +84,8 @@ class Quiz extends React.Component {
     }
 
     trackAnalyticsEvent({
-      contextData: { responses: this.state.choices },
-      metaData: {
+      context: { responses: this.state.choices },
+      metadata: {
         category: 'campaign_action',
         noun: 'quiz',
         target: 'form',
@@ -128,8 +128,8 @@ class Quiz extends React.Component {
     );
 
     trackAnalyticsEvent({
-      contextData: { responses: this.state.choices },
-      metaData: {
+      context: { responses: this.state.choices },
+      metadata: {
         category: 'campaign_action',
         noun: 'quiz',
         target: 'form',

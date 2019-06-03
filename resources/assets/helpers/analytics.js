@@ -164,22 +164,23 @@ export function googleAnalyticsInit(history) {
 }
 
 /**
- * Track an analytics event with a specified service. (Defaults to tracking with all services.)
+ * Track an analytics event with a specified service.
+ * (Defaults to tracking with all services.)
  *
  * @param  {Object} options
- * @param  {Object} options.metaData
- * @param  {Object} options.contextData
+ * @param  {Object} options.metadata
+ * @param  {Object} options.context
  * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent({ metaData, contextData = {}, service }) {
-  if (!metaData) {
-    console.error('The metaData object is missing!');
+export function trackAnalyticsEvent({ metadata, context = {}, service }) {
+  if (!metadata) {
+    console.error('The metadata object is missing!');
     return;
   }
 
-  const { adjective, category, target, noun, verb } = metaData;
-  let { label } = metaData;
+  const { adjective, category, target, noun, verb } = metadata;
+  let { label } = metadata;
 
   const name = formatEventName(verb, noun, adjective);
 
@@ -187,5 +188,5 @@ export function trackAnalyticsEvent({ metaData, contextData = {}, service }) {
 
   label = label || noun;
 
-  sendToServices(name, category, action, label, contextData, service);
+  sendToServices(name, category, action, label, context, service);
 }
