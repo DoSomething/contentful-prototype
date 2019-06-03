@@ -84,10 +84,12 @@ class Quiz extends React.Component {
     }
 
     trackAnalyticsEvent({
-      verb: 'abandoned',
-      noun: 'quiz',
-      data: {
-        responses: this.state.choices,
+      contextData: { responses: this.state.choices },
+      metaData: {
+        category: 'campaign_action',
+        noun: 'quiz',
+        target: 'form',
+        verb: 'abandoned',
       },
     });
   };
@@ -126,10 +128,12 @@ class Quiz extends React.Component {
     );
 
     trackAnalyticsEvent({
-      verb: 'submitted',
-      noun: 'quiz',
-      data: {
-        responses: this.state.choices,
+      contextData: { responses: this.state.choices },
+      metaData: {
+        category: 'campaign_action',
+        noun: 'quiz',
+        target: 'form',
+        verb: 'submitted',
       },
     });
 
