@@ -26,93 +26,105 @@ class SocialShareTray extends React.Component {
     loadFacebookSDK();
   }
 
-  handleFacebookShareClick = (shareLink, trackLink) => {
-    const trackingOptions = {
-      noun: 'share',
-      adjective: 'facebook',
-      data: {
-        url: trackLink,
-      },
-    };
-
+  /**
+   * Component helper method for tracking analytics events.
+   *
+   * @param  {String} service
+   * @param  {String} noun
+   * @param  {String} target
+   * @param  {String} verb
+   * @param  {Object} data
+   * @return {Void}
+   */
+  trackEvent = (service, noun, target, verb, data = {}) => {
     trackAnalyticsEvent({
-      verb: 'clicked',
-      ...trackingOptions,
+      contextData: { ...data },
+      metaData: {
+        adjective: service,
+        category: 'social_share',
+        label: service,
+        noun,
+        target,
+        verb,
+      },
+    });
+  };
+
+  handleFacebookShareClick = (shareLink, trackLink) => {
+    this.trackEvent('facebook', 'share', 'button', 'clicked', {
+      url: trackLink,
     });
 
     showFacebookShareDialog(shareLink)
       .then(() => {
-        trackAnalyticsEvent({
-          verb: 'completed',
-          ...trackingOptions,
+        this.trackEvent('facebook', 'share', 'action', 'completed', {
+          url: trackLink,
         });
       })
       .catch(() => {
-        trackAnalyticsEvent({
-          verb: 'cancelled',
-          ...trackingOptions,
+        this.trackEvent('facebook', 'share', 'action', 'cancelled', {
+          url: trackLink,
         });
       });
   };
 
   handleFacebookMessengerClick = (shareLink, trackLink) => {
-    const trackingData = { url: trackLink };
-    let trackingOptions = {
-      noun: 'share',
-      adjective: 'facebook_messenger',
-      data: trackingData,
-    };
-
-    trackAnalyticsEvent({
-      verb: 'clicked',
-      ...trackingOptions,
+    this.trackEvent('facebook_messenger', 'share', 'button', 'clicked', {
+      url: trackLink,
     });
 
     if (getFormattedScreenSize() === 'large') {
       // Show Send Dialog for Desktop clients.
       showFacebookSendDialog(shareLink)
         .then(() => {
-          trackAnalyticsEvent({
-            verb: 'completed',
-            ...trackingOptions,
-          });
+          this.trackEvent(
+            'facebook_messenger',
+            'share',
+            'action',
+            'completed',
+            {
+              url: trackLink,
+            },
+          );
         })
         .catch(() => {
-          trackAnalyticsEvent({
-            verb: 'cancelled',
-            ...trackingOptions,
-          });
+          this.trackEvent(
+            'facebook_messenger',
+            'share',
+            'action',
+            'cancelled',
+            {
+              url: trackLink,
+            },
+          );
         });
     } else {
-      trackingOptions = {
-        noun: 'redirect',
-        adjective: 'facebook_messenger_app',
-        data: trackingData,
-      };
       // Redirect mobile / tablet clients to the Messenger app.
       facebookMessengerShare(shareLink)
         .then(() => {
-          trackAnalyticsEvent({
-            verb: 'successful',
-            ...trackingOptions,
-          });
+          this.trackEvent(
+            'facebook_messenger_app',
+            'redirect',
+            'redirect',
+            'successful',
+            { url: trackLink },
+          );
         })
         .catch(() => {
-          trackAnalyticsEvent({
-            verb: 'failed',
-            ...trackingOptions,
-          });
+          this.trackEvent(
+            'facebook_messenger_app',
+            'redirect',
+            'redirect',
+            'failed',
+            { url: trackLink },
+          );
         });
     }
   };
 
   handleEmailShareClick = (shareLink, trackLink) => {
-    trackAnalyticsEvent({
-      verb: 'clicked',
-      noun: 'share',
-      adjective: 'email',
-      data: { url: trackLink },
-    });
+    this.trackEvent('email', 'share', 'button', 'clicked', { url: trackLink });
+
     window.location = `mailto:?body=${encodeURIComponent(shareLink)}`;
   };
 
