@@ -93,14 +93,19 @@ const postRequest = (payload, dispatch, getState) => {
       };
 
       trackAnalyticsEvent({
-        verb:
-          statusCode === 200 && postType === 'signup' ? 'found' : 'completed',
-        noun: formatEventNoun(postType),
-        data: {
-          activityId: response.data.id,
+        contextData: {
           actionId,
+          activityId: response.data.id,
           campaignContentfulId,
           campaignId,
+        },
+        metaData: {
+          category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
+          label: campaignId, // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
+          noun: formatEventNoun(postType),
+          target: postType,
+          verb:
+            statusCode === 200 && postType === 'signup' ? 'found' : 'completed',
         },
       });
 
@@ -114,13 +119,18 @@ const postRequest = (payload, dispatch, getState) => {
       report(error);
 
       trackAnalyticsEvent({
-        verb: 'failed',
-        noun: formatEventNoun(postType),
-        data: {
+        contextData: {
           actionId,
           campaignContentfulId,
           campaignId,
           error,
+        },
+        metaData: {
+          category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
+          label: campaignId, // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
+          noun: formatEventNoun(postType),
+          target: postType,
+          verb: 'failed',
         },
       });
 
