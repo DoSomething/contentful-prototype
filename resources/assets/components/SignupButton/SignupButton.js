@@ -31,11 +31,11 @@ const SignupButton = props => {
     storeCampaignSignup(campaignId, {
       body: { details: JSON.stringify(details) },
       analytics: {
-        target: 'button',
         context: {
           campaignContentfulId,
         },
         label: campaignTitle,
+        target: 'button',
       },
     });
   };
