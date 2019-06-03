@@ -100,9 +100,9 @@ export function storeCampaignPost(campaignId, data) {
     },
     metaData: {
       category: 'campaign_action',
-      target: 'form',
       label: type,
       noun: formatEventNoun(type),
+      target: 'form',
       verb: 'submitted',
     },
   });
@@ -154,9 +154,9 @@ export function storePost(data) {
     },
     metaData: {
       category: 'campaign_action',
-      target: 'form',
       label: type,
       noun: formatEventNoun(type),
+      target: 'form',
       verb: 'submitted',
     },
   });
