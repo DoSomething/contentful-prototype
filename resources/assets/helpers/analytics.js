@@ -180,13 +180,11 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
   }
 
   const { adjective, category, target, noun, verb } = metadata;
-  let { label } = metadata;
+  const label = metadata.label || noun;
 
   const name = formatEventName(verb, noun, adjective);
 
   const action = snakeCase(`${target}_${verb}`);
-
-  label = label || noun;
 
   sendToServices(name, category, action, label, context, service);
 }
