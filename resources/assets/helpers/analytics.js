@@ -63,10 +63,10 @@ export function analyzeWithGoogleAnalytics(
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
+    event: name,
     eventAction: startCase(action),
     eventCategory: startCase(category),
     eventLabel: startCase(label),
-    eventName: name,
     eventContext: data,
   });
 }
