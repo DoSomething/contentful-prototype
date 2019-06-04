@@ -679,8 +679,8 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  */
 export function handleFacebookShareClick(href, trackingData) {
   trackAnalyticsEvent({
-    contextData: { trackingData, url: href },
-    metaData: {
+    context: { trackingData, url: href },
+    metadata: {
       category: 'social_share',
       adjective: 'facebook',
       label: 'facebook',
@@ -704,8 +704,8 @@ export function handleFacebookShareClick(href, trackingData) {
  */
 export function handleTwitterShareClick(href, trackingData, quote = '') {
   trackAnalyticsEvent({
-    contextData: { trackingData, url: href },
-    metaData: {
+    context: { trackingData, url: href },
+    metadata: {
       category: 'social_share',
       adjective: 'twitter',
       label: 'twitter',

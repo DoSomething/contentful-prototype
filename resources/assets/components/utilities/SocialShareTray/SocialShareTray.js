@@ -38,8 +38,8 @@ class SocialShareTray extends React.Component {
    */
   trackEvent = (service, noun, target, verb, data = {}) => {
     trackAnalyticsEvent({
-      contextData: { ...data },
-      metaData: {
+      context: { ...data },
+      metadata: {
         adjective: service,
         category: 'social_share',
         label: service,

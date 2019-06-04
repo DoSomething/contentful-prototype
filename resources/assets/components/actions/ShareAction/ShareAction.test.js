@@ -78,8 +78,8 @@ describe('ShareAction component', () => {
 
       expect(trackEventMock.mock.calls[0]).toEqual([
         {
-          contextData: trackingData,
-          metaData: {
+          context: trackingData,
+          metadata: {
             adjective: 'facebook',
             category: 'campaign_action',
             noun: 'share_action',
@@ -128,8 +128,8 @@ describe('ShareAction component', () => {
 
       expect(trackEventMock.mock.calls[0]).toEqual([
         {
-          contextData: trackingData,
-          metaData: {
+          context: trackingData,
+          metadata: {
             adjective: 'twitter',
             category: 'campaign_action',
             noun: 'share_action',

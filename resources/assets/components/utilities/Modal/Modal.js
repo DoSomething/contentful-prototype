@@ -35,10 +35,10 @@ class Modal extends React.Component {
     // is the only real difference, along with eventually passing modalType as the label.
     if (this.props.trackingId) {
       trackAnalyticsEvent({
-        contextData: {
+        context: {
           modalType: this.props.trackingId,
         },
-        metaData: {
+        metadata: {
           category: 'modal',
           noun: 'modal',
           target: 'modal',
@@ -58,10 +58,10 @@ class Modal extends React.Component {
     // Track in analytics that the modal closed:
     if (this.props.trackingId) {
       trackAnalyticsEvent({
-        contextData: {
+        context: {
           modalType: this.props.trackingId,
         },
-        metaData: {
+        metadata: {
           category: 'modal',
           noun: 'modal',
           target: 'modal',

@@ -92,13 +92,13 @@ export function storeCampaignPost(campaignId, data) {
 
   // Track post submission event.
   trackAnalyticsEvent({
-    contextData: {
+    context: {
       action,
       actionId,
       campaignContentfulId,
       campaignId,
     },
-    metaData: {
+    metadata: {
       category: 'campaign_action',
       label: type,
       noun: formatEventNoun(type),
@@ -149,10 +149,10 @@ export function storePost(data) {
 
   // Track post submission event.
   trackAnalyticsEvent({
-    contextData: {
+    context: {
       actionId,
     },
-    metaData: {
+    metadata: {
       category: 'campaign_action',
       label: type,
       noun: formatEventNoun(type),

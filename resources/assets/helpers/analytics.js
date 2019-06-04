@@ -63,10 +63,10 @@ export function analyzeWithGoogleAnalytics(
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
+    event: name,
     eventAction: startCase(action),
     eventCategory: startCase(category),
     eventLabel: startCase(label),
-    eventName: name,
     eventContext: data,
   });
 }
@@ -164,28 +164,27 @@ export function googleAnalyticsInit(history) {
 }
 
 /**
- * Track an analytics event with a specified service. (Defaults to tracking with all services.)
+ * Track an analytics event with a specified service.
+ * (Defaults to tracking with all services.)
  *
  * @param  {Object} options
- * @param  {Object} options.metaData
- * @param  {Object} options.contextData
+ * @param  {Object} options.metadata
+ * @param  {Object} options.context
  * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent({ metaData, contextData = {}, service }) {
-  if (!metaData) {
-    console.error('The metaData object is missing!');
+export function trackAnalyticsEvent({ metadata, context = {}, service }) {
+  if (!metadata) {
+    console.error('The metadata object is missing!');
     return;
   }
 
-  const { adjective, category, target, noun, verb } = metaData;
-  let { label } = metaData;
+  const { adjective, category, target, noun, verb } = metadata;
+  const label = metadata.label || noun;
 
   const name = formatEventName(verb, noun, adjective);
 
   const action = snakeCase(`${target}_${verb}`);
 
-  label = label || noun;
-
-  sendToServices(name, category, action, label, contextData, service);
+  sendToServices(name, category, action, label, context, service);
 }

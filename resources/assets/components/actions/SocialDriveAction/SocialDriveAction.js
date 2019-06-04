@@ -40,8 +40,8 @@ class SocialDriveAction extends React.Component {
     document.execCommand('copy');
 
     trackAnalyticsEvent({
-      contextData: { url: this.props.link },
-      metaData: {
+      context: { url: this.props.link },
+      metadata: {
         category: 'campaign_action',
         noun: 'copy_to_clipboard',
         target: 'button',

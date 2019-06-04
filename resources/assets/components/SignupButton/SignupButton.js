@@ -20,7 +20,7 @@ const SignupButton = props => {
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
-  const onSignup = () => {
+  const handleSignup = () => {
     const details = { campaignContentfulId };
 
     // Set affiliate opt in field if user has opted in.
@@ -50,7 +50,7 @@ const SignupButton = props => {
   const buttonCopy = text || sourceOverride || campaignActionText;
 
   return (
-    <Button className={className} onClick={() => onSignup()}>
+    <Button className={className} onClick={handleSignup}>
       {buttonCopy}
     </Button>
   );
