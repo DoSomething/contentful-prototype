@@ -10,6 +10,7 @@ import {
 } from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
+import { stringifyNestedObjects, withoutNullsOrUndefined } from '.';
 import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
@@ -55,20 +56,26 @@ export function analyzeWithGoogleAnalytics(
     return;
   }
 
+  // @DEPRECATE
   // Format the event parameter as expected by the analyze method.
   const identifier = `${category}:${action}:${label}`;
 
+  // @DEPRECATE
   analyze(identifier);
 
-  // Push event action to Google Tag Manager's data layer.
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
+  const contextData = stringifyNestedObjects(data);
+
+  const analyticsEvent = {
     event: name,
     eventAction: startCase(action),
     eventCategory: startCase(category),
     eventLabel: startCase(label),
-    eventContext: data,
-  });
+    ...data,
+  };
+
+  // Push event action to Google Tag Manager's data layer.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(analyticsEvent);
 }
 
 /**
@@ -186,5 +193,10 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
 
   const action = snakeCase(`${target}_${verb}`);
 
-  sendToServices(name, category, action, label, context, service);
+  const data = withoutNullsOrUndefined({
+    ...context,
+    userId: window.AUTH.id,
+  });
+
+  sendToServices(name, category, action, label, data, service);
 }

@@ -2,7 +2,15 @@
 
 import queryString from 'query-string';
 import { getTime, isBefore, isWithinInterval } from 'date-fns';
-import { get, find, isNull, isUndefined, merge, omitBy } from 'lodash';
+import {
+  get,
+  find,
+  isNull,
+  isObjectLike,
+  isUndefined,
+  merge,
+  omitBy,
+} from 'lodash';
 
 import Sixpack from '../services/Sixpack';
 import { trackAnalyticsEvent } from './analytics';
@@ -790,6 +798,14 @@ export function sixpack() {
   return sixpackInstance;
 }
 
+export function stringifyNestedObjects(data) {
+  return Object.keys(data).forEach(key => {
+    if (isObjectLike(data[key])) {
+      data[key] = JSON.stringify(data[key]); // eslint-disable-line no-param-reassign
+    }
+  });
+}
+
 /**
  * Remove items with null properties.
  * Helps with React defaultProps.
@@ -809,6 +825,16 @@ export function withoutNulls(data) {
  */
 export function withoutUndefined(data) {
   return omitBy(data, isUndefined);
+}
+
+/**
+ * Remove items with null or undefined properties.
+ *
+ * @param  {Object} data
+ * @return {Object}
+ */
+export function withoutNullsOrUndefined(data) {
+  return withoutUndefined(withoutNulls(data));
 }
 
 /**
