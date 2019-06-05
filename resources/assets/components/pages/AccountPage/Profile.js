@@ -39,7 +39,7 @@ const Profile = props => (
         <div className="margin-top-lg float-left">
           <h3>Data and Privacy</h3>
           <a
-            href="mailto:help@dosomething.org?subject=Delete my account"
+            href="mailto:trust@dosomething.org?subject=Delete my account"
             className="secondary"
           >
             Delete my account
