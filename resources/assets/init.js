@@ -16,7 +16,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import thunk from 'redux-thunk';
 import renderEnvironmentBadge from 'environment-badge';
-import { routerReducer, routerMiddleware } from 'react-router-redux';
 
 import * as reducers from './reducers';
 import { configureStore } from './store/store';
@@ -50,13 +49,12 @@ import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 ready(() => {
   // Configure store & history.
   const history = historyInit();
-  const middleware = [thunk, routerMiddleware(history)];
+  const middleware = [thunk];
   const preloadedState = window.STATE || {};
-  const store = configureStore(
-    { ...reducers, routing: routerReducer },
-    middleware,
-    { ...preloadedState, user: window.AUTH },
-  );
+  const store = configureStore(reducers, middleware, {
+    ...preloadedState,
+    user: window.AUTH,
+  });
 
   // Add periodic check that our token hasn't expired.
   bindTokenRefreshEvent();

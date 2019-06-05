@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { ApolloProvider } from 'react-apollo';
-import { Route, Switch } from 'react-router-dom';
-import { ConnectedRouter } from 'react-router-redux';
+import { Router, Route, Switch } from 'react-router-dom';
 import { PuckProvider } from '@dosomething/puck-client';
 
 import { env } from '../helpers';
@@ -31,7 +30,7 @@ const App = ({ store, history }) => {
         puckUrl={env('PUCK_URL')}
       >
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
-          <ConnectedRouter history={history}>
+          <Router history={history}>
             <Switch>
               <Route exact path="/us" component={HomePage} />
               <Route path="/us/account" component={AccountContainer} />
@@ -39,7 +38,7 @@ const App = ({ store, history }) => {
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
-          </ConnectedRouter>
+          </Router>
         </ApolloProvider>
       </PuckProvider>
     </Provider>

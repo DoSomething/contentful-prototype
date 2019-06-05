@@ -22,7 +22,7 @@ import { getUserId, isAuthenticated } from '../selectors/user';
 export function configureStore(reducers, middleware, preloadedState = {}) {
   // Log actions to the console in development & track state changes.
   if (process.env.NODE_ENV !== 'production') {
-    const createLogger = require('redux-logger'); // eslint-disable-line global-require
+    const { createLogger } = require('redux-logger'); // eslint-disable-line global-require
     middleware.push(createLogger({ collapsed: true }));
   }
 
