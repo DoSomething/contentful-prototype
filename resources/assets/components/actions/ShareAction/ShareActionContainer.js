@@ -7,11 +7,14 @@ import { storeCampaignPost } from '../../../actions/post';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   userId: getUserId(state),
   campaignId: state.campaign.campaignId,
   isAuthenticated: isAuthenticated(state),
   campaignContentfulId: state.campaign.id,
+  // Value comes through as Array, but component expects a String value.
+  // @TODO: Update this Contentful field to be a String value.
+  socialPlatform: ownProps.socialPlatform[0] || 'facebook',
 });
 
 /**
