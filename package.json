@@ -38,6 +38,9 @@
       "@babel/preset-flow"
     ]
   },
+  "browserslist": [
+    ">0.5%", "ie 11", "not op_mini all"
+  ],
   "jest": {
     "clearMocks": true,
     "testEnvironment": "jest-environment-jsdom-global",
