@@ -39,7 +39,9 @@
     ]
   },
   "browserslist": [
-    ">0.5%", "ie 11", "not op_mini all"
+    ">0.5%",
+    "ie 11",
+    "not op_mini all"
   ],
   "jest": {
     "clearMocks": true,
@@ -119,7 +121,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@dosomething/babel-preset": "^3.2.0",
     "@dosomething/eslint-config": "^5.0.0",
-    "@dosomething/webpack-config": "^5.0.0",
+    "@dosomething/webpack-config": "^5.1.0",
     "contentful-management": "^5.7.2",
     "eslint-loader": "^2.1.2",
     "flow-bin": "0.59.0",
