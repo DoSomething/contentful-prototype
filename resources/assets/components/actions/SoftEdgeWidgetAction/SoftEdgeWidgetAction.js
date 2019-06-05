@@ -28,8 +28,10 @@ class SoftEdgeWidgetAction extends React.Component {
     const actionId = this.props.actionId;
     const user = this.props.user;
 
+    // Note: the actionId sent in the campaignId query string is not a typo. This is to not conflict with SoftEdge's internal actionIds.
     let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true&memberId=${
-      this.props.userId}&dosomething_action_id=${actionId}`;
+      this.props.userId
+    }&campaignId=${actionId}`;
 
     const prepopulatedFields = withoutNulls({
       firstName: user.firstName,
