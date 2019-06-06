@@ -46,10 +46,14 @@
 
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
 
-    @include('partials.analytics')
+    @include('partials.google_analytics_script')
+    @include('partials.customer_io_script')
+    @include('partials.snowplow_script')
+
     {{ isset($state) ? scriptify($state) : scriptify() }}
     {{ scriptify($env, 'ENV') }}
     {{ scriptify($auth, 'AUTH') }}
+
     @isset($homePage)
         {{ scriptify($homePage, 'HOMEPAGE') }}
     @endisset

@@ -118,9 +118,9 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
     return;
   }
 
-  window.snowplow('trackStructEvent', category, action, label, null, null, [
+  window.snowplow('trackStructEvent', category, action, label, name, null, [
     {
-      schema: '', // @TODO: add schema
+      schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
       data: {
         payload: JSON.stringify(data),
       },
