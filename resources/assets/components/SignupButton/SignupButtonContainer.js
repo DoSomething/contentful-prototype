@@ -10,7 +10,7 @@ import { storeCampaignSignup } from '../../actions/signup';
 const mapStateToProps = state => ({
   affiliateMessagingOptIn: state.signups.affiliateMessagingOptIn,
   campaignActionText: state.campaign.actionText,
-  campaignContentfulId: state.campaign.id,
+  referrerId: state.campaign.id,
   campaignId: state.campaign.campaignId,
   campaignTitle: state.campaign.title,
   disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),

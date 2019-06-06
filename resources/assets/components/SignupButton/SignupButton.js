@@ -8,11 +8,11 @@ const SignupButton = props => {
   const {
     affiliateMessagingOptIn,
     campaignActionText,
-    campaignContentfulId,
     campaignId,
     campaignTitle,
     className,
     disableSignup,
+    referrerId,
     sourceActionText,
     storeCampaignSignup,
     text,
@@ -21,7 +21,8 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const handleSignup = () => {
-    const details = { campaignContentfulId };
+    // @TODO: Do we need this if we store refferer_id on source_details?
+    const details = { campaignContentfulId: referrerId };
 
     // Set affiliate opt in field if user has opted in.
     if (affiliateMessagingOptIn) {
@@ -32,7 +33,7 @@ const SignupButton = props => {
       body: { details: JSON.stringify(details) },
       analytics: {
         context: {
-          campaignContentfulId,
+          campaignContentfulId: referrerId,
         },
         label: campaignTitle,
         target: 'button',
@@ -59,7 +60,7 @@ const SignupButton = props => {
 SignupButton.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   campaignActionText: PropTypes.string,
-  campaignContentfulId: PropTypes.string.isRequired,
+  referrerId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
