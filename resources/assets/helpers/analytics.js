@@ -120,8 +120,7 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
 
   window.snowplow('trackStructEvent', category, action, label, name, null, [
     {
-      schema:
-        'https://gist.githubusercontent.com/weerd/f4395e328ee16a398739f626a4b91b4c/raw/c1f7825eb7d2e4f7b7620a6a4fd1e599cb7476ff/snowplow_schema_string.json',
+      schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
       data: {
         payload: JSON.stringify(data),
       },
