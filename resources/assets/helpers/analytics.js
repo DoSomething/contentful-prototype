@@ -10,6 +10,7 @@ import {
 } from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
+import { stringifyNestedObjects, withoutNullsOrUndefined } from '.';
 import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
@@ -55,20 +56,30 @@ export function analyzeWithGoogleAnalytics(
     return;
   }
 
+  // @DEPRECATE
   // Format the event parameter as expected by the analyze method.
   const identifier = `${category}:${action}:${label}`;
 
+  // @DEPRECATE
   analyze(identifier);
 
-  // Push event action to Google Tag Manager's data layer.
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
+  const flattenedData = stringifyNestedObjects(data);
+
+  if (window.AUTH.id) {
+    flattenedData.userID = window.AUTH.id;
+  }
+
+  const analyticsEvent = {
     event: name,
     eventAction: startCase(action),
     eventCategory: startCase(category),
     eventLabel: startCase(label),
-    eventContext: data,
-  });
+    ...flattenedData,
+  };
+
+  // Push event action to Google Tag Manager's data layer.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(analyticsEvent);
 }
 
 /**
@@ -93,6 +104,31 @@ export function analyzeWithPuck(name, data) {
 }
 
 /**
+ * Send event to analyze with Snowplow.
+ *
+ * @param  {String} name
+ * @param  {String} category
+ * @param  {String} action
+ * @param  {String} label
+ * @param  {Object} data
+ * @return {void}
+ */
+export function analyzeWithSnowplow(name, category, action, label, data) {
+  if (!window.snowplow) {
+    return;
+  }
+
+  window.snowplow('trackStructEvent', category, action, label, null, null, [
+    {
+      schema: '', // @TODO: add schema
+      data: {
+        payload: JSON.stringify(data),
+      },
+    },
+  ]);
+}
+
+/**
  * Dispatch analytics event to specified service, or all services by default.
  *
  * @param  {String}      category
@@ -114,6 +150,7 @@ const sendToServices = (name, category, action, label, data, service) => {
     default:
       analyzeWithGoogleAnalytics(name, category, action, label, data);
       analyzeWithPuck(name, data);
+      analyzeWithSnowplow(name, category, action, label, data);
   }
 };
 
@@ -186,5 +223,7 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
 
   const action = snakeCase(`${target}_${verb}`);
 
-  sendToServices(name, category, action, label, context, service);
+  const data = withoutNullsOrUndefined(context);
+
+  sendToServices(name, category, action, label, data, service);
 }
