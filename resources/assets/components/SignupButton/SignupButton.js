@@ -11,9 +11,9 @@ const SignupButton = props => {
     campaignActionText,
     campaignId,
     campaignTitle,
+    contentfulId,
     className,
     disableSignup,
-    referrerId,
     sourceActionText,
     storeCampaignSignup,
     text,
@@ -34,7 +34,7 @@ const SignupButton = props => {
         details: JSON.stringify(details),
         source_details: JSON.stringify(
           withoutNulls({
-            referrer_id: referrerId,
+            contentful_id: contentfulId,
             utm_source: query('utm_source'),
             utm_medium: query('utm_medium'),
             utm_campaign: query('utm_campaign'),
@@ -43,7 +43,7 @@ const SignupButton = props => {
       },
       analytics: {
         context: {
-          campaignContentfulId: referrerId,
+          contentfulId,
         },
         label: campaignTitle,
         target: 'button',
@@ -70,9 +70,9 @@ const SignupButton = props => {
 SignupButton.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   campaignActionText: PropTypes.string,
-  referrerId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
+  contentfulId: PropTypes.string.isRequired,
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),

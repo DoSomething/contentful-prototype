@@ -123,8 +123,8 @@ export function formatPostPayload(data = {}) {
   // Attach 'source_details' based on referring page/block & UTMs:
   formattedData.source_details = JSON.stringify(
     withoutNulls({
-      // @TODO: Pass in 'referrer_id' parameter here w/ the containing page ID.
-      // referrer_id: referrerId,
+      // @TODO: Pass in 'contentful_id' parameter here w/ the containing page ID.
+      // contentful_id: contentfulId,
       utm_source: query('utm_source'),
       utm_medium: query('utm_medium'),
       utm_campaign: query('utm_campaign'),
