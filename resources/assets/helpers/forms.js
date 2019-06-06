@@ -2,6 +2,8 @@
 
 import { forEach, get, isInteger } from 'lodash';
 
+import { query, withoutNulls } from '.';
+
 /**
  * Calculate the difference between a total value and a submitted value.
  * Returns submitted value if calculation cannot be completed.
@@ -117,6 +119,17 @@ export function formatPostPayload(data = {}) {
   if (data.details) {
     formattedData.details = JSON.stringify(data.details);
   }
+
+  // Attach 'source_details' based on referring page/block & UTMs:
+  formattedData.source_details = JSON.stringify(
+    withoutNulls({
+      // @TODO: Pass in 'referrer_id' parameter here w/ the containing page ID.
+      // referrer_id: referrerId,
+      utm_source: query('utm_source'),
+      utm_medium: query('utm_medium'),
+      utm_campaign: query('utm_campaign'),
+    }),
+  );
 
   // Attach location information, provided by Fastly.
   if (window.AUTH.location) {
