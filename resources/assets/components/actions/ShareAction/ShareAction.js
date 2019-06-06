@@ -9,7 +9,7 @@ import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import ContentfulEntry from '../../ContentfulEntry';
-import { formatFormFields } from '../../../helpers/forms';
+import { formatPostPayload } from '../../../helpers/forms';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -70,7 +70,7 @@ class ShareAction extends React.Component {
       action,
       actionId,
       campaignContentfulId,
-      body: formatFormFields(formFields),
+      body: formatPostPayload(formFields),
       id: this.props.id,
       type: SOCIAL_SHARE_TYPE,
     });

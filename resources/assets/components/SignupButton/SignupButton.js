@@ -2,15 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
+import { query, withoutNulls } from '../../helpers';
 import Button from '../utilities/Button/Button';
 
 const SignupButton = props => {
   const {
     affiliateMessagingOptIn,
     campaignActionText,
-    campaignContentfulId,
     campaignId,
     campaignTitle,
+    contentfulId,
     className,
     disableSignup,
     sourceActionText,
@@ -21,7 +22,7 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const handleSignup = () => {
-    const details = { campaignContentfulId };
+    const details = {};
 
     // Set affiliate opt in field if user has opted in.
     if (affiliateMessagingOptIn) {
@@ -29,10 +30,20 @@ const SignupButton = props => {
     }
 
     storeCampaignSignup(campaignId, {
-      body: { details: JSON.stringify(details) },
+      body: {
+        details: JSON.stringify(details),
+        source_details: JSON.stringify(
+          withoutNulls({
+            contentful_id: contentfulId,
+            utm_source: query('utm_source'),
+            utm_medium: query('utm_medium'),
+            utm_campaign: query('utm_campaign'),
+          }),
+        ),
+      },
       analytics: {
         context: {
-          campaignContentfulId,
+          contentfulId,
         },
         label: campaignTitle,
         target: 'button',
@@ -59,9 +70,9 @@ const SignupButton = props => {
 SignupButton.propTypes = {
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   campaignActionText: PropTypes.string,
-  campaignContentfulId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
+  contentfulId: PropTypes.string.isRequired,
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
