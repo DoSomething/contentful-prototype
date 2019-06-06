@@ -22,8 +22,7 @@ const SignupButton = props => {
 
   // Decorate click handler for A/B tests & analytics.
   const handleSignup = () => {
-    // @TODO: Do we need this if we store refferer_id on source_details?
-    const details = { campaignContentfulId: referrerId };
+    const details = {};
 
     // Set affiliate opt in field if user has opted in.
     if (affiliateMessagingOptIn) {
