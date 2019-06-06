@@ -12,7 +12,7 @@ import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
+import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './text-submission-action.scss';
@@ -102,7 +102,7 @@ class TextSubmissionAction extends React.Component {
     const data = {
       action,
       actionId: this.props.actionId,
-      body: formatFormFields(formFields),
+      body: formatPostPayload(formFields),
       id: this.props.id,
       campaignContentfulId: this.props.campaignContentfulId,
       type,

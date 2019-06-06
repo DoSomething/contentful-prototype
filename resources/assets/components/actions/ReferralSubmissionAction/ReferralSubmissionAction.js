@@ -12,7 +12,7 @@ import Button from '../../utilities/Button/Button';
 import { withoutUndefined } from '../../../helpers';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { getFieldErrors, formatFormFields } from '../../../helpers/forms';
+import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 
 class ReferralSubmissionAction extends React.Component {
   static getDerivedStateFromProps(nextProps) {
@@ -63,7 +63,7 @@ class ReferralSubmissionAction extends React.Component {
 
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const formData = formatFormFields({
+    const formData = formatPostPayload({
       action,
       type,
       id: this.props.id,

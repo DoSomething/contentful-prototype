@@ -110,7 +110,7 @@ export function getFormData(formData) {
  * @param {Undefined|String} data.type
  * @return FormData|Object
  */
-export function formatFormFields(data = {}) {
+export function formatPostPayload(data = {}) {
   let formattedData = data;
 
   // JSON serialize details field which gets validated as JSON.

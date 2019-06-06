@@ -9,7 +9,7 @@ import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { formatFormFields, getFieldErrors } from '../../../helpers/forms';
+import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 
 import './selection-submission-action.scss';
 
@@ -69,7 +69,7 @@ class SelectionSubmissionAction extends React.Component {
 
     // Trigger request to store the selection submission post.
     storePost({
-      body: formatFormFields({
+      body: formatPostPayload({
         action_id: actionId,
         text: this.state.selection,
         type,

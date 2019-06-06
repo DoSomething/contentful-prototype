@@ -11,7 +11,7 @@ import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { formatFormFields, getFieldErrors } from '../../../helpers/forms';
+import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 
 import './petition-submission-action.scss';
@@ -84,7 +84,7 @@ class PetitionSubmissionAction extends React.Component {
 
     // Send request to store the petition submission post.
     storePost({
-      body: formatFormFields({
+      body: formatPostPayload({
         action_id: actionId,
         text: this.state.textValue,
         type,
