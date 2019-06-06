@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
+import { query, withoutNulls } from '../../helpers';
 import Button from '../utilities/Button/Button';
 
 const SignupButton = props => {
@@ -30,7 +31,17 @@ const SignupButton = props => {
     }
 
     storeCampaignSignup(campaignId, {
-      body: { details: JSON.stringify(details) },
+      body: {
+        details: JSON.stringify(details),
+        source_details: JSON.stringify(
+          withoutNulls({
+            referrer_id: referrerId,
+            utm_source: query('utm_source'),
+            utm_medium: query('utm_medium'),
+            utm_campaign: query('utm_campaign'),
+          }),
+        ),
+      },
       analytics: {
         context: {
           campaignContentfulId: referrerId,
