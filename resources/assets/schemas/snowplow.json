@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "title": "snowplow_event",
+  "description": "Schema for Snowplow event data payload.",
+  "properties": {
+    "payload": {
+      "type": "string"
+    }
+  }
+}
