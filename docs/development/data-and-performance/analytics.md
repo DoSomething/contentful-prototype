@@ -98,7 +98,7 @@ The event's `data.waypointData` field will contain the `contentfulId` (ID of the
 | ---------------------------------------------- | ------------------------------------------------------------------------------------------- | --------- |
 | `northstar_clicked_login`                      | clicked the 'Log In' button linking to the log in form                                      | Puck, GA  |
 | `northstar_clicked_register`                   | clicked the 'Create a DoSomething.org account' link                                         | Puck, GA  |
-| `northstar_clicked_password_forgot`            | clicked the 'Forgot your password?' link                                                    | Puck, GA  |
+| `northstar_clicked_forgot_password`            | clicked the 'Forgot your password?' link                                                    | Puck, GA  |
 | `northstar_clicked_login_facebook`             | clicked the Facebook auth button                                                            | Puck, GA  |
 | `northstar_failed_validation`                  | Form was submitted but returned with validation errors (from the backend)                   | Puck, GA  |
 | `northstar_focused_field_[field_name]`         | focused on a text field in the form.                                                        | Puck, GA  |
