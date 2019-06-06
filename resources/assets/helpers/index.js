@@ -8,6 +8,7 @@ import {
   isNull,
   isObjectLike,
   isUndefined,
+  mapValues,
   merge,
   omitBy,
 } from 'lodash';
@@ -798,11 +799,19 @@ export function sixpack() {
   return sixpackInstance;
 }
 
+/**
+ * Stringify all properties on an object whose value is object with properties.
+ *
+ * @param  {Object} data
+ * @return {Object}
+ */
 export function stringifyNestedObjects(data) {
-  return Object.keys(data).forEach(key => {
-    if (isObjectLike(data[key])) {
-      data[key] = JSON.stringify(data[key]); // eslint-disable-line no-param-reassign
+  return mapValues(data, value => {
+    if (isObjectLike(value)) {
+      return JSON.stringify(value);
     }
+
+    return value;
   });
 }
 
