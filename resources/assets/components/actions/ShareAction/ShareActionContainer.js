@@ -1,3 +1,4 @@
+import { isArray } from 'lodash';
 import { connect } from 'react-redux';
 
 import ShareAction from './ShareAction';
@@ -7,15 +8,21 @@ import { storeCampaignPost } from '../../../actions/post';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state, ownProps) => ({
-  userId: getUserId(state),
-  campaignId: state.campaign.campaignId,
-  isAuthenticated: isAuthenticated(state),
-  campaignContentfulId: state.campaign.id,
-  // Value comes through as Array, but component expects a String value.
-  // @TODO: Update this Contentful field to be a String value.
-  socialPlatform: ownProps.socialPlatform[0] || 'facebook',
-});
+const mapStateToProps = (state, ownProps) => {
+  // Support Array or String value. (This should be an Array until we update the Contentful field (https://git.io/fjzkh)).
+  // @TODO: Clean this up when we update the field to return a String.
+  const socialPlatform = isArray(ownProps.socialPlatform)
+    ? ownProps.socialPlatform[0]
+    : ownProps.socialPlatform;
+
+  return {
+    userId: getUserId(state),
+    campaignId: state.campaign.campaignId,
+    isAuthenticated: isAuthenticated(state),
+    campaignContentfulId: state.campaign.id,
+    socialPlatform: socialPlatform || 'facebook',
+  };
+};
 
 /**
  * Provide pre-bound functions that allow the component to dispatch
