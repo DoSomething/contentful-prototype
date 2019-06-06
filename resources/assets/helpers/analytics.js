@@ -118,7 +118,6 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
     return;
   }
 
-  // Shortened: https://git.io/fjz3Y
   window.snowplow('trackStructEvent', category, action, label, name, null, [
     {
       schema:
