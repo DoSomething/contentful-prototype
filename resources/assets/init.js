@@ -71,6 +71,11 @@ ready(() => {
   // Display environment badge on local, dev, or QA:
   renderEnvironmentBadge();
 
+  // If available, set User ID for Snowplow analytics.
+  if (typeof window.snowplow === 'function' && window.AUTH.id) {
+    window.snowplow('setUserId', window.AUTH.id);
+  }
+
   // Add event listeners for the Admin Dashboard.
   if (window.AUTH.isAuthenticated && window.AUTH.role !== 'user') {
     bindAdminDashboardEvents();
