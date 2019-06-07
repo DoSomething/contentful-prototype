@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PrivacyLanguage = () => {
-  const privacyLanguage = (
+  return (
     <p className="footnote padding-horizontal-md padding-bottom-md">
       The data you submit in this form will be handled in accordance with the
       DoSomething website{' '}
@@ -15,8 +15,6 @@ const PrivacyLanguage = () => {
       . It will be reviewed by a DoSomething staff member.
     </p>
   );
-
-  return privacyLanguage;
 };
 
 export default PrivacyLanguage;
