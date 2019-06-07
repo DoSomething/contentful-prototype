@@ -11,7 +11,7 @@ const PrivacyLanguage = () => {
       */}
       {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
       <a
-        href="https://www.dosomething.org/us/about/privacy-policy"
+        href="/us/about/privacy-policy"
         target="_blank"
         rel="noopener noreferrer"
       >
