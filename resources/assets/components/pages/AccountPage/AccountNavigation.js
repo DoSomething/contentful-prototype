@@ -26,6 +26,13 @@ const AccountNavigation = () => (
       >
         Subscriptions
       </NavLink>
+      <NavLink
+        className="nav-link"
+        activeClassName="is-active"
+        to="/us/account/profile/badges"
+      >
+        Badges
+      </NavLink>
     </div>
   </div>
 );
