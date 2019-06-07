@@ -5,11 +5,6 @@ const PrivacyLanguage = () => {
     <p className="footnote padding-horizontal-md padding-bottom-md">
       The data you submit in this form will be handled in accordance with the
       DoSomething website{' '}
-      {/*
-        Workaround for this jsx-a11y bug https://git.io/fN814.
-        @TODO: Update once the eslint-config package is updated (https://git.io/fjejY).
-      */}
-      {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
       <a
         href="/us/about/privacy-policy"
         target="_blank"
