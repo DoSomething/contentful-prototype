@@ -69,8 +69,6 @@ export function analyzeWithGoogleAnalytics(
     flattenedData.userID = window.AUTH.id;
   }
 
-  console.log('😻 flattenedData: ', flattenedData);
-
   const analyticsEvent = {
     event: name,
     eventAction: startCase(action),
