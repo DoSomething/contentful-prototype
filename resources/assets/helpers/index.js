@@ -5,6 +5,7 @@ import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
   find,
+  isNil,
   isNull,
   isObjectLike,
   isUndefined,
@@ -61,7 +62,7 @@ export function buildLoginRedirectUrl(options = null, actionId = null) {
 }
 
 /**
- * Return a boolean indicating as to whether the provided URL is external to the site.
+ * Return a boolean indicating whether the provided URL is external to the site.
  *
  * @param  {String} url
  * @return {Boolean}
@@ -71,6 +72,16 @@ export function isExternal(url) {
     new URL(String(url), window.location.origin).hostname !==
     window.location.hostname
   );
+}
+
+/**
+ * Return a boolean indicating whether the provided argument is a string.
+ *
+ * @param  {Mixed}  string
+ * @return {Boolean}
+ */
+export function isEmptyString(string) {
+  return string === '';
 }
 
 /**
@@ -837,13 +848,13 @@ export function withoutUndefined(data) {
 }
 
 /**
- * Remove items with null or undefined properties.
+ * Remove items from object with null, undefined, or empty string values.
  *
  * @param  {Object} data
  * @return {Object}
  */
-export function withoutNullsOrUndefined(data) {
-  return withoutUndefined(withoutNulls(data));
+export function withoutValueless(data) {
+  return omitBy(omitBy(data, isNil), isEmptyString);
 }
 
 /**

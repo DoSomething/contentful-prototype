@@ -10,7 +10,7 @@ import {
 } from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
-import { stringifyNestedObjects, withoutNullsOrUndefined } from '.';
+import { stringifyNestedObjects, withoutValueless, query } from '.';
 import { get as getHistory } from '../history';
 
 // App name prefix used for event naming.
@@ -68,6 +68,8 @@ export function analyzeWithGoogleAnalytics(
   if (window.AUTH.id) {
     flattenedData.userID = window.AUTH.id;
   }
+
+  console.log('😻 flattenedData: ', flattenedData);
 
   const analyticsEvent = {
     event: name,
@@ -223,7 +225,12 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
 
   const action = snakeCase(`${target}_${verb}`);
 
-  const data = withoutNullsOrUndefined(context);
+  const data = withoutValueless({
+    ...context,
+    utmSource: query('utm_source'),
+    utmMedium: query('utm_medium'),
+    utmCampaign: query('utm_campaign'),
+  });
 
   sendToServices(name, category, action, label, data, service);
 }
