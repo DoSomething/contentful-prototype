@@ -13,6 +13,7 @@ import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
+import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 
 import './petition-submission-action.scss';
 
@@ -198,6 +199,7 @@ class PetitionSubmissionAction extends React.Component {
                     >
                       {buttonText}
                     </Button>
+                    <PrivacyLanguage />
                   </form>
                 </Card>
               );

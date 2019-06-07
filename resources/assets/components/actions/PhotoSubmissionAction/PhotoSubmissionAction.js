@@ -10,11 +10,12 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
+import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
   getFieldErrors,
@@ -391,6 +392,7 @@ class PhotoSubmissionAction extends React.Component {
                 >
                   {this.props.buttonText}
                 </Button>
+                <PrivacyLanguage />
               </form>
             </Card>
             <PuckWaypoint

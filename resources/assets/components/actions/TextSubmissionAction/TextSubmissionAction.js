@@ -8,12 +8,13 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Card from '../../utilities/Card/Card';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import FormValidation from '../../utilities/Form/FormValidation';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
+import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 
 import './text-submission-action.scss';
 
@@ -184,23 +185,7 @@ class TextSubmissionAction extends React.Component {
               >
                 {this.props.buttonText}
               </Button>
-              <p className="footnote padding-horizontal-md padding-bottom-md">
-                The data you submit in this form will be handled in accordance
-                with the DoSomething website{' '}
-                {/*
-                  Workaround for this jsx-a11y bug https://git.io/fN814.
-                  @TODO: Update once the eslint-config package is updated (https://git.io/fjejY).
-                */}
-                {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-                <a
-                  href="https://www.dosomething.org/us/about/privacy-policy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  privacy policy
-                </a>
-                . It will be reviewed by a DoSomething staff member.
-              </p>
+              <PrivacyLanguage />
             </form>
           </Card>
           <PuckWaypoint
