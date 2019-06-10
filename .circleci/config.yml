@@ -20,15 +20,8 @@ jobs:
       - checkout
       - run: sudo composer self-update
       # Install PHP extensions required by Laravel.
-      - restore_cache:
-          keys:
-            - php-ext-v1-{{ arch }}
-            - composer-v1-
       - run: sudo docker-php-ext-install bcmath pdo_mysql
-      - save_cache:
-          key: php-ext-v1-{{ arch }}
-          paths:
-            - /usr/src/php/ext
+      # Install Composer & npm dependencies (using cache if found).
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.lock" }}
