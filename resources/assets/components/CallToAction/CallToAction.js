@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../utilities/Card/Card';
-import SignupButton from '../SignupButton';
+import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 
 import './cta.scss';
 
@@ -60,7 +60,7 @@ const CallToAction = ({
         <div className="cta__message margin-bottom-lg">{content}</div>
       ) : null}
 
-      {isSignedUp ? null : <SignupButton source="call to action" />}
+      {isSignedUp ? null : <SignupButtonContainer />}
     </Card>
   );
 };

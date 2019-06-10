@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SignupButton from '../../SignupButton';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -46,7 +46,7 @@ const JumboTemplate = props => {
 
         {isAffiliated ? null : (
           <div className="jumbo-lede-banner__signup">
-            <SignupButton source="jumbo lede banner" />
+            <SignupButtonContainer />
           </div>
         )}
 

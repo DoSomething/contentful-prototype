@@ -2,7 +2,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
-import SignupButton from '../../SignupButton';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
@@ -52,7 +52,7 @@ const LegacyTemplate = props => {
               <CampaignSignupArrow content={signupArrowContent} />
             ) : null}
             <div>
-              <SignupButton source="legacy lede banner" />
+              <SignupButtonContainer />
               {showPartnerMsgOptIn ? <AffiliateOptInToggleContainer /> : null}
             </div>
           </div>

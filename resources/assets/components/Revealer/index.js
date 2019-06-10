@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SignupButton from '../SignupButton';
+import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 import Button from '../utilities/Button/Button';
 
 import './revealer.scss';
@@ -17,7 +17,7 @@ const Revealer = props => {
           {title}
         </Button>
       ) : (
-        <SignupButton className="is-cta" source="revealer" />
+        <SignupButtonContainer className="is-cta" />
       )}
     </div>
   );

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import SignupButton from '../../SignupButton';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
@@ -45,7 +45,7 @@ const MosaicTemplate = props => {
         />
       ) : null}
 
-      <SignupButton
+      <SignupButtonContainer
         className={classnames({ '-float': affiliateSponsors.length })}
       />
       {signupArrowContent ? (
