@@ -19,7 +19,8 @@ jobs:
       # If we can, we'll load these from cache (based on the lockfile).
       - checkout
       - run: sudo composer self-update
-      - run: sudo docker-php-ext-install mysql
+      # Install PHP extensions required by Laravel.
+      - run: sudo docker-php-ext-install bcmath ctype pdo_mysql json mbstring
       - restore_cache:
           keys:
             - composer-v1-{{ checksum "composer.lock" }}
