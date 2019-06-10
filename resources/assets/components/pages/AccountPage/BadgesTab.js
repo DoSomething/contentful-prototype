@@ -32,14 +32,6 @@ const NEWSLETTER_BADGE = gql`
   }
 `;
 
-// const VOTER_BADGE = gql`
-//   query VoterBadgeQuery($userId: String!) {
-//     user(id: $userId) {
-//       voterRegistrationStatus
-//     }
-//   }
-// `;
-
 const VOTER_BADGE = gql`
   query VoterRegBadge($userId: String!) {
     posts(userId: $userId, type: "voter-reg") {
