@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import SignupButton from '../../SignupButton';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
 import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -59,7 +59,7 @@ const CoverTemplate = props => {
           actionButton
         ) : (
           <div className="cover-lede-banner__signup">
-            <SignupButton source="cover lede banner" />
+            <SignupButtonContainer />
           </div>
         )}
 

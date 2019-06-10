@@ -12,8 +12,6 @@ exports[`CallToAction snapshot test 1`] = `
   >
     Aenean eu leo quam. Pellentesque ornare sem vestibulum.
   </div>
-  <Connect(SignupButton)
-    source="call to action"
-  />
+  <Connect(SignupButton) />
 </Card>
 `;
