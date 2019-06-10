@@ -48,7 +48,7 @@ jobs:
           paths:
             - node_modules
       # Build Javacript application.
-      - run: npm run build
+      - run: GRAPHQL_URL=https://graphql-dev.dosomething.org/graphql npm run build
       # Lint with ESLint & type-check with Flow.
       - run: npm run lint
       - run: npm run flow
