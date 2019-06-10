@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Figure } from '../../Figure';
 
+import { Figure } from '../../Figure';
 // to do: figure out how to not have to import each image
 import signupBadgeEarned from './SignupBadgeEarned.jpg'; // with import
 import signupBadgeGray from './SignupBadgeGray.jpg'; // with import
