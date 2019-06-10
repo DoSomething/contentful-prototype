@@ -9,10 +9,12 @@ import UserPostsQuery from './UserPostsQuery';
 
 const AccountRoute = props => (
   <Switch>
+  { props.user.hasFeatureFlag ?
     <Route
       path="/us/account/profile/badges"
       render={() => <BadgesTab {...props} />}
-    />
+    /> : null
+  }
     <Route
       path="/us/account/profile/subscriptions"
       render={() => <Subscriptions {...props} />}
@@ -27,6 +29,9 @@ const AccountRoute = props => (
 
 AccountRoute.propTypes = {
   userId: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    hasFeatureFlag: PropTypes.bool,
+  }).isRequired,
 };
 
 export default AccountRoute;
