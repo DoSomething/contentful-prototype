@@ -60,4 +60,4 @@ jobs:
       - run: npm run flow
       # Run our Jest test suite & Cypress browser tests.
       - run: npm run test:ci
-      - run: npm run test:browser:ci
+      - run: npm run cypress:ci
