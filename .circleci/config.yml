@@ -59,4 +59,4 @@ jobs:
       # Run PHPUnit unit testing suite.
       - run: vendor/bin/phpunit
       # Start Laravel server & run Cypress browser tests.
-      - run: php artisan serve && npm run cypress:ci
+      - run: php artisan serve & npm run cypress:ci
