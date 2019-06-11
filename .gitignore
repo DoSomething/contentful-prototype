@@ -1,4 +1,6 @@
 stats.json
+/cypress/screenshots
+/cypress/videos
 /node_modules
 /public/dist
 /public/hot
