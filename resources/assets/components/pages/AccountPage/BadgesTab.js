@@ -101,7 +101,7 @@ const BadgesTab = ({ userId }) => (
                 <li>
                   <Badge
                     earned={data.postsCount > 1}
-                    name="twoPostBadge"
+                    name="twoPostsBadge"
                     text="2 Actions"
                   />
                 </li>
@@ -122,7 +122,7 @@ const BadgesTab = ({ userId }) => (
                 <li>
                   <Badge
                     earned={data.postsCount > 2}
-                    name="threePostBadge"
+                    name="threePostsBadge"
                     text="3 Actions"
                   />
                 </li>
@@ -158,7 +158,11 @@ const BadgesTab = ({ userId }) => (
 
               return data.postsCount > 1 ? (
                 <li>
-                  <Badge earned name="twoStaffFaveBadge" text="2 Staff Faves" />
+                  <Badge
+                    earned
+                    name="twoStaffFavesBadge"
+                    text="2 Staff Faves"
+                  />
                 </li>
               ) : null;
             }}
@@ -177,7 +181,7 @@ const BadgesTab = ({ userId }) => (
                 <li>
                   <Badge
                     earned
-                    name="threeStaffFaveBadge"
+                    name="threeStaffFavesBadge"
                     text="3 Staff Faves"
                   />
                 </li>
