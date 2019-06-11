@@ -13,7 +13,10 @@ const Profile = props => (
     <div className="container__block -half">
       <h3>Profile Info</h3>
 
-      <FormItem title="Name" value={props.user.firstName} />
+      <FormItem
+        title="Name"
+        value={`${props.user.firstName} ${props.user.lastName}`}
+      />
       <FormItem title="Birthday" value={props.user.birthdate} />
       <FormItem
         title="Password"
