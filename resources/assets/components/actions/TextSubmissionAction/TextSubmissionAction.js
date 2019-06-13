@@ -35,7 +35,6 @@ export const TextSubmissionBlockFragment = gql`
 
 class TextSubmissionAction extends React.Component {
   static getDerivedStateFromProps(nextProps) {
-    console.log('👾', nextProps);
     const response = nextProps.submissions.items[nextProps.id] || null;
 
     if (has(response, 'status.success')) {
@@ -110,8 +109,6 @@ class TextSubmissionAction extends React.Component {
       pageId: this.props.pageId,
       type,
     };
-
-    console.log('🔥', data);
 
     // Send request to store the text submission post.
     // (Use campaign ID independant post method if actionId is provided).
@@ -240,7 +237,7 @@ TextSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
   className: PropTypes.string,
-  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
+  id: PropTypes.string.isRequired,
   informationTitle: PropTypes.string,
   informationContent: PropTypes.string,
   pageId: PropTypes.string,
