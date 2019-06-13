@@ -8,8 +8,8 @@ import {
 } from '../../../actions/post';
 
 const mapStateToProps = state => ({
-  campaignId: state.campaign.campaignId,
   campaignContentfulId: state.campaign.id,
+  campaignId: state.campaign.campaignId,
   submissions: state.postSubmissions,
   userId: getUserId(state),
 });

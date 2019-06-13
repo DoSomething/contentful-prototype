@@ -60,7 +60,13 @@ class SelectionSubmissionAction extends React.Component {
       return;
     }
 
-    const { id, actionId, storePost } = this.props;
+    const {
+      actionId,
+      campaignId,
+      campaignContentfulId,
+      id,
+      storePost,
+    } = this.props;
 
     // Reset any straggling post submission data for this action.
     this.props.resetPostSubmissionItem(id);

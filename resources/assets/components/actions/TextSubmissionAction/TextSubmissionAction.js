@@ -104,8 +104,9 @@ class TextSubmissionAction extends React.Component {
       action,
       actionId: this.props.actionId,
       body: formatPostPayload(formFields),
-      id: this.props.id,
       campaignContentfulId: this.props.campaignContentfulId,
+      campaignId: this.props.campaignId,
+      id: this.props.id,
       type,
     };
 

@@ -93,10 +93,10 @@ export function storeCampaignPost(campaignId, data) {
   // Track post submission event.
   trackAnalyticsEvent({
     context: {
-      action,
       actionId,
-      campaignContentfulId,
+      blockId: id,
       campaignId,
+      pageId: campaignContentfulId,
     },
     metadata: {
       category: 'campaign_action',
@@ -141,7 +141,7 @@ export function storeCampaignPost(campaignId, data) {
  * @return {function}
  */
 export function storePost(data) {
-  const { actionId, body, id, type } = data;
+  const { actionId, body, campaignContentfulId, campaignId, id, type } = data;
 
   const sixpackExperiments = {
     conversion: 'reportbackPost',
@@ -151,6 +151,9 @@ export function storePost(data) {
   trackAnalyticsEvent({
     context: {
       actionId,
+      blockId: id,
+      campaignId,
+      pageId: campaignContentfulId,
     },
     metadata: {
       category: 'campaign_action',
