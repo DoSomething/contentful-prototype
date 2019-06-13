@@ -35,6 +35,7 @@ export const TextSubmissionBlockFragment = gql`
 
 class TextSubmissionAction extends React.Component {
   static getDerivedStateFromProps(nextProps) {
+    console.log('👾', nextProps);
     const response = nextProps.submissions.items[nextProps.id] || null;
 
     if (has(response, 'status.success')) {
@@ -71,7 +72,7 @@ class TextSubmissionAction extends React.Component {
 
   handleFocus = () => {
     trackAnalyticsEvent({
-      context: { contentfulId: this.props.id },
+      context: { blockId: this.props.id, pageId: this.props.pageId },
       metadata: {
         adjective: 'text',
         category: 'campaign_action',
@@ -92,23 +93,25 @@ class TextSubmissionAction extends React.Component {
     const action = get(this.props.additionalContent, 'action', 'default');
 
     const formFields = withoutNulls({
-      action,
+      action, // @TODO: deprecate
       type,
-      id: this.props.id,
+      id: this.props.id, // @TODO: rename property to blockId?
       action_id: this.props.actionId,
       // Associate state values to fields.
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
     });
 
     const data = {
-      action,
+      action, // @TODO: deprecate
       actionId: this.props.actionId,
+      blockId: this.props.id,
       body: formatPostPayload(formFields),
-      campaignContentfulId: this.props.campaignContentfulId,
       campaignId: this.props.campaignId,
-      id: this.props.id,
+      pageId: this.props.pageId,
       type,
     };
+
+    console.log('🔥', data);
 
     // Send request to store the text submission post.
     // (Use campaign ID independant post method if actionId is provided).
@@ -144,7 +147,7 @@ class TextSubmissionAction extends React.Component {
         >
           <PuckWaypoint
             name="text_submission_action-top"
-            waypointData={{ contentfulId: this.props.id }}
+            waypointData={{ blockId: this.props.id }}
           />
           <Card className="bordered rounded" title={this.props.title}>
             {formResponse ? <FormValidation response={formResponse} /> : null}
@@ -191,7 +194,7 @@ class TextSubmissionAction extends React.Component {
           </Card>
           <PuckWaypoint
             name="text_submission_action-bottom"
-            waypointData={{ contentfulId: this.props.id }}
+            waypointData={{ blockId: this.props.id }}
           />
         </div>
 
@@ -236,11 +239,11 @@ TextSubmissionAction.propTypes = {
   }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
-  campaignContentfulId: PropTypes.string,
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationTitle: PropTypes.string,
   informationContent: PropTypes.string,
+  pageId: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   storePost: PropTypes.func.isRequired,
@@ -260,10 +263,10 @@ TextSubmissionAction.defaultProps = {
     "Thanks for joining the movement, and submitting your message! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit',
   campaignId: null,
-  campaignContentfulId: null,
   className: null,
   informationContent: null,
   informationTitle: 'More Info',
+  pageId: null,
   textFieldLabel: 'I did something by...',
   textFieldPlaceholder: 'Indicate what you did to make a difference.',
   title: 'Submit your text',

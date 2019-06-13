@@ -11,7 +11,7 @@ import {
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  campaignContentfulId: state.campaign.id,
+  pageId: state.campaign.id,
   campaignId: state.campaign.campaignId,
   submissions: state.postSubmissions,
 });
