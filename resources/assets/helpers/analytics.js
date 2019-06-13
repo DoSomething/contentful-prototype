@@ -60,7 +60,7 @@ export function analyzeWithGoogle(name, category, action, label, data) {
   const flattenedData = stringifyNestedObjects(data);
 
   if (window.AUTH.id) {
-    flattenedData.userID = window.AUTH.id;
+    flattenedData.userId = window.AUTH.id;
   }
 
   const analyticsEvent = {
