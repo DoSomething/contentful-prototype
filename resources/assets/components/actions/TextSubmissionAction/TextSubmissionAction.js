@@ -237,7 +237,7 @@ TextSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationTitle: PropTypes.string,
   informationContent: PropTypes.string,
   pageId: PropTypes.string,
