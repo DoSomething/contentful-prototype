@@ -65,12 +65,12 @@ export function resetPostSubmissionItem(id) {
 /**
  * Store posts for the specified campaign.
  *
- * @param {String} campaignId
+ * @param  {String} campaignId
  * @param  {Object} data
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  const { action, actionId, body, campaignContentfulId, id, type } = data;
+  const { action, actionId, blockId, body, pageId, type } = data;
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
@@ -94,9 +94,9 @@ export function storeCampaignPost(campaignId, data) {
   trackAnalyticsEvent({
     context: {
       actionId,
-      blockId: id,
+      blockId,
       campaignId,
-      pageId: campaignContentfulId,
+      pageId,
     },
     metadata: {
       category: 'campaign_action',
@@ -116,8 +116,8 @@ export function storeCampaignPost(campaignId, data) {
           action,
           actionId,
           campaignId,
-          campaignContentfulId,
-          id,
+          id: blockId, // @TODO: rename property to blockId
+          pageId,
           sixpackExperiments,
           type,
         },
@@ -135,13 +135,15 @@ export function storeCampaignPost(campaignId, data) {
  *
  * @param  {Object} data
  * @param  {Number} data.actionId
+ * @param  {String} data.blockId
  * @param  {Object} data.body
- * @param  {String} data.id
+ * @param  {String} data.campaignId
+ * @param  {String} data.pageId
  * @param  {String} data.type
  * @return {function}
  */
 export function storePost(data) {
-  const { actionId, body, campaignContentfulId, campaignId, id, type } = data;
+  const { actionId, blockId, body, campaignId, pageId, type } = data;
 
   const sixpackExperiments = {
     conversion: 'reportbackPost',
@@ -151,9 +153,9 @@ export function storePost(data) {
   trackAnalyticsEvent({
     context: {
       actionId,
-      blockId: id,
+      blockId,
       campaignId,
-      pageId: campaignContentfulId,
+      pageId,
     },
     metadata: {
       category: 'campaign_action',
@@ -170,10 +172,10 @@ export function storePost(data) {
         body,
         failure: POST_SUBMISSION_FAILED,
         meta: {
-          sixpackExperiments,
           actionId,
+          id: blockId, // @TODO: rename property to blockId
+          sixpackExperiments,
           type,
-          id,
         },
         requiresAuthentication: type === 'text',
         pending: POST_SUBMISSION_PENDING,
