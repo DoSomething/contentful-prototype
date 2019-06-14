@@ -27,14 +27,11 @@ export const postCardFragment = gql`
     location(format: HUMAN_FORMAT)
     signupId
     createdAt
+    permalink
 
     actionDetails {
       anonymous
       noun
-    }
-
-    signup {
-      permalink
     }
 
     user {
@@ -90,7 +87,7 @@ const PostCard = ({ post, hideReactions }) => {
         >
           <h4>
             {authorLabel}
-            {isStaff() ? <ReviewLink url={post.signup.permalink} /> : null}
+            {isStaff() ? <ReviewLink url={post.permalink} /> : null}
             <PostBadge status={post.status} tags={post.tags} />
           </h4>
           {post.quantity ? (
