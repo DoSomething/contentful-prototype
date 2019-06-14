@@ -22,6 +22,8 @@ const appendAdditionalData = (data, state) => {
 
 /**
  * Middleware for handling Analytics actions.
+ *
+ * @deprecate Remove this middleware since we now use trackAnalyticsEvent() instead.
  */
 const analyticsMiddleware = ({ getState }) => next => action => {
   if (!has(action, 'payload.meta.analytics')) {
