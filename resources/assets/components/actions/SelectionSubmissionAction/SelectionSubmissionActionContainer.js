@@ -8,8 +8,8 @@ import { resetPostSubmissionItem, storePost } from '../../../actions/post';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  campaignContentfulId: state.campaign.id,
   campaignId: state.campaign.campaignId,
+  pageId: state.campaign.id,
   submissions: state.postSubmissions,
   userId: getUserId(state),
 });
