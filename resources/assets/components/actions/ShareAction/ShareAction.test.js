@@ -12,7 +12,12 @@ jest.useFakeTimers();
 
 describe('ShareAction component', () => {
   const url = 'https://dosomething.org';
-  const trackingData = { url };
+  const trackingData = {
+    blockId: '1234',
+    campaignId: '1234',
+    pageId: 'abcdefghijklmn0123456789',
+    url,
+  };
 
   const getShallow = socialPlatform =>
     shallow(
@@ -21,7 +26,7 @@ describe('ShareAction component', () => {
         content="This is a great link"
         socialPlatform={socialPlatform}
         link={url}
-        campaignContentfulId="abcdefghijklmn0123456789"
+        pageId="abcdefghijklmn0123456789"
         campaignId="1234"
         id="1234"
         isAuthenticated={false}
