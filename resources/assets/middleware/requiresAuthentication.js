@@ -1,4 +1,4 @@
-/* global window */
+/* global window document */
 
 import { get } from 'lodash';
 import localforage from 'localforage';
