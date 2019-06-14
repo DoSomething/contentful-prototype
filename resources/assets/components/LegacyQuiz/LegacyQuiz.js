@@ -13,10 +13,12 @@ import './legacy-quiz.scss';
 
 const LegacyQuiz = props => {
   const {
-    id,
-    fields,
-    data,
+    campaignId,
     completeQuiz,
+    data,
+    fields,
+    id,
+    pageId,
     pickQuizAnswer,
     submitButtonText,
   } = props;
@@ -71,7 +73,7 @@ const LegacyQuiz = props => {
 
   if (shouldSeeResult) {
     trackAnalyticsEvent({
-      context: { responses: data.questions },
+      context: { campaignId, pageId },
       metadata: {
         category: 'campaign_action',
         noun: 'quiz',
@@ -105,6 +107,13 @@ const LegacyQuiz = props => {
 };
 
 LegacyQuiz.propTypes = {
+  campaignId: PropTypes.string,
+  completeQuiz: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    shouldSeeResult: PropTypes.bool,
+    questions: PropTypes.object,
+    error: PropTypes.string,
+  }),
   id: PropTypes.string.isRequired,
   fields: PropTypes.shape({
     id: PropTypes.string,
@@ -116,17 +125,13 @@ LegacyQuiz.propTypes = {
     callToAction: PropTypes.string,
     questions: PropTypes.array,
   }),
-  data: PropTypes.shape({
-    shouldSeeResult: PropTypes.bool,
-    questions: PropTypes.object,
-    error: PropTypes.string,
-  }),
-  completeQuiz: PropTypes.func.isRequired,
+  pageId: PropTypes.string,
   pickQuizAnswer: PropTypes.func.isRequired,
   submitButtonText: PropTypes.string,
 };
 
 LegacyQuiz.defaultProps = {
+  campaignId: null,
   data: {
     shouldSeeResult: false,
     questions: {},
@@ -140,6 +145,7 @@ LegacyQuiz.defaultProps = {
     comparison: '',
     callToAction: '',
   },
+  pageId: null,
   submitButtonText: 'get results',
 };
 

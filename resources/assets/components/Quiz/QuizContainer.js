@@ -10,8 +10,8 @@ import { isAuthenticated } from '../../selectors/user';
  */
 const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
-  campaignContentfulId: state.campaign.id,
   isAuthenticated: isAuthenticated(state),
+  pageId: state.campaign.id || state.page.id,
 });
 
 /**
