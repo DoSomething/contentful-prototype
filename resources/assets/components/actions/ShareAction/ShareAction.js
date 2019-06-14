@@ -50,12 +50,12 @@ class ShareAction extends React.Component {
   storeSharePost = puckId => {
     const action = get(this.props.additionalContent, 'action', 'default');
 
-    const { actionId, campaignContentfulId, campaignId, link } = this.props;
+    const { actionId, pageId, campaignId, link } = this.props;
 
     const formFields = withoutNulls({
-      action,
+      action, // @TODO: deprecate
       type: SOCIAL_SHARE_TYPE,
-      id: campaignContentfulId,
+      id: pageId, // @TODO: rename property to pageId? Other actions use the blockId?
       action_id: actionId,
       details: {
         url: link,
@@ -67,11 +67,11 @@ class ShareAction extends React.Component {
 
     // Send request to store the social share post.
     this.props.storeCampaignPost(campaignId, {
-      action,
+      action, // @TODO: deprecate
       actionId,
-      campaignContentfulId,
+      blockId: this.props.id,
       body: formatPostPayload(formFields),
-      id: this.props.id,
+      pageId,
       type: SOCIAL_SHARE_TYPE,
     });
   };
@@ -87,7 +87,12 @@ class ShareAction extends React.Component {
    */
   trackEvent = (service, target, verb, data = {}) => {
     trackAnalyticsEvent({
-      context: { ...data },
+      context: {
+        ...data,
+        blockId: this.props.id,
+        campaignId: this.props.campaignId,
+        pageId: this.props.pageId,
+      },
       metadata: {
         adjective: service,
         category: 'campaign_action',
@@ -104,7 +109,7 @@ class ShareAction extends React.Component {
 
     let trackingData = { url: link };
 
-    this.trackEvent('facebook', 'button', 'clicked', { url: link });
+    this.trackEvent('facebook', 'button', 'clicked', trackingData);
 
     showFacebookShareDialog(url)
       .then(() => {
@@ -117,16 +122,12 @@ class ShareAction extends React.Component {
           this.storeSharePost(puckId);
         }
 
-        this.trackEvent('facebook', 'action', 'completed', {
-          ...trackingData,
-        });
+        this.trackEvent('facebook', 'action', 'completed', trackingData);
 
         this.setState({ showModal: true });
       })
       .catch(() => {
-        this.trackEvent('facebook', 'action', 'cancelled', {
-          ...trackingData,
-        });
+        this.trackEvent('facebook', 'action', 'cancelled', trackingData);
       });
   };
 
@@ -170,7 +171,7 @@ class ShareAction extends React.Component {
         <div className="share-action">
           <PuckWaypoint
             name="share_action-top"
-            waypointData={{ contentfulId: id }}
+            waypointData={{ blockId: id }}
           />
           <Card title={title} className="rounded bordered">
             {content ? (
@@ -187,7 +188,7 @@ class ShareAction extends React.Component {
           </Card>
           <PuckWaypoint
             name="share_action-bottom"
-            waypointData={{ contentfulId: id }}
+            waypointData={{ blockId: id }}
           />
         </div>
         {this.state.showModal ? (
@@ -217,10 +218,10 @@ ShareAction.propTypes = {
   affirmation: PropTypes.string,
   affirmationBlock: PropTypes.object, // eslint-disable-line
   campaignId: PropTypes.string.isRequired,
-  campaignContentfulId: PropTypes.string.isRequired,
+  pageId: PropTypes.string.isRequired,
   content: PropTypes.string,
   hideEmbed: PropTypes.bool,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   isAuthenticated: PropTypes.bool.isRequired,
   link: PropTypes.string.isRequired,
   socialPlatform: PropTypes.oneOf(['twitter', 'facebook']).isRequired,

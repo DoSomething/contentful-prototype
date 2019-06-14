@@ -60,7 +60,7 @@ class SelectionSubmissionAction extends React.Component {
       return;
     }
 
-    const { id, actionId, storePost } = this.props;
+    const { actionId, campaignId, id, pageId, storePost } = this.props;
 
     // Reset any straggling post submission data for this action.
     this.props.resetPostSubmissionItem(id);
@@ -69,14 +69,16 @@ class SelectionSubmissionAction extends React.Component {
 
     // Trigger request to store the selection submission post.
     storePost({
+      actionId,
+      blockId: id,
       body: formatPostPayload({
         action_id: actionId,
         text: this.state.selection,
         type,
       }),
+      campaignId,
+      pageId,
       type,
-      actionId,
-      id,
     });
   };
 
@@ -190,8 +192,10 @@ class SelectionSubmissionAction extends React.Component {
 SelectionSubmissionAction.propTypes = {
   actionId: PropTypes.number.isRequired,
   buttonText: PropTypes.string,
+  campaignId: PropTypes.string.isRequired,
   content: PropTypes.object.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
+  pageId: PropTypes.string.isRequired,
   postSubmissionLabel: PropTypes.string.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   selectionFieldLabel: PropTypes.string,

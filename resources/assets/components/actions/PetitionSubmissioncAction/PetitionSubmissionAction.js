@@ -76,7 +76,7 @@ class PetitionSubmissionAction extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    const { id, actionId, storePost } = this.props;
+    const { actionId, id, pageId, storePost } = this.props;
 
     // Reset any straggling post submission data for this action.
     this.props.resetPostSubmissionItem(id);
@@ -85,14 +85,15 @@ class PetitionSubmissionAction extends React.Component {
 
     // Send request to store the petition submission post.
     storePost({
+      actionId,
+      blockId: id,
       body: formatPostPayload({
         action_id: actionId,
         text: this.state.textValue,
         type,
       }),
+      pageId,
       type,
-      actionId,
-      id,
     });
   };
 
@@ -127,7 +128,7 @@ class PetitionSubmissionAction extends React.Component {
         >
           <PuckWaypoint
             name="petition_submission_action-top"
-            waypointData={{ contentfulId: id }}
+            waypointData={{ blockId: id }}
           />
           <Query
             query={USER_POSTS_QUERY}
@@ -207,7 +208,7 @@ class PetitionSubmissionAction extends React.Component {
           </Query>
           <PuckWaypoint
             name="petition_submission_action-bottom"
-            waypointData={{ contentfulId: id }}
+            waypointData={{ blockId: id }}
           />
         </div>
 
@@ -246,9 +247,10 @@ PetitionSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
+  pageId: PropTypes.string.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storePost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({

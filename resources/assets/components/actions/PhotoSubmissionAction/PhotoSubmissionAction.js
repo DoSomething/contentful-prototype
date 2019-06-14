@@ -193,9 +193,9 @@ class PhotoSubmissionAction extends React.Component {
     }
 
     const formFields = withoutNulls({
-      action,
+      action, // @TODO: deprecate
       type,
-      id: this.props.id,
+      id: this.props.id, // @TODO: rename property to blockId?
       action_id: this.props.actionId,
       // Associate state values to fields.
       ...values,
@@ -205,11 +205,11 @@ class PhotoSubmissionAction extends React.Component {
 
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
-      action,
+      action, // @TODO: deprecate
       actionId: this.props.actionId,
+      blockId: this.props.id,
       body: formatPostPayload(formFields),
-      id: this.props.id,
-      campaignContentfulId: this.props.campaignContentfulId,
+      pageId: this.props.pageId,
       type,
     });
   };
@@ -275,7 +275,7 @@ class PhotoSubmissionAction extends React.Component {
           <div className="photo-submission-action">
             <PuckWaypoint
               name="photo_submission_action-top"
-              waypointData={{ contentfulId: this.props.id }}
+              waypointData={{ blockId: this.props.id }}
             />
             <Card
               className={classnames('bordered rounded', this.props.className)}
@@ -397,7 +397,7 @@ class PhotoSubmissionAction extends React.Component {
             </Card>
             <PuckWaypoint
               name="photo_submission_action-bottom"
-              waypointData={{ contentfulId: this.props.id }}
+              waypointData={{ blockId: this.props.id }}
             />
           </div>
 
@@ -438,13 +438,13 @@ PhotoSubmissionAction.propTypes = {
   }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
-  campaignContentfulId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
+  pageId: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
   resetPostSubmissionItem: PropTypes.func.isRequired,

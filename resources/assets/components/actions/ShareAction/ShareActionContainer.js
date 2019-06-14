@@ -16,11 +16,11 @@ const mapStateToProps = (state, ownProps) => {
     : ownProps.socialPlatform;
 
   return {
-    userId: getUserId(state),
     campaignId: state.campaign.campaignId,
     isAuthenticated: isAuthenticated(state),
-    campaignContentfulId: state.campaign.id,
+    pageId: state.campaign.id,
     socialPlatform: socialPlatform || 'facebook',
+    userId: getUserId(state),
   };
 };
 
