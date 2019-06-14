@@ -34,15 +34,9 @@ const LinkAction = props => {
 
   return (
     <React.Fragment>
-      <PuckWaypoint
-        name="link_action-top"
-        waypointData={{ contentfulId: id }}
-      />
+      <PuckWaypoint name="link_action-top" waypointData={{ blockId: id }} />
       <LinkActionTemplate {...props} />
-      <PuckWaypoint
-        name="link_action-bottom"
-        waypointData={{ contentfulId: id }}
-      />
+      <PuckWaypoint name="link_action-bottom" waypointData={{ blockId: id }} />
     </React.Fragment>
   );
 };
