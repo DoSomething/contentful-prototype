@@ -109,7 +109,7 @@ class ShareAction extends React.Component {
 
     let trackingData = { url: link };
 
-    this.trackEvent('facebook', 'button', 'clicked', { ...trackingData });
+    this.trackEvent('facebook', 'button', 'clicked', trackingData);
 
     showFacebookShareDialog(url)
       .then(() => {
@@ -122,16 +122,12 @@ class ShareAction extends React.Component {
           this.storeSharePost(puckId);
         }
 
-        this.trackEvent('facebook', 'action', 'completed', {
-          ...trackingData,
-        });
+        this.trackEvent('facebook', 'action', 'completed', trackingData);
 
         this.setState({ showModal: true });
       })
       .catch(() => {
-        this.trackEvent('facebook', 'action', 'cancelled', {
-          ...trackingData,
-        });
+        this.trackEvent('facebook', 'action', 'cancelled', trackingData);
       });
   };
 
