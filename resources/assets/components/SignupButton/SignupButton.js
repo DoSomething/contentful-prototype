@@ -11,9 +11,9 @@ const SignupButton = props => {
     campaignActionText,
     campaignId,
     campaignTitle,
-    contentfulId,
     className,
     disableSignup,
+    pageId,
     sourceActionText,
     storeCampaignSignup,
     text,
@@ -34,7 +34,7 @@ const SignupButton = props => {
         details: JSON.stringify(details),
         source_details: JSON.stringify(
           withoutNulls({
-            contentful_id: contentfulId,
+            contentful_id: pageId,
             utm_source: query('utm_source'),
             utm_medium: query('utm_medium'),
             utm_campaign: query('utm_campaign'),
@@ -43,7 +43,7 @@ const SignupButton = props => {
       },
       analytics: {
         context: {
-          contentfulId,
+          pageId,
         },
         label: campaignTitle,
         target: 'button',
@@ -72,9 +72,9 @@ SignupButton.propTypes = {
   campaignActionText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
-  contentfulId: PropTypes.string.isRequired,
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
+  pageId: PropTypes.string.isRequired,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
