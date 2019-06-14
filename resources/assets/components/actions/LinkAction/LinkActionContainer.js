@@ -10,7 +10,7 @@ import { getUserId } from '../../../selectors/user';
 const mapStateToProps = state =>
   withoutNulls({
     campaignId: state.campaign.campaignId,
-    pageId: state.campaign.id,
+    pageId: state.campaign.id || state.page.id,
     source: state.user.source,
     userId: getUserId(state),
   });

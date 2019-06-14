@@ -11,7 +11,7 @@ import {
  */
 const mapStateToProps = state => ({
   campaignId: state.campaign.campaignId,
-  pageId: state.campaign.id,
+  pageId: state.campaign.id || state.page.id,
   submissions: state.postSubmissions,
 });
 

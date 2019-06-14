@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   campaignActionText: state.campaign.actionText,
   campaignId: state.campaign.campaignId,
   campaignTitle: state.campaign.title,
-  pageId: state.campaign.id,
+  pageId: state.campaign.id || state.page.id,
   disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
   sourceActionText: get(state.campaign, 'additionalContent.sourceActionText'),
   trafficSource: state.user.source,
