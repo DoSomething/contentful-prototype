@@ -65,8 +65,9 @@ const postRequest = (payload, dispatch, getState) => {
   });
 
   const actionId = get(payload, 'meta.actionId', null);
-  const campaignContentfulId = get(payload, 'meta.campaignContentfulId', null);
+  const blockId = get(payload, 'meta.id', null); // @TODO: id will be renamed to blockId in future.
   const campaignId = get(payload, 'meta.campaignId');
+  const pageId = get(payload, 'meta.pageId', null);
   const postType = get(payload, 'meta.type', 'post_request');
 
   dispatch({
@@ -96,8 +97,9 @@ const postRequest = (payload, dispatch, getState) => {
         context: {
           actionId,
           activityId: response.data.id,
-          campaignContentfulId,
+          blockId,
           campaignId,
+          pageId,
         },
         metadata: {
           category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
@@ -121,9 +123,10 @@ const postRequest = (payload, dispatch, getState) => {
       trackAnalyticsEvent({
         context: {
           actionId,
-          campaignContentfulId,
+          blockId,
           campaignId,
           error,
+          pageId,
         },
         metadata: {
           category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
