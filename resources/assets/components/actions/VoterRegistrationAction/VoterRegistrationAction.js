@@ -79,10 +79,11 @@ const VoterRegistrationAction = props => {
 };
 
 VoterRegistrationAction.propTypes = {
+  blockId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string,
-  blockId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  pageId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
