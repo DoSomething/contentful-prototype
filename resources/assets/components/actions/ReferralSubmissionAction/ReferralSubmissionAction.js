@@ -64,9 +64,9 @@ class ReferralSubmissionAction extends React.Component {
     const action = get(this.props.additionalContent, 'action', 'default');
 
     const formData = formatPostPayload({
-      action,
+      action, // @TODO: deprecate
       type,
-      id: this.props.id,
+      id: this.props.id, // @TODO: rename property to pageId? Other actions use the blockId?
       // Associate state values to fields.
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
       details: this.props,
@@ -74,9 +74,10 @@ class ReferralSubmissionAction extends React.Component {
 
     // Send request to store the campaign text submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
-      action,
+      action, // @TODO: deprecate
+      blockId: this.props.id,
       body: formData,
-      id: this.props.id,
+      pageId: this.props.pageId,
       type,
     });
   };
@@ -188,7 +189,8 @@ ReferralSubmissionAction.propTypes = {
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired, // @TODO: rename property to blockId
+  pageId: PropTypes.string.isRequired,
   resetPostSubmissionItem: PropTypes.func.isRequired,
   storeCampaignPost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
