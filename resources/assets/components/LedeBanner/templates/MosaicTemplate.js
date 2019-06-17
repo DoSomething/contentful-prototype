@@ -31,8 +31,8 @@ const MosaicTemplate = props => {
   const backgroundImageStyle = {
     backgroundImage: `url(${contentfulImageUrl(
       coverImage.url,
-      '800',
-      '600',
+      '1600',
+      '1200',
       'fill',
     )})`,
   };

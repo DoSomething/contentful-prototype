@@ -295,14 +295,14 @@ function get_image_url($asset, $style = null)
 
     $options['landscape'] = (new ImageOptions)
         ->setFormat('jpg')
-        ->setWidth(1440)
-        ->setHeight(620)
+        ->setWidth(2880)
+        ->setHeight(1240)
         ->setResizeFit('fill');
 
     $options['square'] = (new ImageOptions)
         ->setFormat('jpg')
-        ->setWidth(600)
-        ->setHeight(600)
+        ->setWidth(1200)
+        ->setHeight(1200)
         ->setResizeFit('fill');
 
     $options['logo'] = (new ImageOptions)
