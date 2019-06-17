@@ -7,8 +7,9 @@ import VoterRegistrationAction from './VoterRegistrationAction';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => ({
-  userId: getUserId(state),
   campaignId: state.campaign.campaignId,
+  pageId: state.campaign.id || state.page.id,
+  userId: getUserId(state),
 });
 
 /**

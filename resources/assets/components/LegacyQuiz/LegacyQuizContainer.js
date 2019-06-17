@@ -33,9 +33,11 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    id: quizId,
-    fields: quizFields,
+    campaignId: state.campaign.campaignId,
     data: quizData,
+    fields: quizFields,
+    id: quizId,
+    pageId: state.campaign.id || state.page.id,
     submitButtonText: get(quizFields, 'additionalContent.submitButtonText'),
   };
 };

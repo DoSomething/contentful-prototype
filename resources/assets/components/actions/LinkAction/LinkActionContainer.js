@@ -9,9 +9,10 @@ import { getUserId } from '../../../selectors/user';
  */
 const mapStateToProps = state =>
   withoutNulls({
-    userId: getUserId(state),
     campaignId: state.campaign.campaignId,
+    pageId: state.campaign.id || state.page.id,
     source: state.user.source,
+    userId: getUserId(state),
   });
 
 // Export the container component.

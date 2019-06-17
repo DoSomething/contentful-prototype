@@ -692,7 +692,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
 }
 
 /**
- * Handle click event on from Facebook share button
+ * Handle click event from Facebook share button
  *
  * @param {String} href
  * @param {Object} trackingData

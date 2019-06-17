@@ -317,15 +317,13 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'voterRegistrationAction':
         return (
           <VoterRegistrationActionContainer
-            contentfulId={json.id}
+            blockId={json.id}
             {...json.fields}
           />
         );
 
       case 'VoterRegistrationBlock':
-        return (
-          <VoterRegistrationActionContainer contentfulId={json.id} {...json} />
-        );
+        return <VoterRegistrationActionContainer blockId={json.id} {...json} />;
 
       default:
         return <NotFound />;

@@ -21,7 +21,7 @@ export const VoterRegistrationBlockFragment = gql`
 `;
 
 const VoterRegistrationAction = props => {
-  const { campaignId, content, contentfulId, link, userId } = props;
+  const { campaignId, content, blockId, link, pageId, userId } = props;
 
   const tokens = {
     userId,
@@ -36,8 +36,9 @@ const VoterRegistrationAction = props => {
   const handleClick = () => {
     trackAnalyticsEvent({
       context: {
-        campaignContentfulId: contentfulId,
+        blockId,
         campaignId,
+        pageId,
         url: parsedLink,
       },
       metadata: {
@@ -78,10 +79,11 @@ const VoterRegistrationAction = props => {
 };
 
 VoterRegistrationAction.propTypes = {
+  blockId: PropTypes.string.isRequired,
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string,
-  contentfulId: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
+  pageId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

@@ -120,6 +120,12 @@ class TextSubmissionAction extends React.Component {
   };
 
   render() {
+    const context = {
+      blockId: this.props.id,
+      campaignId: this.props.campaignId,
+      pageId: this.props.pageId,
+    };
+
     const submissionItem = this.props.submissions.items[this.props.id];
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
@@ -214,7 +220,10 @@ class TextSubmissionAction extends React.Component {
         ) : null}
 
         {this.state.showModal ? (
-          <Modal onClose={() => this.setState({ showModal: false })}>
+          <Modal
+            context={context}
+            onClose={() => this.setState({ showModal: false })}
+          >
             <Card className="bordered rounded" title="We got your message!">
               <TextContent className="padded">
                 {this.props.affirmationContent ||

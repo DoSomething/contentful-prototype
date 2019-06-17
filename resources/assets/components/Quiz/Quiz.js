@@ -84,7 +84,7 @@ class Quiz extends React.Component {
     }
 
     trackAnalyticsEvent({
-      context: { responses: this.state.choices },
+      context: { campaignId: this.props.campaignId, pageId: this.props.pageId },
       metadata: {
         category: 'campaign_action',
         noun: 'quiz',
@@ -128,7 +128,7 @@ class Quiz extends React.Component {
     );
 
     trackAnalyticsEvent({
-      context: { responses: this.state.choices },
+      context: { campaignId: this.props.campaignId, pageId: this.props.pageId },
       metadata: {
         category: 'campaign_action',
         noun: 'quiz',
@@ -280,11 +280,13 @@ Quiz.propTypes = {
     submitButtonText: PropTypes.string,
     isNestedQuiz: PropTypes.bool,
   }).isRequired,
+  campaignId: PropTypes.string.isRequired,
   defaultResultBlock: PropTypes.object,
+  hideQuestionNumber: PropTypes.bool,
   history: ReactRouterPropTypes.history.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  campaignId: PropTypes.string.isRequired,
   location: ReactRouterPropTypes.location.isRequired,
+  pageId: PropTypes.string,
   questions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -301,14 +303,14 @@ Quiz.propTypes = {
   resultBlocks: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
   storeCampaignSignup: PropTypes.func.isRequired,
-  hideQuestionNumber: PropTypes.bool,
   title: PropTypes.string,
 };
 
 Quiz.defaultProps = {
-  resultBlocks: null,
   defaultResultBlock: null,
   hideQuestionNumber: false,
+  pageId: null,
+  resultBlocks: null,
   title: null,
 };
 

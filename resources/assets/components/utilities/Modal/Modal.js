@@ -36,6 +36,7 @@ class Modal extends React.Component {
     if (this.props.trackingId) {
       trackAnalyticsEvent({
         context: {
+          ...this.props.context, // @TODO: see if trackingId can be included within context
           modalType: this.props.trackingId,
         },
         metadata: {
@@ -59,6 +60,7 @@ class Modal extends React.Component {
     if (this.props.trackingId) {
       trackAnalyticsEvent({
         context: {
+          ...this.props.context, // @TODO: see if trackingId can be included within context
           modalType: this.props.trackingId,
         },
         metadata: {
@@ -84,11 +86,13 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
+  context: PropTypes.object,
   trackingId: PropTypes.string,
   onClose: PropTypes.func.isRequired,
 };
 
 Modal.defaultProps = {
+  context: {},
   trackingId: null,
 };
 

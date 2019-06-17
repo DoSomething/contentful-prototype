@@ -18,7 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     campaignId: state.campaign.campaignId,
     isAuthenticated: isAuthenticated(state),
-    pageId: state.campaign.id,
+    pageId: state.campaign.id || state.page.id,
     socialPlatform: socialPlatform || 'facebook',
     userId: getUserId(state),
   };

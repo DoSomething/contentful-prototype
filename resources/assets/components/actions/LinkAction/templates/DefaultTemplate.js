@@ -12,11 +12,11 @@ import { isExternal, dynamicString } from '../../../../helpers';
 import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import TextContent from '../../../utilities/TextContent/TextContent';
 
-const onLinkClick = link => {
+const onLinkClick = (link, context) => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
 
   trackAnalyticsEvent({
-    context: { url: link },
+    context: { ...context, url: link },
     metadata: {
       category: 'campaign_action',
       noun: 'link_action',
@@ -28,13 +28,15 @@ const onLinkClick = link => {
 
 const DefaultTemplate = props => {
   const {
-    content,
-    link,
-    userId,
-    campaignId,
-    buttonText,
     affiliateLogo,
+    buttonText,
+    campaignId,
+    content,
+    id,
+    link,
+    pageId,
     source,
+    userId,
   } = props;
 
   // The affiliate logo specific text is hard-coded for OZY. Though we can set this title
@@ -50,13 +52,15 @@ const DefaultTemplate = props => {
     source,
   });
 
+  const context = { blockId: id, campaignId, pageId };
+
   // If no content is provided, show as an embed.
   if (!content) {
     return (
       <div
         role="button"
         tabIndex="0"
-        onClick={() => onLinkClick(href)}
+        onClick={() => onLinkClick(href, context)}
         className="link-wrapper"
       >
         <Embed url={link} badged />
@@ -91,7 +95,7 @@ const DefaultTemplate = props => {
           />
         ) : null}
 
-        <Button attached onClick={() => onLinkClick(href)}>
+        <Button attached onClick={() => onLinkClick(href, context)}>
           {buttonText}
         </Button>
       </Card>
@@ -99,27 +103,30 @@ const DefaultTemplate = props => {
   );
 };
 
-DefaultTemplate.defaultProps = {
-  content: null,
-  affiliateLogo: null,
-  buttonText: 'Visit Link',
-  campaignId: null,
-  userId: null,
-  source: 'web',
-};
-
 DefaultTemplate.propTypes = {
-  title: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  link: PropTypes.string.isRequired,
   affiliateLogo: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
   }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string,
-  userId: PropTypes.string,
+  content: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  pageId: PropTypes.string,
   source: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  userId: PropTypes.string,
+};
+
+DefaultTemplate.defaultProps = {
+  affiliateLogo: null,
+  buttonText: 'Visit Link',
+  campaignId: null,
+  content: null,
+  pageId: null,
+  source: 'web',
+  userId: null,
 };
 
 export default DefaultTemplate;

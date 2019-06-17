@@ -40,7 +40,11 @@ class SocialDriveAction extends React.Component {
     document.execCommand('copy');
 
     trackAnalyticsEvent({
-      context: { url: this.props.link },
+      context: {
+        campaignId: this.props.campaignId,
+        pageId: this.props.pageId,
+        url: this.props.link,
+      },
       metadata: {
         category: 'campaign_action',
         noun: 'copy_to_clipboard',
@@ -127,13 +131,17 @@ class SocialDriveAction extends React.Component {
 }
 
 SocialDriveAction.propTypes = {
+  campaignId: PropTypes.string,
   link: PropTypes.string.isRequired,
+  pageId: PropTypes.string,
   showPageViews: PropTypes.bool,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
 SocialDriveAction.defaultProps = {
+  campaignId: null,
+  pageId: null,
   showPageViews: true,
 };
 
