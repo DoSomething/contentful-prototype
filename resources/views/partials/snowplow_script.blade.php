@@ -41,6 +41,10 @@
                     console.log('Context: ', JSON.parse(arguments[6][0]['data']['payload']));
                     break;
 
+                case 'trackPageView':
+                    console.log('Context: ', JSON.parse(arguments[2][0]['data']['payload']));
+                    break;
+
                 default:
                     console.log(arguments);
             }

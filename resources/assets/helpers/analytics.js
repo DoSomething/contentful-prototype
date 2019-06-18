@@ -1,13 +1,7 @@
 /* global window */
 
-import { snakeCase, startCase } from 'lodash';
+import { get, snakeCase, startCase } from 'lodash';
 import { Engine as PuckClient } from '@dosomething/puck-client';
-import {
-  dimensionByCookie,
-  init,
-  pageview,
-  analyze,
-} from '@dosomething/analytics';
 
 import { PUCK_URL } from '../constants';
 import { stringifyNestedObjects, withoutValueless, query } from '.';
@@ -45,17 +39,10 @@ const formatEventName = (verb, noun, adjective = null) => {
  * @return {void}
  */
 export function analyzeWithGoogle(name, category, action, label, data) {
-  if (!category || !action) {
-    console.error('The Category or Action is missing!');
+  if (!name || !category || !action || !label) {
+    console.error('Some expected data is missing!');
     return;
   }
-
-  // @DEPRECATE
-  // Format the event parameter as expected by the analyze method.
-  const identifier = `${category}:${action}:${label}`;
-
-  // @DEPRECATE
-  analyze(identifier);
 
   const flattenedData = stringifyNestedObjects(data);
 
@@ -178,20 +165,45 @@ export function formatEventNoun(string) {
 }
 
 /**
- * Watch the given parameters for changes in their state
- * and record it to Google Analytics.
+ * Get additional context data.
+ *
+ * @return {Object}
  */
-export function googleAnalyticsInit(history) {
-  init('track');
+export function getAdditionalContext() {
+  return {
+    utmSource: query('utm_source'),
+    utmMedium: query('utm_medium'),
+    utmCampaign: query('utm_campaign'),
+  };
+}
 
-  dimensionByCookie('platform');
+/**
+ * Track page views on initial load and for any changes in History interface.
+ *
+ * @param  {Object} history
+ * @return {void}
+ */
+export function trackAnalyticsPageView(history) {
+  const context = {
+    ...getAdditionalContext(),
+    campaignId: get(window, 'STATE.campaign.campaignId', null),
+    pageId:
+      get(window, 'STATE.campaign.id', null) ||
+      get(window, 'STATE.page.id', null),
+  };
 
-  // Track page changes for Google Analytics
+  const data = {
+    schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
+    data: {
+      payload: JSON.stringify(withoutValueless(context)),
+    },
+  };
+
   history.listen(() => {
-    pageview(window.location.pathname);
+    window.snowplow('trackPageView', null, [data]);
   });
 
-  pageview(window.location.pathname);
+  window.snowplow('trackPageView', null, [data]);
 }
 
 /**
@@ -219,9 +231,7 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
 
   const data = withoutValueless({
     ...context,
-    utmSource: query('utm_source'),
-    utmMedium: query('utm_medium'),
-    utmCampaign: query('utm_campaign'),
+    ...getAdditionalContext(),
   });
 
   sendToServices(name, category, action, label, data, service);

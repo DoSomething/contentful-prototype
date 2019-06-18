@@ -41,7 +41,7 @@ import App from './components/App';
 import { ready } from './helpers';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
-import { googleAnalyticsInit } from './helpers/analytics';
+import { trackAnalyticsPageView } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
@@ -62,8 +62,8 @@ ready(() => {
   // Add event listeners for top-level navigation.
   bindNavigationEvents();
 
-  // Add event listeners for GA.
-  googleAnalyticsInit(history);
+  // Add page view event listeners for History interface changes.
+  trackAnalyticsPageView(history);
 
   // Add event listeners for the Flash Message.
   bindFlashMessageEvents();
