@@ -65,7 +65,9 @@ describe('Campaign Signup', () => {
     );
 
     // Log in & visit the campaign pitch page:
-    cy.login(user).visit('/us/campaigns/test-example-campaign');
+    cy.login(user)
+      .withState(exampleCampaign)
+      .visit('/us/campaigns/test-example-campaign');
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
