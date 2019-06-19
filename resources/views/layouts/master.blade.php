@@ -46,7 +46,6 @@
 
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
 
-    @include('partials.google_analytics_script')
     @include('partials.customer_io_script')
     @include('partials.snowplow_script')
 
