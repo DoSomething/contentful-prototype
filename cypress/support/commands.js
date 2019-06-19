@@ -51,3 +51,15 @@ Cypress.Commands.add('handleLogin', user => {
       });
     });
 });
+
+/**
+ * Set application state.
+ *
+ * @param {Object} state
+ */
+Cypress.Commands.add('withState', state => {
+  cy.on('window:before:load', window => {
+    // eslint-disable-next-line no-param-reassign
+    window.STATE = state;
+  });
+});

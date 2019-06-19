@@ -6,7 +6,7 @@
 // This follows Apollo's official documentation <https://goo.gl/UQeuMc> for
 // how to handle this problem, with a few tweaks for readability.
 //
-// This will run on local, Wercker, and Heroku builds, using GRAPHQL_URL.
+// This will run on local, CircleCI, and Heroku builds, using GRAPHQL_URL.
 //
 
 require('dotenv').config();
