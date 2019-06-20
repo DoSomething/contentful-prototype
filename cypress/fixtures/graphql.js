@@ -15,9 +15,11 @@ export default {
   Action: () => ({
     noun: 'things',
     verb: 'done',
+    anonymous: false,
   }),
   Post: () => ({
     type: () => faker.random.arrayElement(['photo', 'text']),
+    url: (post, { w = 400, h = 400 }) => faker.image.dataUri(w, h),
     text: () => faker.lorem.sentence(),
     quantity: () => Math.ceil(Math.random() * 99),
     reactions: () => Math.floor(Math.random() * 30),
