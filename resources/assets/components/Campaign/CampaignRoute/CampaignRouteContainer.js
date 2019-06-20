@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import CampaignRoute from './CampaignRoute';
 import { isCampaignClosed } from '../../../helpers';
 import { clickedHideAffirmation } from '../../../actions';
+import { isCampaignSignUpInState } from '../../../selectors/signup';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -24,6 +25,7 @@ const mapStateToProps = state => ({
     ),
   ),
   isCampaignClosed: isCampaignClosed(state.campaign.endDate),
+  isSignedUp: isCampaignSignUpInState(state),
   shouldShowAffirmation: state.signups.shouldShowAffirmation,
 });
 

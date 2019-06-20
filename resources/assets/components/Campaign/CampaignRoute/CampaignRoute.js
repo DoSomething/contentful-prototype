@@ -20,6 +20,7 @@ const CampaignRoute = props => {
     clickedHideAffirmation,
     hasCommunityPage,
     isCampaignClosed,
+    isSignedUp,
     location,
     match,
     shouldShowAffirmation,
@@ -39,17 +40,33 @@ const CampaignRoute = props => {
             path={`${match.url}`}
             exact
             render={() => {
-              const path =
-                isCampaignClosed && hasCommunityPage ? 'community' : 'action';
+              console.log('🔥', {
+                match,
+                isCampaignClosed,
+                hasCommunityPage,
+                isSignedUp,
+              });
 
-              return (
-                <Redirect
-                  to={{
-                    pathname: join(match.url, path),
-                    search: location.search,
-                  }}
-                />
-              );
+              if (isCampaignClosed) {
+                console.log('🚫 Campaign is closed!');
+
+                if (hasCommunityPage) {
+                  console.log('👩‍❤️‍💋‍👨 send to community page...');
+                  return;
+                } else {
+                  console.log(
+                    '🤷🏽‍♂️ show some default closed campaign content...',
+                  );
+                  return;
+                }
+              }
+
+              if (isSignedUp) {
+                console.log('💪 head to the action page');
+                return;
+              }
+
+              console.log('⚽️ Hit the end, lets show the landing page.');
             }}
           />
 
@@ -57,11 +74,6 @@ const CampaignRoute = props => {
 
           <Route
             path={join(match.url, 'quiz/:slug')}
-            component={CampaignPageContainer}
-          />
-
-          <Route
-            path={join(match.url, ':slug')}
             component={CampaignPageContainer}
           />
         </Switch>

@@ -17,6 +17,13 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
+  console.log('👻 Campaign Page: ', {
+    endDate: props.campaignEndDate,
+    location: props.location,
+    match: props.match,
+    showLandingPage: props.shouldShowLandingPage,
+  });
+
   // @TODO: temporary fucntion to select component to use based on type.
   // Will be removed once all landing pages use the LandingPage content type.
   const landingPageComponent = () =>
