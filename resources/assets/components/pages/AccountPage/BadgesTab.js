@@ -171,7 +171,7 @@ const BadgesTab = ({ userId }) => (
                     'news',
                   )}
                   name="breakdownBadge"
-                  text="Newsie"
+                  text="News Expert"
                 />
               </li>
             )}
@@ -190,7 +190,7 @@ const BadgesTab = ({ userId }) => (
                     result.data.posts.status === 'registration_complete'
                   }
                   name="voterBadge"
-                  text="Vote G.O.A.T."
+                  text="Registered Voter"
                 />
               </li>
             )}
