@@ -12,6 +12,9 @@ import mocks from '../fixtures/graphql';
 
 import 'cypress-graphql-mock';
 
+/**
+ * Configure fresh mocks for this test case.
+ */
 Cypress.Commands.add('configureMocks', () => {
   // Configure Cypress's XHR mock server.
   // <https://docs.cypress.io/guides/guides/network-requests.html>
