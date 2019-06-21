@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
 
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import Badge from './Badge';
+import QueryResults from '../../QueryResults';
 
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
@@ -46,117 +45,91 @@ const BadgesTab = ({ userId }) => (
     <div className="margin-top-lg float-left">
       <div className="margin-top-lg">
         <ul className="gallery-grid-sextet">
-          <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
+          <QueryResults
+            query={SIGNUP_COUNT_BADGE}
+            queryName="SIGNUP_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result => (
+              <li>
+                <Badge
+                  earned={result.data.signupsCount > 0}
+                  name="signupBadge"
+                  text="1 Sign-Up"
+                />
+              </li>
+            )}
+          </QueryResults>
 
-              return (
-                <li>
-                  <Badge
-                    earned={data.signupsCount > 0}
-                    name="signupBadge"
-                    text="1 Sign-Up"
-                  />
-                </li>
-              );
-            }}
-          </Query>
+          <QueryResults
+            query={POST_COUNT_BADGE}
+            queryName="POST_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result => (
+              <li>
+                <Badge
+                  earned={result.data.postsCount > 0}
+                  name="onePostBadge"
+                  text="1 Action"
+                />
+              </li>
+            )}
+          </QueryResults>
 
-          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
+          <QueryResults
+            query={POST_COUNT_BADGE}
+            queryName="POST_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result => (
+              <li>
+                <Badge
+                  earned={result.data.postsCount > 1}
+                  name="twoPostsBadge"
+                  text="2 Actions"
+                />
+              </li>
+            )}
+          </QueryResults>
 
-              return (
-                <li>
-                  <Badge
-                    earned={data.postsCount > 0}
-                    name="onePostBadge"
-                    text="1 Action"
-                  />
-                </li>
-              );
-            }}
-          </Query>
+          <QueryResults
+            query={POST_COUNT_BADGE}
+            queryName="POST_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result => (
+              <li>
+                <Badge
+                  earned={result.data.postsCount > 2}
+                  name="threePostsBadge"
+                  text="3 Actions"
+                />
+              </li>
+            )}
+          </QueryResults>
 
-          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
-
-              return (
-                <li>
-                  <Badge
-                    earned={data.postsCount > 1}
-                    name="twoPostsBadge"
-                    text="2 Actions"
-                  />
-                </li>
-              );
-            }}
-          </Query>
-
-          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
-
-              return (
-                <li>
-                  <Badge
-                    earned={data.postsCount > 2}
-                    name="threePostsBadge"
-                    text="3 Actions"
-                  />
-                </li>
-              );
-            }}
-          </Query>
-
-          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
-
-              return data.postsCount > 0 ? (
+          <QueryResults
+            query={TAG_COUNT_BADGE}
+            queryName="TAG_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result =>
+              result.data.postsCount > 0 ? (
                 <li>
                   <Badge earned name="oneStaffFaveBadge" text="1 Staff Fave" />
                 </li>
-              ) : null;
-            }}
-          </Query>
+              ) : null
+            }
+          </QueryResults>
 
-          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
-
-              return data.postsCount > 1 ? (
+          <QueryResults
+            query={TAG_COUNT_BADGE}
+            queryName="TAG_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result =>
+              result.data.postsCount > 1 ? (
                 <li>
                   <Badge
                     earned
@@ -164,20 +137,17 @@ const BadgesTab = ({ userId }) => (
                     text="2 Staff Faves"
                   />
                 </li>
-              ) : null;
-            }}
-          </Query>
+              ) : null
+            }
+          </QueryResults>
 
-          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
-
-              return data.postsCount > 2 ? (
+          <QueryResults
+            query={TAG_COUNT_BADGE}
+            queryName="TAG_COUNT_BADGE"
+            variables={{ userId }}
+          >
+            {result =>
+              result.data.postsCount > 2 ? (
                 <li>
                   <Badge
                     earned
@@ -185,54 +155,46 @@ const BadgesTab = ({ userId }) => (
                     text="3 Staff Faves"
                   />
                 </li>
-              ) : null;
-            }}
-          </Query>
+              ) : null
+            }
+          </QueryResults>
 
-          <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
+          <QueryResults
+            query={NEWSLETTER_BADGE}
+            queryName="NEWSLETTER_BADGE"
+            variables={{ userId }}
+          >
+            {result => (
+              <li>
+                <Badge
+                  earned={result.data.user.emailSubscriptionTopics.includes(
+                    'news',
+                  )}
+                  name="breakdownBadge"
+                  text="Newsie"
+                />
+              </li>
+            )}
+          </QueryResults>
 
-              return (
-                <li>
-                  <Badge
-                    earned={data.user.emailSubscriptionTopics.includes('news')}
-                    name="breakdownBadge"
-                    text="Newsie"
-                  />
-                </li>
-              );
-            }}
-          </Query>
-
-          <Query query={VOTER_BADGE} variables={{ userId }}>
-            {({ loading, error, data }) => {
-              if (loading) {
-                return <div className="spinner -centered" />;
-              }
-              if (error) {
-                return <ErrorBlock />;
-              }
-
-              return (
-                <li>
-                  <Badge
-                    earned={
-                      data.posts.status === 'confirmed' ||
-                      data.posts.status === 'registration_complete'
-                    }
-                    name="voterBadge"
-                    text="Vote G.O.A.T."
-                  />
-                </li>
-              );
-            }}
-          </Query>
+          <QueryResults
+            query={VOTER_BADGE}
+            queryName="VOTER_BADGE"
+            variables={{ userId }}
+          >
+            {result => (
+              <li>
+                <Badge
+                  earned={
+                    result.data.posts.status === 'confirmed' ||
+                    result.data.posts.status === 'registration_complete'
+                  }
+                  name="voterBadge"
+                  text="Vote G.O.A.T."
+                />
+              </li>
+            )}
+          </QueryResults>
         </ul>
       </div>
     </div>
