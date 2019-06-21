@@ -8,6 +8,8 @@ import InfoBar from '../../InfoBar/InfoBar';
 import Modal from '../../utilities/Modal/Modal';
 import BlockPage from '../../pages/BlockPage/BlockPage';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
+import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
+import LandingPageContainer from '../../pages/LandingPage/LandingPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 
 const CampaignRoute = props => {
@@ -48,25 +50,41 @@ const CampaignRoute = props => {
               });
 
               if (isCampaignClosed) {
-                console.log('🚫 Campaign is closed!');
-
                 if (hasCommunityPage) {
-                  console.log('👩‍❤️‍💋‍👨 send to community page...');
-                  return;
+                  console.log(
+                    '🚫 Campaign is closed! send to community page...',
+                  );
+
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: join(match.url, 'community'),
+                        search: location.search,
+                      }}
+                    />
+                  );
                 } else {
                   console.log(
-                    '🤷🏽‍♂️ show some default closed campaign content...',
+                    '🚫 Campaign is closed! show default closed campaign content...',
                   );
-                  return;
+                  return <CampaignClosedPage />;
                 }
               }
 
               if (isSignedUp) {
                 console.log('💪 head to the action page');
-                return;
+                return (
+                  <Redirect
+                    to={{
+                      pathname: join(match.url, 'action'),
+                      search: location.search,
+                    }}
+                  />
+                );
               }
 
               console.log('⚽️ Hit the end, lets show the landing page.');
+              return <LandingPageContainer {...props} />;
             }}
           />
 
@@ -74,6 +92,11 @@ const CampaignRoute = props => {
 
           <Route
             path={join(match.url, 'quiz/:slug')}
+            component={CampaignPageContainer}
+          />
+
+          <Route
+            path={join(match.url, ':slug')}
             component={CampaignPageContainer}
           />
         </Switch>

@@ -26,6 +26,7 @@ const mapStateToProps = state => ({
   ),
   isCampaignClosed: isCampaignClosed(state.campaign.endDate),
   isSignedUp: isCampaignSignUpInState(state),
+  landingPage: get(state.campaign, 'landingPage', null),
   shouldShowAffirmation: state.signups.shouldShowAffirmation,
 });
 

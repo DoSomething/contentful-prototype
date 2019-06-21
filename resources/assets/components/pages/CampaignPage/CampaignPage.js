@@ -21,6 +21,7 @@ const CampaignPage = props => {
     endDate: props.campaignEndDate,
     location: props.location,
     match: props.match,
+    slug: props.match.params.slug,
     showLandingPage: props.shouldShowLandingPage,
   });
 
@@ -38,6 +39,7 @@ const CampaignPage = props => {
   ) : (
     <div>
       <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
+
       <div className="main clearfix">
         {props.dashboard ? <ContentfulEntry json={props.dashboard} /> : null}
 
