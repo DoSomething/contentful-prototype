@@ -1,22 +1,15 @@
 /// <reference types="Cypress" />
 
-import schema from '../../schema.json';
-import mocks from '../fixtures/graphql';
 import { userFactory } from '../fixtures/user';
 import { exampleCampaign } from '../fixtures/contentful';
 import { emptyResponse, existingSignup, newSignup } from '../fixtures/signups';
-
-import 'cypress-graphql-mock';
 
 const campaignId = '9002';
 const API = `/api/v2/campaigns/${campaignId}`;
 
 describe('Campaign Signup', () => {
   // Configure a new "mock" server before each test:
-  beforeEach(() => {
-    cy.server();
-    cy.mockGraphql({ schema, mocks });
-  });
+  beforeEach(() => cy.configureMocks());
 
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
