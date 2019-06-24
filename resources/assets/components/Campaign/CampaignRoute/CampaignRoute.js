@@ -33,6 +33,8 @@ const CampaignRoute = props => {
 
   const isClosed = isCampaignClosed(endDate);
 
+  const baseUrl = match.url;
+
   return (
     <div>
       <div>
@@ -43,23 +45,23 @@ const CampaignRoute = props => {
         ) : null}
 
         <Switch>
-          <Route path={join(match.url, 'blocks/:id')} component={BlockPage} />
+          <Route path={join(baseUrl, 'blocks/:id')} component={BlockPage} />
 
           <Route
-            path={join(match.url, 'quiz/:slug')}
+            path={join(baseUrl, 'quiz/:slug')}
             component={CampaignPageContainer}
           />
 
           <Route
             exact
-            path={`${match.url}`}
+            path={baseUrl}
             render={() => {
               if (isClosed) {
                 if (hasCommunityPage) {
                   return (
                     <Redirect
                       to={{
-                        pathname: join(match.url, 'community'),
+                        pathname: join(baseUrl, 'community'),
                         search: location.search,
                       }}
                     />
@@ -73,7 +75,7 @@ const CampaignRoute = props => {
                 return (
                   <Redirect
                     to={{
-                      pathname: join(match.url, 'action'),
+                      pathname: join(baseUrl, 'action'),
                       search: location.search,
                     }}
                   />
@@ -91,7 +93,7 @@ const CampaignRoute = props => {
           />
 
           <Route
-            path={join(match.url, ':slug')}
+            path={join(baseUrl, ':slug')}
             render={routeProps => {
               const slug = get(routeProps, 'match.params.slug', null);
 
@@ -103,7 +105,7 @@ const CampaignRoute = props => {
                 return (
                   <Redirect
                     to={{
-                      pathname: `${match.url}`,
+                      pathname: baseUrl,
                       search: location.search,
                     }}
                   />
@@ -114,7 +116,7 @@ const CampaignRoute = props => {
                 return (
                   <Redirect
                     to={{
-                      pathname: `${match.url}`,
+                      pathname: baseUrl,
                       search: location.search,
                     }}
                   />
@@ -146,7 +148,7 @@ CampaignRoute.propTypes = {
     email: PropTypes.string,
   }),
   clickedHideAffirmation: PropTypes.func.isRequired,
-  endDate: PropTypes.string.isRequired,
+  endDate: PropTypes.string,
   hasCommunityPage: PropTypes.bool.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   landingPage: PropTypes.object,
@@ -158,6 +160,7 @@ CampaignRoute.propTypes = {
 CampaignRoute.defaultProps = {
   affiliateCreditText: undefined,
   campaignLead: null,
+  endDate: null,
   landingPage: {},
 };
 
