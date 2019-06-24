@@ -6,7 +6,6 @@ import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import LandingPageContainer from '../LandingPage/LandingPageContainer';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -17,24 +16,16 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
-  // @TODO: temporary fucntion to select component to use based on type.
-  // Will be removed once all landing pages use the LandingPage content type.
-  const landingPageComponent = () =>
-    props.landingPage.type === 'page' ? (
-      <LandingPageContainer {...props} />
-    ) : (
-      <ContentfulEntry json={props.landingPage} />
-    );
-
-  return props.shouldShowLandingPage ? (
-    landingPageComponent()
-  ) : (
+  return (
     <div>
       <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
+
       <div className="main clearfix">
         {props.dashboard ? <ContentfulEntry json={props.dashboard} /> : null}
 
-        {!props.entryContent ? <CampaignPageNavigationContainer /> : null}
+        {!props.isCampaignClosed && !props.entryContent ? (
+          <CampaignPageNavigationContainer />
+        ) : null}
 
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
@@ -59,6 +50,7 @@ CampaignPage.propTypes = {
     fields: PropTypes.object,
   }),
   entryContent: PropTypes.object,
+  isCampaignClosed: PropTypes.bool,
   landingPage: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -70,6 +62,7 @@ CampaignPage.propTypes = {
 CampaignPage.defaultProps = {
   dashboard: null,
   entryContent: null,
+  isCampaignClosed: false,
   landingPage: null,
 };
 
