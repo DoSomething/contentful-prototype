@@ -1,4 +1,6 @@
 {
   "baseUrl": "http://phoenix.test",
-  "projectId": "ayzqmy"
+  "projectId": "ayzqmy",
+  "viewportWidth": 1440,
+  "viewportHeight": 900
 }

@@ -9,9 +9,7 @@ const API = `/api/v2/campaigns/${campaignId}`;
 
 describe('Campaign Signup', () => {
   // Configure a new "mock" server before each test:
-  beforeEach(() => {
-    cy.server();
-  });
+  beforeEach(() => cy.configureMocks());
 
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();

@@ -7,6 +7,24 @@
 import url from 'url';
 import qs from 'query-string';
 
+import schema from '../../schema.json';
+import mocks from '../fixtures/graphql';
+
+import 'cypress-graphql-mock';
+
+/**
+ * Configure fresh mocks for this test case.
+ */
+Cypress.Commands.add('configureMocks', () => {
+  // Configure Cypress's XHR mock server.
+  // <https://docs.cypress.io/guides/guides/network-requests.html>
+  cy.server();
+
+  // Configure in-memory GraphQL mock server, based on a snapshot of our
+  // schema & some custom mock resolvers. <https://git.io/fjwO3>
+  cy.mockGraphql({ schema, mocks });
+});
+
 /**
  * Set authentication state for the given user.
  *
