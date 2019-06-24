@@ -10,7 +10,9 @@ import qs from 'query-string';
 import schema from '../../schema.json';
 import mocks from '../fixtures/graphql';
 
+// Register Cypress plugins:
 import 'cypress-graphql-mock';
+import 'cypress-file-upload';
 
 /**
  * Configure fresh mocks for this test case.
