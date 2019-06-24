@@ -16,8 +16,6 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
-  console.log('🗿 campaign page props: ', props);
-
   return (
     <div>
       <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />

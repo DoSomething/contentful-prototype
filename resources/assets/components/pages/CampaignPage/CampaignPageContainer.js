@@ -17,8 +17,6 @@ const mapStateToProps = (state, ownProps) => {
   if (has(ownProps, 'match.params', null)) {
     const { id, slug } = ownProps.match.params;
 
-    console.log('⛺️', { id, slug, ownProps });
-
     // @TODO: temporary retrieval of single campaign page (quiz) based on matched id or slug.
     entryContent = findContentfulEntry(state, id || slug);
   }
