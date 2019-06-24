@@ -164,6 +164,8 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'page':
+        console.log('🔥', json.fields);
+
         return (
           <StaticBlock
             content={json.fields.content}
