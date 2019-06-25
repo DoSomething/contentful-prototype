@@ -45,11 +45,7 @@ const BadgesTab = ({ userId }) => (
     <div className="margin-top-lg float-left">
       <div className="margin-top-lg">
         <ul className="gallery-grid-sextet">
-          <Query
-            query={SIGNUP_COUNT_BADGE}
-            queryName="SIGNUP_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
                 <Badge
@@ -61,11 +57,7 @@ const BadgesTab = ({ userId }) => (
             )}
           </Query>
 
-          <Query
-            query={POST_COUNT_BADGE}
-            queryName="POST_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
                 <Badge
@@ -77,11 +69,7 @@ const BadgesTab = ({ userId }) => (
             )}
           </Query>
 
-          <Query
-            query={POST_COUNT_BADGE}
-            queryName="POST_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
                 <Badge
@@ -93,11 +81,7 @@ const BadgesTab = ({ userId }) => (
             )}
           </Query>
 
-          <Query
-            query={POST_COUNT_BADGE}
-            queryName="POST_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>
                 <Badge
@@ -109,11 +93,7 @@ const BadgesTab = ({ userId }) => (
             )}
           </Query>
 
-          <Query
-            query={TAG_COUNT_BADGE}
-            queryName="TAG_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
             {data =>
               data.postsCount > 0 ? (
                 <li>
@@ -123,11 +103,7 @@ const BadgesTab = ({ userId }) => (
             }
           </Query>
 
-          <Query
-            query={TAG_COUNT_BADGE}
-            queryName="TAG_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
             {data =>
               data.postsCount > 1 ? (
                 <li>
@@ -141,11 +117,7 @@ const BadgesTab = ({ userId }) => (
             }
           </Query>
 
-          <Query
-            query={TAG_COUNT_BADGE}
-            queryName="TAG_COUNT_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
             {data =>
               data.postsCount > 2 ? (
                 <li>
@@ -159,11 +131,7 @@ const BadgesTab = ({ userId }) => (
             }
           </Query>
 
-          <Query
-            query={NEWSLETTER_BADGE}
-            queryName="NEWSLETTER_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
             {data => (
               <li>
                 <Badge
@@ -175,11 +143,7 @@ const BadgesTab = ({ userId }) => (
             )}
           </Query>
 
-          <Query
-            query={VOTER_BADGE}
-            queryName="VOTER_BADGE"
-            variables={{ userId }}
-          >
+          <Query query={VOTER_BADGE} variables={{ userId }}>
             {data => (
               <li>
                 <Badge

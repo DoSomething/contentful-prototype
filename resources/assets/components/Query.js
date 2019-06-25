@@ -8,7 +8,7 @@ import { NetworkStatus } from '../constants';
 /**
  * Fetch results via GraphQL using a query component.
  */
-const Query = ({ query, queryName, variables, children }) => (
+const Query = ({ query, variables, children }) => (
   <ApolloQuery query={query} variables={variables} notifyOnNetworkStatusChange>
     {result => {
       // On initial load, just display a loading spinner.
@@ -17,7 +17,6 @@ const Query = ({ query, queryName, variables, children }) => (
       }
 
       if (result.error) {
-        console.error(`${queryName} ERROR: ${result.error}`);
         return <ErrorBlock />;
       }
 
@@ -28,7 +27,6 @@ const Query = ({ query, queryName, variables, children }) => (
 
 Query.propTypes = {
   query: PropTypes.object.isRequired,
-  queryName: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   variables: PropTypes.object,
 };

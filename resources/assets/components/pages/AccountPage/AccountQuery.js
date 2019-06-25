@@ -24,7 +24,7 @@ const AccountQuery = ({ userId }) => {
   const Account = Loader(import('./Account'));
 
   return (
-    <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
+    <Query query={ACCOUNT_QUERY} variables={{ userId }}>
       {result => <Account {...result} userId={userId} />}
     </Query>
   );
