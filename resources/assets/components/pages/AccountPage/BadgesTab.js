@@ -50,10 +50,10 @@ const BadgesTab = ({ userId }) => (
             queryName="SIGNUP_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result => (
+            {data => (
               <li>
                 <Badge
-                  earned={result.data.signupsCount > 0}
+                  earned={data.signupsCount > 0}
                   name="signupBadge"
                   text="1 Sign-Up"
                 />
@@ -66,10 +66,10 @@ const BadgesTab = ({ userId }) => (
             queryName="POST_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result => (
+            {data => (
               <li>
                 <Badge
-                  earned={result.data.postsCount > 0}
+                  earned={data.postsCount > 0}
                   name="onePostBadge"
                   text="1 Action"
                 />
@@ -82,10 +82,10 @@ const BadgesTab = ({ userId }) => (
             queryName="POST_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result => (
+            {data => (
               <li>
                 <Badge
-                  earned={result.data.postsCount > 1}
+                  earned={data.postsCount > 1}
                   name="twoPostsBadge"
                   text="2 Actions"
                 />
@@ -98,10 +98,10 @@ const BadgesTab = ({ userId }) => (
             queryName="POST_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result => (
+            {data => (
               <li>
                 <Badge
-                  earned={result.data.postsCount > 2}
+                  earned={data.postsCount > 2}
                   name="threePostsBadge"
                   text="3 Actions"
                 />
@@ -114,8 +114,8 @@ const BadgesTab = ({ userId }) => (
             queryName="TAG_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result =>
-              result.data.postsCount > 0 ? (
+            {data =>
+              data.postsCount > 0 ? (
                 <li>
                   <Badge earned name="oneStaffFaveBadge" text="1 Staff Fave" />
                 </li>
@@ -128,8 +128,8 @@ const BadgesTab = ({ userId }) => (
             queryName="TAG_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result =>
-              result.data.postsCount > 1 ? (
+            {data =>
+              data.postsCount > 1 ? (
                 <li>
                   <Badge
                     earned
@@ -146,8 +146,8 @@ const BadgesTab = ({ userId }) => (
             queryName="TAG_COUNT_BADGE"
             variables={{ userId }}
           >
-            {result =>
-              result.data.postsCount > 2 ? (
+            {data =>
+              data.postsCount > 2 ? (
                 <li>
                   <Badge
                     earned
@@ -164,12 +164,10 @@ const BadgesTab = ({ userId }) => (
             queryName="NEWSLETTER_BADGE"
             variables={{ userId }}
           >
-            {result => (
+            {data => (
               <li>
                 <Badge
-                  earned={result.data.user.emailSubscriptionTopics.includes(
-                    'news',
-                  )}
+                  earned={data.user.emailSubscriptionTopics.includes('news')}
                   name="breakdownBadge"
                   text="News Expert"
                 />
@@ -182,12 +180,12 @@ const BadgesTab = ({ userId }) => (
             queryName="VOTER_BADGE"
             variables={{ userId }}
           >
-            {result => (
+            {data => (
               <li>
                 <Badge
                   earned={
-                    result.data.posts.status === 'confirmed' ||
-                    result.data.posts.status === 'registration_complete'
+                    data.posts.status === 'confirmed' ||
+                    data.posts.status === 'registration_complete'
                   }
                   name="voterBadge"
                   text="Registered Voter"

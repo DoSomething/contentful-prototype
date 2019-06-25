@@ -21,7 +21,7 @@ const Query = ({ query, queryName, variables, children }) => (
         return <ErrorBlock />;
       }
 
-      return children(result);
+      return children(result.data);
     }}
   </ApolloQuery>
 );
