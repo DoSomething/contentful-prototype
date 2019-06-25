@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
+import { Query as ApolloQuery } from 'react-apollo';
 
 import ErrorBlock from './ErrorBlock/ErrorBlock';
 import { NetworkStatus } from '../constants';
@@ -8,8 +8,8 @@ import { NetworkStatus } from '../constants';
 /**
  * Fetch results via GraphQL using a query component.
  */
-const QueryResults = ({ query, queryName, variables, children }) => (
-  <Query query={query} variables={variables} notifyOnNetworkStatusChange>
+const Query = ({ query, queryName, variables, children }) => (
+  <ApolloQuery query={query} variables={variables} notifyOnNetworkStatusChange>
     {result => {
       // On initial load, just display a loading spinner.
       if (result.networkStatus === NetworkStatus.LOADING) {
@@ -23,18 +23,18 @@ const QueryResults = ({ query, queryName, variables, children }) => (
 
       return children(result);
     }}
-  </Query>
+  </ApolloQuery>
 );
 
-QueryResults.propTypes = {
+Query.propTypes = {
   query: PropTypes.object.isRequired,
   queryName: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
   variables: PropTypes.object,
 };
 
-QueryResults.defaultProps = {
+Query.defaultProps = {
   variables: {},
 };
 
-export default QueryResults;
+export default Query;

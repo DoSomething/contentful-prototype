@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 import Badge from './Badge';
-import QueryResults from '../../QueryResults';
+import Query from '../../Query';
 
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
@@ -45,7 +45,7 @@ const BadgesTab = ({ userId }) => (
     <div className="margin-top-lg float-left">
       <div className="margin-top-lg">
         <ul className="gallery-grid-sextet">
-          <QueryResults
+          <Query
             query={SIGNUP_COUNT_BADGE}
             queryName="SIGNUP_COUNT_BADGE"
             variables={{ userId }}
@@ -59,9 +59,9 @@ const BadgesTab = ({ userId }) => (
                 />
               </li>
             )}
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={POST_COUNT_BADGE}
             queryName="POST_COUNT_BADGE"
             variables={{ userId }}
@@ -75,9 +75,9 @@ const BadgesTab = ({ userId }) => (
                 />
               </li>
             )}
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={POST_COUNT_BADGE}
             queryName="POST_COUNT_BADGE"
             variables={{ userId }}
@@ -91,9 +91,9 @@ const BadgesTab = ({ userId }) => (
                 />
               </li>
             )}
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={POST_COUNT_BADGE}
             queryName="POST_COUNT_BADGE"
             variables={{ userId }}
@@ -107,9 +107,9 @@ const BadgesTab = ({ userId }) => (
                 />
               </li>
             )}
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={TAG_COUNT_BADGE}
             queryName="TAG_COUNT_BADGE"
             variables={{ userId }}
@@ -121,9 +121,9 @@ const BadgesTab = ({ userId }) => (
                 </li>
               ) : null
             }
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={TAG_COUNT_BADGE}
             queryName="TAG_COUNT_BADGE"
             variables={{ userId }}
@@ -139,9 +139,9 @@ const BadgesTab = ({ userId }) => (
                 </li>
               ) : null
             }
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={TAG_COUNT_BADGE}
             queryName="TAG_COUNT_BADGE"
             variables={{ userId }}
@@ -157,9 +157,9 @@ const BadgesTab = ({ userId }) => (
                 </li>
               ) : null
             }
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={NEWSLETTER_BADGE}
             queryName="NEWSLETTER_BADGE"
             variables={{ userId }}
@@ -175,9 +175,9 @@ const BadgesTab = ({ userId }) => (
                 />
               </li>
             )}
-          </QueryResults>
+          </Query>
 
-          <QueryResults
+          <Query
             query={VOTER_BADGE}
             queryName="VOTER_BADGE"
             variables={{ userId }}
@@ -194,7 +194,7 @@ const BadgesTab = ({ userId }) => (
                 />
               </li>
             )}
-          </QueryResults>
+          </Query>
         </ul>
       </div>
     </div>
