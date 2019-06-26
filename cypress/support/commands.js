@@ -9,6 +9,7 @@ import qs from 'query-string';
 
 import schema from '../../schema.json';
 import mocks from '../fixtures/graphql';
+import { existingSignup, emptyResponse } from '../fixtures/signups';
 
 // Register Cypress plugins:
 import 'cypress-graphql-mock';
@@ -32,8 +33,11 @@ Cypress.Commands.add('configureMocks', () => {
  *
  * @param {String} userId
  */
-Cypress.Commands.add('login', user => {
+Cypress.Commands.add('login', function(user) {
   Cypress.log({ name: 'Login', message: 'Mocking authentication flow...' });
+
+  // Store user context for later...
+  this.user = user;
 
   cy.on('window:before:load', window => {
     const now = Math.floor(Date.now() / 1000);
@@ -82,4 +86,35 @@ Cypress.Commands.add('withState', state => {
     // eslint-disable-next-line no-param-reassign
     window.STATE = state;
   });
+});
+
+/**
+ * Mock an existing signup for the logged-in user & given campaign.
+ *
+ * @param {Object} state
+ */
+Cypress.Commands.add('withSignup', function(campaignId) {
+  if (!this.user) {
+    throw new Error("The 'withSignup' helper requires a logged-in user.");
+  }
+
+  // Mock the "existing" signup response for this campaign:
+  const SIGNUP_API = `/api/v2/campaigns/${campaignId}/signups`;
+  const response = existingSignup(campaignId, this.user);
+  cy.route(`${SIGNUP_API}?filter[northstar_id]=${this.user.id}`, response);
+});
+
+/**
+ * Mock a missing signup for the logged-in user & given campaign.
+ *
+ * @param {Object} state
+ */
+Cypress.Commands.add('withoutSignup', function(campaignId) {
+  if (!this.user) {
+    throw new Error("The 'withoutSignup' helper requires a logged-in user.");
+  }
+
+  // Mock an "empty" signup response for this campaign:
+  const SIGNUP_API = `/api/v2/campaigns/${campaignId}/signups`;
+  cy.route(`${SIGNUP_API}?filter[northstar_id]=${this.user.id}`, emptyResponse);
 });

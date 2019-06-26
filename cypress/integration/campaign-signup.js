@@ -2,7 +2,7 @@
 
 import { userFactory } from '../fixtures/user';
 import { exampleCampaign } from '../fixtures/contentful';
-import { emptyResponse, existingSignup, newSignup } from '../fixtures/signups';
+import { emptyResponse, newSignup } from '../fixtures/signups';
 
 const campaignId = '9002';
 const API = `/api/v2/campaigns/${campaignId}`;
@@ -14,6 +14,7 @@ describe('Campaign Signup', () => {
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
+    // Visit the campaign pitch page:
     cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
 
     cy.contains('Example Campaign');
@@ -34,12 +35,10 @@ describe('Campaign Signup', () => {
   it('Create signup, as an authenticated user', () => {
     const user = userFactory();
 
-    // Mock the "empty" signup response:
-    cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
-
     // Log in & visit the campaign pitch page:
     cy.login(user)
       .withState(exampleCampaign)
+      .withoutSignup(exampleCampaign.campaign.campaignId)
       .visit('/us/campaigns/test-example-campaign');
 
     cy.contains('Example Campaign');
@@ -56,15 +55,10 @@ describe('Campaign Signup', () => {
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
 
-    // Mock the "existing" signup response:
-    cy.route(
-      `${API}/signups?filter[northstar_id]=${user.id}`,
-      existingSignup(campaignId, user),
-    );
-
-    // Log in & visit the campaign pitch page:
+    // Log in & visit the campaign action page:
     cy.login(user)
       .withState(exampleCampaign)
+      .withSignup(exampleCampaign.campaign.campaignId)
       .visit('/us/campaigns/test-example-campaign');
 
     cy.contains('Example Campaign');
