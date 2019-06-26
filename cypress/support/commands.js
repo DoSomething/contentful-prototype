@@ -8,7 +8,7 @@ import url from 'url';
 import qs from 'query-string';
 
 import schema from '../../schema.json';
-import mocks from '../fixtures/graphql';
+import { mocks, operations } from '../fixtures/graphql';
 import { existingSignup, emptyResponse } from '../fixtures/signups';
 
 // Register Cypress plugins:
@@ -25,7 +25,7 @@ Cypress.Commands.add('configureMocks', () => {
 
   // Configure in-memory GraphQL mock server, based on a snapshot of our
   // schema & some custom mock resolvers. <https://git.io/fjwO3>
-  cy.mockGraphql({ schema, mocks });
+  cy.mockGraphql({ schema, mocks, operations });
 });
 
 /**
