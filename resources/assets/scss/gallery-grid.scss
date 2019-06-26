@@ -1,5 +1,6 @@
 @import 'next-toolbox';
 
+.gallery-grid-sextet,
 .gallery-grid-quartet,
 .gallery-grid-triad,
 .gallery-grid-duo {
@@ -55,6 +56,26 @@
 
   @include media($larger) {
     grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
+  }
+}
+
+.gallery-grid-sextet {
+  @include media('(min-width: 425px)') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media($medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(6, 1fr);
     grid-column-gap: $base-spacing;
     grid-row-gap: $base-spacing;
   }
