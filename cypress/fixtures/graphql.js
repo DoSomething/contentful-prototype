@@ -1,6 +1,15 @@
 import faker from 'faker';
 import { ObjectID } from 'bson';
-import { MockList } from 'graphql-tools';
+
+/**
+ * Return a list of N items for a field, with an optional
+ * list of field overrides for the items in the list.
+ *
+ * @param {*} count
+ * @param {*} overrides
+ */
+export const MockList = (count, overrides = {}) =>
+  new Array(count).fill().map(() => overrides);
 
 /**
  * Default "operation" resolvers. These can be replaced or extended by
@@ -12,6 +21,10 @@ export const operations = {
   // By default, return empty submission galleries:
   SubmissionGalleryQuery: {
     posts: [],
+  },
+  // By default, return the requested number of posts:
+  PostGalleryQuery: {
+    posts: (root, { count }) => MockList(count),
   },
 };
 
