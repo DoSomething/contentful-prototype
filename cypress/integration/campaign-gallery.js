@@ -36,14 +36,12 @@ describe('Campaign Gallery', () => {
       .visit('/us/campaigns/test-example-campaign');
 
     // Let's pick a post & react to it...
-    cy.get('.post-gallery .post')
-      .eq(4)
-      .within(() => {
-        cy.get('.reaction__button').click();
+    cy.nth('.post-gallery .post', 4).within(() => {
+      cy.get('.reaction__button').click();
 
-        // The post should get a filled-in heart & updated total.
-        cy.get('.reaction__button').should('have.class', '-reacted');
-        cy.get('.reaction__meta').contains('1');
-      });
+      // The post should get a filled-in heart & updated total.
+      cy.get('.reaction__button').should('have.class', '-reacted');
+      cy.get('.reaction__meta').contains('1');
+    });
   });
 });

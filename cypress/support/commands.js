@@ -29,6 +29,15 @@ Cypress.Commands.add('configureMocks', () => {
 });
 
 /**
+ * Get the Nth element with the given selector.
+ *
+ * @return {Cypress.Chainable}
+ */
+Cypress.Commands.add('nth', (selector, offset) => {
+  return cy.get(selector).eq(offset);
+});
+
+/**
  * Set authentication state for the given user.
  *
  * @param {String} userId
