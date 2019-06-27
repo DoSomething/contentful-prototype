@@ -5,8 +5,8 @@ import { ObjectID } from 'bson';
  * Return a list of N items for a field, with an optional
  * list of field overrides for the items in the list.
  *
- * @param {*} count
- * @param {*} overrides
+ * @param {Number} count
+ * @param {Object} overrides
  */
 export const MockList = (count, overrides = {}) =>
   new Array(count).fill().map(() => overrides);
