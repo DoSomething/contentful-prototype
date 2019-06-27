@@ -44,4 +44,28 @@ describe('Campaign Gallery', () => {
       cy.get('.reaction__meta').contains('1');
     });
   });
+
+  it('Load additional pages', () => {
+    const user = userFactory();
+
+    // Start with a full page of posts...
+    cy.mockGraphqlOp('PostGalleryQuery', { posts: MockList(9) });
+
+    // Log in & visit the campaign action page:
+    cy.login(user)
+      .withState(exampleCampaign)
+      .withSignup(exampleCampaign.campaign.campaignId)
+      .visit('/us/campaigns/test-example-campaign');
+
+    cy.get('.post-gallery').within(() => {
+      cy.get('.post').should('have.length', 9);
+
+      // Click the "view more" link and get a partial set of results:
+      cy.mockGraphqlOp('PostGalleryQuery', { posts: MockList(4) });
+      cy.contains('view more').click();
+
+      // We should now have 13 total posts in the gallery.
+      cy.get('.post').should('have.length', 13);
+    });
+  });
 });
