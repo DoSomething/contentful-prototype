@@ -24,7 +24,7 @@ const TAG_COUNT_BADGE = gql`
 `;
 
 const NEWSLETTER_BADGE = gql`
-  query SubscriptionTopicsBadgeQuery($id: String!) {
+  query SubscriptionTopicsBadgeQuery($userId: String!) {
     user(id: $userId) {
       emailSubscriptionTopics
     }
@@ -135,7 +135,7 @@ const BadgesTab = ({ userId }) => (
             {data => (
               <li>
                 <Badge
-                  earned={data.user.emailSubscriptionTopics.includes('news')}
+                  earned={data.user.emailSubscriptionTopics.includes('NEWS')}
                   name="breakdownBadge"
                   text="News Expert"
                 />
