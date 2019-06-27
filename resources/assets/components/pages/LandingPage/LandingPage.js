@@ -13,6 +13,7 @@ import './landing-page.scss';
 
 const LandingPage = props => {
   const {
+    blocks,
     content,
     scholarshipAmount,
     scholarshipDeadline,
@@ -35,6 +36,7 @@ const LandingPage = props => {
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
           <PitchTemplate
+            blocks={blocks}
             content={content}
             sidebarCTA={sidebarCTA}
             scholarshipAmount={scholarshipAmount}
@@ -63,6 +65,7 @@ const LandingPage = props => {
 };
 
 LandingPage.propTypes = {
+  blocks: PropTypes.arrayOf(PropTypes.object),
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -73,6 +76,7 @@ LandingPage.propTypes = {
 };
 
 LandingPage.defaultProps = {
+  blocks: [],
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showPartnerMsgOptIn: false,

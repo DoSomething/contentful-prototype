@@ -4,17 +4,22 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import { getScholarshipAffiliateLabel } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
+import ContentfulEntry from '../../../ContentfulEntry/ContentfulEntry';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 
 const PitchTemplate = ({
+  blocks,
   content,
   scholarshipAmount,
   scholarshipDeadline,
   sidebarCTA,
 }) => {
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
+
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
+
+  console.log('🚧', blocks);
 
   return (
     <div className="campaign-page">
@@ -27,8 +32,15 @@ const PitchTemplate = ({
             className="margin-bottom-lg"
           />
         ) : null}
+
         <TextContent>{content}</TextContent>
+
+        {blocks.map(block => {
+          console.log('block: ', block);
+          return <ContentfulEntry json={block} key={block.id} />;
+        })}
       </div>
+
       <div className="secondary">
         <Card title={sidebarCTA.title} className="rounded bordered">
           <TextContent className="padded">{sidebarCTA.content}</TextContent>
