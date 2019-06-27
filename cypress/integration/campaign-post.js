@@ -17,15 +17,10 @@ describe('Campaign Post', () => {
   it('Create a text post', () => {
     const user = userFactory();
 
-    // Mock the "existing" signup response:
-    cy.route(
-      `${SIGNUPS_API}?filter[northstar_id]=${user.id}`,
-      existingSignup(campaignId, user),
-    );
-
-    // Log in & visit the campaign pitch page:
+    // Log in & visit the campaign action page:
     cy.login(user)
       .withState(exampleCampaign)
+      .withSignup(exampleCampaign.campaign.campaignId)
       .visit('/us/campaigns/test-example-campaign');
 
     const text = 'I made my cat a full English breakfast, with coffee & cream.';
@@ -41,15 +36,10 @@ describe('Campaign Post', () => {
   it('Create a photo post', () => {
     const user = userFactory();
 
-    // Mock the "existing" signup response:
-    cy.route(
-      `${SIGNUPS_API}?filter[northstar_id]=${user.id}`,
-      existingSignup(campaignId, user),
-    );
-
-    // Log in & visit the campaign pitch page:
+    // Log in & visit the campaign action page:
     cy.login(user)
       .withState(exampleCampaign)
+      .withSignup(exampleCampaign.campaign.campaignId)
       .visit('/us/campaigns/test-example-campaign');
 
     cy.get('.photo-submission-action').within(() => {
