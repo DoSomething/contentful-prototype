@@ -43,7 +43,7 @@ const PostGallery = props => {
   }
 
   return posts.length ? (
-    <div id={id} className={classnames(className)}>
+    <div id={id} className={classnames('post-gallery', className)}>
       {waypointName ? (
         <PuckWaypoint
           name={`${waypointName}-top`}
@@ -53,7 +53,7 @@ const PostGallery = props => {
 
       <Gallery
         type={get(galleryTypes, itemsPerRow)}
-        className="post-gallery expand-horizontal-md"
+        className="expand-horizontal-md"
       >
         {posts.map(post => (
           <PostCard key={post.id} post={post} hideReactions={hideReactions} />
