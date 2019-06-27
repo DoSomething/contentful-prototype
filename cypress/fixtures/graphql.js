@@ -51,6 +51,7 @@ export const mocks = {
     anonymous: false,
   }),
   Post: () => ({
+    status: 'ACCEPTED', // Most users will only see accepted posts!
     type: () => faker.random.arrayElement(['photo', 'text']),
     url: (post, { w = 400, h = 400 }) => faker.image.dataUri(w, h), // eslint-disable-line id-length
     text: () => faker.lorem.sentence(),
