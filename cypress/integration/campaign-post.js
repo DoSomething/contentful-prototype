@@ -4,6 +4,7 @@ import { userFactory } from '../fixtures/user';
 import { existingSignup } from '../fixtures/signups';
 import { exampleCampaign } from '../fixtures/contentful';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
+import { MockList } from 'graphql-tools';
 
 const campaignId = '9002';
 const SIGNUPS_API = `/api/v2/campaigns/${campaignId}/signups`;
@@ -31,6 +32,32 @@ describe('Campaign Post', () => {
     cy.get('.text-submission-action button[type="submit"]').click();
 
     cy.contains('We got your message!');
+  });
+
+  it('Shows any existing posts', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('SubmissionGalleryQuery', {
+      posts: (root, { actionIds, type }) => [
+        {
+          type,
+          actionId: actionIds[0],
+          user: { firstName: 'Puppet' },
+          status: 'PENDING',
+        },
+      ],
+    });
+
+    // Log in & visit the campaign action page:
+    cy.login(user)
+      .withState(exampleCampaign)
+      .withSignup(exampleCampaign.campaign.campaignId)
+      .visit('/us/campaigns/test-example-campaign');
+
+    // We should see one "pending" post for each uploader:
+    // @TODO: We need a better selector for this "entire" block...
+    cy.get('#block-3Au9UnzEBGMHjwlBSujlv5 .post').should('have.length', 1);
+    cy.get('#block-6fKwdXz8gYyqJiy42R5c3h .post').should('have.length', 1);
   });
 
   it('Create a photo post', () => {

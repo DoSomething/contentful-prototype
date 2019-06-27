@@ -29,6 +29,20 @@ Cypress.Commands.add('configureMocks', () => {
 });
 
 /**
+ * Mock a single GraphQL operation by name.
+ *
+ * @param {String} operation
+ * @param {Object} response
+ */
+Cypress.Commands.add('mockGraphqlOp', (operation, response) => {
+  cy.mockGraphqlOps({
+    operations: {
+      [operation]: response,
+    },
+  });
+});
+
+/**
  * Get the Nth element with the given selector.
  *
  * @return {Cypress.Chainable}
