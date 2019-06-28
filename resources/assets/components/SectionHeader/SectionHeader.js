@@ -7,9 +7,12 @@ import './section-header.scss';
 
 const SectionHeader = ({ preTitle, title }) => (
   <div className="flex__cell -two-thirds section-header">
-    <span className="heading -emphasized section-header__pre-title">
-      {preTitle}
-    </span>
+    {preTitle != null && (
+      <span className="heading -emphasized section-header__pre-title">
+        {preTitle}
+      </span>
+    )}
+
     {title ? <h1 className="section-header__title">{title}</h1> : null}
   </div>
 );
