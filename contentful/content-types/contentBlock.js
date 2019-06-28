@@ -48,7 +48,7 @@ module.exports = function(migration) {
     .name('Content')
     .type('Text')
     .localized(true)
-    .required(false)
+    .required(true)
     .validations([])
     .disabled(false)
     .omitted(false);
