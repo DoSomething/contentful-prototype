@@ -19,8 +19,6 @@ const PitchTemplate = ({
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
 
-  console.log('🚧', blocks);
-
   return (
     <div className="campaign-page">
       <div className="primary">
@@ -35,10 +33,13 @@ const PitchTemplate = ({
 
         <TextContent>{content}</TextContent>
 
-        {blocks.map(block => {
-          console.log('block: ', block);
-          return <ContentfulEntry json={block} key={block.id} />;
-        })}
+        {blocks.length ? (
+          <div className="margin-top-xlg">
+            {blocks.map(block => {
+              return <ContentfulEntry json={block} key={block.id} />;
+            })}
+          </div>
+        ) : null}
       </div>
 
       <div className="secondary">
@@ -51,6 +52,7 @@ const PitchTemplate = ({
 };
 
 PitchTemplate.propTypes = {
+  blocks: PropTypes.arrayOf(PropTypes.object),
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -61,6 +63,7 @@ PitchTemplate.propTypes = {
 };
 
 PitchTemplate.defaultProps = {
+  blocks: [],
   scholarshipAmount: null,
   scholarshipDeadline: null,
   sidebarCTA: {
