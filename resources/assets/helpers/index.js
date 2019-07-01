@@ -363,9 +363,7 @@ export function makeShareLink(
 ) {
   switch (resource) {
     case 'campaigns':
-      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${
-        options.key
-      }`;
+      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
 
     default:
       throw new Error(
@@ -870,15 +868,18 @@ export function isActionPage(page) {
 /**
  * Get the Scholarship Affiliate Referrer's UTM Label.
  *
- * @return {String|Undefined|Null}
+ * @return {String|Null}
  */
 export function getScholarshipAffiliateLabel() {
-  const utmMedium = query('utm_medium');
-  const utmCampaign = query('utm_campaign');
+  const utmSource = query('utm_source') || '';
+  const utmCampaign = query('utm_campaign') || '';
 
-  // If the utm_medium contains 'scholarship', we assume this visit to be a scholarship
-  // affiliate referral, and use the utm_campaign to determine the affiliate UTM label.
-  return utmMedium && utmMedium.includes('scholarship') ? utmCampaign : null;
+  // The affiliate's UTM Label is expected to be the first value of a snake cased string.
+  const utmLabel = utmCampaign.split('_')[0];
+
+  // If the utm_source contains 'scholarship', we assume this visit to be a referral from a
+  // scholarship affiliate and return the affiliate's UTM label.
+  return utmSource.includes('scholarship') ? utmLabel : null;
 }
 
 /**

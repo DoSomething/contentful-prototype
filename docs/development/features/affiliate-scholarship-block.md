@@ -16,18 +16,18 @@ There are a few separate components controlling what is displayed in the card, a
 
 The URL for the current user will need to contain the following UTM parameters:
 
-- `utm_medium` with a value containing the word `scholarship`. e.g. `utm_medium=scholarship_listing`
-- `utm_campaign` with the value of the referring affiliate's UTM label (explained more below). e.g. `utm_campaign=fastweb`
+- `utm_source` with a value containing the word `scholarship`. e.g. `utm_source=scholarship_listing`
+- `utm_campaign` with the value of the referring affiliate's UTM label e.g. `utm_campaign=fastweb` (explained more below). If the value is a snake_cased string, the value should be the _first_ single value in the string e.g. `utm_campaign=fastweb_2019_07`.
 
 ### Affilite info
 
 A Contentful **Affiliate** entry containing the following fields:
 
-- **UTM Label** (`utmLabel`) matching the `utm_campaign` in the URL.
+- **UTM Label** (`utmLabel`) matching the `utm_campaign` (or the first value in a snake_cased `utm_campaign` parameter) in the URL.
 - **Title**
 - **Logo**
 
-The **UTM Label** should _exactly_ match the `utm_campaign`, since that's what's used to find the affiliate entry in Contentful. (We've employed a measure to control for mistakenly uppercased values in the `utm_campaign` -- those will be down-cased before searching Contentful.)
+The **UTM Label** should _exactly_ match the `utm_campaign` (or first value in a snake_cased `utm_campaign` parameter), since that's what's used to find the affiliate entry in Contentful. (We've employed a measure to control for mistakenly uppercased values in the `utm_campaign` -- those will be down-cased before searching Contentful.)
 
 ### Campaign Scholarship Info
 
@@ -38,9 +38,9 @@ The Campaign entry in Contentful must have the following fields filled in:
 
 ## Under The Hood
 
-The [`LandingPage`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/pages/LandingPage/LandingPage.js#L37-L42) will pass through the campaign scholarship fields to the [`PitchTemplate`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/pages/LandingPage/templates/PitchTemplate.js) component. The component then employs the [`getAffiliateScholarshipLabel`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/helpers/index.js#L789-L801) helper method to check that the `utm_medium` contains the word `scholarship`, and if so, returns the `utm_campaign`.
+The [`LandingPage`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/pages/LandingPage/LandingPage.js#L37-L42) will pass through the campaign scholarship fields to the [`PitchTemplate`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/pages/LandingPage/templates/PitchTemplate.js) component. The component then employs the [`getAffiliateScholarshipLabel`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/helpers/index.js#L789-L801) helper method to check that the `utm_source` contains the word `scholarship`, and if so, returns the parsed value of the `utm_campaign`.
 
-If this value is returned, and the scholarship fields are present, the component renders the [`AffiliateScholarshipBlockQuery`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery.js) component which uses GraphQL to query for the Affiliate entry matching the `utm_campaign`.
+If this value is returned, and the scholarship fields are present, the component renders the [`AffiliateScholarshipBlockQuery`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery.js) component which uses GraphQL to query for the Affiliate entry matching the parsed `utm_campaign` value.
 
 It then renders the [`AffiliateScholarshipBlock`](https://github.com/DoSomething/phoenix-next/blob/063c27761b79f7aa1714a6daaffd6b64a1f3aa80/resources/assets/components/blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlock.js) component with all the information.
 
