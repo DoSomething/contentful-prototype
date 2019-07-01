@@ -14,6 +14,9 @@ import SelectLocationDropdown from '../../utilities/SelectLocationDropdown/Selec
 
 import './post-gallery-block.scss';
 
+/**
+ * Shared query logic when querying PostGallery content type from Contentful.
+ */
 export const PostGalleryBlockFragment = gql`
   fragment PostGalleryBlockFragment on PostGalleryBlock {
     actionIds
@@ -26,7 +29,7 @@ export const PostGalleryBlockFragment = gql`
 /**
  * The GraphQL query to load data for this component.
  */
-const POST_GALLERY_QUERY = gql`
+const ACTION_GALLERY_QUERY = gql`
   query PostGalleryQuery(
     $actionIds: [Int]
     $location: String
@@ -35,6 +38,28 @@ const POST_GALLERY_QUERY = gql`
   ) {
     posts(
       actionIds: $actionIds
+      location: $location
+      count: $count
+      page: $page
+    ) {
+      ...PostCard
+      ...ReactionButton
+    }
+  }
+
+  ${postCardFragment}
+  ${reactionButtonFragment}
+`;
+
+const CAMPAIGN_GALLERY_QUERY = gql`
+  query PostGalleryQuery(
+    $campaignId: [Int]
+    $location: String
+    $count: Int
+    $page: Int
+  ) {
+    posts(
+      campaignId: $campaignId
       location: $location
       count: $count
       page: $page
@@ -145,7 +170,7 @@ class PostGalleryBlockQuery extends React.Component {
         ) : null}
 
         <PaginatedQuery
-          query={POST_GALLERY_QUERY}
+          query={ACTION_GALLERY_QUERY}
           queryName="posts"
           variables={withoutNulls({
             actionIds,
