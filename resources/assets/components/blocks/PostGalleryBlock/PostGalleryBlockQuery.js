@@ -27,7 +27,7 @@ export const PostGalleryBlockFragment = gql`
 `;
 
 /**
- * The GraphQL query to load data for this component.
+ * The GraphQL query to load data for this component by action ID(s).
  */
 const ACTION_GALLERY_QUERY = gql`
   query ActionGalleryQuery(
@@ -51,6 +51,9 @@ const ACTION_GALLERY_QUERY = gql`
   ${reactionButtonFragment}
 `;
 
+/**
+ * The GraphQL query to load data for this component by campaign ID.
+ */
 const CAMPAIGN_GALLERY_QUERY = gql`
   query CampaignGalleryQuery(
     $campaignId: String
@@ -175,8 +178,6 @@ class PostGalleryBlockQuery extends React.Component {
     const queryName = campaignId
       ? CAMPAIGN_GALLERY_QUERY
       : ACTION_GALLERY_QUERY;
-
-    console.log('📦', this.props);
 
     return (
       <React.Fragment>
