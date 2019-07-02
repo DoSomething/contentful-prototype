@@ -5,6 +5,8 @@ import { getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
   find,
+  isArray,
+  isEmpty,
   isNil,
   isNull,
   isObjectLike,
@@ -75,13 +77,27 @@ export function isExternal(url) {
 }
 
 /**
- * Return a boolean indicating whether the provided argument is a string.
+ * Return a boolean indicating whether the provided argument is an empty string.
  *
  * @param  {Mixed}  string
  * @return {Boolean}
  */
 export function isEmptyString(string) {
   return string === '';
+}
+
+/**
+ * Return a boolean indicating whether the provided argument is an empty array.
+ *
+ * @param  {Mixed}  data
+ * @return {Boolean}
+ */
+export function isEmptyArray(data) {
+  if (!isArray(data)) {
+    return false;
+  }
+
+  return isEmpty(data);
 }
 
 /**
@@ -363,9 +379,7 @@ export function makeShareLink(
 ) {
   switch (resource) {
     case 'campaigns':
-      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${
-        options.key
-      }`;
+      return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
 
     default:
       throw new Error(
@@ -854,7 +868,7 @@ export function withoutUndefined(data) {
  * @return {Object}
  */
 export function withoutValueless(data) {
-  return omitBy(omitBy(data, isNil), isEmptyString);
+  return omitBy(omitBy(omitBy(data, isNil), isEmptyArray), isEmptyString);
 }
 
 /**

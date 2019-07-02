@@ -6,7 +6,7 @@ import classnames from 'classnames';
 
 import PaginatedQuery from '../../PaginatedQuery';
 import ScrollConcierge from '../../ScrollConcierge';
-import { query, withoutNulls } from '../../../helpers';
+import { query, withoutValueless } from '../../../helpers';
 import PostGallery from '../../utilities/PostGallery/PostGallery';
 import { postCardFragment } from '../../utilities/PostCard/PostCard';
 import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
@@ -30,7 +30,7 @@ export const PostGalleryBlockFragment = gql`
  * The GraphQL query to load data for this component.
  */
 const ACTION_GALLERY_QUERY = gql`
-  query PostGalleryQuery(
+  query ActionGalleryQuery(
     $actionIds: [Int]
     $location: String
     $count: Int
@@ -52,17 +52,21 @@ const ACTION_GALLERY_QUERY = gql`
 `;
 
 const CAMPAIGN_GALLERY_QUERY = gql`
-  query PostGalleryQuery(
-    $campaignId: [Int]
-    $location: String
+  query CampaignGalleryQuery(
+    $campaignId: String
     $count: Int
+    $location: String
     $page: Int
+    $tags: [String]
+    $type: String
   ) {
     posts(
       campaignId: $campaignId
-      location: $location
       count: $count
+      location: $location
       page: $page
+      tags: $tags
+      type: $type
     ) {
       ...PostCard
       ...ReactionButton
@@ -154,7 +158,25 @@ class PostGalleryBlockQuery extends React.Component {
   };
 
   render() {
-    const { actionIds, className, hideReactions, id, itemsPerRow } = this.props;
+    const {
+      actionIds,
+      campaignId,
+      className,
+      count,
+      hideCaption,
+      hideQuantity,
+      hideReactions,
+      id,
+      itemsPerRow,
+      paginated,
+      type,
+    } = this.props;
+
+    const queryName = campaignId
+      ? CAMPAIGN_GALLERY_QUERY
+      : ACTION_GALLERY_QUERY;
+
+    console.log('📦', this.props);
 
     return (
       <React.Fragment>
@@ -170,22 +192,26 @@ class PostGalleryBlockQuery extends React.Component {
         ) : null}
 
         <PaginatedQuery
-          query={ACTION_GALLERY_QUERY}
+          query={queryName}
           queryName="posts"
-          variables={withoutNulls({
+          variables={withoutValueless({
             actionIds,
+            campaignId,
+            type,
             location: this.state.filterValue || null,
           })}
-          count={itemsPerRow * 3}
+          count={count}
         >
           {({ result, fetching, fetchMore }) => (
             <PostGallery
               id={id}
               className={classnames(className)}
+              hideCaption={hideCaption}
+              hideQuantity={hideQuantity}
               hideReactions={hideReactions}
               itemsPerRow={itemsPerRow}
               loading={fetching}
-              loadMorePosts={fetchMore}
+              loadMorePosts={paginated ? fetchMore : null}
               onRender={this.galleryReady}
               posts={result}
               shouldShowNoResults
@@ -199,21 +225,33 @@ class PostGalleryBlockQuery extends React.Component {
 }
 
 PostGalleryBlockQuery.propTypes = {
-  id: PropTypes.string,
   actionIds: PropTypes.arrayOf(PropTypes.number),
+  campaignId: PropTypes.string,
   className: PropTypes.string,
+  count: PropTypes.number,
   filterType: PropTypes.string,
+  hideCaption: PropTypes.bool,
+  hideQuantity: PropTypes.bool,
   hideReactions: PropTypes.bool,
+  id: PropTypes.string,
   itemsPerRow: PropTypes.number,
+  paginated: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 PostGalleryBlockQuery.defaultProps = {
-  id: null,
   actionIds: [],
+  campaignId: null,
   className: null,
+  count: 9,
   filterType: null,
+  hideCaption: false,
+  hideQuantity: false,
   hideReactions: false,
+  id: null,
   itemsPerRow: 3,
+  paginated: true,
+  type: null,
 };
 
 // Export the GraphQL query component.

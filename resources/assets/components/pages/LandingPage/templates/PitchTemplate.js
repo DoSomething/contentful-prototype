@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import { getScholarshipAffiliateLabel } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
-import PostGalleryBlockQuery from '../../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 
 const PitchTemplate = ({
@@ -30,14 +29,6 @@ const PitchTemplate = ({
         ) : null}
 
         <TextContent>{content}</TextContent>
-
-        <PostGalleryBlockQuery
-          className="margin-top-xlg"
-          id="1234567890"
-          actionIds={[3]}
-          hideReactions
-          itemsPerRow={3}
-        />
       </div>
       <div className="secondary">
         <Card title={sidebarCTA.title} className="rounded bordered">
@@ -68,3 +59,5 @@ PitchTemplate.defaultProps = {
 };
 
 export default PitchTemplate;
+
+// actionIds={[3]}
