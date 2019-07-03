@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Card from '../../../utilities/Card/Card';
@@ -9,10 +10,10 @@ import PostGalleryBlockQuery from '../../../blocks/PostGalleryBlock/PostGalleryB
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 
 const PitchTemplate = ({
+  additionalContent,
   campaignId,
   campaignTitle,
   content,
-  contentfulId,
   scholarshipAmount,
   scholarshipDeadline,
   sidebarCTA,
@@ -20,14 +21,6 @@ const PitchTemplate = ({
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
-
-  const testableCampaigns = [
-    '6LQzMvDNQcYQYwso8qSkQ8', // Dev
-    '6tgfJeVQIQXw8xfsgyNkHI', // QA
-    '6tgfJeVQIQXw8xfsgyNkHI', // Prod
-    '6ATBgGEQEeJoIcxs1qbwaC', // Prod
-    '5Jp8I6l0e9GVZzuHSgZ9Qp', // Prod
-  ];
 
   return (
     <div className="campaign-page">
@@ -44,7 +37,7 @@ const PitchTemplate = ({
         <TextContent>{content}</TextContent>
 
         {/* @SIXPACK Code Test: 2019-07-03 */}
-        {testableCampaigns.includes(contentfulId) ? (
+        {get(additionalContent, 'sixpackLandingPageGallery', false) ? (
           <SixpackExperiment
             title={`Landing Page Gallery ${campaignTitle}`}
             convertableActions={['signup']}
@@ -77,10 +70,10 @@ const PitchTemplate = ({
 };
 
 PitchTemplate.propTypes = {
+  additionalContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
-  contentfulId: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   sidebarCTA: PropTypes.shape({
@@ -90,6 +83,7 @@ PitchTemplate.propTypes = {
 };
 
 PitchTemplate.defaultProps = {
+  additionalContent: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   sidebarCTA: {

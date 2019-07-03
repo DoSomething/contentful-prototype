@@ -31,6 +31,7 @@ const mapStateToProps = (state, ownProps) => {
       null,
     ),
     tagline: get(state.campaign.additionalContent, 'tagline'),
+    additionalContent: landingPage.additionalContent,
   };
 };
 
