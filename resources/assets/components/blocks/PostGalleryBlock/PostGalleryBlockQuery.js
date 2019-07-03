@@ -239,6 +239,7 @@ PostGalleryBlockQuery.propTypes = {
   id: PropTypes.string,
   itemsPerRow: PropTypes.number,
   paginated: PropTypes.bool,
+  tags: PropTypes.arrayOf(PropTypes.string),
   type: PropTypes.string,
 };
 
@@ -254,6 +255,7 @@ PostGalleryBlockQuery.defaultProps = {
   id: null,
   itemsPerRow: 3,
   paginated: true,
+  tags: [],
   type: null,
 };
 
