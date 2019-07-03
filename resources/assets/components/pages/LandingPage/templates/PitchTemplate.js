@@ -59,5 +59,3 @@ PitchTemplate.defaultProps = {
 };
 
 export default PitchTemplate;
-
-// actionIds={[3]}
