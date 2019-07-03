@@ -14,7 +14,7 @@ describe('Campaign Gallery', () => {
     cy.mockGraphqlOps({
       operations: {
         // Make sure we haven't yet reacted to anything:
-        PostGalleryQuery: {
+        ActionGalleryQuery: {
           posts: MockList(9, { reacted: false, reactions: 0 }),
         },
 
@@ -49,7 +49,7 @@ describe('Campaign Gallery', () => {
     const user = userFactory();
 
     // Start with a full page of posts...
-    cy.mockGraphqlOp('PostGalleryQuery', { posts: MockList(9) });
+    cy.mockGraphqlOp('ActionGalleryQuery', { posts: MockList(9) });
 
     // Log in & visit the campaign action page:
     cy.login(user)
@@ -61,7 +61,7 @@ describe('Campaign Gallery', () => {
       cy.get('.post').should('have.length', 9);
 
       // Click the "view more" link and get a partial set of results:
-      cy.mockGraphqlOp('PostGalleryQuery', { posts: MockList(4) });
+      cy.mockGraphqlOp('ActionGalleryQuery', { posts: MockList(4) });
       cy.contains('view more').click();
 
       // We should now have 13 total posts in the gallery.

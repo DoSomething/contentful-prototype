@@ -23,7 +23,7 @@ export const operations = {
     posts: [],
   },
   // By default, return the requested number of posts:
-  PostGalleryQuery: {
+  ActionGalleryQuery: {
     posts: (root, { count }) => MockList(count),
   },
 };
