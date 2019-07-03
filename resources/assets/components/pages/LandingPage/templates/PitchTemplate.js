@@ -77,7 +77,10 @@ const PitchTemplate = ({
 };
 
 PitchTemplate.propTypes = {
+  campaignId: PropTypes.string.isRequired,
+  campaignTitle: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  contentfulId: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   sidebarCTA: PropTypes.shape({
