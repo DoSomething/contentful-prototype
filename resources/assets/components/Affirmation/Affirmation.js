@@ -45,30 +45,23 @@ const Affirmation = ({
         {quote}
       </TextContent>
     ) : null}
+
     <Query query={BADGE_QUERY} variables={{ userId }}>
       {badgeData =>
         badgeData.user.hasBadgesFlag ? (
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {signupData =>
               signupData.signupsCount === 1 ? (
-                <Flex className="flex-center-xy">
-                  <FlexCell className="padded" width="one-third">
-                    <Badge
-                      earned
-                      boldText
-                      name="signupBadge"
-                      text="1 Sign-Up"
-                    />
-                  </FlexCell>
-
-                  <FlexCell className="padded" width="full">
-                    <TextContent className="padding-top-md padding-horizontal-md">
-                      Congratulations! You signed up for your first
-                      campaign...and earned your first badge. NICE. Ready to
-                      earn *another* badge? Complete this campaign!
-                    </TextContent>
-                  </FlexCell>
-                </Flex>
+                <Badge
+                  earned
+                  boldText
+                  size="medium"
+                  name="signupBadge"
+                  text="1 Sign-Up"
+                  explainerText="Congratulations! You signed up for your first campaign...and
+                    earned your first badge. NICE. Ready to earn *another*
+                    badge? Complete this campaign!"
+                />
               ) : null
             }
           </Query>
