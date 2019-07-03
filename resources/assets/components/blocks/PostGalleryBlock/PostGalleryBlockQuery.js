@@ -172,6 +172,7 @@ class PostGalleryBlockQuery extends React.Component {
       id,
       itemsPerRow,
       paginated,
+      tags,
       type,
     } = this.props;
 
@@ -198,6 +199,7 @@ class PostGalleryBlockQuery extends React.Component {
           variables={withoutValueless({
             actionIds,
             campaignId,
+            tags,
             type,
             location: this.state.filterValue || null,
           })}
