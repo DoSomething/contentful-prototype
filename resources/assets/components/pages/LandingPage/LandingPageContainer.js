@@ -13,7 +13,9 @@ const mapStateToProps = (state, ownProps) => {
   const landingPage = get(ownProps, 'landingPage.fields', ownProps);
 
   return {
-    campaignId: state.campaign.id,
+    campaignId: state.campaign.campaignId,
+    campaignTitle: state.campaign.title,
+    contentfulId: state.campaign.id,
     content: landingPage.content,
     scholarshipAmount: state.campaign.scholarshipAmount,
     scholarshipDeadline: state.campaign.scholarshipDeadline,

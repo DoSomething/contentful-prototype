@@ -13,7 +13,10 @@ import './landing-page.scss';
 
 const LandingPage = props => {
   const {
+    campaignId,
+    campaignTitle,
     content,
+    contentfulId,
     scholarshipAmount,
     scholarshipDeadline,
     showPartnerMsgOptIn,
@@ -35,7 +38,10 @@ const LandingPage = props => {
       <div className="clearfix bg-white">
         <Enclosure className="default-container margin-lg pitch-landing-page">
           <PitchTemplate
+            campaignId={campaignId}
+            campaignTitle={campaignTitle}
             content={content}
+            contentfulId={contentfulId}
             sidebarCTA={sidebarCTA}
             scholarshipAmount={scholarshipAmount}
             scholarshipDeadline={scholarshipDeadline}
