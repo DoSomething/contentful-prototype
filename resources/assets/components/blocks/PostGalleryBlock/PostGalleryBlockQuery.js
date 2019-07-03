@@ -172,6 +172,7 @@ class PostGalleryBlockQuery extends React.Component {
       id,
       itemsPerRow,
       paginated,
+      tags,
       type,
     } = this.props;
 
@@ -198,6 +199,7 @@ class PostGalleryBlockQuery extends React.Component {
           variables={withoutValueless({
             actionIds,
             campaignId,
+            tags,
             type,
             location: this.state.filterValue || null,
           })}
@@ -237,6 +239,7 @@ PostGalleryBlockQuery.propTypes = {
   id: PropTypes.string,
   itemsPerRow: PropTypes.number,
   paginated: PropTypes.bool,
+  tags: PropTypes.arrayOf(PropTypes.string),
   type: PropTypes.string,
 };
 
@@ -252,6 +255,7 @@ PostGalleryBlockQuery.defaultProps = {
   id: null,
   itemsPerRow: 3,
   paginated: true,
+  tags: [],
   type: null,
 };
 

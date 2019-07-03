@@ -52,6 +52,7 @@ const PitchTemplate = ({
                   hideQuantity
                   hideReactions
                   paginated={false}
+                  tags={['good-submission']}
                   type="photo"
                 />
               </div>,
