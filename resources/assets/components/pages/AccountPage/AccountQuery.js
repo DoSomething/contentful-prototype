@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
-import Account from './Account';
+import Loader from '../../utilities/Loader';
+import Query from '../../Query';
 
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {
@@ -16,24 +15,20 @@ const ACCOUNT_QUERY = gql`
       birthdate
       email
       emailSubscriptionTopics
+      hasBadgesFlag: hasFeatureFlag(feature: "badges")
     }
   }
 `;
 
-const AccountQuery = ({ userId }) => (
-  <Query query={ACCOUNT_QUERY} queryName="user" variables={{ userId }}>
-    {({ loading, error, data }) => {
-      if (loading) {
-        return <div className="spinner -centered" />;
-      }
-      if (error) {
-        return <ErrorBlock />;
-      }
+const AccountQuery = ({ userId }) => {
+  const Account = Loader(import('./Account'));
 
-      return <Account {...data} userId={userId} />;
-    }}
-  </Query>
-);
+  return (
+    <Query query={ACCOUNT_QUERY} variables={{ userId }}>
+      {result => <Account {...result} userId={userId} />}
+    </Query>
+  );
+};
 
 AccountQuery.propTypes = {
   userId: PropTypes.string.isRequired,
