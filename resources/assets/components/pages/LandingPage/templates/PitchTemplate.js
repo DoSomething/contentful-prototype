@@ -27,6 +27,7 @@ const PitchTemplate = ({
             className="margin-bottom-lg"
           />
         ) : null}
+
         <TextContent>{content}</TextContent>
       </div>
       <div className="secondary">

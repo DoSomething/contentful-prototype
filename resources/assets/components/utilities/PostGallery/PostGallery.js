@@ -27,6 +27,8 @@ const PostGallery = props => {
   const {
     id,
     className,
+    hideCaption,
+    hideQuantity,
     hideReactions,
     itemsPerRow,
     loading,
@@ -56,16 +58,25 @@ const PostGallery = props => {
         className="expand-horizontal-md"
       >
         {posts.map(post => (
-          <PostCard key={post.id} post={post} hideReactions={hideReactions} />
+          <PostCard
+            key={post.id}
+            post={post}
+            hideCaption={hideCaption}
+            hideQuantity={hideQuantity}
+            hideReactions={hideReactions}
+          />
         ))}
       </Gallery>
-      <LoadMore
-        buttonClassName="-tertiary"
-        className="padding-lg text-center"
-        text="view more"
-        onClick={loadMorePosts}
-        isLoading={loading}
-      />
+
+      {loadMorePosts ? (
+        <LoadMore
+          buttonClassName="-tertiary"
+          className="padding-lg text-center"
+          text="view more"
+          onClick={loadMorePosts}
+          isLoading={loading}
+        />
+      ) : null}
 
       {waypointName ? (
         <PuckWaypoint
@@ -80,12 +91,14 @@ const PostGallery = props => {
 };
 
 PostGallery.propTypes = {
-  id: PropTypes.string,
   className: PropTypes.string,
+  hideCaption: PropTypes.bool,
+  hideQuantity: PropTypes.bool,
   hideReactions: PropTypes.bool,
+  id: PropTypes.string,
   itemsPerRow: PropTypes.oneOf(Object.keys(galleryTypes).map(Number)),
   loading: PropTypes.bool.isRequired,
-  loadMorePosts: PropTypes.func.isRequired,
+  loadMorePosts: PropTypes.func,
   onRender: PropTypes.func,
   posts: PropTypes.arrayOf(PropTypes.object),
   shouldShowNoResults: PropTypes.bool,
@@ -93,10 +106,13 @@ PostGallery.propTypes = {
 };
 
 PostGallery.defaultProps = {
-  id: null,
   className: null,
+  hideCaption: false,
+  hideQuantity: false,
   hideReactions: false,
+  id: null,
   itemsPerRow: 3,
+  loadMorePosts: null,
   onRender: null,
   posts: [],
   shouldShowNoResults: false,
