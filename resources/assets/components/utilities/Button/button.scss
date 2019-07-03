@@ -1,6 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .button {
+  text-transform: capitalize;
   &.-inline {
     clear: none;
   }
@@ -32,5 +33,5 @@
 }
 
 .button.-tertiary {
-  background: #fff;
+  background: none;
 }
