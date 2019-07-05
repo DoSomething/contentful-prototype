@@ -30,7 +30,7 @@
         <ul>
           <li><a href="{{ config('app.url') }}/us/about/who-we-are">What is DoSomething.org?</a></li>
           <li><a href="{{ config('app.url') }}/us/about/our-people">Our Team</a></li>
-          <li><a href="{{ config('app.url') }}/us/about/sexy-financials">Our Financials</a></li>
+          <li><a href="{{ config('app.url') }}/us/about/our-financials">Our Financials</a></li>
           <li><a href="{{ config('app.url') }}/us/about/our-press">Press</a></li>
           <li><a href="https://lets.dosomething.org/">Web Magazine</a></li>
           <li><a href="{{ config('app.url') }}/us/about/contact-us">Contact Us</a></li>
