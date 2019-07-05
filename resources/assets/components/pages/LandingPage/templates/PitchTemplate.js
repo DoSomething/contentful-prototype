@@ -128,8 +128,6 @@ PitchTemplate.propTypes = {
 
 PitchTemplate.defaultProps = {
   additionalContent: null,
-  scholarshipAmount: null,
-  scholarshipDeadline: null,
   sidebarCTA: {
     title: 'what you get',
     content: '*You could win a $5,000 dollar scholarship!*',
