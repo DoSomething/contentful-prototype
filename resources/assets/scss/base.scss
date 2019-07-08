@@ -266,7 +266,7 @@ p {
 }
 
 .padding-bottom-lg {
-  padding-bottom: none;
+  padding-bottom: $base-spacing;
 }
 
 .padding-top-md {
@@ -337,7 +337,7 @@ p {
 }
 
 .margin-top-lg {
-  margin-top: $base-spacing;
+  margin-top: none;
 }
 
 .margin-top-xlg {
