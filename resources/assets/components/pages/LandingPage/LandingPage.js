@@ -2,12 +2,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
-import Enclosure from '../../Enclosure';
 import PitchTemplate from './templates/PitchTemplate';
-import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 
 import './landing-page.scss';
 
@@ -29,42 +25,20 @@ const LandingPage = props => {
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
 
   return (
-    <div>
-      <LedeBannerContainer
-        signupArrowContent={signupArrowContent}
+    <React.Fragment>
+      <PitchTemplate
+        additionalContent={additionalContent}
+        campaignId={campaignId}
+        campaignTitle={campaignTitle}
+        content={content}
+        scholarshipAmount={scholarshipAmount}
+        scholarshipDeadline={scholarshipDeadline}
         showPartnerMsgOptIn={showPartnerMsgOptIn}
+        sidebarCTA={sidebarCTA}
+        signupArrowContent={signupArrowContent}
+        tagline={tagline}
       />
-
-      <div className="clearfix bg-white">
-        <Enclosure className="default-container margin-lg pitch-landing-page">
-          <PitchTemplate
-            additionalContent={additionalContent}
-            campaignId={campaignId}
-            campaignTitle={campaignTitle}
-            content={content}
-            sidebarCTA={sidebarCTA}
-            scholarshipAmount={scholarshipAmount}
-            scholarshipDeadline={scholarshipDeadline}
-          />
-        </Enclosure>
-
-        <CallToActionContainer content={tagline} sticky />
-      </div>
-
-      <PuckWaypoint name="landing_page_cta-top" />
-      <CallToActionContainer
-        className="legacy border-top border-radius-none bg-off-white padding-lg hide-on-mobile"
-        content={tagline}
-      />
-      <PuckWaypoint name="landing_page_cta-bottom" />
-
-      <div className="info-bar -dark">
-        <div className="wrapper">
-          A DoSomething.org campaign. Join millions of young people transforming
-          their communities. Let&#39;s Do This!
-        </div>
-      </div>
-    </div>
+    </React.Fragment>
   );
 };
 
