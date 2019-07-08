@@ -1,9 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import PitchTemplate from './templates/PitchTemplate';
+import MarqueeTemplate from './templates/MarqueeTemplate';
 
 import './landing-page.scss';
 
@@ -13,6 +15,7 @@ const LandingPage = props => {
     campaignId,
     campaignTitle,
     content,
+    coverImage,
     scholarshipAmount,
     scholarshipDeadline,
     showPartnerMsgOptIn,
@@ -26,18 +29,27 @@ const LandingPage = props => {
 
   return (
     <React.Fragment>
-      <PitchTemplate
-        additionalContent={additionalContent}
-        campaignId={campaignId}
-        campaignTitle={campaignTitle}
-        content={content}
-        scholarshipAmount={scholarshipAmount}
-        scholarshipDeadline={scholarshipDeadline}
-        showPartnerMsgOptIn={showPartnerMsgOptIn}
-        sidebarCTA={sidebarCTA}
-        signupArrowContent={signupArrowContent}
-        tagline={tagline}
-      />
+      {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
+        <MarqueeTemplate
+          campaignId={campaignId}
+          campaignTitle={campaignTitle}
+          coverImage={coverImage}
+          tagline={tagline}
+        />
+      ) : (
+        <PitchTemplate
+          additionalContent={additionalContent}
+          campaignId={campaignId}
+          campaignTitle={campaignTitle}
+          content={content}
+          scholarshipAmount={scholarshipAmount}
+          scholarshipDeadline={scholarshipDeadline}
+          showPartnerMsgOptIn={showPartnerMsgOptIn}
+          sidebarCTA={sidebarCTA}
+          signupArrowContent={signupArrowContent}
+          tagline={tagline}
+        />
+      )}
     </React.Fragment>
   );
 };

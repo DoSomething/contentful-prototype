@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     campaignTitle: state.campaign.title,
     contentfulId: state.campaign.id,
     content: landingPage.content,
+    coverImage: state.campaign.coverImage,
     scholarshipAmount: state.campaign.scholarshipAmount,
     scholarshipDeadline: state.campaign.scholarshipDeadline,
     showPartnerMsgOptIn: get(
@@ -30,6 +31,7 @@ const mapStateToProps = (state, ownProps) => {
       'signupArrowContent',
       null,
     ),
+    subtitle: state.campaign.callToAction,
     tagline: get(state.campaign.additionalContent, 'tagline'),
     additionalContent: landingPage.additionalContent,
   };
