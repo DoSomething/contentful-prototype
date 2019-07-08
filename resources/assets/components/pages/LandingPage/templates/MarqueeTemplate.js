@@ -8,11 +8,13 @@ import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 
 const MarqueeTemplate = ({
   campaignId,
-  campaignTitle,
+  content,
   coverImage,
+  subtitle,
   tagline,
+  title,
 }) => {
-  console.log('🖼', { campaignId, campaignTitle, coverImage, tagline });
+  console.log('🖼', { campaignId, title, coverImage, tagline });
 
   // @TODO: try using srcset
   const coverImageSrc = contentfulImageUrl(
@@ -26,10 +28,13 @@ const MarqueeTemplate = ({
     <React.Fragment>
       <img className="cover-image" src={coverImageSrc} />
       <div className="clearfix bg-white">
-        <Enclosure className="default-container margin-lg">
+        <Enclosure className="default-container margin-lg marquee-landing-page">
           <header role="banner">
-            <h1>{campaignTitle}</h1>
+            <h1>{title}</h1>
+            <h2>{subtitle}</h2>
           </header>
+
+          <TextContent>{content}</TextContent>
         </Enclosure>
       </div>
     </React.Fragment>

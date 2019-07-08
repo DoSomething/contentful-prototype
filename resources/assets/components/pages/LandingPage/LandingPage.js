@@ -13,7 +13,6 @@ const LandingPage = props => {
   const {
     additionalContent,
     campaignId,
-    campaignTitle,
     content,
     coverImage,
     scholarshipAmount,
@@ -21,7 +20,9 @@ const LandingPage = props => {
     showPartnerMsgOptIn,
     sidebar,
     signupArrowContent,
+    subtitle,
     tagline,
+    title,
   } = props;
 
   // @TODO: allow outputting multiple blocks in the sidebar.
@@ -32,15 +33,16 @@ const LandingPage = props => {
       {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
         <MarqueeTemplate
           campaignId={campaignId}
-          campaignTitle={campaignTitle}
+          content={content}
           coverImage={coverImage}
+          subtitle={subtitle}
           tagline={tagline}
+          title={title}
         />
       ) : (
         <PitchTemplate
           additionalContent={additionalContent}
           campaignId={campaignId}
-          campaignTitle={campaignTitle}
           content={content}
           scholarshipAmount={scholarshipAmount}
           scholarshipDeadline={scholarshipDeadline}
@@ -48,6 +50,7 @@ const LandingPage = props => {
           sidebarCTA={sidebarCTA}
           signupArrowContent={signupArrowContent}
           tagline={tagline}
+          title={title}
         />
       )}
     </React.Fragment>
@@ -57,7 +60,6 @@ const LandingPage = props => {
 LandingPage.propTypes = {
   additionalContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
-  campaignTitle: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -65,6 +67,7 @@ LandingPage.propTypes = {
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,
   tagline: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 LandingPage.defaultProps = {

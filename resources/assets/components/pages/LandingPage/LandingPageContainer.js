@@ -14,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     campaignId: state.campaign.campaignId,
-    campaignTitle: state.campaign.title,
     contentfulId: state.campaign.id,
     content: landingPage.content,
     coverImage: state.campaign.coverImage,
@@ -33,6 +32,7 @@ const mapStateToProps = (state, ownProps) => {
     ),
     subtitle: state.campaign.callToAction,
     tagline: get(state.campaign.additionalContent, 'tagline'),
+    title: state.campaign.title,
     additionalContent: landingPage.additionalContent,
   };
 };
