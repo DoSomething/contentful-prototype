@@ -55,6 +55,7 @@ const Affirmation = ({
                 <Badge
                   earned
                   boldText
+                  className="badge padded"
                   size="medium"
                   name="signupBadge"
                   text="1 Sign-Up"
