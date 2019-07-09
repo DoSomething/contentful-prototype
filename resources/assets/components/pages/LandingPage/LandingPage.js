@@ -15,6 +15,7 @@ const LandingPage = props => {
     campaignId,
     content,
     coverImage,
+    endDate,
     scholarshipAmount,
     scholarshipDeadline,
     showPartnerMsgOptIn,
@@ -35,6 +36,7 @@ const LandingPage = props => {
           campaignId={campaignId}
           content={content}
           coverImage={coverImage}
+          endDate={endDate}
           subtitle={subtitle}
           tagline={tagline}
           title={title}
@@ -61,6 +63,7 @@ LandingPage.propTypes = {
   additionalContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  endDate: PropTypes.string,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
@@ -72,6 +75,7 @@ LandingPage.propTypes = {
 
 LandingPage.defaultProps = {
   additionalContent: null,
+  endDate: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showPartnerMsgOptIn: false,

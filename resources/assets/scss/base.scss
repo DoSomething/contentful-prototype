@@ -731,6 +731,8 @@ p {
 }
 
 .grid-wide {
+  background-color: pink;
+
   grid-column: full-start / full-end;
 
   @include media($large) {
@@ -747,5 +749,34 @@ p {
 
   @include media($large) {
     grid-column: auto / span 6;
+  }
+}
+
+.grid-primary {
+  background-color: fuchsia;
+
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: full-start / midway;
+  }
+
+  @include media($large) {
+    grid-column: wide-start / sidebar-start;
+  }
+}
+
+.grid-secondary {
+  background-color: teal;
+
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: midway / full-end;
+  }
+
+  @include media($large) {
+    display: none;
+    // grid-column: midway / wide-end;
   }
 }

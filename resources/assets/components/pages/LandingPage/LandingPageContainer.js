@@ -17,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     contentfulId: state.campaign.id,
     content: landingPage.content,
     coverImage: state.campaign.coverImage,
+    endDate: state.campaign.endDate,
     scholarshipAmount: state.campaign.scholarshipAmount,
     scholarshipDeadline: state.campaign.scholarshipDeadline,
     showPartnerMsgOptIn: get(
