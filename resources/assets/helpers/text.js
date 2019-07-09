@@ -75,53 +75,53 @@ export function parseRichTextDocument(document, styles) {
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="grid-main" style={{ color: textColor }}>
+        <h1 className="grid-narrow" style={{ color: textColor }}>
           <span>{children}</span>
         </h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="grid-main" style={{ color: textColor }}>
+        <h2 className="grid-narrow" style={{ color: textColor }}>
           {children}
         </h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 className="grid-main" style={{ color: textColor }}>
+        <h3 className="grid-narrow" style={{ color: textColor }}>
           {children}
         </h3>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 className="grid-main" style={{ color: textColor }}>
+        <h4 className="grid-narrow" style={{ color: textColor }}>
           {children}
         </h4>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 className="grid-main" style={{ color: textColor }}>
+        <h5 className="grid-narrow" style={{ color: textColor }}>
           {children}
         </h5>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 className="grid-main" style={{ color: textColor }}>
+        <h6 className="grid-narrow" style={{ color: textColor }}>
           {children}
         </h6>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) =>
         children[0] ? (
-          <p className="grid-main" style={{ color: textColor }}>
+          <p className="grid-narrow" style={{ color: textColor }}>
             {children}
           </p>
         ) : null,
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="grid-main text-left list" style={{ color: textColor }}>
+        <ul className="grid-narrow text-left list" style={{ color: textColor }}>
           {children}
         </ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="grid-main text-left list" style={{ color: textColor }}>
+        <ol className="grid-narrow text-left list" style={{ color: textColor }}>
           {children}
         </ol>
       ),
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="grid-main list" style={{ color: textColor }}>
+        <blockquote className="grid-narrow list" style={{ color: textColor }}>
           {children}
         </blockquote>
       ),
@@ -132,7 +132,7 @@ export function parseRichTextDocument(document, styles) {
         />
       ),
       [BLOCKS.EMBEDDED_ASSET]: node => (
-        <p className="grid-main component-entry text-center">
+        <p className="grid-narrow component-entry text-center">
           <ContentfulAsset id={node.data.target.sys.id} />
         </p>
       ),
