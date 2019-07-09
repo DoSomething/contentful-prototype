@@ -84,3 +84,19 @@
     }
   }
 }
+
+// @TODO: temporary for badges, will need clean-up later - added on 07/09/19
+.figure.badge {
+  @include media($small) {
+    > .figure__media {
+      width: 150px;
+    }
+  }
+
+  @include media($medium) {
+    > .figure__body {
+      margin: 0 auto;
+      max-width: 80%;
+    }
+  }
+}
