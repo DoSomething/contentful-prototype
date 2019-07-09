@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
@@ -7,8 +8,24 @@ import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import TextContent from '../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../helpers';
+import Badge from '../pages/AccountPage/Badge';
+import Query from '../Query';
 
 import './affirmation.scss';
+
+const SIGNUP_COUNT_BADGE = gql`
+  query SignupsCountQuery($userId: String!) {
+    signupsCount(userId: $userId, limit: 2)
+  }
+`;
+
+const BADGE_QUERY = gql`
+  query AccountQuery($userId: String!) {
+    user(id: $userId) {
+      hasBadgesFlag: hasFeatureFlag(feature: "badges")
+    }
+  }
+`;
 
 // @TODO: Refactor/redesign.
 // We seem to have removed the content "photo" from being used in the actual output.
@@ -20,6 +37,7 @@ const Affirmation = ({
   callToActionHeader,
   header,
   quote,
+  userId,
 }) => (
   <Card className="affirmation rounded" title={header}>
     {quote ? (
@@ -27,6 +45,30 @@ const Affirmation = ({
         {quote}
       </TextContent>
     ) : null}
+
+    <Query query={BADGE_QUERY} variables={{ userId }}>
+      {badgeData =>
+        badgeData.user.hasBadgesFlag ? (
+          <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
+            {signupData =>
+              signupData.signupsCount === 1 ? (
+                <Badge
+                  earned
+                  boldText
+                  className="badge padded"
+                  size="medium"
+                  name="signupBadge"
+                  text="1 Sign-Up"
+                  explainerText="Congratulations! You signed up for your first campaign...and
+                    earned your first badge. NICE. Ready to earn *another*
+                    badge? Complete this campaign!"
+                />
+              ) : null
+            }
+          </Query>
+        ) : null
+      }
+    </Query>
 
     <Flex className="flex-align-center">
       <FlexCell className="affirmation__cta padded" width="half">
@@ -55,6 +97,7 @@ Affirmation.propTypes = {
   callToActionHeader: PropTypes.string,
   header: PropTypes.string,
   quote: PropTypes.string,
+  userId: PropTypes.string.isRequired,
 };
 
 Affirmation.defaultProps = {
