@@ -32,7 +32,7 @@ const MarqueeTemplate = ({
       <article className="marquee-landing-page">
         <div className="base-16-grid bg-white cover-image">
           <img
-            className="grid-wide"
+            className="grid-main"
             srcSet={`${coverImageUrls.small} 360w, ${coverImageUrls.medium} 720w, ${coverImageUrls.large} 1440w, ${coverImageUrls.extraLarge} 2880w`}
             src={coverImageUrls.small}
           />
@@ -40,7 +40,7 @@ const MarqueeTemplate = ({
 
         <div className="clearfix bg-white">
           <Enclosure className="base-16-grid">
-            <header role="banner" className="grid-wide">
+            <header role="banner" className="grid-main">
               <h1>{title}</h1>
               <h2>{subtitle}</h2>
             </header>

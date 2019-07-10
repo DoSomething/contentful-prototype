@@ -711,9 +711,15 @@ p {
 }
 
 .grid-main {
+  background-color: pink;
+
   grid-column: full-start / full-end;
 
-  @include media($medium) {
+  // @include media($medium) {
+  //   grid-column: main-start / main-end;
+  // }
+
+  @include media($large) {
     grid-column: main-start / main-end;
   }
 }
@@ -731,8 +737,6 @@ p {
 }
 
 .grid-wide {
-  background-color: pink;
-
   grid-column: full-start / full-end;
 
   @include media($large) {
@@ -762,7 +766,7 @@ p {
   }
 
   @include media($large) {
-    grid-column: wide-start / sidebar-start;
+    grid-column: main-start / span 8;
   }
 }
 
@@ -776,7 +780,6 @@ p {
   }
 
   @include media($large) {
-    display: none;
-    // grid-column: midway / wide-end;
+    grid-column: 11 / span 4;
   }
 }
