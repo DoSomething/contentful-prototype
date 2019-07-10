@@ -1,5 +1,5 @@
 <div id="admin-dashboard" class="admin-dashboard">
-    <div class="wrapper base-16-grid">
+    <div class="wrapper base-12-grid">
         <h1 class="admin-dashboard-title grid-full font-normal uppercase text-base text-gray-400 margin-bottom-lg"><span>Admin Dashboard</span></h1>
 
         <section class="panel grid-1/2 margin-bottom-lg">
