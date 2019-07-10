@@ -746,6 +746,6 @@ p {
   }
 
   @include media($large) {
-    grid-column: auto / span 8;
+    grid-column: auto / span 6;
   }
 }
