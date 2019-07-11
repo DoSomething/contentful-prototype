@@ -100,12 +100,13 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
             </p>
           ) : null}
 
-          <p className="footnote">{format(post.createdAt, 'PPP')}</p>
+          {isAnonymous ? (
+            <p className="footnote">{format(post.createdAt, 'PPP')}</p>
+          ) : null}
 
           {post.type !== 'text' && post.text && !hideCaption ? (
             <p>{post.text}</p>
           ) : null}
-
         </BaseFigure>
       </div>
     </Card>
