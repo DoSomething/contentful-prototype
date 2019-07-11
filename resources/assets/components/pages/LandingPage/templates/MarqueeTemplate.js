@@ -30,26 +30,26 @@ const MarqueeTemplate = ({
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
-        <div className="base-16-grid bg-white cover-image">
+        <div className="base-12-grid bg-white cover-image">
           <img
-            className="grid-main"
+            className="grid-wide"
             srcSet={`${coverImageUrls.small} 360w, ${coverImageUrls.medium} 720w, ${coverImageUrls.large} 1440w, ${coverImageUrls.extraLarge} 2880w`}
             src={coverImageUrls.small}
           />
         </div>
 
         <div className="clearfix bg-white">
-          <Enclosure className="base-16-grid">
-            <header role="banner" className="grid-main">
+          <Enclosure className="base-12-grid">
+            <header role="banner" className="grid-wide">
               <h1>{title}</h1>
               <h2>{subtitle}</h2>
             </header>
 
-            <div className="grid-primary">
+            <div className="grid-wide-7/10">
               <TextContent>{content}</TextContent>
             </div>
 
-            <div className="grid-secondary">
+            <div className="grid-wide-3/10">
               <div>
                 <h1>Campaign Info</h1>
                 <dl className="clearfix">
