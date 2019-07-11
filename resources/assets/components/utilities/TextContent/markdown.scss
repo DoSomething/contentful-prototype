@@ -67,7 +67,7 @@
 
   // Overrides Forge rule adding a bold weight to a tags.
   a {
-    font-weight: inherit;
+    font-weight: $weight-normal;
   }
 
   h1 {
