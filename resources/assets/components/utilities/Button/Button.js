@@ -19,6 +19,7 @@ const Button = ({
     {
       'is-loading': loading,
       'is-disabled': disabled,
+      '-attached': attached,
     },
     className,
   );
