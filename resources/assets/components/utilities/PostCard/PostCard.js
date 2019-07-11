@@ -3,6 +3,7 @@ import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { propType } from 'graphql-anywhere';
 
 import Card from '../Card/Card';
@@ -79,7 +80,9 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   return (
     <Card className={`rounded h-full post-ornament-${post.type}`} key={post.id}>
       <div className="post">
-        <div className="flex-grow">{media}</div>
+        <div className={classnames({ 'flex-grow': post.type === 'text' })}>
+          {media}
+        </div>
         <BaseFigure
           media={reactionElement}
           alignment="right"
@@ -97,13 +100,12 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
             </p>
           ) : null}
 
-          {isAnonymous ? (
-            <p className="footnote">{format(post.createdAt, 'PPP')}</p>
-          ) : null}
+          <p className="footnote">{format(post.createdAt, 'PPP')}</p>
 
           {post.type !== 'text' && post.text && !hideCaption ? (
             <p>{post.text}</p>
           ) : null}
+
         </BaseFigure>
       </div>
     </Card>
