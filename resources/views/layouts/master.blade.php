@@ -21,10 +21,7 @@
     <link rel="icon" sizes="144x144" href="/apple-touch-icon-precomposed.png">
     <link rel="stylesheet" href="{{ elixir('app.css', 'next/assets') }}" media="screen, projection" type="text/css">
 
-    @if(config('services.analytics.google_tag_manager_id'))
-        @include('partials.google_tag_manager_script')
-    @endif
-
+    @include('partials.google_tag_manager_script')
     @include('partials.snowplow_script')
 </head>
 
