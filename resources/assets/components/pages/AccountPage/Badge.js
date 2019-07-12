@@ -13,6 +13,7 @@ const Badge = props => {
     explainerText,
     size,
     className,
+    header,
   } = props;
   const badgeImageIndex = earned ? name : `${name}Locked`;
 
@@ -23,7 +24,11 @@ const Badge = props => {
       size={size}
       className={className}
     >
-      <p>{boldText ? <strong>{text}</strong> : text}</p>
+      {header ? (
+        <h1>{text}</h1>
+      ) : (
+        <p>{boldText ? <strong>{text}</strong> : text}</p>
+      )}
       <p>{explainerText}</p>
     </Figure>
   );
@@ -37,6 +42,7 @@ Badge.propTypes = {
   explainerText: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
+  header: PropTypes.string,
 };
 
 Badge.defaultProps = {
@@ -44,6 +50,7 @@ Badge.defaultProps = {
   explainerText: null,
   size: null,
   className: null,
+  header: null,
 };
 
 export default Badge;

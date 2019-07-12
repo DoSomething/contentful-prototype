@@ -4,6 +4,8 @@ import gql from 'graphql-tag';
 
 import Badge from './Badge';
 import Query from '../../Query';
+import Modal from '../../utilities/Modal/Modal';
+// import Card from '../../utilities/Card/Card';
 
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
@@ -56,6 +58,18 @@ const BadgesTab = ({ userId }) => (
               </li>
             )}
           </Query>
+
+          <Modal className="badge">
+            <Badge
+              earned
+              boldText
+              className="badge inverted padded"
+              size="medium"
+              name="signupBadge"
+              text="1 SIGN-UP"
+              explainerText="Hey, congrats! You earned a badge for signing up for your first campaign. More badges ahead…!"
+            />
+          </Modal>
 
           <Query query={POST_COUNT_BADGE} variables={{ userId }}>
             {data => (

@@ -61,3 +61,10 @@
     outline: thin dotted;
   }
 }
+
+.modal.badge {
+  background-image: url('badge-background.svg');
+  background-repeat: no-repeat;
+  background-size: auto 80%;
+  background-color: rgba(114, 26, 165, 1);
+}
