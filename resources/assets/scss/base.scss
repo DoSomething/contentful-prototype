@@ -145,15 +145,6 @@ p {
   clear: none;
 }
 
-// @TODO: Rename to match Tailwind's .block.
-.display-block {
-  display: block;
-}
-
-.inline {
-  display: inline;
-}
-
 // @TODO: Rename to match Tailwind's .flex.
 .display-flex {
   display: flex;
@@ -493,6 +484,10 @@ p {
   background-color: $gray-900;
 }
 
+.block {
+  display: block;
+}
+
 .font-normal {
   font-weight: $weight-normal;
 }
@@ -507,6 +502,10 @@ p {
 
 .font-secondary {
   font-family: $secondary-font-family;
+}
+
+.inline {
+  display: inline;
 }
 
 .list-reset {
@@ -657,6 +656,10 @@ p {
 
 .w-1\/2 {
   width: 50%;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .whitespace-no-wrap {

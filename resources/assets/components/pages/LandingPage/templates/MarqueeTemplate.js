@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
+import Card from '../../../utilities/Card/Card';
 import { contentfulImageUrl } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
@@ -40,17 +41,19 @@ const MarqueeTemplate = ({
 
         <div className="clearfix bg-white">
           <Enclosure className="base-12-grid">
-            <header role="banner" className="grid-wide">
-              <h1>{title}</h1>
-              <h2>{subtitle}</h2>
+            <header role="banner" className="marquee-banner">
+              <h1 className="marquee-banner__headline-title">{title}</h1>
+              <h2 className="marquee-banner__headline-subtitle">{subtitle}</h2>
             </header>
 
-            <div className="grid-wide-7/10">
+            <div className="grid-wide-7/10 primary">
               <TextContent>{content}</TextContent>
             </div>
 
-            <div className="grid-wide-3/10">
-              <div>
+            <div className="grid-wide-3/10 secondary">
+              <SignupButtonContainer className="w-full" />
+
+              <Card className="bordered padded rounded campaign-info">
                 <h1>Campaign Info</h1>
                 <dl className="clearfix">
                   {endDate ? (
@@ -68,7 +71,9 @@ const MarqueeTemplate = ({
                     </React.Fragment>
                   ) : null}
                 </dl>
-              </div>
+                <h2>Win A Scholarship</h2>
+                <p>$4,000</p>
+              </Card>
             </div>
           </Enclosure>
         </div>

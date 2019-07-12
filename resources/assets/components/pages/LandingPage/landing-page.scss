@@ -3,13 +3,37 @@
 .marquee-landing-page {
   background-color: fuchsia;
 
+  .marquee-banner {
+    // background-color: maroon;
+
+    grid-column: full-start / full-end;
+
+    @include media($large) {
+      grid-column: wide-start / span 7;
+    }
+  }
+
+  .marquee-banner__headline-title {
+    text-transform: uppercase;
+    font-size: $font-large;
+    color: #141493;
+  }
+
+  .marquee-banner__headline-subtitle {
+    text-transform: uppercase;
+    font-size: 47px; // @TODO: not a standard pattern library size.
+    font-family: $font-league-gothic;
+    font-weight: $weight-normal;
+  }
+
   // .primary {
   // }
 
-  // .secondary {
-  //   @include media($large) {
-  //   }
-  // }
+  .secondary {
+    @include media($large) {
+      grid-row: 1 / span 2;
+    }
+  }
 }
 
 .pitch-landing-page {
