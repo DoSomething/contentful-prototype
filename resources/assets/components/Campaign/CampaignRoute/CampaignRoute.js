@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
+import NotFound from '../../NotFound';
 import InfoBar from '../../InfoBar/InfoBar';
 import Modal from '../../utilities/Modal/Modal';
 import { isCampaignClosed } from '../../../helpers';
@@ -80,6 +81,10 @@ const CampaignRoute = props => {
                     }}
                   />
                 );
+              }
+
+              if (!props.landingPage) {
+                return <NotFound />;
               }
 
               // @TODO: temporary function to select component to use based on type.
