@@ -37,6 +37,7 @@ const LandingPage = props => {
           content={content}
           coverImage={coverImage}
           endDate={endDate}
+          scholarshipAmount={scholarshipAmount}
           subtitle={subtitle}
           tagline={tagline}
           title={title}

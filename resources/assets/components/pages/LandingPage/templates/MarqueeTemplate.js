@@ -14,19 +14,27 @@ const MarqueeTemplate = ({
   content,
   coverImage,
   endDate,
+  scholarshipAmount,
   subtitle,
   tagline,
   title,
 }) => {
   // @TODO: turn this into some helper function!
   const coverImageUrls = {
-    extraLarge: contentfulImageUrl(coverImage.url, '2880', '1620', 'fill'),
-    large: contentfulImageUrl(coverImage.url, '1440', '810', 'fill'),
-    medium: contentfulImageUrl(coverImage.url, '720', '405', 'fill'),
-    small: contentfulImageUrl(coverImage.url, '360', '202', 'fill'),
+    extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'), // 2880 x 1620
+    large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'), // 1440 x 810
+    medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'), // 720 x 405
+    small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
 
-  console.log('🖼', { campaignId, title, coverImage, coverImageUrls, tagline });
+  console.log('🖼', {
+    campaignId,
+    title,
+    coverImage,
+    coverImageUrls,
+    scholarshipAmount,
+    tagline,
+  });
 
   return (
     <React.Fragment>
@@ -51,10 +59,10 @@ const MarqueeTemplate = ({
             </div>
 
             <div className="grid-wide-3/10 secondary">
-              <SignupButtonContainer className="w-full" />
+              <SignupButtonContainer className="w-full marquee-signup-button" />
 
               <Card className="bordered padded rounded campaign-info">
-                <h1>Campaign Info</h1>
+                <h1 className="mb-4 text-m uppercase">Campaign Info</h1>
                 <dl className="clearfix">
                   {endDate ? (
                     <React.Fragment>
@@ -64,15 +72,21 @@ const MarqueeTemplate = ({
                           awareOfUnicodeTokens: true,
                         })}
                       </dd>
-                      <dt>Time</dt>
-                      <dd>5-10 hours</dd>
-                      <dt>Action Type</dt>
-                      <dd>Collect Something</dd>
+                    </React.Fragment>
+                  ) : null}
+                  <dt>Time</dt>
+                  <dd>5-10 hours</dd>
+                  <dt>Action Type</dt>
+                  <dd>Collect Something</dd>
+                  {scholarshipAmount ? (
+                    <React.Fragment>
+                      <dt className="campaign-info__scholarship">
+                        Win A Scholarship
+                      </dt>
+                      <dd className="campaign-info__scholarship">$4,000</dd>
                     </React.Fragment>
                   ) : null}
                 </dl>
-                <h2>Win A Scholarship</h2>
-                <p>$4,000</p>
               </Card>
             </div>
           </Enclosure>

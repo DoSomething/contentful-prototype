@@ -6,9 +6,14 @@
   .marquee-banner {
     // background-color: maroon;
 
+    margin-bottom: $half-spacing;
     grid-column: full-start / full-end;
 
     @include media($large) {
+      grid-column: wide-start / wide-end;
+    }
+
+    @include media($largest) {
       grid-column: wide-start / span 7;
     }
   }
@@ -21,18 +26,72 @@
 
   .marquee-banner__headline-subtitle {
     text-transform: uppercase;
-    font-size: 47px; // @TODO: not a standard pattern library size.
+    font-size: $text-2xl;
     font-family: $font-league-gothic;
     font-weight: $weight-normal;
   }
 
-  // .primary {
-  // }
+  .primary {
+    h1,
+    h2,
+    h3 {
+      display: none; // @REMOVE
+    }
+
+    margin-bottom: $base-spacing;
+  }
 
   .secondary {
-    @include media($large) {
-      grid-row: 1 / span 2;
+    margin-bottom: $base-spacing;
+
+    @include media($largest) {
+      // @TODO: if primary content is short and this only spans 2, then grid rows are spread
+      // to reach bottom of this secondary area, and the content is spread out vertically.
+      // See if there is a better approach.
+      grid-row: 1 / span 3;
     }
+  }
+}
+
+.marquee-signup-button {
+  margin-bottom: $half-spacing;
+  padding: $base-spacing;
+}
+
+// @TODO: this could become its own component (KeyValueInformationCard or some better name)
+// but since only an experiment now, leaving as is.
+.campaign-info {
+  dt {
+    clear: right;
+    color: $gray-500;
+    font-weight: $weight-sbold;
+    text-transform: uppercase;
+
+    @include media('(min-width: 350px)') {
+      float: left;
+      padding-bottom: $half-spacing;
+    }
+  }
+
+  dd {
+    padding-bottom: $half-spacing;
+
+    @include media('(min-width: 350px)') {
+      float: right;
+    }
+  }
+
+  dt.campaign-info__scholarship {
+    border-top: 1px solid $gray-300;
+    float: none;
+    padding-top: $half-spacing;
+  }
+
+  dd.campaign-info__scholarship {
+    float: none;
+    font-family: $font-league-gothic;
+    font-size: $text-2xl;
+    line-height: 1;
   }
 }
 
