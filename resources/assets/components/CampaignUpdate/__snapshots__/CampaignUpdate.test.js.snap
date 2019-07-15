@@ -17,10 +17,15 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
   <footer
     className="padded clearfix"
   >
-    <SponsorPromotion
-      className="affiliate-logo"
+    <AffiliatePromotion
+      className={null}
       imgUrl="http://example.com/avatar-aang.jpg"
-      text="Powered by"
+      text={
+        Object {
+          "className": "text-gray-400",
+          "value": "Powered by",
+        }
+      }
       title="Campaign Sponsor Logo"
     />
   </footer>
@@ -44,10 +49,15 @@ exports[`it generates a campaign update snapshot 1`] = `
   <footer
     className="padded clearfix"
   >
-    <SponsorPromotion
-      className="affiliate-logo"
+    <AffiliatePromotion
+      className={null}
       imgUrl="http://example.com/avatar-aang.jpg"
-      text="Powered by"
+      text={
+        Object {
+          "className": "text-gray-400",
+          "value": "Powered by",
+        }
+      }
       title="Campaign Sponsor Logo"
     />
   </footer>
