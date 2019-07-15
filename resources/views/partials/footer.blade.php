@@ -30,8 +30,7 @@
         <ul>
           <li><a href="{{ config('app.url') }}/us/about/who-we-are">What is DoSomething.org?</a></li>
           <li><a href="{{ config('app.url') }}/us/about/our-people">Our Team</a></li>
-          <li><a href="{{ config('app.url') }}/us/about/sexy-financials">Sexy Financials</a></li>
-          <li><a href="http://xyzfactor.org/">XYZ Factor</a></li>
+          <li><a href="{{ config('app.url') }}/us/about/our-financials">Our Financials</a></li>
           <li><a href="{{ config('app.url') }}/us/about/our-press">Press</a></li>
           <li><a href="https://lets.dosomething.org/">Web Magazine</a></li>
           <li><a href="{{ config('app.url') }}/us/about/contact-us">Contact Us</a></li>
@@ -54,7 +53,6 @@
           <li><a href="{{ config('app.url') }}/us/about/internships">Internships</a></li>
           <li><a href="{{ config('app.url') }}/us/about/donate">Donate</a></li>
           <li><a href="https://help.dosomething.org/hc/en-us">Help Center</a></li>
-          <li><a href="https://www.dosomething.org/us/about/get-out-vote-bootcamp">Bootcamps</a></li>
         </ul>
     </div>
   </div>

@@ -26,7 +26,7 @@ const StoryPage = props => {
       <article className="story-page">
         <header
           role="banner"
-          className="lede-banner base-16-grid"
+          className="lede-banner base-12-grid"
           style={withoutNulls(styles)}
         >
           <div className="wrapper text-center">

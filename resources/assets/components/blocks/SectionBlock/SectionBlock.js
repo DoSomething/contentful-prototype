@@ -34,7 +34,7 @@ const SectionBlock = props => {
       />
 
       <TextContent
-        className="section-block__content base-16-grid"
+        className="section-block__content base-12-grid"
         styles={styles}
       >
         {content}

@@ -673,28 +673,41 @@ p {
 | Large - 16 columns
 */
 
-.base-16-grid {
+.base-12-grid {
   display: grid;
+
   // 4 columns
-  grid-template-columns: [full-start] 1fr 1fr 1fr 1fr [full-end];
+  grid-template-columns: [full-start] 1fr 1fr [midway] 1fr 1fr [full-end];
   grid-column-gap: $half-spacing;
   padding: $half-spacing;
 
   @include media($medium) {
     // 8 columns
-    grid-template-columns: [full-start] 1fr [main-start] 1fr 1fr 1fr 1fr 1fr 1fr [main-end] 1fr [full-end];
+    grid-template-columns: [full-start] 1fr [main-start] 1fr 1fr 1fr [midway] 1fr 1fr 1fr [main-end] 1fr [full-end];
     grid-column-gap: $base-spacing;
-    padding: $base-spacing;
+    padding: $base-spacing $section-spacing;
   }
 
   @include media($large) {
-    // 16 columns
-    grid-template-columns: [full-start] 1fr 1fr [wide-start] 1fr 1fr [main-start] 1fr [narrow-start] 1fr 1fr 1fr 1fr 1fr 1fr [narrow-end] 1fr [main-end] 1fr 1fr [wide-end] 1fr 1fr [full-end];
+    // 12 columns
+    grid-template-columns: [full-start] 1fr [wide-start] 1fr [main-start] 1fr [narrow-start] 1fr 1fr 1fr [midway] 1fr 1fr 1fr [narrow-end] 1fr [main-end] 1fr [wide-end] 1fr [full-end];
   }
 }
 
 .grid-full {
   grid-column: full-start / full-end;
+}
+
+.grid-compact {
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: main-start / main-end;
+  }
+
+  @include media($large) {
+    grid-column: compact-start / compact-end;
+  }
 }
 
 .grid-main {
@@ -733,6 +746,6 @@ p {
   }
 
   @include media($large) {
-    grid-column: auto / span 8;
+    grid-column: auto / span 6;
   }
 }
