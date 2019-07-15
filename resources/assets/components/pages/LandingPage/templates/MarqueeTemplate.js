@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
 import Card from '../../../utilities/Card/Card';
+import SponsorPromotion from '../../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 
 const MarqueeTemplate = ({
+  affiliateSponsors,
   campaignId,
   content,
   coverImage,
@@ -88,6 +90,13 @@ const MarqueeTemplate = ({
                   ) : null}
                 </dl>
               </Card>
+
+              {affiliateSponsors.length ? (
+                <SponsorPromotion
+                  imgUrl={affiliateSponsors[0].fields.logo.url}
+                  title={affiliateSponsors[0].fields.logo.title}
+                />
+              ) : null}
             </div>
           </Enclosure>
         </div>

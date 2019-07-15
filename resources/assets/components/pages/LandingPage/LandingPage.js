@@ -12,6 +12,7 @@ import './landing-page.scss';
 const LandingPage = props => {
   const {
     additionalContent,
+    affiliateSponsors,
     campaignId,
     content,
     coverImage,
@@ -33,6 +34,7 @@ const LandingPage = props => {
     <React.Fragment>
       {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
         <MarqueeTemplate
+          affiliateSponsors={affiliateSponsors}
           campaignId={campaignId}
           content={content}
           coverImage={coverImage}
