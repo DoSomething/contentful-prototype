@@ -3,6 +3,7 @@
 
 $btw-mobile-and-tablet: '(min-width: 860px)';
 
+// @TODO: could we remove this? I think it was related to Member Created Campaigns.
 .header .promotions {
   // Shift it down so that the "creator" portraits are adjacent to the bottom of the Header
   position: relative;
@@ -89,60 +90,60 @@ $btw-mobile-and-tablet: '(min-width: 860px)';
 
 // Promotion Individual
 .promotion {
-  display: table-cell;
+  // display: table-cell;
   position: relative;
 
-  > .wrapper {
-    display: table;
-  }
+  // > .wrapper {
+  //   display: table;
+  // }
 
   .__copy {
-    color: rgba(255, 255, 255, 0.7);
-    display: table-cell;
-    font-size: $font-small;
-    font-weight: $weight-bold;
-    line-height: 1;
-    padding-right: 10px;
+    // color: rgba(255, 255, 255, 0.7);
+    // display: table-cell;
+    // font-size: $font-small;
+    // font-weight: $weight-bold;
+    // line-height: 1;
+    // padding-right: 10px;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    vertical-align: middle;
-    white-space: nowrap;
+    // text-transform: uppercase;
+    // vertical-align: middle;
+    // white-space: nowrap;
 
-    @include media($large) {
-      font-size: $font-regular;
-    }
+    // @include media($large) {
+    //   font-size: $font-regular;
+    // }
   }
 
-  .__image {
-    display: table-cell;
-    vertical-align: middle;
-  }
+  // .__image {
+  //   display: table-cell;
+  //   vertical-align: middle;
+  // }
 }
 
-// Creator Specific
-.promotion--creator {
-  @include media($large) {
-    vertical-align: bottom;
-  }
+// // Creator Specific
+// .promotion--creator {
+//   @include media($large) {
+//     vertical-align: bottom;
+//   }
 
-  .__image {
-    @include media($large) {
-      vertical-align: bottom;
-    }
-  }
+//   .__image {
+//     @include media($large) {
+//       vertical-align: bottom;
+//     }
+//   }
 
-  img {
-    max-height: 70px;
+//   img {
+//     max-height: 70px;
 
-    @include media($large) {
-      max-height: 100px;
-    }
-  }
-}
+//     @include media($large) {
+//       max-height: 100px;
+//     }
+//   }
+// }
 
-// Sponsor Specific
-.promotion--sponsor {
-  img {
-    height: 50px;
-  }
-}
+// // Sponsor Specific
+// .promotion--sponsor {
+//   img {
+//     height: 50px;
+//   }
+// }

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
-import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import TextContent from '../../utilities/TextContent/TextContent';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
+import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 
 import './mosaic-lede-banner.scss';
@@ -95,11 +95,11 @@ const MosaicTemplate = props => {
           {isAffiliated ? actionButton : signupButton}
 
           {affiliateSponsors.length ? (
-            <SponsorPromotion
+            <AffiliatePromotion
               className="mosaic-lede-banner__sponsor padding-top-lg clear-both"
               imgUrl={affiliateSponsors[0].fields.logo.url}
               title={affiliateSponsors[0].fields.logo.title}
-              text={affiliateCreditText}
+              text={{ value: affiliateCreditText, className: 'text-gray-400' }}
             />
           ) : null}
         </div>
