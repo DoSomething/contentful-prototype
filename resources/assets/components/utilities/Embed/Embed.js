@@ -80,7 +80,7 @@ const Embed = props => {
                         <PlaceholderText size="large" />
                       )}
                     </p>
-                    <p className="footnote font-bold caps-lock">
+                    <p className="footnote margin-top-md font-bold caps-lock">
                       {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,
