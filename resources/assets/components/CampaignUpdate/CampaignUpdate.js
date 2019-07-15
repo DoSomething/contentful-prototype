@@ -8,7 +8,7 @@ import Embed from '../utilities/Embed/Embed';
 // @see line 81 *1
 // import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
-import SponsorPromotion from '../SponsorPromotion';
+import AffiliatePromotion from '../utilities/AffiliatePromotion/AffiliatePromotion';
 import { contentfulImageUrl } from '../../helpers';
 import TextContent from '../utilities/TextContent/TextContent';
 
@@ -61,7 +61,10 @@ const CampaignUpdate = props => {
 
       <footer className="padded clearfix">
         {affiliateLogo ? (
-          <SponsorPromotion className="affiliate-logo" imgUrl={affiliateLogo} />
+          <AffiliatePromotion
+            imgUrl={affiliateLogo}
+            text={{ value: 'Powered by', className: 'text-gray-400' }}
+          />
         ) : (
           <Byline
             author={authorFields.name}
