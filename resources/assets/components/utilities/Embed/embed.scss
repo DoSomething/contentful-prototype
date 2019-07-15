@@ -4,10 +4,6 @@
   display: flex;
   min-height: 100px;
 
-  .footnote {
-    margin-top: 0px;
-  }
-
   @include media($mobile) {
     flex-direction: column;
   }
