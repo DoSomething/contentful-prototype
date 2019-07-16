@@ -20,12 +20,8 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
     <AffiliatePromotion
       className={null}
       imgUrl="http://example.com/avatar-aang.jpg"
-      text={
-        Object {
-          "className": "text-gray-400",
-          "value": "Powered by",
-        }
-      }
+      text="Powered by"
+      textClassName="text-gray-400"
       title="Campaign Sponsor Logo"
     />
   </footer>
@@ -52,12 +48,8 @@ exports[`it generates a campaign update snapshot 1`] = `
     <AffiliatePromotion
       className={null}
       imgUrl="http://example.com/avatar-aang.jpg"
-      text={
-        Object {
-          "className": "text-gray-400",
-          "value": "Powered by",
-        }
-      }
+      text="Powered by"
+      textClassName="text-gray-400"
       title="Campaign Sponsor Logo"
     />
   </footer>
