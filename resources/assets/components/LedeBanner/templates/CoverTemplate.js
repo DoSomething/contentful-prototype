@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
-import SponsorPromotion from '../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
+import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 import './cover-lede-banner.scss';
 
@@ -64,7 +64,7 @@ const CoverTemplate = props => {
         )}
 
         {affiliateSponsors.length ? (
-          <SponsorPromotion
+          <AffiliatePromotion
             className="cover-lede-banner__sponsor"
             imgUrl={affiliateSponsors[0].fields.logo.url}
             title={affiliateSponsors[0].fields.logo.title}

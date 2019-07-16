@@ -74,8 +74,8 @@ describe('DefaultTemplate component', () => {
       expect(wrapper.find('Card').hasClass('affiliate-content')).toEqual(false);
     });
 
-    it('does not render a SponsorPromotion component', () => {
-      expect(wrapper.find('SponsorPromotion')).toHaveLength(0);
+    it('does not render a AffiliatePromotion component', () => {
+      expect(wrapper.find('AffiliatePromotion')).toHaveLength(0);
     });
   });
 
@@ -92,8 +92,8 @@ describe('DefaultTemplate component', () => {
       expect(wrapper.find('Card').hasClass('affiliate-content')).toEqual(true);
     });
 
-    it('renders a SponsorPromotion component', () => {
-      expect(wrapper.find('SponsorPromotion')).toHaveLength(1);
+    it('renders a AffiliatePromotion component', () => {
+      expect(wrapper.find('AffiliatePromotion')).toHaveLength(1);
     });
   });
 });
