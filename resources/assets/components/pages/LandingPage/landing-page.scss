@@ -54,13 +54,18 @@
 }
 
 .marquee-signup-button {
-  margin-bottom: $half-spacing;
+  display: block;
+  margin: 0 auto $half-spacing;
+  max-width: 450px;
   padding: $base-spacing;
 }
 
 // @TODO: this could become its own component (KeyValueInformationCard or some better name)
 // but since only an experiment now, leaving as is.
 .campaign-info {
+  margin: 0 auto;
+  max-width: 450px;
+
   dt {
     clear: right;
     color: $gray-500;

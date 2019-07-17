@@ -1,16 +1,18 @@
 import React from 'react';
+import { get } from 'lodash';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
 import Card from '../../../utilities/Card/Card';
-import SponsorPromotion from '../../../SponsorPromotion';
 import { contentfulImageUrl } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
+import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const MarqueeTemplate = ({
+  additionalContent,
   affiliateSponsors,
   campaignId,
   content,
@@ -29,14 +31,9 @@ const MarqueeTemplate = ({
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
 
-  console.log('🖼', {
-    campaignId,
-    title,
-    coverImage,
-    coverImageUrls,
-    scholarshipAmount,
-    tagline,
-  });
+  const timeCommitment = get(additionalContent, 'campaignTimeCommitment', null);
+
+  const actionType = get(additionalContent, 'campaignActionType', null);
 
   return (
     <React.Fragment>
@@ -76,10 +73,18 @@ const MarqueeTemplate = ({
                       </dd>
                     </React.Fragment>
                   ) : null}
-                  <dt>Time</dt>
-                  <dd>5-10 hours</dd>
-                  <dt>Action Type</dt>
-                  <dd>Collect Something</dd>
+                  {timeCommitment ? (
+                    <React.Fragment>
+                      <dt>Time</dt>
+                      <dd>5-10 hours</dd>
+                    </React.Fragment>
+                  ) : null}
+                  {actionType ? (
+                    <React.Fragment>
+                      <dt>Action Type</dt>
+                      <dd>Collect Something</dd>
+                    </React.Fragment>
+                  ) : null}
                   {scholarshipAmount ? (
                     <React.Fragment>
                       <dt className="campaign-info__scholarship">
@@ -92,8 +97,10 @@ const MarqueeTemplate = ({
               </Card>
 
               {affiliateSponsors.length ? (
-                <SponsorPromotion
+                <AffiliatePromotion
+                  className="margin-top-md"
                   imgUrl={affiliateSponsors[0].fields.logo.url}
+                  textClassName="text-gray-400"
                   title={affiliateSponsors[0].fields.logo.title}
                 />
               ) : null}
@@ -103,6 +110,17 @@ const MarqueeTemplate = ({
       </article>
     </React.Fragment>
   );
+};
+
+MarqueeTemplate.propTypes = {
+  additionalContent: PropTypes.object,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  content: PropTypes.object.isRequired,
+};
+
+MarqueeTemplate.defaultProps = {
+  additionalContent: null,
+  affiliateSponsors: [],
 };
 
 export default MarqueeTemplate;

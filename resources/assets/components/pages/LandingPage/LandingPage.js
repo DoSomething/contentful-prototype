@@ -34,6 +34,7 @@ const LandingPage = props => {
     <React.Fragment>
       {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
         <MarqueeTemplate
+          additionalContent={additionalContent}
           affiliateSponsors={affiliateSponsors}
           campaignId={campaignId}
           content={content}
