@@ -1,11 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .marquee-landing-page {
-  background-color: fuchsia;
-
   .marquee-banner {
-    // background-color: maroon;
-
     margin-bottom: $half-spacing;
     grid-column: full-start / full-end;
 
@@ -32,12 +28,6 @@
   }
 
   .primary {
-    h1,
-    h2,
-    h3 {
-      display: none; // @REMOVE
-    }
-
     margin-bottom: $base-spacing;
   }
 

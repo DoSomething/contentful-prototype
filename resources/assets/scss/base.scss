@@ -723,8 +723,6 @@ p {
 }
 
 .grid-main {
-  background-color: pink;
-
   grid-column: full-start / full-end;
 
   @include media($medium) {
@@ -793,8 +791,6 @@ p {
 }
 
 .grid-wide-3\/10 {
-  // background-color: yellow;
-
   grid-column: full-start / full-end;
 
   @include media($medium) {
@@ -815,8 +811,6 @@ p {
 }
 
 .grid-wide-7\/10 {
-  // background-color: orange;
-
   grid-column: full-start / full-end;
 
   @include media($medium) {
