@@ -35,6 +35,7 @@ const SignupButton = props => {
         source_details: JSON.stringify(
           withoutNulls({
             contentful_id: pageId,
+            referrer_user_id: query('referrer_user_id'),
             utm_source: query('utm_source'),
             utm_medium: query('utm_medium'),
             utm_campaign: query('utm_campaign'),
