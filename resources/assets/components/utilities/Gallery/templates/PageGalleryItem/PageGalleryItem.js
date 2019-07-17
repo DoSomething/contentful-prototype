@@ -5,7 +5,7 @@ import { Figure } from '../../../../Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
 const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
-  <a className="page-gallery-item display-block" href={`/us/${slug}`}>
+  <a className="page-gallery-item block" href={`/us/${slug}`}>
     <Figure
       alt={`${coverImage.description || title}-photo`}
       image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}

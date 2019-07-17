@@ -1,5 +1,101 @@
 @import '../../../scss/next-toolbox.scss';
 
+.marquee-landing-page {
+  .cover-image {
+    img {
+      width: 100%;
+    }
+  }
+
+  .marquee-banner {
+    margin-bottom: $half-spacing;
+    grid-column: full-start / full-end;
+
+    @include media($large) {
+      grid-column: wide-start / wide-end;
+    }
+
+    @include media($largest) {
+      grid-column: wide-start / span 7;
+    }
+  }
+
+  .marquee-banner__headline-title {
+    text-transform: uppercase;
+    font-size: $font-large;
+    color: $purple-500;
+  }
+
+  .marquee-banner__headline-subtitle {
+    text-transform: uppercase;
+    font-size: $text-2xl;
+    font-family: $font-league-gothic;
+    font-weight: $weight-normal;
+  }
+
+  .primary {
+    margin-bottom: $base-spacing;
+  }
+
+  .secondary {
+    margin-bottom: $base-spacing;
+
+    @include media($largest) {
+      // @TODO: if primary content is short and this only spans 2, then grid rows are spread
+      // to reach bottom of this secondary area, and the content is spread out vertically.
+      // See if there is a better approach.
+      grid-row: 1 / span 3;
+    }
+  }
+}
+
+.marquee-signup-button {
+  display: block;
+  margin: 0 auto $half-spacing;
+  max-width: 450px;
+  padding: $base-spacing;
+}
+
+// @TODO: this could become its own component (KeyValueInformationCard or some better name)
+// but since only an experiment now, leaving as is.
+.campaign-info {
+  margin: 0 auto;
+  max-width: 450px;
+
+  dt {
+    clear: right;
+    color: $gray-500;
+    font-weight: $weight-sbold;
+    text-transform: uppercase;
+
+    @include media('(min-width: 350px)') {
+      float: left;
+      padding-bottom: $half-spacing;
+    }
+  }
+
+  dd {
+    padding-bottom: $half-spacing;
+
+    @include media('(min-width: 350px)') {
+      float: right;
+    }
+  }
+
+  dt.campaign-info__scholarship {
+    border-top: 1px solid $gray-300;
+    float: none;
+    padding-top: $half-spacing;
+  }
+
+  dd.campaign-info__scholarship {
+    float: none;
+    font-family: $font-league-gothic;
+    font-size: $text-2xl;
+    line-height: 1;
+  }
+}
+
 .pitch-landing-page {
   .container__block {
     // When inside a container wrapper, increase top/bottom padding

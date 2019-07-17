@@ -16,7 +16,6 @@ import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarship
 const PitchTemplate = ({
   additionalContent,
   campaignId,
-  campaignTitle,
   content,
   showPartnerMsgOptIn,
   signupArrowContent,
@@ -24,6 +23,7 @@ const PitchTemplate = ({
   scholarshipDeadline,
   sidebarCTA,
   tagline,
+  title,
 }) => {
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
@@ -54,7 +54,7 @@ const PitchTemplate = ({
               {/* @SIXPACK Code Test: 2019-07-03 */}
               {get(additionalContent, 'sixpackLandingPageGallery', false) ? (
                 <SixpackExperiment
-                  title={`Landing Page Gallery ${campaignTitle}`}
+                  title={`Landing Page Gallery ${title}`}
                   convertableActions={['signup']}
                   alternatives={[
                     <div>
@@ -113,7 +113,6 @@ const PitchTemplate = ({
 PitchTemplate.propTypes = {
   additionalContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
-  campaignTitle: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -124,6 +123,7 @@ PitchTemplate.propTypes = {
   }),
   signupArrowContent: PropTypes.string.isRequired,
   tagline: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 PitchTemplate.defaultProps = {

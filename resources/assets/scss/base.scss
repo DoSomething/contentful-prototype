@@ -145,15 +145,6 @@ p {
   clear: none;
 }
 
-// @TODO: Rename to match Tailwind's .block.
-.display-block {
-  display: block;
-}
-
-.inline {
-  display: inline;
-}
-
 // @TODO: Rename to match Tailwind's .flex.
 .display-flex {
   display: flex;
@@ -493,6 +484,10 @@ p {
   background-color: $gray-900;
 }
 
+.block {
+  display: block;
+}
+
 .font-normal {
   font-weight: $weight-normal;
 }
@@ -507,6 +502,10 @@ p {
 
 .font-secondary {
   font-family: $secondary-font-family;
+}
+
+.inline {
+  display: inline;
 }
 
 .list-reset {
@@ -536,6 +535,10 @@ p {
 
 .leading-loose {
   line-height: 2;
+}
+
+.mb-4 {
+  margin-bottom: $half-spacing;
 }
 
 .p-1 {
@@ -647,6 +650,11 @@ p {
   font-size: $font-larger;
 }
 
+.text-2xl {
+  font-size: $text-2xl;
+}
+
+// @TODO: rename to text-3xl
 .text-xxl {
   font-size: $font-hero;
 }
@@ -657,6 +665,10 @@ p {
 
 .w-1\/2 {
   width: 50%;
+}
+
+.w-full {
+  width: 100%;
 }
 
 .whitespace-no-wrap {
@@ -716,6 +728,10 @@ p {
   @include media($medium) {
     grid-column: main-start / main-end;
   }
+
+  @include media($large) {
+    grid-column: main-start / main-end;
+  }
 }
 
 .grid-narrow {
@@ -738,7 +754,7 @@ p {
   }
 }
 
-.grid-1\/2 {
+.grid-full-1\/2 {
   grid-column: auto / span 4;
 
   @include media($medium) {
@@ -747,5 +763,69 @@ p {
 
   @include media($large) {
     grid-column: auto / span 6;
+  }
+}
+
+.grid-wide-1\/3 {
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: midway / full-end;
+  }
+
+  @include media($large) {
+    grid-column: 8 / span 4;
+  }
+}
+
+.grid-wide-2\/3 {
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: full-start / midway;
+  }
+
+  @include media($large) {
+    grid-column: wide-start / span 6;
+  }
+}
+
+.grid-wide-3\/10 {
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: midway / full-end;
+  }
+
+  @include media($large) {
+    grid-column: midway / wide-end;
+  }
+
+  @include media($larger) {
+    grid-column: 8 / span 4;
+  }
+
+  @include media($largest) {
+    grid-column: 9 / span 3;
+  }
+}
+
+.grid-wide-7\/10 {
+  grid-column: full-start / full-end;
+
+  @include media($medium) {
+    grid-column: full-start / midway;
+  }
+
+  @include media($large) {
+    grid-column: wide-start / midway;
+  }
+
+  @include media($larger) {
+    grid-column: wide-start / span 6;
+  }
+
+  @include media($largest) {
+    grid-column: wide-start / span 7;
   }
 }
