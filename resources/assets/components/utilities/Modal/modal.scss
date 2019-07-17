@@ -39,7 +39,7 @@
   position: relative;
 
   @include media($medium) {
-    min-width: 400px;
+    min-width: 400px; // @TODO: Should this be increased to 600px?
   }
 }
 
@@ -63,8 +63,9 @@
 }
 
 .modal.badge {
-  background-image: url('badge-background.svg');
-  background-repeat: no-repeat;
-  background-size: auto 80%;
-  background-color: rgba(114, 26, 165, 1);
+  background-color: rgb(114, 26, 165);
+
+  @include media($medium) {
+    min-width: 600px;
+  }
 }
