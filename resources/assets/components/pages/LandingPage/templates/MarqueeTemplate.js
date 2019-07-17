@@ -7,20 +7,17 @@ import Enclosure from '../../../Enclosure';
 import Card from '../../../utilities/Card/Card';
 import { contentfulImageUrl } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
-import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const MarqueeTemplate = ({
   additionalContent,
   affiliateSponsors,
-  campaignId,
   content,
   coverImage,
   endDate,
   scholarshipAmount,
   subtitle,
-  tagline,
   title,
 }) => {
   // @TODO: turn this into some helper function!
@@ -41,6 +38,7 @@ const MarqueeTemplate = ({
         <div className="base-12-grid bg-white cover-image">
           <img
             className="grid-wide"
+            alt={coverImage.description || `cover photo for ${title}`}
             srcSet={`${coverImageUrls.small} 360w, ${coverImageUrls.medium} 720w, ${coverImageUrls.large} 1440w, ${coverImageUrls.extraLarge} 2880w`}
             src={coverImageUrls.small}
           />
@@ -90,7 +88,9 @@ const MarqueeTemplate = ({
                       <dt className="campaign-info__scholarship">
                         Win A Scholarship
                       </dt>
-                      <dd className="campaign-info__scholarship">$4,000</dd>
+                      <dd className="campaign-info__scholarship">
+                        {scholarshipAmount}
+                      </dd>
                     </React.Fragment>
                   ) : null}
                 </dl>
@@ -115,12 +115,19 @@ const MarqueeTemplate = ({
 MarqueeTemplate.propTypes = {
   additionalContent: PropTypes.object,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
-  content: PropTypes.object.isRequired,
+  content: PropTypes.string.isRequired,
+  coverImage: PropTypes.object.isRequired,
+  endDate: PropTypes.string,
+  scholarshipAmount: PropTypes.number,
+  subtitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 MarqueeTemplate.defaultProps = {
   additionalContent: null,
   affiliateSponsors: [],
+  endDate: null,
+  scholarshipAmount: null,
 };
 
 export default MarqueeTemplate;

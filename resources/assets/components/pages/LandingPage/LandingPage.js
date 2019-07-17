@@ -36,13 +36,11 @@ const LandingPage = props => {
         <MarqueeTemplate
           additionalContent={additionalContent}
           affiliateSponsors={affiliateSponsors}
-          campaignId={campaignId}
           content={content}
           coverImage={coverImage}
           endDate={endDate}
           scholarshipAmount={scholarshipAmount}
           subtitle={subtitle}
-          tagline={tagline}
           title={title}
         />
       ) : (
@@ -65,20 +63,24 @@ const LandingPage = props => {
 
 LandingPage.propTypes = {
   additionalContent: PropTypes.object,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  coverImage: PropTypes.object.isRequired,
   endDate: PropTypes.string,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,
+  subtitle: PropTypes.string.isRequired,
   tagline: PropTypes.string,
   title: PropTypes.string.isRequired,
 };
 
 LandingPage.defaultProps = {
   additionalContent: null,
+  affiliateSponsors: [],
   endDate: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
