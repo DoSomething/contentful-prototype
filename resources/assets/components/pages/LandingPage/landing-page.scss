@@ -1,6 +1,12 @@
 @import '../../../scss/next-toolbox.scss';
 
 .marquee-landing-page {
+  .cover-image {
+    img {
+      width: 100%;
+    }
+  }
+
   .marquee-banner {
     margin-bottom: $half-spacing;
     grid-column: full-start / full-end;
@@ -17,7 +23,7 @@
   .marquee-banner__headline-title {
     text-transform: uppercase;
     font-size: $font-large;
-    color: #141493;
+    color: $purple-500;
   }
 
   .marquee-banner__headline-subtitle {

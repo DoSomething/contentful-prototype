@@ -23,9 +23,9 @@ const MarqueeTemplate = ({
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {
-    extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'), // 2880 x 1620
-    large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'), // 1440 x 810
-    medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'), // 720 x 405
+    extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'),
+    large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'),
+    medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
 
