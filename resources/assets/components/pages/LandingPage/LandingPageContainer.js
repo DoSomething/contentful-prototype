@@ -14,8 +14,15 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     additionalContent: landingPage.additionalContent,
+    affiliateCreditText: get(
+      state,
+      'campaign.additionalContent.affiliateCreditText',
+      undefined,
+    ),
     affiliateSponsors: state.campaign.affiliateSponsors,
+    affiliatePartners: state.campaign.affiliatePartners,
     campaignId: state.campaign.campaignId,
+    campaignLead: get(state, 'campaign.campaignLead.fields', null),
     contentfulId: state.campaign.id,
     content: landingPage.content,
     coverImage: state.campaign.coverImage,

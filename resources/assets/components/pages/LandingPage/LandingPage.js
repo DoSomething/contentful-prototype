@@ -12,8 +12,11 @@ import './landing-page.scss';
 const LandingPage = props => {
   const {
     additionalContent,
+    affiliateCreditText,
+    affiliatePartners,
     affiliateSponsors,
     campaignId,
+    campaignLead,
     content,
     coverImage,
     endDate,
@@ -46,7 +49,11 @@ const LandingPage = props => {
       ) : (
         <PitchTemplate
           additionalContent={additionalContent}
+          affiliateCreditText={affiliateCreditText}
+          affiliatePartners={affiliatePartners}
+          affiliateSponsors={affiliateSponsors}
           campaignId={campaignId}
+          campaignLead={campaignLead}
           content={content}
           scholarshipAmount={scholarshipAmount}
           scholarshipDeadline={scholarshipDeadline}
@@ -63,8 +70,14 @@ const LandingPage = props => {
 
 LandingPage.propTypes = {
   additionalContent: PropTypes.object,
+  affiliateCreditText: PropTypes.string,
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.string.isRequired,
+  campaignLead: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }),
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
   endDate: PropTypes.string,
@@ -80,7 +93,10 @@ LandingPage.propTypes = {
 
 LandingPage.defaultProps = {
   additionalContent: null,
+  affiliateCreditText: undefined,
+  affiliatePartners: [],
   affiliateSponsors: [],
+  campaignLead: {},
   endDate: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Enclosure from '../../../Enclosure';
+import InfoBar from '../../../InfoBar/InfoBar';
 import Card from '../../../utilities/Card/Card';
 import { getScholarshipAffiliateLabel } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
@@ -15,7 +16,11 @@ import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarship
 
 const PitchTemplate = ({
   additionalContent,
+  affiliateCreditText,
+  affiliatePartners,
+  affiliateSponsors,
   campaignId,
+  campaignLead,
   content,
   showPartnerMsgOptIn,
   signupArrowContent,
@@ -100,6 +105,13 @@ const PitchTemplate = ({
 
       <PuckWaypoint name="landing_page_cta-bottom" />
 
+      <InfoBar
+        affiliateCreditText={affiliateCreditText}
+        affiliateSponsors={affiliateSponsors}
+        affiliatePartners={affiliatePartners}
+        contactEmail={campaignLead.email || undefined}
+      />
+
       <div className="info-bar -dark">
         <div className="wrapper">
           A DoSomething.org campaign. Join millions of young people transforming
@@ -112,7 +124,14 @@ const PitchTemplate = ({
 
 PitchTemplate.propTypes = {
   additionalContent: PropTypes.object,
+  affiliateCreditText: PropTypes.string,
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.string.isRequired,
+  campaignLead: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }),
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -128,6 +147,10 @@ PitchTemplate.propTypes = {
 
 PitchTemplate.defaultProps = {
   additionalContent: null,
+  affiliateCreditText: undefined,
+  affiliatePartners: [],
+  affiliateSponsors: [],
+  campaignLead: {},
   scholarshipAmount: null,
   scholarshipDeadline: null,
   sidebarCTA: {

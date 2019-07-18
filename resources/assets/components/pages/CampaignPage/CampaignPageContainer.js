@@ -22,7 +22,15 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    affiliateCreditText: get(
+      state,
+      'campaign.additionalContent.affiliateCreditText',
+      undefined,
+    ),
+    affiliateSponsors: state.campaign.affiliateSponsors,
+    affiliatePartners: state.campaign.affiliatePartners,
     campaignEndDate: state.campaign.endDate,
+    campaignLead: get(state, 'campaign.campaignLead.fields', null),
     dashboard: state.campaign.dashboard,
     entryContent,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),

@@ -18,7 +18,9 @@ const TrafficDistribution = ({ percentage, feature, children }) => {
     shouldSeeFeature = storedValue.showFeature;
   }
 
-  return shouldSeeFeature ? <div>{children}</div> : null;
+  return shouldSeeFeature ? (
+    <div className="traffic-distribution">{children}</div>
+  ) : null;
 };
 
 TrafficDistribution.propTypes = {

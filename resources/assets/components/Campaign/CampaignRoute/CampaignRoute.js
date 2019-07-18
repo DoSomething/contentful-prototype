@@ -6,7 +6,6 @@ import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import NotFound from '../../NotFound';
-import InfoBar from '../../InfoBar/InfoBar';
 import Modal from '../../utilities/Modal/Modal';
 import { isCampaignClosed } from '../../../helpers';
 import BlockPage from '../../pages/BlockPage/BlockPage';
@@ -37,116 +36,116 @@ const CampaignRoute = props => {
   const baseUrl = match.url;
 
   return (
-    <div>
-      <div>
-        {shouldShowAffirmation ? (
-          <Modal onClose={clickedHideAffirmation}>
-            <PostSignupModal affirmation={affirmation || undefined} />
-          </Modal>
-        ) : null}
+    <React.Fragment>
+      {shouldShowAffirmation ? (
+        <Modal onClose={clickedHideAffirmation}>
+          <PostSignupModal affirmation={affirmation || undefined} />
+        </Modal>
+      ) : null}
 
-        <Switch>
-          <Route path={join(baseUrl, 'blocks/:id')} component={BlockPage} />
+      <Switch>
+        <Route path={join(baseUrl, 'blocks/:id')} component={BlockPage} />
 
-          <Route
-            path={join(baseUrl, 'quiz/:slug')}
-            component={CampaignPageContainer}
-          />
+        <Route
+          path={join(baseUrl, 'quiz/:slug')}
+          component={CampaignPageContainer}
+        />
 
-          <Route
-            exact
-            path={baseUrl}
-            render={() => {
-              if (isClosed) {
-                if (hasCommunityPage) {
-                  return (
-                    <Redirect
-                      to={{
-                        pathname: join(baseUrl, 'community'),
-                        search: location.search,
-                      }}
-                    />
-                  );
-                }
-
-                return <CampaignClosedPage endDate={props.endDate} />;
-              }
-
-              if (!isClosed && isSignedUp) {
+        <Route
+          exact
+          path={baseUrl}
+          render={() => {
+            if (isClosed) {
+              if (hasCommunityPage) {
                 return (
                   <Redirect
                     to={{
-                      pathname: join(baseUrl, 'action'),
+                      pathname: join(baseUrl, 'community'),
                       search: location.search,
                     }}
                   />
                 );
               }
 
-              if (!props.landingPage) {
-                return <NotFound />;
-              }
-
-              // @TODO: temporary function to select component to use based on type.
-              // Will be removed once all landing pages use the LandingPage content type.
-              return props.landingPage.type === 'page' ? (
-                <LandingPageContainer {...props} />
-              ) : (
-                <ContentfulEntry json={props.landingPage} />
+              return (
+                <CampaignClosedPage
+                  endDate={props.endDate}
+                  affiliateCreditText={affiliateCreditText}
+                  affiliatePartners={affiliatePartners}
+                  affiliateSponsors={affiliateSponsors}
+                  campaignLead={campaignLead}
+                />
               );
-            }}
-          />
+            }
 
-          <Route
-            path={join(baseUrl, ':slug')}
-            render={routeProps => {
-              const slug = get(routeProps, 'match.params.slug', null);
+            if (!isClosed && isSignedUp) {
+              return (
+                <Redirect
+                  to={{
+                    pathname: join(baseUrl, 'action'),
+                    search: location.search,
+                  }}
+                />
+              );
+            }
 
-              if (isClosed) {
-                if (slug === 'community' && hasCommunityPage) {
-                  return <CampaignPageContainer {...routeProps} />;
-                }
+            if (!props.landingPage) {
+              return <NotFound />;
+            }
 
-                return (
-                  <Redirect
-                    to={{
-                      pathname: baseUrl,
-                      search: location.search,
-                    }}
-                  />
-                );
+            // @TODO: temporary function to select component to use based on type.
+            // Will be removed once all landing pages use the LandingPage content type.
+            return props.landingPage.type === 'page' ? (
+              <LandingPageContainer {...props} />
+            ) : (
+              <ContentfulEntry json={props.landingPage} />
+            );
+          }}
+        />
+
+        <Route
+          path={join(baseUrl, ':slug')}
+          render={routeProps => {
+            const slug = get(routeProps, 'match.params.slug', null);
+
+            if (isClosed) {
+              if (slug === 'community' && hasCommunityPage) {
+                return <CampaignPageContainer {...routeProps} />;
               }
 
-              if (!isSignedUp) {
-                return (
-                  <Redirect
-                    to={{
-                      pathname: baseUrl,
-                      search: location.search,
-                    }}
-                  />
-                );
-              }
+              return (
+                <Redirect
+                  to={{
+                    pathname: baseUrl,
+                    search: location.search,
+                  }}
+                />
+              );
+            }
 
-              return <CampaignPageContainer {...routeProps} />;
-            }}
-          />
-        </Switch>
-      </div>
-      <InfoBar
-        affiliateCreditText={affiliateCreditText}
-        affiliateSponsors={affiliateSponsors}
-        affiliatePartners={affiliatePartners}
-        contactEmail={campaignLead.email || undefined}
-      />
-    </div>
+            if (!isSignedUp) {
+              return (
+                <Redirect
+                  to={{
+                    pathname: baseUrl,
+                    search: location.search,
+                  }}
+                />
+              );
+            }
+
+            return <CampaignPageContainer {...routeProps} />;
+          }}
+        />
+      </Switch>
+    </React.Fragment>
   );
 };
 
 CampaignRoute.propTypes = {
   affiliateCreditText: PropTypes.string,
-  affiliatePartners: PropTypes.arrayOf(PropTypes.object).isRequired,
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affirmation: PropTypes.object.isRequired,
   campaignLead: PropTypes.shape({
     name: PropTypes.string,
@@ -164,7 +163,9 @@ CampaignRoute.propTypes = {
 
 CampaignRoute.defaultProps = {
   affiliateCreditText: undefined,
-  campaignLead: null,
+  affiliatePartners: [],
+  affiliateSponsors: [],
+  campaignLead: {},
   endDate: null,
   landingPage: {},
 };

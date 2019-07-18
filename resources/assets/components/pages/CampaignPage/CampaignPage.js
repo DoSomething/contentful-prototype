@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
+import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
@@ -16,34 +17,56 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
+  const {
+    affiliateCreditText,
+    affiliateSponsors,
+    affiliatePartners,
+    campaignLead,
+    dashboard,
+    entryContent,
+    isCampaignClosed,
+  } = props;
+
   return (
-    <div>
-      <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
+    <React.Fragment>
+      <LedeBannerContainer displaySignup={Boolean(!entryContent)} />
 
       <div className="main clearfix">
-        {props.dashboard ? <ContentfulEntry json={props.dashboard} /> : null}
+        {dashboard ? <ContentfulEntry json={dashboard} /> : null}
 
-        {!props.isCampaignClosed && !props.entryContent ? (
+        {!isCampaignClosed && !entryContent ? (
           <CampaignPageNavigationContainer />
         ) : null}
 
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
-          {!props.entryContent ? (
+          {!entryContent ? (
             <CampaignPageContent {...props} />
           ) : (
-            <ContentfulEntry json={props.entryContent} />
+            <ContentfulEntry json={entryContent} />
           )}
         </Enclosure>
-        {!props.entryContent ? (
-          <CallToActionContainer sticky hideIfSignedUp />
-        ) : null}
+        {!entryContent ? <CallToActionContainer sticky hideIfSignedUp /> : null}
       </div>
-    </div>
+
+      <InfoBar
+        affiliateCreditText={affiliateCreditText}
+        affiliateSponsors={affiliateSponsors}
+        affiliatePartners={affiliatePartners}
+        contactEmail={campaignLead.email || undefined}
+      />
+    </React.Fragment>
   );
 };
 
 CampaignPage.propTypes = {
+  affiliateCreditText: PropTypes.string,
+  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  campaignLead: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }),
   dashboard: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -60,6 +83,10 @@ CampaignPage.propTypes = {
 };
 
 CampaignPage.defaultProps = {
+  affiliateCreditText: undefined,
+  affiliatePartners: [],
+  affiliateSponsors: [],
+  campaignLead: {},
   dashboard: null,
   entryContent: null,
   isCampaignClosed: false,
