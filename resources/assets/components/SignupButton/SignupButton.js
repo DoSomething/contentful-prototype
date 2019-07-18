@@ -51,6 +51,12 @@ const SignupButton = props => {
     });
   };
 
+  const signupButton = copy => (
+    <Button className={className} onClick={handleSignup}>
+      {copy}
+    </Button>
+  );
+
   // Have signups been disabled for this campaign?
   if (disableSignup) {
     return null;
@@ -60,11 +66,7 @@ const SignupButton = props => {
   const sourceOverride = get(sourceActionText, trafficSource);
   const buttonCopy = text || sourceOverride || campaignActionText;
 
-  return (
-    <Button className={className} onClick={handleSignup}>
-      {buttonCopy}
-    </Button>
-  );
+  return signupButton(buttonCopy);
 };
 
 SignupButton.propTypes = {
