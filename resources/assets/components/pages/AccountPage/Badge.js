@@ -5,31 +5,17 @@ import { Figure } from '../../Figure';
 import badgeImages from './BadgeImages';
 
 const Badge = props => {
-  const {
-    name,
-    text,
-    earned,
-    boldText,
-    explainerText,
-    size,
-    className,
-    header,
-  } = props;
+  const { name, earned, size, className, children } = props;
   const badgeImageIndex = earned ? name : `${name}Locked`;
 
   return (
     <Figure
       image={badgeImages[badgeImageIndex]}
-      alt={text}
+      alt={name}
       size={size}
       className={className}
     >
-      {header ? (
-        <h1>{text}</h1>
-      ) : (
-        <p>{boldText ? <strong>{text}</strong> : text}</p>
-      )}
-      <p>{explainerText}</p>
+      {children}
     </Figure>
   );
 };
@@ -37,20 +23,15 @@ const Badge = props => {
 Badge.propTypes = {
   earned: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  boldText: PropTypes.bool,
-  explainerText: PropTypes.string,
   size: PropTypes.string,
   className: PropTypes.string,
-  header: PropTypes.string,
+  children: PropTypes.node,
 };
 
 Badge.defaultProps = {
-  boldText: false,
-  explainerText: null,
   size: null,
   className: null,
-  header: null,
+  children: null,
 };
 
 export default Badge;
