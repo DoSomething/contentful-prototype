@@ -6,6 +6,7 @@ import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -16,30 +17,32 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
+  const { dashboard, entryContent, isCampaignClosed } = props;
+
   return (
-    <div>
-      <LedeBannerContainer displaySignup={Boolean(!props.entryContent)} />
+    <React.Fragment>
+      <LedeBannerContainer displaySignup={Boolean(!entryContent)} />
 
       <div className="main clearfix">
-        {props.dashboard ? <ContentfulEntry json={props.dashboard} /> : null}
+        {dashboard ? <ContentfulEntry json={dashboard} /> : null}
 
-        {!props.isCampaignClosed && !props.entryContent ? (
+        {!isCampaignClosed && !entryContent ? (
           <CampaignPageNavigationContainer />
         ) : null}
 
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
           {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
-          {!props.entryContent ? (
+          {!entryContent ? (
             <CampaignPageContent {...props} />
           ) : (
-            <ContentfulEntry json={props.entryContent} />
+            <ContentfulEntry json={entryContent} />
           )}
         </Enclosure>
-        {!props.entryContent ? (
-          <CallToActionContainer sticky hideIfSignedUp />
-        ) : null}
+        {!entryContent ? <CallToActionContainer sticky hideIfSignedUp /> : null}
       </div>
-    </div>
+
+      <CampaignInfoBarContainer />
+    </React.Fragment>
   );
 };
 

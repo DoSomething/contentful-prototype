@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 const CampaignClosedPage = props => {
+  const { endDate } = props;
+
   return (
     <div>
       <LedeBannerContainer displaySignup={false} />
@@ -15,7 +18,7 @@ const CampaignClosedPage = props => {
           <h1>Great work!</h1>
           <p>
             This campaign closed on{' '}
-            {format(props.endDate, 'MMMM do, yyyy', {
+            {format(endDate, 'MMMM do, yyyy', {
               awareOfUnicodeTokens: true,
             })}
             . Thank you to all the members who participated and the incredible
@@ -23,6 +26,8 @@ const CampaignClosedPage = props => {
           </p>
         </Enclosure>
       </div>
+
+      <CampaignInfoBarContainer />
     </div>
   );
 };

@@ -9,6 +9,7 @@ import { getScholarshipAffiliateLabel } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 import CallToActionContainer from '../../../CallToAction/CallToActionContainer';
+import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import SixpackExperiment from '../../../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
@@ -99,6 +100,8 @@ const PitchTemplate = ({
       />
 
       <PuckWaypoint name="landing_page_cta-bottom" />
+
+      <CampaignInfoBarContainer />
 
       <div className="info-bar -dark">
         <div className="wrapper">
