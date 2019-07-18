@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
-import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignInfoBar from '../../utilities/CampaignInfoBar/CampaignInfoBar';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -49,7 +49,7 @@ const CampaignPage = props => {
         {!entryContent ? <CallToActionContainer sticky hideIfSignedUp /> : null}
       </div>
 
-      <InfoBar
+      <CampaignInfoBar
         affiliateCreditText={affiliateCreditText}
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}

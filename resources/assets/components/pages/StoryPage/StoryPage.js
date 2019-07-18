@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import CampaignInfoBar from '../../utilities/CampaignInfoBar/CampaignInfoBar';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
 import './story-page.scss';
@@ -56,7 +56,7 @@ const StoryPage = props => {
         ))}
       </article>
 
-      <InfoBar />
+      <CampaignInfoBar />
     </React.Fragment>
   );
 };

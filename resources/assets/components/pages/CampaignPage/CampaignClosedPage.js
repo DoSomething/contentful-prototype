@@ -3,8 +3,8 @@ import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
-import InfoBar from '../../InfoBar/InfoBar';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import CampaignInfoBar from '../../utilities/CampaignInfoBar/CampaignInfoBar';
 
 const CampaignClosedPage = props => {
   const {
@@ -32,7 +32,7 @@ const CampaignClosedPage = props => {
         </Enclosure>
       </div>
 
-      <InfoBar
+      <CampaignInfoBar
         affiliateCreditText={affiliateCreditText}
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}

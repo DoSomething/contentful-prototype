@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Enclosure from '../../../Enclosure';
-import InfoBar from '../../../InfoBar/InfoBar';
 import Card from '../../../utilities/Card/Card';
 import { getScholarshipAffiliateLabel } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 import CallToActionContainer from '../../../CallToAction/CallToActionContainer';
+import CampaignInfoBar from '../../../utilities/CampaignInfoBar/CampaignInfoBar';
 import SixpackExperiment from '../../../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
@@ -105,7 +105,7 @@ const PitchTemplate = ({
 
       <PuckWaypoint name="landing_page_cta-bottom" />
 
-      <InfoBar
+      <CampaignInfoBar
         affiliateCreditText={affiliateCreditText}
         affiliateSponsors={affiliateSponsors}
         affiliatePartners={affiliatePartners}
