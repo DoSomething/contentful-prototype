@@ -6,11 +6,7 @@ import EmailSubscriptions from './EmailSubscriptions';
 const Subscriptions = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic -sm">Your Email Subscriptions</h2>
-    <div className="margin-top-lg float-left">
-      <div className="margin-top-lg">
-        <EmailSubscriptions {...props} />
-      </div>
-    </div>
+    <EmailSubscriptions {...props} />
   </div>
 );
 
