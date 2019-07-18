@@ -31,10 +31,23 @@
     font-size: $text-2xl;
     font-family: $font-league-gothic;
     font-weight: $weight-normal;
+
+    @include media($medium) {
+      font-size: $text-4xl;
+    }
   }
 
   .primary {
     margin-bottom: $base-spacing;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      display: none;
+    }
   }
 
   .secondary {
