@@ -4,6 +4,7 @@ import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
 import { query, withoutNulls } from '../../helpers';
+import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 
 const SignupButton = props => {
   const {
@@ -62,11 +63,27 @@ const SignupButton = props => {
     return null;
   }
 
-  // If a user has a traffic source w/ an override, try it!
-  const sourceOverride = get(sourceActionText, trafficSource);
-  const buttonCopy = text || sourceOverride || campaignActionText;
+  // In descending priority: button-specific text prop,
+  // campaign action text override, or standard "Take Action" copy.
+  const buttonCopy = text || campaignActionText;
 
-  return signupButton(buttonCopy);
+  // Button copy override based on the user's traffic source.
+  const sourceOverride = get(sourceActionText, trafficSource);
+
+  return sourceOverride ? (
+    /* @SIXPACK Code Test: 2019-07-18 */
+    <SixpackExperiment
+      title={`Source Action Text Override ${campaignTitle}`}
+      convertableActions={['signup']}
+      control={signupButton(sourceOverride)}
+      alternatives={[
+        // Don't show the sourceOverride for the alternative.
+        signupButton(buttonCopy),
+      ]}
+    />
+  ) : (
+    signupButton(buttonCopy)
+  );
 };
 
 SignupButton.propTypes = {
