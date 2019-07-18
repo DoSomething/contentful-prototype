@@ -75,13 +75,13 @@ const MarqueeTemplate = ({
                   {timeCommitment ? (
                     <React.Fragment>
                       <dt>Time</dt>
-                      <dd>5-10 hours</dd>
+                      <dd>{timeCommitment}</dd>
                     </React.Fragment>
                   ) : null}
                   {actionType ? (
                     <React.Fragment>
                       <dt>Action Type</dt>
-                      <dd>Collect Something</dd>
+                      <dd>{actionType}</dd>
                     </React.Fragment>
                   ) : null}
                   {scholarshipAmount ? (
