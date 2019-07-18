@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Person from '../../Person/Person';
@@ -6,6 +7,12 @@ import Gallery from '../../utilities/Gallery/Gallery';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
+
+export const GalleryBlockFragment = gql`
+  fragment GalleryBlockFragment on GalleryBlock {
+    blocks
+  }
+`;
 
 const renderBlock = (block, imageAlignment, imageFit) => {
   switch (block.type) {

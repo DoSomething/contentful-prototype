@@ -7,14 +7,8 @@ import GeneralPage from '../pages/GeneralPage/GeneralPage';
 
 const PageDispatcher = props => {
   switch (props.type) {
-    case 'companyPage':
-      return <CompanyPage {...props.fields} />;
-
-    case 'storyPage':
-      return <StoryPage {...props.fields} />;
-
     default:
-      return <GeneralPage {...props.fields} />;
+      return <CompanyPage {...props.fields} />;
   }
 };
 
