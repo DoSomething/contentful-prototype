@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import PitchTemplate from './templates/PitchTemplate';
 import MarqueeTemplate from './templates/MarqueeTemplate';
+import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 
 import './landing-page.scss';
 
@@ -32,16 +33,39 @@ const LandingPage = props => {
 
   return (
     <React.Fragment>
+      {/* @SIXPACK Code Test: 2019-07-17 */}
       {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
-        <MarqueeTemplate
-          additionalContent={additionalContent}
-          affiliateSponsors={affiliateSponsors}
-          content={content}
-          coverImage={coverImage}
-          endDate={endDate}
-          scholarshipAmount={scholarshipAmount}
-          subtitle={subtitle}
-          title={title}
+        <SixpackExperiment
+          title={`Marquee Template ${title}`}
+          convertableActions={['signup']}
+          control={
+            <PitchTemplate
+              additionalContent={additionalContent}
+              campaignId={campaignId}
+              content={content}
+              scholarshipAmount={scholarshipAmount}
+              scholarshipDeadline={scholarshipDeadline}
+              showPartnerMsgOptIn={showPartnerMsgOptIn}
+              sidebarCTA={sidebarCTA}
+              signupArrowContent={signupArrowContent}
+              tagline={tagline}
+              testName="Pitch Template"
+              title={title}
+            />
+          }
+          alternatives={[
+            <MarqueeTemplate
+              additionalContent={additionalContent}
+              affiliateSponsors={affiliateSponsors}
+              content={content}
+              coverImage={coverImage}
+              endDate={endDate}
+              scholarshipAmount={scholarshipAmount}
+              subtitle={subtitle}
+              testName="Marquee Template"
+              title={title}
+            />,
+          ]}
         />
       ) : (
         <PitchTemplate
@@ -57,6 +81,7 @@ const LandingPage = props => {
           title={title}
         />
       )}
+      {/* @SIXPACK Code Test: 2019-07-17 */}
     </React.Fragment>
   );
 };
