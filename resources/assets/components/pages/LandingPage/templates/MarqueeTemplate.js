@@ -90,7 +90,7 @@ const MarqueeTemplate = ({
                         Win A Scholarship
                       </dt>
                       <dd className="campaign-info__scholarship">
-                        {scholarshipAmount}
+                        {`$${scholarshipAmount}`}
                       </dd>
                     </React.Fragment>
                   ) : null}
@@ -100,7 +100,13 @@ const MarqueeTemplate = ({
               {affiliateSponsors.length ? (
                 <AffiliatePromotion
                   className="margin-top-md"
-                  imgUrl={affiliateSponsors[0].fields.logo.url}
+                  imgUrl={
+                    get(
+                      additionalContent,
+                      'campaignSponsorLogoAlternativeUrl',
+                      null,
+                    ) || affiliateSponsors[0].fields.logo.url
+                  }
                   textClassName="text-gray-400"
                   title={affiliateSponsors[0].fields.logo.title}
                 />
