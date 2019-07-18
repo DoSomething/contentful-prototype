@@ -4,16 +4,11 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import CampaignInfoBar from '../../utilities/CampaignInfoBar/CampaignInfoBar';
+import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 const CampaignClosedPage = props => {
-  const {
-    affiliateCreditText,
-    affiliatePartners,
-    affiliateSponsors,
-    campaignLead,
-    endDate,
-  } = props;
+  const { endDate } = props;
+
   return (
     <div>
       <LedeBannerContainer displaySignup={false} />
@@ -32,32 +27,13 @@ const CampaignClosedPage = props => {
         </Enclosure>
       </div>
 
-      <CampaignInfoBar
-        affiliateCreditText={affiliateCreditText}
-        affiliateSponsors={affiliateSponsors}
-        affiliatePartners={affiliatePartners}
-        contactEmail={campaignLead.email || undefined}
-      />
+      <CampaignInfoBarContainer />
     </div>
   );
 };
 
 CampaignClosedPage.propTypes = {
-  affiliateCreditText: PropTypes.string,
-  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
-  campaignLead: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-  }),
   endDate: PropTypes.string.isRequired,
-};
-
-CampaignClosedPage.defaultProps = {
-  affiliateCreditText: undefined,
-  affiliatePartners: [],
-  affiliateSponsors: [],
-  campaignLead: {},
 };
 
 export default CampaignClosedPage;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AffiliateCredits from '../AffiliateCredits/AffiliateCredits';
+import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
 const CampaignInfoBar = ({
   affiliateCreditText,

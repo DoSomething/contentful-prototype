@@ -6,7 +6,7 @@ import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import CampaignInfoBar from '../../utilities/CampaignInfoBar/CampaignInfoBar';
+import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -17,15 +17,7 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
-  const {
-    affiliateCreditText,
-    affiliateSponsors,
-    affiliatePartners,
-    campaignLead,
-    dashboard,
-    entryContent,
-    isCampaignClosed,
-  } = props;
+  const { dashboard, entryContent, isCampaignClosed } = props;
 
   return (
     <React.Fragment>
@@ -49,24 +41,12 @@ const CampaignPage = props => {
         {!entryContent ? <CallToActionContainer sticky hideIfSignedUp /> : null}
       </div>
 
-      <CampaignInfoBar
-        affiliateCreditText={affiliateCreditText}
-        affiliateSponsors={affiliateSponsors}
-        affiliatePartners={affiliatePartners}
-        contactEmail={campaignLead.email || undefined}
-      />
+      <CampaignInfoBarContainer />
     </React.Fragment>
   );
 };
 
 CampaignPage.propTypes = {
-  affiliateCreditText: PropTypes.string,
-  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
-  campaignLead: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-  }),
   dashboard: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -83,10 +63,6 @@ CampaignPage.propTypes = {
 };
 
 CampaignPage.defaultProps = {
-  affiliateCreditText: undefined,
-  affiliatePartners: [],
-  affiliateSponsors: [],
-  campaignLead: {},
   dashboard: null,
   entryContent: null,
   isCampaignClosed: false,

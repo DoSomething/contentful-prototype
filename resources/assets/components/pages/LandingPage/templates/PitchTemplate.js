@@ -9,18 +9,14 @@ import { getScholarshipAffiliateLabel } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../../LedeBanner/LedeBannerContainer';
 import CallToActionContainer from '../../../CallToAction/CallToActionContainer';
-import CampaignInfoBar from '../../../utilities/CampaignInfoBar/CampaignInfoBar';
+import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import SixpackExperiment from '../../../utilities/SixpackExperiment/SixpackExperiment';
 import PostGalleryBlockQuery from '../../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 
 const PitchTemplate = ({
   additionalContent,
-  affiliateCreditText,
-  affiliatePartners,
-  affiliateSponsors,
   campaignId,
-  campaignLead,
   content,
   showPartnerMsgOptIn,
   signupArrowContent,
@@ -105,12 +101,7 @@ const PitchTemplate = ({
 
       <PuckWaypoint name="landing_page_cta-bottom" />
 
-      <CampaignInfoBar
-        affiliateCreditText={affiliateCreditText}
-        affiliateSponsors={affiliateSponsors}
-        affiliatePartners={affiliatePartners}
-        contactEmail={campaignLead.email || undefined}
-      />
+      <CampaignInfoBarContainer />
 
       <div className="info-bar -dark">
         <div className="wrapper">
@@ -124,14 +115,7 @@ const PitchTemplate = ({
 
 PitchTemplate.propTypes = {
   additionalContent: PropTypes.object,
-  affiliateCreditText: PropTypes.string,
-  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.string.isRequired,
-  campaignLead: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-  }),
   content: PropTypes.string.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -147,10 +131,6 @@ PitchTemplate.propTypes = {
 
 PitchTemplate.defaultProps = {
   additionalContent: null,
-  affiliateCreditText: undefined,
-  affiliatePartners: [],
-  affiliateSponsors: [],
-  campaignLead: {},
   scholarshipAmount: null,
   scholarshipDeadline: null,
   sidebarCTA: {
