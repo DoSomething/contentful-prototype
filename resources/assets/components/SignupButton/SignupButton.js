@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import { query, withoutNulls } from '../../helpers';
 import Button from '../utilities/Button/Button';
+import { query, withoutNulls } from '../../helpers';
 
 const SignupButton = props => {
   const {
