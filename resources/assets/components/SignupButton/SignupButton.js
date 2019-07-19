@@ -92,11 +92,7 @@ const SignupButton = props => {
     />
   ) : (
     /* @SIXPACK Code Test: 2019-07-19 */
-    <Button
-      className={className}
-      onClick={handleSignup}
-      testName="Source Action Text Override"
-    >
+    <Button className={className} onClick={handleSignup}>
       {buttonCopy}
     </Button>
   );
