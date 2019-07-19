@@ -15,6 +15,7 @@ const SignupButton = props => {
     className,
     disableSignup,
     pageId,
+    sixpackSourceActionText,
     sourceActionText,
     storeCampaignSignup,
     text,
@@ -70,7 +71,7 @@ const SignupButton = props => {
   // Button copy override based on the user's traffic source.
   const sourceOverride = get(sourceActionText, trafficSource);
 
-  return sourceOverride ? (
+  return sixpackSourceActionText && sourceOverride ? (
     /* @SIXPACK Code Test: 2019-07-18 */
     <SixpackExperiment
       title={`Source Action Text Override ${campaignTitle}`}
@@ -94,6 +95,7 @@ SignupButton.propTypes = {
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
   pageId: PropTypes.string.isRequired,
+  sixpackSourceActionText: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
@@ -105,6 +107,7 @@ SignupButton.defaultProps = {
   campaignTitle: null,
   className: null,
   disableSignup: false,
+  sixpackSourceActionText: false,
   sourceActionText: null,
   text: null,
   trafficSource: null,
