@@ -77,7 +77,7 @@ const SignupButton = props => {
           onClick={handleSignup}
           testName="Default Copy"
         >
-          {sourceOverride}
+          {buttonCopy}
         </Button>
       }
       alternatives={[
@@ -87,7 +87,7 @@ const SignupButton = props => {
           testName="Source Action Text Override"
         >
           {/* Don't show the sourceOverride for this alternative. */}
-          {buttonCopy}
+          {sourceOverride}
         </Button>,
       ]}
     />
