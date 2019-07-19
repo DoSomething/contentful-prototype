@@ -54,8 +54,8 @@ const SignupButton = props => {
     });
   };
 
-  const signupButton = copy => (
-    <Button className={className} onClick={handleSignup}>
+  const signupButton = (copy, testName = undefined) => (
+    <Button className={className} onClick={handleSignup} testName={testName}>
       {copy}
     </Button>
   );
@@ -77,10 +77,10 @@ const SignupButton = props => {
     <SixpackExperiment
       title={`Source Action Text Override ${campaignTitle}`}
       convertableActions={['signup']}
-      control={signupButton(sourceOverride)}
+      control={signupButton(sourceOverride, 'Default Copy')}
       alternatives={[
         // Don't show the sourceOverride for the alternative.
-        signupButton(buttonCopy),
+        signupButton(buttonCopy, 'Source Action Text Override'),
       ]}
     />
   ) : (
