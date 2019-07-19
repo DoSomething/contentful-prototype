@@ -54,12 +54,6 @@ const SignupButton = props => {
     });
   };
 
-  const signupButton = (copy, testName = undefined) => (
-    <Button className={className} onClick={handleSignup} testName={testName}>
-      {copy}
-    </Button>
-  );
-
   // Have signups been disabled for this campaign?
   if (disableSignup) {
     return null;
@@ -73,18 +67,39 @@ const SignupButton = props => {
   const sourceOverride = get(sourceActionText, trafficSource);
 
   return sixpackSourceActionText && sourceOverride ? (
-    /* @SIXPACK Code Test: 2019-07-18 */
+    /* @SIXPACK Code Test: 2019-07-19 */
     <SixpackExperiment
       title={`Source Action Text Override ${campaignTitle}`}
       convertableActions={['signup']}
-      control={signupButton(sourceOverride, 'Default Copy')}
+      control={
+        <Button
+          className={className}
+          onClick={handleSignup}
+          testName="Default Copy"
+        >
+          {sourceOverride}
+        </Button>
+      }
       alternatives={[
-        // Don't show the sourceOverride for the alternative.
-        signupButton(buttonCopy, 'Source Action Text Override'),
+        <Button
+          className={className}
+          onClick={handleSignup}
+          testName="Source Action Text Override"
+        >
+          {/* Don't show the sourceOverride for this alternative. */}
+          {buttonCopy}
+        </Button>,
       ]}
     />
   ) : (
-    signupButton(buttonCopy)
+    /* @SIXPACK Code Test: 2019-07-19 */
+    <Button
+      className={className}
+      onClick={handleSignup}
+      testName="Source Action Text Override"
+    >
+      {buttonCopy}
+    </Button>
   );
 };
 
