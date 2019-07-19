@@ -86,7 +86,6 @@ const SignupButton = props => {
           onClick={handleSignup}
           testName="Source Action Text Override"
         >
-          {/* Don't show the sourceOverride for this alternative. */}
           {sourceOverride}
         </Button>,
       ]}
