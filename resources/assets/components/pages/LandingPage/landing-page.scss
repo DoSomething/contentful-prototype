@@ -63,10 +63,35 @@
 }
 
 .marquee-signup-button {
-  display: block;
-  margin: 0 auto $half-spacing;
-  max-width: 450px;
-  padding: $base-spacing;
+  background-color: $white;
+  border-top: 1px solid $gray-200;
+  bottom: 0;
+  left: 0;
+  padding: $half-spacing;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+
+  @include media($medium) {
+    background-color: none;
+    bottom: auto;
+    left: auto;
+    padding: 0;
+    position: static;
+    width: auto;
+    z-index: auto;
+  }
+
+  .button {
+    display: block;
+    margin: 0 auto;
+    max-width: 450px;
+    padding: $base-spacing;
+
+    @include media($medium) {
+      margin: 0 auto $half-spacing;
+    }
+  }
 }
 
 // @TODO: this could become its own component (KeyValueInformationCard or some better name)
