@@ -57,7 +57,9 @@ const MarqueeTemplate = ({
             </div>
 
             <div className="grid-wide-3/10 secondary">
-              <SignupButtonContainer className="w-full marquee-signup-button" />
+              <div className="marquee-signup-button">
+                <SignupButtonContainer className="w-full" />
+              </div>
 
               <Card className="bordered padded rounded campaign-info">
                 <h1 className="mb-4 text-m uppercase">Campaign Info</h1>

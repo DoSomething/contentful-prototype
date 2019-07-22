@@ -48,6 +48,14 @@ p {
   }
 }
 
+// @TODO: Added for the Marquee template experiment, so the full footer
+// can be viewed when fixed signup button reaches the bottom of the page.
+.footer {
+  @include media($small) {
+    padding-bottom: 105px;
+  }
+}
+
 // @TODO: for cleanup. Adding to base for now since needed
 // for validation in all forms.
 .field-label {
