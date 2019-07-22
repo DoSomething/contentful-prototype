@@ -9,6 +9,7 @@ import { env } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import { EmbedBlockFragment } from '../Iframe';
+import { PersonBlockFragment } from '../../Person/Person';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
 import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
@@ -27,6 +28,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...ShareBlockFragment
       ...EmbedBlockFragment
       ...ImagesBlockFragment
+      ...PersonBlockFragment
       ...GalleryBlockFragment
       ...PostGalleryBlockFragment
       ...TextSubmissionBlockFragment
@@ -40,6 +42,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${ShareBlockFragment}
   ${EmbedBlockFragment}
   ${ImagesBlockFragment}
+  ${PersonBlockFragment}
   ${GalleryBlockFragment}
   ${PostGalleryBlockFragment}
   ${TextSubmissionBlockFragment}

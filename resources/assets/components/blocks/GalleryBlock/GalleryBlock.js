@@ -10,7 +10,14 @@ import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalle
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
-    blocks
+    internalTitle
+    title
+    blocks {
+      ...PersonBlockFragment
+    }
+    itemsPerRow
+    imageAlignment
+    imageFit
   }
 `;
 
@@ -44,9 +51,7 @@ const galleryTypes = { '2': 'duo', '3': 'triad', '4': 'quartet' };
 
 const GalleryBlock = props => {
   const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
-
   const galleryType = galleryTypes[itemsPerRow];
-
   return (
     <div className="gallery-block">
       {title ? <h1>{title}</h1> : null}

@@ -7,7 +7,6 @@ import TextContent from '../../utilities/TextContent/TextContent';
 
 const CompanyPage = props => {
   const { title, subTitle } = props;
-  console.log(props);
   delete props.content.content[0];
 
   return (
@@ -16,8 +15,8 @@ const CompanyPage = props => {
         <h1>{title}</h1>
         <h3>{subTitle}</h3>
       </div>
-      <div className="company-page bg-white margin-top-lg base-16-grid">
-        <div className="grid-main">
+      <div className="company-page bg-white margin-top-lg">
+        <div className="">
           <TextContent>{props.content}</TextContent>
         </div>
       </div>
