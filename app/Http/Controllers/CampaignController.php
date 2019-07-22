@@ -61,6 +61,10 @@ class CampaignController extends Controller
         $campaign = $this->campaignRepository->findBySlug($slug);
 
         return response()->view('app', [
+            'admin' => [
+                'page' => get_page_settings($campaign, 'campaign', $slug),
+                'additionalSettings' => '',
+            ],
             // This is used to build campaign-specific login links in the
             // server-rendered top navigation bar.
             'campaign' => $campaign,

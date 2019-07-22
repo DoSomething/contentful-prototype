@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    @if (has_staff_access() && isset($admin))
+    @if (has_staff_access() && isset($admin) && data_get($admin, 'page'))
         @include('partials.admin-dashboard')
     @endif
 
