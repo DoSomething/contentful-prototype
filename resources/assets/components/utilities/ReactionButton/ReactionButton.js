@@ -41,10 +41,12 @@ const ReactionButton = ({ post }) => (
         <button type="button" className="reaction" onClick={toggleReaction}>
           <BaseFigure
             media={button}
-            alignment="left"
+            alignment={post.reactions ? 'left' : null}
             className="margin-bottom-none"
           >
-            <span className="reaction__meta">{post.reactions}</span>
+            {post.reactions ? (
+              <span className="reaction__meta">{post.reactions}</span>
+            ) : null}
           </BaseFigure>
         </button>
       );
