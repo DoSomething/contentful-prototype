@@ -12,6 +12,7 @@ import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliateP
 
 const MarqueeTemplate = ({
   additionalContent,
+  affiliateCreditText,
   affiliateSponsors,
   content,
   coverImage,
@@ -109,6 +110,7 @@ const MarqueeTemplate = ({
                       null,
                     ) || affiliateSponsors[0].fields.logo.url
                   }
+                  text={affiliateCreditText}
                   textClassName="text-gray-400"
                   title={affiliateSponsors[0].fields.logo.title}
                 />
@@ -123,6 +125,7 @@ const MarqueeTemplate = ({
 
 MarqueeTemplate.propTypes = {
   additionalContent: PropTypes.object,
+  affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
@@ -134,6 +137,7 @@ MarqueeTemplate.propTypes = {
 
 MarqueeTemplate.defaultProps = {
   additionalContent: null,
+  affiliateCreditText: undefined,
   affiliateSponsors: [],
   endDate: null,
   scholarshipAmount: null,

@@ -13,6 +13,7 @@ import './landing-page.scss';
 const LandingPage = props => {
   const {
     additionalContent,
+    affiliateCreditText,
     affiliateSponsors,
     campaignId,
     content,
@@ -56,6 +57,7 @@ const LandingPage = props => {
           alternatives={[
             <MarqueeTemplate
               additionalContent={additionalContent}
+              affiliateCreditText={affiliateCreditText}
               affiliateSponsors={affiliateSponsors}
               content={content}
               coverImage={coverImage}
@@ -88,6 +90,7 @@ const LandingPage = props => {
 
 LandingPage.propTypes = {
   additionalContent: PropTypes.object,
+  affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
@@ -105,6 +108,7 @@ LandingPage.propTypes = {
 
 LandingPage.defaultProps = {
   additionalContent: null,
+  affiliateCreditText: undefined,
   affiliateSponsors: [],
   endDate: null,
   scholarshipAmount: null,
