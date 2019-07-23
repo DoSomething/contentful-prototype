@@ -4,7 +4,7 @@
             <span>Admin Dashboard</span>
         </h1>
 
-        <h2 class="grid-full margin-bottom-md uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
+        <h2 class="font-normal grid-full margin-bottom-md text-gray-800 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
 
         <section class="panel grid-full-1/2 margin-bottom-lg">
             <div class="wrapper rounded bg-gray-400">
@@ -20,23 +20,13 @@
                             </a>
                         @else
                             <a class="icon-link font-normal" href="{{ $admin['page']['editUrl'] }}" target="_blank">
-                                @include('svg.edit-pencil-icon', ['class' => 'icon icon-edit-pencil']) Edit the content on Contentful
+                                @include('svg.edit-pencil-icon', ['class' => 'icon icon-edit-pencil']) Edit this content on Contentful
                             </a>
                         @endif
                     </li>
                     <li class="margin-bottom-md">
                         <a class="icon-link font-normal" href="{{ $admin['page']['cacheUrl'] }}">
                             @include('svg.trash-icon', ['class' => 'icon icon-trash']) Clear the cache for this page
-                        </a>
-                    </li>
-                    <li class="margin-bottom-md">
-                        <a class="icon-link font-normal" href="">
-                            View Campaign reportbacks in Rogue
-                        </a>
-                    </li>
-                    <li class="margin-bottom-md">
-                        <a class="icon-link font-normal" href="">
-                            View Campaign metadata in Rogue
                         </a>
                     </li>
                 </ul>
