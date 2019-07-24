@@ -59,25 +59,25 @@ const ContentfulEntryLoader = ({ id, className }) => (
     {({ loading, error, data }) => {
       if (loading) {
         return (
-          <div className="grid-main spinner -centered margin-vertical-xlg" />
+          <div className="grid-narrow spinner -centered margin-vertical-xlg" />
         );
       }
 
       if (error || !data.block) {
         return (
-          <div className={classnames(className, 'grid-main')}>
+          <div className={classnames(className, 'grid-narrow')}>
             <ErrorBlock />
           </div>
         );
       }
 
       const entryGridMapping = {
-        EmbedBlock: 'grid-wide', // @TODO: may need to reassess, since maybe not all embeds should align to wide?
-        PostGalleryBlock: 'grid-wide',
+        EmbedBlock: 'grid-main', // @TODO: may need to reassess, since maybe not all embeds should align to main?
+        PostGalleryBlock: 'grid-main',
       };
 
       const blockType = data.block.__typename;
-      const gridClass = get(entryGridMapping, blockType, 'grid-main');
+      const gridClass = get(entryGridMapping, blockType, 'grid-narrow');
 
       return (
         <div className={classnames(className, gridClass)}>

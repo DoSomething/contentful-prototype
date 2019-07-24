@@ -7,10 +7,10 @@ import classnames from 'classnames';
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
 import Button from '../../../utilities/Button/Button';
-import SponsorPromotion from '../../../SponsorPromotion';
 import { isExternal, dynamicString } from '../../../../helpers';
 import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import TextContent from '../../../utilities/TextContent/TextContent';
+import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const onLinkClick = (link, context) => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
@@ -65,7 +65,7 @@ const DefaultTemplate = props => {
       >
         <Embed url={link} badged />
         {affiliateLogo ? (
-          <SponsorPromotion
+          <AffiliatePromotion
             className="affiliate-logo -padded"
             imgUrl={affiliateLogo.url}
             title={affiliateLogo.description}
@@ -88,8 +88,8 @@ const DefaultTemplate = props => {
         ) : null}
 
         {affiliateLogo ? (
-          <SponsorPromotion
-            className="affiliate-logo -padded"
+          <AffiliatePromotion
+            className="text-black padded"
             imgUrl={affiliateLogo.url}
             title={affiliateLogo.description}
           />

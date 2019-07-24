@@ -1,78 +1,116 @@
 /* eslint-disable react/no-array-index-key */
 
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
-import Enclosure from '../../Enclosure';
 import PitchTemplate from './templates/PitchTemplate';
-import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
-import CallToActionContainer from '../../CallToAction/CallToActionContainer';
+import MarqueeTemplate from './templates/MarqueeTemplate';
+import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 
 import './landing-page.scss';
 
 const LandingPage = props => {
   const {
+    additionalContent,
+    affiliateCreditText,
+    affiliateSponsors,
+    campaignId,
     content,
+    coverImage,
+    endDate,
     scholarshipAmount,
     scholarshipDeadline,
     showPartnerMsgOptIn,
     sidebar,
     signupArrowContent,
+    subtitle,
     tagline,
+    title,
   } = props;
 
   // @TODO: allow outputting multiple blocks in the sidebar.
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
 
   return (
-    <div>
-      <LedeBannerContainer
-        signupArrowContent={signupArrowContent}
-        showPartnerMsgOptIn={showPartnerMsgOptIn}
-      />
-
-      <div className="clearfix bg-white">
-        <Enclosure className="default-container margin-lg pitch-landing-page">
-          <PitchTemplate
-            content={content}
-            sidebarCTA={sidebarCTA}
-            scholarshipAmount={scholarshipAmount}
-            scholarshipDeadline={scholarshipDeadline}
-          />
-        </Enclosure>
-
-        <CallToActionContainer content={tagline} sticky />
-      </div>
-
-      <PuckWaypoint name="landing_page_cta-top" />
-      <CallToActionContainer
-        className="legacy border-top border-radius-none bg-off-white padding-lg hide-on-mobile"
-        content={tagline}
-      />
-      <PuckWaypoint name="landing_page_cta-bottom" />
-
-      <div className="info-bar -dark">
-        <div className="wrapper">
-          A DoSomething.org campaign. Join millions of young people transforming
-          their communities. Let&#39;s Do This!
-        </div>
-      </div>
-    </div>
+    <React.Fragment>
+      {/* @SIXPACK Code Test: 2019-07-17 */}
+      {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
+        <SixpackExperiment
+          title={`Marquee Template ${title}`}
+          convertableActions={['signup']}
+          control={
+            <PitchTemplate
+              additionalContent={additionalContent}
+              campaignId={campaignId}
+              content={content}
+              scholarshipAmount={scholarshipAmount}
+              scholarshipDeadline={scholarshipDeadline}
+              showPartnerMsgOptIn={showPartnerMsgOptIn}
+              sidebarCTA={sidebarCTA}
+              signupArrowContent={signupArrowContent}
+              tagline={tagline}
+              testName="Pitch Template"
+              title={title}
+            />
+          }
+          alternatives={[
+            <MarqueeTemplate
+              additionalContent={additionalContent}
+              affiliateCreditText={affiliateCreditText}
+              affiliateSponsors={affiliateSponsors}
+              content={content}
+              coverImage={coverImage}
+              endDate={endDate}
+              scholarshipAmount={scholarshipAmount}
+              subtitle={subtitle}
+              testName="Marquee Template"
+              title={title}
+            />,
+          ]}
+        />
+      ) : (
+        <PitchTemplate
+          additionalContent={additionalContent}
+          campaignId={campaignId}
+          content={content}
+          scholarshipAmount={scholarshipAmount}
+          scholarshipDeadline={scholarshipDeadline}
+          showPartnerMsgOptIn={showPartnerMsgOptIn}
+          sidebarCTA={sidebarCTA}
+          signupArrowContent={signupArrowContent}
+          tagline={tagline}
+          title={title}
+        />
+      )}
+      {/* @SIXPACK Code Test: 2019-07-17 */}
+    </React.Fragment>
   );
 };
 
 LandingPage.propTypes = {
+  additionalContent: PropTypes.object,
+  affiliateCreditText: PropTypes.string,
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
+  coverImage: PropTypes.object.isRequired,
+  endDate: PropTypes.string,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,
+  subtitle: PropTypes.string.isRequired,
   tagline: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 LandingPage.defaultProps = {
+  additionalContent: null,
+  affiliateCreditText: undefined,
+  affiliateSponsors: [],
+  endDate: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showPartnerMsgOptIn: false,

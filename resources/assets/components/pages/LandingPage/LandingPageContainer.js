@@ -13,8 +13,18 @@ const mapStateToProps = (state, ownProps) => {
   const landingPage = get(ownProps, 'landingPage.fields', ownProps);
 
   return {
-    campaignId: state.campaign.id,
+    additionalContent: landingPage.additionalContent,
+    affiliateCreditText: get(
+      state,
+      'campaign.additionalContent.affiliateCreditText',
+      undefined,
+    ),
+    affiliateSponsors: state.campaign.affiliateSponsors,
+    campaignId: state.campaign.campaignId,
+    contentfulId: state.campaign.id,
     content: landingPage.content,
+    coverImage: state.campaign.coverImage,
+    endDate: state.campaign.endDate,
     scholarshipAmount: state.campaign.scholarshipAmount,
     scholarshipDeadline: state.campaign.scholarshipDeadline,
     showPartnerMsgOptIn: get(
@@ -28,7 +38,9 @@ const mapStateToProps = (state, ownProps) => {
       'signupArrowContent',
       null,
     ),
+    subtitle: state.campaign.callToAction,
     tagline: get(state.campaign.additionalContent, 'tagline'),
+    title: state.campaign.title,
   };
 };
 

@@ -2,7 +2,11 @@ import { get, has } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import { findContentfulEntry, shouldShowLandingPage } from '../../../helpers';
+import {
+  findContentfulEntry,
+  isCampaignClosed,
+  shouldShowLandingPage,
+} from '../../../helpers';
 
 /**
  * Provide state from the Redux store as props for this component.
@@ -21,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     campaignEndDate: state.campaign.endDate,
     dashboard: state.campaign.dashboard,
     entryContent,
+    isCampaignClosed: isCampaignClosed(state.campaign.endDate),
     landingPage: get(state.campaign, 'landingPage', null),
     noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,

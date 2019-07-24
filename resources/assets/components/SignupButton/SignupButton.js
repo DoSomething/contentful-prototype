@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import { query, withoutNulls } from '../../helpers';
 import Button from '../utilities/Button/Button';
+import { query, withoutNulls } from '../../helpers';
+import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 
 const SignupButton = props => {
   const {
@@ -14,6 +15,7 @@ const SignupButton = props => {
     className,
     disableSignup,
     pageId,
+    sixpackSourceActionText,
     sourceActionText,
     storeCampaignSignup,
     text,
@@ -35,6 +37,7 @@ const SignupButton = props => {
         source_details: JSON.stringify(
           withoutNulls({
             contentful_id: pageId,
+            referrer_user_id: query('referrer_user_id'),
             utm_source: query('utm_source'),
             utm_medium: query('utm_medium'),
             utm_campaign: query('utm_campaign'),
@@ -56,11 +59,39 @@ const SignupButton = props => {
     return null;
   }
 
-  // If a user has a traffic source w/ an override, try it!
-  const sourceOverride = get(sourceActionText, trafficSource);
-  const buttonCopy = text || sourceOverride || campaignActionText;
+  // In descending priority: button-specific text prop,
+  // campaign action text override, or standard "Take Action" copy.
+  const buttonCopy = text || campaignActionText;
 
-  return (
+  // Button copy override based on the user's traffic source.
+  const sourceOverride = get(sourceActionText, trafficSource);
+
+  return sixpackSourceActionText && sourceOverride ? (
+    /* @SIXPACK Code Test: 2019-07-19 */
+    <SixpackExperiment
+      title={`Source Action Text Override ${campaignTitle}`}
+      convertableActions={['signup']}
+      control={
+        <Button
+          className={className}
+          onClick={handleSignup}
+          testName="Default Copy"
+        >
+          {buttonCopy}
+        </Button>
+      }
+      alternatives={[
+        <Button
+          className={className}
+          onClick={handleSignup}
+          testName="Source Action Text Override"
+        >
+          {sourceOverride}
+        </Button>,
+      ]}
+    />
+  ) : (
+    /* @SIXPACK Code Test: 2019-07-19 */
     <Button className={className} onClick={handleSignup}>
       {buttonCopy}
     </Button>
@@ -75,6 +106,7 @@ SignupButton.propTypes = {
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
   pageId: PropTypes.string.isRequired,
+  sixpackSourceActionText: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
@@ -86,6 +118,7 @@ SignupButton.defaultProps = {
   campaignTitle: null,
   className: null,
   disableSignup: false,
+  sixpackSourceActionText: false,
   sourceActionText: null,
   text: null,
   trafficSource: null,

@@ -5,7 +5,7 @@ import * as React from 'react';
 import NotFound from '../NotFound';
 import Iframe from '../utilities/Iframe';
 import Loader from '../utilities/Loader';
-import Affirmation from '../Affirmation';
+import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import StaticBlock from '../StaticBlock';
 import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import { ContentfulEntryJson } from '../../types';
@@ -65,7 +65,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
     switch (type) {
       case 'affirmation':
-        return <Affirmation {...withoutNulls(json.fields)} />;
+        return <AffirmationContainer {...withoutNulls(json.fields)} />;
 
       case 'callToAction':
         return (

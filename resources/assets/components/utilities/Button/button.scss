@@ -1,6 +1,8 @@
 @import '../../../scss/next-toolbox.scss';
 
 .button {
+  text-transform: capitalize;
+
   &.-inline {
     clear: none;
   }
@@ -29,8 +31,4 @@
 
 .button__attached-container {
   padding: $half-spacing;
-}
-
-.button.-tertiary {
-  background: #fff;
 }

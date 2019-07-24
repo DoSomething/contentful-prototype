@@ -1,5 +1,5 @@
 <div id="flash-message" class="flash-message {{session('flash_message')['class'] ?? ''}} is-visible">
-    <div class="wrapper base-16-grid">
+    <div class="wrapper base-12-grid">
         <p class="flash-content">
             <em>{{ session('flash_message')['text'] }}</em>
         </p>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
-const InfoBar = ({
+const CampaignInfoBar = ({
   affiliateCreditText,
   affiliatePartners,
   affiliateSponsors,
@@ -24,18 +24,18 @@ const InfoBar = ({
   </div>
 );
 
-InfoBar.propTypes = {
+CampaignInfoBar.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
   contactEmail: PropTypes.string,
 };
 
-InfoBar.defaultProps = {
+CampaignInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
   contactEmail: 'help@dosomething.org',
 };
 
-export default InfoBar;
+export default CampaignInfoBar;

@@ -61,6 +61,9 @@ $tabbed-navigation-zindex: 100;
 $sticky-cta-zindex: 200;
 $notification-zindex: 300;
 
+// Layout
+$largest: '(min-width: 1280px)';
+
 // Tailwind Colors
 $gray-100: #fafafa;
 $gray-200: #e3e3e3;
@@ -71,3 +74,10 @@ $gray-600: #7f7f7f;
 $gray-700: #636363;
 $gray-800: #4e4e4e;
 $gray-900: #373737;
+
+$purple-500: #141493;
+
+// Tailwind Font Sizes
+// @TODO: add the rest!
+$text-2xl: 47px;
+$text-4xl: 60px;

@@ -32,12 +32,10 @@ const authLink = setContext((request, context) => {
 });
 
 // Create an error-reporting link.
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ operation, graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.map(({ message, locations, path }) =>
-      console.error(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-      ),
+    graphQLErrors.map(({ message }) =>
+      console.error(`[GraphQL: ${operation.operationName}] ${message}`),
     );
   }
 

@@ -3,10 +3,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InfoBar from '../../InfoBar/InfoBar';
 import ContentfulEntry from '../../ContentfulEntry';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 import './story-page.scss';
 
@@ -26,7 +26,7 @@ const StoryPage = props => {
       <article className="story-page">
         <header
           role="banner"
-          className="lede-banner base-16-grid"
+          className="lede-banner base-12-grid"
           style={withoutNulls(styles)}
         >
           <div className="wrapper text-center">
@@ -56,7 +56,7 @@ const StoryPage = props => {
         ))}
       </article>
 
-      <InfoBar />
+      <CampaignInfoBarContainer />
     </React.Fragment>
   );
 };
