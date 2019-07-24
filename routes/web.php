@@ -51,6 +51,9 @@ $router->get('{category}/{slug}', function ($category, $slug) {
     return redirect('us/'.$category.'/'.$slug);
 })->where('category', $categories);
 
+// Referral Pages
+$router->get('referral/{signupId}', 'ReferralController@show');
+
 // Blocks
 $router->view('us/blocks/{id}', 'app');
 
@@ -64,19 +67,8 @@ $router->get('{slug}', function ($slug) {
 $router->get('cache/{cacheId}', 'CacheController');
 $router->get('next/cache/{cacheId}', 'CacheController');
 
-// Referrals CSV export
-$router->get('next/referrals/export', 'ReferralController@csvExport');
-
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.
 $router->fallback(function () {
     return response()->view('errors.404', [], 404);
 });
-
-/*
- * The following are API Routes that are currently using the web middleware,
- * until the implementation of JWT tokens.
- */
-
-// Referrals
-$router->resource('next/referrals', 'ReferralController', ['only' => ['store']]);

@@ -9,11 +9,14 @@ use Illuminate\Http\Request;
 class ReferralController extends Controller
 {
     /**
-     * ReferralController constructor.
+     * Show a referral page for given signup id.
+     * TODO: Remove all other functions in this class.
+     *
+     * @param  int $signupId
      */
-    public function __construct()
+    public function show($signupId, Request $request)
     {
-        $this->middleware('auth');
+        return response()->view('app', ['signupId' => $signupId]);
     }
 
     /**
