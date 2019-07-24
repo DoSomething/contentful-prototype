@@ -10,14 +10,16 @@ import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalle
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
+    id
     internalTitle
     title
-    blocks {
-      ...PersonBlockFragment
-    }
     itemsPerRow
     imageAlignment
     imageFit
+    blocks {
+      id
+      ...PersonBlockFragment
+    }
   }
 `;
 
@@ -25,6 +27,8 @@ const renderBlock = (block, imageAlignment, imageFit) => {
   switch (block.type) {
     case 'person':
       return <Person key={block.id} {...block.fields} />;
+    case 'staff':
+      return <Person key={block.id} {...block} />;
 
     case 'campaign':
       return <CampaignGalleryItem key={block.id} {...block} />;

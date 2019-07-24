@@ -8,12 +8,17 @@ import AdvisoryBoardMemberTemplate from './templates/AdvisoryBoardMemberTemplate
 
 export const PersonBlockFragment = gql`
   fragment PersonBlockFragment on PersonBlock {
+    id
     name
     type
     active
     jobTitle
+    photo {
+      url(w: 400, h: 400)
+      description
+    }
     alternatePhoto {
-      url(w: 200, h: 200)
+      url(w: 400, h: 400, fit: FILL)
       description
     }
     description

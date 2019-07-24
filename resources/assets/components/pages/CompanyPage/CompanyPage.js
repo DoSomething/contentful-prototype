@@ -1,25 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './company-page.scss';
-import '../../../scss/base.scss';
 
 import TextContent from '../../utilities/TextContent/TextContent';
+import '../../../scss/base.scss';
+import './company-page.scss';
+import '../../../scss/gallery-grid.scss';
+import '../../blocks/GalleryBlock/GalleryBlock';
+
+const display = content => {
+  content.map(item => {
+    console.log(item);
+  });
+};
+const TAG = what => {
+  console.log('TAGGED: ', what);
+};
 
 const CompanyPage = props => {
-  const { title, subTitle } = props;
-  delete props.content.content[0];
+  const { title } = props;
 
+  TAG(props.content.content);
   return (
-    <div className="container bg-gray margin-bottom-lg">
-      <div className="container bg-white padding-top-lg padding-horizontal-md">
-        <h1>{title}</h1>
-        <h3>{subTitle}</h3>
-      </div>
-      <div className="company-page bg-white margin-top-lg">
-        <div className="">
-          <TextContent>{props.content}</TextContent>
-        </div>
-      </div>
+    <div className="base-12-grid">
+      <h1 className="company-page__background-title">{title}</h1>
+      <TextContent className="grid-main gallery-grid-quartet">
+        {props.content}
+      </TextContent>
     </div>
   );
 };
@@ -27,7 +33,6 @@ const CompanyPage = props => {
 CompanyPage.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.object.isRequired,
-  subTitle: PropTypes.string.isRequired,
 };
 
 export default CompanyPage;

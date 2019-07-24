@@ -6,11 +6,10 @@ import { contentfulImageUrl } from '../../../../helpers';
 
 const StaffTemplate = props => {
   const { name, jobTitle, alternatePhoto, twitterId } = props;
-
   return (
     <Figure
       alt={`${name}-photo`}
-      image={contentfulImageUrl(alternatePhoto, '400', '400', 'fill')}
+      image={contentfulImageUrl(alternatePhoto.url)}
     >
       <h4>
         {twitterId ? (
@@ -33,7 +32,7 @@ const StaffTemplate = props => {
 StaffTemplate.propTypes = {
   name: PropTypes.string.isRequired,
   jobTitle: PropTypes.string.isRequired,
-  alternatePhoto: PropTypes.string.isRequired,
+  alternatePhoto: PropTypes.object.isRequired,
   twitterId: PropTypes.string,
 };
 
