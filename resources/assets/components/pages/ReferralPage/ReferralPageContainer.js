@@ -5,28 +5,31 @@ import gql from 'graphql-tag';
 import ReferralPage from './ReferralPage';
 import Query from '../../Query';
 
-// TODO: Find the Phoenix campaign properties to display.
-const REFERRAL_PAGE = gql`
-  query ReferralPageQuery($id: Int!) {
+const REFERRAL_PAGE_SIGNUP = gql`
+  query ReferralPageSignupQuery($id: Int!) {
     signup(id: $id) {
       id
       user {
         id
         firstName
       }
-      campaign {
-        id
-      }
+      campaignId
     }
   }
 `;
 
 const ReferralPageContainer = ({ match }) => (
   <Query
-    query={REFERRAL_PAGE}
+    query={REFERRAL_PAGE_SIGNUP}
     variables={{ id: Number(match.params.signupId) }}
   >
-    {data => <ReferralPage firstName={data.signup.user.firstName} />}
+    {data => (
+      <ReferralPage
+        firstName={data.signup.user.firstName}
+        primaryCampaignId={data.signup.campaignId}
+        userId={data.signup.user.id}
+      />
+    )}
   </Query>
 );
 

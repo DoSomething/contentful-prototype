@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CampaignLink from './ReferralPageCampaignLink';
+
 const ReferralPage = props => {
   return (
     <div>
@@ -16,6 +18,10 @@ const ReferralPage = props => {
             DoSomething.org. Once you and {props.firstName} complete the
             campaign, you’ll both earn a $5 gift card!
           </p>
+          <CampaignLink
+            campaignId={props.primaryCampaignId}
+            userId={props.userId}
+          />
         </div>
       </div>
     </div>
@@ -24,6 +30,8 @@ const ReferralPage = props => {
 
 ReferralPage.propTypes = {
   firstName: PropTypes.string.isRequired,
+  primaryCampaignId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default ReferralPage;
