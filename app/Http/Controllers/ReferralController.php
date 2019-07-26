@@ -14,7 +14,7 @@ class ReferralController extends Controller
      *
      * @param  int $signupId
      */
-    public function show($signupId, Request $request)
+    public function show($signupId)
     {
         return response()->view('app', ['signupId' => $signupId]);
     }
