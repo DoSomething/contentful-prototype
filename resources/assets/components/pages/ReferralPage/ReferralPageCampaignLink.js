@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 import Query from '../../Query';
 
-// TODO: Grab Cover Image and Call To Action Tagline
+// @TODO: Grab Cover Image and Call To Action Tagline
 const REFERRAL_PAGE_CAMPAIGN = gql`
   query ReferralPageCampaignQuery($campaignId: String!) {
     campaignWebsiteByCampaignId(campaignId: $campaignId) {

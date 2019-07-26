@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 
 import CampaignLink from './ReferralPageCampaignLink';
 
-// TODO: Allow override via config variable.
+// @TODO: Allow override via config variables.
 const SECONDARY_CAMPAIGN_ID = 7951;
+const SECONDARY_CAMPAIGN_PROMPT =
+  'In less than 5 minutes, you can join 193,242 young people putting an end to gun violence.';
 
 const ReferralPage = props => {
   return (
@@ -33,8 +35,7 @@ const ReferralPage = props => {
             <strong>
               Interested in doing a different campaign to get your gift card?
             </strong>{' '}
-            In less than 5 minutes, you can join 193,242 young people putting an
-            end to gun violence.
+            {SECONDARY_CAMPAIGN_PROMPT}
           </p>
           <ul>
             <li>

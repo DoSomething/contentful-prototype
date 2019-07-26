@@ -8,7 +8,6 @@ import Query from '../../Query';
 const REFERRAL_PAGE_SIGNUP = gql`
   query ReferralPageSignupQuery($id: Int!) {
     signup(id: $id) {
-      id
       user {
         id
         firstName

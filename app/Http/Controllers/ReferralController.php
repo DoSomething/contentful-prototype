@@ -10,7 +10,7 @@ class ReferralController extends Controller
 {
     /**
      * Show a referral page for given signup id.
-     * TODO: Remove all other functions in this class.
+     * @TODO: Remove all other functions in this class.
      *
      * @param  int $signupId
      */
