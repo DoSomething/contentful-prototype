@@ -52,7 +52,7 @@ $router->get('{category}/{slug}', function ($category, $slug) {
 })->where('category', $categories);
 
 // Referral Pages
-$router->get('referral/{signupId}', 'ReferralController@show');
+$router->get('join/{signupId}', 'ReferralController@show');
 
 // Blocks
 $router->view('us/blocks/{id}', 'app');
