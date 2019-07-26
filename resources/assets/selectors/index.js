@@ -6,11 +6,6 @@ export function getDataForNorthstar(state) {
   return {
     ...getCampaignDataForNorthstar(state),
     ...getStoryPageDataForNorthstar(state),
-
-    // @TODO: Remove this once Northstar uses standard names, below.
-    trafficSource: query('utm_medium'),
-    referrerId: state.campaign.id || state.page.id,
-
     // For 'source_details':
     contentful_id: state.campaign.id || state.page.id,
     referrer_user_id: query('referrer_user_id'),
