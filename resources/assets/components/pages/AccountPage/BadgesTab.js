@@ -297,9 +297,17 @@ class BadgesTab extends React.Component {
                           'breakdownBadge',
                           data.user.emailSubscriptionTopics.includes('NEWS'),
                           'NEWS EXPERT',
-                          data.user.emailSubscriptionTopics.includes('NEWS')
-                            ? 'subscribed to breakdown'
-                            : 'not subscribed to breakdown',
+                          data.user.emailSubscriptionTopics.includes('NEWS') ? (
+                            'Don’t just read the news…*change* the news. The Breakdown, our current events newsletter, gives you all the headlines plus immediate ways to impact them.'
+                          ) : (
+                            <span>
+                              Want to unlock this badge?{' '}
+                              <a href="https://breakdown.dosomething.org/">
+                                Sign up for The Breakdown
+                              </a>
+                              , our current events newsletter.
+                            </span>
+                          ),
                         )
                       }
                       role="button"
