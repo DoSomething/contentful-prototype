@@ -80,12 +80,14 @@ class Debug {
 
     const debug = this;
 
+    // We do not use rest params for these wrapper functions below, since it would convert the
+    // prototype object from an Object to an Array and potentially disable the native functionality!
+    // @see https://eslint.org/docs/rules/prefer-rest-params#suggest-using-the-rest-parameters-instead-of-arguments-prefer-rest-params
+
     // Wrap the Snowplow function to allow logging events.
     const nativeSnowplow = window.snowplow;
 
     window.snowplow = function() {
-      // Do not use rest params for these wrappers since it would convert the prototype object
-      // from an Object to an Array and potentially disable the native functionality!
       nativeSnowplow.call(window, ...arguments); // eslint-disable-line prefer-rest-params
       debug.log('snowplow', ...arguments); // eslint-disable-line prefer-rest-params
     };
