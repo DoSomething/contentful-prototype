@@ -18,7 +18,7 @@ const Gallery = ({ type, children, className = null }) =>
 Gallery.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element),
   className: PropTypes.string,
-  type: PropTypes.oneOf(['duo', 'triad', 'quartet']),
+  type: PropTypes.oneOf(['duo', 'triad', 'quartet', 'quintet']),
 };
 
 Gallery.defaultProps = {

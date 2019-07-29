@@ -1,75 +1,24 @@
 @import '../../../scss/next-toolbox';
 
-.company-page__background-title {
-  background-color: $white;
-}
-
 .company-page {
-  max-width: 1130px;
   .company-page__heading {
+    margin-bottom: $base-spacing;
+
     .company-page__title {
-      background-color: $white;
-      font-family: $secondary-font-family;
-      font-size: $font-larger;
       font-weight: $weight-normal;
+      color: rgb(32, 32, 32);
+      font-family: $font-league-gothic;
+      font-size: $text-4xl;
     }
 
     .company-page__subtitle {
-      font-family: $primary-font-family;
+      color: rgb(32, 32, 32);
+      font-family: $font-sans-serif;
+      font-size: $font-medium;
       font-weight: $weight-bold;
-      margin-top: $half-spacing;
     }
   }
 
-  .company-page__authors {
-    display: inline-block;
-    margin: $base-spacing auto 0;
-    text-align: left;
-  }
-
-  .company-page__author-bios {
-    border-top: 2px solid #dcdcdc;
-    margin: $base-spacing $half-spacing 0;
-    padding: $half-spacing 0;
-  }
-
-  .default-container {
-    width: 50%;
-    background-color: white;
-    margin-left: 2.5%;
-
-    @include media($medium) {
-      width: 90%;
-      margin-left: 4.7%;
-    }
-
-    @include media($larger) {
-      width: 50%;
-      margin-left: 25%;
-    }
-  }
-
-  .row {
-    .primary {
-      margin: 0 0 $base-spacing;
-
-      @include media($large) {
-        float: left;
-        padding-right: $half-spacing;
-        width: 66.6666666666666%;
-      }
-    }
-
-    .secondary {
-      display: none;
-
-      @include media($large) {
-        display: block;
-        float: right;
-        padding-left: $half-spacing;
-        margin: 0 0 $base-spacing;
-        width: 33.3333333333333%;
-      }
-    }
+  .company-page__content {
   }
 }

@@ -24,9 +24,12 @@ export const GalleryBlockFragment = gql`
 `;
 
 const renderBlock = (block, imageAlignment, imageFit) => {
-  switch (block.type) {
+  const type = block.__typename || block.type;
+  switch (type) {
     case 'person':
       return <Person key={block.id} {...block.fields} />;
+    case 'PersonBlock':
+      return <Person key={block.id} {...block} />;
     case 'staff':
       return <Person key={block.id} {...block} />;
 
@@ -51,15 +54,19 @@ const renderBlock = (block, imageAlignment, imageFit) => {
   }
 };
 
-const galleryTypes = { '2': 'duo', '3': 'triad', '4': 'quartet' };
+const galleryTypes = {
+  '2': 'duo',
+  '3': 'triad',
+  '4': 'quartet',
+  '5': 'quintet',
+};
 
 const GalleryBlock = props => {
   const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
   const galleryType = galleryTypes[itemsPerRow];
   return (
     <div className="gallery-block">
-      {title ? <h1>{title}</h1> : null}
-
+      {title ? <h1> {title} </h1> : null}
       <Gallery type={galleryType} className="expand-horizontal-md">
         {blocks.map(block => renderBlock(block, imageAlignment, imageFit))}
       </Gallery>
@@ -70,7 +77,7 @@ const GalleryBlock = props => {
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
+  itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
   imageFit: PropTypes.oneOf(['fill', 'pad']).isRequired,
 };
