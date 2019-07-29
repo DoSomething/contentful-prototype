@@ -1,3 +1,5 @@
+import { toDate } from 'date-fns';
+
 /**
  * Custom formatting for Phoenix triggers events to analytics services.
  *
@@ -28,21 +30,21 @@ export function phoenixEventLog(data) {
  */
 export function googleLog(...args) {
   const trackerName = args[0];
-  const data = args[1];
+  const data = { ...args[1] };
 
   const { event: eventName } = data;
-
   delete data.event;
 
   console.groupCollapsed(
-    '%c ANALYTICS: %s %c %c %s %c@%c dataLayer.push %c',
+    '%c ANALYTICS: %s %c %c %s %c@%c %s %c',
     'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
     trackerName.toUpperCase(),
     'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
     'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
-    'Method Name',
+    'Event',
     'color: rgba(165, 162, 162, 0.8); font-weight: normal;',
     'color: black; font-weight: bold;',
+    eventName.startsWith('phoenix_') ? 'Custom Event' : eventName,
     'background-color: rgba(105,157,215,0.5);',
   );
 
@@ -57,7 +59,15 @@ export function googleLog(...args) {
       eventContext,
     });
   } else {
-    console.log('Data: ', args[1]); // @TODO: temporary; need to expand on this for different types of GTM events.
+    switch (eventName) {
+      case 'gtm.js':
+        console.log('Start:', toDate(args[1]['gtm.start']));
+        console.log('Data: ', args[1]);
+        break;
+
+      default:
+        console.log('Data: ', args[1]);
+    }
   }
 
   console.groupEnd();
@@ -107,10 +117,12 @@ export function snowplowLog(...args) {
     trackerName.toUpperCase(),
     'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
     'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
-    'Method Name',
+    'Event',
     'color: rgba(165, 162, 162, 0.8); font-weight: normal;',
     'color: black; font-weight: bold;',
-    methodName,
+    methodName === 'trackStructEvent'
+      ? `Custom Event (${methodName})`
+      : methodName,
     'background-color: rgba(105,157,215,0.5);',
   );
 

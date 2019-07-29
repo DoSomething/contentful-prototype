@@ -11,6 +11,8 @@ class Debug {
 
     window.DS = window.DS || {};
     window.DS.Debug = this;
+
+    this.logExistingDataLayerEvents();
   }
 
   /**
@@ -46,6 +48,23 @@ class Debug {
       default:
         console.error('No custom log formatter specified.');
     }
+  }
+
+  /**
+   * Log any initial events already in the GTM dataLayer array.
+   *
+   * @return {void}
+   */
+  logExistingDataLayerEvents() {
+    // Note: if GTM is not active, no initial events will be pushed to the mocked dataLayer array.
+    const events = Object.keys(window.dataLayer);
+
+    events.forEach(item => {
+      if (typeof window.dataLayer[item] === 'function') {
+        return;
+      }
+      this.log('google', window.dataLayer[item]);
+    });
   }
 
   /**
