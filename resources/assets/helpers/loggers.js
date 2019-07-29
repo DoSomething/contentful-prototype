@@ -1,3 +1,77 @@
+/**
+ * Custom formatting for Phoenix triggers events to analytics services.
+ *
+ * @param  {Object} data
+ * @return {void}
+ */
+export function phoenixEventLog(data) {
+  const {
+    eventName,
+    eventCategory,
+    eventAction,
+    eventLabel,
+    eventContext,
+  } = data;
+
+  console.log('Name: ', eventName);
+  console.log('Category: ', eventCategory);
+  console.log('Action: ', eventAction);
+  console.log('Label: ', eventLabel);
+  console.log('Context: ', eventContext);
+}
+
+/**
+ * Log Google Tag Manager events to the console.
+ *
+ * @param  {Array} args
+ * @return {void}
+ */
+export function googleLog(...args) {
+  const trackerName = args[0];
+  const data = args[1];
+
+  const { event: eventName } = data;
+
+  delete data.event;
+
+  console.groupCollapsed(
+    '%c ANALYTICS: %s %c %c %s %c@%c dataLayer.push %c',
+    'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
+    trackerName.toUpperCase(),
+    'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
+    'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
+    'Method Name',
+    'color: rgba(165, 162, 162, 0.8); font-weight: normal;',
+    'color: black; font-weight: bold;',
+    'background-color: rgba(105,157,215,0.5);',
+  );
+
+  if (eventName.startsWith('phoenix_')) {
+    const { eventAction, eventCategory, eventLabel, ...eventContext } = args[1];
+
+    phoenixEventLog({
+      eventName,
+      eventAction,
+      eventCategory,
+      eventLabel,
+      eventContext,
+    });
+  } else {
+    console.log('Data: ', args[1]); // @TODO: temporary; need to expand on this for different types of GTM events.
+  }
+
+  console.groupEnd();
+}
+
+/**
+ * Log Sixpack events to the console.
+ *
+ * @param  {Object} client
+ * @param  {String} action
+ * @param  {String} experimentName
+ * @param  {Object} experiment
+ * @return {void}
+ */
 export function sixpackLog(client, action, experimentName, experiment) {
   console.groupCollapsed(
     '%c SIXPACK: %c %c %s %c▷%c %s %c',
@@ -16,56 +90,51 @@ export function sixpackLog(client, action, experimentName, experiment) {
   console.groupEnd();
 }
 
-export function googleLog() {
-  console.groupCollapsed(
-    '%c ANALYTICS: %s %c %c %s %c@%c dataLayer.push() %c',
-    'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
-    arguments[0].toUpperCase(),
-    'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
-    'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
-    'Function Name',
-    'color: rgba(165, 162, 162, 0.8); font-weight: normal;',
-    'color: black; font-weight: bold;',
-    'background-color: rgba(105,157,215,0.5);',
-  );
-  console.log(arguments);
-  console.groupEnd();
-}
+/**
+ * Log Snowplow events to the console.
+ *
+ * @param  {Array} args
+ * @return {void}
+ */
+export function snowplowLog(...args) {
+  const trackerName = args[0];
 
-export function snowplowLog() {
+  const methodName = args[1];
+
   console.groupCollapsed(
     '%c ANALYTICS: %s %c %c %s %c@%c %s %c',
     'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
-    arguments[0].toUpperCase(),
+    trackerName.toUpperCase(),
     'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
     'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
-    'Function Name',
+    'Method Name',
     'color: rgba(165, 162, 162, 0.8); font-weight: normal;',
     'color: black; font-weight: bold;',
-    arguments[1],
+    methodName,
     'background-color: rgba(105,157,215,0.5);',
   );
 
-  switch (arguments[1]) {
+  switch (methodName) {
     case 'setUserId':
-      console.log('User ID:', arguments[2]);
+      console.log('User ID:', args[2]);
       break;
 
     case 'trackStructEvent':
-      console.log('Category: ', arguments[2]);
-      console.log('Action: ', arguments[3]);
-      console.log('Label: ', arguments[4]);
-      console.log('Name: ', arguments[5]);
-      // arguments[5] is always null
-      console.log('Context: ', JSON.parse(arguments[7][0]['data']['payload']));
+      phoenixEventLog({
+        eventName: args[5],
+        eventAction: args[3],
+        eventCategory: args[2],
+        eventLabel: args[4],
+        eventContext: JSON.parse(args[7][0].data.payload),
+      });
       break;
 
     case 'trackPageView':
-      console.log('Context: ', JSON.parse(arguments[3][0]['data']['payload']));
+      console.log('Context: ', JSON.parse(args[3][0].data.payload));
       break;
 
     default:
-      console.log(arguments);
+      console.log(args);
   }
   console.groupEnd();
 }

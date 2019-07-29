@@ -47,7 +47,7 @@ import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 
 ready(() => {
-  debug().setupWrappers();
+  debug().setupTrackerWrappers();
 
   // Configure store & history.
   const history = historyInit();
@@ -63,13 +63,6 @@ ready(() => {
 
   // Add event listeners for top-level navigation.
   bindNavigationEvents();
-
-  // const nativeSnowplow = window.snowplow;
-
-  // window.snowplow = function() {
-  //   nativeSnowplow.call(window, ...arguments);
-  //   debug().log('snowplow', ...arguments);
-  // };
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {

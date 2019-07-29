@@ -5,7 +5,7 @@ import { Engine as PuckClient } from '@dosomething/puck-client';
 
 import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
-import { debug, stringifyNestedObjects, withoutValueless, query } from '.';
+import { stringifyNestedObjects, withoutValueless, query } from '.';
 
 // App name prefix used for event naming.
 const APP_PREFIX = 'phoenix';
@@ -95,17 +95,6 @@ export function analyzeWithPuck(name, data) {
  * @return {void}
  */
 export function analyzeWithSnowplow(name, category, action, label, data) {
-  // console.log('🔥');
-
-  // debug().log('snowplow', {
-  //   method: 'trackStructEvent',
-  //   name,
-  //   category,
-  //   action,
-  //   label,
-  //   data,
-  // });
-
   if (!window.snowplow) {
     return;
   }
