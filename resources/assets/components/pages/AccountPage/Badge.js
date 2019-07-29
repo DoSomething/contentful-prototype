@@ -1,22 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../../Figure';
+import { BaseFigure } from '../../Figure';
 import badgeImages from './BadgeImages';
 
 const Badge = props => {
-  const { name, earned, size, className, children } = props;
+  const { name, earned, size, className, children, showLock } = props;
   const badgeImageIndex = earned ? name : `${name}Locked`;
 
+  const media = showLock ? (
+    <div style={{ position: 'relative' }}>
+      <img src={badgeImages[badgeImageIndex]} alt={name} />
+      <img
+        className="position-center-x"
+        style={{ width: '48px', bottom: '-24px' }}
+        src={badgeImages.lock}
+        alt="lock"
+      />
+    </div>
+  ) : (
+    <img src={badgeImages[badgeImageIndex]} alt={name} />
+  );
+
   return (
-    <Figure
-      image={badgeImages[badgeImageIndex]}
-      alt={name}
-      size={size}
-      className={className}
-    >
+    <BaseFigure media={media} size={size} className={className}>
       {children}
-    </Figure>
+    </BaseFigure>
   );
 };
 
@@ -26,12 +35,14 @@ Badge.propTypes = {
   size: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node,
+  showLock: PropTypes.bool,
 };
 
 Badge.defaultProps = {
   size: null,
   className: null,
   children: null,
+  showLock: false,
 };
 
 export default Badge;

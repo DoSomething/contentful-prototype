@@ -12,6 +12,7 @@ const BadgeModal = props => {
       <div>
         <div className="badge-pattern p-4">
           <Badge
+            showLock={!earned}
             earned={earned}
             className="badge padded"
             size="medium"
