@@ -12,6 +12,10 @@ For your development environment you should use the Northstar Development URL: `
 
 Once you have access to [Aurora \(dev\)](https://admin-dev.dosomething.org/clients/dev-oauth), retrieve the Northstar Dev OAuth **Client ID** and **Client Secret** credentials.
 
+{% hint style="info" %}
+If switching between the Northstar development environment and your local Northstar environment (or vice versa), you'll need to run `php artisan gateway:key` to pull down the appropriate public key from whichever environment folks are logging in from, so your local Phoenix can validate tokens.
+{% endhint %}
+
 ## Laravel Homestead
 
 Before getting started, you should have [Homestead](https://github.com/DoSomething/communal-docs/tree/master/Homestead) installed and set up on your computer. Homestead is a pre-packaged Vagrant box that provides a development environment to help get you up and running quickly!
