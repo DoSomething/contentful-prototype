@@ -11,7 +11,7 @@
         });
     </script>
 @else
-    {{-- Custom script for logging Snowplow events to the console when no ENV variable provided. --}}
+    {{-- Mocked function to allow showing console logs. --}}
     <script type='text/javascript'>
         window.snowplow = function () {};
     </script>

@@ -7,7 +7,7 @@
         })(window,document,'script','dataLayer','GTM-{{config('services.analytics.google_tag_manager_id')}}');
     </script>
 @else
-    {{-- Custom --}}
+    {{-- Mocked function to allow showing console logs. --}}
     <script type='text/javascript'>
         window.dataLayer = {};
         window.dataLayer.push = function() {};
