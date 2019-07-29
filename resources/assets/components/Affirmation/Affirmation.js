@@ -51,7 +51,7 @@ const Affirmation = ({
         badgeData.user.hasBadgesFlag ? (
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }} hideSpinner>
             {signupData =>
-              signupData.signupsCount > 1 ? (
+              signupData.signupsCount === 1 ? (
                 <Badge
                   earned
                   className="badge padded"
