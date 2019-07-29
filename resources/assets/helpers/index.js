@@ -16,6 +16,7 @@ import {
   omitBy,
 } from 'lodash';
 
+import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import { trackAnalyticsEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
@@ -822,6 +823,16 @@ export function sixpack() {
   }
 
   return sixpackInstance;
+}
+
+let debugInstance = null;
+
+export function debug() {
+  if (!debugInstance) {
+    debugInstance = new Debug();
+  }
+
+  return debugInstance;
 }
 
 /**
