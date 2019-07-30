@@ -5,12 +5,15 @@ import gql from 'graphql-tag';
 import Query from '../../Query';
 import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
-// @TODO: Grab Cover Image and Call To Action Tagline
 const REFERRAL_PAGE_CAMPAIGN = gql`
   query ReferralPageCampaignQuery($campaignId: String!) {
     campaignWebsiteByCampaignId(campaignId: $campaignId) {
       title
       slug
+      callToAction
+      coverImage {
+        url(w: 150)
+      }
     }
   }
 `;
@@ -28,11 +31,18 @@ const ReferralPageCampaignLink = props => (
       const url = `/us/campaigns/${data.slug}?referrer_user_id=${props.userId}`;
 
       return (
-        <div className="general-page__block margin-vertical margin-horizontal-md">
-          <a href={url}>
-            <h3>{data.title}</h3>
-          </a>
-        </div>
+        <article className="figure -left -center">
+          <div className="figure__media">
+            <img alt={data.title} src={data.coverImage.url} />
+          </div>
+          <div className="figure__body">
+            <h2>
+              <a href={url}>{data.title}</a>
+            </h2>
+            <p>{data.callToAction}</p>
+            <p>DOSOMETHING.ORG</p>
+          </div>
+        </article>
       );
     }}
   </Query>
