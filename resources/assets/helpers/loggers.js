@@ -25,20 +25,18 @@ export function phoenixEventLog(data) {
 /**
  * Log Google Tag Manager events to the console.
  *
- * @param  {Array} args
+ * @param  {Object} providedData
  * @return {void}
  */
-export function googleLog(...args) {
-  const trackerName = args[0];
-  const data = { ...args[1] };
+export function googleLog(providedData) {
+  const { event: eventName } = providedData;
 
-  const { event: eventName } = data;
+  const data = { ...providedData };
   delete data.event;
 
   console.groupCollapsed(
-    '%c ANALYTICS: %s %c %c %s %c@%c %s %c',
+    '%c ANALYTICS: GOOGLE %c %c %s %c@%c %s %c',
     'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
-    trackerName.toUpperCase(),
     'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
     'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
     'Event',
@@ -49,7 +47,7 @@ export function googleLog(...args) {
   );
 
   if (eventName.startsWith('phoenix_')) {
-    const { eventAction, eventCategory, eventLabel, ...eventContext } = args[1];
+    const { eventAction, eventCategory, eventLabel, ...eventContext } = data;
 
     phoenixEventLog({
       eventName,
@@ -61,12 +59,12 @@ export function googleLog(...args) {
   } else {
     switch (eventName) {
       case 'gtm.js':
-        console.log('Start:', toDate(args[1]['gtm.start']));
-        console.log('Data: ', args[1]);
+        console.log('Start:', toDate(data['gtm.start']));
+        console.log('Data: ', data);
         break;
 
       default:
-        console.log('Data: ', args[1]);
+        console.log('Data: ', data);
     }
   }
 
@@ -103,18 +101,15 @@ export function sixpackLog(client, action, experimentName, experiment) {
 /**
  * Log Snowplow events to the console.
  *
- * @param  {Array} args
+ * @param  {Array} data
  * @return {void}
  */
-export function snowplowLog(...args) {
-  const trackerName = args[0];
-
-  const methodName = args[1];
+export function snowplowLog(data) {
+  const methodName = data[0];
 
   console.groupCollapsed(
-    '%c ANALYTICS: %s %c %c %s %c@%c %s %c',
+    '%c ANALYTICS: SNOWPLOW %c %c %s %c@%c %s %c',
     'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
-    trackerName.toUpperCase(),
     'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
     'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
     'Event',
@@ -128,25 +123,25 @@ export function snowplowLog(...args) {
 
   switch (methodName) {
     case 'setUserId':
-      console.log('User ID:', args[2]);
+      console.log('User ID:', data[1]);
       break;
 
     case 'trackStructEvent':
       phoenixEventLog({
-        eventName: args[5],
-        eventAction: args[3],
-        eventCategory: args[2],
-        eventLabel: args[4],
-        eventContext: JSON.parse(args[7][0].data.payload),
+        eventName: data[4],
+        eventAction: data[2],
+        eventCategory: data[1],
+        eventLabel: data[3],
+        eventContext: JSON.parse(data[6][0].data.payload),
       });
       break;
 
     case 'trackPageView':
-      console.log('Context: ', JSON.parse(args[3][0].data.payload));
+      console.log('Context: ', JSON.parse(data[2][0].data.payload));
       break;
 
     default:
-      console.log(args);
+      console.log(data);
   }
   console.groupEnd();
 }

@@ -28,20 +28,23 @@ class Debug {
    * based on the specified event type.
    *
    * @param  {String} type
+   * @param  {Array|Object} data
    * @return {void}
    */
-  log(type, ...args) {
+  log(type, data) {
     if (!this.showLogs) {
       return;
     }
 
+    console.log(data);
+
     switch (type) {
       case 'google':
-        googleLog(type, ...args);
+        googleLog(data);
         break;
 
       case 'snowplow':
-        snowplowLog(type, ...args);
+        snowplowLog(data);
         break;
 
       default:
@@ -73,30 +76,46 @@ class Debug {
    * @return {void}
    */
   setupTrackerWrappers() {
+    this.wrapGoogleTracker();
+
+    this.wrapSnowplowTracker();
+  }
+
+  /**
+   * Wrap the Google Tag Manager dataLayer push function to allow logging events.
+   *
+   * @return {void}
+   */
+  wrapGoogleTracker() {
+    const debug = this;
+
+    const nativeGtmDataLayerPush = window.dataLayer.push;
+
+    window.dataLayer.push = function(...args) {
+      nativeGtmDataLayerPush.apply(window.dataLayer, args);
+
+      debug.log('google', args[0]);
+    };
+  }
+
+  /**
+   * Wrap the Snowplow function to allow logging events.
+   *
+   * @return {void}
+   */
+  wrapSnowplowTracker() {
+    const debug = this;
+
     if (typeof window.snowplow !== 'function') {
       return;
     }
 
-    const debug = this;
-
-    // We do not use rest params for these wrapper functions below, since it would convert the
-    // prototype object from an Object to an Array and potentially disable the native functionality!
-    // @see https://eslint.org/docs/rules/prefer-rest-params#suggest-using-the-rest-parameters-instead-of-arguments-prefer-rest-params
-
-    // Wrap the Snowplow function to allow logging events.
     const nativeSnowplow = window.snowplow;
 
-    window.snowplow = function() {
-      nativeSnowplow.call(window, ...arguments); // eslint-disable-line prefer-rest-params
-      debug.log('snowplow', ...arguments); // eslint-disable-line prefer-rest-params
-    };
+    window.snowplow = function(...args) {
+      nativeSnowplow.apply(window, args);
 
-    // Wrap the Google Tag Manager dataLayer push function to allow logging events.
-    const nativeGtmDataLayerPush = window.dataLayer.push;
-
-    window.dataLayer.push = function() {
-      nativeGtmDataLayerPush.call(window, ...arguments); // eslint-disable-line prefer-rest-params
-      debug.log('google', ...arguments); // eslint-disable-line prefer-rest-params
+      debug.log('snowplow', args);
     };
   }
 
@@ -107,10 +126,6 @@ class Debug {
    */
   toggleLogs() {
     const toggle = Debug.getToggleValue();
-
-    // if (!isStaff() && !toggle) {
-    //   return console.warn('Sorry friend, you are not authorized.');
-    // }
 
     localStorage.setItem(KEY, Number(!toggle));
 
