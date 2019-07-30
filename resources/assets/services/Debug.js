@@ -36,8 +36,6 @@ class Debug {
       return;
     }
 
-    console.log(data);
-
     switch (type) {
       case 'google':
         googleLog(data);
@@ -87,6 +85,10 @@ class Debug {
    * @return {void}
    */
   wrapGoogleTracker() {
+    if (!Array.isArray(window.dataLayer)) {
+      return;
+    }
+
     const debug = this;
 
     const nativeGtmDataLayerPush = window.dataLayer.push;
@@ -104,11 +106,11 @@ class Debug {
    * @return {void}
    */
   wrapSnowplowTracker() {
-    const debug = this;
-
     if (typeof window.snowplow !== 'function') {
       return;
     }
+
+    const debug = this;
 
     const nativeSnowplow = window.snowplow;
 
