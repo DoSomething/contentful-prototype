@@ -58,9 +58,7 @@ const Affirmation = ({
                   size="medium"
                   name="signupBadge"
                 >
-                  <p>
-                    <strong>1 Sign-Up</strong>
-                  </p>
+                  <h4>1 Sign-Up</h4>
                   <p>
                     Congratulations! You signed up for your first campaign...and
                     earned your first badge. NICE. Ready to earn *another*
