@@ -8,18 +8,18 @@ const Badge = props => {
   const { name, earned, size, className, children, showLock } = props;
   const badgeImageIndex = earned ? name : `${name}Locked`;
 
-  const media = showLock ? (
+  const media = (
     <div style={{ position: 'relative' }}>
       <img src={badgeImages[badgeImageIndex]} alt={name} />
-      <img
-        className="position-center-x"
-        style={{ width: '48px', bottom: '-24px' }}
-        src={badgeImages.lock}
-        alt="lock"
-      />
+      {showLock ? (
+        <img
+          className="position-center-x"
+          style={{ width: '48px', bottom: '-24px' }}
+          src={badgeImages.lock}
+          alt="lock"
+        />
+      ) : null}
     </div>
-  ) : (
-    <img src={badgeImages[badgeImageIndex]} alt={name} />
   );
 
   return (
