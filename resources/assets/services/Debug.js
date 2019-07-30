@@ -93,14 +93,12 @@ class Debug {
       return;
     }
 
-    const debug = this;
-
     const nativeGtmDataLayerPush = window.dataLayer.push;
 
-    window.dataLayer.push = function(...args) {
+    window.dataLayer.push = (...args) => {
       nativeGtmDataLayerPush.apply(window.dataLayer, args);
 
-      debug.log('google', args[0]);
+      this.log('google', args[0]);
     };
   }
 
@@ -114,14 +112,12 @@ class Debug {
       return;
     }
 
-    const debug = this;
-
     const nativeSnowplow = window.snowplow;
 
-    window.snowplow = function(...args) {
+    window.snowplow = (...args) => {
       nativeSnowplow.apply(window, args);
 
-      debug.log('snowplow', args);
+      this.log('snowplow', args);
     };
   }
 
