@@ -24,9 +24,11 @@ const ReferralPageCampaignLink = props => (
       const url = `/us/campaigns/${data.slug}?referrer_user_id=${props.userId}`;
 
       return (
-        <a href={url}>
-          <h3>{data.title}</h3>
-        </a>
+        <div className="general-page__block margin-vertical margin-horizontal-md">
+          <a href={url}>
+            <h3>{data.title}</h3>
+          </a>
+        </div>
       );
     }}
   </Query>

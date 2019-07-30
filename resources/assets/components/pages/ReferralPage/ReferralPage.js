@@ -23,28 +23,27 @@ const ReferralPage = props => {
             DoSomething.org. Once you and {props.firstName} complete the
             campaign, you’ll both earn a $5 gift card!
           </p>
-          <ul>
-            <li>
+          {props.primaryCampaignId ? (
+            <div>
               <CampaignLink
                 campaignId={props.primaryCampaignId}
                 userId={props.userId}
               />
-            </li>
-          </ul>
-          <p>
-            <strong>
-              Interested in doing a different campaign to get your gift card?
-            </strong>{' '}
-            {SECONDARY_CAMPAIGN_PROMPT}
-          </p>
-          <ul>
-            <li>
-              <CampaignLink
-                campaignId={`${SECONDARY_CAMPAIGN_ID}`}
-                userId={props.userId}
-              />
-            </li>
-          </ul>
+              <p>
+                <strong>
+                  Interested in doing a different campaign to get your gift
+                  card?
+                </strong>{' '}
+                {SECONDARY_CAMPAIGN_PROMPT}
+              </p>
+            </div>
+          ) : null}
+          <div>
+            <CampaignLink
+              campaignId={`${SECONDARY_CAMPAIGN_ID}`}
+              userId={props.userId}
+            />
+          </div>
           <h3>About Us</h3>
           DoSomething is the largest not-for-profit for young people and social
           change. Using our digital platform, millions of young people make
@@ -60,8 +59,12 @@ const ReferralPage = props => {
 
 ReferralPage.propTypes = {
   firstName: PropTypes.string.isRequired,
-  primaryCampaignId: PropTypes.string.isRequired,
+  primaryCampaignId: PropTypes.string,
   userId: PropTypes.string.isRequired,
+};
+
+ReferralPage.defaultProps = {
+  primaryCampaignId: null,
 };
 
 export default ReferralPage;
