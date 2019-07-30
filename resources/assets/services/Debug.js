@@ -1,6 +1,5 @@
 /* global window */
 
-import { isStaff } from '../helpers';
 import { googleLog, snowplowLog } from '../helpers/loggers';
 
 const KEY = 'DS_SHOW_LOGS';
@@ -109,9 +108,9 @@ class Debug {
   toggleLogs() {
     const toggle = Debug.getToggleValue();
 
-    if (!isStaff() && !toggle) {
-      return console.warn('Sorry friend, you are not authorized.');
-    }
+    // if (!isStaff() && !toggle) {
+    //   return console.warn('Sorry friend, you are not authorized.');
+    // }
 
     localStorage.setItem(KEY, Number(!toggle));
 
