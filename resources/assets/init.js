@@ -47,7 +47,8 @@ import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 
 ready(() => {
-  debug().setupTrackerWrappers();
+  // Enable Debug tools.
+  debug();
 
   // Configure store & history.
   const history = historyInit();

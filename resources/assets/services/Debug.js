@@ -11,7 +11,7 @@ class Debug {
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
-    this.logExistingDataLayerEvents();
+    this.setupTrackerWrappers();
   }
 
   /**
@@ -74,9 +74,13 @@ class Debug {
    * @return {void}
    */
   setupTrackerWrappers() {
-    this.wrapGoogleTracker();
+    if (Debug.getToggleValue()) {
+      this.logExistingDataLayerEvents();
 
-    this.wrapSnowplowTracker();
+      this.wrapGoogleTracker();
+
+      this.wrapSnowplowTracker();
+    }
   }
 
   /**
@@ -127,9 +131,15 @@ class Debug {
    * @return {void}
    */
   toggleLogs() {
-    const toggle = Debug.getToggleValue();
+    const currentValue = Debug.getToggleValue();
 
-    localStorage.setItem(KEY, Number(!toggle));
+    const updatedValue = Number(!currentValue);
+
+    localStorage.setItem(KEY, updatedValue);
+
+    this.showLogs = Boolean(updatedValue);
+
+    this.setupTrackerWrappers();
 
     const messageStyles = `
           background-color: #141493;
@@ -139,10 +149,8 @@ class Debug {
           padding: 20px 30px;
         `;
 
-    this.showLogs = Boolean(Debug.getToggleValue());
-
     return console.log(
-      `%c📝 DoSomething logs have been turned ${!toggle ? 'ON' : 'OFF'}.`,
+      `%c📝 DoSomething logs have been turned ${updatedValue ? 'ON' : 'OFF'}.`,
       messageStyles,
     );
   }
