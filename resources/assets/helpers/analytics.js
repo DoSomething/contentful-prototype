@@ -4,8 +4,8 @@ import { get, snakeCase, startCase } from 'lodash';
 import { Engine as PuckClient } from '@dosomething/puck-client';
 
 import { PUCK_URL } from '../constants';
-import { stringifyNestedObjects, withoutValueless, query } from '.';
 import { get as getHistory } from '../history';
+import { stringifyNestedObjects, withoutValueless, query } from '.';
 
 // App name prefix used for event naming.
 const APP_PREFIX = 'phoenix';
