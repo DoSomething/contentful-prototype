@@ -37,9 +37,13 @@ describe('Campaign Gallery', () => {
 
     // Let's pick a post & react to it...
     cy.nth('.post-gallery .post', 4).within(() => {
+      // The post should not display the reaction total, since it's currently at zero:
+      cy.get('.reaction__meta').should('not.exist');
+
+      // React to the post.
       cy.get('.reaction__button').click();
 
-      // The post should get a filled-in heart & updated total.
+      // The post should get a filled-in heart & display the total.
       cy.get('.reaction__button').should('have.class', '-reacted');
       cy.get('.reaction__meta').contains('1');
     });
