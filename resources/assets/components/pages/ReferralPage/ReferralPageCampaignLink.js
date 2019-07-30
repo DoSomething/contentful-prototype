@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 import Query from '../../Query';
+import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 
 // @TODO: Grab Cover Image and Call To Action Tagline
 const REFERRAL_PAGE_CAMPAIGN = gql`
@@ -21,6 +22,9 @@ const ReferralPageCampaignLink = props => (
   >
     {res => {
       const data = res.campaignWebsiteByCampaignId;
+      if (!data) {
+        return <ErrorBlock />;
+      }
       const url = `/us/campaigns/${data.slug}?referrer_user_id=${props.userId}`;
 
       return (
