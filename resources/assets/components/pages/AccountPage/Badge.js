@@ -11,7 +11,7 @@ const Badge = props => {
   const media = (
     <div style={{ position: 'relative' }}>
       <img src={badgeImages[badgeImageIndex]} alt={name} />
-      {showLock ? (
+      {showLock && !earned ? (
         <img
           className="position-center-x"
           style={{ width: '48px', bottom: '-24px' }}
