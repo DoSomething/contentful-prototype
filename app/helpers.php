@@ -63,7 +63,7 @@ function get_contentful_url()
 function get_page_settings($page, $prefix, $slug = null)
 {
     return [
-        'cacheUrl' => get_cache_url($prefix, $slug),
+        'cacheUrl' => config('services.contentful.cache') ? get_cache_url($prefix, $slug) : null,
         'editUrl' => get_contentful_url().'entries/'.$page->id,
         'type' => readable_title($page->type),
     ];
