@@ -25,9 +25,13 @@
                         @endif
                     </li>
                     <li class="margin-bottom-md">
-                        <a class="icon-link font-normal" href="{{ $admin['page']['cacheUrl'] }}">
-                            @include('svg.trash-icon', ['class' => 'icon icon-trash']) Clear the cache for this page
-                        </a>
+                        @if($admin['page']['cacheUrl'])
+                            <a class="icon-link font-normal" href="{{ $admin['page']['cacheUrl'] }}">
+                                @include('svg.trash-icon', ['class' => 'icon icon-trash']) Clear the cache for this page
+                            </a>
+                        @else
+                            <em class="text-gray-600">Current page is not cached</em>
+                        @endif
                     </li>
                 </ul>
             </div>
