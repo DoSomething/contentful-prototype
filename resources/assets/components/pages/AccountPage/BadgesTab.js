@@ -7,6 +7,39 @@ import BadgeModal from './BadgeModal';
 import Query from '../../Query';
 import './badges-tab.scss';
 
+const SIGNUP_COUNT_BADGE = gql`
+  query SignupsCountQuery($userId: String!) {
+    signupsCount(userId: $userId, limit: 2)
+  }
+`;
+const POST_COUNT_BADGE = gql`
+  query PostsCountQuery($userId: String!) {
+    postsCount(userId: $userId, limit: 3)
+  }
+`;
+
+const TAG_COUNT_BADGE = gql`
+  query TagsCountQuery($userId: String!) {
+    postsCount(userId: $userId, tags: "good-submission", limit: 3)
+  }
+`;
+
+const NEWSLETTER_BADGE = gql`
+  query SubscriptionTopicsBadgeQuery($userId: String!) {
+    user(id: $userId) {
+      emailSubscriptionTopics
+    }
+  }
+`;
+
+const VOTER_BADGE = gql`
+  query VoterRegBadge($userId: String!) {
+    posts(userId: $userId, type: "voter-reg") {
+      status
+    }
+  }
+`;
+
 class BadgesTab extends React.Component {
   constructor(props) {
     super(props);
@@ -43,40 +76,6 @@ class BadgesTab extends React.Component {
   }
 
   render() {
-    const SIGNUP_COUNT_BADGE = gql`
-      query SignupsCountQuery($userId: String!) {
-        signupsCount(userId: $userId, limit: 2)
-      }
-    `;
-
-    const POST_COUNT_BADGE = gql`
-      query PostsCountQuery($userId: String!) {
-        postsCount(userId: $userId, limit: 3)
-      }
-    `;
-
-    const TAG_COUNT_BADGE = gql`
-      query TagsCountQuery($userId: String!) {
-        postsCount(userId: $userId, tags: "good-submission", limit: 3)
-      }
-    `;
-
-    const NEWSLETTER_BADGE = gql`
-      query SubscriptionTopicsBadgeQuery($userId: String!) {
-        user(id: $userId) {
-          emailSubscriptionTopics
-        }
-      }
-    `;
-
-    const VOTER_BADGE = gql`
-      query VoterRegBadge($userId: String!) {
-        posts(userId: $userId, type: "voter-reg") {
-          status
-        }
-      }
-    `;
-
     const { userId } = this.props;
 
     return (
