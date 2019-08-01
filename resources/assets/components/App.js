@@ -10,7 +10,7 @@ import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
-import ReferralPage from './pages/ReferralPage/ReferralPageContainer';
+import ReferralPage from './pages/ReferralPage/ReferralPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import AccountContainer from './pages/AccountPage/AccountContainer';
@@ -37,8 +37,8 @@ const App = ({ store, history }) => {
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/blocks/:id" component={BlockPage} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+              <Route path="/us/join" component={ReferralPage} />
               <Route path="/us/:slug" component={PageDispatcherContainer} />
-              <Route path="/join" component={ReferralPage} />
             </Switch>
           </Router>
         </ApolloProvider>
