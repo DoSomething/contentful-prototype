@@ -39,7 +39,7 @@
   position: relative;
 
   @include media($medium) {
-    min-width: 400px;
+    min-width: 400px; // @TODO: Should this be increased to 600px?
   }
 }
 
@@ -59,5 +59,13 @@
 
   &:focus {
     outline: thin dotted;
+  }
+}
+
+.modal.badge {
+  background-color: rgb(115, 29, 170);
+
+  @include media($medium) {
+    min-width: 600px;
   }
 }

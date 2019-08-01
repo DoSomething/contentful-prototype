@@ -75,7 +75,10 @@ class Modal extends React.Component {
 
   render() {
     const children = (
-      <ModalContent onClose={this.props.onClose}>
+      <ModalContent
+        onClose={this.props.onClose}
+        className={this.props.className}
+      >
         {this.props.children}
       </ModalContent>
     );
@@ -89,11 +92,13 @@ Modal.propTypes = {
   context: PropTypes.object,
   trackingId: PropTypes.string,
   onClose: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 Modal.defaultProps = {
   context: {},
   trackingId: null,
+  className: null,
 };
 
 export default Modal;

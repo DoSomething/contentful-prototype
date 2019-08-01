@@ -16,6 +16,7 @@ import threeStaffFavesBadge from './Badges/StaffFave3.svg';
 import threeStaffFavesBadgeLocked from './Badges/StaffFave3Locked.svg';
 import voterBadge from './Badges/VoterBadge.svg';
 import voterBadgeLocked from './Badges/VoterBadgeLocked.svg';
+import lock from './Badges/Lock.svg';
 
 const BadgeImages = {
   signupBadge,
@@ -36,6 +37,7 @@ const BadgeImages = {
   voterBadgeLocked,
   breakdownBadge,
   breakdownBadgeLocked,
+  lock,
 };
 
 export default BadgeImages;

@@ -76,6 +76,13 @@ p {
   background-size: cover;
 }
 
+.position-center-x {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 .color-white {
   color: $white !important;
 }
