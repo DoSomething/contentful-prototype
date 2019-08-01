@@ -1,10 +1,10 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import ReferralPageContent from './ReferralPageContent';
 import Query from '../../Query';
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import { query } from '../../../helpers';
+import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import ReferralPageContent from './ReferralPageContent';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
