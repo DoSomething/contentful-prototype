@@ -170,7 +170,6 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Contentful\Laravel\ContentfulServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
-        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * DoSomething Service Providers...
