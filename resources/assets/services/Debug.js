@@ -14,6 +14,7 @@ class Debug {
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
+    // @TODO: call this once once document is ready?
     this.logExistingDataLayerEvents();
   }
 
@@ -49,7 +50,7 @@ class Debug {
 
     switch (type) {
       case 'google':
-        googleLog(data[0]);
+        googleLog(data);
         break;
 
       case 'snowplow':
