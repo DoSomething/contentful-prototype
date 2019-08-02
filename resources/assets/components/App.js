@@ -38,6 +38,7 @@ const App = ({ store, history }) => {
               <Route path="/us/blocks/:id" component={BlockPage} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
               <Route path="/us/join" component={ReferralPage} />
+              <Route path="/us/refer-friends" component={ReferralPage} />
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
           </Router>
