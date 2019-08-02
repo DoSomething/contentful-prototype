@@ -94,12 +94,11 @@ class Debug {
 
     localStorage.setItem(STORAGE_TOGGLE_KEY, updatedValue);
 
-    !updatedValue
-      ? localStorage.setItem(STORAGE_LOGGERS_KEY, JSON.stringify([]))
-      : localStorage.setItem(
-          STORAGE_LOGGERS_KEY,
-          JSON.stringify(specifiedLogs),
-        );
+    // If toggling logs off, then set item to empty array, otherwise the array of logs specified.
+    localStorage.setItem(
+      STORAGE_LOGGERS_KEY,
+      JSON.stringify(!updatedValue ? [] : specifiedLogs),
+    );
 
     this.showLogs = Boolean(updatedValue);
     this.enabledLoggers = Debug.getEnabledLoggers();
