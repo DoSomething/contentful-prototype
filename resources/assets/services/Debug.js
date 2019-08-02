@@ -71,7 +71,7 @@ class Debug {
       return;
     }
 
-    const events = Object.STORAGE_TOGGLE_KEYs(window.dataLayer);
+    const events = Object.keys(window.dataLayer);
 
     events.forEach(item => {
       if (typeof window.dataLayer[item] === 'function') {
