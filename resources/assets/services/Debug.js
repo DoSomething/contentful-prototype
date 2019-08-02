@@ -5,13 +5,15 @@ import { googleLog, snowplowLog } from '../helpers/loggers';
 const KEY = 'DS_SHOW_LOGS';
 
 class Debug {
-  constructor() {
+  constructor(loggers = []) {
     this.showLogs = Boolean(Debug.getToggleValue());
+
+    this.loggers = ['google', 'sixpack', 'snowplow'];
 
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
-    this.setupTrackerWrappers();
+    this.logExistingDataLayerEvents();
   }
 
   /**
@@ -56,7 +58,10 @@ class Debug {
    * @return {void}
    */
   logExistingDataLayerEvents() {
-    // Note: if GTM is not active, no initial events will be pushed to the mocked dataLayer array.
+    if (!Debug.getToggleValue()) {
+      return;
+    }
+
     const events = Object.keys(window.dataLayer);
 
     events.forEach(item => {
@@ -65,60 +70,6 @@ class Debug {
       }
       this.log('google', window.dataLayer[item]);
     });
-  }
-
-  /**
-   * Wrap specified event trackers in a custom fu nction to allow logging
-   * when events fire into the console for debugging.
-   *
-   * @return {void}
-   */
-  setupTrackerWrappers() {
-    if (Debug.getToggleValue()) {
-      this.logExistingDataLayerEvents();
-
-      this.wrapGoogleTracker();
-
-      this.wrapSnowplowTracker();
-    }
-  }
-
-  /**
-   * Wrap the Google Tag Manager dataLayer push function to allow logging events.
-   *
-   * @return {void}
-   */
-  wrapGoogleTracker() {
-    if (!Array.isArray(window.dataLayer)) {
-      return;
-    }
-
-    const nativeGtmDataLayerPush = window.dataLayer.push;
-
-    window.dataLayer.push = (...args) => {
-      nativeGtmDataLayerPush.apply(window.dataLayer, args);
-
-      this.log('google', args[0]);
-    };
-  }
-
-  /**
-   * Wrap the Snowplow function to allow logging events.
-   *
-   * @return {void}
-   */
-  wrapSnowplowTracker() {
-    if (typeof window.snowplow !== 'function') {
-      return;
-    }
-
-    const nativeSnowplow = window.snowplow;
-
-    window.snowplow = (...args) => {
-      nativeSnowplow.apply(window, args);
-
-      this.log('snowplow', args);
-    };
   }
 
   /**

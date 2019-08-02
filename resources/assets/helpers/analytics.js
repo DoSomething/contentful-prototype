@@ -5,13 +5,36 @@ import { Engine as PuckClient } from '@dosomething/puck-client';
 
 import { PUCK_URL } from '../constants';
 import { get as getHistory } from '../history';
-import { stringifyNestedObjects, withoutValueless, query } from '.';
+import { debug, stringifyNestedObjects, withoutValueless, query } from '.';
 
-// App name prefix used for event naming.
+/**
+ * App name prefix used for event naming.
+ *
+ * @type {String}
+ */
 const APP_PREFIX = 'phoenix';
 
-// Variable that stores the instance of PuckClient.
+/**
+ * Variable that stores the instance of PuckClient.
+ *
+ * @type {null|Object}
+ */
 let puckClient = null;
+
+/**
+ * Wrapper function to allow executing additional calls when an analytics event is triggered.
+ *
+ * @param  {String}   type
+ * @param  {Function} callback
+ * @param  {Array}    args
+ * @param  {Object}   thisArg
+ * @return {void}
+ */
+export function analyze(type, callback, args, thisArg = window) {
+  callback.apply(thisArg, args);
+
+  debug().log(type, args);
+}
 
 /**
  * Parse analytics event name parameters into a snake cased string.
@@ -60,7 +83,9 @@ export function analyzeWithGoogle(name, category, action, label, data) {
 
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(analyticsEvent);
+
+  // window.dataLayer.push(analyticsEvent)
+  analyze('google', window.dataLayer.push, analyticsEvent, window.dataLayer);
 }
 
 /**
@@ -99,13 +124,21 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
     return;
   }
 
-  window.snowplow('trackStructEvent', category, action, label, name, null, [
-    {
-      schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
-      data: {
-        payload: JSON.stringify(data),
+  analyze('snowplow', window.snowplow, [
+    'trackStructEvent',
+    category,
+    action,
+    label,
+    name,
+    null,
+    [
+      {
+        schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
+        data: {
+          payload: JSON.stringify(data),
+        },
       },
-    },
+    ],
   ]);
 }
 
@@ -200,10 +233,10 @@ export function trackAnalyticsPageView(history) {
   };
 
   history.listen(() => {
-    window.snowplow('trackPageView', null, [data]);
+    analyze('snowplow', window.snowplow, ['trackPageView', null, [data]]);
   });
 
-  window.snowplow('trackPageView', null, [data]);
+  analyze('snowplow', window.snowplow, ['trackPageView', null, [data]]);
 }
 
 /**
