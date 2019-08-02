@@ -2,18 +2,23 @@
 
 import { googleLog, snowplowLog } from '../helpers/loggers';
 
-const KEY = 'DS_SHOW_LOGS';
+const STORAGE_TOGGLE_KEY = 'DS_SHOW_LOGS';
+const STORAGE_LOGGERS_KEY = 'DS_ENABLED_LOGGERS';
 
 class Debug {
-  constructor(loggers = []) {
+  constructor() {
     this.showLogs = Boolean(Debug.getToggleValue());
 
-    this.loggers = ['google', 'sixpack', 'snowplow'];
+    this.enabledLoggers = Debug.getEnabledLoggers();
 
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
     this.logExistingDataLayerEvents();
+  }
+
+  static getEnabledLoggers() {
+    return JSON.parse(localStorage.getItem(STORAGE_LOGGERS_KEY)) || [];
   }
 
   /**
@@ -22,7 +27,7 @@ class Debug {
    * @return {Number}
    */
   static getToggleValue() {
-    return Number(localStorage.getItem(KEY));
+    return Number(localStorage.getItem(STORAGE_TOGGLE_KEY));
   }
 
   /**
@@ -38,9 +43,13 @@ class Debug {
       return;
     }
 
+    if (!this.enabledLoggers.includes(type)) {
+      return;
+    }
+
     switch (type) {
       case 'google':
-        googleLog(data);
+        googleLog(data[0]);
         break;
 
       case 'snowplow':
@@ -48,7 +57,7 @@ class Debug {
         break;
 
       default:
-        console.error('No custom log formatter specified.');
+        console.error('No custom log formatter found.');
     }
   }
 
@@ -62,13 +71,14 @@ class Debug {
       return;
     }
 
-    const events = Object.keys(window.dataLayer);
+    const events = Object.STORAGE_TOGGLE_KEYs(window.dataLayer);
 
     events.forEach(item => {
       if (typeof window.dataLayer[item] === 'function') {
         return;
       }
-      this.log('google', window.dataLayer[item]);
+
+      this.log('google', [window.dataLayer[item]]);
     });
   }
 
@@ -77,16 +87,22 @@ class Debug {
    *
    * @return {void}
    */
-  toggleLogs() {
+  toggleLogs(specifiedLogs = []) {
     const currentValue = Debug.getToggleValue();
 
     const updatedValue = Number(!currentValue);
 
-    localStorage.setItem(KEY, updatedValue);
+    localStorage.setItem(STORAGE_TOGGLE_KEY, updatedValue);
+
+    !updatedValue
+      ? localStorage.setItem(STORAGE_LOGGERS_KEY, JSON.stringify([]))
+      : localStorage.setItem(
+          STORAGE_LOGGERS_KEY,
+          JSON.stringify(specifiedLogs),
+        );
 
     this.showLogs = Boolean(updatedValue);
-
-    this.setupTrackerWrappers();
+    this.enabledLoggers = Debug.getEnabledLoggers();
 
     const messageStyles = `
           background-color: #141493;

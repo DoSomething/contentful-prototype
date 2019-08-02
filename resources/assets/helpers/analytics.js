@@ -85,7 +85,7 @@ export function analyzeWithGoogle(name, category, action, label, data) {
   window.dataLayer = window.dataLayer || [];
 
   // window.dataLayer.push(analyticsEvent)
-  analyze('google', window.dataLayer.push, analyticsEvent, window.dataLayer);
+  analyze('google', window.dataLayer.push, [analyticsEvent], window.dataLayer);
 }
 
 /**
