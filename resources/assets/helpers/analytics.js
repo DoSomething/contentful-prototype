@@ -46,6 +46,7 @@ export function analyze(type, callback, args, thisArg = window) {
  */
 const formatEventName = (verb, noun, adjective = null) => {
   let eventName = `${APP_PREFIX}_${snakeCase(verb)}_${snakeCase(noun)}`;
+
   // Append adjective if defined.
   eventName += adjective ? `_${snakeCase(adjective)}` : '';
 
@@ -84,7 +85,6 @@ export function analyzeWithGoogle(name, category, action, label, data) {
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
 
-  // window.dataLayer.push(analyticsEvent)
   analyze('google', window.dataLayer.push, [analyticsEvent], window.dataLayer);
 }
 
