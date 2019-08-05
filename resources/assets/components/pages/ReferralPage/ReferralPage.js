@@ -23,7 +23,7 @@ const ReferralPage = props => {
     return <ErrorBlock />;
   }
   const campaignId = query('campaign_id');
-  const isAlphaTemplate = props.location.pathname === '/us/refer-friends';
+  const isAlphaTemplate = props.template === 'alpha';
 
   return (
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
@@ -68,13 +68,7 @@ const ReferralPage = props => {
 };
 
 ReferralPage.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-  }),
-};
-
-ReferralPage.defaultProps = {
-  location: { pathname: null },
+  template: PropTypes.string.isRequired,
 };
 
 export default ReferralPage;
