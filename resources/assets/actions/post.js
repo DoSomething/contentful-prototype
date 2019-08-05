@@ -74,21 +74,13 @@ export function storeCampaignPost(campaignId, data) {
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
-      `The supplied data.body must be an instance of FormData, instead it is an instance of ${
-        body.constructor.name
-      }.`,
+      `The supplied data.body must be an instance of FormData, instead it is an instance of ${body.constructor.name}.`,
     );
   }
 
   const sixpackExperiments = {
     conversion: 'reportbackPost',
   };
-
-  // Separate endpoint for 'referral' actions since we don't post them to rogue.
-  const url =
-    type === 'referral'
-      ? `/next/referrals`
-      : `/api/v2/campaigns/${campaignId}/posts`;
 
   // Track post submission event.
   trackAnalyticsEvent({
@@ -124,7 +116,7 @@ export function storeCampaignPost(campaignId, data) {
         requiresAuthentication: type === 'text',
         pending: POST_SUBMISSION_PENDING,
         success: POST_SUBMISSION_SUCCESSFUL,
-        url,
+        url: `/api/v2/campaigns/${campaignId}/posts`,
       }),
     );
   };
