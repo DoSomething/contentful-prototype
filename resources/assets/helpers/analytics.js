@@ -84,8 +84,8 @@ export function analyzeWithGoogle(name, category, action, label, data) {
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
 
-  analyze('google', analyticsEvent, data => {
-    window.dataLayer.push(data);
+  analyze('google', analyticsEvent, payload => {
+    window.dataLayer.push(payload);
   });
 }
 
@@ -142,8 +142,8 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
     ],
   ];
 
-  analyze('snowplow', analyticsEvent, data => {
-    window.snowplow(...data);
+  analyze('snowplow', analyticsEvent, payload => {
+    window.snowplow(...payload);
   });
 }
 
@@ -240,13 +240,13 @@ export function trackAnalyticsPageView(history) {
   const analyticsEvent = ['trackPageView', null, [data]];
 
   history.listen(() => {
-    analyze('snowplow', analyticsEvent, data => {
-      window.snowplow(...data);
+    analyze('snowplow', analyticsEvent, payload => {
+      window.snowplow(...payload);
     });
   });
 
-  analyze('snowplow', analyticsEvent, data => {
-    window.snowplow(...data);
+  analyze('snowplow', analyticsEvent, payload => {
+    window.snowplow(...payload);
   });
 }
 

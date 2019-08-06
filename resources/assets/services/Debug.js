@@ -2,35 +2,52 @@
 
 import { googleLog, snowplowLog } from '../helpers/loggers';
 
-const STORAGE_TOGGLE_KEY = 'DS_SHOW_LOGS';
 const STORAGE_LOGGERS_KEY = 'DS_ENABLED_LOGGERS';
 
 class Debug {
   constructor() {
-    this.showLogs = Boolean(Debug.getToggleValue());
-
     this.enabledLoggers = Debug.getEnabledLoggers();
 
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
-    console.log('🤪', document.readyState);
-
     // @TODO: call this once once document is ready?
-    this.logExistingDataLayerEvents();
+    // this.logExistingDataLayerEvents();
   }
 
+  /**
+   * Get list of enabled loggers from local storage.
+   *
+   * @return {Array}
+   */
   static getEnabledLoggers() {
     return JSON.parse(localStorage.getItem(STORAGE_LOGGERS_KEY)) || [];
   }
 
   /**
-   * Get the toggle logs boolean value from local storage.
+   * Get styles for console log message.
    *
-   * @return {Number}
+   * @return {String}
    */
-  static getToggleValue() {
-    return Number(localStorage.getItem(STORAGE_TOGGLE_KEY));
+  static getMessageStyles() {
+    return `
+    background-color: #141493;
+    color: #fafafa;
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 20px 30px;
+  `;
+  }
+
+  /**
+   * Set list of enalbed loggers into local storage.
+   *
+   * @param  {Array} specifiedLogs
+   * @return {undefined}
+   */
+  static setEnabledLoggers(specifiedLogs) {
+    localStorage.setItem(STORAGE_LOGGERS_KEY, JSON.stringify(specifiedLogs));
   }
 
   /**
@@ -39,13 +56,9 @@ class Debug {
    *
    * @param  {String} type
    * @param  {Array|Object} data
-   * @return {void}
+   * @return {undefined}
    */
   log(type, data) {
-    if (!this.showLogs) {
-      return;
-    }
-
     if (!this.enabledLoggers.includes(type)) {
       return;
     }
@@ -67,10 +80,10 @@ class Debug {
   /**
    * Log any initial events already in the GTM dataLayer array.
    *
-   * @return {void}
+   * @return {undefined}
    */
   logExistingDataLayerEvents() {
-    if (!Debug.getToggleValue()) {
+    if (!this.enabledLoggers.includes('google')) {
       return;
     }
 
@@ -86,37 +99,47 @@ class Debug {
   }
 
   /**
-   * Toggle whether to show or hide the DoSomething Debug logs in the console.
+   * Enable showing the specified logs.
    *
-   * @return {void}
+   * @param  {Array} specifiedLogs
+   * @return {undefined}
    */
-  toggleLogs(specifiedLogs = []) {
-    const currentValue = Debug.getToggleValue();
+  enableLogs(specifiedLogs) {
+    if (!Array.isArray(specifiedLogs)) {
+      return console.error(
+        'To enable showing logs, please provide an array of string names of the logs to show.',
+      );
+    }
 
-    const updatedValue = Number(!currentValue);
+    Debug.setEnabledLoggers(specifiedLogs);
 
-    localStorage.setItem(STORAGE_TOGGLE_KEY, updatedValue);
-
-    // If toggling logs off, then set item to empty array, otherwise the array of logs specified.
-    localStorage.setItem(
-      STORAGE_LOGGERS_KEY,
-      JSON.stringify(!updatedValue ? [] : specifiedLogs),
-    );
-
-    this.showLogs = Boolean(updatedValue);
     this.enabledLoggers = Debug.getEnabledLoggers();
 
-    const messageStyles = `
-          background-color: #141493;
-          color: #fafafa;
-          display: block;
-          font-size: 14px;
-          padding: 20px 30px;
-        `;
+    const logs = specifiedLogs.join(', ');
+
+    console.log(
+      `%c📝 DoSomething logs have been turned ON.`,
+      Debug.getMessageStyles(),
+    );
+
+    console.log(`%c✅ Showing logs for ${logs}.`, Debug.getMessageStyles());
+
+    return;
+  }
+
+  /**
+   * Disable showing any logs.
+   *
+   * @return {undefined}
+   */
+  disableLogs() {
+    Debug.setEnabledLoggers([]);
+
+    this.enabledLoggers = Debug.getEnabledLoggers();
 
     return console.log(
-      `%c📝 DoSomething logs have been turned ${updatedValue ? 'ON' : 'OFF'}.`,
-      messageStyles,
+      '%c📝 DoSomething logs have been turned OFF.',
+      Debug.getMessageStyles(),
     );
   }
 }
