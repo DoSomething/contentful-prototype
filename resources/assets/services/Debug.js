@@ -11,8 +11,9 @@ class Debug {
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
-    // @TODO: call this once once document is ready?
-    // this.logExistingDataLayerEvents();
+    // Set up any supported trackers that allow being wrapped in an override
+    // function, to help easily output logs whenever native event called.
+    this.setupTrackerWrappers();
   }
 
   /**
@@ -73,7 +74,7 @@ class Debug {
         break;
 
       default:
-        console.error('No custom log formatter found.');
+        console.error('😢 No custom log formatter found.');
     }
   }
 
@@ -107,7 +108,7 @@ class Debug {
   enableLogs(specifiedLogs) {
     if (!Array.isArray(specifiedLogs)) {
       return console.error(
-        'To enable showing logs, please provide an array of string names of the logs to show.',
+        '💁‍♀️ To enable showing logs, please provide an array of string names of the logs to show.',
       );
     }
 
@@ -123,8 +124,6 @@ class Debug {
     );
 
     console.log(`%c✅ Showing logs for ${logs}.`, Debug.getMessageStyles());
-
-    return;
   }
 
   /**
@@ -137,10 +136,32 @@ class Debug {
 
     this.enabledLoggers = Debug.getEnabledLoggers();
 
-    return console.log(
+    console.log(
       '%c📝 DoSomething logs have been turned OFF.',
       Debug.getMessageStyles(),
     );
+  }
+
+  setupTrackerWrappers() {
+    if (this.enabledLoggers.includes('google')) {
+      this.logExistingDataLayerEvents();
+
+      this.wrapGoogleTracker();
+    }
+  }
+
+  wrapGoogleTracker() {
+    if (!Array.isArray(window.dataLayer)) {
+      return;
+    }
+
+    const nativeGtmDataLayerPush = window.dataLayer.push;
+
+    window.dataLayer.push = (...args) => {
+      nativeGtmDataLayerPush.apply(window.dataLayer, args);
+
+      this.log('google', args[0]);
+    };
   }
 }
 

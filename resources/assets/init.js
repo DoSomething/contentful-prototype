@@ -69,8 +69,8 @@ ready(() => {
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
     const analyticsEvent = ['setUserId', window.AUTH.id];
 
-    analyze('snowplow', analyticsEvent, data => {
-      window.snowplow(...data);
+    analyze('snowplow', analyticsEvent, payload => {
+      window.snowplow(...payload);
     });
   }
 

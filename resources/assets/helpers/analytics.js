@@ -84,9 +84,7 @@ export function analyzeWithGoogle(name, category, action, label, data) {
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
 
-  analyze('google', analyticsEvent, payload => {
-    window.dataLayer.push(payload);
-  });
+  window.dataLayer.push(analyticsEvent);
 }
 
 /**
