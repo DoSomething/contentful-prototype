@@ -67,7 +67,13 @@ ready(() => {
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
-    analyze('snowplow', window.snowplow, ['setUserId', window.AUTH.id]);
+    const analyticsEvent = ['setUserId', window.AUTH.id];
+
+    // analyze('snowplow', window.snowplow, ['setUserId', window.AUTH.id]);
+
+    analyze('snowplow', analyticsEvent, data => {
+      window.snowplow(...data);
+    });
   }
 
   // Add page view event listeners for History interface changes.

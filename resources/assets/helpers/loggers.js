@@ -29,7 +29,7 @@ export function phoenixEventLog(data) {
  * @return {void}
  */
 export function googleLog(providedData) {
-  const data = { ...providedData[0] };
+  const data = { ...providedData };
 
   const { event: eventName } = data;
 

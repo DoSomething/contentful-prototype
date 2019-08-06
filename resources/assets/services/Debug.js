@@ -14,6 +14,8 @@ class Debug {
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
+    console.log('🤪', document.readyState);
+
     // @TODO: call this once once document is ready?
     this.logExistingDataLayerEvents();
   }
@@ -79,7 +81,7 @@ class Debug {
         return;
       }
 
-      this.log('google', [window.dataLayer[item]]);
+      this.log('google', window.dataLayer[item]);
     });
   }
 

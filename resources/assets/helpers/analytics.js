@@ -25,13 +25,12 @@ let puckClient = null;
  * Wrapper function to allow executing additional calls when an analytics event is triggered.
  *
  * @param  {String}   type
- * @param  {Function} callback
  * @param  {Array}    args
- * @param  {Object}   thisArg
+ * @param  {Function} callback
  * @return {void}
  */
-export function analyze(type, callback, args, thisArg = window) {
-  callback.apply(thisArg, args);
+export function analyze(type, args, callback) {
+  callback(args);
 
   debug().log(type, args);
 }
@@ -85,7 +84,9 @@ export function analyzeWithGoogle(name, category, action, label, data) {
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
 
-  analyze('google', window.dataLayer.push, [analyticsEvent], window.dataLayer);
+  analyze('google', analyticsEvent, data => {
+    window.dataLayer.push(data);
+  });
 }
 
 /**
@@ -124,7 +125,7 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
     return;
   }
 
-  analyze('snowplow', window.snowplow, [
+  const analyticsEvent = [
     'trackStructEvent',
     category,
     action,
@@ -139,7 +140,11 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
         },
       },
     ],
-  ]);
+  ];
+
+  analyze('snowplow', analyticsEvent, data => {
+    window.snowplow(...data);
+  });
 }
 
 /**
@@ -232,11 +237,17 @@ export function trackAnalyticsPageView(history) {
     },
   };
 
+  const analyticsEvent = ['trackPageView', null, [data]];
+
   history.listen(() => {
-    analyze('snowplow', window.snowplow, ['trackPageView', null, [data]]);
+    analyze('snowplow', analyticsEvent, data => {
+      window.snowplow(...data);
+    });
   });
 
-  analyze('snowplow', window.snowplow, ['trackPageView', null, [data]]);
+  analyze('snowplow', analyticsEvent, data => {
+    window.snowplow(...data);
+  });
 }
 
 /**
