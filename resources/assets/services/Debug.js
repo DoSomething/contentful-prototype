@@ -107,9 +107,11 @@ class Debug {
    */
   enableLogs(specifiedLogs) {
     if (!Array.isArray(specifiedLogs)) {
-      return console.warn(
+      console.warn(
         '💁‍♀️ To enable showing logs, please provide an array of string names of the logs to show.',
       );
+
+      return;
     }
 
     Debug.setEnabledLoggers(specifiedLogs);
