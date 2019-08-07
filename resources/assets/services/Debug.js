@@ -107,7 +107,7 @@ class Debug {
    */
   enableLogs(specifiedLogs) {
     if (!Array.isArray(specifiedLogs)) {
-      return console.error(
+      return console.warn(
         '💁‍♀️ To enable showing logs, please provide an array of string names of the logs to show.',
       );
     }
@@ -123,7 +123,7 @@ class Debug {
       Debug.getMessageStyles(),
     );
 
-    console.log(`%c✅ Showing logs for ${logs}.`, Debug.getMessageStyles());
+    console.log(`%c🔍 Showing logs for ${logs}.`, Debug.getMessageStyles());
   }
 
   /**
