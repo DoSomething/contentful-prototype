@@ -2,25 +2,53 @@
 
 import { googleLog, snowplowLog } from '../helpers/loggers';
 
-const KEY = 'DS_SHOW_LOGS';
+const STORAGE_LOGGERS_KEY = 'DS_ENABLED_LOGGERS';
 
 class Debug {
   constructor() {
-    this.showLogs = Boolean(Debug.getToggleValue());
+    this.enabledLoggers = Debug.getEnabledLoggers();
 
     window.DS = window.DS || {};
     window.DS.Debug = this;
 
+    // Set up any supported trackers that allow being wrapped in an override
+    // function, to help easily output logs whenever native event called.
     this.setupTrackerWrappers();
   }
 
   /**
-   * Get the toggle logs boolean value from local storage.
+   * Get list of enabled loggers from local storage.
    *
-   * @return {Number}
+   * @return {Array}
    */
-  static getToggleValue() {
-    return Number(localStorage.getItem(KEY));
+  static getEnabledLoggers() {
+    return JSON.parse(localStorage.getItem(STORAGE_LOGGERS_KEY)) || [];
+  }
+
+  /**
+   * Get styles for console log message.
+   *
+   * @return {String}
+   */
+  static getMessageStyles() {
+    return `
+    background-color: #141493;
+    color: #fafafa;
+    display: block;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 20px 30px;
+  `;
+  }
+
+  /**
+   * Set list of enalbed loggers into local storage.
+   *
+   * @param  {Array} specifiedLogs
+   * @return {undefined}
+   */
+  static setEnabledLoggers(specifiedLogs) {
+    localStorage.setItem(STORAGE_LOGGERS_KEY, JSON.stringify(specifiedLogs));
   }
 
   /**
@@ -29,10 +57,10 @@ class Debug {
    *
    * @param  {String} type
    * @param  {Array|Object} data
-   * @return {void}
+   * @return {undefined}
    */
   log(type, data) {
-    if (!this.showLogs) {
+    if (!this.enabledLoggers.includes(type)) {
       return;
     }
 
@@ -46,48 +74,84 @@ class Debug {
         break;
 
       default:
-        console.error('No custom log formatter specified.');
+        console.error(`😢 No ${type} log formatter found.`);
     }
   }
 
   /**
    * Log any initial events already in the GTM dataLayer array.
    *
-   * @return {void}
+   * @return {undefined}
    */
   logExistingDataLayerEvents() {
-    // Note: if GTM is not active, no initial events will be pushed to the mocked dataLayer array.
+    if (!this.enabledLoggers.includes('google')) {
+      return;
+    }
+
     const events = Object.keys(window.dataLayer);
 
     events.forEach(item => {
       if (typeof window.dataLayer[item] === 'function') {
         return;
       }
+
       this.log('google', window.dataLayer[item]);
     });
   }
 
   /**
-   * Wrap specified event trackers in a custom fu nction to allow logging
-   * when events fire into the console for debugging.
+   * Enable showing the specified logs.
    *
-   * @return {void}
+   * @param  {Array} specifiedLogs
+   * @return {undefined}
    */
-  setupTrackerWrappers() {
-    if (Debug.getToggleValue()) {
-      this.logExistingDataLayerEvents();
+  enableLogs(specifiedLogs) {
+    if (!Array.isArray(specifiedLogs)) {
+      console.warn(
+        '💁‍♀️ To enable showing logs, please provide an array of string names of the logs to show.',
+      );
 
-      this.wrapGoogleTracker();
-
-      this.wrapSnowplowTracker();
+      return;
     }
+
+    Debug.setEnabledLoggers(specifiedLogs);
+
+    this.enabledLoggers = Debug.getEnabledLoggers();
+
+    const logs = specifiedLogs.join(', ');
+
+    console.log(
+      `%c📝 DoSomething logs have been turned ON.`,
+      Debug.getMessageStyles(),
+    );
+
+    console.log(`%c🔍 Showing logs for ${logs}.`, Debug.getMessageStyles());
   }
 
   /**
-   * Wrap the Google Tag Manager dataLayer push function to allow logging events.
+   * Disable showing any logs.
    *
-   * @return {void}
+   * @return {undefined}
    */
+  disableLogs() {
+    Debug.setEnabledLoggers([]);
+
+    this.enabledLoggers = Debug.getEnabledLoggers();
+
+    console.log(
+      '%c📝 DoSomething logs have been turned OFF.',
+      Debug.getMessageStyles(),
+    );
+  }
+
+  setupTrackerWrappers() {
+    if (this.enabledLoggers.includes('google')) {
+      this.logExistingDataLayerEvents();
+
+      this.wrapGoogleTracker();
+    }
+  }
+
   wrapGoogleTracker() {
     if (!Array.isArray(window.dataLayer)) {
       return;
@@ -100,55 +164,6 @@ class Debug {
 
       this.log('google', args[0]);
     };
-  }
-
-  /**
-   * Wrap the Snowplow function to allow logging events.
-   *
-   * @return {void}
-   */
-  wrapSnowplowTracker() {
-    if (typeof window.snowplow !== 'function') {
-      return;
-    }
-
-    const nativeSnowplow = window.snowplow;
-
-    window.snowplow = (...args) => {
-      nativeSnowplow.apply(window, args);
-
-      this.log('snowplow', args);
-    };
-  }
-
-  /**
-   * Toggle whether to show or hide the DoSomething Debug logs in the console.
-   *
-   * @return {void}
-   */
-  toggleLogs() {
-    const currentValue = Debug.getToggleValue();
-
-    const updatedValue = Number(!currentValue);
-
-    localStorage.setItem(KEY, updatedValue);
-
-    this.showLogs = Boolean(updatedValue);
-
-    this.setupTrackerWrappers();
-
-    const messageStyles = `
-          background-color: #141493;
-          color: #fafafa;
-          display: block;
-          font-size: 14px;
-          padding: 20px 30px;
-        `;
-
-    return console.log(
-      `%c📝 DoSomething logs have been turned ${updatedValue ? 'ON' : 'OFF'}.`,
-      messageStyles,
-    );
   }
 }
 

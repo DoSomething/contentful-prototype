@@ -25,13 +25,14 @@ export function phoenixEventLog(data) {
 /**
  * Log Google Tag Manager events to the console.
  *
- * @param  {Object} providedData
+ * @param  {Array} providedData
  * @return {void}
  */
 export function googleLog(providedData) {
-  const { event: eventName } = providedData;
-
   const data = { ...providedData };
+
+  const { event: eventName } = data;
+
   delete data.event;
 
   console.groupCollapsed(
