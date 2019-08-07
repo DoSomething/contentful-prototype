@@ -55,7 +55,7 @@ const BADGE_QUERY = gql`
 
 const POST_COUNT_BADGE = gql`
   query PostsCountQuery($userId: String!) {
-    postsCount(userId: $userId, limit: 3)
+    postsCount(userId: $userId, limit: 4)
   }
 `;
 
