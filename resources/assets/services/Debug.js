@@ -74,7 +74,7 @@ class Debug {
         break;
 
       default:
-        console.error('😢 No custom log formatter found.');
+        console.error(`😢 No ${type} log formatter found.`);
     }
   }
 
