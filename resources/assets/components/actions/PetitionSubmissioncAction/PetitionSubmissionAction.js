@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { get, has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Query } from 'react-apollo';
+import { Query as ApolloQuery } from 'react-apollo';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
@@ -14,6 +14,8 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+import Badge from '../../pages/AccountPage/Badge';
+import Query from '../../Query';
 
 import './petition-submission-action.scss';
 
@@ -42,6 +44,20 @@ export const USER_POSTS_QUERY = gql`
 `;
 
 const CHARACTER_LIMIT = 500;
+
+const BADGE_QUERY = gql`
+  query AccountQuery($userId: String!) {
+    user(id: $userId) {
+      hasBadgesFlag: hasFeatureFlag(feature: "badges")
+    }
+  }
+`;
+
+const POST_COUNT_BADGE = gql`
+  query PostsCountQuery($userId: String!) {
+    postsCount(userId: $userId, limit: 4)
+  }
+`;
 
 class PetitionSubmissionAction extends React.Component {
   constructor(props) {
@@ -130,7 +146,7 @@ class PetitionSubmissionAction extends React.Component {
             name="petition_submission_action-top"
             waypointData={{ blockId: id }}
           />
-          <Query
+          <ApolloQuery
             query={USER_POSTS_QUERY}
             variables={{ userId, actionIds: [actionId] }}
             queryName="userPosts"
@@ -205,7 +221,7 @@ class PetitionSubmissionAction extends React.Component {
                 </Card>
               );
             }}
-          </Query>
+          </ApolloQuery>
           <PuckWaypoint
             name="petition_submission_action-bottom"
             waypointData={{ blockId: id }}
@@ -230,6 +246,85 @@ class PetitionSubmissionAction extends React.Component {
         {this.state.showModal ? (
           <Modal onClose={() => this.setState({ showModal: false })}>
             <Card className="bordered rounded" title="We got your signature!">
+              <Query
+                query={BADGE_QUERY}
+                variables={{ userId: this.props.userId }}
+                hideSpinner
+              >
+                {badgeData =>
+                  badgeData.user.hasBadgesFlag ? (
+                    <Query
+                      query={POST_COUNT_BADGE}
+                      variables={{ userId: this.props.userId }}
+                      hideSpinner
+                    >
+                      {postData => {
+                        if (postData.postsCount === 1) {
+                          return (
+                            <Badge
+                              earned
+                              className="badge padded"
+                              size="medium"
+                              name="onePostBadge"
+                            >
+                              <h4>1 Action</h4>
+                              <p>
+                                Ohhh HECK yes! You just earned a new badge for
+                                completing your first campaign. Congratulations!
+                              </p>
+                              <a href="/us/account/profile/badges">
+                                View all my badges
+                              </a>
+                            </Badge>
+                          );
+                        }
+                        if (postData.postsCount === 2) {
+                          return (
+                            <Badge
+                              earned
+                              className="badge padded"
+                              size="medium"
+                              name="twoPostsBadge"
+                            >
+                              <h4>2 Actions</h4>
+                              <p>
+                                Ohhh HECK yes! You just earned a new badge for
+                                completing your second campaign.
+                                Congratulations!
+                              </p>
+                              <a href="/us/account/profile/badges">
+                                View all my badges
+                              </a>
+                            </Badge>
+                          );
+                        }
+                        if (postData.postsCount === 3) {
+                          return (
+                            <Badge
+                              earned
+                              className="badge padded"
+                              size="medium"
+                              name="threePostsBadge"
+                            >
+                              <h4>3 Actions</h4>
+                              <p>
+                                Ohhh HECK yes! You just earned a new badge for
+                                completing your third campaign. Congratulations!
+                              </p>
+                              <a href="/us/account/profile/badges">
+                                View all my badges
+                              </a>
+                            </Badge>
+                          );
+                        }
+
+                        return null;
+                      }}
+                    </Query>
+                  ) : null
+                }
+              </Query>
+
               <TextContent className="padded">
                 {this.props.affirmationContent}
               </TextContent>
