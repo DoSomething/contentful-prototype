@@ -20,6 +20,8 @@ import {
   showTwitterSharePrompt,
   withoutNulls,
 } from '../../../helpers';
+import Badge from '../../pages/AccountPage/Badge';
+import Query from '../../Query';
 
 export const ShareBlockFragment = gql`
   fragment ShareBlockFragment on ShareBlock {
@@ -34,6 +36,20 @@ export const ShareBlockFragment = gql`
     }
     affirmation
     additionalContent
+  }
+`;
+
+const BADGE_QUERY = gql`
+  query AccountQuery($userId: String!) {
+    user(id: $userId) {
+      hasBadgesFlag: hasFeatureFlag(feature: "badges")
+    }
+  }
+`;
+
+const POST_COUNT_BADGE = gql`
+  query PostsCountQuery($userId: String!) {
+    postsCount(userId: $userId, limit: 4)
   }
 `;
 
@@ -200,6 +216,87 @@ class ShareAction extends React.Component {
                 title="Thanks for sharing!"
                 className="modal__slide bordered rounded"
               >
+                <Query
+                  query={BADGE_QUERY}
+                  variables={{ userId: this.props.userId }}
+                  hideSpinner
+                >
+                  {badgeData =>
+                    badgeData.user.hasBadgesFlag ? (
+                      <Query
+                        query={POST_COUNT_BADGE}
+                        variables={{ userId: this.props.userId }}
+                        hideSpinner
+                      >
+                        {postData => {
+                          if (postData.postsCount === 1) {
+                            return (
+                              <Badge
+                                earned
+                                className="badge padded"
+                                size="medium"
+                                name="onePostBadge"
+                              >
+                                <h4>1 Action</h4>
+                                <p>
+                                  Ohhh HECK yes! You just earned a new badge for
+                                  completing your first campaign.
+                                  Congratulations!
+                                </p>
+                                <a href="/us/account/profile/badges">
+                                  View all my badges
+                                </a>
+                              </Badge>
+                            );
+                          }
+                          if (postData.postsCount > 0) {
+                            return (
+                              <Badge
+                                earned
+                                className="badge padded"
+                                size="medium"
+                                name="twoPostsBadge"
+                              >
+                                <h4>2 Actions</h4>
+                                <p>
+                                  Ohhh HECK yes! You just earned a new badge for
+                                  completing your second campaign.
+                                  Congratulations!
+                                </p>
+                                <a href="/us/account/profile/badges">
+                                  View all my badges
+                                </a>
+                              </Badge>
+                            );
+                          }
+                          if (postData.postsCount === 3) {
+                            return (
+                              <Badge
+                                earned
+                                className="badge padded"
+                                size="medium"
+                                name="threePostsBadge"
+                              >
+                                <h4>3 Actions</h4>
+                                <p>
+                                  Ohhh HECK yes! You just earned a new badge for
+                                  completing your third campaign.
+                                  Congratulations!
+                                </p>
+                                <a href="/us/account/profile/badges">
+                                  View all my badges
+                                </a>
+                              </Badge>
+                            );
+                          }
+
+                          return null;
+                        }}
+                      </Query>
+                    ) : null
+                  }
+                </Query>
+
                 <TextContent className="padded">{affirmation}</TextContent>
               </Card>
             )}
