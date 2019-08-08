@@ -249,7 +249,7 @@ class ShareAction extends React.Component {
                               </Badge>
                             );
                           }
-                          if (postData.postsCount > 0) {
+                          if (postData.postsCount === 2) {
                             return (
                               <Badge
                                 earned
