@@ -123,7 +123,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@dosomething/babel-preset": "^3.2.0",
     "@dosomething/eslint-config": "^5.0.1",
-    "@dosomething/webpack-config": "^5.1.0",
+    "@dosomething/webpack-config": "^5.2.0",
     "apollo": "^2.13.1",
     "bson": "^4.0.2",
     "contentful-management": "^5.8.0",
