@@ -2,6 +2,10 @@
 
 .marquee-landing-page {
   .cover-image {
+    @include media($largest) {
+      padding-top: 0;
+    }
+
     img {
       width: 100%;
     }
