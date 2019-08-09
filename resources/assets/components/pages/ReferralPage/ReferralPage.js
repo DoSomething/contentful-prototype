@@ -55,6 +55,7 @@ const ReferralPage = props => {
                   />
                 ) : (
                   <BetaTemplate
+                    blockClassName={blockClassName}
                     firstName={firstName}
                     primaryCampaignId={campaignId}
                     userId={userId}
