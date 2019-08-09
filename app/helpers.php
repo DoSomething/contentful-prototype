@@ -400,7 +400,7 @@ function get_metadata($entry)
     return [
         'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
-        'description' => data_get($entry, 'metadata.fields.description', str_limit($entry->callToAction, 150)),
+        'description' => data_get($entry, 'metadata.fields.description', $entry->callToAction ? str_limit($entry->callToAction, 150) : null),
         'url' => $entryType === 'campaign' ? $baseUrl.'/campaigns/'.$entry->slug : $baseUrl.'/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => [
