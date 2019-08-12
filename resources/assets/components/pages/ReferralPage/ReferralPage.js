@@ -45,19 +45,21 @@ const ReferralPage = props => {
                       : `Hi, ${firstName}’s friend!`}
                   </h1>
                 </div>
-                {isAlphaTemplate ? (
-                  <AlphaTemplate
-                    firstName={firstName}
-                    primaryCampaignId={campaignId}
-                    userId={userId}
-                  />
-                ) : (
-                  <BetaTemplate
-                    firstName={firstName}
-                    primaryCampaignId={campaignId}
-                    userId={userId}
-                  />
-                )}
+                <div className="margin-horizontal-md">
+                  {isAlphaTemplate ? (
+                    <AlphaTemplate
+                      firstName={firstName}
+                      primaryCampaignId={campaignId}
+                      userId={userId}
+                    />
+                  ) : (
+                    <BetaTemplate
+                      firstName={firstName}
+                      primaryCampaignId={campaignId}
+                      userId={userId}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
