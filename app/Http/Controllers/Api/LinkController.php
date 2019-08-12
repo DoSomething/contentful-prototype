@@ -35,6 +35,7 @@ class LinkController extends Controller
         // Only allow users to create short-links for
         // whitelisted "safe" sites:
         $whitelist = [
+//            'phoenix.test',
             'www.dosomething.org',
             'vote.dosomething.org',
             'www.dosomething.vote',
