@@ -9,13 +9,13 @@ const SECONDARY_CAMPAIGN_PROMPT =
   'In less than 5 minutes, you can join 193,242 young people putting an end to gun violence.';
 
 const BetaTemplate = props => {
-  const { blockClassName, firstName, primaryCampaignId, userId } = props;
+  const { firstName, primaryCampaignId, userId } = props;
   const displayPrimaryCampaign =
     primaryCampaignId && primaryCampaignId !== SECONDARY_CAMPAIGN_ID;
 
   return (
     <React.Fragment>
-      <div className={blockClassName}>
+      <div className="margin-vertical">
         <p>
           {firstName} just signed up for this campaign from DoSomething.org.
           Once you and {props.firstName} complete the campaign, you’ll both earn
@@ -24,10 +24,10 @@ const BetaTemplate = props => {
       </div>
       {displayPrimaryCampaign ? (
         <React.Fragment>
-          <div className={blockClassName}>
+          <div className="margin-vertical">
             <CampaignLink campaignId={primaryCampaignId} userId={userId} />
           </div>
-          <div className={blockClassName}>
+          <div className="margin-vertical">
             <p>
               <strong>
                 Interested in doing a different campaign to get your gift card?
@@ -37,10 +37,10 @@ const BetaTemplate = props => {
           </div>
         </React.Fragment>
       ) : null}
-      <div className={blockClassName}>
+      <div className="margin-vertical">
         <CampaignLink campaignId={SECONDARY_CAMPAIGN_ID} userId={userId} />
       </div>
-      <div className={blockClassName}>
+      <div className="margin-vertical">
         <h3>About Us</h3>
         <p>
           DoSomething is the largest not-for-profit for young people and social
@@ -56,14 +56,12 @@ const BetaTemplate = props => {
 };
 
 BetaTemplate.propTypes = {
-  blockClassName: PropTypes.string,
   firstName: PropTypes.string.isRequired,
   primaryCampaignId: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };
 
 BetaTemplate.defaultProps = {
-  blockClassName: null,
   primaryCampaignId: null,
 };
 

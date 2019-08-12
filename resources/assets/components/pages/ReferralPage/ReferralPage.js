@@ -31,8 +31,7 @@ const ReferralPage = props => {
         if (!data.user) {
           return <ErrorBlock />;
         }
-        const blockClassName =
-          'general-page__block margin-vertical margin-horizontal-md';
+
         const firstName = data.user.firstName;
 
         return (
@@ -46,21 +45,21 @@ const ReferralPage = props => {
                       : `Hi, ${firstName}’s friend!`}
                   </h1>
                 </div>
-                {isAlphaTemplate ? (
-                  <AlphaTemplate
-                    blockClassName={blockClassName}
-                    firstName={firstName}
-                    primaryCampaignId={campaignId}
-                    userId={userId}
-                  />
-                ) : (
-                  <BetaTemplate
-                    blockClassName={blockClassName}
-                    firstName={firstName}
-                    primaryCampaignId={campaignId}
-                    userId={userId}
-                  />
-                )}
+                <div className="margin-horizontal-md">
+                  {isAlphaTemplate ? (
+                    <AlphaTemplate
+                      firstName={firstName}
+                      primaryCampaignId={campaignId}
+                      userId={userId}
+                    />
+                  ) : (
+                    <BetaTemplate
+                      firstName={firstName}
+                      primaryCampaignId={campaignId}
+                      userId={userId}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
