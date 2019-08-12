@@ -1,0 +1,20 @@
+@import '../../../scss/next-toolbox';
+
+.register-cta-banner {
+  background: url('./register-cta-banner-bg.svg');
+  background-size: cover;
+  height: 300px;
+
+  // Tiny screens need a bit more room for content.
+  @media (max-width: 320px) {
+    height: 315px;
+  }
+
+  .register-cta-banner__button {
+    width: 250px;
+
+    @include media($medium) {
+      width: 315px;
+    }
+  }
+}
