@@ -5,7 +5,7 @@ import { PHOENIX_URL } from '../../../../constants';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const AlphaTemplate = props => {
-  const { firstName, primaryCampaignId, userId } = props;
+  const { primaryCampaignId, userId } = props;
 
   let url = `${PHOENIX_URL}/us/join?user_id=${userId}`;
   if (primaryCampaignId) {
@@ -20,19 +20,11 @@ const AlphaTemplate = props => {
         link={url}
         showPageViews={false}
       />
-      <h3>
-        <a href={url}>Check Out Your Referral Page</a>
-      </h3>
-      <p>
-        Welcome to {firstName}’s refer a friend page. Do something, get
-        something...
-      </p>
     </React.Fragment>
   );
 };
 
 AlphaTemplate.propTypes = {
-  firstName: PropTypes.string.isRequired,
   primaryCampaignId: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };

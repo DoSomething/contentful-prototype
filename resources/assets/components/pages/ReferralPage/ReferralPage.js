@@ -48,7 +48,6 @@ const ReferralPage = props => {
                 <div className="margin-horizontal-md">
                   {isAlphaTemplate ? (
                     <AlphaTemplate
-                      firstName={firstName}
                       primaryCampaignId={campaignId}
                       userId={userId}
                     />
