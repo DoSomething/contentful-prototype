@@ -33,9 +33,22 @@
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    <a href="{{ route('login', isset($campaign) ? get_login_query($campaign) : get_login_query()) }}">Log In</a>
+                    <a href="{{ route('login', array_merge(['mode' => 'login'], isset($campaign) ? get_login_query($campaign) : get_login_query())) }}">Log In</a>
+                    <a href="{{ route('register', isset($campaign) ? get_login_query($campaign) : get_login_query())}}">Join Now</a>
                 @endif
             </li>
         </ul>
     </div>
 </div>
+
+{{--
+http://phoenix.test/next/login?
+    destination=%5BTest%5D+Teens+for+Jeans
+    &options%5Btitle%5D=%5BTest%5D+Teens+for+Jeans
+    &options%5BcoverImage%5D=https%3A%2F%2Fimages.ctfassets.net%2F81iqaqpfd8fy%2F4k8rv5sN0kii0AoCawc6UQ%2Fc22c3c132d1bb43055b6bafc248fcea5%2Fvn7gpbosm9rx.jpg
+    &options%5BcallToAction%5D=Let%27s+collect+another+million+jeans+TOGETHER.
+
+http://phoenix.test/next/login?
+    actionId=auth%3A1565286536853
+    &options=%7B%22title%22%3A%22%5BTest%5D%20Teens%20for%20Jeans%22%2C%22callToAction%22%3A%22Let%27s%20collect%20another%20million%20jeans%20TOGETHER.%22%2C%22coverImage%22%3A%22https%3A%2F%2Fimages.ctfassets.net%2F81iqaqpfd8fy%2F4k8rv5sN0kii0AoCawc6UQ%2Fc22c3c132d1bb43055b6bafc248fcea5%2Fvn7gpbosm9rx.jpg%3Fw%3D800%26h%3D600%26fit%3Dfill%22%2C%22contentful_id%22%3A%226LQzMvDNQcYQYwso8qSkQ8%22%7D
+--}}

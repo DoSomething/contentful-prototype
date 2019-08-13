@@ -60,6 +60,7 @@ class AuthController extends Controller
             session()->flash('actionId', $actionId);
         }
 
+
         // Set options containing metadata for Northstar login.
         $options = array_get($queryParams, 'options', []);
 
@@ -79,6 +80,15 @@ class AuthController extends Controller
             $url .= str_contains($url, '?') ? '&'.$actionIdParam : '?'.$actionIdParam;
         }
 
+        dd([
+            $queryParams,
+            $request,
+            $response,
+            $url,
+            $destination,
+            $options,
+        ]);
+
         return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
     }
 
@@ -91,5 +101,17 @@ class AuthController extends Controller
     public function getLogout(ResponseInterface $response)
     {
         return gateway('northstar')->logout($response, $this->redirectAfterLogout);
+    }
+
+    public function getRegister(ServerRequestInterface $request, ResponseInterface $response)
+    {
+
+        $queryParams = $request->getQueryParams();
+
+        dd([
+            $request,
+            $response,
+            $queryParams,
+        ]);
     }
 }
