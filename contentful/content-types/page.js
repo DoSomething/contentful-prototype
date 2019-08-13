@@ -175,6 +175,7 @@ module.exports = function(migration) {
             'galleryBlock',
             'imagesBlock',
             'linkAction',
+            'petitionSubmissionAction',
             'photoSubmissionAction',
             'postGallery',
             'quiz',
