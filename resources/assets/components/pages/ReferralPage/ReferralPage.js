@@ -18,12 +18,12 @@ const REFERRAL_PAGE_USER = gql`
 `;
 
 const ReferralPage = props => {
+  const campaignId = query('campaign_id');
   const userId = query('user_id');
+
   if (!userId) {
     return <ErrorBlock />;
   }
-  const campaignId = query('campaign_id');
-  const isAlphaTemplate = props.template === 'alpha';
 
   return (
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
@@ -34,34 +34,18 @@ const ReferralPage = props => {
 
         const firstName = data.user.firstName;
 
+        if (props.template === 'alpha') {
+          return (
+            <AlphaTemplate primaryCampaignId={campaignId} userId={userId} />
+          );
+        }
+
         return (
-          <div>
-            <div className="main clearfix general-page">
-              <div className="default-container margin-vertical">
-                <div className="general-page__heading text-center">
-                  <h1 className="general-page__title caps-lock">
-                    {isAlphaTemplate
-                      ? 'Want free stuff?'
-                      : `Hi, ${firstName}’s friend!`}
-                  </h1>
-                </div>
-                <div className="margin-horizontal-md">
-                  {isAlphaTemplate ? (
-                    <AlphaTemplate
-                      primaryCampaignId={campaignId}
-                      userId={userId}
-                    />
-                  ) : (
-                    <BetaTemplate
-                      firstName={firstName}
-                      primaryCampaignId={campaignId}
-                      userId={userId}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
+          <BetaTemplate
+            firstName={firstName}
+            primaryCampaignId={campaignId}
+            userId={userId}
+          />
         );
       }}
     </Query>

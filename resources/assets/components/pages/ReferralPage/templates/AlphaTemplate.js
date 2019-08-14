@@ -13,14 +13,21 @@ const AlphaTemplate = props => {
   }
 
   return (
-    <React.Fragment>
-      <SocialDriveActionContainer
-        shareCardDescription="When you and a friend complete this campaign, you’ll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there’s no limit on how many you can refer!)"
-        shareCardTitle="Refer A Friend"
-        link={url}
-        showPageViews={false}
-      />
-    </React.Fragment>
+    <div className="main clearfix general-page">
+      <div className="default-container margin-vertical">
+        <div className="general-page__heading text-center">
+          <h1 className="general-page__title caps-lock">Want free stuff?</h1>
+        </div>
+        <div className="margin-vertical">
+          <SocialDriveActionContainer
+            shareCardDescription="When you and a friend complete this campaign, you’ll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there’s no limit on how many you can refer!)"
+            shareCardTitle="Refer A Friend"
+            link={url}
+            showPageViews={false}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 
