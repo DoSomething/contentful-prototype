@@ -493,6 +493,7 @@ function get_login_query($campaign = null)
     return [
         'destination' => $campaign->title,
         'options' => array_merge($options, [
+            'contentful_id' => $campaign->id,
             'title' => $campaign->title,
             'coverImage' => $campaign->coverImage->url,
             'callToAction' => $campaign->callToAction,
