@@ -1,0 +1,13 @@
+@import '../../../scss/next-toolbox';
+
+.cta-register-popover {
+  background: url('./cta-register-popover-bg.svg');
+  background-size: cover;
+
+  position: fixed;
+
+  width: 400px;
+  height: auto;
+  top: 150px;
+  right: $base-spacing;
+}
