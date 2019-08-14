@@ -55,13 +55,24 @@ class SocialDriveAction extends React.Component {
   };
 
   render() {
-    const { link, showPageViews } = this.props;
+    const {
+      link,
+      shareCardDescription,
+      shareCardTitle,
+      showPageViews,
+    } = this.props;
     const shortenedLink = this.state.shortenedLink;
 
     return (
       <div className="clearfix padding-bottom-lg">
         <div className="social-drive-action">
-          <Card title="Your Online Drive" className="rounded bordered">
+          <Card title={shareCardTitle} className="rounded bordered">
+            {shareCardDescription ? (
+              <div className="padded">
+                <p>{shareCardDescription}</p>
+              </div>
+            ) : null}
+
             <div className="padded">
               <Embed url={link} />
             </div>
@@ -134,6 +145,8 @@ SocialDriveAction.propTypes = {
   campaignId: PropTypes.string,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
+  shareCardTitle: PropTypes.string,
+  shareCardDescription: PropTypes.string,
   showPageViews: PropTypes.bool,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
@@ -141,6 +154,8 @@ SocialDriveAction.propTypes = {
 
 SocialDriveAction.defaultProps = {
   campaignId: null,
+  shareCardDescription: null,
+  shareCardTitle: 'Your Online Drive',
   pageId: null,
   showPageViews: true,
 };
