@@ -33,8 +33,8 @@
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    <a href="{{ route('login', array_merge(['mode' => 'login'], isset($campaign) ? get_login_query($campaign) : get_login_query())) }}">Log In</a>
-                    <a href="{{ route('register', isset($campaign) ? get_login_query($campaign) : get_login_query())}}">Join Now</a>
+                    {{-- <a href="{{ route('login', isset($campaign) ? get_login_query($campaign) : null) }}">Log In</a> --}}
+                    <a href="{{ route('register', isset($campaign) ? get_login_query($campaign) : get_login_query() }}">Log In</a>
                 @endif
             </li>
         </ul>
