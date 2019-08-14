@@ -472,17 +472,31 @@ function get_campaign_social_fields($campaign, $uri)
  */
 function get_login_query($campaign = null)
 {
+    $options = [];
+    $params = [
+        'referrer_user_id',
+        'utm_campaign',
+        'utm_medium',
+        'utm_source',
+    ];
+
+    foreach ($params as $param) {
+        if (request($param)) {
+            $options[$param] = request($param);
+        }
+    }
+
     if (! $campaign) {
-        return [];
+        return ['options' => $options];
     }
 
     return [
         'destination' => $campaign->title,
-        'options' => [
+        'options' => array_merge($options, [
             'title' => $campaign->title,
             'coverImage' => $campaign->coverImage->url,
             'callToAction' => $campaign->callToAction,
-        ],
+        ]),
     ];
 }
 
