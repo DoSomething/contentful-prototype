@@ -6,7 +6,7 @@ import './register-cta-banner.scss';
 const RegisterCTABanner = ({ redirectToNorthstar }) => (
   <div className="register-cta-banner base-12-grid">
     <div className="grid-narrow margin-md">
-      <h3 className="text-lg color-yellow font-bold">JOIN DOSOMETHING TODAY</h3>
+      <h3 className="text-m color-yellow font-bold">JOIN DOSOMETHING TODAY</h3>
       <p className="text-white mt-4">
         After you learn something, do something! Help change the world one
         Fantini at a time. Join the global movement because apathy sucks.
