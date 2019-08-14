@@ -18,8 +18,8 @@ import {
 
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
-import { trackAnalyticsEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
+import { trackAnalyticsEvent } from './analytics';
 import { getDataForNorthstar } from '../selectors';
 
 // Helper Constants
