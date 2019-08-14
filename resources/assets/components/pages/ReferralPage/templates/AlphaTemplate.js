@@ -6,8 +6,8 @@ import SocialDriveActionContainer from '../../../actions/SocialDriveAction/Socia
 
 const AlphaTemplate = props => {
   const { primaryCampaignId, userId } = props;
-
   let url = `${PHOENIX_URL}/us/join?user_id=${userId}`;
+
   if (primaryCampaignId) {
     url = `${url}&campaign_id=${primaryCampaignId}`;
   }
