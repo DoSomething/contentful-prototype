@@ -30,7 +30,8 @@ class AuthController extends Controller
      * @param  array  $options
      * @return string
      */
-    protected function getDestination($queryParams, $options = []) {
+    protected function getDestination($queryParams, $options = [])
+    {
         return array_get($queryParams, 'destination', array_get($options, 'title'));
     }
 
@@ -40,7 +41,8 @@ class AuthController extends Controller
      * @param  array $queryParams
      * @return array
      */
-    protected function getOptions($queryParams) {
+    protected function getOptions($queryParams)
+    {
         $options = array_get($queryParams, 'options', []);
 
         if (is_string($options)) {
@@ -55,7 +57,8 @@ class AuthController extends Controller
      *
      * @return string
      */
-    protected function getUrl() {
+    protected function getUrl()
+    {
         $url = session('login.intended', $this->redirectTo);
 
         // If there is an actionId in the session, set it as a query param on to the intended URL.
@@ -73,7 +76,8 @@ class AuthController extends Controller
      *
      * @param array $queryParams
      */
-    protected function setSessionData($queryParams = []) {
+    protected function setSessionData($queryParams = [])
+    {
         if (array_has($queryParams, 'code')) {
             return;
         }
