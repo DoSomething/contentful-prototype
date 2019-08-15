@@ -1,3 +1,9 @@
+@php
+    // @TODO: temporary until we can universalize campaign, pages, story-page entities into
+    // a single variable passed to the view.
+    $entity = isset($campaign) ? $campaign : null;
+@endphp
+
 <div class="navigation {{isset($legacyNavigation) ? '-white -floating' : 'bg-white'}}">
     <a class="navigation__logo" href="{{ url('/') }}"><span>DoSomething.org</span></a>
     <a  id="js-navigation-toggle" class="navigation__toggle"><span>Show Menu</span></a>
@@ -33,7 +39,8 @@
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    <a href="{{ route('login', isset($campaign) ? get_login_query($campaign) : get_login_query()) }}">Log In</a>
+                    {{-- <a href="{{ route('login', get_login_query($entity)) }}">Log In</a> --}}
+                    <a href="{{ route('register', get_login_query($entity)) }}">Log In</a>
                 @endif
             </li>
         </ul>
