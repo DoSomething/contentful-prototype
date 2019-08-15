@@ -10,7 +10,7 @@
   }
 
   .register-cta-banner__button {
-    width: 250px;
+    width: 100%;
 
     @include media($medium) {
       width: 315px;
