@@ -43,6 +43,10 @@
         $yellow 100%
       );
       margin: $section-spacing 10px;
+
+      @include media($medium) {
+        margin: $section-spacing 0;
+      }
     }
   }
 
@@ -60,21 +64,6 @@
     border-top: 2px solid #dcdcdc;
     margin: $base-spacing $half-spacing 0;
     padding: $half-spacing 0;
-  }
-
-  .default-container {
-    width: 95%;
-    margin-left: 2.5%;
-
-    @include media($medium) {
-      width: 80%;
-      margin-left: 10%;
-    }
-
-    @include media($larger) {
-      width: 50%;
-      margin-left: 25%;
-    }
   }
 
   .row {
