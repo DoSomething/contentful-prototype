@@ -13,8 +13,8 @@ const AlphaTemplate = props => {
   }
 
   return (
-    <div className="main clearfix general-page">
-      <div className="default-container margin-vertical">
+    <div className="main general-page">
+      <div className="margin-vertical">
         <div className="general-page__heading text-center">
           <h1 className="general-page__title caps-lock">Want free stuff?</h1>
         </div>
