@@ -3,7 +3,11 @@
 .register-cta-banner {
   background: url('./register-cta-banner-bg.svg');
   background-size: cover;
+  text-align: center;
 
+  @include media($medium) {
+    text-align: inherit;
+  }
 
   .register-cta-banner__button {
     width: 250px;
