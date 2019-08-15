@@ -34,21 +34,19 @@ const ReferralPage = props => {
 
         const firstName = data.user.firstName;
 
-        switch (props.template) {
-          case 'alpha':
-            return (
-              <AlphaTemplate primaryCampaignId={campaignId} userId={userId} />
-            );
-
-          case 'beta':
-            return (
-              <BetaTemplate
-                firstName={firstName}
-                primaryCampaignId={campaignId}
-                userId={userId}
-              />
-            );
+        if (props.template === 'alpha') {
+          return (
+            <AlphaTemplate primaryCampaignId={campaignId} userId={userId} />
+          );
         }
+
+        return (
+          <BetaTemplate
+            firstName={firstName}
+            primaryCampaignId={campaignId}
+            userId={userId}
+          />
+        );
       }}
     </Query>
   );
