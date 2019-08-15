@@ -67,22 +67,6 @@
     padding: $half-spacing 0;
   }
 
-  // @TODO Remove this once the Referral page uses grid.
-  .default-container {
-    width: 95%;
-    margin-left: 2.5%;
-
-    @include media($medium) {
-      width: 80%;
-      margin-left: 10%;
-    }
-
-    @include media($larger) {
-      width: 50%;
-      margin-left: 25%;
-    }
-  }
-
   .row {
     .primary {
       margin: 0 0 $base-spacing;
