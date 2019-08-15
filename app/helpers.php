@@ -397,10 +397,12 @@ function get_metadata($entry)
         $image = $entry->coverImage->url;
     }
 
+    $description = data_get($entry, 'metadata.fields.description', null) ?: data_get($entry, 'callToAction', null);
+
     return [
         'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
-        'description' => data_get($entry, 'metadata.fields.description', isset($entry->callToAction) ? str_limit($entry->callToAction, 150) : null),
+        'description' => str_limit($description, 160),
         'url' => $entryType === 'campaign' ? $baseUrl.'/campaigns/'.$entry->slug : $baseUrl.'/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => [
