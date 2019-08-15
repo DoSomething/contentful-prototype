@@ -397,13 +397,11 @@ function get_metadata($entry)
         $image = $entry->coverImage->url;
     }
 
-    // Prefer metadata description otherwise the campaign call to action if available:
     $description = data_get($entry, 'metadata.fields.description', null) ?: data_get($entry, 'callToAction', null);
 
     return [
         'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
-        // The string limit on metadata description on Contentful is 160 chars.
         'description' => str_limit($description, 160),
         'url' => $entryType === 'campaign' ? $baseUrl.'/campaigns/'.$entry->slug : $baseUrl.'/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
