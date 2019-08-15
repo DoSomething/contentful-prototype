@@ -7,17 +7,15 @@
 
   position: fixed;
   bottom: $half-spacing;
-  width: 94%;
-  height: auto;
+  max-width: 500px;
+  margin-left: $half-spacing;
+  right: $half-spacing;
   z-index: $sticky-cta-zindex;
 
   @include media($medium) {
-    position: fixed;
-    top: 120px;
-    bottom: unset;
     max-width: 400px;
-    height: auto;
-    right: $base-spacing;
+    top: 120px;
+    bottom: inherit;
   }
 
   .register-cta-banner__button {
