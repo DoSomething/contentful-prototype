@@ -34,8 +34,8 @@ const GeneralPage = props => {
 
   return (
     <div>
-      <div className="main clearfix general-page">
-        <Enclosure className="default-container margin-vertical">
+      <div className="main general-page base-12-grid">
+        <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title caps-lock">{title}</h1>
             {subTitle ? (
@@ -73,9 +73,7 @@ const GeneralPage = props => {
           {content ? (
             <div className={classnames({ row: sidebar.length })}>
               <div className="primary">
-                <TextContent className="margin-horizontal-md">
-                  {content}
-                </TextContent>
+                <TextContent>{content}</TextContent>
               </div>
 
               {sidebar.length ? (
@@ -94,10 +92,7 @@ const GeneralPage = props => {
           ) : null}
 
           {blocks.map(block => (
-            <div
-              className="general-page__block margin-vertical margin-horizontal-md"
-              key={block.id}
-            >
+            <div className="general-page__block margin-vertical" key={block.id}>
               <ContentfulEntry json={block} />
             </div>
           ))}
