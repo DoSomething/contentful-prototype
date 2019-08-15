@@ -25,4 +25,11 @@
   // right: $base-spacing;
   // max-width: 400px;
   // z-index: $sticky-cta-zindex;
+  .register-cta-banner__button {
+    width: 100%;
+
+    @include media($medium) {
+      width: 130px;
+    }
+  }
 }
