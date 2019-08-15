@@ -756,7 +756,7 @@ p {
     grid-column: main-start / main-end;
   }
 
-  @include media($large) {
+  @include media($largest) {
     grid-column: narrow-start / narrow-end;
   }
 }
