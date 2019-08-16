@@ -78,6 +78,7 @@ class AuthController extends Controller
      */
     protected function setSessionData($queryParams = [])
     {
+        // @see Northstar Authorization Code Grant: https://git.io/fjd8N
         if (array_has($queryParams, 'code')) {
             return;
         }
