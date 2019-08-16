@@ -12,7 +12,7 @@ $router->redirect('/', '/us');
 $router->get('/us', 'HomePageController');
 
 // Authentication
-$router->get('/register', 'AuthController@getRegistration')->name('register');
+$router->get('us/register', 'AuthController@getRegistration')->name('register');
 $router->get('next/login', 'AuthController@getLogin')->name('login');
 
 $router->get('next/logout', 'AuthController@getLogout')->name('logout');
