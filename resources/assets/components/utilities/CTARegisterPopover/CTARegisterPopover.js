@@ -11,7 +11,7 @@ const CTARegisterPopover = ({ redirectToNorthstar }) => (
       at a time. Join the global movement because apathy sucks.
     </p>
     <button
-      className="register-cta-banner__button button padded mt-4"
+      className="cta-register-popover__button button padded mt-4"
       type="button"
       onClick={redirectToNorthstar}
     >
