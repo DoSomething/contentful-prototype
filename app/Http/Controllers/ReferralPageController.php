@@ -13,7 +13,13 @@ class ReferralPageController extends Controller
      */
     public function show(Request $request)
     {
-        $user = gateway('northstar')->getUser('id', $request->query('user_id'));
+        $userId = $request->query('user_id');
+
+        if (! $userId) {
+            abort(404);
+        }
+
+        $user = gateway('northstar')->getUser('id', $userId);
 
         if (! $user) {
             abort(404);
