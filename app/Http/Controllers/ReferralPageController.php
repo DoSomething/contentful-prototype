@@ -28,7 +28,6 @@ class ReferralPageController extends Controller
         $firstName = $user->first_name;
         $title = 'DoSomething Good with '.$firstName;
         $callToAction = $firstName.' wants to make an impact with you, and bonus, you\'ll get $5 gift certificate for completing a DoSomething campaign.';
-        $facebookAppId = config('services.analytics.facebook_id');
 
         return response()->view('app', [
             'headTitle' => $title,
@@ -37,7 +36,7 @@ class ReferralPageController extends Controller
             'metadata' => [
               'title' => $title,
               'description' => $callToAction,
-              'facebook_app_id' => $facebookAppId,
+              'facebook_app_id' =>  config('services.analytics.facebook_id'),
               // @TODO: Replace with envelope graphic once added to beta template.
               'image' => [
                 'url' => 'https://forge.dosomething.org/resources/ds-logo-landscape.png',
@@ -45,11 +44,6 @@ class ReferralPageController extends Controller
                 'height' => '630',
               ],
               'url' => $request->fullUrl(),
-            ],
-            'socialFields' => [
-              'title' => $title,
-              'callToAction' => $callToAction,
-              'facebookAppId' => $facebookAppId,
             ],
         ])->cacheableWhenAnonymous();
     }
