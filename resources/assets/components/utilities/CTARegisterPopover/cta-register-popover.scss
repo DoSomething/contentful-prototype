@@ -7,15 +7,15 @@
 
   position: fixed;
   bottom: $half-spacing;
+  right: $half-spacing;
   max-width: 500px;
   margin-left: $half-spacing;
-  right: $half-spacing;
   z-index: $sticky-cta-zindex;
 
   @include media($medium) {
-    max-width: 400px;
-    top: 120px;
     bottom: inherit;
+    top: 120px;
+    max-width: 400px;
   }
 
   .cta-register-popover__button {
