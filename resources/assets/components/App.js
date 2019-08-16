@@ -10,7 +10,8 @@ import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
-import ReferralPage from './pages/ReferralPage/ReferralPage';
+import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
+import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import AccountContainer from './pages/AccountPage/AccountContainer';
@@ -37,13 +38,10 @@ const App = ({ store, history }) => {
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/blocks/:id" component={BlockPage} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
-              <Route
-                path="/us/join"
-                render={props => <ReferralPage {...props} template="beta" />}
-              />
+              <Route path="/us/join" component={BetaReferralPage} />
               <Route
                 path="/us/refer-friends"
-                render={props => <ReferralPage {...props} template="alpha" />}
+                component={AlphaReferralPageContainer}
               />
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>

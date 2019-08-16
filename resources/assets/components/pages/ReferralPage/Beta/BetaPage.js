@@ -1,7 +1,20 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import CampaignLink from '../ReferralPageCampaignLink';
+import Query from '../../../Query';
+import { query } from '../../../../helpers';
+import ErrorBlock from '../../../ErrorBlock/ErrorBlock';
+
+const REFERRAL_PAGE_USER = gql`
+  query ReferralPageUserQuery($id: String!) {
+    user(id: $id) {
+      id
+      firstName
+    }
+  }
+`;
 
 // @TODO: Allow override via config variables.
 const SECONDARY_CAMPAIGN_ID = '7951';
@@ -9,9 +22,15 @@ const SECONDARY_CAMPAIGN_PROMPT =
   'In less than 5 minutes, you can join 193,242 young people putting an end to gun violence.';
 
 const BetaTemplate = props => {
-  const { firstName, primaryCampaignId, userId } = props;
+  const userId = query('user_id');
+
+  if (!userId) {
+    return <ErrorBlock />;
+  }
+
+  const campaignId = query('campaign_id');
   const displayPrimaryCampaign =
-    primaryCampaignId && primaryCampaignId !== SECONDARY_CAMPAIGN_ID;
+    campaignId && campaignId !== SECONDARY_CAMPAIGN_ID;
 
   return (
     <div className="main general-page base-12-grid">
@@ -32,7 +51,7 @@ const BetaTemplate = props => {
           {displayPrimaryCampaign ? (
             <React.Fragment>
               <div className="margin-vertical">
-                <CampaignLink campaignId={primaryCampaignId} userId={userId} />
+                <CampaignLink campaignId={campaignId} userId={userId} />
               </div>
               <div className="margin-vertical">
                 <p>
