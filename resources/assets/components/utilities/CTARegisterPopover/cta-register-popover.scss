@@ -18,6 +18,12 @@
     max-width: 400px;
   }
 
+  // Snap back to the left once the wrapper width maxes out so the
+  // popover isn't drawn past the edge of the chrome.
+  @media (min-width: 1440px) {
+    right: inherit;
+  }
+
   .cta-register-popover__button {
     width: 100%;
 
