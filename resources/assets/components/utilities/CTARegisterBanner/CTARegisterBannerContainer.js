@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import RegisterCTABanner from './RegisterCTABanner';
+import CTARegisterBanner from './CTARegisterBanner';
 import { redirectToNorthstar } from '../../../helpers';
 
 /**
@@ -13,4 +13,4 @@ const mapStateToProps = state => ({
 /**
  * Export the container component.
  */
-export default connect(mapStateToProps)(RegisterCTABanner);
+export default connect(mapStateToProps)(CTARegisterBanner);

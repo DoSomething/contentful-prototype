@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './register-cta-banner.scss';
+import './cta-register-banner.scss';
 
-const RegisterCTABanner = ({ redirectToNorthstar }) => (
-  <div className="register-cta-banner base-12-grid">
+const CTARegisterBanner = ({ redirectToNorthstar }) => (
+  <div className="cta-register-banner base-12-grid">
     <div className="grid-narrow margin-md">
       <h3 className="text-m color-yellow font-bold">JOIN DOSOMETHING TODAY</h3>
       <p className="text-white mt-4">
@@ -12,7 +12,7 @@ const RegisterCTABanner = ({ redirectToNorthstar }) => (
         Fantini at a time. Join the global movement because apathy sucks.
       </p>
       <button
-        className="register-cta-banner__button button padded mt-4"
+        className="cta-register-banner__button button padded mt-4"
         type="button"
         onClick={redirectToNorthstar}
       >
@@ -22,8 +22,8 @@ const RegisterCTABanner = ({ redirectToNorthstar }) => (
   </div>
 );
 
-RegisterCTABanner.propTypes = {
+CTARegisterBanner.propTypes = {
   redirectToNorthstar: PropTypes.func.isRequired,
 };
 
-export default RegisterCTABanner;
+export default CTARegisterBanner;
