@@ -62,7 +62,7 @@ export function buildLoginRedirectUrl(options = null, actionId = null) {
     options: JSON.stringify(options),
   });
 
-  return `${window.location.origin}/next/login?${params}`;
+  return `${window.location.origin}/us/register?${params}`;
 }
 
 /**
