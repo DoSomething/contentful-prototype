@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import CampaignLink from '../ReferralPageCampaignLink';
+import CampaignLink from './BetaPageCampaignLink';
 import Query from '../../../Query';
 import { query } from '../../../../helpers';
 import ErrorBlock from '../../../ErrorBlock/ErrorBlock';
@@ -15,7 +15,6 @@ const REFERRAL_PAGE_USER = gql`
   }
 `;
 
-// @TODO: Allow override via config variables.
 const SECONDARY_CAMPAIGN_ID = '7951';
 const SECONDARY_CAMPAIGN_PROMPT =
   'In less than 5 minutes, you can join 193,242 young people putting an end to gun violence.';
