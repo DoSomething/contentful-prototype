@@ -29,9 +29,10 @@ class ReferralPageController extends Controller
         $title = 'DoSomething Good with '.$firstName;
         $callToAction = $firstName.' wants to make an impact with you, and bonus, you\'ll get $5 gift certificate for completing a DoSomething campaign.';
         $facebookAppId = config('services.analytics.facebook_id');
-
         return response()->view('app', [
             'headTitle' => $title,
+            // @TODO: Create an $entity object to pass to the get_metadata helper
+            // (and refactor get_metadata helper to expect an $entity instead of $campaign)
             'metadata' => [
               'title' => $title,
               'description' => $callToAction,
