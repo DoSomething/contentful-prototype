@@ -1,38 +1,13 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 import { isTimestampValid, env, query } from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 
-class FeatureLauncher extends React.Component {
-  constructor(props) {
-    super(props);
+const FeatureLauncher = ({ type, render, countdown }) => {
+  const [showFeature, setShowFeature] = useState(false);
 
-    this.state = { showFeature: false };
-  }
-
-  componentDidMount() {
-    const { countdown, type } = this.props;
-
-    // If the query params indicate to store the feature modal to be hidden, store it.
-    if (query(`hide_${type}`) === '1') {
-      setStorage(`hide_${type}`, 'boolean', true);
-    }
-
-    if (this.shouldSeeFeature()) {
-      this.timer = setTimeout(() => {
-        this.setState({ showFeature: true });
-      }, countdown * 1000);
-    }
-  }
-
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
-  shouldSeeFeature = () => {
-    const { type } = this.props;
-
+  const shouldSeeFeature = () => {
     let shouldNotSee = getStorage(`hide_${type}`, 'boolean');
     // Support for legacy nps survey 'hide feature' storage format.
     if (type === 'nps_survey' && !shouldNotSee) {
@@ -48,16 +23,31 @@ class FeatureLauncher extends React.Component {
     );
   };
 
-  handleClose = () => {
+  useEffect(() => {
+    let timer = null;
+
+    // If the query params indicate to store the feature modal to be hidden, store it.
+    if (query(`hide_${type}`) === '1') {
+      setStorage(`hide_${type}`, 'boolean', true);
+    }
+
+    if (shouldSeeFeature()) {
+      timer = setTimeout(() => {
+        setShowFeature(true);
+      }, countdown * 1000);
+    }
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleClose = () => {
     // Mark this feature as "dismissed" in local storage & hide the feature.
-    setStorage(`dismissed_${this.props.type}`, 'timestamp', Date.now());
-    this.setState({ showFeature: false });
+    setStorage(`dismissed_${type}`, 'timestamp', Date.now());
+    setShowFeature(false);
   };
 
-  render() {
-    return this.state.showFeature ? this.props.render(this.handleClose) : null;
-  }
-}
+  return showFeature ? render(handleClose) : null;
+};
 
 FeatureLauncher.propTypes = {
   type: PropTypes.string.isRequired,
