@@ -76,6 +76,13 @@ p {
   background-size: cover;
 }
 
+.position-center-x {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
 .color-white {
   color: $white !important;
 }
@@ -749,7 +756,7 @@ p {
     grid-column: main-start / main-end;
   }
 
-  @include media($large) {
+  @include media($largest) {
     grid-column: narrow-start / narrow-end;
   }
 }

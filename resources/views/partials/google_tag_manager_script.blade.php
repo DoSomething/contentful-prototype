@@ -6,6 +6,11 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-{{config('services.analytics.google_tag_manager_id')}}');
     </script>
+@else
+    {{-- Mocked GTM dataLayer to allow showing console logs. --}}
+    <script type='text/javascript'>
+        window.dataLayer = [];
+    </script>
 @endif
 
 {{-- When/if we implement server-side rendering of React, we should add the noscript code back in! --}}

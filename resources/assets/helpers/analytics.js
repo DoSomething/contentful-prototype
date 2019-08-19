@@ -4,14 +4,36 @@ import { get, snakeCase, startCase } from 'lodash';
 import { Engine as PuckClient } from '@dosomething/puck-client';
 
 import { PUCK_URL } from '../constants';
-import { stringifyNestedObjects, withoutValueless, query } from '.';
 import { get as getHistory } from '../history';
+import { debug, stringifyNestedObjects, withoutValueless, query } from '.';
 
-// App name prefix used for event naming.
+/**
+ * App name prefix used for event naming.
+ *
+ * @type {String}
+ */
 const APP_PREFIX = 'phoenix';
 
-// Variable that stores the instance of PuckClient.
+/**
+ * Variable that stores the instance of PuckClient.
+ *
+ * @type {null|Object}
+ */
 let puckClient = null;
+
+/**
+ * Wrapper function to allow executing additional calls when an analytics event is triggered.
+ *
+ * @param  {String}   type
+ * @param  {Array}    args
+ * @param  {Function} callback
+ * @return {void}
+ */
+export function analyze(type, args, callback) {
+  callback(args);
+
+  debug().log(type, args);
+}
 
 /**
  * Parse analytics event name parameters into a snake cased string.
@@ -23,6 +45,7 @@ let puckClient = null;
  */
 const formatEventName = (verb, noun, adjective = null) => {
   let eventName = `${APP_PREFIX}_${snakeCase(verb)}_${snakeCase(noun)}`;
+
   // Append adjective if defined.
   eventName += adjective ? `_${snakeCase(adjective)}` : '';
 
@@ -60,6 +83,7 @@ export function analyzeWithGoogle(name, category, action, label, data) {
 
   // Push event action to Google Tag Manager's data layer.
   window.dataLayer = window.dataLayer || [];
+
   window.dataLayer.push(analyticsEvent);
 }
 
@@ -99,14 +123,26 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
     return;
   }
 
-  window.snowplow('trackStructEvent', category, action, label, name, null, [
-    {
-      schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
-      data: {
-        payload: JSON.stringify(data),
+  const analyticsEvent = [
+    'trackStructEvent',
+    category,
+    action,
+    label,
+    name,
+    null,
+    [
+      {
+        schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
+        data: {
+          payload: JSON.stringify(data),
+        },
       },
-    },
-  ]);
+    ],
+  ];
+
+  analyze('snowplow', analyticsEvent, payload => {
+    window.snowplow(...payload);
+  });
 }
 
 /**
@@ -199,11 +235,17 @@ export function trackAnalyticsPageView(history) {
     },
   };
 
+  const analyticsEvent = ['trackPageView', null, [data]];
+
   history.listen(() => {
-    window.snowplow('trackPageView', null, [data]);
+    analyze('snowplow', analyticsEvent, payload => {
+      window.snowplow(...payload);
+    });
   });
 
-  window.snowplow('trackPageView', null, [data]);
+  analyze('snowplow', analyticsEvent, payload => {
+    window.snowplow(...payload);
+  });
 }
 
 /**

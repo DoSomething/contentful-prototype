@@ -30,7 +30,6 @@ import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextS
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
 import VoterRegistrationActionContainer from '../actions/VoterRegistrationAction/VoterRegistrationActionContainer';
-import ReferralSubmissionActionContainer from '../actions/ReferralSubmissionAction/ReferralSubmissionActionContainer';
 import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAction/PetitionSubmissionActionContainer';
 import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
 
@@ -231,14 +230,6 @@ class ContentfulEntry extends React.Component<Props, State> {
         const LegacyQuiz = Loader(import('../LegacyQuiz/LegacyQuizContainer'));
         return <LegacyQuiz quizContent={json} />;
       }
-
-      case 'referralSubmissionAction':
-        return (
-          <ReferralSubmissionActionContainer
-            id={json.id}
-            {...withoutNulls(json.fields)}
-          />
-        );
 
       case 'sectionBlock': {
         return (

@@ -54,15 +54,17 @@ const Affirmation = ({
               signupData.signupsCount === 1 ? (
                 <Badge
                   earned
-                  boldText
                   className="badge padded"
                   size="medium"
                   name="signupBadge"
-                  text="1 Sign-Up"
-                  explainerText="Congratulations! You signed up for your first campaign...and
+                >
+                  <h4>1 Sign-Up</h4>
+                  <p>
+                    Congratulations! You signed up for your first campaign...and
                     earned your first badge. NICE. Ready to earn *another*
-                    badge? Complete this campaign!"
-                />
+                    badge? Complete this campaign!
+                  </p>
+                </Badge>
               ) : null
             }
           </Query>

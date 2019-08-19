@@ -38,15 +38,18 @@ import './scss/gallery-grid.scss';
 import App from './components/App';
 
 // DOM Helpers
-import { ready } from './helpers';
+import { ready, debug } from './helpers';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
-import { trackAnalyticsPageView } from './helpers/analytics';
 import { bindNavigationEvents } from './helpers/navigation';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
+import { analyze, trackAnalyticsPageView } from './helpers/analytics';
 
 ready(() => {
+  // Enable Debug tools.
+  debug();
+
   // Configure store & history.
   const history = historyInit();
   const middleware = [thunk];
@@ -64,7 +67,11 @@ ready(() => {
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
-    window.snowplow('setUserId', window.AUTH.id);
+    const analyticsEvent = ['setUserId', window.AUTH.id];
+
+    analyze('snowplow', analyticsEvent, payload => {
+      window.snowplow(...payload);
+    });
   }
 
   // Add page view event listeners for History interface changes.

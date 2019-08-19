@@ -63,7 +63,7 @@ function get_contentful_url()
 function get_page_settings($page, $prefix, $slug = null)
 {
     return [
-        'cacheUrl' => get_cache_url($prefix, $slug),
+        'cacheUrl' => config('services.contentful.cache') ? get_cache_url($prefix, $slug) : null,
         'editUrl' => get_contentful_url().'entries/'.$page->id,
         'type' => readable_title($page->type),
     ];
@@ -397,10 +397,12 @@ function get_metadata($entry)
         $image = $entry->coverImage->url;
     }
 
+    $description = data_get($entry, 'metadata.fields.description', null) ?: data_get($entry, 'callToAction', null);
+
     return [
         'title' => data_get($entry, 'metadata.fields.title', $entry->title),
         'type' => 'article',
-        'description' => data_get($entry, 'metadata.fields.description', null),
+        'description' => str_limit($description, 160),
         'url' => $entryType === 'campaign' ? $baseUrl.'/campaigns/'.$entry->slug : $baseUrl.'/'.$entry->slug,
         'facebook_app_id' => config('services.analytics.facebook_id'),
         'image' => [
@@ -472,17 +474,32 @@ function get_campaign_social_fields($campaign, $uri)
  */
 function get_login_query($campaign = null)
 {
+    $options = [];
+    $params = [
+        'referrer_user_id',
+        'utm_campaign',
+        'utm_medium',
+        'utm_source',
+    ];
+
+    foreach ($params as $param) {
+        if (request($param)) {
+            $options[$param] = request($param);
+        }
+    }
+
     if (! $campaign) {
-        return [];
+        return ['options' => $options];
     }
 
     return [
         'destination' => $campaign->title,
-        'options' => [
+        'options' => array_merge($options, [
+            'contentful_id' => $campaign->id,
             'title' => $campaign->title,
             'coverImage' => $campaign->coverImage->url,
             'callToAction' => $campaign->callToAction,
-        ],
+        ]),
     ];
 }
 

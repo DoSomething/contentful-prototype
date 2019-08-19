@@ -11,43 +11,8 @@
         });
     </script>
 @else
-    {{-- Custom script for logging Snowplow events to the console when no ENV variable provided. --}}
+    {{-- Mocked function to allow showing console logs. --}}
     <script type='text/javascript'>
-        window.snowplow = function () {
-            console.groupCollapsed(
-                '%c SNOWPLOW: %c %c %s %c@%c %s %c',
-                'background-color: rgba(96,47,175,0.5); color: rgba(97,68,144,1); display: inline-block; font-weight: bold; line-height: 1.5;',
-                'background-color: transparent; color: rgba(165, 162, 162, 1); font-weight: normal; letter-spacing: 3px; line-height: 1.5;',
-                'color: black; font-weight: bold; letter-spacing: normal; line-height: 1.5;',
-                'Function Name',
-                'color: rgba(165, 162, 162, 0.8); font-weight: normal;',
-                'color: black; font-weight: bold;',
-                arguments[0],
-                'background-color: rgba(105,157,215,0.5);',
-            );
-
-            switch (arguments[0]) {
-                case 'setUserId':
-                    console.log('User ID:', arguments[1]);
-                    break;
-
-                case 'trackStructEvent':
-                    console.log('Category: ', arguments[1]);
-                    console.log('Action: ', arguments[2]);
-                    console.log('Label: ', arguments[3]);
-                    console.log('Name: ', arguments[4]);
-                    // arguments[5] is always null
-                    console.log('Context: ', JSON.parse(arguments[6][0]['data']['payload']));
-                    break;
-
-                case 'trackPageView':
-                    console.log('Context: ', JSON.parse(arguments[2][0]['data']['payload']));
-                    break;
-
-                default:
-                    console.log(arguments);
-            }
-            console.groupEnd();
-        };
+        window.snowplow = function () {};
     </script>
 @endif
