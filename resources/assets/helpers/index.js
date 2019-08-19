@@ -49,19 +49,19 @@ export function appendToQuery(
 }
 
 /**
- * Build login redirect URL with optional context data.
+ * Build authentication redirect URL with optional context data.
  *
  * @param  {Null|Object} options
  * @param  {Null|String} actionId
  * @return {String}
  */
-export function buildLoginRedirectUrl(options = null, actionId = null) {
+export function buildAuthRedirectUrl(options = null, actionId = null) {
   const params = queryString.stringify({
     actionId,
     options: JSON.stringify(options),
   });
 
-  return `${window.location.origin}/next/login?${params}`;
+  return `${window.location.origin}/us/register?${params}`;
 }
 
 /**

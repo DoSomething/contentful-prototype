@@ -3,7 +3,7 @@
 import { get } from 'lodash';
 import localforage from 'localforage';
 
-import { buildLoginRedirectUrl } from '../helpers';
+import { buildAuthRedirectUrl } from '../helpers';
 import { getDataForNorthstar } from '../selectors';
 import { isAuthenticated } from '../selectors/user';
 
@@ -18,7 +18,7 @@ const requiresAuthenticationMiddleware = ({ getState }) => next => action => {
     const actionId = `auth:${Date.now()}`;
 
     localforage.setItem(actionId, action).then(() => {
-      const redirect = buildLoginRedirectUrl(
+      const redirect = buildAuthRedirectUrl(
         getDataForNorthstar(state),
         actionId,
       );
