@@ -17,8 +17,13 @@ export const GalleryBlockFragment = gql`
     imageAlignment
     imageFit
     blocks {
-      id
-      ...PersonBlockFragment
+      ... on Showcasable {
+        showcaseTitle
+        showcaseDescription
+        showcaseImage {
+          url
+        }
+      }
     }
   }
 `;

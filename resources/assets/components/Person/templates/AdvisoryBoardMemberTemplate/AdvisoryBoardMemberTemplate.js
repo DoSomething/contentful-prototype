@@ -24,7 +24,7 @@ const AdvisoryBoardMemberTemplate = props => {
 };
 
 AdvisoryBoardMemberTemplate.propTypes = {
-  showcasableTitle: PropTypes.string.isRequired,
+  showcasableTitle: PropTypes.string,
   showcasableImage: PropTypes.string.isRequired,
   showcasableDescription: PropTypes.string.isRequired,
 };

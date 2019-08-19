@@ -35,18 +35,6 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...PhotoSubmissionBlockFragment
       ...VoterRegistrationBlockFragment
       ...PetitionSubmissionBlockFragment
-
-      ... on CampaignGallery {
-        blocks {
-          ... on Showcasable {
-            showcasableTitle
-            showcasableDescription
-            showcasableImage {
-              url
-            }
-          }
-        }
-      }
     }
   }
 

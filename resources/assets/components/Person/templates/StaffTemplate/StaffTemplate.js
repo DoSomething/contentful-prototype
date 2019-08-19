@@ -5,12 +5,14 @@ import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../helpers';
 
 const StaffTemplate = props => {
-  const { name, jobTitle, alternatePhoto, twitterId } = props;
+  const {
+    showcasableTitle,
+    showcasableImage,
+    showcasableDescription,
+    twitterId,
+  } = props;
   return (
-    <Figure
-      alt={`${name}-photo`}
-      image={contentfulImageUrl(alternatePhoto.url)}
-    >
+    <Figure alt={`${showcasableTitle}-photo`} image={showcasableImage}>
       <h4>
         {twitterId ? (
           <a
@@ -18,26 +20,29 @@ const StaffTemplate = props => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            {name}
+            {showcasableTitle}
           </a>
         ) : (
           name
         )}
       </h4>
-      <p>{jobTitle}</p>
+      <p>{showcasableDescription}</p>
     </Figure>
   );
 };
 
 StaffTemplate.propTypes = {
-  name: PropTypes.string.isRequired,
-  jobTitle: PropTypes.string.isRequired,
-  alternatePhoto: PropTypes.object.isRequired,
   twitterId: PropTypes.string,
+  showcasableTitle: PropTypes.string,
+  showcasableDescription: PropTypes.string,
+  showcasableImage: PropTypes.string,
 };
 
 StaffTemplate.defaultProps = {
   twitterId: null,
+  showcasableTitle: null,
+  showcasableImage: null,
+  showcasableDescription: null,
 };
 
 export default StaffTemplate;

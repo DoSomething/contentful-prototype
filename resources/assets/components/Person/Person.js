@@ -26,12 +26,27 @@ export const PersonBlockFragment = gql`
 `;
 
 const Person = props => {
+  // HACK: To work with the showcasable interface
   switch (props.type) {
     case 'staff':
-      return <StaffTemplate {...props} />;
+      return (
+        <StaffTemplate
+          showcasableTitle={showcasableTitle}
+          showcasableDescription={showcasableDescription}
+          showcasableImage={showcasableImage}
+          {...props}
+        />
+      );
 
     case 'board member':
-      return <BoardMemberTemplate {...props} />;
+      return (
+        <BoardMemberTemplate
+          showcasableTitle={showcasableTitle}
+          showcasableDescription={showcasableDescription}
+          showcasableImage={showcasableImage}
+          {...props}
+        />
+      );
 
     case 'advisory board member':
       return (
