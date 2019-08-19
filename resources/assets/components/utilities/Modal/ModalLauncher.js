@@ -1,16 +1,14 @@
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Modal from './Modal';
 import { isTimestampValid, env, query } from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 
-class ModalLauncher extends React.Component {
+class FeatureLauncher extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { showModal: false };
+    this.state = { showFeature: false };
   }
 
   componentDidMount() {
@@ -21,9 +19,9 @@ class ModalLauncher extends React.Component {
       setStorage(`hide_${type}`, 'boolean', true);
     }
 
-    if (this.shouldSeeModal()) {
+    if (this.shouldSeeFeature()) {
       this.timer = setTimeout(() => {
-        this.setState({ showModal: true });
+        this.setState({ showFeature: true });
       }, countdown * 1000);
     }
   }
@@ -32,7 +30,7 @@ class ModalLauncher extends React.Component {
     clearTimeout(this.timer);
   }
 
-  shouldSeeModal = () => {
+  shouldSeeFeature = () => {
     const { type } = this.props;
 
     let shouldNotSee = getStorage(`hide_${type}`, 'boolean');
@@ -51,40 +49,20 @@ class ModalLauncher extends React.Component {
   };
 
   handleClose = () => {
-    const { type } = this.props;
-
-    // Mark this modal as "dismissed" in local storage & close.
-    setStorage(`dismissed_${type}`, 'timestamp', Date.now());
-    this.setState({ showModal: false });
+    // Mark this feature as "dismissed" in local storage & hide the feature.
+    setStorage(`dismissed_${this.props.type}`, 'timestamp', Date.now());
+    this.setState({ showFeature: false });
   };
 
   render() {
-    const { type } = this.props;
-
-    // Map the modal type to the proper Puck "event" so
-    // we can continue tracking opens of timed modals.
-    const trackingOverrides = {
-      voter_reg_modal: 'VOTER_REGISTRATION_MODAL',
-      nps_survey: 'SURVEY_MODAL',
-    };
-
-    return this.state.showModal ? (
-      <Modal
-        trackingId={get(trackingOverrides, type, type)}
-        onClose={this.handleClose}
-      >
-        {this.props.render()}
-      </Modal>
-    ) : null;
+    return this.state.showFeature ? this.props.render(this.handleClose) : null;
   }
 }
 
-ModalLauncher.propTypes = {
+FeatureLauncher.propTypes = {
   type: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
   countdown: PropTypes.number.isRequired,
 };
 
-ModalLauncher.defaultProps = {};
-
-export default ModalLauncher;
+export default FeatureLauncher;

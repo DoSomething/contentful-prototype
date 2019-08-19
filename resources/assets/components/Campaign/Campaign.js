@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
+import Modal from '../utilities/Modal/Modal';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
-import ModalLauncher from '../utilities/Modal/ModalLauncher';
+import FeatureLauncher from '../utilities/Modal/ModalLauncher';
 import TypeFormSurvey from '../utilities/TypeFormSurvey/TypeFormSurvey';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
@@ -28,20 +29,22 @@ const Campaign = props => (
 
     {props.isAuthenticated ? (
       <TrafficDistribution percentage={5} feature="nps_survey">
-        <ModalLauncher
+        <FeatureLauncher
           type="nps_survey"
           countdown={60}
-          render={() => (
-            <TypeFormSurvey
-              typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
-              queryParameters={{
-                campaign_id: props.campaignId,
-                northstar_id: props.userId,
-              }}
-              redirectParameters={{
-                hide_nps_survey: 1,
-              }}
-            />
+          render={handleClose => (
+            <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+              <TypeFormSurvey
+                typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
+                queryParameters={{
+                  campaign_id: props.campaignId,
+                  northstar_id: props.userId,
+                }}
+                redirectParameters={{
+                  hide_nps_survey: 1,
+                }}
+              />
+            </Modal>
           )}
         />
       </TrafficDistribution>
@@ -51,10 +54,14 @@ const Campaign = props => (
     props.featureFlags &&
     props.featureFlags.showVoterRegistrationModal ? (
       <TrafficDistribution percentage={50} feature="voter_reg_modal">
-        <ModalLauncher
+        <FeatureLauncher
           type="voter_reg_modal"
           countdown={30}
-          render={() => <VoterRegistrationModal />}
+          render={handleClose => (
+            <Modal onClose={handleClose} trackingId="VOTER_REGISTRATION_MODAL">
+              <VoterRegistrationModal />
+            </Modal>
+          )}
         />
       </TrafficDistribution>
     ) : null}
