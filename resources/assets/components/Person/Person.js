@@ -34,7 +34,14 @@ const Person = props => {
       return <BoardMemberTemplate {...props} />;
 
     case 'advisory board member':
-      return <AdvisoryBoardMemberTemplate {...props} />;
+      return (
+        <AdvisoryBoardMemberTemplate
+          showcasableTitle={props.title}
+          showcasableImage={props.image}
+          showcasableDescription={props.description}
+          {...props}
+        />
+      );
 
     default:
       return null;

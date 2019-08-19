@@ -24,26 +24,26 @@ export const GalleryBlockFragment = gql`
 `;
 
 const renderBlock = (block, imageAlignment, imageFit) => {
+  const isGraphql = block.__typename;
   const type = block.__typename || block.type;
+  const fields =
+    isGraphql || type === 'campaign' ? { ...block } : { ...block.fields };
+
   switch (type) {
     case 'person':
-      return <Person key={block.id} {...block.fields} />;
-    case 'PersonBlock':
-      return <Person key={block.id} {...block} />;
-    case 'staff':
-      return <Person key={block.id} {...block} />;
+      return <Person key={block.id} {...fields} />;
 
     case 'campaign':
-      return <CampaignGalleryItem key={block.id} {...block} />;
+      return <CampaignGalleryItem key={block.id} {...fields} />;
 
     case 'page':
-      return <PageGalleryItem key={block.id} {...block.fields} />;
+      return <PageGalleryItem key={block.id} {...fields} />;
 
     case 'contentBlock':
       return (
         <ContentBlockGalleryItem
           key={block.id}
-          {...block.fields}
+          {...fields}
           imageAlignment={imageAlignment}
           imageFit={imageFit}
         />
