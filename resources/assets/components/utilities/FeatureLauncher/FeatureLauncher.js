@@ -26,7 +26,7 @@ const FeatureLauncher = ({ type, render, countdown }) => {
   useEffect(() => {
     let timer = null;
 
-    // If the query params indicate to store the feature modal to be hidden, store it.
+    // Mark the feature as "hidden" in local storage if indicated by query param.
     if (query(`hide_${type}`) === '1') {
       setStorage(`hide_${type}`, 'boolean', true);
     }
