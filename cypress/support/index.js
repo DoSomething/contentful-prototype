@@ -11,7 +11,7 @@ import './commands';
 Cypress.on('window:before:load', window => {
   const document = window.document;
 
-  // Custom ENV veriables for the testing environment.
+  // Custom ENV variables for the testing environment.
   window.ENV = {
     NPS_SURVEY_ENABLED: false,
     VOTER_REG_MODAL_ENABLED: false,
