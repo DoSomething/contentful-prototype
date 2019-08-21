@@ -55,7 +55,8 @@ $router->get('{category}/{slug}', function ($category, $slug) {
 
 // Referral Pages
 $router->get('us/join', 'ReferralPageController@show');
-$router->view('us/refer-friends', 'app');
+$router->view('us/refer-friends', 'app')
+    ->middleware('auth');
 
 // Blocks
 $router->view('us/blocks/{id}', 'app');

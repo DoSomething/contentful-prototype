@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
-import Query from '../../Query';
-import Embed from '../../utilities/Embed/Embed';
-import { PHOENIX_URL } from '../../../constants';
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import Query from '../../../Query';
+import Embed from '../../../utilities/Embed/Embed';
+import { PHOENIX_URL } from '../../../../constants';
+import ErrorBlock from '../../../ErrorBlock/ErrorBlock';
 
 const REFERRAL_PAGE_CAMPAIGN = gql`
   query ReferralPageCampaignQuery($campaignId: String!) {

@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { query } from '../../../../helpers';
 import { PHOENIX_URL } from '../../../../constants';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
-const AlphaTemplate = props => {
-  const { primaryCampaignId, userId } = props;
-  let url = `${PHOENIX_URL}/us/join?user_id=${userId}`;
+const AlphaPage = props => {
+  const campaignId = query('campaign_id');
+  let url = `${PHOENIX_URL}/us/join?user_id=${props.userId}`;
 
-  if (primaryCampaignId) {
-    url = `${url}&campaign_id=${primaryCampaignId}`;
+  if (campaignId) {
+    url = `${url}&campaign_id=${campaignId}`;
   }
 
   return (
@@ -33,13 +34,8 @@ const AlphaTemplate = props => {
   );
 };
 
-AlphaTemplate.propTypes = {
-  primaryCampaignId: PropTypes.string,
+AlphaPage.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-AlphaTemplate.defaultProps = {
-  primaryCampaignId: null,
-};
-
-export default AlphaTemplate;
+export default AlphaPage;
