@@ -6,27 +6,27 @@ import { contentfulImageUrl } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
 
 const AdvisoryBoardMemberTemplate = props => {
-  const { showcasableTitle, showcasableImage, showcasableDescription } = props;
+  const { showcaseTitle, showcaseImage, showcaseDescription } = props;
 
   return (
     <Figure
-      alt={`${showcasableTitle}-photo`}
-      image={contentfulImageUrl(showcasableImage, '100', '100', 'fill')}
+      alt={`${showcaseTitle}-photo`}
+      image={contentfulImageUrl(showcaseImage, '100', '100', 'fill')}
       alignment="left"
     >
-      <h4>{showcasableTitle}</h4>
+      <h4>{showcaseTitle}</h4>
 
-      {showcasableDescription ? (
-        <TextContent>{showcasableDescription}</TextContent>
+      {showcaseDescription ? (
+        <TextContent>{showcaseDescription}</TextContent>
       ) : null}
     </Figure>
   );
 };
 
 AdvisoryBoardMemberTemplate.propTypes = {
-  showcasableTitle: PropTypes.string,
-  showcasableImage: PropTypes.string.isRequired,
-  showcasableDescription: PropTypes.string.isRequired,
+  showcaseTitle: PropTypes.string.isRequired,
+  showcaseImage: PropTypes.string.isRequired,
+  showcaseDescription: PropTypes.string.isRequired,
 };
 
 export default AdvisoryBoardMemberTemplate;

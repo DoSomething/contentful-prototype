@@ -26,14 +26,13 @@ export const PersonBlockFragment = gql`
 `;
 
 const Person = props => {
-  // HACK: To work with the showcasable interface
   switch (props.type) {
     case 'staff':
       return (
         <StaffTemplate
-          showcasableTitle={showcasableTitle}
-          showcasableDescription={showcasableDescription}
-          showcasableImage={showcasableImage}
+          showcaseTitle={props.name}
+          showcaseDescription={props.jobTitle}
+          showcaseImage={props.alternatePhoto}
           {...props}
         />
       );
@@ -41,9 +40,9 @@ const Person = props => {
     case 'board member':
       return (
         <BoardMemberTemplate
-          showcasableTitle={showcasableTitle}
-          showcasableDescription={showcasableDescription}
-          showcasableImage={showcasableImage}
+          showcaseTitle={props.name}
+          showcaseDescription={props.description}
+          showcaseImage={props.alternatePhoto}
           {...props}
         />
       );
@@ -51,9 +50,9 @@ const Person = props => {
     case 'advisory board member':
       return (
         <AdvisoryBoardMemberTemplate
-          showcasableTitle={props.title}
-          showcasableImage={props.image}
-          showcasableDescription={props.description}
+          showcaseTitle={props.title}
+          showcaseDescription={props.description}
+          showcaseImage={props.photo}
           {...props}
         />
       );
@@ -64,7 +63,23 @@ const Person = props => {
 };
 
 Person.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  jobTitle: PropTypes.string,
+  image: PropTypes.string,
+  alternatePhoto: PropTypes.string,
+  description: PropTypes.string,
+};
+
+Person.defaultProps = {
+  type: null,
+  name: null,
+  title: null,
+  jobTitle: null,
+  image: null,
+  alternatePhoto: null,
+  description: null,
 };
 
 export default Person;

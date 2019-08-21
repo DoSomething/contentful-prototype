@@ -28,7 +28,6 @@ const CampaignUpdate = props => {
 
   const authorFields = get(author, 'fields', {});
   const authorPhoto = authorFields.photo || undefined;
-
   const isTweet = content && content.length < 144;
 
   // The affiliate logo specific text is hardcoded for OZY
@@ -70,7 +69,7 @@ const CampaignUpdate = props => {
             author={authorFields.name}
             photo={
               authorPhoto
-                ? contentfulImageUrl(authorPhoto, 175, 175, 'fill')
+                ? contentfulImageUrl(authorPhoto.url, 175, 175, 'fill')
                 : undefined
             }
             jobTitle={authorFields.jobTitle || undefined}

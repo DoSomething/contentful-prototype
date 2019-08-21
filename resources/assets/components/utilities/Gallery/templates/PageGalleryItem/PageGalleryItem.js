@@ -17,7 +17,7 @@ const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
 );
 
 PageGalleryItem.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subTitle: PropTypes.string,
   coverImage: PropTypes.shape({
     url: PropTypes.string,
@@ -27,6 +27,7 @@ PageGalleryItem.propTypes = {
 };
 
 PageGalleryItem.defaultProps = {
+  title: null,
   subTitle: null,
   coverImage: {},
 };

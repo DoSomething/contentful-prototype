@@ -120,18 +120,18 @@ export function contentfulImageUrl(
     return undefined;
   }
 
-  const params = [];
+  const params = {};
 
   if (width) {
-    params.push(`w=${width}`);
+    params['w'] = width;
   }
 
   if (height) {
-    params.push(`h=${height}`);
+    params['h'] = height;
   }
 
   if (fit) {
-    params.push(`fit=${fit}`);
+    params['fit'] = fit;
   }
 
   return params.length ? `${url}?${params.join('&')}` : url;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
@@ -86,7 +87,12 @@ const Affirmation = ({
       <Byline
         author={author.fields.name}
         {...withoutNulls(author.fields)}
-        photo={contentfulImageUrl(author.fields.photo, 175, 175, 'fill')}
+        photo={contentfulImageUrl(
+          get(author, 'fields.photo.url'),
+          175,
+          175,
+          'fill',
+        )}
         className="padding-bottom-md padding-horizontal-md"
       />
     ) : null}

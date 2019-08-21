@@ -6,13 +6,16 @@ import { contentfulImageUrl } from '../../../../helpers';
 
 const StaffTemplate = props => {
   const {
-    showcasableTitle,
-    showcasableImage,
-    showcasableDescription,
+    showcaseTitle,
+    showcaseImage,
+    showcaseDescription,
     twitterId,
   } = props;
   return (
-    <Figure alt={`${showcasableTitle}-photo`} image={showcasableImage}>
+    <Figure
+      alt={`${showcaseTitle}-photo`}
+      image={contentfulImageUrl(showcaseImage.url, '400', '400', 'fill')}
+    >
       <h4>
         {twitterId ? (
           <a
@@ -20,29 +23,29 @@ const StaffTemplate = props => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            {showcasableTitle}
+            {showcaseTitle}
           </a>
         ) : (
-          name
+          showcaseTitle
         )}
       </h4>
-      <p>{showcasableDescription}</p>
+      <p>{showcaseDescription}</p>
     </Figure>
   );
 };
 
 StaffTemplate.propTypes = {
   twitterId: PropTypes.string,
-  showcasableTitle: PropTypes.string,
-  showcasableDescription: PropTypes.string,
-  showcasableImage: PropTypes.string,
+  showcaseTitle: PropTypes.string,
+  showcaseDescription: PropTypes.string,
+  showcaseImage: PropTypes.object,
 };
 
 StaffTemplate.defaultProps = {
   twitterId: null,
-  showcasableTitle: null,
-  showcasableImage: null,
-  showcasableDescription: null,
+  showcaseTitle: null,
+  showcaseImage: null,
+  showcaseDescription: null,
 };
 
 export default StaffTemplate;
