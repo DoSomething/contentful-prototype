@@ -11,6 +11,14 @@ import './commands';
 Cypress.on('window:before:load', window => {
   const document = window.document;
 
+  // Custom ENV variables for the testing environment.
+  window.ENV = {
+    NPS_SURVEY_ENABLED: false,
+    VOTER_REG_MODAL_ENABLED: false,
+    SIXPACK_ENABLED: false,
+    SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
+  };
+
   // Remove built-in 'fetch' support since it cannot yet be mocked by Cypress.
   delete window.fetch; // eslint-disable-line no-param-reassign
 
