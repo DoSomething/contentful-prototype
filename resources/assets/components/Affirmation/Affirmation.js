@@ -7,7 +7,7 @@ import Card from '../utilities/Card/Card';
 import Share from '../utilities/Share/Share';
 import Byline from '../utilities/Byline/Byline';
 import TextContent from '../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../helpers';
+import { contentfulImageUrl, query, withoutNulls } from '../../helpers';
 import Badge from '../pages/AccountPage/Badge';
 import Query from '../Query';
 
@@ -35,6 +35,7 @@ const Affirmation = ({
   author,
   callToActionDescription,
   callToActionHeader,
+  campaignId,
   header,
   quote,
   userId,
@@ -90,6 +91,19 @@ const Affirmation = ({
         className="padding-bottom-md padding-horizontal-md"
       />
     ) : null}
+
+    {query('refer-friends') ? (
+      <div>
+        <h3>Benefits With Friends</h3>
+        <p>
+          Refer a friend to this campaign, and you’ll *both* earn a $5 gift
+          card!
+        </p>
+        <a href={`/us/refer-friends?campaign_id=${campaignId}`}>
+          Refer A Friend
+        </a>
+      </div>
+    ) : null}
   </Card>
 );
 
@@ -97,6 +111,7 @@ Affirmation.propTypes = {
   author: PropTypes.object,
   callToActionDescription: PropTypes.string,
   callToActionHeader: PropTypes.string,
+  campaignId: PropTypes.string.isRequired,
   header: PropTypes.string,
   quote: PropTypes.string,
   userId: PropTypes.string.isRequired,

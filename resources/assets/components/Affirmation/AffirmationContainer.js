@@ -4,6 +4,7 @@ import Affirmation from './Affirmation';
 import { getUserId } from '../../selectors/user';
 
 const mapStateToProps = state => ({
+  campaignId: String(state.campaign.campaignId),
   userId: getUserId(state),
 });
 
