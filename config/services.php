@@ -40,7 +40,7 @@ return [
             'client_id' => env('NORTHSTAR_AUTHORIZATION_ID'),
             'client_secret' => env('NORTHSTAR_AUTHORIZATION_SECRET'),
             'scope' => ['user', 'activity', 'write', 'openid', 'role:staff', 'role:admin'],
-            'redirect_uri' => 'next/login',
+            'redirect_uri' => 'authorize',
         ],
     ],
 

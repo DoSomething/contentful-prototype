@@ -45,8 +45,14 @@ class AuthController extends Controller
     {
         $options = array_get($queryParams, 'options', []);
 
+        $mode = array_get($queryParams, 'mode', null);
+
         if (is_string($options)) {
             $options = (array) json_decode($options);
+        }
+
+        if ($mode) {
+            $options['mode'] = $mode;
         }
 
         return $options;
@@ -109,31 +115,6 @@ class AuthController extends Controller
     }
 
     /**
-     * Handle a login request to the application.
-     *
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function getLogin(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        $queryParams = $request->getQueryParams();
-
-        $this->setSessionData($queryParams);
-
-        $url = $this->getUrl();
-
-        $options = $this->getOptions($queryParams);
-
-        $destination = $this->getDestination($queryParams, $options);
-
-        // Override the default Northstar authorization /register page and view /login instead.
-        $options['mode'] = 'login';
-
-        return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
-    }
-
-    /**
      * Handle a logout request to the application.
      *
      * @param ResponseInterface $response
@@ -145,13 +126,13 @@ class AuthController extends Controller
     }
 
     /**
-     * Handle a registration request to the application.
+     * Handle an auth request to the application.
      *
      * @param  ServerRequestInterface $request
      * @param  ResponseInterface      $response
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function getRegistration(ServerRequestInterface $request, ResponseInterface $response)
+    public function getAuthorization(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParams = $request->getQueryParams();
 

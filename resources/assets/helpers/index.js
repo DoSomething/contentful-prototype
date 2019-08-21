@@ -61,7 +61,7 @@ export function buildAuthRedirectUrl(options = null, actionId = null) {
     options: JSON.stringify(options),
   });
 
-  return `${window.location.origin}/us/register?${params}`;
+  return `${window.location.origin}/authorize?${params}`;
 }
 
 /**

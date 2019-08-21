@@ -12,7 +12,7 @@ class StartSession extends Middleware
      * @var array
      */
     protected $mustPersistSession = [
-        'next/login',
+        'authorize',
     ];
 
     /**
@@ -27,6 +27,7 @@ class StartSession extends Middleware
         // If we don't have a session cookie & aren't on a route that requires keeping a
         // persistent session between anonymous requests, use the 'array' driver.
         $isAnonymousSession = ! $request->cookies->has(config('session.cookie'));
+
         if ($isAnonymousSession && ! $request->is($this->mustPersistSession)) {
             config(['session.driver' => 'array']);
         }
