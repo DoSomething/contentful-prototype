@@ -39,8 +39,8 @@
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
                 @else
-                    {{-- <a href="{{ route('authorize', array_merge(['mode' => 'login'], get_login_query($entity))) }}">Log In</a> --}}
-                    <a href="{{ route('authorize', get_login_query($entity)) }}">Log In</a>
+                    {{-- <a href="{{ route('authorize', get_authorization_query($entity, 'login')) }}">Log In</a> --}}
+                    <a href="{{ route('authorize', get_authorization_query($entity)) }}">Log In</a>
                 @endif
             </li>
         </ul>
