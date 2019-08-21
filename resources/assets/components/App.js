@@ -10,12 +10,12 @@ import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
-import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
-import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
+import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import AccountContainer from './pages/AccountPage/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
+import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
 const App = ({ store, history }) => {
   initializeStore(store);

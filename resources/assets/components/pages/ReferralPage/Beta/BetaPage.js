@@ -1,9 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
 
-import CampaignLink from './BetaPageCampaignLink';
 import Query from '../../../Query';
 import { query } from '../../../../helpers';
+import CampaignLink from './BetaPageCampaignLink';
 import ErrorBlock from '../../../ErrorBlock/ErrorBlock';
 
 const REFERRAL_PAGE_USER = gql`
