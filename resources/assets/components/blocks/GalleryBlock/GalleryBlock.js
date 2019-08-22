@@ -27,13 +27,11 @@ export const GalleryBlockFragment = gql`
         showcaseDescription
         showcaseImage {
           url
+          description
         }
 
         ... on PersonBlock {
           type
-        }
-        ... on ContentBlock {
-          imageAlignment
         }
       }
     }
@@ -50,6 +48,11 @@ const renderBlock = (block, imageAlignment, imageFit) => {
   switch (type) {
     case 'person':
     case 'PersonBlock':
+      fields.title = block.showcaseTitle;
+      fields.description = block.showcaseDescription;
+      fields.jobTitle = block.showcaseDescription;
+      fields.alternatePhoto = block.showcaseImage;
+      fields.photo = block.showcaseImage;
       return <Person key={block.id} {...fields} />;
 
     case 'campaign':
@@ -63,7 +66,7 @@ const renderBlock = (block, imageAlignment, imageFit) => {
     case 'Page':
       fields.title = block.showcaseTitle || block.title;
       fields.subTitle = block.showcaseDescription || block.subTitle;
-      fields.coverImage = block.showcaseImage || block.coverImage.url;
+      fields.coverImage = block.showcaseImage || block.coverImage;
       return <PageGalleryItem key={block.id} {...fields} />;
 
     case 'contentBlock':
@@ -71,7 +74,6 @@ const renderBlock = (block, imageAlignment, imageFit) => {
       fields.title = block.showcaseTitle || block.title;
       fields.image = block.showcaseImage || block.image;
       fields.content = block.showcaseDescription || block.content;
-      debugger;
       return (
         <ContentBlockGalleryItem
           key={block.id}

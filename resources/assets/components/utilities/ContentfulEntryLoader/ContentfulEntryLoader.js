@@ -78,7 +78,6 @@ const ContentfulEntryLoader = ({ id, className }) => (
 
       const blockType = data.block.__typename;
       const gridClass = get(entryGridMapping, blockType, 'grid-narrow');
-
       return (
         <div className={classnames(className, gridClass)}>
           <ContentfulEntry json={data.block} />

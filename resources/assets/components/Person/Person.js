@@ -67,8 +67,8 @@ Person.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string,
   jobTitle: PropTypes.string,
-  image: PropTypes.string,
-  alternatePhoto: PropTypes.string,
+  image: PropTypes.object,
+  alternatePhoto: PropTypes.object,
   description: PropTypes.string,
 };
 
