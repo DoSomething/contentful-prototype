@@ -12,11 +12,11 @@ $router->redirect('/', '/us');
 $router->get('/us', 'HomePageController');
 
 // Authentication
-$router->get('us/register', 'AuthController@getRegistration')->name('register');
-$router->get('next/login', 'AuthController@getLogin')->name('login');
+$router->get('/authorize', 'AuthController@getAuthorization')->name('authorize');
+$router->redirect('/auth/login', '/next/login', 302); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
+$router->redirect('/next/login', '/authorize', 302);
 
 $router->get('next/logout', 'AuthController@getLogout')->name('logout');
-$router->redirect('auth/login', 'next/login'); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 
 // Profile
 $router->redirect('/northstar/{id}', '/us/account/profile');

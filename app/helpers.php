@@ -472,8 +472,9 @@ function get_campaign_social_fields($campaign, $uri)
  * @param  stdClass $campaign
  * @return array
  */
-function get_login_query($campaign = null)
+function get_authorization_query($entity = null, $mode = null)
 {
+    $query = [];
     $options = [];
     $params = [
         'referrer_user_id',
@@ -482,25 +483,32 @@ function get_login_query($campaign = null)
         'utm_source',
     ];
 
+    if ($mode) {
+        $query['mode'] = $mode;
+    }
+
     foreach ($params as $param) {
         if (request($param)) {
             $options[$param] = request($param);
         }
     }
 
-    if (! $campaign) {
-        return ['options' => $options];
+    if (! $entity) {
+        $query['options'] = $options;
+
+        return $query;
     }
 
-    return [
-        'destination' => $campaign->title,
-        'options' => array_merge($options, [
-            'contentful_id' => $campaign->id,
-            'title' => $campaign->title,
-            'coverImage' => $campaign->coverImage->url,
-            'callToAction' => $campaign->callToAction,
-        ]),
-    ];
+    $query['destination'] = $entity->title;
+
+    $query['options'] = array_merge($options, [
+        'contentful_id' => $entity->id,
+        'title' => $entity->title,
+        'coverImage' => $entity->coverImage->url,
+        'callToAction' => $entity->callToAction,
+    ]);
+
+    return $query;
 }
 
 /**
