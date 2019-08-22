@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import requiredIf from 'react-required-if';
 
 import { Figure } from '../../Figure';
-import SectionHeader from '../../SectionHeader';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 
@@ -24,7 +24,7 @@ const ContentBlock = props => {
 
   return (
     <div className={classnames('content-block', className)}>
-      {title ? <SectionHeader preTitle={superTitle} title={title} /> : null}
+      {title ? <SectionHeader superTitle={superTitle} title={title} /> : null}
 
       {image.url ? (
         <Figure

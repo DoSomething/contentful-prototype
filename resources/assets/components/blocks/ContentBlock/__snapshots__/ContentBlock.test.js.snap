@@ -26,7 +26,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
   className="content-block"
 >
   <SectionHeader
-    preTitle="Test Super Title"
+    superTitle="Test Super Title"
     title="Test Title"
   />
   <Figure

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Answer from './Answer';
-import SectionHeader from '../SectionHeader';
+import SectionHeader from '../utilities/SectionHeader/SectionHeader';
 
 const isActive = (answer, activeAnswer) => answer.id === activeAnswer;
 const shouldFade = (answer, activeAnswer) =>
