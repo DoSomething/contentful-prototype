@@ -1,6 +1,7 @@
 @import 'next-toolbox';
 
 .gallery-grid-sextet,
+.gallery-grid-quintet,
 .gallery-grid-quartet,
 .gallery-grid-triad,
 .gallery-grid-duo {
@@ -17,6 +18,21 @@
   }
 }
 
+.gallery-grid-quintet {
+  @include media($medium) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: $base-spacing;
+    grid-row-gap: $base-spacing;
+  }
+}
 .gallery-grid-quartet {
   @include media($medium) {
     grid-template-columns: repeat(2, 1fr);
