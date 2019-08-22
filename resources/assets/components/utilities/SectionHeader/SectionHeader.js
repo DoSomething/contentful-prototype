@@ -6,7 +6,7 @@ import './section-header.scss';
 const SectionHeader = ({ superTitle, title }) => (
   <div className="flex__cell -two-thirds section-header">
     {superTitle ? (
-      <span className="heading -emphasized section-header__pre-title">
+      <span className="heading -emphasized section-header__super-title">
         {superTitle}
       </span>
     ) : null}
