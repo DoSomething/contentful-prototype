@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import './section-header.scss';
 
-// @TODO: change preTitle prop to superTitle.
-
-const SectionHeader = ({ preTitle, title }) => (
+const SectionHeader = ({ superTitle, title }) => (
   <div className="flex__cell -two-thirds section-header">
-    {preTitle ? (
-      <span className="heading -emphasized section-header__pre-title">
-        {preTitle}
+    {superTitle ? (
+      <span className="heading -emphasized section-header__super-title">
+        {superTitle}
       </span>
     ) : null}
 
@@ -18,13 +16,13 @@ const SectionHeader = ({ preTitle, title }) => (
 );
 
 SectionHeader.propTypes = {
-  preTitle: PropTypes.string,
+  superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 SectionHeader.defaultProps = {
   title: null,
-  preTitle: null,
+  superTitle: null,
 };
 
 export default SectionHeader;

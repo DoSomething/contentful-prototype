@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import QuizChoice from './QuizChoice';
-import SectionHeader from '../SectionHeader';
 import { convertNumberToWord } from '../../helpers';
+import SectionHeader from '../utilities/SectionHeader/SectionHeader';
 
 const QuizQuestion = props => {
   const {
@@ -26,13 +26,13 @@ const QuizQuestion = props => {
     />
   ));
 
-  const preTitle = hideQuestionNumber
+  const superTitle = hideQuestionNumber
     ? null
     : `Question ${convertNumberToWord(Number(id) + 1)}`;
 
   return (
     <div className="question">
-      <SectionHeader preTitle={preTitle} title={title} />
+      <SectionHeader superTitle={superTitle} title={title} />
       <div className="question__choices">{quizChoices}</div>
     </div>
   );
