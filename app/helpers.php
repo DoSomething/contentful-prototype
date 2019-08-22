@@ -499,9 +499,8 @@ function get_authorization_query($entity = null, $mode = null)
         return $query;
     }
 
-    // dd([$entity, $options, ! $entity]);
-
     $query['destination'] = $entity->title;
+
     $query['options'] = array_merge($options, [
         'contentful_id' => $entity->id,
         'title' => $entity->title,
