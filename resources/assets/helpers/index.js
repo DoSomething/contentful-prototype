@@ -937,5 +937,5 @@ export function toggleHandler(button, target, toggleClass) {
  * @return {Undefined}
  */
 export function redirectToNorthstar(state) {
-  window.location.href = buildLoginRedirectUrl(getDataForNorthstar(state));
+  window.location.href = buildAuthRedirectUrl(getDataForNorthstar(state));
 }
