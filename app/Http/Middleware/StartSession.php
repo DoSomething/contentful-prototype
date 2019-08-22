@@ -12,7 +12,7 @@ class StartSession extends Middleware
      * @var array
      */
     protected $mustPersistSession = [
-        '/authorize',
+        'authorize',
     ];
 
     /**
