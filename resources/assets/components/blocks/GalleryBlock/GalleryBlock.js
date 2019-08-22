@@ -107,7 +107,6 @@ const galleryTypes = {
 const GalleryBlock = props => {
   const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
   const galleryType = galleryTypes[itemsPerRow];
-
   return (
     <div className="gallery-block">
       {title ? <SectionHeader underlined title={title} /> : null}
