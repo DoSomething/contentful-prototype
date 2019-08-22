@@ -4,9 +4,9 @@ import classnames from 'classnames';
 import requiredIf from 'react-required-if';
 
 import { Figure } from '../../Figure';
-import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 import './content-block.scss';
 

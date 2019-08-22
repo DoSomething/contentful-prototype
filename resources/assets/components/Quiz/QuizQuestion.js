@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import QuizChoice from './QuizChoice';
-import SectionHeader from '../utilities/SectionHeader/SectionHeader';
 import { convertNumberToWord } from '../../helpers';
+import SectionHeader from '../utilities/SectionHeader/SectionHeader';
 
 const QuizQuestion = props => {
   const {
