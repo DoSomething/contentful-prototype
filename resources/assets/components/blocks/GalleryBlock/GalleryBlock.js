@@ -105,7 +105,7 @@ const galleryTypes = {
 };
 
 const GalleryBlock = props => {
-  const { title, blocks, ipr, imageAlignment, imageFit } = props;
+  const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
   const galleryType = galleryTypes[ipr];
   return (
     <div className="gallery-block">
@@ -126,7 +126,7 @@ const GalleryBlock = props => {
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  ipr: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
+  itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
   imageFit: PropTypes.oneOf(['FILL', 'PAD']),
 };
