@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Enclosure from '../../Enclosure';
 import TextContent from '../../utilities/TextContent/TextContent';
 
