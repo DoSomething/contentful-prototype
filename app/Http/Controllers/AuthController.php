@@ -23,6 +23,48 @@ class AuthController extends Controller
     protected $redirectAfterLogout;
 
     /**
+     * Make a new AuthController, inject dependencies,
+     * and set middleware for this controller's methods.
+     */
+    public function __construct()
+    {
+        $this->redirectAfterLogout = config('app.url');
+    }
+
+    /**
+     * Handle a logout request to the application.
+     *
+     * @param ResponseInterface $response
+     * @return ResponseInterface
+     */
+    public function getLogout(ResponseInterface $response)
+    {
+        return gateway('northstar')->logout($response, $this->redirectAfterLogout);
+    }
+
+    /**
+     * Handle an auth request to the application.
+     *
+     * @param  ServerRequestInterface $request
+     * @param  ResponseInterface      $response
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function getAuthorization(ServerRequestInterface $request, ResponseInterface $response)
+    {
+        $queryParams = $request->getQueryParams();
+
+        $this->setSessionData($queryParams);
+
+        $url = $this->getUrl();
+
+        $options = $this->getOptions($queryParams);
+
+        $destination = $this->getDestination($queryParams, $options);
+
+        return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
+    }
+
+    /**
      * Get destination metadata for Northstar login.
      * Defaults to "title" in $options or null.
      *
@@ -103,47 +145,5 @@ class AuthController extends Controller
         $actionId = array_get($queryParams, 'actionId');
 
         session()->flash('actionId', $actionId);
-    }
-
-    /**
-     * Make a new AuthController, inject dependencies,
-     * and set middleware for this controller's methods.
-     */
-    public function __construct()
-    {
-        $this->redirectAfterLogout = config('app.url');
-    }
-
-    /**
-     * Handle a logout request to the application.
-     *
-     * @param ResponseInterface $response
-     * @return ResponseInterface
-     */
-    public function getLogout(ResponseInterface $response)
-    {
-        return gateway('northstar')->logout($response, $this->redirectAfterLogout);
-    }
-
-    /**
-     * Handle an auth request to the application.
-     *
-     * @param  ServerRequestInterface $request
-     * @param  ResponseInterface      $response
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function getAuthorization(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        $queryParams = $request->getQueryParams();
-
-        $this->setSessionData($queryParams);
-
-        $url = $this->getUrl();
-
-        $options = $this->getOptions($queryParams);
-
-        $destination = $this->getDestination($queryParams, $options);
-
-        return gateway('northstar')->authorize($request, $response, $url, $destination, $options);
     }
 }
