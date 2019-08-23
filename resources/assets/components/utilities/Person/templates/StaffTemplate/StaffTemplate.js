@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../../../Figure';
-import { contentfulImageUrl } from '../../../../helpers';
+import { Figure } from '../../../../Figure';
+import { contentfulImageUrl } from '../../../../../helpers';
 
 const StaffTemplate = props => {
   const { name, jobTitle, alternatePhoto, twitterId } = props;
