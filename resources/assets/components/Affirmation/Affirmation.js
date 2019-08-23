@@ -111,7 +111,7 @@ Affirmation.propTypes = {
   author: PropTypes.object,
   callToActionDescription: PropTypes.string,
   callToActionHeader: PropTypes.string,
-  campaignId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string,
   header: PropTypes.string,
   quote: PropTypes.string,
   userId: PropTypes.string.isRequired,
@@ -122,6 +122,7 @@ Affirmation.defaultProps = {
   callToActionDescription:
     "By joining this campaign, you've teamed up with millions of other members who are making an impact on the causes affecting your world. As a DoSomething.org member, you're part of something bigger. You're part of a global movement for good.",
   callToActionHeader: "Woohoo! You're signed up.",
+  campaignId: null,
   header: 'Thanks for joining us!',
   quote: null,
 };
