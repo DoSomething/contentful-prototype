@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../../../Figure';
-import { contentfulImageUrl } from '../../../../helpers';
-import TextContent from '../../../utilities/TextContent/TextContent';
+import { Figure } from '../../../../Figure';
+import TextContent from '../../../TextContent/TextContent';
+import { contentfulImageUrl } from '../../../../../helpers';
 
 const AdvisoryBoardMemberTemplate = props => {
   const { name, photo, description } = props;
