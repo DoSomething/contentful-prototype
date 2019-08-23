@@ -10,7 +10,7 @@ import { Query } from 'react-apollo';
 import LazyImage from '../LazyImage';
 import linkIcon from './linkIcon.svg';
 import { isExternal } from '../../../helpers';
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
 
 import './embed.scss';

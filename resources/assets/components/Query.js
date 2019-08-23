@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Query as ApolloQuery } from 'react-apollo';
 
-import ErrorBlock from './ErrorBlock/ErrorBlock';
 import { NetworkStatus } from '../constants';
+import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
 
 /**
  * Fetch results via GraphQL using a query component.
