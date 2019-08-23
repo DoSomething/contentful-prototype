@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Figure } from '../Figure';
+import { Figure } from '../../Figure';
 import errorIcon from './errorIcon.svg';
-import Card from '../utilities/Card/Card';
-import TextContent from '../utilities/TextContent/TextContent';
+import Card from '../../utilities/Card/Card';
+import TextContent from '../../utilities/TextContent/TextContent';
 
 const ErrorBlock = () => (
   <Card className="error-block rounded bordered padded">

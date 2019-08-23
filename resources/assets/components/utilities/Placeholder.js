@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 const Placeholder = ({ error }) => {
   if (error) {

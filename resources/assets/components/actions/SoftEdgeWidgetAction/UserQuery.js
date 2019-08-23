@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
 import SoftEdgeWidgetAction from './SoftEdgeWidgetAction';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {

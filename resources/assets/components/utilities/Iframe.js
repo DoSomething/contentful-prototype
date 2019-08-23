@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import LazyImage from './LazyImage';
-import ErrorBlock from '../ErrorBlock/ErrorBlock';
+import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 const PERMITTED_HOSTNAMES = ['dosomething.carto.com'];
 

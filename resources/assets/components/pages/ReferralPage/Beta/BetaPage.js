@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import Query from '../../../Query';
 import { query } from '../../../../helpers';
 import CampaignLink from './BetaPageCampaignLink';
-import ErrorBlock from '../../../ErrorBlock/ErrorBlock';
+import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {

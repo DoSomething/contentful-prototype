@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 
 import LazyImage from '../LazyImage';
 import { env } from '../../../helpers';
-import ErrorBlock from '../../ErrorBlock/ErrorBlock';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 
 const CONTENTFUL_ASSET_QUERY = gql`
   query ContentfulAssetQuery(
