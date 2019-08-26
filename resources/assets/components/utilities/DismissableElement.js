@@ -15,9 +15,10 @@ const DismissableElement = ({ name, render }) => {
   }, []);
 
   const shouldSeeElement = () => {
+    // Is the element marked as "hidden" in local storage?
     const shouldNotSee = getStorage(`hide_${name}`, 'boolean');
 
-    // Check if the survey was dismissed over 30 days ago.
+    // Was the element dismissed less than 30 days ago?
     const dismissalTime = getStorage(`dismissed_${name}`, 'timestamp');
     const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
 
