@@ -15,11 +15,7 @@ const DismissableElement = ({ name, render }) => {
   }, []);
 
   const shouldSeeElement = () => {
-    let shouldNotSee = getStorage(`hide_${name}`, 'boolean');
-    // Support for legacy nps survey 'hide element' storage format.
-    if (name === 'nps_survey' && !shouldNotSee) {
-      shouldNotSee = getStorage('finished_survey', 'boolean');
-    }
+    const shouldNotSee = getStorage(`hide_${name}`, 'boolean');
 
     // Check if the survey was dismissed over 30 days ago.
     const dismissalTime = getStorage(`dismissed_${name}`, 'timestamp');
