@@ -7,6 +7,9 @@ import BadgeModal from './BadgeModal';
 import Query from '../../Query';
 import './badges-tab.scss';
 
+const CONFIRMED = 'CONFIRMED';
+const REGISTRATION_COMPLETE = 'REGISTRATION_COMPLETE';
+
 const SIGNUP_COUNT_BADGE = gql`
   query SignupsCountQuery($userId: String!) {
     signupsCount(userId: $userId, limit: 2)
@@ -339,9 +342,9 @@ class BadgesTab extends React.Component {
                       onClick={() =>
                         this.showModal(
                           'voterBadge',
-                          data.user.voterRegistrationStatus === 'CONFIRMED' ||
+                          data.user.voterRegistrationStatus === CONFIRMED ||
                             data.user.voterRegistrationStatus ===
-                              'REGISTRATION_COMPLETE',
+                              REGISTRATION_COMPLETE,
                         )
                       }
                       role="button"
@@ -349,9 +352,9 @@ class BadgesTab extends React.Component {
                     >
                       <Badge
                         earned={
-                          data.user.voterRegistrationStatus === 'CONFIRMED' ||
+                          data.user.voterRegistrationStatus === CONFIRMED ||
                           data.user.voterRegistrationStatus ===
-                            'REGISTRATION_COMPLETE'
+                            REGISTRATION_COMPLETE
                         }
                         name="voterBadge"
                         text="Registered Voter"
