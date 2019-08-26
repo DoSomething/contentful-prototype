@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import classnames from 'classnames';
 
-import { BaseFigure } from '../Figure';
+import { BaseFigure } from '../utilities/Figure';
 import './reaction.scss';
 
 // @TODO: review the structure of the reaction button below, not ideal that it is an article tag

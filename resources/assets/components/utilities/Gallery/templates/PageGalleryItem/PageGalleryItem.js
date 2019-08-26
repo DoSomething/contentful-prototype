@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../../../../Figure';
+import { Figure } from '../../../Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
 const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (

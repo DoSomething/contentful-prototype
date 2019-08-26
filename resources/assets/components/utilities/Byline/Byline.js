@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { Figure } from '../../Figure';
+import { Figure } from '../Figure';
 import DEFAULT_AVATAR from './default-avatar.png';
 
 import './byline.scss';

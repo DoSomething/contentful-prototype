@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { BaseFigure } from '../../Figure';
+import { BaseFigure } from '../../utilities/Figure';
 import badgeImages from './BadgeImages';
 
 const Badge = props => {

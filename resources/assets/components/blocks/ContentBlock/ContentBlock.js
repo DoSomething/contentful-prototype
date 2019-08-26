@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import requiredIf from 'react-required-if';
 
-import { Figure } from '../../Figure';
+import { Figure } from '../../utilities/Figure';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Figure } from '../../Figure';
+import { Figure } from '../../utilities/Figure';
 import errorIcon from './errorIcon.svg';
 import Card from '../../utilities/Card/Card';
 import TextContent from '../../utilities/TextContent/TextContent';
