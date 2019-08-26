@@ -1,7 +1,9 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
+import { env } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import NotificationContainer from '../Notification';
 import DelayedElement from '../utilities/DelayedElement';
@@ -28,7 +30,7 @@ const Campaign = props => (
 
     <NotificationContainer />
 
-    {props.isAuthenticated ? (
+    {props.isAuthenticated && env('NPS_SURVEY_ENABLED') ? (
       <TrafficDistribution percentage={5} feature="nps_survey">
         <DelayedElement delay={60}>
           <DismissableElement
@@ -53,8 +55,8 @@ const Campaign = props => (
     ) : null}
 
     {props.isAuthenticated &&
-    props.featureFlags &&
-    props.featureFlags.showVoterRegistrationModal ? (
+    get(props, 'featureFlags.showVoterRegistrationModal') &&
+    env('VOTER_REG_MODAL_ENABLED') ? (
       <TrafficDistribution percentage={50} feature="voter_reg_modal">
         <DelayedElement delay={30}>
           <DismissableElement
