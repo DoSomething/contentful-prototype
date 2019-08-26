@@ -28,7 +28,7 @@
     - [Contentful Tests](development/features/sixpack/sixpack-contentful-tests.md)
     - [Testing Tips](development/features/sixpack/sixpack-testing-tips.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
-  - [Modal Launcher](development/features/modal-launcher.md)
+  - [Feature Launcher](development/features/feature-launcher.md)
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)
   - [Affiliate Scholarship Block](development/features/affiliate-scholarship-block.md)
 - [Contentful](development/contentful/README.md)

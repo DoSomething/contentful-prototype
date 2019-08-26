@@ -4,9 +4,10 @@ import React from 'react';
 import { get } from 'lodash';
 
 import sponsorList from './sponsor-list';
+import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl } from '../../../helpers';
-import ModalLauncher from '../../utilities/Modal/ModalLauncher';
 import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
+import FeatureLauncher from '../../utilities/FeatureLauncher/FeatureLauncher';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
 import './home-page.scss';
@@ -99,19 +100,21 @@ class HomePage extends React.Component {
         </div>
 
         <TrafficDistribution percentage={5} feature="nps_survey">
-          <ModalLauncher
+          <FeatureLauncher
             type="nps_survey"
             countdown={30}
-            render={() => (
-              <TypeFormSurvey
-                typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
-                queryParameters={{
-                  northstar_id: get(window.AUTH, 'id', null),
-                }}
-                redirectParameters={{
-                  hide_nps_survey: 1,
-                }}
-              />
+            render={handleClose => (
+              <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                <TypeFormSurvey
+                  typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                  queryParameters={{
+                    northstar_id: get(window.AUTH, 'id', null),
+                  }}
+                  redirectParameters={{
+                    hide_nps_survey: 1,
+                  }}
+                />
+              </Modal>
             )}
           />
         </TrafficDistribution>
