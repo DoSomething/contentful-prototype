@@ -8,9 +8,9 @@ import Embed from '../../utilities/Embed/Embed';
 // @see line 81 *1
 // import Share from '../../utilities/Share/Share';
 import Byline from '../../utilities/Byline/Byline';
-import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
+import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const CampaignUpdate = props => {
   const {
