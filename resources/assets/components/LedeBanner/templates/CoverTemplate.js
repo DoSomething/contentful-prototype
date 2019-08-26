@@ -37,7 +37,6 @@ const CoverTemplate = props => {
       </Link>
     </div>
   ) : null;
-
   return (
     <header
       role="banner"

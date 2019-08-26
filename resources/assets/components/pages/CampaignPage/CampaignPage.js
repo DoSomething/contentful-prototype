@@ -18,10 +18,12 @@ import './campaign-page.scss';
  */
 const CampaignPage = props => {
   const { dashboard, entryContent, isCampaignClosed } = props;
-
   return (
     <React.Fragment>
-      <LedeBannerContainer displaySignup={Boolean(!entryContent)} />
+      <LedeBannerContainer
+        displaySignup={Boolean(!entryContent)}
+        isCampaignClosed={isCampaignClosed}
+      />
 
       <div className="main clearfix">
         {dashboard ? <ContentfulEntry json={dashboard} /> : null}
