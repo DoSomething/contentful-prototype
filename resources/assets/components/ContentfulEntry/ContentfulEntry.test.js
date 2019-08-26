@@ -12,7 +12,7 @@ jest.mock(
   () => 'CallToActionContainer',
 );
 jest.mock(
-  '../CampaignUpdate/CampaignUpdateContainer',
+  '../blocks/CampaignUpdate/CampaignUpdateContainer',
   () => 'CampaignUpdateContainer',
 );
 

@@ -3,8 +3,8 @@
 import { connect } from 'react-redux';
 
 import CampaignUpdate from './CampaignUpdate';
-import { makeShareLink } from '../../helpers';
-import { PHOENIX_URL } from '../../constants';
+import { makeShareLink } from '../../../helpers';
+import { PHOENIX_URL } from '../../../constants';
 
 const mapStateToProps = (state, props) => {
   const linkOptions = {

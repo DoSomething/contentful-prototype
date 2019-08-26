@@ -10,7 +10,7 @@ import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
-import { CampaignUpdateContainer } from '../CampaignUpdate';
+import { CampaignUpdateContainer } from '../blocks/CampaignUpdate';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
