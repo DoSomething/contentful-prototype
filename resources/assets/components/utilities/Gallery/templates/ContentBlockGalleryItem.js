@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../../Figure';
-import { contentfulImageUrl } from '../../../../helpers';
+import { Figure } from '../../Figure/Figure';
 import TextContent from '../../TextContent/TextContent';
+import { contentfulImageUrl } from '../../../../helpers';
 
 const ContentBlockGalleryItem = ({
   title,

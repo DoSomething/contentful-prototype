@@ -8,11 +8,11 @@ import { propType } from 'graphql-anywhere';
 
 import Card from '../Card/Card';
 import PostBadge from './PostBadge';
-import ReviewLink from './ReviewLink';
-import { BaseFigure } from '../Figure';
 import LazyImage from '../LazyImage';
-import ReactionButton from '../ReactionButton/ReactionButton';
+import ReviewLink from './ReviewLink';
+import { BaseFigure } from '../Figure/Figure';
 import { isAuthenticated, isStaff } from '../../../helpers';
+import ReactionButton from '../ReactionButton/ReactionButton';
 
 import './post.scss';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { BaseFigure } from '../../utilities/Figure';
 import badgeImages from './BadgeImages';
+import { BaseFigure } from '../../utilities/Figure/Figure';
 
 const Badge = props => {
   const { name, earned, size, className, children, showLock } = props;

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Figure } from '../../utilities/Figure';
 import errorIcon from './errorIcon.svg';
 import Card from '../../utilities/Card/Card';
+import { Figure } from '../../utilities/Figure/Figure';
 import TextContent from '../../utilities/TextContent/TextContent';
 
 const ErrorBlock = () => (
