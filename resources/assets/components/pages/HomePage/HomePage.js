@@ -6,8 +6,9 @@ import { get } from 'lodash';
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl } from '../../../helpers';
+import DelayedElement from '../../utilities/DelayedElement';
+import DismissableElement from '../../utilities/DismissableElement';
 import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
-import FeatureLauncher from '../../utilities/FeatureLauncher/FeatureLauncher';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
 import './home-page.scss';
@@ -100,23 +101,24 @@ class HomePage extends React.Component {
         </div>
 
         <TrafficDistribution percentage={5} feature="nps_survey">
-          <FeatureLauncher
-            type="nps_survey"
-            countdown={30}
-            render={handleClose => (
-              <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                <TypeFormSurvey
-                  typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
-                  queryParameters={{
-                    northstar_id: get(window.AUTH, 'id', null),
-                  }}
-                  redirectParameters={{
-                    hide_nps_survey: 1,
-                  }}
-                />
-              </Modal>
-            )}
-          />
+          <DelayedElement delay={30}>
+            <DismissableElement
+              name="nps_survey"
+              render={handleClose => (
+                <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                  <TypeFormSurvey
+                    typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                    queryParameters={{
+                      northstar_id: get(window.AUTH, 'id', null),
+                    }}
+                    redirectParameters={{
+                      hide_nps_survey: 1,
+                    }}
+                  />
+                </Modal>
+              )}
+            />
+          </DelayedElement>
         </TrafficDistribution>
       </React.Fragment>
     );
