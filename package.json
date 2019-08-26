@@ -61,7 +61,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^13.2.0",
     "@contentful/rich-text-types": "^13.1.0",
-    "@dosomething/forge": "^6.9.1",
+    "@dosomething/forge": "^6.10.0",
     "@dosomething/gateway": "^2.0.1",
     "@dosomething/puck-client": "^1.6.0",
     "apollo-cache-inmemory": "^1.6.2",
