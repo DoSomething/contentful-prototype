@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Figure } from '../../../../Figure';
+import { Figure } from '../../../Figure/Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
 const CampaignGalleryItem = ({ title, tagline, coverImage, slug }) => (
