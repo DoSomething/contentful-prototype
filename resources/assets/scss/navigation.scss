@@ -1,4 +1,4 @@
-@import '~@dosomething/forge/scss/toolkit';
+@import 'next-toolbox';
 
 // Temporary override of the page navigation.
 // Fixed pixel height helps with vh units in banner.
@@ -12,21 +12,64 @@
   }
 }
 
-.navigation__logo {
-  @include media($mobile) {
-    position: relative;
-    top: auto;
-    left: auto;
-    z-index: auto;
+.navigation__secondary {
+  margin-left: 0;
+
+  @include media($larger) {
+    margin-right: $base-spacing;
+  }
+
+  > li + li {
+    @include media($largest) {
+      margin-left: $base-spacing;
+    }
+  }
+
+  .navigation__join {
+    padding-top: 2px;
+
+    a {
+      background-color: $blue;
+      border-radius: $lg-border-radius;
+      font-size: $font-medium;
+      margin: 0 auto;
+      max-width: 80%;
+      padding: $half-spacing $base-spacing;
+      text-transform: uppercase;
+
+      @include media($medium) {
+        max-width: 50%;
+      }
+
+      @include media($large) {
+        background-color: transparent;
+        border: 1px solid $black;
+        max-width: none;
+      }
+    }
   }
 }
 
-.navigation__menu {
-  overflow: auto;
+.navigation.-white {
+  .navigation__secondary {
+    .navigation__join {
+      a {
+        @include media($large) {
+          border-color: $white;
+        }
+      }
+    }
+  }
 }
 
 .navigation__primary {
-  @include media($medium) {
-    float: left;
+  .navigation__subtitle {
+    @include media($larger) {
+      display: none;
+    }
+
+    @include media('(min-width: 1130px)') {
+      display: block;
+    }
   }
 }
