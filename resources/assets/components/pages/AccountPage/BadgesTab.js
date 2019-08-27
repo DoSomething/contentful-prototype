@@ -63,14 +63,14 @@ const badgeModalContent = {
     earnedText:
       'Niiiiice! You just earned another badge for making an impact *again*. Hope you’re double proud of yourself.',
     unearnedText:
-      'Want to earn your second Action badge? Rock another DoSomething campaign and upload a pic to prove it.',
+      'Want to earn your second Action badge? Rock another DoSomething campaign.',
   },
   threePostsBadge: {
     title: '3 ACTIONS',
     earnedText:
       'OH YEAH! You rocked another campaign and earned your *third* Action badge. Welcome to the three timers club!',
     unearnedText:
-      'Third time’s a charm! Complete another campaign and upload another photo to unlock this exclusive badge.',
+      'Third time’s a charm! Complete another campaign to unlock this exclusive badge.',
   },
   oneStaffFaveBadge: {
     title: '1 STAFF FAVE',
