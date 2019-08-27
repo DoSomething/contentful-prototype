@@ -15,6 +15,7 @@ describe('DefaultTemplate component', () => {
   });
 
   const props = {
+    id: '1234567890',
     title: 'Click on this link!',
     link: 'https://dosomething.org',
   };
@@ -84,7 +85,10 @@ describe('DefaultTemplate component', () => {
       <DefaultTemplate
         {...props}
         content="This is a sponsored post, so take a good look at it!"
-        affiliateLogo="https://vignette.wikia.nocookie.net/pokemon/images/b/b0/Team_Rocket_trio_OS.png/revision/latest?cb=20150915073657"
+        affiliateLogo={{
+          url:
+            'https://vignette.wikia.nocookie.net/pokemon/images/b/b0/Team_Rocket_trio_OS.png/revision/latest?cb=20150915073657',
+        }}
       />,
     );
 

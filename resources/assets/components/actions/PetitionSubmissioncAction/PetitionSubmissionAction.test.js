@@ -28,6 +28,7 @@ describe('PetitionSubmissionAction component', () => {
     <MockedProvider mocks={mocks} addTypename={false}>
       <PetitionSubmissionAction
         id="abcdefghi123456789"
+        pageId="abcdefghi123456789"
         campaignContentfulId="1"
         content="Test Petition"
         submissions={{

@@ -5,6 +5,7 @@ import LinkAction from './LinkAction';
 
 describe('LinkAction component', () => {
   const props = {
+    id: '1234',
     title: 'Click on this link!',
     link: 'https://dosomething.org',
   };
