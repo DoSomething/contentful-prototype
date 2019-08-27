@@ -31,18 +31,18 @@
                 </form>
             </li>
 
-            <li class="navigation__dropdown">
-                @if (Auth::user())
+            @if (Auth::user())
+                <li class="navigation__dropdown">
                     <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
                     <ul>
                         <li><a href="{{ url('us/account/profile') }}">Profile</a></li>
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
                     </ul>
-                @else
-                    {{-- <a href="{{ route('authorize', get_authorization_query($entity, 'login')) }}">Log In</a> --}}
-                    <a href="{{ route('authorize', get_authorization_query($entity)) }}">Log In</a>
-                @endif
-            </li>
+                </li>
+            @else
+                <li><a href="{{ route('authorize', get_authorization_query($entity, 'login')) }}">Log In</a></li>
+                <li class="navigation__join"><a href="{{ route('authorize', get_authorization_query($entity)) }}">Join Now</a></li>
+            @endif
         </ul>
     </div>
 </div>
