@@ -14,7 +14,9 @@ const getWrapper = () =>
   mount(
     <DismissableElement
       name={NAME}
-      render={handleClose => <button id="element" onClick={handleClose} />}
+      render={handleClose => (
+        <button type="button" id="element" onClick={handleClose} />
+      )}
     />,
   );
 
