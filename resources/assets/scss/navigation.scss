@@ -29,22 +29,17 @@
     padding-top: 2px;
 
     a {
-      background-color: $blue;
+      border: 1px solid $white;
       border-radius: $lg-border-radius;
+      display: inline-block;
       font-size: $font-medium;
       margin: 0 auto;
-      max-width: 80%;
       padding: $half-spacing $base-spacing;
       text-transform: uppercase;
 
-      @include media($medium) {
-        max-width: 50%;
-      }
-
       @include media($large) {
-        background-color: transparent;
-        border: 1px solid $black;
-        max-width: none;
+        border-color: $black;
+        display: block;
       }
     }
   }
