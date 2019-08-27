@@ -236,6 +236,64 @@ class BadgesTab extends React.Component {
                 )}
               </Query>
 
+              <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
+                {data => (
+                  <li>
+                    <div
+                      onClick={() =>
+                        this.showModal(
+                          'breakdownBadge',
+                          data.user.emailSubscriptionTopics.includes('NEWS'),
+                        )
+                      }
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <Badge
+                        earned={data.user.emailSubscriptionTopics.includes(
+                          'NEWS',
+                        )}
+                        name="breakdownBadge"
+                        text="News Expert"
+                      >
+                        <p>News Expert</p>
+                      </Badge>
+                    </div>
+                  </li>
+                )}
+              </Query>
+
+              <Query query={VOTER_BADGE} variables={{ userId }}>
+                {data => (
+                  <li>
+                    <div
+                      onClick={() =>
+                        this.showModal(
+                          'voterBadge',
+                          data.user.voterRegistrationStatus === CONFIRMED ||
+                            data.user.voterRegistrationStatus ===
+                              REGISTRATION_COMPLETE,
+                        )
+                      }
+                      role="button"
+                      tabIndex={0}
+                    >
+                      <Badge
+                        earned={
+                          data.user.voterRegistrationStatus === CONFIRMED ||
+                          data.user.voterRegistrationStatus ===
+                            REGISTRATION_COMPLETE
+                        }
+                        name="voterBadge"
+                        text="Registered Voter"
+                      >
+                        <p>Registered Voter</p>
+                      </Badge>
+                    </div>
+                  </li>
+                )}
+              </Query>
+
               <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
                 {data =>
                   data.postsCount > 0 ? (
@@ -306,64 +364,6 @@ class BadgesTab extends React.Component {
                     </li>
                   ) : null
                 }
-              </Query>
-
-              <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal(
-                          'breakdownBadge',
-                          data.user.emailSubscriptionTopics.includes('NEWS'),
-                        )
-                      }
-                      role="button"
-                      tabIndex={0}
-                    >
-                      <Badge
-                        earned={data.user.emailSubscriptionTopics.includes(
-                          'NEWS',
-                        )}
-                        name="breakdownBadge"
-                        text="News Expert"
-                      >
-                        <p>News Expert</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
-
-              <Query query={VOTER_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal(
-                          'voterBadge',
-                          data.user.voterRegistrationStatus === CONFIRMED ||
-                            data.user.voterRegistrationStatus ===
-                              REGISTRATION_COMPLETE,
-                        )
-                      }
-                      role="button"
-                      tabIndex={0}
-                    >
-                      <Badge
-                        earned={
-                          data.user.voterRegistrationStatus === CONFIRMED ||
-                          data.user.voterRegistrationStatus ===
-                            REGISTRATION_COMPLETE
-                        }
-                        name="voterBadge"
-                        text="Registered Voter"
-                      >
-                        <p>Registered Voter</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
               </Query>
             </ul>
           </div>
