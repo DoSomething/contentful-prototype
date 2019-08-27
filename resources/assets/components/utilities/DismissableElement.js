@@ -11,6 +11,7 @@ const DismissableElement = ({ name, render }) => {
     // Mark the element as "hidden" in local storage if indicated by query param.
     if (query(`hide_${name}`) === '1') {
       setStorage(`hide_${name}`, 'boolean', true);
+      setShowElement(false);
     }
   }, []);
 
