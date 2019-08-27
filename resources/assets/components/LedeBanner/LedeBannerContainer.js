@@ -28,11 +28,6 @@ const mapStateToProps = (state, props) => ({
   blurb: get(props, 'blurb', state.campaign.blurb),
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
   endDate: state.campaign.endDate,
-  isCampaignClosed: get(
-    props,
-    'isCampaignClosed',
-    state.campaign.isCampaignClosed,
-  ),
   isAffiliated: isSignedUp(state),
   subtitle: get(props, 'subtitle', state.campaign.callToAction),
   template: get(props, 'template', state.campaign.template),

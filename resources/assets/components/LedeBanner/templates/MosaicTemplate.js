@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -69,6 +68,8 @@ const MosaicTemplate = props => {
     </div>
   ) : null;
 
+  const displayButton = isAffiliated ? actionButton : signupButton;
+
   return (
     <header role="banner" className="mosaic-lede-banner">
       <div className="mosaic-lede-banner__image" style={backgroundImageStyle} />
@@ -93,19 +94,7 @@ const MosaicTemplate = props => {
             </TextContent>
           ) : null}
 
-          {!isCampaignClosed ? (
-            isAffiliated ? (
-              actionButton
-            ) : (
-              signupButton
-            )
-          ) : (
-            <TextContent className="mosaic-lede-banner__blurb">
-              This campaign is closed until further notice! (Get PM Approval on
-              phrasing)
-            </TextContent>
-          )}
-          {/* check if the campaign is closed as the outer turnary, then add an additional inner turnary for the isAffiliate check */}
+          {!isCampaignClosed ? displayButton : null}
 
           {affiliateSponsors.length ? (
             <AffiliatePromotion
