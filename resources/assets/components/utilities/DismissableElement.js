@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import { isTimestampValid, env, query } from '../../helpers';
+import { isTimestampValid, query } from '../../helpers';
 import { get as getStorage, set as setStorage } from '../../helpers/storage';
 
 const DismissableElement = ({ name, render }) => {
@@ -22,12 +22,7 @@ const DismissableElement = ({ name, render }) => {
     const dismissalTime = getStorage(`dismissed_${name}`, 'timestamp');
     const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
 
-    return (
-      env(`${name.toUpperCase()}_ENABLED`) &&
-      !shouldNotSee &&
-      !isDismissed &&
-      showElement
-    );
+    return !shouldNotSee && !isDismissed && showElement;
   };
 
   const handleDismissal = () => {
