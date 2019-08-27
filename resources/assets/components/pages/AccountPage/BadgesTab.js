@@ -97,7 +97,7 @@ const badgeModalContent = {
     unearnedText: (
       <span>
         Want to unlock this badge?{' '}
-        <a href="https://breakdown.dosomething.org/">
+        <a href="/us/account/profile/subscriptions">
           Sign up for The Breakdown
         </a>
         , our current events newsletter.
