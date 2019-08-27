@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import { isTimestampValid, query } from '../../helpers';
-import { get as getStorage, set as setStorage } from '../../helpers/storage';
+import { isTimestampValid, query } from '../../../helpers';
+import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 
 const DismissableElement = ({ name, render }) => {
   const [showElement, setShowElement] = useState(true);
