@@ -20,6 +20,7 @@ const MosaicTemplate = props => {
     affiliateOptInContent,
     affiliateSponsors,
     displaySignup,
+    endDate,
     title,
     subtitle,
     blurb,
@@ -69,7 +70,6 @@ const MosaicTemplate = props => {
   ) : null;
 
   const displayButton = isAffiliated ? actionButton : signupButton;
-
   return (
     <header role="banner" className="mosaic-lede-banner">
       <div className="mosaic-lede-banner__image" style={backgroundImageStyle} />
@@ -94,7 +94,7 @@ const MosaicTemplate = props => {
             </TextContent>
           ) : null}
 
-          {!isCampaignClosed ? displayButton : null}
+          {!isCampaignClosed(endDate) ? displayButton : null}
 
           {affiliateSponsors.length ? (
             <AffiliatePromotion
@@ -123,6 +123,7 @@ MosaicTemplate.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   displaySignup: PropTypes.bool,
+  endDate: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
