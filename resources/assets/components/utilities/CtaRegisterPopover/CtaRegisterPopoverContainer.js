@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import CTARegisterPopover from './CTARegisterPopover';
+import CtaRegisterPopover from './CtaRegisterPopover';
 import { redirectToNorthstar } from '../../../helpers';
 
 /**
@@ -13,4 +13,4 @@ const mapStateToProps = state => ({
 /**
  * Export the container component.
  */
-export default connect(mapStateToProps)(CTARegisterPopover);
+export default connect(mapStateToProps)(CtaRegisterPopover);
