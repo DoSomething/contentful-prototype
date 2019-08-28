@@ -5,7 +5,9 @@ import './cta-register-popover.scss';
 
 const CTARegisterPopover = ({ redirectToNorthstar }) => (
   <div className="cta-register-popover padded bordered rounded">
-    <h3 className="text-m color-yellow font-bold">JOIN DOSOMETHING TODAY</h3>
+    <h3 className="text-m color-yellow font-bold uppercase">
+      Join DoSomething Today
+    </h3>
     <p className="text-white mt-4">
       After you learn something, do something! Help change the world one Fantini
       at a time. Join the global movement because apathy sucks.
