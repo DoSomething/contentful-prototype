@@ -157,6 +157,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.signupsCount > 0}
@@ -179,6 +180,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.postsCount > 0}
@@ -201,6 +203,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.postsCount > 1}
@@ -223,6 +226,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.postsCount > 2}
@@ -248,6 +252,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.user.emailSubscriptionTopics.includes(
@@ -277,6 +282,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={
@@ -304,6 +310,7 @@ class BadgesTab extends React.Component {
                         }
                         role="button"
                         tabIndex={0}
+                        className="clickable-badge"
                       >
                         <Badge
                           earned
@@ -328,6 +335,7 @@ class BadgesTab extends React.Component {
                         }
                         role="button"
                         tabIndex={0}
+                        className="clickable-badge"
                       >
                         <Badge
                           earned
@@ -352,6 +360,7 @@ class BadgesTab extends React.Component {
                         }
                         role="button"
                         tabIndex={0}
+                        className="clickable-badge"
                       >
                         <Badge
                           earned
