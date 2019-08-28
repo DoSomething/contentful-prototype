@@ -14,7 +14,7 @@
                         </p>
                         <p>
                             You can also try <a href="{{ url('/') }}">our homepage</a> or
-                            <a href="https://www.dosomething.org/us">
+                            <a href="https://help.dosomething.org/hc/en-us">
                             reach out</a> to us.
                         </p>
                     </div>
