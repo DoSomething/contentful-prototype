@@ -76,4 +76,7 @@ export function bindNavigationEvents() {
   const accountToggle = document.getElementById('js-account-toggle');
   const dropdown = document.getElementsByClassName('navigation__dropdown')[0];
   toggleHandler(accountToggle, dropdown, 'is-visible');
+
+  const navLinks = document.querySelectorAll('.navigation__menu a');
+  console.log('@@', navLinks);
 }
