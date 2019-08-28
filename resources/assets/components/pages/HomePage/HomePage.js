@@ -102,10 +102,10 @@ class HomePage extends React.Component {
 
         {env('NPS_SURVEY_ENABLED') ? (
           <TrafficDistribution percentage={5} feature="nps_survey">
-            <DelayedElement delay={30}>
-              <DismissableElement
-                name="nps_survey"
-                render={handleClose => (
+            <DismissableElement
+              name="nps_survey"
+              render={handleClose => (
+                <DelayedElement delay={30}>
                   <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                     <TypeFormSurvey
                       typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
@@ -117,9 +117,9 @@ class HomePage extends React.Component {
                       }}
                     />
                   </Modal>
-                )}
-              />
-            </DelayedElement>
+                </DelayedElement>
+              )}
+            />
           </TrafficDistribution>
         ) : null}
       </React.Fragment>

@@ -32,10 +32,10 @@ const Campaign = props => (
 
     {props.isAuthenticated && env('NPS_SURVEY_ENABLED') ? (
       <TrafficDistribution percentage={5} feature="nps_survey">
-        <DelayedElement delay={60}>
-          <DismissableElement
-            name="nps_survey"
-            render={handleClose => (
+        <DismissableElement
+          name="nps_survey"
+          render={handleClose => (
+            <DelayedElement delay={60}>
               <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                 <TypeFormSurvey
                   typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
@@ -48,9 +48,9 @@ const Campaign = props => (
                   }}
                 />
               </Modal>
-            )}
-          />
-        </DelayedElement>
+            </DelayedElement>
+          )}
+        />
       </TrafficDistribution>
     ) : null}
 
@@ -58,19 +58,19 @@ const Campaign = props => (
     get(props, 'featureFlags.showVoterRegistrationModal') &&
     env('VOTER_REG_MODAL_ENABLED') ? (
       <TrafficDistribution percentage={50} feature="voter_reg_modal">
-        <DelayedElement delay={30}>
-          <DismissableElement
-            name="voter_reg_modal"
-            render={handleClose => (
+        <DismissableElement
+          name="voter_reg_modal"
+          render={handleClose => (
+            <DelayedElement delay={30}>
               <Modal
                 onClose={handleClose}
                 trackingId="VOTER_REGISTRATION_MODAL"
               >
                 <VoterRegistrationModal />
               </Modal>
-            )}
-          />
-        </DelayedElement>
+            </DelayedElement>
+          )}
+        />
       </TrafficDistribution>
     ) : null}
 
