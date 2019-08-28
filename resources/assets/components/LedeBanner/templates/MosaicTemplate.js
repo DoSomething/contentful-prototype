@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { contentfulImageUrl } from '../../../helpers';
+import { contentfulImageUrl, isCampaignClosed } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
@@ -20,6 +20,7 @@ const MosaicTemplate = props => {
     affiliateOptInContent,
     affiliateSponsors,
     displaySignup,
+    endDate,
     title,
     subtitle,
     blurb,
@@ -37,6 +38,8 @@ const MosaicTemplate = props => {
     )})`,
   };
 
+  const displayClosedCampaignCopy = isCampaignClosed(endDate);
+
   const signupButton = displaySignup ? (
     <div className="mosaic-lede-banner__signup">
       {affiliateOptInContent ? (
@@ -47,6 +50,7 @@ const MosaicTemplate = props => {
 
       <SignupButtonContainer
         className={classnames({ '-float': affiliateSponsors.length })}
+        displayClosedCampaignCopy={displayClosedCampaignCopy}
       />
       {signupArrowContent ? (
         <CampaignSignupArrow
@@ -63,7 +67,9 @@ const MosaicTemplate = props => {
         className={classnames('button', '-action')}
         to={affiliatedActionLink}
       >
-        {affiliatedActionText || 'Take Action'}
+        {displayClosedCampaignCopy
+          ? 'Notify Me'
+          : affiliatedActionText || 'Take Action'}
       </Link>
     </div>
   ) : null;
@@ -121,6 +127,7 @@ MosaicTemplate.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   displaySignup: PropTypes.bool,
+  endDate: PropTypes.string,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -134,6 +141,7 @@ MosaicTemplate.defaultProps = {
   affiliateOptInContent: null,
   blurb: null,
   displaySignup: true,
+  endDate: null,
   signupArrowContent: null,
 };
 

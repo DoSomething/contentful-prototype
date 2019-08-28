@@ -14,6 +14,7 @@ const SignupButton = props => {
     campaignTitle,
     className,
     disableSignup,
+    displayClosedCampaignCopy,
     pageId,
     sixpackSourceActionText,
     sourceActionText,
@@ -65,7 +66,6 @@ const SignupButton = props => {
 
   // Button copy override based on the user's traffic source.
   const sourceOverride = get(sourceActionText, trafficSource);
-
   return sixpackSourceActionText && sourceOverride ? (
     /* @SIXPACK Code Test: 2019-07-19 */
     <SixpackExperiment
@@ -77,7 +77,7 @@ const SignupButton = props => {
           onClick={handleSignup}
           testName="Default Copy"
         >
-          {buttonCopy}
+          {displayClosedCampaignCopy ? 'Notify Me' : buttonCopy}
         </Button>
       }
       alternatives={[
@@ -86,14 +86,14 @@ const SignupButton = props => {
           onClick={handleSignup}
           testName="Source Action Text Override"
         >
-          {sourceOverride}
+          {displayClosedCampaignCopy ? 'Notify Me' : sourceOverride}
         </Button>,
       ]}
     />
   ) : (
     /* @SIXPACK Code Test: 2019-07-19 */
     <Button className={className} onClick={handleSignup}>
-      {buttonCopy}
+      {displayClosedCampaignCopy ? 'Notify Me' : buttonCopy}
     </Button>
   );
 };
@@ -105,6 +105,7 @@ SignupButton.propTypes = {
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
+  displayClosedCampaignCopy: PropTypes.bool,
   pageId: PropTypes.string.isRequired,
   sixpackSourceActionText: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
@@ -118,6 +119,7 @@ SignupButton.defaultProps = {
   campaignTitle: null,
   className: null,
   disableSignup: false,
+  displayClosedCampaignCopy: false,
   sixpackSourceActionText: false,
   sourceActionText: null,
   text: null,
