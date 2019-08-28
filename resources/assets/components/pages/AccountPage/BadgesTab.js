@@ -63,14 +63,14 @@ const badgeModalContent = {
     earnedText:
       'Niiiiice! You just earned another badge for making an impact *again*. Hope you’re double proud of yourself.',
     unearnedText:
-      'Want to earn your second Action badge? Rock another DoSomething campaign and upload a pic to prove it.',
+      'Want to earn your second Action badge? Rock another DoSomething campaign.',
   },
   threePostsBadge: {
     title: '3 ACTIONS',
     earnedText:
       'OH YEAH! You rocked another campaign and earned your *third* Action badge. Welcome to the three timers club!',
     unearnedText:
-      'Third time’s a charm! Complete another campaign and upload another photo to unlock this exclusive badge.',
+      'Third time’s a charm! Complete another campaign to unlock this exclusive badge.',
   },
   oneStaffFaveBadge: {
     title: '1 STAFF FAVE',
@@ -97,7 +97,7 @@ const badgeModalContent = {
     unearnedText: (
       <span>
         Want to unlock this badge?{' '}
-        <a href="https://breakdown.dosomething.org/">
+        <a href="/us/account/profile/subscriptions">
           Sign up for The Breakdown
         </a>
         , our current events newsletter.
@@ -157,6 +157,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.signupsCount > 0}
@@ -179,6 +180,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.postsCount > 0}
@@ -201,6 +203,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.postsCount > 1}
@@ -223,6 +226,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.postsCount > 2}
@@ -234,78 +238,6 @@ class BadgesTab extends React.Component {
                     </div>
                   </li>
                 )}
-              </Query>
-
-              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-                {data =>
-                  data.postsCount > 0 ? (
-                    <li>
-                      <div
-                        onClick={() =>
-                          this.showModal('oneStaffFaveBadge', true)
-                        }
-                        role="button"
-                        tabIndex={0}
-                      >
-                        <Badge
-                          earned
-                          name="oneStaffFaveBadge"
-                          text="1 Staff Fave"
-                        >
-                          <p>1 Staff Fave</p>
-                        </Badge>
-                      </div>
-                    </li>
-                  ) : null
-                }
-              </Query>
-
-              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-                {data =>
-                  data.postsCount > 1 ? (
-                    <li>
-                      <div
-                        onClick={() =>
-                          this.showModal('twoStaffFavesBadge', true)
-                        }
-                        role="button"
-                        tabIndex={0}
-                      >
-                        <Badge
-                          earned
-                          name="twoStaffFavesBadge"
-                          text="2 Staff Faves"
-                        >
-                          <p>2 Staff Faves</p>
-                        </Badge>
-                      </div>
-                    </li>
-                  ) : null
-                }
-              </Query>
-
-              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-                {data =>
-                  data.postsCount > 2 ? (
-                    <li>
-                      <div
-                        onClick={() =>
-                          this.showModal('threeStaffFavesBadge', true)
-                        }
-                        role="button"
-                        tabIndex={0}
-                      >
-                        <Badge
-                          earned
-                          name="threeStaffFavesBadge"
-                          text="3 Staff Faves"
-                        >
-                          <p>3 Staff Faves</p>
-                        </Badge>
-                      </div>
-                    </li>
-                  ) : null
-                }
               </Query>
 
               <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
@@ -320,6 +252,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={data.user.emailSubscriptionTopics.includes(
@@ -349,6 +282,7 @@ class BadgesTab extends React.Component {
                       }
                       role="button"
                       tabIndex={0}
+                      className="clickable-badge"
                     >
                       <Badge
                         earned={
@@ -364,6 +298,81 @@ class BadgesTab extends React.Component {
                     </div>
                   </li>
                 )}
+              </Query>
+
+              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
+                {data =>
+                  data.postsCount > 0 ? (
+                    <li>
+                      <div
+                        onClick={() =>
+                          this.showModal('oneStaffFaveBadge', true)
+                        }
+                        role="button"
+                        tabIndex={0}
+                        className="clickable-badge"
+                      >
+                        <Badge
+                          earned
+                          name="oneStaffFaveBadge"
+                          text="1 Staff Fave"
+                        >
+                          <p>1 Staff Fave</p>
+                        </Badge>
+                      </div>
+                    </li>
+                  ) : null
+                }
+              </Query>
+
+              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
+                {data =>
+                  data.postsCount > 1 ? (
+                    <li>
+                      <div
+                        onClick={() =>
+                          this.showModal('twoStaffFavesBadge', true)
+                        }
+                        role="button"
+                        tabIndex={0}
+                        className="clickable-badge"
+                      >
+                        <Badge
+                          earned
+                          name="twoStaffFavesBadge"
+                          text="2 Staff Faves"
+                        >
+                          <p>2 Staff Faves</p>
+                        </Badge>
+                      </div>
+                    </li>
+                  ) : null
+                }
+              </Query>
+
+              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
+                {data =>
+                  data.postsCount > 2 ? (
+                    <li>
+                      <div
+                        onClick={() =>
+                          this.showModal('threeStaffFavesBadge', true)
+                        }
+                        role="button"
+                        tabIndex={0}
+                        className="clickable-badge"
+                      >
+                        <Badge
+                          earned
+                          name="threeStaffFavesBadge"
+                          text="3 Staff Faves"
+                        >
+                          <p>3 Staff Faves</p>
+                        </Badge>
+                      </div>
+                    </li>
+                  ) : null
+                }
               </Query>
             </ul>
           </div>
