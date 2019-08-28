@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
+import GiftCardImage from './gift-card.svg';
 import { query } from '../../../../helpers';
 import CampaignLink from './BetaPageCampaignLink';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
@@ -47,6 +48,9 @@ const BetaPage = () => {
                   <h1 className="general-page__title caps-lock">
                     Hi {firstName}’s friend!
                   </h1>
+                </div>
+                <div className="margin-vertical">
+                  <img src={GiftCardImage} />
                 </div>
                 <div className="margin-vertical">
                   <p>
