@@ -51,7 +51,7 @@ const BetaPage = () => {
                 <div className="margin-vertical">
                   <p>
                     {firstName} just signed up for this campaign from
-                    DoSomething.org. Once you and {firstName} complete the
+                    DoSomething.org. Once you signup for your first DoSomething
                     campaign, you’ll both earn a $5 gift card!
                   </p>
                 </div>
