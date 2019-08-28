@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './cta-register-banner.scss';
 
-const CTARegisterBanner = ({ redirectToNorthstar }) => (
+const CtaRegisterBanner = ({ redirectToNorthstar }) => (
   <div className="cta-register-banner base-12-grid">
     <div className="grid-narrow margin-md">
       <h3 className="text-m color-yellow font-bold">JOIN DOSOMETHING TODAY</h3>
@@ -22,8 +22,8 @@ const CTARegisterBanner = ({ redirectToNorthstar }) => (
   </div>
 );
 
-CTARegisterBanner.propTypes = {
+CtaRegisterBanner.propTypes = {
   redirectToNorthstar: PropTypes.func.isRequired,
 };
 
-export default CTARegisterBanner;
+export default CtaRegisterBanner;
