@@ -50,12 +50,12 @@ const BetaPage = () => {
                   </h1>
                 </div>
                 <div className="margin-vertical">
-                  <img src={GiftCardImage} />
+                  <img src={GiftCardImage} alt="Gift card" />
                 </div>
                 <div className="margin-vertical">
                   <p>
                     {firstName} just signed up for this campaign from
-                    DoSomething.org. Once you signup for your first DoSomething
+                    DoSomething.org. Once you sign up for your first DoSomething
                     campaign, you’ll both earn a $5 gift card!
                   </p>
                 </div>
