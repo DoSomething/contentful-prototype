@@ -26,16 +26,15 @@
   }
 
   .navigation__join {
-    padding-top: 2px;
+    padding-top: 5px;
 
     a {
       border: 1px solid $white;
       border-radius: $lg-border-radius;
       display: inline-block;
-      font-size: $font-medium;
+      font-size: $font-regular;
       margin: 0 auto;
       padding: $half-spacing $base-spacing;
-      text-transform: uppercase;
 
       @include media($large) {
         border-color: $black;
@@ -63,7 +62,7 @@
       display: none;
     }
 
-    @include media('(min-width: 1130px)') {
+    @include media('(min-width: 1200px)') {
       display: block;
     }
   }
