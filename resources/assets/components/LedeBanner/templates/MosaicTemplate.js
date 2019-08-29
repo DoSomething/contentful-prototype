@@ -38,8 +38,6 @@ const MosaicTemplate = props => {
     )})`,
   };
 
-  const displayClosedCampaignCopy = isCampaignClosed(endDate);
-
   const signupButton = displaySignup ? (
     <div className="mosaic-lede-banner__signup">
       {affiliateOptInContent ? (
@@ -50,7 +48,6 @@ const MosaicTemplate = props => {
 
       <SignupButtonContainer
         className={classnames({ '-float': affiliateSponsors.length })}
-        displayClosedCampaignCopy={displayClosedCampaignCopy}
       />
       {signupArrowContent ? (
         <CampaignSignupArrow
@@ -67,7 +64,7 @@ const MosaicTemplate = props => {
         className={classnames('button', '-action')}
         to={affiliatedActionLink}
       >
-        {displayClosedCampaignCopy
+        {isCampaignClosed(endDate)
           ? 'Notify Me'
           : affiliatedActionText || 'Take Action'}
       </Link>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
-import { query, withoutNulls } from '../../helpers';
+import { query, withoutNulls, isCampaignClosed } from '../../helpers';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 
 const SignupButton = props => {
@@ -14,7 +14,7 @@ const SignupButton = props => {
     campaignTitle,
     className,
     disableSignup,
-    displayClosedCampaignCopy,
+    endDate,
     pageId,
     sixpackSourceActionText,
     sourceActionText,
@@ -77,7 +77,7 @@ const SignupButton = props => {
           onClick={handleSignup}
           testName="Default Copy"
         >
-          {displayClosedCampaignCopy ? 'Notify Me' : buttonCopy}
+          {isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
         </Button>
       }
       alternatives={[
@@ -86,14 +86,14 @@ const SignupButton = props => {
           onClick={handleSignup}
           testName="Source Action Text Override"
         >
-          {displayClosedCampaignCopy ? 'Notify Me' : sourceOverride}
+          {isCampaignClosed(endDate) ? 'Notify Me' : sourceOverride}
         </Button>,
       ]}
     />
   ) : (
     /* @SIXPACK Code Test: 2019-07-19 */
     <Button className={className} onClick={handleSignup}>
-      {displayClosedCampaignCopy ? 'Notify Me' : buttonCopy}
+      {isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
     </Button>
   );
 };
@@ -105,7 +105,7 @@ SignupButton.propTypes = {
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
   disableSignup: PropTypes.bool,
-  displayClosedCampaignCopy: PropTypes.bool,
+  endDate: PropTypes.string,
   pageId: PropTypes.string.isRequired,
   sixpackSourceActionText: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
@@ -119,7 +119,7 @@ SignupButton.defaultProps = {
   campaignTitle: null,
   className: null,
   disableSignup: false,
-  displayClosedCampaignCopy: false,
+  endDate: null,
   sixpackSourceActionText: false,
   sourceActionText: null,
   text: null,

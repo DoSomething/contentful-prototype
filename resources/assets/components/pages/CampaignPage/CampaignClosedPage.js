@@ -11,7 +11,7 @@ const CampaignClosedPage = props => {
 
   return (
     <div>
-      <LedeBannerContainer displaySignup />
+      <LedeBannerContainer />
 
       <div className="main clearfix">
         <Enclosure className="default-container margin-top-lg margin-bottom-lg">
