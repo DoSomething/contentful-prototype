@@ -13,6 +13,7 @@ describe('PhotoSubmissionAction component', () => {
       campaignContentfulId="1"
       campaignId="1234"
       id={id}
+      pageId={id}
       resetPostSubmissionItem={jest.fn()}
       storeCampaignPost={jest.fn()}
       submissions={{
