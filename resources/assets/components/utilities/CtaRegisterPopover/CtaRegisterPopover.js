@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './cta-register-popover.scss';
 
-const CTARegisterPopover = ({ redirectToNorthstar }) => (
+const CtaRegisterPopover = ({ redirectToNorthstar }) => (
   <div className="cta-register-popover padded bordered rounded">
     <h3 className="text-m color-yellow font-bold uppercase">
       Join DoSomething Today
@@ -22,8 +22,8 @@ const CTARegisterPopover = ({ redirectToNorthstar }) => (
   </div>
 );
 
-CTARegisterPopover.propTypes = {
+CtaRegisterPopover.propTypes = {
   redirectToNorthstar: PropTypes.func.isRequired,
 };
 
-export default CTARegisterPopover;
+export default CtaRegisterPopover;
