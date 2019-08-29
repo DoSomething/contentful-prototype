@@ -3,29 +3,27 @@ import PropTypes from 'prop-types';
 
 import './cta-register-banner.scss';
 
-const CtaRegisterBanner = ({ redirectToNorthstar }) => (
+const CtaRegisterBanner = ({ buttonText, content, link, title }) => (
   <div className="cta-register-banner base-12-grid">
     <div className="grid-narrow margin-md">
-      <h3 className="text-m color-yellow font-bold uppercase">
-        Join DoSomething Today
-      </h3>
-      <p className="text-white mt-4">
-        After you learn something, do something! Help change the world one
-        Fantini at a time. Join the global movement because apathy sucks.
-      </p>
-      <button
+      <h3 className="text-m color-yellow font-bold uppercase">{title}</h3>
+      <p className="text-white mt-4">{content}</p>
+      <a
         className="cta-register-banner__button button padded mt-4"
         type="button"
-        onClick={redirectToNorthstar}
+        href={link}
       >
-        Sign Up
-      </button>
+        {buttonText}
+      </a>
     </div>
   </div>
 );
 
 CtaRegisterBanner.propTypes = {
-  redirectToNorthstar: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CtaRegisterBanner;
