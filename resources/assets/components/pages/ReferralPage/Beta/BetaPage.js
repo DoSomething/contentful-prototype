@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
+import GiftCardImage from './gift-card.svg';
 import { query } from '../../../../helpers';
 import CampaignLink from './BetaPageCampaignLink';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
@@ -49,9 +50,12 @@ const BetaPage = () => {
                   </h1>
                 </div>
                 <div className="margin-vertical">
+                  <img src={GiftCardImage} alt="Gift card" />
+                </div>
+                <div className="margin-vertical">
                   <p>
                     {firstName} just signed up for this campaign from
-                    DoSomething.org. Once you and {firstName} complete the
+                    DoSomething.org. Once you sign up for your first DoSomething
                     campaign, you’ll both earn a $5 gift card!
                   </p>
                 </div>
