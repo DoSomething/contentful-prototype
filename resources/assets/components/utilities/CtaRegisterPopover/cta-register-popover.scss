@@ -1,0 +1,34 @@
+@import '../../../scss/next-toolbox';
+
+.cta-register-popover {
+  background: url('./cta-register-popover-bg.svg');
+  background-size: cover;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+
+  position: fixed;
+  bottom: $half-spacing;
+  right: $half-spacing;
+  max-width: 500px;
+  margin-left: $half-spacing;
+  z-index: $sticky-cta-zindex;
+
+  @include media($medium) {
+    bottom: inherit;
+    top: 120px;
+    max-width: 400px;
+  }
+
+  // Snap back to the left once the wrapper width maxes out so the
+  // popover isn't drawn past the edge of the chrome.
+  @media (min-width: 1440px) {
+    right: inherit;
+  }
+
+  .cta-register-popover__button {
+    width: 100%;
+
+    @include media($medium) {
+      width: 130px;
+    }
+  }
+}

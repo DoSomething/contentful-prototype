@@ -18,8 +18,9 @@ import {
 
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
-import { trackAnalyticsEvent } from './analytics';
 import { isSignedUp } from '../selectors/signup';
+import { trackAnalyticsEvent } from './analytics';
+import { getDataForNorthstar } from '../selectors';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -927,4 +928,14 @@ export function toggleHandler(button, target, toggleClass) {
   }
 
   button.addEventListener('mousedown', clickHandler, false);
+}
+
+/**
+ * Build redirect URL and send user to Northstar for authentication.
+ *
+ * @param  {Object} state
+ * @return {Undefined}
+ */
+export function redirectToNorthstar(state) {
+  window.location.href = buildAuthRedirectUrl(getDataForNorthstar(state));
 }
