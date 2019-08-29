@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { contentfulImageUrl, isCampaignClosed } from '../../../helpers';
+import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
@@ -20,7 +20,6 @@ const MosaicTemplate = props => {
     affiliateOptInContent,
     affiliateSponsors,
     displaySignup,
-    endDate,
     title,
     subtitle,
     blurb,
@@ -64,9 +63,7 @@ const MosaicTemplate = props => {
         className={classnames('button', '-action')}
         to={affiliatedActionLink}
       >
-        {isCampaignClosed(endDate)
-          ? 'Notify Me'
-          : affiliatedActionText || 'Take Action'}
+        {affiliatedActionText || 'Take Action'}
       </Link>
     </div>
   ) : null;
@@ -124,7 +121,6 @@ MosaicTemplate.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   displaySignup: PropTypes.bool,
-  endDate: PropTypes.string,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -138,7 +134,6 @@ MosaicTemplate.defaultProps = {
   affiliateOptInContent: null,
   blurb: null,
   displaySignup: true,
-  endDate: null,
   signupArrowContent: null,
 };
 
