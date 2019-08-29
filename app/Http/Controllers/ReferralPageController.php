@@ -37,11 +37,10 @@ class ReferralPageController extends Controller
               'title' => $title,
               'description' => $callToAction,
               'facebook_app_id' =>  config('services.analytics.facebook_id'),
-              // @TODO: Replace with envelope graphic once added to beta template.
               'image' => [
-                'url' => 'https://forge.dosomething.org/resources/ds-logo-landscape.png',
+                'url' => asset('images/gift-card.svg'),
                 'width' => '1200',
-                'height' => '630',
+                'height' => '1200',
               ],
               'url' => $request->fullUrl(),
             ],
