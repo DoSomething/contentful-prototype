@@ -544,6 +544,10 @@ p {
   line-height: 2;
 }
 
+.m-4 {
+  margin: $half-spacing;
+}
+
 .mt-4 {
   margin-top: $half-spacing;
 }
@@ -635,6 +639,10 @@ p {
 
 .text-white {
   color: $white;
+}
+
+.text-yellow {
+  color: $primary-color;
 }
 
 .text-xs {
