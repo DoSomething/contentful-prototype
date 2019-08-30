@@ -7,9 +7,9 @@ import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl, env } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
-import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
+import TypeFormSurvey from '../../blocks/EmbedBlock/templates/TypeFormSurvey/TypeFormSurvey';
 
 import './home-page.scss';
 

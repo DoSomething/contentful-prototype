@@ -8,10 +8,10 @@ import Modal from '../utilities/Modal/Modal';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import DelayedElement from '../utilities/DelayedElement/DelayedElement';
-import TypeFormSurvey from '../utilities/TypeFormSurvey/TypeFormSurvey';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
 import DismissableElement from '../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
+import TypeFormSurvey from '../blocks/EmbedBlock/templates/TypeFormSurvey/TypeFormSurvey';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
 import {
   AdminDashboardContainer,

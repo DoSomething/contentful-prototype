@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { appendToQuery, makeUrl, withoutNulls } from '../../../helpers';
+import { appendToQuery, makeUrl, withoutNulls } from '../../../../../helpers';
 
 class TypeFormSurvey extends React.Component {
   componentDidMount() {
