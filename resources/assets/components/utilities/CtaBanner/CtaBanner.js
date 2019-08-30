@@ -8,11 +8,7 @@ const CtaBanner = ({ buttonText, content, link, title }) => (
     <div className="grid-narrow margin-md">
       <h3 className="text-m color-yellow font-bold uppercase">{title}</h3>
       <p className="text-white mt-4">{content}</p>
-      <a
-        className="cta-banner__button button padded mt-4"
-        type="button"
-        href={link}
-      >
+      <a className="cta-banner__button button padded mt-4" href={link}>
         {buttonText}
       </a>
     </div>
