@@ -923,8 +923,6 @@ export function toggleClassHandler(button, target, toggleClass) {
   }
 
   function clickHandler() {
-    console.log('@@@', { button, target, toggleClass });
-
     target.classList.toggle(toggleClass);
   }
 
