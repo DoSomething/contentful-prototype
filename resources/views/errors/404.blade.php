@@ -9,8 +9,8 @@
                     <div class="markdown with-lists padded">
                         <p>
                             <strong>We searched our site, but couldn't find what you were looking for.</strong>
-                            Try <a href="{{ url('/us/campaigns/grab-mic?utm_source=404') }}">Grab the Mic</a>
-                            and join our movement to create the most civically active generation ever.
+                            Find ways you can <a href="{{ url('/us/campaigns?utm_source=404') }}">Take Action</a>
+                            and join a movement of 5 million young people making an impact in their communities.
                         </p>
                         <p>
                             You can also try <a href="{{ url('/') }}">our homepage</a> or
