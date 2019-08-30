@@ -14,7 +14,7 @@
                         </p>
                         <p>
                             You can also try <a href="{{ url('/') }}">our homepage</a> or
-                            <a href="https://help.dosomething.org/hc/en-us">
+                            <a href="https://help.dosomething.org/hc/en-us/articles/115016093488-Help-The-page-I-m-looking-for-says-Page-Not-Found-">
                             reach out</a> to us.
                         </p>
                     </div>
