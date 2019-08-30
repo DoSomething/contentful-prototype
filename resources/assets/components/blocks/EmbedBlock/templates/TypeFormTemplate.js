@@ -1,1 +1,4 @@
-// @TODO create as a dispatcher similar to LedeBanner.js
+import React from 'react';
+import PropTypes from 'prop-types';
+
+// @TODO create a template to utilize the typeformembed utility function
