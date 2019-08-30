@@ -6,8 +6,8 @@ import { get } from 'lodash';
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl, env } from '../../../helpers';
-import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
