@@ -9,7 +9,7 @@
                     <div class="markdown with-lists padded">
                         <p>
                             <strong>We searched our site, but couldn't find what you were looking for.</strong>
-                            Find ways you can <a href="{{ url('https://www.dosomething.org/us/campaigns') }}">Take Action</a>
+                            Find ways you can <a href="{{ url('https://www.dosomething.org//us/campaigns?utm_source=404') }}">Take Action</a>
                             and join a movement of 5 million young people making an impact in their communities.
                         </p>
                         <p>
