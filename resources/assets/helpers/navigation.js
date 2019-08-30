@@ -2,6 +2,9 @@
 
 import { findKey } from 'lodash';
 
+import { toggleClassHandler } from '.';
+import { trackAnalyticsEvent } from './analytics';
+
 export const campaignPaths = {
   community: '/community',
   action: '/action',
@@ -43,40 +46,46 @@ export function getRouteName(route) {
 }
 
 /**
- * Toggle the specified class on the given target element
- * when the button element is clicked or touched.
- *
- * @param  {Element} button
- * @param  {Element} target
- * @param  {String} toggleClass
- */
-export function toggleHandler(button, target, toggleClass) {
-  if (!button || !target) {
-    return;
-  }
-
-  function clickHandler() {
-    target.classList.toggle(toggleClass);
-  }
-
-  button.addEventListener('mousedown', clickHandler, false);
-}
-
-/**
  * Setup event listeners for the top-level navigation
  * in the site chrome.
  */
 export function bindNavigationEvents() {
+  // Small screen navigation menu toggle.
   const navToggle = document.getElementById('js-navigation-toggle');
   const nav = document.getElementsByClassName('navigation')[0];
   const chrome = document.getElementsByClassName('chrome')[0];
-  toggleHandler(navToggle, nav, 'is-visible');
-  toggleHandler(navToggle, chrome, 'has-mobile-menu');
+  toggleClassHandler(navToggle, nav, 'is-visible');
+  toggleClassHandler(navToggle, chrome, 'has-mobile-menu');
 
+  // Account profile dropdown toggle.
   const accountToggle = document.getElementById('js-account-toggle');
   const dropdown = document.getElementsByClassName('navigation__dropdown')[0];
-  toggleHandler(accountToggle, dropdown, 'is-visible');
+  toggleClassHandler(accountToggle, dropdown, 'is-visible');
 
+  // Navigation link analytics.
   const navLinks = document.querySelectorAll('.navigation__menu a');
+  navLinks.forEach(link => {
+    link.addEventListener(
+      'click',
+      function(event) {
+        event.preventDefault();
+        console.log('### Event:', event);
+
+        trackAnalyticsEvent({
+          context: {},
+          metadata: {
+            adjective: '',
+            category: '',
+            label: '',
+            noun: '',
+            target: '',
+            verb: 'clicked',
+          },
+        });
+      },
+      false,
+    );
+  });
+
   console.log('@@', navLinks);
 }

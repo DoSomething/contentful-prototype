@@ -917,12 +917,14 @@ export function getScholarshipAffiliateLabel() {
  * @param  {Element} target
  * @param  {String} toggleClass
  */
-export function toggleHandler(button, target, toggleClass) {
+export function toggleClassHandler(button, target, toggleClass) {
   if (!button || !target) {
     return;
   }
 
   function clickHandler() {
+    console.log('@@@', { button, target, toggleClass });
+
     target.classList.toggle(toggleClass);
   }
 
