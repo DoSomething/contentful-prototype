@@ -3,9 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { appendToQuery, makeUrl, withoutNulls } from '../../../../../helpers';
+import { appendToQuery, makeUrl, withoutNulls } from '../../../../helpers';
 
-class TypeFormSurvey extends React.Component {
+class TypeFormTemplate extends React.Component {
   componentDidMount() {
     window.typeformInit();
   }
@@ -32,15 +32,15 @@ class TypeFormSurvey extends React.Component {
   }
 }
 
-TypeFormSurvey.propTypes = {
+TypeFormTemplate.propTypes = {
   queryParameters: PropTypes.object,
   redirectParameters: PropTypes.object,
   typeformUrl: PropTypes.string.isRequired,
 };
 
-TypeFormSurvey.defaultProps = {
+TypeFormTemplate.defaultProps = {
   queryParameters: {},
   redirectParameters: {},
 };
 
-export default TypeFormSurvey;
+export default TypeFormTemplate;

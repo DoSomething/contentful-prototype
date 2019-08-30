@@ -9,9 +9,9 @@ import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import DelayedElement from '../utilities/DelayedElement/DelayedElement';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
+import TypeFormTemplate from '../blocks/EmbedBlock/templates/TypeFormTemplate';
 import DismissableElement from '../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
-import TypeFormSurvey from '../blocks/EmbedBlock/templates/TypeFormSurvey/TypeFormSurvey';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
 import {
   AdminDashboardContainer,
@@ -37,7 +37,7 @@ const Campaign = props => (
           render={handleClose => (
             <DelayedElement delay={60}>
               <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                <TypeFormSurvey
+                <TypeFormTemplate
                   typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
                   queryParameters={{
                     campaign_id: props.campaignId,
