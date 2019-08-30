@@ -6,8 +6,8 @@ import { get } from 'lodash';
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl, env } from '../../../helpers';
+import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
-import TypeFormSurvey from '../../utilities/TypeFormSurvey/TypeFormSurvey';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
@@ -107,7 +107,7 @@ class HomePage extends React.Component {
               render={handleClose => (
                 <DelayedElement delay={30}>
                   <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                    <TypeFormSurvey
+                    <TypeFormEmbed
                       typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
                       queryParameters={{
                         northstar_id: get(window.AUTH, 'id', null),
