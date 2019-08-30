@@ -4,7 +4,6 @@ import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
 import { query, withoutNulls, isCampaignClosed } from '../../helpers';
-import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
 
 const SignupButton = props => {
   const {
@@ -16,7 +15,6 @@ const SignupButton = props => {
     disableSignup,
     endDate,
     pageId,
-    sixpackSourceActionText,
     sourceActionText,
     storeCampaignSignup,
     text,
@@ -60,38 +58,12 @@ const SignupButton = props => {
     return null;
   }
 
-  // In descending priority: button-specific text prop,
-  // campaign action text override, or standard "Take Action" copy.
-  const buttonCopy = text || campaignActionText;
+  // In descending priority: button copy override based on the user's traffic source,
+  // button-specific text prop, campaign action text override, or standard "Take Action" copy.
+  const buttonCopy =
+    get(sourceActionText, trafficSource) || text || campaignActionText;
 
-  // Button copy override based on the user's traffic source.
-  const sourceOverride = get(sourceActionText, trafficSource);
-  return sixpackSourceActionText && sourceOverride ? (
-    /* @SIXPACK Code Test: 2019-07-19 */
-    <SixpackExperiment
-      title={`Source Action Text Override ${campaignTitle}`}
-      convertableActions={['signup']}
-      control={
-        <Button
-          className={className}
-          onClick={handleSignup}
-          testName="Default Copy"
-        >
-          {isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
-        </Button>
-      }
-      alternatives={[
-        <Button
-          className={className}
-          onClick={handleSignup}
-          testName="Source Action Text Override"
-        >
-          {isCampaignClosed(endDate) ? 'Notify Me' : sourceOverride}
-        </Button>,
-      ]}
-    />
-  ) : (
-    /* @SIXPACK Code Test: 2019-07-19 */
+  return (
     <Button className={className} onClick={handleSignup}>
       {isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
     </Button>
@@ -107,7 +79,6 @@ SignupButton.propTypes = {
   disableSignup: PropTypes.bool,
   endDate: PropTypes.string,
   pageId: PropTypes.string.isRequired,
-  sixpackSourceActionText: PropTypes.bool,
   sourceActionText: PropTypes.objectOf(PropTypes.string),
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
@@ -120,7 +91,6 @@ SignupButton.defaultProps = {
   className: null,
   disableSignup: false,
   endDate: null,
-  sixpackSourceActionText: false,
   sourceActionText: null,
   text: null,
   trafficSource: null,
