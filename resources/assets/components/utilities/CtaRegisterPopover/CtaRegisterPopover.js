@@ -3,27 +3,21 @@ import PropTypes from 'prop-types';
 
 import './cta-register-popover.scss';
 
-const CtaRegisterPopover = ({ redirectToNorthstar }) => (
+const CtaRegisterPopover = ({ buttonText, content, link, title }) => (
   <div className="cta-register-popover padded bordered rounded">
-    <h3 className="text-m color-yellow font-bold uppercase">
-      Join DoSomething Today
-    </h3>
-    <p className="text-white mt-4">
-      After you learn something, do something! Help change the world one Fantini
-      at a time. Join the global movement because apathy sucks.
-    </p>
-    <button
-      className="cta-register-popover__button button padded mt-4"
-      type="button"
-      onClick={redirectToNorthstar}
-    >
-      Sign Up
-    </button>
+    <h3 className="text-m color-yellow font-bold uppercase">{title}</h3>
+    <p className="text-white mt-4">{content}</p>
+    <a className="cta-register-popover__button button padded mt-4" href={link}>
+      {buttonText}
+    </a>
   </div>
 );
 
 CtaRegisterPopover.propTypes = {
-  redirectToNorthstar: PropTypes.func.isRequired,
+  buttonText: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default CtaRegisterPopover;
