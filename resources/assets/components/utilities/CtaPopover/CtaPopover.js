@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import './cta-popover.scss';
 
 const CtaPopover = ({ buttonText, content, link, title }) => (
-  <div className="cta-popover padded bordered rounded">
+  <div className="cta-popover p-4 bordered rounded">
     <h3 className="text-m color-yellow font-bold uppercase">{title}</h3>
     <p className="text-white mt-4">{content}</p>
-    <a className="cta-popover__button button padded mt-4" href={link}>
+    <a className="cta-popover__button button p-4 mt-4" href={link}>
       {buttonText}
     </a>
   </div>
