@@ -7,7 +7,7 @@ import { Query } from 'react-apollo';
 
 import { env } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
-import { EmbedBlockFragment } from '../Iframe';
+import { EmbedBlockFragment } from '../IframeEmbed/IframeEmbed';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';

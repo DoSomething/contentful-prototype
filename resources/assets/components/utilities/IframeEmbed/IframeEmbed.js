@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
-import LazyImage from './LazyImage';
-import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
+import LazyImage from '../LazyImage';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 
 const PERMITTED_HOSTNAMES = ['dosomething.carto.com'];
 
@@ -20,11 +20,11 @@ export const EmbedBlockFragment = gql`
   }
 `;
 
-const Iframe = ({ className, id, url, previewImage }) => {
+const IframeEmbed = ({ className, id, url, previewImage }) => {
   const hostname = new URL(url).hostname;
 
   if (!PERMITTED_HOSTNAMES.includes(hostname)) {
-    console.warn(`Invalid URL ${url} supplied to Iframe component`);
+    console.warn(`Invalid URL ${url} supplied to IframeEmbed component`);
     return <ErrorBlock />;
   }
 
@@ -62,7 +62,7 @@ const Iframe = ({ className, id, url, previewImage }) => {
   );
 };
 
-Iframe.propTypes = {
+IframeEmbed.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
@@ -72,9 +72,9 @@ Iframe.propTypes = {
   }),
 };
 
-Iframe.defaultProps = {
+IframeEmbed.defaultProps = {
   className: null,
   previewImage: null,
 };
 
-export default Iframe;
+export default IframeEmbed;

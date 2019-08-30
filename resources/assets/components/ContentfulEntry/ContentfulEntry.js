@@ -3,17 +3,17 @@
 import * as React from 'react';
 
 import NotFound from '../NotFound';
-import Iframe from '../utilities/Iframe';
 import Loader from '../utilities/Loader';
-import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
+import IframeEmbed from '../utilities/IframeEmbed/IframeEmbed';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
+import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -107,7 +107,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'embed':
         return (
-          <Iframe
+          <IframeEmbed
             className={className}
             id={json.id}
             {...withoutNulls(json.fields)}
@@ -116,7 +116,11 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'EmbedBlock':
         return (
-          <Iframe className={className} id={json.id} {...withoutNulls(json)} />
+          <IframeEmbed
+            className={className}
+            id={json.id}
+            {...withoutNulls(json)}
+          />
         );
 
       case 'gallery':
