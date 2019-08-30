@@ -1,7 +1,7 @@
 @import '../../../scss/next-toolbox';
 
-.cta-register-banner {
-  background: url('./cta-register-banner-bg.svg');
+.cta-banner {
+  background: url('./cta-banner-bg.svg');
   background-size: cover;
   text-align: center;
 
@@ -9,7 +9,7 @@
     text-align: inherit;
   }
 
-  .cta-register-banner__button {
+  .cta-banner__button {
     width: 100%;
 
     @include media($medium) {
