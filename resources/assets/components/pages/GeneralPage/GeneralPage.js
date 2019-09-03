@@ -8,12 +8,21 @@ import Enclosure from '../../Enclosure';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
+import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
+import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
+import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import { contentfulImageUrl, withoutNulls, query } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
+
+// Grab the CTA copy based on the current page category.
+const pageCategory = window.location.pathname.split('/')[2];
+const ctaCopy = REGISTER_CTA_COPY[pageCategory];
 
 /**
  * Render a general page
@@ -30,6 +39,8 @@ const GeneralPage = props => {
     sidebar,
     blocks,
     displaySocialShare,
+    isAuthenticated,
+    authUrl,
   } = props;
 
   return (
@@ -125,6 +136,32 @@ const GeneralPage = props => {
           ) : null}
         </Enclosure>
       </div>
+
+      {ctaCopy && !isAuthenticated && query('show_register_cta') ? (
+        <>
+          <DismissableElement
+            testName="CTA Popover"
+            name="cta_register_popover"
+            render={handleClose => (
+              <DelayedElement delay={3}>
+                <CtaPopover
+                  title={ctaCopy.title}
+                  content={ctaCopy.content}
+                  link={authUrl}
+                  buttonText={ctaCopy.buttonText}
+                  handleClose={handleClose}
+                />
+              </DelayedElement>
+            )}
+          />
+          <CtaBanner
+            title={ctaCopy.title}
+            content={ctaCopy.content}
+            link={authUrl}
+            buttonText={ctaCopy.buttonText}
+          />
+        </>
+      ) : null}
     </div>
   );
 };
@@ -141,6 +178,8 @@ GeneralPage.propTypes = {
   sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   displaySocialShare: PropTypes.bool,
+  isAuthenticated: PropTypes.bool.isRequired,
+  authUrl: PropTypes.string.isRequired,
 };
 
 GeneralPage.defaultProps = {
