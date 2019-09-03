@@ -1,65 +1,85 @@
 /* global document */
 
-import { findKey } from 'lodash';
+import { snakeCase } from 'lodash';
 
-export const campaignPaths = {
-  community: '/community',
-  action: '/action',
-  blocks: '/blocks/',
-  quiz: '/quiz/',
-};
+import {
+  getPageContext,
+  getUtmContext,
+  trackAnalyticsEvent,
+} from './analytics';
+import { toggleClassHandler } from '.';
 
 /**
- * Get the display name of the given route,
+ * Handle collecting Navigation link data and triggering analytics event.
  *
- * @param  {String} route
- * @return {String}
+ * @param {Object} link
  */
-export function getRouteName(route) {
-  // When doing path comparisons, we want the least specific
-  // (eg: '/') paths at the end of the array.
-  const pathValues = Object.values(campaignPaths).sort(
-    (pathA, pathB) => pathB.length - pathA.length,
+export function linkAnalyticsHandler(link) {
+  link.addEventListener(
+    'mousedown',
+    event => {
+      trackAnalyticsEvent({
+        context: {
+          ...getUtmContext(),
+          ...getPageContext(),
+          referrer: document.referrer,
+        },
+        metadata: {
+          adjective: snakeCase(event.target.textContent),
+          category: 'navigation',
+          label: snakeCase(event.target.textContent),
+          noun: 'nav_link',
+          target: 'link',
+          verb: 'clicked',
+        },
+      });
+    },
+    false,
   );
-
-  // Check if /pages/faq starts with /pages/.
-  const match = pathValues.find(path => route.startsWith(path));
-  if (!match) {
-    return 'undefined route';
-  }
-
-  // Find the display name for the matched path value.
-  // This is a bit crazy because we need to find the index
-  // in the `campaignPaths` object and the `pathValues` array is in
-  // a different order.
-  let name = findKey(campaignPaths, path => path === match);
-  if (name === 'pages') {
-    // Remove /pages/ from /pages/faq
-    // Not the most fullproof solution in the world but should suffice.
-    name = route.replace(match, '');
-  }
-
-  return name;
 }
 
 /**
- * Toggle the specified class on the given target element
- * when the button element is clicked or touched.
+ * Handle collecting Navigation search form data and triggering analytics event.
  *
- * @param  {Element} button
- * @param  {Element} target
- * @param  {String} toggleClass
+ * @param {Object} form
  */
-export function toggleHandler(button, target, toggleClass) {
-  if (!button || !target) {
-    return;
-  }
+export function searchAnalyticsHandler(form) {
+  const context = {
+    ...getUtmContext(),
+    ...getPageContext(),
+  };
 
-  function clickHandler() {
-    target.classList.toggle(toggleClass);
-  }
+  form.addEventListener(
+    'mousedown',
+    () => {
+      trackAnalyticsEvent({
+        context,
+        metadata: {
+          category: 'search',
+          noun: 'search form',
+          target: 'form',
+          verb: 'clicked',
+        },
+      });
+    },
+    false,
+  );
 
-  button.addEventListener('mousedown', clickHandler, false);
+  form.addEventListener(
+    'submit',
+    () => {
+      trackAnalyticsEvent({
+        context,
+        metadata: {
+          category: 'search',
+          noun: 'search form',
+          target: 'form',
+          verb: 'submitted',
+        },
+      });
+    },
+    false,
+  );
 }
 
 /**
@@ -67,13 +87,29 @@ export function toggleHandler(button, target, toggleClass) {
  * in the site chrome.
  */
 export function bindNavigationEvents() {
+  // Small screen navigation menu toggle.
   const navToggle = document.getElementById('js-navigation-toggle');
   const nav = document.getElementsByClassName('navigation')[0];
   const chrome = document.getElementsByClassName('chrome')[0];
-  toggleHandler(navToggle, nav, 'is-visible');
-  toggleHandler(navToggle, chrome, 'has-mobile-menu');
 
+  toggleClassHandler(navToggle, nav, 'is-visible');
+  toggleClassHandler(navToggle, chrome, 'has-mobile-menu');
+
+  // Account profile dropdown toggle.
   const accountToggle = document.getElementById('js-account-toggle');
   const dropdown = document.getElementsByClassName('navigation__dropdown')[0];
-  toggleHandler(accountToggle, dropdown, 'is-visible');
+
+  toggleClassHandler(accountToggle, dropdown, 'is-visible');
+
+  // Navigation link analytics.
+  const navLinks = document.querySelectorAll('.navigation__menu a');
+
+  navLinks.forEach(link => {
+    linkAnalyticsHandler(link);
+  });
+
+  // Search form analytics.
+  const searchForm = document.querySelector('.navigation__menu .form-search');
+
+  searchAnalyticsHandler(searchForm);
 }
