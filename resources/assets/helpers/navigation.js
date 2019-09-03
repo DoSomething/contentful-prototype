@@ -1,4 +1,4 @@
-/* global window, document */
+/* global document */
 
 import { snakeCase } from 'lodash';
 
@@ -23,11 +23,12 @@ export function linkAnalyticsHandler(link) {
           ...getUtmContext(),
           ...getPageContext(),
           referrer: document.referrer,
-          pathname: window.location.pathname,
         },
         metadata: {
+          adjective: snakeCase(event.target.textContent),
           category: 'navigation',
-          noun: snakeCase(event.target.textContent),
+          label: snakeCase(event.target.textContent),
+          noun: 'nav_link',
           target: 'link',
           verb: 'clicked',
         },
