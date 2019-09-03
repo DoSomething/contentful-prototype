@@ -26,7 +26,7 @@ const Profile = props => (
       <FormItem title="Phone Number" value={props.user.mobile} />
       <div className="margin-top-lg">
         <a
-          href={env('NORTHSTAR_URL') + login}
+          href={env('NORTHSTAR_URL') + `/users/${props.userId}/edit`}
           target="_blank"
           rel="noopener noreferrer"
           className="button"
