@@ -18,8 +18,8 @@ class CtaReferralPageBanner extends React.Component {
       <div className="padding-top-md padding-bottom-md padding-horizontal-md">
         <div className="cta-register-banner padding-top-md padding-bottom-md padding-horizontal-md">
           <div>
-            <h3>Benefits With Friends</h3>
-            <p className="padding-bottom-md">
+            <h3 className="color-white">Benefits With Friends</h3>
+            <p className="color-white padding-bottom-md">
               Refer a friend to this campaign, and you’ll *both* earn a $5 gift
               card!
             </p>
