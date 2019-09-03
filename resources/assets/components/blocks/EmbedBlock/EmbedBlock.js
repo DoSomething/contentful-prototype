@@ -7,6 +7,8 @@ import CartoTemplate from './templates/CartoTemplate';
 const EmbedBlock = props => {
   const { template } = props;
 
+  // add method to pull out domain names and clean them up
+
   switch (template) {
     case 'typeform':
       return <TypeFormTemplate {...props} />;

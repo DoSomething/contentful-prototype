@@ -1,4 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import IframeEmbed from '../../../utilities/IframeEmbed/IframeEmbed';
+
+const CartoTemplate = props => {
+  return <IframeEmbed {...props} />;
+};
+
+export default CartoTemplate;
 
 // @TODO create a template to utilize the iframe utility function
