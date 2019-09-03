@@ -20,3 +20,19 @@ export const NetworkStatus = {
   READY: 7,
   ERROR: 8,
 };
+
+// Register CTA copy for specific page categories:
+export const REGISTER_CTA_COPY = {
+  facts: {
+    title: 'Learn Something...Then Do Something!',
+    content:
+      'Sign up for DoSomething.org. You’ll can make an impact with millions of young people and earn easy scholarships for volunteering!',
+    buttonText: 'Join us',
+  },
+  articles: {
+    title: 'Join DoSomething Today!',
+    content:
+      'Make an impact with millions of young people, and earn easy scholarships for volunteering.',
+    buttonText: 'Join us',
+  },
+};
