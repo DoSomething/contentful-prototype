@@ -1,0 +1,18 @@
+@import '../../../scss/next-toolbox';
+
+.cta-register-banner {
+  background: url('./cta-referral-page-banner-desktop.svg');
+  background-size: cover;
+  height: 270px;
+
+  .button.-attached {
+    text-transform: uppercase;
+  }
+
+  div {
+    float: left;
+    margin-left: 340px;
+    margin-top: 50px;
+    margin-right: 20px;
+  }
+}
