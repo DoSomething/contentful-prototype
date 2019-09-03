@@ -5,6 +5,10 @@
   background-size: cover;
   height: 270px;
 
+  .button.-attached {
+    text-transform: uppercase;
+  }
+
   div {
     float: left;
     margin-left: 340px;
