@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 const ModalContent = ({ children, onClose, className }) => (
   <div className={classnames('modal', className)}>
+    {/* @TODO: Extract this 'ex button' into a utility component. */}
     <button type="button" className="modal__close" onClick={onClose}>
       &times;
     </button>
