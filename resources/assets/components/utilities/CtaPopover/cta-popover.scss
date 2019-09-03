@@ -18,9 +18,9 @@
     max-width: 400px;
   }
 
-  // Snap back to the left once the wrapper width maxes out so the
-  // popover isn't drawn past the edge of the chrome.
-  @media (min-width: 1440px) {
+  // @HACK: Snap back to the left a bit after the wrapper width maxes out
+  // so the popover isn't drawn too far past the edge of the chrome.
+  @media (min-width: 1500px) {
     right: inherit;
   }
 
