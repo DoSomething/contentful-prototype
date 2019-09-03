@@ -2,14 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
+import Query from '../Query';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
 import Share from '../utilities/Share/Share';
+import Badge from '../pages/AccountPage/Badge';
 import Byline from '../utilities/Byline/Byline';
 import TextContent from '../utilities/TextContent/TextContent';
 import { contentfulImageUrl, query, withoutNulls } from '../../helpers';
-import Badge from '../pages/AccountPage/Badge';
-import Query from '../Query';
+import CtaReferralPageBannerContainer from '../utilities/CtaReferralPageBanner/CtaReferralPageBannerContainer';
 
 import './affirmation.scss';
 
@@ -35,7 +36,6 @@ const Affirmation = ({
   author,
   callToActionDescription,
   callToActionHeader,
-  campaignId,
   header,
   quote,
   userId,
@@ -92,18 +92,7 @@ const Affirmation = ({
       />
     ) : null}
 
-    {query('refer-friends') ? (
-      <div>
-        <h3>Benefits With Friends</h3>
-        <p>
-          Refer a friend to this campaign, and you’ll *both* earn a $5 gift
-          card!
-        </p>
-        <a href={`/us/refer-friends?campaign_id=${campaignId}`}>
-          Refer A Friend
-        </a>
-      </div>
-    ) : null}
+    {query('refer-friends') ? <CtaReferralPageBannerContainer /> : null}
   </Card>
 );
 
@@ -111,7 +100,6 @@ Affirmation.propTypes = {
   author: PropTypes.object,
   callToActionDescription: PropTypes.string,
   callToActionHeader: PropTypes.string,
-  campaignId: PropTypes.string,
   header: PropTypes.string,
   quote: PropTypes.string,
   userId: PropTypes.string.isRequired,
@@ -122,7 +110,6 @@ Affirmation.defaultProps = {
   callToActionDescription:
     "By joining this campaign, you've teamed up with millions of other members who are making an impact on the causes affecting your world. As a DoSomething.org member, you're part of something bigger. You're part of a global movement for good.",
   callToActionHeader: "Woohoo! You're signed up.",
-  campaignId: null,
   header: 'Thanks for joining us!',
   quote: null,
 };

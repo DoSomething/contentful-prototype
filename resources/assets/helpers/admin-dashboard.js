@@ -1,7 +1,7 @@
 /* global document */
 /* eslint-disable import/prefer-default-export */
 
-import { toggleHandler } from '.';
+import { toggleClassHandler } from '.';
 
 export function bindAdminDashboardEvents() {
   const adminDashboard = document.getElementById('admin-dashboard');
@@ -9,5 +9,5 @@ export function bindAdminDashboardEvents() {
     'js-admin-dashboard-toggle',
   );
 
-  toggleHandler(adminDashboardToggle, adminDashboard, 'is-visible');
+  toggleClassHandler(adminDashboardToggle, adminDashboard, 'is-visible');
 }

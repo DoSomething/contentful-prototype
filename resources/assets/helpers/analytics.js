@@ -201,11 +201,25 @@ export function formatEventNoun(string) {
 }
 
 /**
- * Get additional context data.
+ * Get page context data.
  *
  * @return {Object}
  */
-export function getAdditionalContext() {
+export function getPageContext() {
+  return {
+    campaignId: get(window, 'STATE.campaign.campaignId', null),
+    pageId:
+      get(window, 'STATE.campaign.id', null) ||
+      get(window, 'STATE.page.id', null),
+  };
+}
+
+/**
+ * Get UTM context data.
+ *
+ * @return {Object}
+ */
+export function getUtmContext() {
   return {
     utmSource: query('utm_source'),
     utmMedium: query('utm_medium'),
@@ -221,11 +235,8 @@ export function getAdditionalContext() {
  */
 export function trackAnalyticsPageView(history) {
   const context = {
-    ...getAdditionalContext(),
-    campaignId: get(window, 'STATE.campaign.campaignId', null),
-    pageId:
-      get(window, 'STATE.campaign.id', null) ||
-      get(window, 'STATE.page.id', null),
+    ...getUtmContext(),
+    ...getPageContext(),
   };
 
   const data = {
@@ -273,7 +284,7 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
 
   const data = withoutValueless({
     ...context,
-    ...getAdditionalContext(),
+    ...getUtmContext(),
   });
 
   sendToServices(name, category, action, label, data, service);
