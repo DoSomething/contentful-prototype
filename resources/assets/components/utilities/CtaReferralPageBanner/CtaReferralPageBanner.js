@@ -15,8 +15,8 @@ class CtaReferralPageBanner extends React.Component {
 
   render() {
     return (
-      <div className="padding-top-md padding-bottom-md padding-horizontal-md">
-        <div className="cta-register-banner padding-top-md padding-bottom-md padding-horizontal-md">
+      <div className="p-4">
+        <div className="cta-register-banner p-4">
           <div>
             <h3 className="color-white">Benefits With Friends</h3>
             <p className="color-white padding-bottom-md">
