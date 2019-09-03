@@ -5,8 +5,6 @@ import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
-const login = '/login';
-
 const Profile = props => (
   <div className="bg-gray padding-bottom-lg wrapper">
     <h2 className="caps-lock league-gothic -sm">Your Profile</h2>
@@ -26,7 +24,7 @@ const Profile = props => (
       <FormItem title="Phone Number" value={props.user.mobile} />
       <div className="margin-top-lg">
         <a
-          href={env('NORTHSTAR_URL') + `/users/${props.userId}/edit`}
+          href={`${env('NORTHSTAR_URL')}/users/${props.user.id}/edit`}
           target="_blank"
           rel="noopener noreferrer"
           className="button"
@@ -63,6 +61,7 @@ Profile.propTypes = {
     mobile: PropTypes.string,
     birthdate: PropTypes.string,
     voterRegistrationStatus: PropTypes.string,
+    id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
