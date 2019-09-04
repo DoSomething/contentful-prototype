@@ -18,6 +18,11 @@ export function linkAnalyticsHandler(link) {
   link.addEventListener(
     'mousedown',
     event => {
+      const element =
+        event.target.tagName !== 'A'
+          ? event.target.parentElement
+          : event.target;
+
       trackAnalyticsEvent({
         context: {
           ...getUtmContext(),
@@ -25,9 +30,9 @@ export function linkAnalyticsHandler(link) {
           referrer: document.referrer,
         },
         metadata: {
-          adjective: snakeCase(event.target.textContent),
+          adjective: snakeCase(element.dataset.label),
           category: 'navigation',
-          label: snakeCase(event.target.textContent),
+          label: snakeCase(element.dataset.label),
           noun: 'nav_link',
           target: 'link',
           verb: 'clicked',
@@ -107,6 +112,10 @@ export function bindNavigationEvents() {
   navLinks.forEach(link => {
     linkAnalyticsHandler(link);
   });
+
+  // Navigation Logo link analytics.
+  const navLogo = document.querySelector('.navigation__logo');
+  linkAnalyticsHandler(navLogo);
 
   // Search form analytics.
   const searchForm = document.querySelector('.navigation__menu .form-search');

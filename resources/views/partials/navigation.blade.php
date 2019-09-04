@@ -5,18 +5,18 @@
 @endphp
 
 <div class="navigation {{isset($legacyNavigation) ? '-white -floating' : 'bg-white'}}">
-    <a class="navigation__logo" href="{{ url('/') }}"><span>DoSomething.org</span></a>
+    <a class="navigation__logo" href="{{ url('/') }}" data-label="homepage"><span>DoSomething.org</span></a>
     <a  id="js-navigation-toggle" class="navigation__toggle"><span>Show Menu</span></a>
     <div class="navigation__menu">
         <ul class="navigation__primary">
             <li>
-                <a href="{{ config('app.url') }}/us/campaigns">
+                <a href="{{ config('app.url') }}/us/campaigns" data-label="explore-campaigns">
                     <strong class="navigation__title">Explore Campaigns</strong>
                     <span class="navigation__subtitle">Find ways to take action both online and off.</span>
                 </a>
             </li>
             <li>
-                <a href="{{ config('app.url') }}/us/about/who-we-are">
+                <a href="{{ config('app.url') }}/us/about/who-we-are" data-label="what-is-dosomething">
                     <strong class="navigation__title">What is DoSomething.org?</strong>
                     <span class="navigation__subtitle">A global movement for good.</span>
                 </a>
@@ -33,15 +33,15 @@
 
             @if (Auth::user())
                 <li class="navigation__dropdown">
-                    <a id="js-account-toggle" class="navigation__dropdown-toggle">My Profile</a>
+                    <a id="js-account-toggle" class="navigation__dropdown-toggle" data-label="account-toggle">My Profile</a>
                     <ul>
-                        <li><a href="{{ url('us/account/profile') }}">Profile</a></li>
-                        <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout">Log Out</a></li>
+                        <li><a href="{{ url('us/account/profile') }}" data-label="profle">Profile</a></li>
+                        <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout" data-label="log-out">Log Out</a></li>
                     </ul>
                 </li>
             @else
-                <li><a href="{{ route('authorize', get_authorization_query($entity, 'login')) }}">Log In</a></li>
-                <li class="navigation__join"><a href="{{ route('authorize', get_authorization_query($entity)) }}">Join Now</a></li>
+                <li><a href="{{ route('authorize', get_authorization_query($entity, 'login')) }}" data-label="log-in">Log In</a></li>
+                <li class="navigation__join"><a href="{{ route('authorize', get_authorization_query($entity)) }}" data-label="join-now">Join Now</a></li>
             @endif
         </ul>
     </div>
