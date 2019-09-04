@@ -7,7 +7,6 @@ import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
-import EmbedBlock from '../blocks/EmbedBlock/EmbedBlock';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
@@ -16,6 +15,7 @@ import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
@@ -107,7 +107,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'embed':
         return (
-          <EmbedBlock
+          <EmbedBlockContainer
             className={className}
             id={json.id}
             {...withoutNulls(json.fields)}
@@ -116,7 +116,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'EmbedBlock':
         return (
-          <EmbedBlock
+          <EmbedBlockContainer
             className={className}
             id={json.id}
             {...withoutNulls(json)}
