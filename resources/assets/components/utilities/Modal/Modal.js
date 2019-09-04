@@ -78,6 +78,7 @@ class Modal extends React.Component {
       <ModalContent
         onClose={this.props.onClose}
         className={this.props.className}
+        closeFooterText={this.props.closeFooterText}
       >
         {this.props.children}
       </ModalContent>
@@ -93,12 +94,14 @@ Modal.propTypes = {
   trackingId: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   className: PropTypes.string,
+  closeFooterText: PropTypes.string,
 };
 
 Modal.defaultProps = {
   context: {},
   trackingId: null,
   className: null,
+  closeFooterText: null,
 };
 
 export default Modal;

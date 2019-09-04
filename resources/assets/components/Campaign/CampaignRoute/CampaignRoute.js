@@ -38,7 +38,10 @@ const CampaignRoute = props => {
   return (
     <React.Fragment>
       {shouldShowAffirmation ? (
-        <Modal onClose={clickedHideAffirmation}>
+        <Modal
+          onClose={clickedHideAffirmation}
+          closeFooterText="Continue to Campaign"
+        >
           <PostSignupModal affirmation={affirmation || undefined} />
         </Modal>
       ) : null}
