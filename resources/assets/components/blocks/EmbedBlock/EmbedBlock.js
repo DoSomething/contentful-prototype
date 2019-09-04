@@ -6,10 +6,10 @@ import ErrorBlock from '../ErrorBlock/ErrorBlock';
 import CartoTemplate from './templates/CartoTemplate';
 import TypeFormTemplate from './templates/TypeFormTemplate';
 
-const PERMITTED_HOSTNAMES = [
-  'dosomething.carto.com',
-  'dosomething.typeform.com',
-];
+const PERMITTED_HOSTNAMES = {
+  'dosomething.carto.com': 'carto',
+  'dosomething.typeform.com': 'typeform',
+};
 
 export const EmbedBlockFragment = gql`
   fragment EmbedBlockFragment on EmbedBlock {
@@ -25,18 +25,9 @@ const EmbedBlock = props => {
   const { url } = props;
   const hostname = new URL(url).hostname;
 
-  const domainCleanUp = baseURL => {
-    let finalDomain;
-    PERMITTED_HOSTNAMES.forEach(domain => {
-      if (domain === baseURL) {
-        finalDomain = baseURL.includes('carto') ? 'carto' : 'typeform';
-      }
-    });
-    return finalDomain;
-  };
-  // add method to pull out domain names and clean them up
+  const domain = PERMITTED_HOSTNAMES[hostname];
 
-  switch (domainCleanUp(hostname)) {
+  switch (domain) {
     case 'typeform':
       return <TypeFormTemplate {...props} />;
 
