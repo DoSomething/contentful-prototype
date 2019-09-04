@@ -6,7 +6,7 @@ import './cta-referral-page-banner.scss';
 const CtaReferralPageBanner = props => (
   <div className="p-4">
     <div className="cta-register-banner p-4">
-      <div>
+      <div className="p-4">
         <h3 className="text-white">Benefits With Friends</h3>
         <p className="text-white padding-bottom-md">
           Refer a friend to this campaign, and you’ll *both* earn a $5 gift

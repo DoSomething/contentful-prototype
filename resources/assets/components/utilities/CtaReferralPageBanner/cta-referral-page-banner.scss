@@ -5,14 +5,28 @@
   background-size: cover;
   height: 270px;
 
+  @include media($small) {
+    background: url('./cta-referral-page-banner-mobile.svg');
+    background-size: 490px;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 382px;
+
+    div {
+      float: none;
+      margin-left: 0;
+      margin-top: 192px;
+      text-align: center;
+    }
+  }
+
   .button.-attached {
     text-transform: uppercase;
   }
 
   div {
     float: left;
-    margin-left: 340px;
-    margin-top: 50px;
-    margin-right: 20px;
+    margin-left: 320px;
+    margin-top: 30px;
   }
 }
