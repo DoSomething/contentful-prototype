@@ -7,5 +7,3 @@ const TypeFormTemplate = props => {
 };
 
 export default TypeFormTemplate;
-
-// @TODO create a template to utilize the typeformembed utility function
