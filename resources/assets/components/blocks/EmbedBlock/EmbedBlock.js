@@ -22,8 +22,7 @@ export const EmbedBlockFragment = gql`
 `;
 
 const EmbedBlock = props => {
-  const { url } = props;
-  const hostname = new URL(url).hostname;
+  const hostname = new URL(props.url).hostname;
 
   const domain = PERMITTED_HOSTNAMES[hostname];
 
@@ -44,7 +43,3 @@ EmbedBlock.propTypes = {
 };
 
 export default EmbedBlock;
-
-// @TODO update/confirm logic of template on props vs url
-// @TODO add graphQL query here vs in utility files?
-// @TODO add add  here vs in utility files?

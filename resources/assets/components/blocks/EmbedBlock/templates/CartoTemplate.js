@@ -7,5 +7,3 @@ const CartoTemplate = props => {
 };
 
 export default CartoTemplate;
-
-// @TODO create a template to utilize the iframe utility function
