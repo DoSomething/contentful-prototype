@@ -24,7 +24,7 @@ const Profile = props => (
       <FormItem title="Phone Number" value={props.user.mobile} />
       <div className="margin-top-lg">
         <a
-          href={`${env('NORTHSTAR_URL')}/users/${props.userId}/edit`}
+          href={`${env('NORTHSTAR_URL')}/users/${props.user.id}/edit`}
           target="_blank"
           rel="noopener noreferrer"
           className="button"
@@ -61,8 +61,8 @@ Profile.propTypes = {
     mobile: PropTypes.string,
     birthdate: PropTypes.string,
     voterRegistrationStatus: PropTypes.string,
+    id: PropTypes.string.isRequired,
   }).isRequired,
-  userId: PropTypes.string.isRequired,
 };
 
 export default Profile;
