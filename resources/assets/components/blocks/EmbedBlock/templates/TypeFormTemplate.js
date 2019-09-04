@@ -1,11 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import TypeFormEmbed from '../../../utilities/TypeFormEmbed/TypeFormEmbed';
 
 const TypeFormTemplate = props => {
-  return <TypeFormEmbed {...props} />;
+  return <TypeFormEmbed typeformUrl={props.url} {...props} />;
 };
 
 export default TypeFormTemplate;
 
-// @TODO create a template to utilize the typeformembed utility function
+TypeFormTemplate.propTypes = {
+  url: PropTypes.string.isRequired,
+};
