@@ -11,7 +11,11 @@ const ModalContent = ({ children, onClose, className, closeFooterText }) => (
     {children}
 
     {closeFooterText ? (
-      <button type="button" className="text-white" onClick={onClose}>
+      <button
+        type="button"
+        className="modal__footer text-white"
+        onClick={onClose}
+      >
         {closeFooterText}
       </button>
     ) : null}
