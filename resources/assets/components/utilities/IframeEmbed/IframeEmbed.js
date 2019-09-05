@@ -1,33 +1,12 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import LazyImage from '../LazyImage';
-import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
-
-const PERMITTED_HOSTNAMES = ['dosomething.carto.com'];
-
-export const EmbedBlockFragment = gql`
-  fragment EmbedBlockFragment on EmbedBlock {
-    url
-    previewImage {
-      url(w: 700, h: 700)
-      description
-    }
-  }
-`;
 
 const IframeEmbed = ({ className, id, url, previewImage }) => {
-  const hostname = new URL(url).hostname;
-
-  if (!PERMITTED_HOSTNAMES.includes(hostname)) {
-    console.warn(`Invalid URL ${url} supplied to IframeEmbed component`);
-    return <ErrorBlock />;
-  }
-
   const iframeElement = () => (
     <iframe title={`embed ${id}`} src={url} width="100%" height="520" />
   );

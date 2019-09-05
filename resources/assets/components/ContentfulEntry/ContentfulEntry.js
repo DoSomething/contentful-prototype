@@ -7,11 +7,11 @@ import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
+import EmbedBlock from '../blocks/EmbedBlock/EmbedBlock';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
-import IframeEmbed from '../utilities/IframeEmbed/IframeEmbed';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
@@ -107,7 +107,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'embed':
         return (
-          <IframeEmbed
+          <EmbedBlock
             className={className}
             id={json.id}
             {...withoutNulls(json.fields)}
@@ -116,7 +116,7 @@ class ContentfulEntry extends React.Component<Props, State> {
 
       case 'EmbedBlock':
         return (
-          <IframeEmbed
+          <EmbedBlock
             className={className}
             id={json.id}
             {...withoutNulls(json)}
