@@ -16,6 +16,7 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { contentfulImageUrl, withoutNulls, query } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
@@ -137,29 +138,37 @@ const GeneralPage = props => {
         </Enclosure>
       </div>
 
-      {ctaCopy && !isAuthenticated && query('show_register_cta') ? (
-        <>
-          <DismissableElement
-            name="cta_register_popover"
-            render={handleClose => (
-              <DelayedElement delay={3}>
-                <CtaPopover
-                  title={ctaCopy.title}
-                  content={ctaCopy.content}
-                  link={authUrl}
-                  buttonText={ctaCopy.buttonText}
-                  handleClose={handleClose}
-                />
-              </DelayedElement>
-            )}
-          />
-          <CtaBanner
-            title={ctaCopy.title}
-            content={ctaCopy.content}
-            link={authUrl}
-            buttonText={ctaCopy.buttonText}
-          />
-        </>
+      {ctaCopy && !isAuthenticated ? (
+        <SixpackExperiment
+          title={`Registration Call To Actions: ${pageCategory}`}
+          convertableActions={['ctaButtonClick']}
+          control={
+            <DismissableElement
+              testName="CTA Popover"
+              name="cta_register_popover"
+              render={handleClose => (
+                <DelayedElement delay={0}>
+                  <CtaPopover
+                    title={ctaCopy.title}
+                    content={ctaCopy.content}
+                    link={authUrl}
+                    buttonText={ctaCopy.buttonText}
+                    handleClose={handleClose}
+                  />
+                </DelayedElement>
+              )}
+            />
+          }
+          alternatives={[
+            <CtaBanner
+              testName="CTA Banner"
+              title={ctaCopy.title}
+              content={ctaCopy.content}
+              link={authUrl}
+              buttonText={ctaCopy.buttonText}
+            />,
+          ]}
+        ></SixpackExperiment>
       ) : null}
     </div>
   );
