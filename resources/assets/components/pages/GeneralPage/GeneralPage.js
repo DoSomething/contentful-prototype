@@ -140,7 +140,9 @@ const GeneralPage = props => {
 
       {ctaCopy && !isAuthenticated ? (
         <SixpackExperiment
-          title={`Registration Call To Actions: ${pageCategory}`}
+          title={`Registration CTA: ${pageCategory} - ${
+            window.innerWidth <= 759 ? 'Small' : 'Large'
+          }`}
           convertableActions={['ctaButtonClick']}
           control={
             <DismissableElement
