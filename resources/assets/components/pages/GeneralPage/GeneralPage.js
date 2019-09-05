@@ -140,7 +140,6 @@ const GeneralPage = props => {
       {ctaCopy && !isAuthenticated && query('show_register_cta') ? (
         <>
           <DismissableElement
-            testName="CTA Popover"
             name="cta_register_popover"
             render={handleClose => (
               <DelayedElement delay={3}>
