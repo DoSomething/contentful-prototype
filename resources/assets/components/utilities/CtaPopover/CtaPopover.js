@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { sixpack } from '../../../helpers';
+
 import './cta-popover.scss';
 
 const CtaPopover = ({ buttonText, content, handleClose, link, title }) => (
@@ -14,7 +16,11 @@ const CtaPopover = ({ buttonText, content, handleClose, link, title }) => (
     </button>
     <h3 className="text-m text-yellow font-bold uppercase">{title}</h3>
     <p className="text-white mt-4">{content}</p>
-    <a className="cta-popover__button button p-4 mt-4" href={link}>
+    <a
+      className="cta-popover__button button p-4 mt-4"
+      href={link}
+      onClick={() => sixpack().convertOnAction('ctaButtonClick')}
+    >
       {buttonText}
     </a>
   </div>
