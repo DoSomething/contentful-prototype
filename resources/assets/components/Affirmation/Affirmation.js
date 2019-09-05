@@ -1,5 +1,5 @@
 import React from 'react';
-import { has } from 'lodash';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -50,7 +50,7 @@ const Affirmation = ({
 
     <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
       {badgeData =>
-        has(badgeData, 'user.hasBadgesFlag') ? (
+        get(badgeData, 'user.hasBadgesFlag', false) ? (
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }} hideSpinner>
             {signupData =>
               signupData.signupsCount === 1 ? (
