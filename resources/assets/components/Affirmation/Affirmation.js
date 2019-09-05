@@ -49,7 +49,7 @@ const Affirmation = ({
 
     <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
       {badgeData =>
-        badgeData.user.hasBadgesFlag ? (
+        badgeData.user && badgeData.user.hasBadgesFlag ? (
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }} hideSpinner>
             {signupData =>
               signupData.signupsCount === 1 ? (
