@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { has } from 'lodash';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
 import Query from '../Query';
 import { Flex, FlexCell } from '../Flex';
@@ -49,7 +50,7 @@ const Affirmation = ({
 
     <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
       {badgeData =>
-        badgeData.user.hasBadgesFlag ? (
+        has(badgeData, 'user.hasBadgesFlag') ? (
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }} hideSpinner>
             {signupData =>
               signupData.signupsCount === 1 ? (
