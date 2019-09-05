@@ -147,7 +147,7 @@ const GeneralPage = props => {
               testName="CTA Popover"
               name="cta_register_popover"
               render={handleClose => (
-                <DelayedElement delay={0}>
+                <DelayedElement delay={3}>
                   <CtaPopover
                     title={ctaCopy.title}
                     content={ctaCopy.content}
