@@ -7,11 +7,7 @@ import './cta-popover.scss';
 
 const CtaPopover = ({ buttonText, content, handleClose, link, title }) => (
   <div className="cta-popover p-4 bordered rounded">
-    <button
-      type="button"
-      className="modal__close -white -small"
-      onClick={handleClose}
-    >
+    <button type="button" className="modal__close -white" onClick={handleClose}>
       &times;
     </button>
     <h3 className="text-m text-yellow font-bold uppercase">{title}</h3>
