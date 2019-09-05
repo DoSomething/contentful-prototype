@@ -5,7 +5,7 @@ import './cta-referral-page-banner.scss';
 
 const CtaReferralPageBanner = props => (
   <div className="p-4">
-    <div className="cta-register-banner p-4">
+    <div className="cta-register-banner p-4 clearfix">
       <div className="p-4">
         <h3 className="text-white">Benefits With Friends</h3>
         <p className="text-white padding-bottom-md">
