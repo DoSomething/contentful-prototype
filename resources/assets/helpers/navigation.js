@@ -18,6 +18,7 @@ export function linkAnalyticsHandler(link) {
   link.addEventListener(
     'mousedown',
     event => {
+      // If element is not an anchor tag, find the parent which should be an anchor tag!
       const element =
         event.target.tagName !== 'A'
           ? event.target.parentElement

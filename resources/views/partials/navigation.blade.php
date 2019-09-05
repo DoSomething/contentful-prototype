@@ -35,7 +35,7 @@
                 <li class="navigation__dropdown">
                     <a id="js-account-toggle" class="navigation__dropdown-toggle" data-label="account-toggle">My Profile</a>
                     <ul>
-                        <li><a href="{{ url('us/account/profile') }}" data-label="profle">Profile</a></li>
+                        <li><a href="{{ url('us/account/profile') }}" data-label="profile">Profile</a></li>
                         <li><a href="{{ route('logout') }}" class="secondary-nav-item" id="link--logout" data-label="log-out">Log Out</a></li>
                     </ul>
                 </li>
