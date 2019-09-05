@@ -13,8 +13,8 @@ import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
-import { contentfulImageUrl, withoutNulls, query } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
@@ -168,7 +168,7 @@ const GeneralPage = props => {
               buttonText={ctaCopy.buttonText}
             />,
           ]}
-        ></SixpackExperiment>
+        />
       ) : null}
     </div>
   );
