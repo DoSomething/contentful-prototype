@@ -25,10 +25,14 @@ const PageDispatcher = props => {
 };
 
 PageDispatcher.propTypes = {
-  authUrl: PropTypes.string.isRequired,
+  authUrl: PropTypes.string,
   isAuthenticated: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
+};
+
+PageDispatcher.defaultProps = {
+  authUrl: null,
 };
 
 export default PageDispatcher;
