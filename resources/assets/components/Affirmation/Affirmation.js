@@ -97,7 +97,11 @@ const Affirmation = ({
     {query('refer-friends') ? <CtaReferralPageBannerContainer /> : null}
 
     <div className="p-4">
-      <button type="button" className="close-button" onClick={onClose}>
+      <button
+        type="button"
+        className="close-button font-bold text-base"
+        onClick={onClose}
+      >
         Continue to Campaign
       </button>
     </div>
