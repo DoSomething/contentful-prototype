@@ -105,6 +105,7 @@ class PhotoSubmissionAction extends React.Component {
       signup: null,
       showModal: false,
       whyParticipatedValue: '',
+      numberOfParticipantsValue: '',
     };
   }
 
@@ -150,6 +151,10 @@ class PhotoSubmissionAction extends React.Component {
 
     if (this.props.showQuantityField) {
       items.quantity = 'quantity';
+    }
+
+    if (this.props.numberOfParticipantsFieldLabel) {
+      items.number_of_participants = 'numberOfParticipants';
     }
 
     return items;
@@ -261,6 +266,7 @@ class PhotoSubmissionAction extends React.Component {
       shouldResetForm: false,
       signup,
       whyParticipatedValue: '',
+      numberOfParticipantsValue: '',
     });
   };
 
