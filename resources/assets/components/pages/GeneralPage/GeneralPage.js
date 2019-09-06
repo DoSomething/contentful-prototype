@@ -21,10 +21,6 @@ import DismissableElement from '../../utilities/DismissableElement/DismissableEl
 
 import './general-page.scss';
 
-// Grab the CTA copy based on the current page category.
-const pageCategory = window.location.pathname.split('/')[2];
-const ctaCopy = REGISTER_CTA_COPY[pageCategory];
-
 /**
  * Render a general page
  *
@@ -32,6 +28,7 @@ const ctaCopy = REGISTER_CTA_COPY[pageCategory];
  */
 const GeneralPage = props => {
   const {
+    slug,
     authors,
     title,
     subTitle,
@@ -43,6 +40,10 @@ const GeneralPage = props => {
     isAuthenticated,
     authUrl,
   } = props;
+
+  // Grab the CTA copy based on the current page category.
+  const pageCategory = slug.split('/')[0];
+  const ctaCopy = REGISTER_CTA_COPY[pageCategory];
 
   return (
     <div>
@@ -177,6 +178,7 @@ const GeneralPage = props => {
 };
 
 GeneralPage.propTypes = {
+  slug: PropTypes.string.isRequired,
   authors: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
