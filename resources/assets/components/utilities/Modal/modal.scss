@@ -60,6 +60,10 @@
   &:focus {
     outline: thin dotted;
   }
+
+  &.-white {
+    color: $white;
+  }
 }
 
 .modal.badge {

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { sixpack } from '../../../helpers';
+
 import './cta-banner.scss';
 
 const CtaBanner = ({ buttonText, content, link, title }) => (
@@ -8,7 +10,11 @@ const CtaBanner = ({ buttonText, content, link, title }) => (
     <div className="grid-narrow m-4">
       <h3 className="text-m text-yellow font-bold uppercase">{title}</h3>
       <p className="text-white mt-4">{content}</p>
-      <a className="cta-banner__button button p-4 mt-4" href={link}>
+      <a
+        className="cta-banner__button button p-4 mt-4"
+        href={link}
+        onClick={() => sixpack().convertOnAction('ctaButtonClick')}
+      >
         {buttonText}
       </a>
     </div>

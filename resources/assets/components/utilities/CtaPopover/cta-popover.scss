@@ -7,9 +7,9 @@
 
   position: fixed;
   bottom: $half-spacing;
-  right: $half-spacing;
+  right: 0;
+  margin: 0 $half-spacing;
   max-width: 500px;
-  margin-left: $half-spacing;
   z-index: $sticky-cta-zindex;
 
   @include media($medium) {
@@ -18,10 +18,12 @@
     max-width: 400px;
   }
 
-  // Snap back to the left once the wrapper width maxes out so the
-  // popover isn't drawn past the edge of the chrome.
+  // Ensure the popover isn't drawn past the edge of the chrome into the 'gray space'
+  // once the wrapper maxes out at 1440px.
   @media (min-width: 1440px) {
-    right: inherit;
+    // Calculates the current 'grey space' on the right of the viewport by subtracting the space occupied by
+    // the chrome, and dividing the remainder in two to subtract the space on the left of the chrome.
+    right: calc((100vw - 1440px) / 2);
   }
 
   .cta-popover__button {

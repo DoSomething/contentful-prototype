@@ -14,13 +14,25 @@ const PageDispatcher = props => {
       return <StoryPage {...props.fields} />;
 
     default:
-      return <GeneralPage {...props.fields} />;
+      return (
+        <GeneralPage
+          {...props.fields}
+          authUrl={props.authUrl}
+          isAuthenticated={props.isAuthenticated}
+        />
+      );
   }
 };
 
 PageDispatcher.propTypes = {
+  authUrl: PropTypes.string,
+  isAuthenticated: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   fields: PropTypes.object.isRequired,
+};
+
+PageDispatcher.defaultProps = {
+  authUrl: null,
 };
 
 export default PageDispatcher;

@@ -8,10 +8,16 @@ import Enclosure from '../../Enclosure';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
+import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
+import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
+import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
 
@@ -22,6 +28,7 @@ import './general-page.scss';
  */
 const GeneralPage = props => {
   const {
+    slug,
     authors,
     title,
     subTitle,
@@ -30,7 +37,13 @@ const GeneralPage = props => {
     sidebar,
     blocks,
     displaySocialShare,
+    isAuthenticated,
+    authUrl,
   } = props;
+
+  // Grab the CTA copy based on the current page category.
+  const pageCategory = slug.split('/')[0];
+  const ctaCopy = REGISTER_CTA_COPY[pageCategory];
 
   return (
     <div>
@@ -125,11 +138,47 @@ const GeneralPage = props => {
           ) : null}
         </Enclosure>
       </div>
+
+      {ctaCopy && !isAuthenticated ? (
+        <SixpackExperiment
+          title={`Registration CTA: ${pageCategory} - ${
+            window.innerWidth <= 759 ? 'Small' : 'Large'
+          }`}
+          convertableActions={['ctaButtonClick']}
+          control={
+            <DismissableElement
+              testName="CTA Popover"
+              name="cta_register_popover"
+              render={handleClose => (
+                <DelayedElement delay={3}>
+                  <CtaPopover
+                    title={ctaCopy.title}
+                    content={ctaCopy.content}
+                    link={authUrl}
+                    buttonText={ctaCopy.buttonText}
+                    handleClose={handleClose}
+                  />
+                </DelayedElement>
+              )}
+            />
+          }
+          alternatives={[
+            <CtaBanner
+              testName="CTA Banner"
+              title={ctaCopy.title}
+              content={ctaCopy.content}
+              link={authUrl}
+              buttonText={ctaCopy.buttonText}
+            />,
+          ]}
+        />
+      ) : null}
     </div>
   );
 };
 
 GeneralPage.propTypes = {
+  slug: PropTypes.string.isRequired,
   authors: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
@@ -141,6 +190,8 @@ GeneralPage.propTypes = {
   sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   displaySocialShare: PropTypes.bool,
+  isAuthenticated: PropTypes.bool.isRequired,
+  authUrl: PropTypes.string.isRequired,
 };
 
 GeneralPage.defaultProps = {
