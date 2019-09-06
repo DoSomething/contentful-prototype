@@ -247,7 +247,7 @@ class TextSubmissionAction extends React.Component {
                 hideSpinner
               >
                 {badgeData =>
-                  badgeData.user.hasBadgesFlag ? (
+                  get(badgeData, 'user.hasBadgesFlag', false) ? (
                     <Query
                       query={POST_COUNT_BADGE}
                       variables={{ userId: this.props.userId }}
