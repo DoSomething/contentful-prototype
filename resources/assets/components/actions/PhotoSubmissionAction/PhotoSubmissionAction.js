@@ -375,6 +375,33 @@ class PhotoSubmissionAction extends React.Component {
                         </div>
                       ) : null}
 
+                      {this.props.numberOfParticipantsFieldLabel ? (
+                        <div className="form-item">
+                          <label
+                            className={classnames('field-label', {
+                              'has-error': has(errors, 'numberOfParticipants'),
+                            })}
+                            htmlFor="numberOfParticipants"
+                          >
+                            {this.props.numberOfParticipantsFieldLabel}
+                          </label>
+                          <input
+                            className={classnames('text-field', {
+                              'has-error shake': has(
+                                errors,
+                                'numberOfParticipants',
+                              ),
+                            })}
+                            type="text"
+                            id="numberOfParticipants"
+                            name="numberOfParticipants"
+                            placeholder="1"
+                            value={this.state.numberOfParticipantsValue}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      ) : null}
+
                       <div className="form-item stretched">
                         <label
                           className={classnames('field-label', {
@@ -539,6 +566,7 @@ PhotoSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
+  numberOfParticipantsFieldLabel: PropTypes.string,
   pageId: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
@@ -567,6 +595,7 @@ PhotoSubmissionAction.defaultProps = {
   informationContent:
     'A DoSomething staffer will review and approve your photo.',
   informationTitle: 'More Info',
+  numberOfParticipantsFieldLabel: null,
   quantityFieldLabel: 'How many items are in this photo?',
   quantityFieldPlaceholder: 'Quantity # (e.g. 300)',
   showQuantityField: true,
