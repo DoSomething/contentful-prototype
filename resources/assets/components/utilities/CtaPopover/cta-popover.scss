@@ -7,9 +7,9 @@
 
   position: fixed;
   bottom: $half-spacing;
-  right: $half-spacing;
+  right: 0;
+  margin: 0 $half-spacing;
   max-width: 500px;
-  margin-left: $half-spacing;
   z-index: $sticky-cta-zindex;
 
   @include media($medium) {
