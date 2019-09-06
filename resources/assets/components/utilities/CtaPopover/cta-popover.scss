@@ -18,9 +18,11 @@
     max-width: 400px;
   }
 
-  // Ensure the popover isn't drawn past the edge of the chrome
+  // Ensure the popover isn't drawn past the edge of the chrome into the 'gray space'
   // once the wrapper maxes out at 1440px.
   @media (min-width: 1440px) {
+    // Calculates the current 'grey space' on the right of the viewport by subtracting the space occupied by
+    // the chrome, and dividing the remainder in two to subtract the space on the left of the chrome.
     right: calc((100vw - 1440px) / 2);
   }
 
