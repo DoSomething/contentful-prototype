@@ -64,7 +64,18 @@ class ContentfulEntry extends React.Component<Props, State> {
 
     switch (type) {
       case 'affirmation':
-        return <AffirmationContainer {...withoutNulls(json.fields)} />;
+        /**
+         * Note: For Affirmations, the json object includes an onClose function property,
+         * used to close the Affirmation modal. This is a little bit of a hack, as our json
+         * object is not truly json when it includes a function.
+         * @see components/pages/PostSignupModal.js
+         */
+        return (
+          <AffirmationContainer
+            {...withoutNulls(json.fields)}
+            onClose={json.onClose}
+          />
+        );
 
       case 'callToAction':
         return (
