@@ -12,6 +12,7 @@ import linkIcon from './linkIcon.svg';
 import { isExternal } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 import './embed.scss';
 
@@ -30,6 +31,19 @@ const EMBED_QUERY = gql`
 
 const Embed = props => {
   const { url, badged, className } = props;
+
+  const onClick = () => {
+    trackAnalyticsEvent({
+      context: {
+        url,
+      },
+      metadata: {
+        category: 'campaign_action',
+        noun: 'embed',
+        verb: 'clicked',
+      },
+    });
+  };
 
   return (
     <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
@@ -55,6 +69,7 @@ const Embed = props => {
               className="embed__linker"
               target={isExternal(url) ? '_blank' : '_self'}
               rel="noopener noreferrer"
+              onClick={onClick}
             >
               <div className="embed">
                 <LazyImage
