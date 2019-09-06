@@ -38,6 +38,7 @@ const Affirmation = ({
   callToActionDescription,
   callToActionHeader,
   header,
+  onClose,
   quote,
   userId,
 }) => (
@@ -94,6 +95,10 @@ const Affirmation = ({
     ) : null}
 
     {query('refer-friends') ? <CtaReferralPageBannerContainer /> : null}
+
+    <button type="button" onClick={onClose}>
+      Continue to Campaign
+    </button>
   </Card>
 );
 
@@ -102,6 +107,7 @@ Affirmation.propTypes = {
   callToActionDescription: PropTypes.string,
   callToActionHeader: PropTypes.string,
   header: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
   quote: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };

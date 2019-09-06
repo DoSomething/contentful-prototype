@@ -64,7 +64,12 @@ class ContentfulEntry extends React.Component<Props, State> {
 
     switch (type) {
       case 'affirmation':
-        return <AffirmationContainer {...withoutNulls(json.fields)} />;
+        return (
+          <AffirmationContainer
+            {...withoutNulls(json.fields)}
+            onClose={json.onClose}
+          />
+        );
 
       case 'callToAction':
         return (
