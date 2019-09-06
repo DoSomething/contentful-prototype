@@ -10,7 +10,9 @@ const CtaPopover = ({ buttonText, content, handleClose, link, title }) => (
     <button type="button" className="modal__close -white" onClick={handleClose}>
       &times;
     </button>
-    <h3 className="text-m text-yellow font-bold uppercase">{title}</h3>
+    <h3 className="cta-popover__title text-m text-yellow font-bold uppercase">
+      {title}
+    </h3>
     <p className="text-white mt-4">{content}</p>
     <a
       className="cta-popover__button button p-4 mt-4"

@@ -26,6 +26,11 @@
     right: calc((100vw - 1440px) / 2);
   }
 
+  .cta-popover__title {
+    // Ensure the title doesn't overlap the close button.
+    max-width: 90%;
+  }
+
   .cta-popover__button {
     width: 100%;
 
