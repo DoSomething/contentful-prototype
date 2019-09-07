@@ -52,6 +52,7 @@ class PostRepository
             if ($key === 'number_of_participants') {
                 return ['name' => 'details', 'contents' => json_encode(['number_of_participants' => $value])];
             }
+
             return ['name' => $key, 'contents' => $value];
         })->values()->toArray();
 
