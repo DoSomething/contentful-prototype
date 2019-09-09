@@ -893,12 +893,22 @@ export function isActionPage(page) {
 }
 
 /**
+ * Determine if the user is a scholarship affiliate referral.
+ *
+ * @return {Boolean}
+ */
+export function isScholarshipAffiliateReferral() {
+  const utmSource = query('utm_source');
+
+  return utmSource && utmSource.includes('scholarship');
+}
+
+/**
  * Get the Scholarship Affiliate Referrer's UTM Label.
  *
  * @return {String|Null}
  */
 export function getScholarshipAffiliateLabel() {
-  const utmSource = query('utm_source') || '';
   const utmCampaign = query('utm_campaign') || '';
 
   // The affiliate's UTM Label is expected to be the first value of a snake cased string.
@@ -906,7 +916,7 @@ export function getScholarshipAffiliateLabel() {
 
   // If the utm_source contains 'scholarship', we assume this visit to be a referral from a
   // scholarship affiliate and return the affiliate's UTM label.
-  return utmSource.includes('scholarship') ? utmLabel : null;
+  return isScholarshipAffiliateReferral() ? utmLabel : null;
 }
 
 /**
