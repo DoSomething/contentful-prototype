@@ -136,6 +136,10 @@ export function formatPostPayload(data = {}) {
     formattedData = { ...formattedData, location: window.AUTH.location };
   }
 
+  if (window.AUTH.postal_code) {
+    formattedData = { ...formattedData, postal_code: window.AUTH.postal_code };
+  }
+
   // Photo RBs contain file uploads and thus need to be converted to a FormData object.
   if (data.type === 'photo') {
     formattedData = createFormData(formattedData);

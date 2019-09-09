@@ -62,6 +62,7 @@ class AppServiceProvider extends ServiceProvider
                 'expiresAt' => auth()->user() ? auth()->user()->access_token_expiration : null,
                 'role' => auth()->user() ? auth()->user()->role : 'user',
                 'location' => request()->header('X-Fastly-Location-Code'),
+                'postal_code' => request()->header('X-Fastly-Postal-Code'),
                 'source' => request()->query('utm_source'),
                 'now' => now()->timestamp,
             ]);
