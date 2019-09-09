@@ -19,7 +19,7 @@ describe('The SignupButton component', () => {
   });
 
   it("doesn't render the Button if the signup is disabled", () => {
-    const wrapper = mount(<SignupButton {...props} disableSignup={true} />);
+    const wrapper = mount(<SignupButton {...props} disableSignup />);
 
     expect(wrapper.find('Button')).toHaveLength(0);
   });
