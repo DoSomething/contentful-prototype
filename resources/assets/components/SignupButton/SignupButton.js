@@ -67,7 +67,7 @@ const SignupButton = props => {
 };
 
 SignupButton.propTypes = {
-  affiliateMessagingOptIn: PropTypes.bool.isRequired,
+  affiliateMessagingOptIn: PropTypes.bool,
   campaignActionText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
@@ -80,6 +80,7 @@ SignupButton.propTypes = {
 };
 
 SignupButton.defaultProps = {
+  affiliateMessagingOptIn: false,
   campaignActionText: 'Take Action',
   campaignTitle: null,
   className: null,
