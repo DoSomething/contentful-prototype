@@ -55,31 +55,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer('*', function ($view) {
-            // Read Fastly's geolocation headers for location-based features,
-            // and check that they look like valid ISO-3601-2 codes.
-            $country = request()->header('X-Fastly-Country-Code');
-            if (strlen($country) !== 2) {
-                $country = null;
-            }
-
-            $region = request()->header('X-Fastly-Region-Code');
-            if (! in_array(strlen($region), [2, 3])) {
-                $region = null;
-            }
-
-            // Fix improper format for American territories <https://goo.gl/qzcMyb>:
-            if (in_array($country, ['AS', 'GU', 'MP', 'PR', 'UM', 'VI'])) {
-                $region = $country;
-                $country = 'US';
-            }
-
             $view->with('auth', [
                 'isAuthenticated' => auth()->check(),
                 'id' => auth()->id() ?: request()->query('user_id'),
                 'token' => auth()->user() ? auth()->user()->access_token : null,
                 'expiresAt' => auth()->user() ? auth()->user()->access_token_expiration : null,
                 'role' => auth()->user() ? auth()->user()->role : 'user',
-                'location' => $country && $region ? $country . '-' . $region : null,
+                'location' => request()->header('X-Fastly-Location-Code'),
                 'source' => request()->query('utm_source'),
                 'now' => now()->timestamp,
             ]);
