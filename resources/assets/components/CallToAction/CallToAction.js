@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../utilities/Card/Card';
+import { isScholarshipAffiliateReferral } from '../../helpers';
+import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 
 import './cta.scss';
@@ -60,7 +62,15 @@ const CallToAction = ({
         <div className="cta__message margin-bottom-lg">{content}</div>
       ) : null}
 
-      {isSignedUp ? null : <SignupButtonContainer />}
+      {isSignedUp ? null : (
+        <SignupButtonContainer
+          text={
+            isScholarshipAffiliateReferral()
+              ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+              : undefined
+          }
+        />
+      )}
     </Card>
   );
 };

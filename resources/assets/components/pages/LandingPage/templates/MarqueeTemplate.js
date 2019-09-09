@@ -5,9 +5,13 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
 import Card from '../../../utilities/Card/Card';
-import { contentfulImageUrl } from '../../../../helpers';
 import TextContent from '../../../utilities/TextContent/TextContent';
+import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
+import {
+  contentfulImageUrl,
+  isScholarshipAffiliateReferral,
+} from '../../../../helpers';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const MarqueeTemplate = ({
@@ -59,7 +63,14 @@ const MarqueeTemplate = ({
 
             <div className="grid-wide-3/10 secondary">
               <div className="marquee-signup-button">
-                <SignupButtonContainer className="w-full" />
+                <SignupButtonContainer
+                  className="w-full"
+                  text={
+                    isScholarshipAffiliateReferral()
+                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                      : undefined
+                  }
+                />
               </div>
 
               <Card className="bordered padded rounded campaign-info">
