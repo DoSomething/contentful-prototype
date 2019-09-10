@@ -45,7 +45,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${PetitionSubmissionBlockFragment}
 `;
 
-const ContentfulEntryLoader = ({ id, className }) => (
+const ContentfulEntryLoader = ({ id, className, classNameByEntry }) => (
   <Query
     query={CONTENTFUL_BLOCK_QUERY}
     variables={{ id, preview: env('CONTENTFUL_USE_PREVIEW_API') }}
@@ -65,16 +65,16 @@ const ContentfulEntryLoader = ({ id, className }) => (
         );
       }
 
-      const entryGridMapping = {
-        EmbedBlock: 'grid-main', // @TODO: may need to reassess, since maybe not all embeds should align to main?
-        PostGalleryBlock: 'grid-main',
-      };
-
       const blockType = data.block.__typename;
-      const gridClass = get(entryGridMapping, blockType, 'grid-narrow');
+
+      const entryClassNames = get(
+        classNameByEntry,
+        blockType,
+        classNameByEntry.defaults,
+      );
 
       return (
-        <div className={classnames(className, gridClass)}>
+        <div className={classnames(className, entryClassNames)}>
           <ContentfulEntry json={data.block} />
         </div>
       );
@@ -83,8 +83,8 @@ const ContentfulEntryLoader = ({ id, className }) => (
 );
 
 ContentfulEntryLoader.propTypes = {
-  id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  id: PropTypes.string.isRequired,
 };
 
 ContentfulEntryLoader.defaultProps = {

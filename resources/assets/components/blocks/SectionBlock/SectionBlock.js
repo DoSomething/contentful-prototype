@@ -11,7 +11,9 @@ const SectionBlock = props => {
   const {
     backgroundColor,
     className,
+    classNameByEntry,
     content,
+    gridType,
     hyperlinkColor,
     id,
     textColor,
@@ -35,6 +37,7 @@ const SectionBlock = props => {
 
       <TextContent
         className="section-block__content base-12-grid"
+        classNameByEntry={classNameByEntry}
         styles={styles}
       >
         {content}

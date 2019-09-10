@@ -13,9 +13,14 @@ import { parseRichTextDocument } from '../../../helpers/text';
  * @param  {Object} options.styles
  * @return {Object}
  */
-const RichTextDocument = ({ className = null, children, styles }) => (
+const RichTextDocument = ({
+  children,
+  className = null,
+  classNameByEntry,
+  styles,
+}) => (
   <div className={classnames('richtext', className)}>
-    {parseRichTextDocument(children, styles)}
+    {parseRichTextDocument(children, classNameByEntry, styles)}
   </div>
 );
 

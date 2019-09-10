@@ -248,6 +248,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <SectionBlock
             className={className}
+            classNameByEntry={this.props.classNameByEntry}
             id={json.id}
             {...withoutNulls(json.fields)}
           />

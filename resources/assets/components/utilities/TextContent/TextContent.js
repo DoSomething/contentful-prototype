@@ -17,10 +17,16 @@ import './markdown.scss'; // @deprecate
  * @param  {Object} options.styles
  * @return {Object}
  */
-const TextContent = ({ className = null, children, styles }) =>
+const TextContent = ({
+  children,
+  className = null,
+  classNameByEntry,
+  styles,
+}) =>
   has(children, 'nodeType') ? (
     <RichTextDocument
       className={classnames('text-content', className)}
+      classNameByEntry={classNameByEntry}
       styles={styles}
     >
       {children}

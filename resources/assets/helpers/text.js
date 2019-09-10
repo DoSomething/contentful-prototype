@@ -1,5 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
+import classnames from 'classnames';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
@@ -68,71 +69,108 @@ function getMarkdownItInstance() {
  * @param  {Object} styles
  * @return {String}
  */
-export function parseRichTextDocument(document, styles) {
+export function parseRichTextDocument(document, classNameByEntry, styles) {
   const hyperlinkColor = get(styles, 'hyperlinkColor', null);
   const textColor = get(styles, 'textColor', null);
 
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="grid-narrow" style={{ color: textColor }}>
+        <h1
+          className={classnames(classNameByEntry.defaults)}
+          style={{ color: textColor }}
+        >
           <span>{children}</span>
         </h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="grid-narrow" style={{ color: textColor }}>
+        <h2
+          className={classnames(classNameByEntry.defaults)}
+          style={{ color: textColor }}
+        >
           {children}
         </h2>
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
-        <h3 className="grid-narrow" style={{ color: textColor }}>
+        <h3
+          className={classnames(classNameByEntry.defaults)}
+          style={{ color: textColor }}
+        >
           {children}
         </h3>
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
-        <h4 className="grid-narrow" style={{ color: textColor }}>
+        <h4
+          className={classnames(classNameByEntry.defaults)}
+          style={{ color: textColor }}
+        >
           {children}
         </h4>
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
-        <h5 className="grid-narrow" style={{ color: textColor }}>
+        <h5
+          className={classnames(classNameByEntry.defaults)}
+          style={{ color: textColor }}
+        >
           {children}
         </h5>
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
-        <h6 className="grid-narrow" style={{ color: textColor }}>
+        <h6
+          className={classnames(classNameByEntry.defaults)}
+          style={{ color: textColor }}
+        >
           {children}
         </h6>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) =>
         children[0] ? (
-          <p className="grid-narrow" style={{ color: textColor }}>
+          <p
+            className={classnames(classNameByEntry.defaults)}
+            style={{ color: textColor }}
+          >
             {children}
           </p>
         ) : null,
       [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="grid-narrow text-left list" style={{ color: textColor }}>
+        <ul
+          className={classnames(classNameByEntry.defaults, 'text-left', 'list')}
+          style={{ color: textColor }}
+        >
           {children}
         </ul>
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
-        <ol className="grid-narrow text-left list" style={{ color: textColor }}>
+        <ol
+          className={classnames(classNameByEntry.defaults, 'text-left', 'list')}
+          style={{ color: textColor }}
+        >
           {children}
         </ol>
       ),
       [BLOCKS.QUOTE]: (node, children) => (
-        <blockquote className="grid-narrow list" style={{ color: textColor }}>
+        <blockquote
+          className={classnames(classNameByEntry.defaults, 'list')}
+          style={{ color: textColor }}
+        >
           {children}
         </blockquote>
       ),
       [BLOCKS.EMBEDDED_ENTRY]: node => (
         <ContentfulEntryLoader
-          className="component-entry margin-bottom-lg"
+          className={classnames('component-entry', 'margin-bottom-lg')}
+          classNameByEntry={classNameByEntry}
           id={node.data.target.sys.id}
         />
       ),
       [BLOCKS.EMBEDDED_ASSET]: node => (
-        <p className="grid-narrow component-entry text-center">
+        <p
+          className={classnames(
+            classNameByEntry.defaults,
+            'component-entry',
+            'text-center',
+          )}
+        >
           <ContentfulAsset id={node.data.target.sys.id} />
         </p>
       ),
