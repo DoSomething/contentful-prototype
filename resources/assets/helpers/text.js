@@ -77,7 +77,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1
-          className={classnames(classNameByEntry.defaults)}
+          className={classnames(classNameByEntry.default)}
           style={{ color: textColor }}
         >
           <span>{children}</span>
@@ -85,7 +85,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <h2
-          className={classnames(classNameByEntry.defaults)}
+          className={classnames(classNameByEntry.default)}
           style={{ color: textColor }}
         >
           {children}
@@ -93,7 +93,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <h3
-          className={classnames(classNameByEntry.defaults)}
+          className={classnames(classNameByEntry.default)}
           style={{ color: textColor }}
         >
           {children}
@@ -101,7 +101,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4
-          className={classnames(classNameByEntry.defaults)}
+          className={classnames(classNameByEntry.default)}
           style={{ color: textColor }}
         >
           {children}
@@ -109,7 +109,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
         <h5
-          className={classnames(classNameByEntry.defaults)}
+          className={classnames(classNameByEntry.default)}
           style={{ color: textColor }}
         >
           {children}
@@ -117,7 +117,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
         <h6
-          className={classnames(classNameByEntry.defaults)}
+          className={classnames(classNameByEntry.default)}
           style={{ color: textColor }}
         >
           {children}
@@ -126,7 +126,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       [BLOCKS.PARAGRAPH]: (node, children) =>
         children[0] ? (
           <p
-            className={classnames(classNameByEntry.defaults)}
+            className={classnames(classNameByEntry.default)}
             style={{ color: textColor }}
           >
             {children}
@@ -134,7 +134,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
         ) : null,
       [BLOCKS.UL_LIST]: (node, children) => (
         <ul
-          className={classnames(classNameByEntry.defaults, 'text-left', 'list')}
+          className={classnames(classNameByEntry.default, 'text-left', 'list')}
           style={{ color: textColor }}
         >
           {children}
@@ -142,7 +142,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
         <ol
-          className={classnames(classNameByEntry.defaults, 'text-left', 'list')}
+          className={classnames(classNameByEntry.default, 'text-left', 'list')}
           style={{ color: textColor }}
         >
           {children}
@@ -150,7 +150,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote
-          className={classnames(classNameByEntry.defaults, 'list')}
+          className={classnames(classNameByEntry.default, 'list')}
           style={{ color: textColor }}
         >
           {children}
@@ -166,7 +166,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       [BLOCKS.EMBEDDED_ASSET]: node => (
         <p
           className={classnames(
-            classNameByEntry.defaults,
+            classNameByEntry.default,
             'component-entry',
             'text-center',
           )}

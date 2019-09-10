@@ -70,7 +70,7 @@ const ContentfulEntryLoader = ({ id, className, classNameByEntry }) => (
       const entryClassNames = get(
         classNameByEntry,
         blockType,
-        classNameByEntry.defaults,
+        classNameByEntry.default,
       );
 
       return (

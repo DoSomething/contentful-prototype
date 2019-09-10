@@ -44,6 +44,7 @@ TextContent.propTypes = {
     PropTypes.object,
   ]).isRequired,
   className: PropTypes.string,
+  classNameByEntry: PropTypes.object,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -52,6 +53,9 @@ TextContent.propTypes = {
 
 TextContent.defaultProps = {
   className: null,
+  classNameByEntry: {
+    default: 'grid-main',
+  },
   styles: {},
 };
 
