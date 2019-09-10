@@ -4,7 +4,6 @@ module.exports = function(migration) {
     .name('Embed')
     .description('Embed content from a URL onto a page.')
     .displayField('internalTitle');
-
   embed
     .createField('internalTitle')
     .name('Internal Title')
@@ -25,12 +24,12 @@ module.exports = function(migration) {
       {
         regexp: {
           pattern:
-            'https:\\/\\/dosomething\\.carto\\.com\\/builder\\/[a-z0-9-]+\\/embed',
+            '^https:\\/\\/dosomething\\.(?:(?:carto\\.com\\/builder\\/[a-z0-9-]+\\/embed)|(?:typeform\\.com\\/to\\/[a-zA-Z0-9-]+))\\/?$',
           flags: null,
         },
 
         message:
-          'Must be a valid Carto embeddable map URL from the DoSomething space. (https://dosomething.carto.com/dashboard).',
+          'Must be a valid Carto embeddable map URL from the DoSomething space (https://dosomething.carto.com/dashboard), or a valid Typeform embeddable URL (https://dosomething.typeform.com)',
       },
     ])
     .disabled(false)
