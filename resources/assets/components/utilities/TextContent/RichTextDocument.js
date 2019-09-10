@@ -27,6 +27,7 @@ const RichTextDocument = ({
 RichTextDocument.propTypes = {
   children: PropTypes.object.isRequired,
   className: PropTypes.string,
+  classNameByEntry: PropTypes.object,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -35,6 +36,9 @@ RichTextDocument.propTypes = {
 
 RichTextDocument.defaultProps = {
   className: null,
+  classNameByEntry: {
+    default: 'grid-main',
+  },
   styles: {},
 };
 
