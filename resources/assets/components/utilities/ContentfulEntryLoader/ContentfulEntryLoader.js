@@ -84,11 +84,15 @@ const ContentfulEntryLoader = ({ id, className, classNameByEntry }) => (
 
 ContentfulEntryLoader.propTypes = {
   className: PropTypes.string,
+  classNameByEntry: PropTypes.object,
   id: PropTypes.string.isRequired,
 };
 
 ContentfulEntryLoader.defaultProps = {
   className: null,
+  classNameByEntry: {
+    default: 'grid-main',
+  },
 };
 
 export default ContentfulEntryLoader;
