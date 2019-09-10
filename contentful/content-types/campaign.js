@@ -447,6 +447,8 @@ module.exports = function(migration) {
   campaign.changeEditorInterface('endDate', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
+    helpText:
+      "The date the campaign will close. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
   campaign.changeEditorInterface('callToAction', 'singleLine', {});
