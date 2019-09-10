@@ -36,7 +36,6 @@ module.exports = function(migration) {
       {
         regexp: {
           pattern: '^[a-zA-Z0-9-]+$',
-          flags: null,
         },
 
         message:
@@ -67,11 +66,7 @@ module.exports = function(migration) {
     .type('Symbol')
     .localized(false)
     .required(true)
-    .validations([
-      {
-        unique: true,
-      },
-    ])
+    .validations([])
     .disabled(false)
     .omitted(false);
 
@@ -290,7 +285,7 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
-        linkContentType: ['campaignDashboard'],
+        linkContentType: ['campaignDashboard', 'sixpackExperiment'],
       },
     ])
     .disabled(false)
@@ -374,7 +369,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   campaign
     .createField('scholarshipDeadline')
     .name('Scholarship Deadline')
@@ -437,11 +431,11 @@ module.exports = function(migration) {
   });
 
   campaign.changeEditorInterface('metadata', 'entryLinkEditor', {});
-
-  campaign.changeEditorInterface('legacyCampaignId', 'singleLine', {
-    helpText:
-      'The campaign should first be created in Rogue, then copy the ID and include it here.',
-  });
+  campaign.changeEditorInterface(
+    'legacyCampaignId',
+    'contentful-campaign-extension',
+    {},
+  );
 
   campaign.changeEditorInterface('campaignSettings', 'entryLinkEditor', {
     helpText:
