@@ -24,7 +24,7 @@ module.exports = function(migration) {
       {
         regexp: {
           pattern:
-            'https:\\/\\/dosomething\\.(?:carto|typeform)\\.com\\/(?:builder|to)\\/[a-zA-Z0-9-]+',
+            'https:\\/\\/dosomething\\.((carto\\.com\\/builder\\/[a-z0-9-]+\\/embed)|(typeform\\.com\\/to\\/[a-zA-Z0-9-]+))',
           flags: null,
         },
 
