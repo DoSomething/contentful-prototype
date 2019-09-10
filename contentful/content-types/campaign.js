@@ -508,8 +508,10 @@ module.exports = function(migration) {
   });
 
   campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
-    format: 'dateonly',
-    helpText: 'Deadline to take action and qualify for the scholarship.',
+    ampm: '12',
+    format: 'timeZ',
+    helpText:
+      "Deadline to take action and qualify for the scholarship. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
   campaign.changeEditorInterface('affiliateOptInContent', 'richTextEditor', {
