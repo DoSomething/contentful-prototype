@@ -39,6 +39,7 @@ const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
 type Props = {
   json: ContentfulEntryJson,
   className: String,
+  classNameByEntry: Object,
 };
 type State = { hasError: boolean };
 
@@ -59,7 +60,11 @@ class ContentfulEntry extends React.Component<Props, State> {
     }
 
     // Otherwise, find the corresponding component & render it!
-    const { json = DEFAULT_BLOCK, className = null } = this.props;
+    const {
+      json = DEFAULT_BLOCK,
+      className = null,
+      classNameByEntry = {},
+    } = this.props;
     const type = parseContentfulType(json);
 
     switch (type) {
@@ -248,7 +253,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <SectionBlock
             className={className}
-            classNameByEntry={this.props.classNameByEntry}
+            classNameByEntry={classNameByEntry}
             id={json.id}
             {...withoutNulls(json.fields)}
           />

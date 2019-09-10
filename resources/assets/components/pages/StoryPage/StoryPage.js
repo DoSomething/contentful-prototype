@@ -51,7 +51,7 @@ const StoryPage = props => {
           <ContentfulEntry
             className="story-section"
             classNameByEntry={{
-              defaults: 'grid-narrow',
+              default: 'grid-narrow',
               EmbedBlock: 'grid-main',
               PostGalleryBlock: 'grid-main',
             }}

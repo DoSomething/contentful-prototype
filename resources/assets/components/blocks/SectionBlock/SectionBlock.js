@@ -13,7 +13,6 @@ const SectionBlock = props => {
     className,
     classNameByEntry,
     content,
-    gridType,
     hyperlinkColor,
     id,
     textColor,
@@ -54,6 +53,7 @@ const SectionBlock = props => {
 SectionBlock.propTypes = {
   backgroundColor: PropTypes.string,
   className: PropTypes.string,
+  classNameByEntry: PropTypes.object,
   content: PropTypes.object.isRequired,
   hyperlinkColor: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -63,6 +63,9 @@ SectionBlock.propTypes = {
 SectionBlock.defaultProps = {
   backgroundColor: null,
   className: null,
+  classNameByEntry: {
+    default: 'grid-main',
+  },
   hyperlinkColor: null,
   textColor: null,
 };
