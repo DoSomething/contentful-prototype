@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "test": "jest --watch",
-    "test:ci": "jest",
+    "test:ci": "jest --max-Workers=2",
     "cypress": "cypress open",
     "cypress:ci": "cypress run -c baseUrl=http://127.0.0.1:8000 --record",
     "lint": "eslint --ext .js resources/assets",
