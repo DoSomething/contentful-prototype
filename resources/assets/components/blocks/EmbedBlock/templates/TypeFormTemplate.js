@@ -6,7 +6,6 @@ import TypeFormEmbed from '../../../utilities/TypeFormEmbed/TypeFormEmbed';
 const TypeFormTemplate = props => {
   return (
     <TypeFormEmbed
-      className="bordered rounded"
       typeformUrl={props.url}
       queryParameters={{
         northstar_id: props.userId,
