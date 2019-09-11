@@ -110,7 +110,8 @@ export function bindNavigationEvents() {
   // Navigation link analytics.
   const navLinks = document.querySelectorAll('.navigation__menu a');
 
-  navLinks.forEach(link => {
+  // Convert NodeList to Array for IE support of forEach method on NodeList.
+  Array.from(navLinks).forEach(link => {
     linkAnalyticsHandler(link);
   });
 
