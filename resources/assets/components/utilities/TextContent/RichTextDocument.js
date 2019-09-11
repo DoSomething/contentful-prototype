@@ -13,15 +13,28 @@ import { parseRichTextDocument } from '../../../helpers/text';
  * @param  {Object} options.styles
  * @return {Object}
  */
-const RichTextDocument = ({ className = null, children, styles }) => (
+const RichTextDocument = ({
+  children,
+  className = null,
+  classNameByEntry,
+  classNameByEntryDefault,
+  styles,
+}) => (
   <div className={classnames('richtext', className)}>
-    {parseRichTextDocument(children, styles)}
+    {parseRichTextDocument(
+      children,
+      classNameByEntry,
+      classNameByEntryDefault,
+      styles,
+    )}
   </div>
 );
 
 RichTextDocument.propTypes = {
   children: PropTypes.object.isRequired,
   className: PropTypes.string,
+  classNameByEntry: PropTypes.object,
+  classNameByEntryDefault: PropTypes.string,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -30,6 +43,8 @@ RichTextDocument.propTypes = {
 
 RichTextDocument.defaultProps = {
   className: null,
+  classNameByEntry: {},
+  classNameByEntryDefault: null,
   styles: {},
 };
 

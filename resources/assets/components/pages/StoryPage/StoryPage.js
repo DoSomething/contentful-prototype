@@ -50,6 +50,11 @@ const StoryPage = props => {
         {blocks.map(block => (
           <ContentfulEntry
             className="story-section"
+            classNameByEntry={{
+              EmbedBlock: 'grid-main',
+              PostGalleryBlock: 'grid-main',
+            }}
+            classNameByEntryDefault="grid-narrow"
             key={block.id}
             json={block}
           />
