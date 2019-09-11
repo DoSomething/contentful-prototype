@@ -26,7 +26,13 @@ class TypeFormEmbed extends React.Component {
       <div
         className="typeform-widget"
         data-url={url.href}
-        style={{ width: '100%', height: '500px' }}
+        style={{
+          width: '100%',
+          height: '500px',
+          border: '1px #dcdcdc solid',
+          borderRadius: '4px',
+          overflow: 'hidden',
+        }}
       />
     );
   }
