@@ -40,6 +40,7 @@ type Props = {
   json: ContentfulEntryJson,
   className: String,
   classNameByEntry: Object,
+  classNameByEntryDefault: String,
 };
 type State = { hasError: boolean };
 
@@ -64,6 +65,7 @@ class ContentfulEntry extends React.Component<Props, State> {
       json = DEFAULT_BLOCK,
       className = null,
       classNameByEntry = {},
+      classNameByEntryDefault = null,
     } = this.props;
     const type = parseContentfulType(json);
 
@@ -254,6 +256,7 @@ class ContentfulEntry extends React.Component<Props, State> {
           <SectionBlock
             className={className}
             classNameByEntry={classNameByEntry}
+            classNameByEntryDefault={classNameByEntryDefault}
             id={json.id}
             {...withoutNulls(json.fields)}
           />

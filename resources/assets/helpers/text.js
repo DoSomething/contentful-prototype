@@ -69,7 +69,12 @@ function getMarkdownItInstance() {
  * @param  {Object} styles
  * @return {String}
  */
-export function parseRichTextDocument(document, classNameByEntry, styles) {
+export function parseRichTextDocument(
+  document,
+  classNameByEntry,
+  classNameByEntryDefault,
+  styles,
+) {
   const hyperlinkColor = get(styles, 'hyperlinkColor', null);
   const textColor = get(styles, 'textColor', null);
 
@@ -77,7 +82,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1
-          className={classnames(classNameByEntry.default)}
+          className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
           <span>{children}</span>
@@ -85,7 +90,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <h2
-          className={classnames(classNameByEntry.default)}
+          className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
           {children}
@@ -93,7 +98,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <h3
-          className={classnames(classNameByEntry.default)}
+          className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
           {children}
@@ -101,7 +106,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4
-          className={classnames(classNameByEntry.default)}
+          className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
           {children}
@@ -109,7 +114,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
         <h5
-          className={classnames(classNameByEntry.default)}
+          className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
           {children}
@@ -117,7 +122,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
         <h6
-          className={classnames(classNameByEntry.default)}
+          className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
           {children}
@@ -126,7 +131,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       [BLOCKS.PARAGRAPH]: (node, children) =>
         children[0] ? (
           <p
-            className={classnames(classNameByEntry.default)}
+            className={classnames(classNameByEntryDefault)}
             style={{ color: textColor }}
           >
             {children}
@@ -134,7 +139,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
         ) : null,
       [BLOCKS.UL_LIST]: (node, children) => (
         <ul
-          className={classnames(classNameByEntry.default, 'text-left', 'list')}
+          className={classnames(classNameByEntryDefault, 'text-left', 'list')}
           style={{ color: textColor }}
         >
           {children}
@@ -142,7 +147,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.OL_LIST]: (node, children) => (
         <ol
-          className={classnames(classNameByEntry.default, 'text-left', 'list')}
+          className={classnames(classNameByEntryDefault, 'text-left', 'list')}
           style={{ color: textColor }}
         >
           {children}
@@ -150,7 +155,7 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
       ),
       [BLOCKS.QUOTE]: (node, children) => (
         <blockquote
-          className={classnames(classNameByEntry.default, 'list')}
+          className={classnames(classNameByEntryDefault, 'list')}
           style={{ color: textColor }}
         >
           {children}
@@ -160,13 +165,14 @@ export function parseRichTextDocument(document, classNameByEntry, styles) {
         <ContentfulEntryLoader
           className={classnames('component-entry', 'margin-bottom-lg')}
           classNameByEntry={classNameByEntry}
+          classNameByEntryDefault={classNameByEntryDefault}
           id={node.data.target.sys.id}
         />
       ),
       [BLOCKS.EMBEDDED_ASSET]: node => (
         <p
           className={classnames(
-            classNameByEntry.default,
+            classNameByEntryDefault,
             'component-entry',
             'text-center',
           )}

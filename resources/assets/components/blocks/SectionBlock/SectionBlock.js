@@ -12,6 +12,7 @@ const SectionBlock = props => {
     backgroundColor,
     className,
     classNameByEntry,
+    classNameByEntryDefault,
     content,
     hyperlinkColor,
     id,
@@ -37,6 +38,7 @@ const SectionBlock = props => {
       <TextContent
         className="section-block__content base-12-grid"
         classNameByEntry={classNameByEntry}
+        classNameByEntryDefault={classNameByEntryDefault}
         styles={styles}
       >
         {content}
@@ -54,6 +56,7 @@ SectionBlock.propTypes = {
   backgroundColor: PropTypes.string,
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
+  classNameByEntryDefault: PropTypes.string,
   content: PropTypes.object.isRequired,
   hyperlinkColor: PropTypes.string,
   id: PropTypes.string.isRequired,
@@ -63,9 +66,8 @@ SectionBlock.propTypes = {
 SectionBlock.defaultProps = {
   backgroundColor: null,
   className: null,
-  classNameByEntry: {
-    default: 'grid-main',
-  },
+  classNameByEntry: {},
+  classNameByEntryDefault: null,
   hyperlinkColor: null,
   textColor: null,
 };

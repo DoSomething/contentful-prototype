@@ -17,10 +17,16 @@ const RichTextDocument = ({
   children,
   className = null,
   classNameByEntry,
+  classNameByEntryDefault,
   styles,
 }) => (
   <div className={classnames('richtext', className)}>
-    {parseRichTextDocument(children, classNameByEntry, styles)}
+    {parseRichTextDocument(
+      children,
+      classNameByEntry,
+      classNameByEntryDefault,
+      styles,
+    )}
   </div>
 );
 
@@ -28,6 +34,7 @@ RichTextDocument.propTypes = {
   children: PropTypes.object.isRequired,
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
+  classNameByEntryDefault: PropTypes.string,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -36,9 +43,8 @@ RichTextDocument.propTypes = {
 
 RichTextDocument.defaultProps = {
   className: null,
-  classNameByEntry: {
-    default: 'grid-main',
-  },
+  classNameByEntry: {},
+  classNameByEntryDefault: null,
   styles: {},
 };
 

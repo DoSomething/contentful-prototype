@@ -21,12 +21,14 @@ const TextContent = ({
   children,
   className = null,
   classNameByEntry,
+  classNameByEntryDefault,
   styles,
 }) =>
   has(children, 'nodeType') ? (
     <RichTextDocument
       className={classnames('text-content', className)}
       classNameByEntry={classNameByEntry}
+      classNameByEntryDefault={classNameByEntryDefault}
       styles={styles}
     >
       {children}
@@ -45,6 +47,7 @@ TextContent.propTypes = {
   ]).isRequired,
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
+  classNameByEntryDefault: PropTypes.string,
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
@@ -53,9 +56,8 @@ TextContent.propTypes = {
 
 TextContent.defaultProps = {
   className: null,
-  classNameByEntry: {
-    default: 'grid-main',
-  },
+  classNameByEntry: {},
+  classNameByEntryDefault: null,
   styles: {},
 };
 

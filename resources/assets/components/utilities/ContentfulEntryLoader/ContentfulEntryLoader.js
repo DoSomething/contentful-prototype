@@ -45,7 +45,12 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${PetitionSubmissionBlockFragment}
 `;
 
-const ContentfulEntryLoader = ({ id, className, classNameByEntry }) => (
+const ContentfulEntryLoader = ({
+  id,
+  className,
+  classNameByEntry,
+  classNameByEntryDefault,
+}) => (
   <Query
     query={CONTENTFUL_BLOCK_QUERY}
     variables={{ id, preview: env('CONTENTFUL_USE_PREVIEW_API') }}
@@ -70,7 +75,7 @@ const ContentfulEntryLoader = ({ id, className, classNameByEntry }) => (
       const entryClassNames = get(
         classNameByEntry,
         blockType,
-        classNameByEntry.default,
+        classNameByEntryDefault || 'grid-main',
       );
 
       return (
@@ -85,14 +90,14 @@ const ContentfulEntryLoader = ({ id, className, classNameByEntry }) => (
 ContentfulEntryLoader.propTypes = {
   className: PropTypes.string,
   classNameByEntry: PropTypes.object,
+  classNameByEntryDefault: PropTypes.string,
   id: PropTypes.string.isRequired,
 };
 
 ContentfulEntryLoader.defaultProps = {
   className: null,
-  classNameByEntry: {
-    default: 'grid-main',
-  },
+  classNameByEntry: {},
+  classNameByEntryDefault: null,
 };
 
 export default ContentfulEntryLoader;
