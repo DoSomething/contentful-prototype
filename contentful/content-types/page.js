@@ -3,9 +3,10 @@ module.exports = function(migration) {
     .createContentType('page')
     .name('Page')
     .description(
-      'A custom page, for example a campaign FAQ or scholarship rules.',
+      'A custom page, for example a campaign FAQ or scholarship rules, or a standalone article or 11-facts page.',
     )
     .displayField('internalTitle');
+
   page
     .createField('internalTitle')
     .name('Internal Title')
@@ -169,7 +170,6 @@ module.exports = function(migration) {
             'campaignUpdate',
             'contentBlock',
             'customBlock',
-            'embed',
             'galleryBlock',
             'imagesBlock',
             'linkAction',
@@ -222,7 +222,7 @@ module.exports = function(migration) {
         linkContentType: ['socialOverride'],
       },
     ])
-    .disabled(false)
+    .disabled(true)
     .omitted(false)
     .linkType('Entry');
 
@@ -233,20 +233,6 @@ module.exports = function(migration) {
     .localized(false)
     .required(false)
     .validations([])
-    .disabled(false)
-    .omitted(false);
-
-  page
-    .createField('richMediaTest')
-    .name('Rich Media Test')
-    .type('RichText')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        nodes: {},
-      },
-    ])
     .disabled(false)
     .omitted(false);
 
@@ -264,10 +250,13 @@ module.exports = function(migration) {
   });
 
   page.changeEditorInterface('metadata', 'entryLinkEditor', {});
-  page.changeEditorInterface('authors', 'entryLinksEditor', {});
+
+  page.changeEditorInterface('authors', 'entryLinksEditor', {
+    bulkEditing: false,
+  });
 
   page.changeEditorInterface('coverImage', 'assetLinkEditor', {
-    helpText: 'The cover Image will display on the page before the content',
+    helpText: 'The cover image will display on the page before the content.',
   });
 
   page.changeEditorInterface('content', 'markdown', {});
@@ -295,5 +284,4 @@ module.exports = function(migration) {
 
   page.changeEditorInterface('socialOverride', 'entryLinkEditor', {});
   page.changeEditorInterface('additionalContent', 'objectEditor', {});
-  page.changeEditorInterface('richMediaTest', 'richTextEditor', {});
 };
