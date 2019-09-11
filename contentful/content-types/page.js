@@ -16,7 +16,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   page
     .createField('title')
     .name('Title')
@@ -26,7 +25,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   page
     .createField('subTitle')
     .name('Subtitle')
@@ -172,6 +170,7 @@ module.exports = function(migration) {
             'campaignUpdate',
             'contentBlock',
             'customBlock',
+            'embed',
             'galleryBlock',
             'imagesBlock',
             'linkAction',
@@ -179,10 +178,9 @@ module.exports = function(migration) {
             'photoSubmissionAction',
             'postGallery',
             'quiz',
-            'referralSubmissionAction',
+            'selectionSubmissionAction',
             'shareAction',
             'sixpackExperiment',
-            'selectionSubmissionAction',
             'socialDriveAction',
             'softEdgeWidgetAction',
             'textSubmissionAction',
