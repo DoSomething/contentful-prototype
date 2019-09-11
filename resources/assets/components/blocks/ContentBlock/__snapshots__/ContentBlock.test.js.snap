@@ -13,11 +13,8 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
   >
     <TextContent
       className={null}
-      classNameByEntry={
-        Object {
-          "default": "grid-main",
-        }
-      }
+      classNameByEntry={Object {}}
+      classNameByEntryDefault={null}
       styles={Object {}}
     >
       Test Content
@@ -43,11 +40,8 @@ exports[`ContentBlock component is rendered with the proper child components whe
   >
     <TextContent
       className={null}
-      classNameByEntry={
-        Object {
-          "default": "grid-main",
-        }
-      }
+      classNameByEntry={Object {}}
+      classNameByEntryDefault={null}
       styles={Object {}}
     >
       Test Content
@@ -62,11 +56,8 @@ exports[`ContentBlock component it works beautifully with content and an empty i
 >
   <TextContent
     className={null}
-    classNameByEntry={
-      Object {
-        "default": "grid-main",
-      }
-    }
+    classNameByEntry={Object {}}
+    classNameByEntryDefault={null}
     styles={Object {}}
   >
     hi there
