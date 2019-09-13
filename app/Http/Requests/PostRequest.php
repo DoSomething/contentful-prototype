@@ -33,6 +33,7 @@ class PostRequest extends FormRequest
                     'text.max' => 'The caption field may not be greater than :max characters.',
                     'text.min' => 'The caption field may not be less than :min characters.',
                     'text.required' => 'The caption field for your photo is required.',
+                    'number_of_participants.integer' => 'The number of participants must be a number.',
                 ];
 
             case 'text':
@@ -62,6 +63,7 @@ class PostRequest extends FormRequest
                     'show_quantity' => 'required|boolean',
                     'text' => 'required|min:4|max:60',
                     'why_participated' => 'required',
+                    'number_of_participants' => 'integer|nullable',
                 ];
 
             case 'text':

@@ -44,11 +44,15 @@ class PostRepository
             unset($payload['media']);
 
             // Guzzle expects specific file object for multipart form.
-            // @TODO: upadte Gateway to handle multipart form data.
+            // @TODO: update Gateway to handle multipart form data.
             $payload['file'] = fopen($payload['file']->getPathname(), 'r');
         }
 
         $multipartData = collect($payload)->map(function ($value, $key) {
+            if ($key === 'number_of_participants' && ! is_null($value)) {
+                return ['name' => 'details', 'contents' => json_encode(['number_of_participants' => $value])];
+            }
+
             return ['name' => $key, 'contents' => $value];
         })->values()->toArray();
 

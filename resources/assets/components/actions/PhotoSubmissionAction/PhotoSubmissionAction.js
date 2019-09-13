@@ -105,6 +105,7 @@ class PhotoSubmissionAction extends React.Component {
       signup: null,
       showModal: false,
       whyParticipatedValue: '',
+      numberOfParticipantsValue: '',
     };
   }
 
@@ -150,6 +151,10 @@ class PhotoSubmissionAction extends React.Component {
 
     if (this.props.showQuantityField) {
       items.quantity = 'quantity';
+    }
+
+    if (this.props.numberOfParticipantsFieldLabel) {
+      items.number_of_participants = 'numberOfParticipants';
     }
 
     return items;
@@ -261,6 +266,7 @@ class PhotoSubmissionAction extends React.Component {
       shouldResetForm: false,
       signup,
       whyParticipatedValue: '',
+      numberOfParticipantsValue: '',
     });
   };
 
@@ -370,6 +376,33 @@ class PhotoSubmissionAction extends React.Component {
                             name="quantity"
                             placeholder={this.props.quantityFieldPlaceholder}
                             value={this.state.quantityValue}
+                            onChange={this.handleChange}
+                          />
+                        </div>
+                      ) : null}
+
+                      {this.props.numberOfParticipantsFieldLabel ? (
+                        <div className="form-item">
+                          <label
+                            className={classnames('field-label', {
+                              'has-error': has(errors, 'numberOfParticipants'),
+                            })}
+                            htmlFor="numberOfParticipants"
+                          >
+                            {this.props.numberOfParticipantsFieldLabel}
+                          </label>
+                          <input
+                            className={classnames('text-field', {
+                              'has-error shake': has(
+                                errors,
+                                'numberOfParticipants',
+                              ),
+                            })}
+                            type="text"
+                            id="numberOfParticipants"
+                            name="numberOfParticipants"
+                            placeholder="1"
+                            value={this.state.numberOfParticipantsValue}
                             onChange={this.handleChange}
                           />
                         </div>
@@ -539,6 +572,7 @@ PhotoSubmissionAction.propTypes = {
   id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   informationContent: PropTypes.string,
   informationTitle: PropTypes.string,
+  numberOfParticipantsFieldLabel: PropTypes.string,
   pageId: PropTypes.string.isRequired,
   quantityFieldLabel: PropTypes.string,
   quantityFieldPlaceholder: PropTypes.string,
@@ -567,6 +601,7 @@ PhotoSubmissionAction.defaultProps = {
   informationContent:
     'A DoSomething staffer will review and approve your photo.',
   informationTitle: 'More Info',
+  numberOfParticipantsFieldLabel: null,
   quantityFieldLabel: 'How many items are in this photo?',
   quantityFieldPlaceholder: 'Quantity # (e.g. 300)',
   showQuantityField: true,
