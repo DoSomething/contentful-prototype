@@ -4,7 +4,6 @@ module.exports = function(migration) {
     .name('Photo Submission Action')
     .description('Action block for submitting photo reportback posts.')
     .displayField('internalTitle');
-
   photoSubmissionAction
     .createField('internalTitle')
     .name('Internal Title')
@@ -19,13 +18,15 @@ module.exports = function(migration) {
     .createField('actionId')
     .name('Action ID')
     .type('Integer')
-    .required(true)
     .localized(false)
+    .required(true)
     .validations([
       {
         unique: true,
       },
-    ]);
+    ])
+    .disabled(false)
+    .omitted(false);
 
   photoSubmissionAction
     .createField('title')
@@ -36,7 +37,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('captionFieldLabel')
     .name('Caption Field Label')
@@ -46,7 +46,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('captionFieldPlaceholder')
     .name('Caption Field Placeholder')
@@ -56,7 +55,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('showQuantityField')
     .name('Show Quantity Field')
@@ -66,7 +64,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('quantityFieldLabel')
     .name('Quantity Field Label')
@@ -76,7 +73,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('quantityFieldPlaceholder')
     .name('Quantity Field Placeholder')
@@ -86,7 +82,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('whyParticipatedFieldLabel')
     .name('Why Participated Field Label')
@@ -96,7 +91,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('whyParticipatedFieldPlaceholder')
     .name('Why Participated Field Placeholder')
@@ -106,7 +100,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('buttonText')
     .name('Button Text')
@@ -116,7 +109,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('informationTitle')
     .name('Information Title')
@@ -126,7 +118,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('informationContent')
     .name('Information Content')
@@ -136,7 +127,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('affirmationContent')
     .name('Affirmation Content')
@@ -146,11 +136,19 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-
   photoSubmissionAction
     .createField('additionalContent')
     .name('Additional Content')
     .type('Object')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  photoSubmissionAction
+    .createField('numberOfParticipantsFieldLabel')
+    .name('Number Of Participants Field Label')
+    .type('Symbol')
     .localized(false)
     .required(false)
     .validations([])
@@ -163,7 +161,7 @@ module.exports = function(migration) {
   });
 
   photoSubmissionAction.changeEditorInterface('actionId', 'numberEditor', {
-    helpText: 'The Action ID associated with this action in Rogue.',
+    helpText: 'The Action ID associated with this action in Rogue',
   });
 
   photoSubmissionAction.changeEditorInterface('title', 'singleLine', {
@@ -268,5 +266,14 @@ module.exports = function(migration) {
     'additionalContent',
     'objectEditor',
     {},
+  );
+
+  photoSubmissionAction.changeEditorInterface(
+    'numberOfParticipantsFieldLabel',
+    'singleLine',
+    {
+      helpText:
+        'This question will ONLY show up if the label is filled out. ONLY use this field to ask members about how many people they did this campaign with. We recommend starting with "including yourself" so that users don\'t feel bad if they did it alone.',
+    },
   );
 };
