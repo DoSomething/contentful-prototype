@@ -63,7 +63,7 @@ class PostRequest extends FormRequest
                     'show_quantity' => 'required|boolean',
                     'text' => 'required|min:4|max:60',
                     'why_participated' => 'required',
-                    'number_of_participants' => 'integer',
+                    'number_of_participants' => 'integer|nullable',
                 ];
 
             case 'text':
