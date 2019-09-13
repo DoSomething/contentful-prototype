@@ -38,8 +38,9 @@ const Embed = props => {
         url,
       },
       metadata: {
-        category: 'campaign_action',
-        noun: 'embed',
+        category: 'site_action',
+        adjective: 'embed',
+        noun: 'link',
         verb: 'clicked',
       },
     });
