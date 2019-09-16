@@ -41,7 +41,7 @@ const Embed = props => {
         category: 'site_action',
         adjective: 'embed',
         noun: 'link',
-        target: 'link_embed',
+        target: 'link',
         verb: 'clicked',
       },
     });
