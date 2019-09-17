@@ -108,8 +108,19 @@ const badgeModalContent = {
     title: 'REGISTERED VOTER',
     earnedText:
       'Congratulations! You just took a step towards changing the future of our country *and* earned this badge. By registering to vote, you’re basically the G.O.A.T',
-    unearnedText:
-      'Unlock this badge by taking 2 minutes to register to vote at your current address.',
+    unearnedText: (
+      <span>
+        Unlock this badge by taking 2 minutes to{' '}
+        <a
+          href="https://vote.dosomething.org/?r=campaignID:8017,campaignRunID:8022,source:web,source_details:badges"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          register to vote
+        </a>{' '}
+        at your current address.
+      </span>
+    ),
   },
 };
 
