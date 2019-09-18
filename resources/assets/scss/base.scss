@@ -515,6 +515,10 @@ p {
   display: inline;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;
@@ -676,6 +680,10 @@ p {
 // @TODO: rename to text-3xl
 .text-xxl {
   font-size: $font-hero;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .uppercase {

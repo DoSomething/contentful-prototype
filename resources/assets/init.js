@@ -41,7 +41,7 @@ import App from './components/App';
 import { ready, debug } from './helpers';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
-import { bindNavigationEvents } from './helpers/navigation';
+// import { bindNavigationEvents } from './helpers/navigation';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 import { analyze, trackAnalyticsPageView } from './helpers/analytics';
@@ -63,7 +63,7 @@ ready(() => {
   bindTokenRefreshEvent();
 
   // Add event listeners for top-level navigation.
-  bindNavigationEvents();
+  // bindNavigationEvents();
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
