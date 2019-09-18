@@ -7,12 +7,12 @@ import CampaignSignupArrow from '../../CampaignSignupArrow';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
 import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
+import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
+import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   contentfulImageUrl,
   isScholarshipAffiliateReferral,
 } from '../../../helpers';
-import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
-import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 
 import './mosaic-lede-banner.scss';
 

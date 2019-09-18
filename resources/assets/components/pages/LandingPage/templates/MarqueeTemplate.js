@@ -8,11 +8,11 @@ import Card from '../../../utilities/Card/Card';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
+import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import {
   contentfulImageUrl,
   isScholarshipAffiliateReferral,
 } from '../../../../helpers';
-import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const MarqueeTemplate = ({
   additionalContent,
