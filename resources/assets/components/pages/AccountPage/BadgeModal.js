@@ -8,7 +8,7 @@ const BadgeModal = props => {
   const { name, earned, children, onClose } = props;
 
   return (
-    <Modal className="badge" onClose={onClose}>
+    <Modal className="badge -inverted" onClose={onClose}>
       <div>
         <div className="badge-pattern p-4">
           <Badge
