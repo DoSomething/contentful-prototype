@@ -12,7 +12,6 @@ import linkIcon from './linkIcon.svg';
 import { isExternal } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 import './embed.scss';
 
@@ -32,6 +31,9 @@ const EMBED_QUERY = gql`
 const Embed = props => {
   const { url, badged, className } = props;
 
+  // @TODO: Add onClick once LinkAction no longer calls Embed (causes duplicate events)
+  // @see https://github.com/DoSomething/phoenix-next/pull/1598#issuecomment-532744108
+  /*
   const onClick = () => {
     trackAnalyticsEvent({
       context: {
@@ -46,6 +48,7 @@ const Embed = props => {
       },
     });
   };
+  */
 
   return (
     <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
@@ -71,7 +74,6 @@ const Embed = props => {
               className="embed__linker"
               target={isExternal(url) ? '_blank' : '_self'}
               rel="noopener noreferrer"
-              onClick={onClick}
             >
               <div className="embed">
                 <LazyImage
