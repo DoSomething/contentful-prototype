@@ -10,7 +10,7 @@ import Share from '../utilities/Share/Share';
 import Badge from '../pages/AccountPage/Badge';
 import Byline from '../utilities/Byline/Byline';
 import TextContent from '../utilities/TextContent/TextContent';
-import { contentfulImageUrl, query, withoutNulls } from '../../helpers';
+import { contentfulImageUrl, withoutNulls } from '../../helpers';
 import CtaReferralPageBannerContainer from '../utilities/CtaReferralPageBanner/CtaReferralPageBannerContainer';
 
 import './affirmation.scss';
@@ -21,10 +21,11 @@ const SIGNUP_COUNT_BADGE = gql`
   }
 `;
 
-const BADGE_QUERY = gql`
+const USER_QUERY = gql`
   query AccountQuery($userId: String!) {
     user(id: $userId) {
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
+      hasReferFriendsFlag: hasFeatureFlag(feature: "refer-friends")
     }
   }
 `;
@@ -49,62 +50,70 @@ const Affirmation = ({
       </TextContent>
     ) : null}
 
-    <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
-      {badgeData =>
-        get(badgeData, 'user.hasBadgesFlag', false) ? (
-          <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }} hideSpinner>
-            {signupData =>
-              signupData.signupsCount === 1 ? (
-                <Badge
-                  earned
-                  className="badge padded"
-                  size="medium"
-                  name="signupBadge"
-                >
-                  <h4>1 Sign-Up</h4>
-                  <p>
-                    Congratulations! You signed up for your first campaign...and
-                    earned your first badge. NICE. Ready to earn *another*
-                    badge? Complete this campaign!
-                  </p>
-                </Badge>
-              ) : null
-            }
-          </Query>
-        ) : null
-      }
+    <Query query={USER_QUERY} variables={{ userId }}>
+      {userData => (
+        <React.Fragment>
+          {get(userData, 'user.hasBadgesFlag', false) ? (
+            <Query
+              query={SIGNUP_COUNT_BADGE}
+              variables={{ userId }}
+              hideSpinner
+            >
+              {signupData =>
+                signupData.signupsCount === 1 ? (
+                  <Badge
+                    earned
+                    className="badge padded"
+                    size="medium"
+                    name="signupBadge"
+                  >
+                    <h4>1 Sign-Up</h4>
+                    <p>
+                      Congratulations! You signed up for your first
+                      campaign...and earned your first badge. NICE. Ready to
+                      earn *another* badge? Complete this campaign!
+                    </p>
+                  </Badge>
+                ) : null
+              }
+            </Query>
+          ) : null}
+
+          <Flex className="flex-align-center">
+            <FlexCell className="affirmation__cta padded" width="half">
+              <h3>{callToActionHeader}</h3>
+              <p>{callToActionDescription}</p>
+            </FlexCell>
+            <FlexCell className="padded" width="half">
+              <Share variant="blue" parentSource="affirmation" />
+            </FlexCell>
+          </Flex>
+
+          {author ? (
+            <Byline
+              author={author.fields.name}
+              {...withoutNulls(author.fields)}
+              photo={contentfulImageUrl(author.fields.photo, 175, 175, 'fill')}
+              className="padding-bottom-md padding-horizontal-md"
+            />
+          ) : null}
+
+          {get(userData, 'user.hasReferFriendsFlag', false) ? (
+            <CtaReferralPageBannerContainer />
+          ) : null}
+
+          <div className="p-4">
+            <button
+              type="button"
+              className="close-button font-bold text-base"
+              onClick={onClose}
+            >
+              Continue to Campaign
+            </button>
+          </div>
+        </React.Fragment>
+      )}
     </Query>
-
-    <Flex className="flex-align-center">
-      <FlexCell className="affirmation__cta padded" width="half">
-        <h3>{callToActionHeader}</h3>
-        <p>{callToActionDescription}</p>
-      </FlexCell>
-      <FlexCell className="padded" width="half">
-        <Share variant="blue" parentSource="affirmation" />
-      </FlexCell>
-    </Flex>
-
-    {author ? (
-      <Byline
-        author={author.fields.name}
-        {...withoutNulls(author.fields)}
-        photo={contentfulImageUrl(author.fields.photo, 175, 175, 'fill')}
-        className="padding-bottom-md padding-horizontal-md"
-      />
-    ) : null}
-
-    {query('refer-friends') ? <CtaReferralPageBannerContainer /> : null}
-
-    <div className="p-4">
-      <button
-        type="button"
-        className="close-button font-bold text-base"
-        onClick={onClose}
-      >
-        Continue to Campaign
-      </button>
-    </div>
   </Card>
 );
 
