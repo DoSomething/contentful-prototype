@@ -1,34 +1,32 @@
 # Analytics
 
-We track a series of analytics events and user interactions throughout the user session across the Phoenix application. These events are dispatched to various platforms, consumed by our data team and surfaced in [Looker](data.dosomething.org).
+We track a series of analytics events and user interactions throughout the user session across the Phoenix application. These events are dispatched to various platforms, consumed by our data team and surfaced in [Google Analytics](https://analytics.google.com/analytics/web/#/report-home/a493209w819276p196748557) and [Looker](data.dosomething.org).
 
 ## Analytics Services
 
-We use two analytics services in Phoenix to track our events:
+We use a few analytics services in Phoenix to track our events:
 
-- [Puck](https://github.com/DoSomething/puck-client) is a DoSomething maintained open source JS analytics library which we use to track all of our events. The data is dispatched to and stored in our deployed Puck application which is ingested by the Data team and surfaced in Looker.
+- [Puck](https://github.com/DoSomething/puck-client) is a DoSomething maintained open source JS analytics library which we use to track all of our events. The data is dispatched to and stored in our deployed Puck application which is ingested by the Data team and surfaced in Looker. _This service is being deprecated and is no longer ingested by our data warehouse._
 
-- [Google Analytics](https://analytics.google.com/analytics/web/). Most events are also dispatched to GA in addition to Page View events for each page visit on site.
+- [Google Tag Manager](https://marketingplatform.google.com/about/tag-manager/). Events are also dispatched to GTM via the [Data Layer](https://support.google.com/tagmanager/answer/6164391?hl=en), and are dispatched over to Google Analytics).
 
-## Event Naming
+- [Snowplow](https://snowplowanalytics.com/). We dispatch events using the [Snowplow JS Tracker](https://github.com/snowplow/snowplow-javascript-tracker), which pushes events to our Snowplow config & data warehouse via [Fivetran](https://fivetran.com/).
 
-We've established the following naming conventions for any analytics event tracked in Phoenix:
+## Tracking an Event
 
-**Rules**:
+_@TODO: Update this with the new naming conventions based on the assorted `metadata` parameters, and the [naming conventions](https://github.com/orgs/DoSomething/teams/tech-leads/discussions/3)_
 
-- event names must be snake-cased (lowercase with underscores).
-- pattern: `app_verb_noun(\_adjective)`, the adjective is optional.
-- event names assume a past tense for the verb ("clicked" instead of "click", "visited" instead of "visit", etc.)
+To track a new event, simply import the `trackAnalyticsEvent` method from `/resources/assets/helpers/analytics.js` and pass it an object containing the following fields:
+
+- `metadata`: an object containing the `noun`, `verb`, optional `adjective`, `category`, `target`, and optional `label`.
+- `context` _(optional)_: an object containing contextual event information e.g. the `pageId` where the event took place.
+- `service` _optional_: define the singular service to track the event (e.g. `ga`). (The event will be dispatched to _all_ services by default).
 
 See listed events below for some examples.
 
-{% hint style="info" %}
-For Google Analytics events, we track the event name as the 'Action', the noun prefixed by `phoenix_` as the 'Category', and the URL of the user as the 'Label'.
-{% endhint %}
-
 ## Phoenix Events
 
-The following are all events currently tracked across the Phoenix application:
+The following are all events currently tracked across the Phoenix application (this is _not_ an exhaustive list):
 
 | Event Name                                           | Event Description                                                                                                                    | Platforms |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------- |
@@ -75,7 +73,7 @@ We also track a Google Analytics [Pageview event](https://support.google.com/ana
 | `view`             | viewed a page                                   | Puck      |
 | `waypoint reached` | reached a waypoint embedded on page             | Puck      |
 
-### List of Waypoint events being tracked in Phoenix
+### List of Waypoint events being tracked in Phoenix by Puck
 
 {% hint style="info" %}
 These events would be categorized under the `waypoint reached` event name.
@@ -111,11 +109,3 @@ The event's `data.waypointData` field will contain the `contentfulId` (ID of the
 | `northstar_triggered_error_submit_register`    | register form was submitted but rejected inline due to validation errors                    | Puck, GA  |
 | `northstar_triggered_suggestion_field_email`   | email field on registration form triggered a domain fix suggestion                          | Puck, GA  |
 | `northstar_used_suggestion_field_email`        | used the suggested fix for the email field                                                  | Puck, GA  |
-
-## Developer Info
-
-To track a new event, simply import the `trackAnalyticsEvent` method from `/resources/assets/helpers/analytics.js` and pass it an object containing the `noun`, `verb`, `adjective` and optionally `data` and `service` fields.
-
-The `service` can either be `ga` for Google analytics, `puck` for Puck and will default to track across both services.
-
-The `data` field will be tracked along with the Puck event. Google analytics does not accept this data.

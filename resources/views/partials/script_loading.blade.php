@@ -9,6 +9,7 @@
     if (!('values' in Object)) features.push('Object.values');
     if (!('fetch' in window)) features.push('fetch');
     if (!hasWorkingUrl) features.push('URL');
+    if (!('IntersectionObserver' in window)) features.push('IntersectionObserver');
 
     var scripts = [
         '{{ elixir("vendors~app.js", "next/assets") }}',
