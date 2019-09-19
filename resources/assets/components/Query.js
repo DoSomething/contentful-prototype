@@ -13,7 +13,7 @@ const Query = ({ query, variables, children, hideSpinner }) => (
     {result => {
       // On initial load, just display a loading spinner.
       if (result.networkStatus === NetworkStatus.LOADING) {
-        return hideSpinner ? null : <div className="spinner -centered" />;
+        return hideSpinner ? null : <div className="spinner -centered p-8" />;
       }
 
       if (result.error) {
