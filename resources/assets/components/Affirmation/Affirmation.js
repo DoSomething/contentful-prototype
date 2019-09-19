@@ -15,18 +15,13 @@ import CtaReferralPageBannerContainer from '../utilities/CtaReferralPageBanner/C
 
 import './affirmation.scss';
 
-const SIGNUP_COUNT_BADGE = gql`
-  query SignupsCountQuery($userId: String!) {
-    signupsCount(userId: $userId, limit: 2)
-  }
-`;
-
 const USER_QUERY = gql`
-  query AccountQuery($userId: String!) {
+  query UserAccountAndSignupsCountQuery($userId: String!) {
     user(id: $userId) {
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
       hasReferFriendsFlag: hasFeatureFlag(feature: "refer-friends")
     }
+    signupsCount(userId: $userId, limit: 2)
   }
 `;
 
@@ -51,32 +46,22 @@ const Affirmation = ({
     ) : null}
 
     <Query query={USER_QUERY} variables={{ userId }}>
-      {userData => (
+      {res => (
         <React.Fragment>
-          {get(userData, 'user.hasBadgesFlag', false) ? (
-            <Query
-              query={SIGNUP_COUNT_BADGE}
-              variables={{ userId }}
-              hideSpinner
+          {get(res, 'user.hasBadgesFlag', false) && res.signupsCount === 1 ? (
+            <Badge
+              earned
+              className="badge padded"
+              size="medium"
+              name="signupBadge"
             >
-              {signupData =>
-                signupData.signupsCount === 1 ? (
-                  <Badge
-                    earned
-                    className="badge padded"
-                    size="medium"
-                    name="signupBadge"
-                  >
-                    <h4>1 Sign-Up</h4>
-                    <p>
-                      Congratulations! You signed up for your first
-                      campaign...and earned your first badge. NICE. Ready to
-                      earn *another* badge? Complete this campaign!
-                    </p>
-                  </Badge>
-                ) : null
-              }
-            </Query>
+              <h4>1 Sign-Up</h4>
+              <p>
+                Congratulations! You signed up for your first campaign...and
+                earned your first badge. NICE. Ready to earn *another* badge?
+                Complete this campaign!
+              </p>
+            </Badge>
           ) : null}
 
           <Flex className="flex-align-center">
@@ -98,7 +83,7 @@ const Affirmation = ({
             />
           ) : null}
 
-          {get(userData, 'user.hasReferFriendsFlag', false) ? (
+          {get(res, 'user.hasReferFriendsFlag', false) ? (
             <CtaReferralPageBannerContainer />
           ) : null}
 
