@@ -42,4 +42,17 @@ describe('The AnalyticsWaypoint component', () => {
       },
     ]);
   });
+
+  it('only triggers one analytics event, and ignores further viewport intersections', () => {
+    getWrapper();
+
+    // Mock the element intersection with the viewport.
+    mockAllIsIntersecting(true);
+    // Mock leaving the viewport and intersecting once again.
+    mockAllIsIntersecting(false);
+    mockAllIsIntersecting(true);
+
+    // The analytics event should only have been invoked once.
+    expect(trackEventMock.mock.calls.length).toBe(1);
+  });
 });
