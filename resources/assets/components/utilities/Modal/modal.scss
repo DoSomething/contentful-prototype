@@ -73,3 +73,9 @@
     min-width: 600px;
   }
 }
+
+.modal.-inverted {
+  .modal__close {
+    color: $white;
+  }
+}
