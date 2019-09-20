@@ -88,8 +88,6 @@ const BetaPage = () => {
                     DoSomething account?
                   </h4>
                   <p>
-                    If you already have a DoSomething account, you can earn the
-                    $5 gift card by referring new people to DoSomething!
                     Unfortunately, if another DoSomething member sends you a
                     referral link, and you already have a DoSomething account,
                     you won’t get the reward when you sign up for the shared
@@ -104,7 +102,7 @@ const BetaPage = () => {
                   <p>
                     This offer is for a limited time only. See the{' '}
                     <a href="/us/refer-a-friend-official-rules" target="_blank">
-                      > Refer A Friend Official Rules.
+                      Refer A Friend Official Rules.
                     </a>
                   </p>
                   <h3>About Us</h3>
