@@ -57,7 +57,7 @@ const AlphaPage = props => {
           <h4>3. Where can I find the full rules?</h4>
           <p>
             This offer is for a limited time only. See the{' '}
-            <a href="/us/refer-a-friend-official-rules">
+            <a href="/us/refer-a-friend-official-rules" target="_blank">
               Refer A Friend Official Rules.
             </a>
           </p>
