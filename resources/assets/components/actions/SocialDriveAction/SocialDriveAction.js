@@ -67,7 +67,11 @@ class SocialDriveAction extends React.Component {
       <div className="clearfix padding-bottom-lg">
         <div className="social-drive-action">
           <Card title={shareCardTitle} className="rounded bordered">
-            {shareCardDescription}
+            {shareCardDescription ? (
+              <div className="padded">
+                <p>{shareCardDescription}</p>
+              </div>
+            ) : null}
 
             <div className="padded">
               <Embed url={link} />

@@ -7,17 +7,6 @@ import SocialDriveActionContainer from '../../../actions/SocialDriveAction/Socia
 
 import './alpha-page.scss';
 
-const description = (
-  <div className="padded">
-    <p>
-      Invite new people to DoSomething and when you and a friend complete this
-      campaign, you’ll both earn a $5 gift card! The more friends you refer, the
-      more gift cards you earn. (Psst...there’s no limit on how many you can
-      refer!)
-    </p>
-  </div>
-);
-
 const AlphaPage = props => {
   const campaignId = query('campaign_id');
   let url = `${PHOENIX_URL}/us/join?user_id=${props.userId}`;
@@ -35,7 +24,7 @@ const AlphaPage = props => {
           </div>
           <div className="margin-vertical">
             <SocialDriveActionContainer
-              shareCardDescription={description}
+              shareCardDescription="Invite new people to DoSomething and when you and a friend complete this campaign, you’ll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there’s no limit on how many you can refer!)"
               shareCardTitle="Refer A Friend"
               link={url}
               showPageViews={false}
