@@ -24,7 +24,7 @@ const AlphaPage = props => {
           </div>
           <div className="margin-vertical">
             <SocialDriveActionContainer
-              shareCardDescription="Invite new people to DoSomething and when you and a friend complete this campaign, you’ll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there’s no limit on how many you can refer!)"
+              shareCardDescription="Invite your friends to join DoSomething. When your friend signs up for this campaign, you'll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there's no limit on how many you can refer!)"
               shareCardTitle="Refer A Friend"
               link={url}
               showPageViews={false}
