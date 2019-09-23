@@ -2,27 +2,52 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { sixpack } from '../../../helpers';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 import './cta-popover.scss';
 
-const CtaPopover = ({ buttonText, content, handleClose, link, title }) => (
-  <div className="cta-popover p-4 bordered rounded">
-    <button type="button" className="modal__close -white" onClick={handleClose}>
-      &times;
-    </button>
-    <h3 className="cta-popover__title text-m text-yellow font-bold uppercase">
-      {title}
-    </h3>
-    <p className="text-white mt-4">{content}</p>
-    <a
-      className="cta-popover__button button p-4 mt-4"
-      href={link}
-      onClick={() => sixpack().convertOnAction('ctaButtonClick')}
-    >
-      {buttonText}
-    </a>
-  </div>
-);
+const CtaPopover = ({ buttonText, content, handleClose, link, title }) => {
+  const handleClick = () => {
+    sixpack().convertOnAction('ctaButtonClick');
+
+    trackAnalyticsEvent({
+      metadata: {
+        category: 'site_action',
+        target: 'button',
+        verb: 'clicked',
+        noun: 'call_to_action',
+        adjective: 'popover',
+        label: 'call_to_action_popover',
+      },
+      context: {
+        url: link,
+      },
+    });
+  };
+
+  return (
+    <div className="cta-popover p-4 bordered rounded">
+      <button
+        type="button"
+        className="modal__close -white"
+        onClick={handleClose}
+      >
+        &times;
+      </button>
+      <h3 className="cta-popover__title text-m text-yellow font-bold uppercase">
+        {title}
+      </h3>
+      <p className="text-white mt-4">{content}</p>
+      <a
+        className="cta-popover__button button p-4 mt-4"
+        href={link}
+        onClick={handleClick}
+      >
+        {buttonText}
+      </a>
+    </div>
+  );
+};
 
 CtaPopover.propTypes = {
   buttonText: PropTypes.string.isRequired,
