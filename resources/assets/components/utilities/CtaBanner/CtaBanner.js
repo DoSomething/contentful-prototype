@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { sixpack } from '../../../helpers';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 import './cta-banner.scss';
 
 const CtaBanner = ({ buttonText, content, link, title }) => {
-  const handleClick = () => {
-    sixpack().convertOnAction('ctaButtonClick');
-
+  const handleClick = () =>
     trackAnalyticsEvent({
       metadata: {
         category: 'site_action',
@@ -23,7 +20,6 @@ const CtaBanner = ({ buttonText, content, link, title }) => {
         url: link,
       },
     });
-  };
 
   return (
     <div className="cta-banner base-12-grid">

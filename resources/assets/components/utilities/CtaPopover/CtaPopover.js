@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { sixpack } from '../../../helpers';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 import './cta-popover.scss';
 
 const CtaPopover = ({ buttonText, content, handleClose, link, title }) => {
-  const handleClick = () => {
-    sixpack().convertOnAction('ctaButtonClick');
-
+  const handleClick = () =>
     trackAnalyticsEvent({
       metadata: {
         category: 'site_action',
@@ -23,7 +20,6 @@ const CtaPopover = ({ buttonText, content, handleClose, link, title }) => {
         url: link,
       },
     });
-  };
 
   return (
     <div className="cta-popover p-4 bordered rounded">
