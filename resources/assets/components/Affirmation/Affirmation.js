@@ -18,6 +18,7 @@ import './affirmation.scss';
 const USER_QUERY = gql`
   query UserAccountAndSignupsCountQuery($userId: String!) {
     user(id: $userId) {
+      id
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
       hasReferFriendsFlag: hasFeatureFlag(feature: "refer-friends")
     }
