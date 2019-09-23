@@ -137,7 +137,7 @@ const GeneralPage = props => {
         </Enclosure>
       </div>
 
-      {!isAuthenticated ? (
+      {ctaCopy && !isAuthenticated ? (
         <DismissableElement
           name="cta_register_popover"
           render={handleClose => (
