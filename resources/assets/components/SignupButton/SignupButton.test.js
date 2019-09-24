@@ -32,7 +32,7 @@ describe('The SignupButton component', () => {
     expect(storeCampaignSignup).toHaveBeenCalled();
   });
 
-  describe('the signup button text', () => {
+  describe('The signup button text', () => {
     it('defaults to the campaignActiontext', () => {
       const wrapper = mount(<SignupButton {...props} />);
 
