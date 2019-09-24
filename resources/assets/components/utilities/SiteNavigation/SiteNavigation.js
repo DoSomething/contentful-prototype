@@ -1,72 +1,75 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './site-navigation.scss';
+import dsLogo from '../../../images/ds_logo.svg';
+
 const SiteNavigation = props => (
-  <nav role="navigation" class="bg-white">
-    <a href="">
-      <img />
+  <nav role="navigation" className="nav base-12-grid">
+    <a href="/" className="logo">
+      <img src={dsLogo} alt="DoSomething" />
     </a>
 
-    <ul>
+    <ul className="main-nav">
       <li>
-        <a href="">Causes</a>
-        <div class="invisible">
+        <a href="/">Causes</a>
+        <div className="hidden">
           <div>
-            <a href="">Causes</a>
+            <a href="/">Causes</a>
             <ul>
               <li>
-                <a href="">Education</a>
+                <a href="/">Education</a>
               </li>
               <li>
-                <a href="">Mental Health</a>
+                <a href="/">Mental Health</a>
               </li>
               <li>
-                <a href="">Homelessness & Poverty</a>
+                <a href="/">Homelessness & Poverty</a>
               </li>
               <li>
-                <a href="">Environment</a>
+                <a href="/">Environment</a>
               </li>
               <li>
-                <a href="">Animal Welfare</a>
+                <a href="/">Animal Welfare</a>
               </li>
               <li>
-                <a href="">Sexual Harassment</a>
+                <a href="/">Sexual Harassment</a>
               </li>
               <li>
-                <a href="">Bullying</a>
+                <a href="/">Bullying</a>
               </li>
               <li>
-                <a href="">Gender Rights</a>
+                <a href="/">Gender Rights</a>
               </li>
               <li>
-                <a href="">Racial Justice</a>
+                <a href="/">Racial Justice</a>
               </li>
               <li>
-                <a href="">Immigration & Refugees</a>
+                <a href="/">Immigration & Refugees</a>
               </li>
               <li>
-                <a href="">LGBT+ Rights</a>
+                <a href="/">LGBT+ Rights</a>
               </li>
               <li>
-                <a href="">Get Out the Vote!</a>
+                <a href="/">Get Out the Vote!</a>
               </li>
             </ul>
           </div>
 
           <div>
-            <a href="">Campaigns</a>
+            <a href="/">Campaigns</a>
             <ul>
               <li>
-                <a href="">Online</a>
+                <a href="/">Online</a>
               </li>
               <li>
-                <a href="">In-person</a>
+                <a href="/">In-person</a>
               </li>
               <li>
-                <a href="">Petitions</a>
+                <a href="/">Petitions</a>
               </li>
               <li>
-                <a href="">Collections</a>
+                <a href="/">Collections</a>
               </li>
             </ul>
           </div>
@@ -74,24 +77,26 @@ const SiteNavigation = props => (
       </li>
 
       <li>
-        <a href="">Scholarships</a>
+        <a href="/">Scholarships</a>
       </li>
 
       <li>
-        <a href="">Articles</a>
+        <a href="/">Articles</a>
       </li>
 
       <li>
-        <a href="">About</a>
+        <a href="/">About</a>
       </li>
     </ul>
 
-    <form>
-      <input type="text" />
-    </form>
+    <div className="utility-nav">
+      <form>
+        <input type="text" />
+      </form>
 
-    <a href="">Log In</a>
-    <a href="">Join Now</a>
+      <a href="/">Log In</a>
+      <a href="/">Join Now</a>
+    </div>
   </nav>
 );
 

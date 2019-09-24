@@ -1,0 +1,29 @@
+.nav {
+  background-color: powderblue;
+
+  // background-color: white;
+  position: relative;
+}
+
+.nav {
+  .logo {
+    background-color: pink;
+
+    grid-column-start: full-start;
+  }
+
+  .main-nav {
+    background-color: fuchsia;
+
+    // xl
+    display: flex;
+    grid-column: 2 / span 8;
+  }
+
+  .utility-nav {
+    background-color: plum;
+
+    display: flex;
+    grid-column: 10 / -1;
+  }
+}
