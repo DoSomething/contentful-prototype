@@ -15,8 +15,6 @@ const mapStateToProps = state => ({
   endDate: state.campaign.endDate,
   pageId: state.campaign.id || state.page.id,
   disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
-  sourceActionText: get(state.campaign, 'additionalContent.sourceActionText'),
-  trafficSource: state.user.source,
 });
 
 /**

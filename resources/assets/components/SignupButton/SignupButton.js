@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 import Button from '../utilities/Button/Button';
 import { query, withoutNulls, isCampaignClosed } from '../../helpers';
@@ -15,10 +14,8 @@ const SignupButton = props => {
     disableSignup,
     endDate,
     pageId,
-    sourceActionText,
     storeCampaignSignup,
     text,
-    trafficSource,
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
@@ -58,10 +55,9 @@ const SignupButton = props => {
     return null;
   }
 
-  // In descending priority: button copy override based on the user's traffic source,
-  // button-specific text prop, campaign action text override, or standard "Take Action" copy.
-  const buttonCopy =
-    get(sourceActionText, trafficSource) || text || campaignActionText;
+  // In descending priority: button-specific text prop,
+  // campaign action text override, or standard "Take Action" copy.
+  const buttonCopy = text || campaignActionText;
 
   return (
     <Button className={className} onClick={handleSignup}>
@@ -71,7 +67,7 @@ const SignupButton = props => {
 };
 
 SignupButton.propTypes = {
-  affiliateMessagingOptIn: PropTypes.bool.isRequired,
+  affiliateMessagingOptIn: PropTypes.bool,
   campaignActionText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
@@ -79,21 +75,18 @@ SignupButton.propTypes = {
   disableSignup: PropTypes.bool,
   endDate: PropTypes.string,
   pageId: PropTypes.string.isRequired,
-  sourceActionText: PropTypes.objectOf(PropTypes.string),
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
-  trafficSource: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
+  affiliateMessagingOptIn: false,
   campaignActionText: 'Take Action',
   campaignTitle: null,
   className: null,
   disableSignup: false,
   endDate: null,
-  sourceActionText: null,
   text: null,
-  trafficSource: null,
 };
 
 export default SignupButton;

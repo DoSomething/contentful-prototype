@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-import { contentfulImageUrl } from '../../../helpers';
 import CampaignSignupArrow from '../../CampaignSignupArrow';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
 import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
 import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
+import {
+  contentfulImageUrl,
+  isScholarshipAffiliateReferral,
+} from '../../../helpers';
 
 import './mosaic-lede-banner.scss';
 
@@ -47,6 +51,11 @@ const MosaicTemplate = props => {
 
       <SignupButtonContainer
         className={classnames({ '-float': affiliateSponsors.length })}
+        text={
+          isScholarshipAffiliateReferral()
+            ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+            : undefined
+        }
       />
       {signupArrowContent ? (
         <CampaignSignupArrow

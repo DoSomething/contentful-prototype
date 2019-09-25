@@ -36,3 +36,6 @@ export const REGISTER_CTA_COPY = {
     buttonText: 'Join us',
   },
 };
+
+// Signup Button text for scholarship referrals:
+export const SCHOLARSHIP_SIGNUP_BUTTON_TEXT = 'Apply Now!';
