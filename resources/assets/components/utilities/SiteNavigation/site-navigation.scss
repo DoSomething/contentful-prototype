@@ -1,3 +1,5 @@
+@import '../../../scss/next-toolbox.scss';
+
 .nav {
   background-color: powderblue;
 
@@ -12,31 +14,51 @@
   .logo-nav {
     background-color: pink;
 
-    grid-column-start: full-start;
+    grid-column: full-start / span 1;
   }
 
   // Main Nav
   .main-nav {
     background-color: fuchsia;
 
-    // xl
     align-items: center;
     display: flex;
-    grid-column: 2 / span 8;
+    grid-column: full-start / full-end;
+    grid-row: 2 / 3;
+    justify-content: space-between;
+
+    // // xl
+    // grid-column: 2 / span 8;
   }
 
   .main-nav__item {
     background-color: red;
 
-    &:hover {
-      .main-subnav {
-        display: block;
+    // &:hover {
+    //   .main-subnav {
+    //     display: block;
+    //   }
+    // }
+
+    &:first-child {
+      a {
+        padding-left: 0;
+      }
+    }
+
+    &:last-child {
+      a {
+        padding-right: 0;
       }
     }
 
     > a {
       display: block;
-      padding: 16px 16px 32px;
+      padding: 16px 4px;
+
+      @include media($large) {
+        padding: 16px 16px 32px;
+      }
     }
   }
 
@@ -44,50 +66,50 @@
     background-color: darkolivegreen;
     display: none;
 
-    box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
-    left: 0;
-    position: absolute;
-    top: 100%;
-    width: 100%;
+    // box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
+    // left: 0;
+    // position: absolute;
+    // top: 100%;
+    // width: 100%;
 
-    &::before {
-      background-color: rgba(255, 255, 255, 0.5);
-      content: '';
-      display: block;
-      height: 100%;
-      left: 0;
-      pointer-events: none;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: -1;
-    }
+    // &::before {
+    //   background-color: rgba(255, 255, 255, 0.5);
+    //   content: '';
+    //   display: block;
+    //   height: 100%;
+    //   left: 0;
+    //   pointer-events: none;
+    //   position: fixed;
+    //   top: 0;
+    //   width: 100%;
+    //   z-index: -1;
+    // }
 
-    > .wrapper {
-      background-color: forestgreen;
-    }
+    // > .wrapper {
+    //   background-color: forestgreen;
+    // }
   }
 
   .main-subnav__links {
-    > h1 {
-      a {
-        color: black;
-        font-size: 22px;
-        font-weight: bold;
-      }
-    }
+    // > h1 {
+    //   a {
+    //     color: black;
+    //     font-size: 22px;
+    //     font-weight: bold;
+    //   }
+    // }
   }
 
   .main-subnav__links-causes {
-    grid-column: wide-start / span 2;
+    // grid-column: wide-start / span 2;
   }
 
   .main-subnav__links-campaigns {
-    grid-column: narrow-start / span 2;
+    // grid-column: narrow-start / span 2;
   }
 
   .main-subnav__featured {
-    grid-column: 7 / wide-end;
+    // grid-column: 7 / wide-end;
   }
 
   // Utility Nav
@@ -96,7 +118,9 @@
 
     align-items: center;
     display: flex;
-    grid-column: 10 / -1;
+    grid-column: 2 / span full-end;
     justify-content: flex-end;
+
+    // grid-column: 10 / -1;
   }
 }

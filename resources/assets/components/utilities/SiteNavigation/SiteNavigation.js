@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './site-navigation.scss';
 import dsLogo from '../../../images/ds_logo.svg';
+import searchIcon from '../../../images/search_icon.svg';
 
 const SiteNavigation = props => (
   <nav role="navigation" className="nav base-12-grid">
@@ -107,10 +108,12 @@ const SiteNavigation = props => (
     </ul>
 
     <div className="utility-nav">
-      <form>
+      {/* <form>
         <input type="text" />
-      </form>
-
+      </form> */}
+      <a href="/">
+        <img src={searchIcon} alt="search icon" />
+      </a>
       <a href="/">Log In</a>
       <a href="/">Join Now</a>
     </div>
