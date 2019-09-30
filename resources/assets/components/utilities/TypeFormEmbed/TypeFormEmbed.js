@@ -28,7 +28,7 @@ class TypeFormEmbed extends React.Component {
         data-url={url.href}
         style={{
           width: '100%',
-          height: '500px',
+          height: '815px',
           border: '1px #dcdcdc solid',
           borderRadius: '4px',
           overflow: 'hidden',
