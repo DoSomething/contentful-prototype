@@ -1,126 +1,209 @@
 @import '../../../scss/next-toolbox.scss';
 
+$spacing_1x: 16px;
+$spacing_2x: 32px;
+
 .nav {
   background-color: powderblue;
 
   // background-color: white;
   position: relative;
-  padding-bottom: 0;
+  padding: $spacing_1x 0 0;
   z-index: 500; // @TODO: create variable in next-toolbox.scss
+
+  @include media($medium) {
+    padding: $spacing_1x $spacing_2x 0;
+  }
 }
 
-.nav {
-  // Logo Nav
-  .logo-nav {
-    background-color: pink;
-
-    grid-column: full-start / span 1;
+.menu-nav__item {
+  &:hover {
+    .menu-subnav {
+      display: block;
+    }
   }
 
-  // Main Nav
-  .main-nav {
-    background-color: fuchsia;
+  > a {
+    color: $black;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
 
-    align-items: center;
-    display: flex;
-    grid-column: full-start / full-end;
-    grid-row: 2 / 3;
-    justify-content: space-between;
+    @include media($large) {
+      font-size: 18px;
+    }
+  }
+}
 
-    // // xl
-    // grid-column: 2 / span 8;
+.menu-subnav {
+  background-color: darkolivegreen;
+
+  box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
+  display: none;
+  left: 0;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+
+  &::before {
+    background-color: rgba(255, 255, 255, 0.5);
+    content: '';
+    display: block;
+    height: 100%;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+  }
+}
+
+// Logo Nav
+.logo-nav {
+  background-color: pink;
+
+  grid-column: full-start / span 1;
+  padding: 0 0 $spacing_1x $spacing_1x;
+
+  @include media($medium) {
+    padding: 0 0 $spacing_1x 0;
+  }
+}
+
+// Main Nav
+.main-nav {
+  background-color: fuchsia;
+
+  align-items: center;
+  border-top: 1px solid $black; //$gray-400;
+  display: flex;
+  grid-column: full-start / full-end;
+  grid-row: 2 / 3;
+
+  @include media($medium) {
+    align-items: flex-start;
+    border-top: 0;
+    grid-column: 2 / span 4;
+    grid-row: auto;
   }
 
-  .main-nav__item {
+  @include media($large) {
+    grid-column: 2 / span 7;
+  }
+
+  .menu-nav__item {
     background-color: red;
 
-    // &:hover {
-    //   .main-subnav {
-    //     display: block;
-    //   }
-    // }
-
-    &:first-child {
-      a {
-        padding-left: 0;
-      }
-    }
-
-    &:last-child {
-      a {
-        padding-right: 0;
-      }
+    &:hover {
+      box-shadow: inset 0 -4px 0 0 $yellow;
     }
 
     > a {
-      display: block;
-      padding: 16px 4px;
+      padding: $spacing_1x;
+
+      @include media($medium) {
+        padding-bottom: 40px;
+      }
 
       @include media($large) {
-        padding: 16px 16px 32px;
+        padding: $spacing_1x $spacing_1x ($spacing_2x + 3px);
       }
     }
   }
+}
 
-  .main-subnav {
-    background-color: darkolivegreen;
-    display: none;
+.main-subnav {
+  // > .wrapper {
+  //   background-color: forestgreen;
+  // }
+}
 
-    // box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
-    // left: 0;
-    // position: absolute;
-    // top: 100%;
-    // width: 100%;
+.main-subnav__links {
+  // > h1 {
+  //   a {
+  //     color: black;
+  //     font-size: 22px;
+  //     font-weight: bold;
+  //   }
+  // }
+}
 
-    // &::before {
-    //   background-color: rgba(255, 255, 255, 0.5);
-    //   content: '';
-    //   display: block;
-    //   height: 100%;
-    //   left: 0;
-    //   pointer-events: none;
-    //   position: fixed;
-    //   top: 0;
-    //   width: 100%;
-    //   z-index: -1;
-    // }
+.main-subnav__links-causes {
+  grid-column: full-start / full-end;
 
-    // > .wrapper {
-    //   background-color: forestgreen;
-    // }
+  // grid-column: wide-start / span 2;
+}
+
+.main-subnav__links-campaigns {
+  grid-column: full-start / full-end;
+
+  // grid-column: narrow-start / span 2;
+}
+
+.main-subnav__featured {
+  grid-column: full-start / full-end;
+
+  // grid-column: 7 / wide-end;
+}
+
+// Utility Nav
+.utility-nav {
+  background-color: plum;
+
+  align-items: center;
+  display: flex;
+  grid-column: 2 / span full-end;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0 $spacing_1x $spacing_1x 0;
+
+  @include media($medium) {
+    grid-column: 6 / full-end;
+    padding: 0;
   }
 
-  .main-subnav__links {
-    // > h1 {
-    //   a {
-    //     color: black;
-    //     font-size: 22px;
-    //     font-weight: bold;
-    //   }
-    // }
+  @include media($large) {
+    grid-column: 9 / full-end;
   }
+}
 
-  .main-subnav__links-causes {
-    // grid-column: wide-start / span 2;
+.utility-nav__search {
+  background-color: goldenrod;
+
+  a {
+    padding: $spacing_1x $spacing_1x ($spacing_2x + 3px);
+
+    > img {
+      height: 30px;
+      width: 30px;
+    }
   }
+}
 
-  .main-subnav__links-campaigns {
-    // grid-column: narrow-start / span 2;
+.utility-nav__login {
+  background-color: orange;
+
+  > a {
+    padding: $spacing_1x;
   }
+}
 
-  .main-subnav__featured {
-    // grid-column: 7 / wide-end;
+.utility-nav__join {
+  background-color: yellow;
+
+  > a {
+    border: 1px solid $black;
+    border-radius: 4px;
+    padding: $spacing_1x;
   }
+}
 
-  // Utility Nav
-  .utility-nav {
-    background-color: plum;
+.utility-subnav .search {
+  grid-column: full-start / full-end;
+}
 
-    align-items: center;
-    display: flex;
-    grid-column: 2 / span full-end;
-    justify-content: flex-end;
-
-    // grid-column: 10 / -1;
-  }
+.utility-subnav .top-searches {
+  grid-column: full-start / full-end;
 }

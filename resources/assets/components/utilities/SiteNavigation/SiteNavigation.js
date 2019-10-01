@@ -11,12 +11,13 @@ const SiteNavigation = props => (
       <img src={dsLogo} alt="DoSomething" />
     </a>
 
-    <ul className="main-nav">
-      <li className="main-nav__item">
+    <ul className="main-nav menu-nav">
+      <li className="menu-nav__item">
         <a href="/">Causes</a>
-        <div className="main-subnav">
+
+        <div className="main-subnav menu-subnav">
           <div className="wrapper base-12-grid">
-            <section className="main-subnav__links main-subnav__links-causes ">
+            <section className="main-subnav__links-causes menu-subnav__links">
               <h1>
                 <a href="/">All Causes</a>
               </h1>
@@ -60,7 +61,7 @@ const SiteNavigation = props => (
               </ul>
             </section>
 
-            <section className="main-subnav__links main-subnav__links-campaigns">
+            <section className="main-subnav__links-campaigns menu-subnav__links">
               <h1>
                 <a href="/">All Campaigns</a>
               </h1>
@@ -80,7 +81,7 @@ const SiteNavigation = props => (
               </ul>
             </section>
 
-            <section className="main-subnav__featured">
+            <section className="main-subnav__featured menu-subnav__content">
               <img
                 className="mb-4"
                 src="http://placekitten.com/g/550/250"
@@ -94,29 +95,71 @@ const SiteNavigation = props => (
         </div>
       </li>
 
-      <li className="main-nav__item">
+      <li className="menu-nav__item">
         <a href="/">Scholarships</a>
       </li>
 
-      <li className="main-nav__item">
+      <li className="menu-nav__item">
         <a href="/">Articles</a>
       </li>
 
-      <li className="main-nav__item">
+      <li className="menu-nav__item">
         <a href="/">About</a>
       </li>
     </ul>
 
-    <div className="utility-nav">
-      {/* <form>
-        <input type="text" />
-      </form> */}
-      <a href="/">
-        <img src={searchIcon} alt="search icon" />
-      </a>
-      <a href="/">Log In</a>
-      <a href="/">Join Now</a>
-    </div>
+    <ul className="utility-nav menu-nav">
+      <li className="utility-nav__search menu-nav__item">
+        <a href="/">
+          <img src={searchIcon} alt="search icon" />
+        </a>
+
+        <form className="utility-subnav menu-subnav">
+          <div className="wrapper base-12-grid">
+            <div className="search">
+              <input type="text" />
+            </div>
+
+            <div className="top-searches">
+              <h1>Top Searches</h1>
+              <ul>
+                <li>
+                  <a href="https://www.dosomething.org/us/search?query=scholarships">
+                    scholarships
+                  </a>
+                </li>
+
+                <li>
+                  <a href="https://www.dosomething.org/us/search?query=cyberbullying">
+                    cyberbullying
+                  </a>
+                </li>
+
+                <li>
+                  <a href="https://www.dosomething.org/us/search?query=gun+violence">
+                    gun violence
+                  </a>
+                </li>
+
+                <li>
+                  <a href="https://www.dosomething.org/us/search?query=climate+change">
+                    climate change
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </form>
+      </li>
+
+      <li className="utility-nav__login menu-nav__item">
+        <a href="/">Log In</a>
+      </li>
+
+      <li className="utility-nav__join menu-nav__item">
+        <a href="/">Join Now</a>
+      </li>
+    </ul>
   </nav>
 );
 
