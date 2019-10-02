@@ -2,11 +2,10 @@
 
 $spacing_1x: 16px;
 $spacing_2x: 32px;
+$extraSmall: '(min-width: 360px)';
 
 .nav {
-  background-color: powderblue;
-
-  // background-color: white;
+  background-color: white;
   position: relative;
   padding: $spacing_1x 0 0;
   z-index: 500; // @TODO: create variable in next-toolbox.scss
@@ -26,9 +25,14 @@ $spacing_2x: 32px;
   > a {
     color: $black;
     display: block;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
+    line-height: 1.2;
     text-decoration: none;
+
+    @include media($extraSmall) {
+      font-size: 14px;
+    }
 
     @include media($large) {
       font-size: 18px;
@@ -37,8 +41,9 @@ $spacing_2x: 32px;
 }
 
 .menu-subnav {
-  background-color: darkolivegreen;
+  // background-color: darkolivegreen;
 
+  background-color: white;
   box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
   display: none;
   left: 0;
@@ -46,8 +51,12 @@ $spacing_2x: 32px;
   top: 100%;
   width: 100%;
 
+  @include media($large) {
+    min-height: 50vh;
+  }
+
   &::before {
-    background-color: rgba(255, 255, 255, 0.5);
+    // background-color: rgba(255, 255, 255, 0.5);
     content: '';
     display: block;
     height: 100%;
@@ -60,21 +69,34 @@ $spacing_2x: 32px;
   }
 }
 
+.menu-subnav__links {
+  > h1 {
+    a {
+      color: black;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+}
+
 // Logo Nav
 .logo-nav {
-  background-color: pink;
-
+  // background-color: pink;
   grid-column: full-start / span 1;
-  padding: 0 0 $spacing_1x $spacing_1x;
+  padding: 0 0 0 $spacing_1x;
+
+  > a {
+    display: inline-block;
+  }
 
   @include media($medium) {
-    padding: 0 0 $spacing_1x 0;
+    padding: 0;
   }
 }
 
 // Main Nav
 .main-nav {
-  background-color: fuchsia;
+  // background-color: fuchsia;
 
   align-items: center;
   border-top: 1px solid $black; //$gray-400;
@@ -94,7 +116,7 @@ $spacing_2x: 32px;
   }
 
   .menu-nav__item {
-    background-color: red;
+    // background-color: red;
 
     &:hover {
       box-shadow: inset 0 -4px 0 0 $yellow;
@@ -115,44 +137,40 @@ $spacing_2x: 32px;
 }
 
 .main-subnav {
-  // > .wrapper {
-  //   background-color: forestgreen;
-  // }
-}
-
-.main-subnav__links {
-  // > h1 {
-  //   a {
-  //     color: black;
-  //     font-size: 22px;
-  //     font-weight: bold;
-  //   }
-  // }
+  > .wrapper {
+    // background-color: forestgreen;
+  }
 }
 
 .main-subnav__links-causes {
   grid-column: full-start / full-end;
 
-  // grid-column: wide-start / span 2;
+  @include media($large) {
+    grid-column: wide-start / span 2;
+  }
 }
 
 .main-subnav__links-campaigns {
   grid-column: full-start / full-end;
 
-  // grid-column: narrow-start / span 2;
+  @include media($large) {
+    grid-column: narrow-start / span 2;
+  }
 }
 
 .main-subnav__featured {
   grid-column: full-start / full-end;
 
-  // grid-column: 7 / wide-end;
+  @include media($large) {
+    grid-column: 7 / wide-end;
+  }
 }
 
 // Utility Nav
 .utility-nav {
-  background-color: plum;
+  // background-color: plum;
 
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   grid-column: 2 / span full-end;
   justify-content: flex-end;
@@ -170,20 +188,32 @@ $spacing_2x: 32px;
 }
 
 .utility-nav__search {
-  background-color: goldenrod;
+  // background-color: goldenrod;
 
-  a {
-    padding: $spacing_1x $spacing_1x ($spacing_2x + 3px);
+  > a {
+    // background-color: tomato;
+
+    padding: 12px; // $spacing_1x; //  $spacing_1x ($spacing_2x + 3px)
+
+    @include media($large) {
+      padding-bottom: 14px;
+      padding-top: 12px;
+    }
 
     > img {
-      height: 30px;
-      width: 30px;
+      height: 25px;
+      width: 25px;
+
+      @include media($large) {
+        height: 28px;
+        width: 28px;
+      }
     }
   }
 }
 
 .utility-nav__login {
-  background-color: orange;
+  // background-color: orange;
 
   > a {
     padding: $spacing_1x;
@@ -191,7 +221,10 @@ $spacing_2x: 32px;
 }
 
 .utility-nav__join {
-  background-color: yellow;
+  // background-color: yellow;
+
+  position: relative;
+  top: -1px;
 
   > a {
     border: 1px solid $black;

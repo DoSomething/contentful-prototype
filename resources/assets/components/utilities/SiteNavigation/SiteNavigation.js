@@ -7,9 +7,11 @@ import searchIcon from '../../../images/search_icon.svg';
 
 const SiteNavigation = props => (
   <nav role="navigation" className="nav base-12-grid">
-    <a href="/" className="logo-nav">
-      <img src={dsLogo} alt="DoSomething" />
-    </a>
+    <div className="logo-nav">
+      <a href="/">
+        <img src={dsLogo} alt="DoSomething" />
+      </a>
+    </div>
 
     <ul className="main-nav menu-nav">
       <li className="menu-nav__item">
@@ -110,7 +112,7 @@ const SiteNavigation = props => (
 
     <ul className="utility-nav menu-nav">
       <li className="utility-nav__search menu-nav__item">
-        <a href="/">
+        <a href="/" className="utility-nav__search-icon">
           <img src={searchIcon} alt="search icon" />
         </a>
 
