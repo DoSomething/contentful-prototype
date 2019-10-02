@@ -154,7 +154,7 @@ const SiteNavigation = props => (
         </form>
       </li>
 
-      <li className="utility-nav__login menu-nav__item">
+      <li className="utility-nav__auth menu-nav__item">
         <a href="/">Log In</a>
       </li>
 

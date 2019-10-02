@@ -1,6 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 $spacing_1x: 16px;
+$spacing_1_5x: 24px;
 $spacing_2x: 32px;
 $extraSmall: '(min-width: 360px)';
 
@@ -11,7 +12,7 @@ $extraSmall: '(min-width: 360px)';
   z-index: 500; // @TODO: create variable in next-toolbox.scss
 
   @include media($medium) {
-    padding: $spacing_1x $spacing_2x 0;
+    padding: $spacing_1_5x $spacing_2x 0;
   }
 }
 
@@ -41,9 +42,8 @@ $extraSmall: '(min-width: 360px)';
 }
 
 .menu-subnav {
-  // background-color: darkolivegreen;
-
   background-color: white;
+  border-top: 1px solid $gray-300;
   box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
   display: none;
   left: 0;
@@ -56,11 +56,11 @@ $extraSmall: '(min-width: 360px)';
   }
 
   &::before {
-    // background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     content: '';
     display: block;
     height: 100%;
-    left: 0;
+    max-width: 1440px;
     pointer-events: none;
     position: fixed;
     top: 0;
@@ -81,7 +81,6 @@ $extraSmall: '(min-width: 360px)';
 
 // Logo Nav
 .logo-nav {
-  // background-color: pink;
   grid-column: full-start / span 1;
   padding: 0 0 0 $spacing_1x;
 
@@ -96,10 +95,8 @@ $extraSmall: '(min-width: 360px)';
 
 // Main Nav
 .main-nav {
-  // background-color: fuchsia;
-
   align-items: center;
-  border-top: 1px solid $black; //$gray-400;
+  border-top: 1px solid $gray-300;
   display: flex;
   grid-column: full-start / full-end;
   grid-row: 2 / 3;
@@ -116,8 +113,6 @@ $extraSmall: '(min-width: 360px)';
   }
 
   .menu-nav__item {
-    // background-color: red;
-
     &:hover {
       box-shadow: inset 0 -4px 0 0 $yellow;
     }
@@ -128,17 +123,7 @@ $extraSmall: '(min-width: 360px)';
       @include media($medium) {
         padding-bottom: 40px;
       }
-
-      @include media($large) {
-        padding: $spacing_1x $spacing_1x ($spacing_2x + 3px);
-      }
     }
-  }
-}
-
-.main-subnav {
-  > .wrapper {
-    // background-color: forestgreen;
   }
 }
 
@@ -168,8 +153,6 @@ $extraSmall: '(min-width: 360px)';
 
 // Utility Nav
 .utility-nav {
-  // background-color: plum;
-
   align-items: flex-start;
   display: flex;
   grid-column: 2 / span full-end;
@@ -188,12 +171,8 @@ $extraSmall: '(min-width: 360px)';
 }
 
 .utility-nav__search {
-  // background-color: goldenrod;
-
   > a {
-    // background-color: tomato;
-
-    padding: 12px; // $spacing_1x; //  $spacing_1x ($spacing_2x + 3px)
+    padding: 12px $spacing_1x;
 
     @include media($large) {
       padding-bottom: 14px;
@@ -212,8 +191,8 @@ $extraSmall: '(min-width: 360px)';
   }
 }
 
-.utility-nav__login {
-  // background-color: orange;
+.utility-nav__auth {
+  border-left: 1px solid $gray-300;
 
   > a {
     padding: $spacing_1x;
@@ -221,13 +200,11 @@ $extraSmall: '(min-width: 360px)';
 }
 
 .utility-nav__join {
-  // background-color: yellow;
-
   position: relative;
   top: -1px;
 
   > a {
-    border: 1px solid $black;
+    border: 1px solid black;
     border-radius: 4px;
     padding: $spacing_1x;
   }
