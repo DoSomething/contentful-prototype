@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import './site-navigation.scss';
 import dsLogo from '../../../images/ds_logo.svg';
 import searchIcon from '../../../images/search_icon.svg';
 
-const SiteNavigation = props => (
+const SiteNavigation = () => (
   <nav role="navigation" className="nav base-12-grid">
     <div className="logo-nav">
       <a href="/">
@@ -166,7 +165,3 @@ const SiteNavigation = props => (
 );
 
 export default SiteNavigation;
-
-SiteNavigation.propTypes = {};
-
-SiteNavigation.defaultProps = {};
