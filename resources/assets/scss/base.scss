@@ -511,8 +511,16 @@ p {
   font-family: $secondary-font-family;
 }
 
+.hidden {
+  display: none;
+}
+
 .inline {
   display: inline;
+}
+
+.invisible {
+  visibility: hidden;
 }
 
 .list-reset {
@@ -676,6 +684,10 @@ p {
 // @TODO: rename to text-3xl
 .text-xxl {
   font-size: $font-hero;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .uppercase {
