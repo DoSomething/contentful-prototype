@@ -108,6 +108,7 @@ class HomePage extends React.Component {
                 <DelayedElement delay={30}>
                   <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                     <TypeFormEmbed
+                      displayType="modal"
                       typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
                       queryParameters={{
                         northstar_id: get(window.AUTH, 'id', null),

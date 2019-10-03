@@ -38,6 +38,7 @@ const Campaign = props => (
             <DelayedElement delay={60}>
               <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                 <TypeFormEmbed
+                  displayType="modal"
                   typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
                   queryParameters={{
                     campaign_id: props.campaignId,
