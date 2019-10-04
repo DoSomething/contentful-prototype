@@ -12,6 +12,8 @@ const REFERRAL_CAMPAIGN_IDS = [
   '3302',
   '3590',
   '7951',
+  // Remove before comitting
+  '9001',
   '9026',
   '9027',
   '9030',

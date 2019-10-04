@@ -1,9 +1,9 @@
 @import '../../../scss/next-toolbox';
 
 .cta-register-banner {
-  background: #983ac9 url('./cta-referral-page-banner-mobile.svg');
-  background-position: center top;
-  background-repeat: no-repeat;
+  background-image: url('./bg-small.svg');
+  background-repeat: repeat;
+  background-size: cover;
 
   div {
     margin-top: 192px;
@@ -15,8 +15,7 @@
   }
 
   @include media($medium) {
-    background: #983ac9 url('./cta-referral-page-banner-desktop.svg');
-    background-size: cover;
+    background-image: url('./bg-large.svg');
 
     div {
       float: left;
