@@ -1,13 +1,15 @@
 @import '../../../scss/next-toolbox';
 
 .cta-register-banner {
-  background-image: url('./bg-small.svg');
+  background: #983ac9 url('./bg-small.svg');
   background-repeat: repeat;
   background-size: cover;
 
   div {
-    margin-top: 192px;
+    padding-top: 220px;
     text-align: center;
+    background: url('./gift-card-small.svg');
+    background-repeat: no-repeat;
   }
 
   .button.-attached {
@@ -15,12 +17,12 @@
   }
 
   @include media($medium) {
-    background-image: url('./bg-large.svg');
+    background: #983ac9 url('./bg-large.svg');
 
     div {
-      float: left;
-      margin-left: 320px;
-      margin-top: 0;
+      padding-top: 16px;
+      background-image: url('./gift-card-large.svg');
+      padding-left: 250px;
       text-align: left;
     }
   }
