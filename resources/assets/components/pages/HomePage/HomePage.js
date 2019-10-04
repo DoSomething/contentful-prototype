@@ -104,7 +104,7 @@ class HomePage extends React.Component {
           <TrafficDistribution percentage={5} feature="nps_survey">
             <DismissableElement
               name="nps_survey"
-              render={handleClose => (
+              render={(handleClose, handleComplete) => (
                 <DelayedElement delay={30}>
                   <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                     <TypeFormEmbed
@@ -113,9 +113,7 @@ class HomePage extends React.Component {
                       queryParameters={{
                         northstar_id: get(window.AUTH, 'id', null),
                       }}
-                      redirectParameters={{
-                        hide_nps_survey: 1,
-                      }}
+                      onSubmit={handleComplete}
                     />
                   </Modal>
                 </DelayedElement>

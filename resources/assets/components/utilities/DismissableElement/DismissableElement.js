@@ -7,11 +7,21 @@ import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 const DismissableElement = ({ name, render }) => {
   const [showElement, setShowElement] = useState(true);
 
+  const handleCompletion = () => {
+    // Mark the element as "hidden" in local storage.
+    setStorage(`hide_${name}`, 'boolean', true);
+    setShowElement(false);
+  };
+
+  const handleDismissal = () => {
+    // Mark the element as "dismissed" in local storage & hide it.
+    setStorage(`dismissed_${name}`, 'timestamp', Date.now());
+    setShowElement(false);
+  };
+
   useEffect(() => {
-    // Mark the element as "hidden" in local storage if indicated by query param.
     if (query(`hide_${name}`) === '1') {
-      setStorage(`hide_${name}`, 'boolean', true);
-      setShowElement(false);
+      handleCompletion();
     }
   }, []);
 
@@ -26,13 +36,7 @@ const DismissableElement = ({ name, render }) => {
     return !shouldNotSee && !isDismissed && showElement;
   };
 
-  const handleDismissal = () => {
-    // Mark the element as "dismissed" in local storage & hide it.
-    setStorage(`dismissed_${name}`, 'timestamp', Date.now());
-    setShowElement(false);
-  };
-
-  return shouldSeeElement() ? render(handleDismissal) : null;
+  return shouldSeeElement() ? render(handleDismissal, handleCompletion) : null;
 };
 
 DismissableElement.propTypes = {

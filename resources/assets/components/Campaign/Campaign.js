@@ -34,7 +34,7 @@ const Campaign = props => (
       <TrafficDistribution percentage={5} feature="nps_survey">
         <DismissableElement
           name="nps_survey"
-          render={handleClose => (
+          render={(handleClose, handleComplete) => (
             <DelayedElement delay={60}>
               <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                 <TypeFormEmbed
@@ -44,9 +44,7 @@ const Campaign = props => (
                     campaign_id: props.campaignId,
                     northstar_id: props.userId,
                   }}
-                  redirectParameters={{
-                    hide_nps_survey: 1,
-                  }}
+                  onSubmit={handleComplete}
                 />
               </Modal>
             </DelayedElement>
