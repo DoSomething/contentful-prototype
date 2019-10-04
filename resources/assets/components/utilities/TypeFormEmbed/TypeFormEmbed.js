@@ -21,22 +21,25 @@ const DISPLAY_STYLES = {
 const TypeFormEmbed = ({
   displayType,
   queryParameters,
-  redirectParameters,
   typeformUrl,
+  onSubmit,
 }) => {
   const typeformElement = useRef(null);
 
-  const redirectUrl = appendToQuery(redirectParameters, window.location.href);
-
   const typeformQuery = {
-    redirect_url: redirectUrl.href,
     ...queryParameters,
   };
 
   const url = makeUrl(typeformUrl, withoutNulls(typeformQuery));
 
   useEffect(() => {
-    typeformEmbed.makeWidget(typeformElement.current, url.href, {});
+    typeformEmbed.makeWidget(
+      typeformElement.current,
+      url.href,
+      withoutNulls({
+        onSubmit,
+      }),
+    );
   }, []);
 
   return (
@@ -52,15 +55,15 @@ const TypeFormEmbed = ({
 
 TypeFormEmbed.propTypes = {
   queryParameters: PropTypes.object,
-  redirectParameters: PropTypes.object,
   typeformUrl: PropTypes.string.isRequired,
   displayType: PropTypes.oneOf(['block', 'modal']),
+  onSubmit: PropTypes.func,
 };
 
 TypeFormEmbed.defaultProps = {
   queryParameters: {},
-  redirectParameters: {},
   displayType: 'block',
+  onSubmit: null,
 };
 
 export default TypeFormEmbed;
