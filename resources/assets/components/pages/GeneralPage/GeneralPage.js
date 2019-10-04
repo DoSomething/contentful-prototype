@@ -10,12 +10,10 @@ import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
-import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
+import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
-import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
 
@@ -138,19 +136,11 @@ const GeneralPage = props => {
       </div>
 
       {ctaCopy && !isAuthenticated ? (
-        <DismissableElement
-          name="cta_register_popover"
-          render={handleClose => (
-            <DelayedElement delay={3}>
-              <CtaPopover
-                title={ctaCopy.title}
-                content={ctaCopy.content}
-                link={authUrl}
-                buttonText={ctaCopy.buttonText}
-                handleClose={handleClose}
-              />
-            </DelayedElement>
-          )}
+        <CtaBanner
+          title={ctaCopy.title}
+          content={ctaCopy.content}
+          link={authUrl}
+          buttonText={ctaCopy.buttonText}
         />
       ) : null}
     </div>
