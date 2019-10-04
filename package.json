@@ -64,6 +64,7 @@
     "@dosomething/forge": "^6.10.0",
     "@dosomething/gateway": "^2.0.1",
     "@dosomething/puck-client": "^1.6.0",
+    "@typeform/embed": "^0.12.1",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.2",
     "apollo-link": "^1.2.12",

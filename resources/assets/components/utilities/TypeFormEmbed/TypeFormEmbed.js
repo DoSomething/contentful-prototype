@@ -1,7 +1,8 @@
 /* global window */
 
-import React from 'react';
 import PropTypes from 'prop-types';
+import * as typeformEmbed from '@typeform/embed';
+import React, { useRef, useEffect } from 'react';
 
 import { appendToQuery, makeUrl, withoutNulls } from '../../../helpers';
 
@@ -17,40 +18,37 @@ const DISPLAY_STYLES = {
   },
 };
 
-class TypeFormEmbed extends React.Component {
-  componentDidMount() {
-    window.typeformInit();
-  }
+const TypeFormEmbed = ({
+  displayType,
+  queryParameters,
+  redirectParameters,
+  typeformUrl,
+}) => {
+  const typeformElement = useRef(null);
 
-  render() {
-    const {
-      queryParameters,
-      redirectParameters,
-      typeformUrl,
-      displayType,
-    } = this.props;
+  const redirectUrl = appendToQuery(redirectParameters, window.location.href);
 
-    const redirectUrl = appendToQuery(redirectParameters, window.location.href);
+  const typeformQuery = {
+    redirect_url: redirectUrl.href,
+    ...queryParameters,
+  };
 
-    const typeformQuery = {
-      redirect_url: redirectUrl.href,
-      ...queryParameters,
-    };
+  const url = makeUrl(typeformUrl, withoutNulls(typeformQuery));
 
-    const url = makeUrl(typeformUrl, withoutNulls(typeformQuery));
+  useEffect(() => {
+    typeformEmbed.makeWidget(typeformElement.current, url.href, {});
+  }, []);
 
-    return (
-      <div
-        className="typeform-widget"
-        data-url={url.href}
-        style={{
-          width: '100%',
-          ...DISPLAY_STYLES[displayType],
-        }}
-      />
-    );
-  }
-}
+  return (
+    <div
+      ref={typeformElement}
+      style={{
+        width: '100%',
+        ...DISPLAY_STYLES[displayType],
+      }}
+    />
+  );
+};
 
 TypeFormEmbed.propTypes = {
   queryParameters: PropTypes.object,
