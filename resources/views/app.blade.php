@@ -10,8 +10,4 @@
             </div>
         </div>
     </div>
-
-    @push('scripts')
-      @include('partials.typeform_script')
-    @endpush
 @endsection
