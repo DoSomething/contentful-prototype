@@ -12,6 +12,7 @@ const REFERRAL_CAMPAIGN_IDS = [
   '3302',
   '3590',
   '7951',
+  '9001', // Used to test on dev.
   '9026',
   '9027',
   '9030',
@@ -40,7 +41,6 @@ const CtaReferralPageBanner = ({ campaignId }) => (
         </div>
       </div>
     ) : null}
-    ;
   </React.Fragment>
 );
 
