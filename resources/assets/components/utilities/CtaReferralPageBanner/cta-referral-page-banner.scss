@@ -4,6 +4,10 @@
   background: #983ac9 url('./bg-small.svg');
   background-repeat: repeat;
   background-size: cover;
+  h3,
+  p {
+    text-shadow: 2px 2px #983ac9;
+  }
 
   div {
     padding-top: 220px;
