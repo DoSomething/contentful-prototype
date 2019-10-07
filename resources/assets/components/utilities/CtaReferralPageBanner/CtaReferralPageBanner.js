@@ -42,7 +42,6 @@ const CtaReferralPageBanner = ({ campaignId }) => (
         </div>
       </div>
     ) : null}
-    ;
   </React.Fragment>
 );
 
