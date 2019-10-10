@@ -481,6 +481,7 @@ function get_authorization_query($entity = null, $mode = null)
         'utm_campaign',
         'utm_medium',
         'utm_source',
+        'register_beta',
     ];
 
     if ($mode) {
