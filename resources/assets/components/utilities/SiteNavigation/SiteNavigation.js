@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CloseButton from '../CloseButton/CloseButton';
-import searchIcon from '../../../images/search_icon.svg';
+import searchIcon from '../../../images/search-icon.svg';
 import DoSomethingLogo from '../DoSomethingLogo/DoSomethingLogo';
 
 import './site-navigation.scss';
@@ -260,7 +260,8 @@ class SiteNavigation extends React.Component {
 
                     <CloseButton
                       callback={() => this.handleOnClickClose('SearchSubNav')}
-                      className="btn__close--search-subnav"
+                      className="btn__close--search-subnav p-1"
+                      size="22px"
                     />
                   </div>
                 </form>
