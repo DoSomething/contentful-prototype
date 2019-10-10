@@ -26,7 +26,7 @@ export const REGISTER_CTA_COPY = {
   facts: {
     title: 'Learn Something...Then Do Something!',
     content:
-      'Sign up for DoSomething.org. You’ll can make an impact with millions of young people and earn easy scholarships for volunteering!',
+      'Sign up for DoSomething.org. You can make an impact with millions of young people and earn easy scholarships for volunteering!',
     buttonText: 'Join us',
   },
   articles: {
