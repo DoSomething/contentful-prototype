@@ -69,7 +69,7 @@ class HomePage extends React.Component {
 
     return (
       <React.Fragment>
-        <SiteNavigation template="megaNav" feature="some block" />
+        <SiteNavigation feature="some block" />
         <div className="home-page">
           <header role="banner" className="header header--home">
             <div className="wrapper">
