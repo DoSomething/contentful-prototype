@@ -5,7 +5,7 @@ import classnames from 'classnames';
 const CloseButton = ({ callback, className, color, size }) => (
   <button
     type="button"
-    className={classnames('cursor-pointer block', className)}
+    className={classnames('cursor-pointer', className)}
     onClick={callback}
   >
     <svg

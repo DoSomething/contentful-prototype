@@ -260,7 +260,7 @@ class SiteNavigation extends React.Component {
 
                     <CloseButton
                       callback={() => this.handleOnClickClose('SearchSubNav')}
-                      className="btn__close--search-subnav p-1"
+                      className="btn__close--search-subnav block p-1"
                       size="22px"
                     />
                   </div>
