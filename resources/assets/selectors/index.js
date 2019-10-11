@@ -12,6 +12,8 @@ export function getDataForNorthstar(state) {
     utm_source: query('utm_source'),
     utm_medium: query('utm_medium'),
     utm_campaign: query('utm_campaign'),
+    // TEMPORARY: Override authentication mode for testing new registration flow.
+    mode: query('register_beta') ? 'register-beta' : null,
   };
 }
 

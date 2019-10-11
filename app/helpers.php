@@ -487,6 +487,11 @@ function get_authorization_query($entity = null, $mode = null)
         $query['mode'] = $mode;
     }
 
+    // TEMPORARY: Override authentication mode for testing new registration flow.
+    if (request('register_beta') && $mode !== 'login') {
+        $query['mode'] = 'register-beta';
+    }
+
     foreach ($params as $param) {
         if (request($param)) {
             $options[$param] = request($param);
