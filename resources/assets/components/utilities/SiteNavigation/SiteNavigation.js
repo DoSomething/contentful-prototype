@@ -252,13 +252,17 @@ class SiteNavigation extends React.Component {
             </li>
 
             <li className="menu-nav__item">
-              <a href="/" data-label="articles" onClick={this.analyzeEvent}>
+              <a
+                href="/"
+                data-label="articles"
+                onClick={this.handleOnClickLink}
+              >
                 Articles
               </a>
             </li>
 
             <li className="menu-nav__item">
-              <a href="/" data-label="about" onClick={this.analyzeEvent}>
+              <a href="/" data-label="about" onClick={this.handleOnClickLink}>
                 About
               </a>
             </li>
