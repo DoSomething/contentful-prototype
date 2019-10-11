@@ -1,9 +1,18 @@
+/* global document */
+/* eslint-disable id-length, jsx-a11y/interactive-supports-focus */
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import { get } from 'lodash';
+import classnames from 'classnames';
 
 import CloseButton from '../CloseButton/CloseButton';
 import searchIcon from '../../../images/search-icon.svg';
 import DoSomethingLogo from '../DoSomethingLogo/DoSomethingLogo';
+import {
+  trackAnalyticsEvent,
+  getUtmContext,
+  getPageContext,
+} from '../../../helpers/analytics';
 
 import './site-navigation.scss';
 
@@ -12,59 +21,86 @@ class SiteNavigation extends React.Component {
     super(props);
 
     this.state = {
-      active: null,
+      activeSubNav: null,
       isSubNavFixed: false,
     };
   }
 
-  handleMouseEnter = subNavName => {
-    // console.log('🔥');
+  analyzeEvent = event => {
+    const targets = {
+      A: 'link',
+      BUTTON: 'button',
+    };
 
-    const { active, isSubNavFixed } = this.state;
+    const target = get(targets, event.target.tagName, 'element');
 
-    if (isSubNavFixed) {
-      // && active !== subNavName) {
-      return;
-    }
-
-    this.setState({
-      active: subNavName,
+    trackAnalyticsEvent({
+      context: {
+        ...getUtmContext(),
+        ...getPageContext(),
+        referrer: document.referrer,
+      },
+      metadata: {
+        adjective: event.target.dataset.label,
+        category: 'navigation',
+        label: event.target.dataset.label,
+        noun: event.target.dataset.noun || 'nav_link',
+        target,
+        verb: 'clicked',
+      },
     });
   };
 
-  handleMouseLeave = subNavName => {
-    // console.log('💧');
-
-    const { active, isSubNavFixed } = this.state;
+  handleMouseEnter = subNavName => {
+    const { isSubNavFixed } = this.state;
 
     if (isSubNavFixed) {
-      // && active !== subNavName) {
       return;
     }
 
     this.setState({
-      active: null,
+      activeSubNav: subNavName,
+    });
+  };
+
+  handleMouseLeave = () => {
+    const { isSubNavFixed } = this.state;
+
+    if (isSubNavFixed) {
+      return;
+    }
+
+    this.setState({
+      activeSubNav: null,
+    });
+  };
+
+  handleOnClickLink = event => {
+    this.analyzeEvent(event);
+
+    this.setState({
+      activeSubNav: null,
+      isSubNavFixed: false,
     });
   };
 
   handleOnClickToggle = (event, subNavName) => {
     event.preventDefault();
 
-    const { active, isSubNavFixed } = this.state;
+    this.analyzeEvent(event);
 
-    // console.log('🚀');
-    // console.log(event);
+    const { activeSubNav, isSubNavFixed } = this.state;
 
-    if (active === subNavName && isSubNavFixed) {
+    if (activeSubNav === subNavName && isSubNavFixed) {
       this.setState({
-        active: null,
+        activeSubNav: null,
         isSubNavFixed: false,
       });
 
       return;
     }
 
-    if (active === subNavName && !isSubNavFixed) {
+    if (activeSubNav === subNavName && !isSubNavFixed) {
       this.setState({
         isSubNavFixed: true,
       });
@@ -73,16 +109,16 @@ class SiteNavigation extends React.Component {
     }
 
     this.setState({
-      active: subNavName,
+      activeSubNav: subNavName,
       isSubNavFixed: true,
     });
   };
 
-  handleOnClickClose = subNavName => {
-    console.log('ⅹ');
+  handleOnClickClose = event => {
+    this.analyzeEvent(event);
 
     this.setState({
-      active: null,
+      activeSubNav: null,
       isSubNavFixed: false,
     });
   };
@@ -99,12 +135,15 @@ class SiteNavigation extends React.Component {
 
           <ul className="main-nav menu-nav">
             <li
-              className="menu-nav__item"
+              className={classnames('menu-nav__item', {
+                'is-active': this.state.activeSubNav === 'CausesSubNav',
+              })}
               onMouseEnter={() => this.handleMouseEnter('CausesSubNav')}
               onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
             >
               <a
                 href="/"
+                data-label="causes"
                 onClick={event =>
                   this.handleOnClickToggle(event, 'CausesSubNav')
                 }
@@ -112,7 +151,7 @@ class SiteNavigation extends React.Component {
                 Causes
               </a>
 
-              {this.state.active === 'CausesSubNav' ? (
+              {this.state.activeSubNav === 'CausesSubNav' ? (
                 <div className="main-subnav menu-subnav">
                   <div className="wrapper base-12-grid">
                     <section className="main-subnav__links-causes menu-subnav__links">
@@ -189,21 +228,39 @@ class SiteNavigation extends React.Component {
                       <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
                       <a href="/">Learn More</a>
                     </section>
+
+                    <CloseButton
+                      callback={this.handleOnClickClose}
+                      className="btn__close--subnav btn__close--main-subnav block p-1"
+                      dataLabel="close_subnav"
+                      dataNoun="nav_button"
+                      size="22px"
+                    />
                   </div>
                 </div>
               ) : null}
             </li>
 
             <li className="menu-nav__item">
-              <a href="/">Scholarships</a>
+              <a
+                href="/"
+                data-label="scholarships"
+                onClick={this.handleOnClickLink}
+              >
+                Scholarships
+              </a>
             </li>
 
             <li className="menu-nav__item">
-              <a href="/">Articles</a>
+              <a href="/" data-label="articles" onClick={this.analyzeEvent}>
+                Articles
+              </a>
             </li>
 
             <li className="menu-nav__item">
-              <a href="/">About</a>
+              <a href="/" data-label="about" onClick={this.analyzeEvent}>
+                About
+              </a>
             </li>
           </ul>
 
@@ -219,7 +276,7 @@ class SiteNavigation extends React.Component {
                 <img src={searchIcon} alt="search icon" />
               </a>
 
-              {this.state.active === 'SearchSubNav' ? (
+              {this.state.activeSubNav === 'SearchSubNav' ? (
                 <form
                   className="utility-subnav menu-subnav"
                   id="utility-subnav__search"
@@ -259,8 +316,10 @@ class SiteNavigation extends React.Component {
                     </div>
 
                     <CloseButton
-                      callback={() => this.handleOnClickClose('SearchSubNav')}
-                      className="btn__close--search-subnav block p-1"
+                      callback={this.handleOnClickClose}
+                      className="btn__close--subnav btn__close--search-subnav block p-1"
+                      dataLabel="close_subnav"
+                      dataNoun="nav_button"
                       size="22px"
                     />
                   </div>
@@ -269,25 +328,31 @@ class SiteNavigation extends React.Component {
             </li>
 
             <li className="utility-nav__auth menu-nav__item">
-              <a href="/">Log In</a>
+              <a href="/" data-label="log-in" onClick={this.analyzeEvent}>
+                Log In
+              </a>
             </li>
 
             <li className="utility-nav__join menu-nav__item">
-              <a href="/">Join Now</a>
+              <a href="/" data-label="join_now" onClick={this.analyzeEvent}>
+                Join Now
+              </a>
             </li>
           </ul>
         </div>
+
+        {this.state.activeSubNav ? (
+          <div
+            className="underlay"
+            data-label="underlay_close_subnav"
+            data-noun="nav_element"
+            onClick={this.handleOnClickClose}
+            role="button"
+          />
+        ) : null}
       </nav>
     );
   }
 }
-
-SiteNavigation.propTypes = {
-  template: PropTypes.string,
-};
-
-SiteNavigation.defaultProps = {
-  template: null,
-};
 
 export default SiteNavigation;

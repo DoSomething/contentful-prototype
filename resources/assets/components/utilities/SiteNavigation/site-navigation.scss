@@ -17,23 +17,6 @@ $extraSmall: '(min-width: 360px)';
       padding: $spacing_1_5x $spacing_2x 0;
     }
   }
-
-  //   &.is-showing-subnav {
-  //     background-color: red;
-
-  //     // &::after {
-  //     //   background-color: rgba(255, 255, 255, 0.5);
-  //     //   content: '';
-  //     //   display: block;
-  //     //   height: 100%;
-  //     //   max-width: 1440px;
-  //     //   pointer-events: none;
-  //     //   position: fixed;
-  //     //   top: 0;
-  //     //   width: 100%;
-  //     //   z-index: -1;
-  //     // }
-  //   }
 }
 
 .menu-nav__item {
@@ -59,7 +42,6 @@ $extraSmall: '(min-width: 360px)';
   background-color: white;
   border-top: 1px solid $gray-300;
   box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
-  // display: none;
   left: 0;
   position: absolute;
   top: 100%;
@@ -71,19 +53,6 @@ $extraSmall: '(min-width: 360px)';
 
   .wrapper {
     position: relative;
-  }
-
-  &::before {
-    background-color: rgba(255, 255, 255, 0.5);
-    content: '';
-    display: block;
-    height: 100%;
-    max-width: 1440px;
-    pointer-events: none;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: -1;
   }
 }
 
@@ -97,9 +66,17 @@ $extraSmall: '(min-width: 360px)';
   }
 }
 
-// .is-visible {
-//   display: block !important;
-// }
+.underlay {
+  background-color: rgba(255, 255, 255, 0.5);
+  content: '';
+  display: block;
+  height: 100%;
+  max-width: 1440px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
 
 // Logo Nav
 .logo-nav {
@@ -136,12 +113,9 @@ $extraSmall: '(min-width: 360px)';
 
   .menu-nav__item {
     &:hover,
-    &:active {
+    &:active,
+    &.is-active {
       box-shadow: inset 0 -4px 0 0 $yellow;
-
-      // .menu-subnav {
-      //   display: block;
-      // }
     }
 
     > a {
@@ -245,7 +219,7 @@ $extraSmall: '(min-width: 360px)';
   grid-column: full-start / full-end;
 }
 
-.btn__close--search-subnav {
+.btn__close--subnav {
   position: absolute;
   right: 12px;
   top: 12px;
@@ -253,5 +227,11 @@ $extraSmall: '(min-width: 360px)';
   @include media($medium) {
     right: 48px;
     top: 24px;
+  }
+}
+
+.btn__close--main-subnav {
+  @include media($large) {
+    display: none;
   }
 }
