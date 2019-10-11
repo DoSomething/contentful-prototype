@@ -481,11 +481,15 @@ function get_authorization_query($entity = null, $mode = null)
         'utm_campaign',
         'utm_medium',
         'utm_source',
-        'register_beta',
     ];
 
     if ($mode) {
         $query['mode'] = $mode;
+    }
+
+    // TEMPORARY: Override authentication mode for testing new registration flow.
+    if (request('register_beta') && $mode !== 'login') {
+        $query['mode'] = 'register-beta';
     }
 
     foreach ($params as $param) {
