@@ -24,7 +24,7 @@ export const postCardFragment = gql`
     url
     text
     tags
-    quantity
+    impact
     location(format: HUMAN_FORMAT)
     signupId
     createdAt
@@ -32,7 +32,6 @@ export const postCardFragment = gql`
 
     actionDetails {
       anonymous
-      noun
     }
 
     user {
@@ -94,10 +93,8 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
             <PostBadge status={post.status} tags={post.tags} />
           </h4>
 
-          {post.quantity && !hideQuantity ? (
-            <p className="footnote">
-              {post.quantity} {post.actionDetails.noun}
-            </p>
+          {post.impact && !hideQuantity ? (
+            <p className="footnote">{post.impact}</p>
           ) : null}
 
           {isAnonymous ? (
