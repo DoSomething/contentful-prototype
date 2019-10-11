@@ -254,6 +254,20 @@
                 "defaultValue": null
               },
               {
+                "name": "tags",
+                "description": "# The tags to load posts for.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "type",
                 "description": "# The type name to load posts for.",
                 "type": {
@@ -876,6 +890,43 @@
             "type": {
               "kind": "OBJECT",
               "name": "CampaignWebsite",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "page",
+            "description": null,
+            "args": [
+              {
+                "name": "id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "preview",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Page",
               "ofType": null
             },
             "isDeprecated": false,
@@ -1510,6 +1561,18 @@
             "deprecationReason": null
           },
           {
+            "name": "displayName",
+            "description": "The user's display name is their first name and (if set) last initial.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "firstName",
             "description": "The user's first name.",
             "args": [],
@@ -1523,7 +1586,7 @@
           },
           {
             "name": "lastName",
-            "description": "The user's last name.",
+            "description": "The user's last name. **This field contains personally-identifiable information, and access will be logged.**",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1547,7 +1610,19 @@
           },
           {
             "name": "email",
-            "description": "The user's email address.",
+            "description": "The user's email address. **This field contains personally-identifiable information, and access will be logged.**",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "emailPreview",
+            "description": "A preview of the user's email address.",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1559,7 +1634,7 @@
           },
           {
             "name": "mobile",
-            "description": "The user's mobile number.",
+            "description": "The user's mobile number. **This field contains personally-identifiable information, and access will be logged.**",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1570,8 +1645,32 @@
             "deprecationReason": null
           },
           {
+            "name": "mobilePreview",
+            "description": "A preview of the user's mobile number.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "age",
+            "description": "The user's age.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "birthdate",
-            "description": "The user's birthdate, formatted YYYY-MM-DD.",
+            "description": "The user's birthdate, formatted YYYY-MM-DD. **This field contains personally-identifiable information, and access will be logged.**",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1583,7 +1682,7 @@
           },
           {
             "name": "addrStreet1",
-            "description": "The user's street address. Null if unauthorized.",
+            "description": "The user's street address. Null if unauthorized. **This field contains personally-identifiable information, and access will be logged.**",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1595,7 +1694,7 @@
           },
           {
             "name": "addrStreet2",
-            "description": "The user's extended street address (for example, apartment number). Null if unauthorized.",
+            "description": "The user's extended street address (for example, apartment number). Null if unauthorized. **This field contains personally-identifiable information, and access will be logged.**",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1682,12 +1781,16 @@
             "description": "The user's email subscription status.",
             "args": [],
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "ENUM",
-                "name": "EmailSubscriptionTopic",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "ENUM",
+                  "name": "EmailSubscriptionTopic",
+                  "ofType": null
+                }
               }
             },
             "isDeprecated": false,
@@ -1891,6 +1994,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "permalink",
+            "description": "The permalink to this user's profile in Aurora.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2109,6 +2224,12 @@
           },
           {
             "name": "UNCERTAIN",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "UNREGISTERED",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -2354,6 +2475,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "impact",
+            "description": "The human-readable impact (quantity, noun, and verb).",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3358,17 +3491,32 @@
         "possibleTypes": [
           {
             "kind": "OBJECT",
+            "name": "AutoReplyTransition",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "AutoReplyTopic",
             "ofType": null
           },
           {
             "kind": "OBJECT",
-            "name": "AutoReplySignupTopic",
+            "name": "FaqAnswerTopic",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PhotoPostTransition",
             "ofType": null
           },
           {
             "kind": "OBJECT",
             "name": "PhotoPostTopic",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "TextPostTransition",
             "ofType": null
           },
           {
@@ -3460,6 +3608,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "PersonBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "EmbedBlock",
             "ofType": null
           },
@@ -3470,7 +3623,17 @@
           },
           {
             "kind": "OBJECT",
+            "name": "GalleryBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "LinkBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentBlock",
             "ofType": null
           },
           {
@@ -3826,6 +3989,78 @@
             "deprecationReason": null
           },
           {
+            "name": "callToAction",
+            "description": "The call to action tagline for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coverImage",
+            "description": "The cover image for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseTitle",
+            "description": "The showcase title (the title field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The showcase description (the callToAction field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The showcase image (the coverImage field.)",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
             "description": "The Contentful ID for this block.",
             "args": [],
@@ -3867,7 +4102,380 @@
           }
         ],
         "inputFields": null,
-        "interfaces": [],
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Showcasable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Showcasable",
+        "description": null,
+        "fields": [
+          {
+            "name": "showcaseTitle",
+            "description": "The showcase title",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The showcase description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The showcase image",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "CampaignWebsite",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Page",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PersonBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentBlock",
+            "ofType": null
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Page",
+        "description": null,
+        "fields": [
+          {
+            "name": "internalTitle",
+            "description": "This title is used internally to help find this content.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "The title for this page.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "subTitle",
+            "description": "The subtitle for this page.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": "The slug for this page.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coverImage",
+            "description": "Cover image for this page.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": "The content of the page.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sidebar",
+            "description": "Sidebar blocks rendered alongside the content on the page.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "Block",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "blocks",
+            "description": "Blocks rendered following the content on the page.",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INTERFACE",
+                "name": "Block",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "displaySocialShare",
+            "description": "Should we display social share buttons on the bottom of the page?",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hideFromNavigation",
+            "description": "Should we hide the page from the navigation bar? (for campaign pages.)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseTitle",
+            "description": "The Showcase title (the title field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The Showcase description (the content field.)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The Showcase image (the coverImage field.)",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "additionalContent",
+            "description": "Any custom overrides for this block.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Showcasable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "JSON",
+        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -3917,9 +4525,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -3993,8 +4605,24 @@
         "description": "Media attached to a broadcast.",
         "fields": [
           {
+            "name": "id",
+            "description": "The unique ID for this Contentful asset.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "url",
-            "description": "The broadcast media URL.",
+            "description": "The URL where this broadcast media is available at.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4010,7 +4638,7 @@
           },
           {
             "name": "contentType",
-            "description": "The broadcast media content type.",
+            "description": "Mime-type for this broadcast media asset.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -4068,41 +4696,17 @@
             "deprecationReason": null
           },
           {
-            "name": "reply",
-            "description": "The Rivescript reply to send user if their inbound message matches the trigger.",
+            "name": "response",
+            "description": "The transition to change user conversation to.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
+                "kind": "INTERFACE",
+                "name": "Topic",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topicId",
-            "description": "The topic ID to change user conversation to.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topic",
-            "description": "The topic to change user conversation to.",
-            "args": [],
-            "type": {
-              "kind": "INTERFACE",
-              "name": "Topic",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4119,6 +4723,22 @@
         "description": "Confirmation to send a user when they sign up for a campaign from web.",
         "fields": [
           {
+            "name": "id",
+            "description": "The entry id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "campaignId",
             "description": "The campaign ID that the user signed up for.",
             "args": [],
@@ -4128,38 +4748,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "text",
-            "description": "The confirmation message text to the user.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topicId",
-            "description": "The topic ID to change the user conversation to.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -5080,16 +5668,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "JSON",
-        "description": "The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "ImagesBlock",
         "description": null,
@@ -5153,6 +5731,204 @@
         ],
         "inputFields": null,
         "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Block",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PersonBlock",
+        "description": null,
+        "fields": [
+          {
+            "name": "name",
+            "description": "Name of the person displayed on the block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "type",
+            "description": "The person's relationship with the organization: member? employee?",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "active",
+            "description": "The status of the person's relationship with the organization: active? non-active?",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "jobTitle",
+            "description": "Job title of the person.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "photo",
+            "description": "Photo of the person.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "alternatePhoto",
+            "description": "Alternate Photo of the person.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": "Description of the person.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseTitle",
+            "description": "The Showcase title (the name field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The Showcase description ('description' if the person is a board member and 'jobTitle' by default.)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The Showcase image ('photo' if the person is an advisory board member 'alternatePhoto' by default.)",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Showcasable",
+            "ofType": null
+          },
           {
             "kind": "INTERFACE",
             "name": "Block",
@@ -5314,11 +6090,160 @@
           },
           {
             "name": "hideReactions",
-            "description": "Hide the post reactions for this gallery",
+            "description": "Hide the post reactions for this gallery.",
             "args": [],
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Block",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GalleryBlock",
+        "description": null,
+        "fields": [
+          {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this gallery.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "Title of the gallery.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "itemsPerRow",
+            "description": "The maximum number of items in a single row when viewing the gallery in a large display.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "imageAlignment",
+            "description": "The alignment of the gallery images relative to their text content.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "blocks",
+            "description": "Blocks to display or preview in the Gallery.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "INTERFACE",
+                  "name": "Showcasable",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "imageFit",
+            "description": "Controls the cropping method of the gallery images.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5527,6 +6452,212 @@
           {
             "kind": "INTERFACE",
             "name": "Block",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentBlock",
+        "description": null,
+        "fields": [
+          {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this link block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "superTitle",
+            "description": "An optional supporting super-title.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "The user-facing title of the block.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "subTitle",
+            "description": "A subtitle for the content block.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": "The content for the content block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": "An optional Image to display next to the content.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "imageAlignment",
+            "description": "The alignment of the image.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseTitle",
+            "description": "The Showcase title (the title field.)",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The Showcase description (the content field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The Showcase image (the image field.)",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "additionalContent",
+            "description": "Any custom overrides for this block.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Block",
+            "ofType": null
+          },
+          {
+            "kind": "INTERFACE",
+            "name": "Showcasable",
             "ofType": null
           }
         ],
@@ -6468,69 +7599,29 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CampaignAction",
-        "description": "The Rogue action associated with this broadcast.",
+        "name": "LegacyCampaign",
+        "description": null,
         "fields": [
           {
-            "name": "id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "name",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "campaignId",
-            "description": "The campaign_id this action belongs to.",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "postType",
-            "description": "The expected action submitted type",
+            "name": "webSignup",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "INTERFACE",
+              "name": "Topic",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6543,8 +7634,93 @@
       },
       {
         "kind": "OBJECT",
+        "name": "AutoReplyTransition",
+        "description": "Transition topic for autoReply broadcasts",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The entry ID.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": "The entry name.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentType",
+            "description": "The entry content type (e.g. 'photoPostConfig', 'askYesNo').",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": "The transition text",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "topic",
+            "description": "The autoReply Topic to switch the member to",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AutoReplyTopic",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Topic",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "AutoReplyTopic",
-        "description": "Topic for sending a single auto-reply message.",
+        "description": "Topic for sending a single auto-reply message. If there is a campaign set, we sign up the member to that campaign",
         "fields": [
           {
             "name": "id",
@@ -6587,13 +7763,33 @@
             "description": "The auto reply text.",
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "legacyCampaign",
+            "description": "The campaign to switch the member to if this is a signup auto reply topic",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "LegacyCampaign",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "campaign",
+            "description": "The campaign that this topic should create signups for.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Campaign",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6612,8 +7808,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "AutoReplySignupTopic",
-        "description": "Topic for creating a signup and sending a single auto-reply message.",
+        "name": "FaqAnswerTopic",
+        "description": "FAQ topic",
         "fields": [
           {
             "name": "id",
@@ -6652,24 +7848,77 @@
             "deprecationReason": null
           },
           {
-            "name": "campaignId",
-            "description": "The campaign ID to create signup for if conversation changes to this topic.",
+            "name": "text",
+            "description": "The answer to the FAQ",
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },
             "isDeprecated": false,
             "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Topic",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PhotoPostTransition",
+        "description": "Transition topic for photoPosts",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The entry ID.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
-            "name": "autoReply",
-            "description": "Template sent as an auto reply to user messages.",
+            "name": "name",
+            "description": "The entry name.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentType",
+            "description": "The entry content type (e.g. 'photoPostConfig', 'askYesNo').",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": "The transition text",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6684,13 +7933,17 @@
             "deprecationReason": null
           },
           {
-            "name": "campaign",
-            "description": "The campaign that this topic should create signups for.",
+            "name": "topic",
+            "description": "The photoPostTopic to switch the member to",
             "args": [],
             "type": {
-              "kind": "OBJECT",
-              "name": "Campaign",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PhotoPostTopic",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6761,17 +8014,13 @@
             "deprecationReason": null
           },
           {
-            "name": "campaignId",
-            "description": "The campaign ID to create signup and photo post for if conversation changes to this topic.",
+            "name": "legacyCampaign",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "LegacyCampaign",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -6978,6 +8227,91 @@
       },
       {
         "kind": "OBJECT",
+        "name": "TextPostTransition",
+        "description": "Transition topic for textPosts",
+        "fields": [
+          {
+            "name": "id",
+            "description": "The entry ID.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": "The entry name.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentType",
+            "description": "The entry content type (e.g. 'photoPostConfig', 'askYesNo').",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": "The transition text",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "topic",
+            "description": "The transition Topic",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TextPostTopic",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Topic",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "TextPostTopic",
         "description": "Topic for creating signup and text posts. Ask user to reply with a text post.",
         "fields": [
@@ -7030,17 +8364,13 @@
             "deprecationReason": null
           },
           {
-            "name": "campaignId",
-            "description": "The campaign ID to create signup and text post for if conversation changes to this topic.",
+            "name": "legacyCampaign",
+            "description": null,
             "args": [],
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "LegacyCampaign",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7147,9 +8477,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7171,39 +8505,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidFirstChoice",
-            "description": "Message sent if user selects the first option.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidFirstChoiceTopicId",
-            "description": "The topic ID to change conversation to if user selects the first option.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidFirstChoiceTopic",
+            "name": "saidFirstChoiceTransition",
             "description": "The topic to change conversation to if user selects the first option.",
             "args": [],
             "type": {
@@ -7215,39 +8517,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidSecondChoice",
-            "description": "Message sent if user selects the second option.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidSecondChoiceTopicId",
-            "description": "The topic ID to change conversation to if user selects the second option.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidSecondChoiceTopic",
+            "name": "saidSecondChoiceTransition",
             "description": "The topic to change conversation to if user selects the second option.",
             "args": [],
             "type": {
@@ -7259,39 +8529,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidThirdChoice",
-            "description": "Message sent if user selects the third option.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidThirdChoiceTopicId",
-            "description": "The topic ID to change conversation to if user selects the third option.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidThirdChoiceTopic",
+            "name": "saidThirdChoiceTransition",
             "description": "The topic to change conversation to if user selects the third option.",
             "args": [],
             "type": {
@@ -7303,31 +8541,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidFourthChoice",
-            "description": "Message sent if user selects the fourth option.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidFourthChoiceTopicId",
-            "description": "The topic ID to change conversation to if user selects the fourth option.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidFourthChoiceTopic",
+            "name": "saidFourthChoiceTransition",
             "description": "The topic to change conversation to if user selects the fourth option.",
             "args": [],
             "type": {
@@ -7339,31 +8553,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidFifthChoice",
-            "description": "Message sent if user selects the fifth option.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidFifthChoiceTopicId",
-            "description": "The topic ID to change conversation to if user selects the fifth option.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidFifthChoiceTopic",
+            "name": "saidFifthChoiceTransition",
             "description": "The topic to change conversation to if user selects the fifth option.",
             "args": [],
             "type": {
@@ -7453,9 +8643,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7477,88 +8671,24 @@
             "deprecationReason": null
           },
           {
-            "name": "saidActive",
-            "description": "Message sent if user says active.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidActiveTopicId",
-            "description": "The topic ID to change conversation to if user says active.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidActiveTopic",
+            "name": "saidActiveTransition",
             "description": "The topic to change conversation to if user says active.",
             "args": [],
             "type": {
-              "kind": "INTERFACE",
-              "name": "Topic",
+              "kind": "OBJECT",
+              "name": "AutoReplyTransition",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "saidLess",
-            "description": "Message sent if user says less.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidLessTopicId",
-            "description": "The topic ID to change conversation to if user says less.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidLessTopic",
+            "name": "saidLessTransition",
             "description": "The topic to change conversation to if user says less.",
             "args": [],
             "type": {
-              "kind": "INTERFACE",
-              "name": "Topic",
+              "kind": "OBJECT",
+              "name": "AutoReplyTransition",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7659,9 +8789,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7683,51 +8817,7 @@
             "deprecationReason": null
           },
           {
-            "name": "actionId",
-            "description": "Used by Rogue to attribute this post to an specific action within the campaign",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidCantVote",
-            "description": "Message sent if user says they can't vote.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidCantVoteTopicId",
-            "description": "The topic ID to change conversation to if user says they can't vote.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidCantVoteTopic",
+            "name": "saidCantVoteTransition",
             "description": "The topic to change conversation to if user says they can't vote.",
             "args": [],
             "type": {
@@ -7739,39 +8829,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidNotVoting",
-            "description": "Message sent if user says they aren't voting.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidNotVotingTopicId",
-            "description": "The topic ID to change conversation to if user says they aren't voting.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidNotVotingTopic",
+            "name": "saidNotVotingTransition",
             "description": "The topic to change conversation to if user says they aren't voting.",
             "args": [],
             "type": {
@@ -7783,39 +8841,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidVoted",
-            "description": "Message sent if user says they already voted.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidVotedTopicId",
-            "description": "The topic ID to change conversation to if user says they already voted.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidVotedTopic",
+            "name": "saidVotedTransition",
             "description": "The topic to change conversation to if user says they already voted.",
             "args": [],
             "type": {
@@ -7901,9 +8927,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -7925,51 +8955,7 @@
             "deprecationReason": null
           },
           {
-            "name": "actionId",
-            "description": "Used by Rogue to attribute this post to an specific action within the campaign",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidYes",
-            "description": "Message sent if user says yes.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidYesTopicId",
-            "description": "The topic ID to change conversation to if user says yes",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidYesTopic",
+            "name": "saidYesTransition",
             "description": "The topic to change conversation to if user says yes.",
             "args": [],
             "type": {
@@ -7981,39 +8967,7 @@
             "deprecationReason": null
           },
           {
-            "name": "saidNo",
-            "description": "Message sent if user says yes.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidNoTopicId",
-            "description": "The topic ID to change conversation to if user says no.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "saidNoTopic",
+            "name": "saidNoTransition",
             "description": "The topic to change conversation to if user says no.",
             "args": [],
             "type": {
@@ -8115,9 +9069,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8132,22 +9090,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "BroadcastMedia",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topicId",
-            "description": "The ID of the AutoReplyTopic to change conversation to.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -8224,9 +9166,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8241,34 +9187,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "BroadcastMedia",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "actionId",
-            "description": "Used by Rogue to attribute this post to an specific action within the campaign",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topicId",
-            "description": "The ID of the PhotoPostTopic to change conversation to.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -8357,9 +9275,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8374,34 +9296,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "BroadcastMedia",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "actionId",
-            "description": "Used by Rogue to attribute this post to an specific action within the campaign",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "topicId",
-            "description": "The ID of the TextPostTopic to change conversation to.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -8490,9 +9384,13 @@
             "description": "Broadcast message text to send.",
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -8546,66 +9444,6 @@
         "possibleTypes": null
       }
     ],
-    "directives": [
-      {
-        "name": "include",
-        "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
-        "args": [
-          {
-            "name": "if",
-            "description": "Included when true.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ]
-      },
-      {
-        "name": "skip",
-        "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
-        "args": [
-          {
-            "name": "if",
-            "description": "Skipped when true.",
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          }
-        ]
-      },
-      {
-        "name": "deprecated",
-        "description": "Marks an element of a GraphQL schema as no longer supported.",
-        "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
-        "args": [
-          {
-            "name": "reason",
-            "description": "Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/).",
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": "\"No longer supported\""
-          }
-        ]
-      }
-    ]
+    "directives": []
   }
 }
