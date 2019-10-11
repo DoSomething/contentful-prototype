@@ -39,6 +39,10 @@ export const mocks = {
   // Custom scalars:
   AbsoluteUrl: () => 'https://www.example.com/',
   DateTime: () => new Date().toISOString(),
+  Date: () => {
+    const date = new Date().toISOString();
+    return date.substring(0, 10);
+  },
 
   // Types:
   User: () => ({

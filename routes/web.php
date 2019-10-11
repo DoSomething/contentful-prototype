@@ -21,8 +21,7 @@ $router->get('next/logout', 'AuthController@getLogout')->name('logout');
 // Profile
 $router->redirect('/northstar/{id}', '/us/account/profile');
 $router->view('/us/account/{clientRoute?}', 'app')
-    ->where('clientRoute', '.*')
-    ->middleware('auth');
+    ->where('clientRoute', '.*');
 
 // Campaigns index
 $router->get('us/campaigns', 'CampaignController@index');
