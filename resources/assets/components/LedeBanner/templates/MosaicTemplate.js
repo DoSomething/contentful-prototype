@@ -47,7 +47,7 @@ const MosaicTemplate = props => {
       {affiliateOptInContent ? (
         <AffiliateOptInToggleContainer
           affiliateOptInContent={affiliateOptInContent}
-          textColor="#ffffff"
+          textColor={textColor}
         />
       ) : null}
 
