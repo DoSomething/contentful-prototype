@@ -455,6 +455,10 @@ p {
 |
 */
 
+.absolute {
+  position: absolute;
+}
+
 .bg-gray-100 {
   background-color: $gray-100;
 }
@@ -495,6 +499,14 @@ p {
   display: block;
 }
 
+.bottom-0 {
+  bottom: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .font-normal {
   font-weight: $weight-normal;
 }
@@ -511,6 +523,14 @@ p {
   font-family: $secondary-font-family;
 }
 
+.h-4 {
+  height: 16px;
+}
+
+.h-8 {
+  height: 32px;
+}
+
 .hidden {
   display: none;
 }
@@ -521,11 +541,6 @@ p {
 
 .invisible {
   visibility: hidden;
-}
-
-.list-reset {
-  list-style: none;
-  padding: 0;
 }
 
 .leading-none {
@@ -552,6 +567,19 @@ p {
   line-height: 2;
 }
 
+.left-0 {
+  left: 0;
+}
+
+.list-reset {
+  list-style: none;
+  padding: 0;
+}
+
+.m-0 {
+  margin: 0;
+}
+
 .m-4 {
   margin: $half-spacing;
 }
@@ -562,6 +590,10 @@ p {
 
 .mb-4 {
   margin-bottom: $half-spacing;
+}
+
+.p-0 {
+  padding: 0;
 }
 
 .p-1 {
@@ -603,6 +635,10 @@ p {
 .px-16 {
   padding-left: $section-spacing;
   padding-right: $section-spacing;
+}
+
+.right-0 {
+  right: 0;
 }
 
 .text-black {
@@ -681,6 +717,10 @@ p {
   font-size: $text-2xl;
 }
 
+.top-0 {
+  top: 0;
+}
+
 // @TODO: rename to text-3xl
 .text-xxl {
   font-size: $font-hero;
@@ -692,6 +732,14 @@ p {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.w-4 {
+  width: 16px;
+}
+
+.w-8 {
+  width: 32px;
 }
 
 .w-1\/2 {
