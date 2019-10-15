@@ -24,7 +24,6 @@ const MosaicTemplate = props => {
     affiliateOptInContent,
     affiliateSponsors,
     displaySignup,
-    textColor,
     title,
     subtitle,
     blurb,
@@ -47,7 +46,7 @@ const MosaicTemplate = props => {
       {affiliateOptInContent ? (
         <AffiliateOptInToggleContainer
           affiliateOptInContent={affiliateOptInContent}
-          textColor={textColor}
+          textColor="#fff"
         />
       ) : null}
 
@@ -132,7 +131,6 @@ MosaicTemplate.propTypes = {
     url: PropTypes.string,
   }).isRequired,
   displaySignup: PropTypes.bool,
-  textColor: PropTypes.string,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -146,7 +144,6 @@ MosaicTemplate.defaultProps = {
   affiliateOptInContent: null,
   blurb: null,
   displaySignup: true,
-  textColor: null,
   signupArrowContent: null,
 };
 

@@ -10,7 +10,10 @@ import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
-import {contentfulImageUrl,isScholarshipAffiliateReferral} from '../../../../helpers';
+import {
+  contentfulImageUrl,
+  isScholarshipAffiliateReferral,
+} from '../../../../helpers';
 
 const MarqueeTemplate = ({
   additionalContent,
@@ -64,7 +67,6 @@ const MarqueeTemplate = ({
 
             <div className="grid-wide-3/10 secondary">
               <div className="marquee-signup-button">
-<<<<<<< HEAD
                 <SignupButtonContainer
                   className="w-full"
                   text={
@@ -73,14 +75,11 @@ const MarqueeTemplate = ({
                       : undefined
                   }
                 />
-=======
-                <SignupButtonContainer className="w-full" />
                 {affiliateOptInContent ? (
                   <AffiliateOptInToggleContainer
                     affiliateOptInContent={affiliateOptInContent}
                   />
                 ) : null}
->>>>>>> adds affiliate opt in content to marquee template
               </div>
 
               <Card className="bordered padded rounded campaign-info">
