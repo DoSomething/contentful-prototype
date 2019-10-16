@@ -29,7 +29,7 @@ import './scss/admin-dashboard.scss';
 import './scss/chrome.scss';
 import './scss/container.scss';
 import './scss/flash-message.scss';
-// import './scss/navigation.scss';
+import './scss/navigation.scss';
 import './scss/placeholder.scss';
 import './scss/fonts.scss';
 import './scss/gallery-grid.scss';
@@ -63,7 +63,7 @@ ready(() => {
   bindTokenRefreshEvent();
 
   // Add event listeners for top-level navigation.
-  // bindNavigationEvents();
+  bindNavigationEvents();
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
