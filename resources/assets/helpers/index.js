@@ -56,10 +56,12 @@ export function appendToQuery(
  * @return {String}
  */
 export function buildAuthRedirectUrl(options = null, actionId = null) {
-  const params = queryString.stringify({
-    actionId,
-    options: JSON.stringify(options),
-  });
+  const params = queryString.stringify(
+    withoutValueless({
+      actionId,
+      options: JSON.stringify(options),
+    }),
+  );
 
   return `${window.location.origin}/authorize?${params}`;
 }
@@ -173,6 +175,7 @@ export function withoutTokens(string) {
  * Check to see if user is authenticated.
  *
  * @return {Boolean}
+ * @todo move to helpers/auth.js
  */
 export function isAuthenticated() {
   return get(window.AUTH, 'isAuthenticated', false);

@@ -5,14 +5,16 @@ import React from 'react';
 import { get } from 'lodash';
 import classnames from 'classnames';
 
-import CloseButton from '../CloseButton/CloseButton';
-import searchIcon from '../../../images/search-icon.svg';
-import DoSomethingLogo from '../DoSomethingLogo/DoSomethingLogo';
+import { isAuthenticated } from '../../helpers';
+import searchIcon from '../../images/search-icon.svg';
+import CloseButton from '../utilities/CloseButton/CloseButton';
+import ProfileIcon from '../utilities/ProfileIcon/ProfileIcon';
+import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import {
   trackAnalyticsEvent,
   getUtmContext,
   getPageContext,
-} from '../../../helpers/analytics';
+} from '../../helpers/analytics';
 
 import './site-navigation.scss';
 
@@ -24,6 +26,10 @@ class SiteNavigation extends React.Component {
       activeSubNav: null,
       isSubNavFixed: false,
     };
+
+    console.log('🐞');
+    console.log(props.isAuthenticated);
+    console.log(props.authUrl);
   }
 
   analyzeEvent = event => {
@@ -243,7 +249,7 @@ class SiteNavigation extends React.Component {
 
             <li className="menu-nav__item">
               <a
-                href="/"
+                href="/us/about/easy-scholarships"
                 data-label="scholarships"
                 onClick={this.handleOnClickLink}
               >
@@ -253,7 +259,7 @@ class SiteNavigation extends React.Component {
 
             <li className="menu-nav__item">
               <a
-                href="/"
+                href="https://lets.dosomething.org"
                 data-label="articles"
                 onClick={this.handleOnClickLink}
               >
@@ -262,7 +268,11 @@ class SiteNavigation extends React.Component {
             </li>
 
             <li className="menu-nav__item">
-              <a href="/" data-label="about" onClick={this.handleOnClickLink}>
+              <a
+                href="/us/about/who-we-are"
+                data-label="about"
+                onClick={this.handleOnClickLink}
+              >
                 About
               </a>
             </li>
@@ -331,17 +341,29 @@ class SiteNavigation extends React.Component {
               ) : null}
             </li>
 
-            <li className="utility-nav__auth menu-nav__item">
-              <a href="/" data-label="log-in" onClick={this.analyzeEvent}>
-                Log In
-              </a>
-            </li>
+            {this.props.isAuthenticated ? (
+              <>
+                <li className="utility-nav__account-profile menu-nav__item">
+                  <a href="/us/account/profile">
+                    <ProfileIcon />
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li className="utility-nav__auth menu-nav__item">
+                  <a href="/" data-label="log-in" onClick={this.analyzeEvent}>
+                    Log In
+                  </a>
+                </li>
 
-            <li className="utility-nav__join menu-nav__item">
-              <a href="/" data-label="join_now" onClick={this.analyzeEvent}>
-                Join Now
-              </a>
-            </li>
+                <li className="utility-nav__join menu-nav__item">
+                  <a href="/" data-label="join_now" onClick={this.analyzeEvent}>
+                    Join Now
+                  </a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
 
