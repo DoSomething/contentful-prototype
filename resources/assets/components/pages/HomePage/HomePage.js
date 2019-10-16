@@ -8,7 +8,6 @@ import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl, env } from '../../../helpers';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 
@@ -69,7 +68,6 @@ class HomePage extends React.Component {
 
     return (
       <React.Fragment>
-        <SiteNavigationContainer />
         <div className="home-page">
           <header role="banner" className="header header--home">
             <div className="wrapper">
