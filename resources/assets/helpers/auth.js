@@ -1,5 +1,8 @@
 /* global window */
+import { isEmpty } from 'lodash';
+import queryString from 'query-string';
 
+import { withoutValueless } from '.';
 import { trackAnalyticsEvent } from './analytics';
 
 /**
@@ -49,6 +52,26 @@ export function bindTokenRefreshEvent() {
       }
     }
   }, 5000);
+}
+
+/**
+ * Build authentication redirect URL with optional context data.
+ *
+ * @param  {Null|Object} options
+ * @param  {Null|String} actionId
+ * @return {String}
+ */
+export function buildAuthRedirectUrl(options = null, actionId = null) {
+  let params = queryString.stringify(
+    withoutValueless({
+      actionId,
+      options: !isEmpty(options) ? JSON.stringify(options) : null,
+    }),
+  );
+
+  params = params ? `?${params}` : '';
+
+  return `${window.location.origin}/authorize${params}`;
 }
 
 export default null;

@@ -3,9 +3,9 @@
 import { get } from 'lodash';
 import localforage from 'localforage';
 
-import { buildAuthRedirectUrl } from '../helpers';
 import { getDataForNorthstar } from '../selectors';
 import { isAuthenticated } from '../selectors/user';
+import { buildAuthRedirectUrl } from '../helpers/auth';
 
 /**
  * Middleware for handling Authenticated actions.

@@ -3,9 +3,9 @@
 
 import React from 'react';
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { isAuthenticated } from '../../helpers';
 import searchIcon from '../../images/search-icon.svg';
 import CloseButton from '../utilities/CloseButton/CloseButton';
 import ProfileIcon from '../utilities/ProfileIcon/ProfileIcon';
@@ -26,10 +26,6 @@ class SiteNavigation extends React.Component {
       activeSubNav: null,
       isSubNavFixed: false,
     };
-
-    console.log('🐞');
-    console.log(props.isAuthenticated);
-    console.log(props.authUrl);
   }
 
   analyzeEvent = event => {
@@ -352,13 +348,21 @@ class SiteNavigation extends React.Component {
             ) : (
               <>
                 <li className="utility-nav__auth menu-nav__item">
-                  <a href="/" data-label="log-in" onClick={this.analyzeEvent}>
+                  <a
+                    href={this.props.authLoginUrl}
+                    data-label="log-in"
+                    onClick={this.analyzeEvent}
+                  >
                     Log In
                   </a>
                 </li>
 
                 <li className="utility-nav__join menu-nav__item">
-                  <a href="/" data-label="join_now" onClick={this.analyzeEvent}>
+                  <a
+                    href={this.props.authRegisterUrl}
+                    data-label="join_now"
+                    onClick={this.analyzeEvent}
+                  >
                     Join Now
                   </a>
                 </li>
@@ -380,5 +384,11 @@ class SiteNavigation extends React.Component {
     );
   }
 }
+
+SiteNavigation.propTypes = {
+  authLoginUrl: PropTypes.string.isRequired,
+  authRegisterUrl: PropTypes.string.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default SiteNavigation;

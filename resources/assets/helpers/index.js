@@ -48,23 +48,25 @@ export function appendToQuery(
   return urlObject;
 }
 
-/**
- * Build authentication redirect URL with optional context data.
- *
- * @param  {Null|Object} options
- * @param  {Null|String} actionId
- * @return {String}
- */
-export function buildAuthRedirectUrl(options = null, actionId = null) {
-  const params = queryString.stringify(
-    withoutValueless({
-      actionId,
-      options: JSON.stringify(options),
-    }),
-  );
+// /**
+//  * Build authentication redirect URL with optional context data.
+//  *
+//  * @param  {Null|Object} options
+//  * @param  {Null|String} actionId
+//  * @return {String}
+//  */
+// export function buildAuthRedirectUrl(options = null, actionId = null) {
+//   let params = queryString.stringify(
+//     withoutValueless({
+//       actionId,
+//       options: !isEmpty(options) ? JSON.stringify(options) : null,
+//     }),
+//   );
 
-  return `${window.location.origin}/authorize?${params}`;
-}
+//   params = params ? `?${params}` : '';
+
+//   return `${window.location.origin}/authorize${params}`;
+// }
 
 /**
  * Return a boolean indicating whether the provided URL is external to the site.
