@@ -62,7 +62,7 @@ export function bindTokenRefreshEvent() {
  * @return {String}
  */
 export function buildAuthRedirectUrl(options = null, actionId = null) {
-  let params = queryString.stringify(
+  const params = queryString.stringify(
     withoutValueless({
       actionId,
       options: !isEmpty(options) ? JSON.stringify(options) : null,
