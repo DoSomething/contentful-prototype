@@ -9,6 +9,7 @@ import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
+import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   contentfulImageUrl,
   isScholarshipAffiliateReferral,
@@ -18,6 +19,7 @@ const MarqueeTemplate = ({
   additionalContent,
   affiliateCreditText,
   affiliateSponsors,
+  affiliateOptInContent,
   content,
   coverImage,
   endDate,
@@ -27,6 +29,8 @@ const MarqueeTemplate = ({
 }) => {
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
+
+  console.log(affiliateOptInContent);
   const coverImageUrls = {
     extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'),
     large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'),
@@ -71,6 +75,11 @@ const MarqueeTemplate = ({
                       : undefined
                   }
                 />
+                {affiliateOptInContent ? (
+                  <AffiliateOptInToggleContainer
+                    affiliateOptInContent={affiliateOptInContent}
+                  />
+                ) : null}
               </div>
 
               <Card className="bordered padded rounded campaign-info">
@@ -138,6 +147,7 @@ MarqueeTemplate.propTypes = {
   additionalContent: PropTypes.object,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  affiliateOptInContent: PropTypes.object,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
   endDate: PropTypes.string,
@@ -150,6 +160,7 @@ MarqueeTemplate.defaultProps = {
   additionalContent: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
+  affiliateOptInContent: null,
   endDate: null,
   scholarshipAmount: null,
 };

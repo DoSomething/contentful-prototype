@@ -9,6 +9,7 @@ const AffiliateOptInToggle = ({
   affiliateOptInContent,
   affiliateMessagingOptIn,
   clickedOptIn,
+  textColor,
 }) => (
   <div className="form-wrapper affiliate-opt-in">
     <label className="option -checkbox" htmlFor="affiliate_opt_in">
@@ -21,7 +22,7 @@ const AffiliateOptInToggle = ({
         className="form-checkbox opt_in_checkbox"
         onClick={clickedOptIn}
       />
-      <TextContent styles={{ textColor: '#fff' }}>
+      <TextContent styles={{ textColor: `${textColor}` }}>
         {affiliateOptInContent}
       </TextContent>
     </label>
@@ -32,6 +33,9 @@ AffiliateOptInToggle.propTypes = {
   clickedOptIn: PropTypes.func.isRequired,
   affiliateMessagingOptIn: PropTypes.bool.isRequired,
   affiliateOptInContent: PropTypes.object.isRequired,
+  textColor: PropTypes.string,
 };
+
+AffiliateOptInToggle.defaultProps = { textColor: '#222' };
 
 export default AffiliateOptInToggle;

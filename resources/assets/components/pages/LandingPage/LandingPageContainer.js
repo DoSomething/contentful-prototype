@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
       undefined,
     ),
     affiliateSponsors: state.campaign.affiliateSponsors,
+    affiliateOptInContent: state.campaign.affiliateOptInContent,
     campaignId: state.campaign.campaignId,
     contentfulId: state.campaign.id,
     content: landingPage.content,

@@ -15,6 +15,7 @@ const LandingPage = props => {
     additionalContent,
     affiliateCreditText,
     affiliateSponsors,
+    affiliateOptInContent,
     campaignId,
     content,
     coverImage,
@@ -59,6 +60,7 @@ const LandingPage = props => {
               additionalContent={additionalContent}
               affiliateCreditText={affiliateCreditText}
               affiliateSponsors={affiliateSponsors}
+              affiliateOptInContent={affiliateOptInContent}
               content={content}
               coverImage={coverImage}
               endDate={endDate}
@@ -92,6 +94,7 @@ LandingPage.propTypes = {
   additionalContent: PropTypes.object,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  affiliateOptInContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
@@ -110,6 +113,7 @@ LandingPage.defaultProps = {
   additionalContent: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
+  affiliateOptInContent: null,
   endDate: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
