@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextContent from '../utilities/TextContent/TextContent';
-import './affiliate-opt-in-toggle.scss';
 import { withoutNulls } from '../../helpers';
+import TextContent from '../utilities/TextContent/TextContent';
+
+import './affiliate-opt-in-toggle.scss';
 
 const AffiliateOptInToggle = ({
   affiliateOptInContent,
