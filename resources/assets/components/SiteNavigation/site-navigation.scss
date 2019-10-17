@@ -7,6 +7,7 @@ $extraSmall: '(min-width: 360px)';
 
 .nav {
   background-color: white;
+  border-bottom: 1px solid $gray-300;
   position: relative;
   z-index: $site-navigation-zindex;
 
@@ -43,6 +44,7 @@ $extraSmall: '(min-width: 360px)';
   border-top: 1px solid $gray-300;
   box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
   left: 0;
+  min-height: 50vh;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -234,26 +236,77 @@ $extraSmall: '(min-width: 360px)';
 }
 
 .utility-subnav .search {
+  align-items: center;
+  background-color: $gray-200;
+  border-radius: $lg-border-radius;
+  display: flex;
   grid-column: full-start / full-end;
-}
+  margin: 0 50px $spacing_2x 0;
+  padding: 10px;
 
-.utility-subnav .top-searches {
-  grid-column: full-start / full-end;
-}
+  @include media($large) {
+    grid-column: full-start / span 6;
+  }
 
-.btn__close--subnav {
-  position: absolute;
-  right: 12px;
-  top: 12px;
+  > img {
+    // Move to props on component
+    height: 20px;
+    width: 20px;
+  }
 
-  @include media($medium) {
-    right: 48px;
-    top: 24px;
+  > input[type='search'] {
+    background-color: transparent;
+    border: 0 none;
+    font-size: 18px;
+    line-height: 1;
+    margin-left: 8px;
+
+    &::placeholder {
+      color: $gray-500;
+    }
   }
 }
 
-// .btn__close--main-subnav {
-//   @include media($large) {
-//     display: none;
-//   }
-// }
+.utility-subnav {
+  .top-searches {
+    grid-column: full-start / full-end;
+
+    > h1 {
+      color: $gray-300;
+      font-size: 18px;
+      font-weight: $weight-normal;
+      margin-bottom: $spacing_1x;
+      text-transform: uppercase;
+    }
+  }
+
+  .top-searches__link-list {
+    padding-bottom: $spacing_1x;
+
+    > li + li {
+      margin-top: $spacing_1x;
+    }
+
+    a {
+      color: $black;
+      font-weight: $weight-normal;
+      text-decoration: underline;
+    }
+  }
+}
+
+.btn__close--subnav {
+  padding: $spacing_1x;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+
+  @include media($medium) {
+    right: 20px;
+    top: 20px;
+  }
+
+  @include media($large) {
+    right: 44px;
+  }
+}
