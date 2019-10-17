@@ -69,9 +69,11 @@ export function buildAuthRedirectUrl(options = null, actionId = null) {
     }),
   );
 
-  params = params ? `?${params}` : '';
+  const url = new URL(`${window.location.origin}/authorize`);
 
-  return `${window.location.origin}/authorize${params}`;
+  url.search = params;
+
+  return url.href;
 }
 
 export default null;

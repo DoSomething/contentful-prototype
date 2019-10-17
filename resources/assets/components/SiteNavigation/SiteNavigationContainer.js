@@ -9,11 +9,11 @@ import { buildAuthRedirectUrl } from '../../helpers/auth';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = state => {
-  const northStarData = getDataForNorthstar(state);
+  const northstarData = getDataForNorthstar(state);
 
   return {
-    authLoginUrl: buildAuthRedirectUrl({ ...northStarData, mode: 'login' }),
-    authRegisterUrl: buildAuthRedirectUrl(northStarData),
+    authLoginUrl: buildAuthRedirectUrl({ ...northstarData, mode: 'login' }),
+    authRegisterUrl: buildAuthRedirectUrl(northstarData),
     isAuthenticated: isAuthenticated(state),
   };
 };
