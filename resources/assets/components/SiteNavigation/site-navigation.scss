@@ -1,4 +1,4 @@
-@import '../../../scss/next-toolbox.scss';
+@import '../../scss/next-toolbox.scss';
 
 $spacing_1x: 16px;
 $spacing_1_5x: 24px;
@@ -208,6 +208,28 @@ $extraSmall: '(min-width: 360px)';
     border: 1px solid black;
     border-radius: 4px;
     padding: $spacing_1x;
+  }
+}
+
+.utility-nav__account-profile {
+  border-left: 1px solid $gray-300;
+
+  > a {
+    padding: 10px $spacing_1x 14px;
+
+    @include media($large) {
+      padding: 10px $spacing_1x $spacing_1x;
+    }
+
+    > img {
+      height: 25px;
+      width: 25px;
+
+      @include media($large) {
+        height: 28px;
+        width: 28px;
+      }
+    }
   }
 }
 

@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 
 import PageDispatcher from './PageDispatcher';
-import { buildAuthRedirectUrl } from '../../helpers';
 import { getDataForNorthstar } from '../../selectors';
 import { isAuthenticated } from '../../selectors/user';
+import { buildAuthRedirectUrl } from '../../helpers/auth';
 
 /**
  * Provide state from the Redux store as props for this component.
