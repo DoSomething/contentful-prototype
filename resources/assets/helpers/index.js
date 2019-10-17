@@ -49,22 +49,6 @@ export function appendToQuery(
 }
 
 /**
- * Build authentication redirect URL with optional context data.
- *
- * @param  {Null|Object} options
- * @param  {Null|String} actionId
- * @return {String}
- */
-export function buildAuthRedirectUrl(options = null, actionId = null) {
-  const params = queryString.stringify({
-    actionId,
-    options: JSON.stringify(options),
-  });
-
-  return `${window.location.origin}/authorize?${params}`;
-}
-
-/**
  * Return a boolean indicating whether the provided URL is external to the site.
  *
  * @param  {String} url
@@ -173,6 +157,7 @@ export function withoutTokens(string) {
  * Check to see if user is authenticated.
  *
  * @return {Boolean}
+ * @todo move to helpers/auth.js
  */
 export function isAuthenticated() {
   return get(window.AUTH, 'isAuthenticated', false);
