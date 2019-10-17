@@ -30,7 +30,6 @@ const MarqueeTemplate = ({
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
 
-  console.log(affiliateOptInContent);
   const coverImageUrls = {
     extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'),
     large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'),

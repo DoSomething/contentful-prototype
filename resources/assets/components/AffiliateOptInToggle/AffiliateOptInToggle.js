@@ -22,9 +22,7 @@ const AffiliateOptInToggle = ({
         className="form-checkbox opt_in_checkbox"
         onClick={clickedOptIn}
       />
-      <TextContent styles={{ textColor: `${textColor}` }}>
-        {affiliateOptInContent}
-      </TextContent>
+      <TextContent styles={{ textColor }}>{affiliateOptInContent}</TextContent>
     </label>
   </div>
 );
