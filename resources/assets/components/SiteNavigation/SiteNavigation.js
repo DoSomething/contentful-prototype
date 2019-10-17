@@ -231,13 +231,15 @@ class SiteNavigation extends React.Component {
                       <a href="/">Learn More</a>
                     </section>
 
-                    <CloseButton
-                      callback={this.handleOnClickClose}
-                      className="btn__close--subnav btn__close--main-subnav block p-1"
-                      dataLabel="close_subnav"
-                      dataNoun="nav_button"
-                      size="22px"
-                    />
+                    {this.state.isSubNavFixed ? (
+                      <CloseButton
+                        callback={this.handleOnClickClose}
+                        className="btn__close--subnav btn__close--main-subnav block p-1"
+                        dataLabel="close_subnav"
+                        dataNoun="nav_button"
+                        size="22px"
+                      />
+                    ) : null}
                   </div>
                 </div>
               ) : null}

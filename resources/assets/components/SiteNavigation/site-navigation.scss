@@ -252,8 +252,8 @@ $extraSmall: '(min-width: 360px)';
   }
 }
 
-.btn__close--main-subnav {
-  @include media($large) {
-    display: none;
-  }
-}
+// .btn__close--main-subnav {
+//   @include media($large) {
+//     display: none;
+//   }
+// }
