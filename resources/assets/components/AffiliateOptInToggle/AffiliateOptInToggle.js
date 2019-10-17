@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { withoutNulls } from '../../helpers';
 import TextContent from '../utilities/TextContent/TextContent';
 
 import './affiliate-opt-in-toggle.scss';
@@ -22,7 +23,7 @@ const AffiliateOptInToggle = ({
         className="form-checkbox opt_in_checkbox"
         onClick={clickedOptIn}
       />
-      <TextContent styles={{ textColor: `${textColor}` }}>
+      <TextContent styles={withoutNulls({ textColor })}>
         {affiliateOptInContent}
       </TextContent>
     </label>
@@ -36,6 +37,6 @@ AffiliateOptInToggle.propTypes = {
   textColor: PropTypes.string,
 };
 
-AffiliateOptInToggle.defaultProps = { textColor: '#222' };
+AffiliateOptInToggle.defaultProps = { textColor: null };
 
 export default AffiliateOptInToggle;
