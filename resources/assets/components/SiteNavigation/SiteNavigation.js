@@ -151,7 +151,7 @@ class SiteNavigation extends React.Component {
                 }
               >
                 Causes
-                <span class="main-nav__arrow"></span>
+                <span className="main-nav__arrow"></span>
               </a>
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
@@ -290,7 +290,7 @@ class SiteNavigation extends React.Component {
               </a>
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
-                <div className="utility-subnav menu-subnav">
+                <div className="utility-subnav menu-subnav" name="search">
                   <div className="wrapper base-12-grid">
                     <form
                       className="search"
@@ -298,7 +298,6 @@ class SiteNavigation extends React.Component {
                       acceptCharset="UTF-8"
                       action="/us/search"
                       method="GET"
-                      name="search"
                     >
                       <img src={searchIcon} alt="search icon" />
                       <input type="search" placeholder="Search" name="query" />
