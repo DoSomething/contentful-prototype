@@ -277,7 +277,11 @@ class SiteNavigation extends React.Component {
             {this.props.isAuthenticated ? (
               <>
                 <li className="utility-nav__account-profile menu-nav__item">
-                  <a href="/us/account/profile">
+                  <a
+                    href="/us/account/profile"
+                    data-label="profile"
+                    onClick={this.analyzeEvent}
+                  >
                     <ProfileIcon />
                   </a>
                 </li>
