@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <div id="nav-container"></div>
     <div class="chrome -plain">
         <div class="wrapper">
             <a class="construction__logo" href="http://dosomething.org"></a>
