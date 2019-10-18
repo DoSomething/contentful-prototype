@@ -181,9 +181,9 @@ class SiteNavigation extends React.Component {
               <a
                 href="#search"
                 className="utility-nav__search-icon"
-                onClick={event =>
-                  this.handleOnClickToggle(event, 'SearchSubNav')
-                }
+                data-label="search-form-toggle"
+                data-noun="nav-button"
+                onClick={e => this.handleOnClickToggle(e, 'SearchSubNav')}
               >
                 <SearchIcon />
               </a>
@@ -206,24 +206,57 @@ class SiteNavigation extends React.Component {
                       <h1>Top Searches</h1>
                       <ul className="top-searches__link-list">
                         <li>
-                          <a href="us/about/easy-scholarships">scholarships</a>
+                          <a
+                            href="/us/about/easy-scholarships"
+                            data-label="scholarships-top-search"
+                            data-noun="subnav-link"
+                            onClick={this.analyzeEvent}
+                          >
+                            scholarships
+                          </a>
                         </li>
 
                         <li>
-                          <a href="/us/search?query=cyberbullying">
+                          <a
+                            href="/us/search?query=bullying"
+                            data-label="bullying-top-search"
+                            data-noun="subnav-link"
+                            onClick={this.analyzeEvent}
+                          >
+                            bullying
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="/us/search?query=animals"
+                            data-label="animals-top-search"
+                            data-noun="subnav-link"
+                            onClick={this.analyzeEvent}
+                          >
+                            animals
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="/us/facts/11-facts-about-cyber-bullying"
+                            data-label="cyberbullying-top-search"
+                            data-noun="subnav-link"
+                            onClick={this.analyzeEvent}
+                          >
                             cyberbullying
                           </a>
                         </li>
 
                         <li>
-                          <a href="/us/search?query=gun+violence">
-                            gun violence
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="/us/search?query=climate+change">
-                            climate change
+                          <a
+                            href="/us/articles/volunteer-opportunities-for-teens"
+                            data-label="volunteering-top-search"
+                            data-noun="subnav-link"
+                            onClick={this.analyzeEvent}
+                          >
+                            volunteering
                           </a>
                         </li>
                       </ul>
