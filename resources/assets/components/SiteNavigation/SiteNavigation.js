@@ -6,9 +6,9 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import searchIcon from '../../images/search-icon.svg';
-import CloseButton from '../utilities/CloseButton/CloseButton';
-import ProfileIcon from '../utilities/ProfileIcon/ProfileIcon';
+import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
+import CloseButton from '../artifacts/CloseButton/CloseButton';
+import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import {
   trackAnalyticsEvent,
@@ -151,7 +151,7 @@ class SiteNavigation extends React.Component {
                 }
               >
                 Causes
-                <span className="main-nav__arrow"></span>
+                <span className="main-nav__arrow" />
               </a>
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
@@ -286,7 +286,7 @@ class SiteNavigation extends React.Component {
                   this.handleOnClickToggle(event, 'SearchSubNav')
                 }
               >
-                <img src={searchIcon} alt="search icon" />
+                <SearchIcon />
               </a>
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
@@ -299,7 +299,7 @@ class SiteNavigation extends React.Component {
                       action="/us/search"
                       method="GET"
                     >
-                      <img src={searchIcon} alt="search icon" />
+                      <SearchIcon />
                       <input type="search" placeholder="Search" name="query" />
                     </form>
 
