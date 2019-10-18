@@ -6,9 +6,9 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import searchIcon from '../../images/search-icon.svg';
-import CloseButton from '../utilities/CloseButton/CloseButton';
-import ProfileIcon from '../utilities/ProfileIcon/ProfileIcon';
+import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
+import CloseButton from '../artifacts/CloseButton/CloseButton';
+import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import {
   trackAnalyticsEvent,
@@ -151,6 +151,7 @@ class SiteNavigation extends React.Component {
                 }
               >
                 Causes
+                <span className="main-nav__arrow" />
               </a>
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
@@ -231,13 +232,15 @@ class SiteNavigation extends React.Component {
                       <a href="/">Learn More</a>
                     </section>
 
-                    <CloseButton
-                      callback={this.handleOnClickClose}
-                      className="btn__close--subnav btn__close--main-subnav block p-1"
-                      dataLabel="close_subnav"
-                      dataNoun="nav_button"
-                      size="22px"
-                    />
+                    {this.state.isSubNavFixed ? (
+                      <CloseButton
+                        callback={this.handleOnClickClose}
+                        className="btn__close--subnav btn__close--main-subnav block"
+                        dataLabel="close_subnav"
+                        dataNoun="nav_button"
+                        size="22px"
+                      />
+                    ) : null}
                   </div>
                 </div>
               ) : null}
@@ -277,48 +280,50 @@ class SiteNavigation extends React.Component {
           <ul className="utility-nav menu-nav">
             <li className="utility-nav__search menu-nav__item">
               <a
-                href="/"
+                href="#search"
                 className="utility-nav__search-icon"
                 onClick={event =>
                   this.handleOnClickToggle(event, 'SearchSubNav')
                 }
               >
-                <img src={searchIcon} alt="search icon" />
+                <SearchIcon />
               </a>
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
-                <form
-                  className="utility-subnav menu-subnav"
-                  id="utility-subnav__search"
-                >
+                <div className="utility-subnav menu-subnav" name="search">
                   <div className="wrapper base-12-grid">
-                    <div className="search">
-                      <input type="text" />
-                    </div>
+                    <form
+                      className="search"
+                      id="utility-subnav__search"
+                      acceptCharset="UTF-8"
+                      action="/us/search"
+                      method="GET"
+                    >
+                      <SearchIcon />
+                      <input type="search" placeholder="Search" name="query" />
+                    </form>
 
                     <div className="top-searches">
                       <h1>Top Searches</h1>
-                      <ul>
+                      <ul className="top-searches__link-list">
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=scholarships">
-                            scholarships
-                          </a>
+                          <a href="us/about/easy-scholarships">scholarships</a>
                         </li>
 
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=cyberbullying">
+                          <a href="/us/search?query=cyberbullying">
                             cyberbullying
                           </a>
                         </li>
 
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=gun+violence">
+                          <a href="/us/search?query=gun+violence">
                             gun violence
                           </a>
                         </li>
 
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=climate+change">
+                          <a href="/us/search?query=climate+change">
                             climate change
                           </a>
                         </li>
@@ -327,13 +332,13 @@ class SiteNavigation extends React.Component {
 
                     <CloseButton
                       callback={this.handleOnClickClose}
-                      className="btn__close--subnav btn__close--search-subnav block p-1"
+                      className="btn__close--subnav btn__close--search-subnav block"
                       dataLabel="close_subnav"
                       dataNoun="nav_button"
                       size="22px"
                     />
                   </div>
-                </form>
+                </div>
               ) : null}
             </li>
 
