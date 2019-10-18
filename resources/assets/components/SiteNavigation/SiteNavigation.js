@@ -304,7 +304,7 @@ class SiteNavigation extends React.Component {
                     </form>
 
                     <div className="top-searches">
-                      <h1 className="">Top Searches</h1>
+                      <h1>Top Searches</h1>
                       <ul className="top-searches__link-list">
                         <li>
                           <a href="us/about/easy-scholarships">scholarships</a>
