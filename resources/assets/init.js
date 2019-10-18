@@ -33,8 +33,9 @@ import './scss/placeholder.scss';
 import './scss/fonts.scss';
 import './scss/gallery-grid.scss';
 
-// React Application
+// React Application(s)
 import App from './components/App';
+import NavApp from './components/NavApp';
 
 // DOM Helpers
 import { ready, debug } from './helpers';
@@ -87,5 +88,11 @@ ready(() => {
   const appElement = document.getElementById('app');
   if (appElement) {
     ReactDom.render(<App store={store} history={history} />, appElement);
+  }
+
+  // Render the nav on PHP rendered pages!
+  const navAppElement = document.getElementById('nav-container');
+  if (navAppElement) {
+    ReactDom.render(<NavApp store={store} history={history} />, navAppElement);
   }
 });

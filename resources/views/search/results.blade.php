@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <div id="nav-container"></div>
     <div class="container -padded">
         <div class="wrapper">
             <div class="container__block">
