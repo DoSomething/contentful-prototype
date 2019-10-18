@@ -4,7 +4,6 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
