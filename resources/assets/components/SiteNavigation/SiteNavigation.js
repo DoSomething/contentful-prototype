@@ -136,114 +136,14 @@ class SiteNavigation extends React.Component {
           </div>
 
           <ul className="main-nav menu-nav">
-            <li
-              className={classnames('menu-nav__item', {
-                'is-active': this.state.activeSubNav === 'CausesSubNav',
-              })}
-              onMouseEnter={() => this.handleMouseEnter('CausesSubNav')}
-              onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
-            >
+            <li className="menu-nav__item">
               <a
-                href="/"
+                href="/us/campaigns"
                 data-label="causes"
-                onClick={event =>
-                  this.handleOnClickToggle(event, 'CausesSubNav')
-                }
+                onClick={this.handleOnClickLink}
               >
                 Causes
-                <span className="main-nav__arrow" />
               </a>
-
-              {this.state.activeSubNav === 'CausesSubNav' ? (
-                <div className="main-subnav menu-subnav">
-                  <div className="wrapper base-12-grid">
-                    <section className="main-subnav__links-causes menu-subnav__links">
-                      <h1>
-                        <a href="/">All Causes</a>
-                      </h1>
-                      <ul>
-                        <li>
-                          <a href="/">Education</a>
-                        </li>
-                        <li>
-                          <a href="/">Mental Health</a>
-                        </li>
-                        <li>
-                          <a href="/">Homelessness & Poverty</a>
-                        </li>
-                        <li>
-                          <a href="/">Environment</a>
-                        </li>
-                        <li>
-                          <a href="/">Animal Welfare</a>
-                        </li>
-                        <li>
-                          <a href="/">Sexual Harassment</a>
-                        </li>
-                        <li>
-                          <a href="/">Bullying</a>
-                        </li>
-                        <li>
-                          <a href="/">Gender Rights</a>
-                        </li>
-                        <li>
-                          <a href="/">Racial Justice</a>
-                        </li>
-                        <li>
-                          <a href="/">Immigration & Refugees</a>
-                        </li>
-                        <li>
-                          <a href="/">LGBT+ Rights</a>
-                        </li>
-                        <li>
-                          <a href="/">Get Out the Vote!</a>
-                        </li>
-                      </ul>
-                    </section>
-
-                    <section className="main-subnav__links-campaigns menu-subnav__links">
-                      <h1>
-                        <a href="/">All Campaigns</a>
-                      </h1>
-                      <ul>
-                        <li>
-                          <a href="/">Online</a>
-                        </li>
-                        <li>
-                          <a href="/">In-person</a>
-                        </li>
-                        <li>
-                          <a href="/">Petitions</a>
-                        </li>
-                        <li>
-                          <a href="/">Collections</a>
-                        </li>
-                      </ul>
-                    </section>
-
-                    <section className="main-subnav__featured menu-subnav__content">
-                      <img
-                        className="mb-4"
-                        src="http://placekitten.com/g/550/250"
-                        alt="temporary place kitten"
-                      />
-                      <h1>Take Back the Kittens</h1>
-                      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-                      <a href="/">Learn More</a>
-                    </section>
-
-                    {this.state.isSubNavFixed ? (
-                      <CloseButton
-                        callback={this.handleOnClickClose}
-                        className="btn__close--subnav btn__close--main-subnav block"
-                        dataLabel="close_subnav"
-                        dataNoun="nav_button"
-                        size="22px"
-                      />
-                    ) : null}
-                  </div>
-                </div>
-              ) : null}
             </li>
 
             <li className="menu-nav__item">
