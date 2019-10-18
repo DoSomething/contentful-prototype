@@ -290,19 +290,19 @@ class SiteNavigation extends React.Component {
               </a>
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
-                <form
-                  className="utility-subnav menu-subnav"
-                  id="utility-subnav__search"
-                  acceptCharset="UTF-8"
-                  action="/us/search"
-                  method="GET"
-                  name="search"
-                >
+                <div className="utility-subnav menu-subnav">
                   <div className="wrapper base-12-grid">
-                    <div className="search">
+                    <form
+                      className="search"
+                      id="utility-subnav__search"
+                      acceptCharset="UTF-8"
+                      action="/us/search"
+                      method="GET"
+                      name="search"
+                    >
                       <img src={searchIcon} alt="search icon" />
                       <input type="search" placeholder="Search" name="query" />
-                    </div>
+                    </form>
 
                     <div className="top-searches">
                       <h1 className="">Top Searches</h1>
@@ -339,7 +339,7 @@ class SiteNavigation extends React.Component {
                       size="22px"
                     />
                   </div>
-                </form>
+                </div>
               ) : null}
             </li>
 
