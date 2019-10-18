@@ -122,6 +122,7 @@ $extraSmall: '(min-width: 360px)';
 
     > a {
       padding: $spacing_1x;
+      white-space: nowrap;
 
       @include media($medium) {
         padding-bottom: 40px;
