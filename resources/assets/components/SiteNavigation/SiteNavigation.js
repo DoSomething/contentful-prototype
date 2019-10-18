@@ -151,6 +151,7 @@ class SiteNavigation extends React.Component {
                 }
               >
                 Causes
+                <span class="main-nav__arrow"></span>
               </a>
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
@@ -307,9 +308,7 @@ class SiteNavigation extends React.Component {
                       <h1 className="">Top Searches</h1>
                       <ul className="top-searches__link-list">
                         <li>
-                          <a href="/us/search?query=scholarships">
-                            scholarships
-                          </a>
+                          <a href="us/about/easy-scholarships">scholarships</a>
                         </li>
 
                         <li>
