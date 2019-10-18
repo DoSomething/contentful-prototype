@@ -14,6 +14,7 @@ import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 import './general-page.scss';
 
@@ -43,6 +44,7 @@ const GeneralPage = props => {
 
   return (
     <div>
+      <SiteNavigationContainer />
       <div className="main general-page base-12-grid">
         <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
