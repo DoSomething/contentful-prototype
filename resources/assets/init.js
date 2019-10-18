@@ -29,7 +29,6 @@ import './scss/admin-dashboard.scss';
 import './scss/chrome.scss';
 import './scss/container.scss';
 import './scss/flash-message.scss';
-import './scss/navigation.scss';
 import './scss/placeholder.scss';
 import './scss/fonts.scss';
 import './scss/gallery-grid.scss';
@@ -41,7 +40,6 @@ import App from './components/App';
 import { ready, debug } from './helpers';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
-import { bindNavigationEvents } from './helpers/navigation';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 import { analyze, trackAnalyticsPageView } from './helpers/analytics';
@@ -61,9 +59,6 @@ ready(() => {
 
   // Add periodic check that our token hasn't expired.
   bindTokenRefreshEvent();
-
-  // Add event listeners for top-level navigation.
-  bindNavigationEvents();
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
