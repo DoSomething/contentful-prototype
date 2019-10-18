@@ -16,7 +16,9 @@ $router->get('/authorize', 'AuthController@getAuthorization')->name('authorize')
 $router->redirect('/auth/login', '/next/login', 302); // Fix for hard-coded redirect in Gateway! <goo.gl/2VPxDC>
 $router->redirect('/next/login', '/authorize', 302);
 
-$router->get('next/logout', 'AuthController@getLogout')->name('logout');
+
+$router->get('/deauthorize', 'AuthController@getDeauthorization')->name('deauthorize');
+$router->redirect('/next/logout', '/deauthorize', 302);
 
 // Profile
 $router->redirect('/northstar/{id}', '/us/account/profile');

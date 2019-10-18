@@ -36,6 +36,9 @@ const AccountNavigation = props => (
       >
         Subscriptions
       </NavLink>
+      <a className="nav-link" href="/deauthorize">
+        Log Out
+      </a>
     </div>
   </div>
 );
