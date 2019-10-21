@@ -1,5 +1,5 @@
 /* global document */
-/* eslint-disable id-length, jsx-a11y/interactive-supports-focus */
+/* eslint-disable id-length, jsx-a11y/interactive-supports-focus, jsx-a11y/no-autofocus */
 
 import React from 'react';
 import { get } from 'lodash';
