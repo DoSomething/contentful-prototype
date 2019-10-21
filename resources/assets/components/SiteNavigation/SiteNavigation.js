@@ -1,8 +1,9 @@
 /* global document */
-/* eslint-disable id-length, jsx-a11y/interactive-supports-focus */
+/* eslint-disable id-length, jsx-a11y/interactive-supports-focus, jsx-a11y/no-autofocus */
 
 import React from 'react';
 import { get } from 'lodash';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
@@ -180,12 +181,16 @@ class SiteNavigation extends React.Component {
             <li className="utility-nav__search menu-nav__item">
               <a
                 href="#search"
-                className="utility-nav__search-icon"
+                className={classnames('utility-nav__search-icon', {
+                  'is-active': this.state.activeSubNav === 'SearchSubNav',
+                })}
                 data-label="search-form-toggle"
                 data-noun="nav-button"
                 onClick={e => this.handleOnClickToggle(e, 'SearchSubNav')}
               >
-                <SearchIcon />
+                <div className="wrapper">
+                  <SearchIcon />
+                </div>
               </a>
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
@@ -199,7 +204,12 @@ class SiteNavigation extends React.Component {
                       method="GET"
                     >
                       <SearchIcon />
-                      <input type="search" placeholder="Search" name="query" />
+                      <input
+                        type="search"
+                        placeholder="Search"
+                        name="query"
+                        autoFocus
+                      />
                     </form>
 
                     <div className="top-searches">
@@ -265,7 +275,7 @@ class SiteNavigation extends React.Component {
                     <CloseButton
                       callback={this.handleOnClickClose}
                       className="btn__close--subnav btn__close--search-subnav block"
-                      dataLabel="close_subnav"
+                      dataLabel="close_search_subnav"
                       dataNoun="nav_button"
                       size="22px"
                     />
@@ -279,6 +289,7 @@ class SiteNavigation extends React.Component {
                 <li className="utility-nav__account-profile menu-nav__item">
                   <a
                     href="/us/account/profile"
+                    className="utility-nav__account-profile-icon"
                     data-label="profile"
                     onClick={this.analyzeEvent}
                   >
