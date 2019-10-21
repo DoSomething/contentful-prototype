@@ -138,7 +138,7 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="/us/campaigns"
-                data-label="Campaigns"
+                data-label="campaigns"
                 onClick={this.handleOnClickLink}
               >
                 Campaigns
