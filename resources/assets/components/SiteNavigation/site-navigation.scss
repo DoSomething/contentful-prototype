@@ -186,23 +186,34 @@ $extraSmall: '(min-width: 360px)';
   }
 }
 
-.utility-nav__search {
-  > a {
-    padding: 12px $spacing_1x;
+.utility-nav__search-icon {
+  padding: 6px 10px;
+
+  @include media($large) {
+    padding-bottom: 8px;
+    padding-top: 6px;
+  }
+
+  .wrapper {
+    background-color: transparent;
+    border-radius: 100px;
+    padding: 6px;
+    pointer-events: none;
+  }
+
+  img {
+    height: 25px;
+    width: 25px;
 
     @include media($large) {
-      padding-bottom: 14px;
-      padding-top: 12px;
+      height: 28px;
+      width: 28px;
     }
+  }
 
-    > img {
-      height: 25px;
-      width: 25px;
-
-      @include media($large) {
-        height: 28px;
-        width: 28px;
-      }
+  &.is-active {
+    .wrapper {
+      background-color: $gray-200;
     }
   }
 }
@@ -228,22 +239,22 @@ $extraSmall: '(min-width: 360px)';
 
 .utility-nav__account-profile {
   border-left: 1px solid $gray-300;
+}
 
-  > a {
-    padding: 10px $spacing_1x 14px;
+.utility-nav__account-profile-icon {
+  padding: 12px $spacing_1x 12px;
+
+  @include media($large) {
+    padding: 12px $spacing_1x 14px;
+  }
+
+  > img {
+    height: 25px;
+    width: 25px;
 
     @include media($large) {
-      padding: 10px $spacing_1x $spacing_1x;
-    }
-
-    > img {
-      height: 25px;
-      width: 25px;
-
-      @include media($large) {
-        height: 28px;
-        width: 28px;
-      }
+      height: 28px;
+      width: 28px;
     }
   }
 }
