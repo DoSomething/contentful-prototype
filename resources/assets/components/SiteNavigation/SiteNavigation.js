@@ -43,8 +43,8 @@ class SiteNavigation extends React.Component {
 
     trackAnalyticsEvent({
       context: {
-        ...getUtmContext(),
         ...getPageContext(),
+        ...getUtmContext(),
         referrer: document.referrer,
         ...context,
       },
