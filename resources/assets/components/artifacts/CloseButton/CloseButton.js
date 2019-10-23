@@ -2,19 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const CloseButton = ({
-  callback,
-  className,
-  color,
-  dataLabel,
-  dataNoun,
-  size,
-}) => (
+const CloseButton = ({ callback, className, color, size }) => (
   <button
     type="button"
     className={classnames('cursor-pointer', className)}
-    data-label={dataLabel}
-    data-noun={dataNoun}
     onClick={callback}
   >
     <svg
@@ -42,15 +33,11 @@ CloseButton.propTypes = {
   callback: PropTypes.func.isRequired,
   className: PropTypes.string,
   color: PropTypes.string,
-  dataLabel: PropTypes.string,
-  dataNoun: PropTypes.string,
   size: PropTypes.string,
 };
 
 CloseButton.defaultProps = {
   className: null,
   color: '#222',
-  dataLabel: null,
-  dataNoun: null,
   size: '18px',
 };

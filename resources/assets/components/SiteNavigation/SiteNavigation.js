@@ -23,32 +23,38 @@ class SiteNavigation extends React.Component {
     super(props);
 
     this.state = {
+      searchInput: '',
       activeSubNav: null,
       isSubNavFixed: false,
     };
   }
 
-  analyzeEvent = event => {
+  analyzeEvent = (event, analytics = {}) => {
     const targets = {
       A: 'link',
       BUTTON: 'button',
     };
 
-    const target = get(targets, event.target.tagName, 'element');
+    const inferredTarget = get(targets, event.target.tagName, 'element');
+
+    const target = get(analytics, 'target', inferredTarget);
+
+    const context = get(analytics, 'context', {});
 
     trackAnalyticsEvent({
       context: {
         ...getUtmContext(),
         ...getPageContext(),
         referrer: document.referrer,
+        ...context,
       },
       metadata: {
-        adjective: event.target.dataset.label,
+        adjective: get(analytics, 'label', null),
         category: 'navigation',
-        label: event.target.dataset.label,
-        noun: event.target.dataset.noun || 'nav_link',
+        label: get(analytics, 'label', null),
+        noun: get(analytics, 'noun', 'nav_link'),
         target,
-        verb: 'clicked',
+        verb: get(analytics, 'verb', 'clicked'),
       },
     });
   };
@@ -77,8 +83,14 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickLink = event => {
-    this.analyzeEvent(event);
+  handleOnChange = event => {
+    this.setState({
+      searchInput: event.target.value,
+    });
+  };
+
+  handleOnClickLink = (event, analytics = {}) => {
+    this.analyzeEvent(event, analytics);
 
     this.setState({
       activeSubNav: null,
@@ -86,10 +98,10 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickToggle = (event, subNavName) => {
+  handleOnClickToggle = (event, subNavName, analytics = {}) => {
     event.preventDefault();
 
-    this.analyzeEvent(event);
+    this.analyzeEvent(event, analytics);
 
     const { activeSubNav, isSubNavFixed } = this.state;
 
@@ -116,12 +128,19 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickClose = event => {
-    this.analyzeEvent(event);
+  handleOnClickClose = (event, analytics = {}) => {
+    this.analyzeEvent(event, analytics);
 
     this.setState({
       activeSubNav: null,
       isSubNavFixed: false,
+    });
+  };
+
+  handleOnSubmit = (event, analytics = {}) => {
+    this.analyzeEvent(event, {
+      ...analytics,
+      context: { searchQuery: this.state.searchInput },
     });
   };
 
@@ -130,7 +149,10 @@ class SiteNavigation extends React.Component {
       <nav role="navigation" id="nav" className="nav">
         <div className="wrapper base-12-grid">
           <div className="logo-nav">
-            <a href="/">
+            <a
+              href="/"
+              onClick={e => this.handleOnClickLink(e, { label: 'homepage' })}
+            >
               <DoSomethingLogo />
             </a>
           </div>
@@ -139,8 +161,7 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="/us/campaigns"
-                data-label="campaigns"
-                onClick={this.handleOnClickLink}
+                onClick={e => this.handleOnClickLink(e, { label: 'campaigns' })}
               >
                 Campaigns
               </a>
@@ -149,8 +170,9 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="/us/about/easy-scholarships"
-                data-label="scholarships"
-                onClick={this.handleOnClickLink}
+                onClick={e =>
+                  this.handleOnClickLink(e, { label: 'scholarships' })
+                }
               >
                 Scholarships
               </a>
@@ -159,8 +181,7 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="https://lets.dosomething.org"
-                data-label="articles"
-                onClick={this.handleOnClickLink}
+                onClick={e => this.handleOnClickLink(e, { label: 'articles' })}
               >
                 Articles
               </a>
@@ -169,8 +190,7 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="/us/about/who-we-are"
-                data-label="about"
-                onClick={this.handleOnClickLink}
+                onClick={e => this.handleOnClickLink(e, { label: 'about' })}
               >
                 About
               </a>
@@ -184,9 +204,12 @@ class SiteNavigation extends React.Component {
                 className={classnames('utility-nav__search-icon', {
                   'is-active': this.state.activeSubNav === 'SearchSubNav',
                 })}
-                data-label="search-form-toggle"
-                data-noun="nav-button"
-                onClick={e => this.handleOnClickToggle(e, 'SearchSubNav')}
+                onClick={e =>
+                  this.handleOnClickToggle(e, 'SearchSubNav', {
+                    label: 'search_form_toggle',
+                    noun: 'nav_button',
+                  })
+                }
               >
                 <div className="wrapper">
                   <SearchIcon />
@@ -202,6 +225,7 @@ class SiteNavigation extends React.Component {
                       acceptCharset="UTF-8"
                       action="/us/search"
                       method="GET"
+                      onSubmit={e => this.handleOnSubmit(e, { noun: 'form' })}
                     >
                       <SearchIcon />
                       <input
@@ -209,6 +233,8 @@ class SiteNavigation extends React.Component {
                         placeholder="Search"
                         name="query"
                         autoFocus
+                        onChange={this.handleOnChange}
+                        value={this.state.searchInput}
                       />
                     </form>
 
@@ -218,9 +244,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/about/easy-scholarships"
-                            data-label="scholarships-top-search"
-                            data-noun="subnav-link"
-                            onClick={this.analyzeEvent}
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'scholarships_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
                           >
                             scholarships
                           </a>
@@ -229,9 +258,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/search?query=bullying"
-                            data-label="bullying-top-search"
-                            data-noun="subnav-link"
-                            onClick={this.analyzeEvent}
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'bullying_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
                           >
                             bullying
                           </a>
@@ -240,9 +272,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/search?query=animals"
-                            data-label="animals-top-search"
-                            data-noun="subnav-link"
-                            onClick={this.analyzeEvent}
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'animals_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
                           >
                             animals
                           </a>
@@ -251,9 +286,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/facts/11-facts-about-cyber-bullying"
-                            data-label="cyberbullying-top-search"
-                            data-noun="subnav-link"
-                            onClick={this.analyzeEvent}
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'cyberbullying_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
                           >
                             cyberbullying
                           </a>
@@ -262,9 +300,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/articles/volunteer-opportunities-for-teens"
-                            data-label="volunteering-top-search"
-                            data-noun="subnav-link"
-                            onClick={this.analyzeEvent}
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'volunteering_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
                           >
                             volunteering
                           </a>
@@ -273,10 +314,13 @@ class SiteNavigation extends React.Component {
                     </div>
 
                     <CloseButton
-                      callback={this.handleOnClickClose}
+                      callback={e =>
+                        this.handleOnClickClose(e, {
+                          label: 'close_search_subnav',
+                          noun: 'nav_button',
+                        })
+                      }
                       className="btn__close--subnav btn__close--search-subnav block"
-                      dataLabel="close_search_subnav"
-                      dataNoun="nav_button"
                       size="22px"
                     />
                   </div>
@@ -290,8 +334,7 @@ class SiteNavigation extends React.Component {
                   <a
                     href="/us/account/profile"
                     className="utility-nav__account-profile-icon"
-                    data-label="profile"
-                    onClick={this.analyzeEvent}
+                    onClick={e => this.analyzeEvent(e, { label: 'profile' })}
                   >
                     <ProfileIcon />
                   </a>
@@ -302,8 +345,7 @@ class SiteNavigation extends React.Component {
                 <li className="utility-nav__auth menu-nav__item">
                   <a
                     href={this.props.authLoginUrl}
-                    data-label="log-in"
-                    onClick={this.analyzeEvent}
+                    onClick={e => this.analyzeEvent(e, { label: 'log_in' })}
                   >
                     Log In
                   </a>
@@ -312,8 +354,7 @@ class SiteNavigation extends React.Component {
                 <li className="utility-nav__join menu-nav__item">
                   <a
                     href={this.props.authRegisterUrl}
-                    data-label="join_now"
-                    onClick={this.analyzeEvent}
+                    onClick={e => this.analyzeEvent(e, { label: 'join_now' })}
                   >
                     Join Now
                   </a>
@@ -326,9 +367,12 @@ class SiteNavigation extends React.Component {
         {this.state.activeSubNav ? (
           <div
             className="underlay"
-            data-label="underlay_close_subnav"
-            data-noun="nav_element"
-            onClick={this.handleOnClickClose}
+            onClick={e =>
+              this.handleOnClickClose(e, {
+                label: 'underlay_close_subnav',
+                noun: 'nav_element',
+              })
+            }
             role="button"
           />
         ) : null}

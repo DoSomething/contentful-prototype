@@ -1,3 +1,5 @@
+/* eslint-disable id-length */
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -36,7 +38,7 @@ const AccountNavigation = props => (
       >
         Subscriptions
       </NavLink>
-      <a className="nav-link" href="/deauthorize">
+      <a className="nav-link" href="/deauthorize" onClick={e => console.log(e)}>
         Log Out
       </a>
     </div>
