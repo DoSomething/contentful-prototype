@@ -54,10 +54,11 @@ const AccountNavigation = props => (
               ...getUtmContext(),
             },
             metadata: {
+              adjective: 'log_out',
               category: 'navigation',
               label: 'log_out',
               noun: 'nav_link',
-              trigger: 'link',
+              target: 'link',
               verb: 'clicked',
             },
           })
