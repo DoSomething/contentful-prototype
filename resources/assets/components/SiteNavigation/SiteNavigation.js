@@ -50,7 +50,7 @@ class SiteNavigation extends React.Component {
       },
       metadata: {
         adjective: get(analytics, 'label', null),
-        category: 'navigation',
+        category: get(analytics, 'category', 'navigation'),
         label: get(analytics, 'label', null),
         noun: get(analytics, 'noun', 'nav_link'),
         target,
@@ -225,7 +225,15 @@ class SiteNavigation extends React.Component {
                       acceptCharset="UTF-8"
                       action="/us/search"
                       method="GET"
-                      onSubmit={e => this.handleOnSubmit(e, { noun: 'form' })}
+                      onSubmit={e =>
+                        this.handleOnSubmit(e, {
+                          category: 'search',
+                          label: 'search_subnav',
+                          noun: 'nav_form',
+                          target: 'form',
+                          verb: 'submitted',
+                        })
+                      }
                     >
                       <SearchIcon />
                       <input
@@ -234,6 +242,15 @@ class SiteNavigation extends React.Component {
                         name="query"
                         autoFocus
                         onChange={this.handleOnChange}
+                        onClick={e =>
+                          this.analyzeEvent(e, {
+                            category: 'search',
+                            label: 'search_subnav',
+                            noun: 'nav_form',
+                            target: 'form',
+                            verb: 'clicked',
+                          })
+                        }
                         value={this.state.searchInput}
                       />
                     </form>
