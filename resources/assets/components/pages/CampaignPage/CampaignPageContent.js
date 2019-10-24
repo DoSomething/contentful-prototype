@@ -95,7 +95,11 @@ const CampaignPageContent = props => {
       </div>
 
       {isClosed ? null : (
-        <CallToActionContainer useCampaignTagline visualStyle="transparent" />
+        <CallToActionContainer
+          useCampaignTagline
+          visualStyle="transparent"
+          hideIfSignedUp
+        />
       )}
     </div>
   );
