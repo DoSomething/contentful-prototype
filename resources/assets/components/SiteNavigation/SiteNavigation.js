@@ -41,6 +41,8 @@ class SiteNavigation extends React.Component {
 
     const context = get(analytics, 'context', {});
 
+    const label = get(analytics, 'label', null);
+
     trackAnalyticsEvent({
       context: {
         ...getPageContext(),
@@ -49,9 +51,9 @@ class SiteNavigation extends React.Component {
         ...context,
       },
       metadata: {
-        adjective: get(analytics, 'adjective', null),
+        adjective: get(analytics, 'adjective', label),
         category: get(analytics, 'category', 'navigation'),
-        label: get(analytics, 'label', null),
+        label,
         noun: get(analytics, 'noun', 'nav_link'),
         target,
         verb: get(analytics, 'verb', 'clicked'),
