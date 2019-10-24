@@ -49,7 +49,7 @@ class SiteNavigation extends React.Component {
         ...context,
       },
       metadata: {
-        adjective: get(analytics, 'label', null),
+        adjective: get(analytics, 'adjective', null),
         category: get(analytics, 'category', 'navigation'),
         label: get(analytics, 'label', null),
         noun: get(analytics, 'noun', 'nav_link'),
