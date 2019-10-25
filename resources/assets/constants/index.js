@@ -1,5 +1,4 @@
 /* global window */
-import { get } from 'lodash';
 
 /**
  * Contains general constants for the application.
@@ -7,8 +6,6 @@ import { get } from 'lodash';
 export const MEDIA_MEDIUM_SIZE_MIN = 759;
 
 export const PHOENIX_URL = window.location.origin;
-
-export const PUCK_URL = get(window.ENV, 'PUCK_URL', null);
 
 // Apollo GraphQL loading states:
 export const NetworkStatus = {
