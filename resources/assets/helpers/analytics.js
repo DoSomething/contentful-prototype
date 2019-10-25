@@ -1,10 +1,7 @@
 /* global window */
 
 import { get, snakeCase, startCase } from 'lodash';
-import { Engine as PuckClient } from '@dosomething/puck-client';
 
-import { PUCK_URL } from '../constants';
-import { get as getHistory } from '../history';
 import { debug, stringifyNestedObjects, withoutValueless, query } from '.';
 
 /**
@@ -13,13 +10,6 @@ import { debug, stringifyNestedObjects, withoutValueless, query } from '.';
  * @type {String}
  */
 const APP_PREFIX = 'phoenix';
-
-/**
- * Variable that stores the instance of PuckClient.
- *
- * @type {null|Object}
- */
-let puckClient = null;
 
 /**
  * Wrapper function to allow executing additional calls when an analytics event is triggered.
@@ -88,27 +78,6 @@ export function analyzeWithGoogle(name, category, action, label, data) {
 }
 
 /**
- * Send event to analyze with Puck.
- *
- * @param  {String} name
- * @param  {Object} data
- * @return {void}
- */
-export function analyzeWithPuck(name, data) {
-  if (!puckClient) {
-    puckClient = new PuckClient({
-      source: 'phoenix-next',
-      getUser: () => window.AUTH.id,
-      isAuthenticated: () => window.AUTH.isAuthenticated,
-      puckUrl: PUCK_URL,
-      history: getHistory(),
-    });
-  }
-
-  puckClient.trackEvent(name, data);
-}
-
-/**
  * Send event to analyze with Snowplow.
  *
  * @param  {String} name
@@ -156,17 +125,16 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
  */
 const sendToServices = (name, category, action, label, data, service) => {
   switch (service) {
-    case 'ga':
+    case 'google':
       analyzeWithGoogle(name, category, action, label, data);
       break;
 
-    case 'puck':
-      analyzeWithPuck(name, data);
+    case 'snowplow':
+      analyzeWithSnowplow(name, category, action, label, data);
       break;
 
     default:
       analyzeWithGoogle(name, category, action, label, data);
-      analyzeWithPuck(name, data);
       analyzeWithSnowplow(name, category, action, label, data);
   }
 };
