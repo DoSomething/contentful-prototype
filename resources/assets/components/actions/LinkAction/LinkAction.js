@@ -6,6 +6,7 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 
 import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 export const LinkBlockFragment = gql`
   fragment LinkBlockFragment on LinkBlock {
@@ -34,8 +35,10 @@ const LinkAction = props => {
 
   return (
     <React.Fragment>
+      <AnalyticsWaypoint name="link_action-top" context={{ blockId: id }} />
       <PuckWaypoint name="link_action-top" waypointData={{ blockId: id }} />
       <LinkActionTemplate {...props} />
+      <AnalyticsWaypoint name="link_action-bottom" context={{ blockId: id }} />
       <PuckWaypoint name="link_action-bottom" waypointData={{ blockId: id }} />
     </React.Fragment>
   );
