@@ -65,19 +65,6 @@ const VoterRegistrationAction = props => {
         <ButtonLink link={parsedLink} onClick={handleClick} targetBlank>
           Start Registration
         </ButtonLink>
-
-        {/* OLD LINK 
-        {parsedLink ? (
-          <a
-            className="button"
-            href={parsedLink}
-            onClick={handleClick}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Start Registration
-          </a>
-        ) : null} */}
       </div>
       <PuckWaypoint name="voter_registration_action-bottom" />
     </Card>
