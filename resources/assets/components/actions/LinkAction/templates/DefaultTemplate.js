@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
-import { isExternal, dynamicString } from '../../../../helpers';
+import { dynamicString } from '../../../../helpers';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import TextContent from '../../../utilities/TextContent/TextContent';
@@ -91,15 +91,10 @@ const DefaultTemplate = props => {
           />
         ) : null}
 
-        {/* <Button attached onClick={() => onLinkClick(href, context)}>
-          {buttonText}
-        </Button> */}
-
         <ButtonLink
           attached
           link={href}
           onClick={() => analyzeClick(href, context)}
-          targetBlank={isExternal(href)}
         >
           {buttonText}
         </ButtonLink>

@@ -2,17 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import '../Button/button.scss';
-import './buttonlink.scss';
+import { isExternal } from '../../../helpers';
 
-const ButtonLink = ({
-  link,
-  className,
-  onClick,
-  attached,
-  targetBlank,
-  children,
-}) => {
+import '../Button/button.scss';
+
+const ButtonLink = ({ link, className, onClick, attached, children }) => {
   const classNames = classnames(
     'button',
     {
@@ -26,8 +20,8 @@ const ButtonLink = ({
       href={link}
       className={classNames}
       onClick={onClick}
-      target={targetBlank ? '_blank' : '_self'}
-      rel={targetBlank ? 'noopener noreferrer' : null}
+      target={isExternal(link) ? '_blank' : '_self'}
+      rel={isExternal(link) ? 'noopener noreferrer' : null}
     >
       {buttonText}
     </a>
@@ -45,7 +39,6 @@ ButtonLink.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   attached: PropTypes.bool,
-  targetBlank: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string),
@@ -56,7 +49,6 @@ ButtonLink.defaultProps = {
   className: null,
   onClick: () => {},
   attached: false,
-  targetBlank: false,
 };
 
 export default ButtonLink;

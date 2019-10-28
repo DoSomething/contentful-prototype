@@ -62,7 +62,7 @@ const VoterRegistrationAction = props => {
       <div className="padded clearfix">
         <TextContent>{content}</TextContent>
 
-        <ButtonLink link={parsedLink} onClick={handleClick} targetBlank>
+        <ButtonLink link={parsedLink} onClick={handleClick}>
           Start Registration
         </ButtonLink>
       </div>
