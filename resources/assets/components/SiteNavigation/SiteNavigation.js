@@ -247,14 +247,24 @@ class SiteNavigation extends React.Component {
                     </section>
 
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
-                      <img
-                        className="mb-4"
-                        src="http://placekitten.com/g/550/250"
-                        alt="temporary place kitten"
-                      />
-                      <h1>Take Back the Kittens</h1>
-                      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-                      <a href="/">Learn More</a>
+                      <a href="/" className="main-subnav__feature">
+                        <img
+                          className="mb-4"
+                          src="http://placekitten.com/g/550/250"
+                          alt="temporary place kitten"
+                        />
+                        <h1 className="main-subnav__feature-title">
+                          Take Back the Kittens
+                        </h1>
+                        <div className="main-subnav__feature-content">
+                          <p>
+                            Donec ullamcorper nulla non metus auctor fringilla.
+                          </p>
+                          <p className="main-subnav__feature-link">
+                            Learn More
+                          </p>
+                        </div>
+                      </a>
                     </section>
 
                     {this.state.isSubNavFixed ? (

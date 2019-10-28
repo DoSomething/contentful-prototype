@@ -63,11 +63,15 @@ $extraSmall: '(min-width: 360px)';
   position: relative;
 
   &:first-of-type {
-    padding-top: 0;
+    padding-top: 12px;
+
+    @include media($large) {
+      padding-top: 0;
+    }
   }
 
-  &:last-of-type {
-    padding-bottom: $spacing_2x;
+  @include media($large) {
+    padding-top: 0;
   }
 }
 
@@ -101,10 +105,21 @@ $extraSmall: '(min-width: 360px)';
   }
 
   > h1 {
+    margin-bottom: 0;
+
     a {
       color: black;
       font-size: 22px;
       font-weight: bold;
+      padding: 0 0 12px;
+
+      @include media($large) {
+        font-size: 18px;
+      }
+
+      @include media($larger) {
+        font-size: 22px;
+      }
     }
   }
 }
@@ -205,6 +220,38 @@ $extraSmall: '(min-width: 360px)';
 
   @include media($large) {
     grid-column: 7 / wide-end;
+  }
+}
+
+.main-subnav__feature {
+  display: block;
+  font-weight: $weight-normal;
+
+  &:active,
+  &:hover {
+    text-decoration: none;
+
+    .main-subnav__feature-link {
+      text-decoration: underline;
+    }
+  }
+}
+
+.main-subnav__feature-title {
+  font-size: 22px;
+}
+
+.main-subnav__feature-content {
+}
+
+.main-subnav__feature-link {
+  color: $blue;
+  font-weight: $weight-bold;
+  margin-top: 0;
+
+  &:active,
+  &:hover {
+    text-decoration: underline;
   }
 }
 
