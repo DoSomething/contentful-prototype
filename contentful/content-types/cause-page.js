@@ -34,12 +34,12 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^causes\\/[a-z\\-]+$',
+          pattern: '^[a-z\\-]+$',
           flags: null,
         },
 
         message:
-          'Only alphanumeric and hyphen characters are allowed in slugs! Entry must begin with "causes/".',
+          'Slug should match the cause type e.g. "environment". Only alphanumeric and hyphen characters are allowed in slugs! The URL for the Cause Page will be prefixed with "causes/" e.g. "https://dosomething.org/us/causes/environment".',
       },
     ])
     .disabled(false)
