@@ -1,7 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
-import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
 import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
