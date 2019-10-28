@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
+import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
@@ -247,24 +248,23 @@ class SiteNavigation extends React.Component {
                     </section>
 
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
-                      <a href="/" className="main-subnav__feature">
-                        <img
-                          className="mb-4"
-                          src="http://placekitten.com/g/550/250"
-                          alt="temporary place kitten"
-                        />
-                        <h1 className="main-subnav__feature-title">
-                          Take Back the Kittens
-                        </h1>
-                        <div className="main-subnav__feature-content">
-                          <p>
-                            Donec ullamcorper nulla non metus auctor fringilla.
-                          </p>
-                          <p className="main-subnav__feature-link">
-                            Learn More
-                          </p>
-                        </div>
-                      </a>
+                      <SiteNavigationFeature
+                        imageSrc="https://placedog.net/1100/500?id=2"
+                        imageAlt="temporary place puppers"
+                        url="/"
+                        title="Take Back the Puppers"
+                        text="Donec ullamcorper nulla non metus auctor fringilla."
+                        callback={e =>
+                          this.analyzeEvent(e, {
+                            context: {
+                              campaignId: '12asasd23sdasd3',
+                            },
+                            label: 'subnav_feature',
+                            target: 'link',
+                            verb: 'clicked',
+                          })
+                        }
+                      />
                     </section>
 
                     {this.state.isSubNavFixed ? (
