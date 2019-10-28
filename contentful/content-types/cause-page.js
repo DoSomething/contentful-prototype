@@ -84,29 +84,16 @@ module.exports = function(migration) {
     .type('Symbol')
     .localized(true)
     .required(true)
-    .validations([
-      {
-        size: {
-          max: 100,
-        },
-      },
-    ])
+    .validations([])
     .disabled(false)
     .omitted(false);
-
   causePage
     .createField('title')
     .name('Title')
     .type('Symbol')
     .localized(true)
     .required(true)
-    .validations([
-      {
-        size: {
-          max: 100,
-        },
-      },
-    ])
+    .validations([])
     .disabled(false)
     .omitted(false);
 
