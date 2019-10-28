@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
@@ -36,10 +35,8 @@ const LinkAction = props => {
   return (
     <React.Fragment>
       <AnalyticsWaypoint name="link_action-top" context={{ blockId: id }} />
-      <PuckWaypoint name="link_action-top" waypointData={{ blockId: id }} />
       <LinkActionTemplate {...props} />
       <AnalyticsWaypoint name="link_action-bottom" context={{ blockId: id }} />
-      <PuckWaypoint name="link_action-bottom" waypointData={{ blockId: id }} />
     </React.Fragment>
   );
 };
