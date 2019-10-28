@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import requiredIf from 'react-required-if';
 
+import '../Button/button.scss';
 import './buttonlink.scss';
 
-const ButtonLink = ({ link, className, attached, targetBlank, children }) => {
+const ButtonLink = ({
+  link,
+  className,
+  onClick,
+  attached,
+  targetBlank,
+  children,
+}) => {
   const classNames = classnames(
-    'buttonLink',
+    'button',
     {
       '-attached': attached,
     },
@@ -15,23 +22,19 @@ const ButtonLink = ({ link, className, attached, targetBlank, children }) => {
   );
   const buttonText = Array.isArray(children) ? children.join('') : children;
   const buttonLink = (
-    <a href={link} className="button">
-      {classNames}
+    <a
+      href={link}
+      className={classNames}
+      onClick={onClick}
+      target={targetBlank ? '_blank' : '_self'}
+      rel={targetBlank ? 'noopener noreferrer' : null}
+    >
       {buttonText}
     </a>
   );
 
-  if (targetBlank) {
-    return (
-      <a
-        href={link}
-        className="button"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {buttonText}
-      </a>
-    );
+  if (attached) {
+    return <div className="button__attached-container">{buttonLink}</div>;
   }
 
   return buttonLink;
@@ -39,8 +42,8 @@ const ButtonLink = ({ link, className, attached, targetBlank, children }) => {
 
 ButtonLink.propTypes = {
   link: PropTypes.string.isRequired,
-  onClick: requiredIf(PropTypes.func, props => props.type !== 'submit'),
   className: PropTypes.string,
+  onClick: PropTypes.func,
   attached: PropTypes.bool,
   targetBlank: PropTypes.bool,
   children: PropTypes.oneOfType([
@@ -51,7 +54,9 @@ ButtonLink.propTypes = {
 
 ButtonLink.defaultProps = {
   className: null,
+  onClick: () => {},
   attached: false,
+  targetBlank: false,
 };
 
 export default ButtonLink;
