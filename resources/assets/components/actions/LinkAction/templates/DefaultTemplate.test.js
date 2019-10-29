@@ -40,11 +40,11 @@ describe('DefaultTemplate component', () => {
 
     it('renders a Card component with a button', () => {
       expect(wrapper.find('Card')).toHaveLength(1);
-      expect(wrapper.find('Card').find('Button')).toHaveLength(1);
+      expect(wrapper.find('Card').find('ButtonLink')).toHaveLength(1);
     });
 
     it('calls the event tracker prop function when the button is clicked', () => {
-      wrapper.find('Button').simulate('click');
+      wrapper.find('ButtonLink').simulate('click');
       expect(trackEventMock).toHaveBeenCalled();
     });
   });
@@ -59,7 +59,7 @@ describe('DefaultTemplate component', () => {
     );
 
     it('renders a button with the appropriate text', () => {
-      const button = wrapper.find('Button');
+      const button = wrapper.find('ButtonLink');
 
       expect(button).toHaveLength(1);
       expect(button.dive().text()).toEqual('Do it!');
