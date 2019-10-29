@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { get } from '../../../helpers/storage';
 import VoterRegistrationAction from './VoterRegistrationAction';
@@ -11,7 +11,7 @@ jest.mock('../../../helpers/analytics');
 global.localStorage = new LocalStorageMock();
 
 const renderVoterRegistration = () =>
-  shallow(
+  mount(
     <VoterRegistrationAction
       blockId="1234"
       campaignId="5678"
@@ -27,20 +27,20 @@ test('VoterRegistrationAction is rendered as a card component with a button', ()
   const wrapper = renderVoterRegistration();
 
   expect(wrapper.find('Card').length).toEqual(1);
-  expect(wrapper.find('.button').length).toEqual(1);
+  expect(wrapper.find('ButtonLink').length).toEqual(1);
 });
 
 describe('clicking the VoterRegistrationAction button', () => {
   test('calls the event tracker prop function', () => {
     const wrapper = renderVoterRegistration();
 
-    wrapper.find('.button').simulate('click');
+    wrapper.find('ButtonLink').simulate('click');
     expect(trackEventMock).toHaveBeenCalled();
   });
 
   test('sets the user to be hidden from voter_reg_modal in local storage', () => {
     const wrapper = renderVoterRegistration();
-    wrapper.find('.button').simulate('click');
+    wrapper.find('ButtonLink').simulate('click');
 
     expect(
       get(`${'551234567890abcdefghijkl'}_hide_voter_reg_modal`, 'boolean'),
