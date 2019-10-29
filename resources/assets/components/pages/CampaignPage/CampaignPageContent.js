@@ -7,6 +7,7 @@ import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import ContentfulEntry from '../../ContentfulEntry';
 import { CallToActionContainer } from '../../CallToAction';
+import SchoolFinderContainer from '../../utilities/SchoolFinder/SchoolFinderContainer';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
 
@@ -91,6 +92,7 @@ const CampaignPageContent = props => {
       ) : null}
 
       <div className="blocks clear-both">
+        <SchoolFinderContainer />
         {blocks.map(block => renderBlock(block))}
       </div>
 
