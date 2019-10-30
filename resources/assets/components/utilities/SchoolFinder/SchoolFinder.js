@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import { UsaStates } from 'usa-states';
 
 import Card from '../Card/Card';
 import TextContent from '../TextContent/TextContent';
 
-const colourOptions = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
+import './school-finder.scss';
+
+const stateOptions = new UsaStates().states.map(state => ({
+  value: state.abbreviation,
+  label: state.name,
+}));
 
 const SchoolFinder = ({ campaignId, userId }) => {
   if (campaignId !== '9001') {
@@ -19,10 +21,16 @@ const SchoolFinder = ({ campaignId, userId }) => {
   console.log(userId);
 
   return (
-    <div className="margin-bottom-lg margin-horizontal-md clear-both primary">
+    <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
       <Card title="Find Your School" className="rounded bordered">
-        <TextContent className="padded">Testing</TextContent>
-        <Select options={colourOptions} />
+        <TextContent className="padded">
+          Pick your school and whatever. Invite your classmates to join this
+          campaign and donate their jeans to win prizes and some other stuff.
+        </TextContent>
+        <div className="select-state padded">
+          <strong>State</strong>
+          <Select options={stateOptions} />
+        </div>
       </Card>
     </div>
   );
