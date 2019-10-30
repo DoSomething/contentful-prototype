@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import { UsaStates } from 'usa-states';
 
 import Card from '../Card/Card';
@@ -15,11 +16,35 @@ const stateOptions = new UsaStates().states.map(state => ({
 }));
 
 const SchoolFinder = ({ campaignId, userId }) => {
+  if (campaignId !== '9001') {
+    return null;
+  }
+
+  const [selectedSchool, setSelectedSchool] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
   const [submittedForm, setSubmittedForm] = useState(false);
 
-  if (campaignId !== '9001') {
-    return null;
+  function fetchSchools(searchString, callback) {
+    if (searchString.length < 2) {
+      return Promise.resolve();
+    }
+
+    return fetch(
+      `https://lofischools.herokuapp.com/search?state=${selectedState}&query=${searchString}`,
+    )
+      .then(res => res.json())
+      .then(res => {
+        if (!res.results) {
+          return [];
+        }
+
+        const options = res.results.map(school => ({
+          value: school.gsid,
+          label: school.name,
+        }));
+
+        return callback(options);
+      });
   }
 
   if (submittedForm) {
@@ -27,8 +52,8 @@ const SchoolFinder = ({ campaignId, userId }) => {
       <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
         <Card title="Your School" className="rounded bordered">
           <p className="padded">
-            You selected <strong>{selectedState}</strong>{' '}
-            <small>(User ID {userId})</small>.
+            <strong>{selectedSchool.label}</strong>
+            <p>(User ID {userId})</p>.
           </p>
         </Card>
       </div>
@@ -49,9 +74,19 @@ const SchoolFinder = ({ campaignId, userId }) => {
             onChange={selected => setSelectedState(selected.value)}
           />
         </div>
+        {selectedState ? (
+          <div className="select-school padded">
+            <AsyncSelect
+              defaultOptions
+              loadOptions={fetchSchools}
+              placeholder="Enter your school name"
+              onChange={selected => setSelectedSchool(selected)}
+            />
+          </div>
+        ) : null}
         <Button
           onClick={() => setSubmittedForm(true)}
-          disabled={selectedState === null}
+          disabled={selectedSchool === null}
           attached
         >
           Submit
