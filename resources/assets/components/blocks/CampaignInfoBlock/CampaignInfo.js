@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
+import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 
 /**
@@ -26,28 +27,30 @@ const CampaignInfo = ({ campaignId, scholarshipAmount }) => (
   <Card className="bordered padded rounded campaign-info">
     <h1 className="mb-4 text-m uppercase">Campaign Info</h1>
     <dl className="clearfix">
-      {endDate ? (
-        <React.Fragment>
-          <dt>Deadline</dt>
-          <dd>
-            {format(endDate, 'MMMM do, yyyy', {
-              awareOfUnicodeTokens: true,
-            })}
-          </dd>
-        </React.Fragment>
-      ) : null}
-      {timeCommitment ? (
-        <React.Fragment>
-          <dt>Time</dt>
-          <dd>{timeCommitment}</dd>
-        </React.Fragment>
-      ) : null}
-      {actionType ? (
-        <React.Fragment>
-          <dt>Action Type</dt>
-          <dd>{actionType}</dd>
-        </React.Fragment>
-      ) : null}
+      <Query query={CAMPAIGN_INFO_QUERY} variables={campaignId}>
+        {endDate ? (
+          <React.Fragment>
+            <dt>Deadline</dt>
+            <dd>
+              {format(endDate, 'MMMM do, yyyy', {
+                awareOfUnicodeTokens: true,
+              })}
+            </dd>
+          </React.Fragment>
+        ) : null}
+        {timeCommitment ? (
+          <React.Fragment>
+            <dt>Time</dt>
+            <dd>{timeCommitment}</dd>
+          </React.Fragment>
+        ) : null}
+        {actionType ? (
+          <React.Fragment>
+            <dt>Action Type</dt>
+            <dd>{actionType}</dd>
+          </React.Fragment>
+        ) : null}
+      </Query>
       {scholarshipAmount ? (
         <React.Fragment>
           <dt className="campaign-info__scholarship">Win A Scholarship</dt>
@@ -59,5 +62,14 @@ const CampaignInfo = ({ campaignId, scholarshipAmount }) => (
     </dl>
   </Card>
 );
+
+CampaignInfo.propTypes = {
+  campaignId: PropTypes.string.isRequired,
+  scholarshipAmount: PropTypes.number,
+};
+
+CampaignInfo.defaultProps = {
+  scholarshipAmount: null,
+};
 
 export default CampaignInfo;
