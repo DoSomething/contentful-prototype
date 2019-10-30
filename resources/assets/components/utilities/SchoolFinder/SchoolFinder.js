@@ -6,7 +6,6 @@ import { UsaStates } from 'usa-states';
 
 import Card from '../Card/Card';
 import Button from '../Button/Button';
-import TextContent from '../TextContent/TextContent';
 
 import './school-finder.scss';
 
@@ -15,7 +14,9 @@ const stateOptions = new UsaStates().states.map(state => ({
   label: state.name,
 }));
 
-const SchoolFinder = ({ campaignId, userId }) => {
+const SchoolFinder = ({ campaignId }) => {
+  // Check for our development Teens For Jeans (TFJ) campaign ID.
+  // @TODO: Add additional check for production TFJ campaign ID once it exists.
   if (campaignId !== '9001') {
     return null;
   }
@@ -25,10 +26,6 @@ const SchoolFinder = ({ campaignId, userId }) => {
   const [submittedForm, setSubmittedForm] = useState(false);
 
   function fetchSchools(searchString, callback) {
-    if (searchString.length < 2) {
-      return Promise.resolve();
-    }
-
     // @TODO: Handle errors.
     return fetch(
       `https://lofischools.herokuapp.com/search?state=${selectedState}&query=${searchString}`,
@@ -37,6 +34,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
       .then(res => callback(res.results));
   }
 
+  // @TODO: Also display this content when user already has a school_id on their profile.
   if (submittedForm) {
     return (
       <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
@@ -63,10 +61,10 @@ const SchoolFinder = ({ campaignId, userId }) => {
   return (
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
       <Card title="Find Your School" className="rounded bordered">
-        <TextContent className="padded">
+        <p className="padded">
           Pick your school and whatever. Invite your classmates to join this
           campaign and donate their jeans to win prizes and some other stuff.
-        </TextContent>
+        </p>
         <div className="select-state padded">
           <strong>State</strong>
           <Select
@@ -84,6 +82,11 @@ const SchoolFinder = ({ campaignId, userId }) => {
               getOptionValue={school => school.id}
               loadOptions={fetchSchools}
               placeholder="Enter your school name"
+              noOptionsMessage={select =>
+                select.inputValue.length > 1
+                  ? `No results for "${select.inputValue}"`
+                  : null
+              }
               onChange={selected => setSelectedSchool(selected)}
             />
           </div>
@@ -102,7 +105,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
 
 SchoolFinder.propTypes = {
   campaignId: PropTypes.string.isRequired,
-  userId: PropTypes.string.isRequired,
+  // @TODO: Add userId once we're ready to start reading/writing user's school_id.
 };
 
 export default SchoolFinder;
