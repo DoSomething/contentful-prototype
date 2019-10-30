@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { UsaStates } from 'usa-states';
 
 import Card from '../Card/Card';
+import Button from '../Button/Button';
 import TextContent from '../TextContent/TextContent';
 
 import './school-finder.scss';
@@ -14,11 +15,25 @@ const stateOptions = new UsaStates().states.map(state => ({
 }));
 
 const SchoolFinder = ({ campaignId, userId }) => {
+  const [selectedState, setSelectedState] = useState(null);
+  const [submittedForm, setSubmittedForm] = useState(false);
+
   if (campaignId !== '9001') {
     return null;
   }
 
-  console.log(userId);
+  if (submittedForm) {
+    return (
+      <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
+        <Card title="Your School" className="rounded bordered">
+          <p className="padded">
+            You selected <strong>{selectedState}</strong>{' '}
+            <small>(User ID {userId})</small>.
+          </p>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
@@ -29,8 +44,18 @@ const SchoolFinder = ({ campaignId, userId }) => {
         </TextContent>
         <div className="select-state padded">
           <strong>State</strong>
-          <Select options={stateOptions} />
+          <Select
+            options={stateOptions}
+            onChange={selected => setSelectedState(selected.value)}
+          />
         </div>
+        <Button
+          onClick={() => setSubmittedForm(true)}
+          disabled={selectedState === null}
+          attached
+        >
+          Submit
+        </Button>
       </Card>
     </div>
   );
