@@ -29,32 +29,32 @@ const SchoolFinder = ({ campaignId, userId }) => {
       return Promise.resolve();
     }
 
+    // @TODO: Handle errors.
     return fetch(
       `https://lofischools.herokuapp.com/search?state=${selectedState}&query=${searchString}`,
     )
       .then(res => res.json())
-      .then(res => {
-        if (!res.results) {
-          return [];
-        }
-
-        const options = res.results.map(school => ({
-          value: school.gsid,
-          label: school.name,
-        }));
-
-        return callback(options);
-      });
+      .then(res => callback(res.results));
   }
 
   if (submittedForm) {
     return (
       <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
         <Card title="Your School" className="rounded bordered">
-          <p className="padded">
-            <strong>{selectedSchool.label}</strong>
-            <p>(User ID {userId})</p>.
-          </p>
+          <div className="padded">
+            <p>
+              Something something something school finder post verification
+              copy. You can email{' '}
+              <a href="mailto:Sahara@DoSomething.org">
+                mailto:Sahara@DoSomething.org
+              </a>{' '}
+              to change your school.
+            </p>
+            <h3>{selectedSchool.name}</h3>
+            <small className="uppercase">
+              {selectedSchool.city}, {selectedSchool.state}
+            </small>
+          </div>
         </Card>
       </div>
     );
@@ -78,6 +78,10 @@ const SchoolFinder = ({ campaignId, userId }) => {
           <div className="select-school padded">
             <AsyncSelect
               defaultOptions
+              getOptionLabel={school =>
+                `${school.name} - ${school.city}, ${school.state}`
+              }
+              getOptionValue={school => school.id}
               loadOptions={fetchSchools}
               placeholder="Enter your school name"
               onChange={selected => setSelectedSchool(selected)}
