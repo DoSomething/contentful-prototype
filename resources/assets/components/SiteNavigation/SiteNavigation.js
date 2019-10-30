@@ -9,7 +9,9 @@ import PropTypes from 'prop-types';
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
-import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
+// @TODO: After Halloween 2019, uncomment the next line and delete this line
+// import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
+import BooSomethingLogo from '../utilities/DoSomethingLogo/BooSomethingLogo';
 import {
   trackAnalyticsEvent,
   getUtmContext,
@@ -155,7 +157,8 @@ class SiteNavigation extends React.Component {
               href="/"
               onClick={e => this.handleOnClickLink(e, { label: 'homepage' })}
             >
-              <DoSomethingLogo />
+              {/* @TODO: After Halloween 2019, change this back to DoSomethingLogo */}
+              <BooSomethingLogo />
             </a>
           </div>
 
