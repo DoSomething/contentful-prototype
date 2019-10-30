@@ -145,6 +145,10 @@ $extraSmall: '(min-width: 360px)';
   grid-column: full-start / span 1;
   padding: 0 0 0 $spacing_1x;
 
+  // Temporary overide for Halloween 2019!
+  background: url('./boo-something-logo.svg');
+  background-repeat: no-repeat;
+
   > a {
     display: inline-block;
   }

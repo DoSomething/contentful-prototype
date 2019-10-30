@@ -155,7 +155,8 @@ class SiteNavigation extends React.Component {
               href="/"
               onClick={e => this.handleOnClickLink(e, { label: 'homepage' })}
             >
-              <DoSomethingLogo />
+              {/* @TODO: After Halloween 2019, uncomment the next line and delete this line */}
+              {/* <DoSomethingLogo /> */}
             </a>
           </div>
 
