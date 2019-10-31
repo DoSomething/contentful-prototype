@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import defineCampaignActionInfo from '../../../helpers/campaign-actions';
 
 /**
  * The GraphQL query to load data for this component.
@@ -38,11 +37,8 @@ const CampaignInfo = ({ campaignId, scholarshipAmount }) => (
                 action => action.scholarshipEntry && action.reportback,
               )
             : [];
-          const timeCommitment = defineCampaignActionInfo(
-            actions,
-            'timeCommitmentLabel',
-          );
-          const actionType = defineCampaignActionInfo(actions, 'actionLabel');
+          const action = actions.length ? actions[0] : null;
+
           return (
             <>
               <dt>Deadline</dt>
@@ -53,16 +49,16 @@ const CampaignInfo = ({ campaignId, scholarshipAmount }) => (
                     })
                   : 'Evergreen'}
               </dd>
-              {timeCommitment ? (
+              {action && action.timeCommitmentLabel ? (
                 <React.Fragment>
                   <dt>Time</dt>
-                  <dd>{timeCommitment}</dd>
+                  <dd>{action.timeCommitmentLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {actionType ? (
+              {action && action.actionLabel ? (
                 <React.Fragment>
                   <dt>Action Type</dt>
-                  <dd>{actionType}</dd>
+                  <dd>{action.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
               {scholarshipAmount ? (
