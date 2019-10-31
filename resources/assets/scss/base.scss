@@ -592,6 +592,11 @@ p {
   margin-bottom: $half-spacing;
 }
 
+.mx-2 {
+  margin-left: $half-spacing / 2;
+  margin-right: $half-spacing / 2;
+}
+
 .p-0 {
   padding: 0;
 }
