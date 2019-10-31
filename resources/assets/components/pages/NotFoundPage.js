@@ -6,7 +6,7 @@ import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 const NotFoundPage = () => (
   <>
     <SiteNavigationContainer />
-    <section className="container -framed">
+    <section className="container -framed mx-2">
       <NotFound />
     </section>
   </>
