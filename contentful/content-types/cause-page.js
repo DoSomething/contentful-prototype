@@ -119,10 +119,11 @@ module.exports = function(migration) {
           'unordered-list',
           'hr',
           'blockquote',
+          'hyperlink',
         ],
 
         message:
-          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, and quote nodes are allowed',
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
@@ -139,10 +140,30 @@ module.exports = function(migration) {
         nodes: {
           'embedded-entry-block': [
             {
-              linkContentType: ['galleryBlock'],
+              linkContentType: ['contentBlock', 'galleryBlock'],
             },
           ],
         },
+      },
+      {
+        enabledNodeTypes: [
+          'heading-1',
+          'heading-2',
+          'heading-3',
+          'heading-4',
+          'heading-5',
+          'heading-6',
+          'ordered-list',
+          'unordered-list',
+          'hr',
+          'blockquote',
+          'embedded-entry-block',
+          'embedded-asset-block',
+          'hyperlink',
+        ],
+
+        message:
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
