@@ -6,12 +6,14 @@ import Enclosure from '../../../Enclosure';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
-import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlockContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
+import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
+import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlockContainer';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   contentfulImageUrl,
   isScholarshipAffiliateReferral,
+  getScholarshipAffiliateLabel,
 } from '../../../../helpers';
 
 const MarqueeTemplate = ({
@@ -22,6 +24,7 @@ const MarqueeTemplate = ({
   content,
   coverImage,
   scholarshipAmount,
+  scholarshipDeadline,
   subtitle,
   title,
 }) => {
@@ -33,6 +36,10 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
+
+  const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
+  const displayAffiliateScholarshipBlock =
+    scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
 
   return (
     <React.Fragment>
@@ -74,7 +81,15 @@ const MarqueeTemplate = ({
                 ) : null}
               </div>
 
-              <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
+              {displayAffiliateScholarshipBlock ? (
+                <AffiliateScholarshipBlockQuery
+                  utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+                  scholarshipAmount={scholarshipAmount}
+                  scholarshipDeadline={scholarshipDeadline}
+                />
+              ) : (
+                <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
+              )}
 
               {affiliateSponsors.length ? (
                 <AffiliatePromotion
@@ -107,6 +122,7 @@ MarqueeTemplate.propTypes = {
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
   scholarshipAmount: PropTypes.number,
+  scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -117,6 +133,7 @@ MarqueeTemplate.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   scholarshipAmount: null,
+  scholarshipDeadline: null,
 };
 
 export default MarqueeTemplate;
