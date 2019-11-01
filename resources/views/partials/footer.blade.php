@@ -52,6 +52,7 @@
           <li><a href="{{ config('app.url') }}/us/about/easy-scholarships">Scholarships</a></li>
           <li><a href="{{ config('app.url') }}/us/about/join-our-team">Jobs</a></li>
           <li><a href="{{ config('app.url') }}/us/about/internships">Internships</a></li>
+          <li><a href="{{ config('app.url') }}/us/articles/clubs-notify-me">DoSomething Clubs</a></li>
           <li><a href="{{ config('app.url') }}/us/about/donate">Donate</a></li>
           <li><a href="https://help.dosomething.org/hc/en-us">Help Center</a></li>
         </ul>
