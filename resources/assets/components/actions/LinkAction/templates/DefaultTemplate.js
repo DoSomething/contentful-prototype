@@ -1,20 +1,16 @@
-/* global window */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
-import Button from '../../../utilities/Button/Button';
-import { isExternal, dynamicString } from '../../../../helpers';
+import { dynamicString } from '../../../../helpers';
+import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
-const onLinkClick = (link, context) => {
-  window.open(link, isExternal(link) ? '_blank' : '_self');
-
+const analyzeClick = (link, context) => {
   trackAnalyticsEvent({
     context: { ...context, url: link },
     metadata: {
@@ -60,7 +56,7 @@ const DefaultTemplate = props => {
       <div
         role="button"
         tabIndex="0"
-        onClick={() => onLinkClick(href, context)}
+        onClick={() => analyzeClick(href, context)}
         className="link-wrapper"
       >
         <Embed url={link} badged />
@@ -95,9 +91,13 @@ const DefaultTemplate = props => {
           />
         ) : null}
 
-        <Button attached onClick={() => onLinkClick(href, context)}>
+        <ButtonLink
+          attached
+          link={href}
+          onClick={() => analyzeClick(href, context)}
+        >
           {buttonText}
-        </Button>
+        </ButtonLink>
       </Card>
     </div>
   );

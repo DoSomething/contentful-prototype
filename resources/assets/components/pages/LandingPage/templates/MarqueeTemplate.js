@@ -1,13 +1,12 @@
 import React from 'react';
 import { get } from 'lodash';
-import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
-import Card from '../../../utilities/Card/Card';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
+import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlockContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
@@ -22,7 +21,6 @@ const MarqueeTemplate = ({
   affiliateOptInContent,
   content,
   coverImage,
-  endDate,
   scholarshipAmount,
   subtitle,
   title,
@@ -35,10 +33,6 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
-
-  const timeCommitment = get(additionalContent, 'campaignTimeCommitment', null);
-
-  const actionType = get(additionalContent, 'campaignActionType', null);
 
   return (
     <React.Fragment>
@@ -80,43 +74,7 @@ const MarqueeTemplate = ({
                 ) : null}
               </div>
 
-              <Card className="bordered padded rounded campaign-info">
-                <h1 className="mb-4 text-m uppercase">Campaign Info</h1>
-                <dl className="clearfix">
-                  {endDate ? (
-                    <React.Fragment>
-                      <dt>Deadline</dt>
-                      <dd>
-                        {format(endDate, 'MMMM do, yyyy', {
-                          awareOfUnicodeTokens: true,
-                        })}
-                      </dd>
-                    </React.Fragment>
-                  ) : null}
-                  {timeCommitment ? (
-                    <React.Fragment>
-                      <dt>Time</dt>
-                      <dd>{timeCommitment}</dd>
-                    </React.Fragment>
-                  ) : null}
-                  {actionType ? (
-                    <React.Fragment>
-                      <dt>Action Type</dt>
-                      <dd>{actionType}</dd>
-                    </React.Fragment>
-                  ) : null}
-                  {scholarshipAmount ? (
-                    <React.Fragment>
-                      <dt className="campaign-info__scholarship">
-                        Win A Scholarship
-                      </dt>
-                      <dd className="campaign-info__scholarship">
-                        {`$${scholarshipAmount}`}
-                      </dd>
-                    </React.Fragment>
-                  ) : null}
-                </dl>
-              </Card>
+              <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
 
               {affiliateSponsors.length ? (
                 <AffiliatePromotion
@@ -148,7 +106,6 @@ MarqueeTemplate.propTypes = {
   affiliateOptInContent: PropTypes.object,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
-  endDate: PropTypes.string,
   scholarshipAmount: PropTypes.number,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -159,7 +116,6 @@ MarqueeTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
-  endDate: null,
   scholarshipAmount: null,
 };
 

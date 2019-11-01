@@ -6,6 +6,7 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
+import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import TextContent from '../../utilities/TextContent/TextContent';
 
@@ -61,17 +62,9 @@ const VoterRegistrationAction = props => {
       <div className="padded clearfix">
         <TextContent>{content}</TextContent>
 
-        {parsedLink ? (
-          <a
-            className="button"
-            href={parsedLink}
-            onClick={handleClick}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Start Registration
-          </a>
-        ) : null}
+        <ButtonLink link={parsedLink} onClick={handleClick}>
+          Start Registration
+        </ButtonLink>
       </div>
       <PuckWaypoint name="voter_registration_action-bottom" />
     </Card>

@@ -144,7 +144,11 @@ const GeneralPage = props => {
           link={authUrl}
           buttonText={ctaCopy.buttonText}
         />
-      ) : null}
+      ) : /* Add conditional-only render if slug == 'about/scholarships'
+        <CtaPopover 
+        Add logic-if 3 seconds has passed render popover
+        /> */
+      null}
     </div>
   );
 };

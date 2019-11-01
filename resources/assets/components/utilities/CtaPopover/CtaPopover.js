@@ -5,7 +5,14 @@ import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 import './cta-popover.scss';
 
-const CtaPopover = ({ buttonText, content, handleClose, link, title }) => {
+const CtaPopover = ({
+  buttonText,
+  content,
+  handleClose,
+  link,
+  title,
+  children,
+}) => {
   const handleClick = () =>
     trackAnalyticsEvent({
       metadata: {

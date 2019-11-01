@@ -110,9 +110,7 @@ class EmailSubscriptions extends React.Component {
               </div>
             </div>
 
-            <Button type="submit" attached>
-              Save subscriptions
-            </Button>
+            <Button type="submit">Save subscriptions</Button>
           </form>
         )}
       </Mutation>
