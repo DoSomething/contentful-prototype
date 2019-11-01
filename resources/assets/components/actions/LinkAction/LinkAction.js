@@ -1,11 +1,11 @@
 import React from 'react';
 import { get } from 'lodash';
-import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
-import { PuckWaypoint } from '@dosomething/puck-client';
+import PropTypes from 'prop-types';
 
 import CtaTemplate from './templates/CtaTemplate';
 import DefaultTemplate from './templates/DefaultTemplate';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 export const LinkBlockFragment = gql`
   fragment LinkBlockFragment on LinkBlock {
@@ -34,9 +34,9 @@ const LinkAction = props => {
 
   return (
     <React.Fragment>
-      <PuckWaypoint name="link_action-top" waypointData={{ blockId: id }} />
+      <AnalyticsWaypoint name="link_action-top" context={{ blockId: id }} />
       <LinkActionTemplate {...props} />
-      <PuckWaypoint name="link_action-bottom" waypointData={{ blockId: id }} />
+      <AnalyticsWaypoint name="link_action-bottom" context={{ blockId: id }} />
     </React.Fragment>
   );
 };

@@ -29,19 +29,18 @@ import './scss/admin-dashboard.scss';
 import './scss/chrome.scss';
 import './scss/container.scss';
 import './scss/flash-message.scss';
-import './scss/navigation.scss';
 import './scss/placeholder.scss';
 import './scss/fonts.scss';
 import './scss/gallery-grid.scss';
 
-// React Application
+// React Application(s)
 import App from './components/App';
+import NavApp from './components/NavApp';
 
 // DOM Helpers
 import { ready, debug } from './helpers';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
-import { bindNavigationEvents } from './helpers/navigation';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
 import { analyze, trackAnalyticsPageView } from './helpers/analytics';
@@ -61,9 +60,6 @@ ready(() => {
 
   // Add periodic check that our token hasn't expired.
   bindTokenRefreshEvent();
-
-  // Add event listeners for top-level navigation.
-  bindNavigationEvents();
 
   // If available, set User ID for Snowplow analytics.
   if (typeof window.snowplow === 'function' && window.AUTH.id) {
@@ -92,5 +88,11 @@ ready(() => {
   const appElement = document.getElementById('app');
   if (appElement) {
     ReactDom.render(<App store={store} history={history} />, appElement);
+  }
+
+  // Render the nav on PHP rendered pages!
+  const navAppElement = document.getElementById('nav-container');
+  if (navAppElement) {
+    ReactDom.render(<NavApp store={store} history={history} />, navAppElement);
   }
 });

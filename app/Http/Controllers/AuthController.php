@@ -37,7 +37,7 @@ class AuthController extends Controller
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function getLogout(ResponseInterface $response)
+    public function getDeauthorization(ResponseInterface $response)
     {
         return gateway('northstar')->logout($response, $this->redirectAfterLogout);
     }

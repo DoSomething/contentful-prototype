@@ -1,14 +1,14 @@
 /* global document */
-/* eslint-disable id-length, jsx-a11y/interactive-supports-focus */
+/* eslint-disable id-length, jsx-a11y/interactive-supports-focus, jsx-a11y/no-autofocus */
 
 import React from 'react';
 import { get } from 'lodash';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
-import searchIcon from '../../images/search-icon.svg';
-import CloseButton from '../utilities/CloseButton/CloseButton';
-import ProfileIcon from '../utilities/ProfileIcon/ProfileIcon';
+import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
+import CloseButton from '../artifacts/CloseButton/CloseButton';
+import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import {
   trackAnalyticsEvent,
@@ -23,32 +23,40 @@ class SiteNavigation extends React.Component {
     super(props);
 
     this.state = {
+      searchInput: '',
       activeSubNav: null,
       isSubNavFixed: false,
     };
   }
 
-  analyzeEvent = event => {
+  analyzeEvent = (event, analytics = {}) => {
     const targets = {
       A: 'link',
       BUTTON: 'button',
     };
 
-    const target = get(targets, event.target.tagName, 'element');
+    const inferredTarget = get(targets, event.target.tagName, 'element');
+
+    const target = get(analytics, 'target', inferredTarget);
+
+    const context = get(analytics, 'context', {});
+
+    const label = get(analytics, 'label', null);
 
     trackAnalyticsEvent({
       context: {
-        ...getUtmContext(),
         ...getPageContext(),
+        ...getUtmContext(),
         referrer: document.referrer,
+        ...context,
       },
       metadata: {
-        adjective: event.target.dataset.label,
-        category: 'navigation',
-        label: event.target.dataset.label,
-        noun: event.target.dataset.noun || 'nav_link',
+        adjective: get(analytics, 'adjective', label),
+        category: get(analytics, 'category', 'navigation'),
+        label,
+        noun: get(analytics, 'noun', 'nav_link'),
         target,
-        verb: 'clicked',
+        verb: get(analytics, 'verb', 'clicked'),
       },
     });
   };
@@ -77,8 +85,14 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickLink = event => {
-    this.analyzeEvent(event);
+  handleOnChange = event => {
+    this.setState({
+      searchInput: event.target.value,
+    });
+  };
+
+  handleOnClickLink = (event, analytics = {}) => {
+    this.analyzeEvent(event, analytics);
 
     this.setState({
       activeSubNav: null,
@@ -86,10 +100,10 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickToggle = (event, subNavName) => {
+  handleOnClickToggle = (event, subNavName, analytics = {}) => {
     event.preventDefault();
 
-    this.analyzeEvent(event);
+    this.analyzeEvent(event, analytics);
 
     const { activeSubNav, isSubNavFixed } = this.state;
 
@@ -116,12 +130,19 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickClose = event => {
-    this.analyzeEvent(event);
+  handleOnClickClose = (event, analytics = {}) => {
+    this.analyzeEvent(event, analytics);
 
     this.setState({
       activeSubNav: null,
       isSubNavFixed: false,
+    });
+  };
+
+  handleOnSubmit = (event, analytics = {}) => {
+    this.analyzeEvent(event, {
+      ...analytics,
+      context: { searchQuery: this.state.searchInput },
     });
   };
 
@@ -130,124 +151,30 @@ class SiteNavigation extends React.Component {
       <nav role="navigation" id="nav" className="nav">
         <div className="wrapper base-12-grid">
           <div className="logo-nav">
-            <a href="/">
+            <a
+              href="/"
+              onClick={e => this.handleOnClickLink(e, { label: 'homepage' })}
+            >
               <DoSomethingLogo />
             </a>
           </div>
 
           <ul className="main-nav menu-nav">
-            <li
-              className={classnames('menu-nav__item', {
-                'is-active': this.state.activeSubNav === 'CausesSubNav',
-              })}
-              onMouseEnter={() => this.handleMouseEnter('CausesSubNav')}
-              onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
-            >
+            <li className="menu-nav__item">
               <a
-                href="/"
-                data-label="causes"
-                onClick={event =>
-                  this.handleOnClickToggle(event, 'CausesSubNav')
-                }
+                href="/us/campaigns"
+                onClick={e => this.handleOnClickLink(e, { label: 'campaigns' })}
               >
-                Causes
+                Campaigns
               </a>
-
-              {this.state.activeSubNav === 'CausesSubNav' ? (
-                <div className="main-subnav menu-subnav">
-                  <div className="wrapper base-12-grid">
-                    <section className="main-subnav__links-causes menu-subnav__links">
-                      <h1>
-                        <a href="/">All Causes</a>
-                      </h1>
-                      <ul>
-                        <li>
-                          <a href="/">Education</a>
-                        </li>
-                        <li>
-                          <a href="/">Mental Health</a>
-                        </li>
-                        <li>
-                          <a href="/">Homelessness & Poverty</a>
-                        </li>
-                        <li>
-                          <a href="/">Environment</a>
-                        </li>
-                        <li>
-                          <a href="/">Animal Welfare</a>
-                        </li>
-                        <li>
-                          <a href="/">Sexual Harassment</a>
-                        </li>
-                        <li>
-                          <a href="/">Bullying</a>
-                        </li>
-                        <li>
-                          <a href="/">Gender Rights</a>
-                        </li>
-                        <li>
-                          <a href="/">Racial Justice</a>
-                        </li>
-                        <li>
-                          <a href="/">Immigration & Refugees</a>
-                        </li>
-                        <li>
-                          <a href="/">LGBT+ Rights</a>
-                        </li>
-                        <li>
-                          <a href="/">Get Out the Vote!</a>
-                        </li>
-                      </ul>
-                    </section>
-
-                    <section className="main-subnav__links-campaigns menu-subnav__links">
-                      <h1>
-                        <a href="/">All Campaigns</a>
-                      </h1>
-                      <ul>
-                        <li>
-                          <a href="/">Online</a>
-                        </li>
-                        <li>
-                          <a href="/">In-person</a>
-                        </li>
-                        <li>
-                          <a href="/">Petitions</a>
-                        </li>
-                        <li>
-                          <a href="/">Collections</a>
-                        </li>
-                      </ul>
-                    </section>
-
-                    <section className="main-subnav__featured menu-subnav__content">
-                      <img
-                        className="mb-4"
-                        src="http://placekitten.com/g/550/250"
-                        alt="temporary place kitten"
-                      />
-                      <h1>Take Back the Kittens</h1>
-                      <p>Donec ullamcorper nulla non metus auctor fringilla.</p>
-                      <a href="/">Learn More</a>
-                    </section>
-
-                    <CloseButton
-                      callback={this.handleOnClickClose}
-                      className="btn__close--subnav btn__close--main-subnav block p-1"
-                      dataLabel="close_subnav"
-                      dataNoun="nav_button"
-                      size="22px"
-                    />
-                  </div>
-                </div>
-              ) : null}
             </li>
 
             <li className="menu-nav__item">
               <a
                 href="/us/about/easy-scholarships"
-                data-label="scholarships"
-                onClick={this.handleOnClickLink}
+                onClick={e =>
+                  this.handleOnClickLink(e, { label: 'scholarships' })
+                }
               >
                 Scholarships
               </a>
@@ -256,8 +183,7 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="https://lets.dosomething.org"
-                data-label="articles"
-                onClick={this.handleOnClickLink}
+                onClick={e => this.handleOnClickLink(e, { label: 'articles' })}
               >
                 Articles
               </a>
@@ -266,8 +192,7 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="/us/about/who-we-are"
-                data-label="about"
-                onClick={this.handleOnClickLink}
+                onClick={e => this.handleOnClickLink(e, { label: 'about' })}
               >
                 About
               </a>
@@ -277,70 +202,159 @@ class SiteNavigation extends React.Component {
           <ul className="utility-nav menu-nav">
             <li className="utility-nav__search menu-nav__item">
               <a
-                href="/"
-                className="utility-nav__search-icon"
-                onClick={event =>
-                  this.handleOnClickToggle(event, 'SearchSubNav')
+                href="#search"
+                className={classnames('utility-nav__search-icon', {
+                  'is-active': this.state.activeSubNav === 'SearchSubNav',
+                })}
+                onClick={e =>
+                  this.handleOnClickToggle(e, 'SearchSubNav', {
+                    label: 'search_form_toggle',
+                    noun: 'nav_button',
+                  })
                 }
               >
-                <img src={searchIcon} alt="search icon" />
+                <div className="wrapper">
+                  <SearchIcon />
+                </div>
               </a>
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
-                <form
-                  className="utility-subnav menu-subnav"
-                  id="utility-subnav__search"
-                >
+                <div className="utility-subnav menu-subnav" name="search">
                   <div className="wrapper base-12-grid">
-                    <div className="search">
-                      <input type="text" />
-                    </div>
+                    <form
+                      className="search"
+                      id="utility-subnav__search"
+                      acceptCharset="UTF-8"
+                      action="/us/search"
+                      method="GET"
+                      onSubmit={e =>
+                        this.handleOnSubmit(e, {
+                          category: 'search',
+                          label: 'search_subnav',
+                          noun: 'nav_form',
+                          target: 'form',
+                          verb: 'submitted',
+                        })
+                      }
+                    >
+                      <SearchIcon />
+                      <input
+                        type="search"
+                        placeholder="Search"
+                        name="query"
+                        autoFocus
+                        onChange={this.handleOnChange}
+                        onClick={e =>
+                          this.analyzeEvent(e, {
+                            category: 'search',
+                            label: 'search_subnav',
+                            noun: 'nav_form',
+                            target: 'form',
+                            verb: 'clicked',
+                          })
+                        }
+                        value={this.state.searchInput}
+                      />
+                    </form>
 
                     <div className="top-searches">
                       <h1>Top Searches</h1>
-                      <ul>
+                      <ul className="top-searches__link-list">
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=scholarships">
+                          <a
+                            href="/us/about/easy-scholarships"
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'scholarships_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
+                          >
                             scholarships
                           </a>
                         </li>
 
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=cyberbullying">
+                          <a
+                            href="/us/search?query=bullying"
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'bullying_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
+                          >
+                            bullying
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="/us/search?query=animals"
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'animals_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
+                          >
+                            animals
+                          </a>
+                        </li>
+
+                        <li>
+                          <a
+                            href="/us/facts/11-facts-about-cyber-bullying"
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'cyberbullying_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
+                          >
                             cyberbullying
                           </a>
                         </li>
 
                         <li>
-                          <a href="https://www.dosomething.org/us/search?query=gun+violence">
-                            gun violence
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="https://www.dosomething.org/us/search?query=climate+change">
-                            climate change
+                          <a
+                            href="/us/articles/volunteer-opportunities-for-teens"
+                            onClick={e =>
+                              this.analyzeEvent(e, {
+                                label: 'volunteering_top_search',
+                                noun: 'subnav_link',
+                              })
+                            }
+                          >
+                            volunteering
                           </a>
                         </li>
                       </ul>
                     </div>
 
                     <CloseButton
-                      callback={this.handleOnClickClose}
-                      className="btn__close--subnav btn__close--search-subnav block p-1"
-                      dataLabel="close_subnav"
-                      dataNoun="nav_button"
+                      callback={e =>
+                        this.handleOnClickClose(e, {
+                          label: 'close_search_subnav',
+                          noun: 'nav_button',
+                        })
+                      }
+                      className="btn__close--subnav btn__close--search-subnav block"
                       size="22px"
                     />
                   </div>
-                </form>
+                </div>
               ) : null}
             </li>
 
             {this.props.isAuthenticated ? (
               <>
                 <li className="utility-nav__account-profile menu-nav__item">
-                  <a href="/us/account/profile">
+                  <a
+                    href="/us/account/profile"
+                    className="utility-nav__account-profile-icon"
+                    onClick={e => this.analyzeEvent(e, { label: 'profile' })}
+                  >
                     <ProfileIcon />
                   </a>
                 </li>
@@ -350,8 +364,7 @@ class SiteNavigation extends React.Component {
                 <li className="utility-nav__auth menu-nav__item">
                   <a
                     href={this.props.authLoginUrl}
-                    data-label="log-in"
-                    onClick={this.analyzeEvent}
+                    onClick={e => this.analyzeEvent(e, { label: 'log_in' })}
                   >
                     Log In
                   </a>
@@ -360,8 +373,7 @@ class SiteNavigation extends React.Component {
                 <li className="utility-nav__join menu-nav__item">
                   <a
                     href={this.props.authRegisterUrl}
-                    data-label="join_now"
-                    onClick={this.analyzeEvent}
+                    onClick={e => this.analyzeEvent(e, { label: 'join_now' })}
                   >
                     Join Now
                   </a>
@@ -374,9 +386,12 @@ class SiteNavigation extends React.Component {
         {this.state.activeSubNav ? (
           <div
             className="underlay"
-            data-label="underlay_close_subnav"
-            data-noun="nav_element"
-            onClick={this.handleOnClickClose}
+            onClick={e =>
+              this.handleOnClickClose(e, {
+                label: 'underlay_close_subnav',
+                noun: 'nav_element',
+              })
+            }
             role="button"
           />
         ) : null}

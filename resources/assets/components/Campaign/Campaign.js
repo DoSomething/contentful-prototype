@@ -10,6 +10,7 @@ import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import TypeFormEmbed from '../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../utilities/DelayedElement/DelayedElement';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
+import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
@@ -24,6 +25,8 @@ const Campaign = props => (
     location={props.location}
     match={props.match}
   >
+    <SiteNavigationContainer />
+
     <AdminDashboardContainer>
       <CampaignDashboardContainer />
     </AdminDashboardContainer>

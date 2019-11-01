@@ -7,6 +7,7 @@ $extraSmall: '(min-width: 360px)';
 
 .nav {
   background-color: white;
+  border-bottom: 1px solid $gray-300;
   position: relative;
   z-index: $site-navigation-zindex;
 
@@ -43,6 +44,7 @@ $extraSmall: '(min-width: 360px)';
   border-top: 1px solid $gray-300;
   box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
   left: 0;
+  min-height: 50vh;
   position: absolute;
   top: 100%;
   width: 100%;
@@ -120,12 +122,25 @@ $extraSmall: '(min-width: 360px)';
 
     > a {
       padding: $spacing_1x;
+      white-space: nowrap;
 
       @include media($medium) {
         padding-bottom: 40px;
       }
     }
   }
+}
+
+.main-nav__arrow {
+  bottom: 1px;
+  display: inline-block;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid $gray-300;
+  height: 0;
+  margin-left: 5px;
+  position: relative;
+  width: 0;
 }
 
 .main-subnav__links-causes {
@@ -171,23 +186,34 @@ $extraSmall: '(min-width: 360px)';
   }
 }
 
-.utility-nav__search {
-  > a {
-    padding: 12px $spacing_1x;
+.utility-nav__search-icon {
+  padding: 6px 10px;
+
+  @include media($large) {
+    padding-bottom: 8px;
+    padding-top: 6px;
+  }
+
+  .wrapper {
+    background-color: transparent;
+    border-radius: 100px;
+    padding: 6px;
+    pointer-events: none;
+  }
+
+  img {
+    height: 25px;
+    width: 25px;
 
     @include media($large) {
-      padding-bottom: 14px;
-      padding-top: 12px;
+      height: 28px;
+      width: 28px;
     }
+  }
 
-    > img {
-      height: 25px;
-      width: 25px;
-
-      @include media($large) {
-        height: 28px;
-        width: 28px;
-      }
+  &.is-active {
+    .wrapper {
+      background-color: $gray-200;
     }
   }
 }
@@ -213,47 +239,110 @@ $extraSmall: '(min-width: 360px)';
 
 .utility-nav__account-profile {
   border-left: 1px solid $gray-300;
+}
 
-  > a {
-    padding: 10px $spacing_1x 14px;
+.utility-nav__account-profile-icon {
+  padding: 12px $spacing_1x 12px;
+
+  @include media($large) {
+    padding: 12px $spacing_1x 14px;
+  }
+
+  > img {
+    height: 25px;
+    width: 25px;
 
     @include media($large) {
-      padding: 10px $spacing_1x $spacing_1x;
-    }
-
-    > img {
-      height: 25px;
-      width: 25px;
-
-      @include media($large) {
-        height: 28px;
-        width: 28px;
-      }
+      height: 28px;
+      width: 28px;
     }
   }
 }
 
 .utility-subnav .search {
+  align-items: center;
+  background-color: $gray-200;
+  border-radius: $lg-border-radius;
+  display: flex;
   grid-column: full-start / full-end;
-}
+  margin: 0 50px $spacing_2x 0;
+  padding: 5px 5px 5px 10px;
 
-.utility-subnav .top-searches {
-  grid-column: full-start / full-end;
-}
+  @include media($large) {
+    grid-column: full-start / span 6;
+    margin: 0 0 $spacing_2x;
+  }
 
-.btn__close--subnav {
-  position: absolute;
-  right: 12px;
-  top: 12px;
+  > img {
+    // Move to props on component
+    height: 20px;
+    width: 20px;
+  }
 
-  @include media($medium) {
-    right: 48px;
-    top: 24px;
+  > input[type='search'] {
+    background-color: transparent;
+    border: 0 none;
+    font-size: 18px;
+    line-height: 1;
+    margin-left: 3px;
+    padding: 5px;
+    width: 100%;
+    -webkit-appearance: none;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus::placeholder {
+      color: $gray-300;
+    }
+
+    &::placeholder {
+      color: $gray-500;
+    }
   }
 }
 
-.btn__close--main-subnav {
+.utility-subnav {
+  .top-searches {
+    grid-column: full-start / full-end;
+
+    > h1 {
+      color: $gray-300;
+      font-size: 18px;
+      font-weight: $weight-normal;
+      margin-bottom: $spacing_1x;
+      text-transform: uppercase;
+    }
+  }
+
+  .top-searches__link-list {
+    padding-bottom: $spacing_1x;
+
+    > li + li {
+      margin-top: $spacing_1x;
+    }
+
+    a {
+      color: $black;
+      font-weight: $weight-normal;
+      text-decoration: underline;
+    }
+  }
+}
+
+.btn__close--subnav {
+  padding: $spacing_1x;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+
+  @include media($medium) {
+    right: 20px;
+    top: 20px;
+  }
+
   @include media($large) {
-    display: none;
+    right: 44px;
   }
 }

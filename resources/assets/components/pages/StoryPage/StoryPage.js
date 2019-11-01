@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import ContentfulEntry from '../../ContentfulEntry';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 import './story-page.scss';
@@ -23,6 +24,7 @@ const StoryPage = props => {
 
   return (
     <React.Fragment>
+      <SiteNavigationContainer />
       <article className="story-page">
         <header
           role="banner"
