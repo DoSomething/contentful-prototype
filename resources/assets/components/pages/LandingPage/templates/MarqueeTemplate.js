@@ -6,7 +6,7 @@ import Enclosure from '../../../Enclosure';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
-import CampaignInfo from '../../../blocks/CampaignInfoBlock/CampaignInfoContainer';
+import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlockContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
@@ -74,7 +74,7 @@ const MarqueeTemplate = ({
                 ) : null}
               </div>
 
-              <CampaignInfo scholarshipAmount={scholarshipAmount} />
+              <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
 
               {affiliateSponsors.length ? (
                 <AffiliatePromotion

@@ -24,12 +24,11 @@ const CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const CampaignInfo = ({ campaignId, scholarshipAmount }) => (
+const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
   <Card className="bordered padded rounded campaign-info">
     <h1 className="mb-4 text-m uppercase">Campaign Info</h1>
     <dl className="clearfix">
       <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
-        {/* is scholarship end date always the same as campaign end date???? */}
         {res => {
           const endDate = res.campaign.endDate;
           const actions = res.campaign.actions
@@ -79,13 +78,13 @@ const CampaignInfo = ({ campaignId, scholarshipAmount }) => (
   </Card>
 );
 
-CampaignInfo.propTypes = {
+CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
 };
 
-CampaignInfo.defaultProps = {
+CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
 };
 
-export default CampaignInfo;
+export default CampaignInfoBlock;
