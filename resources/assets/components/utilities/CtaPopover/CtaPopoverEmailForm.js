@@ -39,6 +39,7 @@ const CtaPopoverEmailForm = ({
           <input
             type="text"
             value={this.state.value}
+            placeholder="Enter your email address"
             onChange={this.handleChange}
           />
         </label>
