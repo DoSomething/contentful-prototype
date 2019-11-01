@@ -1,13 +1,17 @@
 preset: laravel
 
 disabled:
- - concat_without_spaces
- - no_useless_return
- - simplified_null_return
- - phpdoc_no_package
- - phpdoc_summary
- - phpdoc_var_without_name
+  - concat_without_spaces
+  - no_useless_return
+  - simplified_null_return
+  - phpdoc_no_package
+  - phpdoc_summary
+  - phpdoc_var_without_name
+  - alpha_ordered_imports
+
+enabled:
+  - length_ordered_imports
 
 finder:
   exclude:
-    - "tests"
+    - 'tests'
