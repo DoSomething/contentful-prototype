@@ -5,17 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
-import { link } from 'fs-extra';
+import './cta-popover.scss';
 import CtaPopover from '/CtaPopover.js';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
-const CtaPopoverEmailForm = ({
-  content,
-  handleSubmit,
-  handleClose,
-  title,
-  link,
-}) => {
+const CtaPopoverEmailForm = ({ handleSubmit, handleClose, buttonText }) => {
   const handleSubmit = () =>
     trackAnalyticsEvent({
       metadata: {
@@ -26,13 +20,15 @@ const CtaPopoverEmailForm = ({
         adjective: 'popover',
         label: 'call_to_action_popover',
       },
-      context: {
-        url: link,
-      },
     });
-  render();
+
   return (
-    <div>
+    <div classname="cta-popover p-4 border rounded">
+      <button
+        type="button"
+        classname="modal__close -white"
+        onClick={handleClose}
+      />
       <form onSubmit={this.handleSubmit}>
         <label>
           Email:
@@ -50,11 +46,9 @@ const CtaPopoverEmailForm = ({
 };
 
 CtaPopoverEmailForm.PropTypes = {
-  content: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   handleClose: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  buttonText: PropTypes.string.isRequired,
 };
 
 export default CtaPopoverEmailForm;
