@@ -69,7 +69,7 @@ $router->get('{slug}', function ($slug) {
 });
 
 // Causes
-$router->view('us/causes/{cause}', 'app');
+$router->view('us/causes/{slug}', 'app');
 
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
