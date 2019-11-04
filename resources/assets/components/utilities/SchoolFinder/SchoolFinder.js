@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Card from '../Card/Card';
 import Button from '../Button/Button';
-import StateSelect from './StateSelect';
 import SchoolSelect from './SchoolSelect';
+import SchoolStateSelect from '../UsaStateSelect';
 
 const SchoolFinder = ({ campaignId }) => {
   // Check for our development Teens For Jeans (TFJ) campaign ID.
@@ -14,7 +14,7 @@ const SchoolFinder = ({ campaignId }) => {
   }
 
   const [selectedSchool, setSelectedSchool] = useState(null);
-  const [selectedState, setSelectedState] = useState(null);
+  const [selectedSchoolState, setSelectedSchoolState] = useState(null);
   const [submittedForm, setSubmittedForm] = useState(false);
 
   // @TODO: Also display this content when user already has a school_id on their profile.
@@ -53,15 +53,15 @@ const SchoolFinder = ({ campaignId }) => {
         </p>
         <div className="select-state padded">
           <strong>State</strong>
-          <StateSelect
-            onChange={selected => setSelectedState(selected.value)}
+          <SchoolStateSelect
+            onChange={selected => setSelectedSchoolState(selected)}
           />
         </div>
-        {selectedState ? (
+        {selectedSchoolState ? (
           <div className="select-school padded">
             <SchoolSelect
               onChange={selected => setSelectedSchool(selected)}
-              filterByState={selectedState}
+              filterByState={selectedSchoolState.abbreviation}
             />
           </div>
         ) : null}

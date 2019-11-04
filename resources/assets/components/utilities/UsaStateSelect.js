@@ -5,7 +5,7 @@ import { UsaStates } from 'usa-states';
 
 const usaStateOptions = new UsaStates().states;
 
-const StateSelect = ({ onChange }) => (
+const UsaStateSelect = ({ onChange }) => (
   <Select
     getOptionLabel={usaState => usaState.name}
     getOptionValue={usaState => usaState.abbreviation}
@@ -14,8 +14,8 @@ const StateSelect = ({ onChange }) => (
   />
 );
 
-StateSelect.propTypes = {
+UsaStateSelect.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default StateSelect;
+export default UsaStateSelect;
