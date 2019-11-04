@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 import { env } from '../../../helpers';
-import AffiliateScholarshipBlock from './AffiliateScholarshipBlock';
+import AffiliateScholarshipBlockBeta from './AffiliateScholarshipBlock';
 
 /**
  * The GraphQL query to load data for this component.
@@ -43,7 +43,7 @@ const AffiliateScholarshipBlockQuery = props => (
       const logo = get(data, 'affiliate.logo');
 
       return (
-        <AffiliateScholarshipBlock
+        <AffiliateScholarshipBlockBeta
           affiliateTitle={title}
           affiliateLogo={logo}
           {...props}
