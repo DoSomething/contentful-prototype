@@ -1,16 +1,19 @@
 import React from 'react';
+import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import AsyncSelect from 'react-select/async';
 
 const SchoolSelect = ({ filterByState, onChange }) => {
-  function fetchSchools(searchString, callback) {
-    // @TODO: Handle errors.
-    return fetch(
+  // Debounce school search to query after 250 ms typing pause.
+  // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-244006496
+  const fetchSchools = debounce((searchString, callback) => {
+    fetch(
       `https://lofischools.herokuapp.com/search?state=${filterByState}&query=${searchString}`,
     )
       .then(res => res.json())
-      .then(res => callback(res.results));
-  }
+      .then(res => callback(res.results))
+      .catch(error => callback(error));
+  }, 250);
 
   return (
     <AsyncSelect
