@@ -40,7 +40,6 @@ const MarqueeTemplate = ({
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
-
   return (
     <React.Fragment>
       <article className="marquee-landing-page">

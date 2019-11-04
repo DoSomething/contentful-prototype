@@ -65,6 +65,7 @@ const LandingPage = props => {
               coverImage={coverImage}
               endDate={endDate}
               scholarshipAmount={scholarshipAmount}
+              scholarshipDeadline={scholarshipDeadline}
               subtitle={subtitle}
               testName="Marquee Template"
               title={title}
