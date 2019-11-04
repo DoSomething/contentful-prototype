@@ -3,13 +3,15 @@ import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { UsaStates } from 'usa-states';
 
-const stateOptions = new UsaStates().states.map(state => ({
-  value: state.abbreviation,
-  label: state.name,
-}));
+const usaStateOptions = new UsaStates().states;
 
 const StateSelect = ({ onChange }) => (
-  <Select options={stateOptions} onChange={onChange} />
+  <Select
+    getOptionLabel={usaState => usaState.name}
+    getOptionValue={usaState => usaState.abbreviation}
+    onChange={onChange}
+    options={usaStateOptions}
+  />
 );
 
 StateSelect.propTypes = {

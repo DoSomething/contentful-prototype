@@ -30,13 +30,13 @@ const SchoolSelect = ({ filterByState, onChange }) => {
         }
         return debouncedFetch(input, callback);
       }}
-      placeholder="Enter your school name"
       noOptionsMessage={select =>
         select.inputValue.length > 1
           ? `No results for "${select.inputValue}"`
           : null
       }
       onChange={onChange}
+      placeholder="Enter your school name"
     />
   );
 };
