@@ -39,7 +39,7 @@ module.exports = function(migration) {
         },
 
         message:
-          'Slug should match the cause type e.g. "environment". Only alphanumeric and hyphen characters are allowed in slugs! The URL for the Cause Page will be prefixed with "causes/" e.g. "https://dosomething.org/us/causes/environment".',
+          'Only alphanumeric and hyphen characters are allowed in slugs!',
       },
     ])
     .disabled(false)
@@ -119,10 +119,11 @@ module.exports = function(migration) {
           'unordered-list',
           'hr',
           'blockquote',
+          'hyperlink',
         ],
 
         message:
-          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, and quote nodes are allowed',
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
@@ -139,10 +140,30 @@ module.exports = function(migration) {
         nodes: {
           'embedded-entry-block': [
             {
-              linkContentType: ['galleryBlock'],
+              linkContentType: ['contentBlock', 'galleryBlock'],
             },
           ],
         },
+      },
+      {
+        enabledNodeTypes: [
+          'heading-1',
+          'heading-2',
+          'heading-3',
+          'heading-4',
+          'heading-5',
+          'heading-6',
+          'ordered-list',
+          'unordered-list',
+          'hr',
+          'blockquote',
+          'embedded-entry-block',
+          'embedded-asset-block',
+          'hyperlink',
+        ],
+
+        message:
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
@@ -155,7 +176,7 @@ module.exports = function(migration) {
 
   causePage.changeEditorInterface('slug', 'slugEditor', {
     helpText:
-      'Must begin with the "causes/" category prefix for the slug, e.g. "causes/environment".',
+      'Slug should match the cause type e.g. "environment". The URL for the Cause Page will be prefixed with "causes/" e.g. "https://dosomething.org/us/causes/environment".',
   });
 
   causePage.changeEditorInterface('coverImage', 'assetLinkEditor', {
