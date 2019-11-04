@@ -79,7 +79,12 @@ const Affirmation = ({
             <Byline
               author={author.fields.name}
               {...withoutNulls(author.fields)}
-              photo={contentfulImageUrl(author.fields.photo, 175, 175, 'fill')}
+              photo={contentfulImageUrl(
+                author.fields.photo.url,
+                175,
+                175,
+                'fill',
+              )}
               className="padding-bottom-md padding-horizontal-md"
             />
           ) : null}
