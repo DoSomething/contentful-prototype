@@ -27,7 +27,7 @@ const CampaignUpdate = props => {
   } = props;
 
   const authorFields = get(author, 'fields', {});
-  const authorPhoto = authorFields.photo || undefined;
+  const authorPhoto = get(authorFields, 'photo.url') || undefined;
 
   const isTweet = content && content.length < 144;
 

@@ -11,7 +11,7 @@ const AdvisoryBoardMemberTemplate = props => {
   return (
     <Figure
       alt={`${name}-photo`}
-      image={contentfulImageUrl(photo, '100', '100', 'fill')}
+      image={contentfulImageUrl(photo.url, '100', '100', 'fill')}
       alignment="left"
     >
       <h4>{name}</h4>
@@ -23,7 +23,9 @@ const AdvisoryBoardMemberTemplate = props => {
 
 AdvisoryBoardMemberTemplate.propTypes = {
   name: PropTypes.string.isRequired,
-  photo: PropTypes.string.isRequired,
+  photo: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
   description: PropTypes.string.isRequired,
 };
 
