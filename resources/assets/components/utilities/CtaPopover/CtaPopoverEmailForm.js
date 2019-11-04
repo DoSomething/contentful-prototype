@@ -29,14 +29,14 @@ const CtaPopoverEmailForm = ({ handleSubmit, handleClose, buttonText }) => {
         classname="modal__close -white"
         onClick={handleClose}
       />
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>
           Email:
           <input
             type="text"
-            value={this.state.value}
+            value={value}
             placeholder="Enter your email address"
-            onChange={this.handleChange}
+            onChange={handleChange}
           />
         </label>
         <input type="submit" value="Submit" />
