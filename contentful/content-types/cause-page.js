@@ -39,7 +39,7 @@ module.exports = function(migration) {
         },
 
         message:
-          'Slug should match the cause type e.g. "environment". Only alphanumeric and hyphen characters are allowed in slugs! The URL for the Cause Page will be prefixed with "causes/" e.g. "https://dosomething.org/us/causes/environment".',
+          'Only alphanumeric and hyphen characters are allowed in slugs!',
       },
     ])
     .disabled(false)
@@ -176,7 +176,7 @@ module.exports = function(migration) {
 
   causePage.changeEditorInterface('slug', 'slugEditor', {
     helpText:
-      'Must begin with the "causes/" category prefix for the slug, e.g. "causes/environment".',
+      'Slug should match the cause type e.g. "environment". The URL for the Cause Page will be prefixed with "causes/" e.g. "https://dosomething.org/us/causes/environment".',
   });
 
   causePage.changeEditorInterface('coverImage', 'assetLinkEditor', {

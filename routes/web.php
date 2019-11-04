@@ -68,6 +68,9 @@ $router->get('{slug}', function ($slug) {
     return redirect('us/'.$slug);
 });
 
+// Causes
+$router->view('us/causes/{slug}', 'app');
+
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
 

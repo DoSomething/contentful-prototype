@@ -10,9 +10,10 @@ const NotFound = () => (
   <Card title="Not Found" className="rounded bordered">
     <TextContent className="padded">
       __We searched our site, but couldn&apos;t find what you were looking
-      for.__ Try [Grab the Mic](/us/campaigns/grab-mic?utm_source=404) and join
-      our movement to create the most civically active generation ever. You can
-      also try [our homepage](/) or [reach out]({zendeskUrl}) to us.
+      for.__ Find ways you can [Take Action](/us/campaigns?utm_source=404) and
+      join a movement of 5 million young people making an impact in their
+      communities. You can also try [our homepage](/) or [reach out](
+      {zendeskUrl}) to us.
     </TextContent>
   </Card>
 );

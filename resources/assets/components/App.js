@@ -11,6 +11,7 @@ import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CampaignContainer from './Campaign/CampaignContainer';
+import CausePageQuery from './pages/CausePage/CausePageQuery';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import AccountContainer from './pages/AccountPage/AccountContainer';
@@ -38,6 +39,12 @@ const App = ({ store, history }) => {
               <Route path="/us/account" component={AccountContainer} />
               <Route path="/us/blocks/:id" component={BlockPage} />
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+              <Route
+                path="/us/causes/:slug"
+                render={routeProps => (
+                  <CausePageQuery slug={routeProps.match.params.slug} />
+                )}
+              />
               <Route path="/us/join" component={BetaReferralPage} />
               <Route
                 path="/us/refer-friends"
