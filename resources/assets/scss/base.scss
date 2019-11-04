@@ -597,6 +597,10 @@ p {
   margin-right: $half-spacing / 2;
 }
 
+.overflow-visible {
+  overflow: visible !important;
+}
+
 .p-0 {
   padding: 0;
 }

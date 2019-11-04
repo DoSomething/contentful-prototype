@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
-import AsyncSelect from 'react-select/async';
-import { UsaStates } from 'usa-states';
 
 import Card from '../Card/Card';
 import Button from '../Button/Button';
-
-import './school-finder.scss';
-
-const stateOptions = new UsaStates().states.map(state => ({
-  value: state.abbreviation,
-  label: state.name,
-}));
+import StateSelect from './StateSelect';
+import SchoolSelect from './SchoolSelect';
 
 const SchoolFinder = ({ campaignId }) => {
   // Check for our development Teens For Jeans (TFJ) campaign ID.
@@ -25,20 +17,11 @@ const SchoolFinder = ({ campaignId }) => {
   const [selectedState, setSelectedState] = useState(null);
   const [submittedForm, setSubmittedForm] = useState(false);
 
-  function fetchSchools(searchString, callback) {
-    // @TODO: Handle errors.
-    return fetch(
-      `https://lofischools.herokuapp.com/search?state=${selectedState}&query=${searchString}`,
-    )
-      .then(res => res.json())
-      .then(res => callback(res.results));
-  }
-
   // @TODO: Also display this content when user already has a school_id on their profile.
   if (submittedForm) {
     return (
       <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
-        <Card title="Your School" className="rounded bordered">
+        <Card title="Your School" className="rounded bordered overflow-visible">
           <div className="padded">
             <p>
               Something something something school finder post verification
@@ -60,34 +43,25 @@ const SchoolFinder = ({ campaignId }) => {
 
   return (
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
-      <Card title="Find Your School" className="rounded bordered">
+      <Card
+        title="Find Your School"
+        className="rounded bordered overflow-visible"
+      >
         <p className="padded">
           Pick your school and whatever. Invite your classmates to join this
           campaign and donate their jeans to win prizes and some other stuff.
         </p>
         <div className="select-state padded">
           <strong>State</strong>
-          <Select
-            options={stateOptions}
+          <StateSelect
             onChange={selected => setSelectedState(selected.value)}
           />
         </div>
         {selectedState ? (
           <div className="select-school padded">
-            <AsyncSelect
-              defaultOptions
-              getOptionLabel={school =>
-                `${school.name} - ${school.city}, ${school.state}`
-              }
-              getOptionValue={school => school.id}
-              loadOptions={fetchSchools}
-              placeholder="Enter your school name"
-              noOptionsMessage={select =>
-                select.inputValue.length > 1
-                  ? `No results for "${select.inputValue}"`
-                  : null
-              }
+            <SchoolSelect
               onChange={selected => setSelectedSchool(selected)}
+              filterByState={selectedState}
             />
           </div>
         ) : null}
