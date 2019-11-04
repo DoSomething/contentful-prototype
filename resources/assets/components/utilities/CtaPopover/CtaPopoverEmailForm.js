@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
-
+import button from '/CtaPopoverButton';
 import './cta-popover.scss';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
-  const handleChange = e => setEmailValue(e.target.value);
+  const handleChange = event => setEmailValue(event.target.value);
 
   const handleSubmit = () => {
     trackAnalyticsEvent({
@@ -19,12 +19,12 @@ const CtaPopoverEmailForm = () => {
         label: 'call_to_action_popover',
       },
     });
-    alert(emailValue);
-    e.preventDefault();
+    // alert(emailValue);
+    //event.preventDefault();
   };
 
   return (
-    <div classname="cta-popover p-4 border rounded">
+    <div>
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -32,7 +32,7 @@ const CtaPopoverEmailForm = () => {
           placeholder="Enter your email address"
           onChange={handleChange}
         />
-        <button type="submit" value="Submit" />
+        <button />
       </form>
     </div>
   );
