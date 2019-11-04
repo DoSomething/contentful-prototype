@@ -86,6 +86,37 @@ export function isEmptyArray(data) {
 }
 
 /**
+ * Remove items with null properties.
+ * Helps with React defaultProps.
+ *
+ * @param  {Object} data
+ * @return {Object}
+ */
+export function withoutNulls(data) {
+  return omitBy(data, isNull);
+}
+
+/**
+ * Remove items with undefined properties.
+ *
+ * @param  {Object} data
+ * @return {Object}
+ */
+export function withoutUndefined(data) {
+  return omitBy(data, isUndefined);
+}
+
+/**
+ * Remove items from object with null, undefined, or empty string values.
+ *
+ * @param  {Object} data
+ * @return {Object}
+ */
+export function withoutValueless(data) {
+  return omitBy(omitBy(omitBy(data, isNil), isEmptyArray), isEmptyString);
+}
+
+/**
  * Generate a Contentful Image URL with added url parameters.
  *
  * @param  {String} url
@@ -104,21 +135,13 @@ export function contentfulImageUrl(
     return undefined;
   }
 
-  const params = [];
+  const params = withoutNulls({
+    w: width, // eslint-disable-line id-length
+    h: height, // eslint-disable-line id-length
+    fit,
+  });
 
-  if (width) {
-    params.push(`w=${width}`);
-  }
-
-  if (height) {
-    params.push(`h=${height}`);
-  }
-
-  if (fit) {
-    params.push(`fit=${fit}`);
-  }
-
-  return params.length ? `${url}?${params.join('&')}` : url;
+  return Object.keys(params).length ? appendToQuery(params, url).href : url;
 }
 
 /**
@@ -834,37 +857,6 @@ export function stringifyNestedObjects(data) {
 
     return value;
   });
-}
-
-/**
- * Remove items with null properties.
- * Helps with React defaultProps.
- *
- * @param  {Object} data
- * @return {Object}
- */
-export function withoutNulls(data) {
-  return omitBy(data, isNull);
-}
-
-/**
- * Remove items with undefined properties.
- *
- * @param  {Object} data
- * @return {Object}
- */
-export function withoutUndefined(data) {
-  return omitBy(data, isUndefined);
-}
-
-/**
- * Remove items from object with null, undefined, or empty string values.
- *
- * @param  {Object} data
- * @return {Object}
- */
-export function withoutValueless(data) {
-  return omitBy(omitBy(omitBy(data, isNil), isEmptyArray), isEmptyString);
 }
 
 /**
