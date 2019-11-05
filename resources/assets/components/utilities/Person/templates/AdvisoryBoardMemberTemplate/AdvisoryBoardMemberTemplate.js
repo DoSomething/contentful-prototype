@@ -11,7 +11,7 @@ const AdvisoryBoardMemberTemplate = props => {
 
   return (
     <Figure
-      alt={`${showcaseTitle}-photo`}
+      alt={`picture of ${showcaseTitle}`}
       image={contentfulImageUrl(
         get(showcaseImage, 'url'),
         '100',
