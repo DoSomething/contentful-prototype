@@ -15,9 +15,7 @@ test('generate contentful image url with defaults', () => {
     '//images.contentful.com/somecrazystring.jpg',
   );
 
-  expect(contentfulImage).toBe(
-    'http://images.contentful.com/somecrazystring.jpg',
-  );
+  expect(contentfulImage).toBe('//images.contentful.com/somecrazystring.jpg');
 });
 
 test('generate contentful image url with specified fit', () => {
