@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import { withoutNulls } from '../../../helpers';
@@ -7,6 +8,36 @@ import Gallery from '../../utilities/Gallery/Gallery';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
+
+export const GalleryBlockFragment = gql`
+  fragment GalleryBlockFragment on GalleryBlock {
+    title
+    imageAlignment
+    imageFit
+    itemsPerRow
+    blocks {
+      id
+      ... on Showcasable {
+        showcaseTitle
+        showcaseDescription
+        showcaseImage {
+          url
+          description
+        }
+      }
+      ... on PersonBlock {
+        type
+        twitterId
+      }
+      ... on CampaignWebsite {
+        slug
+      }
+      ... on Page {
+        slug
+      }
+    }
+  }
+`;
 
 const renderBlock = (block, imageAlignment, imageFit) => {
   // We finesse the block type and fields to support both
