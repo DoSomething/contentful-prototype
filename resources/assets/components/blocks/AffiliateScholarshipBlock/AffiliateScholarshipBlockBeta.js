@@ -35,7 +35,7 @@ const AffiliateScholarshipBlockBeta = ({
     <dl className="clearfix">
       {scholarshipAmount ? (
         <>
-          <dt className="campaign-info__scholarship">Win A Scholarship</dt>
+          <dt className="campaign-info__scholarship-beta">Win A Scholarship</dt>
           <dd className="campaign-info__scholarship">
             ${scholarshipAmount.toLocaleString()}
           </dd>
@@ -44,7 +44,7 @@ const AffiliateScholarshipBlockBeta = ({
       {scholarshipDeadline ? (
         <>
           <dt>Deadline</dt>
-          <dd>
+          <dd className="campaign-info__scholarship-beta-info">
             {format(scholarshipDeadline, 'MMMM do, YYYY', {
               awareOfUnicodeTokens: true,
             })}
@@ -53,11 +53,13 @@ const AffiliateScholarshipBlockBeta = ({
       ) : null}
       <>
         <dt>Requirements</dt>
-        <ul className="margin-top-sm list -compacted">
-          <li>Under 26 years old</li>
-          <li>No minimum GPA</li>
-          <li>No essay</li>
-        </ul>
+        <dd className="campaign-info__scholarship-beta-info">
+          <ul className="margin-top-sm list -compacted">
+            <li>Under 26 years old</li>
+            <li>No minimum GPA</li>
+            <li>No essay</li>
+          </ul>
+        </dd>
       </>
     </dl>
   </Card>

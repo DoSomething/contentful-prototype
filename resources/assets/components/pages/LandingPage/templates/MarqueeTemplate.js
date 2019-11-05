@@ -7,9 +7,9 @@ import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlockContainer';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
+import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
   contentfulImageUrl,
   isScholarshipAffiliateReferral,
@@ -23,7 +23,6 @@ const MarqueeTemplate = ({
   affiliateOptInContent,
   content,
   coverImage,
-  isScholarshipBeta,
   scholarshipAmount,
   scholarshipDeadline,
   subtitle,
@@ -86,7 +85,7 @@ const MarqueeTemplate = ({
                   utmLabel={scholarshipAffiliateLabel.toLowerCase()}
                   scholarshipAmount={scholarshipAmount}
                   scholarshipDeadline={scholarshipDeadline}
-                  isScholarshipBeta={isScholarshipBeta}
+                  isScholarshipBeta
                 />
               ) : (
                 <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
@@ -122,7 +121,6 @@ MarqueeTemplate.propTypes = {
   affiliateOptInContent: PropTypes.object,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
-  isScholarshipBeta: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -134,7 +132,6 @@ MarqueeTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
-  isScholarshipBeta: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };

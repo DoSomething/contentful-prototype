@@ -124,6 +124,19 @@
     }
   }
 
+  dd.campaign-info__scholarship-beta-info {
+    padding-bottom: $half-spacing;
+
+    @include media('(min-width: 350px)') {
+      float: left;
+    }
+  }
+
+  dt.campaign-info__scholarship-beta {
+    float: none;
+    padding-top: $half-spacing;
+  }
+
   dt.campaign-info__scholarship {
     border-top: 1px solid $gray-300;
     float: none;
