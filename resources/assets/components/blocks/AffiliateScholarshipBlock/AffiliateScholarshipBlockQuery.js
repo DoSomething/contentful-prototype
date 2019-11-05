@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 import { env } from '../../../helpers';
+import AffiliateScholarshipBlock from './AffiliateScholarshipBlock';
 import AffiliateScholarshipBlockBeta from './AffiliateScholarshipBlockBeta';
 
 /**
@@ -25,36 +26,50 @@ const AFFILIATE_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const AffiliateScholarshipBlockQuery = props => (
-  <Query
-    query={AFFILIATE_QUERY}
-    queryName="affiliateByUtmLabel"
-    variables={{
-      utmLabel: props.utmLabel,
-      preview: env('CONTENTFUL_USE_PREVIEW_API'),
-    }}
-  >
-    {({ loading, data }) => {
-      if (loading) {
-        return <div className="spinner -centered" />;
-      }
+const AffiliateScholarshipBlockQuery = props => {
+  const isScholarshipBeta = props.isScholarshipBeta;
+  return (
+    <Query
+      query={AFFILIATE_QUERY}
+      queryName="affiliateByUtmLabel"
+      variables={{
+        utmLabel: props.utmLabel,
+        preview: env('CONTENTFUL_USE_PREVIEW_API'),
+      }}
+    >
+      {({ loading, data }) => {
+        if (loading) {
+          return <div className="spinner -centered" />;
+        }
 
-      const title = get(data, 'affiliate.title');
-      const logo = get(data, 'affiliate.logo');
+        const title = get(data, 'affiliate.title');
+        const logo = get(data, 'affiliate.logo');
 
-      return (
-        <AffiliateScholarshipBlockBeta
-          affiliateTitle={title}
-          affiliateLogo={logo}
-          {...props}
-        />
-      );
-    }}
-  </Query>
-);
+        return (
+          <>
+            {isScholarshipBeta ? (
+              <AffiliateScholarshipBlockBeta
+                affiliateTitle={title}
+                affiliateLogo={logo}
+                {...props}
+              />
+            ) : (
+              <AffiliateScholarshipBlock
+                affiliateTitle={title}
+                affiliateLogo={logo}
+                {...props}
+              />
+            )}
+          </>
+        );
+      }}
+    </Query>
+  );
+};
 
 AffiliateScholarshipBlockQuery.propTypes = {
   utmLabel: PropTypes.string.isRequired,
+  isScholarshipBeta: PropTypes.bool.isRequired,
 };
 
 // Export the GraphQL query component.

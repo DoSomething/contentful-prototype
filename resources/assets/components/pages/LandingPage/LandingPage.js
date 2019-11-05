@@ -32,6 +32,7 @@ const LandingPage = props => {
 
   // @TODO: allow outputting multiple blocks in the sidebar.
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
+  const isScholarshipBeta = true;
 
   return (
     <React.Fragment>
@@ -68,6 +69,7 @@ const LandingPage = props => {
               scholarshipDeadline={scholarshipDeadline}
               subtitle={subtitle}
               testName="Marquee Template"
+              isScholarshipBeta={isScholarshipBeta}
               title={title}
             />,
           ]}

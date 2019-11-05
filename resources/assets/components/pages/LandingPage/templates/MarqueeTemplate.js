@@ -23,6 +23,7 @@ const MarqueeTemplate = ({
   affiliateOptInContent,
   content,
   coverImage,
+  isScholarshipBeta,
   scholarshipAmount,
   scholarshipDeadline,
   subtitle,
@@ -85,6 +86,7 @@ const MarqueeTemplate = ({
                   utmLabel={scholarshipAffiliateLabel.toLowerCase()}
                   scholarshipAmount={scholarshipAmount}
                   scholarshipDeadline={scholarshipDeadline}
+                  isScholarshipBeta={isScholarshipBeta}
                 />
               ) : (
                 <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
@@ -120,6 +122,7 @@ MarqueeTemplate.propTypes = {
   affiliateOptInContent: PropTypes.object,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
+  isScholarshipBeta: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -131,6 +134,7 @@ MarqueeTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
+  isScholarshipBeta: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };
