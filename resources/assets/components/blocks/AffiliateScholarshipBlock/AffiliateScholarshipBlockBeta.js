@@ -7,7 +7,7 @@ import Card from '../../utilities/Card/Card';
 
 import './affiliate-scholarship-block.scss';
 
-const AffiliateScholarshipBlock = ({
+const AffiliateScholarshipBlockBeta = ({
   affiliateLogo,
   affiliateTitle,
   className,
@@ -15,10 +15,7 @@ const AffiliateScholarshipBlock = ({
   scholarshipDeadline,
 }) => (
   <Card
-    className={classNames(
-      'rounded bordered padded affiliate-scholarship-block',
-      className,
-    )}
+    className={classNames('rounded bordered padded campaign-info', className)}
   >
     {affiliateLogo ? (
       <img
@@ -27,7 +24,7 @@ const AffiliateScholarshipBlock = ({
         alt={affiliateLogo.description || 'Affiliate logo'}
       />
     ) : null}
-    <p className="margin-top-sm padding-bottom-md">
+    <p>
       <strong>
         Welcome to DoSomething.org
         {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
@@ -38,16 +35,16 @@ const AffiliateScholarshipBlock = ({
     <dl className="clearfix">
       {scholarshipAmount ? (
         <>
-          <dt className="font-bold">Win A Scholarship</dt>
-          <dd className="scholarship-amount league-gothic margin-top-none">
+          <dt className="campaign-info__scholarship">Win A Scholarship</dt>
+          <dd className="campaign-info__scholarship">
             ${scholarshipAmount.toLocaleString()}
           </dd>
         </>
       ) : null}
       {scholarshipDeadline ? (
         <>
-          <dt className="font-bold">Deadline</dt>
-          <dd className="margin-top-sm">
+          <dt>Deadline</dt>
+          <dd>
             {format(scholarshipDeadline, 'MMMM do, YYYY', {
               awareOfUnicodeTokens: true,
             })}
@@ -55,7 +52,7 @@ const AffiliateScholarshipBlock = ({
         </>
       ) : null}
       <>
-        <dt className="font-bold">Requirements</dt>
+        <dt>Requirements</dt>
         <ul className="margin-top-sm list -compacted">
           <li>Under 26 years old</li>
           <li>No minimum GPA</li>
@@ -66,7 +63,7 @@ const AffiliateScholarshipBlock = ({
   </Card>
 );
 
-AffiliateScholarshipBlock.propTypes = {
+AffiliateScholarshipBlockBeta.propTypes = {
   affiliateTitle: PropTypes.string,
   affiliateLogo: PropTypes.shape({
     url: PropTypes.string.isRequired,
@@ -77,10 +74,10 @@ AffiliateScholarshipBlock.propTypes = {
   scholarshipDeadline: PropTypes.string.isRequired,
 };
 
-AffiliateScholarshipBlock.defaultProps = {
+AffiliateScholarshipBlockBeta.defaultProps = {
   affiliateTitle: null,
   affiliateLogo: null,
   className: null,
 };
 
-export default AffiliateScholarshipBlock;
+export default AffiliateScholarshipBlockBeta;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Query } from 'react-apollo';
 
 import { env } from '../../../helpers';
-import AffiliateScholarshipBlockBeta from './AffiliateScholarshipBlock';
+import AffiliateScholarshipBlockBeta from './AffiliateScholarshipBlockBeta';
 
 /**
  * The GraphQL query to load data for this component.
