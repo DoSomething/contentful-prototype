@@ -108,6 +108,16 @@
     max-height: 50px;
   }
 
+  .campaign-info__scholarship-beta {
+    dd,
+    dt {
+      @include media('(min-width: 350px)') {
+        float: none;
+      }
+      padding-bottom: $half-spacing;
+    }
+  }
+
   dt {
     clear: right;
     color: $gray-500;
@@ -122,24 +132,10 @@
 
   dd {
     padding-bottom: $half-spacing;
-    width: 100%;
 
     @include media('(min-width: 350px)') {
       float: right;
     }
-  }
-
-  dd.campaign-info__scholarship-beta-info {
-    padding-bottom: $half-spacing;
-
-    @include media('(min-width: 350px)') {
-      float: left;
-    }
-  }
-
-  dt.campaign-info__scholarship-beta {
-    float: none;
-    padding-top: $half-spacing;
   }
 
   dt.campaign-info__scholarship {

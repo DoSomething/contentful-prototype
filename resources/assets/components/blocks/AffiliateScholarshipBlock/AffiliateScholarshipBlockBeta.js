@@ -32,7 +32,7 @@ const AffiliateScholarshipBlockBeta = ({
       Ready to earn scholarships for doing good? Just follow the simple
       instructions below for the chance to win. Let’s Do This!
     </p>
-    <dl className="clearfix">
+    <dl className="clearfix campaign-info__scholarship-beta">
       {scholarshipAmount ? (
         <>
           <dt className="campaign-info__scholarship-beta">Win A Scholarship</dt>
@@ -43,7 +43,7 @@ const AffiliateScholarshipBlockBeta = ({
       ) : null}
       {scholarshipDeadline ? (
         <>
-          <dt>Deadline</dt>
+          <dt className="campaign-info__scholarship-beta">Deadline</dt>
           <dd className="campaign-info__scholarship-beta-info">
             {format(scholarshipDeadline, 'MMMM do, YYYY', {
               awareOfUnicodeTokens: true,
@@ -52,7 +52,7 @@ const AffiliateScholarshipBlockBeta = ({
         </>
       ) : null}
       <>
-        <dt>Requirements</dt>
+        <dt className="campaign-info__scholarship-beta">Requirements</dt>
         <dd className="campaign-info__scholarship-beta-info">
           <ul className="margin-top-sm list -compacted">
             <li>Under 26 years old</li>

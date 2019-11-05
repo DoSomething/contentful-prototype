@@ -37,22 +37,18 @@ const AffiliateScholarshipBlockQuery = props => (
       const title = res.affiliate.title;
       const logo = res.affiliate.logo;
 
-      return (
-        <>
-          {props.isScholarshipBeta ? (
-            <AffiliateScholarshipBlockBeta
-              affiliateTitle={title}
-              affiliateLogo={logo}
-              {...props}
-            />
-          ) : (
-            <AffiliateScholarshipBlock
-              affiliateTitle={title}
-              affiliateLogo={logo}
-              {...props}
-            />
-          )}
-        </>
+      return props.isScholarshipBeta ? (
+        <AffiliateScholarshipBlockBeta
+          affiliateTitle={title}
+          affiliateLogo={logo}
+          {...props}
+        />
+      ) : (
+        <AffiliateScholarshipBlock
+          affiliateTitle={title}
+          affiliateLogo={logo}
+          {...props}
+        />
       );
     }}
   </Query>
