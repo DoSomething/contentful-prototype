@@ -36,7 +36,7 @@ export function appendToQuery(
   additionalParameters,
   href = window.location.href,
 ) {
-  const urlObject = new URL(href);
+  const urlObject = new URL(href, window.location.origin);
 
   const mergedParameters = merge(
     queryString.parse(urlObject.search),
