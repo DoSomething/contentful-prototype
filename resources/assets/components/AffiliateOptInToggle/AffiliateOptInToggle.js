@@ -13,7 +13,7 @@ const AffiliateOptInToggle = ({
   textColor,
 }) => (
   <div className="form-wrapper affiliate-opt-in">
-    <label className="option -checkbox" htmlFor="affiliate_opt_in">
+    <label className="option -checkbox" htmlFor="opt_in">
       <input
         type="checkbox"
         id="opt_in"
