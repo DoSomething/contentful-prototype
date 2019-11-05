@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../Figure/Figure';
@@ -22,7 +23,7 @@ const ContentBlockGalleryItem = ({
     <Figure
       alt={showcaseImage.description || `${showcaseTitle}-photo`}
       image={contentfulImageUrl(
-        showcaseImage.url,
+        get(showcaseImage, 'url'),
         imageFormatting,
         imageFormatting,
         imageFit,

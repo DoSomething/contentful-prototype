@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure/Figure';
@@ -15,7 +16,12 @@ const StaffTemplate = props => {
   return (
     <Figure
       alt={`${showcaseTitle}-photo`}
-      image={contentfulImageUrl(showcaseImage.url, '400', '400', 'fill')}
+      image={contentfulImageUrl(
+        get(showcaseImage, 'url'),
+        '400',
+        '400',
+        'fill',
+      )}
     >
       <h4>
         {twitterId ? (

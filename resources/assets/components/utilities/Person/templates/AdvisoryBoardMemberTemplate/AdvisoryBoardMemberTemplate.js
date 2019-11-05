@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure/Figure';
@@ -11,7 +12,12 @@ const AdvisoryBoardMemberTemplate = props => {
   return (
     <Figure
       alt={`${showcaseTitle}-photo`}
-      image={contentfulImageUrl(showcaseImage.url, '100', '100', 'fill')}
+      image={contentfulImageUrl(
+        get(showcaseImage, 'url'),
+        '100',
+        '100',
+        'fill',
+      )}
       alignment="left"
     >
       <h4>{showcaseTitle}</h4>

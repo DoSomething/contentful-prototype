@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure/Figure';
@@ -13,7 +14,12 @@ const PageGalleryItem = ({
   <a className="page-gallery-item block" href={`/us/${slug}`}>
     <Figure
       alt={`${showcaseImage.description || showcaseTitle}-photo`}
-      image={contentfulImageUrl(showcaseImage.url, '400', '400', 'fill')}
+      image={contentfulImageUrl(
+        get(showcaseImage, 'url'),
+        '400',
+        '400',
+        'fill',
+      )}
     >
       <h4>{showcaseTitle}</h4>
       {showcaseDescription ? (
