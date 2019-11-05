@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import button from '/CtaPopoverButton';
 import './cta-popover.scss';
+import Button from './Button/Button.js';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
@@ -19,8 +20,8 @@ const CtaPopoverEmailForm = () => {
         label: 'call_to_action_popover',
       },
     });
-    // alert(emailValue);
-    //event.preventDefault();
+    alert(emailValue);
+    event.preventDefault();
   };
 
   return (

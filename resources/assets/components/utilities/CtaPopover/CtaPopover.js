@@ -41,13 +41,6 @@ const CtaPopover = ({
         {title}
       </h3>
       <p className="text-white mt-4">{content}</p>
-      {/* <a
-        className="cta-popover__button button p-4 mt-4"
-        href={link}
-        onClick={handleClick}
-      >
-        {buttonText}
-      </a> */}
       {children}
     </div>
   );

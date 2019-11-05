@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button/Button.js';
 
 const button = ({ handleClick, buttonText, link }) => {
   const handleClick = () => {};
@@ -14,6 +15,7 @@ const button = ({ handleClick, buttonText, link }) => {
       >
         {buttonText}
       </a>
+      <Button></Button>
     </button>
   );
 };
