@@ -6,26 +6,28 @@ import TextContent from '../../../TextContent/TextContent';
 import { contentfulImageUrl } from '../../../../../helpers';
 
 const BoardMemberTemplate = props => {
-  const { name, alternatePhoto, description } = props;
+  const { showcaseTitle, showcaseImage, showcaseDescription } = props;
 
   return (
     <Figure
-      alt={`${name}-photo`}
-      image={contentfulImageUrl(alternatePhoto.url, '400', '400', 'fill')}
+      alt={`${showcaseTitle}-photo`}
+      image={contentfulImageUrl(showcaseImage.url, '400', '400', 'fill')}
     >
-      <h4>{name}</h4>
+      <h4>{showcaseTitle}</h4>
 
-      {description ? <TextContent>{description}</TextContent> : null}
+      {showcaseDescription ? (
+        <TextContent>{showcaseDescription}</TextContent>
+      ) : null}
     </Figure>
   );
 };
 
 BoardMemberTemplate.propTypes = {
-  name: PropTypes.string.isRequired,
-  alternatePhoto: PropTypes.shape({
+  showcaseTitle: PropTypes.string.isRequired,
+  showcaseImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
-  description: PropTypes.string.isRequired,
+  showcaseDescription: PropTypes.string.isRequired,
 };
 
 export default BoardMemberTemplate;

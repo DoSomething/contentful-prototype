@@ -4,22 +4,29 @@ import PropTypes from 'prop-types';
 import { Figure } from '../../../Figure/Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
-const PageGalleryItem = ({ title, subTitle, coverImage, slug }) => (
+const PageGalleryItem = ({
+  showcaseTitle,
+  showcaseDescription,
+  showcaseImage,
+  slug,
+}) => (
   <a className="page-gallery-item block" href={`/us/${slug}`}>
     <Figure
-      alt={`${coverImage.description || title}-photo`}
-      image={contentfulImageUrl(coverImage.url, '400', '400', 'fill')}
+      alt={`${showcaseImage.description || showcaseTitle}-photo`}
+      image={contentfulImageUrl(showcaseImage.url, '400', '400', 'fill')}
     >
-      <h4>{title}</h4>
-      {subTitle ? <p className="font-normal">{subTitle}</p> : null}
+      <h4>{showcaseTitle}</h4>
+      {showcaseDescription ? (
+        <p className="font-normal">{showcaseDescription}</p>
+      ) : null}
     </Figure>
   </a>
 );
 
 PageGalleryItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string,
-  coverImage: PropTypes.shape({
+  showcaseTitle: PropTypes.string.isRequired,
+  showcaseDescription: PropTypes.string,
+  showcaseImage: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
   }),
@@ -27,8 +34,8 @@ PageGalleryItem.propTypes = {
 };
 
 PageGalleryItem.defaultProps = {
-  subTitle: null,
-  coverImage: {},
+  showcaseDescription: null,
+  showcaseImage: {},
 };
 
 export default PageGalleryItem;
