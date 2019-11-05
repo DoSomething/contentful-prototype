@@ -11,8 +11,8 @@ const props = {
   title: 'Test Title',
   content: 'Test Content',
   image: {
-    url: 'image.com',
-    description: 'cool image of image.com',
+    url: 'http://image.com',
+    description: 'cool image of http://image.com',
   },
   imageAlignment: 'right',
 };

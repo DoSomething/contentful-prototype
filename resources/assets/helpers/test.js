@@ -27,7 +27,7 @@ test('generate contentful image url with specified fit', () => {
   );
 
   expect(contentfulImage).toBe(
-    '//images.contentful.com/somecrazystring.jpg?fit=fill',
+    'http://images.contentful.com/somecrazystring.jpg?fit=fill',
   );
 });
 
@@ -40,7 +40,7 @@ test('generate contentful image url with all specified parameters', () => {
   );
 
   expect(contentfulImage).toBe(
-    '//images.contentful.com/somecrazystring.jpg?w=800&h=600&fit=fill',
+    'http://images.contentful.com/somecrazystring.jpg?fit=fill&h=600&w=800',
   );
 });
 

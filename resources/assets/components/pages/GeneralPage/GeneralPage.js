@@ -63,7 +63,7 @@ const GeneralPage = props => {
                     author={author.fields.name}
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(
-                      author.fields.photo,
+                      author.fields.photo.url,
                       175,
                       175,
                       'fill',
@@ -126,7 +126,7 @@ const GeneralPage = props => {
                   <AuthorBio
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(
-                      author.fields.photo,
+                      author.fields.photo.url,
                       175,
                       175,
                       'fill',

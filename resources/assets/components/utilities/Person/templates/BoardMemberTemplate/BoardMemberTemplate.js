@@ -11,7 +11,7 @@ const BoardMemberTemplate = props => {
   return (
     <Figure
       alt={`${name}-photo`}
-      image={contentfulImageUrl(alternatePhoto, '400', '400', 'fill')}
+      image={contentfulImageUrl(alternatePhoto.url, '400', '400', 'fill')}
     >
       <h4>{name}</h4>
 
@@ -22,7 +22,9 @@ const BoardMemberTemplate = props => {
 
 BoardMemberTemplate.propTypes = {
   name: PropTypes.string.isRequired,
-  alternatePhoto: PropTypes.string.isRequired,
+  alternatePhoto: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
   description: PropTypes.string.isRequired,
 };
 
