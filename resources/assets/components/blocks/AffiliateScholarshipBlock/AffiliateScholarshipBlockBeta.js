@@ -8,6 +8,7 @@ import Card from '../../utilities/Card/Card';
 import './affiliate-scholarship-block.scss';
 
 const AffiliateScholarshipBlockBeta = ({
+  actionType,
   affiliateLogo,
   affiliateTitle,
   className,
@@ -51,6 +52,12 @@ const AffiliateScholarshipBlockBeta = ({
           </dd>
         </>
       ) : null}
+      {actionType ? (
+        <>
+          <dt className="campaign-info__scholarship-beta">Action Type</dt>
+          <dd className="campaign-info__scholarship-beta-info">{actionType}</dd>
+        </>
+      ) : null}
       <>
         <dt className="campaign-info__scholarship-beta">Requirements</dt>
         <dd className="campaign-info__scholarship-beta-info">
@@ -66,6 +73,7 @@ const AffiliateScholarshipBlockBeta = ({
 );
 
 AffiliateScholarshipBlockBeta.propTypes = {
+  actionType: PropTypes.string,
   affiliateTitle: PropTypes.string,
   affiliateLogo: PropTypes.shape({
     url: PropTypes.string.isRequired,
@@ -77,6 +85,7 @@ AffiliateScholarshipBlockBeta.propTypes = {
 };
 
 AffiliateScholarshipBlockBeta.defaultProps = {
+  actionType: null,
   affiliateTitle: null,
   affiliateLogo: null,
   className: null,

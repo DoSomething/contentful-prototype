@@ -47,17 +47,18 @@ const AffiliateScholarshipBlockQuery = props => (
     {res => {
       const title = res.affiliate.title;
       const logo = res.affiliate.logo;
-      // const actions = res.campaign.actions
-      //   ? res.campaign.actions.filter(
-      //       action => action.scholarshipEntry && action.reportback,
-      //     )
-      //   : [];
-      // const action = actions.length ? actions[0] : null;
+      const actions = res.actions
+        ? res.actions.filter(
+            action => action.scholarshipEntry && action.reportback,
+          )
+        : [];
+      const action = actions.length ? actions[0] : null;
 
       return props.isScholarshipBeta ? (
         <AffiliateScholarshipBlockBeta
           affiliateTitle={title}
           affiliateLogo={logo}
+          actionType={action.actionLabel}
           {...props}
         />
       ) : (
@@ -72,11 +73,13 @@ const AffiliateScholarshipBlockQuery = props => (
 );
 
 AffiliateScholarshipBlockQuery.propTypes = {
+  campaignId: PropTypes.number,
   utmLabel: PropTypes.string.isRequired,
   isScholarshipBeta: PropTypes.bool,
 };
 
 AffiliateScholarshipBlockQuery.defaultProps = {
+  campaignId: null,
   isScholarshipBeta: false,
 };
 
