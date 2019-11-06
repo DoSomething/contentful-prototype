@@ -13,10 +13,16 @@ describe('Beta Referral Page', () => {
     cy.visit(`/us/join?user_id=${userId}&campaign_id=${campaignId}`);
 
     cy.contains('gift card');
-
     cy.get('.referral-page-campaign').should('have.length', 2);
-
     cy.contains('FAQ');
+  });
+
+  it('Visit beta referral page with valid user ID and no campaign ID', () => {
+    const user = userFactory();
+
+    cy.visit(`/us/join?user_id=${userId}`);
+
+    cy.get('.referral-page-campaign').should('have.length', 1);
   });
 
   it('Visit beta referral page with invalid user ID query', () => {
