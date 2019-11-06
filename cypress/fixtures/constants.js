@@ -1,5 +1,5 @@
 /**
- * These constants correspond to real entities in our dev environment, used to avoid 404's.
+ * These constants correspond to real ID's in our dev environment, used to avoid 404's.
  */
 
 export const campaignId = '9002';
