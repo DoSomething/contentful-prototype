@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import requiredIf from 'react-required-if';
 
 import { contentfulImageUrl } from '../../../helpers';
 import { Figure } from '../../utilities/Figure/Figure';
@@ -65,14 +64,14 @@ ContentBlock.propTypes = {
     url: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-  imageAlignment: requiredIf(PropTypes.string, props => props.image.url),
+  imageAlignment: PropTypes.oneOf(['right', 'left']),
   superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 ContentBlock.defaultProps = {
   className: null,
-  imageAlignment: null,
+  imageAlignment: 'right',
   superTitle: null,
   title: null,
 };
