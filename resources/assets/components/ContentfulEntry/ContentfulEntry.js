@@ -165,6 +165,9 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'galleryBlock':
         return <GalleryBlock {...json.fields} />;
 
+      case 'GalleryBlock':
+        return <GalleryBlock {...withoutNulls(json)} />;
+
       case 'imagesBlock':
         return (
           <ImagesBlock className={className} images={json.fields.images} />

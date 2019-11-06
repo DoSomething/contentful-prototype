@@ -8,13 +8,34 @@ import AdvisoryBoardMemberTemplate from './templates/AdvisoryBoardMemberTemplate
 const Person = props => {
   switch (props.type) {
     case 'staff':
-      return <StaffTemplate {...props} />;
+      return (
+        <StaffTemplate
+          showcaseTitle={props.name}
+          showcaseDescription={props.jobTitle}
+          showcaseImage={props.alternatePhoto}
+          {...props}
+        />
+      );
 
     case 'board member':
-      return <BoardMemberTemplate {...props} />;
+      return (
+        <BoardMemberTemplate
+          showcaseTitle={props.name}
+          showcaseDescription={props.description}
+          showcaseImage={props.alternatePhoto}
+          {...props}
+        />
+      );
 
     case 'advisory board member':
-      return <AdvisoryBoardMemberTemplate {...props} />;
+      return (
+        <AdvisoryBoardMemberTemplate
+          showcaseTitle={props.name}
+          showcaseDescription={props.description}
+          showcaseImage={props.photo}
+          {...props}
+        />
+      );
 
     default:
       return null;
@@ -23,6 +44,25 @@ const Person = props => {
 
 Person.propTypes = {
   type: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  description: PropTypes.string,
+  jobTitle: PropTypes.string,
+  photo: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  alternatePhoto: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }),
+};
+
+Person.defaultProps = {
+  name: null,
+  description: null,
+  jobTitle: null,
+  photo: {},
+  alternatePhoto: {},
 };
 
 export default Person;
