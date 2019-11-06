@@ -123,6 +123,16 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
 
+      case 'ContentBlock':
+        return (
+          <ContentBlock
+            className={className}
+            // Resolves the alias used in the ContentBlockFragment.
+            content={json.contentBlockContent}
+            {...withoutNulls(json)}
+          />
+        );
+
       case 'embed':
         return (
           <EmbedBlockContainer
