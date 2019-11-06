@@ -3,6 +3,7 @@
 $spacing_1x: 16px;
 $spacing_1_5x: 24px;
 $spacing_2x: 32px;
+$spacing_3x: 48px;
 $extraSmall: '(min-width: 360px)';
 
 .nav {
@@ -15,7 +16,7 @@ $extraSmall: '(min-width: 360px)';
     padding: $spacing_1x 0 0;
 
     @include media($medium) {
-      padding: $spacing_1_5x $spacing_2x 0;
+      padding: $spacing_1_5x $spacing_3x 0;
     }
   }
 }
@@ -185,7 +186,12 @@ $extraSmall: '(min-width: 360px)';
       white-space: nowrap;
 
       @include media($medium) {
-        padding-bottom: 40px;
+        padding: $spacing_1x 10px 40px;
+      }
+
+      @include media($large) {
+        padding-left: $spacing_1x;
+        padding-right: $spacing_1x;
       }
     }
   }
