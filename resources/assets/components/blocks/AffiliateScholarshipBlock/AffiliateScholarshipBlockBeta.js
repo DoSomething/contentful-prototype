@@ -24,7 +24,7 @@ const AffiliateScholarshipBlockBeta = ({
         alt={affiliateLogo.description || 'Affiliate logo'}
       />
     ) : null}
-    <p>
+    <p className="pt-8 pb-4">
       <strong>
         Welcome to DoSomething.org
         {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
