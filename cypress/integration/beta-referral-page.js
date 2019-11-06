@@ -15,8 +15,11 @@ describe('Beta Referral Page', () => {
     cy.contains('gift card');
     cy.contains('FAQ');
 
-    // @TODO: Verify that the referral page links contain correct referrer_user_id query.
     cy.get('.referral-page-campaign').should('have.length', 2);
+
+    cy.get('.referral-page-campaign > a')
+      .should('have.attr', 'href')
+      .and('include', `referrer_user_id=${userId}`);
   });
 
   it('Visit beta referral page, with valid user ID and no campaign ID', () => {
@@ -25,6 +28,10 @@ describe('Beta Referral Page', () => {
     cy.visit(`/us/join?user_id=${userId}`);
 
     cy.get('.referral-page-campaign').should('have.length', 1);
+
+    cy.get('.referral-page-campaign > a')
+      .should('have.attr', 'href')
+      .and('include', `referrer_user_id=${userId}`);
   });
 
   it('Visit beta referral page, with invalid user ID', () => {
