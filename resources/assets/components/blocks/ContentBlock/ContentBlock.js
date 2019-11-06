@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import requiredIf from 'react-required-if';
@@ -9,6 +10,20 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 import './content-block.scss';
+
+export const ContentBlockFragment = gql`
+  fragment ContentBlockFragment on ContentBlock {
+    superTitle
+    title
+    subTitle
+    content
+    image {
+      url
+      description
+    }
+    imageAlignment
+  }
+`;
 
 const ContentBlock = props => {
   const {
