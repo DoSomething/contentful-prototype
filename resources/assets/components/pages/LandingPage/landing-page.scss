@@ -104,6 +104,20 @@
   margin: 0 auto;
   max-width: 450px;
 
+  .affiliate-logo {
+    max-height: 50px;
+  }
+
+  .campaign-info__scholarship-beta {
+    dd,
+    dt {
+      @include media('(min-width: 350px)') {
+        float: none;
+      }
+      padding-bottom: $half-spacing;
+    }
+  }
+
   dt {
     clear: right;
     color: $gray-500;
