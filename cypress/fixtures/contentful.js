@@ -5,11 +5,12 @@
 //
 // https://dev.dosomething.org/us/campaigns/test-example-campaign/action
 //
+import { campaignId } from './constants';
 
 export const exampleCampaign = {
   campaign: {
     id: '4MtEG1BNi3d2AQPkoql8i4',
-    campaignId: '9002',
+    campaignId,
     type: 'campaign',
     template: 'mosaic',
     title: 'Example Campaign',
