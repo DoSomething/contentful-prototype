@@ -1,0 +1,31 @@
+@import '../../../scss/next-toolbox';
+
+.cause-page {
+  .lede-banner {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+
+    > .title-lockup {
+      grid-column: 1 / -1;
+
+      @include media($medium) {
+        grid-column: 2 / -2;
+      }
+
+      @include media($large) {
+        grid-column: 1 / -6;
+      }
+    }
+
+    .lede-banner__headline-title {
+      font-size: 97px;
+      line-height: 1;
+
+      @include media($medium) {
+        font-size: 106px;
+      }
+    }
+  }
+}
