@@ -41,18 +41,18 @@ const AffiliateScholarshipBlockQuery = props => (
     variables={{
       utmLabel: props.utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
-      campaignId: props.campaignId,
+      // campaignId: props.campaignId,
     }}
   >
     {res => {
       const title = res.affiliate.title;
       const logo = res.affiliate.logo;
-      const actions = res.campaign.actions
-        ? res.campaign.actions.filter(
-            action => action.scholarshipEntry && action.reportback,
-          )
-        : [];
-      const action = actions.length ? actions[0] : null;
+      // const actions = res.campaign.actions
+      //   ? res.campaign.actions.filter(
+      //       action => action.scholarshipEntry && action.reportback,
+      //     )
+      //   : [];
+      // const action = actions.length ? actions[0] : null;
 
       return props.isScholarshipBeta ? (
         <AffiliateScholarshipBlockBeta
