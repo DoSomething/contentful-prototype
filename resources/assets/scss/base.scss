@@ -597,6 +597,16 @@ p {
   margin-right: $half-spacing / 2;
 }
 
+.my-2 {
+  margin-top: $half-spacing / 2;
+  margin-bottom: $half-spacing / 2;
+}
+
+.my-4 {
+  margin-top: $half-spacing;
+  margin-bottom: $half-spacing;
+}
+
 .overflow-visible {
   overflow: visible !important;
 }
