@@ -11,13 +11,23 @@ import AffiliateScholarshipBlockBeta from './AffiliateScholarshipBlockBeta';
  * The GraphQL query to load data for this component.
  */
 const AFFILIATE_QUERY = gql`
-  query AffiliateQuery($utmLabel: String!, $preview: Boolean!) {
+  query AffiliateQuery(
+    $utmLabel: String!
+    $preview: Boolean!
+    $campaignId: Int!
+  ) {
     affiliate(utmLabel: $utmLabel, preview: $preview) {
       title
       logo {
         description
         url(h: 100)
       }
+    }
+
+    actions(campaignId: $campaignId) {
+      actionLabel
+      scholarshipEntry
+      reportback
     }
   }
 `;
@@ -31,11 +41,18 @@ const AffiliateScholarshipBlockQuery = props => (
     variables={{
       utmLabel: props.utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
+      campaignId: props.campaignId,
     }}
   >
     {res => {
       const title = res.affiliate.title;
       const logo = res.affiliate.logo;
+      const actions = res.campaign.actions
+        ? res.campaign.actions.filter(
+            action => action.scholarshipEntry && action.reportback,
+          )
+        : [];
+      const action = actions.length ? actions[0] : null;
 
       return props.isScholarshipBeta ? (
         <AffiliateScholarshipBlockBeta
