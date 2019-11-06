@@ -1,10 +1,10 @@
 /// <reference types="Cypress" />
 
 import { userFactory } from '../fixtures/user';
+import { campaignId } from '../fixtures/constants';
 import { exampleCampaign } from '../fixtures/contentful';
 import { emptyResponse, newSignup } from '../fixtures/signups';
 
-const campaignId = '9002';
 const API = `/api/v2/campaigns/${campaignId}`;
 
 describe('Campaign Signup', () => {
