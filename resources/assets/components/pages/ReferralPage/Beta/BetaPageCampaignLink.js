@@ -27,10 +27,12 @@ const ReferralPageCampaignLink = props => (
       }
 
       return (
-        <Embed
-          url={`${PHOENIX_URL}/us/campaigns/${data.slug}?referrer_user_id=${props.userId}`}
-          badged
-        />
+        <div className="referral-page-campaign">
+          <Embed
+            url={`${PHOENIX_URL}/us/campaigns/${data.slug}?referrer_user_id=${props.userId}`}
+            badged
+          />
+        </div>
       );
     }}
   </Query>
