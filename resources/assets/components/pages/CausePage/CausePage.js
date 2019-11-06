@@ -32,10 +32,12 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
               {title}
             </h1>
             <TextContent styles={{ textColor: '#FFF' }}>
+              {/* @TODO: update font size of discription */}
               {description}
             </TextContent>
           </div>
         </header>
+        {/* @TODO: fix gallery header/title underline*/}
         <TextContent
           className="base-12-grid"
           classNameByEntry={{
