@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../Figure/Figure';
@@ -6,9 +7,9 @@ import TextContent from '../../TextContent/TextContent';
 import { contentfulImageUrl } from '../../../../helpers';
 
 const ContentBlockGalleryItem = ({
-  title,
-  image,
-  content,
+  showcaseTitle,
+  showcaseImage,
+  showcaseDescription,
   imageAlignment,
   imageFit,
 }) => {
@@ -20,31 +21,37 @@ const ContentBlockGalleryItem = ({
 
   return (
     <Figure
-      alt={image.description || `${title}-photo`}
+      alt={showcaseImage.description || `${showcaseTitle}-photo`}
       image={contentfulImageUrl(
-        image.url,
+        get(showcaseImage, 'url'),
         imageFormatting,
         imageFormatting,
         imageFit,
       )}
       alignment={alignment}
     >
-      <h4>{title}</h4>
+      <h4>{showcaseTitle}</h4>
 
-      {content ? <TextContent>{content}</TextContent> : null}
+      {showcaseDescription ? (
+        <TextContent>{showcaseDescription}</TextContent>
+      ) : null}
     </Figure>
   );
 };
 
 ContentBlockGalleryItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  image: PropTypes.shape({
+  showcaseTitle: PropTypes.string.isRequired,
+  showcaseImage: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
-  }).isRequired,
-  content: PropTypes.string.isRequired,
+  }),
+  showcaseDescription: PropTypes.string.isRequired,
   imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
   imageFit: PropTypes.oneOf(['fill', 'pad']).isRequired,
+};
+
+ContentBlockGalleryItem.defaultProps = {
+  showcaseImage: {},
 };
 
 export default ContentBlockGalleryItem;
