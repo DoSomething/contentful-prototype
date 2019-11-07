@@ -101,7 +101,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
 
 SchoolFinder.propTypes = {
   campaignId: PropTypes.string.isRequired,
-  // @TODO: Add userId once we're ready to start reading/writing user's school_id.
+  userId: PropTypes.string.isRequired,
 };
 
 export default SchoolFinder;
