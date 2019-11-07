@@ -607,6 +607,11 @@ p {
   margin-bottom: $half-spacing;
 }
 
+.my-8 {
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
+}
+
 .overflow-visible {
   overflow: visible !important;
 }

@@ -26,7 +26,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
           className="lede-banner base-12-grid"
           style={withoutNulls(styles)}
         >
-          <div className="title-lockup pt-8">
+          <div className="title-lockup my-8">
             <h2 className="my-4 uppercase color-white text-lg">{superTitle}</h2>
             <h1 className="lede-banner__headline-title my-4 font-normal font-secondary color-white caps-lock">
               {title}
