@@ -19,32 +19,39 @@ const CtaPopoverEmailForm = () => {
         label: 'call_to_action_popover',
       },
     });
+
+    handleChange();
     event.preventDefault();
-    handleChange(emailValue);
 
     console.log('submitted!');
   };
 
   return (
     <div>
-      <form
-        class="form-actions -inline {{modifier_class}}"
-        onSubmit={handleSubmit}
-      >
-        <li>
-          <input
-            className="text-field"
-            type="email"
-            value={emailValue}
-            placeholder="Enter your email address"
-            onChange={handleChange}
-          />
-        </li>
-        <li>
-          <Button type="submit" onClick={handleSubmit}>
-            Submit
-          </Button>
-        </li>
+      <form onSubmit={handleSubmit}>
+        <ul className="form-actions -inline {{modifier_class}}">
+          <li>
+            <label className="field-label">
+              <span className="validation">
+                <div className="validation__message {{modifier_class}}">
+                  Must be a valid email address
+                </div>
+              </span>
+            </label>
+            <input
+              className="text-field"
+              type="email"
+              value={emailValue}
+              placeholder="Enter your email address"
+              onChange={handleChange}
+            />
+          </li>
+          <li>
+            <Button type="submit" onClick={handleSubmit}>
+              Sign Up
+            </Button>
+          </li>
+        </ul>
       </form>
       <p className="footnote padding-horizontal-md padding-bottom-md">
         You'll also get a{' '}
