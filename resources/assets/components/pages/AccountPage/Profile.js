@@ -12,7 +12,7 @@ import {
 
 const Profile = props => (
   <React.Fragment>
-    <div className="grid-wide-2/3">
+    <div className="grid-wide-2/3 pb-8">
       <h2>Profile Info</h2>
 
       <FormItem
@@ -41,7 +41,7 @@ const Profile = props => (
         </a>
       </div>
     </div>
-    <div className="grid-wide-1/3">
+    <div className="grid-wide-1/3 pb-8">
       <h3>Data and Privacy</h3>
       <ul className="mt-4">
         <li>

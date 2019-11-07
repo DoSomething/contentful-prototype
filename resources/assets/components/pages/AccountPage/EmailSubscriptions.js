@@ -58,6 +58,7 @@ class EmailSubscriptions extends React.Component {
       <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
         {emailSubscriptionsMutation => (
           <form
+            className="pb-8"
             onSubmit={event => {
               event.preventDefault();
               emailSubscriptionsMutation({
