@@ -37,7 +37,6 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
             </TextContent>
           </div>
         </header>
-        {/* @TODO: fix gallery header/title underline*/}
         <TextContent
           className="base-12-grid"
           classNameByEntry={{
