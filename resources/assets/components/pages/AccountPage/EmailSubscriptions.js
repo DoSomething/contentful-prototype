@@ -72,12 +72,12 @@ class EmailSubscriptions extends React.Component {
             }}
           >
             {this.state.showAffirmation ? (
-              <p className="padded affirmation-message">
+              <p className="color-success">
                 Your subscriptions have been updated!
               </p>
             ) : null}
-            <div className="padded">
-              <div className="form-wrapper clear-both">
+            <div>
+              <div className="form-wrapper">
                 <EmailSubscriptionCheckbox
                   identifier="COMMUNITY"
                   title="Community"
