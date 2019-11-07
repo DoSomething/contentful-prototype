@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 
+import './campaign-info-block.scss';
+
 /**
  * The GraphQL query to load data for this component.
  */
