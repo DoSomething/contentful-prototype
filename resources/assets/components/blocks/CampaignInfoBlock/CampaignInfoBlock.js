@@ -1,10 +1,12 @@
 import React from 'react';
-import { format } from 'date-fns';
 import gql from 'graphql-tag';
+import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
+
+import './campaign-info-block.scss';
 
 /**
  * The GraphQL query to load data for this component.
@@ -66,7 +68,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                     Win A Scholarship
                   </dt>
                   <dd className="campaign-info__scholarship">
-                    {`$${scholarshipAmount}`}
+                    {`$${scholarshipAmount.toLocaleString()}`}
                   </dd>
                 </React.Fragment>
               ) : null}

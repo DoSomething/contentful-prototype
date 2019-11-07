@@ -1,16 +1,27 @@
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 
 import { Figure } from '../../../Figure/Figure';
 import { contentfulImageUrl } from '../../../../../helpers';
 
 const StaffTemplate = props => {
-  const { name, jobTitle, alternatePhoto, twitterId } = props;
+  const {
+    showcaseTitle,
+    showcaseDescription,
+    showcaseImage,
+    twitterId,
+  } = props;
 
   return (
     <Figure
-      alt={`${name}-photo`}
-      image={contentfulImageUrl(alternatePhoto.url, '400', '400', 'fill')}
+      alt={`picture of ${showcaseTitle}`}
+      image={contentfulImageUrl(
+        get(showcaseImage, 'url'),
+        '400',
+        '400',
+        'fill',
+      )}
     >
       <h4>
         {twitterId ? (
@@ -19,21 +30,21 @@ const StaffTemplate = props => {
             rel="noopener noreferrer"
             target="_blank"
           >
-            {name}
+            {showcaseTitle}
           </a>
         ) : (
-          name
+          showcaseTitle
         )}
       </h4>
-      <p>{jobTitle}</p>
+      <p>{showcaseDescription}</p>
     </Figure>
   );
 };
 
 StaffTemplate.propTypes = {
-  name: PropTypes.string.isRequired,
-  jobTitle: PropTypes.string.isRequired,
-  alternatePhoto: PropTypes.shape({
+  showcaseTitle: PropTypes.string.isRequired,
+  showcaseDescription: PropTypes.string.isRequired,
+  showcaseImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
   twitterId: PropTypes.string,

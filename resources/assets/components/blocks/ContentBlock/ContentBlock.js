@@ -1,7 +1,7 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import requiredIf from 'react-required-if';
 
 import { contentfulImageUrl } from '../../../helpers';
 import { Figure } from '../../utilities/Figure/Figure';
@@ -9,6 +9,21 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
 import './content-block.scss';
+
+export const ContentBlockFragment = gql`
+  fragment ContentBlockFragment on ContentBlock {
+    superTitle
+    title
+    subTitle
+    # Aliasing to avoid conflicting with *non-required* content fields in other fragments.
+    contentBlockContent: content
+    image {
+      url
+      description
+    }
+    imageAlignment
+  }
+`;
 
 const ContentBlock = props => {
   const {
@@ -49,14 +64,14 @@ ContentBlock.propTypes = {
     url: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-  imageAlignment: requiredIf(PropTypes.string, props => props.image.url),
+  imageAlignment: PropTypes.oneOf(['right', 'left']),
   superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 ContentBlock.defaultProps = {
   className: null,
-  imageAlignment: null,
+  imageAlignment: 'right',
   superTitle: null,
   title: null,
 };

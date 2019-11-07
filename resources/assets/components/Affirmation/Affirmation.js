@@ -80,7 +80,7 @@ const Affirmation = ({
               author={author.fields.name}
               {...withoutNulls(author.fields)}
               photo={contentfulImageUrl(
-                author.fields.photo.url,
+                get(author, 'fields.photo.url'),
                 175,
                 175,
                 'fill',

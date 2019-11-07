@@ -1,6 +1,7 @@
 /* global window */
 
 import React from 'react';
+import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -63,7 +64,7 @@ const GeneralPage = props => {
                     author={author.fields.name}
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(
-                      author.fields.photo.url,
+                      get(author, 'fields.photo.url'),
                       175,
                       175,
                       'fill',
@@ -126,7 +127,7 @@ const GeneralPage = props => {
                   <AuthorBio
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(
-                      author.fields.photo.url,
+                      get(author, 'fields.photo.url'),
                       175,
                       175,
                       'fill',

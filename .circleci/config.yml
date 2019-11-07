@@ -45,7 +45,6 @@ jobs:
       - run: GRAPHQL_URL=https://graphql-dev.dosomething.org/graphql npm run build
       # Lint with ESLint & type-check with Flow.
       - run: npm run lint
-      - run: npm run flow
       # Run our Jest unit testing suite.
       - run: npm run test:ci
       # Prepare a functional environment so we can run the full application
