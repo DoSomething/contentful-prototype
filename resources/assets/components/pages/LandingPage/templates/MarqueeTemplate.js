@@ -29,7 +29,7 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
-  const numCampaignId = parseInt(campaignId, 10);
+  const numCampaignId = Number(campaignId);
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {

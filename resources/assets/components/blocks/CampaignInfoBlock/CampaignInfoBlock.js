@@ -1,6 +1,6 @@
 import React from 'react';
-import { format } from 'date-fns';
 import gql from 'graphql-tag';
+import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Query from '../../Query';
@@ -66,7 +66,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                     Win A Scholarship
                   </dt>
                   <dd className="campaign-info__scholarship">
-                    {`$${scholarshipAmount}`}
+                    {`$${scholarshipAmount.toLocaleString()}`}
                   </dd>
                 </React.Fragment>
               ) : null}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -47,18 +48,16 @@ const AffiliateScholarshipBlockQuery = props => (
     {res => {
       const title = res.affiliate.title;
       const logo = res.affiliate.logo;
-      const actions = res.actions
-        ? res.actions.filter(
-            action => action.scholarshipEntry && action.reportback,
-          )
-        : [];
-      const action = actions.length ? actions[0] : null;
+      const actions = get(res, 'actions', []).filter(
+        action => action.scholarshipEntry && action.reportback,
+      );
+      const action = actions[0];
 
       return props.isScholarshipBeta ? (
         <AffiliateScholarshipBlockBeta
           affiliateTitle={title}
           affiliateLogo={logo}
-          actionType={action.actionLabel}
+          actionType={get(action, 'actionLabel', '')}
           {...props}
         />
       ) : (
