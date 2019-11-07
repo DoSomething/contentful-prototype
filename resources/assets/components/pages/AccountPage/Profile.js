@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
+import {
+  trackAnalyticsEvent,
+  getPageContext,
+  getUtmContext,
+} from '../../../helpers/analytics';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 const Profile = props => (
@@ -14,13 +19,17 @@ const Profile = props => (
         title="Name"
         value={`${props.user.firstName} ${props.user.lastName}`}
       />
-      <FormItem title="Birthday" value={props.user.birthdate} />
+      {props.user.birthdate ? (
+        <FormItem title="Birthday" value={props.user.birthdate} />
+      ) : null}
       <FormItem
         title="Password"
         value="&#9679; &#9679; &#9679; &#9679; &#9679; &#9679;"
       />
       <FormItem title="Email" value={props.user.email} />
-      <FormItem title="Phone Number" value={props.user.mobile} />
+      {props.user.mobile ? (
+        <FormItem title="Phone Number" value={props.user.mobile} />
+      ) : null}
       <div className="margin-top-lg">
         <a
           href={`${env('NORTHSTAR_URL')}/users/${props.user.id}/edit`}
@@ -33,14 +42,43 @@ const Profile = props => (
       </div>
     </div>
     <div className="grid-wide-1/3">
-      <h2>Data and Privacy</h2>
-      <ul className="mt-8">
+      <h3>Data and Privacy</h3>
+      <ul className="mt-4">
         <li>
           <a
             href="mailto:trust@dosomething.org?subject=Delete my account"
             className="secondary"
           >
             Delete my account
+          </a>
+        </li>
+      </ul>
+
+      <h3>Administration</h3>
+      <ul className="mt-4">
+        <li>
+          <a
+            href="/deauthorize"
+            className="secondary"
+            // TODO: Fix this analytics item
+            onClick={() =>
+              trackAnalyticsEvent({
+                context: {
+                  ...getPageContext(),
+                  ...getUtmContext(),
+                },
+                metadata: {
+                  adjective: 'log_out',
+                  category: 'navigation',
+                  label: 'log_out',
+                  noun: 'nav_link',
+                  target: 'link',
+                  verb: 'clicked',
+                },
+              })
+            }
+          >
+            Log Out
           </a>
         </li>
       </ul>
