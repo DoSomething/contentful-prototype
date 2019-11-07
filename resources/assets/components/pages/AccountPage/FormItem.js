@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FormItem = props => (
-  <div className="mt-8">
+  <div className="margin-top-lg">
     <h5>{props.title}</h5>
-    <p>{props.value}</p>
+    <div className="margin-top-md">
+      <p>{props.value}</p>
+    </div>
   </div>
 );
 

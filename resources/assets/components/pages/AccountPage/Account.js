@@ -10,20 +10,18 @@ const Account = props => (
   <>
     <SiteNavigationContainer />
 
-    <Enclosure className="">
-      <div className="bg-white">
-        <div className="base-12-grid">
-          <div className="grid-wide pt-16">
-            <h1 className="league-gothic -lg caps-lock">
-              Welcome, {props.user.firstName}!
-            </h1>
-            <AccountNavigation {...props} />
-          </div>
+    <Enclosure className="container margin-bottom-lg ">
+      <div className="container bg-white padding-top-lg padding-horizontal-md">
+        <div className="wrapper padding-bottom-lg">
+          <h1 className="league-gothic -lg caps-lock">
+            Welcome, {props.user.firstName}!
+          </h1>
+          <AccountNavigation {...props} />
         </div>
       </div>
 
-      <div className="bg-gray">
-        <div className="base-12-grid">
+      <div className="container bg-gray margin-top-lg padding-horizontal-md">
+        <div className="wrapper bg-gray">
           <AccountRoute {...props} />
         </div>
       </div>
