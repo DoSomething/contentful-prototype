@@ -154,7 +154,6 @@ const GeneralPage = props => {
           Subscribe to DoSomething's monthly scholarship email."
         >
           <CtaPopoverEmailForm />
-          You'll also get a few emails a year for important announcements.
         </CtaPopover>
       ) : null}
     </div>
