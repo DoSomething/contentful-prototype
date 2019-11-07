@@ -39,7 +39,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
               {currentSchool ? (
                 <CurrentSchool schoolId={currentSchool} />
               ) : (
-                <UpdateSchool onSubmit={setCurrentSchool} />
+                <UpdateSchool userId={userId} onSubmit={setCurrentSchool} />
               )}
             </Card>
           );

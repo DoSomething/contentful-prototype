@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { Mutation } from 'react-apollo';
 
 import Button from '../Button/Button';
 import SchoolSelect from './SchoolSelect';
 import SchoolStateSelect from '../UsaStateSelect';
 
-const UpdateSchool = ({ onSubmit }) => {
-  const [selectedSchool, setSelectedSchool] = useState(null);
-  const [selectedSchoolState, setSelectedSchoolState] = useState(null);
+const USER_SCHOOL_MUTATION = gql`
+  mutation UserSchoolMutation($userId: String!, $schoolId: String) {
+    updateSchoolId(id: $userId, schoolId: $schoolId) {
+      id
+      schoolId
+    }
+  }
+`;
+
+const UpdateSchool = ({ userId }) => {
+  const [schoolId, setSchoolId] = useState(null);
+  const [schoolState, setSchoolState] = useState(null);
 
   return (
     <React.Fragment>
@@ -17,31 +28,32 @@ const UpdateSchool = ({ onSubmit }) => {
       </p>
       <div className="select-state padded">
         <strong>State</strong>
-        <SchoolStateSelect
-          onChange={selected => setSelectedSchoolState(selected)}
-        />
+        <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
       </div>
-      {selectedSchoolState ? (
+      {schoolState ? (
         <div className="select-school padded">
           <SchoolSelect
-            onChange={selected => setSelectedSchool(selected)}
-            filterByState={selectedSchoolState.abbreviation}
+            onChange={selected => setSchoolId(selected.gsid)}
+            filterByState={schoolState.abbreviation}
           />
         </div>
       ) : null}
-      <Button
-        onClick={() => onSubmit(selectedSchool.gsid)}
-        disabled={selectedSchool === null}
-        attached
+      <Mutation
+        mutation={USER_SCHOOL_MUTATION}
+        variables={{ schoolId, userId }}
       >
-        Submit
-      </Button>
+        {userMutation => (
+          <Button onClick={userMutation} disabled={schoolId === null} attached>
+            Submit
+          </Button>
+        )}
+      </Mutation>
     </React.Fragment>
   );
 };
 
 UpdateSchool.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default UpdateSchool;
