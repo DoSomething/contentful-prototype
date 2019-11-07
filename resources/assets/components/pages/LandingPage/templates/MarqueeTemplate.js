@@ -7,7 +7,7 @@ import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlockContainer';
+import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
@@ -21,6 +21,7 @@ const MarqueeTemplate = ({
   affiliateCreditText,
   affiliateSponsors,
   affiliateOptInContent,
+  campaignId,
   content,
   coverImage,
   scholarshipAmount,
@@ -28,6 +29,7 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
+  const numCampaignId = Number(campaignId);
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {
@@ -36,7 +38,6 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
-
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
@@ -82,13 +83,17 @@ const MarqueeTemplate = ({
 
               {displayAffiliateScholarshipBlock ? (
                 <AffiliateScholarshipBlockQuery
+                  campaignId={numCampaignId}
                   utmLabel={scholarshipAffiliateLabel.toLowerCase()}
                   scholarshipAmount={scholarshipAmount}
                   scholarshipDeadline={scholarshipDeadline}
                   isScholarshipBeta
                 />
               ) : (
-                <CampaignInfoBlock scholarshipAmount={scholarshipAmount} />
+                <CampaignInfoBlock
+                  campaignId={numCampaignId}
+                  scholarshipAmount={scholarshipAmount}
+                />
               )}
 
               {affiliateSponsors.length ? (
@@ -119,6 +124,7 @@ MarqueeTemplate.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateOptInContent: PropTypes.object,
+  campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
   scholarshipAmount: PropTypes.number,
@@ -132,6 +138,7 @@ MarqueeTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
+  campaignId: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -41,23 +42,22 @@ const AffiliateScholarshipBlockQuery = props => (
     variables={{
       utmLabel: props.utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
-      // campaignId: props.campaignId,
+      campaignId: props.campaignId,
     }}
   >
     {res => {
       const title = res.affiliate.title;
       const logo = res.affiliate.logo;
-      // const actions = res.campaign.actions
-      //   ? res.campaign.actions.filter(
-      //       action => action.scholarshipEntry && action.reportback,
-      //     )
-      //   : [];
-      // const action = actions.length ? actions[0] : null;
+      const actions = get(res, 'actions', []).filter(
+        action => action.scholarshipEntry && action.reportback,
+      );
+      const action = actions[0];
 
       return props.isScholarshipBeta ? (
         <AffiliateScholarshipBlockBeta
           affiliateTitle={title}
           affiliateLogo={logo}
+          actionType={get(action, 'actionLabel', '')}
           {...props}
         />
       ) : (
@@ -72,11 +72,13 @@ const AffiliateScholarshipBlockQuery = props => (
 );
 
 AffiliateScholarshipBlockQuery.propTypes = {
+  campaignId: PropTypes.number,
   utmLabel: PropTypes.string.isRequired,
   isScholarshipBeta: PropTypes.bool,
 };
 
 AffiliateScholarshipBlockQuery.defaultProps = {
+  campaignId: null,
   isScholarshipBeta: false,
 };
 
