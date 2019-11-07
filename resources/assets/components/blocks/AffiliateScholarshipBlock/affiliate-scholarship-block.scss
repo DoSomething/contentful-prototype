@@ -3,6 +3,8 @@
 .affiliate-scholarship-block {
   // The border styling used throughout this component.
   $border-style: 1px solid $primary-border-color;
+  margin: 0 auto;
+  max-width: 450px;
 
   .scholarship-information,
   // Only add border-top to first scholarship detail item *if* scholarship amount is present.
@@ -46,5 +48,36 @@
 
   .affiliate-logo {
     max-height: 50px;
+  }
+
+  dt {
+    clear: right;
+    color: $gray-500;
+    font-weight: $weight-sbold;
+    text-transform: uppercase;
+
+    @include media('(min-width: 350px)') {
+      float: none;
+    }
+  }
+
+  dd {
+    @include media('(min-width: 350px)') {
+      float: none;
+    }
+    padding-bottom: $half-spacing;
+  }
+
+  dt.scholarship-beta {
+    border-top: 1px solid $gray-300;
+    float: none;
+    padding-top: $half-spacing;
+  }
+
+  dd.scholarship-beta {
+    float: none;
+    font-family: $font-league-gothic;
+    font-size: $text-2xl;
+    line-height: 1;
   }
 }

@@ -98,60 +98,6 @@
   }
 }
 
-// @TODO: this could become its own component (KeyValueInformationCard or some better name)
-// but since only an experiment now, leaving as is.
-.campaign-info {
-  margin: 0 auto;
-  max-width: 450px;
-
-  .affiliate-logo {
-    max-height: 50px;
-  }
-
-  .campaign-info__scholarship-beta {
-    dd,
-    dt {
-      @include media('(min-width: 350px)') {
-        float: none;
-      }
-      padding-bottom: $half-spacing;
-    }
-  }
-
-  dt {
-    clear: right;
-    color: $gray-500;
-    font-weight: $weight-sbold;
-    text-transform: uppercase;
-
-    @include media('(min-width: 350px)') {
-      float: left;
-      padding-bottom: $half-spacing;
-    }
-  }
-
-  dd {
-    padding-bottom: $half-spacing;
-
-    @include media('(min-width: 350px)') {
-      float: right;
-    }
-  }
-
-  dt.campaign-info__scholarship {
-    border-top: 1px solid $gray-300;
-    float: none;
-    padding-top: $half-spacing;
-  }
-
-  dd.campaign-info__scholarship {
-    float: none;
-    font-family: $font-league-gothic;
-    font-size: $text-2xl;
-    line-height: 1;
-  }
-}
-
 .pitch-landing-page {
   .container__block {
     // When inside a container wrapper, increase top/bottom padding
