@@ -13,6 +13,7 @@ import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
 import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
 import { GalleryBlockFragment } from '../../blocks/GalleryBlock/GalleryBlock';
+import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
@@ -28,6 +29,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...EmbedBlockFragment
       ...ImagesBlockFragment
       ...GalleryBlockFragment
+      ...ContentBlockFragment
       ...PostGalleryBlockFragment
       ...TextSubmissionBlockFragment
       ...PhotoSubmissionBlockFragment
@@ -41,6 +43,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${EmbedBlockFragment}
   ${ImagesBlockFragment}
   ${GalleryBlockFragment}
+  ${ContentBlockFragment}
   ${PostGalleryBlockFragment}
   ${TextSubmissionBlockFragment}
   ${PhotoSubmissionBlockFragment}
