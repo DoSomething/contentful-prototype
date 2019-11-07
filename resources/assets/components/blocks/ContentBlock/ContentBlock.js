@@ -40,7 +40,9 @@ const ContentBlock = props => {
 
   return (
     <div className={classnames('content-block', className)}>
-      {title ? <SectionHeader superTitle={superTitle} title={title} /> : null}
+      {title ? (
+        <SectionHeader underlined superTitle={superTitle} title={title} />
+      ) : null}
 
       {image.url ? (
         <Figure
