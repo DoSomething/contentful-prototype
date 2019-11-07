@@ -588,6 +588,10 @@ p {
   margin-top: $half-spacing;
 }
 
+.mt-8 {
+  margin-top: $base-spacing;
+}
+
 .mb-4 {
   margin-bottom: $half-spacing;
 }
@@ -644,6 +648,11 @@ p {
 .pt-8 {
   padding-top: $base-spacing;
 }
+
+.pt-16 {
+  padding-top: $base-spacing * 2;
+}
+
 .px-1 {
   padding-left: $half-spacing / 4;
   padding-right: $half-spacing / 4;

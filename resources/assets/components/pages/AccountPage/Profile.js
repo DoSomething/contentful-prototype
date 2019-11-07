@@ -6,9 +6,8 @@ import { env } from '../../../helpers/index';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 const Profile = props => (
-  <div className="bg-gray padding-bottom-lg wrapper">
-    <h2 className="caps-lock league-gothic -sm">Your Profile</h2>
-    <div className="container__block -half">
+  <React.Fragment>
+    <div className="grid-wide-2/3">
       <h3>Profile Info</h3>
 
       <FormItem
@@ -33,14 +32,18 @@ const Profile = props => (
         </a>
       </div>
     </div>
-    <div className="container__block -half">
+    <div className="grid-wide-1/3">
       <h3>Data and Privacy</h3>
-      <a
-        href="mailto:trust@dosomething.org?subject=Delete my account"
-        className="secondary"
-      >
-        Delete my account
-      </a>
+      <ul className="mt-8">
+        <li>
+          <a
+            href="mailto:trust@dosomething.org?subject=Delete my account"
+            className="secondary"
+          >
+            Delete my account
+          </a>
+        </li>
+      </ul>
     </div>
     {/* Commenting this out until we have proper Voter registration info being pulled from Rogue.
       <div className="float-right clear-right padding-top-md">
@@ -50,7 +53,7 @@ const Profile = props => (
         </div>
       </div>
     */}
-  </div>
+  </React.Fragment>
 );
 
 Profile.propTypes = {
