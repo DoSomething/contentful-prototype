@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
-import button from '/CtaPopoverButton';
 import './cta-popover.scss';
-import Button from './Button/Button.js';
+import Button from '../Button/Button';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
   const handleChange = event => setEmailValue(event.target.value);
 
-  const handleSubmit = () => {
+  const handleSubmit = event => {
     trackAnalyticsEvent({
       metadata: {
         category: 'site_action',
@@ -20,20 +19,23 @@ const CtaPopoverEmailForm = () => {
         label: 'call_to_action_popover',
       },
     });
-    alert(emailValue);
-    event.preventDefault();
+    event.preventDefault(); //advised not to use event
+    document.alert(emailValue); //advised not to use this alert
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
+          className="text-field"
           type="email"
           value={emailValue}
           placeholder="Enter your email address"
           onChange={handleChange}
         />
-        <button />
+        <Button type="submit" onClick={handleSubmit}>
+          Submit
+        </Button>
       </form>
     </div>
   );
