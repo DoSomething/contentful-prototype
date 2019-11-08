@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
@@ -105,9 +106,8 @@ const GalleryBlock = props => {
 
   return (
     <div className="gallery-block">
-      {title ? <h1>{title}</h1> : null}
-
-      <Gallery type={galleryType} className="expand-horizontal-md">
+      {title ? <SectionHeader underlined title={title} /> : null}
+      <Gallery type={galleryType} className="expand-horizontal-md mt-4">
         {blocks.map(block =>
           renderBlock(
             block,

@@ -1,22 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .section-header {
-  width: 100%;
-
-  .section-header__super-title {
-    font-size: $font-medium;
-    font-weight: $weight-bold;
-  }
-
-  .-emphasized {
-    margin: $half-spacing 0;
-  }
-
-  h1.section-header__title {
-    text-transform: uppercase;
-    font-family: $secondary-font-family;
-    font-size: $font-hero;
-    font-weight: $weight-normal;
-    margin-top: 5px;
+  h1.section-header__title.-underlined > span {
+    border-bottom: 5px solid #ffec04;
   }
 }

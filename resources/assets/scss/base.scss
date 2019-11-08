@@ -597,6 +597,21 @@ p {
   margin-right: $half-spacing / 2;
 }
 
+.my-2 {
+  margin-top: $half-spacing / 2;
+  margin-bottom: $half-spacing / 2;
+}
+
+.my-4 {
+  margin-top: $half-spacing;
+  margin-bottom: $half-spacing;
+}
+
+.my-8 {
+  margin-top: $base-spacing;
+  margin-bottom: $base-spacing;
+}
+
 .overflow-visible {
   overflow: visible !important;
 }
@@ -719,6 +734,10 @@ p {
 
 .text-yellow {
   color: $primary-color;
+}
+
+.text-blue-500 {
+  color: $blue-500;
 }
 
 .text-xs {

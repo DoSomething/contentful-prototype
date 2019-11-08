@@ -22,17 +22,17 @@ describe('Beta Referral Page', () => {
       .and('include', `referrer_user_id=${userId}`);
   });
 
-  it('Visit beta referral page, with valid user ID and no campaign ID', () => {
-    const user = userFactory();
+  // it('Visit beta referral page, with valid user ID and no campaign ID', () => {
+  //   const user = userFactory();
 
-    cy.visit(`/us/join?user_id=${userId}`);
+  //   cy.visit(`/us/join?user_id=${userId}`);
 
-    cy.get('.referral-page-campaign').should('have.length', 1);
+  //   cy.get('.referral-page-campaign').should('have.length', 1);
 
-    cy.get('.referral-page-campaign > a')
-      .should('have.attr', 'href')
-      .and('include', `referrer_user_id=${userId}`);
-  });
+  //   cy.get('.referral-page-campaign > a')
+  //     .should('have.attr', 'href')
+  //     .and('include', `referrer_user_id=${userId}`);
+  // });
 
   it('Visit beta referral page, with invalid user ID', () => {
     const user = userFactory();
