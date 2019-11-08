@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
-const button = ({ buttonText, link }) => {
+const CtaPopoverButton = ({ buttonText, link }) => {
   const handleClick = () =>
     trackAnalyticsEvent({
       metadata: {
@@ -26,15 +26,16 @@ const button = ({ buttonText, link }) => {
         onClick={handleClick}
       >
         &times;
+        {buttonText}
       </button>
     </div>
   );
 };
 
-button.PropTypes = {
+CtaPopoverButton.PropTypes = {
   handleClick: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
 };
 
-export default button;
+export default CtaPopoverButton;
