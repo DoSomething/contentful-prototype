@@ -8,6 +8,7 @@ import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContaine
 import './cause-page.scss';
 
 const CausePage = ({ coverImage, superTitle, title, description, content }) => {
+  // @TODO: Update this with image dimension logic to serve properly sized files to different screen sizes
   const backgroundImage = coverImage
     ? `url(${contentfulImageUrl(coverImage.url, '1440', '610', 'fill')})`
     : null;
