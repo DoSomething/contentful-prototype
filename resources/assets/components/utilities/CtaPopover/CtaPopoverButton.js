@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button/Button.js';
 
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
-const button = ({ handleClick, buttonText, link }) => {
+const button = ({ buttonText, link }) => {
   const handleClick = () =>
     trackAnalyticsEvent({
       metadata: {
@@ -19,7 +18,17 @@ const button = ({ handleClick, buttonText, link }) => {
         url: link,
       },
     });
-  return;
+  return (
+    <div className="cta-popover p-4 bordered rounded">
+      <button
+        type="button"
+        className="modal__close -white"
+        onClick={handleClick}
+      >
+        &times;
+      </button>
+    </div>
+  );
 };
 
 button.PropTypes = {
