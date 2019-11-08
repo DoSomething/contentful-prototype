@@ -3,8 +3,6 @@
 .affiliate-scholarship-block {
   // The border styling used throughout this component.
   $border-style: 1px solid $primary-border-color;
-  margin: 0 auto;
-  max-width: 450px;
 
   .scholarship-information,
   // Only add border-top to first scholarship detail item *if* scholarship amount is present.
@@ -48,6 +46,11 @@
 
   .affiliate-logo {
     max-height: 50px;
+  }
+
+  &.beta {
+    margin: 0 auto;
+    max-width: 450px;
   }
 
   dt {
