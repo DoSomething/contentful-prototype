@@ -1,1 +1,10 @@
 @import '../../../scss/next-toolbox';
+
+.flexContainer {
+  display: flex;
+  border: none;
+}
+
+.inputField {
+  flex: 1;
+}
