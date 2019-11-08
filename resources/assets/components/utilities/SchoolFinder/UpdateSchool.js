@@ -17,7 +17,7 @@ const USER_SCHOOL_MUTATION = gql`
 `;
 
 const UpdateSchool = ({ onSubmit, userId }) => {
-  const [schoolId, setSchoolId] = useState(null);
+  const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
 
   return (
@@ -33,18 +33,18 @@ const UpdateSchool = ({ onSubmit, userId }) => {
       {schoolState ? (
         <div className="select-school padded">
           <SchoolSelect
-            onChange={selected => setSchoolId(selected.gsid)}
+            onChange={selected => setSchool(selected)}
             filterByState={schoolState.abbreviation}
           />
         </div>
       ) : null}
       <Mutation
         mutation={USER_SCHOOL_MUTATION}
-        variables={{ schoolId, userId }}
-        update={() => onSubmit(schoolId)}
+        variables={{ schoolId: school ? school.id : null, userId }}
+        update={() => onSubmit(school.name, school.city, school.state)}
       >
         {userMutation => (
-          <Button onClick={userMutation} disabled={schoolId === null} attached>
+          <Button onClick={userMutation} disabled={!school} attached>
             Submit
           </Button>
         )}
