@@ -53,12 +53,13 @@ const CtaPopoverEmailForm = () => {
           </li>
         </ul>
       </form>
-      <p className="footnote padding-horizontal-md padding-bottom-md">
+      <p className="text-gray-200 expand-horizontal-md font-italic text-xs inline">
         You'll also get a{' '}
         <a
           href="/us/about/default-notifications"
           target="_blank"
           rel="noopener noreferrer"
+          class="text-gray-200"
         >
           few emails
         </a>{' '}
