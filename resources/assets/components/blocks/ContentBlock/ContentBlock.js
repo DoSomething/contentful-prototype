@@ -21,7 +21,8 @@ export const ContentBlockFragment = gql`
       url
       description
     }
-    imageAlignment
+    # Aliasing to avoid conflicting with *required* imageAlignment field in GalleryBlockFragment.
+    contentBlockimageAlignment: imageAlignment
   }
 `;
 
