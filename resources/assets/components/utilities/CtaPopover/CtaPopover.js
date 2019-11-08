@@ -1,33 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
-
 import './cta-popover.scss';
 
-const CtaPopover = ({
-  buttonText,
-  content,
-  handleClose,
-  link,
-  title,
-  children,
-}) => {
-  const handleClick = () =>
-    trackAnalyticsEvent({
-      metadata: {
-        category: 'site_action',
-        target: 'button',
-        verb: 'clicked',
-        noun: 'call_to_action',
-        adjective: 'popover',
-        label: 'call_to_action_popover',
-      },
-      context: {
-        url: link,
-      },
-    });
-
+const CtaPopover = ({ content, handleClose, title, children }) => {
   return (
     <div className="cta-popover p-4 bordered rounded">
       <button
@@ -47,10 +23,8 @@ const CtaPopover = ({
 };
 
 CtaPopover.propTypes = {
-  buttonText: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
-  link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
 };

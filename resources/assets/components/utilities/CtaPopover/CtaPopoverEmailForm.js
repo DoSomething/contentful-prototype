@@ -32,13 +32,13 @@ const CtaPopoverEmailForm = () => {
       <div>
         <form className="form" onSubmit={handleSubmit}>
           <ul className="">
-            <label className="field-label">
+            {/* <label className="field-label">
               <span className="validation">
                 <div className="validation__message {{modifier_class}}">
                   Must be a valid email address
                 </div>
               </span>
-            </label>
+            </label> */}
             <li className="inputField flexContainer">
               <input
                 className="text-field"
@@ -55,12 +55,12 @@ const CtaPopoverEmailForm = () => {
         </form>
       </div>
       <p className="text-gray-200 flex-center-xy font-italic text-xs">
-        You'll also get a{' '}
+        You&apos;ll also get a{' '}
         <a
           href="/us/about/default-notifications"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-200"
+          className="text-gray-200"
         >
           few emails
         </a>{' '}
