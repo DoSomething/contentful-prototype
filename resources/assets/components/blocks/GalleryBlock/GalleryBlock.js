@@ -108,7 +108,13 @@ const GalleryBlock = props => {
       {title ? <h1>{title}</h1> : null}
 
       <Gallery type={galleryType} className="expand-horizontal-md">
-        {blocks.map(block => renderBlock(block, imageAlignment, imageFit))}
+        {blocks.map(block =>
+          renderBlock(
+            block,
+            imageAlignment.toLowerCase(),
+            imageFit.toLowerCase(),
+          ),
+        )}
       </Gallery>
     </div>
   );
@@ -118,12 +124,13 @@ GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
-  imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
-  imageFit: PropTypes.oneOf(['fill', 'pad']).isRequired,
+  imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
+  imageFit: PropTypes.oneOf(['FILL', 'PAD']),
 };
 
 GalleryBlock.defaultProps = {
   title: null,
+  imageFit: 'FILL',
 };
 
 export default GalleryBlock;
