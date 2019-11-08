@@ -33,7 +33,6 @@ const CtaPopoverButton = ({ buttonText, link }) => {
 };
 
 CtaPopoverButton.PropTypes = {
-  handleClick: PropTypes.func.isRequired,
   buttonText: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
 };
