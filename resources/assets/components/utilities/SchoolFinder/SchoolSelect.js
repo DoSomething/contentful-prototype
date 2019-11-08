@@ -49,6 +49,7 @@ const SchoolSelect = ({ filterByState, onChange }) => {
         `${school.name} - ${school.city}, ${school.state}`
       }
       getOptionValue={school => school.id}
+      isClearable={true}
       loadOptions={(input, callback) => {
         // Avoid querying by empty school name on page load.
         // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-380763225
