@@ -50,9 +50,18 @@ const SchoolSelect = ({ filterByState, onChange }) => {
       }
       getOptionValue={school => school.id}
       isClearable={true}
+      /**
+       * Changing per filterByState will result in clearing any selected options.
+       * If user selects a school, but then changes the school state to something else, they should
+       * be forced to find school in the selected state.
+       * @see https://stackoverflow.com/a/55142916
+       */
+      key={filterByState}
       loadOptions={(input, callback) => {
-        // Avoid querying by empty school name on page load.
-        // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-380763225
+        /**
+         * Avoid querying by empty school name on page load.
+         * @see https://github.com/JedWatson/react-select/issues/614#issuecomment-380763225
+         */
         if (!input) {
           return Promise.resolve([]);
         }
