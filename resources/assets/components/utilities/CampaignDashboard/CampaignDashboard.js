@@ -19,7 +19,7 @@ const CampaignDashboard = props => {
     <div className="dashboard text-black p-4">
       <div className="dashboard__segment px-4">
         {firstValue ? (
-          <strong className="font-secondary font-normal text-xxl leading-none">
+          <strong className="font-league-gothic font-normal text-xxl leading-none">
             {firstValue}
           </strong>
         ) : null}
@@ -30,7 +30,7 @@ const CampaignDashboard = props => {
 
       <div className="dashboard__segment px-4">
         {secondValue ? (
-          <strong className="font-secondary font-normal text-xxl leading-none">
+          <strong className="font-league-gothic font-normal text-xxl leading-none">
             {secondValue}
           </strong>
         ) : null}
