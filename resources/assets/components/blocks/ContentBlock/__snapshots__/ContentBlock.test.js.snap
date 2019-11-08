@@ -30,6 +30,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
   <SectionHeader
     superTitle="Test Super Title"
     title="Test Title"
+    underlined={true}
   />
   <Figure
     alignment="right-collapse"
