@@ -48,7 +48,7 @@ const ContentBlock = props => {
         <Figure
           image={contentfulImageUrl(image.url, '600', '600', 'fill')}
           alt={image.description || 'content-block'}
-          alignment={`${imageAlignment}-collapse`}
+          alignment={`${imageAlignment.toLowerCase()}-collapse`}
           size="one-third"
         >
           {contentNode}
@@ -67,14 +67,14 @@ ContentBlock.propTypes = {
     url: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-  imageAlignment: PropTypes.oneOf(['right', 'left']),
+  imageAlignment: PropTypes.oneOf(['RIGHT', 'LEFT']),
   superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 ContentBlock.defaultProps = {
   className: null,
-  imageAlignment: 'right',
+  imageAlignment: 'RIGHT',
   superTitle: null,
   title: null,
 };
