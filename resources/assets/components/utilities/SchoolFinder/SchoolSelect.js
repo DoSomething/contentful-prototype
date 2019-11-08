@@ -49,7 +49,7 @@ const SchoolSelect = ({ filterByState, onChange }) => {
         `${school.name} - ${school.city}, ${school.state}`
       }
       getOptionValue={school => school.id}
-      isClearable={true}
+      isClearable
       /**
        * Changing per filterByState will result in clearing any selected options.
        * If user selects a school, but then changes the school state to something else, they should
