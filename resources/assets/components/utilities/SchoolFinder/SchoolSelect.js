@@ -24,7 +24,9 @@ const SEARCH_SCHOOLS_QUERY = gql`
  *
  * @see https://stackoverflow.com/a/57743861
  */
-const client = graphqlClient(env('GRAPHQL_URL'));
+const url = env('GRAPHQL_URL');
+console.log('debugging GraphQL URL:', url);
+const client = graphqlClient(url);
 
 const SchoolSelect = ({ filterByState, onChange }) => {
   // Debounce school search to query for schools after 250 ms typing pause.
