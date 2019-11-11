@@ -33,7 +33,6 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
               {title}
             </h1>
             <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
-              {/* @TODO: update font size of discription */}
               {description}
             </TextContent>
           </div>
