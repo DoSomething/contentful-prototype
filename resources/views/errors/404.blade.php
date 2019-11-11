@@ -5,8 +5,10 @@
 
     <main role="main" class="py-20">
 
-        <article class="card rounded bordered max-w-xl mx-auto">
-            <header class="card__title"><h1>Not Found</h1></header>
+        <article class="card rounded bordered max-w-xl mx-auto mb-8">
+            <header class="card__title">
+                <h1>Not Found</h1>
+            </header>
 
             <div class="markdown with-lists padded">
                 <p>

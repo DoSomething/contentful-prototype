@@ -604,38 +604,34 @@ p {
   color: $blue-500;
 }
 
-.text-xs {
-  font-size: $font-smaller;
-}
+// .text-xs {
+//   font-size: $font-smaller;
+// }
 
-.text-sm {
-  font-size: $font-small;
-}
+// .text-sm {
+//   font-size: $font-small;
+// }
 
-.text-base {
-  font-size: $font-regular;
-}
+// .text-m {
+//   font-size: $font-medium;
+// }
 
-.text-m {
-  font-size: $font-medium;
-}
+// .text-lg {
+//   font-size: $font-large;
+// }
 
-.text-lg {
-  font-size: $font-large;
-}
+// .text-xl {
+//   font-size: $font-larger;
+// }
 
-.text-xl {
-  font-size: $font-larger;
-}
+// .text-2xl {
+//   font-size: $text-2xl;
+// }
 
-.text-2xl {
-  font-size: $text-2xl;
-}
-
-// @TODO: rename to text-3xl
-.text-xxl {
-  font-size: $font-hero;
-}
+// // @TODO: rename to text-3xl
+// .text-xxl {
+//   font-size: $font-hero;
+// }
 
 .w-4 {
   width: 16px;
