@@ -32,7 +32,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
             <h1 className="lede-banner__headline-title my-4 font-normal font-secondary color-white caps-lock">
               {title}
             </h1>
-            <TextContent styles={{ textColor: '#FFF' }}>
+            <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
               {/* @TODO: update font size of discription */}
               {description}
             </TextContent>
