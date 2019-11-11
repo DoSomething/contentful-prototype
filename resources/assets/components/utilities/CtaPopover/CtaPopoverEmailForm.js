@@ -3,24 +3,13 @@ import React, { useState } from 'react';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import './cta-popover.scss';
 import Button from '../Button/Button';
-import './cta-popover-button.scss';
+import './cta-popover-email-form.scss';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
   const handleChange = event => setEmailValue(event.target.value);
 
   const handleSubmit = event => {
-    trackAnalyticsEvent({
-      metadata: {
-        category: 'site_action',
-        target: 'input',
-        verb: 'submitted',
-        noun: 'call_to_action',
-        adjective: 'popover',
-        label: 'call_to_action_popover',
-      },
-    });
-
     handleChange();
     event.preventDefault();
 

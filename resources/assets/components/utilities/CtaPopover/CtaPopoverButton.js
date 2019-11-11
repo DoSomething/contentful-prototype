@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ButtonLink from './ButtonLink/ButtonLink';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 const CtaPopoverButton = ({ buttonText, link }) => {
@@ -18,18 +19,7 @@ const CtaPopoverButton = ({ buttonText, link }) => {
         url: link,
       },
     });
-  return (
-    <div className="cta-popover p-4 bordered rounded">
-      <button
-        type="button"
-        className="modal__close -white"
-        onClick={handleClick}
-      >
-        &times;
-        {buttonText}
-      </button>
-    </div>
-  );
+  return <div>{ButtonLink}</div>;
 };
 
 CtaPopoverButton.propTypes = {

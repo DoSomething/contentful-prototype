@@ -148,7 +148,7 @@ const GeneralPage = props => {
           buttonText={ctaCopy.buttonText}
         />
       ) : null}
-      {slug === 'about/easy-scholarships' ? (
+      {/* {slug === 'about/easy-scholarships' ? (
         <CtaPopover
           title="PAYS TO DO GOOD"
           content="Want to earn easy scholarships for volunteering?
@@ -156,7 +156,7 @@ const GeneralPage = props => {
         >
           <CtaPopoverEmailForm />
         </CtaPopover>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
