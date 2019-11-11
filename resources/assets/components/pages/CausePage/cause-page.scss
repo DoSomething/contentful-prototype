@@ -27,4 +27,12 @@
       }
     }
   }
+
+  .content-block-grid {
+    grid-column: full-start / full-end;
+
+    @include media($large) {
+      grid-column: full-start / -5;
+    }
+  }
 }
