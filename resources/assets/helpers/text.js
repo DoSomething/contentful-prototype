@@ -77,6 +77,7 @@ export function parseRichTextDocument(
 ) {
   const hyperlinkColor = get(styles, 'hyperlinkColor', null);
   const textColor = get(styles, 'textColor', null);
+  const fontSize = get(styles, 'fontSize', null);
 
   const options = {
     renderNode: {
@@ -132,7 +133,7 @@ export function parseRichTextDocument(
         children[0] ? (
           <p
             className={classnames(classNameByEntryDefault)}
-            style={{ color: textColor }}
+            style={{ color: textColor, fontSize }}
           >
             {children}
           </p>
