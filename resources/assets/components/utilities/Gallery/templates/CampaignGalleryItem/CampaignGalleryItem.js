@@ -12,10 +12,7 @@ const CampaignGalleryItem = ({
   slug,
 }) => (
   <Card className="rounded">
-    <a
-      className="campaign-gallery-item block card border"
-      href={`/us/campaigns/${slug}`}
-    >
+    <a className="campaign-gallery-item block" href={`/us/campaigns/${slug}`}>
       <Figure
         alt={`${showcaseImage.description || showcaseTitle}-photo`}
         image={contentfulImageUrl(showcaseImage.url, '800', '450', 'fill')}
