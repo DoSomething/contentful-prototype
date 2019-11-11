@@ -18,17 +18,14 @@ const SEARCH_SCHOOLS_QUERY = gql`
   }
 `;
 
-/**
- * Ideally would call useApolloClient() but it triggers an error Invariant Violation
- * No Apollo Client instance.
- *
- * @see https://stackoverflow.com/a/57743861
- */
-const url = env('GRAPHQL_URL');
-console.log('debugging GraphQL URL:', url);
-const client = graphqlClient(url);
-
 const SchoolSelect = ({ filterByState, onChange }) => {
+  /**
+   * Ideally would call useApolloClient() but it triggers an error Invariant Violation
+   * No Apollo Client instance.
+   *
+   * @see https://stackoverflow.com/a/57743861
+   */
+  const client = graphqlClient(env('GRAPHQL_URL'));
   // Debounce school search to query for schools after 250 ms typing pause.
   // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-244006496
   const debouncedFetch = debounce((searchString, callback) => {
