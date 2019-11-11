@@ -12,6 +12,11 @@ const USER_SCHOOL_MUTATION = gql`
     updateSchoolId(id: $userId, schoolId: $schoolId) {
       id
       schoolId
+      school {
+        name
+        city
+        state
+      }
     }
   }
 `;
