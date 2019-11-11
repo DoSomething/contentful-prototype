@@ -6,9 +6,10 @@ import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 const NotFoundPage = () => (
   <>
     <SiteNavigationContainer />
-    <section className="container -framed mx-2">
-      <NotFound />
-    </section>
+
+    <main role="main" class="py-20">
+      <NotFound className="max-w-xl mx-auto mb-8" />
+    </main>
   </>
 );
 

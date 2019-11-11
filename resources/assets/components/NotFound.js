@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import Card from './utilities/Card/Card';
 import TextContent from './utilities/TextContent/TextContent';
@@ -6,8 +7,11 @@ import TextContent from './utilities/TextContent/TextContent';
 const zendeskUrl =
   'https://help.dosomething.org/hc/en-us/articles/115016093488-Help-The-page-I-m-looking-for-says-Page-Not-Found-';
 
-const NotFound = () => (
-  <Card title="Not Found" className="rounded bordered">
+const NotFound = props => (
+  <Card
+    title="Not Found"
+    className={classnames('rounded bordered', props.className)}
+  >
     <TextContent className="padded">
       __We searched our site, but couldn&apos;t find what you were looking
       for.__ Find ways you can [Take Action](/us/campaigns?utm_source=404) and
