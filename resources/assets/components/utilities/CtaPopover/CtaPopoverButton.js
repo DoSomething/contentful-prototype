@@ -32,7 +32,7 @@ const CtaPopoverButton = ({ buttonText, link }) => {
   );
 };
 
-CtaPopoverButton.PropTypes = {
+CtaPopoverButton.propTypes = {
   buttonText: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
 };

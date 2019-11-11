@@ -22,7 +22,7 @@ const CtaPopover = ({ content, handleClose, title, children }) => {
   );
 };
 
-CtaPopover.PropTypes = {
+CtaPopover.propTypes = {
   content: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
