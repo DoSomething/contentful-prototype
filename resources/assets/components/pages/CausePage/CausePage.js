@@ -42,7 +42,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
           className="base-12-grid"
           classNameByEntry={{
             GalleryBlock: 'grid-full',
-            ContentBlock: 'content-block-grid',
+            ContentBlock: 'grid-full-8/12',
           }}
         >
           {content}
