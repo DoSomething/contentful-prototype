@@ -3,7 +3,8 @@
 @section('content')
     <div id="nav-container"></div>
 
-    <div class="wrapper md:w-3/4 mx-auto pb-16">
+    <main role="main" class="wrapper md:w-3/4 mx-auto pb-16">
+
         <h1 class="my-6 pl-3">Explore Campaigns</h1>
 
         @include('partials.campaign_gallery', ['campaigns' => $campaigns])
@@ -17,5 +18,6 @@
                 <a class="button -tertiary float-right clear-none" href="?page={{$nextPage}}">Next</a>
             @endif
         </div>
-    </div>
+
+    </main>
 @stop
