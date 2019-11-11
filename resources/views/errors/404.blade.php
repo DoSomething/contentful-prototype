@@ -2,6 +2,7 @@
 
 @section('content')
     <div id="nav-container"></div>
+
     <div class="chrome -plain">
         <div class="wrapper">
             <section class="container -framed">
