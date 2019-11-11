@@ -107,17 +107,16 @@ module.exports = {
         'sans-serif',
       ],
     },
-    // @TODO: these font sizes are subject to change; requires approval from Luke.
     fontSize: {
-      xs: '0.5rem',
-      sm: '0.75rem',
-      base: '1.125rem',
-      lg: '1.375rem',
-      xl: '1.688rem',
-      '2xl': '2.531rem',
-      '3xl': '3.797rem',
-      '4xl': '5.695rem',
-      '5xl': '8.543rem',
+      xs: '0.75rem', // 12px
+      sm: '0.875rem', // 14px
+      base: '1.125rem', // 18px
+      lg: '1.375rem', // 22px
+      xl: '1.75rem', // 28px
+      '2xl': '2.1875rem', // 35px
+      '3xl': '3.797rem', // 44px
+      '4xl': '5.695rem', // 55px
+      '5xl': '8.543rem', // 69px
     },
     extend: {
       padding: {
