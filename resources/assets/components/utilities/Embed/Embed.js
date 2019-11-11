@@ -55,6 +55,9 @@ const Embed = props => {
       <Query query={EMBED_QUERY} variables={{ url }}>
         {({ loading, error, data }) => {
           const isLoaded = !loading;
+          if (!isLoaded) {
+            return null;
+          }
           const { embed } = data;
 
           if (error) {
