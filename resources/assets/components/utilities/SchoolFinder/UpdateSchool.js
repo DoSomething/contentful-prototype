@@ -16,7 +16,7 @@ const USER_SCHOOL_MUTATION = gql`
   }
 `;
 
-const UpdateSchool = ({ onSubmit, userId }) => {
+const UpdateSchool = ({ userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
 
@@ -38,13 +38,17 @@ const UpdateSchool = ({ onSubmit, userId }) => {
           />
         </div>
       ) : null}
-      <Mutation
-        mutation={USER_SCHOOL_MUTATION}
-        variables={{ schoolId: school ? school.id : null, userId }}
-        update={() => onSubmit(school.name, school.city, school.state)}
-      >
-        {userMutation => (
-          <Button onClick={userMutation} disabled={!school} attached>
+      <Mutation mutation={USER_SCHOOL_MUTATION}>
+        {userSchoolMutation => (
+          <Button
+            onClick={() =>
+              userSchoolMutation({
+                variables: { schoolId: school ? school.id : null, userId },
+              })
+            }
+            disabled={!school}
+            attached
+          >
             Submit
           </Button>
         )}
@@ -54,7 +58,6 @@ const UpdateSchool = ({ onSubmit, userId }) => {
 };
 
 UpdateSchool.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

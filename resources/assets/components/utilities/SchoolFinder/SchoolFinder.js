@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
@@ -29,45 +29,25 @@ const SchoolFinder = ({ campaignId, userId }) => {
     return null;
   }
 
-  const [schoolName, setSchoolName] = useState(null);
-  const [schoolCity, setSchoolCity] = useState(null);
-  const [schoolState, setSchoolState] = useState(null);
-
   return (
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
       <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
-        {res => {
-          if (get(res, 'user.school.id')) {
-            const { name, city, state } = res.user.school;
-            setSchoolName(name);
-            setSchoolCity(city);
-            setSchoolState(state);
-          }
-
-          return (
-            <Card
-              title={schoolName ? 'Your School' : 'Find Your School'}
-              className="rounded bordered overflow-visible"
-            >
-              {schoolName ? (
-                <CurrentSchool
-                  name={schoolName}
-                  city={schoolCity}
-                  state={schoolState}
-                />
-              ) : (
-                <UpdateSchool
-                  userId={userId}
-                  onSubmit={(name, city, state) => {
-                    setSchoolName(name);
-                    setSchoolCity(city);
-                    setSchoolState(state);
-                  }}
-                />
-              )}
-            </Card>
-          );
-        }}
+        {res => (
+          <Card
+            title={res.user.schoolId ? 'Your School' : 'Find Your School'}
+            className="rounded bordered overflow-visible"
+          >
+            {res.user.schoolId ? (
+              <CurrentSchool
+                name={get(res, 'user.school.name', null)}
+                city={get(res, 'user.school.city', null)}
+                state={get(res, 'user.school.state', null)}
+              />
+            ) : (
+              <UpdateSchool userId={userId} />
+            )}
+          </Card>
+        )}
       </Query>
     </div>
   );
