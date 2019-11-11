@@ -127,8 +127,9 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <ContentBlock
             className={className}
-            // Resolves the alias used in the ContentBlockFragment.
+            // Resolves the aliases used in the ContentBlockFragment.
             content={json.contentBlockContent}
+            imageAlignment={json.contentBlockImageAlignment}
             {...withoutNulls(json)}
           />
         );
@@ -173,7 +174,7 @@ class ContentfulEntry extends React.Component<Props, State> {
         );
 
       case 'galleryBlock':
-        return <GalleryBlock {...json.fields} />;
+        return <GalleryBlock {...withoutNulls(json.fields)} />;
 
       case 'GalleryBlock':
         return <GalleryBlock {...withoutNulls(json)} />;

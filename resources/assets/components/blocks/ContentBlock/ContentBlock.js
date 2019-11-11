@@ -21,7 +21,8 @@ export const ContentBlockFragment = gql`
       url
       description
     }
-    imageAlignment
+    # Aliasing to avoid conflicting with *required* imageAlignment field in GalleryBlockFragment.
+    contentBlockimageAlignment: imageAlignment
   }
 `;
 
@@ -39,13 +40,15 @@ const ContentBlock = props => {
 
   return (
     <div className={classnames('content-block', className)}>
-      {title ? <SectionHeader superTitle={superTitle} title={title} /> : null}
+      {title ? (
+        <SectionHeader underlined superTitle={superTitle} title={title} />
+      ) : null}
 
       {image.url ? (
         <Figure
           image={contentfulImageUrl(image.url, '600', '600', 'fill')}
           alt={image.description || 'content-block'}
-          alignment={`${imageAlignment}-collapse`}
+          alignment={`${imageAlignment.toLowerCase()}-collapse`}
           size="one-third"
         >
           {contentNode}
@@ -64,14 +67,14 @@ ContentBlock.propTypes = {
     url: PropTypes.string,
     description: PropTypes.string,
   }).isRequired,
-  imageAlignment: PropTypes.oneOf(['right', 'left']),
+  imageAlignment: PropTypes.oneOf(['RIGHT', 'LEFT']),
   superTitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 ContentBlock.defaultProps = {
   className: null,
-  imageAlignment: 'right',
+  imageAlignment: 'RIGHT',
   superTitle: null,
   title: null,
 };

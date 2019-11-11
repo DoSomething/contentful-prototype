@@ -17,7 +17,7 @@ const AffiliateScholarshipBlockBeta = ({
 }) => (
   <Card
     className={classNames(
-      'rounded bordered padded affiliate-scholarship-block',
+      'rounded bordered padded affiliate-scholarship-block beta',
       className,
     )}
   >

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
+import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
@@ -105,10 +106,15 @@ const GalleryBlock = props => {
 
   return (
     <div className="gallery-block">
-      {title ? <h1>{title}</h1> : null}
-
-      <Gallery type={galleryType} className="expand-horizontal-md">
-        {blocks.map(block => renderBlock(block, imageAlignment, imageFit))}
+      {title ? <SectionHeader underlined title={title} /> : null}
+      <Gallery type={galleryType} className="expand-horizontal-md mt-4">
+        {blocks.map(block =>
+          renderBlock(
+            block,
+            imageAlignment.toLowerCase(),
+            imageFit.toLowerCase(),
+          ),
+        )}
       </Gallery>
     </div>
   );
@@ -118,12 +124,13 @@ GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
-  imageAlignment: PropTypes.oneOf(['top', 'left']).isRequired,
-  imageFit: PropTypes.oneOf(['fill', 'pad']).isRequired,
+  imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
+  imageFit: PropTypes.oneOf(['FILL', 'PAD']),
 };
 
 GalleryBlock.defaultProps = {
   title: null,
+  imageFit: 'FILL',
 };
 
 export default GalleryBlock;
