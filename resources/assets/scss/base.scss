@@ -896,6 +896,14 @@ p {
   }
 }
 
+.grid-full-8\/12 {
+  grid-column: full-start / full-end;
+
+  @include media($large) {
+    grid-column: full-start / span 8;
+  }
+}
+
 .grid-wide-1\/3 {
   grid-column: full-start / full-end;
 
