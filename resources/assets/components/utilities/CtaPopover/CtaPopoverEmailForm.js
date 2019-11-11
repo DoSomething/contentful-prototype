@@ -39,7 +39,7 @@ const CtaPopoverEmailForm = () => {
                 </div>
               </span>
             </label> */}
-            <li className="inputField flexContainer">
+            <li className="embed-submit-field">
               <input
                 className="text-field"
                 type="email"

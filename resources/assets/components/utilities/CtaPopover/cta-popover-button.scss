@@ -1,8 +1,15 @@
-.flexContainer {
-  display: flex;
-  border: none;
-}
+.embed-submit-field {
+  position: relative;
 
-.inputField {
-  flex: 1;
+  input {
+    width: 100%;
+    padding: 15px;
+  }
+
+  button {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+  }
 }
