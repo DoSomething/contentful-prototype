@@ -29,13 +29,15 @@ describe('Beta Referral Page', () => {
 
      cy.get('.referral-page-campaign').should('have.length', 1);
 
-      /**
-       * TODO: Fix this. This test fails on CircleCId, the embed displays "Hello world!".
-       *
-      cy.get('.referral-page-campaign > a')
-        .should('have.attr', 'href')
-        .and('include', `referrer_user_id=${userId}`);
-      */
+
+    /**
+     * TODO: Fix this. This test fails on CircleCI, the Embed displays "Hello world!",
+     * and never loads with the placeholder design -- so there is no href found on the <a>.
+     *
+    cy.get('.referral-page-campaign > a')
+      .should('have.attr', 'href')
+      .and('include', `referrer_user_id=${userId}`);
+    */
   });
 
   it('Visit beta referral page, with invalid user ID', () => {

@@ -28,15 +28,15 @@ export const operations = {
   },
   EmbedQuery: {
     embed: {
-      title: 'Example Campaign',
-      description: 'This is an example campaign for automated testing.',
-      providerName: 'DoSomething.org',
-      thumbnailUrl: 'http://placekitten.com/200/300',
+      title: faker.lorem.words(),
+      description: faker.lorem.sentence(),
+      providerName: faker.company.companyName(),
+      thumbnailUrl: faker.image.imageUrl(),
     },
   },
   ReferralPageCampaignQuery: {
     campaignWebsiteByCampaignId: {
-      slug: 'test-example-campaign',
+      slug: faker.lorem.slug(),
     },
   },
 };
