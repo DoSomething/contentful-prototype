@@ -5,7 +5,7 @@
 
     <main role="main" class="py-20">
 
-        {{-- @TODO:cssgrid Remove horizontal padding once CSS Grid is implemented --}}
+        {{-- @TODO:css-grid Remove horizontal padding once CSS Grid is implemented --}}
         <article class="max-w-xl mx-auto text-center px-4 leading-relaxed mb-8">
             <header class="mb-8">
                 <h2 class="text-purple-900 text-xl md:text-2xl mb-2">Something went wrong.</h2>

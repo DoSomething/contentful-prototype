@@ -7,7 +7,7 @@
 
         <article class="md:w-3/4 mx-auto">
 
-            {{-- @TODO:cssgrid Remove left padding once CSS Grid is implemented --}}
+            {{-- @TODO:css-grid Remove left padding once CSS Grid is implemented --}}
             <h1 class="mb-6 pl-3">Explore Campaigns</h1>
 
             @include('partials.campaign_gallery', ['campaigns' => $campaigns])
