@@ -5,7 +5,7 @@ import EmailSubscriptions from './EmailSubscriptions';
 
 const Subscriptions = props => (
   <div className="grid-wide-2/3">
-    <h2 className="">Email Subscriptions</h2>
+    <h2>Email Subscriptions</h2>
     <EmailSubscriptions {...props} />
   </div>
 );
