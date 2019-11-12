@@ -16,7 +16,10 @@ const AffiliateScholarshipBlockBeta = ({
   scholarshipDeadline,
 }) => (
   <Card
-    className={classNames('rounded bordered padded campaign-info', className)}
+    className={classNames(
+      'rounded bordered padded affiliate-scholarship-block beta',
+      className,
+    )}
   >
     {affiliateLogo ? (
       <img
@@ -33,19 +36,19 @@ const AffiliateScholarshipBlockBeta = ({
       Ready to earn scholarships for doing good? Just follow the simple
       instructions below for the chance to win. Let’s Do This!
     </p>
-    <dl className="clearfix campaign-info__scholarship-beta">
+    <dl className="clearfix">
       {scholarshipAmount ? (
         <>
-          <dt className="campaign-info__scholarship-beta">Win A Scholarship</dt>
-          <dd className="campaign-info__scholarship">
+          <dt>Win A Scholarship</dt>
+          <dd className="scholarship-beta">
             ${scholarshipAmount.toLocaleString()}
           </dd>
         </>
       ) : null}
       {scholarshipDeadline ? (
         <>
-          <dt className="campaign-info__scholarship-beta">Deadline</dt>
-          <dd className="campaign-info__scholarship-beta-info">
+          <dt>Deadline</dt>
+          <dd>
             {format(scholarshipDeadline, 'MMMM do, YYYY', {
               awareOfUnicodeTokens: true,
             })}
@@ -54,13 +57,13 @@ const AffiliateScholarshipBlockBeta = ({
       ) : null}
       {actionType ? (
         <>
-          <dt className="campaign-info__scholarship-beta">Action Type</dt>
-          <dd className="campaign-info__scholarship-beta-info">{actionType}</dd>
+          <dt>Action Type</dt>
+          <dd>{actionType}</dd>
         </>
       ) : null}
       <>
-        <dt className="campaign-info__scholarship-beta">Requirements</dt>
-        <dd className="campaign-info__scholarship-beta-info">
+        <dt>Requirements</dt>
+        <dd>
           <ul className="margin-top-sm list -compacted">
             <li>Under 26 years old</li>
             <li>No minimum GPA</li>

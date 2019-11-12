@@ -26,6 +26,7 @@ const PitchTemplate = ({
   tagline,
   title,
 }) => {
+  const numCampaignId = Number(campaignId);
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
@@ -43,6 +44,7 @@ const PitchTemplate = ({
             <div className="primary">
               {displayAffiliateScholarshipBlock ? (
                 <AffiliateScholarshipBlockQuery
+                  campaignId={numCampaignId}
                   utmLabel={scholarshipAffiliateLabel.toLowerCase()}
                   scholarshipAmount={scholarshipAmount}
                   scholarshipDeadline={scholarshipDeadline}
