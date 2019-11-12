@@ -7,7 +7,7 @@ const NotFoundPage = () => (
   <>
     <SiteNavigationContainer />
 
-    <main role="main" class="py-20">
+    <main role="main" className="py-20">
       <NotFound className="max-w-xl mx-auto mb-8" />
     </main>
   </>

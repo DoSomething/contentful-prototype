@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Card from './utilities/Card/Card';
@@ -21,5 +22,13 @@ const NotFound = props => (
     </TextContent>
   </Card>
 );
+
+NotFound.propTypes = {
+  className: PropTypes.string,
+};
+
+NotFound.defaultProps = {
+  className: null,
+};
 
 export default NotFound;
