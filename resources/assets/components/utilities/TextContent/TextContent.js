@@ -51,6 +51,7 @@ TextContent.propTypes = {
   styles: PropTypes.shape({
     textColor: PropTypes.string,
     hyperlinkColor: PropTypes.string,
+    fontSize: PropTypes.string,
   }),
 };
 
