@@ -10,7 +10,7 @@ const Account = props => (
   <>
     <SiteNavigationContainer />
 
-    <Enclosure className="">
+    <Enclosure>
       <div className="bg-white">
         <div className="base-12-grid">
           <div className="grid-wide pt-16">
