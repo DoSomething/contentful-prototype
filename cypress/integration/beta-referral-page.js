@@ -33,6 +33,11 @@ describe('Beta Referral Page', () => {
     /**
      * TODO: Fix this. This test fails on CircleCI, the Embed displays "Hello world!",
      * and never loads with the placeholder design -- so there is no href found on the <a>.
+     * @see https://dashboard.cypress.io/#/projects/ayzqmy/runs/876  
+     *
+     * We might not need this test anyway, since we check above that the referrer_user_id
+     * is set in the campaign URL... but this is still a mystery. This rarely happens on local
+     * although I did see it once. 
      *
     cy.get('.referral-page-campaign > a')
       .should('have.attr', 'href')
