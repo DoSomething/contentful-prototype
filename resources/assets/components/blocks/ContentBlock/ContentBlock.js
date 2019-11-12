@@ -66,7 +66,7 @@ ContentBlock.propTypes = {
   image: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
-  }).isRequired,
+  }),
   imageAlignment: PropTypes.oneOf(['RIGHT', 'LEFT']),
   superTitle: PropTypes.string,
   title: PropTypes.string,
@@ -74,6 +74,7 @@ ContentBlock.propTypes = {
 
 ContentBlock.defaultProps = {
   className: null,
+  image: {},
   imageAlignment: 'RIGHT',
   superTitle: null,
   title: null,
