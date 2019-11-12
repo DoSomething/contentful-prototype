@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 
 import Button from '../Button/Button';
 import SchoolSelect from './SchoolSelect';
@@ -13,6 +13,7 @@ const USER_SCHOOL_MUTATION = gql`
       id
       schoolId
       school {
+        id
         name
         city
         state
@@ -24,6 +25,7 @@ const USER_SCHOOL_MUTATION = gql`
 const UpdateSchool = ({ userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
+  const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
     <React.Fragment>
@@ -43,21 +45,17 @@ const UpdateSchool = ({ userId }) => {
           />
         </div>
       ) : null}
-      <Mutation mutation={USER_SCHOOL_MUTATION}>
-        {userSchoolMutation => (
-          <Button
-            onClick={() =>
-              userSchoolMutation({
-                variables: { schoolId: school ? school.id : null, userId },
-              })
-            }
-            disabled={!school}
-            attached
-          >
-            Submit
-          </Button>
-        )}
-      </Mutation>
+      <Button
+        onClick={() =>
+          updateUserSchool({
+            variables: { schoolId: school ? school.id : null, userId },
+          })
+        }
+        disabled={!school}
+        attached
+      >
+        Submit
+      </Button>
     </React.Fragment>
   );
 };
