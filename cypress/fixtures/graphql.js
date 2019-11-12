@@ -26,17 +26,6 @@ export const operations = {
   ActionGalleryQuery: {
     posts: (root, { count }) => MockList(count),
   },
-  EmbedQuery: {
-    embed: {
-      title: faker.lorem.words(),
-      description: faker.lorem.sentence(),
-    },
-  },
-  ReferralPageCampaignQuery: {
-    campaignWebsiteByCampaignId: {
-      slug: faker.lorem.slug(),
-    },
-  },
 };
 
 /**
