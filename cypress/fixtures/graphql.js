@@ -28,8 +28,8 @@ export const operations = {
   },
   EmbedQuery: {
     embed: {
-      title: faker.lorem.words(),
-      description: faker.lorem.sentence(),
+      title: 'Example Campaign',
+      description: 'This is an example campaign for automated testing.',
     },
   },
   ReferralPageCampaignQuery: {
