@@ -3,25 +3,33 @@ import PropTypes from 'prop-types';
 
 import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
+import {
+  trackAnalyticsEvent,
+  getPageContext,
+  getUtmContext,
+} from '../../../helpers/analytics';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 const Profile = props => (
-  <div className="bg-gray padding-bottom-lg wrapper">
-    <h2 className="caps-lock league-gothic -sm">Your Profile</h2>
-    <div className="container__block -half">
-      <h3>Profile Info</h3>
+  <React.Fragment>
+    <div className="grid-wide-2/3 pb-8">
+      <h2>Profile Info</h2>
 
       <FormItem
         title="Name"
         value={`${props.user.firstName} ${props.user.lastName}`}
       />
-      <FormItem title="Birthday" value={props.user.birthdate} />
+      {props.user.birthdate ? (
+        <FormItem title="Birthday" value={props.user.birthdate} />
+      ) : null}
       <FormItem
         title="Password"
         value="&#9679; &#9679; &#9679; &#9679; &#9679; &#9679;"
       />
       <FormItem title="Email" value={props.user.email} />
-      <FormItem title="Phone Number" value={props.user.mobile} />
+      {props.user.mobile ? (
+        <FormItem title="Phone Number" value={props.user.mobile} />
+      ) : null}
       <div className="margin-top-lg">
         <a
           href={`${env('NORTHSTAR_URL')}/users/${props.user.id}/edit`}
@@ -33,14 +41,47 @@ const Profile = props => (
         </a>
       </div>
     </div>
-    <div className="container__block -half">
+    <div className="grid-wide-1/3 pb-8">
       <h3>Data and Privacy</h3>
-      <a
-        href="mailto:trust@dosomething.org?subject=Delete my account"
-        className="secondary"
-      >
-        Delete my account
-      </a>
+      <ul className="mt-4">
+        <li>
+          <a
+            href="mailto:trust@dosomething.org?subject=Delete my account"
+            className="secondary"
+          >
+            Delete my account
+          </a>
+        </li>
+      </ul>
+
+      <h3>Administration</h3>
+      <ul className="mt-4">
+        <li>
+          <a
+            href="/deauthorize"
+            className="secondary"
+            // TODO: Fix this analytics item
+            onClick={() =>
+              trackAnalyticsEvent({
+                context: {
+                  ...getPageContext(),
+                  ...getUtmContext(),
+                },
+                metadata: {
+                  adjective: 'log_out',
+                  category: 'navigation',
+                  label: 'log_out',
+                  noun: 'nav_link',
+                  target: 'link',
+                  verb: 'clicked',
+                },
+              })
+            }
+          >
+            Log Out
+          </a>
+        </li>
+      </ul>
     </div>
     {/* Commenting this out until we have proper Voter registration info being pulled from Rogue.
       <div className="float-right clear-right padding-top-md">
@@ -50,7 +91,7 @@ const Profile = props => (
         </div>
       </div>
     */}
-  </div>
+  </React.Fragment>
 );
 
 Profile.propTypes = {

@@ -58,6 +58,7 @@ class EmailSubscriptions extends React.Component {
       <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
         {emailSubscriptionsMutation => (
           <form
+            className="pb-8"
             onSubmit={event => {
               event.preventDefault();
               emailSubscriptionsMutation({
@@ -72,42 +73,40 @@ class EmailSubscriptions extends React.Component {
             }}
           >
             {this.state.showAffirmation ? (
-              <p className="padded affirmation-message">
+              <p className="color-success">
                 Your subscriptions have been updated!
               </p>
             ) : null}
-            <div className="padded">
-              <div className="form-wrapper clear-both">
-                <EmailSubscriptionCheckbox
-                  identifier="COMMUNITY"
-                  title="Community"
-                  description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
-                  userTopics={this.state.emailSubscriptionTopics}
-                  onChange={this.handleTopicChange}
-                />
-                <EmailSubscriptionCheckbox
-                  identifier="NEWS"
-                  title="News"
-                  description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
-                  userTopics={this.state.emailSubscriptionTopics}
-                  onChange={this.handleTopicChange}
-                />
-                <EmailSubscriptionCheckbox
-                  identifier="LIFESTYLE"
-                  title="Lifestyle"
-                  description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
-                  userTopics={this.state.emailSubscriptionTopics}
-                  onChange={this.handleTopicChange}
-                />
-                <EmailSubscriptionCheckbox
-                  identifier="SCHOLARSHIPS"
-                  title="Scholarships"
-                  description="Alerts on new ways to earn scholarships by doing social
+            <div className="form-wrapper">
+              <EmailSubscriptionCheckbox
+                identifier="COMMUNITY"
+                title="Community"
+                description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
+                userTopics={this.state.emailSubscriptionTopics}
+                onChange={this.handleTopicChange}
+              />
+              <EmailSubscriptionCheckbox
+                identifier="NEWS"
+                title="News"
+                description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
+                userTopics={this.state.emailSubscriptionTopics}
+                onChange={this.handleTopicChange}
+              />
+              <EmailSubscriptionCheckbox
+                identifier="LIFESTYLE"
+                title="Lifestyle"
+                description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
+                userTopics={this.state.emailSubscriptionTopics}
+                onChange={this.handleTopicChange}
+              />
+              <EmailSubscriptionCheckbox
+                identifier="SCHOLARSHIPS"
+                title="Scholarships"
+                description="Alerts on new ways to earn scholarships by doing social
                       good, plus announcements of scholarship winners."
-                  userTopics={this.state.emailSubscriptionTopics}
-                  onChange={this.handleTopicChange}
-                />
-              </div>
+                userTopics={this.state.emailSubscriptionTopics}
+                onChange={this.handleTopicChange}
+              />
             </div>
 
             <Button type="submit">Save subscriptions</Button>

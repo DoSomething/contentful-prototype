@@ -2,12 +2,6 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import {
-  trackAnalyticsEvent,
-  getPageContext,
-  getUtmContext,
-} from '../../../helpers/analytics';
-
 const AccountNavigation = props => (
   <div className="page-navigation -no-fade">
     <div className="nav-items">
@@ -42,28 +36,6 @@ const AccountNavigation = props => (
       >
         Subscriptions
       </NavLink>
-      <a
-        className="nav-link"
-        href="/deauthorize"
-        onClick={() =>
-          trackAnalyticsEvent({
-            context: {
-              ...getPageContext(),
-              ...getUtmContext(),
-            },
-            metadata: {
-              adjective: 'log_out',
-              category: 'navigation',
-              label: 'log_out',
-              noun: 'nav_link',
-              target: 'link',
-              verb: 'clicked',
-            },
-          })
-        }
-      >
-        Log Out
-      </a>
     </div>
   </div>
 );
