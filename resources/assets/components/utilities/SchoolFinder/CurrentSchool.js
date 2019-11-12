@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CurrentSchool = ({ name, city, state }) => (
+const CurrentSchool = ({ school }) => (
   <div className="padded">
     <p>
       Something something something school finder post verification copy. You
@@ -9,24 +9,21 @@ const CurrentSchool = ({ name, city, state }) => (
       <a href="mailto:Sahara@DoSomething.org">mailto:Sahara@DoSomething.org</a>{' '}
       to change your school.
     </p>
-    <h3>{name}</h3>
-    {city ? (
+    <h3>{school.name}</h3>
+    {school.city ? (
       <small className="uppercase">
-        {city}, {state}
+        {school.city}, {school.state}
       </small>
     ) : null}
   </div>
 );
 
 CurrentSchool.propTypes = {
-  name: PropTypes.string.isRequired,
-  city: PropTypes.string,
-  state: PropTypes.string,
-};
-
-CurrentSchool.defaultProps = {
-  city: null,
-  state: null,
+  school: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    city: PropTypes.string,
+    state: PropTypes.string,
+  }).isRequired,
 };
 
 export default CurrentSchool;

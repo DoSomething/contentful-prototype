@@ -22,7 +22,7 @@ const USER_SCHOOL_MUTATION = gql`
   }
 `;
 
-const UpdateSchool = ({ userId }) => {
+const UpdateSchool = ({ onSubmit, userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
@@ -46,11 +46,13 @@ const UpdateSchool = ({ userId }) => {
         </div>
       ) : null}
       <Button
-        onClick={() =>
+        onClick={() => {
           updateUserSchool({
             variables: { schoolId: school ? school.id : null, userId },
-          })
-        }
+          });
+          // TODO: We shouldn't need this onSubmit handler, should update via Mutation update.
+          onSubmit(school);
+        }}
         disabled={!school}
         attached
       >
@@ -61,6 +63,7 @@ const UpdateSchool = ({ userId }) => {
 };
 
 UpdateSchool.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
