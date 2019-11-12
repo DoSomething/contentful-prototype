@@ -133,7 +133,7 @@
     "autoprefixer": "^9.7.1",
     "bson": "^4.0.2",
     "contentful-management": "^5.11.3",
-    "cypress": "^3.6.0",
+    "cypress": "^3.6.1",
     "cypress-file-upload": "^3.5.0",
     "cypress-graphql-mock": "github:DFurnes/cypress-graphql-mock#with-persisted-batch-support",
     "eslint-loader": "^2.2.1",
