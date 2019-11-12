@@ -30,6 +30,8 @@ export const operations = {
     embed: {
       title: 'Example Campaign',
       description: 'This is an example campaign for automated testing.',
+      providerName: 'DoSomething.org',
+      thumbnailUrl: 'http://placekitten.com/200/300',
     },
   },
   ReferralPageCampaignQuery: {
