@@ -13,7 +13,7 @@ const exampleSchool = {
   state: 'CA',
 };
 
-describe('Beta Referral Page', () => {
+describe('School Finder', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
