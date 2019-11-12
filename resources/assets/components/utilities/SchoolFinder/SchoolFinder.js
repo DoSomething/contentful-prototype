@@ -41,15 +41,13 @@ const SchoolFinder = ({ campaignId, userId }) => {
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
       <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
         {res => {
-          const schoolId = res.user.schoolId;
-
-          if (schoolId) {
+          if (res.user && res.user.school) {
             setSchool(res.user.school);
           }
 
           return (
             <Card
-              title={schoolId ? 'Your School' : 'Find Your School'}
+              title={school.id ? 'Your School' : 'Find Your School'}
               className="rounded bordered overflow-visible"
             >
               {school.id ? (

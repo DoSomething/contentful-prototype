@@ -26,6 +26,17 @@ export const operations = {
   ActionGalleryQuery: {
     posts: (root, { count }) => MockList(count),
   },
+  EmbedQuery: {
+    embed: {
+      title: 'Example Campaign',
+      description: 'This is an example campaign for automated testing.',
+    },
+  },
+  ReferralPageCampaignQuery: {
+    campaignWebsiteByCampaignId: {
+      slug: 'test-example-campaign',
+    },
+  },
 };
 
 /**
