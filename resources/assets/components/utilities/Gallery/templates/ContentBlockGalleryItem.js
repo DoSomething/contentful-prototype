@@ -1,9 +1,7 @@
 import React from 'react';
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
-import Card from '../../Card/Card';
 import { Figure } from '../../Figure/Figure';
 import TextContent from '../../TextContent/TextContent';
 import { contentfulImageUrl } from '../../../../helpers';
@@ -17,13 +15,13 @@ const ContentBlockGalleryItem = ({
 }) => {
   const leftAligned = imageAlignment === 'left';
   // Image formatting needs to be smaller if they are left-aligned.
-  const imageFormatting = leftAligned ? ['100', '100'] : ['800', '450'];
+  const imageFormatting = leftAligned ? ['100', '100'] : ['400', '400'];
 
   // Ensure we don't pass the unsupported 'top' as the alignment prop to Figure.
   // @TODO (11/01/2018) Update this logic once we refactor the Figure component!
   const alignment = leftAligned ? imageAlignment : undefined;
 
-  const galleryItem = (
+  return (
     <Figure
       alt={showcaseImage.description || `${showcaseTitle}-photo`}
       image={contentfulImageUrl(
@@ -33,20 +31,12 @@ const ContentBlockGalleryItem = ({
       )}
       alignment={alignment}
     >
-      <div className={classNames({ 'm-4': !leftAligned })}>
-        <h4>{showcaseTitle}</h4>
+      <h4>{showcaseTitle}</h4>
 
-        {showcaseDescription ? (
-          <TextContent>{showcaseDescription}</TextContent>
-        ) : null}
-      </div>
+      {showcaseDescription ? (
+        <TextContent>{showcaseDescription}</TextContent>
+      ) : null}
     </Figure>
-  );
-
-  return leftAligned ? (
-    galleryItem
-  ) : (
-    <Card className="card">{galleryItem}</Card>
   );
 };
 
