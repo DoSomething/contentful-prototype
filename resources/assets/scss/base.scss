@@ -421,13 +421,6 @@ p {
   text-align: center;
 }
 
-.default-container {
-  @include media($tablet) {
-    @include span(12 no-gutters);
-    @include push(2);
-  }
-}
-
 .hide-on-mobile {
   @include media($small) {
     display: none;
