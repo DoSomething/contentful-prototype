@@ -27,10 +27,7 @@ describe('School Finder', () => {
       },
     });
 
-    cy.login(user)
-      .withState(teensForJeansCampaign)
-      .withSignup(teensForJeansCampaign.campaign.campaignId)
-      .visit(`/us/campaigns/${teensForJeansCampaign.campaign.slug}`);
+    cy.visitCampaignWithSignup(user, teensForJeansCampaign);
 
     cy.get('.school-finder h1').should('contain', 'Find Your School');
   });
@@ -46,10 +43,7 @@ describe('School Finder', () => {
       },
     });
 
-    cy.login(user)
-      .withState(teensForJeansCampaign)
-      .withSignup(teensForJeansCampaign.campaign.campaignId)
-      .visit(`/us/campaigns/${teensForJeansCampaign.campaign.slug}`);
+    cy.visitCampaignWithSignup(user, teensForJeansCampaign);
 
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
@@ -59,10 +53,7 @@ describe('School Finder', () => {
   it('Visit non-TFJ campaign and verify School Finder does not exist', () => {
     const user = userFactory();
 
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit(`/us/campaigns/${exampleCampaign.campaign.slug}`);
+    cy.visitCampaignWithSignup(user, exampleCampaign);
 
     cy.get('.school-finder').should('not.exist');
   });

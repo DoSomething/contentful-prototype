@@ -8,6 +8,7 @@ import url from 'url';
 import qs from 'query-string';
 
 import schema from '../../schema.json';
+import { campaignPath } from '../fixtures/constants';
 import { mocks, operations } from '../fixtures/graphql';
 import { existingSignup, emptyResponse } from '../fixtures/signups';
 
@@ -140,4 +141,14 @@ Cypress.Commands.add('withoutSignup', function(campaignId) {
   // Mock an "empty" signup response for this campaign:
   const SIGNUP_API = `/api/v2/campaigns/${campaignId}/signups`;
   cy.route(`${SIGNUP_API}?filter[northstar_id]=${this.user.id}`, emptyResponse);
+});
+
+Cypress.Commands.add('visitCampaignWithSignup', function(
+  user,
+  contentfulCampaign,
+) {
+  cy.login(user)
+    .withState(contentfulCampaign)
+    .withSignup(contentfulCampaign.campaign.campaignId)
+    .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
 });
