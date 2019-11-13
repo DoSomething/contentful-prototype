@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
-import './cta-popover.scss';
 import Button from '../Button/Button';
 import './cta-popover-email-form.scss';
 
@@ -20,27 +18,25 @@ const CtaPopoverEmailForm = () => {
     <div>
       <div>
         <form className="form" onSubmit={handleSubmit}>
-          <ul className="">
-            {/* <label className="field-label">
+          {/* <label className="field-label">
               <span className="validation">
                 <div className="validation__message {{modifier_class}}">
                   Must be a valid email address
                 </div>
               </span>
             </label> */}
-            <li className="embed-submit-field">
-              <input
-                className="text-field"
-                type="email"
-                value={emailValue}
-                placeholder="Enter your email address"
-                onChange={handleChange}
-              />
-              <Button type="submit" onClick={handleSubmit}>
-                Sign Up
-              </Button>
-            </li>
-          </ul>
+          <li className="embed-submit-field">
+            <input
+              className="text-field"
+              type="email"
+              value={emailValue}
+              placeholder="Enter your email address"
+              onChange={handleChange}
+            />
+            <Button type="submit" onClick={handleSubmit}>
+              Sign Up
+            </Button>
+          </li>
         </form>
       </div>
       <p className="text-gray-200 flex-center-xy font-italic text-xs">

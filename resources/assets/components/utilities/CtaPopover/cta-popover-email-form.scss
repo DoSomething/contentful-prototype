@@ -1,15 +1,15 @@
 .embed-submit-field {
-  position: relative;
+  display: flex;
 
   input {
-    width: 100%;
-    padding: 15px;
+    border-radius: 4px 0 0 4px;
+    border: none;
+    font-size: 16px;
   }
 
   button {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
+    width: 105px;
+    border-radius: 0 4px 4px 0;
+    font-size: 16px;
   }
 }
