@@ -30,10 +30,7 @@ describe('Campaign Gallery', () => {
     });
 
     // Log in & visit the campaign action page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     // Let's pick a post & react to it...
     cy.nth('.post-gallery .post', 4).within(() => {
@@ -56,10 +53,7 @@ describe('Campaign Gallery', () => {
     cy.mockGraphqlOp('ActionGalleryQuery', { posts: MockList(9) });
 
     // Log in & visit the campaign action page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     cy.get('.post-gallery').within(() => {
       cy.get('.post').should('have.length', 9);

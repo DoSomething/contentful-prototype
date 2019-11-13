@@ -143,7 +143,7 @@ Cypress.Commands.add('withoutSignup', function(campaignId) {
   cy.route(`${SIGNUP_API}?filter[northstar_id]=${this.user.id}`, emptyResponse);
 });
 
-Cypress.Commands.add('visitCampaignWithSignup', function(
+Cypress.Commands.add('authVisitCampaignWithSignup', function(
   user,
   contentfulCampaign,
 ) {
@@ -151,4 +151,20 @@ Cypress.Commands.add('visitCampaignWithSignup', function(
     .withState(contentfulCampaign)
     .withSignup(contentfulCampaign.campaign.campaignId)
     .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
+});
+
+Cypress.Commands.add('authVisitCampaignWithoutSignup', function(
+  user,
+  contentfulCampaign,
+) {
+  cy.login(user)
+    .withState(contentfulCampaign)
+    .withoutSignup(contentfulCampaign.campaign.campaignId)
+    .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
+});
+
+Cypress.Commands.add('unauthVisitCampaign', function(contentfulCampaign) {
+  cy.withState(contentfulCampaign).visit(
+    `${campaignPath}${contentfulCampaign.campaign.slug}`,
+  );
 });

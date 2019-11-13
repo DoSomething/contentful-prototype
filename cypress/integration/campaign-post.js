@@ -19,10 +19,7 @@ describe('Campaign Post', () => {
     const user = userFactory();
 
     // Log in & visit the campaign action page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     const text = 'I made my cat a full English breakfast, with coffee & cream.';
     const response = newTextPost(campaignId, user, text);
@@ -49,10 +46,7 @@ describe('Campaign Post', () => {
     });
 
     // Log in & visit the campaign action page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     // We should see one "pending" post for each uploader:
     // @TODO: We need a better selector for this "entire" block...
@@ -64,10 +58,7 @@ describe('Campaign Post', () => {
     const user = userFactory();
 
     // Log in & visit the campaign action page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     cy.get('.photo-submission-action').within(() => {
       // Choose an image to upload as a photo post:

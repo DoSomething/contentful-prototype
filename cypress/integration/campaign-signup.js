@@ -15,7 +15,7 @@ describe('Campaign Signup', () => {
     const user = userFactory();
 
     // Visit the campaign pitch page:
-    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+    cy.unauthVisitCampaign(exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
@@ -36,10 +36,7 @@ describe('Campaign Signup', () => {
     const user = userFactory();
 
     // Log in & visit the campaign pitch page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withoutSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
@@ -55,11 +52,8 @@ describe('Campaign Signup', () => {
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
 
-    // Log in & visit the campaign action page:
-    cy.login(user)
-      .withState(exampleCampaign)
-      .withSignup(exampleCampaign.campaign.campaignId)
-      .visit('/us/campaigns/test-example-campaign');
+    // Log in & visit the campaign pitch page:
+    cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
