@@ -154,7 +154,8 @@ class BadgesTab extends React.Component {
     const { userId } = this.props;
 
     return (
-      <div className="bg-gray padding-bottom-lg wrapper">
+      // @TODO: Update heading etc. to align with other Account pages per https://github.com/DoSomething/phoenix-next/pull/1686
+      <div className="grid-wide-2/3 bg-gray padding-bottom-lg wrapper">
         <h2 className="caps-lock league-gothic -sm">Your Badges</h2>
         <div className="margin-top-lg float-left">
           <div className="margin-top-lg">
