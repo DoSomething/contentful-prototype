@@ -39,7 +39,7 @@ const PitchTemplate = ({
       />
 
       <div className="clearfix bg-white">
-        <Enclosure className="default-container margin-lg pitch-landing-page">
+        <Enclosure className="md:w-3/4 mx-auto mt-6 px-3 pitch-landing-page">
           <div className="campaign-page">
             <div className="primary">
               {displayAffiliateScholarshipBlock ? (

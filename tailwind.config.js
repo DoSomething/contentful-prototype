@@ -107,17 +107,17 @@ module.exports = {
         'sans-serif',
       ],
     },
-    // @TODO: these font sizes are subject to change; requires approval from Luke.
     fontSize: {
-      xs: '0.5rem',
-      sm: '0.75rem',
-      base: '1.125rem',
-      lg: '1.375rem',
-      xl: '1.688rem',
-      '2xl': '2.531rem',
-      '3xl': '3.797rem',
-      '4xl': '5.695rem',
-      '5xl': '8.543rem',
+      xs: '12px',
+      sm: '14px',
+      base: '18px',
+      lg: '22px',
+      xl: '28px',
+      '2xl': '35px',
+      '3xl': '44px',
+      '4xl': '55px',
+      '5xl': '69px',
+      '6xl': '84px',
     },
     extend: {
       padding: {

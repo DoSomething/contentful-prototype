@@ -2,11 +2,13 @@
 
 @section('content')
     <div id="nav-container"></div>
-    <div class="container -padded">
-        <div class="wrapper">
-            <div class="container__block">
-                <h1>Explore Campaigns</h1>
-            </div>
+
+    <main role="main" class="pb-16 pt-6">
+
+        <article class="md:w-3/4 mx-auto">
+
+            {{-- @TODO:css-grid Remove left padding once CSS Grid is implemented --}}
+            <h1 class="mb-6 pl-3">Explore Campaigns</h1>
 
             @include('partials.campaign_gallery', ['campaigns' => $campaigns])
 
@@ -19,6 +21,7 @@
                     <a class="button -tertiary float-right clear-none" href="?page={{$nextPage}}">Next</a>
                 @endif
             </div>
-        </div>
-    </div>
+
+        </article>
+    </main>
 @stop

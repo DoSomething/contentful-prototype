@@ -41,7 +41,7 @@ const AffiliateScholarshipBlock = ({
       {scholarshipAmount ? (
         <div className="scholarship-information__amount">
           <p className="font-bold">AMOUNT</p>
-          <p className="scholarship-amount league-gothic margin-top-none">
+          <p className="scholarship-amount font-league-gothic margin-top-none">
             ${scholarshipAmount.toLocaleString()}
           </p>
         </div>

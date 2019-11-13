@@ -10,7 +10,7 @@ const CampaignInfoBar = ({
   contactEmail,
 }) => (
   <div className="info-bar">
-    <div className="default-container padding-vertical-lg padding-horizontal-md">
+    <div className="clearfix md:w-3/4 mx-auto px-3 py-6">
       <AffiliateCredits
         affiliateCreditText={affiliateCreditText}
         affiliateSponsors={affiliateSponsors}
