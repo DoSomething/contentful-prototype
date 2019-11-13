@@ -99,6 +99,10 @@ p {
   color: $error-color !important;
 }
 
+.color-success {
+  color: $success-color !important;
+}
+
 .bg-black {
   background-color: $black !important;
 }
@@ -588,6 +592,10 @@ p {
   margin-top: $half-spacing;
 }
 
+.mt-8 {
+  margin-top: $base-spacing;
+}
+
 .mb-4 {
   margin-bottom: $half-spacing;
 }
@@ -659,6 +667,11 @@ p {
 .pt-8 {
   padding-top: $base-spacing;
 }
+
+.pt-16 {
+  padding-top: $base-spacing * 2;
+}
+
 .px-1 {
   padding-left: $half-spacing / 4;
   padding-right: $half-spacing / 4;
@@ -682,6 +695,21 @@ p {
 .px-16 {
   padding-left: $section-spacing;
   padding-right: $section-spacing;
+}
+
+.py-2 {
+  padding-top: $half-spacing / 2;
+  padding-bottom: $half-spacing / 2;
+}
+
+.py-4 {
+  padding-top: $half-spacing;
+  padding-bottom: $half-spacing;
+}
+
+.py-8 {
+  padding-top: $base-spacing;
+  padding-bottom: $base-spacing;
 }
 
 .right-0 {
@@ -893,6 +921,14 @@ p {
 
   @include media($large) {
     grid-column: auto / span 6;
+  }
+}
+
+.grid-full-8\/12 {
+  grid-column: full-start / full-end;
+
+  @include media($large) {
+    grid-column: full-start / span 8;
   }
 }
 

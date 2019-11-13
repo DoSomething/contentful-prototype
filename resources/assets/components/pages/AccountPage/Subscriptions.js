@@ -4,13 +4,9 @@ import PropTypes from 'prop-types';
 import EmailSubscriptions from './EmailSubscriptions';
 
 const Subscriptions = props => (
-  <div className="bg-gray padding-bottom-lg wrapper">
-    <h2 className="caps-lock league-gothic -sm">Your Email Subscriptions</h2>
-    <div className="margin-top-lg float-left">
-      <div className="margin-top-lg">
-        <EmailSubscriptions {...props} />
-      </div>
-    </div>
+  <div className="grid-wide-2/3">
+    <h2>Email Subscriptions</h2>
+    <EmailSubscriptions {...props} />
   </div>
 );
 

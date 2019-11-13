@@ -32,8 +32,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
             <h1 className="lede-banner__headline-title my-4 font-normal font-secondary color-white caps-lock">
               {title}
             </h1>
-            <TextContent styles={{ textColor: '#FFF' }}>
-              {/* @TODO: update font size of discription */}
+            <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
               {description}
             </TextContent>
           </div>
@@ -42,7 +41,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
           className="base-12-grid"
           classNameByEntry={{
             GalleryBlock: 'grid-full',
-            ContentBlock: 'content-block-grid',
+            ContentBlock: 'grid-full-8/12',
           }}
         >
           {content}

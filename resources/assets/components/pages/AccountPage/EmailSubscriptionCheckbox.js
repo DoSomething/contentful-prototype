@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const EmailSubscriptionCheckbox = props => (
-  <div className="padded">
+  <div className="py-2">
     <label className="option -checkbox" htmlFor="email_topics">
       <input
         type="checkbox"
