@@ -23,9 +23,9 @@ const REFERRAL_CAMPAIGN_IDS = [
 const CtaReferralPageBanner = ({ campaignId }) => (
   <React.Fragment>
     {REFERRAL_CAMPAIGN_IDS.includes(campaignId) ? (
-      <div className="p-4">
-        <div className="cta-register-banner p-4 clearfix">
-          <div className="p-4">
+      <div className="p-3">
+        <div className="cta-register-banner p-3 clearfix">
+          <div className="p-3">
             <h3 className="text-white">Benefits With Friends</h3>
             <p className="text-white padding-bottom-md">
               Refer a friend to this campaign, and you’ll *both* earn a $5 gift

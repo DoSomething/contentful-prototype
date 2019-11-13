@@ -10,7 +10,7 @@ const BadgeModal = props => {
   return (
     <Modal className="badge -inverted" onClose={onClose}>
       <div>
-        <div className="badge-pattern p-4">
+        <div className="badge-pattern p-3">
           <Badge
             showLock
             earned={earned}
