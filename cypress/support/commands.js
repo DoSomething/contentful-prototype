@@ -143,6 +143,11 @@ Cypress.Commands.add('withoutSignup', function(campaignId) {
   cy.route(`${SIGNUP_API}?filter[northstar_id]=${this.user.id}`, emptyResponse);
 });
 
+/**
+ * Mock visiting given campaign as given user, when a signup exists.
+ *
+ * @param {Object} state
+ */
 Cypress.Commands.add('authVisitCampaignWithSignup', function(
   user,
   contentfulCampaign,
@@ -153,6 +158,11 @@ Cypress.Commands.add('authVisitCampaignWithSignup', function(
     .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
 });
 
+/**
+ * Mock visiting given campaign as given user, when a signup doesn't exist.
+ *
+ * @param {Object} state
+ */
 Cypress.Commands.add('authVisitCampaignWithoutSignup', function(
   user,
   contentfulCampaign,
@@ -163,6 +173,11 @@ Cypress.Commands.add('authVisitCampaignWithoutSignup', function(
     .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
 });
 
+/**
+ * Mock visiting given campaign as an authorized user.
+ *
+ * @param {Object} state
+ */
 Cypress.Commands.add('unauthVisitCampaign', function(contentfulCampaign) {
   cy.withState(contentfulCampaign).visit(
     `${campaignPath}${contentfulCampaign.campaign.slug}`,
