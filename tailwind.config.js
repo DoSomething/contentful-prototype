@@ -114,9 +114,10 @@ module.exports = {
       lg: '22px', // 1.375rem
       xl: '28px', // 1.75rem
       '2xl': '35px', // 2.1875rem
-      '3xl': '44px', // 3.797rem
-      '4xl': '55px', // 5.695rem
-      '5xl': '69px', // 8.543rem
+      '3xl': '44px', // 2.75rem
+      '4xl': '55px', // 3.4375rem
+      '5xl': '69px', // 4.3125rem
+      '6xl': '84px', // 5.25rem
     },
     extend: {
       padding: {
