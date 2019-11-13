@@ -39,6 +39,17 @@ p {
   color: $black;
 }
 
+/*
+|-------------------------------------------------------------------------------
+| START: DEPRECATION WARNING!!
+|-------------------------------------------------------------------------------
+|
+| The classes in the following section are being deprecated in upcoming
+| pull requests. Please refrain from using them. They will be refactored
+| into Tailwind classes.
+|
+*/
+
 .inverted {
   h1,
   h2,
@@ -450,6 +461,15 @@ p {
 
 /*
 |-------------------------------------------------------------------------------
+| END: DEPRECATION WARNING!!
+|-------------------------------------------------------------------------------
+|
+| The classes after this section are still available for use!
+|
+*/
+
+/*
+|-------------------------------------------------------------------------------
 | Tailwind-esh Class Names
 |-------------------------------------------------------------------------------
 |
@@ -583,35 +603,6 @@ p {
 .text-blue-500 {
   color: $blue-500;
 }
-
-// .text-xs {
-//   font-size: $font-smaller;
-// }
-
-// .text-sm {
-//   font-size: $font-small;
-// }
-
-// .text-m {
-//   font-size: $font-medium;
-// }
-
-// .text-lg {
-//   font-size: $font-large;
-// }
-
-// .text-xl {
-//   font-size: $font-larger;
-// }
-
-// .text-2xl {
-//   font-size: $text-2xl;
-// }
-
-// // @TODO: rename to text-3xl
-// .text-xxl {
-//   font-size: $font-hero;
-// }
 
 .w-4 {
   width: 16px;
