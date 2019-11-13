@@ -4,11 +4,11 @@
             <span>Admin Dashboard</span>
         </h1>
 
-        <h2 class="font-normal grid-full margin-bottom-md text-gray-800 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
+        <h2 class="font-normal grid-full margin-bottom-md text-gray-900 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
 
         <section class="panel grid-full-1/2 margin-bottom-lg">
-            <div class="wrapper rounded bg-gray-400">
-                <h1 class="panel-title font-normal text-m margin-bottom-md">
+            <div class="wrapper rounded bg-gray-300">
+                <h1 class="panel-title font-normal text-lg margin-bottom-md">
                     @include('svg.cog-icon', ['class' => 'icon icon-cog inline align-baseline']) Configuration
                 </h1>
 
@@ -38,8 +38,8 @@
         </section>
 
         <section class="panel grid-full-1/2">
-            <div class="wrapper rounded bg-gray-400">
-                <h1 class="panel-title font-normal text-m margin-bottom-md">
+            <div class="wrapper rounded bg-gray-300">
+                <h1 class="panel-title font-normal text-lg margin-bottom-md">
                     @include('svg.chart-bar-icon', ['class' => 'icon icon-chart-bar inline align-baseline']) Metrics
                 </h1>
 
