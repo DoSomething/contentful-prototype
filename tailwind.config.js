@@ -108,16 +108,16 @@ module.exports = {
       ],
     },
     fontSize: {
-      xs: '12px', // 0.75rem
-      sm: '14px', // 0.875rem
-      base: '18px', // 1.125rem
-      lg: '22px', // 1.375rem
-      xl: '28px', // 1.75rem
-      '2xl': '35px', // 2.1875rem
-      '3xl': '44px', // 2.75rem
-      '4xl': '55px', // 3.4375rem
-      '5xl': '69px', // 4.3125rem
-      '6xl': '84px', // 5.25rem
+      xs: '12px',
+      sm: '14px',
+      base: '18px',
+      lg: '22px',
+      xl: '28px',
+      '2xl': '35px',
+      '3xl': '44px',
+      '4xl': '55px',
+      '5xl': '69px',
+      '6xl': '84px',
     },
     extend: {
       padding: {
