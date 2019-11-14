@@ -17,7 +17,6 @@ const CtaPopover = ({ content, handleClose, title, children }) => {
         {title}
       </h3>
       <p className="text-white mt-4">{content}</p>
-      {children}
     </div>
   );
 };
