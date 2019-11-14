@@ -28,7 +28,7 @@ const CAMPAIGN_INFO_QUERY = gql`
 
 const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
   <Card className="bordered padded rounded campaign-info">
-    <h1 className="mb-4 text-m uppercase">Campaign Info</h1>
+    <h3 className="mb-4 text-m uppercase">Campaign Info</h3>
     <dl className="clearfix">
       <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
         {res => {
