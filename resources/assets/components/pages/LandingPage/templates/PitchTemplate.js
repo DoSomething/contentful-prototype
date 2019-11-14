@@ -38,9 +38,9 @@ const PitchTemplate = ({
         showPartnerMsgOptIn={showPartnerMsgOptIn}
       />
 
-      <div className="clearfix bg-white">
-        <Enclosure className="md:w-3/4 mx-auto mt-6 px-3 pitch-landing-page">
-          <div className="campaign-page">
+      <div className="bg-white">
+        <Enclosure className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
+          <div className="campaign-page clearfix">
             <div className="primary">
               {displayAffiliateScholarshipBlock ? (
                 <AffiliateScholarshipBlockQuery

@@ -5,7 +5,7 @@ import './cta-popover.scss';
 
 const CtaPopover = ({ content, handleClose, title, children }) => {
   return (
-    <div className="cta-popover p-4 bordered rounded">
+    <div className="cta-popover p-3 bordered rounded">
       <button
         type="button"
         className="modal__close -white"
@@ -17,7 +17,6 @@ const CtaPopover = ({ content, handleClose, title, children }) => {
         {title}
       </h3>
       <p className="text-white mt-4">{content}</p>
-      {children}
     </div>
   );
 };

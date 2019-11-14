@@ -27,7 +27,7 @@ const CtaBanner = ({ buttonText, content, link, title }) => {
         <h3 className="text-m text-yellow font-bold uppercase">{title}</h3>
         <p className="text-white mt-4">{content}</p>
         <a
-          className="cta-banner__button button p-4 mt-4"
+          className="cta-banner__button button p-3 mt-4"
           href={link}
           onClick={handleClick}
         >

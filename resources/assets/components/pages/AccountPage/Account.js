@@ -13,7 +13,7 @@ const Account = props => (
     <Enclosure>
       <div className="bg-white">
         <div className="base-12-grid">
-          <div className="grid-wide pt-16">
+          <div className="grid-wide pt-12">
             <h1 className="league-gothic -lg caps-lock">
               Welcome, {props.user.firstName}!
             </h1>

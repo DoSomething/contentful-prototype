@@ -93,7 +93,7 @@ const Affirmation = ({
             <CtaReferralPageBannerContainer />
           ) : null}
 
-          <div className="p-4">
+          <div className="p-3">
             <button
               type="button"
               className="close-button font-bold text-base"
