@@ -29,7 +29,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
         >
           <div className="title-lockup my-8">
             <h2 className="my-4 uppercase color-white text-lg">{superTitle}</h2>
-            <h1 className="lede-banner__headline-title my-4 font-normal font-secondary color-white caps-lock">
+            <h1 className="lede-banner__headline-title my-4 font-normal font-league-gothic color-white caps-lock">
               {title}
             </h1>
             <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
