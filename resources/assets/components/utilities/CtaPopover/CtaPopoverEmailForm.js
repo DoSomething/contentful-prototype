@@ -16,36 +16,37 @@ const CtaPopoverEmailForm = () => {
 
   return (
     <div>
-      <div>
-        <form className="form" onSubmit={handleSubmit}>
-          {/* <label className="field-label">
+      <form
+        className="form padding-bottom-sm padding-top-md"
+        onSubmit={handleSubmit}
+      >
+        {/* <label className="field-label">
               <span className="validation">
                 <div className="validation__message {{modifier_class}}">
                   Must be a valid email address
                 </div>
               </span>
             </label> */}
-          <li className="embed-submit-field">
-            <input
-              className="text-field"
-              type="email"
-              value={emailValue}
-              placeholder="Enter your email address"
-              onChange={handleChange}
-            />
-            <Button type="submit" onClick={handleSubmit}>
-              Sign Up
-            </Button>
-          </li>
-        </form>
-      </div>
-      <p className="text-gray-200 flex-center-xy font-italic text-xs">
+        <li className="embed-submit-field">
+          <input
+            className="text-field padding-bottom-md"
+            type="email"
+            value={emailValue}
+            placeholder="Enter your email address"
+            onChange={handleChange}
+          />
+          <Button type="submit" onClick={handleSubmit}>
+            Sign Up
+          </Button>
+        </li>
+      </form>
+      <p className="text-gray-200 font-italic footnote-font">
         You&apos;ll also get a{' '}
         <a
           href="/us/about/default-notifications"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-200"
+          className="text-gray-200 underline"
         >
           few emails
         </a>{' '}
