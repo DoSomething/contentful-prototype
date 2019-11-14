@@ -42,14 +42,16 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
 
           return (
             <>
-              <dt>Deadline</dt>
-              <dd>
-                {endDate
-                  ? format(String(endDate), 'MMMM do, yyyy', {
+              {endDate ? (
+                <>
+                  <dt>Deadline</dt>
+                  <dd>
+                    {format(String(endDate), 'MMMM do, yyyy', {
                       awareOfUnicodeTokens: true,
-                    })
-                  : 'Evergreen'}
-              </dd>
+                    })}
+                  </dd>
+                </>
+              ) : null}
               {action && action.timeCommitmentLabel ? (
                 <React.Fragment>
                   <dt>Time</dt>

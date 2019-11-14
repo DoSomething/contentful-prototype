@@ -4,30 +4,30 @@
             <span>Admin Dashboard</span>
         </h1>
 
-        <h2 class="font-normal grid-full margin-bottom-md text-gray-800 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
+        <h2 class="font-normal grid-full margin-bottom-md text-gray-900 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
 
         <section class="panel grid-full-1/2 margin-bottom-lg">
-            <div class="wrapper rounded bg-gray-400">
-                <h1 class="panel-title font-normal text-m margin-bottom-md">
-                    @include('svg.cog-icon', ['class' => 'icon icon-cog']) Configuration
+            <div class="wrapper rounded bg-gray-300">
+                <h1 class="panel-title font-normal text-lg margin-bottom-md">
+                    @include('svg.cog-icon', ['class' => 'icon icon-cog inline align-baseline']) Configuration
                 </h1>
 
-                <ul class="list-reset">
+                <ul>
                     <li class="margin-bottom-md">
                         @if ($admin['page']['type'] === 'Page Not Found')
                             <a class="icon-link font-normal" href="{{ $admin['page']['searchUrl'] }}" target="_blank">
-                                @include('svg.search-icon', ['class' => 'icon icon-search']) Search for this page on Contentful
+                                @include('svg.search-icon', ['class' => 'icon icon-search inline align-baseline']) Search for this page on Contentful
                             </a>
                         @else
                             <a class="icon-link font-normal" href="{{ $admin['page']['editUrl'] }}" target="_blank">
-                                @include('svg.edit-pencil-icon', ['class' => 'icon icon-edit-pencil']) Edit this content on Contentful
+                                @include('svg.edit-pencil-icon', ['class' => 'icon icon-edit-pencil inline align-baseline']) Edit this content on Contentful
                             </a>
                         @endif
                     </li>
                     <li class="margin-bottom-md">
                         @if($admin['page']['cacheUrl'])
                             <a class="icon-link font-normal" href="{{ $admin['page']['cacheUrl'] }}">
-                                @include('svg.trash-icon', ['class' => 'icon icon-trash']) Clear the cache for this page
+                                @include('svg.trash-icon', ['class' => 'icon icon-trash inline align-baseline']) Clear the cache for this page
                             </a>
                         @else
                             <em class="text-gray-600">Current page is not cached</em>
@@ -38,9 +38,9 @@
         </section>
 
         <section class="panel grid-full-1/2">
-            <div class="wrapper rounded bg-gray-400">
-                <h1 class="panel-title font-normal text-m margin-bottom-md">
-                    @include('svg.chart-bar-icon', ['class' => 'icon icon-chart-bar']) Metrics
+            <div class="wrapper rounded bg-gray-300">
+                <h1 class="panel-title font-normal text-lg margin-bottom-md">
+                    @include('svg.chart-bar-icon', ['class' => 'icon icon-chart-bar inline align-baseline']) Metrics
                 </h1>
 
                 <p class="text-gray-600"><em>What's this? We're not sure yet, but let the tech team know if you have ideas!</em></p>

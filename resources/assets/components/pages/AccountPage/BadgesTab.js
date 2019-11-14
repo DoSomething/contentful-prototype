@@ -154,247 +154,231 @@ class BadgesTab extends React.Component {
     const { userId } = this.props;
 
     return (
-      <div className="bg-gray padding-bottom-lg wrapper">
-        <h2 className="caps-lock league-gothic -sm">Your Badges</h2>
-        <div className="margin-top-lg float-left">
-          <div className="margin-top-lg">
-            <ul className="gallery-grid-sextet">
-              <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal('signupBadge', data.signupsCount > 0)
-                      }
-                      role="button"
-                      tabIndex={0}
-                      className="clickable-badge"
+      <div className="grid-wide bg-gray padding-bottom-lg wrapper">
+        <h2 className="mb-4">Your Badges</h2>
+        <ul className="gallery-grid-sextet">
+          <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
+            {data => (
+              <li>
+                <div
+                  onClick={() =>
+                    this.showModal('signupBadge', data.signupsCount > 0)
+                  }
+                  role="button"
+                  tabIndex={0}
+                  className="clickable-badge"
+                >
+                  <Badge
+                    earned={data.signupsCount > 0}
+                    name="signupBadge"
+                    text="1 Sign-Up"
+                  >
+                    <p>1 Sign-Up</p>
+                  </Badge>
+                </div>
+              </li>
+            )}
+          </Query>
+
+          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
+            {data => (
+              <li>
+                <div
+                  onClick={() =>
+                    this.showModal('onePostBadge', data.postsCount > 0)
+                  }
+                  role="button"
+                  tabIndex={0}
+                  className="clickable-badge"
+                >
+                  <Badge
+                    earned={data.postsCount > 0}
+                    name="onePostBadge"
+                    text="1 Action"
+                  >
+                    <p>1 Action</p>
+                  </Badge>
+                </div>
+              </li>
+            )}
+          </Query>
+
+          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
+            {data => (
+              <li>
+                <div
+                  onClick={() =>
+                    this.showModal('twoPostsBadge', data.postsCount > 1)
+                  }
+                  role="button"
+                  tabIndex={0}
+                  className="clickable-badge"
+                >
+                  <Badge
+                    earned={data.postsCount > 1}
+                    name="twoPostsBadge"
+                    text="2 Actions"
+                  >
+                    <p>2 Actions</p>
+                  </Badge>
+                </div>
+              </li>
+            )}
+          </Query>
+
+          <Query query={POST_COUNT_BADGE} variables={{ userId }}>
+            {data => (
+              <li>
+                <div
+                  onClick={() =>
+                    this.showModal('threePostsBadge', data.postsCount > 2)
+                  }
+                  role="button"
+                  tabIndex={0}
+                  className="clickable-badge"
+                >
+                  <Badge
+                    earned={data.postsCount > 2}
+                    name="threePostsBadge"
+                    text="3 Actions"
+                  >
+                    <p>3 Actions</p>
+                  </Badge>
+                </div>
+              </li>
+            )}
+          </Query>
+
+          <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
+            {data => (
+              <li>
+                <div
+                  onClick={() =>
+                    this.showModal(
+                      'breakdownBadge',
+                      data.user.emailSubscriptionTopics.includes('NEWS'),
+                    )
+                  }
+                  role="button"
+                  tabIndex={0}
+                  className="clickable-badge"
+                >
+                  <Badge
+                    earned={data.user.emailSubscriptionTopics.includes('NEWS')}
+                    name="breakdownBadge"
+                    text="News Expert"
+                  >
+                    <p>News Expert</p>
+                  </Badge>
+                </div>
+              </li>
+            )}
+          </Query>
+
+          <Query query={VOTER_BADGE} variables={{ userId }}>
+            {data => (
+              <li>
+                <div
+                  onClick={() =>
+                    this.showModal(
+                      'voterBadge',
+                      data.user.voterRegistrationStatus === CONFIRMED ||
+                        data.user.voterRegistrationStatus ===
+                          REGISTRATION_COMPLETE,
+                    )
+                  }
+                  role="button"
+                  tabIndex={0}
+                  className="clickable-badge"
+                >
+                  <Badge
+                    earned={
+                      data.user.voterRegistrationStatus === CONFIRMED ||
+                      data.user.voterRegistrationStatus ===
+                        REGISTRATION_COMPLETE
+                    }
+                    name="voterBadge"
+                    text="Registered Voter"
+                  >
+                    <p>Registered Voter</p>
+                  </Badge>
+                </div>
+              </li>
+            )}
+          </Query>
+
+          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
+            {data =>
+              data.postsCount > 0 ? (
+                <li>
+                  <div
+                    onClick={() => this.showModal('oneStaffFaveBadge', true)}
+                    role="button"
+                    tabIndex={0}
+                    className="clickable-badge"
+                  >
+                    <Badge earned name="oneStaffFaveBadge" text="1 Staff Fave">
+                      <p>1 Staff Fave</p>
+                    </Badge>
+                  </div>
+                </li>
+              ) : null
+            }
+          </Query>
+
+          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
+            {data =>
+              data.postsCount > 1 ? (
+                <li>
+                  <div
+                    onClick={() => this.showModal('twoStaffFavesBadge', true)}
+                    role="button"
+                    tabIndex={0}
+                    className="clickable-badge"
+                  >
+                    <Badge
+                      earned
+                      name="twoStaffFavesBadge"
+                      text="2 Staff Faves"
                     >
-                      <Badge
-                        earned={data.signupsCount > 0}
-                        name="signupBadge"
-                        text="1 Sign-Up"
-                      >
-                        <p>1 Sign-Up</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
+                      <p>2 Staff Faves</p>
+                    </Badge>
+                  </div>
+                </li>
+              ) : null
+            }
+          </Query>
 
-              <Query query={POST_COUNT_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal('onePostBadge', data.postsCount > 0)
-                      }
-                      role="button"
-                      tabIndex={0}
-                      className="clickable-badge"
+          <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
+            {data =>
+              data.postsCount > 2 ? (
+                <li>
+                  <div
+                    onClick={() => this.showModal('threeStaffFavesBadge', true)}
+                    role="button"
+                    tabIndex={0}
+                    className="clickable-badge"
+                  >
+                    <Badge
+                      earned
+                      name="threeStaffFavesBadge"
+                      text="3 Staff Faves"
                     >
-                      <Badge
-                        earned={data.postsCount > 0}
-                        name="onePostBadge"
-                        text="1 Action"
-                      >
-                        <p>1 Action</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
-
-              <Query query={POST_COUNT_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal('twoPostsBadge', data.postsCount > 1)
-                      }
-                      role="button"
-                      tabIndex={0}
-                      className="clickable-badge"
-                    >
-                      <Badge
-                        earned={data.postsCount > 1}
-                        name="twoPostsBadge"
-                        text="2 Actions"
-                      >
-                        <p>2 Actions</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
-
-              <Query query={POST_COUNT_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal('threePostsBadge', data.postsCount > 2)
-                      }
-                      role="button"
-                      tabIndex={0}
-                      className="clickable-badge"
-                    >
-                      <Badge
-                        earned={data.postsCount > 2}
-                        name="threePostsBadge"
-                        text="3 Actions"
-                      >
-                        <p>3 Actions</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
-
-              <Query query={NEWSLETTER_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal(
-                          'breakdownBadge',
-                          data.user.emailSubscriptionTopics.includes('NEWS'),
-                        )
-                      }
-                      role="button"
-                      tabIndex={0}
-                      className="clickable-badge"
-                    >
-                      <Badge
-                        earned={data.user.emailSubscriptionTopics.includes(
-                          'NEWS',
-                        )}
-                        name="breakdownBadge"
-                        text="News Expert"
-                      >
-                        <p>News Expert</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
-
-              <Query query={VOTER_BADGE} variables={{ userId }}>
-                {data => (
-                  <li>
-                    <div
-                      onClick={() =>
-                        this.showModal(
-                          'voterBadge',
-                          data.user.voterRegistrationStatus === CONFIRMED ||
-                            data.user.voterRegistrationStatus ===
-                              REGISTRATION_COMPLETE,
-                        )
-                      }
-                      role="button"
-                      tabIndex={0}
-                      className="clickable-badge"
-                    >
-                      <Badge
-                        earned={
-                          data.user.voterRegistrationStatus === CONFIRMED ||
-                          data.user.voterRegistrationStatus ===
-                            REGISTRATION_COMPLETE
-                        }
-                        name="voterBadge"
-                        text="Registered Voter"
-                      >
-                        <p>Registered Voter</p>
-                      </Badge>
-                    </div>
-                  </li>
-                )}
-              </Query>
-
-              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-                {data =>
-                  data.postsCount > 0 ? (
-                    <li>
-                      <div
-                        onClick={() =>
-                          this.showModal('oneStaffFaveBadge', true)
-                        }
-                        role="button"
-                        tabIndex={0}
-                        className="clickable-badge"
-                      >
-                        <Badge
-                          earned
-                          name="oneStaffFaveBadge"
-                          text="1 Staff Fave"
-                        >
-                          <p>1 Staff Fave</p>
-                        </Badge>
-                      </div>
-                    </li>
-                  ) : null
-                }
-              </Query>
-
-              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-                {data =>
-                  data.postsCount > 1 ? (
-                    <li>
-                      <div
-                        onClick={() =>
-                          this.showModal('twoStaffFavesBadge', true)
-                        }
-                        role="button"
-                        tabIndex={0}
-                        className="clickable-badge"
-                      >
-                        <Badge
-                          earned
-                          name="twoStaffFavesBadge"
-                          text="2 Staff Faves"
-                        >
-                          <p>2 Staff Faves</p>
-                        </Badge>
-                      </div>
-                    </li>
-                  ) : null
-                }
-              </Query>
-
-              <Query query={TAG_COUNT_BADGE} variables={{ userId }}>
-                {data =>
-                  data.postsCount > 2 ? (
-                    <li>
-                      <div
-                        onClick={() =>
-                          this.showModal('threeStaffFavesBadge', true)
-                        }
-                        role="button"
-                        tabIndex={0}
-                        className="clickable-badge"
-                      >
-                        <Badge
-                          earned
-                          name="threeStaffFavesBadge"
-                          text="3 Staff Faves"
-                        >
-                          <p>3 Staff Faves</p>
-                        </Badge>
-                      </div>
-                    </li>
-                  ) : null
-                }
-              </Query>
-            </ul>
-          </div>
-        </div>
+                      <p>3 Staff Faves</p>
+                    </Badge>
+                  </div>
+                </li>
+              ) : null
+            }
+          </Query>
+        </ul>
         {this.state.modalName ? (
           <BadgeModal
             onClose={this.closeModal}
             earned={this.state.modalEarned}
             name={this.state.modalName}
           >
-            <h1 className="league-gothic -sm">
+            <h1 className="font-league-gothic text-2xl">
               {badgeModalContent[this.state.modalName].title}
             </h1>
             <p>

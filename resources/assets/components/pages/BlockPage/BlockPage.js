@@ -2,6 +2,7 @@ import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Enclosure from '../../Enclosure';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
@@ -10,11 +11,15 @@ import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/Content
  * @returns {ReactElement}
  */
 const BlockPage = ({ match }) => (
-  <div className="main clearfix">
-    <Enclosure className="default-container margin-vertical-lg">
-      <ContentfulEntryLoader id={match.params.id} />
-    </Enclosure>
-  </div>
+  <>
+    <SiteNavigationContainer />
+
+    <div className="main clearfix">
+      <Enclosure className="md:w-3/4 mx-auto my-16 px-3">
+        <ContentfulEntryLoader id={match.params.id} />
+      </Enclosure>
+    </div>
+  </>
 );
 
 BlockPage.propTypes = {

@@ -15,7 +15,7 @@ const SectionHeader = ({ superTitle, title, underlined }) => (
     {title ? (
       <h1
         className={classNames(
-          'section-header__title font-normal font-secondary uppercase text-xxl',
+          'section-header__title font-normal font-league-gothic uppercase text-4xl',
           {
             '-underlined pb-4': underlined,
           },

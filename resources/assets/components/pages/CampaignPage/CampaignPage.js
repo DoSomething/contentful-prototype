@@ -30,7 +30,7 @@ const CampaignPage = props => {
           <CampaignPageNavigationContainer />
         ) : null}
 
-        <Enclosure className="default-container margin-top-lg margin-bottom-lg">
+        <Enclosure className="md:w-3/4 mx-auto margin-top-lg margin-bottom-lg">
           {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
           {!entryContent ? (
             <CampaignPageContent {...props} />

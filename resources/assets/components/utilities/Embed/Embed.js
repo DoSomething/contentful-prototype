@@ -2,7 +2,7 @@
 
 import React from 'react';
 import gql from 'graphql-tag';
-import { truncate } from 'lodash';
+import { get, truncate } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Query } from 'react-apollo';
@@ -55,7 +55,7 @@ const Embed = props => {
       <Query query={EMBED_QUERY} variables={{ url }}>
         {({ loading, error, data }) => {
           const isLoaded = !loading;
-          const { embed } = data;
+          const embed = get(data, 'embed', {});
 
           if (error) {
             return <ErrorBlock />;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { Mutation } from 'react-apollo';
+import { useMutation } from '@apollo/react-hooks';
 
 import Button from '../Button/Button';
 import SchoolSelect from './SchoolSelect';
@@ -12,13 +12,20 @@ const USER_SCHOOL_MUTATION = gql`
     updateSchoolId(id: $userId, schoolId: $schoolId) {
       id
       schoolId
+      school {
+        id
+        name
+        city
+        state
+      }
     }
   }
 `;
 
 const UpdateSchool = ({ onSubmit, userId }) => {
-  const [schoolId, setSchoolId] = useState(null);
+  const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
+  const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
     <React.Fragment>
@@ -33,22 +40,24 @@ const UpdateSchool = ({ onSubmit, userId }) => {
       {schoolState ? (
         <div className="select-school padded">
           <SchoolSelect
-            onChange={selected => setSchoolId(selected.gsid)}
+            onChange={selected => setSchool(selected)}
             filterByState={schoolState.abbreviation}
           />
         </div>
       ) : null}
-      <Mutation
-        mutation={USER_SCHOOL_MUTATION}
-        variables={{ schoolId, userId }}
-        update={() => onSubmit(schoolId)}
+      <Button
+        onClick={() => {
+          updateUserSchool({
+            variables: { schoolId: school ? school.id : null, userId },
+          });
+          // TODO: We shouldn't need this onSubmit handler, should update via Mutation update.
+          onSubmit(school);
+        }}
+        disabled={!school}
+        attached
       >
-        {userMutation => (
-          <Button onClick={userMutation} disabled={schoolId === null} attached>
-            Submit
-          </Button>
-        )}
-      </Mutation>
+        Submit
+      </Button>
     </React.Fragment>
   );
 };

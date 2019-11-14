@@ -82,23 +82,19 @@ class HomePage extends React.Component {
             {blocks.map(this.renderGalleryBlock)}
           </section>
 
-          <section className="container container--sponsors">
-            <div className="wrapper">
-              <div className="container__block">
-                <h4>Sponsors</h4>
-                <ul>
-                  {sponsorList.map(sponsor => (
-                    <li key={sponsor.name}>
-                      <img
-                        src={contentfulImageUrl(sponsor.image, '125', '40')}
-                        title={sponsor.name}
-                        alt={sponsor.name}
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <section className="container--sponsors md:w-3/4 mx-auto px-4 py-8">
+            <h4>Sponsors</h4>
+            <ul>
+              {sponsorList.map(sponsor => (
+                <li key={sponsor.name}>
+                  <img
+                    src={contentfulImageUrl(sponsor.image, '125', '40')}
+                    title={sponsor.name}
+                    alt={sponsor.name}
+                  />
+                </li>
+              ))}
+            </ul>
           </section>
         </div>
 

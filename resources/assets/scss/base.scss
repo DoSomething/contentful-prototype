@@ -1,3 +1,8 @@
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import 'next-toolbox';
 
 // Import Forge so we get our base styles.
@@ -7,6 +12,8 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 body,
 html {
   font-family: $primary-font-family;
+  // Resetting to a base 16px font-size; works better with default Tailwind.
+  font-size: 16px;
   line-height: 1.4;
 }
 
@@ -31,6 +38,17 @@ h3,
 p {
   color: $black;
 }
+
+/*
+|-------------------------------------------------------------------------------
+| START: DEPRECATION WARNING!!
+|-------------------------------------------------------------------------------
+|
+| The classes in the following section are being deprecated in upcoming
+| pull requests. Please refrain from using them. They will be refactored
+| into Tailwind classes.
+|
+*/
 
 .inverted {
   h1,
@@ -414,13 +432,6 @@ p {
   text-align: center;
 }
 
-.default-container {
-  @include media($tablet) {
-    @include span(12 no-gutters);
-    @include push(2);
-  }
-}
-
 .hide-on-mobile {
   @include media($small) {
     display: none;
@@ -450,6 +461,15 @@ p {
 
 /*
 |-------------------------------------------------------------------------------
+| END: DEPRECATION WARNING!!
+|-------------------------------------------------------------------------------
+|
+| The classes after this section are still available for use!
+|
+*/
+
+/*
+|-------------------------------------------------------------------------------
 | Tailwind-esh Class Names
 |-------------------------------------------------------------------------------
 |
@@ -459,129 +479,12 @@ p {
 |
 */
 
-.absolute {
-  position: absolute;
-}
-
-.bg-gray-100 {
-  background-color: $gray-100;
-}
-
-.bg-gray-200 {
-  background-color: $gray-200;
-}
-
-.bg-gray-300 {
-  background-color: $gray-300;
-}
-
-.bg-gray-400 {
-  background-color: $gray-400;
-}
-
-.bg-gray-500 {
-  background-color: $gray-500;
-}
-
-.bg-gray-600 {
-  background-color: $gray-600;
-}
-
-.bg-gray-700 {
-  background-color: $gray-700;
-}
-
-.bg-gray-800 {
-  background-color: $gray-800;
-}
-
-.bg-gray-900 {
-  background-color: $gray-900;
-}
-
-.block {
-  display: block;
-}
-
-.bottom-0 {
-  bottom: 0;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.font-normal {
-  font-weight: $weight-normal;
-}
-
-.font-semibold {
-  font-weight: $weight-sbold;
-}
-
-.font-bold {
-  font-weight: $weight-bold;
-}
-
-.font-secondary {
-  font-family: $secondary-font-family;
-}
-
 .h-4 {
   height: 16px;
 }
 
 .h-8 {
   height: 32px;
-}
-
-.hidden {
-  display: none;
-}
-
-.inline {
-  display: inline;
-}
-
-.invisible {
-  visibility: hidden;
-}
-
-.leading-none {
-  line-height: 1;
-}
-
-.leading-tight {
-  line-height: 1.25;
-}
-
-.leading-snug {
-  line-height: 1.375;
-}
-
-.leading-normal {
-  line-height: 1.5;
-}
-
-.leading-relaxed {
-  line-height: 1.625;
-}
-
-.leading-loose {
-  line-height: 2;
-}
-
-.left-0 {
-  left: 0;
-}
-
-.list-reset {
-  list-style: none;
-  padding: 0;
-}
-
-.m-0 {
-  margin: 0;
 }
 
 .m-4 {
@@ -622,10 +525,6 @@ p {
 
 .overflow-visible {
   overflow: visible !important;
-}
-
-.p-0 {
-  padding: 0;
 }
 
 .p-1 {
@@ -697,69 +596,6 @@ p {
   padding-right: $section-spacing;
 }
 
-.py-2 {
-  padding-top: $half-spacing / 2;
-  padding-bottom: $half-spacing / 2;
-}
-
-.py-4 {
-  padding-top: $half-spacing;
-  padding-bottom: $half-spacing;
-}
-
-.py-8 {
-  padding-top: $base-spacing;
-  padding-bottom: $base-spacing;
-}
-
-.right-0 {
-  right: 0;
-}
-
-.text-black {
-  color: $black;
-}
-
-.text-gray-100 {
-  color: $gray-100;
-}
-
-.text-gray-200 {
-  color: $gray-200;
-}
-
-.text-gray-300 {
-  color: $gray-300;
-}
-
-.text-gray-400 {
-  color: $gray-400;
-}
-
-.text-gray-500 {
-  color: $gray-500;
-}
-
-.text-gray-600 {
-  color: $gray-600;
-}
-
-.text-gray-700 {
-  color: $gray-700;
-}
-
-.text-gray-800 {
-  color: $gray-800;
-}
-
-.text-gray-900 {
-  color: $gray-900;
-}
-
-.text-white {
-  color: $white;
-}
-
 .text-yellow {
   color: $primary-color;
 }
@@ -768,69 +604,12 @@ p {
   color: $blue-500;
 }
 
-.text-xs {
-  font-size: $font-smaller;
-}
-
-.text-sm {
-  font-size: $font-small;
-}
-
-.text-base {
-  font-size: $font-regular;
-}
-
-.text-m {
-  font-size: $font-medium;
-}
-
-.text-lg {
-  font-size: $font-large;
-}
-
-.text-xl {
-  font-size: $font-larger;
-}
-
-.text-2xl {
-  font-size: $text-2xl;
-}
-
-.top-0 {
-  top: 0;
-}
-
-// @TODO: rename to text-3xl
-.text-xxl {
-  font-size: $font-hero;
-}
-
-.visible {
-  visibility: visible;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
 .w-4 {
   width: 16px;
 }
 
 .w-8 {
   width: 32px;
-}
-
-.w-1\/2 {
-  width: 50%;
-}
-
-.w-full {
-  width: 100%;
-}
-
-.whitespace-no-wrap {
-  white-space: nowrap;
 }
 
 /*
