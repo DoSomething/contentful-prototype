@@ -17,7 +17,7 @@ const SectionHeader = ({ superTitle, title, underlined }) => (
         className={classNames(
           'section-header__title font-normal font-league-gothic uppercase text-4xl',
           {
-            '-underlined pb-4': underlined,
+            '-underlined pb-3': underlined,
           },
         )}
       >

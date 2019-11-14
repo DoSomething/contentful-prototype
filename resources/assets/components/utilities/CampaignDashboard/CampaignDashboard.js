@@ -16,8 +16,8 @@ const CampaignDashboard = props => {
   } = props;
 
   return (
-    <div className="dashboard text-black p-4">
-      <div className="dashboard__segment px-4">
+    <div className="dashboard text-black p-3">
+      <div className="dashboard__segment px-3">
         {firstValue ? (
           <strong className="font-league-gothic font-normal text-4xl leading-none">
             {firstValue}
@@ -28,7 +28,7 @@ const CampaignDashboard = props => {
         </p>
       </div>
 
-      <div className="dashboard__segment px-4">
+      <div className="dashboard__segment px-3">
         {secondValue ? (
           <strong className="font-league-gothic font-normal text-4xl leading-none">
             {secondValue}
@@ -39,7 +39,7 @@ const CampaignDashboard = props => {
         </p>
       </div>
 
-      <div className="dashboard__segment dashboard-share px-4">
+      <div className="dashboard__segment dashboard-share px-3">
         <div className="dashboard-share__content">
           {shareHeader ? <strong>{shareHeader}</strong> : null}
           <p>{shareCopy}</p>

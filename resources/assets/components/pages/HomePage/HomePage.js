@@ -82,7 +82,7 @@ class HomePage extends React.Component {
             {blocks.map(this.renderGalleryBlock)}
           </section>
 
-          <section className="container--sponsors md:w-3/4 mx-auto px-4 py-8">
+          <section className="container--sponsors md:w-3/4 mx-auto px-3 py-8">
             <h4>Sponsors</h4>
             <ul>
               {sponsorList.map(sponsor => (
