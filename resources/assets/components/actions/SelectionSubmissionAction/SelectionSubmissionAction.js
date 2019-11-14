@@ -112,7 +112,7 @@ class SelectionSubmissionAction extends React.Component {
       >
         {formResponse ? <FormValidation response={formResponse} /> : null}
 
-        <TextContent className="padded">{content}</TextContent>
+        <TextContent className="p-3">{content}</TextContent>
 
         <Query
           query={USER_POSTS_QUERY}
@@ -130,7 +130,7 @@ class SelectionSubmissionAction extends React.Component {
             // display the post-submission state.
             if (selection || this.state.submitted) {
               return (
-                <div className="padding-horizontal-md padding-bottom-md">
+                <div className="pb-3 px-3">
                   <p className="submission-text caps-lock">
                     {selection || this.state.selection}
                   </p>
@@ -143,7 +143,7 @@ class SelectionSubmissionAction extends React.Component {
 
             return (
               <form onSubmit={this.handleSubmit}>
-                <div className="padding-horizontal-md">
+                <div className="px-3">
                   <label
                     className={classNames('field-label', {
                       'has-error': has(formErrors, 'text'),

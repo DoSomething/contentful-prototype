@@ -5,7 +5,7 @@ import { shallowToJson } from 'enzyme-to-json';
 import Card from './Card';
 
 const component = shallow(
-  <Card className="bordered padded rounded" title="Awesomest Content Ever">
+  <Card className="bordered p-3 rounded" title="Awesomest Content Ever">
     <p>Praesent commodo cursus magna, vel scelerisque nisl</p>
   </Card>,
 );

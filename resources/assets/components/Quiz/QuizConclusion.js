@@ -9,8 +9,8 @@ const QuizConclusion = props => {
 
   return (
     <Card className="quiz-conclusion rounded bordered">
-      <div className="conclusion__item -one-third padding-md">{children}</div>
-      <div className="conclusion__item -two-thirds padding-md">
+      <div className="conclusion__item -one-third p-3">{children}</div>
+      <div className="conclusion__item -two-thirds p-3">
         <TextContent className="conclusion__cta">{callToAction}</TextContent>
       </div>
     </Card>

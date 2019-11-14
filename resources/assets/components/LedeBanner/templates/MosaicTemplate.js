@@ -106,7 +106,7 @@ const MosaicTemplate = props => {
 
           {affiliateSponsors.length ? (
             <AffiliatePromotion
-              className="mosaic-lede-banner__sponsor padding-top-lg clear-both"
+              className="mosaic-lede-banner__sponsor pt-6 clear-both"
               imgUrl={affiliateSponsors[0].fields.logo.url}
               text={affiliateCreditText}
               textClassName="text-gray-400"

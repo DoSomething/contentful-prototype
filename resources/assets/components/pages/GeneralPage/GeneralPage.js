@@ -76,7 +76,7 @@ const GeneralPage = props => {
 
           {coverImage.url ? (
             <LazyImage
-              className="padding-vertical-md margin-horizontal-auto"
+              className="py-3 margin-horizontal-auto"
               alt={coverImage.description || 'Page Cover Image'}
               src={contentfulImageUrl(coverImage.url, 1440, 620)}
             />
@@ -121,7 +121,7 @@ const GeneralPage = props => {
           {authors.length ? (
             <ul className="general-page__author-bios">
               {authors.map(author => (
-                <li className="padding-vertical-md" key={author.id}>
+                <li className="py-3" key={author.id}>
                   <AuthorBio
                     {...withoutNulls(author.fields)}
                     photo={contentfulImageUrl(

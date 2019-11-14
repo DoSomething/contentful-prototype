@@ -154,7 +154,7 @@ class BadgesTab extends React.Component {
     const { userId } = this.props;
 
     return (
-      <div className="grid-wide bg-gray padding-bottom-lg wrapper">
+      <div className="grid-wide bg-gray pb-6 wrapper">
         <h2 className="mb-4">Your Badges</h2>
         <ul className="gallery-grid-sextet">
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>

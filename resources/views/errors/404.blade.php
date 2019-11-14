@@ -10,7 +10,7 @@
                 <h1>Not Found</h1>
             </header>
 
-            <div class="markdown with-lists padded">
+            <div class="markdown with-lists p-3">
                 <p>
                     <strong>We searched our site, but couldn't find what you were looking for.</strong>
                     Find ways you can <a href="{{ url('/us/campaigns?utm_source=404') }}">Take Action</a>

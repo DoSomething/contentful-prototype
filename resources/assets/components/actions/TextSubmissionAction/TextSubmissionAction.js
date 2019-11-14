@@ -172,7 +172,7 @@ class TextSubmissionAction extends React.Component {
             {formResponse ? <FormValidation response={formResponse} /> : null}
 
             <form onSubmit={this.handleSubmit}>
-              <div className="padded">
+              <div className="p-3">
                 <label
                   className={classnames('field-label', {
                     'has-error': has(errors, 'text'),
@@ -228,7 +228,7 @@ class TextSubmissionAction extends React.Component {
               className="bordered rounded"
               title={this.props.informationTitle}
             >
-              <TextContent className="padding-md">
+              <TextContent className="p-3">
                 {this.props.informationContent}
               </TextContent>
             </Card>
@@ -258,7 +258,7 @@ class TextSubmissionAction extends React.Component {
                           return (
                             <Badge
                               earned
-                              className="badge padded"
+                              className="badge p-3"
                               size="medium"
                               name="onePostBadge"
                             >
@@ -277,7 +277,7 @@ class TextSubmissionAction extends React.Component {
                           return (
                             <Badge
                               earned
-                              className="badge padded"
+                              className="badge p-3"
                               size="medium"
                               name="twoPostsBadge"
                             >
@@ -297,7 +297,7 @@ class TextSubmissionAction extends React.Component {
                           return (
                             <Badge
                               earned
-                              className="badge padded"
+                              className="badge p-3"
                               size="medium"
                               name="threePostsBadge"
                             >
@@ -320,7 +320,7 @@ class TextSubmissionAction extends React.Component {
                 }
               </Query>
 
-              <TextContent className="padded">
+              <TextContent className="p-3">
                 {this.props.affirmationContent ||
                   TextSubmissionAction.defaultProps.affirmationContent}
               </TextContent>

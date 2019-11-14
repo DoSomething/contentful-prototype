@@ -29,16 +29,16 @@ const UpdateSchool = ({ onSubmit, userId }) => {
 
   return (
     <React.Fragment>
-      <p className="padded">
+      <p className="p-3">
         Pick your school and whatever. Invite your classmates to join this
         campaign and donate their jeans to win prizes and some other stuff.
       </p>
-      <div className="select-state padded">
+      <div className="select-state p-3">
         <strong>State</strong>
         <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
       </div>
       {schoolState ? (
-        <div className="select-school padded">
+        <div className="select-school p-3">
           <SchoolSelect
             onChange={selected => setSchool(selected)}
             filterByState={schoolState.abbreviation}
