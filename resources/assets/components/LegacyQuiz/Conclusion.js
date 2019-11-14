@@ -8,9 +8,9 @@ const Conclusion = props => {
   const { children, callToAction } = props;
 
   return (
-    <Card className="conclusion rounded bordered padding-lg">
-      <div className="conclusion__item -one-third padding-lg">{children}</div>
-      <div className="conclusion__item -two-thirds padding-lg">
+    <Card className="conclusion rounded bordered p-6">
+      <div className="conclusion__item -one-third p-6">{children}</div>
+      <div className="conclusion__item -two-thirds p-6">
         <TextContent className="conclusion__cta">{callToAction}</TextContent>
       </div>
     </Card>

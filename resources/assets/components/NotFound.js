@@ -13,7 +13,7 @@ const NotFound = props => (
     title="Not Found"
     className={classnames('rounded bordered', props.className)}
   >
-    <TextContent className="padded">
+    <TextContent className="p-3">
       __We searched our site, but couldn&apos;t find what you were looking
       for.__ Find ways you can [Take Action](/us/campaigns?utm_source=404) and
       join a movement of 5 million young people making an impact in their

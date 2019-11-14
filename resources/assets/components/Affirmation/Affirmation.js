@@ -40,11 +40,7 @@ const Affirmation = ({
   userId,
 }) => (
   <Card className="affirmation rounded" title={header}>
-    {quote ? (
-      <TextContent className="padding-top-md padding-horizontal-md">
-        {quote}
-      </TextContent>
-    ) : null}
+    {quote ? <TextContent className="pt-3 px-3">{quote}</TextContent> : null}
 
     <Query query={USER_QUERY} variables={{ userId }}>
       {res => (
@@ -52,7 +48,7 @@ const Affirmation = ({
           {get(res, 'user.hasBadgesFlag', false) && res.signupsCount === 1 ? (
             <Badge
               earned
-              className="badge padded"
+              className="badge p-3"
               size="medium"
               name="signupBadge"
             >
@@ -66,11 +62,11 @@ const Affirmation = ({
           ) : null}
 
           <Flex className="flex-align-center">
-            <FlexCell className="affirmation__cta padded" width="half">
+            <FlexCell className="affirmation__cta p-3" width="half">
               <h3>{callToActionHeader}</h3>
               <p>{callToActionDescription}</p>
             </FlexCell>
-            <FlexCell className="padded" width="half">
+            <FlexCell className="p-3" width="half">
               <Share variant="blue" parentSource="affirmation" />
             </FlexCell>
           </Flex>
@@ -85,7 +81,7 @@ const Affirmation = ({
                 175,
                 'fill',
               )}
-              className="padding-bottom-md padding-horizontal-md"
+              className="pb-3 px-3"
             />
           ) : null}
 

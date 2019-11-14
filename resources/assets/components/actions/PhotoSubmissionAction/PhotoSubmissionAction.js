@@ -348,7 +348,7 @@ class PhotoSubmissionAction extends React.Component {
                       {this.props.showQuantityField ? (
                         <div className="form-item">
                           {quantity ? (
-                            <div className="quantity-display padding-vertical-md">
+                            <div className="quantity-display py-3">
                               <span className="quantity-display__units">
                                 total items
                               </span>
@@ -456,7 +456,7 @@ class PhotoSubmissionAction extends React.Component {
                 title={this.props.informationTitle}
                 className="bordered rounded"
               >
-                <TextContent className="padding-md">
+                <TextContent className="p-3">
                   {this.props.informationContent}
                 </TextContent>
               </Card>
@@ -484,7 +484,7 @@ class PhotoSubmissionAction extends React.Component {
                           return (
                             <Badge
                               earned
-                              className="badge padded"
+                              className="badge p-3"
                               size="medium"
                               name="onePostBadge"
                             >
@@ -503,7 +503,7 @@ class PhotoSubmissionAction extends React.Component {
                           return (
                             <Badge
                               earned
-                              className="badge padded"
+                              className="badge p-3"
                               size="medium"
                               name="twoPostsBadge"
                             >
@@ -523,7 +523,7 @@ class PhotoSubmissionAction extends React.Component {
                           return (
                             <Badge
                               earned
-                              className="badge padded"
+                              className="badge p-3"
                               size="medium"
                               name="threePostsBadge"
                             >
@@ -546,7 +546,7 @@ class PhotoSubmissionAction extends React.Component {
                 }
               </Query>
 
-              <TextContent className="padded">
+              <TextContent className="p-3">
                 {this.props.affirmationContent ||
                   PhotoSubmissionAction.defaultProps.affirmationContent}
               </TextContent>

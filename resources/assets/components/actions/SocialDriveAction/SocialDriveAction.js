@@ -64,20 +64,20 @@ class SocialDriveAction extends React.Component {
     const shortenedLink = this.state.shortenedLink;
 
     return (
-      <div className="clearfix padding-bottom-lg">
+      <div className="clearfix pb-6">
         <div className="social-drive-action">
           <Card title={shareCardTitle} className="rounded bordered">
             {shareCardDescription ? (
-              <div className="padded">
+              <div className="p-3">
                 <p>{shareCardDescription}</p>
               </div>
             ) : null}
 
-            <div className="padded">
+            <div className="p-3">
               <Embed url={link} />
             </div>
 
-            <div className="padded link-area">
+            <div className="p-3 link-area">
               <div className="share-text">
                 <p>Share your link:</p>
               </div>
@@ -115,7 +115,7 @@ class SocialDriveAction extends React.Component {
         {showPageViews ? (
           <div className="social-drive-information">
             <Card className="bordered rounded" title="More info">
-              <div className="link-info padded">
+              <div className="link-info p-3">
                 <p className="info__title">What happens next?</p>
 
                 <p className="info__text">
@@ -125,7 +125,7 @@ class SocialDriveAction extends React.Component {
                 </p>
               </div>
 
-              <div className="padded page-views">
+              <div className="p-3 page-views">
                 <span className="page-views__text caps-lock">
                   total page views
                 </span>

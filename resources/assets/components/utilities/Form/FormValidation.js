@@ -17,7 +17,7 @@ const FormValidation = ({ response }) => {
 
   return (
     <section
-      className={classnames('form-validation padding-md', {
+      className={classnames('form-validation p-3', {
         '-error': hasErrors,
         '-success': !hasErrors,
       })}

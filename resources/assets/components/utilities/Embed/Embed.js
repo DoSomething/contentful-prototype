@@ -81,7 +81,7 @@ const Embed = props => {
                   src={isLoaded && embed ? embed.thumbnailUrl : null}
                   asBackground
                 />
-                <div className="embed__content padded">
+                <div className="embed__content p-3">
                   <div className="margin-vertical-md margin-right-md">
                     <h3 className="line-break">
                       {isLoaded ? (

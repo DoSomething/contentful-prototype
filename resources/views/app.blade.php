@@ -2,12 +2,8 @@
 
 @section('content')
     <div id="app">
-        <div class="flex wrapper">
-            <div class="flex__cell">
-                <div class="placeholder">
-                    <div class="spinner"></div>
-                </div>
-            </div>
+        <div class="placeholder">
+            <div class="spinner"></div>
         </div>
     </div>
 @endsection

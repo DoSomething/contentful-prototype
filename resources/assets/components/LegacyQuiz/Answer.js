@@ -30,7 +30,7 @@ const Answer = props => {
     >
       <Card className={classes}>
         {backgroundImage ? <img src={backgroundImage} alt="" /> : null}
-        <p className="padding-lg">{title}</p>
+        <p className="p-6">{title}</p>
       </Card>
     </button>
   );

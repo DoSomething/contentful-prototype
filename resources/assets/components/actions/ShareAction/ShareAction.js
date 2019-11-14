@@ -191,10 +191,10 @@ class ShareAction extends React.Component {
           />
           <Card title={title} className="rounded bordered">
             {content ? (
-              <TextContent className="padded">{content}</TextContent>
+              <TextContent className="p-3">{content}</TextContent>
             ) : null}
             {hideEmbed ? null : (
-              <div className="padded">
+              <div className="p-3">
                 <Embed url={link} />
               </div>
             )}
@@ -233,7 +233,7 @@ class ShareAction extends React.Component {
                             return (
                               <Badge
                                 earned
-                                className="badge padded"
+                                className="badge p-3"
                                 size="medium"
                                 name="onePostBadge"
                               >
@@ -253,7 +253,7 @@ class ShareAction extends React.Component {
                             return (
                               <Badge
                                 earned
-                                className="badge padded"
+                                className="badge p-3"
                                 size="medium"
                                 name="twoPostsBadge"
                               >
@@ -273,7 +273,7 @@ class ShareAction extends React.Component {
                             return (
                               <Badge
                                 earned
-                                className="badge padded"
+                                className="badge p-3"
                                 size="medium"
                                 name="threePostsBadge"
                               >
@@ -297,7 +297,7 @@ class ShareAction extends React.Component {
                   }
                 </Query>
 
-                <TextContent className="padded">{affirmation}</TextContent>
+                <TextContent className="p-3">{affirmation}</TextContent>
               </Card>
             )}
           </Modal>

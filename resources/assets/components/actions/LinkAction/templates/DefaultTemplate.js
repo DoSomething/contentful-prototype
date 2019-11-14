@@ -79,13 +79,11 @@ const DefaultTemplate = props => {
           'affiliate-content': affiliateLogo,
         })}
       >
-        {content ? (
-          <TextContent className="padded">{content}</TextContent>
-        ) : null}
+        {content ? <TextContent className="p-3">{content}</TextContent> : null}
 
         {affiliateLogo ? (
           <AffiliatePromotion
-            className="text-black padded"
+            className="text-black p-3"
             imgUrl={affiliateLogo.url}
             title={affiliateLogo.description}
           />
