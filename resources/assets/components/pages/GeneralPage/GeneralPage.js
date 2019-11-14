@@ -12,8 +12,8 @@ import ContentfulEntry from '../../ContentfulEntry';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
-import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
-import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
+// import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
+// import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
@@ -148,7 +148,7 @@ const GeneralPage = props => {
           buttonText={ctaCopy.buttonText}
         />
       ) : null}
-      {slug === 'about/easy-scholarships' ? (
+      {/* {slug === 'about/easy-scholarships' ? (
         <CtaPopover
           title="PAYS TO DO GOOD"
           content="Want to earn easy scholarships for volunteering?
@@ -156,7 +156,7 @@ const GeneralPage = props => {
         >
           <CtaPopoverEmailForm />
         </CtaPopover>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };
