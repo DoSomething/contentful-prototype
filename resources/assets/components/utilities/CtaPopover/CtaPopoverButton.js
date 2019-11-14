@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './cta-popover-button.scss';
-import ButtonLink from './ButtonLink/ButtonLink';
+import ButtonLink from '../ButtonLink/ButtonLink';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 const CtaPopoverButton = ({ buttonText, link }) => {
