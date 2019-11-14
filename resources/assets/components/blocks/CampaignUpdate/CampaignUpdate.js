@@ -47,19 +47,17 @@ const CampaignUpdate = props => {
       title={title}
       onClose={closeModal}
     >
-      <TextContent
-        className={classnames('padded', { 'font-size-lg': isTweet })}
-      >
+      <TextContent className={classnames('p-3', { 'font-size-lg': isTweet })}>
         {content || 'Placeholder'}
       </TextContent>
 
       {link ? (
-        <div className="padded">
+        <div className="p-3">
           <Embed url={link} />
         </div>
       ) : null}
 
-      <footer className="padded clearfix">
+      <footer className="p-3 clearfix">
         {affiliateLogo ? (
           <AffiliatePromotion
             imgUrl={affiliateLogo}

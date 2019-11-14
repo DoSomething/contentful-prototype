@@ -17,8 +17,8 @@
                 Try doing the same thing again - it may work the second time! If not, we've already noted
                 the problem and our tech team will get it fixed as soon as possible!
 
-                You can also try <a href="{{ url('/us/campaigns/grab-mic?utm_source=500') }}">Grab the Mic</a>
-                and join our movement to create the most civically active generation ever.
+                You can also find ways to <a href="{{ url('/us/campaigns?utm_source=500') }}">Take Action</a>
+                and join a movement of 5 million young people making an impact in their communities.
             </p>
 
             {{-- @TODO:forge-removal Remove margin reset once Forge is removed. --}}

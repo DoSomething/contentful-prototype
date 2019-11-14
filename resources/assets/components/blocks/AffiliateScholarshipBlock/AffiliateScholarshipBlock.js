@@ -16,7 +16,7 @@ const AffiliateScholarshipBlock = ({
 }) => (
   <Card
     className={classNames(
-      'rounded bordered padded affiliate-scholarship-block',
+      'rounded bordered p-3 affiliate-scholarship-block',
       className,
     )}
   >
@@ -28,7 +28,7 @@ const AffiliateScholarshipBlock = ({
       />
     ) : null}
 
-    <p className="margin-top-sm padding-bottom-md">
+    <p className="margin-top-sm pb-3">
       <strong>
         Welcome to DoSomething.org
         {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!

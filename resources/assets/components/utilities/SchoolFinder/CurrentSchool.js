@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CurrentSchool = ({ school }) => (
-  <div className="padded">
+  <div className="p-3">
     <p>
       Something something something school finder post verification copy. You
       can email{' '}
