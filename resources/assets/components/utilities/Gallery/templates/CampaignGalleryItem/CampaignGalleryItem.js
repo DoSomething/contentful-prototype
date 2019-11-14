@@ -17,7 +17,7 @@ const CampaignGalleryItem = ({
         alt={`${showcaseImage.description || showcaseTitle}-photo`}
         image={contentfulImageUrl(showcaseImage.url, '800', '450', 'fill')}
       >
-        <div className="m-4">
+        <div className="m-3">
           <h4 className="text-blue-500">{showcaseTitle}</h4>
           {showcaseDescription ? (
             <p className="font-normal">{showcaseDescription}</p>

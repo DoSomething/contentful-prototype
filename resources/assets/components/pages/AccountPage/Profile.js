@@ -43,7 +43,7 @@ const Profile = props => (
     </div>
     <div className="grid-wide-1/3 pb-6">
       <h3>Data and Privacy</h3>
-      <ul className="mt-4">
+      <ul className="mt-3">
         <li>
           <a
             href="mailto:trust@dosomething.org?subject=Delete my account"
@@ -55,7 +55,7 @@ const Profile = props => (
       </ul>
 
       <h3>Administration</h3>
-      <ul className="mt-4">
+      <ul className="mt-3">
         <li>
           <a
             href="/deauthorize"
