@@ -20,7 +20,17 @@ const CtaPopoverButton = ({ buttonText, link }) => {
         url: link,
       },
     });
-  return <div>{ButtonLink}</div>;
+  return (
+    <div>
+      <ButtonLink
+        className="cta-popover_button"
+        link={link}
+        onClick={handleClick}
+      >
+        {buttonText}
+      </ButtonLink>
+    </div>
+  );
 };
 
 CtaPopoverButton.propTypes = {

@@ -8,18 +8,14 @@ const CtaPopoverEmailForm = () => {
   const handleChange = event => setEmailValue(event.target.value);
 
   const handleSubmit = event => {
-    handleChange();
     event.preventDefault();
 
     console.log('submitted!');
   };
 
   return (
-    <div>
-      <form
-        className="form padding-bottom-sm padding-top-md"
-        onSubmit={handleSubmit}
-      >
+    <div className="cta-popover-email-form">
+      <form className="email-form form pb-2 pt-4" onSubmit={handleSubmit}>
         {/* <label className="field-label">
               <span className="validation">
                 <div className="validation__message {{modifier_class}}">
@@ -27,20 +23,23 @@ const CtaPopoverEmailForm = () => {
                 </div>
               </span>
             </label> */}
-        <li className="embed-submit-field">
-          <input
-            className="text-field padding-bottom-md"
-            type="email"
-            value={emailValue}
-            placeholder="Enter your email address"
-            onChange={handleChange}
-          />
-          <Button type="submit" onClick={handleSubmit}>
-            Sign Up
-          </Button>
-        </li>
+
+        <input
+          className="text-field email-form__input"
+          type="email"
+          value={emailValue}
+          placeholder="Enter your email address"
+          onChange={handleChange}
+        />
+        <Button
+          className="email-form__button"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Sign Up
+        </Button>
       </form>
-      <p className="text-gray-200 font-italic footnote-font">
+      <p className="text-gray-200 font-italic text-sm">
         You&apos;ll also get a{' '}
         <a
           href="/us/about/default-notifications"

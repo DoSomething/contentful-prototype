@@ -1,26 +1,16 @@
-.embed-submit-field {
-  display: flex;
+.cta-popover-email-form {
+  .email-form {
+    display: flex;
+    .email-form__input {
+      border-radius: 4px 0 0 4px;
+      border: none;
+      font-size: 16px;
+    }
 
-  input {
-    border-radius: 4px 0 0 4px;
-    border: none;
-    font-size: 16px;
+    .email-form__button {
+      width: 105px;
+      border-radius: 0 4px 4px 0;
+      font-size: 16px;
+    }
   }
-
-  button {
-    width: 105px;
-    border-radius: 0 4px 4px 0;
-    font-size: 16px;
-  }
-}
-
-.footnote-font {
-  font-size: 14px;
-}
-
-.underline {
-  text-decoration: underline;
-}
-
-.form-padding {
 }
