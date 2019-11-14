@@ -4,4 +4,6 @@
 
 export const campaignId = '9002';
 
+export const campaignPath = '/us/campaigns/';
+
 export const userId = '5575e568a59dbf3b7a8b4572';
