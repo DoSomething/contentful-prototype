@@ -144,6 +144,17 @@ Cypress.Commands.add('withoutSignup', function(campaignId) {
 });
 
 /**
+ * Mock visiting given campaign as an anonymous user.
+ *
+ * @param {Object} state
+ */
+Cypress.Commands.add('anonVisitCampaign', function(contentfulCampaign) {
+  cy.withState(contentfulCampaign).visit(
+    `${campaignPath}${contentfulCampaign.campaign.slug}`,
+  );
+});
+
+/**
  * Mock visiting given campaign as given user, when a signup exists.
  *
  * @param {Object} state
@@ -171,15 +182,4 @@ Cypress.Commands.add('authVisitCampaignWithoutSignup', function(
     .withState(contentfulCampaign)
     .withoutSignup(contentfulCampaign.campaign.campaignId)
     .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
-});
-
-/**
- * Mock visiting given campaign as an authorized user.
- *
- * @param {Object} state
- */
-Cypress.Commands.add('unauthVisitCampaign', function(contentfulCampaign) {
-  cy.withState(contentfulCampaign).visit(
-    `${campaignPath}${contentfulCampaign.campaign.slug}`,
-  );
 });

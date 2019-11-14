@@ -15,7 +15,7 @@ describe('Campaign Signup', () => {
     const user = userFactory();
 
     // Visit the campaign pitch page:
-    cy.unauthVisitCampaign(exampleCampaign);
+    cy.anonVisitCampaign(exampleCampaign);
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
