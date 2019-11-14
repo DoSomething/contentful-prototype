@@ -22,7 +22,7 @@ const USER_SCHOOL_MUTATION = gql`
   }
 `;
 
-const UpdateSchool = ({ onSubmit, userId }) => {
+const UpdateSchool = ({ userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
@@ -50,8 +50,6 @@ const UpdateSchool = ({ onSubmit, userId }) => {
           updateUserSchool({
             variables: { schoolId: school ? school.id : null, userId },
           });
-          // TODO: We shouldn't need this onSubmit handler, should update via Mutation update.
-          onSubmit(school);
         }}
         disabled={!school}
         attached
@@ -63,7 +61,6 @@ const UpdateSchool = ({ onSubmit, userId }) => {
 };
 
 UpdateSchool.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

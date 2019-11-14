@@ -16,6 +16,8 @@ const SEARCH_SCHOOLS_QUERY = gql`
   }
 `;
 
+const CANT_FIND_SCHOOL_ID = 'school-not-available';
+
 const SchoolSelect = ({ filterByState, onChange }) => {
   const client = useApolloClient();
   // Debounce school search to query for schools after 250 ms typing pause.
@@ -29,7 +31,20 @@ const SchoolSelect = ({ filterByState, onChange }) => {
           name: searchString,
         },
       })
-      .then(res => callback(res.data.searchSchools))
+      .then(res => {
+        const searchResults = res.data.searchSchools;
+
+        if (searchResults.length) {
+          return callback(searchResults);
+        }
+
+        return callback([
+          {
+            id: CANT_FIND_SCHOOL_ID,
+            name: 'My school is not available',
+          },
+        ]);
+      })
       .catch(error => callback(error));
   }, 250);
 
@@ -37,7 +52,9 @@ const SchoolSelect = ({ filterByState, onChange }) => {
     <AsyncSelect
       defaultOptions
       getOptionLabel={school =>
-        `${school.name} - ${school.city}, ${school.state}`
+        school.id === CANT_FIND_SCHOOL_ID
+          ? "My school isn't available"
+          : `${school.name} - ${school.city}, ${school.state}`
       }
       getOptionValue={school => school.id}
       isClearable
@@ -58,13 +75,8 @@ const SchoolSelect = ({ filterByState, onChange }) => {
         }
         return debouncedFetch(input, callback);
       }}
-      noOptionsMessage={select =>
-        select.inputValue.length > 1
-          ? `No results for "${select.inputValue}"`
-          : null
-      }
       onChange={onChange}
-      placeholder="Enter your school name"
+      placeholder="Search for your school name"
     />
   );
 };

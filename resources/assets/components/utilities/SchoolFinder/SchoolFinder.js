@@ -10,14 +10,7 @@ import CurrentSchool from './CurrentSchool';
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
-      id
       schoolId
-      school {
-        id
-        name
-        city
-        state
-      }
     }
   }
 `;
@@ -28,36 +21,32 @@ const SchoolFinder = ({ campaignId, userId }) => {
   if (campaignId !== '9001') {
     return null;
   }
-
-  // TODO: We shouldn't need a school state variable, but instead update Apollo Cache.
-  const [school, setSchool] = useState({
-    id: null,
-    name: null,
-    city: null,
-    state: null,
-  });
+  const [schoolId, setSchoolId] = useState(null);
 
   return (
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
       <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
         {res => {
-          if (res.user && res.user.school) {
-            setSchool(res.user.school);
+          if (!res.user) {
+            return null;
           }
+          console.log(res);
+
+          // @TODO: We shouldn't need to maintain state for this, but update Apollo cache.
+          //setSchoolId(res.user.schoolId);
+          // const schoolId = res.user.schoolId;
 
           return (
             <Card
-              title={school.id ? 'Your School' : 'Find Your School'}
+              title={res.user.schoolId ? 'Your School' : 'Find Your School'}
               className="rounded bordered overflow-visible"
             >
-              {school.id ? (
-                <CurrentSchool school={school} />
+              {res.user.schoolId ? (
+                <div className="padded">
+                  <CurrentSchool schoolId={res.user.schoolId} />
+                </div>
               ) : (
-                // TODO: Remove onSubmit once Apollo cache is updated via mutation in UpdateSchool.
-                <UpdateSchool
-                  userId={userId}
-                  onSubmit={selected => setSchool(selected)}
-                />
+                <UpdateSchool userId={userId} onChange={setSchoolId} />
               )}
             </Card>
           );

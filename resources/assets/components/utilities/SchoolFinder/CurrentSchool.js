@@ -1,29 +1,52 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-const CurrentSchool = ({ school }) => (
-  <div className="p-3">
-    <p>
-      Something something something school finder post verification copy. You
-      can email{' '}
-      <a href="mailto:Sahara@DoSomething.org">mailto:Sahara@DoSomething.org</a>{' '}
-      to change your school.
-    </p>
-    <h3>{school.name}</h3>
-    {school.city ? (
-      <small className="uppercase">
-        {school.city}, {school.state}
-      </small>
-    ) : null}
-  </div>
-);
+import Query from '../../Query';
+
+const SCHOOL_QUERY = gql`
+  query SchoolByIdQuery($schoolId: String!) {
+    school(id: $schoolId) {
+      name
+      city
+      state
+    }
+  }
+`;
+
+const CurrentSchool = ({ schoolId }) => {
+  if (!schoolId) {
+    return null;
+  }
+
+  if (schoolId === 'school-not-available') {
+    return (
+      <React.Fragment>
+        <h3>No School Selected</h3>
+        <p>
+          No school copy goes here, please email Saraha with information about
+          your school.
+        </p>
+      </React.Fragment>
+    );
+  }
+
+  return (
+    <Query query={SCHOOL_QUERY} variables={{ schoolId }}>
+      {res => (
+        <React.Fragment>
+          <h3>{res.school.name}</h3>
+          <small className="uppercase">
+            {res.school.city}, {res.school.state}
+          </small>
+        </React.Fragment>
+      )}
+    </Query>
+  );
+};
 
 CurrentSchool.propTypes = {
-  school: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    city: PropTypes.string,
-    state: PropTypes.string,
-  }).isRequired,
+  schoolId: PropTypes.string.isRequired,
 };
 
 export default CurrentSchool;
