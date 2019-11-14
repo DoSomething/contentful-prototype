@@ -37,7 +37,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
               className="rounded bordered overflow-visible"
             >
               {res.user.schoolId ? (
-                <div className="padded">
+                <div className="p-3">
                   <CurrentSchool schoolId={res.user.schoolId} />
                 </div>
               ) : (
