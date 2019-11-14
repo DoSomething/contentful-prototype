@@ -59,7 +59,7 @@ const VoterRegistrationAction = props => {
       title="Register to vote"
     >
       <PuckWaypoint name="voter_registration_action-top" />
-      <div className="padded clearfix">
+      <div className="p-3 clearfix">
         <TextContent>{content}</TextContent>
 
         <ButtonLink link={parsedLink} onClick={handleClick}>

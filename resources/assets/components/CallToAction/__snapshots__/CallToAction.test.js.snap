@@ -2,7 +2,7 @@
 
 exports[`CallToAction snapshot test 1`] = `
 <Card
-  className="call-to-action rounded padded text-center bg-white bordered light"
+  className="call-to-action rounded p-3 text-center bg-white bordered light"
   link={null}
   onClose={null}
   title={null}

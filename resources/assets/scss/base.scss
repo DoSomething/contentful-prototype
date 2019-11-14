@@ -253,59 +253,6 @@ p {
   word-break: break-word;
 }
 
-// TODO: Remove this.
-.padded {
-  padding: $half-spacing;
-}
-
-.padding-md {
-  padding: $half-spacing;
-}
-
-.padding-lg {
-  padding: $base-spacing;
-}
-
-.padding-vertical-md {
-  padding-top: $half-spacing;
-  padding-bottom: $half-spacing;
-}
-
-.padding-vertical-lg {
-  padding-top: $base-spacing;
-  padding-bottom: $base-spacing;
-}
-
-.padding-horizontal-md {
-  padding-left: $half-spacing;
-  padding-right: $half-spacing;
-}
-
-.padding-horizontal-lg {
-  padding-left: $base-spacing;
-  padding-right: $base-spacing;
-}
-
-.padding-bottom-sm {
-  padding-bottom: $half-spacing / 2;
-}
-
-.padding-bottom-md {
-  padding-bottom: $half-spacing;
-}
-
-.padding-bottom-lg {
-  padding-bottom: $base-spacing;
-}
-
-.padding-top-md {
-  padding-top: $half-spacing;
-}
-
-.padding-top-lg {
-  padding-top: $base-spacing;
-}
-
 .margin-sm {
   margin: 6px;
 }
@@ -527,12 +474,89 @@ p {
   overflow: visible !important;
 }
 
+.p-1 {
+  padding: $half-spacing / 4;
+}
+
+.p-2 {
+  padding: $half-spacing / 2;
+}
+
+.p-4 {
+  padding: $half-spacing;
+}
+
+.p-8 {
+  padding: $base-spacing;
+}
+
+.pb-2 {
+  padding-bottom: $half-spacing / 2;
+}
+
+.pb-4 {
+  padding-bottom: $half-spacing;
+}
+
+.pb-8 {
+  padding-bottom: $base-spacing;
+}
+
+.pt-2 {
+  padding-top: $half-spacing / 2;
+}
+
+.pt-4 {
+  padding-top: $half-spacing;
+}
+
+.pt-8 {
+  padding-top: $base-spacing;
+}
+
+.pt-16 {
+  padding-top: $base-spacing * 2;
+}
+
+.px-1 {
+  padding-left: $half-spacing / 4;
+  padding-right: $half-spacing / 4;
+}
+
+.px-2 {
+  padding-left: $half-spacing / 2;
+  padding-right: $half-spacing / 2;
+}
+
+.px-4 {
+  padding-left: $half-spacing;
+  padding-right: $half-spacing;
+}
+
+.px-8 {
+  padding-left: $base-spacing;
+  padding-right: $base-spacing;
+}
+
+.px-16 {
+  padding-left: $section-spacing;
+  padding-right: $section-spacing;
+}
+
 .text-yellow {
   color: $primary-color;
 }
 
 .text-blue-500 {
   color: $blue-500;
+}
+
+.w-4 {
+  width: 16px;
+}
+
+.w-8 {
+  width: 32px;
 }
 
 /*

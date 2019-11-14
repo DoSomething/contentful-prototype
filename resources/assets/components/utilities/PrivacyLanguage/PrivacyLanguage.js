@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PrivacyLanguage = () => (
-  <p className="footnote padding-horizontal-md padding-bottom-md">
+  <p className="footnote pb-3 px-3">
     The data you submit in this form will be handled in accordance with the
     DoSomething website{' '}
     <a

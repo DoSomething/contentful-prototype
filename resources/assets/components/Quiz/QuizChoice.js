@@ -35,7 +35,7 @@ const QuizChoice = props => {
             alt="quiz choice background"
           />
         ) : null}
-        <p className="padding-md">{title}</p>
+        <p className="p-3">{title}</p>
       </Card>
     </button>
   );

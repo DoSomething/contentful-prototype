@@ -83,9 +83,7 @@ const PitchTemplate = ({
             </div>
             <div className="secondary">
               <Card title={sidebarCTA.title} className="rounded bordered">
-                <TextContent className="padded">
-                  {sidebarCTA.content}
-                </TextContent>
+                <TextContent className="p-3">{sidebarCTA.content}</TextContent>
               </Card>
             </div>
           </div>
@@ -97,7 +95,7 @@ const PitchTemplate = ({
       <PuckWaypoint name="landing_page_cta-top" />
 
       <CallToActionContainer
-        className="legacy border-top border-radius-none bg-off-white padding-lg hide-on-mobile"
+        className="legacy border-top border-radius-none bg-off-white p-6 hide-on-mobile"
         content={tagline}
       />
 
