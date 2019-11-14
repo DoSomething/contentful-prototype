@@ -85,7 +85,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
         <BaseFigure
           media={reactionElement}
           alignment="right"
-          className="padded margin-bottom-none"
+          className="p-3 margin-bottom-none"
         >
           <h4>
             {authorLabel}

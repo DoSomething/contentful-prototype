@@ -84,7 +84,7 @@ const Profile = props => (
       </ul>
     </div>
     {/* Commenting this out until we have proper Voter registration info being pulled from Rogue.
-      <div className="float-right clear-right padding-top-md">
+      <div className="float-right clear-right pt-3">
         <h2>Registration Status</h2>
         <div className="margin-top-lg">
           <VoterRegStatusBlock status={props.user.voterRegistrationStatus} />

@@ -253,59 +253,6 @@ p {
   word-break: break-word;
 }
 
-// TODO: Remove this.
-.padded {
-  padding: $half-spacing;
-}
-
-.padding-md {
-  padding: $half-spacing;
-}
-
-.padding-lg {
-  padding: $base-spacing;
-}
-
-.padding-vertical-md {
-  padding-top: $half-spacing;
-  padding-bottom: $half-spacing;
-}
-
-.padding-vertical-lg {
-  padding-top: $base-spacing;
-  padding-bottom: $base-spacing;
-}
-
-.padding-horizontal-md {
-  padding-left: $half-spacing;
-  padding-right: $half-spacing;
-}
-
-.padding-horizontal-lg {
-  padding-left: $base-spacing;
-  padding-right: $base-spacing;
-}
-
-.padding-bottom-sm {
-  padding-bottom: $half-spacing / 2;
-}
-
-.padding-bottom-md {
-  padding-bottom: $half-spacing;
-}
-
-.padding-bottom-lg {
-  padding-bottom: $base-spacing;
-}
-
-.padding-top-md {
-  padding-top: $half-spacing;
-}
-
-.padding-top-lg {
-  padding-top: $base-spacing;
-}
-
 .margin-sm {
   margin: 6px;
 }

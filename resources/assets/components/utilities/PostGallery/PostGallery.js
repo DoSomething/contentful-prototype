@@ -18,7 +18,7 @@ const galleryTypes = {
 
 const noPostsOutput = shouldShowNoResults =>
   shouldShowNoResults ? (
-    <div className="rounded bg-white padding-lg color-gray">
+    <div className="rounded bg-white p-6 color-gray">
       <em>No Results Found</em>
     </div>
   ) : null;
@@ -71,7 +71,7 @@ const PostGallery = props => {
       {loadMorePosts ? (
         <LoadMore
           buttonClassName="-tertiary"
-          className="padding-lg text-center"
+          className="p-6 text-center"
           text="view more"
           onClick={loadMorePosts}
           isLoading={loading}
