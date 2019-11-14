@@ -49,6 +49,7 @@ const UpdateSchool = ({ userId }) => {
         onClick={() => {
           updateUserSchool({
             variables: { schoolId: school ? school.id : null, userId },
+            refetchQueries: ['UserSchoolQuery'],
           });
         }}
         disabled={!school}

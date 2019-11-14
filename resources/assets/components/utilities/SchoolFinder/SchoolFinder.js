@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -21,20 +21,15 @@ const SchoolFinder = ({ campaignId, userId }) => {
   if (campaignId !== '9001') {
     return null;
   }
-  const [schoolId, setSchoolId] = useState(null);
 
   return (
     <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
       <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
         {res => {
+          // @TODO: We need this to avoid errors, but why/when does this happen?
           if (!res.user) {
             return null;
           }
-          console.log(res);
-
-          // @TODO: We shouldn't need to maintain state for this, but update Apollo cache.
-          //setSchoolId(res.user.schoolId);
-          // const schoolId = res.user.schoolId;
 
           return (
             <Card
@@ -46,7 +41,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
                   <CurrentSchool schoolId={res.user.schoolId} />
                 </div>
               ) : (
-                <UpdateSchool userId={userId} onChange={setSchoolId} />
+                <UpdateSchool userId={userId} />
               )}
             </Card>
           );
