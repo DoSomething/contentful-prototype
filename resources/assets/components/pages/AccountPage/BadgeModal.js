@@ -20,7 +20,7 @@ const BadgeModal = props => {
           />
         </div>
         <div
-          className="inverted p-8 margin-horizontal-auto text-center"
+          className="inverted p-6 margin-horizontal-auto text-center"
           style={{ maxWidth: '400px' }}
         >
           {children}
