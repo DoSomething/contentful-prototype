@@ -23,7 +23,7 @@ const CtaPopoverButton = ({ buttonText, link }) => {
   return (
     <div>
       <ButtonLink
-        className="cta-popover_button"
+        className="cta-popover__button"
         link={link}
         onClick={handleClick}
       >
