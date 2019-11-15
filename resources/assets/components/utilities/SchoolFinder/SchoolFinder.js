@@ -28,11 +28,6 @@ const SchoolFinder = ({ userId }) => (
   <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
     <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
       {res => {
-        // @TODO: We need this to avoid errors, but why/when does this happen?
-        if (!res.user) {
-          return null;
-        }
-
         const { schoolId, school } = res.user;
 
         return (
