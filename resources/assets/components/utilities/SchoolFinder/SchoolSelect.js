@@ -22,7 +22,7 @@ const SchoolSelect = ({ filterByState, onChange }) => {
   const client = useApolloClient();
   // Debounce school search to query for schools after 250 ms typing pause.
   // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-244006496
-  const debouncedFetch = debounce((searchString, callback) => {
+  const fetchSchools = debounce((searchString, callback) => {
     client
       .query({
         query: SEARCH_SCHOOLS_QUERY,
@@ -31,18 +31,16 @@ const SchoolSelect = ({ filterByState, onChange }) => {
           name: searchString,
         },
       })
-      .then(res => {
-        const searchResults = res.data.searchSchools;
-
-        if (searchResults.length) {
-          return callback(searchResults);
-        }
-
-        return callback([
-          {
-            id: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
-          },
-        ]);
+      .then(result => {
+        // Return search results, or School Not Available ID if no school was found.
+        const options = result.data.searchSchools.length
+          ? result.data.searchSchools
+          : [
+              {
+                id: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
+              },
+            ];
+        callback(options);
       })
       .catch(error => callback(error));
   }, 250);
@@ -72,10 +70,10 @@ const SchoolSelect = ({ filterByState, onChange }) => {
         if (!input) {
           return Promise.resolve([]);
         }
-        return debouncedFetch(input, callback);
+        return fetchSchools(input, callback);
       }}
+      noOptionsMessage={() => 'Enter your school name'}
       onChange={onChange}
-      placeholder="Search for your school name"
     />
   );
 };
