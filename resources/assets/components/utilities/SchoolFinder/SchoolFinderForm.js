@@ -16,7 +16,7 @@ const USER_SCHOOL_MUTATION = gql`
   }
 `;
 
-const UpdateSchool = ({ userId }) => {
+const SchoolFinderForm = ({ userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
@@ -55,8 +55,8 @@ const UpdateSchool = ({ userId }) => {
   );
 };
 
-UpdateSchool.propTypes = {
+SchoolFinderForm.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default UpdateSchool;
+export default SchoolFinderForm;

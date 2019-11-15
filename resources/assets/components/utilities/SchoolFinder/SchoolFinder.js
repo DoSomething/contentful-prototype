@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Card from '../Card/Card';
 import Query from '../../Query';
-import UpdateSchool from './UpdateSchool';
+import SchoolFinderForm from './SchoolFinderForm';
 
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
@@ -51,7 +51,7 @@ const SchoolFinder = ({ userId }) => (
                 )}
               </div>
             ) : (
-              <UpdateSchool userId={userId} />
+              <SchoolFinderForm userId={userId} />
             )}
           </Card>
         );
