@@ -44,7 +44,7 @@ const CoverTemplate = props => {
       className="cover-lede-banner"
       style={backgroundImageStyle}
     >
-      <div className="wrapper margin-horizontal-auto">
+      <div className="wrapper mx-auto">
         <h1 className="cover-lede-banner__headline-title">{title}</h1>
 
         <h2 className="cover-lede-banner__headline-subtitle">{subtitle}</h2>

@@ -137,7 +137,7 @@ class PetitionSubmissionAction extends React.Component {
       <React.Fragment>
         <div
           className={classnames(
-            'petition-submission-action margin-bottom-lg',
+            'petition-submission-action mb-6',
             this.props.className,
           )}
           id={id}

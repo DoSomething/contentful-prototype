@@ -98,7 +98,7 @@ const MarqueeTemplate = ({
 
               {affiliateSponsors.length ? (
                 <AffiliatePromotion
-                  className="margin-top-md"
+                  className="mt-3"
                   imgUrl={
                     get(
                       additionalContent,

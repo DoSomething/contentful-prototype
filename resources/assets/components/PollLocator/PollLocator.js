@@ -131,7 +131,7 @@ class PollLocator extends React.Component {
 
   render() {
     return (
-      <div id="_vit" className="margin-horizontal-auto">
+      <div id="_vit" className="mx-auto">
         {/** this spinner will be auto replaced by the vit content once it loads */}
         <div
           className="spinner -centered"
