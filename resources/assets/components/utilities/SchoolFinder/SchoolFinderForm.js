@@ -6,33 +6,25 @@ import { useMutation } from '@apollo/react-hooks';
 import Button from '../Button/Button';
 import SchoolSelect from './SchoolSelect';
 import SchoolStateSelect from '../UsaStateSelect';
+import { SCHOOL_FINDER_FORM_DESCRIPTION } from '../../../constants/school-finder';
 
 const USER_SCHOOL_MUTATION = gql`
   mutation UserSchoolMutation($userId: String!, $schoolId: String) {
     updateSchoolId(id: $userId, schoolId: $schoolId) {
       id
       schoolId
-      school {
-        id
-        name
-        city
-        state
-      }
     }
   }
 `;
 
-const UpdateSchool = ({ onSubmit, userId }) => {
+const SchoolFinderForm = ({ userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
     <React.Fragment>
-      <p className="p-3">
-        Pick your school and whatever. Invite your classmates to join this
-        campaign and donate their jeans to win prizes and some other stuff.
-      </p>
+      <p className="p-3">{SCHOOL_FINDER_FORM_DESCRIPTION}</p>
       <div className="select-state p-3">
         <strong>State</strong>
         <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
@@ -49,9 +41,8 @@ const UpdateSchool = ({ onSubmit, userId }) => {
         onClick={() => {
           updateUserSchool({
             variables: { schoolId: school ? school.id : null, userId },
+            refetchQueries: ['UserSchoolQuery'],
           });
-          // TODO: We shouldn't need this onSubmit handler, should update via Mutation update.
-          onSubmit(school);
         }}
         disabled={!school}
         attached
@@ -62,9 +53,8 @@ const UpdateSchool = ({ onSubmit, userId }) => {
   );
 };
 
-UpdateSchool.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+SchoolFinderForm.propTypes = {
   userId: PropTypes.string.isRequired,
 };
 
-export default UpdateSchool;
+export default SchoolFinderForm;

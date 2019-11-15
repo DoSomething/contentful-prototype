@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Card from '../Card/Card';
 import Query from '../../Query';
-import UpdateSchool from './UpdateSchool';
-import CurrentSchool from './CurrentSchool';
+import SchoolFinderForm from './SchoolFinderForm';
+import {
+  SCHOOL_NOT_AVAILABLE_TITLE,
+  SCHOOL_NOT_AVAILABLE_DESCRIPTION,
+} from '../../../constants/school-finder';
 
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
-      id
       schoolId
       school {
         id
@@ -22,53 +24,41 @@ const USER_SCHOOL_QUERY = gql`
   }
 `;
 
-const SchoolFinder = ({ campaignId, userId }) => {
-  // Check for our development Teens For Jeans (TFJ) campaign ID.
-  // @TODO: Add additional check for production TFJ campaign ID once it exists.
-  if (campaignId !== '9001') {
-    return null;
-  }
+const SchoolFinder = ({ userId }) => (
+  <div className="school-finder mb-6 mx-3 clear-both primary">
+    <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
+      {result => {
+        const { schoolId, school } = result.user;
 
-  // TODO: We shouldn't need a school state variable, but instead update Apollo Cache.
-  const [school, setSchool] = useState({
-    id: null,
-    name: null,
-    city: null,
-    state: null,
-  });
-
-  return (
-    <div className="school-finder mb-6 mx-3 clear-both primary">
-      <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
-        {res => {
-          if (res.user && res.user.school) {
-            setSchool(res.user.school);
-          }
-
-          return (
-            <Card
-              title={school.id ? 'Your School' : 'Find Your School'}
-              className="rounded bordered overflow-visible"
-            >
-              {school.id ? (
-                <CurrentSchool school={school} />
-              ) : (
-                // TODO: Remove onSubmit once Apollo cache is updated via mutation in UpdateSchool.
-                <UpdateSchool
-                  userId={userId}
-                  onSubmit={selected => setSchool(selected)}
-                />
-              )}
-            </Card>
-          );
-        }}
-      </Query>
-    </div>
-  );
-};
+        return (
+          <Card
+            title={schoolId ? 'Your School' : 'Find Your School'}
+            className="rounded bordered overflow-visible"
+          >
+            {schoolId ? (
+              <div className="p-3">
+                <h3>
+                  {school.name ? school.name : SCHOOL_NOT_AVAILABLE_TITLE}
+                </h3>
+                {school.name ? (
+                  <small className="uppercase">
+                    {school.city}, {school.state}
+                  </small>
+                ) : (
+                  <p>{SCHOOL_NOT_AVAILABLE_DESCRIPTION}</p>
+                )}
+              </div>
+            ) : (
+              <SchoolFinderForm userId={userId} />
+            )}
+          </Card>
+        );
+      }}
+    </Query>
+  </div>
+);
 
 SchoolFinder.propTypes = {
-  campaignId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
 

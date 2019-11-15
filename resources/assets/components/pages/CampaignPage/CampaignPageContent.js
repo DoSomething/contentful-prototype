@@ -12,7 +12,7 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
 
 const CampaignPageContent = props => {
-  const { campaignEndDate, match, pages } = props;
+  const { campaignEndDate, match, pages, shouldShowSchoolFinder } = props;
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -82,7 +82,7 @@ const CampaignPageContent = props => {
       ) : null}
 
       <div className="blocks clear-both">
-        <SchoolFinderContainer />
+        {shouldShowSchoolFinder ? <SchoolFinderContainer /> : null}
         {blocks.map(block => renderBlock(block))}
       </div>
 
@@ -114,6 +114,7 @@ CampaignPageContent.propTypes = {
       }),
     }),
   ),
+  shouldShowSchoolFinder: PropTypes.bool.isRequired,
 };
 
 CampaignPageContent.defaultProps = {

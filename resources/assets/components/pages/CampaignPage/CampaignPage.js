@@ -60,6 +60,7 @@ CampaignPage.propTypes = {
     fields: PropTypes.object,
   }),
   shouldShowLandingPage: PropTypes.bool.isRequired,
+  shouldShowSchoolFinder: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {

@@ -21,7 +21,6 @@ describe('School Finder', () => {
 
     cy.mockGraphqlOp('UserSchoolQuery', {
       user: {
-        id: user.id,
         schoolId: null,
         school: null,
       },
@@ -37,7 +36,6 @@ describe('School Finder', () => {
 
     cy.mockGraphqlOp('UserSchoolQuery', {
       user: {
-        id: user.id,
         schoolId: exampleSchool.id,
         school: exampleSchool,
       },
