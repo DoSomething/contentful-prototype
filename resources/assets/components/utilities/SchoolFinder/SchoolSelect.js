@@ -5,7 +5,10 @@ import gql from 'graphql-tag';
 import AsyncSelect from 'react-select/async';
 import { useApolloClient } from '@apollo/react-hooks';
 
-import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../../constants/users';
+import {
+  SCHOOL_NOT_AVAILABLE_OPTION_LABEL,
+  SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
+} from '../../../constants/school-finder';
 
 const SEARCH_SCHOOLS_QUERY = gql`
   query SearchSchoolsQuery($state: String!, $name: String!) {
@@ -50,7 +53,7 @@ const SchoolSelect = ({ filterByState, onChange }) => {
       defaultOptions
       getOptionLabel={school =>
         school.id === SCHOOL_NOT_AVAILABLE_SCHOOL_ID
-          ? "My school isn't available"
+          ? SCHOOL_NOT_AVAILABLE_OPTION_LABEL
           : `${school.name} - ${school.city}, ${school.state}`
       }
       getOptionValue={school => school.id}

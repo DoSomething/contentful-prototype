@@ -10,7 +10,7 @@ import { CallToActionContainer } from '../../CallToAction';
 import SchoolFinderContainer from '../../utilities/SchoolFinder/SchoolFinderContainer';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
-import { SCHOOL_FINDER_CAMPAIGN_IDS } from '../../../constants/campaigns';
+import { SCHOOL_FINDER_CAMPAIGN_IDS } from '../../../constants/school-finder';
 
 const CampaignPageContent = props => {
   const { campaignId, campaignEndDate, match, pages } = props;
