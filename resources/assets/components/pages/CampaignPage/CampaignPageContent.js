@@ -112,6 +112,7 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
+  campaignId: PropTypes.string.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       slug: PropTypes.string.isRequired,
