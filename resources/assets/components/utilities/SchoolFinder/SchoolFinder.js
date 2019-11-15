@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import Query from '../../Query';
 import UpdateSchool from './UpdateSchool';
-import CurrentSchool from './CurrentSchool';
 
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
@@ -30,14 +29,26 @@ const SchoolFinder = ({ userId }) => (
           return null;
         }
 
+        const { schoolId, school } = res.user;
+
         return (
           <Card
-            title={res.user.schoolId ? 'Your School' : 'Find Your School'}
+            title={schoolId ? 'Your School' : 'Find Your School'}
             className="rounded bordered overflow-visible"
           >
-            {res.user.schoolId ? (
+            {schoolId ? (
               <div className="p-3">
-                <CurrentSchool school={res.user.school} />
+                <h3>{school.name ? school.name : 'No School Selected'}</h3>
+                {school.name ? (
+                  <small className="uppercase">
+                    {school.city}, {school.state}
+                  </small>
+                ) : (
+                  <p>
+                    No school copy goes here, please email Sahara with
+                    information about your school.
+                  </p>
+                )}
               </div>
             ) : (
               <UpdateSchool userId={userId} />
