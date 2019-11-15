@@ -57,7 +57,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   switch (post.type) {
     case 'text':
       media = (
-        <div className="chat-bubble -post-bubble margin-bottom-none rounded-top">
+        <div className="chat-bubble -post-bubble mb-0 rounded-top">
           <p className="font-italic word-break">{post.text}</p>
         </div>
       );
@@ -85,7 +85,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
         <BaseFigure
           media={reactionElement}
           alignment="right"
-          className="p-3 margin-bottom-none"
+          className="p-3 mb-0"
         >
           <h4>
             {authorLabel}

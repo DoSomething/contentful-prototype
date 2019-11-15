@@ -48,7 +48,7 @@ const PitchTemplate = ({
                   utmLabel={scholarshipAffiliateLabel.toLowerCase()}
                   scholarshipAmount={scholarshipAmount}
                   scholarshipDeadline={scholarshipDeadline}
-                  className="margin-bottom-lg"
+                  className="mb-6"
                 />
               ) : null}
 
@@ -61,12 +61,10 @@ const PitchTemplate = ({
                   convertableActions={['signup']}
                   alternatives={[
                     <div>
-                      <h3 className="margin-top-xlg">
-                        Photos from our members
-                      </h3>
+                      <h3 className="mt-12">Photos from our members</h3>
                       <PostGalleryBlockQuery
                         campaignId={campaignId}
-                        className="margin-top-md"
+                        className="mt-3"
                         count={6}
                         hideCaption
                         hideQuantity

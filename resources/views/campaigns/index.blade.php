@@ -12,7 +12,7 @@
 
             @include('partials.campaign_gallery', ['campaigns' => $campaigns])
 
-            <div class="pagination clearfix margin-top-md">
+            <div class="pagination clearfix mt-3">
                 @if($previousPage > 0)
                     <a class="button -tertiary float-left clear-none" href="?page={{$previousPage}}">Previous</a>
                 @endif

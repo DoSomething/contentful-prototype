@@ -63,9 +63,7 @@ const ContentfulEntryLoader = ({
   >
     {({ loading, error, data }) => {
       if (loading) {
-        return (
-          <div className="grid-narrow spinner -centered margin-vertical-xlg" />
-        );
+        return <div className="grid-narrow spinner -centered my-12" />;
       }
 
       if (error || !data.block) {

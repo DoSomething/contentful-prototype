@@ -33,7 +33,7 @@ const JumboTemplate = props => {
       className="jumbo-lede-banner"
       style={backgroundImageStyle}
     >
-      <div className="wrapper margin-horizontal-auto">
+      <div className="wrapper mx-auto">
         <h1 className="jumbo-lede-banner__headline-title">{title}</h1>
 
         <h2 className="jumbo-lede-banner__headline-subtitle">{subtitle}</h2>

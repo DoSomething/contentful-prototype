@@ -34,7 +34,7 @@ const ContentfulAsset = ({ id, width, height }) => (
   >
     {({ loading, error, data }) => {
       if (loading) {
-        return <div className="spinner -centered margin-vertical-xlg" />;
+        return <div className="spinner -centered my-12" />;
       }
 
       if (error || !data.asset) {

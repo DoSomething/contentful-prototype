@@ -1,19 +1,19 @@
 <div id="admin-dashboard" class="admin-dashboard">
     <div class="wrapper base-12-grid">
-        <h1 class="admin-dashboard-title grid-full font-normal uppercase text-base text-gray-400 margin-bottom-lg">
+        <h1 class="admin-dashboard-title grid-full font-normal uppercase text-base text-gray-400 mb-6">
             <span>Admin Dashboard</span>
         </h1>
 
-        <h2 class="font-normal grid-full margin-bottom-md text-gray-900 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
+        <h2 class="font-normal grid-full mb-3 text-gray-900 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
 
-        <section class="panel grid-full-1/2 margin-bottom-lg">
+        <section class="panel grid-full-1/2 mb-6">
             <div class="wrapper rounded bg-gray-300">
-                <h1 class="panel-title font-normal text-lg margin-bottom-md">
+                <h1 class="panel-title font-normal text-lg mb-3">
                     @include('svg.cog-icon', ['class' => 'icon icon-cog inline align-baseline']) Configuration
                 </h1>
 
                 <ul>
-                    <li class="margin-bottom-md">
+                    <li class="mb-3">
                         @if ($admin['page']['type'] === 'Page Not Found')
                             <a class="icon-link font-normal" href="{{ $admin['page']['searchUrl'] }}" target="_blank">
                                 @include('svg.search-icon', ['class' => 'icon icon-search inline align-baseline']) Search for this page on Contentful
@@ -24,7 +24,7 @@
                             </a>
                         @endif
                     </li>
-                    <li class="margin-bottom-md">
+                    <li class="mb-3">
                         @if($admin['page']['cacheUrl'])
                             <a class="icon-link font-normal" href="{{ $admin['page']['cacheUrl'] }}">
                                 @include('svg.trash-icon', ['class' => 'icon icon-trash inline align-baseline']) Clear the cache for this page
@@ -39,7 +39,7 @@
 
         <section class="panel grid-full-1/2">
             <div class="wrapper rounded bg-gray-300">
-                <h1 class="panel-title font-normal text-lg margin-bottom-md">
+                <h1 class="panel-title font-normal text-lg mb-3">
                     @include('svg.chart-bar-icon', ['class' => 'icon icon-chart-bar inline align-baseline']) Metrics
                 </h1>
 

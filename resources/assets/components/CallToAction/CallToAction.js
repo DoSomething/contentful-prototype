@@ -13,7 +13,7 @@ const renderImpactContent = (prefix, value, suffix) => {
   const valueElem = <span className="cta__impact_number">{value}</span>;
 
   return (
-    <div className="cta__impact margin-bottom-lg">
+    <div className="cta__impact mb-6">
       {prefix ? `${prefix} ` : null} {valueElem} {suffix ? ` ${suffix}` : null}
     </div>
   );
@@ -51,16 +51,14 @@ const CallToAction = ({
       )}
     >
       {useCampaignTagline ? (
-        <div className="cta__tagline margin-bottom-lg">{tagline}</div>
+        <div className="cta__tagline mb-6">{tagline}</div>
       ) : null}
 
       {impactValue
         ? renderImpactContent(impactPrefix, impactValue, impactSuffix)
         : null}
 
-      {content ? (
-        <div className="cta__message margin-bottom-lg">{content}</div>
-      ) : null}
+      {content ? <div className="cta__message mb-6">{content}</div> : null}
 
       {isSignedUp ? null : (
         <SignupButtonContainer

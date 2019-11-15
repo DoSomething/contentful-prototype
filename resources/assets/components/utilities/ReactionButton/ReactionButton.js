@@ -42,7 +42,7 @@ const ReactionButton = ({ post }) => (
           <BaseFigure
             media={button}
             alignment={post.reactions ? 'left' : null}
-            className="margin-bottom-none"
+            className="mb-0"
           >
             {post.reactions ? (
               <span className="reaction__meta">{post.reactions}</span>
