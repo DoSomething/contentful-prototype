@@ -11,6 +11,12 @@ const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
       schoolId
+      school {
+        id
+        name
+        city
+        state
+      }
     }
   }
 `;
@@ -31,7 +37,7 @@ const SchoolFinder = ({ userId }) => (
           >
             {res.user.schoolId ? (
               <div className="p-3">
-                <CurrentSchool schoolId={res.user.schoolId} />
+                <CurrentSchool school={res.user.school} />
               </div>
             ) : (
               <UpdateSchool userId={userId} />

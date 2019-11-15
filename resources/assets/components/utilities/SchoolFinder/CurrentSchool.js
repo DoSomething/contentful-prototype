@@ -1,26 +1,10 @@
 import React from 'react';
-import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import Query from '../../Query';
 import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../../constants/users';
 
-const SCHOOL_QUERY = gql`
-  query SchoolByIdQuery($schoolId: String!) {
-    school(id: $schoolId) {
-      name
-      city
-      state
-    }
-  }
-`;
-
-const CurrentSchool = ({ schoolId }) => {
-  if (!schoolId) {
-    return null;
-  }
-
-  if (schoolId === SCHOOL_NOT_AVAILABLE_SCHOOL_ID) {
+const CurrentSchool = ({ school }) => {
+  if (school.id === SCHOOL_NOT_AVAILABLE_SCHOOL_ID) {
     return (
       <React.Fragment>
         <h3>No School Selected</h3>
@@ -33,21 +17,22 @@ const CurrentSchool = ({ schoolId }) => {
   }
 
   return (
-    <Query query={SCHOOL_QUERY} variables={{ schoolId }}>
-      {res => (
-        <React.Fragment>
-          <h3>{res.school.name}</h3>
-          <small className="uppercase">
-            {res.school.city}, {res.school.state}
-          </small>
-        </React.Fragment>
-      )}
-    </Query>
+    <React.Fragment>
+      <h3>{school.name}</h3>
+      <small className="uppercase">
+        {school.city}, {school.state}
+      </small>
+    </React.Fragment>
   );
 };
 
 CurrentSchool.propTypes = {
-  schoolId: PropTypes.string.isRequired,
+  school: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+  }).isRequired,
 };
 
 export default CurrentSchool;
