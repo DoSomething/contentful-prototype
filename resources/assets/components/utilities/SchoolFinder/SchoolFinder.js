@@ -27,8 +27,8 @@ const USER_SCHOOL_QUERY = gql`
 const SchoolFinder = ({ userId }) => (
   <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
     <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
-      {res => {
-        const { schoolId, school } = res.user;
+      {result => {
+        const { schoolId, school } = result.user;
 
         return (
           <Card
