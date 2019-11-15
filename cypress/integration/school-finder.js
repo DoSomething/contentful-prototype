@@ -1,10 +1,10 @@
 /// <reference types="Cypress" />
 import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
-import { exampleCampaign } from '../fixtures/contentful';
-
-const teensForJeansCampaign = cloneDeep(exampleCampaign);
-teensForJeansCampaign.campaign.campaignId = '9001';
+import {
+  exampleCampaign,
+  exampleSchoolFinderCampaign,
+} from '../fixtures/contentful';
 
 const exampleSchool = {
   id: '3401458',
@@ -26,7 +26,7 @@ describe('School Finder', () => {
       },
     });
 
-    cy.authVisitCampaignWithSignup(user, teensForJeansCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
 
     cy.get('.school-finder h1').should('contain', 'Find Your School');
   });
@@ -41,7 +41,7 @@ describe('School Finder', () => {
       },
     });
 
-    cy.authVisitCampaignWithSignup(user, teensForJeansCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
 
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
