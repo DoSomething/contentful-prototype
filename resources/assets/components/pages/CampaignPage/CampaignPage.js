@@ -47,7 +47,6 @@ const CampaignPage = props => {
 };
 
 CampaignPage.propTypes = {
-  campaignId: PropTypes.string.isRequired,
   dashboard: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
@@ -61,6 +60,7 @@ CampaignPage.propTypes = {
     fields: PropTypes.object,
   }),
   shouldShowLandingPage: PropTypes.bool.isRequired,
+  shouldShowSchoolFinder: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {

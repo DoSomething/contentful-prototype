@@ -10,10 +10,9 @@ import { CallToActionContainer } from '../../CallToAction';
 import SchoolFinderContainer from '../../utilities/SchoolFinder/SchoolFinderContainer';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
-import { SCHOOL_FINDER_CAMPAIGN_IDS } from '../../../constants/school-finder';
 
 const CampaignPageContent = props => {
-  const { campaignId, campaignEndDate, match, pages } = props;
+  const { campaignEndDate, match, pages, shouldShowSchoolFinder } = props;
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -93,9 +92,7 @@ const CampaignPageContent = props => {
       ) : null}
 
       <div className="blocks clear-both">
-        {SCHOOL_FINDER_CAMPAIGN_IDS.includes(campaignId) ? (
-          <SchoolFinderContainer />
-        ) : null}
+        {shouldShowSchoolFinder ? <SchoolFinderContainer /> : null}
         {blocks.map(block => renderBlock(block))}
       </div>
 
@@ -112,7 +109,6 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
-  campaignId: PropTypes.string.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       slug: PropTypes.string.isRequired,
@@ -128,6 +124,7 @@ CampaignPageContent.propTypes = {
       }),
     }),
   ),
+  shouldShowSchoolFinder: PropTypes.bool.isRequired,
 };
 
 CampaignPageContent.defaultProps = {
