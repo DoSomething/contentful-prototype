@@ -7,6 +7,7 @@ import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
+import CallToAction from '../CallToAction/CallToAction';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
@@ -81,6 +82,19 @@ class ContentfulEntry extends React.Component<Props, State> {
           <AffirmationContainer
             {...withoutNulls(json.fields)}
             onClose={json.onClose}
+          />
+        );
+
+      case 'CallToActionBlock':
+        return (
+          <CallToAction
+            actionText={json.actionText}
+            content={json.content}
+            impactPrefix={json.impactPrefix}
+            impactSuffix={json.impactSuffix}
+            impactValue={json.impactValue}
+            visualStyle={json.visualStyle.toLowerCase()}
+            useCampaignTagline={json.useCampaignTagline}
           />
         );
 
