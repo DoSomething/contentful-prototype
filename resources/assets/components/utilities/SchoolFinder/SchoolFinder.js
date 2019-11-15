@@ -38,7 +38,7 @@ const SchoolFinder = ({ campaignId, userId }) => {
   });
 
   return (
-    <div className="school-finder margin-bottom-lg margin-horizontal-md clear-both primary">
+    <div className="school-finder mb-6 mx-3 clear-both primary">
       <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
         {res => {
           if (res.user && res.user.school) {

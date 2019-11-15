@@ -18,11 +18,11 @@ const AlphaPage = props => {
   return (
     <div className="main general-page base-12-grid">
       <div className="grid-narrow">
-        <div className="margin-vertical">
+        <div className="my-6">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title caps-lock">Want free stuff?</h1>
           </div>
-          <div className="margin-vertical">
+          <div className="my-6">
             <SocialDriveActionContainer
               shareCardDescription="Invite your friends to join DoSomething. When your friend signs up for this campaign, you'll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there's no limit on how many you can refer!)"
               shareCardTitle="Refer A Friend"

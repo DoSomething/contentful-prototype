@@ -30,7 +30,7 @@ const Profile = props => (
       {props.user.mobile ? (
         <FormItem title="Phone Number" value={props.user.mobile} />
       ) : null}
-      <div className="margin-top-lg">
+      <div className="mt-6">
         <a
           href={`${env('NORTHSTAR_URL')}/users/${props.user.id}/edit`}
           target="_blank"
@@ -86,7 +86,7 @@ const Profile = props => (
     {/* Commenting this out until we have proper Voter registration info being pulled from Rogue.
       <div className="float-right clear-right pt-3">
         <h2>Registration Status</h2>
-        <div className="margin-top-lg">
+        <div className="mt-6">
           <VoterRegStatusBlock status={props.user.voterRegistrationStatus} />
         </div>
       </div>

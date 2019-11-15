@@ -7,7 +7,7 @@ exports[`Byline default snapshot test 1`] = `
   <Figure
     alignment="left"
     alt="picture of Puppet Sloth"
-    className="margin-bottom-none"
+    className="mb-0"
     image="http://placekitten.com/300/300"
     imageClassName="avatar"
     size="small"
@@ -32,7 +32,7 @@ exports[`Byline with props snapshot test 1`] = `
   <Figure
     alignment="left"
     alt="picture of Braümhilda Snosages"
-    className="margin-bottom-none"
+    className="mb-0"
     image="http://placeimg.com/150/150/people"
     imageClassName="avatar"
     size="small"

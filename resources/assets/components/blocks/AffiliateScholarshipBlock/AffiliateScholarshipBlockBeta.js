@@ -64,7 +64,7 @@ const AffiliateScholarshipBlockBeta = ({
       <>
         <dt>Requirements</dt>
         <dd>
-          <ul className="margin-top-sm list -compacted">
+          <ul className="mt-2 list -compacted">
             <li>Under 26 years old</li>
             <li>No minimum GPA</li>
             <li>No essay</li>

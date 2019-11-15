@@ -82,7 +82,7 @@ const Embed = props => {
                   asBackground
                 />
                 <div className="embed__content p-3">
-                  <div className="margin-vertical-md margin-right-md">
+                  <div className="my-3 mr-3">
                     <h3 className="line-break">
                       {isLoaded ? (
                         truncate(embed ? embed.title : url, { length: 60 })
@@ -99,7 +99,7 @@ const Embed = props => {
                         <PlaceholderText size="large" />
                       )}
                     </p>
-                    <p className="footnote margin-top-md font-bold caps-lock">
+                    <p className="footnote mt-3 font-bold caps-lock">
                       {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,

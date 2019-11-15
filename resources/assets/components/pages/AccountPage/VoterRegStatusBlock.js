@@ -12,7 +12,7 @@ const VoterRegStatusBlock = ({ status }) => {
     return (
       <div className="voter-reg -yellow display-flex flex-align-center">
         <img className="post-badge icon-clock" src={pendingIcon} alt="hello" />
-        <div className="margin-left-md">Your voter reg status is pending!</div>
+        <div className="ml-3">Your voter reg status is pending!</div>
       </div>
     );
   }
@@ -25,9 +25,7 @@ const VoterRegStatusBlock = ({ status }) => {
     return (
       <div className="voter-reg -green display-flex flex-align-center">
         <img className="post-badge icon-check" src={checkmark} alt="hello" />
-        <div className="margin-left-md">
-          Your voter reg status is confirmed! Woo!
-        </div>
+        <div className="ml-3">Your voter reg status is confirmed! Woo!</div>
       </div>
     );
   }
@@ -35,7 +33,7 @@ const VoterRegStatusBlock = ({ status }) => {
   return (
     <div className="voter-reg -red display-flex flex-align-center">
       <img className="post-badge icon-x" src={rejectedIcon} alt="hello" />
-      <div className="margin-left-md">
+      <div className="ml-3">
         We don&#39;t have your voter registration. Register here!
       </div>
     </div>

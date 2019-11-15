@@ -28,7 +28,7 @@ const AffiliateScholarshipBlock = ({
       />
     ) : null}
 
-    <p className="margin-top-sm pb-3">
+    <p className="mt-2 pb-3">
       <strong>
         Welcome to DoSomething.org
         {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
@@ -41,7 +41,7 @@ const AffiliateScholarshipBlock = ({
       {scholarshipAmount ? (
         <div className="scholarship-information__amount">
           <p className="font-bold">AMOUNT</p>
-          <p className="scholarship-amount font-league-gothic margin-top-none">
+          <p className="scholarship-amount font-league-gothic mt-0">
             ${scholarshipAmount.toLocaleString()}
           </p>
         </div>
@@ -51,7 +51,7 @@ const AffiliateScholarshipBlock = ({
         {scholarshipDeadline ? (
           <div className="scholarship-deadline">
             <p className="font-bold">DEADLINE</p>
-            <p className="margin-top-sm">
+            <p className="mt-2">
               {format(scholarshipDeadline, 'MMMM do, YYYY', {
                 awareOfUnicodeTokens: true,
               })}
@@ -61,7 +61,7 @@ const AffiliateScholarshipBlock = ({
 
         <div className="scholarship-requirements">
           <p className="font-bold">REQUIREMENTS</p>
-          <ul className="margin-top-sm list -compacted">
+          <ul className="mt-2 list -compacted">
             <li>Under 26 years old</li>
             <li>No minimum GPA</li>
             <li>No essay</li>

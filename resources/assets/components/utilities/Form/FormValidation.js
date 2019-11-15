@@ -24,10 +24,10 @@ const FormValidation = ({ response }) => {
     >
       <h1 className="visually-hidden">Form validaton information</h1>
 
-      <p className="margin-bottom-sm font-bold">{statusMessage}</p>
+      <p className="mb-2 font-bold">{statusMessage}</p>
 
       {errorMessages ? (
-        <ul className="list -compacted margin-top-sm">
+        <ul className="list -compacted mt-2">
           {errorMessages.map((error, index) => (
             <li key={`error-message-${index}`}>{error}</li> // eslint-disable-line react/no-array-index-key
           ))}
