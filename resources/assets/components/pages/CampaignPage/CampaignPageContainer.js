@@ -23,6 +23,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     campaignEndDate: state.campaign.endDate,
+    campaignId: String(state.campaign.campaignId),
     dashboard: state.campaign.dashboard,
     entryContent,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),

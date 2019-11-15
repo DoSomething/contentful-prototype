@@ -10,9 +10,10 @@ import { CallToActionContainer } from '../../CallToAction';
 import SchoolFinderContainer from '../../utilities/SchoolFinder/SchoolFinderContainer';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
+import { SCHOOL_FINDER_CAMPAIGN_IDS } from '../../../constants/campaigns';
 
 const CampaignPageContent = props => {
-  const { campaignEndDate, match, pages } = props;
+  const { campaignId, campaignEndDate, match, pages } = props;
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -92,7 +93,9 @@ const CampaignPageContent = props => {
       ) : null}
 
       <div className="blocks clear-both">
-        <SchoolFinderContainer />
+        {SCHOOL_FINDER_CAMPAIGN_IDS.includes(campaignId) ? (
+          <SchoolFinderContainer />
+        ) : null}
         {blocks.map(block => renderBlock(block))}
       </div>
 
