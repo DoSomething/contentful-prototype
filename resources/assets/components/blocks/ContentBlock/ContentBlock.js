@@ -60,7 +60,7 @@ const ContentBlock = props => {
         contentNode
       )}
       {additionalContent && additionalContent.showSchoolFinder ? (
-        <div className="pb-3 pt-3">
+        <div className="pt-3">
           <SchoolFinderContainer />
         </div>
       ) : null}
