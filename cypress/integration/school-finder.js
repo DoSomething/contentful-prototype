@@ -16,7 +16,7 @@ const exampleSchool = {
 describe('School Finder', () => {
   beforeEach(() => cy.configureMocks());
 
-  it('Visit TFJ campaign and display Find Your School if user school is not set', () => {
+  it('Visit School Finder campaign and display Find Your School if user school is not set', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('UserSchoolQuery', {
@@ -31,7 +31,7 @@ describe('School Finder', () => {
     cy.get('.school-finder h1').should('contain', 'Find Your School');
   });
 
-  it('Visit TFJ campaign and display Your School school if user school set', () => {
+  it('Visit School Finder campaign and display Your School if user school set', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('UserSchoolQuery', {
@@ -48,7 +48,7 @@ describe('School Finder', () => {
     cy.get('.school-finder h3').should('contain', exampleSchool.name);
   });
 
-  it('Visit non-TFJ campaign and verify School Finder does not exist', () => {
+  it('Visit non School Finder campaign and verify School Finder does not display', () => {
     const user = userFactory();
 
     cy.authVisitCampaignWithSignup(user, exampleCampaign);
