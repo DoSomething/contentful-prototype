@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/react-hooks';
 import Button from '../Button/Button';
 import SchoolSelect from './SchoolSelect';
 import SchoolStateSelect from '../UsaStateSelect';
+import { SCHOOL_FINDER_FORM_DESCRIPTION } from '../../../constants/school-finder';
 
 const USER_SCHOOL_MUTATION = gql`
   mutation UserSchoolMutation($userId: String!, $schoolId: String) {
@@ -23,10 +24,7 @@ const SchoolFinderForm = ({ userId }) => {
 
   return (
     <React.Fragment>
-      <p className="p-3">
-        Pick your school and whatever. Invite your classmates to join this
-        campaign and donate their jeans to win prizes and some other stuff.
-      </p>
+      <p className="p-3">{SCHOOL_FINDER_FORM_DESCRIPTION}</p>
       <div className="select-state p-3">
         <strong>State</strong>
         <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
