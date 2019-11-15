@@ -23,7 +23,7 @@ const PageGalleryItem = ({
           'fill',
         )}
       >
-        <div className="m-4">
+        <div className="m-3">
           <h4 className="text-blue-500">{showcaseTitle}</h4>
           {showcaseDescription ? (
             <p className="font-normal">{showcaseDescription}</p>

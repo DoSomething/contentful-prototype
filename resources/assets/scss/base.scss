@@ -434,42 +434,6 @@ p {
   height: 32px;
 }
 
-.m-4 {
-  margin: $half-spacing;
-}
-
-.mt-4 {
-  margin-top: $half-spacing;
-}
-
-.mt-8 {
-  margin-top: $base-spacing;
-}
-
-.mb-4 {
-  margin-bottom: $half-spacing;
-}
-
-.mx-2 {
-  margin-left: $half-spacing / 2;
-  margin-right: $half-spacing / 2;
-}
-
-.my-2 {
-  margin-top: $half-spacing / 2;
-  margin-bottom: $half-spacing / 2;
-}
-
-.my-4 {
-  margin-top: $half-spacing;
-  margin-bottom: $half-spacing;
-}
-
-.my-8 {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
-}
-
 .overflow-visible {
   overflow: visible !important;
 }
