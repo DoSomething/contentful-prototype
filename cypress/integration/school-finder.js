@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
+import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../resources/assets/constants/school-finder';
 import {
   exampleCampaign,
   exampleSchoolFinderCampaign,
@@ -57,13 +58,12 @@ describe('School Finder', () => {
 
     cy.mockGraphqlOp('UserSchoolQuery', {
       user: {
-        schoolId: 'school-not-available',
+        schoolId: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
         school: {
-          id: 'school-not-available',
-          // @TODO: Would expect passing null here would work, but throws error.
-          name: '',
-          city: '',
-          state: '',
+          id: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
+          name: null,
+          city: null,
+          state: null,
         },
       },
     });
