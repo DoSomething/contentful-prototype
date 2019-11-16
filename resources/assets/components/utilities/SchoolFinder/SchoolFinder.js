@@ -32,7 +32,7 @@ const SchoolFinder = props => (
             className="rounded bordered overflow-visible"
           >
             {schoolId ? (
-              <div className="p-3">
+              <div className="current-school p-3">
                 <h3>
                   {school.name ? school.name : props.schoolNotAvailableHeadline}
                 </h3>

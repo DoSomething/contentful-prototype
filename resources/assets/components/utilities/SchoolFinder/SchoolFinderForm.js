@@ -22,7 +22,7 @@ const SchoolFinderForm = ({ description, userId }) => {
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
-    <React.Fragment>
+    <div className="school-finder-form">
       {description ? <p className="p-3">{description}</p> : null}
       <div className="select-state p-3">
         <strong>State</strong>
@@ -48,7 +48,7 @@ const SchoolFinderForm = ({ description, userId }) => {
       >
         Submit
       </Button>
-    </React.Fragment>
+    </div>
   );
 };
 

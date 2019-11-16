@@ -21,7 +21,7 @@ const schoolFinderConfig =
 describe('School Finder', () => {
   beforeEach(() => cy.configureMocks());
 
-  it('Visit School Finder campaign and display Find Your School if user school is not set', () => {
+  it('Visit School Finder campaign and display form if user school is not set', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('UserSchoolQuery', {
@@ -33,7 +33,17 @@ describe('School Finder', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
 
+    cy.get('.current-school').should('have.length', 0);
+    cy.get('.school-finder-form').should('have.length', 1);
     cy.get('.school-finder h1').should('contain', 'Find Your School');
+    cy.get('.school-finder').should(
+      'contain',
+      schoolFinderConfig.schoolFinderFormDescription,
+    );
+    cy.get('.school-finder').should(
+      'not.contain',
+      schoolFinderConfig.schoolNotAvailableDescription,
+    );
   });
 
   it('Visit School Finder campaign and display user school info if set', () => {
@@ -48,9 +58,19 @@ describe('School Finder', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
 
+    cy.get('.current-school').should('have.length', 1);
+    cy.get('.school-finder-form').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
     cy.get('.school-finder h3').should('contain', exampleSchool.name);
+    cy.get('.school-finder').should(
+      'not.contain',
+      schoolFinderConfig.schoolFinderFormDescription,
+    );
+    cy.get('.school-finder').should(
+      'not.contain',
+      schoolFinderConfig.schoolNotAvailableDescription,
+    );
   });
 
   it('Visit School Finder campaign and display not available info if not available', () => {
@@ -70,8 +90,14 @@ describe('School Finder', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
 
+    cy.get('.current-school').should('have.length', 1);
+    cy.get('.school-finder-form').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
+    cy.get('.school-finder').should(
+      'not.contain',
+      schoolFinderConfig.schoolFinderFormDescription,
+    );
     cy.get('.school-finder').should(
       'contain',
       schoolFinderConfig.schoolNotAvailableDescription,
