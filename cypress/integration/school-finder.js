@@ -13,6 +13,10 @@ const exampleSchool = {
   state: 'CA',
 };
 
+const schoolFinderConfig =
+  exampleSchoolFinderCampaign.campaign.pages[0].fields.blocks[0].fields
+    .additionalContent;
+
 describe('School Finder', () => {
   beforeEach(() => cy.configureMocks());
 
@@ -31,7 +35,7 @@ describe('School Finder', () => {
     cy.get('.school-finder h1').should('contain', 'Find Your School');
   });
 
-  it('Visit School Finder campaign and display Your School if user school set', () => {
+  it('Visit School Finder campaign and display user school info if set', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('UserSchoolQuery', {
@@ -46,6 +50,32 @@ describe('School Finder', () => {
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
     cy.get('.school-finder h3').should('contain', exampleSchool.name);
+  });
+
+  it('Visit School Finder campaign and display not available info if not available', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('UserSchoolQuery', {
+      user: {
+        schoolId: 'school-not-available',
+        school: {
+          id: 'school-not-available',
+          // @TODO: Would expect passing null here would work, but throws error.
+          name: '',
+          city: '',
+          state: '',
+        },
+      },
+    });
+
+    cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
+
+    cy.get('.school-finder h1').should('not.contain', 'Find Your School');
+    cy.get('.school-finder h1').should('contain', 'Your School');
+    cy.get('.school-finder').should(
+      'contain',
+      schoolFinderConfig.schoolNotAvailableDescription,
+    );
   });
 
   it('Visit non School Finder campaign and verify School Finder does not display', () => {
