@@ -11,7 +11,7 @@ const SiteNavigationFeature = ({
   url,
 }) => (
   <a href={url} className="main-subnav__feature" onClick={callback}>
-    <img className="mb-4" src={imageSrc} alt={imageAlt} />
+    <img className="mb-3" src={imageSrc} alt={imageAlt} />
 
     <h1 className="main-subnav__feature-title">{title}</h1>
 

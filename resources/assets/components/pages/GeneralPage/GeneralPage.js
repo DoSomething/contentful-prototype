@@ -78,7 +78,7 @@ const GeneralPage = props => {
 
           {coverImage.url ? (
             <LazyImage
-              className="py-3 margin-horizontal-auto"
+              className="py-3 mx-auto"
               alt={coverImage.description || 'Page Cover Image'}
               src={contentfulImageUrl(coverImage.url, 1440, 620)}
             />
@@ -93,10 +93,7 @@ const GeneralPage = props => {
               {sidebar.length ? (
                 <div className="secondary">
                   {sidebar.map(block => (
-                    <div
-                      className="margin-horizontal-md margin-bottom-lg"
-                      key={block.id}
-                    >
+                    <div className="mx-3 mb-6" key={block.id}>
                       <ContentfulEntry json={block} />
                     </div>
                   ))}
@@ -106,7 +103,7 @@ const GeneralPage = props => {
           ) : null}
 
           {blocks.map(block => (
-            <div className="general-page__block margin-vertical" key={block.id}>
+            <div className="general-page__block my-6" key={block.id}>
               <ContentfulEntry json={block} />
             </div>
           ))}

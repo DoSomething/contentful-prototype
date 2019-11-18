@@ -22,7 +22,7 @@ const USER_POSTS_QUERY = gql`
 
 const UserPostsQuery = ({ userId }) => (
   <div className="grid-wide">
-    <h2 className="mb-4">Your Uploads</h2>
+    <h2 className="mb-3">Your Uploads</h2>
     <PaginatedQuery
       query={USER_POSTS_QUERY}
       queryName="postsByUserId"

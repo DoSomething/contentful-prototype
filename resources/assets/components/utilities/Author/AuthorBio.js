@@ -13,7 +13,7 @@ const AuthorBio = ({ className, description, jobTitle, name, photo }) => (
       image={photo}
       alt={`picture of ${name}`}
       imageClassName="avatar"
-      className="margin-bottom-none"
+      className="mb-0"
     >
       <p>
         <em>{description || `${jobTitle} at DoSomething.org.`}</em>

@@ -253,107 +253,14 @@ p {
   word-break: break-word;
 }
 
-.margin-sm {
-  margin: 6px;
-}
-
-.margin-md {
-  margin: $half-spacing;
-}
-
-.margin-lg {
-  margin: $base-spacing;
-}
-
-.margin-bottom-none {
+// @TODO:forge-removal Required to override Forge; delete once Forge is removed.
+.mb-0 {
   margin-bottom: 0 !important;
 }
 
-.margin-horizontal-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.margin-horizontal-lg {
-  margin-left: $base-spacing;
-  margin-right: $base-spacing;
-}
-
-.margin-horizontal-md {
-  margin-left: $half-spacing;
-  margin-right: $half-spacing;
-}
-
-.margin-bottom-sm {
-  margin-bottom: 6px;
-}
-
-.margin-bottom-md {
-  margin-bottom: $half-spacing;
-}
-
-.margin-bottom-lg {
-  margin-bottom: $base-spacing;
-}
-
-.margin-bottom-xlg {
-  margin-bottom: $section-spacing;
-}
-
-.margin-top-none {
-  margin-top: 0 !important;
-}
-
-.margin-top-sm {
-  margin-top: 6px;
-}
-
-.margin-top-md {
-  margin-top: $half-spacing;
-}
-
-.margin-top-lg {
-  margin-top: $base-spacing;
-}
-
-.margin-top-xlg {
-  margin-top: $section-spacing;
-}
-
-.margin-vertical {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
-}
-
-.margin-vertical-md {
-  margin-top: $half-spacing;
-  margin-bottom: $half-spacing;
-}
-
-.margin-vertical-lg {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
-}
-
-.margin-vertical-xlg {
-  margin-top: $section-spacing;
-  margin-bottom: $section-spacing;
-}
-
-.margin-right {
-  margin-right: $base-spacing;
-}
-
-.margin-right-md {
-  margin-right: $half-spacing;
-}
-
-.margin-left-xlg {
-  margin-left: $section-spacing;
-}
-
-.margin-left-md {
-  margin-left: $half-spacing;
+// @TODO:forge-removal Required to override Forge; delete once Forge is removed.
+.mt-0 {
+  margin-bottom: 0 !important;
 }
 
 .rounded {
@@ -432,42 +339,6 @@ p {
 
 .h-8 {
   height: 32px;
-}
-
-.m-4 {
-  margin: $half-spacing;
-}
-
-.mt-4 {
-  margin-top: $half-spacing;
-}
-
-.mt-8 {
-  margin-top: $base-spacing;
-}
-
-.mb-4 {
-  margin-bottom: $half-spacing;
-}
-
-.mx-2 {
-  margin-left: $half-spacing / 2;
-  margin-right: $half-spacing / 2;
-}
-
-.my-2 {
-  margin-top: $half-spacing / 2;
-  margin-bottom: $half-spacing / 2;
-}
-
-.my-4 {
-  margin-top: $half-spacing;
-  margin-bottom: $half-spacing;
-}
-
-.my-8 {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
 }
 
 .overflow-visible {

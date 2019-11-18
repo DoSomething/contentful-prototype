@@ -20,7 +20,7 @@ const Byline = ({ author, jobTitle, photo, share, className }) => (
       image={photo}
       alt={`picture of ${author}`}
       imageClassName="avatar"
-      className="margin-bottom-none"
+      className="mb-0"
     >
       <strong>{author}</strong>
       <br />

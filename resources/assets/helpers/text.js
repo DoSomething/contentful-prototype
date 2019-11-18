@@ -164,7 +164,7 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.EMBEDDED_ENTRY]: node => (
         <ContentfulEntryLoader
-          className={classnames('component-entry', 'margin-bottom-lg')}
+          className={classnames('component-entry', 'mb-6')}
           classNameByEntry={classNameByEntry}
           classNameByEntryDefault={classNameByEntryDefault}
           id={node.data.target.sys.id}

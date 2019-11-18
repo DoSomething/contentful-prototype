@@ -18,7 +18,7 @@ const Slideshow = props => {
     isFinalSlide && hideCloseButton ? null : (
       <button
         type="button"
-        className="button slideshow__button margin-top-lg"
+        className="button slideshow__button mt-6"
         onClick={() => nextFunc()}
       >
         {isFinalSlide ? 'Close' : 'Next'}

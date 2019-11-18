@@ -30,7 +30,7 @@ const CampaignPage = props => {
           <CampaignPageNavigationContainer />
         ) : null}
 
-        <Enclosure className="md:w-3/4 mx-auto margin-top-lg margin-bottom-lg">
+        <Enclosure className="md:w-3/4 mx-auto mt-6 mb-6">
           {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
           {!entryContent ? (
             <CampaignPageContent {...props} />
@@ -60,6 +60,7 @@ CampaignPage.propTypes = {
     fields: PropTypes.object,
   }),
   shouldShowLandingPage: PropTypes.bool.isRequired,
+  shouldShowSchoolFinder: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {
