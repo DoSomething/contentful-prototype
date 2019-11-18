@@ -7,7 +7,6 @@ import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import ContentfulEntry from '../../ContentfulEntry';
 import { CallToActionContainer } from '../../CallToAction';
-import SchoolFinderContainer from '../../utilities/SchoolFinder/SchoolFinderContainer';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
 
@@ -50,14 +49,9 @@ const CampaignPageContent = props => {
       <div
         key={json.id}
         id={`block-${json.id}`}
-        className={classnames(
-          'margin-bottom-lg',
-          'margin-horizontal-md',
-          'clear-both',
-          {
-            primary: !fullWidth,
-          },
-        )}
+        className={classnames('mb-6', 'mx-3', 'clear-both', {
+          primary: !fullWidth,
+        })}
       >
         <ContentfulEntry json={json} />
       </div>
@@ -72,17 +66,12 @@ const CampaignPageContent = props => {
       {content ? (
         <div className="row">
           <div className="primary">
-            <TextContent className="margin-horizontal-md">
-              {content}
-            </TextContent>
+            <TextContent className="mx-3">{content}</TextContent>
           </div>
           {sidebar.length ? (
             <div className="secondary">
               {sidebar.map(block => (
-                <div
-                  className="margin-bottom-lg margin-horizontal-md"
-                  key={block.id}
-                >
+                <div className="mb-6 mx-3" key={block.id}>
                   <ContentfulEntry json={block} />
                 </div>
               ))}
@@ -92,7 +81,6 @@ const CampaignPageContent = props => {
       ) : null}
 
       <div className="blocks clear-both">
-        <SchoolFinderContainer />
         {blocks.map(block => renderBlock(block))}
       </div>
 

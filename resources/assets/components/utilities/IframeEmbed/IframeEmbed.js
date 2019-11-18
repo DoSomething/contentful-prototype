@@ -20,7 +20,7 @@ const IframeEmbed = ({ className, id, url, previewImage }) => {
           {matches =>
             matches ? (
               <LazyImage
-                className="rounded"
+                className="rounded overflow-hidden"
                 src={previewImage.url}
                 alt={
                   previewImage.description ||

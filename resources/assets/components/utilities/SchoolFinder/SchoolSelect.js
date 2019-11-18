@@ -5,6 +5,11 @@ import gql from 'graphql-tag';
 import AsyncSelect from 'react-select/async';
 import { useApolloClient } from '@apollo/react-hooks';
 
+import {
+  SCHOOL_NOT_AVAILABLE_OPTION_LABEL,
+  SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
+} from '../../../constants/school-finder';
+
 const SEARCH_SCHOOLS_QUERY = gql`
   query SearchSchoolsQuery($state: String!, $name: String!) {
     searchSchools(state: $state, name: $name) {
@@ -20,7 +25,7 @@ const SchoolSelect = ({ filterByState, onChange }) => {
   const client = useApolloClient();
   // Debounce school search to query for schools after 250 ms typing pause.
   // @see https://github.com/JedWatson/react-select/issues/614#issuecomment-244006496
-  const debouncedFetch = debounce((searchString, callback) => {
+  const fetchSchools = debounce((searchString, callback) => {
     client
       .query({
         query: SEARCH_SCHOOLS_QUERY,
@@ -29,7 +34,17 @@ const SchoolSelect = ({ filterByState, onChange }) => {
           name: searchString,
         },
       })
-      .then(res => callback(res.data.searchSchools))
+      .then(result => {
+        // Return search results, or School Not Available ID if no school was found.
+        const options = result.data.searchSchools.length
+          ? result.data.searchSchools
+          : [
+              {
+                id: SCHOOL_NOT_AVAILABLE_SCHOOL_ID,
+              },
+            ];
+        callback(options);
+      })
       .catch(error => callback(error));
   }, 250);
 
@@ -37,7 +52,9 @@ const SchoolSelect = ({ filterByState, onChange }) => {
     <AsyncSelect
       defaultOptions
       getOptionLabel={school =>
-        `${school.name} - ${school.city}, ${school.state}`
+        school.id === SCHOOL_NOT_AVAILABLE_SCHOOL_ID
+          ? SCHOOL_NOT_AVAILABLE_OPTION_LABEL
+          : `${school.name} - ${school.city}, ${school.state}`
       }
       getOptionValue={school => school.id}
       isClearable
@@ -56,15 +73,10 @@ const SchoolSelect = ({ filterByState, onChange }) => {
         if (!input) {
           return Promise.resolve([]);
         }
-        return debouncedFetch(input, callback);
+        return fetchSchools(input, callback);
       }}
-      noOptionsMessage={select =>
-        select.inputValue.length > 1
-          ? `No results for "${select.inputValue}"`
-          : null
-      }
+      noOptionsMessage={() => 'Enter your school name'}
       onChange={onChange}
-      placeholder="Enter your school name"
     />
   );
 };

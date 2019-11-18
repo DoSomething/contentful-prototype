@@ -1,13 +1,54 @@
 // Tailwind CSS
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
-
-@import 'next-toolbox';
 
 // Import Forge so we get our base styles.
 $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 @import '~@dosomething/forge/scss/forge';
+
+/*
+|-------------------------------------------------------------------------------
+| Tailwind composed classes
+|-------------------------------------------------------------------------------
+| @TODO: eventually move to new Forge, so we can aim to keep
+| this file more streamlined and just a base file that puts
+| everything together. We're getting there!
+*/
+
+// @TODO:forge-removal Rename this class to "button".
+.btn {
+  @apply bg-blue-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+}
+
+.btn:focus {
+  @apply bg-blue-300;
+  box-shadow: 0 0 3px theme('colors.blue.500');
+}
+
+// @TODO:forge-removal Rename this class to "text-field".
+.text-input {
+  @apply bg-white p-3 border border-gray-200 border-solid rounded;
+}
+
+.text-input:focus {
+  @apply outline-none border border-solid border-blue-500;
+  box-shadow: 0 0 3px theme('colors.blue.500');
+}
+
+@tailwind utilities;
+
+/*
+|-------------------------------------------------------------------------------
+| START: DEPRECATION WARNING!!
+|-------------------------------------------------------------------------------
+| Phoenix Specific CSS (to be deprecated)
+|
+| The classes in the following section are being deprecated in upcoming
+| pull requests. Please refrain from using them. They will be refactored
+| into Tailwind classes.
+*/
+
+@import 'next-toolbox';
 
 body,
 html {
@@ -38,17 +79,6 @@ h3,
 p {
   color: $black;
 }
-
-/*
-|-------------------------------------------------------------------------------
-| START: DEPRECATION WARNING!!
-|-------------------------------------------------------------------------------
-|
-| The classes in the following section are being deprecated in upcoming
-| pull requests. Please refrain from using them. They will be refactored
-| into Tailwind classes.
-|
-*/
 
 .inverted {
   h1,
@@ -123,10 +153,6 @@ p {
 
 .bg-black {
   background-color: $black !important;
-}
-
-.bg-white {
-  background-color: $white !important;
 }
 
 .bg-purple {
@@ -225,14 +251,6 @@ p {
   height: 100%;
 }
 
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
 .font-italic {
   font-style: italic;
 }
@@ -245,120 +263,18 @@ p {
   }
 }
 
-.caps-lock {
-  text-transform: uppercase;
-}
-
 .word-break {
   word-break: break-word;
 }
 
-.margin-sm {
-  margin: 6px;
-}
-
-.margin-md {
-  margin: $half-spacing;
-}
-
-.margin-lg {
-  margin: $base-spacing;
-}
-
-.margin-bottom-none {
+// @TODO:forge-removal Required to override Forge; delete once Forge is removed.
+.mb-0 {
   margin-bottom: 0 !important;
 }
 
-.margin-horizontal-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.margin-horizontal-lg {
-  margin-left: $base-spacing;
-  margin-right: $base-spacing;
-}
-
-.margin-horizontal-md {
-  margin-left: $half-spacing;
-  margin-right: $half-spacing;
-}
-
-.margin-bottom-sm {
-  margin-bottom: 6px;
-}
-
-.margin-bottom-md {
-  margin-bottom: $half-spacing;
-}
-
-.margin-bottom-lg {
-  margin-bottom: $base-spacing;
-}
-
-.margin-bottom-xlg {
-  margin-bottom: $section-spacing;
-}
-
-.margin-top-none {
-  margin-top: 0 !important;
-}
-
-.margin-top-sm {
-  margin-top: 6px;
-}
-
-.margin-top-md {
-  margin-top: $half-spacing;
-}
-
-.margin-top-lg {
-  margin-top: $base-spacing;
-}
-
-.margin-top-xlg {
-  margin-top: $section-spacing;
-}
-
-.margin-vertical {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
-}
-
-.margin-vertical-md {
-  margin-top: $half-spacing;
-  margin-bottom: $half-spacing;
-}
-
-.margin-vertical-lg {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
-}
-
-.margin-vertical-xlg {
-  margin-top: $section-spacing;
-  margin-bottom: $section-spacing;
-}
-
-.margin-right {
-  margin-right: $base-spacing;
-}
-
-.margin-right-md {
-  margin-right: $half-spacing;
-}
-
-.margin-left-xlg {
-  margin-left: $section-spacing;
-}
-
-.margin-left-md {
-  margin-left: $half-spacing;
-}
-
-.rounded {
-  border-radius: $lg-border-radius;
-  overflow: hidden;
+// @TODO:forge-removal Required to override Forge; delete once Forge is removed.
+.mt-0 {
+  margin-bottom: 0 !important;
 }
 
 .rounded-top {
@@ -375,25 +291,9 @@ p {
   opacity: 0.5;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .hide-on-mobile {
   @include media($small) {
     display: none;
-  }
-}
-
-.league-gothic {
-  font-family: $secondary-font-family;
-  &.-sm {
-    font-size: 50px;
-    font-weight: 400;
-  }
-  &.-lg {
-    font-size: 75px;
-    font-weight: 400;
   }
 }
 
@@ -432,42 +332,6 @@ p {
 
 .h-8 {
   height: 32px;
-}
-
-.m-4 {
-  margin: $half-spacing;
-}
-
-.mt-4 {
-  margin-top: $half-spacing;
-}
-
-.mt-8 {
-  margin-top: $base-spacing;
-}
-
-.mb-4 {
-  margin-bottom: $half-spacing;
-}
-
-.mx-2 {
-  margin-left: $half-spacing / 2;
-  margin-right: $half-spacing / 2;
-}
-
-.my-2 {
-  margin-top: $half-spacing / 2;
-  margin-bottom: $half-spacing / 2;
-}
-
-.my-4 {
-  margin-top: $half-spacing;
-  margin-bottom: $half-spacing;
-}
-
-.my-8 {
-  margin-top: $base-spacing;
-  margin-bottom: $base-spacing;
 }
 
 .overflow-visible {

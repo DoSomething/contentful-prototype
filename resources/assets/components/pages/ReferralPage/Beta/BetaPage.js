@@ -43,16 +43,16 @@ const BetaPage = () => {
         return (
           <div className="main general-page base-12-grid">
             <div className="grid-narrow">
-              <div className="margin-vertical">
+              <div className="my-6">
                 <div className="general-page__heading text-center">
-                  <h1 className="general-page__title caps-lock">
+                  <h1 className="general-page__title uppercase">
                     Hi {firstName}’s friend!
                   </h1>
                 </div>
-                <div className="margin-vertical">
+                <div className="my-6">
                   <img src={GiftCardImage} alt="Gift card" />
                 </div>
-                <div className="margin-vertical">
+                <div className="my-6">
                   <p>
                     {firstName} just signed up for this campaign from
                     DoSomething.org. Once you sign up for your first DoSomething
@@ -61,10 +61,10 @@ const BetaPage = () => {
                 </div>
                 {displayPrimaryCampaign ? (
                   <React.Fragment>
-                    <div className="margin-vertical">
+                    <div className="my-6">
                       <CampaignLink campaignId={campaignId} userId={userId} />
                     </div>
-                    <div className="margin-vertical">
+                    <div className="my-6">
                       <p>
                         <strong>
                           Interested in doing a different campaign to get your
@@ -75,13 +75,13 @@ const BetaPage = () => {
                     </div>
                   </React.Fragment>
                 ) : null}
-                <div className="margin-vertical">
+                <div className="my-6">
                   <CampaignLink
                     campaignId={SECONDARY_CAMPAIGN_ID}
                     userId={userId}
                   />
                 </div>
-                <div className="margin-vertical">
+                <div className="my-6">
                   <h3>FAQ</h3>
                   <h4>
                     1. Can I get the $5 gift card if I already have a

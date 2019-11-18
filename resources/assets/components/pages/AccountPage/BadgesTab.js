@@ -155,7 +155,7 @@ class BadgesTab extends React.Component {
 
     return (
       <div className="grid-wide bg-gray pb-6 wrapper">
-        <h2 className="mb-4">Your Badges</h2>
+        <h2 className="mb-3">Your Badges</h2>
         <ul className="gallery-grid-sextet">
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (

@@ -75,7 +75,7 @@ const DefaultTemplate = props => {
     <div className="link-action">
       <Card
         title={title}
-        className={classnames('rounded bordered', {
+        className={classnames('bordered rounded', {
           'affiliate-content': affiliateLogo,
         })}
       >

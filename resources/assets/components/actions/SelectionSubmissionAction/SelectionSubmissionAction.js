@@ -120,7 +120,7 @@ class SelectionSubmissionAction extends React.Component {
         >
           {({ loading, data }) => {
             if (loading) {
-              return <div className="spinner -centered margin-bottom-md" />;
+              return <div className="spinner -centered mb-3" />;
             }
 
             const post = get(data, 'posts', [])[0];
@@ -131,10 +131,10 @@ class SelectionSubmissionAction extends React.Component {
             if (selection || this.state.submitted) {
               return (
                 <div className="pb-3 px-3">
-                  <p className="submission-text caps-lock">
+                  <p className="submission-text uppercase">
                     {selection || this.state.selection}
                   </p>
-                  <p className="caps-lock color-gray font-bold margin-top-none">
+                  <p className="uppercase color-gray font-bold mt-0">
                     {postSubmissionLabel}
                   </p>
                 </div>

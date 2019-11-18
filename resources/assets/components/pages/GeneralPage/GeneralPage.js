@@ -12,6 +12,8 @@ import ContentfulEntry from '../../ContentfulEntry';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
+// import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
+// import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
@@ -49,7 +51,7 @@ const GeneralPage = props => {
       <div className="main general-page base-12-grid">
         <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
-            <h1 className="general-page__title caps-lock">{title}</h1>
+            <h1 className="general-page__title uppercase">{title}</h1>
             {subTitle ? (
               <p className="general-page__subtitle">{subTitle}</p>
             ) : null}
@@ -76,7 +78,7 @@ const GeneralPage = props => {
 
           {coverImage.url ? (
             <LazyImage
-              className="py-3 margin-horizontal-auto"
+              className="py-3 mx-auto"
               alt={coverImage.description || 'Page Cover Image'}
               src={contentfulImageUrl(coverImage.url, 1440, 620)}
             />
@@ -91,10 +93,7 @@ const GeneralPage = props => {
               {sidebar.length ? (
                 <div className="secondary">
                   {sidebar.map(block => (
-                    <div
-                      className="margin-horizontal-md margin-bottom-lg"
-                      key={block.id}
-                    >
+                    <div className="mx-3 mb-6" key={block.id}>
                       <ContentfulEntry json={block} />
                     </div>
                   ))}
@@ -104,7 +103,7 @@ const GeneralPage = props => {
           ) : null}
 
           {blocks.map(block => (
-            <div className="general-page__block margin-vertical" key={block.id}>
+            <div className="general-page__block my-6" key={block.id}>
               <ContentfulEntry json={block} />
             </div>
           ))}
@@ -146,6 +145,15 @@ const GeneralPage = props => {
           buttonText={ctaCopy.buttonText}
         />
       ) : null}
+      {/* {slug === 'about/easy-scholarships' ? (
+        <CtaPopover
+          title="PAYS TO DO GOOD"
+          content="Want to earn easy scholarships for volunteering?
+          Subscribe to DoSomething's monthly scholarship email."
+        >
+          <CtaPopoverEmailForm />
+        </CtaPopover>
+      ) : null} */}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const StoryPage = props => {
           style={withoutNulls(styles)}
         >
           <div className="wrapper text-center">
-            <h1 className="lede-banner__headline-title color-white caps-lock">
+            <h1 className="lede-banner__headline-title color-white uppercase">
               {title}
             </h1>
             {subTitle ? (

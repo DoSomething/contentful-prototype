@@ -16,11 +16,15 @@
             @endif
 
             {{-- @TODO:css-grid Remove horizontal padding once CSS Grid is implemented --}}
-            <form class="search-form mb-6 px-3" action="/us/search" method="GET" accept-charset="UTF-8">
-                <div class="form-actions -inline">
-                    <li><input class="text-field -search" name="query" type="text" value="{{ $query }}"></li>
-                    <li><input class="button" type="submit" value="Search"></li>
+            <form class="flex mb-6 px-3 text-base lg:w-1/2" action="/us/search" method="GET" accept-charset="UTF-8">
+                <div class="flex-1 mr-3 relative">
+                    @include('svg.search-icon', [
+                        'class' => 'absolute icon icon-search text-gray-300 fill-current m-3',
+                        'style' => 'height: 18px; width: 18px; top: 2px;'
+                    ])
+                    <input class="leading-none pl-10 text-input w-full" name="query" type="text" value="{{ $query }}">
                 </div>
+                <input class="btn" type="submit" value="Search">
             </form>
 
             @if(! empty($campaigns))

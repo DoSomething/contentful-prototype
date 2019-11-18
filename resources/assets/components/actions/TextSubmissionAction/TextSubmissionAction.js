@@ -159,7 +159,7 @@ class TextSubmissionAction extends React.Component {
       <React.Fragment>
         <div
           className={classnames(
-            'text-submission-action margin-bottom-lg',
+            'text-submission-action mb-6',
             this.props.className,
           )}
           id={this.props.id}

@@ -1,13 +1,13 @@
 module.exports = function(migration) {
-  const causePage = migration
-    .createContentType('causePage')
-    .name('Cause Page')
+  const collectionPage = migration
+    .createContentType('collectionPage')
+    .name('Collection Page')
     .description(
-      'A collection of content (information, campaigns, articles, reportbacks) revolving around a particular cause space',
+      'A curated collection of content (information, campaigns, articles, reportbacks) related to a central topic or affiliate.',
     )
     .displayField('internalTitle');
 
-  causePage
+  collectionPage
     .createField('internalTitle')
     .name('Internal Title')
     .type('Symbol')
@@ -17,7 +17,7 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  causePage
+  collectionPage
     .createField('slug')
     .name('Slug')
     .type('Symbol')
@@ -45,7 +45,7 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  causePage
+  collectionPage
     .createField('coverImage')
     .name('Cover Image')
     .type('Link')
@@ -78,7 +78,7 @@ module.exports = function(migration) {
     .omitted(false)
     .linkType('Asset');
 
-  causePage
+  collectionPage
     .createField('superTitle')
     .name('Super Title')
     .type('Symbol')
@@ -87,7 +87,7 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  causePage
+  collectionPage
     .createField('title')
     .name('Title')
     .type('Symbol')
@@ -97,7 +97,7 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  causePage
+  collectionPage
     .createField('description')
     .name('Description')
     .type('RichText')
@@ -122,7 +122,42 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  causePage
+  collectionPage
+    .createField('affiliatePrefix')
+    .name('Affiliate Prefix')
+    .type('Symbol')
+    .localized(true)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  collectionPage
+    .createField('affiliates')
+    .name('Affiliates')
+    .type('Array')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        size: {
+          min: 0,
+          max: 1,
+        },
+
+        message:
+          'We only support adding one affiliate at the moment. Need more? Hop into #team-product on Slack and chat with us!',
+      },
+    ])
+    .disabled(false)
+    .omitted(false)
+    .items({
+      type: 'Link',
+      validations: [],
+      linkType: 'Entry',
+    });
+
+  collectionPage
     .createField('content')
     .name('Content')
     .type('RichText')
@@ -162,37 +197,68 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  causePage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
+  collectionPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
     helpText:
       'This title is used internally to help find this content. It will not be displayed anywhere on the rendered web page.',
   });
 
-  causePage.changeFieldControl('slug', 'builtin', 'slugEditor', {
+  collectionPage.changeFieldControl('slug', 'builtin', 'slugEditor', {
     helpText:
-      'Slug should match the cause type e.g. "environment". The URL for the Cause Page will be prefixed with "causes/" e.g. "https://dosomething.org/us/causes/environment".',
+      'e.g. "boosomething-halloween". The URL for the Collection Page will be prefixed with "collections/" e.g. "https://dosomething.org/us/collections/boosomething-halloween".',
   });
 
-  causePage.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
+  collectionPage.changeFieldControl(
+    'coverImage',
+    'builtin',
+    'assetLinkEditor',
+    {
+      helpText:
+        'The cover image is used as the background for the banner of the Collection Page.',
+    },
+  );
+
+  collectionPage.changeFieldControl('superTitle', 'builtin', 'singleLine', {
     helpText:
-      'The cover image is used as the background for the banner of the Cause Page.',
+      'Shows up atop the title in the banner (can be used as a nice prefix to the title) e.g. "Let\'s affect a more positive".',
   });
 
-  causePage.changeFieldControl('superTitle', 'builtin', 'singleLine', {
-    helpText:
-      'Shows up atop the title in the banner (can be used as a nice prefix to the title) e.g. "Let\'s do something about the".',
+  collectionPage.changeFieldControl('title', 'builtin', 'singleLine', {
+    helpText: 'The great big title in the banner e.g. "Halloween"',
   });
 
-  causePage.changeFieldControl('title', 'builtin', 'singleLine', {
-    helpText: 'The great big title in the banner e.g. "Environment"',
-  });
+  collectionPage.changeFieldControl(
+    'description',
+    'builtin',
+    'richTextEditor',
+    {
+      helpText:
+        'Sits in the banner below the title, provides some general information / introduction to the collection page',
+    },
+  );
 
-  causePage.changeFieldControl('description', 'builtin', 'richTextEditor', {
-    helpText:
-      'Sits in the banner below the title, provides some general information / introduction to the cause space',
-  });
+  collectionPage.changeFieldControl(
+    'affiliatePrefix',
+    'builtin',
+    'singleLine',
+    {
+      helpText:
+        '*If* there are affiliates for this Collection Page, add a custom prefix for how they\'re introduced -- this text will display atop the logo at the foot of the banner. E.g. "Sponsored By", defaults to "In Partnership With".',
+    },
+  );
 
-  causePage.changeFieldControl('content', 'builtin', 'richTextEditor', {
+  collectionPage.changeFieldControl(
+    'affiliates',
+    'builtin',
+    'entryLinksEditor',
+    {
+      helpText:
+        'The affiliate partner or sponsor associated with this Collections Page. Their logo will appear at the foot of the banner, prefixed with the Affiliate Prefix field content.',
+      bulkEditing: false,
+    },
+  );
+
+  collectionPage.changeFieldControl('content', 'builtin', 'richTextEditor', {
     helpText:
-      'The core content for this cause page, sits below the banner, optimally a collection of galleries e.g. campaigns & articles related to this cause space',
+      'The core content for this collection page, sits below the banner, optimally a collection of galleries e.g. campaigns & articles related to this topic.',
   });
 };

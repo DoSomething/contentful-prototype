@@ -12,27 +12,18 @@ const USER_SCHOOL_MUTATION = gql`
     updateSchoolId(id: $userId, schoolId: $schoolId) {
       id
       schoolId
-      school {
-        id
-        name
-        city
-        state
-      }
     }
   }
 `;
 
-const UpdateSchool = ({ onSubmit, userId }) => {
+const SchoolFinderForm = ({ description, userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
-    <React.Fragment>
-      <p className="p-3">
-        Pick your school and whatever. Invite your classmates to join this
-        campaign and donate their jeans to win prizes and some other stuff.
-      </p>
+    <div className="school-finder-form">
+      {description ? <p className="p-3">{description}</p> : null}
       <div className="select-state p-3">
         <strong>State</strong>
         <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
@@ -49,22 +40,25 @@ const UpdateSchool = ({ onSubmit, userId }) => {
         onClick={() => {
           updateUserSchool({
             variables: { schoolId: school ? school.id : null, userId },
+            refetchQueries: ['UserSchoolQuery'],
           });
-          // TODO: We shouldn't need this onSubmit handler, should update via Mutation update.
-          onSubmit(school);
         }}
         disabled={!school}
         attached
       >
         Submit
       </Button>
-    </React.Fragment>
+    </div>
   );
 };
 
-UpdateSchool.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+SchoolFinderForm.propTypes = {
+  description: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };
 
-export default UpdateSchool;
+SchoolFinderForm.defaultProps = {
+  description: null,
+};
+
+export default SchoolFinderForm;

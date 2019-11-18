@@ -183,7 +183,7 @@ class PostGalleryBlockQuery extends React.Component {
     return (
       <React.Fragment>
         {this.state.filterType === 'location' ? (
-          <div className="post-gallery-block-filter margin-horizontal-auto margin-bottom-lg">
+          <div className="post-gallery-block-filter mx-auto mb-6">
             {this.state.shouldScrollToFilter ? <ScrollConcierge /> : null}
             <SelectLocationDropdown
               locationList="domestic"
