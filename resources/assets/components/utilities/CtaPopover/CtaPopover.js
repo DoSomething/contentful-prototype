@@ -16,11 +16,7 @@ const CtaPopover = ({ content, handleClose, title }) => {
       <h3 className="cta-popover__title text-m text-yellow font-bold uppercase">
         {title}
       </h3>
-<<<<<<< HEAD
-      <p className="text-white mt-4">{content}</p>
-=======
       <p className="text-white mt-3">{content}</p>
->>>>>>> 7205ddeb011f12c4959db892a6ca75b668e57f24
     </div>
   );
 };
