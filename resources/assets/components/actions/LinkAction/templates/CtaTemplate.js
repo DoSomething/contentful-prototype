@@ -42,7 +42,7 @@ const CtaTemplate = ({
   const context = { blockId: id, campaignId, pageId };
 
   return (
-    <Card className="cta-template rounded p-3 text-center bg-black dark caps-lock">
+    <Card className="cta-template p-3 rounded text-center bg-black dark uppercase">
       <h3 className="cta-template__title mt-6">{title}</h3>
 
       <TextContent className="cta-template__content">{content}</TextContent>

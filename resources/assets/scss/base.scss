@@ -1,13 +1,54 @@
 // Tailwind CSS
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
-
-@import 'next-toolbox';
 
 // Import Forge so we get our base styles.
 $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 @import '~@dosomething/forge/scss/forge';
+
+/*
+|-------------------------------------------------------------------------------
+| Tailwind composed classes
+|-------------------------------------------------------------------------------
+| @TODO: eventually move to new Forge, so we can aim to keep
+| this file more streamlined and just a base file that puts
+| everything together. We're getting there!
+*/
+
+// @TODO:forge-removal Rename this class to "button".
+.btn {
+  @apply bg-blue-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+}
+
+.btn:focus {
+  @apply bg-blue-300;
+  box-shadow: 0 0 3px theme('colors.blue.500');
+}
+
+// @TODO:forge-removal Rename this class to "text-field".
+.text-input {
+  @apply bg-white p-3 border border-gray-200 border-solid rounded;
+}
+
+.text-input:focus {
+  @apply outline-none border border-solid border-blue-500;
+  box-shadow: 0 0 3px theme('colors.blue.500');
+}
+
+@tailwind utilities;
+
+/*
+|-------------------------------------------------------------------------------
+| START: DEPRECATION WARNING!!
+|-------------------------------------------------------------------------------
+| Phoenix Specific CSS (to be deprecated)
+|
+| The classes in the following section are being deprecated in upcoming
+| pull requests. Please refrain from using them. They will be refactored
+| into Tailwind classes.
+*/
+
+@import 'next-toolbox';
 
 body,
 html {
@@ -38,17 +79,6 @@ h3,
 p {
   color: $black;
 }
-
-/*
-|-------------------------------------------------------------------------------
-| START: DEPRECATION WARNING!!
-|-------------------------------------------------------------------------------
-|
-| The classes in the following section are being deprecated in upcoming
-| pull requests. Please refrain from using them. They will be refactored
-| into Tailwind classes.
-|
-*/
 
 .inverted {
   h1,
@@ -123,10 +153,6 @@ p {
 
 .bg-black {
   background-color: $black !important;
-}
-
-.bg-white {
-  background-color: $white !important;
 }
 
 .bg-purple {
@@ -225,14 +251,6 @@ p {
   height: 100%;
 }
 
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
 .font-italic {
   font-style: italic;
 }
@@ -243,10 +261,6 @@ p {
   p {
     font-size: $font-large;
   }
-}
-
-.caps-lock {
-  text-transform: uppercase;
 }
 
 .word-break {
@@ -263,11 +277,6 @@ p {
   margin-bottom: 0 !important;
 }
 
-.rounded {
-  border-radius: $lg-border-radius;
-  overflow: hidden;
-}
-
 .rounded-top {
   border-radius: $lg-border-radius $lg-border-radius 0 0;
   overflow: hidden;
@@ -282,25 +291,9 @@ p {
   opacity: 0.5;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .hide-on-mobile {
   @include media($small) {
     display: none;
-  }
-}
-
-.league-gothic {
-  font-family: $secondary-font-family;
-  &.-sm {
-    font-size: 50px;
-    font-weight: 400;
-  }
-  &.-lg {
-    font-size: 75px;
-    font-weight: 400;
   }
 }
 

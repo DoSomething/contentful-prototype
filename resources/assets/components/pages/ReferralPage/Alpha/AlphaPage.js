@@ -20,7 +20,7 @@ const AlphaPage = props => {
       <div className="grid-narrow">
         <div className="my-6">
           <div className="general-page__heading text-center">
-            <h1 className="general-page__title caps-lock">Want free stuff?</h1>
+            <h1 className="general-page__title uppercase">Want free stuff?</h1>
           </div>
           <div className="my-6">
             <SocialDriveActionContainer
