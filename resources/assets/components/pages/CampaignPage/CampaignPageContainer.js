@@ -2,7 +2,6 @@ import { get, has } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
-import { SCHOOL_FINDER_CAMPAIGN_IDS } from '../../../constants/school-finder';
 import {
   findContentfulEntry,
   isCampaignClosed,
@@ -31,9 +30,6 @@ const mapStateToProps = (state, ownProps) => {
     noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
     shouldShowLandingPage: shouldShowLandingPage(state, entryContent),
-    shouldShowSchoolFinder: SCHOOL_FINDER_CAMPAIGN_IDS.includes(
-      state.campaign.campaignId,
-    ),
     tagline: get(state.campaign.additionalContent, 'tagline'),
     title: state.campaign.title,
     verb: get(state.campaign.additionalContent, 'verb'),
