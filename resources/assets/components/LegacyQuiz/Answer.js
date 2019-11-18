@@ -16,7 +16,7 @@ const Answer = props => {
     backgroundImage,
   } = props;
 
-  const classes = classnames('bordered rounded', {
+  const classes = classnames('bordered overflow-hidden rounded', {
     '-active': isActive,
     faded: isFaded,
   });

@@ -51,7 +51,7 @@ const GeneralPage = props => {
       <div className="main general-page base-12-grid">
         <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
-            <h1 className="general-page__title caps-lock">{title}</h1>
+            <h1 className="general-page__title uppercase">{title}</h1>
             {subTitle ? (
               <p className="general-page__subtitle">{subTitle}</p>
             ) : null}

@@ -51,7 +51,12 @@ const Embed = props => {
   */
 
   return (
-    <div className={classnames('bordered', 'rounded', 'bg-white', className)}>
+    <div
+      className={classnames(
+        'bg-white bordered overflow-hidden rounded',
+        className,
+      )}
+    >
       <Query query={EMBED_QUERY} variables={{ url }}>
         {({ loading, error, data }) => {
           const isLoaded = !loading;
@@ -99,7 +104,7 @@ const Embed = props => {
                         <PlaceholderText size="large" />
                       )}
                     </p>
-                    <p className="footnote mt-3 font-bold caps-lock">
+                    <p className="footnote mt-3 font-bold uppercase">
                       {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,

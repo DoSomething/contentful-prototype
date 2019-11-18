@@ -126,7 +126,7 @@ class SocialDriveAction extends React.Component {
               </div>
 
               <div className="p-3 page-views">
-                <span className="page-views__text caps-lock">
+                <span className="page-views__text uppercase">
                   total page views
                 </span>
                 <h1 className="page-views__amount">

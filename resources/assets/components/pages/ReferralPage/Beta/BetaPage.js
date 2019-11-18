@@ -45,7 +45,7 @@ const BetaPage = () => {
             <div className="grid-narrow">
               <div className="my-6">
                 <div className="general-page__heading text-center">
-                  <h1 className="general-page__title caps-lock">
+                  <h1 className="general-page__title uppercase">
                     Hi {firstName}’s friend!
                   </h1>
                 </div>

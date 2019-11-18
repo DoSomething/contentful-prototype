@@ -134,7 +134,7 @@ class SocialShareTray extends React.Component {
 
     return (
       <div className="social-share-tray p-3 text-center">
-        {title ? <p className="title caps-lock font-bold">{title}</p> : null}
+        {title ? <p className="title uppercase font-bold">{title}</p> : null}
 
         <div className={classNames('share-buttons', { responsive })}>
           {platforms.includes('facebook') ? (

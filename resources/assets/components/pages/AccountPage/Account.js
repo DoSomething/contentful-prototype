@@ -14,7 +14,7 @@ const Account = props => (
       <div className="bg-white">
         <div className="base-12-grid">
           <div className="grid-wide pt-12">
-            <h1 className="league-gothic -lg caps-lock">
+            <h1 className="font-league-gothic font-normal text-4xl md:text-5xl uppercase">
               Welcome, {props.user.firstName}!
             </h1>
             <AccountNavigation {...props} />
