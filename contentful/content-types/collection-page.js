@@ -153,7 +153,13 @@ module.exports = function(migration) {
     .omitted(false)
     .items({
       type: 'Link',
-      validations: [],
+
+      validations: [
+        {
+          linkContentType: ['affiliates'],
+        },
+      ],
+
       linkType: 'Entry',
     });
 
