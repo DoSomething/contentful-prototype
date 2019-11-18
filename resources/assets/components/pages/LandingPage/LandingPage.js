@@ -36,6 +36,12 @@ const LandingPage = props => {
   return (
     <React.Fragment>
       {/* @SIXPACK Code Test: 2019-07-17 */}
+      {/* //remove from the sixpack SixpackExperiment
+          //move the additional content flag to the campaign entity level, rather than just the landing page
+          //create a new additional content flag for using hero template
+          //set to false for all before going live
+          // switch to true, but set NFL & Taco Bell to false
+           */}
       {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
         <SixpackExperiment
           title={`Marquee Template ${title}`}
