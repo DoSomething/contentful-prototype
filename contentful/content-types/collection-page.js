@@ -109,21 +109,14 @@ module.exports = function(migration) {
       },
       {
         enabledNodeTypes: [
-          'heading-1',
-          'heading-2',
-          'heading-3',
-          'heading-4',
-          'heading-5',
-          'heading-6',
           'ordered-list',
           'unordered-list',
           'hr',
           'blockquote',
           'hyperlink',
         ],
-
         message:
-          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, and link to Url nodes are allowed',
+          'Only ordered list, unordered list, horizontal rule, quote, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
