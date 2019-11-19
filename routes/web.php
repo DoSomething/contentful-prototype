@@ -71,6 +71,9 @@ $router->get('{slug}', function ($slug) {
 // Causes
 $router->view('us/causes/{slug}', 'app');
 
+// Collections
+$router->view('us/collections/{slug}', 'app');
+
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
 
