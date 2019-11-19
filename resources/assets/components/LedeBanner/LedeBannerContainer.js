@@ -23,11 +23,6 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.affiliateCreditText',
     undefined,
   ),
-  featureFlagUseLegacyTemplate: get(
-    state,
-    'campaign.additionalContent.featureFlagUseLegacyTemplate',
-    undefined,
-  ),
   affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
   blurb: get(props, 'blurb', state.campaign.blurb),
@@ -35,6 +30,11 @@ const mapStateToProps = (state, props) => ({
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
   content: get(state, 'campaign.landingPage.fields.content'),
   endDate: state.campaign.endDate,
+  featureFlagUseLegacyTemplate: get(
+    state,
+    'campaign.additionalContent.featureFlagUseLegacyTemplate',
+    undefined,
+  ),
   isAffiliated: isSignedUp(state),
   subtitle: get(props, 'subtitle', state.campaign.callToAction),
   template: get(props, 'template', state.campaign.template),

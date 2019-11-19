@@ -26,8 +26,8 @@ const LedeBanner = props => {
 };
 
 LedeBanner.propTypes = {
-  template: PropTypes.string.isRequired,
   featureFlagUseLegacyTemplate: PropTypes.bool,
+  template: PropTypes.string.isRequired,
 };
 
 LedeBanner.defaultProps = {

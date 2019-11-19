@@ -18,6 +18,7 @@ const LandingPage = props => {
     content,
     coverImage,
     endDate,
+    featureFlagUseLegacyTemplate,
     scholarshipAmount,
     scholarshipDeadline,
     showPartnerMsgOptIn,
@@ -26,7 +27,6 @@ const LandingPage = props => {
     subtitle,
     tagline,
     title,
-    featureFlagUseLegacyTemplate,
   } = props;
 
   // @TODO: allow outputting multiple blocks in the sidebar.
@@ -75,6 +75,7 @@ LandingPage.propTypes = {
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
   endDate: PropTypes.string,
+  featureFlagUseLegacyTemplate: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
@@ -83,7 +84,6 @@ LandingPage.propTypes = {
   subtitle: PropTypes.string.isRequired,
   tagline: PropTypes.string,
   title: PropTypes.string.isRequired,
-  featureFlagUseLegacyTemplate: PropTypes.bool,
 };
 
 LandingPage.defaultProps = {
@@ -92,13 +92,13 @@ LandingPage.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   endDate: null,
+  featureFlagUseLegacyTemplate: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showPartnerMsgOptIn: false,
   sidebar: null,
   signupArrowContent: null,
   tagline: 'Ready to start?',
-  featureFlagUseLegacyTemplate: false,
 };
 
 export default LandingPage;
