@@ -84,7 +84,7 @@ module.exports = {
         '200': '#ffe27a',
         '300': '#ffdd61',
         '400': '#ffd747',
-        '500': '#fcce2e',
+        '500': '#fcce2f',
         '600': '#e3bb29',
         '700': '#c9a624',
         '800': '#b09120',
@@ -142,6 +142,9 @@ module.exports = {
         },
         '.clear-none': {
           clear: 'none',
+        },
+        '.clip-padding-box': {
+          backgroundClip: 'padding-box',
         },
       };
 

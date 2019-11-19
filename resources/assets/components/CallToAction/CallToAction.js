@@ -23,10 +23,14 @@ export const CallToActionBlockFragment = gql`
 `;
 
 const renderImpactContent = (prefix, value, suffix) => {
-  const valueElem = <span className="cta__impact_number">{value}</span>;
+  const valueElem = (
+    <span className="block font-league-gothic font-normal text-4xl">
+      {value}
+    </span>
+  );
 
   return (
-    <div className="cta__impact mb-6">
+    <div className="font-bold mb-6 uppercase">
       {prefix ? `${prefix} ` : null} {valueElem} {suffix ? ` ${suffix}` : null}
     </div>
   );
@@ -40,7 +44,6 @@ const CallToAction = ({
   impactValue,
   hideIfSignedUp,
   isSignedUp,
-  sticky,
   tagline,
   useCampaignTagline,
   visualStyle,
@@ -52,18 +55,35 @@ const CallToAction = ({
   return (
     <Card
       className={classnames('p-3 text-center', className, {
-        'bg-white bordered light': visualStyle === 'light',
-        'bg-black dark': visualStyle === 'dark',
-        'bg-transparent border-0 transparent': visualStyle === 'transparent',
+        'bg-white border border-solid border-gray-200 rounded':
+          visualStyle === 'light',
+        'bg-black rounded text-white': visualStyle === 'dark',
+        'bg-transparent border-0': visualStyle === 'transparent',
       })}
     >
-      {useCampaignTagline ? <div className="mb-6">{tagline}</div> : null}
+      {useCampaignTagline ? (
+        <div
+          className={classnames('font-bold mb-6', {
+            'text-yellow-500': visualStyle === 'dark',
+          })}
+        >
+          {tagline}
+        </div>
+      ) : null}
 
       {impactValue
         ? renderImpactContent(impactPrefix, impactValue, impactSuffix)
         : null}
 
-      {content ? <div className="max-w-lg mb-6 mx-auto">{content}</div> : null}
+      {content ? (
+        <div
+          className={classnames('max-w-lg mb-6 mx-auto', {
+            italic: visualStyle === 'light',
+          })}
+        >
+          {content}
+        </div>
+      ) : null}
 
       {isSignedUp ? null : (
         <SignupButtonContainer
@@ -86,7 +106,6 @@ CallToAction.propTypes = {
   impactValue: PropTypes.string,
   hideIfSignedUp: PropTypes.bool,
   isSignedUp: PropTypes.bool.isRequired,
-  sticky: PropTypes.bool,
   tagline: PropTypes.string.isRequired,
   useCampaignTagline: PropTypes.bool,
   visualStyle: PropTypes.string,
@@ -99,7 +118,6 @@ CallToAction.defaultProps = {
   impactSuffix: null,
   impactValue: null,
   hideIfSignedUp: false,
-  sticky: false,
   useCampaignTagline: false,
   visualStyle: null,
 };
