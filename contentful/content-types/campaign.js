@@ -145,7 +145,16 @@ module.exports = function(migration) {
     .type('Link')
     .localized(false)
     .required(false)
-    .validations([])
+    .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+      },
+    ])
     .disabled(false)
     .omitted(false)
     .linkType('Asset');
