@@ -24,7 +24,7 @@ const PageQuery = ({ query, variables, children }) => {
     return <NotFoundPage />;
   }
 
-  return children(data);
+  return children(data.page);
 };
 
 PageQuery.propTypes = {

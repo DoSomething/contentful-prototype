@@ -86,7 +86,7 @@ CausePageTemplate.propTypes = {
 
 const CausePage = ({ slug }) => (
   <PageQuery query={CAUSE_PAGE_QUERY} variables={{ slug }}>
-    {data => <CausePageTemplate {...data.page} />}
+    {page => <CausePageTemplate {...page} />}
   </PageQuery>
 );
 
