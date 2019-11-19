@@ -39,7 +39,7 @@ const CtaPopoverEmailForm = () => {
           Sign Up
         </Button>
       </form>
-      <p className="text-gray-200 font-italic text-sm">
+      <p className="text-gray-200 italic text-sm">
         You&apos;ll also get a{' '}
         <a
           href="/us/about/default-notifications"

@@ -93,7 +93,7 @@ const PitchTemplate = ({
       <PuckWaypoint name="landing_page_cta-top" />
 
       <CallToActionContainer
-        className="legacy border-top border-radius-none bg-off-white p-6 hide-on-mobile"
+        className="legacy border-top border-radius-none bg-gray-100 p-6 hidden md:block"
         content={tagline}
       />
 
