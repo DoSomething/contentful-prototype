@@ -23,7 +23,7 @@ $router->redirect('/next/logout', '/deauthorize', 302);
 $router->redirect('/northstar/{id}', '/us/account/profile');
 $router->view('/us/account/{clientRoute?}', 'app')
     ->where('clientRoute', '.*');
-    
+
 // Campaigns index
 $router->get('us/campaigns', 'CampaignController@index');
 $router->redirect('campaigns', 'us/campaigns');
