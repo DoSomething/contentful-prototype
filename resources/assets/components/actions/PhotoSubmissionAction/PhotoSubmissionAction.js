@@ -14,7 +14,7 @@ import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
-import PhotoSubmissionConfirmation from './PhotoSubmissionConfirmation';
+import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -444,7 +444,7 @@ class PhotoSubmissionAction extends React.Component {
         </div>
 
         {this.state.showModal ? (
-          <PhotoSubmissionConfirmation
+          <PhotoSubmissionActionModal
             affirmationContent={this.props.affirmationContent}
             onClose={() => this.setState({ showModal: false })}
             userId={this.props.userId}

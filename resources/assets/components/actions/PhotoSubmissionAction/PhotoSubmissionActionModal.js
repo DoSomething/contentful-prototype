@@ -23,7 +23,7 @@ const POST_COUNT_BADGE = gql`
   }
 `;
 
-const PhotoSubmissionConfirmation = ({
+const PhotoSubmissionActionModal = ({
   affirmationContent,
   onClose,
   userId,
@@ -41,7 +41,7 @@ const PhotoSubmissionConfirmation = ({
                   return null;
                 }
 
-                const content = {
+                const config = {
                   1: {
                     className: 'onePostBadge',
                     descriptor: 'first',
@@ -61,15 +61,14 @@ const PhotoSubmissionConfirmation = ({
                     earned
                     className="badge p-3"
                     size="medium"
-                    name={content[count].className}
+                    name={config[count].className}
                   >
                     <h4>
                       {count} Action{count > 1 ? 's' : null}
                     </h4>
                     <p>
                       Ohhh HECK yes! You just earned a new badge for completing
-                      your {content[count].descriptor} campaign.
-                      Congratulations!
+                      your {config[count].descriptor} campaign. Congratulations!
                     </p>
                     <a href="/us/account/profile/badges">View all my badges</a>
                   </Badge>
@@ -85,10 +84,10 @@ const PhotoSubmissionConfirmation = ({
   </Modal>
 );
 
-PhotoSubmissionConfirmation.propTypes = {
+PhotoSubmissionActionModal.propTypes = {
   affirmationContent: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
-export default PhotoSubmissionConfirmation;
+export default PhotoSubmissionActionModal;
