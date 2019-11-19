@@ -129,7 +129,7 @@ module.exports = {
   },
   variants: {},
   plugins: [
-    function({ addUtilities, addComponents, e, prefix, config }) {
+    function({ addUtilities }) {
       const newUtilities = {
         '.clear-both': {
           clear: 'both',
