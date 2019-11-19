@@ -23,7 +23,7 @@ const MosaicTemplate = props => {
     affiliateCreditText,
     affiliateOptInContent,
     affiliateSponsors,
-    displaySignup,
+    displaySignupButton,
     title,
     subtitle,
     blurb,
@@ -41,7 +41,7 @@ const MosaicTemplate = props => {
     )})`,
   };
 
-  const signupButton = displaySignup ? (
+  const signupButton = displaySignupButton ? (
     <div className="mosaic-lede-banner__signup">
       {affiliateOptInContent ? (
         <AffiliateOptInToggleContainer
@@ -130,7 +130,7 @@ MosaicTemplate.propTypes = {
     description: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-  displaySignup: PropTypes.bool,
+  displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool.isRequired,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
@@ -143,7 +143,7 @@ MosaicTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateOptInContent: null,
   blurb: null,
-  displaySignup: true,
+  displaySignupButton: true,
   signupArrowContent: null,
 };
 

@@ -24,7 +24,7 @@ const MarqueeTemplate = ({
   campaignId,
   content,
   coverImage,
-  displaySignUp,
+  displaySignupButton,
   isAffiliated,
   scholarshipAmount,
   scholarshipDeadline,
@@ -67,7 +67,7 @@ const MarqueeTemplate = ({
             </div>
 
             <div className="grid-wide-3/10 secondary">
-              {!isAffiliated && displaySignUp ? (
+              {!isAffiliated && displaySignupButton ? (
                 <div className="marquee-signup-button">
                   <SignupButtonContainer
                     className="w-full"
@@ -131,7 +131,7 @@ MarqueeTemplate.propTypes = {
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
-  displaySignUp: PropTypes.bool,
+  displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -145,7 +145,7 @@ MarqueeTemplate.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   campaignId: null,
-  displaySignUp: true,
+  displaySignupButton: true,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };

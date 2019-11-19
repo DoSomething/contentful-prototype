@@ -30,7 +30,6 @@ const mapStateToProps = (state, ownProps) => {
     featureFlagUseLegacyTemplate: get(
       state,
       'campaign.additionalContent.featureFlagUseLegacyTemplate',
-      undefined,
     ),
     scholarshipDeadline: state.campaign.scholarshipDeadline,
     showPartnerMsgOptIn: get(
