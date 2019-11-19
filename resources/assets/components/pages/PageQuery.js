@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isEmpty from 'lodash/isEmpty';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorPage from './ErrorPage';
 import NotFoundPage from './NotFoundPage';
-import { env, withoutNulls } from '../../helpers';
+import { env } from '../../helpers';
 import Placeholder from '../utilities/Placeholder';
 
 const PageQuery = ({ query, variables, children }) => {
@@ -21,7 +20,7 @@ const PageQuery = ({ query, variables, children }) => {
     return <ErrorPage />;
   }
 
-  if (isEmpty(withoutNulls(data))) {
+  if (!data.page) {
     return <NotFoundPage />;
   }
 

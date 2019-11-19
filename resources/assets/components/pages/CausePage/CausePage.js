@@ -11,7 +11,7 @@ import './cause-page.scss';
 
 export const CAUSE_PAGE_QUERY = gql`
   query CausePageQuery($slug: String!, $preview: Boolean!) {
-    causePageBySlug(slug: $slug, preview: $preview) {
+    page: causePageBySlug(slug: $slug, preview: $preview) {
       coverImage {
         url
         description
@@ -86,7 +86,7 @@ CausePageTemplate.propTypes = {
 
 const CausePage = ({ slug }) => (
   <PageQuery query={CAUSE_PAGE_QUERY} variables={{ slug }}>
-    {res => <CausePageTemplate {...res.causePageBySlug} />}
+    {data => <CausePageTemplate {...data.page} />}
   </PageQuery>
 );
 
