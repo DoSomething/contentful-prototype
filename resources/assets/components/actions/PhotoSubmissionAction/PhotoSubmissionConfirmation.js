@@ -35,67 +35,45 @@ const PhotoSubmissionConfirmation = ({
           get(badgeData, 'user.hasBadgesFlag', false) ? (
             <Query query={POST_COUNT_BADGE} variables={{ userId }} hideSpinner>
               {postData => {
-                if (postData.postsCount === 1) {
-                  return (
-                    <Badge
-                      earned
-                      className="badge p-3"
-                      size="medium"
-                      name="onePostBadge"
-                    >
-                      <h4>1 Action</h4>
-                      <p>
-                        Ohhh HECK yes! You just earned a new badge for
-                        completing your first campaign. Congratulations!
-                      </p>
-                      <a href="/us/account/profile/badges">
-                        View all my badges
-                      </a>
-                    </Badge>
-                  );
+                const count = postData.postsCount;
+
+                if (count > 3) {
+                  return null;
                 }
 
-                if (postData.postsCount === 2) {
-                  return (
-                    <Badge
-                      earned
-                      className="badge p-3"
-                      size="medium"
-                      name="twoPostsBadge"
-                    >
-                      <h4>2 Actions</h4>
-                      <p>
-                        Ohhh HECK yes! You just earned a new badge for
-                        completing your second campaign. Congratulations!
-                      </p>
-                      <a href="/us/account/profile/badges">
-                        View all my badges
-                      </a>
-                    </Badge>
-                  );
-                }
+                const content = {
+                  1: {
+                    className: 'onePostBadge',
+                    descriptor: 'first',
+                  },
+                  2: {
+                    className: 'twoPostsBadge',
+                    descriptor: 'second',
+                  },
+                  3: {
+                    className: 'threePostsBadge',
+                    descriptor: 'third',
+                  },
+                };
 
-                if (postData.postsCount === 3) {
-                  return (
-                    <Badge
-                      earned
-                      className="badge p-3"
-                      size="medium"
-                      name="threePostsBadge"
-                    >
-                      <h4>3 Actions</h4>
-                      <p>
-                        Ohhh HECK yes! You just earned a new badge for
-                        completing your third campaign. Congratulations!
-                      </p>
-                      <a href="/us/account/profile/badges">
-                        View all my badges
-                      </a>
-                    </Badge>
-                  );
-                }
-
-                return null;
+                return (
+                  <Badge
+                    earned
+                    className="badge p-3"
+                    size="medium"
+                    name={content[count].className}
+                  >
+                    <h4>
+                      {count} Action{count > 1 ? 's' : null}
+                    </h4>
+                    <p>
+                      Ohhh HECK yes! You just earned a new badge for completing
+                      your {content[count].descriptor} campaign.
+                      Congratulations!
+                    </p>
+                    <a href="/us/account/profile/badges">View all my badges</a>
+                  </Badge>
+                );
               }}
             </Query>
           ) : null
