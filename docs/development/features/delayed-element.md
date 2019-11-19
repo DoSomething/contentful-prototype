@@ -1,6 +1,6 @@
-# Dismissable Element
+# Delayed Element
 
-This `DismisssableElement` component allows for any element \(e.g. a survey modal, or some promotion CTA\) to be presented to the user after a specified amount of time.
+This `DelayedElement` component allows for any element \(e.g. a survey modal, or some promotion CTA\) to be presented to the user after a specified amount of time.
 
 ## Usage Instructions
 
