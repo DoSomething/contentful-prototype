@@ -26,6 +26,8 @@ const mapStateToProps = (state, props) => ({
   affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
   blurb: get(props, 'blurb', state.campaign.blurb),
+  campaignId: state.campaign.campaignId,
+  contentfulId: state.campaign.id,
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
   endDate: state.campaign.endDate,
   isAffiliated: isSignedUp(state),

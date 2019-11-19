@@ -24,6 +24,7 @@ const MarqueeTemplate = ({
   campaignId,
   content,
   coverImage,
+  isAffiliated,
   scholarshipAmount,
   scholarshipDeadline,
   subtitle,
@@ -66,15 +67,17 @@ const MarqueeTemplate = ({
 
             <div className="grid-wide-3/10 secondary">
               <div className="marquee-signup-button">
-                <SignupButtonContainer
-                  className="w-full"
-                  text={
-                    isScholarshipAffiliateReferral()
-                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                      : undefined
-                  }
-                />
-                {affiliateOptInContent ? (
+                {isAffiliated ? null : (
+                  <SignupButtonContainer
+                    className="w-full"
+                    text={
+                      isScholarshipAffiliateReferral()
+                        ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                        : undefined
+                    }
+                  />
+                )}
+                {isAffiliated === false && affiliateOptInContent ? (
                   <AffiliateOptInToggleContainer
                     affiliateOptInContent={affiliateOptInContent}
                   />
@@ -125,8 +128,9 @@ MarqueeTemplate.propTypes = {
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateOptInContent: PropTypes.object,
   campaignId: PropTypes.string,
-  content: PropTypes.string.isRequired,
+  content: PropTypes.string,
   coverImage: PropTypes.object.isRequired,
+  isAffiliated: PropTypes.bool.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -137,6 +141,7 @@ MarqueeTemplate.defaultProps = {
   additionalContent: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
+  content: 'Hello World',
   affiliateOptInContent: null,
   campaignId: null,
   scholarshipAmount: null,
