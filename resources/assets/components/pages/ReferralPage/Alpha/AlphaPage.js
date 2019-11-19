@@ -5,8 +5,6 @@ import { query } from '../../../../helpers';
 import { PHOENIX_URL } from '../../../../constants';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
-import './alpha-page.scss';
-
 const AlphaPage = props => {
   const campaignId = query('campaign_id');
   let url = `${PHOENIX_URL}/us/join?user_id=${props.userId}`;
