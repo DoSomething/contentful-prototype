@@ -88,7 +88,7 @@ const PitchTemplate = ({
       </div>
 
       <CallToActionContainer
-        className="bg-gray-100 border-t border-solid border-gray-300 font-bold px-3 md:px-6 py-6 text-base md:text-lg"
+        className="bg-gray-100-important border-t border-solid border-gray-300 font-bold px-3 md:px-6 py-6 text-base md:text-lg"
         content={tagline}
       />
 

@@ -130,34 +130,21 @@ p {
   color: $success-color !important;
 }
 
-.bg-black {
+// @TODO:phoenix-css-heirarchy-issue with bg-color on Card component.
+// Delete once remedied!
+.bg-black-important {
   background-color: $black !important;
 }
 
-// @TODO:phoenix-css-heirarchy-issue; delete once remedied.
-.bg-gray-100 {
+// @TODO:phoenix-css-heirarchy-issue with bg-color on Card component.
+// Delete once remedied!
+.bg-gray-100-important {
   background-color: theme('colors.gray.100') !important;
-}
-
-.bg-transparent {
-  background-color: transparent !important;
 }
 
 .bordered {
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-clip: padding-box;
-}
-
-.border-none {
-  border: 0 none !important;
-}
-
-.border-top {
-  border-top: 1px solid $primary-border-color;
-}
-
-.border-radius-none {
-  border-radius: 0 !important;
 }
 
 .expand-horizontal-lg {

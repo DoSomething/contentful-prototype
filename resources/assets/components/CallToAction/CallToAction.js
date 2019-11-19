@@ -57,8 +57,7 @@ const CallToAction = ({
       className={classnames('p-3 text-center', className, {
         'bg-white border border-solid border-gray-200 rounded':
           visualStyle === 'light',
-        'bg-black rounded text-white': visualStyle === 'dark',
-        'bg-transparent border-0': visualStyle === 'transparent',
+        'bg-black-important rounded text-white': visualStyle === 'dark',
       })}
     >
       {useCampaignTagline ? (
