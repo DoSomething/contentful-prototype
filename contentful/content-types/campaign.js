@@ -144,7 +144,7 @@ module.exports = function(migration) {
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(false)
+    .required(true)
     .validations([
       {
         linkMimetypeGroup: ['image'],
