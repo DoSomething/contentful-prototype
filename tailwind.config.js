@@ -128,5 +128,24 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.clear-both': {
+          clear: 'both',
+        },
+        '.clear-left': {
+          clear: 'left',
+        },
+        '.clear-right': {
+          clear: 'right',
+        },
+        '.clear-none': {
+          clear: 'none',
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };

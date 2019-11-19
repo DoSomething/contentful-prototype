@@ -57,8 +57,8 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   switch (post.type) {
     case 'text':
       media = (
-        <div className="chat-bubble -post-bubble mb-0 rounded-top">
-          <p className="font-italic word-break">{post.text}</p>
+        <div className="px-3 py-6">
+          <p className="italic text-black text-lg word-break">{post.text}</p>
         </div>
       );
       break;
@@ -102,7 +102,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
           ) : null}
 
           {post.type !== 'text' && post.text && !hideCaption ? (
-            <p>{post.text}</p>
+            <p className="text-gray-600">{post.text}</p>
           ) : null}
         </BaseFigure>
       </div>

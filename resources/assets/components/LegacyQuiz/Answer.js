@@ -18,7 +18,7 @@ const Answer = props => {
 
   const classes = classnames('bordered overflow-hidden rounded', {
     '-active': isActive,
-    faded: isFaded,
+    'opacity-50': isFaded,
   });
 
   return (

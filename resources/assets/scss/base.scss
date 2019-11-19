@@ -27,7 +27,7 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 // @TODO:forge-removal Rename this class to "text-field".
 .text-input {
-  @apply bg-white p-3 border border-gray-200 border-solid rounded;
+  @apply bg-white p-3 border border-gray-200 border-solid font-source-sans rounded;
 }
 
 .text-input:focus {
@@ -96,14 +96,6 @@ p {
   }
 }
 
-// @TODO: Added for the Marquee template experiment, so the full footer
-// can be viewed when fixed signup button reaches the bottom of the page.
-.footer {
-  @include media($small) {
-    padding-bottom: 105px;
-  }
-}
-
 // @TODO: for cleanup. Adding to base for now since needed
 // for validation in all forms.
 .field-label {
@@ -118,19 +110,6 @@ p {
 }
 
 // Utility classes.
-// @TODO: Move over to Forge 7 soon!
-.background-image-centered {
-  background-position: center;
-  background-size: cover;
-}
-
-.position-center-x {
-  position: absolute;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
 .color-white {
   color: $white !important;
 }
@@ -155,16 +134,9 @@ p {
   background-color: $black !important;
 }
 
-.bg-purple {
-  background-color: $purple !important;
-}
-
-.bg-light-gray {
-  background-color: $light-gray !important;
-}
-
-.bg-off-white {
-  background-color: $off-white !important;
+// @TODO:phoenix-css-heirarchy-issue; delete once remedied.
+.bg-gray-100 {
+  background-color: theme('colors.gray.100') !important;
 }
 
 .bg-transparent {
@@ -188,31 +160,6 @@ p {
   border-radius: 0 !important;
 }
 
-.clearfix {
-  @include clearfix;
-}
-
-.clear-both {
-  clear: both;
-}
-
-.clear-left {
-  clear: left;
-}
-
-.clear-right {
-  clear: right;
-}
-
-.clear-none {
-  clear: none;
-}
-
-// @TODO: Rename to match Tailwind's .flex.
-.display-flex {
-  display: flex;
-}
-
 .expand-horizontal-lg {
   margin-left: -$base-spacing;
   margin-right: -$base-spacing;
@@ -221,16 +168,6 @@ p {
 .expand-horizontal-md {
   margin-left: -$half-spacing;
   margin-right: -$half-spacing;
-}
-
-.line-break {
-  line-break: normal;
-}
-
-.flex-center-y {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
 }
 
 .flex-center-xy {
@@ -243,67 +180,8 @@ p {
   align-items: center;
 }
 
-.flex-grow {
-  flex-grow: 1;
-}
-
-.h-full {
-  height: 100%;
-}
-
-.font-italic {
-  font-style: italic;
-}
-
-.font-size-lg {
-  font-size: $font-large;
-
-  p {
-    font-size: $font-large;
-  }
-}
-
 .word-break {
-  word-break: break-word;
-}
-
-// @TODO:forge-removal Required to override Forge; delete once Forge is removed.
-.mb-0 {
-  margin-bottom: 0 !important;
-}
-
-// @TODO:forge-removal Required to override Forge; delete once Forge is removed.
-.mt-0 {
-  margin-bottom: 0 !important;
-}
-
-.rounded-top {
-  border-radius: $lg-border-radius $lg-border-radius 0 0;
-  overflow: hidden;
-}
-
-.rounded-bottom {
-  border-radius: 0 0 $lg-border-radius $lg-border-radius;
-  overflow: hidden;
-}
-
-.faded {
-  opacity: 0.5;
-}
-
-.hide-on-mobile {
-  @include media($small) {
-    display: none;
-  }
-}
-
-// Search page form
-.search-form {
-  .text-field {
-    @include media($medium) {
-      min-width: 400px;
-    }
-  }
+  word-break: break-word; // CSS deprecated; find alternative.
 }
 
 /*

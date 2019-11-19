@@ -1,4 +1,4 @@
-<footer class="footer">
+<footer class="footer pb-32 md:pb-3">
   <div class="footer__columns">
     <div class="footer__column -social">
       <ul>

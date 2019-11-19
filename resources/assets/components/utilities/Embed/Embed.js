@@ -88,7 +88,7 @@ const Embed = props => {
                 />
                 <div className="embed__content p-3">
                   <div className="my-3 mr-3">
-                    <h3 className="line-break">
+                    <h3>
                       {isLoaded ? (
                         truncate(embed ? embed.title : url, { length: 60 })
                       ) : (
