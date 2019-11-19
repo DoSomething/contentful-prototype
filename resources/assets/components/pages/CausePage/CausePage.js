@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -6,6 +7,21 @@ import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 import './cause-page.scss';
+
+export const CAUSE_PAGE_QUERY = gql`
+  query CausePageQuery($slug: String!, $preview: Boolean!) {
+    causePageBySlug(slug: $slug, preview: $preview) {
+      coverImage {
+        url
+        description
+      }
+      superTitle
+      title
+      description
+      content
+    }
+  }
+`;
 
 const CausePage = ({ coverImage, superTitle, title, description, content }) => {
   // @TODO: Update this with image dimension logic to serve properly sized files to different screen sizes
