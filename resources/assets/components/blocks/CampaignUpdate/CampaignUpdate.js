@@ -47,7 +47,7 @@ const CampaignUpdate = props => {
       title={title}
       onClose={closeModal}
     >
-      <TextContent className={classnames('p-3', { 'font-size-lg': isTweet })}>
+      <TextContent className={classnames('p-3', { 'text-xl': isTweet })}>
         {content || 'Placeholder'}
       </TextContent>
 

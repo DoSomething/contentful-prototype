@@ -18,7 +18,7 @@ const QuizChoice = props => {
 
   const cardClasses = classnames('bordered rounded', {
     '-active': isActive,
-    faded: isFaded,
+    'opacity-50': isFaded,
   });
 
   return (

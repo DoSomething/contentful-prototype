@@ -13,7 +13,7 @@ const Badge = props => {
       <img src={badgeImages[badgeImageIndex]} alt={name} />
       {showLock && !earned ? (
         <img
-          className="position-center-x"
+          className="absolute left-0 right-0 m-auto"
           style={{ width: '48px', bottom: '-24px' }}
           src={badgeImages.lock}
           alt="lock"
