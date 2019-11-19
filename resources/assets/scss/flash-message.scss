@@ -1,7 +1,7 @@
 @import './next-toolbox';
 
 .flash-message {
-  background-color: $gray-800;
+  background-color: theme('colors.gray.800');
   display: none;
   margin: 0 auto;
   max-width: 1440px;
@@ -12,7 +12,7 @@
   }
 
   .flash-content {
-    color: $gray-200;
+    color: theme('colors.gray.200');
     grid-column: full-start / -2;
   }
 
@@ -31,10 +31,10 @@
   }
 
   .icon-close {
-    fill: $gray-400;
+    fill: theme('colors.gray.400');
 
     &:hover {
-      fill: $gray-200;
+      fill: theme('colors.gray.200');
     }
   }
 }

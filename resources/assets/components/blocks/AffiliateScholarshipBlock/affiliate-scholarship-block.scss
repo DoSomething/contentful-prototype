@@ -55,7 +55,7 @@
 
   dt {
     clear: right;
-    color: $gray-500;
+    color: theme('colors.gray.500');
     font-weight: $weight-sbold;
     text-transform: uppercase;
 
@@ -72,7 +72,7 @@
   }
 
   dt.scholarship-beta {
-    border-top: 1px solid $gray-300;
+    border-top: 1px solid theme('colors.gray.300');
     float: none;
     padding-top: $half-spacing;
   }

@@ -8,7 +8,7 @@ $extraSmall: '(min-width: 360px)';
 
 .nav {
   background-color: white;
-  border-bottom: 1px solid $gray-300;
+  border-bottom: 1px solid theme('colors.gray.300');
   position: relative;
   z-index: $site-navigation-zindex;
 
@@ -42,7 +42,7 @@ $extraSmall: '(min-width: 360px)';
 
 .menu-subnav {
   background-color: white;
-  border-top: 1px solid $gray-300;
+  border-top: 1px solid theme('colors.gray.300');
   box-shadow: 0 15px 10px -8px rgba(0, 0, 0, 0.5);
   left: 0;
   min-height: 50vh;
@@ -78,7 +78,7 @@ $extraSmall: '(min-width: 360px)';
 
 .menu-subnav__section + .menu-subnav__section {
   &::before {
-    background-color: $gray-200;
+    background-color: theme('colors.gray.200');
     content: '';
     display: block;
     height: 1px;
@@ -158,7 +158,7 @@ $extraSmall: '(min-width: 360px)';
 // Main Nav
 .main-nav {
   align-items: center;
-  border-top: 1px solid $gray-300;
+  border-top: 1px solid theme('colors.gray.300');
   display: flex;
   grid-column: full-start / full-end;
   grid-row: 2 / 3;
@@ -202,7 +202,7 @@ $extraSmall: '(min-width: 360px)';
   display: inline-block;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 6px solid $gray-300;
+  border-top: 6px solid theme('colors.gray.300');
   height: 0;
   margin-left: 5px;
   position: relative;
@@ -311,13 +311,13 @@ $extraSmall: '(min-width: 360px)';
 
   &.is-active {
     .wrapper {
-      background-color: $gray-200;
+      background-color: theme('colors.gray.200');
     }
   }
 }
 
 .utility-nav__auth {
-  border-left: 1px solid $gray-300;
+  border-left: 1px solid theme('colors.gray.300');
 
   > a {
     padding: $spacing_1x;
@@ -336,7 +336,7 @@ $extraSmall: '(min-width: 360px)';
 }
 
 .utility-nav__account-profile {
-  border-left: 1px solid $gray-300;
+  border-left: 1px solid theme('colors.gray.300');
 }
 
 .utility-nav__account-profile-icon {
@@ -359,7 +359,7 @@ $extraSmall: '(min-width: 360px)';
 
 .utility-subnav .search {
   align-items: center;
-  background-color: $gray-200;
+  background-color: theme('colors.gray.200');
   border-radius: $lg-border-radius;
   display: flex;
   grid-column: full-start / full-end;
@@ -392,11 +392,11 @@ $extraSmall: '(min-width: 360px)';
     }
 
     &:focus::placeholder {
-      color: $gray-300;
+      color: theme('colors.gray.300');
     }
 
     &::placeholder {
-      color: $gray-500;
+      color: theme('colors.gray.300');
     }
   }
 }
@@ -406,7 +406,7 @@ $extraSmall: '(min-width: 360px)';
     grid-column: full-start / full-end;
 
     > h1 {
-      color: $gray-300;
+      color: theme('colors.gray.300');
       font-size: 18px;
       font-weight: $weight-normal;
       margin-bottom: $spacing_1x;

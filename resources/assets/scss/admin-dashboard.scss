@@ -1,7 +1,7 @@
 @import './next-toolbox';
 
 .admin-dashboard {
-  background-color: $gray-500;
+  background-color: theme('colors.gray.500');
   position: fixed;
   transform: translateY(-100%);
   transition: all 0.3s ease-out;
@@ -15,17 +15,17 @@
   }
 
   a {
-    color: $gray-100;
+    color: theme('colors.gray.100');
 
     &:hover {
-      color: $gray-700;
+      color: theme('colors.gray.700');
       text-decoration: none;
     }
   }
 
   .icon-link {
     .icon {
-      fill: $gray-200;
+      fill: theme('colors.gray.200');
       height: 15px;
       position: relative;
       top: 1px;
@@ -34,7 +34,7 @@
 
     &:hover {
       .icon {
-        fill: $gray-600;
+        fill: theme('colors.gray.600');
       }
     }
   }
@@ -52,7 +52,7 @@
   }
 
   .toggle {
-    background-color: $gray-500;
+    background-color: theme('colors.gray.500');
     bottom: -16px;
     content: '';
     cursor: pointer;
@@ -101,7 +101,7 @@
     }
 
     > span {
-      background-color: $gray-500;
+      background-color: theme('colors.gray.500');
       padding-right: 10px;
       position: relative;
     }
@@ -124,10 +124,10 @@
   }
 
   .panel-title {
-    color: $gray-900;
+    color: theme('colors.gray.900');
 
     .icon {
-      fill: $gray-700;
+      fill: theme('colors.gray.700');
       height: 20px;
       position: relative;
       top: 1px;
