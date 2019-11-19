@@ -7,15 +7,14 @@ import { PuckProvider } from '@dosomething/puck-client';
 
 import { env } from '../helpers';
 import graphqlClient from '../graphql';
-import PageQuery from './pages/PageQuery';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
+import CausePage from './pages/CausePage/CausePage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import AccountContainer from './pages/AccountPage/AccountContainer';
-import CausePage, { CAUSE_PAGE_QUERY } from './pages/CausePage/CausePage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
@@ -43,14 +42,7 @@ const App = ({ store, history }) => {
               <Route
                 path="/us/causes/:slug"
                 render={routeProps => (
-                  <PageQuery
-                    query={CAUSE_PAGE_QUERY}
-                    variables={{ slug: routeProps.match.params.slug }}
-                  >
-                    {({ causePageBySlug }) => (
-                      <CausePage {...causePageBySlug} />
-                    )}
-                  </PageQuery>
+                  <CausePage slug={routeProps.match.params.slug} />
                 )}
               />
               <Route path="/us/join" component={BetaReferralPage} />
