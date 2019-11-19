@@ -42,9 +42,9 @@ const mapStateToProps = (state, ownProps) => {
     subtitle: state.campaign.callToAction,
     tagline: get(state.campaign.additionalContent, 'tagline'),
     title: state.campaign.title,
-    useLegacyTemplate: get(
+    featureFlagUseLegacyTemplate: get(
       state,
-      'campaign.additionalContent.useLegacyTemplate',
+      'campaign.additionalContent.featureFlagUseLegacyTemplate',
       undefined,
     ),
   };

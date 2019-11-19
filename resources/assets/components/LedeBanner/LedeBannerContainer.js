@@ -23,9 +23,9 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.affiliateCreditText',
     undefined,
   ),
-  useLegacyTemplate: get(
+  featureFlagUseLegacyTemplate: get(
     state,
-    'campaign.additionalContent.useLegacyTemplate',
+    'campaign.additionalContent.featureFlagUseLegacyTemplate',
     undefined,
   ),
   affiliateOptInContent: state.campaign.affiliateOptInContent,

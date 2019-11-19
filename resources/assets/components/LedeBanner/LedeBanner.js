@@ -7,7 +7,7 @@ import MosaicTemplate from './templates/MosaicTemplate';
 import MarqueeTemplate from '../pages/LandingPage/templates/MarqueeTemplate';
 
 const LedeBanner = props => {
-  const { template, useLegacyTemplate } = props;
+  const { template, featureFlagUseLegacyTemplate } = props;
 
   switch (template) {
     case 'cover':
@@ -17,7 +17,7 @@ const LedeBanner = props => {
       return <JumboTemplate {...props} />;
 
     default:
-      return useLegacyTemplate ? (
+      return featureFlagUseLegacyTemplate ? (
         <MosaicTemplate {...props} />
       ) : (
         <MarqueeTemplate {...props} />
@@ -27,11 +27,11 @@ const LedeBanner = props => {
 
 LedeBanner.propTypes = {
   template: PropTypes.string.isRequired,
-  useLegacyTemplate: PropTypes.bool,
+  featureFlagUseLegacyTemplate: PropTypes.bool,
 };
 
 LedeBanner.defaultProps = {
-  useLegacyTemplate: false,
+  featureFlagUseLegacyTemplate: false,
 };
 
 export default LedeBanner;

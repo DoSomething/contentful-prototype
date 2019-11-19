@@ -26,7 +26,7 @@ const LandingPage = props => {
     subtitle,
     tagline,
     title,
-    useLegacyTemplate,
+    featureFlagUseLegacyTemplate,
   } = props;
 
   // @TODO: allow outputting multiple blocks in the sidebar.
@@ -34,7 +34,7 @@ const LandingPage = props => {
 
   return (
     <React.Fragment>
-      {useLegacyTemplate ? (
+      {featureFlagUseLegacyTemplate ? (
         <PitchTemplate
           additionalContent={additionalContent}
           campaignId={campaignId}
@@ -83,7 +83,7 @@ LandingPage.propTypes = {
   subtitle: PropTypes.string.isRequired,
   tagline: PropTypes.string,
   title: PropTypes.string.isRequired,
-  useLegacyTemplate: PropTypes.bool,
+  featureFlagUseLegacyTemplate: PropTypes.bool,
 };
 
 LandingPage.defaultProps = {
@@ -98,7 +98,7 @@ LandingPage.defaultProps = {
   sidebar: null,
   signupArrowContent: null,
   tagline: 'Ready to start?',
-  useLegacyTemplate: false,
+  featureFlagUseLegacyTemplate: false,
 };
 
 export default LandingPage;
