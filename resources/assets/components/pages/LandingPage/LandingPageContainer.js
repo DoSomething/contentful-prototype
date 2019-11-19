@@ -42,6 +42,11 @@ const mapStateToProps = (state, ownProps) => {
     subtitle: state.campaign.callToAction,
     tagline: get(state.campaign.additionalContent, 'tagline'),
     title: state.campaign.title,
+    useLegacyTemplate: get(
+      state,
+      'campaign.additionalContent.useLegacyTemplate',
+      undefined,
+    ),
   };
 };
 

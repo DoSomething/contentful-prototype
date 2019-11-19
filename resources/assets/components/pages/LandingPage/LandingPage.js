@@ -1,12 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import PitchTemplate from './templates/PitchTemplate';
 import MarqueeTemplate from './templates/MarqueeTemplate';
-import SixpackExperiment from '../../utilities/SixpackExperiment/SixpackExperiment';
 
 import './landing-page.scss';
 
@@ -28,6 +26,7 @@ const LandingPage = props => {
     subtitle,
     tagline,
     title,
+    useLegacyTemplate,
   } = props;
 
   // @TODO: allow outputting multiple blocks in the sidebar.
@@ -35,51 +34,7 @@ const LandingPage = props => {
 
   return (
     <React.Fragment>
-      {/* @SIXPACK Code Test: 2019-07-17 */}
-      {/* //remove from the sixpack SixpackExperiment
-          //move the additional content flag to the campaign entity level, rather than just the landing page
-          //create a new additional content flag for using hero template
-          //set to false for all before going live
-          // switch to true, but set NFL & Taco Bell to false
-           */}
-      {get(additionalContent, 'sixpackLandingPageMarqueeTemplate', false) ? (
-        <SixpackExperiment
-          title={`Marquee Template ${title}`}
-          convertableActions={['signup']}
-          control={
-            <PitchTemplate
-              additionalContent={additionalContent}
-              campaignId={campaignId}
-              content={content}
-              scholarshipAmount={scholarshipAmount}
-              scholarshipDeadline={scholarshipDeadline}
-              showPartnerMsgOptIn={showPartnerMsgOptIn}
-              sidebarCTA={sidebarCTA}
-              signupArrowContent={signupArrowContent}
-              tagline={tagline}
-              testName="Pitch Template"
-              title={title}
-            />
-          }
-          alternatives={[
-            <MarqueeTemplate
-              additionalContent={additionalContent}
-              affiliateCreditText={affiliateCreditText}
-              affiliateSponsors={affiliateSponsors}
-              affiliateOptInContent={affiliateOptInContent}
-              campaignId={campaignId}
-              content={content}
-              coverImage={coverImage}
-              endDate={endDate}
-              scholarshipAmount={scholarshipAmount}
-              scholarshipDeadline={scholarshipDeadline}
-              subtitle={subtitle}
-              testName="Marquee Template"
-              title={title}
-            />,
-          ]}
-        />
-      ) : (
+      {useLegacyTemplate ? (
         <PitchTemplate
           additionalContent={additionalContent}
           campaignId={campaignId}
@@ -92,8 +47,21 @@ const LandingPage = props => {
           tagline={tagline}
           title={title}
         />
+      ) : (
+        <MarqueeTemplate
+          additionalContent={additionalContent}
+          affiliateCreditText={affiliateCreditText}
+          affiliateSponsors={affiliateSponsors}
+          affiliateOptInContent={affiliateOptInContent}
+          content={content}
+          coverImage={coverImage}
+          endDate={endDate}
+          scholarshipAmount={scholarshipAmount}
+          scholarshipDeadline={scholarshipDeadline}
+          subtitle={subtitle}
+          title={title}
+        />
       )}
-      {/* @SIXPACK Code Test: 2019-07-17 */}
     </React.Fragment>
   );
 };
@@ -115,6 +83,7 @@ LandingPage.propTypes = {
   subtitle: PropTypes.string.isRequired,
   tagline: PropTypes.string,
   title: PropTypes.string.isRequired,
+  useLegacyTemplate: PropTypes.bool,
 };
 
 LandingPage.defaultProps = {
@@ -129,6 +98,7 @@ LandingPage.defaultProps = {
   sidebar: null,
   signupArrowContent: null,
   tagline: 'Ready to start?',
+  useLegacyTemplate: false,
 };
 
 export default LandingPage;
