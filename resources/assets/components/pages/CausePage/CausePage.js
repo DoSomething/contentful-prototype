@@ -1,13 +1,36 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
+import PageQuery from '../PageQuery';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 import './cause-page.scss';
 
-const CausePage = ({ coverImage, superTitle, title, description, content }) => {
+export const CAUSE_PAGE_QUERY = gql`
+  query CausePageQuery($slug: String!, $preview: Boolean!) {
+    page: causePageBySlug(slug: $slug, preview: $preview) {
+      coverImage {
+        url
+        description
+      }
+      superTitle
+      title
+      description
+      content
+    }
+  }
+`;
+
+const CausePageTemplate = ({
+  coverImage,
+  superTitle,
+  title,
+  description,
+  content,
+}) => {
   // @TODO: Update this with image dimension logic to serve properly sized files to different screen sizes
   const backgroundImage = coverImage
     ? `url(${contentfulImageUrl(coverImage.url, '1440', '610', 'fill')})`
@@ -51,7 +74,7 @@ const CausePage = ({ coverImage, superTitle, title, description, content }) => {
   );
 };
 
-CausePage.propTypes = {
+CausePageTemplate.propTypes = {
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
@@ -59,6 +82,16 @@ CausePage.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
+};
+
+const CausePage = ({ slug }) => (
+  <PageQuery query={CAUSE_PAGE_QUERY} variables={{ slug }}>
+    {page => <CausePageTemplate {...page} />}
+  </PageQuery>
+);
+
+CausePage.propTypes = {
+  slug: PropTypes.string.isRequired,
 };
 
 export default CausePage;

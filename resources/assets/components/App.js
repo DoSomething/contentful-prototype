@@ -10,8 +10,8 @@ import graphqlClient from '../graphql';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
+import CausePage from './pages/CausePage/CausePage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import CausePageQuery from './pages/CausePage/CausePageQuery';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import AccountContainer from './pages/AccountPage/AccountContainer';
@@ -42,7 +42,7 @@ const App = ({ store, history }) => {
               <Route
                 path="/us/causes/:slug"
                 render={routeProps => (
-                  <CausePageQuery slug={routeProps.match.params.slug} />
+                  <CausePage slug={routeProps.match.params.slug} />
                 )}
               />
               <Route path="/us/join" component={BetaReferralPage} />
