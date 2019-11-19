@@ -41,7 +41,6 @@ export const PhotoSubmissionBlockFragment = gql`
     informationTitle
     informationContent
     affirmationContent
-    additionalContent
   }
 `;
 
@@ -197,8 +196,6 @@ class PhotoSubmissionAction extends React.Component {
 
     const type = 'photo';
 
-    const action = get(this.props.additionalContent, 'action', 'default');
-
     const values = mapValues(
       this.fields(),
       value => this.state[`${value}Value`],
@@ -214,7 +211,6 @@ class PhotoSubmissionAction extends React.Component {
     }
 
     const formFields = withoutNulls({
-      action, // @TODO: deprecate
       type,
       id: this.props.id, // @TODO: rename property to blockId?
       action_id: this.props.actionId,
@@ -226,7 +222,6 @@ class PhotoSubmissionAction extends React.Component {
 
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
-      action, // @TODO: deprecate
       actionId: this.props.actionId,
       blockId: this.props.id,
       body: formatPostPayload(formFields),
@@ -561,9 +556,6 @@ class PhotoSubmissionAction extends React.Component {
 PhotoSubmissionAction.propTypes = {
   actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
-  additionalContent: PropTypes.shape({
-    action: PropTypes.string,
-  }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,
@@ -591,7 +583,6 @@ PhotoSubmissionAction.propTypes = {
 
 PhotoSubmissionAction.defaultProps = {
   actionId: null,
-  additionalContent: null,
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
