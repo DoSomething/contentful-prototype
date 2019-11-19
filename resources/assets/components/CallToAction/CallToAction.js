@@ -51,27 +51,19 @@ const CallToAction = ({
 
   return (
     <Card
-      className={classnames(
-        'call-to-action rounded p-3 text-center',
-        className,
-        {
-          '-sticky': sticky,
-          'bg-white bordered light': visualStyle === 'light',
-          'bg-black dark': visualStyle === 'dark',
-          'bg-transparent border-none transparent':
-            visualStyle === 'transparent',
-        },
-      )}
+      className={classnames('p-3 text-center', className, {
+        'bg-white bordered light': visualStyle === 'light',
+        'bg-black dark': visualStyle === 'dark',
+        'bg-transparent border-0 transparent': visualStyle === 'transparent',
+      })}
     >
-      {useCampaignTagline ? (
-        <div className="cta__tagline mb-6">{tagline}</div>
-      ) : null}
+      {useCampaignTagline ? <div className="mb-6">{tagline}</div> : null}
 
       {impactValue
         ? renderImpactContent(impactPrefix, impactValue, impactSuffix)
         : null}
 
-      {content ? <div className="cta__message mb-6">{content}</div> : null}
+      {content ? <div className="max-w-lg mb-6 mx-auto">{content}</div> : null}
 
       {isSignedUp ? null : (
         <SignupButtonContainer

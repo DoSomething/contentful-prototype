@@ -38,6 +38,7 @@ const CampaignPage = props => {
             <ContentfulEntry json={entryContent} />
           )}
         </Enclosure>
+        {/* Needs Fixing */}
         {!entryContent ? <CallToActionContainer sticky hideIfSignedUp /> : null}
       </div>
 

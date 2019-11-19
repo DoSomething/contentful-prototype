@@ -1,7 +1,6 @@
 import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Enclosure from '../../../Enclosure';
 import Card from '../../../utilities/Card/Card';
@@ -86,18 +85,12 @@ const PitchTemplate = ({
             </div>
           </div>
         </Enclosure>
-
-        <CallToActionContainer content={tagline} sticky />
       </div>
 
-      <PuckWaypoint name="landing_page_cta-top" />
-
       <CallToActionContainer
-        className="legacy border-top border-radius-none bg-gray-100 p-6 hidden md:block"
+        className="bg-gray-100 border-t border-solid border-gray-300 font-bold px-3 md:px-6 py-6 text-base md:text-lg"
         content={tagline}
       />
-
-      <PuckWaypoint name="landing_page_cta-bottom" />
 
       <CampaignInfoBarContainer />
 
