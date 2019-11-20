@@ -55,6 +55,7 @@ const LandingPage = props => {
           affiliateOptInContent={affiliateOptInContent}
           content={content}
           coverImage={coverImage}
+          campaignId={campaignId}
           endDate={endDate}
           scholarshipAmount={scholarshipAmount}
           scholarshipDeadline={scholarshipDeadline}

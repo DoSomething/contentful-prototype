@@ -132,7 +132,7 @@ MarqueeTemplate.propTypes = {
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
   displaySignupButton: PropTypes.bool,
-  isAffiliated: PropTypes.bool.isRequired,
+  isAffiliated: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -146,6 +146,7 @@ MarqueeTemplate.defaultProps = {
   affiliateOptInContent: null,
   campaignId: null,
   displaySignupButton: true,
+  isAffiliated: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };

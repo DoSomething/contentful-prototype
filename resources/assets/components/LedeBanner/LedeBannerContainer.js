@@ -33,7 +33,6 @@ const mapStateToProps = (state, props) => ({
   featureFlagUseLegacyTemplate: get(
     state,
     'campaign.additionalContent.featureFlagUseLegacyTemplate',
-    undefined,
   ),
   isAffiliated: isSignedUp(state),
   subtitle: get(props, 'subtitle', state.campaign.callToAction),
