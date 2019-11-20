@@ -10,12 +10,12 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionQuery from '../ActionQuery';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
+import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
-import PostCreatedModal from '../PostCreatedModal';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
