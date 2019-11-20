@@ -16,7 +16,12 @@ If we want to render this survey modal element, all we need to do is set up a `n
 ```jsx
 <DismissableElement
   name="fun_survey"
-  render={(handleClose, handleCompletion) => <SurveyModal handleClose={handleClose} handleCompletion={handleCompletion} />}
+  render={(handleClose, handleCompletion) => (
+    <SurveyModal
+      handleClose={handleClose}
+      handleCompletion={handleCompletion}
+    />
+  )}
 />
 ```
 
