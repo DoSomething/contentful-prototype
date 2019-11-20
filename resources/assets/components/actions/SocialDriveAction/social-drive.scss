@@ -1,12 +1,6 @@
 @import '../../../scss/next-toolbox.scss';
 
 .social-drive-action {
-  @include media($large) {
-    float: left;
-    padding-right: $half-spacing;
-    width: 66.6666666666666%;
-  }
-
   .link-area {
     @include media($large) {
       display: flex;
@@ -65,15 +59,6 @@
 }
 
 .social-drive-information {
-  margin-top: $base-spacing;
-
-  @include media($large) {
-    float: right;
-    margin-top: 0;
-    padding-left: $half-spacing;
-    width: 33.3333333333333%;
-  }
-
   .link-info {
     .info__title {
       font-family: $primary-font-family;

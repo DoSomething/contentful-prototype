@@ -8,21 +8,19 @@ import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
-import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
+import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
   getFieldErrors,
   formatPostPayload,
 } from '../../../helpers/forms';
-import Badge from '../../pages/AccountPage/Badge';
-import Query from '../../Query';
 
 import './photo-submission-action.scss';
 
@@ -41,21 +39,6 @@ export const PhotoSubmissionBlockFragment = gql`
     informationTitle
     informationContent
     affirmationContent
-    additionalContent
-  }
-`;
-
-const BADGE_QUERY = gql`
-  query AccountQuery($userId: String!) {
-    user(id: $userId) {
-      hasBadgesFlag: hasFeatureFlag(feature: "badges")
-    }
-  }
-`;
-
-const POST_COUNT_BADGE = gql`
-  query PostsCountQuery($userId: String!) {
-    postsCount(userId: $userId, limit: 4)
   }
 `;
 
@@ -197,8 +180,6 @@ class PhotoSubmissionAction extends React.Component {
 
     const type = 'photo';
 
-    const action = get(this.props.additionalContent, 'action', 'default');
-
     const values = mapValues(
       this.fields(),
       value => this.state[`${value}Value`],
@@ -214,7 +195,6 @@ class PhotoSubmissionAction extends React.Component {
     }
 
     const formFields = withoutNulls({
-      action, // @TODO: deprecate
       type,
       id: this.props.id, // @TODO: rename property to blockId?
       action_id: this.props.actionId,
@@ -226,7 +206,6 @@ class PhotoSubmissionAction extends React.Component {
 
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
-      action, // @TODO: deprecate
       actionId: this.props.actionId,
       blockId: this.props.id,
       body: formatPostPayload(formFields),
@@ -465,93 +444,11 @@ class PhotoSubmissionAction extends React.Component {
         </div>
 
         {this.state.showModal ? (
-          <Modal onClose={() => this.setState({ showModal: false })}>
-            <Card className="bordered rounded" title="We got your photo!">
-              <Query
-                query={BADGE_QUERY}
-                variables={{ userId: this.props.userId }}
-                hideSpinner
-              >
-                {badgeData =>
-                  get(badgeData, 'user.hasBadgesFlag', false) ? (
-                    <Query
-                      query={POST_COUNT_BADGE}
-                      variables={{ userId: this.props.userId }}
-                      hideSpinner
-                    >
-                      {postData => {
-                        if (postData.postsCount === 1) {
-                          return (
-                            <Badge
-                              earned
-                              className="badge p-3"
-                              size="medium"
-                              name="onePostBadge"
-                            >
-                              <h4>1 Action</h4>
-                              <p>
-                                Ohhh HECK yes! You just earned a new badge for
-                                completing your first campaign. Congratulations!
-                              </p>
-                              <a href="/us/account/profile/badges">
-                                View all my badges
-                              </a>
-                            </Badge>
-                          );
-                        }
-                        if (postData.postsCount === 2) {
-                          return (
-                            <Badge
-                              earned
-                              className="badge p-3"
-                              size="medium"
-                              name="twoPostsBadge"
-                            >
-                              <h4>2 Actions</h4>
-                              <p>
-                                Ohhh HECK yes! You just earned a new badge for
-                                completing your second campaign.
-                                Congratulations!
-                              </p>
-                              <a href="/us/account/profile/badges">
-                                View all my badges
-                              </a>
-                            </Badge>
-                          );
-                        }
-                        if (postData.postsCount === 3) {
-                          return (
-                            <Badge
-                              earned
-                              className="badge p-3"
-                              size="medium"
-                              name="threePostsBadge"
-                            >
-                              <h4>3 Actions</h4>
-                              <p>
-                                Ohhh HECK yes! You just earned a new badge for
-                                completing your third campaign. Congratulations!
-                              </p>
-                              <a href="/us/account/profile/badges">
-                                View all my badges
-                              </a>
-                            </Badge>
-                          );
-                        }
-
-                        return null;
-                      }}
-                    </Query>
-                  ) : null
-                }
-              </Query>
-
-              <TextContent className="p-3">
-                {this.props.affirmationContent ||
-                  PhotoSubmissionAction.defaultProps.affirmationContent}
-              </TextContent>
-            </Card>
-          </Modal>
+          <PhotoSubmissionActionModal
+            affirmationContent={this.props.affirmationContent}
+            onClose={() => this.setState({ showModal: false })}
+            userId={this.props.userId}
+          />
         ) : null}
       </React.Fragment>
     );
@@ -561,9 +458,6 @@ class PhotoSubmissionAction extends React.Component {
 PhotoSubmissionAction.propTypes = {
   actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
-  additionalContent: PropTypes.shape({
-    action: PropTypes.string,
-  }),
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
   captionFieldLabel: PropTypes.string,
@@ -591,7 +485,6 @@ PhotoSubmissionAction.propTypes = {
 
 PhotoSubmissionAction.defaultProps = {
   actionId: null,
-  additionalContent: null,
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',

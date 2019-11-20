@@ -115,6 +115,11 @@ module.exports = function(migration) {
       {
         linkMimetypeGroup: ['image'],
       },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+      },
     ])
     .disabled(false)
     .omitted(false)
