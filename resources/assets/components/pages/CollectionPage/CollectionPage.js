@@ -19,6 +19,14 @@ export const COLLECTION_PAGE_QUERY = gql`
       superTitle
       title
       description
+      affiliatePrefix
+      affiliates {
+        title
+        logo {
+          url(w: 100, h: 100)
+          description
+        }
+      }
       content
     }
   }
@@ -29,6 +37,8 @@ const CollectionPageTemplate = ({
   superTitle,
   title,
   description,
+  affiliatePrefix,
+  affiliates,
   content,
 }) => {
   // @TODO: Update this with image dimension logic to serve properly sized files to different screen sizes
@@ -39,6 +49,8 @@ const CollectionPageTemplate = ({
   const styles = {
     backgroundImage,
   };
+
+  const affiliate = affiliates[0];
 
   return (
     <>
@@ -58,6 +70,18 @@ const CollectionPageTemplate = ({
             <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
               {description}
             </TextContent>
+            {affiliate ? (
+              <div className="mt-6">
+                <p className="font-proxima-nova font-bold font-size-base text-gray-500 uppercase">
+                  {affiliatePrefix}
+                </p>
+                <img
+                  className="mt-2 affiliate-logo"
+                  src={affiliate.logo.url}
+                  alt={affiliate.logo.description || affiliate.title}
+                />
+              </div>
+            ) : null}
           </div>
         </header>
         <TextContent
@@ -81,7 +105,14 @@ CollectionPageTemplate.propTypes = {
   superTitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.object.isRequired,
+  affiliatePrefix: PropTypes.string,
+  affiliates: PropTypes.arrayOf(PropTypes.object),
   content: PropTypes.object.isRequired,
+};
+
+CollectionPageTemplate.defaultProps = {
+  affiliatePrefix: 'In partnership with',
+  affiliates: [],
 };
 
 const CollectionPage = ({ slug }) => (
