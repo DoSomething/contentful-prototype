@@ -3117,6 +3117,18 @@
             "deprecationReason": null
           },
           {
+            "name": "collectSchoolId",
+            "description": "Does this action associate user posts with their school?",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "anonymous",
             "description": "Anonymous actions will not be attributed to a particular user in public galleries.",
             "args": [],

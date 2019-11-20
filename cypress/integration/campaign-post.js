@@ -57,6 +57,15 @@ describe('Campaign Post', () => {
   it('Create a photo post', () => {
     const user = userFactory();
 
+    cy.mockGraphqlOp('ActionAndUserByIdQuery', {
+      action: {
+        collectSchoolId: false,
+      },
+      user: {
+        schoolId: null,
+      },
+    });
+
     // Log in & visit the campaign action page:
     cy.authVisitCampaignWithSignup(user, exampleCampaign);
 
