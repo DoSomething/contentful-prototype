@@ -13,8 +13,9 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
-import TextContent from '../../utilities/TextContent/TextContent';
 import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
+import PhotoSubmissionActionQuery from './PhotoSubmissionActionQuery';
+import PhotoSubmissionActionInfoCard from './PhotoSubmissionActionInfoCard';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -83,12 +84,12 @@ class PhotoSubmissionAction extends React.Component {
     this.state = {
       captionValue: '',
       mediaValue: this.defaultMediaState,
+      numberOfParticipantsValue: '',
       quantityValue: '',
       shouldResetForm: false,
-      signup: null,
       showModal: false,
+      signup: null,
       whyParticipatedValue: '',
-      numberOfParticipantsValue: '',
     };
   }
 
@@ -206,6 +207,7 @@ class PhotoSubmissionAction extends React.Component {
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
+      school_id: this.schoolId,
     });
 
     // Send request to store the campaign photo submission post.
@@ -260,6 +262,24 @@ class PhotoSubmissionAction extends React.Component {
    * @return {ReactComponent}
    */
   render() {
+    return (
+      <PhotoSubmissionActionQuery
+        actionId={this.props.actionId}
+        userId={this.props.userId}
+      >
+        {collectSchoolIdQueryResult => {
+          // This is a hack until we refactor this class as functional component with hooks.
+          this.schoolId = collectSchoolIdQueryResult.action.collectSchoolId
+            ? collectSchoolIdQueryResult.user.schoolId
+            : null;
+
+          return this.renderActionForm();
+        }}
+      </PhotoSubmissionActionQuery>
+    );
+  }
+
+  renderActionForm() {
     const submissionItem = this.props.submissions.items[this.props.id];
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
@@ -435,16 +455,10 @@ class PhotoSubmissionAction extends React.Component {
           </div>
 
           {this.props.informationContent ? (
-            <div className="photo-submission-information">
-              <Card
-                title={this.props.informationTitle}
-                className="bordered rounded"
-              >
-                <TextContent className="p-3">
-                  {this.props.informationContent}
-                </TextContent>
-              </Card>
-            </div>
+            <PhotoSubmissionActionInfoCard
+              title={this.props.informationTitle}
+              content={this.props.informationContent}
+            />
           ) : null}
         </div>
 
