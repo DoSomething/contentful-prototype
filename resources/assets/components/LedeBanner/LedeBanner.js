@@ -17,11 +17,12 @@ const LedeBanner = props => {
       return <JumboTemplate {...props} />;
 
     default:
-      return featureFlagUseLegacyTemplate ? (
-        <MosaicTemplate {...props} />
-      ) : (
-        <MarqueeTemplate {...props} />
-      );
+      // @TODO: uncomment this toggle logic once we're clear to deploy this work!
+      // return featureFlagUseLegacyTemplate ? (
+      return <MosaicTemplate {...props} />;
+    // ) : (
+    // <MarqueeTemplate {...props} />
+    // );
   }
 };
 
