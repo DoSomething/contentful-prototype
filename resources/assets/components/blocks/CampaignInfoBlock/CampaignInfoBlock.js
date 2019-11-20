@@ -36,10 +36,13 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
           const endDate = res.campaign.endDate;
           const actions = res.campaign.actions || [];
 
-          const actionItem =
-            actions.find(
-              action => action.reportback && action.scholarshipEntry,
-            ) || actions.find(action => action.reportback);
+          let actionItem = actions.find(
+            action => action.reportback && action.scholarshipEntry,
+          );
+
+          if (!actionItem) {
+            actionItem = actions.find(action => action.reportback);
+          }
 
           return (
             <>
