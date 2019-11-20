@@ -31,7 +31,6 @@ const LandingPage = props => {
 
   // @TODO: allow outputting multiple blocks in the sidebar.
   const sidebarCTA = sidebar[0] && sidebar[0].fields;
-  console.log('is this working????', campaignId);
 
   return (
     <React.Fragment>
