@@ -7,15 +7,14 @@ import { Query as ApolloQuery } from 'react-apollo';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
-import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
+import PostCreatedModal from '../PostCreatedModal';
+import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
-import Badge from '../../pages/AccountPage/Badge';
-import Query from '../../Query';
 
 import './petition-submission-action.scss';
 
@@ -44,20 +43,6 @@ export const USER_POSTS_QUERY = gql`
 `;
 
 const CHARACTER_LIMIT = 500;
-
-const BADGE_QUERY = gql`
-  query AccountQuery($userId: String!) {
-    user(id: $userId) {
-      hasBadgesFlag: hasFeatureFlag(feature: "badges")
-    }
-  }
-`;
-
-const POST_COUNT_BADGE = gql`
-  query PostsCountQuery($userId: String!) {
-    postsCount(userId: $userId, limit: 4)
-  }
-`;
 
 class PetitionSubmissionAction extends React.Component {
   constructor(props) {
@@ -227,105 +212,23 @@ class PetitionSubmissionAction extends React.Component {
         </div>
 
         {this.props.informationContent ? (
-          <div
+          <ActionInformation
             className={classnames(
               'petition-submission-information',
               this.props.className,
             )}
-          >
-            <Card className="bordered rounded" title={informationTitle}>
-              <TextContent className="p-3">{informationContent}</TextContent>
-            </Card>
-          </div>
+            title={informationTitle}
+            content={informationContent}
+          />
         ) : null}
 
         {this.state.showModal ? (
-          <Modal onClose={() => this.setState({ showModal: false })}>
-            <Card className="bordered rounded" title="We got your signature!">
-              <Query
-                query={BADGE_QUERY}
-                variables={{ userId: this.props.userId }}
-                hideSpinner
-              >
-                {badgeData =>
-                  get(badgeData, 'user.hasBadgesFlag', false) ? (
-                    <Query
-                      query={POST_COUNT_BADGE}
-                      variables={{ userId: this.props.userId }}
-                      hideSpinner
-                    >
-                      {postData => {
-                        if (postData.postsCount === 1) {
-                          return (
-                            <Badge
-                              earned
-                              className="badge p-3"
-                              size="medium"
-                              name="onePostBadge"
-                            >
-                              <h4>1 Action</h4>
-                              <p>
-                                Ohhh HECK yes! You just earned a new badge for
-                                completing your first campaign. Congratulations!
-                              </p>
-                              <a href="/us/account/profile/badges">
-                                View all my badges
-                              </a>
-                            </Badge>
-                          );
-                        }
-                        if (postData.postsCount === 2) {
-                          return (
-                            <Badge
-                              earned
-                              className="badge p-3"
-                              size="medium"
-                              name="twoPostsBadge"
-                            >
-                              <h4>2 Actions</h4>
-                              <p>
-                                Ohhh HECK yes! You just earned a new badge for
-                                completing your second campaign.
-                                Congratulations!
-                              </p>
-                              <a href="/us/account/profile/badges">
-                                View all my badges
-                              </a>
-                            </Badge>
-                          );
-                        }
-                        if (postData.postsCount === 3) {
-                          return (
-                            <Badge
-                              earned
-                              className="badge p-3"
-                              size="medium"
-                              name="threePostsBadge"
-                            >
-                              <h4>3 Actions</h4>
-                              <p>
-                                Ohhh HECK yes! You just earned a new badge for
-                                completing your third campaign. Congratulations!
-                              </p>
-                              <a href="/us/account/profile/badges">
-                                View all my badges
-                              </a>
-                            </Badge>
-                          );
-                        }
-
-                        return null;
-                      }}
-                    </Query>
-                  ) : null
-                }
-              </Query>
-
-              <TextContent className="p-3">
-                {this.props.affirmationContent}
-              </TextContent>
-            </Card>
-          </Modal>
+          <PostCreatedModal
+            affirmationContent={this.props.affirmationContent}
+            onClose={() => this.setState({ showModal: false })}
+            title="We got your signature!"
+            userId={this.props.userId}
+          />
         ) : null}
       </React.Fragment>
     );
