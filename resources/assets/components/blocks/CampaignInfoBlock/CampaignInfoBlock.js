@@ -27,7 +27,6 @@ const CAMPAIGN_INFO_QUERY = gql`
 `;
 
 const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => {
-  console.log("why aren't we getting this?????", campaignId);
   return (
     <Card className="bordered p-3 rounded campaign-info">
       <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
@@ -36,12 +35,14 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => {
         <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
           {res => {
             const endDate = res.campaign.endDate;
-            const actions = res.campaign.actions
-              ? res.campaign.actions.filter(
-                  action => action.scholarshipEntry && action.reportback,
-                )
-              : [];
-            const action = actions.length ? actions[0] : null;
+            const actions = res.campaign.actions || [];
+            const scholarshipActions = actions.filter(
+              action => action.reportback && action.scholarshipEntry,
+            );
+            const reportbackActions = actions.filter(
+              action => action.reportback,
+            );
+            const action = scholarshipActions[0] || reportbackActions[0];
 
             return (
               <>
