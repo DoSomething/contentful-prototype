@@ -34,12 +34,15 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
       <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
         {res => {
           const endDate = res.campaign.endDate;
-          const actions = res.campaign.actions
-            ? res.campaign.actions.filter(
-                action => action.scholarshipEntry && action.reportback,
-              )
-            : [];
-          const action = actions.length ? actions[0] : null;
+          const actions = res.campaign.actions || [];
+
+          let actionItem = actions.find(
+            action => action.reportback && action.scholarshipEntry,
+          );
+
+          if (!actionItem) {
+            actionItem = actions.find(action => action.reportback);
+          }
 
           return (
             <>
@@ -53,16 +56,16 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   </dd>
                 </>
               ) : null}
-              {action && action.timeCommitmentLabel ? (
+              {actionItem && actionItem.timeCommitmentLabel ? (
                 <React.Fragment>
                   <dt>Time</dt>
-                  <dd>{action.timeCommitmentLabel}</dd>
+                  <dd>{actionItem.timeCommitmentLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {action && action.actionLabel ? (
+              {actionItem && actionItem.actionLabel ? (
                 <React.Fragment>
                   <dt>Action Type</dt>
-                  <dd>{action.actionLabel}</dd>
+                  <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
               {scholarshipAmount ? (
