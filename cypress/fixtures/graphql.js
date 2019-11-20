@@ -62,6 +62,10 @@ export const mocks = {
     noun: 'things',
     verb: 'done',
     anonymous: false,
+    actionLabel: 'Sign a Petition',
+    timeCommitmentLabel: '1 hour',
+    scholarshipEntry: true,
+    reportback: true,
   }),
   Post: () => ({
     status: 'ACCEPTED', // Most users will only see accepted posts!
