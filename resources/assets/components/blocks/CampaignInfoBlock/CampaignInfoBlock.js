@@ -35,11 +35,11 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
         {res => {
           const endDate = res.campaign.endDate;
           const actions = res.campaign.actions || [];
-          const scholarshipActions = actions.filter(
-            action => action.reportback && action.scholarshipEntry,
-          );
-          const reportbackActions = actions.filter(action => action.reportback);
-          const action = scholarshipActions[0] || reportbackActions[0];
+
+          const actionItem =
+            actions.find(
+              action => action.reportback && action.scholarshipEntry,
+            ) || actions.find(action => action.reportback);
 
           return (
             <>
@@ -53,16 +53,16 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   </dd>
                 </>
               ) : null}
-              {action && action.timeCommitmentLabel ? (
+              {actionItem && actionItem.timeCommitmentLabel ? (
                 <React.Fragment>
                   <dt>Time</dt>
-                  <dd>{action.timeCommitmentLabel}</dd>
+                  <dd>{actionItem.timeCommitmentLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {action && action.actionLabel ? (
+              {actionItem && actionItem.actionLabel ? (
                 <React.Fragment>
                   <dt>Action Type</dt>
-                  <dd>{action.actionLabel}</dd>
+                  <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
               {scholarshipAmount ? (
