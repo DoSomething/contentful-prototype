@@ -50,6 +50,7 @@ const CollectionPageTemplate = ({
     backgroundImage,
   };
 
+  // We currently only support a single affiliate.
   const affiliate = affiliates[0];
 
   return (
