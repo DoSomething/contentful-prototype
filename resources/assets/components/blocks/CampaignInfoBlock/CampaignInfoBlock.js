@@ -26,66 +26,62 @@ const CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => {
-  return (
-    <Card className="bordered p-3 rounded campaign-info">
-      <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
+const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
+  <Card className="bordered p-3 rounded campaign-info">
+    <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
 
-      <dl className="clearfix">
-        <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
-          {res => {
-            const endDate = res.campaign.endDate;
-            const actions = res.campaign.actions || [];
-            const scholarshipActions = actions.filter(
-              action => action.reportback && action.scholarshipEntry,
-            );
-            const reportbackActions = actions.filter(
-              action => action.reportback,
-            );
-            const action = scholarshipActions[0] || reportbackActions[0];
+    <dl className="clearfix">
+      <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
+        {res => {
+          const endDate = res.campaign.endDate;
+          const actions = res.campaign.actions || [];
+          const scholarshipActions = actions.filter(
+            action => action.reportback && action.scholarshipEntry,
+          );
+          const reportbackActions = actions.filter(action => action.reportback);
+          const action = scholarshipActions[0] || reportbackActions[0];
 
-            return (
-              <>
-                {endDate ? (
-                  <>
-                    <dt>Deadline</dt>
-                    <dd>
-                      {format(String(endDate), 'MMMM do, yyyy', {
-                        awareOfUnicodeTokens: true,
-                      })}
-                    </dd>
-                  </>
-                ) : null}
-                {action && action.timeCommitmentLabel ? (
-                  <React.Fragment>
-                    <dt>Time</dt>
-                    <dd>{action.timeCommitmentLabel}</dd>
-                  </React.Fragment>
-                ) : null}
-                {action && action.actionLabel ? (
-                  <React.Fragment>
-                    <dt>Action Type</dt>
-                    <dd>{action.actionLabel}</dd>
-                  </React.Fragment>
-                ) : null}
-                {scholarshipAmount ? (
-                  <React.Fragment>
-                    <dt className="campaign-info__scholarship">
-                      Win A Scholarship
-                    </dt>
-                    <dd className="campaign-info__scholarship">
-                      {`$${scholarshipAmount.toLocaleString()}`}
-                    </dd>
-                  </React.Fragment>
-                ) : null}
-              </>
-            );
-          }}
-        </Query>
-      </dl>
-    </Card>
-  );
-};
+          return (
+            <>
+              {endDate ? (
+                <>
+                  <dt>Deadline</dt>
+                  <dd>
+                    {format(String(endDate), 'MMMM do, yyyy', {
+                      awareOfUnicodeTokens: true,
+                    })}
+                  </dd>
+                </>
+              ) : null}
+              {action && action.timeCommitmentLabel ? (
+                <React.Fragment>
+                  <dt>Time</dt>
+                  <dd>{action.timeCommitmentLabel}</dd>
+                </React.Fragment>
+              ) : null}
+              {action && action.actionLabel ? (
+                <React.Fragment>
+                  <dt>Action Type</dt>
+                  <dd>{action.actionLabel}</dd>
+                </React.Fragment>
+              ) : null}
+              {scholarshipAmount ? (
+                <React.Fragment>
+                  <dt className="campaign-info__scholarship">
+                    Win A Scholarship
+                  </dt>
+                  <dd className="campaign-info__scholarship">
+                    {`$${scholarshipAmount.toLocaleString()}`}
+                  </dd>
+                </React.Fragment>
+              ) : null}
+            </>
+          );
+        }}
+      </Query>
+    </dl>
+  </Card>
+);
 
 CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
