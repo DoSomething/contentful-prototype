@@ -34,34 +34,34 @@ const LandingPage = props => {
 
   return (
     <React.Fragment>
-      {/* {featureFlagUseLegacyTemplate ? ( */}
-      <PitchTemplate
-        additionalContent={additionalContent}
-        campaignId={campaignId}
-        content={content}
-        scholarshipAmount={scholarshipAmount}
-        scholarshipDeadline={scholarshipDeadline}
-        showPartnerMsgOptIn={showPartnerMsgOptIn}
-        sidebarCTA={sidebarCTA}
-        signupArrowContent={signupArrowContent}
-        tagline={tagline}
-        title={title}
-      />
-      {/* ) : ( */}
-      {/*   <MarqueeTemplate */}
-      {/*     additionalContent={additionalContent} */}
-      {/*     affiliateCreditText={affiliateCreditText} */}
-      {/*     affiliateSponsors={affiliateSponsors} */}
-      {/*     affiliateOptInContent={affiliateOptInContent} */}
-      {/*     content={content} */}
-      {/*     coverImage={coverImage} */}
-      {/*     campaignId={campaignId} */}
-      {/*     endDate={endDate} */}
-      {/*     scholarshipAmount={scholarshipAmount} */}
-      {/*     scholarshipDeadline={scholarshipDeadline} */}
-      {/*     subtitle={subtitle} */}
-      {/*     title={title} */}
-      {/*   /> */}
+      {featureFlagUseLegacyTemplate ? (
+        <PitchTemplate
+          additionalContent={additionalContent}
+          campaignId={campaignId}
+          content={content}
+          scholarshipAmount={scholarshipAmount}
+          scholarshipDeadline={scholarshipDeadline}
+          showPartnerMsgOptIn={showPartnerMsgOptIn}
+          sidebarCTA={sidebarCTA}
+          signupArrowContent={signupArrowContent}
+          tagline={tagline}
+          title={title}
+        />
+      ) : (
+        <MarqueeTemplate
+          additionalContent={additionalContent}
+          affiliateCreditText={affiliateCreditText}
+          affiliateSponsors={affiliateSponsors}
+          affiliateOptInContent={affiliateOptInContent}
+          content={content}
+          coverImage={coverImage}
+          campaignId={campaignId}
+          endDate={endDate}
+          scholarshipAmount={scholarshipAmount}
+          scholarshipDeadline={scholarshipDeadline}
+          subtitle={subtitle}
+          title={title}
+        />
       )}
     </React.Fragment>
   );
@@ -93,7 +93,8 @@ LandingPage.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   endDate: null,
-  featureFlagUseLegacyTemplate: false,
+  // @TODO: This should default to false once we're ready to ship the Hero Template!
+  featureFlagUseLegacyTemplate: true,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showPartnerMsgOptIn: false,

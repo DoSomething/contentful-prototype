@@ -17,12 +17,11 @@ const LedeBanner = props => {
       return <JumboTemplate {...props} />;
 
     default:
-      // @TODO: uncomment this toggle logic once we're clear to deploy this work!
-      // return featureFlagUseLegacyTemplate ? (
-      return <MosaicTemplate {...props} />;
-    // ) : (
-    // <MarqueeTemplate {...props} />
-    // );
+      return featureFlagUseLegacyTemplate ? (
+        <MosaicTemplate {...props} />
+      ) : (
+        <MarqueeTemplate {...props} />
+      );
   }
 };
 
@@ -32,7 +31,8 @@ LedeBanner.propTypes = {
 };
 
 LedeBanner.defaultProps = {
-  featureFlagUseLegacyTemplate: false,
+  // @TODO: This should default to false once we're ready to ship the Hero Template!
+  featureFlagUseLegacyTemplate: true,
 };
 
 export default LedeBanner;
