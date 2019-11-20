@@ -10,12 +10,12 @@ import { PuckWaypoint } from '@dosomething/puck-client';
 import ActionQuery from '../ActionQuery';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
+import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
-import PhotoSubmissionActionInfoCard from './PhotoSubmissionActionInfoCard';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -457,7 +457,8 @@ class PhotoSubmissionAction extends React.Component {
           </div>
 
           {this.props.informationContent ? (
-            <PhotoSubmissionActionInfoCard
+            <ActionInformation
+              className="photo-submission-information"
               title={this.props.informationTitle}
               content={this.props.informationContent}
             />
