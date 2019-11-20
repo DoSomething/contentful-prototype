@@ -14,6 +14,7 @@ import CausePage from './pages/CausePage/CausePage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import { getUserId, isAuthenticated } from '../selectors/user';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
+import CollectionPage from './pages/CollectionPage/CollectionPage';
 import AccountContainer from './pages/AccountPage/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
@@ -43,6 +44,12 @@ const App = ({ store, history }) => {
                 path="/us/causes/:slug"
                 render={routeProps => (
                   <CausePage slug={routeProps.match.params.slug} />
+                )}
+              />
+              <Route
+                path="/us/collections/:slug"
+                render={routeProps => (
+                  <CollectionPage slug={routeProps.match.params.slug} />
                 )}
               />
               <Route path="/us/join" component={BetaReferralPage} />
