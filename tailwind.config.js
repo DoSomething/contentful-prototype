@@ -106,13 +106,6 @@ module.exports = {
         '"Arial Black"',
         'sans-serif',
       ],
-      'proxima-nova': [
-        '"Proxima Nova"',
-        '"Helvetica Neue"',
-        'Helvetica',
-        'Arial',
-        'sans-serif',
-      ],
     },
     fontSize: {
       xs: '12px',
