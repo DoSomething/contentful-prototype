@@ -31,7 +31,8 @@ LedeBanner.propTypes = {
 };
 
 LedeBanner.defaultProps = {
-  featureFlagUseLegacyTemplate: false,
+  // @TODO: This should default to false once we're ready to ship the Hero Template!
+  featureFlagUseLegacyTemplate: true,
 };
 
 export default LedeBanner;
