@@ -180,6 +180,9 @@ class PhotoSubmissionAction extends React.Component {
 
     const type = 'photo';
 
+    // Support legacy Photo Submission Actions without a set actionId.
+    const action = 'default';
+
     const values = mapValues(
       this.fields(),
       value => this.state[`${value}Value`],
@@ -195,6 +198,7 @@ class PhotoSubmissionAction extends React.Component {
     }
 
     const formFields = withoutNulls({
+      action,
       type,
       id: this.props.id, // @TODO: rename property to blockId?
       action_id: this.props.actionId,
@@ -206,6 +210,7 @@ class PhotoSubmissionAction extends React.Component {
 
     // Send request to store the campaign photo submission post.
     this.props.storeCampaignPost(this.props.campaignId, {
+      action,
       actionId: this.props.actionId,
       blockId: this.props.id,
       body: formatPostPayload(formFields),
