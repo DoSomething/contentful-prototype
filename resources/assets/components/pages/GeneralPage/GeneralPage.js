@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Enclosure from '../../Enclosure';
-import Modal from '../../utilities/Modal/Modal';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -153,16 +152,14 @@ const GeneralPage = props => {
           name="cta_popover_email"
           render={(handleClose, handleComplete) => (
             <DelayedElement delay={3}>
-              <Modal onClose={handleClose}>
-                <CtaPopover
-                  title="PAYS TO DO GOOD"
-                  content="Want to earn easy scholarships for volunteering?
+              <CtaPopover
+                title="PAYS TO DO GOOD"
+                content="Want to earn easy scholarships for volunteering?
                   Subscribe to DoSomething's monthly scholarship email."
-                >
-                  <CtaPopoverEmailForm />
-                  <Modal onSubmit={handleComplete} />
-                </CtaPopover>
-              </Modal>
+                handleClose={handleClose}
+              >
+                <CtaPopoverEmailForm handleComplete={handleComplete} />
+              </CtaPopover>
             </DelayedElement>
           )}
         />
