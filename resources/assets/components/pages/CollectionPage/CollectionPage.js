@@ -73,7 +73,7 @@ const CollectionPageTemplate = ({
             </TextContent>
             {affiliate ? (
               <div className="mt-6">
-                <p className="font-proxima-nova font-bold font-size-base text-gray-500 uppercase">
+                <p className="font-bold font-size-base text-gray-500 uppercase">
                   {affiliatePrefix}
                 </p>
                 <img
