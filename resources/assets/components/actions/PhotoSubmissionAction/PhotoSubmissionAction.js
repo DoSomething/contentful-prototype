@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
+import ActionQuery from '../ActionQuery';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import MediaUploader from '../../utilities/MediaUploader';
@@ -14,7 +15,6 @@ import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
-import PhotoSubmissionActionQuery from './PhotoSubmissionActionQuery';
 import PhotoSubmissionActionInfoCard from './PhotoSubmissionActionInfoCard';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
@@ -234,7 +234,7 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   /**
-   * Rest the form fields.
+   * Reset the form fields.
    *
    * @return {void}
    */
@@ -263,23 +263,25 @@ class PhotoSubmissionAction extends React.Component {
    */
   render() {
     return (
-      <PhotoSubmissionActionQuery
-        actionId={this.props.actionId}
-        userId={this.props.userId}
-      >
-        {collectSchoolIdQueryResult => {
+      <ActionQuery actionId={this.props.actionId} userId={this.props.userId}>
+        {actionQueryData => {
           // This is a hack until we refactor this class as functional component with hooks.
-          this.schoolId = collectSchoolIdQueryResult.action.collectSchoolId
-            ? collectSchoolIdQueryResult.user.schoolId
+          this.schoolId = actionQueryData.action.collectSchoolId
+            ? actionQueryData.user.schoolId
             : null;
 
-          return this.renderActionForm();
+          return this.renderForm();
         }}
-      </PhotoSubmissionActionQuery>
+      </ActionQuery>
     );
   }
 
-  renderActionForm() {
+  /**
+   * Render the photo submission form.
+   *
+   * @return {ReactComponent}
+   */
+  renderForm() {
     const submissionItem = this.props.submissions.items[this.props.id];
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;

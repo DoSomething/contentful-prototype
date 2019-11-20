@@ -3,10 +3,10 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
-import Placeholder from '../../utilities/Placeholder';
+import Placeholder from '../utilities/Placeholder';
 
-const COLLECT_SCHOOL_ID_QUERY = gql`
-  query CollectSchoolIdQuery($actionId: Int!, $userId: String!) {
+const ACTION_AND_USER_QUERY = gql`
+  query ActionAndUserByIdQuery($actionId: Int!, $userId: String!) {
     action(id: $actionId) {
       collectSchoolId
     }
@@ -16,8 +16,8 @@ const COLLECT_SCHOOL_ID_QUERY = gql`
   }
 `;
 
-const PhotoSubmissionActionQuery = ({ actionId, userId, children }) => {
-  const { loading, error, data } = useQuery(COLLECT_SCHOOL_ID_QUERY, {
+const ActionQuery = ({ actionId, userId, children }) => {
+  const { loading, error, data } = useQuery(ACTION_AND_USER_QUERY, {
     variables: { actionId, userId },
   });
 
@@ -28,10 +28,10 @@ const PhotoSubmissionActionQuery = ({ actionId, userId, children }) => {
   return children(data);
 };
 
-PhotoSubmissionActionQuery.propTypes = {
+ActionQuery.propTypes = {
   actionId: PropTypes.number.isRequired,
   userId: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
 };
 
-export default PhotoSubmissionActionQuery;
+export default ActionQuery;
