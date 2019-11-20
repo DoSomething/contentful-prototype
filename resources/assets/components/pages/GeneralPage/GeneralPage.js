@@ -6,18 +6,21 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Enclosure from '../../Enclosure';
+import Modal from '../../utilities/Modal/Modal';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
-// import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
-// import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
+import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
+import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
 
@@ -145,15 +148,25 @@ const GeneralPage = props => {
           buttonText={ctaCopy.buttonText}
         />
       ) : null}
-      {/* {slug === 'about/easy-scholarships' ? (
-        <CtaPopover
-          title="PAYS TO DO GOOD"
-          content="Want to earn easy scholarships for volunteering?
-          Subscribe to DoSomething's monthly scholarship email."
-        >
-          <CtaPopoverEmailForm />
-        </CtaPopover>
-      ) : null} */}
+      {slug === 'about/easy-scholarships' ? (
+        <DismissableElement
+          name="cta_popover_email"
+          render={(handleClose, handleComplete) => (
+            <DelayedElement delay={3}>
+              <Modal onClose={handleClose}>
+                <CtaPopover
+                  title="PAYS TO DO GOOD"
+                  content="Want to earn easy scholarships for volunteering?
+                  Subscribe to DoSomething's monthly scholarship email."
+                >
+                  <CtaPopoverEmailForm />
+                  <Modal onSubmit={handleComplete} />
+                </CtaPopover>
+              </Modal>
+            </DelayedElement>
+          )}
+        />
+      ) : null}
     </div>
   );
 };
