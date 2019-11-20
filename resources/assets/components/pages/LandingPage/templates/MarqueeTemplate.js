@@ -24,6 +24,8 @@ const MarqueeTemplate = ({
   campaignId,
   content,
   coverImage,
+  displaySignupButton,
+  isAffiliated,
   scholarshipAmount,
   scholarshipDeadline,
   subtitle,
@@ -65,21 +67,23 @@ const MarqueeTemplate = ({
             </div>
 
             <div className="grid-wide-3/10 secondary">
-              <div className="marquee-signup-button">
-                <SignupButtonContainer
-                  className="w-full"
-                  text={
-                    isScholarshipAffiliateReferral()
-                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                      : undefined
-                  }
-                />
-                {affiliateOptInContent ? (
-                  <AffiliateOptInToggleContainer
-                    affiliateOptInContent={affiliateOptInContent}
+              {!isAffiliated && displaySignupButton ? (
+                <div className="marquee-signup-button">
+                  <SignupButtonContainer
+                    className="w-full"
+                    text={
+                      isScholarshipAffiliateReferral()
+                        ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                        : undefined
+                    }
                   />
-                ) : null}
-              </div>
+                  {affiliateOptInContent ? (
+                    <AffiliateOptInToggleContainer
+                      affiliateOptInContent={affiliateOptInContent}
+                    />
+                  ) : null}
+                </div>
+              ) : null}
 
               {displayAffiliateScholarshipBlock ? (
                 <AffiliateScholarshipBlockQuery
@@ -127,6 +131,8 @@ MarqueeTemplate.propTypes = {
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
+  displaySignupButton: PropTypes.bool,
+  isAffiliated: PropTypes.bool.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -139,6 +145,7 @@ MarqueeTemplate.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   campaignId: null,
+  displaySignupButton: true,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };

@@ -68,8 +68,11 @@ $router->get('{slug}', function ($slug) {
     return redirect('us/'.$slug);
 });
 
-// Causes
+// Cause Pages
 $router->view('us/causes/{slug}', 'app');
+
+// Collection Pages
+$router->view('us/collections/{slug}', 'app');
 
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');

@@ -7,11 +7,11 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-import './cause-page.scss';
+import './collection-page.scss';
 
-export const CAUSE_PAGE_QUERY = gql`
-  query CausePageQuery($slug: String!, $preview: Boolean!) {
-    page: causePageBySlug(slug: $slug, preview: $preview) {
+export const COLLECTION_PAGE_QUERY = gql`
+  query CollectionPageQuery($slug: String!, $preview: Boolean!) {
+    page: collectionPageBySlug(slug: $slug, preview: $preview) {
       coverImage {
         url
         description
@@ -24,7 +24,7 @@ export const CAUSE_PAGE_QUERY = gql`
   }
 `;
 
-const CausePageTemplate = ({
+const CollectionPageTemplate = ({
   coverImage,
   superTitle,
   title,
@@ -44,7 +44,7 @@ const CausePageTemplate = ({
     <>
       <SiteNavigationContainer />
 
-      <article className="cause-page">
+      <article className="collection-page">
         <header
           role="banner"
           className="lede-banner base-12-grid"
@@ -74,7 +74,7 @@ const CausePageTemplate = ({
   );
 };
 
-CausePageTemplate.propTypes = {
+CollectionPageTemplate.propTypes = {
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
@@ -84,14 +84,14 @@ CausePageTemplate.propTypes = {
   content: PropTypes.object.isRequired,
 };
 
-const CausePage = ({ slug }) => (
-  <PageQuery query={CAUSE_PAGE_QUERY} variables={{ slug }}>
-    {page => <CausePageTemplate {...page} />}
+const CollectionPage = ({ slug }) => (
+  <PageQuery query={COLLECTION_PAGE_QUERY} variables={{ slug }}>
+    {page => <CollectionPageTemplate {...page} />}
   </PageQuery>
 );
 
-CausePage.propTypes = {
+CollectionPage.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-export default CausePage;
+export default CollectionPage;

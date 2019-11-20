@@ -1,0 +1,93 @@
+import React from 'react';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+import { get } from 'lodash';
+
+import Query from '../../Query';
+import Card from '../../utilities/Card/Card';
+import Modal from '../../utilities/Modal/Modal';
+import Badge from '../../pages/AccountPage/Badge';
+import TextContent from '../../utilities/TextContent/TextContent';
+
+const BADGE_QUERY = gql`
+  query AccountQuery($userId: String!) {
+    user(id: $userId) {
+      hasBadgesFlag: hasFeatureFlag(feature: "badges")
+    }
+  }
+`;
+
+const POST_COUNT_BADGE = gql`
+  query PostsCountQuery($userId: String!) {
+    postsCount(userId: $userId, limit: 4)
+  }
+`;
+
+const PhotoSubmissionActionModal = ({
+  affirmationContent,
+  onClose,
+  userId,
+}) => (
+  <Modal onClose={onClose}>
+    <Card className="bordered rounded" title="We got your photo!">
+      <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
+        {badgeData =>
+          get(badgeData, 'user.hasBadgesFlag', false) ? (
+            <Query query={POST_COUNT_BADGE} variables={{ userId }} hideSpinner>
+              {postData => {
+                const count = postData.postsCount;
+
+                if (count > 3) {
+                  return null;
+                }
+
+                const config = {
+                  1: {
+                    className: 'onePostBadge',
+                    descriptor: 'first',
+                  },
+                  2: {
+                    className: 'twoPostsBadge',
+                    descriptor: 'second',
+                  },
+                  3: {
+                    className: 'threePostsBadge',
+                    descriptor: 'third',
+                  },
+                };
+
+                return (
+                  <Badge
+                    earned
+                    className="badge p-3"
+                    size="medium"
+                    name={config[count].className}
+                  >
+                    <h4>
+                      {count} Action{count > 1 ? 's' : null}
+                    </h4>
+                    <p>
+                      Ohhh HECK yes! You just earned a new badge for completing
+                      your {config[count].descriptor} campaign. Congratulations!
+                    </p>
+                    <a href="/us/account/profile/badges">View all my badges</a>
+                  </Badge>
+                );
+              }}
+            </Query>
+          ) : null
+        }
+      </Query>
+
+      <TextContent className="p-3">{affirmationContent}</TextContent>
+    </Card>
+  </Modal>
+);
+
+PhotoSubmissionActionModal.propTypes = {
+  affirmationContent: PropTypes.string.isRequired,
+  onClose: PropTypes.func.isRequired,
+  userId: PropTypes.string.isRequired,
+};
+
+export default PhotoSubmissionActionModal;

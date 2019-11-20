@@ -70,7 +70,7 @@ export function resetPostSubmissionItem(id) {
  * @return {function}
  */
 export function storeCampaignPost(campaignId, data) {
-  const { action, actionId, blockId, body, pageId, type } = data;
+  const { actionId, blockId, body, pageId, type } = data;
 
   if (type === 'photo' && !(body instanceof FormData)) {
     throw Error(
@@ -105,7 +105,6 @@ export function storeCampaignPost(campaignId, data) {
         body,
         failure: POST_SUBMISSION_FAILED,
         meta: {
-          action,
           actionId,
           campaignId,
           id: blockId, // @TODO: rename property to blockId

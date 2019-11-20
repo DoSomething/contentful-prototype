@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
@@ -64,8 +65,12 @@ class SocialDriveAction extends React.Component {
     const shortenedLink = this.state.shortenedLink;
 
     return (
-      <div className="clearfix pb-6">
-        <div className="social-drive-action">
+      <div className="clearfix pb-6 lg:flex">
+        <div
+          className={classNames('social-drive-action', {
+            'lg:w-2/3 lg:pr-3': showPageViews,
+          })}
+        >
           <Card title={shareCardTitle} className="rounded bordered">
             {shareCardDescription ? (
               <div className="p-3">
@@ -113,7 +118,11 @@ class SocialDriveAction extends React.Component {
         </div>
 
         {showPageViews ? (
-          <div className="social-drive-information">
+          <div
+            className={classNames('social-drive-information mt-6', {
+              'lg:w-1/3 lg:pl-3 lg:mt-0': showPageViews,
+            })}
+          >
             <Card className="bordered rounded" title="More info">
               <div className="link-info p-3">
                 <p className="info__title">What happens next?</p>
