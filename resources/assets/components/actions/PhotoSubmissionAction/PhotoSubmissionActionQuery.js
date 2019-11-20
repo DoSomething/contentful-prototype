@@ -3,6 +3,8 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
+import Placeholder from '../../utilities/Placeholder';
+
 const COLLECT_SCHOOL_ID_QUERY = gql`
   query CollectSchoolIdQuery($actionId: Int!, $userId: String!) {
     action(id: $actionId) {
@@ -19,12 +21,8 @@ const PhotoSubmissionActionQuery = ({ actionId, userId, children }) => {
     variables: { actionId, userId },
   });
 
-  if (loading) {
-    return <h3>Loading</h3>;
-  }
-
-  if (error) {
-    return <h3>{JSON.stringify(error)}</h3>;
+  if (loading || error) {
+    return <Placeholder error={error} />;
   }
 
   return children(data);
