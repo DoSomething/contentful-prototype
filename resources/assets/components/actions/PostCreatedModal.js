@@ -3,11 +3,11 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import Query from '../../Query';
-import Card from '../../utilities/Card/Card';
-import Modal from '../../utilities/Modal/Modal';
-import Badge from '../../pages/AccountPage/Badge';
-import TextContent from '../../utilities/TextContent/TextContent';
+import Query from '../Query';
+import Card from '../utilities/Card/Card';
+import Modal from '../utilities/Modal/Modal';
+import Badge from '../pages/AccountPage/Badge';
+import TextContent from '../utilities/TextContent/TextContent';
 
 const BADGE_QUERY = gql`
   query AccountQuery($userId: String!) {
@@ -23,11 +23,7 @@ const POST_COUNT_BADGE = gql`
   }
 `;
 
-const PhotoSubmissionActionModal = ({
-  affirmationContent,
-  onClose,
-  userId,
-}) => (
+const PostCreatedModal = ({ affirmationContent, onClose, userId }) => (
   <Modal onClose={onClose}>
     <Card className="bordered rounded" title="We got your photo!">
       <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
@@ -84,10 +80,10 @@ const PhotoSubmissionActionModal = ({
   </Modal>
 );
 
-PhotoSubmissionActionModal.propTypes = {
+PostCreatedModal.propTypes = {
   affirmationContent: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
-export default PhotoSubmissionActionModal;
+export default PostCreatedModal;

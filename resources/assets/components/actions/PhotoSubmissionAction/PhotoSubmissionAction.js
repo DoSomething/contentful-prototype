@@ -15,7 +15,7 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
-import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
+import PostCreatedModal from '../PostCreatedModal';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -466,7 +466,7 @@ class PhotoSubmissionAction extends React.Component {
         </div>
 
         {this.state.showModal ? (
-          <PhotoSubmissionActionModal
+          <PostCreatedModal
             affirmationContent={this.props.affirmationContent}
             onClose={() => this.setState({ showModal: false })}
             userId={this.props.userId}
