@@ -469,6 +469,7 @@ class PhotoSubmissionAction extends React.Component {
           <PostCreatedModal
             affirmationContent={this.props.affirmationContent}
             onClose={() => this.setState({ showModal: false })}
+            title="We got your photo!"
             userId={this.props.userId}
           />
         ) : null}

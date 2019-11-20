@@ -23,9 +23,9 @@ const POST_COUNT_BADGE = gql`
   }
 `;
 
-const PostCreatedModal = ({ affirmationContent, onClose, userId }) => (
+const PostCreatedModal = ({ affirmationContent, onClose, title, userId }) => (
   <Modal onClose={onClose}>
-    <Card className="bordered rounded" title="We got your photo!">
+    <Card className="bordered rounded" title={title}>
       <Query query={BADGE_QUERY} variables={{ userId }} hideSpinner>
         {badgeData =>
           get(badgeData, 'user.hasBadgesFlag', false) ? (
@@ -83,6 +83,7 @@ const PostCreatedModal = ({ affirmationContent, onClose, userId }) => (
 PostCreatedModal.propTypes = {
   affirmationContent: PropTypes.string.isRequired,
   onClose: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
