@@ -64,6 +64,21 @@ const MarqueeTemplate = ({
 
             <div className="grid-wide-7/10 primary">
               <TextContent>{content}</TextContent>
+              {affiliateSponsors.length ? (
+                <AffiliatePromotion
+                  className="mt-3"
+                  imgUrl={
+                    get(
+                      additionalContent,
+                      'campaignSponsorLogoAlternativeUrl',
+                      null,
+                    ) || affiliateSponsors[0].fields.logo.url
+                  }
+                  text={affiliateCreditText}
+                  textClassName="text-gray-400"
+                  title={affiliateSponsors[0].fields.logo.title}
+                />
+              ) : null}
             </div>
 
             <div className="grid-wide-3/10 secondary">
@@ -99,22 +114,6 @@ const MarqueeTemplate = ({
                   scholarshipAmount={scholarshipAmount}
                 />
               )}
-
-              {affiliateSponsors.length ? (
-                <AffiliatePromotion
-                  className="mt-3"
-                  imgUrl={
-                    get(
-                      additionalContent,
-                      'campaignSponsorLogoAlternativeUrl',
-                      null,
-                    ) || affiliateSponsors[0].fields.logo.url
-                  }
-                  text={affiliateCreditText}
-                  textClassName="text-gray-400"
-                  title={affiliateSponsors[0].fields.logo.title}
-                />
-              ) : null}
             </div>
           </Enclosure>
         </div>
