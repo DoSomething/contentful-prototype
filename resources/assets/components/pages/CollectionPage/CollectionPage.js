@@ -86,7 +86,7 @@ CollectionPageTemplate.propTypes = {
 
 const CollectionPage = ({ slug }) => (
   <PageQuery query={COLLECTION_PAGE_QUERY} variables={{ slug }}>
-    {page => <CollectionPageTemplate {...page} />}
+    {page => <CollectionPageTemplate {...withoutNulls(page)} />}
   </PageQuery>
 );
 
