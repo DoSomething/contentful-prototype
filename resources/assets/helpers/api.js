@@ -2,7 +2,9 @@
 
 import { join } from 'path';
 import { get } from 'lodash';
+import gql from 'graphql-tag';
 import { RestApiClient } from '@dosomething/gateway';
+import { useApolloClient } from '@apollo/react-hooks';
 
 import { PHOENIX_URL } from '../constants';
 
@@ -124,4 +126,34 @@ export function getBlock(id) {
   const path = join('api/v2/blocks', id);
 
   return getRequest(`${PHOENIX_URL}/${path}`);
+}
+
+/**
+ * Returns given user school ID if the given action should collect school ID.
+ *
+ * @param {Number} actionId
+ * @param {String} userId
+ * @return {Promise}
+ */
+export async function getUserActionSchoolId({ userId, actionId }) {
+  const client = useApolloClient();
+
+  const query = gql`
+    query ActionAndUserByIdQuery($actionId: Int!, $userId: String!) {
+      action(id: $actionId) {
+        collectSchoolId
+      }
+      user(id: $userId) {
+        schoolId
+      }
+    }
+  `;
+
+  const queryResult = await client.query({
+    query,
+    variables: userId,
+    actionId,
+  });
+
+  return queryResult.action.collectSchoolId ? queryResult.user.schoolId : null;
 }

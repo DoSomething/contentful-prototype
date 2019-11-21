@@ -7,13 +7,15 @@ import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
-import ActionQuery from '../ActionQuery';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
-import { getUserCampaignSignups } from '../../../helpers/api';
+import {
+  getUserActionSchoolId,
+  getUserCampaignSignups,
+} from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
@@ -174,7 +176,7 @@ class PhotoSubmissionAction extends React.Component {
    * @param  {Object} event
    * @return {void}
    */
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     this.props.resetPostSubmissionItem(this.props.id);
@@ -198,6 +200,11 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
+    const schoolId = await getUserActionSchoolId({
+      userId: this.props.userId,
+      actionId: this.props.actionId,
+    });
+
     const formFields = withoutNulls({
       action,
       type,
@@ -207,7 +214,7 @@ class PhotoSubmissionAction extends React.Component {
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
-      school_id: this.schoolId,
+      school_id: schoolId,
     });
 
     // Send request to store the campaign photo submission post.
@@ -262,26 +269,6 @@ class PhotoSubmissionAction extends React.Component {
    * @return {ReactComponent}
    */
   render() {
-    return (
-      <ActionQuery actionId={this.props.actionId} userId={this.props.userId}>
-        {actionQueryData => {
-          // This is a hack until we refactor this class as functional component with hooks.
-          this.schoolId = actionQueryData.action.collectSchoolId
-            ? actionQueryData.user.schoolId
-            : null;
-
-          return this.renderForm();
-        }}
-      </ActionQuery>
-    );
-  }
-
-  /**
-   * Render the photo submission form.
-   *
-   * @return {ReactComponent}
-   */
-  renderForm() {
     const submissionItem = this.props.submissions.items[this.props.id];
 
     const formResponse = has(submissionItem, 'status') ? submissionItem : null;
