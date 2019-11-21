@@ -17,6 +17,7 @@ const CtaPopover = ({ content, handleClose, title }) => {
         {title}
       </h3>
       <p className="text-white mt-3">{content}</p>
+      {/* {children} */}
     </div>
   );
 };
@@ -25,6 +26,7 @@ CtaPopover.propTypes = {
   content: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
+  // children: PropTypes.object.isRequired,
 };
 
 export default CtaPopover;

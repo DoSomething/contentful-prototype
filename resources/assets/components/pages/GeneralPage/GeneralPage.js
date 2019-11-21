@@ -18,6 +18,8 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+// import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+// import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
 
@@ -146,13 +148,21 @@ const GeneralPage = props => {
         />
       ) : null}
       {/* {slug === 'about/easy-scholarships' ? (
-        <CtaPopover
-          title="PAYS TO DO GOOD"
-          content="Want to earn easy scholarships for volunteering?
-          Subscribe to DoSomething's monthly scholarship email."
-        >
-          <CtaPopoverEmailForm />
-        </CtaPopover>
+        <DismissableElement
+          name="cta_popover_email"
+          render={(handleClose, handleComplete) => (
+            <DelayedElement delay={3}>
+              <CtaPopover
+                title="PAYS TO DO GOOD"
+                content="Want to earn easy scholarships for volunteering?
+                  Subscribe to DoSomething's monthly scholarship email."
+                handleClose={handleClose}
+              >
+                <CtaPopoverEmailForm handleComplete={handleComplete} />
+              </CtaPopover>
+            </DelayedElement>
+          )}
+        />
       ) : null} */}
     </div>
   );
