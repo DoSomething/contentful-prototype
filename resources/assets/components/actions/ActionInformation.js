@@ -14,14 +14,12 @@ const ActionInformation = ({ className, content, title }) => (
 
 ActionInformation.propTypes = {
   className: PropTypes.string,
-  content: PropTypes.string,
-  title: PropTypes.string,
+  content: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 ActionInformation.defaultProps = {
   className: null,
-  content: null,
-  title: null,
 };
 
 export default ActionInformation;
