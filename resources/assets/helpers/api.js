@@ -4,9 +4,12 @@ import { join } from 'path';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { RestApiClient } from '@dosomething/gateway';
-import { useApolloClient } from '@apollo/react-hooks';
 
+import { env } from './index';
+import graphqlClient from '../graphql';
 import { PHOENIX_URL } from '../constants';
+
+const gqlClient = graphqlClient(env('GRAPHQL_URL'));
 
 /**
  * Set properties for request headers object.
@@ -131,13 +134,11 @@ export function getBlock(id) {
 /**
  * Returns given user school ID if the given action should collect school ID.
  *
- * @param {Number} actionId
  * @param {String} userId
+ * @param {Number} actionId
  * @return {Promise}
  */
-export async function getUserActionSchoolId({ userId, actionId }) {
-  const client = useApolloClient();
-
+export async function getUserActionSchoolId(userId, actionId) {
   const query = gql`
     query ActionAndUserByIdQuery($actionId: Int!, $userId: String!) {
       action(id: $actionId) {
@@ -149,11 +150,11 @@ export async function getUserActionSchoolId({ userId, actionId }) {
     }
   `;
 
-  const queryResult = await client.query({
+  const result = await gqlClient.query({
     query,
-    variables: userId,
-    actionId,
+    variables: { userId, actionId },
   });
 
-  return queryResult.action.collectSchoolId ? queryResult.user.schoolId : null;
+  // @TODO: Don't return user school ID if set to unavailable.
+  return result.data.action.collectSchoolId ? result.data.user.schoolId : null;
 }

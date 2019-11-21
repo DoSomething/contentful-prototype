@@ -200,10 +200,10 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
-    const schoolId = await getUserActionSchoolId({
-      userId: this.props.userId,
-      actionId: this.props.actionId,
-    });
+    const schoolId = await getUserActionSchoolId(
+      this.props.userId,
+      this.props.actionId,
+    );
 
     const formFields = withoutNulls({
       action,
