@@ -1,9 +1,9 @@
 import React from 'react';
-import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Card from '../../utilities/Card/Card';
+import { getHumanFriendlyDate } from '../../../helpers';
 
 import './affiliate-scholarship-block.scss';
 
@@ -51,11 +51,7 @@ const AffiliateScholarshipBlock = ({
         {scholarshipDeadline ? (
           <div className="scholarship-deadline">
             <p className="font-bold">DEADLINE</p>
-            <p className="mt-2">
-              {format(scholarshipDeadline, 'MMMM do, YYYY', {
-                awareOfUnicodeTokens: true,
-              })}
-            </p>
+            <p className="mt-2">{getHumanFriendlyDate(scholarshipDeadline)}</p>
           </div>
         ) : null}
 
