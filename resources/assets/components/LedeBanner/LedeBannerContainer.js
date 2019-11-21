@@ -35,6 +35,8 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.featureFlagUseLegacyTemplate',
   ),
   isAffiliated: isSignedUp(state),
+  scholarshipAmount: state.campaign.scholarshipAmount,
+  scholarshipDeadline: state.campaign.scholarshipDeadline,
   subtitle: get(props, 'subtitle', state.campaign.callToAction),
   template: get(props, 'template', state.campaign.template),
   title: get(props, 'title', state.campaign.title),
