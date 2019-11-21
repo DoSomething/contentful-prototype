@@ -1,7 +1,7 @@
 /* global window, document, Blob, URL */
 
 import queryString from 'query-string';
-import { getTime, isBefore, isWithinInterval } from 'date-fns';
+import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
   find,
@@ -395,6 +395,16 @@ export function makeShareLink(
         'Please provide an expected section type for generating the link.',
       );
   }
+}
+
+/**
+ * Get a human friendly date from a Contentful Date (ISO 8601) string.
+ *
+ * @param {string} date
+ * @return {string}
+ */
+export function getHumanFriendlyDate(date) {
+  return format(date, 'MMMM do, yyyy');
 }
 
 /**
