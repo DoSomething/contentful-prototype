@@ -93,8 +93,7 @@ LandingPage.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   endDate: null,
-  // @TODO: This should default to false once we're ready to ship the Hero Template!
-  featureFlagUseLegacyTemplate: true,
+  featureFlagUseLegacyTemplate: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showPartnerMsgOptIn: false,
