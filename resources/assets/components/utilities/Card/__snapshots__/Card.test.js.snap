@@ -2,7 +2,7 @@
 
 exports[`it generates a card snapshot 1`] = `
 <article
-  className="card bordered p-3 rounded"
+  className="card clip-padding-box bordered p-3 rounded"
 >
   <header
     className="card__title"

@@ -2,13 +2,13 @@
 
 exports[`CallToAction snapshot test 1`] = `
 <Card
-  className="call-to-action rounded p-3 text-center bg-white bordered light"
+  className="p-3 text-center bg-white border border-solid border-gray-200 rounded"
   link={null}
   onClose={null}
   title={null}
 >
   <div
-    className="cta__tagline mb-6"
+    className="font-bold mb-6"
   >
     Aenean eu leo quam. Pellentesque ornare sem vestibulum.
   </div>
