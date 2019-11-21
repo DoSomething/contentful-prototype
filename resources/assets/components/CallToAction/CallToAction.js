@@ -8,8 +8,6 @@ import { isScholarshipAffiliateReferral } from '../../helpers';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 
-import './cta.scss';
-
 export const CallToActionBlockFragment = gql`
   fragment CallToActionBlockFragment on CallToActionBlock {
     visualStyle
