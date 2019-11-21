@@ -21,7 +21,7 @@
     }
 
     // Hack to avoid ugly button layout with 3 / 1 per row.
-    @include media('(max-width: 1300px)') {
+    @include media('(max-width: 1350px)') {
       grid-template-columns: repeat(2, auto);
     }
 
