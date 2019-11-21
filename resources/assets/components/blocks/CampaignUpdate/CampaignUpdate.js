@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get } from 'lodash';
@@ -11,6 +12,24 @@ import Byline from '../../utilities/Byline/Byline';
 import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
+
+export const CampaignUpdateBlockFragment = gql`
+  fragment CampaignUpdateBlockFragment on CampaignUpdateBlock {
+    id
+    content
+    link
+    author {
+      name
+      jobTitle
+      photo {
+        url
+      }
+    }
+    affiliateLogo {
+      url
+    }
+  }
+`;
 
 const CampaignUpdate = props => {
   const {
@@ -26,7 +45,8 @@ const CampaignUpdate = props => {
     // titleLink,
   } = props;
 
-  const authorFields = get(author, 'fields', {});
+  // Support both GraphQL & PHP Content API formats:
+  const authorFields = author && author.fields ? author.fields : author;
   const authorPhoto = get(authorFields, 'photo.url') || undefined;
 
   const isTweet = content && content.length < 144;

@@ -15,6 +15,7 @@ import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
 import { CallToActionBlockFragment } from '../../CallToAction/CallToAction';
 import { GalleryBlockFragment } from '../../blocks/GalleryBlock/GalleryBlock';
 import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
+import { CampaignUpdateBlockFragment } from '../../blocks/CampaignUpdate/CampaignUpdate';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
@@ -33,6 +34,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...ContentBlockFragment
       ...PostGalleryBlockFragment
       ...CallToActionBlockFragment
+      ...CampaignUpdateBlockFragment
       ...TextSubmissionBlockFragment
       ...PhotoSubmissionBlockFragment
       ...VoterRegistrationBlockFragment
@@ -48,6 +50,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${ContentBlockFragment}
   ${PostGalleryBlockFragment}
   ${CallToActionBlockFragment}
+  ${CampaignUpdateBlockFragment}
   ${TextSubmissionBlockFragment}
   ${PhotoSubmissionBlockFragment}
   ${VoterRegistrationBlockFragment}

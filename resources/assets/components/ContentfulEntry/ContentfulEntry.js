@@ -116,6 +116,17 @@ class ContentfulEntry extends React.Component<Props, State> {
           <CampaignDashboard id={json.id} {...withoutNulls(json.fields)} />
         );
 
+      case 'CampaignUpdateBlock':
+        return (
+          <CampaignUpdateContainer
+            id={json.id}
+            affiliateLogo={json.affiliateLogo}
+            author={json.author}
+            content={json.content}
+            link={json.link}
+          />
+        );
+
       case 'campaignUpdate':
         return (
           <CampaignUpdateContainer
