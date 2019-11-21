@@ -26,11 +26,11 @@ const mapStateToProps = (state, ownProps) => {
     content: landingPage.content,
     coverImage: state.campaign.coverImage,
     endDate: state.campaign.endDate,
-    scholarshipAmount: state.campaign.scholarshipAmount,
     featureFlagUseLegacyTemplate: get(
       state,
       'campaign.additionalContent.featureFlagUseLegacyTemplate',
     ),
+    scholarshipAmount: state.campaign.scholarshipAmount,
     scholarshipDeadline: state.campaign.scholarshipDeadline,
     showPartnerMsgOptIn: get(
       state.campaign.additionalContent,
