@@ -155,6 +155,5 @@ export async function getUserActionSchoolId(graphqlClient, userId, actionId) {
     variables: { userId, actionId },
   });
 
-  // @TODO: Don't return user school ID if set to unavailable.
   return result.data.action.collectSchoolId ? result.data.user.schoolId : null;
 }
