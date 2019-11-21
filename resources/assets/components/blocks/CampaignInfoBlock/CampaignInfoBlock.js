@@ -1,10 +1,10 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { format } from 'date-fns';
 import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
+import { getHumanFriendlyDate } from '../../../helpers';
 
 import './campaign-info-block.scss';
 
@@ -49,11 +49,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
               {endDate ? (
                 <>
                   <dt>Deadline</dt>
-                  <dd>
-                    {format(String(endDate), 'MMMM do, yyyy', {
-                      awareOfUnicodeTokens: true,
-                    })}
-                  </dd>
+                  <dd>{getHumanFriendlyDate(endDate)}</dd>
                 </>
               ) : null}
               {actionItem && actionItem.timeCommitmentLabel ? (
