@@ -18,6 +18,7 @@ class SocialDriveAction extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'link' => $this->link,
+                'hidePageViews' => $this->hidePageViews,
             ],
         ];
     }
