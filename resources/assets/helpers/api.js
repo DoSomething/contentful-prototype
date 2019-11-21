@@ -130,6 +130,10 @@ export function getBlock(id) {
 /**
  * Returns given user school ID if the given action should collect school ID.
  *
+ * NOTE: We need to pass an ApolloClient argument to avoid an Invariant Violation in our jest tests.
+ * @see https://circleci.com/gh/DoSomething/phoenix-next/1348?utm_campaign=vcs-integration-link&utm_medium=referral&utm_source=github-build-link
+ *
+ * @param {ApolloClient} graphqlClient
  * @param {String} userId
  * @param {Number} actionId
  * @return {Promise}
