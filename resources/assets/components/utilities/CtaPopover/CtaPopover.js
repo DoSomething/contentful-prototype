@@ -26,7 +26,7 @@ CtaPopover.propTypes = {
   content: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired,
+  // children: PropTypes.object.isRequired,
 };
 
 export default CtaPopover;
