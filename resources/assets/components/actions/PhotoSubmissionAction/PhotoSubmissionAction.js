@@ -7,14 +7,18 @@ import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
+import graphqlClient from '../../../graphql';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
+import PostCreatedModal from '../PostCreatedModal';
+import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
-import { getUserCampaignSignups } from '../../../helpers/api';
+import {
+  getUserActionSchoolId,
+  getUserCampaignSignups,
+} from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
-import TextContent from '../../utilities/TextContent/TextContent';
-import PhotoSubmissionActionModal from './PhotoSubmissionActionModal';
+import { env, withoutUndefined, withoutNulls } from '../../../helpers';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -83,17 +87,20 @@ class PhotoSubmissionAction extends React.Component {
     this.state = {
       captionValue: '',
       mediaValue: this.defaultMediaState,
+      numberOfParticipantsValue: '',
       quantityValue: '',
       shouldResetForm: false,
-      signup: null,
       showModal: false,
+      signup: null,
       whyParticipatedValue: '',
-      numberOfParticipantsValue: '',
     };
+
+    // Needed to fetch the user action school ID via GraphQL.
+    this.gqlClient = graphqlClient(env('GRAPHQL_URL'));
   }
 
   /**
-   * Lifecylce method invoked immediately after a component is mounted.
+   * Lifecycle method invoked immediately after a component is mounted.
    *
    * @return {void}
    */
@@ -173,7 +180,7 @@ class PhotoSubmissionAction extends React.Component {
    * @param  {Object} event
    * @return {void}
    */
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     this.props.resetPostSubmissionItem(this.props.id);
@@ -197,6 +204,12 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
+    const schoolId = await getUserActionSchoolId(
+      this.gqlClient,
+      this.props.userId,
+      this.props.actionId,
+    );
+
     const formFields = withoutNulls({
       action,
       type,
@@ -206,6 +219,7 @@ class PhotoSubmissionAction extends React.Component {
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
+      school_id: schoolId,
     });
 
     // Send request to store the campaign photo submission post.
@@ -232,7 +246,7 @@ class PhotoSubmissionAction extends React.Component {
   };
 
   /**
-   * Rest the form fields.
+   * Reset the form fields.
    *
    * @return {void}
    */
@@ -435,23 +449,19 @@ class PhotoSubmissionAction extends React.Component {
           </div>
 
           {this.props.informationContent ? (
-            <div className="photo-submission-information">
-              <Card
-                title={this.props.informationTitle}
-                className="bordered rounded"
-              >
-                <TextContent className="p-3">
-                  {this.props.informationContent}
-                </TextContent>
-              </Card>
-            </div>
+            <ActionInformation
+              className="photo-submission-information"
+              title={this.props.informationTitle}
+              content={this.props.informationContent}
+            />
           ) : null}
         </div>
 
         {this.state.showModal ? (
-          <PhotoSubmissionActionModal
+          <PostCreatedModal
             affirmationContent={this.props.affirmationContent}
             onClose={() => this.setState({ showModal: false })}
+            title="We got your photo!"
             userId={this.props.userId}
           />
         ) : null}
