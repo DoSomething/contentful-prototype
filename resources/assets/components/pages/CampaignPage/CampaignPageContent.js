@@ -34,7 +34,6 @@ const CampaignPageContent = props => {
         'gallery',
         'postGallery',
         'imagesBlock',
-        'socialDriveAction',
       ].includes(type)
     ) {
       fullWidth = true;
@@ -42,6 +41,11 @@ const CampaignPageContent = props => {
 
     // Only setting full column width for Content Blocks with an image
     if (type === 'contentBlock' && get(json.fields.image, 'url')) {
+      fullWidth = true;
+    }
+
+    // Only setting full column width for Social Drive Actions displaying a page views info card.
+    if (type === 'socialDriveAction' && !json.fields.hidePageViews) {
       fullWidth = true;
     }
 

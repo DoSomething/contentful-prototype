@@ -60,7 +60,7 @@ class SocialDriveAction extends React.Component {
       link,
       shareCardDescription,
       shareCardTitle,
-      showPageViews,
+      hidePageViews,
     } = this.props;
     const shortenedLink = this.state.shortenedLink;
 
@@ -68,7 +68,7 @@ class SocialDriveAction extends React.Component {
       <div className="clearfix pb-6 lg:flex">
         <div
           className={classNames('social-drive-action', {
-            'lg:w-2/3 lg:pr-3': showPageViews,
+            'lg:w-2/3 lg:pr-3': !hidePageViews,
           })}
         >
           <Card title={shareCardTitle} className="rounded bordered">
@@ -117,10 +117,10 @@ class SocialDriveAction extends React.Component {
           </Card>
         </div>
 
-        {showPageViews ? (
+        {!hidePageViews ? (
           <div
             className={classNames('social-drive-information mt-6', {
-              'lg:w-1/3 lg:pl-3 lg:mt-0': showPageViews,
+              'lg:w-1/3 lg:pl-3 lg:mt-0': !hidePageViews,
             })}
           >
             <Card className="bordered rounded" title="More info">
@@ -156,7 +156,7 @@ SocialDriveAction.propTypes = {
   pageId: PropTypes.string,
   shareCardTitle: PropTypes.string,
   shareCardDescription: PropTypes.string,
-  showPageViews: PropTypes.bool,
+  hidePageViews: PropTypes.bool,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
@@ -166,7 +166,7 @@ SocialDriveAction.defaultProps = {
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',
   pageId: null,
-  showPageViews: true,
+  hidePageViews: false,
 };
 
 export default SocialDriveAction;
