@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -8,6 +9,18 @@ import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../constants';
 import SignupButtonContainer from '../SignupButton/SignupButtonContainer';
 
 import './cta.scss';
+
+export const CallToActionBlockFragment = gql`
+  fragment CallToActionBlockFragment on CallToActionBlock {
+    visualStyle
+    useCampaignTagline
+    content
+    impactPrefix
+    impactValue
+    impactSuffix
+    actionText
+  }
+`;
 
 const renderImpactContent = (prefix, value, suffix) => {
   const valueElem = <span className="cta__impact_number">{value}</span>;
