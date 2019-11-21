@@ -86,8 +86,9 @@ const CampaignPageContent = props => {
 
       {isClosed ? null : (
         <CallToActionContainer
+          className="text-xl"
           useCampaignTagline
-          visualStyle="transparent"
+          visualStyle="light"
           hideIfSignedUp
         />
       )}
