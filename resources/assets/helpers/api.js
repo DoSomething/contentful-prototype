@@ -5,11 +5,7 @@ import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { RestApiClient } from '@dosomething/gateway';
 
-import { env } from './index';
-import graphqlClient from '../graphql';
 import { PHOENIX_URL } from '../constants';
-
-const gqlClient = graphqlClient(env('GRAPHQL_URL'));
 
 /**
  * Set properties for request headers object.
@@ -138,7 +134,7 @@ export function getBlock(id) {
  * @param {Number} actionId
  * @return {Promise}
  */
-export async function getUserActionSchoolId(userId, actionId) {
+export async function getUserActionSchoolId(graphqlClient, userId, actionId) {
   const query = gql`
     query ActionAndUserByIdQuery($actionId: Int!, $userId: String!) {
       action(id: $actionId) {
@@ -150,7 +146,7 @@ export async function getUserActionSchoolId(userId, actionId) {
     }
   `;
 
-  const result = await gqlClient.query({
+  const result = await graphqlClient.query({
     query,
     variables: { userId, actionId },
   });

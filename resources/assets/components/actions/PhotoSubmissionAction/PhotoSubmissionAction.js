@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
+import graphqlClient from '../../../graphql';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
@@ -17,7 +18,7 @@ import {
   getUserCampaignSignups,
 } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
-import { withoutUndefined, withoutNulls } from '../../../helpers';
+import { env, withoutUndefined, withoutNulls } from '../../../helpers';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -93,10 +94,13 @@ class PhotoSubmissionAction extends React.Component {
       signup: null,
       whyParticipatedValue: '',
     };
+
+    // Needed to fetch the user action school ID via GraphQL.
+    this.gqlClient = graphqlClient(env('GRAPHQL_URL'));
   }
 
   /**
-   * Lifecylce method invoked immediately after a component is mounted.
+   * Lifecycle method invoked immediately after a component is mounted.
    *
    * @return {void}
    */
@@ -201,6 +205,7 @@ class PhotoSubmissionAction extends React.Component {
     }
 
     const schoolId = await getUserActionSchoolId(
+      this.gqlClient,
       this.props.userId,
       this.props.actionId,
     );
