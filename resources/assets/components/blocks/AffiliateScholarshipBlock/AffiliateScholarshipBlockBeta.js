@@ -34,7 +34,7 @@ const AffiliateScholarshipBlockBeta = ({
         {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
       </strong>{' '}
       Ready to earn scholarships for doing good? Just follow the simple
-      instructions below for the chance to win. Let’s Do This!
+      instructions for the chance to win. Let’s Do This!
     </p>
     <dl className="clearfix">
       {scholarshipAmount ? (
