@@ -2,9 +2,9 @@
   "private": true,
   "scripts": {
     "test": "jest --watch",
-    "test:ci": "jest --max-Workers=2",
+    "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
     "cypress": "cypress open",
-    "cypress:ci": "cypress run -c baseUrl=http://127.0.0.1:8000 --record",
+    "cypress:ci": "cypress run -c baseUrl=http://127.0.0.1:8000 --record --reporter cypress-multi-reporters --reporter-options configFile=cypress-report-config.json",
     "lint": "eslint --ext .js resources/assets",
     "flow": "flow",
     "start": "npm run schema:fragments && webpack --env=development --hide-modules --watch",
@@ -47,6 +47,10 @@
     "not op_mini all"
   ],
   "jest": {
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
     "clearMocks": true,
     "testEnvironment": "jest-environment-jsdom-global",
     "setupFilesAfterEnv": [
@@ -136,6 +140,7 @@
     "cypress": "^3.6.1",
     "cypress-file-upload": "^3.5.0",
     "cypress-graphql-mock": "github:DFurnes/cypress-graphql-mock#with-persisted-batch-support",
+    "cypress-multi-reporters": "^1.2.3",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-cypress": "^2.7.0",
     "faker": "^4.1.0",
@@ -144,7 +149,10 @@
     "husky": "^2.7.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
+    "jest-junit": "^9.0.0",
     "minimist": "^1.2.0",
+    "mocha": "^6.2.2",
+    "mocha-junit-reporter": "^1.23.1",
     "modernizr": "^3.8.0",
     "postcss-loader": "^3.0.0",
     "prettier": "1.18.2",

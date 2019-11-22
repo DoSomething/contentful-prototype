@@ -8,6 +8,7 @@ stats.json
 /public/next/uploads
 /public/storage
 /resources/assets/fragmentTypes.json
+/reports
 /storage/debugbar
 /vendor
 /_book
