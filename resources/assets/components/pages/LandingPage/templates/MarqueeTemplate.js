@@ -119,7 +119,7 @@ const MarqueeTemplate = ({
           </Enclosure>
         </div>
       </article>
-      <CampaignInfoBarContainer />
+      {!isAffiliated ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>
   );
 };
