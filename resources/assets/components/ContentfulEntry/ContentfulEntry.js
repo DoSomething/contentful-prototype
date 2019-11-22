@@ -81,7 +81,11 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <AffirmationContainer
             {...withoutNulls(json.fields)}
-            author={json.fields.author.fields}
+            author={
+              json.fields && json.fields.author
+                ? json.fields.author.fields
+                : undefined
+            }
             onClose={json.onClose}
           />
         );
