@@ -10,6 +10,7 @@ import ContentfulEntry from '../../ContentfulEntry';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import { EmbedBlockFragment } from '../../blocks/EmbedBlock/EmbedBlock';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
+import { AffirmationBlockFragment } from '../../Affirmation/Affirmation';
 import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
 import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
 import { CallToActionBlockFragment } from '../../CallToAction/CallToAction';
@@ -32,6 +33,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...ImagesBlockFragment
       ...GalleryBlockFragment
       ...ContentBlockFragment
+      ...AffirmationBlockFragment
       ...PostGalleryBlockFragment
       ...CallToActionBlockFragment
       ...CampaignUpdateBlockFragment
@@ -48,6 +50,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${ImagesBlockFragment}
   ${GalleryBlockFragment}
   ${ContentBlockFragment}
+  ${AffirmationBlockFragment}
   ${PostGalleryBlockFragment}
   ${CallToActionBlockFragment}
   ${CampaignUpdateBlockFragment}
