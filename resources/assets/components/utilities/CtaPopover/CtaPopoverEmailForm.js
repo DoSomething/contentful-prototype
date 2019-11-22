@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import Button from '../Button/Button';
 import './cta-popover-email-form.scss';
+import { env } from '../../../helpers/index';
+import apiRequest from '../../../actions/api';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
@@ -10,7 +12,20 @@ const CtaPopoverEmailForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    console.log('submitted!');
+    return dispatch => {
+      dispatch(
+        apiRequest('POST', {
+          meta: {
+            email: emailValue,
+            email_subscription_topic: 'scholarships',
+            source: 'phoenix-next',
+            source_details: 'scholarship_newsletter-cta_scholarship-page',
+            url: `${env('NORTHSTAR_URL')}/v2/subscriptions`,
+          },
+        }),
+      );
+      console.log(emailValue);
+    };
   };
 
   return (
