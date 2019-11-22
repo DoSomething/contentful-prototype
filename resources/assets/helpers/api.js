@@ -2,7 +2,6 @@
 
 import { join } from 'path';
 import { get } from 'lodash';
-import gql from 'graphql-tag';
 import { RestApiClient } from '@dosomething/gateway';
 
 import { PHOENIX_URL } from '../constants';
@@ -125,35 +124,4 @@ export function getBlock(id) {
   const path = join('api/v2/blocks', id);
 
   return getRequest(`${PHOENIX_URL}/${path}`);
-}
-
-/**
- * Returns given user school ID if the given action should collect school ID.
- *
- * NOTE: We need to pass an ApolloClient argument to avoid an Invariant Violation in our jest tests.
- * @see https://circleci.com/gh/DoSomething/phoenix-next/1348?utm_campaign=vcs-integration-link&utm_medium=referral&utm_source=github-build-link
- *
- * @param {ApolloClient} graphqlClient
- * @param {String} userId
- * @param {Number} actionId
- * @return {Promise}
- */
-export async function getUserActionSchoolId(graphqlClient, userId, actionId) {
-  const query = gql`
-    query ActionAndUserByIdQuery($actionId: Int!, $userId: String!) {
-      action(id: $actionId) {
-        collectSchoolId
-      }
-      user(id: $userId) {
-        schoolId
-      }
-    }
-  `;
-
-  const result = await graphqlClient.query({
-    query,
-    variables: { userId, actionId },
-  });
-
-  return result.data.action.collectSchoolId ? result.data.user.schoolId : null;
 }
