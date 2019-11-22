@@ -27,7 +27,6 @@ const MarqueeTemplate = ({
   coverImage,
   displaySignupButton,
   isClosed,
-  isCampaignClosed,
   isAffiliated,
   scholarshipAmount,
   scholarshipDeadline,
