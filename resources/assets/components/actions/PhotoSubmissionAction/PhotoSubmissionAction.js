@@ -13,10 +13,7 @@ import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
-import {
-  getUserActionSchoolId,
-  getUserCampaignSignups,
-} from '../../../helpers/api';
+import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
@@ -201,14 +198,6 @@ class PhotoSubmissionAction extends PostForm {
       );
     }
 
-    const schoolId = this.props.actionId
-      ? await getUserActionSchoolId(
-          this.gqlClient,
-          this.props.userId,
-          this.props.actionId,
-        )
-      : null;
-
     const formFields = withoutNulls({
       action,
       type,
@@ -218,7 +207,7 @@ class PhotoSubmissionAction extends PostForm {
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
-      school_id: schoolId,
+      school_id: await this.getUserActionSchoolId(),
     });
 
     // Send request to store the campaign photo submission post.
