@@ -27,7 +27,8 @@ class PostForm extends React.Component {
 
     /**
      * Needed to query GraphQL on form submit events while our Submission components are
-     * defined as classes -- and can't use React Hooks until we refactor as functional components.
+     * defined as classes and can't use React Hooks until they are as functional components.
+
      *
      * Because we're querying outside of our App, our tests fail with an Invariant Violation,
      * because MockedProvider can't find fetch for this new Apollo Client we're creating on the fly.
@@ -39,14 +40,20 @@ class PostForm extends React.Component {
 
   /**
    * Query GraphQL to determine whether to save user's current school when creating a post.
+   *
+   * @return {Promise}
    */
   async getUserActionSchoolId() {
-    const { actionId, userId } = this.props;
+    const { actionId, automatedTest, userId } = this.props;
 
-    if (!actionId || this.props.automatedTest) {
+    if (!actionId || automatedTest) {
       return Promise.resolve(null);
     }
 
+    /**
+     * We use ApolloClient.query here because React hooks fail wuith Invalid Hook Call warning.
+     * @see https://reactjs.org/warnings/invalid-hook-call-warning.html
+     */
     const result = await this.gqlClient.query({
       query: USER_ACTION_SCHOOL_ID_QUERY,
       variables: { userId, actionId },
