@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
+import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
@@ -33,7 +34,7 @@ export const TextSubmissionBlockFragment = gql`
   }
 `;
 
-class TextSubmissionAction extends React.Component {
+class TextSubmissionAction extends PostForm {
   static getDerivedStateFromProps(nextProps) {
     const response = nextProps.submissions.items[nextProps.id] || null;
 
@@ -82,7 +83,7 @@ class TextSubmissionAction extends React.Component {
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     this.props.resetPostSubmissionItem(this.props.id);
@@ -96,6 +97,7 @@ class TextSubmissionAction extends React.Component {
       type,
       id: this.props.id, // @TODO: rename property to blockId?
       action_id: this.props.actionId,
+      school_id: await this.getUserActionSchoolId(),
       // Associate state values to fields.
       ...mapValues(this.fields, value => this.state[`${value}Value`]),
     });
