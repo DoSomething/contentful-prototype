@@ -81,7 +81,21 @@ class ContentfulEntry extends React.Component<Props, State> {
         return (
           <AffirmationContainer
             {...withoutNulls(json.fields)}
+            author={
+              json.fields && json.fields.author
+                ? json.fields.author.fields
+                : undefined
+            }
             onClose={json.onClose}
+          />
+        );
+
+      // @TODO: Need to figure out 'onClose'...
+      case 'AffirmationBlock':
+        return (
+          <AffirmationContainer
+            userId={window.AUTH.id}
+            {...withoutNulls(json)}
           />
         );
 
