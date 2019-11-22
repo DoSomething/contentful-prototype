@@ -26,12 +26,13 @@ class PostForm extends React.Component {
     super(props);
 
     /**
-     * Needed to query GraphQL on form submit events while our Submission components are
-     * defined as classes and can't use React Hooks until they are as functional components.
-
+     * We need to create an ApolloClient instance to call query to make GraphQL requests within the
+     * Submission Action components because they are defined as classes, and can't use React Hooks.
+     * @see https://reactjs.org/warnings/invalid-hook-call-warning.html
      *
      * Because we're querying outside of our App, our tests fail with an Invariant Violation,
      * because MockedProvider can't find fetch for this new Apollo Client we're creating on the fly.
+     * @see https://circleci.com/gh/DoSomething/phoenix-next/1398?utm_campaign=vcs-integration-link&utm_medium=referral&utm_source=github-build-link
      */
     this.gqlClient = this.props.automatedTest
       ? null
@@ -51,8 +52,7 @@ class PostForm extends React.Component {
     }
 
     /**
-     * We use ApolloClient.query here because React hooks fail wuith Invalid Hook Call warning.
-     * @see https://reactjs.org/warnings/invalid-hook-call-warning.html
+
      */
     const result = await this.gqlClient.query({
       query: USER_ACTION_SCHOOL_ID_QUERY,
