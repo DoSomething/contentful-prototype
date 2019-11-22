@@ -204,11 +204,13 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
-    const schoolId = await getUserActionSchoolId(
-      this.gqlClient,
-      this.props.userId,
-      this.props.actionId,
-    );
+    const schoolId = this.props.actionId
+      ? await getUserActionSchoolId(
+          this.gqlClient,
+          this.props.userId,
+          this.props.actionId,
+        )
+      : null;
 
     const formFields = withoutNulls({
       action,
