@@ -8,7 +8,7 @@ describe('TextSubmissionAction component', () => {
 
   const wrapper = shallow(
     <TextSubmissionAction
-      automatedTest={true}
+      automatedTest
       campaignId="1234"
       id={id}
       resetPostSubmissionItem={jest.fn()}

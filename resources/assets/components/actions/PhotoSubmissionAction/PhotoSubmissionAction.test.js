@@ -10,7 +10,7 @@ describe('PhotoSubmissionAction component', () => {
 
   const wrapper = shallow(
     <PhotoSubmissionAction
-      automatedTest={true}
+      automatedTest
       campaignContentfulId="1"
       campaignId="1234"
       id={id}
