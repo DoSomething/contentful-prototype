@@ -6,6 +6,7 @@ import classnames from 'classnames';
 import { Query as ApolloQuery } from 'react-apollo';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
+import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
@@ -44,7 +45,7 @@ export const USER_POSTS_QUERY = gql`
 
 const CHARACTER_LIMIT = 500;
 
-class PetitionSubmissionAction extends React.Component {
+class PetitionSubmissionAction extends PostForm {
   constructor(props) {
     super(props);
 
@@ -74,7 +75,7 @@ class PetitionSubmissionAction extends React.Component {
 
   handleChange = event => this.setState({ textValue: event.target.value });
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     const { actionId, id, pageId, storePost } = this.props;
@@ -90,6 +91,7 @@ class PetitionSubmissionAction extends React.Component {
       blockId: id,
       body: formatPostPayload({
         action_id: actionId,
+        school_id: await this.getUserActionSchoolId(),
         text: this.state.textValue,
         type,
       }),
