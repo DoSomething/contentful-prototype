@@ -21,7 +21,10 @@ const CampaignPage = props => {
 
   return (
     <React.Fragment>
-      <LedeBannerContainer displaySignupButton={Boolean(!entryContent)} />
+      <LedeBannerContainer
+        displaySignupButton={Boolean(!entryContent)}
+        isCampaignClosed={isCampaignClosed}
+      />
 
       <div className="main clearfix">
         {dashboard ? <ContentfulEntry json={dashboard} /> : null}
