@@ -28,8 +28,13 @@ class PostForm extends React.Component {
     /**
      * Needed to query GraphQL on form submit events while our Submission components are
      * defined as classes -- and can't use React Hooks until we refactor as functional components.
+     *
+     * Because we're querying outside of our App, our tests fail with an Invariant Violation,
+     * because MockedProvider can't find fetch for this new Apollo Client we're creating on the fly.
      */
-    this.gqlClient = graphqlClient(env('GRAPHQL_URL'));
+    this.gqlClient = this.props.automatedTest
+      ? null
+      : graphqlClient(env('GRAPHQL_URL'));
   }
 
   /**
@@ -38,7 +43,7 @@ class PostForm extends React.Component {
   async getUserActionSchoolId() {
     const { actionId, userId } = this.props;
 
-    if (!actionId) {
+    if (!actionId || this.props.automatedTest) {
       return Promise.resolve(null);
     }
 
@@ -55,10 +60,12 @@ class PostForm extends React.Component {
 
 PostForm.propTypes = {
   actionId: PropTypes.number,
+  automatedTest: PropTypes.bool,
   userId: PropTypes.string.isRequired,
 };
 
 PostForm.defaultProps = {
+  automatedTest: false,
   actionId: null,
 };
 
