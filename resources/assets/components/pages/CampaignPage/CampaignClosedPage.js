@@ -7,11 +7,11 @@ import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarConta
 import { getHumanFriendlyDate } from '../../../helpers';
 
 const CampaignClosedPage = props => {
-  const { endDate } = props;
+  const { endDate, isClosed } = props;
 
   return (
     <div>
-      <LedeBannerContainer />
+      <LedeBannerContainer isClosed={isClosed} />
 
       <div className="main clearfix">
         <Enclosure className="md:w-3/4 mx-auto my-6 px-3">
@@ -31,6 +31,11 @@ const CampaignClosedPage = props => {
 
 CampaignClosedPage.propTypes = {
   endDate: PropTypes.string.isRequired,
+  isClosed: PropTypes.bool,
+};
+
+CampaignClosedPage.defaultProps = {
+  isClosed: false,
 };
 
 export default CampaignClosedPage;
