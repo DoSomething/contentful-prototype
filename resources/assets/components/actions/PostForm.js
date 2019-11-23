@@ -51,9 +51,6 @@ class PostForm extends React.Component {
       return Promise.resolve(null);
     }
 
-    /**
-
-     */
     const result = await this.gqlClient.query({
       query: USER_ACTION_SCHOOL_ID_QUERY,
       variables: { userId, actionId },
