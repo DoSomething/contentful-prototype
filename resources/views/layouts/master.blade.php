@@ -55,7 +55,7 @@
     @endisset
 
     @stack('scripts')
-    <script src="https://my.hellobar.com/043326c5f2334a35a23aff244adacb9d99149ca6.js" type="text/javascript" charset="utf-8" async="async"></script> 
+    <script src="https://my.hellobar.com/f70465b5f088ff5df39e838a358d27109b365641.js" type="text/javascript" charset="utf-8" async="async"></script> 
 </body>
 
 </html>
