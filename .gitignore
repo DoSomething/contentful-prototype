@@ -8,6 +8,7 @@ stats.json
 /public/next/uploads
 /public/storage
 /resources/assets/fragmentTypes.json
+/reports
 /storage/debugbar
 /vendor
 /_book
@@ -21,5 +22,6 @@ yarn-error.log
 .env
 .DS_Store
 
+junit.xml
 npm-debug.log
 /contentful/management-api-scripts/logs

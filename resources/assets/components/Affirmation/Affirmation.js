@@ -10,10 +10,27 @@ import Share from '../utilities/Share/Share';
 import Badge from '../pages/AccountPage/Badge';
 import Byline from '../utilities/Byline/Byline';
 import TextContent from '../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../helpers';
+import { contentfulImageUrl } from '../../helpers';
 import CtaReferralPageBannerContainer from '../utilities/CtaReferralPageBanner/CtaReferralPageBannerContainer';
 
 import './affirmation.scss';
+
+export const AffirmationBlockFragment = gql`
+  fragment AffirmationBlockFragment on AffirmationBlock {
+    id
+    header
+    quote
+    callToActionHeader
+    callToActionDescription
+    author {
+      name
+      jobTitle
+      photo {
+        url
+      }
+    }
+  }
+`;
 
 const USER_QUERY = gql`
   query UserAccountAndSignupsCountQuery($userId: String!) {
@@ -42,65 +59,67 @@ const Affirmation = ({
   <Card className="affirmation rounded" title={header}>
     {quote ? <TextContent className="pt-3 px-3">{quote}</TextContent> : null}
 
-    <Query query={USER_QUERY} variables={{ userId }}>
-      {res => (
-        <React.Fragment>
-          {get(res, 'user.hasBadgesFlag', false) && res.signupsCount === 1 ? (
-            <Badge
-              earned
-              className="badge p-3"
-              size="medium"
-              name="signupBadge"
-            >
-              <h4>1 Sign-Up</h4>
-              <p>
-                Congratulations! You signed up for your first campaign...and
-                earned your first badge. NICE. Ready to earn *another* badge?
-                Complete this campaign!
-              </p>
-            </Badge>
-          ) : null}
+    {userId ? (
+      <Query query={USER_QUERY} variables={{ userId }}>
+        {res => (
+          <React.Fragment>
+            {get(res, 'user.hasBadgesFlag', false) && res.signupsCount === 1 ? (
+              <Badge
+                earned
+                className="badge p-3"
+                size="medium"
+                name="signupBadge"
+              >
+                <h4>1 Sign-Up</h4>
+                <p>
+                  Congratulations! You signed up for your first campaign...and
+                  earned your first badge. NICE. Ready to earn *another* badge?
+                  Complete this campaign!
+                </p>
+              </Badge>
+            ) : null}
 
-          <Flex className="flex-align-center">
-            <FlexCell className="affirmation__cta p-3" width="half">
-              <h3>{callToActionHeader}</h3>
-              <p>{callToActionDescription}</p>
-            </FlexCell>
-            <FlexCell className="p-3" width="half">
-              <Share variant="blue" parentSource="affirmation" />
-            </FlexCell>
-          </Flex>
+            <Flex className="flex-align-center">
+              <FlexCell className="affirmation__cta p-3" width="half">
+                <h3>{callToActionHeader}</h3>
+                <p>{callToActionDescription}</p>
+              </FlexCell>
+              <FlexCell className="p-3" width="half">
+                <Share variant="blue" parentSource="affirmation" />
+              </FlexCell>
+            </Flex>
 
-          {author ? (
-            <Byline
-              author={author.fields.name}
-              {...withoutNulls(author.fields)}
-              photo={contentfulImageUrl(
-                get(author, 'fields.photo.url'),
-                175,
-                175,
-                'fill',
-              )}
-              className="pb-3 px-3"
-            />
-          ) : null}
+            {author ? (
+              <Byline
+                author={author.name}
+                jobTitle={author.jobTitle}
+                photo={contentfulImageUrl(
+                  get(author, 'photo.url'),
+                  175,
+                  175,
+                  'fill',
+                )}
+                className="pb-3 px-3"
+              />
+            ) : null}
 
-          {get(res, 'user.hasReferFriendsFlag', false) ? (
-            <CtaReferralPageBannerContainer />
-          ) : null}
+            {get(res, 'user.hasReferFriendsFlag', false) ? (
+              <CtaReferralPageBannerContainer />
+            ) : null}
 
-          <div className="p-3">
-            <button
-              type="button"
-              className="close-button font-bold text-base"
-              onClick={onClose}
-            >
-              Continue to Campaign
-            </button>
-          </div>
-        </React.Fragment>
-      )}
-    </Query>
+            <div className="p-3">
+              <button
+                type="button"
+                className="close-button font-bold text-base"
+                onClick={onClose}
+              >
+                Continue to Campaign
+              </button>
+            </div>
+          </React.Fragment>
+        )}
+      </Query>
+    ) : null}
   </Card>
 );
 
