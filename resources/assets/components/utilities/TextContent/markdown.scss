@@ -99,25 +99,35 @@
   }
 
   table {
-    background-color: $white;
-    margin: $base-spacing 0;
-    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: theme('colors.white');
+    margin: 32px 0;
+    border: 1px solid theme('colors.gray.200');
+    width: auto;
   }
 
-  th {
-    font-weight: 700;
-    text-align: center;
+  table td:last-child {
+    width: 100%;
   }
 
   th,
   td {
-    border: 1px solid $light-gray;
-    padding: $half-spacing;
-    width: 50%;
+    padding: 16px;
+    padding-right: 32px;
+    white-space: nowrap;
   }
 
-  tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+  th {
+    font-weight: 700;
+    text-align: left;
+    background-color: #332baa;
+    color: theme('colors.white');
+    border: none;
+  }
+
+  tbody tr:nth-child(2n) {
+    background-color: #f4f9ff;
   }
 
   hr {
