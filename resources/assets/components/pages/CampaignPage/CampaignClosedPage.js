@@ -9,8 +9,6 @@ import { getHumanFriendlyDate } from '../../../helpers';
 const CampaignClosedPage = props => {
   const { endDate } = props;
 
-  // const isClosed = isCampaignClosed(endDate);
-
   return (
     <div>
       <LedeBannerContainer isClosed />
