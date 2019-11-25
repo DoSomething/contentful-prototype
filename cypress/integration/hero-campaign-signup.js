@@ -35,6 +35,60 @@ describe('Hero Template Landing Page', () => {
     cy.contains('30 minutes - 1 hour');
   });
 
+  it('Landing Page Loads As Expected with no scholarship action', () => {
+    cy.mockGraphqlOp('CampaignInfoQuery', {
+      campaign: (root, { campaignId }) => ({
+        id: campaignId,
+        actions: () => [
+          {
+            actionLabel: 'Share Something',
+            timeCommitmentLabel: '1 hour',
+            scholarshipEntry: false,
+            reportback: true,
+          },
+          {
+            actionLabel: 'Sign a Petition',
+            timeCommitmentLabel: '30 minutes - 1 hour',
+            scholarshipEntry: false,
+            reportback: true,
+          },
+        ],
+      }),
+    });
+
+    // Visit the campaign pitch page:
+    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+
+    cy.contains('Example Campaign');
+    cy.contains('This is an example campaign for automated testing.');
+    cy.contains('Share Something');
+    cy.contains('1 hour');
+  });
+
+  it('Landing Page Displays a Scholarship Amount if there is one for the campaign', () => {
+    cy.mockGraphqlOp('CampaignInfoQuery', {
+      campaign: (root, { campaignId }) => ({
+        id: campaignId,
+        actions: () => [
+          {
+            actionLabel: 'Share Something',
+            timeCommitmentLabel: '1 hour',
+            scholarshipEntry: false,
+            reportback: true,
+          },
+        ],
+      }),
+    });
+
+    // Visit the campaign pitch page:
+    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
+
+    cy.contains('Share Something');
+    cy.contains('1 hour');
+    cy.contains('$5,000');
+    cy.contains('Win A Scholarship');
+  });
+
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 
