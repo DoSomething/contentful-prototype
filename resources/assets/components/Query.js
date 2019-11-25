@@ -17,7 +17,8 @@ const Query = ({ query, variables, children, hideSpinner }) => (
       }
 
       if (result.error) {
-        return <ErrorBlock error={result.error} />;
+        // If debugging, pass result.error as an error prop below:
+        return <ErrorBlock />;
       }
 
       return children(result.data);
