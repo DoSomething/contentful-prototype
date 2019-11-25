@@ -33,6 +33,4 @@ CampaignClosedPage.propTypes = {
   endDate: PropTypes.string.isRequired,
 };
 
-CampaignClosedPage.defaultProps = {};
-
 export default CampaignClosedPage;
