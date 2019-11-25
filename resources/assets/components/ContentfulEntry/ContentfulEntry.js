@@ -340,6 +340,9 @@ class ContentfulEntry extends React.Component<Props, State> {
       case 'socialDriveAction':
         return <SocialDriveActionContainer {...json.fields} />;
 
+      case 'SoftEdgeBlock':
+        return <SoftEdgeWidgetActionContainer {...json} />;
+
       case 'softEdgeWidgetAction':
         return <SoftEdgeWidgetActionContainer {...json.fields} />;
 

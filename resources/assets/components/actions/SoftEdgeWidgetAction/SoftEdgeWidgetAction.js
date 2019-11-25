@@ -1,9 +1,18 @@
 /* global window, document, $cweb */
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
 import { withoutNulls } from '../../../helpers';
+
+export const SoftEdgeBlockFragment = gql`
+  fragment SoftEdgeBlockFragment on SoftEdgeBlock {
+    title
+    actionId
+    softEdgeId
+  }
+`;
 
 class SoftEdgeWidgetAction extends React.Component {
   componentDidMount() {
@@ -28,9 +37,7 @@ class SoftEdgeWidgetAction extends React.Component {
     const actionId = this.props.actionId;
     const user = this.props.user;
 
-    let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true&memberId=${
-      this.props.userId
-    }&externalActionId=${actionId}`;
+    let url = `//www.congressweb.com/dosomething/${softEdgeId}?acceptAuthor=true&memberId=${this.props.userId}&externalActionId=${actionId}`;
 
     const prepopulatedFields = withoutNulls({
       firstName: user.firstName,
