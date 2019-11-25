@@ -13,6 +13,19 @@ import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 
 import './selection-submission-action.scss';
 
+export const SelectionSubmissionBlockFragment = gql`
+  fragment SelectionSubmissionBlockFragment on SelectionSubmissionBlock {
+    actionId
+    title
+    richText
+    selectionFieldLabel
+    selectionOptions
+    selectionPlaceholderOption
+    buttonText
+    postSubmissionLabel
+  }
+`;
+
 const USER_POSTS_QUERY = gql`
   query UserPostsQuery($userId: String!, $actionIds: [Int]!) {
     posts(userId: $userId, actionIds: $actionIds) {
@@ -88,7 +101,7 @@ class SelectionSubmissionAction extends React.Component {
       buttonText,
       id,
       title,
-      content,
+      richText,
       postSubmissionLabel,
       selectionFieldLabel,
       selectionPlaceholderOption,
@@ -112,7 +125,7 @@ class SelectionSubmissionAction extends React.Component {
       >
         {formResponse ? <FormValidation response={formResponse} /> : null}
 
-        <TextContent className="p-3">{content}</TextContent>
+        <TextContent className="p-3">{richText}</TextContent>
 
         <Query
           query={USER_POSTS_QUERY}
@@ -193,7 +206,7 @@ SelectionSubmissionAction.propTypes = {
   actionId: PropTypes.number.isRequired,
   buttonText: PropTypes.string,
   campaignId: PropTypes.string.isRequired,
-  content: PropTypes.object.isRequired,
+  richText: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired, // @TODO: rename property to blockId
   pageId: PropTypes.string.isRequired,
   postSubmissionLabel: PropTypes.string.isRequired,

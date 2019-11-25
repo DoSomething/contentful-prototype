@@ -324,6 +324,9 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
 
+      case 'SelectionSubmissionBlock':
+        return <SelectionSubmissionActionContainer {...withoutNulls(json)} />;
+
       case 'shareAction':
         return (
           <ShareActionContainer id={json.id} {...withoutNulls(json.fields)} />
@@ -337,8 +340,14 @@ class ContentfulEntry extends React.Component<Props, State> {
           <SixpackExperiment id={json.id} {...withoutNulls(json.fields)} />
         );
 
+      case 'SocialDriveBlock':
+        return <SocialDriveActionContainer {...json} />;
+
       case 'socialDriveAction':
         return <SocialDriveActionContainer {...json.fields} />;
+
+      case 'SoftEdgeBlock':
+        return <SoftEdgeWidgetActionContainer {...json} />;
 
       case 'softEdgeWidgetAction':
         return <SoftEdgeWidgetActionContainer {...json.fields} />;

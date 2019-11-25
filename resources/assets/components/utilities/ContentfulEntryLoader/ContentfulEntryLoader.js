@@ -17,11 +17,14 @@ import { CallToActionBlockFragment } from '../../CallToAction/CallToAction';
 import { GalleryBlockFragment } from '../../blocks/GalleryBlock/GalleryBlock';
 import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
 import { CampaignUpdateBlockFragment } from '../../blocks/CampaignUpdate/CampaignUpdate';
+import { SocialDriveBlockFragment } from '../../actions/SocialDriveAction/SocialDriveAction';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
+import { SoftEdgeBlockFragment } from '../../actions/SoftEdgeWidgetAction/SoftEdgeWidgetAction';
 import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
 import { VoterRegistrationBlockFragment } from '../../actions/VoterRegistrationAction/VoterRegistrationAction';
 import { PetitionSubmissionBlockFragment } from '../../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
+import { SelectionSubmissionBlockFragment } from '../../actions/SelectionSubmissionAction/SelectionSubmissionAction';
 
 const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!, $preview: Boolean!) {
@@ -33,7 +36,9 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...ImagesBlockFragment
       ...GalleryBlockFragment
       ...ContentBlockFragment
+      ...SoftEdgeBlockFragment
       ...AffirmationBlockFragment
+      ...SocialDriveBlockFragment
       ...PostGalleryBlockFragment
       ...CallToActionBlockFragment
       ...CampaignUpdateBlockFragment
@@ -41,6 +46,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...PhotoSubmissionBlockFragment
       ...VoterRegistrationBlockFragment
       ...PetitionSubmissionBlockFragment
+      ...SelectionSubmissionBlockFragment
     }
   }
 
@@ -50,7 +56,9 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${ImagesBlockFragment}
   ${GalleryBlockFragment}
   ${ContentBlockFragment}
+  ${SoftEdgeBlockFragment}
   ${AffirmationBlockFragment}
+  ${SocialDriveBlockFragment}
   ${PostGalleryBlockFragment}
   ${CallToActionBlockFragment}
   ${CampaignUpdateBlockFragment}
@@ -58,6 +66,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${PhotoSubmissionBlockFragment}
   ${VoterRegistrationBlockFragment}
   ${PetitionSubmissionBlockFragment}
+  ${SelectionSubmissionBlockFragment}
 `;
 
 const ContentfulEntryLoader = ({

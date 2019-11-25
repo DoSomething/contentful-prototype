@@ -1,6 +1,7 @@
 /* global document */
 
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -13,6 +14,13 @@ import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 
 import './social-drive.scss';
+
+export const SocialDriveBlockFragment = gql`
+  fragment SocialDriveBlockFragment on SocialDriveBlock {
+    link
+    hidePageViews
+  }
+`;
 
 class SocialDriveAction extends React.Component {
   constructor(props) {
