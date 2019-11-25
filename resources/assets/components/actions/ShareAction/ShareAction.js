@@ -216,6 +216,7 @@ class ShareAction extends PostForm {
             {affirmationBlock ? (
               <ContentfulEntry json={affirmationBlock} />
             ) : (
+              // @TODO: Refactor this with PostCreatedModal.
               <Card
                 title="Thanks for sharing!"
                 className="modal__slide bordered rounded"
