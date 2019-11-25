@@ -324,6 +324,9 @@ class ContentfulEntry extends React.Component<Props, State> {
           />
         );
 
+      case 'SelectionSubmissionBlock':
+        return <SelectionSubmissionActionContainer {...withoutNulls(json)} />;
+
       case 'shareAction':
         return (
           <ShareActionContainer id={json.id} {...withoutNulls(json.fields)} />

@@ -24,6 +24,7 @@ import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
 import { VoterRegistrationBlockFragment } from '../../actions/VoterRegistrationAction/VoterRegistrationAction';
 import { PetitionSubmissionBlockFragment } from '../../actions/PetitionSubmissioncAction/PetitionSubmissionAction';
+import { SelectionSubmissionBlockFragment } from '../../actions/SelectionSubmissionAction/SelectionSubmissionAction';
 
 const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!, $preview: Boolean!) {
@@ -45,6 +46,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...PhotoSubmissionBlockFragment
       ...VoterRegistrationBlockFragment
       ...PetitionSubmissionBlockFragment
+      ...SelectionSubmissionBlockFragment
     }
   }
 
@@ -64,6 +66,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${PhotoSubmissionBlockFragment}
   ${VoterRegistrationBlockFragment}
   ${PetitionSubmissionBlockFragment}
+  ${SelectionSubmissionBlockFragment}
 `;
 
 const ContentfulEntryLoader = ({

@@ -14,7 +14,7 @@ class SelectionSubmissionAction extends Entity implements JsonSerializable
             'fields' => [
                 'actionId' => $this->actionId,
                 'title' => $this->title,
-                'content' => $this->content,
+                'richText' => $this->content,
                 'selectionFieldLabel' => $this->selectionFieldLabel,
                 'selectionOptions' => $this->selectionOptions,
                 'selectionPlaceholderOption' => $this->selectionPlaceholderOption,
