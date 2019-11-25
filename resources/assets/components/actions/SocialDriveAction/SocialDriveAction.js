@@ -65,7 +65,9 @@ class SocialDriveAction extends React.Component {
     const shortenedLink = this.state.shortenedLink;
 
     return (
-      <div className="clearfix pb-6 lg:flex">
+      <div
+        className={classNames('clearfix pb-6', { 'lg:flex': !hidePageViews })}
+      >
         <div
           className={classNames('social-drive-action', {
             'lg:w-2/3 lg:pr-3': !hidePageViews,
