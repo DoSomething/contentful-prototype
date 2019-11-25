@@ -46,8 +46,12 @@ class PostForm extends React.Component {
    */
   async getUserActionSchoolId() {
     const { actionId, automatedTest, userId } = this.props;
-
-    if (!actionId || automatedTest) {
+    /**
+     * Legacy campaign content needs action backfills to create actionId.
+     * Some PostForm children may appear for anonymous users, e.g. StoryPage blocks.
+     * If this is an automatedTest, skip this request completely to avoid Invariant Violation.
+     */
+    if (!actionId || !userId || automatedTest) {
       return Promise.resolve(null);
     }
 
@@ -65,12 +69,13 @@ class PostForm extends React.Component {
 PostForm.propTypes = {
   actionId: PropTypes.number,
   automatedTest: PropTypes.bool,
-  userId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
 };
 
 PostForm.defaultProps = {
   automatedTest: false,
   actionId: null,
+  userId: null,
 };
 
 export default PostForm;
