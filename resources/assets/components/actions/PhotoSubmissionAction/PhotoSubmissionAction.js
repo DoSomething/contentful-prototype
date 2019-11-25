@@ -7,18 +7,15 @@ import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
-import graphqlClient from '../../../graphql';
+import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
-import {
-  getUserActionSchoolId,
-  getUserCampaignSignups,
-} from '../../../helpers/api';
+import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
-import { env, withoutUndefined, withoutNulls } from '../../../helpers';
+import { withoutUndefined, withoutNulls } from '../../../helpers';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -46,7 +43,7 @@ export const PhotoSubmissionBlockFragment = gql`
   }
 `;
 
-class PhotoSubmissionAction extends React.Component {
+class PhotoSubmissionAction extends PostForm {
   /**
    * Lifecycle method invoked before every render.
    *
@@ -94,9 +91,6 @@ class PhotoSubmissionAction extends React.Component {
       signup: null,
       whyParticipatedValue: '',
     };
-
-    // Needed to fetch the user action school ID via GraphQL.
-    this.gqlClient = graphqlClient(env('GRAPHQL_URL'));
   }
 
   /**
@@ -204,14 +198,6 @@ class PhotoSubmissionAction extends React.Component {
       );
     }
 
-    const schoolId = this.props.actionId
-      ? await getUserActionSchoolId(
-          this.gqlClient,
-          this.props.userId,
-          this.props.actionId,
-        )
-      : null;
-
     const formFields = withoutNulls({
       action,
       type,
@@ -221,7 +207,7 @@ class PhotoSubmissionAction extends React.Component {
       ...values,
       file: this.state.mediaValue.file || '',
       show_quantity: this.props.showQuantityField ? 1 : 0,
-      school_id: schoolId,
+      school_id: await this.getUserActionSchoolId(),
     });
 
     // Send request to store the campaign photo submission post.

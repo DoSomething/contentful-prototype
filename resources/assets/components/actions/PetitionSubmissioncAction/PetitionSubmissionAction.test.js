@@ -27,6 +27,7 @@ describe('PetitionSubmissionAction component', () => {
   const wrapper = mount(
     <MockedProvider mocks={mocks} addTypename={false}>
       <PetitionSubmissionAction
+        automatedTest
         id="abcdefghi123456789"
         pageId="abcdefghi123456789"
         campaignContentfulId="1"
