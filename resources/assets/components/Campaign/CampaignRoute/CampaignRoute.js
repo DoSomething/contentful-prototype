@@ -77,7 +77,6 @@ const CampaignRoute = props => {
                   affiliatePartners={affiliatePartners}
                   affiliateSponsors={affiliateSponsors}
                   campaignLead={campaignLead}
-                  isClosed={isClosed}
                 />
               );
             }
