@@ -212,11 +212,11 @@ class ShareAction extends PostForm {
           />
         </div>
         {this.state.showModal ? (
+          // @TODO: Refactor this with PostCreatedModal.
           <Modal onClose={() => this.setState({ showModal: false })}>
             {affirmationBlock ? (
               <ContentfulEntry json={affirmationBlock} />
             ) : (
-              // @TODO: Refactor this with PostCreatedModal.
               <Card
                 title="Thanks for sharing!"
                 className="modal__slide bordered rounded"
