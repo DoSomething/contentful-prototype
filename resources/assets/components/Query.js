@@ -18,7 +18,11 @@ const Query = ({ query, variables, children, hideSpinner }) => (
 
       if (result.error) {
         // If debugging, pass result.error as an error prop below:
-        return <ErrorBlock />;
+        return (
+          <ErrorBlock
+            error={process.env.NODE_ENV !== 'production' ? result.error : null}
+          />
+        );
       }
 
       return children(result.data);
