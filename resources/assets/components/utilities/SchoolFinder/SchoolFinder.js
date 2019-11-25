@@ -9,6 +9,7 @@ import SchoolFinderForm from './SchoolFinderForm';
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
+      id
       schoolId
       school {
         id
