@@ -45,8 +45,11 @@ jobs:
       - run: GRAPHQL_URL=https://graphql-dev.dosomething.org/graphql npm run build
       # Lint with ESLint & type-check with Flow.
       - run: npm run lint
-      # Run our Jest unit testing suite.
-      - run: npm run test:ci
+      - run:
+          name: run unit tests
+          command: npm run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: 'reports/js-test-results.xml'
       # Prepare a functional environment so we can run the full application
       # for our browser test suite, and then start simple Laravel server.
       - run:
@@ -60,3 +63,7 @@ jobs:
       - run: vendor/bin/phpunit
       # Start Laravel server & run Cypress browser tests.
       - run: php artisan serve & npm run cypress:ci
+      - store_test_results:
+          path: ~/project/reports
+      - store_artifacts:
+          path: ~/project/reports
