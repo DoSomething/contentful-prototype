@@ -104,18 +104,14 @@
     background-color: theme('colors.white');
     margin: 32px 0;
     border: 1px solid theme('colors.gray.200');
-    width: auto;
-  }
-
-  table td:last-child {
-    width: 100%;
+    max-width: 100%;
+    overflow: scroll;
   }
 
   th,
   td {
     padding: 16px;
     padding-right: 32px;
-    white-space: nowrap;
   }
 
   th {
