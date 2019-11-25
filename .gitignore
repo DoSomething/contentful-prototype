@@ -22,5 +22,6 @@ yarn-error.log
 .env
 .DS_Store
 
+junit.xml
 npm-debug.log
 /contentful/management-api-scripts/logs
