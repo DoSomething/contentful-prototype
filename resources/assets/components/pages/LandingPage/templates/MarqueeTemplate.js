@@ -26,7 +26,7 @@ const MarqueeTemplate = ({
   content,
   coverImage,
   displaySignupButton,
-  isCampaignClosed,
+  isClosed,
   isAffiliated,
   scholarshipAmount,
   scholarshipDeadline,
@@ -120,7 +120,7 @@ const MarqueeTemplate = ({
           </Enclosure>
         </div>
       </article>
-      {!isAffiliated && isCampaignClosed ? <CampaignInfoBarContainer /> : null}
+      {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>
   );
 };
@@ -135,7 +135,7 @@ MarqueeTemplate.propTypes = {
   coverImage: PropTypes.object.isRequired,
   displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool,
-  isCampaignClosed: PropTypes.bool,
+  isClosed: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
@@ -150,7 +150,7 @@ MarqueeTemplate.defaultProps = {
   campaignId: null,
   displaySignupButton: true,
   isAffiliated: false,
-  isCampaignClosed: false,
+  isClosed: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,
 };
