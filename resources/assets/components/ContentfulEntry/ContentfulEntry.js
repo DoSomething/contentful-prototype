@@ -337,6 +337,9 @@ class ContentfulEntry extends React.Component<Props, State> {
           <SixpackExperiment id={json.id} {...withoutNulls(json.fields)} />
         );
 
+      case 'SocialDriveBlock':
+        return <SocialDriveActionContainer {...json} />;
+
       case 'socialDriveAction':
         return <SocialDriveActionContainer {...json.fields} />;
 
