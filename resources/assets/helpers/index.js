@@ -553,28 +553,6 @@ export function query(key, url = window.location) {
 }
 
 /**
- * Make sure the given script is loaded (once) and then
- * run a callback (each time this is called).
- *
- * @param {String} src
- * @param {Function} onLoad
- */
-export function loadScript(src, onLoad) {
-  const id = makeHash(src);
-
-  if (document.getElementById(id)) {
-    onLoad();
-  }
-
-  const script = document.createElement('script');
-  script.id = id;
-  script.src = src;
-
-  document.head.append(script);
-  script.addEventListener('load', onLoad);
-}
-
-/**
  * Load and return the Facebook SDK.
  */
 export function loadFacebookSDK() {

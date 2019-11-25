@@ -2,10 +2,12 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
+import useScript, { ScriptStatus } from '@charlietango/use-script';
 
 import Card from '../utilities/Card/Card';
-import { makeUrl, withoutNulls, loadScript } from '../../helpers';
+import { makeUrl, withoutNulls } from '../../helpers';
+import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 export const SoftEdgeBlockFragment = gql`
   fragment SoftEdgeBlockFragment on SoftEdgeBlock {
@@ -16,7 +18,7 @@ export const SoftEdgeBlockFragment = gql`
 `;
 
 const CONGRESSWEB_SDK =
-  '//www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
+  'https://www.congressweb.com/cweb/js/jquery.congressweb.iframe.js';
 
 const SOFT_EDGE_AUTOFILL_QUERY = gql`
   query SoftEdgeAutofillQuery($userId: String!) {
@@ -39,9 +41,8 @@ const SoftEdgeBlock = ({ actionId, softEdgeId, title }) => {
 
   const element = useRef(null);
 
-  // 1. Make sure the CongressWeb SDK is ready.
-  const [initialized, setInitialized] = useState(false);
-  useEffect(() => loadScript(CONGRESSWEB_SDK, () => setInitialized(true)), []);
+  // 1. Make sure we've loaded the CongressWeb SDK:
+  const [ready, scriptStatus] = useScript(CONGRESSWEB_SDK);
 
   // 2. If logged in, grab user fields to pre-fill form:
   const { data, loading } = useQuery(SOFT_EDGE_AUTOFILL_QUERY, {
@@ -49,15 +50,22 @@ const SoftEdgeBlock = ({ actionId, softEdgeId, title }) => {
     skip: !userId,
   });
 
-  // 3. Once #1 & #2 are done, load the IFrame:
+  // 3. If we couldn't load CongressWeb SDK, show an error block:
+  if (scriptStatus === ScriptStatus.ERROR) {
+    return <ErrorBlock />;
+  }
+
+  // 4. Once #1 & #2 are done, load the IFrame:
   useEffect(() => {
-    if (!initialized || loading) {
+    if (!ready || loading) {
       return;
     }
 
+    // If anonymous (or GraphQL error'd), don't pre-fill:
+    const prefill = data ? data.user : {};
+
     // We'll encode the user's profile data & action ID into
     // the query-string for the SoftEdge form to pre-fill:
-    const prefill = data ? data.user : {};
     const query = withoutNulls({
       acceptAuthor: true,
       externalActionId: actionId,
@@ -70,11 +78,11 @@ const SoftEdgeBlock = ({ actionId, softEdgeId, title }) => {
       url: makeUrl(baseUrl, query).toString(),
       responsive: true,
     });
-  }, [initialized, loading]);
+  }, [ready, loading]);
 
   return (
     <Card className="bordered rounded" title={title}>
-      {!initialized || loading ? (
+      {!ready || loading ? (
         <div className="spinner mx-auto my-16" />
       ) : (
         <div ref={element} />
