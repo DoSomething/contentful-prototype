@@ -1,10 +1,8 @@
-/* @flow */
-
-import * as React from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
-import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import CallToAction from '../CallToAction/CallToAction';
@@ -34,22 +32,14 @@ import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAct
 import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
 
 // If no block is passed, just render an empty "placeholder".
-const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
+const DEFAULT_BLOCK = { fields: { type: null } };
 
-type Props = {
-  json: ContentfulEntryJson,
-  className: String,
-  classNameByEntry: Object,
-  classNameByEntryDefault: String,
-};
-type State = { hasError: boolean };
-
-class ContentfulEntry extends React.Component<Props, State> {
+class ContentfulEntry extends React.Component {
   state = {
     hasError: false,
   };
 
-  componentDidCatch(error: Error) {
+  componentDidCatch(error) {
     this.setState({ hasError: true });
     report(error);
   }
@@ -403,5 +393,18 @@ class ContentfulEntry extends React.Component<Props, State> {
     }
   }
 }
+
+ContentfulEntry.propTypes = {
+  json: PropTypes.object, // eslint-disable-line
+  className: PropTypes.string,
+  classNameByEntry: PropTypes.string,
+  classNameByEntryDefault: PropTypes.string,
+};
+
+ContentfulEntry.defaultProps = {
+  className: null,
+  classNameByEntry: null,
+  classNameByEntryDefault: null,
+};
 
 export default ContentfulEntry;
