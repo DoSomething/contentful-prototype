@@ -58,8 +58,8 @@ const BetaPage = () => {
                   <p>
                     Your friend {firstName} just invited you to volunteer
                     through this campaign from DoSomething.org. Once you
-                    complete your first DoSomething campaign, you’ll both double
-                    your chances of winning the campaign scholarship!
+                    complete your first DoSomething campaign, you’ll both
+                    increase your chances of winning the campaign scholarship!
                   </p>
                 </div>
                 <div className="my-6">
