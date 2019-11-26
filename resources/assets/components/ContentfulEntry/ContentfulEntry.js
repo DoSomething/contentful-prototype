@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 
-import NotFound from '../NotFound';
 import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
@@ -403,7 +402,9 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <VoterRegistrationActionContainer blockId={json.id} {...json} />;
 
       default:
-        return <NotFound />;
+        return (
+          <ErrorBlock error={`ContentfulEntry is unable to render ${type}.`} />
+        );
     }
   }
 }

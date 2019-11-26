@@ -57,7 +57,7 @@ test('it should display a placeholder for an unknown block type', () => {
   expect(wrapper.find('NotFound')).toHaveLength(1);
 });
 
-test('it should display a placeholder for an empty block', () => {
+test('it should display an error for an empty block', () => {
   const wrapper = shallow(<ContentfulEntry />);
-  expect(wrapper.find('NotFound')).toHaveLength(1);
+  expect(wrapper.find('ErrorBlock')).toHaveLength(1);
 });
