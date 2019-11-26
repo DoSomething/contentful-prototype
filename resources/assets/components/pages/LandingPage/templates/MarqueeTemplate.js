@@ -10,7 +10,6 @@ import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlo
 import ScholarshipModal from '../../../utilities/ScholarshipModal/ScholarshipModal';
 import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-// import DismissableElement from '../../../utilities/DismissableElement/DismissableElement';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
