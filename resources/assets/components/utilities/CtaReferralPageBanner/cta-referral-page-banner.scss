@@ -9,25 +9,47 @@
     text-shadow: 2px 2px #983ac9;
   }
 
-  div {
-    padding-top: 220px;
-    text-align: center;
-    background: url('./gift-card-small.svg');
+  .cta-register-banner__content {
+    background: url('./money-hand-small.svg');
     background-repeat: no-repeat;
-  }
 
-  .button.-attached {
-    text-transform: uppercase;
+    // Adjust padding & background image size and position tailored to viewport width:
+    padding-top: 200px;
+    background-size: 90%;
+    background-position-x: 250%;
+    background-position-y: 10%;
+
+    @include media('(min-width: 390px)') {
+      padding-top: 220px;
+      background-size: 70%;
+      background-position-x: 100%;
+      background-position-y: 20%;
+    }
+
+    @include media('(min-width: 500px)') {
+      background-size: 55%;
+      background-position-y: 10%;
+    }
+
+    @include media('(min-width: 640px)') {
+      background-size: 45%;
+      background-position-y: 15%;
+    }
   }
 
   @include media($medium) {
     background: #983ac9 url('./bg-large.svg');
 
-    div {
+    .cta-register-banner__content {
       padding-top: 16px;
-      background-image: url('./gift-card-large.svg');
+      background-image: url('./money-hand-large.svg');
+      background-size: auto;
+      background-position-x: inherit;
       padding-left: 250px;
-      text-align: left;
     }
+  }
+
+  .button.-attached {
+    text-transform: uppercase;
   }
 }

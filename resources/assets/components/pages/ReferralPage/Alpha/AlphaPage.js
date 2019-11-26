@@ -18,11 +18,13 @@ const AlphaPage = props => {
       <div className="grid-narrow">
         <div className="my-6">
           <div className="general-page__heading text-center">
-            <h1 className="general-page__title uppercase">Want free stuff?</h1>
+            <h1 className="general-page__title uppercase">
+              Want Free Money for School?
+            </h1>
           </div>
           <div className="my-6">
             <SocialDriveActionContainer
-              shareCardDescription="Invite your friends to join DoSomething. When your friend signs up for this campaign, you'll both earn a $5 gift card! The more friends you refer, the more gift cards you earn. (Psst...there's no limit on how many you can refer!)"
+              shareCardDescription="Invite your friends to join DoSomething. When your friend completes this campaign, you'll both increase your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
               shareCardTitle="Refer A Friend"
               link={url}
               hidePageViews
@@ -36,7 +38,7 @@ const AlphaPage = props => {
             account, you won’t get the reward when they sign up for the shared
             campaign.
           </p>
-          <h4>2. How will I get my gift card?</h4>
+          <h4>2. How will I know if I won the scholarship?</h4>
           <p>
             We will email it to you using the same email address used to create
             your DoSomething account.

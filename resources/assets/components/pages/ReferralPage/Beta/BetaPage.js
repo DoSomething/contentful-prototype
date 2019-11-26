@@ -2,10 +2,14 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
-import GiftCardImage from './gift-card.svg';
+import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers';
+import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
-import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
+import {
+  REFERRAL_CAMPAIGN_IDS,
+  DEFAULT_REFERRAL_CAMPAIGN_ID,
+} from '../../../../constants';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
@@ -16,26 +20,24 @@ const REFERRAL_PAGE_USER = gql`
   }
 `;
 
-const SECONDARY_CAMPAIGN_ID = '7951';
-const SECONDARY_CAMPAIGN_PROMPT =
-  'In less than 5 minutes, you can join 193,242 young people putting an end to gun violence.';
-
 const BetaPage = () => {
   const userId = query('user_id');
 
   if (!userId) {
-    return <ErrorBlock />;
+    return <ErrorPage />;
   }
 
-  const campaignId = query('campaign_id');
-  const displayPrimaryCampaign =
-    campaignId && campaignId !== SECONDARY_CAMPAIGN_ID;
+  const queryCampaignId = query('campaign_id');
+
+  const campaignId = REFERRAL_CAMPAIGN_IDS.includes(queryCampaignId)
+    ? queryCampaignId
+    : DEFAULT_REFERRAL_CAMPAIGN_ID;
 
   return (
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
-          return <ErrorBlock />;
+          return <ErrorPage />;
         }
 
         const firstName = data.user.firstName;
@@ -46,46 +48,28 @@ const BetaPage = () => {
               <div className="my-6">
                 <div className="general-page__heading text-center">
                   <h1 className="general-page__title uppercase">
-                    Hi {firstName}’s friend!
+                    Hey, {firstName}’s friend!
                   </h1>
                 </div>
                 <div className="my-6">
-                  <img src={GiftCardImage} alt="Gift card" />
+                  <img src={MoneyHandImage} alt="Gift card" />
                 </div>
                 <div className="my-6">
                   <p>
-                    {firstName} just signed up for this campaign from
-                    DoSomething.org. Once you sign up for your first DoSomething
-                    campaign, you’ll both earn a $5 gift card!
+                    Your friend {firstName} just invited you to volunteer
+                    through this campaign from DoSomething.org. Once you
+                    complete your first DoSomething campaign, you’ll both
+                    increase your chances of winning the campaign scholarship!
                   </p>
                 </div>
-                {displayPrimaryCampaign ? (
-                  <React.Fragment>
-                    <div className="my-6">
-                      <CampaignLink campaignId={campaignId} userId={userId} />
-                    </div>
-                    <div className="my-6">
-                      <p>
-                        <strong>
-                          Interested in doing a different campaign to get your
-                          gift card?
-                        </strong>{' '}
-                        {SECONDARY_CAMPAIGN_PROMPT}
-                      </p>
-                    </div>
-                  </React.Fragment>
-                ) : null}
                 <div className="my-6">
-                  <CampaignLink
-                    campaignId={SECONDARY_CAMPAIGN_ID}
-                    userId={userId}
-                  />
+                  <CampaignLink campaignId={campaignId} userId={userId} />
                 </div>
                 <div className="my-6">
                   <h3>FAQ</h3>
                   <h4>
-                    1. Can I get the $5 gift card if I already have a
-                    DoSomething account?
+                    1. Can I increase my chances of winning the scholarship if I
+                    already have a DoSomething account?
                   </h4>
                   <p>
                     Unfortunately, if another DoSomething member sends you a
@@ -93,7 +77,7 @@ const BetaPage = () => {
                     you won’t get the reward when you sign up for the shared
                     campaign.
                   </p>
-                  <h4>2. How will I get my gift card?</h4>
+                  <h4>2. How will I know if I won the scholarship?</h4>
                   <p>
                     We will email it to you using the same email address used to
                     create your DoSomething account.
