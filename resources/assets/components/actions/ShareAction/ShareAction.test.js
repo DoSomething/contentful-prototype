@@ -22,6 +22,7 @@ describe('ShareAction component', () => {
   const getShallow = socialPlatform =>
     shallow(
       <ShareAction
+        automatedTest
         title="Click on this link!"
         content="This is a great link"
         socialPlatform={socialPlatform}

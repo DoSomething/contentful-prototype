@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Query } from 'react-apollo';
 
+import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import FormValidation from '../../utilities/Form/FormValidation';
@@ -34,7 +35,7 @@ const USER_POSTS_QUERY = gql`
   }
 `;
 
-class SelectionSubmissionAction extends React.Component {
+class SelectionSubmissionAction extends PostForm {
   constructor(props) {
     super(props);
 
@@ -65,7 +66,7 @@ class SelectionSubmissionAction extends React.Component {
 
   handleChange = event => this.setState({ selection: event.target.value });
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault();
 
     // Run a validation as an edge case measure (e.g. to prevent submitting custom data via dom manipulation).
@@ -86,6 +87,7 @@ class SelectionSubmissionAction extends React.Component {
       blockId: id,
       body: formatPostPayload({
         action_id: actionId,
+        school_id: await this.getUserActionSchoolId(),
         text: this.state.selection,
         type,
       }),

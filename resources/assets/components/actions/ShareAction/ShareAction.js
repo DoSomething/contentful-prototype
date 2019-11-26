@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { PuckWaypoint } from '@dosomething/puck-client';
 
+import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
@@ -53,7 +54,7 @@ const POST_COUNT_BADGE = gql`
   }
 `;
 
-class ShareAction extends React.Component {
+class ShareAction extends PostForm {
   state = { showModal: false };
 
   componentDidMount() {
@@ -63,7 +64,7 @@ class ShareAction extends React.Component {
     }
   }
 
-  storeSharePost = puckId => {
+  storeSharePost = async puckId => {
     const action = get(this.props.additionalContent, 'action', 'default');
 
     const { actionId, pageId, campaignId, link } = this.props;
@@ -73,6 +74,7 @@ class ShareAction extends React.Component {
       type: SOCIAL_SHARE_TYPE,
       id: pageId, // @TODO: rename property to pageId? Other actions use the blockId?
       action_id: actionId,
+      school_id: await this.getUserActionSchoolId(),
       details: {
         url: link,
         platform: 'facebook',
@@ -135,9 +137,11 @@ class ShareAction extends React.Component {
 
           trackingData = { ...trackingData, puck_id: puckId };
 
-          this.storeSharePost(puckId);
+          return this.storeSharePost(puckId);
         }
-
+        return Promise.resolve();
+      })
+      .then(() => {
         this.trackEvent('facebook', 'action', 'completed', trackingData);
 
         this.setState({ showModal: true });
@@ -208,6 +212,7 @@ class ShareAction extends React.Component {
           />
         </div>
         {this.state.showModal ? (
+          // @TODO: Refactor this with PostCreatedModal.
           <Modal onClose={() => this.setState({ showModal: false })}>
             {affirmationBlock ? (
               <ContentfulEntry json={affirmationBlock} />
