@@ -28,10 +28,12 @@ export const operations = {
   },
   EmbedQuery: {
     embed: {
+      type: 'LINK',
       title: faker.lorem.words(),
       description: faker.lorem.sentence(),
       providerName: faker.company.companyName(),
       thumbnailUrl: faker.image.imageUrl(),
+      html: null,
     },
   },
   ReferralPageCampaignQuery: {
