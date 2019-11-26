@@ -7,6 +7,7 @@ import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
 import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
+import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import CallToAction from '../CallToAction/CallToAction';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
@@ -26,7 +27,6 @@ import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQu
 import CampaignUpdateContainer from '../blocks/CampaignUpdate/CampaignUpdateContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
-import SoftEdgeWidgetActionContainer from '../actions/SoftEdgeWidgetAction/SoftEdgeWidgetActionContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -347,10 +347,10 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <SocialDriveActionContainer {...json.fields} />;
 
       case 'SoftEdgeBlock':
-        return <SoftEdgeWidgetActionContainer {...json} />;
+        return <SoftEdgeBlock {...json} />;
 
       case 'softEdgeWidgetAction':
-        return <SoftEdgeWidgetActionContainer {...json.fields} />;
+        return <SoftEdgeBlock {...json.fields} />;
 
       case 'static':
         return (
