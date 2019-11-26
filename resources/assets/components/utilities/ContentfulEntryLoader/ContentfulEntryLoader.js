@@ -3,8 +3,9 @@ import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 
+import NotFound from '../../NotFound';
 import { env } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
@@ -74,40 +75,45 @@ const ContentfulEntryLoader = ({
   className,
   classNameByEntry,
   classNameByEntryDefault,
-}) => (
-  <Query
-    query={CONTENTFUL_BLOCK_QUERY}
-    variables={{ id, preview: env('CONTENTFUL_USE_PREVIEW_API') }}
-  >
-    {({ loading, error, data }) => {
-      if (loading) {
-        return <div className="grid-narrow spinner -centered my-12" />;
-      }
+}) => {
+  const { loading, error, data } = useQuery(CONTENTFUL_BLOCK_QUERY, {
+    variables: { id, preview: env('CONTENTFUL_USE_PREVIEW_API') },
+  });
 
-      if (error || !data.block) {
-        return (
-          <div className={classnames(className, 'grid-narrow')}>
-            <ErrorBlock />
-          </div>
-        );
-      }
+  if (loading) {
+    return <div className="grid-narrow spinner -centered my-12" />;
+  }
 
-      const blockType = data.block.__typename;
+  if (error) {
+    return (
+      <div className={classnames(className, 'grid-narrow')}>
+        <ErrorBlock error={error} />
+      </div>
+    );
+  }
 
-      const entryClassNames = get(
-        classNameByEntry,
-        blockType,
-        classNameByEntryDefault || 'grid-main',
-      );
+  if (!data.block) {
+    return (
+      <div className={classnames(className, 'grid-narrow')}>
+        <NotFound />
+      </div>
+    );
+  }
 
-      return (
-        <div className={classnames(className, entryClassNames)}>
-          <ContentfulEntry json={data.block} />
-        </div>
-      );
-    }}
-  </Query>
-);
+  const blockType = data.block.__typename;
+
+  const entryClassNames = get(
+    classNameByEntry,
+    blockType,
+    classNameByEntryDefault || 'grid-main',
+  );
+
+  return (
+    <div className={classnames(className, entryClassNames)}>
+      <ContentfulEntry json={data.block} />
+    </div>
+  );
+};
 
 ContentfulEntryLoader.propTypes = {
   className: PropTypes.string,
