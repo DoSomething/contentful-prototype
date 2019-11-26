@@ -23,7 +23,8 @@ const BetaPage = () => {
     return <ErrorBlock />;
   }
 
-  const campaignId = query('campaign_id');
+  const DEFAULT_CAMPAIGN_ID = '9037';
+  const campaignId = query('campaign_id') || DEFAULT_CAMPAIGN_ID;
 
   return (
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
