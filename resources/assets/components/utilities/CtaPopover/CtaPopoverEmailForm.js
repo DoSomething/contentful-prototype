@@ -1,43 +1,54 @@
+import get from 'lodash/get';
 import React, { useState } from 'react';
+import { RestApiClient } from '@dosomething/gateway';
 
 import Button from '../Button/Button';
-import './cta-popover-email-form.scss';
 import { env } from '../../../helpers/index';
-import apiRequest from '../../../actions/api';
+import { tabularLog } from '../../../helpers/api';
+import { getFieldErrors } from '../../../helpers/forms';
+
+import './cta-popover-email-form.scss';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
+  const [errorResponse, setErrorResponse] = useState(null);
   const handleChange = event => setEmailValue(event.target.value);
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    return dispatch => {
-      dispatch(
-        apiRequest('POST', {
-          meta: {
-            email: emailValue,
-            email_subscription_topic: 'scholarships',
-            source: 'phoenix-next',
-            source_details: 'scholarship_newsletter-cta_scholarship-page',
-            url: `${env('NORTHSTAR_URL')}/v2/subscriptions`,
-          },
-        }),
-      );
-      console.log(emailValue);
-    };
+    const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
+
+    client
+      .post('/v2/subscriptions', {
+        email: emailValue,
+        email_subscription_topic: 'scholarships',
+        source: 'phoenix-next',
+        source_detail: 'scholarship_newsletter-cta_scholarship-page',
+      })
+      .then(response => {
+        tabularLog(get(response, 'data', null));
+
+        return response;
+      })
+      .catch(error => {
+        setErrorResponse(error.response.error);
+        console.log(error.response.error.fields.email);
+      });
   };
 
   return (
     <div className="cta-popover-email-form">
       <form className="email-form form pb-2 pt-4" onSubmit={handleSubmit}>
-        {/* <label className="field-label">
-              <span className="validation">
-                <div className="validation__message {{modifier_class}}">
-                  Must be a valid email address
-                </div>
-              </span>
-            </label> */}
+        {error.response.email ? (
+          <label className="field-label">
+            <span className="validation">
+              <div className="validation__message {{modifier_class}}">
+                {errorResponse.fields.email[0]}
+              </div>
+            </span>
+          </label>
+        ) : null}
 
         <input
           className="text-field email-form__input"
