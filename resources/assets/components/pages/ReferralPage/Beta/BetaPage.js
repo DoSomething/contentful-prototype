@@ -2,10 +2,10 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
+import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers';
 import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
-import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
@@ -20,7 +20,7 @@ const BetaPage = () => {
   const userId = query('user_id');
 
   if (!userId) {
-    return <ErrorBlock />;
+    return <ErrorPage />;
   }
 
   const DEFAULT_CAMPAIGN_ID = '9037';
@@ -30,7 +30,7 @@ const BetaPage = () => {
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
-          return <ErrorBlock />;
+          return <ErrorPage />;
         }
 
         const firstName = data.user.firstName;
