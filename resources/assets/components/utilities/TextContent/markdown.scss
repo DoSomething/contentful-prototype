@@ -122,7 +122,7 @@
     border: none;
   }
 
-  tbody tr:nth-child(2n) {
+  tbody tr:nth-child(even) {
     background-color: #f4f9ff;
   }
 
