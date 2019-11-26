@@ -49,7 +49,6 @@ const MarqueeTemplate = ({
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
-  console.log('the toggle for the modal', showModal);
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
