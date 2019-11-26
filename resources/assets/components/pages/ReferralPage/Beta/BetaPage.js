@@ -16,10 +16,6 @@ const REFERRAL_PAGE_USER = gql`
   }
 `;
 
-const SECONDARY_CAMPAIGN_ID = '7951';
-const SECONDARY_CAMPAIGN_PROMPT =
-  'In less than 5 minutes, you can join 193,242 young people putting an end to gun violence.';
-
 const BetaPage = () => {
   const userId = query('user_id');
 
@@ -28,8 +24,6 @@ const BetaPage = () => {
   }
 
   const campaignId = query('campaign_id');
-  const displayPrimaryCampaign =
-    campaignId && campaignId !== SECONDARY_CAMPAIGN_ID;
 
   return (
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
@@ -60,27 +54,8 @@ const BetaPage = () => {
                     your chances of winning the campaign scholarship!
                   </p>
                 </div>
-                {displayPrimaryCampaign ? (
-                  <React.Fragment>
-                    <div className="my-6">
-                      <CampaignLink campaignId={campaignId} userId={userId} />
-                    </div>
-                    <div className="my-6">
-                      <p>
-                        <strong>
-                          Interested in doing a different campaign to get your
-                          gift card?
-                        </strong>{' '}
-                        {SECONDARY_CAMPAIGN_PROMPT}
-                      </p>
-                    </div>
-                  </React.Fragment>
-                ) : null}
                 <div className="my-6">
-                  <CampaignLink
-                    campaignId={SECONDARY_CAMPAIGN_ID}
-                    userId={userId}
-                  />
+                  <CampaignLink campaignId={campaignId} userId={userId} />
                 </div>
                 <div className="my-6">
                   <h3>FAQ</h3>
