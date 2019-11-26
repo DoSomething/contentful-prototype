@@ -2,7 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
-import GiftCardImage from './gift-card.svg';
+import MoneyHandImage from './money-hand.svg';
 import { query } from '../../../../helpers';
 import CampaignLink from './BetaPageCampaignLink';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
@@ -50,7 +50,7 @@ const BetaPage = () => {
                   </h1>
                 </div>
                 <div className="my-6">
-                  <img src={GiftCardImage} alt="Gift card" />
+                  <img src={MoneyHandImage} alt="Gift card" />
                 </div>
                 <div className="my-6">
                   <p>
