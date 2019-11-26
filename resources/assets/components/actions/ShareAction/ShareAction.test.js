@@ -104,7 +104,7 @@ describe('ShareAction component', () => {
 
       // Wait for `showFacebookShareDialog` promise to resolve.
       setImmediate(() => {
-        expect(wrapper.update().find('Modal')).toHaveLength(1);
+        expect(wrapper.update().find('PostCreatedModal')).toHaveLength(1);
 
         done();
       });
@@ -156,7 +156,7 @@ describe('ShareAction component', () => {
 
       // Wait for our mock-closed window to run the `setState` callback,
       // and then check that we're displaying a <Modal> affirmation.
-      expect(wrapper.update().find('Modal')).toHaveLength(1);
+      expect(wrapper.update().find('PostCreatedModal')).toHaveLength(1);
     });
   });
 });
