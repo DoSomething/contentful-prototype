@@ -6,8 +6,9 @@ import Enclosure from '../../../Enclosure';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
-import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import ScholarshipModal from '../../../utilities/ScholarshipModal/ScholarshipModal';
+import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
@@ -45,6 +46,7 @@ const MarqueeTemplate = ({
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
+  const showModal = false;
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
@@ -119,6 +121,7 @@ const MarqueeTemplate = ({
             </div>
           </Enclosure>
         </div>
+        {showModal ? <ScholarshipModal /> : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>
