@@ -897,7 +897,7 @@ export function isScholarshipAffiliateReferral() {
  * @return {Boolean}
  */
 export function isTestReferral() {
-  const utmSource = query('utm_source');
+  const utmSource = query('utm_test_source');
 
   return utmSource && utmSource.includes('test-scholarship');
 }
