@@ -38,7 +38,7 @@ class ReferralPageController extends Controller
               'description' => $callToAction,
               'facebook_app_id' =>  config('services.analytics.facebook_id'),
               'image' => [
-                'url' => asset('images/gift-card.png'),
+                'url' => asset('images/money-hand.png'),
                 'width' => '1200',
                 'height' => '1200',
               ],
