@@ -9,6 +9,12 @@ const HELP_LINK = 'https://help.dosomething.org/hc/en-us/requests/new';
 const DEBUGGING = process.env.NODE_ENV !== 'production';
 
 const ErrorBlock = ({ error }) => {
+  // Print error to console & report to New Relic:
+  if (error) {
+    console.error(`[ErrorBlock] ${error}`);
+    report(error);
+  }
+
   return (
     <Card className="rounded bordered p-3">
       <img src={errorIcon} alt="Error" className="mx-auto my-8" />
