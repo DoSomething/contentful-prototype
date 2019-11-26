@@ -6,6 +6,7 @@ import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers';
 import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
+import { REFERRAL_CAMPAIGN_IDS } from '../../../../constants';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
@@ -23,8 +24,14 @@ const BetaPage = () => {
     return <ErrorPage />;
   }
 
+  // Defaults to Teens For Jeans campaign.
   const DEFAULT_CAMPAIGN_ID = '9037';
-  const campaignId = query('campaign_id') || DEFAULT_CAMPAIGN_ID;
+
+  const queryCampaignId = query('campaign_id');
+
+  const campaignId = REFERRAL_CAMPAIGN_IDS.includes(queryCampaignId)
+    ? queryCampaignId
+    : DEFAULT_CAMPAIGN_ID;
 
   return (
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
