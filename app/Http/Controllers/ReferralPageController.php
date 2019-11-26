@@ -27,7 +27,7 @@ class ReferralPageController extends Controller
 
         $firstName = $user->first_name;
         $title = 'Do Something Good With '.$firstName.'!';
-        $callToAction = 'Make an impact with '.$firstName.' by completing one of DoSomething\'s volunteer campaigns. (You\'ll both receive a $5 gift card!)';
+        $callToAction = 'Make an impact with '.$firstName.' by completing one of DoSomething\'s volunteer campaigns. (You\'ll both double your chances of winning the campaign scholarship!)';
 
         return response()->view('app', [
             'headTitle' => $title,

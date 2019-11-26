@@ -46,7 +46,7 @@ const BetaPage = () => {
               <div className="my-6">
                 <div className="general-page__heading text-center">
                   <h1 className="general-page__title uppercase">
-                    Hi {firstName}’s friend!
+                    Hey, {firstName}’s friend!
                   </h1>
                 </div>
                 <div className="my-6">
@@ -54,9 +54,10 @@ const BetaPage = () => {
                 </div>
                 <div className="my-6">
                   <p>
-                    {firstName} just signed up for this campaign from
-                    DoSomething.org. Once you sign up for your first DoSomething
-                    campaign, you’ll both earn a $5 gift card!
+                    Your friend {firstName} just invited you to volunteer
+                    through this campaign from DoSomething.org. Once you
+                    complete your first DoSomething campaign, you’ll both double
+                    your chances of winning the campaign scholarship!
                   </p>
                 </div>
                 {displayPrimaryCampaign ? (
@@ -84,8 +85,8 @@ const BetaPage = () => {
                 <div className="my-6">
                   <h3>FAQ</h3>
                   <h4>
-                    1. Can I get the $5 gift card if I already have a
-                    DoSomething account?
+                    1. Can I increase my chances of winning the scholarship if I
+                    already have a DoSomething account?
                   </h4>
                   <p>
                     Unfortunately, if another DoSomething member sends you a
@@ -93,7 +94,7 @@ const BetaPage = () => {
                     you won’t get the reward when you sign up for the shared
                     campaign.
                   </p>
-                  <h4>2. How will I get my gift card?</h4>
+                  <h4>2. How will I know if I won the scholarship?</h4>
                   <p>
                     We will email it to you using the same email address used to
                     create your DoSomething account.

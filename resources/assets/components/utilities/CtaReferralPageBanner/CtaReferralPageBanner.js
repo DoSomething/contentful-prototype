@@ -28,8 +28,8 @@ const CtaReferralPageBanner = ({ campaignId }) => (
           <div className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left">
             <h3 className="text-white">Benefits With Friends</h3>
             <p className="text-white pb-3">
-              Refer a friend to this campaign, and you’ll *both* earn a $5 gift
-              card!
+              Refer a friend to this campaign, and you’ll *both* double your
+              chances of winning the campaign scholarship!
             </p>
             <a
               href={`/us/refer-friends?campaign_id=${campaignId}`}
