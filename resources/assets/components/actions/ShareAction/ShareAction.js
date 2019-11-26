@@ -208,7 +208,6 @@ class ShareAction extends PostForm {
             ) : (
               <PostCreatedModal
                 affirmationContent={affirmation}
-                className="modal__slide bordered rounded"
                 onClose={this.handleModalClose}
                 title="Thanks for sharing!"
                 userId={this.props.userId}
