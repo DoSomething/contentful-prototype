@@ -15,6 +15,7 @@ import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/Affilia
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
   contentfulImageUrl,
+  isTestReferral,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
 } from '../../../../helpers';
@@ -35,7 +36,7 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(isTestReferral());
   const numCampaignId = Number(campaignId);
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
