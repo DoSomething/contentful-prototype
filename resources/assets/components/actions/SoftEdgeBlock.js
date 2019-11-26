@@ -52,7 +52,7 @@ const SoftEdgeBlock = ({ actionId, softEdgeId, title }) => {
 
   // 3. If we couldn't load CongressWeb SDK, show an error block:
   if (scriptStatus === ScriptStatus.ERROR) {
-    return <ErrorBlock />;
+    return <ErrorBlock error="Could not connect to CongressWeb." />;
   }
 
   // 4. Once #1 & #2 are done, load the IFrame:
