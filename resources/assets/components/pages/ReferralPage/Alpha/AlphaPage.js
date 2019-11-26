@@ -38,7 +38,7 @@ const AlphaPage = props => {
             account, you won’t get the reward when they sign up for the shared
             campaign.
           </p>
-          <h4>2. How will I I know if I won the scholarship?</h4>
+          <h4>2. How will I know if I won the scholarship?</h4>
           <p>
             We will email it to you using the same email address used to create
             your DoSomething account.
