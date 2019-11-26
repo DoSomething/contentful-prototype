@@ -298,11 +298,6 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <QuizContainer {...json.fields} />;
       }
 
-      case 'quizBeta': {
-        const LegacyQuiz = Loader(import('../LegacyQuiz/LegacyQuizContainer'));
-        return <LegacyQuiz quizContent={json} />;
-      }
-
       case 'sectionBlock': {
         return (
           <SectionBlock
