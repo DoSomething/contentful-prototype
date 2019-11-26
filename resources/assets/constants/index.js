@@ -42,5 +42,8 @@ export const REFERRAL_CAMPAIGN_IDS = [
   '9037',
 ];
 
+// The Referral Campaign ID defaults to the Teens for Jeans campaign.
+export const DEFAULT_REFERRAL_CAMPAIGN_ID = '9037';
+
 // Signup Button text for scholarship referrals:
 export const SCHOLARSHIP_SIGNUP_BUTTON_TEXT = 'Apply Now!';
