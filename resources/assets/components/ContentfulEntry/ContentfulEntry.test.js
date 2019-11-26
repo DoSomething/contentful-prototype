@@ -50,11 +50,11 @@ test('it can display a static block', () => {
   expect(wrapper.find('StaticBlock')).toHaveLength(1);
 });
 
-test('it should display a placeholder for an unknown block type', () => {
+test('it should display an error for an unknown block type', () => {
   const wrapper = shallow(
     <ContentfulEntry json={{ id: '12345', type: 'tongue_cat' }} />,
   );
-  expect(wrapper.find('NotFound')).toHaveLength(1);
+  expect(wrapper.find('ErrorBlock')).toHaveLength(1);
 });
 
 test('it should display an error for an empty block', () => {
