@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -6,13 +6,15 @@ import Enclosure from '../../../Enclosure';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
-import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import ScholarshipModal from '../../../utilities/ScholarshipModal/ScholarshipModal';
+import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
   contentfulImageUrl,
+  isTestReferral,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
 } from '../../../../helpers';
@@ -33,6 +35,7 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
+  const [showModal, setShowModal] = useState(isTestReferral());
   const numCampaignId = Number(campaignId);
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
@@ -119,6 +122,9 @@ const MarqueeTemplate = ({
             </div>
           </Enclosure>
         </div>
+        {showModal ? (
+          <ScholarshipModal onClose={() => setShowModal(!showModal)} />
+        ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>

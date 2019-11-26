@@ -891,6 +891,18 @@ export function isScholarshipAffiliateReferral() {
 }
 
 /**
+ * Determine if the user is a test scholarship user.
+ *This is a temporary function for us to test out the scholarship modal work
+ *
+ * @return {Boolean}
+ */
+export function isTestReferral() {
+  const utmSource = query('utm_test_source');
+
+  return utmSource && utmSource.includes('test-scholarship');
+}
+
+/**
  * Get the Scholarship Affiliate Referrer's UTM Label.
  *
  * @return {String|Null}
