@@ -1,24 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './cta-referral-page-banner.scss';
+import { REFERRAL_CAMPAIGN_IDS } from '../../../constants';
 
-// For now, only display Referral Pages for certain campaigns.
-// @see https://www.pivotaltracker.com/n/projects/2019429/stories/168489148/comments/206819678
-const REFERRAL_CAMPAIGN_IDS = [
-  '7',
-  '2932',
-  '3271',
-  '3302',
-  '3590',
-  '7951',
-  '9001', // Used to test on dev.
-  '9026',
-  '9027',
-  '9030',
-  '9031',
-  '9032',
-];
+import './cta-referral-page-banner.scss';
 
 const CtaReferralPageBanner = ({ campaignId }) => (
   <React.Fragment>
