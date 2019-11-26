@@ -24,7 +24,7 @@ const AlphaPage = props => {
           </div>
           <div className="my-6">
             <SocialDriveActionContainer
-              shareCardDescription="Invite your friends to join DoSomething. When your friend completes this campaign, you'll both double your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
+              shareCardDescription="Invite your friends to join DoSomething. When your friend completes this campaign, you'll both increase your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
               shareCardTitle="Refer A Friend"
               link={url}
               hidePageViews
