@@ -2,8 +2,8 @@ import React from 'react';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
-import MoneyHandImage from './money-hand.svg';
 import { query } from '../../../../helpers';
+import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
