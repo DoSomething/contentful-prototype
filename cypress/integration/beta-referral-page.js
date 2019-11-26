@@ -15,7 +15,7 @@ describe('Beta Referral Page', () => {
     cy.contains('gift card');
     cy.contains('FAQ');
 
-    cy.get('.referral-page-campaign').should('have.length', 2);
+    cy.get('.referral-page-campaign').should('have.length', 1);
 
     // @TODO: Our mock GraphQL doesn't seem to get called, this times out like below.
     // cy.get('.referral-page-campaign > a')
