@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -10,6 +10,7 @@ import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlo
 import ScholarshipModal from '../../../utilities/ScholarshipModal/ScholarshipModal';
 import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
+// import DismissableElement from '../../../utilities/DismissableElement/DismissableElement';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
@@ -34,6 +35,7 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
+  const [showModal, setShowModal] = useState(true);
   const numCampaignId = Number(campaignId);
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
@@ -46,7 +48,7 @@ const MarqueeTemplate = ({
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
-  const showModal = false;
+  console.log('the toggle for the modal', showModal);
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
@@ -121,7 +123,9 @@ const MarqueeTemplate = ({
             </div>
           </Enclosure>
         </div>
-        {showModal ? <ScholarshipModal /> : null}
+        {showModal ? (
+          <ScholarshipModal onClose={() => setShowModal(!showModal)} />
+        ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>
