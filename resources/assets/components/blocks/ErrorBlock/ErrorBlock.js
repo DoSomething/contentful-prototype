@@ -2,26 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import errorIcon from './errorIcon.svg';
+import { report } from '../../../helpers';
 import Card from '../../utilities/Card/Card';
-import { Figure } from '../../utilities/Figure/Figure';
-import TextContent from '../../utilities/TextContent/TextContent';
+
+const HELP_LINK = 'https://help.dosomething.org/hc/en-us/requests/new';
+const DEBUGGING = process.env.NODE_ENV !== 'production';
 
 const ErrorBlock = ({ error }) => {
   return (
-    <Card className="error-block rounded bordered p-3">
-      <Figure image={errorIcon}>
-        <TextContent>
-          __Something went wrong!__ Try refreshing the page or [reach
-          out](https://help.dosomething.org/hc/en-us/requests/new) to us.
-        </TextContent>
-        {error ? <code>{JSON.stringify(error)}</code> : null}
-      </Figure>
+    <Card className="rounded bordered p-3">
+      <img src={errorIcon} alt="Error" className="mx-auto my-8" />
+      <p className="text-center my-4">
+        <strong>Something went wrong!</strong> Try refreshing the page or{' '}
+        <a href={HELP_LINK}>reach out</a> to us.
+      </p>
+      {DEBUGGING && error ? (
+        <p className="color-error text-center my-4">
+          <code>{JSON.stringify(error)}</code>
+        </p>
+      ) : null}
     </Card>
   );
 };
 
 ErrorBlock.propTypes = {
-  error: PropTypes.object,
+  error: PropTypes.oneOf(PropTypes.object, PropTypes.string),
 };
 
 ErrorBlock.defaultProps = {
