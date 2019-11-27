@@ -169,14 +169,14 @@ class SiteNavigation extends React.Component {
               onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
             >
               <a
-                href="/us/campaigns"
+                href="/"
                 onClick={e =>
                   this.handleOnClickToggle(e, 'CausesSubNav', {
-                    label: 'campaigns',
+                    label: 'causes',
                   })
                 }
               >
-                Campaigns
+                Causes
                 <span className="main-nav__arrow" />
               </a>
 
