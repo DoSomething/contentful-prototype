@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
+import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
@@ -160,13 +161,124 @@ class SiteNavigation extends React.Component {
           </div>
 
           <ul className="main-nav menu-nav">
-            <li className="menu-nav__item">
+            <li
+              className={classnames('menu-nav__item', {
+                'is-active': this.state.activeSubNav === 'CausesSubNav',
+              })}
+              onMouseEnter={() => this.handleMouseEnter('CausesSubNav')}
+              onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
+            >
               <a
                 href="/us/campaigns"
-                onClick={e => this.handleOnClickLink(e, { label: 'campaigns' })}
+                onClick={e =>
+                  this.handleOnClickToggle(e, 'CausesSubNav', {
+                    label: 'campaigns',
+                  })
+                }
               >
                 Campaigns
+                <span className="main-nav__arrow" />
               </a>
+
+              {this.state.activeSubNav === 'CausesSubNav' ? (
+                <div className="main-subnav menu-subnav">
+                  <div className="wrapper base-12-grid">
+                    <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
+                      <h1>
+                        <a href="/">All Causes</a>
+                      </h1>
+                      <ul>
+                        <li>
+                          <a href="/">Education</a>
+                        </li>
+                        <li>
+                          <a href="/">Mental Health</a>
+                        </li>
+                        <li>
+                          <a href="/">Homelessness & Poverty</a>
+                        </li>
+                        <li>
+                          <a href="/">Environment</a>
+                        </li>
+                        <li>
+                          <a href="/">Animal Welfare</a>
+                        </li>
+                        <li>
+                          <a href="/">Sexual Harassment</a>
+                        </li>
+                        <li>
+                          <a href="/">Bullying</a>
+                        </li>
+                        <li>
+                          <a href="/">Gender Rights</a>
+                        </li>
+                        <li>
+                          <a href="/">Racial Justice</a>
+                        </li>
+                        <li>
+                          <a href="/">Immigration & Refugees</a>
+                        </li>
+                        <li>
+                          <a href="/">LGBT+ Rights</a>
+                        </li>
+                        <li>
+                          <a href="/">Get Out the Vote!</a>
+                        </li>
+                      </ul>
+                    </section>
+
+                    <section className="main-subnav__links-campaigns menu-subnav__links menu-subnav__section">
+                      <h1>
+                        <a href="/">All Campaigns</a>
+                      </h1>
+                      <ul>
+                        <li>
+                          <a href="/">Online</a>
+                        </li>
+                        <li>
+                          <a href="/">In-person</a>
+                        </li>
+                        <li>
+                          <a href="/">Petitions</a>
+                        </li>
+                        <li>
+                          <a href="/">Collections</a>
+                        </li>
+                      </ul>
+                    </section>
+
+                    <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
+                      <SiteNavigationFeature
+                        imageSrc="https://placedog.net/1100/500?id=2"
+                        imageAlt="temporary place puppers"
+                        url="/"
+                        title="Take Back the Puppers"
+                        text="Donec ullamcorper nulla non metus auctor fringilla."
+                        callback={e =>
+                          this.analyzeEvent(e, {
+                            context: {
+                              campaignId: '12asasd23sdasd3',
+                            },
+                            label: 'subnav_feature',
+                            target: 'link',
+                            verb: 'clicked',
+                          })
+                        }
+                      />
+                    </section>
+
+                    {this.state.isSubNavFixed ? (
+                      <CloseButton
+                        callback={this.handleOnClickClose}
+                        className="btn__close--subnav btn__close--main-subnav block"
+                        dataLabel="close_subnav"
+                        dataNoun="nav_button"
+                        size="22px"
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
             </li>
 
             <li className="menu-nav__item">
