@@ -1,11 +1,6 @@
 @import '../../scss/next-toolbox';
 
 @include media($medium) {
-  .flex {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .flex__cell {
     flex: 1;
 
