@@ -50,7 +50,6 @@ const ScholarshipModalQuery = props => (
         action => action.scholarshipEntry && action.reportback,
       );
       const action = actions[0];
-
       return (
         <ScholarshipModal
           affiliateTitle={title}

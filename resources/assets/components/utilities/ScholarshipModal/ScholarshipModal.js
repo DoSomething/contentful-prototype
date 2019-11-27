@@ -6,6 +6,9 @@ import Card from '../Card/Card';
 import { getHumanFriendlyDate } from '../../../helpers';
 
 const ScholarshipModal = ({
+  actionType,
+  affiliateLogo,
+  affiliateTitle,
   onClose,
   scholarshipAmount,
   scholarshipDeadline,
@@ -13,7 +16,22 @@ const ScholarshipModal = ({
   <Modal onClose={onClose}>
     <Card>
       <div>
+        {affiliateLogo ? (
+          <img
+            className="affiliate-logo"
+            src={affiliateLogo.url}
+            alt={affiliateLogo.description || 'Affiliate logo'}
+          />
+        ) : null}
         <h1 className="p-8">This is a test scholarship modal</h1>
+        <p className="pt-6 pb-3">
+          <strong>
+            Welcome to DoSomething.org
+            {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
+          </strong>{' '}
+          Ready to earn scholarships for doing good? Just follow the simple
+          instructions for the chance to win. Let’s Do This!
+        </p>
         {scholarshipAmount ? (
           <>
             <div>Win A Scholarship</div>
@@ -24,6 +42,12 @@ const ScholarshipModal = ({
           <>
             <div>Deadline</div>
             <p>{getHumanFriendlyDate(scholarshipDeadline)}</p>
+          </>
+        ) : null}
+        {actionType ? (
+          <>
+            <dt>Action Type</dt>
+            <dd>{actionType}</dd>
           </>
         ) : null}
         <>
@@ -42,8 +66,20 @@ const ScholarshipModal = ({
 );
 
 ScholarshipModal.propTypes = {
+  actionType: PropTypes.string,
+  affiliateLogo: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    description: PropTypes.string,
+  }),
+  affiliateTitle: PropTypes.string,
   onClose: PropTypes.bool.isRequired,
   scholarshipAmount: PropTypes.number.isRequired,
   scholarshipDeadline: PropTypes.string.isRequired,
+};
+
+ScholarshipModal.defaultProps = {
+  actionType: null,
+  affiliateLogo: null,
+  affiliateTitle: null,
 };
 export default ScholarshipModal;

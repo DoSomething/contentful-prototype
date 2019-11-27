@@ -128,6 +128,7 @@ const MarqueeTemplate = ({
             onClose={() => setShowModal(!showModal)}
             scholarshipAmount={scholarshipAmount}
             scholarshipDeadline={scholarshipDeadline}
+            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
           />
         ) : null}
       </article>
