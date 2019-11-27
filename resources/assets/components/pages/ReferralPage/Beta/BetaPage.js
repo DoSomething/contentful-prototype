@@ -90,7 +90,7 @@ const BetaPage = () => {
                     </a>
                   </p>
                   <h3>About Us</h3>
-                  <p>
+                  <p className="italic">
                     DoSomething is the largest not-for-profit for young people
                     and social change. Using our digital platform, millions of
                     young people make real-world impact through our volunteer,
