@@ -208,15 +208,15 @@ class SiteNavigation extends React.Component {
 
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
-                        imageSrc="https://placedog.net/1100/500?id=2"
-                        imageAlt="temporary place puppers"
-                        url="/"
-                        title="Take Back the Puppers"
-                        text="Donec ullamcorper nulla non metus auctor fringilla."
+                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/5md4atcQCcWCMomiO22iyU/02de733ce619eb881fe69a9793e9bee9/pasted_image_at_2017_04_26_04_12_pm.png?fit=fill&h=500&w=1100"
+                        imageAlt="Mirror adorned with positive post it notes"
+                        url="/us/campaigns/mirror-messages"
+                        title="Mirror Messages"
+                        text="Create and post encouraging notes in your school bathrooms to brighten your classmates' day!"
                         callback={e =>
                           this.analyzeEvent(e, {
                             context: {
-                              campaignId: '12asasd23sdasd3',
+                              campaignId: '7',
                             },
                             label: 'subnav_feature',
                             target: 'link',
