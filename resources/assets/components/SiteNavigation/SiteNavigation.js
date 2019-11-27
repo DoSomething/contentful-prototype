@@ -184,9 +184,7 @@ class SiteNavigation extends React.Component {
                 <div className="main-subnav menu-subnav">
                   <div className="wrapper base-12-grid">
                     <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
-                      <h1>
-                        <a href="/">All Causes</a>
-                      </h1>
+                      <h1>Causes</h1>
                       <ul>
                         <li>
                           <a href="/">Education</a>
