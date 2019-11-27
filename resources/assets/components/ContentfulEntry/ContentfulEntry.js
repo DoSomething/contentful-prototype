@@ -397,7 +397,7 @@ class ContentfulEntry extends React.Component {
 ContentfulEntry.propTypes = {
   json: PropTypes.object, // eslint-disable-line
   className: PropTypes.string,
-  classNameByEntry: PropTypes.string,
+  classNameByEntry: PropTypes.object, // eslint-disable-line
   classNameByEntryDefault: PropTypes.string,
 };
 
