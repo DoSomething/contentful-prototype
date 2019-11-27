@@ -34,6 +34,7 @@ const BetaPage = () => {
     : DEFAULT_REFERRAL_CAMPAIGN_ID;
 
   return (
+    // We *do not* render a SiteNavigationContainer here to avoid losing the referral metadata (see https://git.io/JeX2A).
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
