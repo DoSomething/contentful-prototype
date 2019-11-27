@@ -6,8 +6,8 @@ import Card from '../Card/Card';
 import { getHumanFriendlyDate } from '../../../helpers';
 
 const ScholarshipModal = ({
+  affiliateSponsors,
   actionType,
-  affiliateLogo,
   affiliateTitle,
   onClose,
   scholarshipAmount,
@@ -16,14 +16,15 @@ const ScholarshipModal = ({
   <Modal onClose={onClose}>
     <Card>
       <div>
-        {affiliateLogo ? (
-          <img
-            className="affiliate-logo"
-            src={affiliateLogo.url}
-            alt={affiliateLogo.description || 'Affiliate logo'}
-          />
-        ) : null}
         <h1 className="p-8">This is a test scholarship modal</h1>
+        {affiliateSponsors.length ? (
+          <div className="__image">
+            <img
+              src={affiliateSponsors[0].fields.logo.url}
+              alt={affiliateSponsors[0].fields.logo.title}
+            />
+          </div>
+        ) : null}
         <p className="pt-6 pb-3">
           <strong>
             Welcome to DoSomething.org
@@ -67,10 +68,7 @@ const ScholarshipModal = ({
 
 ScholarshipModal.propTypes = {
   actionType: PropTypes.string,
-  affiliateLogo: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    description: PropTypes.string,
-  }),
+  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateTitle: PropTypes.string,
   onClose: PropTypes.bool.isRequired,
   scholarshipAmount: PropTypes.number.isRequired,
@@ -79,7 +77,7 @@ ScholarshipModal.propTypes = {
 
 ScholarshipModal.defaultProps = {
   actionType: null,
-  affiliateLogo: null,
+  affiliateSponsors: [],
   affiliateTitle: null,
 };
 export default ScholarshipModal;

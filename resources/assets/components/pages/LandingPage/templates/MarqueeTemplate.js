@@ -124,6 +124,7 @@ const MarqueeTemplate = ({
         </div>
         {showModal ? (
           <ScholarshipModalQuery
+            affiliateSponsors={affiliateSponsors}
             campaignId={numCampaignId}
             onClose={() => setShowModal(!showModal)}
             scholarshipAmount={scholarshipAmount}
