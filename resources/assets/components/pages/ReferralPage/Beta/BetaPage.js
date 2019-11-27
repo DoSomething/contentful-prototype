@@ -95,8 +95,8 @@ const BetaPage = () => {
                     and social change. Using our digital platform, millions of
                     young people make real-world impact through our volunteer,
                     social change, and civic action campaigns. We’ve got
-                    hundreds of campaigns to choose from (but only the two above
-                    are offering the gift card reward right now). Let’s do this!
+                    hundreds of campaigns to choose from (but only the one above
+                    is offering the reward right now). Let’s do this!
                   </p>
                 </div>
               </div>
