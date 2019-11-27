@@ -124,19 +124,12 @@ const MarqueeTemplate = ({
         </div>
         {showModal ? (
           <ScholarshipModalQuery
-<<<<<<< HEAD
             affiliateSponsors={affiliateSponsors}
-=======
->>>>>>> creates query component to pull info from graphql
             campaignId={numCampaignId}
             onClose={() => setShowModal(!showModal)}
             scholarshipAmount={scholarshipAmount}
             scholarshipDeadline={scholarshipDeadline}
-<<<<<<< HEAD
-            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
-=======
->>>>>>> creates query component to pull info from graphql
-          />
+            utmLabel={scholarshipAffiliateLabel.toLowerCase()}/>
         ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
