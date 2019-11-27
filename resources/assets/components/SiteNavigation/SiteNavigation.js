@@ -225,26 +225,6 @@ class SiteNavigation extends React.Component {
                       </ul>
                     </section>
 
-                    <section className="main-subnav__links-campaigns menu-subnav__links menu-subnav__section">
-                      <h1>
-                        <a href="/">All Campaigns</a>
-                      </h1>
-                      <ul>
-                        <li>
-                          <a href="/">Online</a>
-                        </li>
-                        <li>
-                          <a href="/">In-person</a>
-                        </li>
-                        <li>
-                          <a href="/">Petitions</a>
-                        </li>
-                        <li>
-                          <a href="/">Collections</a>
-                        </li>
-                      </ul>
-                    </section>
-
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
                         imageSrc="https://placedog.net/1100/500?id=2"
