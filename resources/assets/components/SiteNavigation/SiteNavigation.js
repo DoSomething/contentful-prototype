@@ -187,40 +187,21 @@ class SiteNavigation extends React.Component {
                       <h1>Causes</h1>
                       <ul>
                         <li>
-                          <a href="/">Education</a>
+                          <a href="/us/causes/education">Education</a>
                         </li>
                         <li>
-                          <a href="/">Mental Health</a>
+                          <a href="/us/causes/mental-health">Mental Health</a>
                         </li>
                         <li>
-                          <a href="/">Homelessness & Poverty</a>
+                          <a href="/us/causes/homelessness-and-poverty">
+                            Homelessness & Poverty
+                          </a>
                         </li>
                         <li>
-                          <a href="/">Environment</a>
+                          <a href="/us/causes/environment">Environment</a>
                         </li>
                         <li>
-                          <a href="/">Animal Welfare</a>
-                        </li>
-                        <li>
-                          <a href="/">Sexual Harassment</a>
-                        </li>
-                        <li>
-                          <a href="/">Bullying</a>
-                        </li>
-                        <li>
-                          <a href="/">Gender Rights</a>
-                        </li>
-                        <li>
-                          <a href="/">Racial Justice</a>
-                        </li>
-                        <li>
-                          <a href="/">Immigration & Refugees</a>
-                        </li>
-                        <li>
-                          <a href="/">LGBT+ Rights</a>
-                        </li>
-                        <li>
-                          <a href="/">Get Out the Vote!</a>
+                          <a href="/us/causes/bullying">Bullying</a>
                         </li>
                       </ul>
                     </section>
