@@ -52,7 +52,7 @@ const BetaPage = () => {
                   </h1>
                 </div>
                 <div className="my-6">
-                  <img src={MoneyHandImage} alt="Gift card" />
+                  <img src={MoneyHandImage} alt="Hand with money envelope" />
                 </div>
                 <div className="my-6">
                   <p>
