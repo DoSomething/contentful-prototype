@@ -137,7 +137,7 @@ const MarqueeTemplate = ({
               utmLabel={scholarshipAffiliateLabel.toLowerCase()}
             />
           </Modal>
-        ) : null}
+          ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>
