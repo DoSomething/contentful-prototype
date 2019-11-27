@@ -1,11 +1,8 @@
-/* @flow */
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import * as React from 'react';
-
-import NotFound from '../NotFound';
 import Loader from '../utilities/Loader';
 import StaticBlock from '../StaticBlock';
-import { ContentfulEntryJson } from '../../types';
 import PollLocator from '../PollLocator/PollLocator';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import CallToAction from '../CallToAction/CallToAction';
@@ -35,22 +32,14 @@ import PetitionSubmissionActionContainer from '../actions/PetitionSubmissioncAct
 import SelectionSubmissionActionContainer from '../actions/SelectionSubmissionAction/SelectionSubmissionActionContainer';
 
 // If no block is passed, just render an empty "placeholder".
-const DEFAULT_BLOCK: ContentfulEntryJson = { fields: { type: null } };
+const DEFAULT_BLOCK = { fields: { type: null } };
 
-type Props = {
-  json: ContentfulEntryJson,
-  className: String,
-  classNameByEntry: Object,
-  classNameByEntryDefault: String,
-};
-type State = { hasError: boolean };
-
-class ContentfulEntry extends React.Component<Props, State> {
+class ContentfulEntry extends React.Component {
   state = {
     hasError: false,
   };
 
-  componentDidCatch(error: Error) {
+  componentDidCatch(error) {
     this.setState({ hasError: true });
     report(error);
   }
@@ -299,11 +288,6 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <QuizContainer {...json.fields} />;
       }
 
-      case 'quizBeta': {
-        const LegacyQuiz = Loader(import('../LegacyQuiz/LegacyQuizContainer'));
-        return <LegacyQuiz quizContent={json} />;
-      }
-
       case 'sectionBlock': {
         return (
           <SectionBlock
@@ -403,9 +387,24 @@ class ContentfulEntry extends React.Component<Props, State> {
         return <VoterRegistrationActionContainer blockId={json.id} {...json} />;
 
       default:
-        return <NotFound />;
+        return (
+          <ErrorBlock error={`ContentfulEntry is unable to render ${type}.`} />
+        );
     }
   }
 }
+
+ContentfulEntry.propTypes = {
+  json: PropTypes.object, // eslint-disable-line
+  className: PropTypes.string,
+  classNameByEntry: PropTypes.object, // eslint-disable-line
+  classNameByEntryDefault: PropTypes.string,
+};
+
+ContentfulEntry.defaultProps = {
+  className: null,
+  classNameByEntry: null,
+  classNameByEntryDefault: null,
+};
 
 export default ContentfulEntry;
