@@ -40,8 +40,9 @@ const AlphaPage = props => {
           </p>
           <h4>2. How will I know if I won the scholarship?</h4>
           <p>
-            We will email it to you using the same email address used to create
-            your DoSomething account.
+            We will email you using the same email address used to create your
+            DoSomething account. Scholarship winners are announced when the
+            campaign closes.
           </p>
           <h4>3. Where can I find the full rules?</h4>
           <p>
