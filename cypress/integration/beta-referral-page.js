@@ -17,11 +17,10 @@ describe('Beta Referral Page', () => {
 
     cy.get('.referral-page-campaign').should('have.length', 1);
 
-    // @TODO: Our mock GraphQL doesn't seem to get called, this times out like below.
-    // cy.get('.referral-page-campaign > a')
-    //   .should('have.attr', 'href')
-    //   .and('include', `referrer_user_id=${userId}`)
-    //   .and('include', campaignPath);
+    cy.get('.referral-page-campaign > a')
+      .should('have.attr', 'href')
+      .and('include', `referrer_user_id=${userId}`)
+      .and('include', campaignPath);
   });
 
   it('Visit beta referral page, with invalid user ID', () => {
@@ -40,10 +39,6 @@ describe('Beta Referral Page', () => {
     cy.contains('Not Found');
   });
 
-  /**
-   * This Embed request hangs with a mystery "Hello World", never rendering the Embed a tag.
-   * @see https://dashboard.cypress.io/#/projects/ayzqmy/runs/876
-   */
   it('Visit beta referral page, with valid user ID and no campaign ID', () => {
     const user = userFactory();
 
@@ -51,8 +46,8 @@ describe('Beta Referral Page', () => {
 
     cy.get('.referral-page-campaign').should('have.length', 1);
 
-    // cy.get('.referral-page-campaign > a')
-    //   .should('have.attr', 'href')
-    //   .and('include', `referrer_user_id=${userId}`);
+    cy.get('.referral-page-campaign > a')
+      .should('have.attr', 'href')
+      .and('include', `referrer_user_id=${userId}`);
   });
 });
