@@ -6,7 +6,7 @@ import { modifiers } from '../../helpers';
 import './flex.scss';
 
 export const Flex = ({ id, className = null, children }) => (
-  <div id={id} className={classnames('flex', className)}>
+  <div id={id} className={classnames('md:flex md:flex-wrap', className)}>
     {children}
   </div>
 );

@@ -137,11 +137,11 @@ Affirmation.propTypes = {
 
 Affirmation.defaultProps = {
   author: null,
-  callToActionDescription:
+  callToActionDescription: "Let's Do This.",
+  header: 'Thanks for joining us!',
+  quote:
     "By joining this campaign, you've teamed up with millions of other members who are making an impact on the causes affecting your world. As a DoSomething.org member, you're part of something bigger. You're part of a global movement for good.",
   callToActionHeader: "Woohoo! You're signed up.",
-  header: 'Thanks for joining us!',
-  quote: null,
 };
 
 export default Affirmation;
