@@ -38,7 +38,8 @@ export const operations = {
   },
   ReferralPageCampaignQuery: {
     campaignWebsiteByCampaignId: {
-      slug: faker.lorem.slug(),
+      id: faker.random.uuid(),
+      url: faker.internet.url(),
     },
   },
 };

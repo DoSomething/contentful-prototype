@@ -4,24 +4,22 @@ import gql from 'graphql-tag';
 
 import Query from '../../../Query';
 import Embed from '../../../utilities/Embed/Embed';
-import { PHOENIX_URL } from '../../../../constants';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
 const REFERRAL_PAGE_CAMPAIGN = gql`
   query ReferralPageCampaignQuery($campaignId: String!) {
     campaignWebsiteByCampaignId(campaignId: $campaignId) {
-      slug
+      id
+      url
     }
   }
 `;
 
-const ReferralPageCampaignLink = props => (
-  <Query
-    query={REFERRAL_PAGE_CAMPAIGN}
-    variables={{ campaignId: props.campaignId }}
-  >
+const ReferralPageCampaignLink = ({ campaignId, userId }) => (
+  <Query query={REFERRAL_PAGE_CAMPAIGN} variables={{ campaignId }}>
     {res => {
       const data = res.campaignWebsiteByCampaignId;
+
       if (!data) {
         return <ErrorBlock />;
       }
@@ -29,7 +27,7 @@ const ReferralPageCampaignLink = props => (
       return (
         <Embed
           className="referral-page-campaign"
-          url={`${PHOENIX_URL}/us/campaigns/${data.slug}?referrer_user_id=${props.userId}`}
+          url={`${data.url}?referrer_user_id=${userId}`}
           badged
         />
       );
