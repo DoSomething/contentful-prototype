@@ -1,25 +1,22 @@
-## _PULL REQUEST OVERVIEW_
+### What's this PR do?
 
-### Delete This Section
+This pull request...
 
-_If this issue is an API related PR, use the \_api template_ by appending `?template=api.md` to this pull request's URL before proceeding.\_
+### How should this be reviewed?
 
-### What does this PR do?
-
-This PR ...
+...
 
 ### Any background context you want to provide?
 
 ...
 
-### What are the relevant tickets/cards?
+### Relevant tickets
 
-Refs [Pivotal ID #]()
+References [Pivotal #]().
 
 ### Checklist
 
-* [ ] Documentation added for new features/changed endpoints.
-* [ ] Added appropriate feature/unit tests.
-* [ ] Added screenshot to PR description of related front-end updates on **small** screens.
-* [ ] Added screenshot to PR description of related front-end updates on **medium** screens.
-* [ ] Added screenshot to PR description of related front-end updates on **large** screens.
+- [ ] This PR has been added to the relevant Pivotal card.
+- [ ] Documentation added for new features/changed endpoints.
+- [ ] Added screenshots of front-end changes on small, medium, and large screens.
+- [ ] Added appropriate feature/unit tests.
