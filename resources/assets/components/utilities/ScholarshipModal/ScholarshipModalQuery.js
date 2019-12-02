@@ -17,10 +17,6 @@ const AFFILIATE_QUERY = gql`
   ) {
     affiliate(utmLabel: $utmLabel, preview: $preview) {
       title
-      logo {
-        description
-        url(h: 100)
-      }
     }
 
     actions(campaignId: $campaignId) {
@@ -45,7 +41,6 @@ const ScholarshipModalQuery = props => (
   >
     {res => {
       const title = res.affiliate.title;
-      const logo = res.affiliate.logo;
       const actions = get(res, 'actions', []).filter(
         action => action.scholarshipEntry && action.reportback,
       );
@@ -53,7 +48,6 @@ const ScholarshipModalQuery = props => (
       return (
         <ScholarshipModal
           affiliateTitle={title}
-          affiliateLogo={logo}
           actionType={get(action, 'actionLabel', '')}
           {...props}
         />
