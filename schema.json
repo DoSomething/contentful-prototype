@@ -4851,6 +4851,22 @@
             "deprecationReason": null
           },
           {
+            "name": "url",
+            "description": "The URL for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "callToAction",
             "description": "The call to action tagline for this campaign.",
             "args": [],

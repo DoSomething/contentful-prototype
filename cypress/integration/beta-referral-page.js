@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 import { userFactory } from '../fixtures/user';
-import { campaignId, campaignPath, userId } from '../fixtures/constants';
+import { campaignId, userId } from '../fixtures/constants';
 
 describe('Beta Referral Page', () => {
   // Configure a new "mock" server before each test:
@@ -19,8 +19,7 @@ describe('Beta Referral Page', () => {
 
     cy.get('.referral-page-campaign > a')
       .should('have.attr', 'href')
-      .and('include', `referrer_user_id=${userId}`)
-      .and('include', campaignPath);
+      .and('include', `referrer_user_id=${userId}`);
   });
 
   it('Visit beta referral page, with invalid user ID', () => {
