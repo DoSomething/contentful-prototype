@@ -12,7 +12,7 @@ describe('Beta Referral Page', () => {
 
     cy.visit(`/us/join?user_id=${userId}&campaign_id=${campaignId}`);
 
-    cy.contains('gift card');
+    cy.contains('campaign scholarship');
     cy.contains('FAQ');
 
     cy.get('.referral-page-campaign').should('have.length', 1);

@@ -34,6 +34,7 @@ const BetaPage = () => {
     : DEFAULT_REFERRAL_CAMPAIGN_ID;
 
   return (
+    // We *do not* render a SiteNavigationContainer here to avoid losing the referral metadata (see https://git.io/JeX2A).
     <Query query={REFERRAL_PAGE_USER} variables={{ id: userId }}>
       {data => {
         if (!data.user) {
@@ -52,7 +53,7 @@ const BetaPage = () => {
                   </h1>
                 </div>
                 <div className="my-6">
-                  <img src={MoneyHandImage} alt="Gift card" />
+                  <img src={MoneyHandImage} alt="Hand with money envelope" />
                 </div>
                 <div className="my-6">
                   <p>
@@ -79,8 +80,9 @@ const BetaPage = () => {
                   </p>
                   <h4>2. How will I know if I won the scholarship?</h4>
                   <p>
-                    We will email it to you using the same email address used to
-                    create your DoSomething account.
+                    We will email you using the same email address used to
+                    create your DoSomething account. Scholarship winners are
+                    announced when the campaign closes.
                   </p>
                   <h4>3. Where can I find the full rules?</h4>
                   <p>
@@ -90,13 +92,13 @@ const BetaPage = () => {
                     </a>
                   </p>
                   <h3>About Us</h3>
-                  <p>
+                  <p className="italic">
                     DoSomething is the largest not-for-profit for young people
                     and social change. Using our digital platform, millions of
                     young people make real-world impact through our volunteer,
                     social change, and civic action campaigns. We’ve got
-                    hundreds of campaigns to choose from (but only the two above
-                    are offering the gift card reward right now). Let’s do this!
+                    hundreds of campaigns to choose from (but only the one above
+                    is offering the reward right now). Let’s do this!
                   </p>
                 </div>
               </div>
