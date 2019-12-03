@@ -145,8 +145,17 @@ module.exports = function(migration) {
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(false)
-    .validations([])
+    .required(true)
+    .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+      },
+    ])
     .disabled(false)
     .omitted(false)
     .linkType('Asset');
