@@ -1,10 +1,10 @@
-import React from 'react';
+/** @jsx jsx */
+
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import { css, jsx } from '@emotion/core';
 
 import Share from '../Share/Share';
-
-import './campaign-dashboard.scss';
 
 export const CampaignDashboardFragment = gql`
   fragment CampaignDashboardFragment on CampaignDashboard {
@@ -27,9 +27,29 @@ const CampaignDashboard = props => {
     shareHeader,
   } = props;
 
+  // We use CSS Grid for this component's layout:
+  const dashboardGrid = css`
+    display: grid;
+    grid-template-columns: 4fr;
+
+    @media (min-width: 600px) {
+      grid-template-columns: 2fr 2fr;
+    }
+
+    @media (min-width: 960px) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  `;
+
+  const shareGridElement = css`
+    @media (min-width: 600px) {
+      grid-column: span 2;
+    }
+  `;
+
   return (
-    <div className="dashboard text-black p-3">
-      <div className="dashboard__segment px-3">
+    <div className="bg-white text-black p-3" css={dashboardGrid}>
+      <div className="text-center lg:text-left px-3 py-3">
         {firstValue ? (
           <strong className="font-league-gothic font-normal text-4xl leading-none">
             {firstValue}
@@ -40,7 +60,7 @@ const CampaignDashboard = props => {
         </p>
       </div>
 
-      <div className="dashboard__segment px-3">
+      <div className="text-center lg:text-left px-3 py-3 border-solid border-gray-500 md:border-l">
         {secondValue ? (
           <strong className="font-league-gothic font-normal text-4xl leading-none">
             {secondValue}
@@ -51,13 +71,16 @@ const CampaignDashboard = props => {
         </p>
       </div>
 
-      <div className="dashboard__segment dashboard-share px-3">
-        <div className="dashboard-share__content">
-          {shareHeader ? <strong>{shareHeader}</strong> : null}
+      <div
+        css={shareGridElement}
+        className="md:flex text-left px-3 py-3 border-solid border-gray-500 border-t mt-3 lg:mt-0 lg:border-t-0 lg:border-l"
+      >
+        <div className="md:flex-1 pr-3 mt-3 md:mt-0">
+          {shareHeader ? <h3 className="text-black">{shareHeader}</h3> : null}
           <p>{shareCopy}</p>
         </div>
 
-        <div className="dashboard-share__button">
+        <div className="md:flex-1 mt-3 md:mt-0">
           <Share variant="black" parentSource="dashboard" />
         </div>
       </div>
