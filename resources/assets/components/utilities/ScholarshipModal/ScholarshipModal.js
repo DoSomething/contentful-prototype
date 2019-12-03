@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal/Modal';
 import Card from '../Card/Card';
 import { getHumanFriendlyDate } from '../../../helpers';
+import DoSomethingLogo from '../DoSomethingLogo/DoSomethingLogo';
 
 const ScholarshipModal = ({
   affiliateSponsors,
@@ -21,6 +22,7 @@ const ScholarshipModal = ({
         <h1 className="p-8">This is a test scholarship modal</h1>
         {affiliateSponsors.length ? (
           <div className="__image">
+            <DoSomethingLogo />
             <img
               src={affiliateSponsors[0].fields.logo.url}
               alt={affiliateSponsors[0].fields.logo.title}
