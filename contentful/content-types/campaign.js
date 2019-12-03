@@ -139,13 +139,23 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
+
   campaign
     .createField('coverImage')
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(false)
-    .validations([])
+    .required(true)
+    .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+      },
+    ])
     .disabled(false)
     .omitted(false)
     .linkType('Asset');
