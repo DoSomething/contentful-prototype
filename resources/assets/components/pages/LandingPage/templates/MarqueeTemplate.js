@@ -3,13 +3,14 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
+import Modal from '../../../utilities/Modal/Modal';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-import ScholarshipModalQuery from '../../../utilities/ScholarshipModal/ScholarshipModalQuery';
+import ScholarshipInfoBlockQuery from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlockQuery';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
@@ -31,7 +32,9 @@ const MarqueeTemplate = ({
   isClosed,
   isAffiliated,
   scholarshipAmount,
+  scholarshipCallToAction,
   scholarshipDeadline,
+  scholarshipDescription,
   subtitle,
   title,
 }) => {
@@ -123,14 +126,17 @@ const MarqueeTemplate = ({
           </Enclosure>
         </div>
         {showModal ? (
-          <ScholarshipModalQuery
-            affiliateSponsors={affiliateSponsors}
-            campaignId={numCampaignId}
-            onClose={() => setShowModal(!showModal)}
-            scholarshipAmount={scholarshipAmount}
-            scholarshipDeadline={scholarshipDeadline}
-            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
-          />
+          <Modal onClose={() => setShowModal(false)}>
+            <ScholarshipInfoBlockQuery
+              affiliateSponsors={affiliateSponsors}
+              campaignId={numCampaignId}
+              scholarshipAmount={scholarshipAmount}
+              scholarshipCallToAction={scholarshipCallToAction}
+              scholarshipDeadline={scholarshipDeadline}
+              scholarshipDescription={scholarshipDescription}
+              utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+            />
+          </Modal>
         ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
@@ -150,7 +156,9 @@ MarqueeTemplate.propTypes = {
   isAffiliated: PropTypes.bool,
   isClosed: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
+  scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string,
+  scholarshipDescription: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -165,7 +173,9 @@ MarqueeTemplate.defaultProps = {
   isAffiliated: false,
   isClosed: false,
   scholarshipAmount: null,
+  scholarshipCallToAction: null,
   scholarshipDeadline: null,
+  scholarshipDescription: null,
 };
 
 export default MarqueeTemplate;

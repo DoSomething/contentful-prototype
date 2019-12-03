@@ -139,6 +139,7 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
+
   campaign
     .createField('coverImage')
     .name('Cover Image')
@@ -387,6 +388,54 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
+  campaign
+    .createField('scholarshipCallToAction')
+    .name('Scholarship Call to Action')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  campaign
+    .createField('scholarshipDescription')
+    .name('Scholarship Description')
+    .type('RichText')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        size: {
+          max: 300,
+        },
+
+        message:
+          "Keep it short and sweet! This should mirror the description from our partner's site.",
+      },
+      {
+        nodes: {},
+      },
+      {
+        enabledNodeTypes: [
+          'ordered-list',
+          'unordered-list',
+          'hr',
+          'blockquote',
+          'embedded-entry-block',
+          'embedded-asset-block',
+          'hyperlink',
+          'entry-hyperlink',
+          'asset-hyperlink',
+          'embedded-entry-inline',
+        ],
+
+        message:
+          'Only ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, link to entry, link to asset, and inline entry nodes are allowed',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
 
   campaign
     .createField('affiliateOptInContent')
@@ -521,6 +570,16 @@ module.exports = function(migration) {
     format: 'timeZ',
     helpText:
       "Deadline to take action and qualify for the scholarship. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
+  });
+
+  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
+    helpText:
+      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
+  });
+
+  campaign.changeEditorInterface('scholarshipDescription', 'richTextEditor', {
+    helpText:
+      'Add information about the scholarship & how it works with the campaign.',
   });
 
   campaign.changeEditorInterface('affiliateOptInContent', 'richTextEditor', {

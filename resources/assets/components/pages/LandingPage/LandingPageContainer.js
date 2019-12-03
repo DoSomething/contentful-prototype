@@ -31,7 +31,9 @@ const mapStateToProps = (state, ownProps) => {
       'campaign.additionalContent.featureFlagUseLegacyTemplate',
     ),
     scholarshipAmount: state.campaign.scholarshipAmount,
+    scholarshipCallToAction: state.campaign.scholarshipCallToAction,
     scholarshipDeadline: state.campaign.scholarshipDeadline,
+    scholarshipDescription: state.campaign.scholarshipDescription,
     showPartnerMsgOptIn: get(
       state.campaign.additionalContent,
       'displayAffilitateOptOut',

@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import { env } from '../../../helpers';
-import ScholarshipModal from './ScholarshipModal';
+import ScholarshipInfoBlock from './ScholarshipInfoBlock';
 /**
  * The GraphQL query to load data for this component.
  */
-const AFFILIATE_QUERY = gql`
-  query AffiliateQuery(
+const SCHOLARSHIP_AFFILIATE_QUERY = gql`
+  query ScholarshipAffiliateQuery(
     $utmLabel: String!
     $preview: Boolean!
     $campaignId: Int!
@@ -30,9 +30,9 @@ const AFFILIATE_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const ScholarshipModalQuery = props => (
+const ScholarshipInfoBlockQuery = props => (
   <Query
-    query={AFFILIATE_QUERY}
+    query={SCHOLARSHIP_AFFILIATE_QUERY}
     variables={{
       utmLabel: props.utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
@@ -41,14 +41,14 @@ const ScholarshipModalQuery = props => (
   >
     {res => {
       const title = res.affiliate.title;
-      const actions = get(res, 'actions', []).filter(
+      const actions = get(res, 'actions', []);
+      const actionItem = actions.find(
         action => action.scholarshipEntry && action.reportback,
       );
-      const action = actions[0];
       return (
-        <ScholarshipModal
+        <ScholarshipInfoBlock
           affiliateTitle={title}
-          actionType={get(action, 'actionLabel', '')}
+          actionType={get(actionItem, 'actionLabel', '')}
           {...props}
         />
       );
@@ -56,16 +56,14 @@ const ScholarshipModalQuery = props => (
   </Query>
 );
 
-ScholarshipModalQuery.propTypes = {
+ScholarshipInfoBlockQuery.propTypes = {
   campaignId: PropTypes.number,
   utmLabel: PropTypes.string.isRequired,
-  isScholarshipBeta: PropTypes.bool,
 };
 
-ScholarshipModalQuery.defaultProps = {
+ScholarshipInfoBlockQuery.defaultProps = {
   campaignId: null,
-  isScholarshipBeta: false,
 };
 
 // Export the GraphQL query component.
-export default ScholarshipModalQuery;
+export default ScholarshipInfoBlockQuery;
