@@ -144,17 +144,8 @@ module.exports = function(migration) {
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(true)
-    .validations([
-      {
-        linkMimetypeGroup: ['image'],
-      },
-      {
-        assetFileSize: {
-          max: 20971520,
-        },
-      },
-    ])
+    .required(false)
+    .validations([])
     .disabled(false)
     .omitted(false)
     .linkType('Asset');
@@ -379,12 +370,40 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
   campaign
+    .createField('scholarshipCallToAction')
+    .name('Scholarship Call to Action')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  campaign
     .createField('scholarshipDeadline')
     .name('Scholarship Deadline')
     .type('Date')
     .localized(false)
     .required(false)
     .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  campaign
+    .createField('scholarshipDescription')
+    .name('Scholarship Description')
+    .type('Text')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        size: {
+          max: 300,
+        },
+
+        message:
+          "Keep it short and sweet! This should mirror the description from our partner's site.",
+      },
+    ])
     .disabled(false)
     .omitted(false);
 
@@ -516,11 +535,21 @@ module.exports = function(migration) {
     helpText: 'e.g. 5000',
   });
 
+  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
+    helpText:
+      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
+  });
+
   campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
     helpText:
       "Deadline to take action and qualify for the scholarship. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
+  });
+
+  campaign.changeEditorInterface('scholarshipDescription', 'markdown', {
+    helpText:
+      'Add information about the scholarship & how it works with the campaign.',
   });
 
   campaign.changeEditorInterface('affiliateOptInContent', 'richTextEditor', {
