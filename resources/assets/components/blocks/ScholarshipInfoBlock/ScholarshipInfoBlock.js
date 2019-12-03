@@ -16,9 +16,8 @@ const ScholarshipInfoBlock = ({
   scholarshipDeadline,
   scholarshipDescription,
 }) => (
-  <Card>
-    <div>
-      <h1 className="p-8">This is a test scholarship modal</h1>
+  <Card className="flex">
+    <div className="w-1/2">
       {affiliateSponsors.length ? (
         <div className="__image">
           <DoSomethingLogo />
@@ -50,6 +49,8 @@ const ScholarshipInfoBlock = ({
           .
         </p>
       </div>
+    </div>
+    <div className="w-1/2">
       {scholarshipAmount && scholarshipCallToAction ? (
         <>
           <div>{scholarshipCallToAction}</div>
