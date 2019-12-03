@@ -11,7 +11,9 @@ const ScholarshipModal = ({
   affiliateTitle,
   onClose,
   scholarshipAmount,
+  scholarshipCallToAction,
   scholarshipDeadline,
+  scholarshipDescription,
 }) => (
   <Modal onClose={onClose}>
     <Card>
@@ -30,12 +32,11 @@ const ScholarshipModal = ({
             Welcome to DoSomething.org
             {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
           </strong>{' '}
-          Ready to earn scholarships for doing good? Just follow the simple
-          instructions for the chance to win. Let’s Do This!
+          {scholarshipDescription}
         </p>
-        {scholarshipAmount ? (
+        {scholarshipAmount && scholarshipCallToAction ? (
           <>
-            <div>Win A Scholarship</div>
+            <div>{scholarshipCallToAction}</div>
             <p>${scholarshipAmount.toLocaleString()}</p>
           </>
         ) : null}
@@ -72,12 +73,16 @@ ScholarshipModal.propTypes = {
   affiliateTitle: PropTypes.string,
   onClose: PropTypes.bool.isRequired,
   scholarshipAmount: PropTypes.number.isRequired,
+  scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
+  scholarshipDescription: PropTypes.string,
 };
 
 ScholarshipModal.defaultProps = {
   actionType: null,
   affiliateSponsors: [],
   affiliateTitle: null,
+  scholarshipCallToAction: null,
+  scholarshipDescription: null,
 };
 export default ScholarshipModal;

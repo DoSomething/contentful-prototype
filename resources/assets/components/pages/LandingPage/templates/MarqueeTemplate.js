@@ -31,7 +31,9 @@ const MarqueeTemplate = ({
   isClosed,
   isAffiliated,
   scholarshipAmount,
+  scholarshipCallToAction,
   scholarshipDeadline,
+  scholarshipDescription,
   subtitle,
   title,
 }) => {
@@ -128,8 +130,11 @@ const MarqueeTemplate = ({
             campaignId={numCampaignId}
             onClose={() => setShowModal(!showModal)}
             scholarshipAmount={scholarshipAmount}
+            scholarshipCallToAction={scholarshipCallToAction}
             scholarshipDeadline={scholarshipDeadline}
-            utmLabel={scholarshipAffiliateLabel.toLowerCase()}/>
+            scholarshipDescription={scholarshipDescription}
+            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+          />
         ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
@@ -149,7 +154,9 @@ MarqueeTemplate.propTypes = {
   isAffiliated: PropTypes.bool,
   isClosed: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
+  scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string,
+  scholarshipDescription: PropTypes.string,
   subtitle: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
@@ -164,7 +171,9 @@ MarqueeTemplate.defaultProps = {
   isAffiliated: false,
   isClosed: false,
   scholarshipAmount: null,
+  scholarshipCallToAction: null,
   scholarshipDeadline: null,
+  scholarshipDescription: null,
 };
 
 export default MarqueeTemplate;

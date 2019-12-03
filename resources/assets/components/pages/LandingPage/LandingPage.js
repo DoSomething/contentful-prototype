@@ -20,7 +20,9 @@ const LandingPage = props => {
     endDate,
     featureFlagUseLegacyTemplate,
     scholarshipAmount,
+    scholarshipCallToAction,
     scholarshipDeadline,
+    scholarshipDescription,
     showPartnerMsgOptIn,
     sidebar,
     signupArrowContent,
@@ -58,7 +60,9 @@ const LandingPage = props => {
           campaignId={campaignId}
           endDate={endDate}
           scholarshipAmount={scholarshipAmount}
+          scholarshipCallToAction={scholarshipCallToAction}
           scholarshipDeadline={scholarshipDeadline}
+          scholarshipDescription={scholarshipDescription}
           subtitle={subtitle}
           title={title}
         />
@@ -78,7 +82,9 @@ LandingPage.propTypes = {
   endDate: PropTypes.string,
   featureFlagUseLegacyTemplate: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
+  scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string,
+  scholarshipDescription: PropTypes.string,
   showPartnerMsgOptIn: PropTypes.bool,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,
@@ -95,7 +101,9 @@ LandingPage.defaultProps = {
   endDate: null,
   featureFlagUseLegacyTemplate: false,
   scholarshipAmount: null,
+  scholarshipCallToAction: null,
   scholarshipDeadline: null,
+  scholarshipDescription: null,
   showPartnerMsgOptIn: false,
   sidebar: null,
   signupArrowContent: null,
