@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
+import TextContent from '../../utilities/TextContent/TextContent';
 import { getHumanFriendlyDate } from '../../../helpers';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
@@ -32,7 +33,7 @@ const ScholarshipInfoBlock = ({
           Welcome to DoSomething.org
           {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
         </strong>{' '}
-        {scholarshipDescription}
+        <TextContent>{scholarshipDescription}</TextContent>
       </p>
       <div>
         <img src={ScholarshipMoneyHand} alt="scholarships money hand icon" />
@@ -88,7 +89,7 @@ ScholarshipInfoBlock.propTypes = {
   scholarshipAmount: PropTypes.number.isRequired,
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
-  scholarshipDescription: PropTypes.string,
+  scholarshipDescription: PropTypes.object,
 };
 
 ScholarshipInfoBlock.defaultProps = {
