@@ -215,9 +215,6 @@ class SiteNavigation extends React.Component {
                         text="Create and post encouraging notes in your school bathrooms to brighten your classmates' day!"
                         callback={e =>
                           this.analyzeEvent(e, {
-                            context: {
-                              campaignId: '7',
-                            },
                             label: 'subnav_feature',
                             target: 'link',
                             verb: 'clicked',
