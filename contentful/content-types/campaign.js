@@ -145,17 +145,8 @@ module.exports = function(migration) {
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(true)
-    .validations([
-      {
-        linkMimetypeGroup: ['image'],
-      },
-      {
-        assetFileSize: {
-          max: 20971520,
-        },
-      },
-    ])
+    .required(false)
+    .validations([])
     .disabled(false)
     .omitted(false)
     .linkType('Asset');
@@ -380,6 +371,15 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
   campaign
+    .createField('scholarshipCallToAction')
+    .name('Scholarship Call to Action')
+    .type('Symbol')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  campaign
     .createField('scholarshipDeadline')
     .name('Scholarship Deadline')
     .type('Date')
@@ -432,6 +432,25 @@ module.exports = function(migration) {
 
         message:
           'Only ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, link to entry, link to asset, and inline entry nodes are allowed',
+      },
+    ])
+    .disabled(false)
+    .omitted(false);
+
+  campaign
+    .createField('scholarshipDescription')
+    .name('Scholarship Description')
+    .type('Text')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        size: {
+          max: 300,
+        },
+
+        message:
+          "Keep it short and sweet! This should mirror the description from our partner's site.",
       },
     ])
     .disabled(false)
@@ -563,6 +582,11 @@ module.exports = function(migration) {
 
   campaign.changeEditorInterface('scholarshipAmount', 'numberEditor', {
     helpText: 'e.g. 5000',
+  });
+
+  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
+    helpText:
+      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
   });
 
   campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
