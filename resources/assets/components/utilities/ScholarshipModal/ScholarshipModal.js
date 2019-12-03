@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../Modal/Modal';
 import Card from '../Card/Card';
+import Modal from '../Modal/Modal';
 import { getHumanFriendlyDate } from '../../../helpers';
 import DoSomethingLogo from '../DoSomethingLogo/DoSomethingLogo';
 
@@ -36,6 +36,22 @@ const ScholarshipModal = ({
           </strong>{' '}
           {scholarshipDescription}
         </p>
+        <div>
+          <img src="../../../images/scholarships.svg" alt="scholarships icon" />
+          <p>
+            Since 1993, DoSomething.org has given out more than{' '}
+            <b>$5,000,000</b> in scholarships. Check out stories from some of
+            our{' '}
+            <a
+              href="https://www.dosomething.org/us/articles/scholarship-winners"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              past winners
+            </a>
+            .
+          </p>
+        </div>
         {scholarshipAmount && scholarshipCallToAction ? (
           <>
             <div>{scholarshipCallToAction}</div>
