@@ -7,9 +7,9 @@ import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import ScholarshipModal from '../../../utilities/ScholarshipModal/ScholarshipModal';
 import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
+import ScholarshipModalQuery from '../../../utilities/ScholarshipModal/ScholarshipModalQuery';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
@@ -123,7 +123,14 @@ const MarqueeTemplate = ({
           </Enclosure>
         </div>
         {showModal ? (
-          <ScholarshipModal onClose={() => setShowModal(!showModal)} />
+          <ScholarshipModalQuery
+            affiliateSponsors={affiliateSponsors}
+            campaignId={numCampaignId}
+            onClose={() => setShowModal(!showModal)}
+            scholarshipAmount={scholarshipAmount}
+            scholarshipDeadline={scholarshipDeadline}
+            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+          />
         ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
