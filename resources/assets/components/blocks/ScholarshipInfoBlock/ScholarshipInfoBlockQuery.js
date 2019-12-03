@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import { env } from '../../../helpers';
-import ScholarshipModal from './ScholarshipModal';
+import ScholarshipInfoBlock from './ScholarshipInfoBlock';
 /**
  * The GraphQL query to load data for this component.
  */
@@ -30,7 +30,7 @@ const AFFILIATE_QUERY = gql`
 /**
  * Fetch results via GraphQL using a query component.
  */
-const ScholarshipModalQuery = props => (
+const ScholarshipInfoBlockQuery = props => (
   <Query
     query={AFFILIATE_QUERY}
     variables={{
@@ -46,7 +46,7 @@ const ScholarshipModalQuery = props => (
       );
       const action = actions[0];
       return (
-        <ScholarshipModal
+        <ScholarshipInfoBlock
           affiliateTitle={title}
           actionType={get(action, 'actionLabel', '')}
           {...props}
@@ -56,16 +56,14 @@ const ScholarshipModalQuery = props => (
   </Query>
 );
 
-ScholarshipModalQuery.propTypes = {
+ScholarshipInfoBlockQuery.propTypes = {
   campaignId: PropTypes.number,
   utmLabel: PropTypes.string.isRequired,
-  isScholarshipBeta: PropTypes.bool,
 };
 
-ScholarshipModalQuery.defaultProps = {
+ScholarshipInfoBlockQuery.defaultProps = {
   campaignId: null,
-  isScholarshipBeta: false,
 };
 
 // Export the GraphQL query component.
-export default ScholarshipModalQuery;
+export default ScholarshipInfoBlockQuery;

@@ -3,13 +3,14 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
+import Modal from '../../../utilities/Modal/Modal';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-import ScholarshipModalQuery from '../../../utilities/ScholarshipModal/ScholarshipModalQuery';
+import ScholarshipInfoBlockQuery from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlockQuery';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
@@ -125,16 +126,17 @@ const MarqueeTemplate = ({
           </Enclosure>
         </div>
         {showModal ? (
-          <ScholarshipModalQuery
-            affiliateSponsors={affiliateSponsors}
-            campaignId={numCampaignId}
-            onClose={() => setShowModal(!showModal)}
-            scholarshipAmount={scholarshipAmount}
-            scholarshipCallToAction={scholarshipCallToAction}
-            scholarshipDeadline={scholarshipDeadline}
-            scholarshipDescription={scholarshipDescription}
-            utmLabel={scholarshipAffiliateLabel.toLowerCase()}
-          />
+          <Modal onClose={() => setShowModal(!showModal)}>
+            <ScholarshipInfoBlockQuery
+              affiliateSponsors={affiliateSponsors}
+              campaignId={numCampaignId}
+              scholarshipAmount={scholarshipAmount}
+              scholarshipCallToAction={scholarshipCallToAction}
+              scholarshipDeadline={scholarshipDeadline}
+              scholarshipDescription={scholarshipDescription}
+              utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+            />
+          </Modal>
         ) : null}
       </article>
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
