@@ -9,8 +9,8 @@ import ScholarshipInfoBlock from './ScholarshipInfoBlock';
 /**
  * The GraphQL query to load data for this component.
  */
-const AFFILIATE_QUERY = gql`
-  query AffiliateQuery(
+const SCHOLARSHIP_INFO_QUERY = gql`
+  query ScholarshipInfoQuery(
     $utmLabel: String!
     $preview: Boolean!
     $campaignId: Int!
@@ -32,7 +32,7 @@ const AFFILIATE_QUERY = gql`
  */
 const ScholarshipInfoBlockQuery = props => (
   <Query
-    query={AFFILIATE_QUERY}
+    query={SCHOLARSHIP_INFO_QUERY}
     variables={{
       utmLabel: props.utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
