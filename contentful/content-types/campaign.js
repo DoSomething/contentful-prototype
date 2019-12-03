@@ -380,18 +380,18 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
   campaign
-    .createField('scholarshipCallToAction')
-    .name('Scholarship Call to Action')
-    .type('Symbol')
+    .createField('scholarshipDeadline')
+    .name('Scholarship Deadline')
+    .type('Date')
     .localized(false)
     .required(false)
     .validations([])
     .disabled(false)
     .omitted(false);
   campaign
-    .createField('scholarshipDeadline')
-    .name('Scholarship Deadline')
-    .type('Date')
+    .createField('scholarshipCallToAction')
+    .name('Scholarship Call to Action')
+    .type('Symbol')
     .localized(false)
     .required(false)
     .validations([])
@@ -401,7 +401,7 @@ module.exports = function(migration) {
   campaign
     .createField('scholarshipDescription')
     .name('Scholarship Description')
-    .type('Text')
+    .type('RichText')
     .localized(false)
     .required(false)
     .validations([
@@ -412,6 +412,26 @@ module.exports = function(migration) {
 
         message:
           "Keep it short and sweet! This should mirror the description from our partner's site.",
+      },
+      {
+        nodes: {},
+      },
+      {
+        enabledNodeTypes: [
+          'ordered-list',
+          'unordered-list',
+          'hr',
+          'blockquote',
+          'embedded-entry-block',
+          'embedded-asset-block',
+          'hyperlink',
+          'entry-hyperlink',
+          'asset-hyperlink',
+          'embedded-entry-inline',
+        ],
+
+        message:
+          'Only ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, link to entry, link to asset, and inline entry nodes are allowed',
       },
     ])
     .disabled(false)
@@ -545,11 +565,6 @@ module.exports = function(migration) {
     helpText: 'e.g. 5000',
   });
 
-  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
-    helpText:
-      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
-  });
-
   campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
@@ -557,7 +572,12 @@ module.exports = function(migration) {
       "Deadline to take action and qualify for the scholarship. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeEditorInterface('scholarshipDescription', 'markdown', {
+  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
+    helpText:
+      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
+  });
+
+  campaign.changeEditorInterface('scholarshipDescription', 'richTextEditor', {
     helpText:
       'Add information about the scholarship & how it works with the campaign.',
   });
