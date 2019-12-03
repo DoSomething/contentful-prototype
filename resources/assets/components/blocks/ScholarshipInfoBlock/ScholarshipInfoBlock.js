@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
-<<<<<<< HEAD
 import TextContent from '../../utilities/TextContent/TextContent';
-=======
->>>>>>> deletes scholarship modal folder, creates scholarship info block folder, moves that into marquee template and updates the placement of the modal to be outside of the component itself
 import { getHumanFriendlyDate } from '../../../helpers';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
@@ -36,11 +33,7 @@ const ScholarshipInfoBlock = ({
           Welcome to DoSomething.org
           {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
         </strong>{' '}
-<<<<<<< HEAD
         <TextContent>{scholarshipDescription}</TextContent>
-=======
-        {scholarshipDescription}
->>>>>>> deletes scholarship modal folder, creates scholarship info block folder, moves that into marquee template and updates the placement of the modal to be outside of the component itself
       </p>
       <div>
         <img src={ScholarshipMoneyHand} alt="scholarships money hand icon" />
