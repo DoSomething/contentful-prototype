@@ -1,9 +1,21 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Share from '../Share/Share';
 
 import './campaign-dashboard.scss';
+
+export const CampaignDashboardFragment = gql`
+  fragment CampaignDashboardFragment on CampaignDashboard {
+    firstDescription
+    firstValue
+    secondDescription
+    secondValue
+    shareCopy
+    shareHeader
+  }
+`;
 
 const CampaignDashboard = props => {
   const {
