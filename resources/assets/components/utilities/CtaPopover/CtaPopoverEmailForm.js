@@ -5,7 +5,7 @@ import { RestApiClient } from '@dosomething/gateway';
 import Button from '../Button/Button';
 import { env } from '../../../helpers/index';
 import { tabularLog } from '../../../helpers/api';
-import { getFieldErrors } from '../../../helpers/forms';
+// import { getFieldErrors } from '../../../helpers/forms';
 
 import './cta-popover-email-form.scss';
 
@@ -32,24 +32,17 @@ const CtaPopoverEmailForm = () => {
         return response;
       })
       .catch(error => {
+        console.log(error.response.error);
         setErrorResponse(error.response.error);
-        console.log(error.response.error.fields.email);
       });
   };
 
   return (
-    <div className="cta-popover-email-form">
-      <form className="email-form form pb-2 pt-4" onSubmit={handleSubmit}>
-        {error.response.email ? (
-          <label className="field-label">
-            <span className="validation">
-              <div className="validation__message {{modifier_class}}">
-                {errorResponse.fields.email[0]}
-              </div>
-            </span>
-          </label>
-        ) : null}
-
+    <div className="cta-popover-email-form pt-4">
+      {errorResponse && errorResponse.fields.email ? (
+        <div className="text-red-500">{errorResponse.fields.email[0]}</div>
+      ) : null}
+      <form className="email-form form pb-2" onSubmit={handleSubmit}>
         <input
           className="text-field email-form__input"
           type="email"
@@ -82,3 +75,6 @@ const CtaPopoverEmailForm = () => {
 };
 
 export default CtaPopoverEmailForm;
+
+// className='text-red-500' 'form-validation -error'
+// ff4540
