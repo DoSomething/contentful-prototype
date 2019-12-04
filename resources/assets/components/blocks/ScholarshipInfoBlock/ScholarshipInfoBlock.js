@@ -23,13 +23,19 @@ const ScholarshipInfoBlock = ({
 }) => (
   <Card className="flex flex-col-reverse md:flex-row">
     <div className="w-full md:w-1/2 p-6">
-      <div className="__image">
-        <DoSomethingLogo />
+      <div className="flex items-center">
+        <div className="h-16 mr-4">
+          <DoSomethingLogo />
+        </div>
+        <div className="text-4xl text-black">&times;</div>
         {affiliateSponsors.length ? (
-          <img
-            src={affiliateSponsors[0].fields.logo.url}
-            alt={affiliateSponsors[0].fields.logo.title}
-          />
+          <div className="__image ml-4">
+            <img
+              className="h-16"
+              src={affiliateSponsors[0].fields.logo.url}
+              alt={affiliateSponsors[0].fields.logo.title}
+            />
+          </div>
         ) : null}
       </div>
       <p className="pt-6 pb-3">
