@@ -32,7 +32,6 @@ const CtaPopoverEmailForm = () => {
         return response;
       })
       .catch(error => {
-        console.log(error.response.error);
         setErrorResponse(error.response.error);
       });
   };
@@ -75,6 +74,3 @@ const CtaPopoverEmailForm = () => {
 };
 
 export default CtaPopoverEmailForm;
-
-// className='text-red-500' 'form-validation -error'
-// ff4540
