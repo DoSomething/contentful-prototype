@@ -162,6 +162,16 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
+  causePage
+    .createField('additionalContent')
+    .name('Additional Content')
+    .type('Object')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
   causePage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
     helpText:
       'This title is used internally to help find this content. It will not be displayed anywhere on the rendered web page.',
@@ -195,4 +205,11 @@ module.exports = function(migration) {
     helpText:
       'The core content for this cause page, sits below the banner, optimally a collection of galleries e.g. campaigns & articles related to this cause space',
   });
+
+  causePage.changeFieldControl(
+    'additionalContent',
+    'builtin',
+    'objectEditor',
+    {},
+  );
 };
