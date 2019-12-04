@@ -84,7 +84,7 @@ LandingPage.propTypes = {
   scholarshipAmount: PropTypes.number,
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string,
-  scholarshipDescription: PropTypes.string,
+  scholarshipDescription: PropTypes.object,
   showPartnerMsgOptIn: PropTypes.bool,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   signupArrowContent: PropTypes.string,

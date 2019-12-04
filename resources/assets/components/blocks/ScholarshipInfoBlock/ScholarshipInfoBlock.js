@@ -8,6 +8,10 @@ import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 // import PurpleWaveBackground from '../../utilities/CtaPopover/cta-popover-bg.svg'
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 
+const Header = ({ content, textColor }) => (
+  <div className={`font-bold uppercase ${textColor}`}>{content}</div>
+);
+
 const ScholarshipInfoBlock = ({
   affiliateSponsors,
   actionType,
@@ -17,8 +21,8 @@ const ScholarshipInfoBlock = ({
   scholarshipDeadline,
   scholarshipDescription,
 }) => (
-  <Card className="flex">
-    <div className="w-1/2 p-6">
+  <Card className="flex flex-col-reverse md:flex-row">
+    <div className="w-full md:w-1/2 p-6">
       <div className="__image">
         <DoSomethingLogo />
         {affiliateSponsors.length ? (
@@ -56,42 +60,54 @@ const ScholarshipInfoBlock = ({
         </p>
       </div>
     </div>
-    <div className="w-1/2 p-6 text-base">
-      {scholarshipAmount && scholarshipCallToAction ? (
+    <div className="w-full md:w-1/2 p-6 text-base bg-blue-700">
+      <div className="bg-white m-4 p-6 rounded">
+        {scholarshipAmount && scholarshipCallToAction ? (
+          <>
+            <Header
+              content={scholarshipCallToAction}
+              textColor="text-purple-600"
+            />
+            <p className="font-league-gothic text-5xl pb-2">
+              ${scholarshipAmount.toLocaleString()}
+            </p>
+          </>
+        ) : null}
+        {scholarshipDeadline ? (
+          <>
+            <Header content="Deadline" />
+            <p className="pb-2">{getHumanFriendlyDate(scholarshipDeadline)}</p>
+          </>
+        ) : null}
+        {actionType ? (
+          <>
+            <Header content="Action Type" />
+            <p className="pb-2">{actionType}</p>
+          </>
+        ) : null}
         <>
-          <div className="font-bold uppercase text-purple-600">
-            {scholarshipCallToAction}
+          <Header content="Requirements" />
+          <div>
+            <ul className="mt-2 list-disc list-inside">
+              <li>Under 26 years old</li>
+              <li>No minimum GPA</li>
+              <li>No essay</li>
+            </ul>
           </div>
-          <p className="font-league-gothic text-5xl pb-2">
-            ${scholarshipAmount.toLocaleString()}
-          </p>
         </>
-      ) : null}
-      {scholarshipDeadline ? (
-        <>
-          <div className="font-bold uppercase text-gray-400">Deadline</div>
-          <p className="pb-2">{getHumanFriendlyDate(scholarshipDeadline)}</p>
-        </>
-      ) : null}
-      {actionType ? (
-        <>
-          <dt className="font-bold uppercase text-gray-400">Action Type</dt>
-          <dd className="pb-2">{actionType}</dd>
-        </>
-      ) : null}
-      <>
-        <dt className="font-bold uppercase text-gray-400">Requirements</dt>
-        <dd>
-          <ul className="mt-2 list -compacted">
-            <li>Under 26 years old</li>
-            <li>No minimum GPA</li>
-            <li>No essay</li>
-          </ul>
-        </dd>
-      </>
+      </div>
     </div>
   </Card>
 );
+
+Header.propTypes = {
+  content: PropTypes.string.isRequired,
+  textColor: PropTypes.string,
+};
+
+Header.defaultProps = {
+  textColor: 'text-gray-400',
+};
 
 ScholarshipInfoBlock.propTypes = {
   actionType: PropTypes.string,
