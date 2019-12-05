@@ -26,7 +26,7 @@
 
 .jumbo-lede-banner__headline-title {
   color: $primary-color;
-  font-family: $primary-font-family;
+  font-family: theme('fontFamily.source-sans');
   font-size: $font-regular;
   line-height: 1.1;
   margin-bottom: 10px;
@@ -41,7 +41,7 @@
 
 .jumbo-lede-banner__headline-subtitle {
   color: $white;
-  font-family: $secondary-font-family;
+  font-family: theme('fontFamily.league-gothic');
   font-size: 36px;
   font-weight: normal;
   letter-spacing: 0.5px;

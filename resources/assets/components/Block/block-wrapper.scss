@@ -9,14 +9,14 @@
   }
 
   h2 {
-    font-family: $primary-font-family;
+    font-family: theme('fontFamily.source-sans');
     color: $black;
   }
 }
 
 .block-wrapper__title {
   color: $black;
-  font-family: $primary-font-family;
+  font-family: theme('fontFamily.source-sans');
   background-color: $primary-color;
   text-transform: uppercase;
   margin: (-$half-spacing) (-$half-spacing) $base-spacing;

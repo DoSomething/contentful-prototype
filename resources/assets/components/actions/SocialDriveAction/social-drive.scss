@@ -47,7 +47,7 @@
 
         p {
           font-size: 16px;
-          font-family: $primary-font-family;
+          font-family: theme('fontFamily.source-sans');
         }
 
         img {
@@ -59,29 +59,28 @@
 }
 
 .social-drive-information {
+  font-family: theme('fontFamily.source-sans');
+
   .link-info {
     .info__title {
-      font-family: $primary-font-family;
       font-weight: $weight-bold;
     }
 
     .info__text {
       margin-top: 10px;
-      font-family: $primary-font-family;
       line-height: $font-large;
     }
   }
 
   .page-views {
     .page-views__text {
-      font-family: $primary-font-family;
       font-size: $font-regular;
       font-weight: $weight-sbold;
       color: $med-gray;
     }
 
     .page-views__amount {
-      font-family: $secondary-font-family;
+      font-family: theme('fontFamily.league-gothic');
       font-size: $font-hero;
       font-weight: $weight-normal;
       line-height: $font-hero;

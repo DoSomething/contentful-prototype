@@ -107,7 +107,7 @@ const GalleryBlock = props => {
   return (
     <div className="gallery-block">
       {title ? <SectionHeader underlined title={title} /> : null}
-      <Gallery type={galleryType} className="expand-horizontal-md mt-3">
+      <Gallery type={galleryType} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
             block,

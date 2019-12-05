@@ -81,7 +81,7 @@ const Affirmation = ({
               </Badge>
             ) : null}
 
-            <Flex className="flex-align-center">
+            <Flex className="items-center">
               <FlexCell className="affirmation__cta p-3" width="half">
                 <h3>{callToActionHeader}</h3>
                 <p>{callToActionDescription}</p>

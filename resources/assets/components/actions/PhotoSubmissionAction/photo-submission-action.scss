@@ -112,7 +112,7 @@
   }
 
   .quantity-display__total {
-    font-family: $font-league-gothic;
+    font-family: theme('fontFamily.league-gothic');
     font-size: $font-hero;
     line-height: 1;
   }

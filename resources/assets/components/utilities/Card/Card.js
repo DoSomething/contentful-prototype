@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import './card.scss';
 
 const renderHeader = (title, link, onClose) => (
-  <header className="card__title">
+  <header className="card__title rounded-t clip-padding-box">
     {link ? (
       <h1>
         <a href={link}>{title}</a>

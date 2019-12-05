@@ -48,7 +48,7 @@
 
   dd.campaign-info__scholarship {
     float: none;
-    font-family: $font-league-gothic;
+    font-family: theme('fontFamily.league-gothic');
     font-size: $text-2xl;
     line-height: 1;
   }

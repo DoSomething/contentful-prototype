@@ -30,7 +30,7 @@ const SchoolFinder = props => (
         return (
           <Card
             title={schoolId ? 'Your School' : 'Find Your School'}
-            className="rounded bordered overflow-visible"
+            className="rounded bordered"
           >
             {schoolId ? (
               <div className="current-school p-3">

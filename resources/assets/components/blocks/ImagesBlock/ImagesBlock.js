@@ -15,10 +15,7 @@ export const ImagesBlockFragment = gql`
 `;
 
 const ImagesBlock = ({ className, images }) => (
-  <Gallery
-    type="triad"
-    className={classnames('expand-horizontal-md', className)}
-  >
+  <Gallery type="triad" className={classnames('-mx-3', className)}>
     {images.map(image => (
       <img alt={image.description} src={image.url} key={image.url} />
     ))}

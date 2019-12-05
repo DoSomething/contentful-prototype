@@ -27,7 +27,7 @@
 
     .lede-banner__headline-title {
       // @todo Mock's use League Gothic Regular
-      font-family: $secondary-font-family;
+      font-family: theme('fontFamily.league-gothic');
       font-size: 97px;
       font-weight: normal;
       line-height: 1;

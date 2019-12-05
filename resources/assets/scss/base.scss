@@ -52,7 +52,7 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 body,
 html {
-  font-family: $primary-font-family;
+  font-family: theme('fontFamily.source-sans');
   // Resetting to a base 16px font-size; works better with default Tailwind.
   font-size: 16px;
   line-height: 1.4;
@@ -61,7 +61,7 @@ html {
 // Reset browser defaults so this behaves like <a>
 // or <input type="button"> elements do.
 button {
-  font-family: $primary-font-family;
+  font-family: theme('fontFamily.source-sans');
   background: transparent;
   border: none;
 }
@@ -106,7 +106,7 @@ p {
 
 // Override Forge rule for .text-field font-family (https://git.io/fjeFh).
 .text-field {
-  font-family: $primary-font-family;
+  font-family: theme('fontFamily.source-sans');
 }
 
 // Utility classes.
@@ -147,26 +147,6 @@ p {
   background-clip: padding-box;
 }
 
-.expand-horizontal-lg {
-  margin-left: -$base-spacing;
-  margin-right: -$base-spacing;
-}
-
-.expand-horizontal-md {
-  margin-left: -$half-spacing;
-  margin-right: -$half-spacing;
-}
-
-.flex-center-xy {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-align-center {
-  align-items: center;
-}
-
 .word-break {
   word-break: break-word; // CSS deprecated; find alternative.
 }
@@ -179,21 +159,6 @@ p {
 | The classes after this section are still available for use!
 |
 */
-
-/*
-|-------------------------------------------------------------------------------
-| Tailwind-esh Class Names
-|-------------------------------------------------------------------------------
-|
-| Class names above this section will likely go to the chopping block once we
-| implement the use of TailWind in Phoenix, so when possible opt to use class
-| names indicated below.
-|
-*/
-
-.overflow-visible {
-  overflow: visible !important;
-}
 
 /*
 |-------------------------------------------------------------------------------

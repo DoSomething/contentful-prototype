@@ -38,15 +38,7 @@ $messenger-background-color: #0084ff;
 $half-spacing: $base-spacing / 2;
 $increment-spacing: 4px;
 
-// Font Stacks
-$font-source-sans: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial',
-  sans-serif;
-$font-league-gothic: 'League Gothic', 'Impact', 'Franklin Gothic Bold',
-  'Arial Black', sans-serif;
 $gothic-letter-spacing: 4px;
-
-$primary-font-family: $font-source-sans;
-$secondary-font-family: $font-league-gothic;
 
 %block {
   background-color: $white;

@@ -116,7 +116,7 @@ const Embed = props => {
                   </div>
                 </div>
                 {badged ? (
-                  <div className="button embed__badge flex-center-xy">
+                  <div className="button embed__badge flex item-center justify-center">
                     <img src={linkIcon} alt="link" />
                   </div>
                 ) : null}

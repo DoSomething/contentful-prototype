@@ -6,7 +6,7 @@
 
   .general-page__heading {
     .general-page__title {
-      font-family: $secondary-font-family;
+      font-family: theme('fontFamily.league-gothic');
       font-size: $font-larger;
       font-weight: $weight-normal;
 
@@ -20,7 +20,7 @@
     }
 
     .general-page__subtitle {
-      font-family: $primary-font-family;
+      font-family: theme('fontFamily.source-sans');
       font-weight: $weight-bold;
       margin-top: $half-spacing;
 
