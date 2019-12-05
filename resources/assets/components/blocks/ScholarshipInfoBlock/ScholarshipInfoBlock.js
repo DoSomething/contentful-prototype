@@ -13,6 +13,15 @@ const Header = ({ content, textColor }) => (
   <div className={`font-bold uppercase ${textColor}`}>{content}</div>
 );
 
+Header.propTypes = {
+  content: PropTypes.string.isRequired,
+  textColor: PropTypes.string,
+};
+
+Header.defaultProps = {
+  textColor: 'text-gray-400',
+};
+
 const ScholarshipInfoBlock = ({
   affiliateSponsors,
   actionType,
@@ -23,7 +32,7 @@ const ScholarshipInfoBlock = ({
   scholarshipDescription,
 }) => (
   <Card className="flex flex-col-reverse md:flex-row">
-    <div className="w-full md:w-1/2 p-6">
+    <div className="md:w-1/2 p-6">
       <div className="h-16">
         <div className="float-left mr-4">
           <DoSomethingLogo className="h-10" />
@@ -69,7 +78,7 @@ const ScholarshipInfoBlock = ({
         </p>
       </div>
     </div>
-    <div className="w-full md:w-1/2 p-6 text-base scholarship-info-block">
+    <div className="md:w-1/2 p-6 text-base scholarship-info-block">
       <div className="bg-white m-4 p-6 rounded">
         {scholarshipAmount && scholarshipCallToAction ? (
           <div>
@@ -101,28 +110,17 @@ const ScholarshipInfoBlock = ({
           </div>
           <div>
             <Header content="Requirements" />
-            <div>
-              <ul className="mt-2 list-disc list-inside">
-                <li>Under 26 years old</li>
-                <li>No minimum GPA</li>
-                <li>No essay</li>
-              </ul>
-            </div>
+            <ul className="mt-2 list-disc list-inside">
+              <li>Under 26 years old</li>
+              <li>No minimum GPA</li>
+              <li>No essay</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
   </Card>
 );
-
-Header.propTypes = {
-  content: PropTypes.string.isRequired,
-  textColor: PropTypes.string,
-};
-
-Header.defaultProps = {
-  textColor: 'text-gray-400',
-};
 
 ScholarshipInfoBlock.propTypes = {
   actionType: PropTypes.string,
