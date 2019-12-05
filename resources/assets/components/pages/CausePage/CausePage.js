@@ -20,6 +20,7 @@ export const CAUSE_PAGE_QUERY = gql`
       title
       description
       content
+      additionalContent
     }
   }
 `;
@@ -30,6 +31,7 @@ const CausePageTemplate = ({
   title,
   description,
   content,
+  additionalContent,
 }) => {
   // @TODO: Update this with image dimension logic to serve properly sized files to different screen sizes
   const backgroundImage = coverImage
@@ -39,6 +41,8 @@ const CausePageTemplate = ({
   const styles = {
     backgroundImage,
   };
+
+  const { stats, statsBackgroundColor } = additionalContent || {};
 
   return (
     <>
@@ -59,6 +63,31 @@ const CausePageTemplate = ({
               {description}
             </TextContent>
           </div>
+
+          {stats && statsBackgroundColor ? (
+            <div className="grid-full md:flex">
+              {stats.map(stat => (
+                <div
+                  key={stat.title}
+                  className="stat rounded mt-3 p-3 md:w-1/3"
+                  style={{ backgroundColor: statsBackgroundColor }}
+                >
+                  <p className="text-white text-lg font-bold uppercase">
+                    {stat.title}
+                  </p>
+                  <p className="text-white text-5xl font-league-gothic -mt-3">
+                    {stat.number.toLocaleString()}
+                  </p>
+                  <a
+                    className="text-white hover:text-white font-normal underline cursor-pointer"
+                    href={stat.link.url}
+                  >
+                    {stat.link.text}
+                  </a>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </header>
         <TextContent
           className="base-12-grid"
@@ -82,6 +111,11 @@ CausePageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.object.isRequired,
   content: PropTypes.object.isRequired,
+  additionalContent: PropTypes.object,
+};
+
+CausePageTemplate.defaultProps = {
+  additionalContent: {},
 };
 
 const CausePage = ({ slug }) => (
