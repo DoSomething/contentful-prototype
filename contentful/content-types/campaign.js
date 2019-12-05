@@ -438,25 +438,6 @@ module.exports = function(migration) {
     .omitted(false);
 
   campaign
-    .createField('scholarshipDescription')
-    .name('Scholarship Description')
-    .type('Text')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        size: {
-          max: 300,
-        },
-
-        message:
-          "Keep it short and sweet! This should mirror the description from our partner's site.",
-      },
-    ])
-    .disabled(false)
-    .omitted(false);
-
-  campaign
     .createField('affiliateOptInContent')
     .name('Affiliate Opt In Content')
     .type('RichText')
