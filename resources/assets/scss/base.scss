@@ -127,7 +127,7 @@ p {
 }
 
 .color-success {
-  color: $success-color !important;
+  color: theme('colors.green.700') !important;
 }
 
 // @TODO:phoenix-css-heirarchy-issue with bg-color on Card component.
@@ -191,24 +191,8 @@ p {
 |
 */
 
-.h-4 {
-  height: 16px;
-}
-
-.h-8 {
-  height: 32px;
-}
-
 .overflow-visible {
   overflow: visible !important;
-}
-
-.text-yellow {
-  color: $primary-color;
-}
-
-.text-blue-500 {
-  color: $blue-500;
 }
 
 /*

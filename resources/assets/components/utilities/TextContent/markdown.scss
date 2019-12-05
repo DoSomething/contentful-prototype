@@ -25,7 +25,7 @@
   }
 
   &.is-success {
-    color: $success-color;
+    color: theme('colors.green.700');
   }
 
   // Code blocks can be used for pre-formatted text.

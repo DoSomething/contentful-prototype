@@ -27,7 +27,7 @@
   .marquee-banner__headline-title {
     text-transform: uppercase;
     font-size: $font-large;
-    color: $purple-500;
+    color: theme('colors.blurple.500');
   }
 
   .marquee-banner__headline-subtitle {
