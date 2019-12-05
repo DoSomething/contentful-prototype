@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
 
 import Button from '../Button/Button';
-import { env } from '../../../helpers/index';
+import { env, report } from '../../../helpers/index';
 import { tabularLog } from '../../../helpers/api';
-// import { getFieldErrors } from '../../../helpers/forms';
 
 import './cta-popover-email-form.scss';
 
@@ -32,8 +31,12 @@ const CtaPopoverEmailForm = () => {
         return response;
       })
       .catch(error => {
-        setErrorResponse(error.response.error);
+        report(error);
       });
+
+    if (window.ENV.APP_ENV !== 'production') {
+      console.log('🚫 failed response? caught the error!', error);
+    }
   };
 
   return (
