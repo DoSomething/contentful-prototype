@@ -8,6 +8,8 @@ import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 // import PurpleWaveBackground from '../../utilities/CtaPopover/cta-popover-bg.svg'
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 
+import './scholarshipInfoBlock.scss';
+
 const Header = ({ content, textColor }) => (
   <div className={`font-bold uppercase ${textColor}`}>{content}</div>
 );
@@ -23,15 +25,17 @@ const ScholarshipInfoBlock = ({
 }) => (
   <Card className="flex flex-col-reverse md:flex-row">
     <div className="w-full md:w-1/2 p-6">
-      <div className="flex items-center">
-        <div className="h-16 mr-4">
-          <DoSomethingLogo />
+      <div className="h-16">
+        <div className="float-left mr-4">
+          <DoSomethingLogo className="h-10" />
         </div>
-        <div className="text-4xl text-black">&times;</div>
+        <div className="float-left text-4xl text-black leading-none">
+          &times;
+        </div>
         {affiliateSponsors.length ? (
-          <div className="__image ml-4">
+          <div className="__image ml-4 float-left">
             <img
-              className="h-16"
+              className="h-10"
               src={affiliateSponsors[0].fields.logo.url}
               alt={affiliateSponsors[0].fields.logo.title}
             />
@@ -66,7 +70,7 @@ const ScholarshipInfoBlock = ({
         </p>
       </div>
     </div>
-    <div className="w-full md:w-1/2 p-6 text-base bg-blue-700">
+    <div className="w-full md:w-1/2 p-6 text-base scholarship-info-block">
       <div className="bg-white m-4 p-6 rounded">
         {scholarshipAmount && scholarshipCallToAction ? (
           <>
@@ -79,28 +83,34 @@ const ScholarshipInfoBlock = ({
             </p>
           </>
         ) : null}
-        {scholarshipDeadline ? (
-          <>
-            <Header content="Deadline" />
-            <p className="pb-2">{getHumanFriendlyDate(scholarshipDeadline)}</p>
-          </>
-        ) : null}
-        {actionType ? (
-          <>
-            <Header content="Action Type" />
-            <p className="pb-2">{actionType}</p>
-          </>
-        ) : null}
-        <>
-          <Header content="Requirements" />
-          <div>
-            <ul className="mt-2 list-disc list-inside">
-              <li>Under 26 years old</li>
-              <li>No minimum GPA</li>
-              <li>No essay</li>
-            </ul>
+        <div>
+          <div className="lg:flex">
+            {scholarshipDeadline ? (
+              <div className="lg:w-1/2 lg:float-left">
+                <Header content="Deadline" />
+                <p className="pb-2">
+                  {getHumanFriendlyDate(scholarshipDeadline)}
+                </p>
+              </div>
+            ) : null}
+            {actionType ? (
+              <div className="lg:w-1/2 lg:float-right">
+                <Header content="Action Type" />
+                <p className="pb-2">{actionType}</p>
+              </div>
+            ) : null}
           </div>
-        </>
+          <div>
+            <Header content="Requirements" />
+            <div>
+              <ul className="mt-2 list-disc list-inside">
+                <li>Under 26 years old</li>
+                <li>No minimum GPA</li>
+                <li>No essay</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </Card>

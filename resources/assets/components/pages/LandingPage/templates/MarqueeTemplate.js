@@ -126,7 +126,7 @@ const MarqueeTemplate = ({
           </Enclosure>
         </div>
         {showModal ? (
-          <Modal onClose={() => setShowModal(false)}>
+          <Modal className="-inverted" onClose={() => setShowModal(false)}>
             <ScholarshipInfoBlockQuery
               affiliateSponsors={affiliateSponsors}
               campaignId={numCampaignId}
