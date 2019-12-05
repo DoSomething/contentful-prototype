@@ -10,7 +10,7 @@ import './cta-popover-email-form.scss';
 
 const CtaPopoverEmailForm = () => {
   const [emailValue, setEmailValue] = useState('');
-  const [errorResponse, setErrorResponse] = useState(null);
+  const [errorResponse] = useState(null);
   const handleChange = event => setEmailValue(event.target.value);
 
   const handleSubmit = event => {
@@ -32,11 +32,11 @@ const CtaPopoverEmailForm = () => {
       })
       .catch(error => {
         report(error);
-      });
 
-    if (window.ENV.APP_ENV !== 'production') {
-      console.log('🚫 failed response? caught the error!', error);
-    }
+        if (window.ENV.APP_ENV !== 'production') {
+          console.log('🚫 failed response? caught the error!', error);
+        }
+      });
   };
 
   return (
