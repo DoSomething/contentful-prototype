@@ -380,15 +380,6 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
   campaign
-    .createField('scholarshipCallToAction')
-    .name('Scholarship Call to Action')
-    .type('Symbol')
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-  campaign
     .createField('scholarshipDeadline')
     .name('Scholarship Deadline')
     .type('Date')
@@ -591,11 +582,6 @@ module.exports = function(migration) {
 
   campaign.changeEditorInterface('scholarshipAmount', 'numberEditor', {
     helpText: 'e.g. 5000',
-  });
-
-  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
-    helpText:
-      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
   });
 
   campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
