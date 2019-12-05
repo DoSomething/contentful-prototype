@@ -5,7 +5,6 @@ import Card from '../../utilities/Card/Card';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { getHumanFriendlyDate } from '../../../helpers';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
-// import PurpleWaveBackground from '../../utilities/CtaPopover/cta-popover-bg.svg'
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 
 import './scholarshipInfoBlock.scss';
@@ -42,13 +41,13 @@ const ScholarshipInfoBlock = ({
           </div>
         ) : null}
       </div>
-      <p className="pt-6 pb-3">
+      <div className="pt-6 pb-3">
         <strong className="text-lg">
           Welcome to DoSomething.org
           {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
         </strong>{' '}
         <TextContent>{scholarshipDescription}</TextContent>
-      </p>
+      </div>
       <div className="bg-gray-100 flex">
         <img
           className="w-1/4"
@@ -73,7 +72,7 @@ const ScholarshipInfoBlock = ({
     <div className="w-full md:w-1/2 p-6 text-base scholarship-info-block">
       <div className="bg-white m-4 p-6 rounded">
         {scholarshipAmount && scholarshipCallToAction ? (
-          <>
+          <div>
             <Header
               content={scholarshipCallToAction}
               textColor="text-purple-600"
@@ -81,7 +80,7 @@ const ScholarshipInfoBlock = ({
             <p className="font-league-gothic text-5xl pb-2">
               ${scholarshipAmount.toLocaleString()}
             </p>
-          </>
+          </div>
         ) : null}
         <div>
           <div className="lg:flex">
