@@ -187,21 +187,69 @@ class SiteNavigation extends React.Component {
                       <h1>Causes</h1>
                       <ul>
                         <li>
-                          <a href="/us/causes/education">Education</a>
+                          <a
+                            href="/us/causes/education"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_education',
+                              });
+                            }}
+                          >
+                            Education
+                          </a>
                         </li>
                         <li>
-                          <a href="/us/causes/mental-health">Mental Health</a>
+                          <a
+                            href="/us/causes/mental-health"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_mental_health',
+                              });
+                            }}
+                          >
+                            Mental Health
+                          </a>
                         </li>
                         <li>
-                          <a href="/us/causes/homelessness-and-poverty">
+                          <a
+                            href="/us/causes/homelessness-and-poverty"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_homelessness_and_poverty',
+                              });
+                            }}
+                          >
                             Homelessness & Poverty
                           </a>
                         </li>
                         <li>
-                          <a href="/us/causes/environment">Environment</a>
+                          <a
+                            href="/us/causes/environment"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_environment',
+                              });
+                            }}
+                          >
+                            Environment
+                          </a>
                         </li>
                         <li>
-                          <a href="/us/causes/bullying">Bullying</a>
+                          <a
+                            href="/us/causes/bullying"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_bullying',
+                              });
+                            }}
+                          >
+                            Bullying
+                          </a>
                         </li>
                       </ul>
                     </section>
