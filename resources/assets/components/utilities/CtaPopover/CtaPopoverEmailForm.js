@@ -31,6 +31,7 @@ const CtaPopoverEmailForm = () => {
         return response;
       })
       .catch(error => {
+        report(error);
         setErrorResponse(error.response.error);
 
         if (window.ENV.APP_ENV !== 'production') {
