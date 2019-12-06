@@ -1,7 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .form-validation {
-  border-bottom: 2px solid $light-gray;
+  border-bottom: 2px solid theme('colors.gray.200');
 
   &.-error {
     color: $error-color;

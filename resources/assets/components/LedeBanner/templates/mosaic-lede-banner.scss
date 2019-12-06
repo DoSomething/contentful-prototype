@@ -3,7 +3,7 @@
 
 .mosaic-lede-banner {
   background-color: $dark-background-color;
-  color: $dark-background-contrast-color;
+  color: theme('colors.white');
   width: 100%;
 
   @include media($medium) {
@@ -101,7 +101,7 @@
 }
 
 .mosaic-lede-banner__headline-subtitle {
-  color: $dark-background-contrast-color;
+  color: theme('colors.white');
   border-top: 8px solid $primary-color;
   border-bottom: 8px solid $primary-color;
   font-family: theme('fontFamily.league-gothic');

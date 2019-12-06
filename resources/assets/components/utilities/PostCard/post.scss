@@ -31,7 +31,7 @@
 
 // HACK: Ensure text post cards look okay on "classic" campaign pages.
 .campaign-page .post-ornament-text {
-  border-left-color: $light-gray;
+  border-left-color: theme('colors.gray.200');
 }
 
 .chat-bubble.-post-bubble {

@@ -11,12 +11,12 @@
 
 .placeholder-shimmer {
   animation: shimmer 2s linear 0s infinite normal forwards;
-  background: $light-gray;
+  background: theme('colors.gray.200');
   background-image: linear-gradient(
     to right,
-    $light-gray 25%,
-    lighten($light-gray, 10%) 50%,
-    $light-gray 75%
+    theme('colors.gray.200') 25%,
+    theme('colors.gray.100') 50%,
+    theme('colors.gray.200') 75%
   );
   background-size: 400px 50px; // Consistent gradient for all elements.
 }

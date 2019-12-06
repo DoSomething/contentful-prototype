@@ -17,7 +17,7 @@
 
 .embed__image {
   flex: 0 0 150px;
-  background-color: $light-gray;
+  background-color: theme('colors.gray.200');
   background-size: cover;
   background-position: center;
 }

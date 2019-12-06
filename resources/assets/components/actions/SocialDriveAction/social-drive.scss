@@ -42,7 +42,7 @@
         cursor: pointer;
 
         &:hover {
-          background-color: $light-gray;
+          background-color: theme('colors.gray.200');
         }
 
         p {

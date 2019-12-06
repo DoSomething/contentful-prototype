@@ -5,7 +5,7 @@ import classnames from 'classnames';
 const ShareButton = ({ className, onClick, disabled, icon, text }) => (
   <button
     type="button"
-    className={classnames('button share-button m-2', className)}
+    className={classnames('btn share-button m-2', className)}
     onClick={onClick}
     disabled={disabled}
   >

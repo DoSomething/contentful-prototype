@@ -27,7 +27,7 @@
 
       // Vertical divider between form sections.
       &::after {
-        background-color: $light-gray;
+        background-color: theme('colors.gray.200');
         content: '';
         display: block;
         height: calc(100% - 12px);
@@ -65,7 +65,7 @@
     }
 
     > .wrapper {
-      border-bottom: 1px solid $light-gray;
+      border-bottom: 1px solid theme('colors.gray.200');
       padding: $half-spacing 0;
 
       @include media($medium) {
