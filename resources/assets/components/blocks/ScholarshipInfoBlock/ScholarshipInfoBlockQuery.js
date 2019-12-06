@@ -40,7 +40,7 @@ const ScholarshipInfoBlockQuery = props => (
     }}
   >
     {res => {
-      const title = res.affiliate.title;
+      const title = get(res, 'affiliate.title');
       const actions = get(res, 'actions', []);
       const actionItem = actions.find(
         action => action.scholarshipEntry && action.reportback,

@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
@@ -33,8 +34,8 @@ const AffiliateScholarshipBlockQuery = props => (
     }}
   >
     {res => {
-      const title = res.affiliate.title;
-      const logo = res.affiliate.logo;
+      const title = get(res, 'affiliate.title');
+      const logo = get(res, 'affiliate.logo');
 
       return (
         <AffiliateScholarshipBlock
