@@ -9,10 +9,6 @@
     > .title-lockup {
       grid-column: 1 / -1;
 
-      @include media($medium) {
-        grid-column: 2 / -2;
-      }
-
       @include media($large) {
         grid-column: 1 / -6;
       }
