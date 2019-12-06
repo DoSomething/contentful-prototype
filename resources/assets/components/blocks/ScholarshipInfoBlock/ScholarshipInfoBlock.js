@@ -52,8 +52,11 @@ const ScholarshipInfoBlock = ({
       </div>
       <div className="pt-6 pb-3">
         <strong className="text-lg">
-          Welcome from
-          {affiliateTitle ? ` ${affiliateTitle.toUpperCase()}` : null}!
+          Welcome
+          {affiliateTitle
+            ? ` from ${affiliateTitle.toUpperCase()}`
+            : 'to DoSomething.org!'}
+          !
         </strong>{' '}
         {scholarshipDescription ? (
           <TextContent>{scholarshipDescription}</TextContent>
