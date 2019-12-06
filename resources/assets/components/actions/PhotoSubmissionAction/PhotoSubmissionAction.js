@@ -366,7 +366,7 @@ class PhotoSubmissionAction extends PostForm {
                             className={classnames('text-field', {
                               'has-error shake': has(errors, 'quantity'),
                             })}
-                            type="text"
+                            type="number"
                             id="quantity"
                             name="quantity"
                             placeholder={this.props.quantityFieldPlaceholder}
