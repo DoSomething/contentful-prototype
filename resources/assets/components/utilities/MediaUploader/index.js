@@ -75,6 +75,7 @@ class MediaUploader extends React.Component {
             id="media-uploader"
             name="media-uploader"
             onChange={this.handleChange}
+            required
           />
         </label>
       </div>

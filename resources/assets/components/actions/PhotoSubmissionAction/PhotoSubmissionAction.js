@@ -327,6 +327,7 @@ class PhotoSubmissionAction extends PostForm {
                           placeholder={this.props.captionFieldPlaceholder}
                           value={this.state.captionValue}
                           onChange={this.handleChange}
+                          required
                         />
                         <CharacterLimit
                           className="pt-1"
@@ -371,6 +372,7 @@ class PhotoSubmissionAction extends PostForm {
                             placeholder={this.props.quantityFieldPlaceholder}
                             value={this.state.quantityValue}
                             onChange={this.handleChange}
+                            required
                           />
                         </div>
                       ) : null}
@@ -422,6 +424,7 @@ class PhotoSubmissionAction extends PostForm {
                           }
                           value={this.state.whyParticipatedValue}
                           onChange={this.handleChange}
+                          required
                         />
                       </div>
                     </div>
