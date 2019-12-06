@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Spinner from '../artifacts/Spinner/Spinner';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 const Placeholder = ({ error }) => {
@@ -10,7 +11,7 @@ const Placeholder = ({ error }) => {
 
   return (
     <div className="placeholder">
-      <div className="spinner" />
+      <Spinner />
     </div>
   );
 };

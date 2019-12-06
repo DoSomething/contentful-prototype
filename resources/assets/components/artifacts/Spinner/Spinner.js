@@ -44,7 +44,7 @@ Spinner.propTypes = {
 
 Spinner.defaultProps = {
   className: null,
-  size: '18px',
+  size: '32px',
 };
 
 export default Spinner;

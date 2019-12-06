@@ -6,6 +6,7 @@ import React, { useEffect, useRef } from 'react';
 import useScript, { ScriptStatus } from '@charlietango/use-script';
 
 import Card from '../utilities/Card/Card';
+import Spinner from '../artifacts/Spinner/Spinner';
 import { makeUrl, withoutNulls } from '../../helpers';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
@@ -83,7 +84,7 @@ const SoftEdgeBlock = ({ actionId, softEdgeId, title }) => {
   return (
     <Card className="bordered rounded" title={title}>
       {!ready || loading ? (
-        <div className="spinner mx-auto my-16" />
+        <Spinner className="flex justify-center p-16" />
       ) : (
         <div ref={element} />
       )}
