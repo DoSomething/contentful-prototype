@@ -29,6 +29,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       })
       .then(response => {
         setShowAffirmation(true);
+        handleComplete();
         tabularLog(get(response, 'data', null));
 
         return response;
@@ -48,7 +49,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       {errorResponse && errorResponse.fields.email ? (
         <div className="text-red-500">{errorResponse.fields.email[0]}</div>
       ) : null}
-      <form className="email-form form pb-2" onSubmit={handleSubmit}>
+      <form className="email-form form pb-2">
         <input
           className="text-field email-form__input"
           type="email"
@@ -59,7 +60,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         <Button
           className="email-form__button"
           type="submit"
-          onClick={handleComplete}
+          onClick={handleSubmit}
         >
           Sign Up
         </Button>
@@ -78,7 +79,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       </p>
     </div>
   ) : (
-    <div>Thank You For Submitting Your Email</div>
+    <div className="color-success">Thank You For Submitting Your Email</div>
   );
 };
 
