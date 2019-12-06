@@ -1,6 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import PageQuery from '../PageQuery';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -66,10 +67,12 @@ const CausePageTemplate = ({
 
           {stats && statsBackgroundColor ? (
             <div className="grid-full md:flex">
-              {stats.map(stat => (
+              {stats.map((stat, index) => (
                 <div
                   key={stat.title}
-                  className="stat rounded mt-3 p-3 md:w-1/3"
+                  className={classnames('stat rounded mt-3 p-3 md:w-1/3', {
+                    'md:mr-5': index < stats.length - 1,
+                  })}
                   style={{ backgroundColor: statsBackgroundColor }}
                 >
                   <p className="text-white text-lg font-bold uppercase">

@@ -14,14 +14,6 @@
       }
     }
 
-    .stat {
-      @include media($medium) {
-        &:not(:last-child) {
-          margin-right: $base-spacing;
-        }
-      }
-    }
-
     .lede-banner__headline-title {
       font-size: 97px;
       line-height: 1;
