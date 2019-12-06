@@ -91,6 +91,7 @@ const CollectionPageTemplate = ({
             GalleryBlock: 'grid-full',
             ContentBlock: 'grid-full-8/12',
           }}
+          classNameByEntryDefault="grid-full-8/12"
         >
           {content}
         </TextContent>
