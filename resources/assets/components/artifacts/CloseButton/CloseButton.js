@@ -27,8 +27,6 @@ const CloseButton = ({ callback, className, color, size }) => (
   </button>
 );
 
-export default CloseButton;
-
 CloseButton.propTypes = {
   callback: PropTypes.func.isRequired,
   className: PropTypes.string,
@@ -41,3 +39,5 @@ CloseButton.defaultProps = {
   color: '#222',
   size: '18px',
 };
+
+export default CloseButton;
