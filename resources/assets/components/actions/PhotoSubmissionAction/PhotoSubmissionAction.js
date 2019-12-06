@@ -16,6 +16,7 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
+import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -42,6 +43,8 @@ export const PhotoSubmissionBlockFragment = gql`
     affirmationContent
   }
 `;
+
+const CAPTION_CHARACTER_LIMIT = '60';
 
 class PhotoSubmissionAction extends PostForm {
   /**
@@ -324,6 +327,11 @@ class PhotoSubmissionAction extends PostForm {
                           placeholder={this.props.captionFieldPlaceholder}
                           value={this.state.captionValue}
                           onChange={this.handleChange}
+                        />
+                        <CharacterLimit
+                          className="pt-1"
+                          limit={CAPTION_CHARACTER_LIMIT}
+                          text={this.state.captionValue}
                         />
                       </div>
                     </div>
