@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
+import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
@@ -160,13 +161,128 @@ class SiteNavigation extends React.Component {
           </div>
 
           <ul className="main-nav menu-nav">
-            <li className="menu-nav__item">
+            <li
+              className={classnames('menu-nav__item', {
+                'is-active': this.state.activeSubNav === 'CausesSubNav',
+              })}
+              onMouseEnter={() => this.handleMouseEnter('CausesSubNav')}
+              onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
+            >
               <a
-                href="/us/campaigns"
-                onClick={e => this.handleOnClickLink(e, { label: 'campaigns' })}
+                href="/"
+                onClick={e =>
+                  this.handleOnClickToggle(e, 'CausesSubNav', {
+                    label: 'causes',
+                  })
+                }
               >
-                Campaigns
+                Causes
+                <span className="main-nav__arrow" />
               </a>
+
+              {this.state.activeSubNav === 'CausesSubNav' ? (
+                <div className="main-subnav menu-subnav">
+                  <div className="wrapper base-12-grid">
+                    <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
+                      <h1>Causes</h1>
+                      <ul>
+                        <li>
+                          <a
+                            href="/us/causes/education"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_education',
+                              });
+                            }}
+                          >
+                            Education
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/mental-health"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_mental_health',
+                              });
+                            }}
+                          >
+                            Mental Health
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/homelessness-and-poverty"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_homelessness_and_poverty',
+                              });
+                            }}
+                          >
+                            Homelessness & Poverty
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/environment"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_environment',
+                              });
+                            }}
+                          >
+                            Environment
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/bullying"
+                            onClick={e => {
+                              this.handleOnClickLink(e, {
+                                noun: 'subnav_link',
+                                label: 'causes_bullying',
+                              });
+                            }}
+                          >
+                            Bullying
+                          </a>
+                        </li>
+                      </ul>
+                    </section>
+
+                    <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
+                      <SiteNavigationFeature
+                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/5md4atcQCcWCMomiO22iyU/02de733ce619eb881fe69a9793e9bee9/pasted_image_at_2017_04_26_04_12_pm.png?fit=fill&h=500&w=1100"
+                        imageAlt="Mirror adorned with positive post it notes"
+                        url="/us/campaigns/mirror-messages"
+                        title="Mirror Messages"
+                        text="Create and post encouraging notes in your school bathrooms to brighten your classmates' day!"
+                        callback={e =>
+                          this.analyzeEvent(e, {
+                            noun: 'subnav_link',
+                            target: 'link',
+                            label: 'feature_mirror_messages',
+                          })
+                        }
+                      />
+                    </section>
+
+                    {this.state.isSubNavFixed ? (
+                      <CloseButton
+                        callback={this.handleOnClickClose}
+                        className="btn__close--subnav btn__close--main-subnav block"
+                        dataLabel="close_subnav"
+                        dataNoun="nav_button"
+                        size="22px"
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              ) : null}
             </li>
 
             <li className="menu-nav__item">

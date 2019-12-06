@@ -126,6 +126,21 @@ $extraSmall: '(min-width: 360px)';
         font-size: 22px;
       }
     }
+
+    // For now, the <h1> doesn't contain an <a>, since we don't
+    // have an index page to link to. So defining the <a> rules on the <h1>:
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 0 12px;
+
+    @include media($large) {
+      font-size: 18px;
+    }
+
+    @include media($larger) {
+      font-size: 22px;
+    }
   }
 }
 
