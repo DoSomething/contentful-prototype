@@ -499,7 +499,7 @@ PhotoSubmissionAction.defaultProps = {
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
-  captionFieldLabel: 'Add a caption to your photo.',
+  captionFieldLabel: 'Add a title to your photo.',
   captionFieldPlaceholder: '60 characters or less',
   className: null,
   informationContent:
