@@ -28,6 +28,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         source_detail: 'scholarship_newsletter-cta_scholarship-page',
       })
       .then(response => {
+        setShowAffirmation(true);
         tabularLog(get(response, 'data', null));
 
         return response;
@@ -77,7 +78,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       </p>
     </div>
   ) : (
-    setShowAffirmation(<div>Thank You For Submitting Your Email</div>, true)
+    <div>Thank You For Submitting Your Email</div>
   );
 };
 
