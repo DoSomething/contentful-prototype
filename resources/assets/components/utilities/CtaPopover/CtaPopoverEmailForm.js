@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
 
@@ -8,9 +9,10 @@ import { tabularLog } from '../../../helpers/api';
 
 import './cta-popover-email-form.scss';
 
-const CtaPopoverEmailForm = () => {
+const CtaPopoverEmailForm = ({ handleComplete }) => {
   const [emailValue, setEmailValue] = useState('');
   const [errorResponse, setErrorResponse] = useState(null);
+  const [showAffirmation, setShowAffirmation] = useState(false);
   const handleChange = event => setEmailValue(event.target.value);
 
   const handleSubmit = event => {
@@ -40,7 +42,7 @@ const CtaPopoverEmailForm = () => {
       });
   };
 
-  return (
+  return !showAffirmation ? (
     <div className="cta-popover-email-form pt-4">
       {errorResponse && errorResponse.fields.email ? (
         <div className="text-red-500">{errorResponse.fields.email[0]}</div>
@@ -56,7 +58,7 @@ const CtaPopoverEmailForm = () => {
         <Button
           className="email-form__button"
           type="submit"
-          onClick={handleSubmit}
+          onClick={handleComplete}
         >
           Sign Up
         </Button>
@@ -74,7 +76,13 @@ const CtaPopoverEmailForm = () => {
         a year for important announcements.
       </p>
     </div>
+  ) : (
+    setShowAffirmation(<div>Thank You For Submitting Your Email</div>, true)
   );
+};
+
+CtaPopoverEmailForm.propTypes = {
+  handleComplete: PropTypes.func.isRequired,
 };
 
 export default CtaPopoverEmailForm;

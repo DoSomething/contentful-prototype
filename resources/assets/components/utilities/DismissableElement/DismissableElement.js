@@ -10,7 +10,6 @@ const DismissableElement = ({ name, render }) => {
   const handleCompletion = () => {
     // Mark the element as "hidden" in local storage.
     setStorage(`hide_${name}`, 'boolean', true);
-    setShowElement(false);
   };
 
   const handleDismissal = () => {
@@ -22,6 +21,7 @@ const DismissableElement = ({ name, render }) => {
   useEffect(() => {
     if (query(`hide_${name}`) === '1') {
       handleCompletion();
+      setShowElement(false);
     }
   }, []);
 
