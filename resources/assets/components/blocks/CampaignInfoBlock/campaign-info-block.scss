@@ -49,7 +49,7 @@
   dd.campaign-info__scholarship {
     float: none;
     font-family: theme('fontFamily.league-gothic');
-    font-size: $text-2xl;
+    font-size: theme('fontSize.3xl');
     line-height: 1;
   }
 }

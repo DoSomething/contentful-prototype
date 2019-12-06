@@ -2,7 +2,7 @@
 
 .affiliate-scholarship-block {
   // The border styling used throughout this component.
-  $border-style: 1px solid $primary-border-color;
+  $border-style: 1px solid theme('colors.gray.200');
 
   .scholarship-information,
   // Only add border-top to first scholarship detail item *if* scholarship amount is present.
@@ -80,7 +80,7 @@
   dd.scholarship-beta {
     float: none;
     font-family: theme('fontFamily.league-gothic');
-    font-size: $text-2xl;
+    font-size: theme('fontSize.3xl');
     line-height: 1;
   }
 }

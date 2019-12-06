@@ -11,43 +11,20 @@ $only-medium: '(min-width: 760px) and (max-width: 960px)';
 
 // overridden colors
 $black: $off-black;
-$light-gray: #dcdcdc;
 
 // semantic colors
 $primary-color: #ffec04;
 
-$primary-border-color: $light-gray;
-
 $light-background-color: #f6f6f6;
-$light-background-contrast-color: $off-black;
 $dark-background-color: $off-black;
 $dark-background-color-transparent: rgba(34, 34, 34, 0.9);
 $dark-background-contrast-color: $white;
 
 // spacing
 $half-spacing: $base-spacing / 2;
-$increment-spacing: 4px;
-
-$gothic-letter-spacing: 4px;
-
-%block {
-  background-color: $white;
-  border: 1px solid $primary-border-color;
-  border-radius: $lg-border-radius;
-  padding: $base-spacing / 2;
-}
 
 // Z-Indexes used
 $tabbed-navigation-zindex: 100;
 $sticky-cta-zindex: 200;
 $notification-zindex: 300;
 $site-navigation-zindex: 500;
-
-// Layout
-$largest: '(min-width: 1280px)';
-
-// Tailwind Font Sizes
-// @TODO: add the rest!
-$text-lg: 28px;
-$text-2xl: 47px;
-$text-4xl: 60px;

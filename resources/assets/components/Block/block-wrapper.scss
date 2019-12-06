@@ -1,8 +1,8 @@
 @import '../../scss/next-toolbox';
 
 .block-wrapper {
-  @extend %block;
-  overflow: hidden;
+  // @extend %block;
+  @apply bg-white border border-gray-200 border-solid overflow-hidden p-3 rounded;
 
   @include media($medium) {
     width: 100%;

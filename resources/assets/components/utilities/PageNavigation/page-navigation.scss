@@ -40,7 +40,7 @@
 
   &.is-stuck {
     background-color: $white;
-    border-bottom: 1px solid $primary-border-color;
+    border-bottom: 1px solid theme('colors.gray.200');
   }
 
   > .wrapper {

@@ -32,12 +32,12 @@
 
   .marquee-banner__headline-subtitle {
     text-transform: uppercase;
-    font-size: $text-2xl;
+    font-size: theme('fontSize.3xl');
     font-family: theme('fontFamily.league-gothic');
     font-weight: $weight-normal;
 
     @include media($medium) {
-      font-size: $text-4xl;
+      font-size: theme('fontSize.4xl');
     }
   }
 

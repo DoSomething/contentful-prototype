@@ -99,7 +99,7 @@
   color: inherit;
   font-size: $font-regular;
   font-weight: $weight-bold;
-  margin-bottom: $increment-spacing;
+  margin-bottom: 4px;
 
   @include media('(min-width: 425px)') {
     font-size: $font-small;
