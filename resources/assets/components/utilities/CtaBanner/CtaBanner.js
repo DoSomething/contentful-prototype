@@ -24,7 +24,7 @@ const CtaBanner = ({ buttonText, content, link, title }) => {
   return (
     <div className="cta-banner base-12-grid">
       <div className="grid-narrow m-3">
-        <h3 className="text-m text-yellow font-bold uppercase">{title}</h3>
+        <h3 className="text-m text-yellow-500 font-bold uppercase">{title}</h3>
         <p className="text-white mt-3">{content}</p>
         <a
           className="cta-banner__button button p-3 mt-3"

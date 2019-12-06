@@ -35,7 +35,7 @@
 
   > h1 {
     color: $black;
-    font-family: $secondary-font-family;
+    font-family: theme('fontFamily.league-gothic');
     font-size: 42px;
     font-weight: $weight-normal;
     line-height: 1.4;
@@ -46,7 +46,7 @@
   > h3,
   > h4 {
     color: $black;
-    font-family: $primary-font-family;
+    font-family: theme('fontFamily.source-sans');
     font-weight: $weight-bold;
   }
 

@@ -53,10 +53,7 @@ const PostGallery = props => {
         />
       ) : null}
 
-      <Gallery
-        type={get(galleryTypes, itemsPerRow)}
-        className="expand-horizontal-md"
-      >
+      <Gallery type={get(galleryTypes, itemsPerRow)} className="-mx-3">
         {posts.map(post => (
           <PostCard
             key={post.id}

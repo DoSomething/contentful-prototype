@@ -30,7 +30,7 @@
     text-align: center;
     text-transform: uppercase;
     border-radius: $lg-border-radius;
-    font-family: $primary-font-family;
+    font-family: theme('fontFamily.source-sans');
     font-weight: $weight-bold;
     font-size: $font-medium;
     width: 100%;

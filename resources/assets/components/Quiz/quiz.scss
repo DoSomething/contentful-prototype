@@ -11,7 +11,7 @@
   }
 
   .quiz__title {
-    font-family: $secondary-font-family;
+    font-family: theme('fontFamily.league-gothic');
     font-size: $font-hero;
     text-transform: uppercase;
     margin-bottom: $base-spacing;
@@ -22,7 +22,7 @@
 
     .question__title {
       color: $white;
-      font-family: $secondary-font-family;
+      font-family: theme('fontFamily.league-gothic');
       font-size: $font-larger;
       font-weight: normal;
       letter-spacing: 2px;

@@ -27,13 +27,13 @@
   .marquee-banner__headline-title {
     text-transform: uppercase;
     font-size: $font-large;
-    color: $purple-500;
+    color: theme('colors.blurple.700');
   }
 
   .marquee-banner__headline-subtitle {
     text-transform: uppercase;
     font-size: $text-2xl;
-    font-family: $font-league-gothic;
+    font-family: theme('fontFamily.league-gothic');
     font-weight: $weight-normal;
 
     @include media($medium) {

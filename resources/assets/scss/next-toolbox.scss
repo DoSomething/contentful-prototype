@@ -15,7 +15,6 @@ $light-gray: #dcdcdc;
 
 // semantic colors
 $primary-color: #ffec04;
-$success-color: #008000;
 $sponsor-accent: #8963ca;
 
 $primary-text-color: $off-black;
@@ -39,15 +38,7 @@ $messenger-background-color: #0084ff;
 $half-spacing: $base-spacing / 2;
 $increment-spacing: 4px;
 
-// Font Stacks
-$font-source-sans: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial',
-  sans-serif;
-$font-league-gothic: 'League Gothic', 'Impact', 'Franklin Gothic Bold',
-  'Arial Black', sans-serif;
 $gothic-letter-spacing: 4px;
-
-$primary-font-family: $font-source-sans;
-$secondary-font-family: $font-league-gothic;
 
 %block {
   background-color: $white;
@@ -64,11 +55,6 @@ $site-navigation-zindex: 500;
 
 // Layout
 $largest: '(min-width: 1280px)';
-
-// Tailwind Colors
-$purple-500: #141493;
-
-$blue-500: #0ab6fe;
 
 // Tailwind Font Sizes
 // @TODO: add the rest!
