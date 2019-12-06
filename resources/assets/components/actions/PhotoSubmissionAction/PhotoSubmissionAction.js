@@ -328,6 +328,7 @@ class PhotoSubmissionAction extends PostForm {
                           value={this.state.captionValue}
                           onChange={this.handleChange}
                           required
+                          maxlength={CAPTION_CHARACTER_LIMIT}
                         />
                         <CharacterLimit
                           className="pt-1"
