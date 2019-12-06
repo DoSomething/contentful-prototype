@@ -373,6 +373,7 @@ class PhotoSubmissionAction extends PostForm {
                             value={this.state.quantityValue}
                             onChange={this.handleChange}
                             required
+                            min={Number(quantity) + 1}
                           />
                         </div>
                       ) : null}
