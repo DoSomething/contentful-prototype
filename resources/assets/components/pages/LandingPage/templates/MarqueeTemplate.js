@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -36,8 +36,16 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
-  const [showModal, setShowModal] = useState(isScholarshipAffiliateReferral());
+  const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
+  const [showScholarshipModal, setShowScholarshipModal] = useState(false);
   const numCampaignId = Number(campaignId);
+
+  useEffect(() => {
+    if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
+      setShowScholarshipModal(true);
+    }
+  }, []);
+
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {
@@ -46,7 +54,6 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
-  const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
@@ -111,8 +118,11 @@ const MarqueeTemplate = ({
             </div>
           </Enclosure>
         </div>
-        {showModal && !isAffiliated ? (
-          <Modal className="-inverted" onClose={() => setShowModal(false)}>
+        {showScholarshipModal && !isAffiliated ? (
+          <Modal
+            className="-inverted"
+            onClose={() => setShowScholarshipModal(false)}
+          >
             <ScholarshipInfoBlockQuery
               affiliateSponsors={affiliateSponsors}
               campaignId={numCampaignId}
