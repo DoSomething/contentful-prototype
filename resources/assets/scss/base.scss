@@ -25,6 +25,10 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
   box-shadow: 0 0 3px theme('colors.blue.500');
 }
 
+.btn:disabled {
+  @apply cursor-default bg-gray-200 text-gray-100;
+}
+
 // @TODO:forge-removal Rename this class to "text-field".
 .text-input {
   @apply bg-white p-3 border border-gray-200 border-solid font-source-sans rounded;

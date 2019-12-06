@@ -94,6 +94,18 @@ module.exports = {
         '800': '#b09120',
         '900': '#967c1b',
       },
+      facebook: {
+        '400': '#4a6dbc',
+        '500': '#39579a',
+      },
+      messenger: {
+        '400': '#339dff',
+        '500': '#0084ff',
+      },
+      twitter: {
+        '400': '#21c2ff',
+        '500': '#00aced',
+      },
     },
     fontFamily: {
       'source-sans': [

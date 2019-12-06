@@ -1,17 +1,5 @@
 @import '../../../scss/next-toolbox.scss';
 
-// Sets a background color for social share buttons without overriding
-// the inherited 'disabled' and 'hover' .button states
-@mixin button-background($color) {
-  &:not([disabled]) {
-    background-color: $color;
-
-    &:hover {
-      background-color: lighten($color, $color-tint);
-    }
-  }
-}
-
 .social-share-tray {
   .share-buttons {
     @include media($large) {
@@ -26,22 +14,6 @@
     }
 
     .share-button {
-      &.facebook {
-        @include button-background($facebook-background-color);
-      }
-
-      &.twitter {
-        @include button-background($twitter-background-color);
-      }
-
-      &.messenger {
-        @include button-background($messenger-background-color);
-      }
-
-      &.email {
-        @include button-background($email-background-color);
-      }
-
       height: 55px;
       padding-right: 20px;
       padding-left: 20px;

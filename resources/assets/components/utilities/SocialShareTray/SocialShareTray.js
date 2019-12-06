@@ -139,7 +139,7 @@ class SocialShareTray extends React.Component {
         <div className={classNames('share-buttons', { responsive })}>
           {platforms.includes('facebook') ? (
             <ShareButton
-              className="facebook"
+              className="facebook bg-facebook-500 hover:bg-facebook-400"
               onClick={() =>
                 this.handleFacebookShareClick(shareLink, trackLink)
               }
@@ -151,7 +151,7 @@ class SocialShareTray extends React.Component {
 
           {platforms.includes('twitter') ? (
             <ShareButton
-              className="twitter"
+              className="twitter bg-twitter-500 hover:bg-twitter-400"
               onClick={() =>
                 handleTwitterShareClick(shareLink, { url: trackLink })
               }
@@ -163,7 +163,7 @@ class SocialShareTray extends React.Component {
 
           {platforms.includes('messenger') ? (
             <ShareButton
-              className="messenger"
+              className="messenger bg-messenger-500 hover:bg-messenger-400"
               disabled={!shareLink}
               icon={messengerIcon}
               text="Send"
@@ -175,7 +175,7 @@ class SocialShareTray extends React.Component {
 
           {platforms.includes('email') ? (
             <ShareButton
-              className="email"
+              className="email bg-blue-500 hover:bg-blue-400"
               disabled={!shareLink}
               icon={emailIcon}
               text="Email"
