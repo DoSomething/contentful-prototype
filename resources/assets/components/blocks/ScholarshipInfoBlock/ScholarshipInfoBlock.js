@@ -52,10 +52,20 @@ const ScholarshipInfoBlock = ({
       </div>
       <div className="pt-6 pb-3">
         <strong className="text-lg">
-          Welcome to DoSomething.org
-          {affiliateTitle ? ` via ${affiliateTitle.toUpperCase()}` : null}!
+          Welcome
+          {affiliateTitle
+            ? ` from ${affiliateTitle.toUpperCase()}`
+            : 'to DoSomething.org!'}
+          !
         </strong>{' '}
-        <TextContent>{scholarshipDescription}</TextContent>
+        {scholarshipDescription ? (
+          <TextContent>{scholarshipDescription}</TextContent>
+        ) : (
+          <p>
+            Ready to earn scholarships for doing good? Just follow the simple
+            instructions for the chance to win. Let’s Do This!
+          </p>
+        )}
       </div>
       <div className="bg-gray-100 flex">
         <img
@@ -80,7 +90,7 @@ const ScholarshipInfoBlock = ({
     </div>
     <div className="md:w-1/2 p-6 text-base scholarship-info-block">
       <div className="bg-white m-4 p-6 rounded">
-        {scholarshipAmount && scholarshipCallToAction ? (
+        {scholarshipAmount ? (
           <div>
             <Header
               content={scholarshipCallToAction}
@@ -136,7 +146,7 @@ ScholarshipInfoBlock.defaultProps = {
   actionType: null,
   affiliateSponsors: [],
   affiliateTitle: null,
-  scholarshipCallToAction: null,
+  scholarshipCallToAction: 'Win A Scholarship',
   scholarshipDescription: null,
 };
 export default ScholarshipInfoBlock;

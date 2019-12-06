@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -12,10 +12,8 @@ import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarCo
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlockQuery from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlockQuery';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
-import AffiliateScholarshipBlockQuery from '../../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 import {
   contentfulImageUrl,
-  isTestReferral,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
 } from '../../../../helpers';
@@ -38,8 +36,16 @@ const MarqueeTemplate = ({
   subtitle,
   title,
 }) => {
-  const [showModal, setShowModal] = useState(isTestReferral());
+  const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
+  const [showScholarshipModal, setShowScholarshipModal] = useState(false);
   const numCampaignId = Number(campaignId);
+
+  useEffect(() => {
+    if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
+      setShowScholarshipModal(true);
+    }
+  }, []);
+
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {
@@ -48,9 +54,6 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
-  const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
-  const displayAffiliateScholarshipBlock =
-    scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
@@ -108,25 +111,18 @@ const MarqueeTemplate = ({
                 </div>
               ) : null}
 
-              {displayAffiliateScholarshipBlock ? (
-                <AffiliateScholarshipBlockQuery
-                  campaignId={numCampaignId}
-                  utmLabel={scholarshipAffiliateLabel.toLowerCase()}
-                  scholarshipAmount={scholarshipAmount}
-                  scholarshipDeadline={scholarshipDeadline}
-                  isScholarshipBeta
-                />
-              ) : (
-                <CampaignInfoBlock
-                  campaignId={numCampaignId}
-                  scholarshipAmount={scholarshipAmount}
-                />
-              )}
+              <CampaignInfoBlock
+                campaignId={numCampaignId}
+                scholarshipAmount={scholarshipAmount}
+              />
             </div>
           </Enclosure>
         </div>
-        {showModal ? (
-          <Modal className="-inverted" onClose={() => setShowModal(false)}>
+        {showScholarshipModal && !isAffiliated ? (
+          <Modal
+            className="-inverted"
+            onClose={() => setShowScholarshipModal(false)}
+          >
             <ScholarshipInfoBlockQuery
               affiliateSponsors={affiliateSponsors}
               campaignId={numCampaignId}
