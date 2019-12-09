@@ -93,7 +93,7 @@ class PollLocator extends React.Component {
     const script = document.createElement('script');
     script.src = 'https://tool.votinginfoproject.org/app.js';
     document.head.append(script);
-    script.addEventListener('load', this.loadVit);
+    // script.addEventListener('load', this.loadVit);
   };
 
   /**

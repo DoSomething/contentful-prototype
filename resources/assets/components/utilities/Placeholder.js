@@ -10,8 +10,8 @@ const Placeholder = ({ error }) => {
   }
 
   return (
-    <div className="placeholder">
-      <Spinner />
+    <div className="placeholder h-56 w-full" style={{ minHeight: '70vh' }}>
+      <Spinner className="flex h-full items-center justify-center" />
     </div>
   );
 };

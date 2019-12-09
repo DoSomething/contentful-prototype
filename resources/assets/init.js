@@ -29,7 +29,6 @@ import './scss/admin-dashboard.scss';
 import './scss/chrome.scss';
 import './scss/container.scss';
 import './scss/flash-message.scss';
-import './scss/placeholder.scss';
 import './scss/fonts.scss';
 import './scss/gallery-grid.scss';
 
