@@ -4,7 +4,7 @@ Information regarding daily usage and typical services that will be used during 
 
 ## Testing
 
-### PHP
+### PHPUnit
 
 To run PHP tests locally, `ssh` into the Homestead Vagrant box, `cd` into the Phoenix repository location and use [PHPUnit](https://github.com/sebastianbergmann/phpunit), by running:
 
@@ -16,12 +16,26 @@ $ phpunit
 It is recommended that you run PHP Unit tests within the Homestead Vagrant box.
 {% endhint %}
 
-### JavaScript
+### Jest
 
-To run JavaScript tests locally, use [Jest](https://github.com/facebook/jest), by running:
+To run JavaScript Jest tests locally, use [Jest](https://github.com/facebook/jest), by running:
 
 ```bash
 $ npm test
+```
+
+### Cypress
+
+To run JavaScript Cypress tests locally, install [Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements), and run:
+
+```bash
+$ npm run cypress
+```
+
+Our Cypress tests mock GraphQL requests. New types and fields to GraphQL should be reflected in the root `schema.json` file that is by our Cypress test suite. The easiest way to update the schema is via [Apollo CLI](https://www.apollographql.com/docs/devtools/cli/):
+
+```bash
+$ apollo client:download-schema --endpoint=http://graphql-dev.dosomething.org/graphql schema.json
 ```
 
 ## Code Style
