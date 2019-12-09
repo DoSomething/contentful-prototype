@@ -18,6 +18,7 @@ exports[`MediaUploader snapshot test 1`] = `
       id="media-uploader"
       name="media-uploader"
       onChange={[Function]}
+      required={true}
       type="file"
     />
   </label>
