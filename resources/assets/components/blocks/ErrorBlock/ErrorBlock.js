@@ -32,7 +32,7 @@ const ErrorBlock = ({ error }) => {
 };
 
 ErrorBlock.propTypes = {
-  error: PropTypes.oneOf(PropTypes.object, PropTypes.string),
+  error: PropTypes.oneOf([PropTypes.object, PropTypes.string]),
 };
 
 ErrorBlock.defaultProps = {
