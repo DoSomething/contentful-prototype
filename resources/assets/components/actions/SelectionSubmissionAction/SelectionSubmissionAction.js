@@ -145,7 +145,7 @@ class SelectionSubmissionAction extends PostForm {
             if (selection || this.state.submitted) {
               return (
                 <div className="pb-3 px-3">
-                  <p className="submission-text font-league-gothic leading-none text-4xl uppercase">
+                  <p className="font-league-gothic leading-none text-4xl uppercase">
                     {selection || this.state.selection}
                   </p>
                   <p className="uppercase color-gray font-bold mt-0">
