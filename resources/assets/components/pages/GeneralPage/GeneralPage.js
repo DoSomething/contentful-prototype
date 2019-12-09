@@ -151,7 +151,7 @@ const GeneralPage = props => {
         <DismissableElement
           name="cta_popover_email"
           render={(handleClose, handleComplete) => (
-            <DelayedElement delay={1}>
+            <DelayedElement delay={3}>
               <CtaPopover
                 title="PAYS TO DO GOOD"
                 content="Want to earn easy scholarships for volunteering?

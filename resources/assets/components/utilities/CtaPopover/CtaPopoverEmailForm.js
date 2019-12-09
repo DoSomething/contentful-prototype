@@ -49,7 +49,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       {errorResponse && errorResponse.fields.email ? (
         <div className="text-red-500">{errorResponse.fields.email[0]}</div>
       ) : null}
-      <form className="email-form form pb-2">
+      <form className="email-form form pb-2" onSubmit={handleSubmit}>
         <input
           className="text-field email-form__input"
           type="email"
@@ -57,11 +57,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
           placeholder="Enter your email address"
           onChange={handleChange}
         />
-        <Button
-          className="email-form__button"
-          type="submit"
-          onClick={handleSubmit}
-        >
+        <Button className="email-form__button" type="submit">
           Sign Up
         </Button>
       </form>
@@ -79,7 +75,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       </p>
     </div>
   ) : (
-    <div className="color-success">Thank You For Submitting Your Email</div>
+    <div className="text-green-700">Thank You For Submitting Your Email</div>
   );
 };
 
