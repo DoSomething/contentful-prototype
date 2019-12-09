@@ -10,18 +10,20 @@ const DismissableElement = ({ name, render }) => {
   const handleCompletion = () => {
     // Mark the element as "hidden" in local storage.
     setStorage(`hide_${name}`, 'boolean', true);
-    setShowElement(false);
   };
 
   const handleDismissal = () => {
-    // Mark the element as "dismissed" in local storage & hide it.
-    setStorage(`dismissed_${name}`, 'timestamp', Date.now());
-    setShowElement(false);
+    if (!getStorage(`hide_${name}`, 'boolean')) {
+      // Mark the element as "dismissed" in local storage & hide it.
+      setStorage(`dismissed_${name}`, 'timestamp', Date.now());
+      setShowElement(false);
+    }
   };
 
   useEffect(() => {
     if (query(`hide_${name}`) === '1') {
       handleCompletion();
+      setShowElement(false);
     }
   }, []);
 
