@@ -18,7 +18,7 @@ It is recommended that you run PHP Unit tests within the Homestead Vagrant box.
 
 ### Jest
 
-To run JavaScript Jest tests locally, use [Jest](https://github.com/facebook/jest), by running:
+To run JavaScript [Jest](https://github.com/facebook/jest) tests locally, run:
 
 ```bash
 $ npm test
@@ -26,7 +26,7 @@ $ npm test
 
 ### Cypress
 
-To run JavaScript Cypress tests locally, install [Cypress](https://docs.cypress.io/guides/getting-started/installing-cypress.html#System-requirements), and run:
+To run JavaScript [Cypress](https://www.cypress.io/) tests locally, run:
 
 ```bash
 $ npm run cypress
