@@ -13,9 +13,9 @@ const rotation = keyframes`
   }
 `;
 
-const Spinner = ({ className, size }) => (
+const Spinner = ({ className, size, style }) => (
   // @TODO:forge-removal Rename this class to "spinner".
-  <div className={classnames('loading-spinner', className)}>
+  <div className={classnames('loading-spinner', className)} style={style}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 18 18"
@@ -40,11 +40,13 @@ const Spinner = ({ className, size }) => (
 Spinner.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
+  style: PropTypes.object,
 };
 
 Spinner.defaultProps = {
   className: null,
   size: '32px',
+  style: null,
 };
 
 export default Spinner;

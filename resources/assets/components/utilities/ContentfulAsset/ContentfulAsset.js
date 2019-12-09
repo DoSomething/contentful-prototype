@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 
 import LazyImage from '../LazyImage';
 import { env } from '../../../helpers';
+import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 
 const CONTENTFUL_ASSET_QUERY = gql`
@@ -34,7 +35,7 @@ const ContentfulAsset = ({ id, width, height }) => (
   >
     {({ loading, error, data }) => {
       if (loading) {
-        return <div className="spinner -centered my-12" />;
+        return <Spinner className="flex justify-center py-12" />;
       }
 
       if (error || !data.asset) {

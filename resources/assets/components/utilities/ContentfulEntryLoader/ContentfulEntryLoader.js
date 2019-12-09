@@ -8,6 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import NotFound from '../../NotFound';
 import { env } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
+import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import { SoftEdgeBlockFragment } from '../../actions/SoftEdgeBlock';
 import { EmbedBlockFragment } from '../../blocks/EmbedBlock/EmbedBlock';
@@ -81,7 +82,7 @@ const ContentfulEntryLoader = ({
   });
 
   if (loading) {
-    return <div className="grid-narrow spinner -centered my-12" />;
+    return <Spinner className="grid-narrow flex justify-center py-12" />;
   }
 
   if (error) {

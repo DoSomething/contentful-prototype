@@ -4,6 +4,7 @@ import { Query as ApolloQuery } from 'react-apollo';
 
 import { NetworkStatus } from '../constants';
 import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
+import Spinner from './artifacts/Spinner/Spinner';
 
 /**
  * Fetch results via GraphQL using a query component.
@@ -13,7 +14,9 @@ const Query = ({ query, variables, children, hideSpinner }) => (
     {result => {
       // On initial load, just display a loading spinner.
       if (result.networkStatus === NetworkStatus.LOADING) {
-        return hideSpinner ? null : <div className="spinner -centered p-6" />;
+        return hideSpinner ? null : (
+          <Spinner className="flex justify-center p-6" />
+        );
       }
 
       if (result.error) {
