@@ -6,6 +6,7 @@ import Card from '../Card/Card';
 import Query from '../../Query';
 import SchoolFinderForm from './SchoolFinderForm';
 
+// @TODO: Accept an actionId parameter to filter the school SchoolActionStats.
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
@@ -16,6 +17,10 @@ const USER_SCHOOL_QUERY = gql`
         name
         city
         state
+        schoolActionStats {
+          actionId
+          acceptedQuantity
+        }
       }
     }
   }

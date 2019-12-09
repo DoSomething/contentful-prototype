@@ -12,6 +12,7 @@ const exampleSchool = {
   name: 'Puppet Sloth Elementary',
   city: 'Hollywood',
   state: 'CA',
+  schoolActionStats: [],
 };
 
 const schoolFinderConfig =
