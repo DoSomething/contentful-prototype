@@ -13,9 +13,10 @@ const DismissableElement = ({ name, render }) => {
   };
 
   const handleDismissal = () => {
-    // Mark the element as "dismissed" in local storage & hide it.
-    setStorage(`dismissed_${name}`, 'timestamp', Date.now());
-    setShowElement(false);
+    if (!getStorage(`hide_${name}`, 'boolean')) {
+      // Mark the element as "dismissed" in local storage & hide it.
+      setStorage(`dismissed_${name}`, 'timestamp', Date.now());
+    }
   };
 
   useEffect(() => {
