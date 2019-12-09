@@ -55,7 +55,7 @@ const ScholarshipInfoBlock = ({
           Welcome
           {affiliateTitle
             ? ` from ${affiliateTitle.toUpperCase()}`
-            : 'to DoSomething.org!'}
+            : ' to DoSomething.org!'}
           !
         </strong>{' '}
         {scholarshipDescription ? (
