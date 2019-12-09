@@ -16,6 +16,7 @@ import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
+import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import {
   calculateDifference,
@@ -42,6 +43,8 @@ export const PhotoSubmissionBlockFragment = gql`
     affirmationContent
   }
 `;
+
+const CAPTION_CHARACTER_LIMIT = '60';
 
 class PhotoSubmissionAction extends PostForm {
   /**
@@ -324,6 +327,13 @@ class PhotoSubmissionAction extends PostForm {
                           placeholder={this.props.captionFieldPlaceholder}
                           value={this.state.captionValue}
                           onChange={this.handleChange}
+                          required
+                          maxLength={CAPTION_CHARACTER_LIMIT}
+                        />
+                        <CharacterLimit
+                          className="pt-1"
+                          limit={CAPTION_CHARACTER_LIMIT}
+                          text={this.state.captionValue}
                         />
                       </div>
                     </div>
@@ -357,12 +367,14 @@ class PhotoSubmissionAction extends PostForm {
                             className={classnames('text-field', {
                               'has-error shake': has(errors, 'quantity'),
                             })}
-                            type="text"
+                            type="number"
                             id="quantity"
                             name="quantity"
                             placeholder={this.props.quantityFieldPlaceholder}
                             value={this.state.quantityValue}
                             onChange={this.handleChange}
+                            required
+                            min={Number(quantity) + 1}
                           />
                         </div>
                       ) : null}
@@ -414,6 +426,7 @@ class PhotoSubmissionAction extends PostForm {
                           }
                           value={this.state.whyParticipatedValue}
                           onChange={this.handleChange}
+                          required
                         />
                       </div>
                     </div>
@@ -491,7 +504,7 @@ PhotoSubmissionAction.defaultProps = {
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
-  captionFieldLabel: 'Add a caption to your photo.',
+  captionFieldLabel: 'Add a title to your photo.',
   captionFieldPlaceholder: '60 characters or less',
   className: null,
   informationContent:
