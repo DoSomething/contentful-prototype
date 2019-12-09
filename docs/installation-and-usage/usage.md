@@ -32,7 +32,7 @@ To run JavaScript Cypress tests locally, install [Cypress](https://docs.cypress.
 $ npm run cypress
 ```
 
-Our Cypress tests mock GraphQL requests. New types and fields to GraphQL should be reflected in the root `schema.json` file that is by our Cypress test suite. The easiest way to update the schema is via [Apollo CLI](https://www.apollographql.com/docs/devtools/cli/):
+New GraphQL types, fields, queries, and mutations should be reflected in the root `schema.json` file that is used by our Cypress test suite to mock GraphQL requests. The easiest way to update the schema is by using the [Apollo CLI](https://www.apollographql.com/docs/devtools/cli/):
 
 ```bash
 $ apollo client:download-schema --endpoint=http://graphql-dev.dosomething.org/graphql schema.json
