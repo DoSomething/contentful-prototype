@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 
+import './school-finder.scss';
+
 const SCHOOL_ACTION_QUERY = gql`
   query SchoolActionQuery($actionId: Int!, $schoolId: String!) {
     action(id: $actionId) {
@@ -28,11 +30,11 @@ const SchoolImpact = ({ actionId, schoolId }) => (
           : 0;
 
         return (
-          <div>
-            <p>{quantity}</p>
-            <div className="font-bold uppercase text-gray-400">
+          <div className="quantity-display">
+            <span className="quantity-display__total">{quantity}</span>
+            <span className="quantity-display__units">
               {noun} {verb}
-            </div>
+            </span>
           </div>
         );
       }}
