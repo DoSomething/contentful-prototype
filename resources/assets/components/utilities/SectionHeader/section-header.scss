@@ -2,6 +2,6 @@
 
 .section-header {
   h1.section-header__title.-underlined > span {
-    border-bottom: 5px solid #ffec04;
+    border-bottom: 5px solid theme('colors.yellow.500');
   }
 }

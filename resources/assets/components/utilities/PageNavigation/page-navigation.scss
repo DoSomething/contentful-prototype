@@ -1,5 +1,7 @@
 @import '../../../scss/next-toolbox';
 
+$light-background-color: theme('colors.gray.100');
+
 .page-navigation {
   @include clearfix;
 
@@ -68,14 +70,14 @@
     border-bottom: 4px solid transparent;
 
     &:hover {
-      color: $off-black;
+      color: theme('colors.gray.900');
       text-decoration: none;
-      border-bottom: 4px solid rgba($off-black, 0.5);
+      border-bottom: 4px solid theme('colors.gray.600');
     }
 
     &.is-active {
-      color: $black;
-      border-bottom: 4px solid $off-black;
+      color: theme('colors.gray.900');
+      border-bottom: 4px solid theme('colors.gray.900');
     }
   }
 

@@ -1,5 +1,7 @@
 @import '../../scss/next-toolbox';
 
+$light-background-color: theme('colors.gray.100');
+
 .revealer {
   text-align: center;
   width: 100%;
@@ -29,7 +31,7 @@
   }
 
   h1 {
-    color: $black;
+    color: theme('colors.gray.900');
     font-size: type-scale(1);
     margin-bottom: theme('spacing.6');
   }

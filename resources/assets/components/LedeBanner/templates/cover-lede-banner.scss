@@ -5,7 +5,7 @@
   align-items: center;
   background-size: cover;
   background-position: center;
-  background-color: $black;
+  background-color: theme('colors.gray.900');
   display: flex;
   height: calc(100vh - 84px); // subtract .navigation height
   padding: 15px;
@@ -30,7 +30,7 @@
 }
 
 .cover-lede-banner__headline-title {
-  color: $primary-color;
+  color: theme('colors.yellow.500');
   font-family: theme('fontFamily.source-sans');
   font-size: $font-regular;
   line-height: 1.1;

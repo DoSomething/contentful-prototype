@@ -2,7 +2,7 @@
 
 .chrome {
   > .wrapper {
-    background: $light-background-color;
+    background: theme('colors.gray.100');
   }
 
   &.-lock {

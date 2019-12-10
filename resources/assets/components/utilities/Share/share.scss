@@ -46,13 +46,13 @@
   }
 
   &.-black {
-    color: $dark-background-color;
+    color: theme('colors.gray.900');
     background-color: $white;
-    border: 1px solid $dark-background-color;
+    border: 1px solid theme('colors.gray.900');
 
     &:hover {
       color: $white;
-      background-color: $dark-background-color;
+      background-color: theme('colors.gray.900');
     }
   }
 

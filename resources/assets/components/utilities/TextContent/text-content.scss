@@ -34,7 +34,7 @@
   }
 
   > h1 {
-    color: $black;
+    color: theme('colors.gray.900');
     font-family: theme('fontFamily.league-gothic');
     font-size: 42px;
     font-weight: $weight-normal;
@@ -45,7 +45,7 @@
   > h2,
   > h3,
   > h4 {
-    color: $black;
+    color: theme('colors.gray.900');
     font-family: theme('fontFamily.source-sans');
     font-weight: $weight-bold;
   }
@@ -78,7 +78,7 @@
       left: 0;
       top: -1%;
       width: 4px;
-      background: $primary-color;
+      background: theme('colors.yellow.500');
       position: absolute;
     }
 

@@ -23,7 +23,7 @@ $extraSmall: '(min-width: 360px)';
 
 .menu-nav__item {
   > a {
-    color: $black;
+    color: theme('colors.gray.900');
     display: block;
     font-size: 12px;
     font-weight: 700;
@@ -422,7 +422,7 @@ $extraSmall: '(min-width: 360px)';
     }
 
     a {
-      color: $black;
+      color: theme('colors.gray.900');
       font-weight: $weight-normal;
       text-decoration: underline;
     }

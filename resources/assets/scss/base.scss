@@ -81,7 +81,7 @@ h1,
 h2,
 h3,
 p {
-  color: $black;
+  color: theme('colors.gray.900');
 }
 
 .inverted {
@@ -116,7 +116,7 @@ p {
 }
 
 .color-yellow {
-  color: $primary-color !important;
+  color: theme('colors.yellow.500') !important;
 }
 
 .color-error {
@@ -130,7 +130,7 @@ p {
 // @TODO:phoenix-css-heirarchy-issue with bg-color on Card component.
 // Delete once remedied!
 .bg-black-important {
-  background-color: $black !important;
+  background-color: theme('colors.gray.900') !important;
 }
 
 // @TODO:phoenix-css-heirarchy-issue with bg-color on Card component.
