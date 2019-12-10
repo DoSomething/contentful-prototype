@@ -79,3 +79,9 @@
     color: $white;
   }
 }
+
+//using a short-cut here rather than grid-wide since we don't need to update every modal with base-12 atm
+//@TODO update modal to use base-12-grid
+.modal.-scholarship__info {
+  max-width: 1116px;
+}

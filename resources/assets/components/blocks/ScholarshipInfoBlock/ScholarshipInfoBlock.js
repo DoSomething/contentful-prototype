@@ -32,25 +32,27 @@ const ScholarshipInfoBlock = ({
   scholarshipDescription,
 }) => (
   <Card className="flex flex-col-reverse md:flex-row">
-    <div className="md:w-1/2 p-6">
+    <div className="md:w-1/2 p-6 mx-2 md:mx-4">
       <div className="h-16">
         <div className="float-left mr-4">
-          <DoSomethingLogo className="h-10" />
-        </div>
-        <div className="float-left text-4xl text-black leading-none">
-          &times;
+          <DoSomethingLogo className="h-16" />
         </div>
         {affiliateSponsors.length ? (
-          <div className="__image ml-4 float-left">
-            <img
-              className="h-10"
-              src={affiliateSponsors[0].fields.logo.url}
-              alt={affiliateSponsors[0].fields.logo.title}
-            />
-          </div>
+          <>
+            <div className="h-full pt-2 float-left text-4xl text-black leading-none">
+              &times;
+            </div>
+            <div className="__image ml-4 float-left">
+              <img
+                className="h-16"
+                src={affiliateSponsors[0].fields.logo.url}
+                alt={affiliateSponsors[0].fields.logo.title}
+              />
+            </div>
+          </>
         ) : null}
       </div>
-      <div className="pt-6 pb-3">
+      <div className="pt-6 pb-8">
         <strong className="text-lg">
           Welcome
           {affiliateTitle
@@ -69,11 +71,11 @@ const ScholarshipInfoBlock = ({
       </div>
       <div className="bg-gray-100 flex">
         <img
-          className="w-1/4"
+          className="w-1/4 sm:w-1/6"
           src={ScholarshipMoneyHand}
           alt="scholarships money hand icon"
         />
-        <p className="w-3/4 p-4 text-xs">
+        <p className="w-3/4 sm:w-5/6 px-4 py-2 text-xs sm:text-sm">
           Since 1993, DoSomething.org has given out more than <b>$5,000,000</b>{' '}
           in scholarships. Check out stories from some of our{' '}
           <a
@@ -89,7 +91,7 @@ const ScholarshipInfoBlock = ({
       </div>
     </div>
     <div className="md:w-1/2 p-6 text-base scholarship-info-block">
-      <div className="bg-white m-4 p-6 rounded">
+      <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 rounded">
         {scholarshipAmount ? (
           <div>
             <Header

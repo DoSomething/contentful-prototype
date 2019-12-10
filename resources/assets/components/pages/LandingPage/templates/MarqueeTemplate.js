@@ -120,7 +120,7 @@ const MarqueeTemplate = ({
         </div>
         {showScholarshipModal && !isAffiliated ? (
           <Modal
-            className="-inverted"
+            className="-inverted -scholarship__info"
             onClose={() => setShowScholarshipModal(false)}
           >
             <ScholarshipInfoBlockQuery
