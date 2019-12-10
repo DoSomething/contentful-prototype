@@ -4,6 +4,7 @@ import { Query } from 'react-apollo';
 
 import { NetworkStatus } from '../constants';
 import ErrorBlock from './blocks/ErrorBlock/ErrorBlock';
+import Spinner from './artifacts/Spinner/Spinner';
 
 /**
  * Fetch results via GraphQL using a query component.
@@ -17,7 +18,7 @@ const PaginatedQuery = ({ query, queryName, variables, count, children }) => (
     {result => {
       // On initial load, just display a loading spinner.
       if (result.networkStatus === NetworkStatus.LOADING) {
-        return <div className="spinner -centered" />;
+        return <Spinner className="flex justify-center p-6" />;
       }
 
       if (result.error) {

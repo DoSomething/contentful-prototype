@@ -6,6 +6,7 @@ import { propType } from 'graphql-anywhere';
 
 import './reaction.scss';
 import { BaseFigure } from '../Figure/Figure';
+import Spinner from '../../artifacts/Spinner/Spinner';
 
 export const reactionButtonFragment = gql`
   fragment ReactionButton on Post {
@@ -28,7 +29,7 @@ const ReactionButton = ({ post }) => (
   <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
     {(toggleReaction, { loading }) => {
       const button = loading ? (
-        <div className="spinner" />
+        <Spinner size="20px" />
       ) : (
         <div
           className={classnames('reaction__button', {

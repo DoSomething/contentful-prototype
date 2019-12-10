@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Spinner from '../artifacts/Spinner/Spinner';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 
 const Placeholder = ({ error }) => {
@@ -9,8 +10,8 @@ const Placeholder = ({ error }) => {
   }
 
   return (
-    <div className="placeholder">
-      <div className="spinner" />
+    <div className="placeholder h-56 w-full" style={{ minHeight: '70vh' }}>
+      <Spinner className="flex h-full items-center justify-center" />
     </div>
   );
 };

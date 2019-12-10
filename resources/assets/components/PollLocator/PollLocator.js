@@ -3,6 +3,7 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
+import Spinner from '../artifacts/Spinner/Spinner';
 import { trackAnalyticsEvent } from '../../helpers/analytics';
 
 class PollLocator extends React.Component {
@@ -133,9 +134,9 @@ class PollLocator extends React.Component {
     return (
       <div id="_vit" className="mx-auto">
         {/** this spinner will be auto replaced by the vit content once it loads */}
-        <div
-          className="spinner -centered"
-          style={{ height: 350, width: 640 }}
+        <Spinner
+          className="flex items-center justify-center"
+          style={{ height: 350 }}
         />
       </div>
     );

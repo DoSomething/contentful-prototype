@@ -8,11 +8,10 @@ import { Query } from 'react-apollo';
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
+import Spinner from '../../artifacts/Spinner/Spinner';
 import FormValidation from '../../utilities/Form/FormValidation';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
-
-import './selection-submission-action.scss';
 
 export const SelectionSubmissionBlockFragment = gql`
   fragment SelectionSubmissionBlockFragment on SelectionSubmissionBlock {
@@ -135,7 +134,7 @@ class SelectionSubmissionAction extends PostForm {
         >
           {({ loading, data }) => {
             if (loading) {
-              return <div className="spinner -centered mb-3" />;
+              return <Spinner className="flex justify-center p-3 pb-8" />;
             }
 
             const post = get(data, 'posts', [])[0];
@@ -146,7 +145,7 @@ class SelectionSubmissionAction extends PostForm {
             if (selection || this.state.submitted) {
               return (
                 <div className="pb-3 px-3">
-                  <p className="submission-text uppercase">
+                  <p className="font-league-gothic leading-none text-4xl uppercase">
                     {selection || this.state.selection}
                   </p>
                   <p className="uppercase color-gray font-bold mt-0">
