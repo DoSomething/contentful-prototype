@@ -28,9 +28,12 @@ const SchoolImpact = ({ actionId, schoolId }) => (
           : 0;
 
         return (
-          <p>
-            {quantity} {noun} {verb}
-          </p>
+          <div>
+            <p>{quantity}</p>
+            <div className="font-bold uppercase text-gray-400">
+              {noun} {verb}
+            </div>
+          </div>
         );
       }}
     </Query>

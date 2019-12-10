@@ -40,9 +40,11 @@ const SchoolFinder = props => (
                 </h3>
                 {school.name ? (
                   <div>
-                    <small className="uppercase">
-                      {school.city}, {school.state}
-                    </small>
+                    <div>
+                      <small className="uppercase">
+                        {school.city}, {school.state}
+                      </small>
+                    </div>
                     <SchoolImpact
                       schoolId={schoolId}
                       actionId={props.actionId}
