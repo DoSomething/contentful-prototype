@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import Card from '../Card/Card';
 import Query from '../../Query';
+import SchoolImpact from './SchoolImpact';
 import SchoolFinderForm from './SchoolFinderForm';
 
-// @TODO: Accept an actionId parameter to filter the school SchoolActionStats.
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
@@ -17,10 +17,6 @@ const USER_SCHOOL_QUERY = gql`
         name
         city
         state
-        schoolActionStats {
-          actionId
-          acceptedQuantity
-        }
       }
     }
   }
@@ -43,9 +39,15 @@ const SchoolFinder = props => (
                   {school.name ? school.name : props.schoolNotAvailableHeadline}
                 </h3>
                 {school.name ? (
-                  <small className="uppercase">
-                    {school.city}, {school.state}
-                  </small>
+                  <div>
+                    <small className="uppercase">
+                      {school.city}, {school.state}
+                    </small>
+                    <SchoolImpact
+                      schoolId={schoolId}
+                      actionId={props.actionId}
+                    />
+                  </div>
                 ) : (
                   <p>{props.schoolNotAvailableDescription}</p>
                 )}
@@ -64,6 +66,7 @@ const SchoolFinder = props => (
 );
 
 SchoolFinder.propTypes = {
+  actionId: PropTypes.number,
   userId: PropTypes.string.isRequired,
   schoolFinderFormDescription: PropTypes.string,
   schoolNotAvailableHeadline: PropTypes.string,
@@ -71,6 +74,7 @@ SchoolFinder.propTypes = {
 };
 
 SchoolFinder.defaultProps = {
+  actionId: null,
   schoolFinderFormDescription: null,
   schoolNotAvailableHeadline: 'No School Selected',
   schoolNotAvailableDescription: null,
