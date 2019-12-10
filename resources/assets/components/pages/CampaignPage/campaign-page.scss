@@ -8,7 +8,7 @@
   .primary {
     @include media($large) {
       float: left;
-      padding-right: $half-spacing;
+      padding-right: theme('spacing.3');
       width: 66.6666666666666%;
     }
   }
@@ -19,8 +19,8 @@
     @include media($large) {
       display: block;
       float: right;
-      padding-left: $half-spacing;
-      margin: 0 0 $base-spacing;
+      padding-left: theme('spacing.3');
+      margin: 0 0 theme('spacing.6');
       width: 33.3333333333333%;
     }
   }

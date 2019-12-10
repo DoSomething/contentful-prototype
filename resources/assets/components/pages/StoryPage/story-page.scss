@@ -10,7 +10,7 @@
 
     > .wrapper {
       grid-column: 1 / -1;
-      padding: 0 $half-spacing;
+      padding: 0 theme('spacing.3');
 
       @include media($medium) {
         grid-column: 2 / -2;
@@ -31,7 +31,7 @@
       font-size: 97px;
       font-weight: normal;
       line-height: 1;
-      margin: $half-spacing 0;
+      margin: theme('spacing.3') 0;
 
       @include media($medium) {
         font-size: 123px;
@@ -40,13 +40,13 @@
 
     .lede-banner__headline-subtitle {
       font-size: 30px;
-      margin: $half-spacing 0;
+      margin: theme('spacing.3') 0;
     }
   }
 }
 
 .story-section {
-  padding: $half-spacing 0;
+  padding: theme('spacing.3') 0;
 
   @include media($medium) {
     padding: $base-spacing 0;

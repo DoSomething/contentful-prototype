@@ -10,11 +10,11 @@
   // Any children following the first one should definitely have a border-top.
   .scholarship-information__details > :nth-child(n+2) {
     border-top: $border-style;
-    padding-top: $half-spacing;
+    padding-top: theme('spacing.3');
   }
 
   .scholarship-deadline {
-    padding-bottom: $half-spacing;
+    padding-bottom: theme('spacing.3');
   }
 
   @include media($medium) {
@@ -24,7 +24,7 @@
       .scholarship-information__amount {
         flex-basis: 50%;
         border-right: $border-style;
-        margin-right: $half-spacing;
+        margin-right: theme('spacing.3');
       }
 
       .scholarship-information__details {
@@ -68,13 +68,13 @@
     @include media('(min-width: 350px)') {
       float: none;
     }
-    padding-bottom: $half-spacing;
+    padding-bottom: theme('spacing.3');
   }
 
   dt.scholarship-beta {
     border-top: 1px solid theme('colors.gray.300');
     float: none;
-    padding-top: $half-spacing;
+    padding-top: theme('spacing.3');
   }
 
   dd.scholarship-beta {

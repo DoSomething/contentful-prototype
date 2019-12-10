@@ -3,18 +3,18 @@
 .photo-submission-action {
   @include media($large) {
     float: left;
-    padding-right: $half-spacing;
+    padding-right: theme('spacing.3');
     width: 66.6666666666666%;
   }
 }
 
 .photo-submission-information {
-  margin-top: $base-spacing;
+  margin-top: theme('spacing.6');
 
   @include media($large) {
     float: right;
     margin-top: 0;
-    padding-left: $half-spacing;
+    padding-left: theme('spacing.3');
     width: 33.3333333333333%;
   }
 }
@@ -32,7 +32,7 @@
         display: block;
         height: calc(100% - 12px);
         position: absolute;
-        top: $half-spacing;
+        top: theme('spacing.3');
         left: 50%;
         width: 1px;
         z-index: 10;
@@ -58,7 +58,7 @@
 
   // Form Sections
   .form-section {
-    padding: 0 $half-spacing;
+    padding: 0 theme('spacing.3');
 
     @include media($medium) {
       flex: 1;
@@ -66,7 +66,7 @@
 
     > .wrapper {
       border-bottom: 1px solid theme('colors.gray.200');
-      padding: $half-spacing 0;
+      padding: theme('spacing.3') 0;
 
       @include media($medium) {
         border-bottom: 0 none;
@@ -92,7 +92,7 @@
   }
 
   .form-item + .form-item {
-    margin-top: $base-spacing;
+    margin-top: theme('spacing.6');
   }
 
   // Quantity Display
@@ -107,7 +107,7 @@
     font-size: $font-regular;
     font-weight: $weight-bold;
     line-height: 1;
-    margin-bottom: $half-spacing/2;
+    margin-bottom: theme('spacing.2');
     text-transform: uppercase;
   }
 

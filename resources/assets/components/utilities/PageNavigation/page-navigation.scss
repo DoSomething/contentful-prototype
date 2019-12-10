@@ -3,7 +3,6 @@
 .page-navigation {
   @include clearfix;
 
-  margin: 12px 0 (-$half-spacing);
   position: relative;
 
   @include media($tablet) {
@@ -46,7 +45,7 @@
   > .wrapper {
     overflow-x: auto;
     overflow-y: hidden;
-    padding: $half-spacing;
+    padding: theme('spacing.3');
     position: relative;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
@@ -64,7 +63,7 @@
   .nav-link {
     color: #9b9b9b;
     display: inline-block;
-    margin: 10px $half-spacing;
+    margin: 10px theme('spacing.3');
     text-transform: uppercase;
     border-bottom: 4px solid transparent;
 
@@ -83,8 +82,8 @@
   .nav-button {
     opacity: 0;
     position: absolute;
-    right: $half-spacing;
-    top: $half-spacing;
+    right: theme('spacing.3');
+    top: theme('spacing.3');
     transform: translateY(100%);
     transition: opacity 0.1s linear, transform 0.2s linear;
   }

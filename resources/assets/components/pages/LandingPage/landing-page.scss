@@ -12,7 +12,7 @@
   }
 
   .marquee-banner {
-    margin-bottom: $half-spacing;
+    margin-bottom: theme('spacing.3');
     grid-column: full-start / full-end;
 
     @include media($large) {
@@ -42,11 +42,11 @@
   }
 
   .primary {
-    margin-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
   }
 
   .secondary {
-    margin-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
 
     @include media($largest) {
       // @TODO: if primary content is short and this only spans 2, then grid rows are spread
@@ -62,7 +62,7 @@
   border-top: 1px solid theme('colors.gray.200');
   bottom: 0;
   left: 0;
-  padding: $half-spacing;
+  padding: theme('spacing.3');
   position: fixed;
   width: 100%;
   z-index: 10;
@@ -81,10 +81,10 @@
     display: block;
     margin: 0 auto;
     max-width: 450px;
-    padding: $base-spacing;
+    padding: theme('spacing.6');
 
     @include media($medium) {
-      margin: 0 auto $half-spacing;
+      margin: 0 auto theme('spacing.3');
     }
   }
 }
@@ -101,7 +101,7 @@
     // blocks when they're stacked.
     & + .container__block {
       @include media($mobile) {
-        margin-top: $base-spacing;
+        margin-top: theme('spacing.6');
       }
     }
 

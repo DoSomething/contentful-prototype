@@ -5,7 +5,7 @@
   text-align: center;
 
   @media (min-width: 425px) {
-    margin-top: $half-spacing;
+    margin-top: theme('spacing.3');
   }
 
   .-icon {
@@ -60,12 +60,12 @@
     width: auto;
     display: inline-block;
     color: theme('colors.gray.200');
-    margin-left: $half-spacing / 2;
-    margin-right: $half-spacing / 2;
+    margin-left: 6px;
+    margin-right: 6px;
 
     @include media($medium) {
-      margin-left: $half-spacing;
-      margin-right: $half-spacing;
+      margin-left: theme('spacing.3');
+      margin-right: theme('spacing.3');
     }
 
     &:hover,

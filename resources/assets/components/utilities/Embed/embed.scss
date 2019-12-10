@@ -29,7 +29,7 @@
 .embed__badge {
   flex: 0 0 auto;
   border-radius: 0;
-  padding: $half-spacing;
+  padding: theme('spacing.3');
 }
 
 .embed__badge img {

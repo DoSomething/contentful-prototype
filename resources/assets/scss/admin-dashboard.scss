@@ -11,7 +11,7 @@
   > .wrapper {
     margin: 0 auto;
     max-width: 1440px;
-    padding: $base-spacing $base-spacing $section-spacing;
+    padding: theme('spacing.6') theme('spacing.6') theme('spacing.12');
   }
 
   a {
@@ -118,7 +118,7 @@
       }
 
       li + li {
-        margin-top: $half-spacing;
+        margin-top: theme('spacing.3');
       }
     }
   }
