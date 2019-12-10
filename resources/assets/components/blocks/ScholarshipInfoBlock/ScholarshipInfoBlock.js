@@ -37,17 +37,19 @@ const ScholarshipInfoBlock = ({
         <div className="float-left mr-4">
           <DoSomethingLogo className="h-16" />
         </div>
-        <div className="h-full pt-2 float-left text-4xl text-black leading-none">
-          &times;
-        </div>
         {affiliateSponsors.length ? (
-          <div className="__image ml-4 float-left">
-            <img
-              className="h-16"
-              src={affiliateSponsors[0].fields.logo.url}
-              alt={affiliateSponsors[0].fields.logo.title}
-            />
-          </div>
+          <>
+            <div className="h-full pt-2 float-left text-4xl text-black leading-none">
+              &times;
+            </div>
+            <div className="__image ml-4 float-left">
+              <img
+                className="h-16"
+                src={affiliateSponsors[0].fields.logo.url}
+                alt={affiliateSponsors[0].fields.logo.title}
+              />
+            </div>
+          </>
         ) : null}
       </div>
       <div className="pt-6 pb-8">
