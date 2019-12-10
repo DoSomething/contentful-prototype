@@ -75,7 +75,7 @@ const ScholarshipInfoBlock = ({
           src={ScholarshipMoneyHand}
           alt="scholarships money hand icon"
         />
-        <p className="w-3/4 sm:w-5/6 px-4 py-2 text-sm">
+        <p className="w-3/4 sm:w-5/6 px-4 py-2 text-xs sm:text-sm">
           Since 1993, DoSomething.org has given out more than <b>$5,000,000</b>{' '}
           in scholarships. Check out stories from some of our{' '}
           <a
