@@ -35,24 +35,16 @@ const SchoolFinder = props => (
           >
             {schoolId ? (
               <div className="current-school p-3">
-                <h3>
-                  {school.name ? school.name : props.schoolNotAvailableHeadline}
-                </h3>
-                {school.name ? (
-                  <div>
-                    <div>
-                      <small className="uppercase">
-                        {school.city}, {school.state}
-                      </small>
-                    </div>
-                    <SchoolImpact
-                      schoolId={schoolId}
-                      actionId={props.actionId}
-                    />
-                  </div>
-                ) : (
-                  <p>{props.schoolNotAvailableDescription}</p>
-                )}
+                <div className="border border-solid border-gray-200 rounded">
+                  {school.name ? (
+                    <SchoolImpact school={school} actionId={props.actionId} />
+                  ) : (
+                    <React.Fragment>
+                      <h3>{props.schoolNotAvailableHeadline}</h3>
+                      <p>{props.schoolNotAvailableDescription}</p>
+                    </React.Fragment>
+                  )}
+                </div>
               </div>
             ) : (
               <SchoolFinderForm
