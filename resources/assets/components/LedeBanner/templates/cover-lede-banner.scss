@@ -13,7 +13,7 @@
 
   @include media($medium) {
     height: calc(100vh - 110px); // subtract .navigation height
-    padding: $base-spacing;
+    padding: theme('spacing.6');
   }
 
   // If narrow viewport less than 550px, do not stretch the lede banner and allow
@@ -51,7 +51,7 @@
   font-weight: normal;
   letter-spacing: 0.5px;
   line-height: 1.2;
-  margin-bottom: $base-spacing;
+  margin-bottom: theme('spacing.6');
   text-align: center;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   text-transform: uppercase;
@@ -63,7 +63,7 @@
 
 .cover-lede-banner__blurb {
   color: $white;
-  margin-bottom: $base-spacing;
+  margin-bottom: theme('spacing.6');
   text-align: center;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 

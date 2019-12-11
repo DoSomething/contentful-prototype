@@ -37,7 +37,7 @@
 .chat-bubble.-post-bubble {
   color: $black;
   background-color: $white;
-  padding: $base-spacing theme('spacing.3');
+  padding: theme('spacing.6') theme('spacing.3');
 
   p {
     color: $black;

@@ -45,7 +45,7 @@
 
     li {
       display: inline-block;
-      margin: gutter() $base-spacing;
+      margin: theme('spacing.3') theme('spacing.6');
     }
 
     img {

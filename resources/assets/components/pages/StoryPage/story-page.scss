@@ -49,6 +49,6 @@
   padding: theme('spacing.3') 0;
 
   @include media($medium) {
-    padding: $base-spacing 0;
+    padding: theme('spacing.6') 0;
   }
 }

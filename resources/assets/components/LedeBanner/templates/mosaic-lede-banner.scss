@@ -91,7 +91,7 @@
 
   @include media($large) {
     font-size: 28px;
-    top: -$half-spacing;
+    top: -12px;
   }
 
   &.smaller-font {

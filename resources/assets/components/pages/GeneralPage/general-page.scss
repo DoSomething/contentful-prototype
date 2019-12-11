@@ -52,7 +52,7 @@
 
   .general-page__authors {
     display: inline-block;
-    margin: $base-spacing auto 0;
+    margin: theme('spacing.6') auto 0;
     text-align: left;
 
     @include media($large) {

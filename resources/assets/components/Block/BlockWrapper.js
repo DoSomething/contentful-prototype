@@ -32,7 +32,11 @@ const BlockTitle = ({ title, shareLink }: BlockTitleProps) => {
     title
   );
 
-  return <h4 className="block-wrapper__title">{titleElement}</h4>;
+  return (
+    <h4 className="block-wrapper__title -mt-3 -mx-3 mb-6 p-3">
+      {titleElement}
+    </h4>
+  );
 };
 
 type BlockWrapperProps = {
