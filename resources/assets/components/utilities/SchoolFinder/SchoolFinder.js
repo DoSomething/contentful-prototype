@@ -45,10 +45,10 @@ const SchoolFinder = ({
                   {school.name ? (
                     <SchoolImpact school={school} actionId={actionId} />
                   ) : (
-                    <React.Fragment>
+                    <div className="p-3">
                       <h3>{schoolNotAvailableHeadline}</h3>
                       <p>{schoolNotAvailableDescription}</p>
-                    </React.Fragment>
+                    </div>
                   )}
                 </div>
               </div>

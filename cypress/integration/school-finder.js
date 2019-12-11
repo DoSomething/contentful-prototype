@@ -63,7 +63,7 @@ describe('School Finder', () => {
     cy.get('.school-finder-form').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
-    cy.get('.school-finder h3').should('contain', exampleSchool.name);
+    cy.get('.school-finder .school-name').should('contain', exampleSchool.name);
     cy.get('.school-finder').should(
       'not.contain',
       schoolFinderConfig.schoolFinderFormDescription,
