@@ -41,14 +41,14 @@ const SchoolFinder = ({
           >
             {schoolId ? (
               <div className="current-school p-3">
-                <div className="border border-solid border-gray-200 rounded">
+                <div className="border border-solid border-gray-200 rounded p-3">
                   {school.name ? (
                     <SchoolImpact school={school} actionId={actionId} />
                   ) : (
-                    <div className="p-3">
+                    <React.Fragment>
                       <h3>{schoolNotAvailableHeadline}</h3>
                       <p>{schoolNotAvailableDescription}</p>
-                    </div>
+                    </React.Fragment>
                   )}
                 </div>
               </div>

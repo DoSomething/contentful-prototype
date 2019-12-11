@@ -19,7 +19,7 @@ const SCHOOL_ACTION_QUERY = gql`
 `;
 
 const SchoolImpact = ({ actionId, school }) => (
-  <div className="md:flex p-3">
+  <div className="md:flex">
     <div className="md:flex-auto mb-3 pb-3 md:pt-3 border-b border-solid border-gray-200 md:border-none">
       <p className="school-name font-bold">{school.name}</p>
       <span className="uppercase text-sm text-gray-400 font-bold">
