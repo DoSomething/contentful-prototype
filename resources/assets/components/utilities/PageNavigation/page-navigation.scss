@@ -1,6 +1,6 @@
 @import '../../../scss/next-toolbox';
 
-$light-background-color: theme('colors.gray.100');
+$light-background-color: #f7fafc; // theme('colors.gray.100')
 
 .page-navigation {
   @include clearfix;
