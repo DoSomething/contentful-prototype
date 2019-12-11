@@ -1,4 +1,4 @@
-<div id="admin-dashboard" class="admin-dashboard">
+<div id="admin-dashboard" class="admin-dashboard z-max">
     <div class="wrapper base-12-grid">
         <h1 class="admin-dashboard-title grid-full font-normal uppercase text-base text-gray-400 mb-6">
             <span>Admin Dashboard</span>
