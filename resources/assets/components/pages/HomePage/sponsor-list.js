@@ -15,11 +15,6 @@ const sponsorList = [
       'https://images.ctfassets.net/81iqaqpfd8fy/51oT5WIvO0KuseKe8KUUwG/1672e778430cc396a41cbc512f8a288c/JetBlue_grayscale.png',
   },
   {
-    name: 'Google',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/6r6VAzdzdCQkcmGCMOyas4/2cafbfcbaf31d1c648fbaf82724bb591/Logo_Google_2013_Official.svg__0.png',
-  },
-  {
     name: '3M',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/5HS3laXKkoo2QgwOkwuaew/dfdc90ac7fa937777e775f2b441c231f/3M_20logo_20_281_29.png',
@@ -28,11 +23,6 @@ const sponsorList = [
     name: 'Luminate',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/7izbenndLruNPu0T4p3tB7/c5af0bf310c698fe25e03e676a6e9d0d/Luminate_logo_primary_strapline_BLACK_CMYK.png',
-  },
-  {
-    name: 'Ford Foundation',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/Q4v63LdpsIkoAkgkUAEOe/213a574b5cf8cce7131537c5677935b6/Ford-Foundation_logo.jpg',
   },
   {
     name: 'Takis',
@@ -45,34 +35,9 @@ const sponsorList = [
       'https://images.ctfassets.net/81iqaqpfd8fy/2CftMNWZQ4we6K0Qe6o8wK/1b7a4bd1a339ebd0031fd06716cd9350/espn-logo_0.png',
   },
   {
-    name: 'ABC be inspired',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/hwPGwTIDU446MEAqqU2SQ/959776b19114a07d2085fb0f6fd42fee/abc-be-inspired.png',
-  },
-  {
-    name: 'Truth',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/1azvfECZPWKqAA0CEeaece/895603a1acce99a7460c6ac20cc3648d/truth_20logo_20orange-no_20bg_0.png',
-  },
-  {
     name: 'CVS Health Foundation',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/4tqLqBgVQQ0EuosqoCOC2q/e9e1f1d6f44cc586b08de4e812ddbacf/CVSHealthFoundation.png',
-  },
-  {
-    name: 'J&J',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/EsUqcK9aOyayGcsGQqmWS/d6f101af2953971d6375dd4719b6ca92/jj-logo_0.png',
-  },
-  {
-    name: 'General Mills',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/69juzVYMvuGI4KSae2AyGK/7acca4734fac1e75e2629292d49cafdd/GMI-Corporate-Logo-V_FC.png',
-  },
-  {
-    name: 'Garnier',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/20CRMNAHvmCq4ysw4Cw4IO/a47b86aa3d4dfb55f41607409ab161a8/Garnier_Logo-01.png',
   },
   {
     name: 'Chevrolet',
@@ -80,19 +45,9 @@ const sponsorList = [
       'https://images.ctfassets.net/81iqaqpfd8fy/2HQ3xouauciK8oUwgEqyaE/e5c554e7eff7a98e7051ccfe59a050fd/chevy_0.png',
   },
   {
-    name: 'Power Rangers',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/2KZZyZm2TegaqMWyEq228o/6500335c9676f2ea3d5c036c692c3951/power-rangers-logo-01.png',
-  },
-  {
     name: 'Taco Bell Foundation',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/1tx8p40l2ogSwMysomY2Ao/f393029ef44c96f895ab072384b01d40/7376214-logo.png',
-  },
-  {
-    name: 'Cooper Tires',
-    image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/6z3TizyUDYCymWQEgCUWGA/6eb48fb4a607f7c7db1845422efe8d1c/CooperTireLogo_stacked.png',
   },
   {
     name: 'TikTok',
