@@ -13,10 +13,10 @@
 }
 
 .byline--page-author {
-  padding: $half-spacing/2 0;
+  padding: theme('spacing.2') 0;
 
   @include media($medium) {
     float: left;
-    padding: 0 $base-spacing;
+    padding: 0 theme('spacing.6');
   }
 }

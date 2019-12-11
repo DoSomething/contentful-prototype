@@ -3,7 +3,7 @@
 
 .voter-registration {
   .button {
-    margin-top: $half-spacing;
+    margin-top: theme('spacing.3');
     max-width: 350px;
     text-transform: none;
     width: 100%;
@@ -12,7 +12,7 @@
   @include media($larger) {
     .markdown {
       float: left;
-      padding-right: $base-spacing;
+      padding-right: theme('spacing.6');
       width: 66.666666667%;
     }
 
@@ -21,7 +21,7 @@
       display: block;
       float: right;
       margin-top: 0;
-      padding-left: $half-spacing;
+      padding-left: theme('spacing.3');
       width: 33.333333333%;
     }
   }

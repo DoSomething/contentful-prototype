@@ -6,14 +6,14 @@
 .gallery-grid-duo {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: $half-spacing;
-  padding: 0 $half-spacing;
+  grid-row-gap: theme('spacing.3');
+  padding: 0 theme('spacing.3');
   overflow: hidden;
 
   @include media('(min-width: 425px)') {
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: $half-spacing;
-    grid-row-gap: $half-spacing;
+    grid-column-gap: theme('spacing.3');
+    grid-row-gap: theme('spacing.3');
   }
 }
 
@@ -28,8 +28,8 @@
 
   @include media($larger) {
     grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: $base-spacing;
-    grid-row-gap: $base-spacing;
+    grid-column-gap: theme('spacing.6');
+    grid-row-gap: theme('spacing.6');
   }
 }
 
@@ -44,8 +44,8 @@
 
   @include media($larger) {
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: $base-spacing;
-    grid-row-gap: $base-spacing;
+    grid-column-gap: theme('spacing.6');
+    grid-row-gap: theme('spacing.6');
   }
 }
 
@@ -56,8 +56,8 @@
 
   @include media($larger) {
     grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: $base-spacing;
-    grid-row-gap: $base-spacing;
+    grid-column-gap: theme('spacing.6');
+    grid-row-gap: theme('spacing.6');
   }
 }
 
@@ -76,8 +76,8 @@
 
   @include media($larger) {
     grid-template-columns: repeat(6, 1fr);
-    grid-column-gap: $base-spacing;
-    grid-row-gap: $base-spacing;
+    grid-column-gap: theme('spacing.6');
+    grid-row-gap: theme('spacing.6');
   }
 }
 
@@ -92,7 +92,7 @@
 }
 
 .gallery-item__meta {
-  margin-top: $half-spacing;
+  margin-top: theme('spacing.3');
 }
 
 .gallery-item__title {

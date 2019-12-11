@@ -1,7 +1,7 @@
 @import '../../scss/next-toolbox.scss';
 
 .quiz {
-  margin: 0 $half-spacing;
+  margin: 0 theme('spacing.3');
 
   .quiz__heading {
     color: $primary-color;
@@ -14,11 +14,11 @@
     font-family: theme('fontFamily.league-gothic');
     font-size: $font-hero;
     text-transform: uppercase;
-    margin-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
   }
 
   .question {
-    margin: $base-spacing 0;
+    margin: theme('spacing.6') 0;
 
     .question__title {
       color: $white;
@@ -29,19 +29,19 @@
 
       @include media($medium) {
         font-size: $font-hero;
-        padding: $base-spacing;
+        padding: theme('spacing.6');
       }
     }
   }
 
   .question__choices {
-    margin-top: $base-spacing;
+    margin-top: theme('spacing.6');
     display: flex;
     flex-wrap: wrap;
   }
 
   .choice {
-    margin-bottom: $half-spacing;
+    margin-bottom: theme('spacing.3');
     font-weight: $weight-bold;
     text-decoration: none;
     width: 100%;
@@ -49,7 +49,7 @@
 
     &.background-image {
       flex: 0 0 33%;
-      padding: 0 $half-spacing $half-spacing 0;
+      padding: 0 theme('spacing.3') theme('spacing.3') 0;
 
       @include media($small) {
         flex: 0 0 50%;
@@ -67,7 +67,7 @@
   }
 
   .quiz-conclusion {
-    margin-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
 
     .conclusion__item {
       display: inline-block;

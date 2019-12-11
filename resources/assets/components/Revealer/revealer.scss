@@ -3,13 +3,13 @@
 .revealer {
   text-align: center;
   width: 100%;
-  margin-top: $base-spacing;
-  padding: $base-spacing $half-spacing 0;
+  margin-top: theme('spacing.6');
+  padding: theme('spacing.6') theme('spacing.3') 0;
   position: relative;
 
   @include media($medium) {
-    margin-bottom: $base-spacing;
-    padding-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
+    padding-bottom: theme('spacing.6');
   }
 
   &::before {
@@ -31,7 +31,7 @@
   h1 {
     color: $black;
     font-size: type-scale(1);
-    margin-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
   }
 
   .button.is-cta {

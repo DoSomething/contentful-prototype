@@ -22,7 +22,7 @@
     .general-page__subtitle {
       font-family: theme('fontFamily.source-sans');
       font-weight: $weight-bold;
-      margin-top: $half-spacing;
+      margin-top: theme('spacing.3');
 
       @include media($medium) {
         font-size: $font-large;
@@ -42,17 +42,17 @@
         $yellow 66.6%,
         $yellow 100%
       );
-      margin: $section-spacing 10px;
+      margin: theme('spacing.12') 10px;
 
       @include media($medium) {
-        margin: $section-spacing 0;
+        margin: theme('spacing.12') 0;
       }
     }
   }
 
   .general-page__authors {
     display: inline-block;
-    margin: $base-spacing auto 0;
+    margin: theme('spacing.6') auto 0;
     text-align: left;
 
     @include media($large) {
@@ -62,17 +62,17 @@
 
   .general-page__author-bios {
     border-top: 2px solid #dcdcdc;
-    margin: $base-spacing $half-spacing 0;
-    padding: $half-spacing 0;
+    margin: theme('spacing.6') theme('spacing.3') 0;
+    padding: theme('spacing.3') 0;
   }
 
   .row {
     .primary {
-      margin: 0 0 $base-spacing;
+      margin: 0 0 theme('spacing.6');
 
       @include media($large) {
         float: left;
-        padding-right: $half-spacing;
+        padding-right: theme('spacing.3');
         width: 66.6666666666666%;
       }
     }
@@ -83,8 +83,8 @@
       @include media($large) {
         display: block;
         float: right;
-        padding-left: $half-spacing;
-        margin: 0 0 $base-spacing;
+        padding-left: theme('spacing.3');
+        margin: 0 0 theme('spacing.6');
         width: 33.3333333333333%;
       }
     }

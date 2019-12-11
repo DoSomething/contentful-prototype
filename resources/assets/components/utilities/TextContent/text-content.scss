@@ -26,11 +26,11 @@
   > ol + p,
   > ol + ol,
   > ol + ul {
-    margin-top: $half-spacing;
+    margin-top: theme('spacing.3');
   }
 
   > p + .component-entry {
-    margin-top: $base-spacing;
+    margin-top: theme('spacing.6');
   }
 
   > h1 {
@@ -70,7 +70,7 @@
   > blockquote {
     position: relative;
     text-align: left;
-    margin: $base-spacing 0;
+    margin: theme('spacing.6') 0;
 
     &:before {
       content: '';
@@ -84,7 +84,7 @@
 
     p {
       font-size: $font-medium;
-      margin-left: $base-spacing;
+      margin-left: theme('spacing.6');
     }
   }
 }

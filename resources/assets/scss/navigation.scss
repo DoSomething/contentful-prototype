@@ -16,12 +16,12 @@
   margin-left: 0;
 
   @include media($larger) {
-    margin-right: $base-spacing;
+    margin-right: theme('spacing.6');
   }
 
   > li + li {
     @include media($largest) {
-      margin-left: $base-spacing;
+      margin-left: theme('spacing.6');
     }
   }
 
@@ -34,7 +34,7 @@
       display: inline-block;
       font-size: $font-regular;
       margin: 0 auto;
-      padding: $half-spacing $base-spacing;
+      padding: theme('spacing.3') theme('spacing.6');
 
       @include media($large) {
         border-color: $black;

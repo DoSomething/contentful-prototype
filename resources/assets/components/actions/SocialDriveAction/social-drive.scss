@@ -4,18 +4,18 @@
   .link-area {
     @include media($large) {
       display: flex;
-
-      .share-text {
-        margin: auto;
-        white-space: nowrap;
-        padding-right: $half-spacing;
-        padding-bottom: 0;
-      }
     }
 
     .share-text {
       color: $off-black;
-      padding-bottom: $half-spacing / 2;
+      padding-bottom: theme('spacing.2');
+
+      @include media($large) {
+        margin: auto;
+        white-space: nowrap;
+        padding-right: theme('spacing.3');
+        padding-bottom: 0;
+      }
     }
 
     .link-bar {

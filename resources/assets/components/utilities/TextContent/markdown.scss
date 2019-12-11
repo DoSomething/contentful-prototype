@@ -21,7 +21,7 @@
   ol + p,
   ol + ol,
   ol + ul {
-    margin-top: $half-spacing;
+    margin-top: theme('spacing.3');
   }
 
   &.is-success {
@@ -42,12 +42,12 @@
   pre,
   blockquote {
     position: relative;
-    margin: $base-spacing 0;
+    margin: theme('spacing.6') 0;
 
     p,
     ul,
     code {
-      margin-left: $base-spacing;
+      margin-left: theme('spacing.6');
     }
 
     &:before {

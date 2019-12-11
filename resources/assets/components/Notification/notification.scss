@@ -12,7 +12,7 @@
 .notification {
   position: relative;
   width: 100%;
-  margin: $half-spacing;
+  margin: theme('spacing.3');
 
   &.-error {
     color: $white;
@@ -20,8 +20,8 @@
   }
 
   .notification__content {
-    padding: $half-spacing $base-spacing;
-    margin-right: $half-spacing;
+    padding: theme('spacing.3') theme('spacing.6');
+    margin-right: theme('spacing.3');
 
     p {
       color: inherit;
@@ -34,8 +34,8 @@
     color: inherit;
     font-size: 32px;
     position: absolute;
-    right: $half-spacing;
-    top: $half-spacing;
+    right: theme('spacing.3');
+    top: theme('spacing.3');
 
     &:focus {
       outline: transparent 0 none;

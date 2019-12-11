@@ -3,7 +3,7 @@
 .media-uploader {
   background-color: #eee;
   color: $med-gray;
-  margin-bottom: $half-spacing;
+  margin-bottom: theme('spacing.3');
   width: 100%;
 
   &:hover,

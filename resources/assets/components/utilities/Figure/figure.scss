@@ -51,11 +51,11 @@
 .figure.-one-third {
   @include media($tablet) {
     &.figure.-right-collapse > .figure__media {
-      margin-left: $base-spacing;
+      margin-left: theme('spacing.6');
     }
 
     &.figure.-left-collapse > .figure__media {
-      margin-right: $base-spacing;
+      margin-right: theme('spacing.6');
     }
   }
 

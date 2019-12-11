@@ -25,7 +25,7 @@
 }
 
 .post-ornament-text {
-  border-left: $half-spacing solid rgba(#fff, 0.3);
+  border-left: theme('spacing.3') solid rgba(#fff, 0.3);
   background-clip: padding-box; // Allow border to "see through" background.
 }
 
@@ -37,7 +37,7 @@
 .chat-bubble.-post-bubble {
   color: $black;
   background-color: $white;
-  padding: $base-spacing $half-spacing;
+  padding: theme('spacing.6') theme('spacing.3');
 
   p {
     color: $black;

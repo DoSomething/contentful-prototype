@@ -20,7 +20,7 @@
     font-size: $font-small;
     font-weight: $weight-bold;
     line-height: 1;
-    padding-right: $half-spacing;
+    padding-right: theme('spacing.3');
     text-transform: uppercase;
     vertical-align: middle;
     white-space: nowrap;

@@ -18,8 +18,8 @@ $small-to-medium: '(min-width: 600px)';
 
   .dashboard__segment {
     text-align: center;
-    padding-top: $half-spacing;
-    padding-bottom: $half-spacing;
+    padding-top: theme('spacing.3');
+    padding-bottom: theme('spacing.3');
 
     @include media($large) {
       text-align: left;
@@ -36,8 +36,8 @@ $small-to-medium: '(min-width: 600px)';
 
   .dashboard-share {
     border-top: 1px solid theme('colors.gray.200');
-    margin-top: $half-spacing;
-    padding-top: $base-spacing;
+    margin-top: theme('spacing.3');
+    padding-top: theme('spacing.6');
     text-align: left;
 
     @include media($small-to-medium) {
@@ -65,7 +65,7 @@ $small-to-medium: '(min-width: 600px)';
   }
 
   @include media($small-to-medium) {
-    padding-right: $half-spacing;
+    padding-right: theme('spacing.3');
   }
 
   @include media($large) {
@@ -81,7 +81,7 @@ $small-to-medium: '(min-width: 600px)';
 
 .dashboard-share__button {
   flex: 1 1;
-  margin-top: $half-spacing;
+  margin-top: theme('spacing.3');
 
   @include media($small-to-medium) {
     margin-top: 0;

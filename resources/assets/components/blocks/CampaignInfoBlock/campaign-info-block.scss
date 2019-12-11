@@ -16,7 +16,7 @@
       @include media('(min-width: 350px)') {
         float: none;
       }
-      padding-bottom: $half-spacing;
+      padding-bottom: theme('spacing.3');
     }
   }
 
@@ -28,12 +28,12 @@
 
     @include media('(min-width: 350px)') {
       float: left;
-      padding-bottom: $half-spacing;
+      padding-bottom: theme('spacing.3');
     }
   }
 
   dd {
-    padding-bottom: $half-spacing;
+    padding-bottom: theme('spacing.3');
 
     @include media('(min-width: 350px)') {
       float: right;
@@ -43,7 +43,7 @@
   dt.campaign-info__scholarship {
     border-top: 1px solid theme('colors.gray.300');
     float: none;
-    padding-top: $half-spacing;
+    padding-top: theme('spacing.3');
   }
 
   dd.campaign-info__scholarship {

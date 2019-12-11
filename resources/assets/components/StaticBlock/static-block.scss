@@ -1,7 +1,7 @@
 @import '~@dosomething/forge/scss/toolkit';
 
 .static-block__citation {
-  margin-top: $base-spacing;
+  margin-top: theme('spacing.6');
 
   &::before {
     content: '';
@@ -9,6 +9,6 @@
     width: 50%;
     height: 2px;
     background-color: $med-gray;
-    margin-bottom: $base-spacing / 2;
+    margin-bottom: theme('spacing.3');
   }
 }

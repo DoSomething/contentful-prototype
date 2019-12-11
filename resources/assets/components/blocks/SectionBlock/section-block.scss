@@ -12,7 +12,7 @@
   }
 
   > h1 {
-    margin-bottom: $base-spacing;
+    margin-bottom: theme('spacing.6');
 
     @include media($medium) {
       font-size: 60px;
