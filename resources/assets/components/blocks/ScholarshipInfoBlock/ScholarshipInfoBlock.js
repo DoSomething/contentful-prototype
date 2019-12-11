@@ -94,7 +94,7 @@ const ScholarshipInfoBlock = ({
           .
         </p>
       </div>
-      <div className="float-left w-2/3 md:w-1/2 pt-6">
+      <div className="float-left w-2/3 lg:w-1/2 pt-6">
         <SignupButtonContainer
           className="w-full"
           text={
