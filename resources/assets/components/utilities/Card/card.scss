@@ -6,8 +6,8 @@
 }
 
 .card__title {
-  color: $black;
-  background-color: $primary-color;
+  color: theme('colors.gray.900');
+  background-color: theme('colors.yellow.500');
   padding: theme('spacing.3');
 
   h1 {

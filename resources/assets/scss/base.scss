@@ -62,6 +62,10 @@ html {
   line-height: 1.4;
 }
 
+body {
+  @apply bg-gray-300;
+}
+
 // Reset browser defaults so this behaves like <a>
 // or <input type="button"> elements do.
 button {
@@ -142,6 +146,11 @@ p {
 .bordered {
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-clip: padding-box;
+}
+
+// @TODO:forge-removal Use class utilities to style footer.
+.footer a {
+  @apply text-gray-600;
 }
 
 .word-break {

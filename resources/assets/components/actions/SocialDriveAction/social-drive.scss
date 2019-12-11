@@ -7,7 +7,7 @@
     }
 
     .share-text {
-      color: $off-black;
+      color: theme('colors.gray.900');
       padding-bottom: theme('spacing.2');
 
       @include media($large) {
