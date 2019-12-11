@@ -22,9 +22,15 @@ const USER_SCHOOL_QUERY = gql`
   }
 `;
 
-const SchoolFinder = props => (
+const SchoolFinder = ({
+  actionId,
+  schoolFinderFormDescription,
+  schoolNotAvailableDescription,
+  schoolNotAvailableHeadline,
+  userId,
+}) => (
   <div className="school-finder">
-    <Query query={USER_SCHOOL_QUERY} variables={{ userId: props.userId }}>
+    <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
       {result => {
         const { schoolId, school } = result.user;
 
@@ -37,19 +43,19 @@ const SchoolFinder = props => (
               <div className="current-school p-3">
                 <div className="border border-solid border-gray-200 rounded">
                   {school.name ? (
-                    <SchoolImpact school={school} actionId={props.actionId} />
+                    <SchoolImpact school={school} actionId={actionId} />
                   ) : (
                     <React.Fragment>
-                      <h3>{props.schoolNotAvailableHeadline}</h3>
-                      <p>{props.schoolNotAvailableDescription}</p>
+                      <h3>{schoolNotAvailableHeadline}</h3>
+                      <p>{schoolNotAvailableDescription}</p>
                     </React.Fragment>
                   )}
                 </div>
               </div>
             ) : (
               <SchoolFinderForm
-                userId={props.userId}
-                description={props.schoolFinderFormDescription}
+                userId={userId}
+                description={schoolFinderFormDescription}
               />
             )}
           </Card>

@@ -20,13 +20,13 @@ const SCHOOL_ACTION_QUERY = gql`
 
 const SchoolImpact = ({ actionId, school }) => (
   <div className="md:flex md:content-center p-3">
-    <div className="md:flex-auto">
-      <p>{school.name}</p>
-      <small className="uppercase">
+    <div className="md:flex-auto mb-3 pb-3 md:pt-3 border-b border-solid border-gray-200 md:border-none">
+      <p className="font-bold">{school.name}</p>
+      <span className="uppercase text-sm text-gray-400 font-bold">
         {school.city}, {school.state}
-      </small>
+      </span>
     </div>
-    <div className="quantity">
+    <div className="quantity md:border-l md:pl-3 border-solid border-gray-200">
       <Query
         query={SCHOOL_ACTION_QUERY}
         variables={{ actionId, schoolId: school.id }}
@@ -39,10 +39,10 @@ const SchoolImpact = ({ actionId, school }) => (
 
           return (
             <React.Fragment>
-              <span className="block font-league-gothic font-bold text-4xl mb-1">
+              <span className="block font-league-gothic text-4xl leading-none">
                 {quantity}
               </span>
-              <span className="uppercase text-sm text-gray-400 font-bold">
+              <span className="uppercase text-gray-400 font-bold">
                 {noun} {verb}
               </span>
             </React.Fragment>
