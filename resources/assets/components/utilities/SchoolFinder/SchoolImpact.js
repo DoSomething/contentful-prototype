@@ -55,7 +55,12 @@ const SchoolImpact = ({ actionId, school }) => (
 
 SchoolImpact.propTypes = {
   actionId: PropTypes.number.isRequired,
-  school: PropTypes.object.isRequired,
+  school: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+  }).isRequired,
 };
 
 export default SchoolImpact;
