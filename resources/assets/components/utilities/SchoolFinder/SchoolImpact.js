@@ -19,7 +19,7 @@ const SCHOOL_ACTION_QUERY = gql`
 `;
 
 const SchoolImpact = ({ actionId, school }) => (
-  <div className="md:flex md:content-center p-3">
+  <div className="md:flex p-3">
     <div className="md:flex-auto mb-3 pb-3 md:pt-3 border-b border-solid border-gray-200 md:border-none">
       <p className="school-name font-bold">{school.name}</p>
       <span className="uppercase text-sm text-gray-400 font-bold">
@@ -39,10 +39,10 @@ const SchoolImpact = ({ actionId, school }) => (
 
           return (
             <React.Fragment>
-              <span className="block font-league-gothic text-4xl leading-none">
+              <span className="quantity-value block font-league-gothic text-4xl leading-none">
                 {quantity}
               </span>
-              <span className="uppercase text-gray-400 font-bold">
+              <span className="quantity-label uppercase text-gray-400 font-bold">
                 {noun} {verb}
               </span>
             </React.Fragment>

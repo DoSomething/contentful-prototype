@@ -294,6 +294,7 @@ export const exampleSchoolFinderCampaign = {
                 },
                 imageAlignment: null,
                 additionalContent: {
+                  actionId: 21,
                   showSchoolFinder: true,
                   schoolNotAvailableHeadline: 'No School Selected',
                   schoolFinderFormDescription:
