@@ -3,9 +3,14 @@ import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { getHumanFriendlyDate } from '../../../helpers';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
+import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
+import SignupButtonContainer from '../../SignupButton/SignupButton';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
+import {
+  getHumanFriendlyDate,
+  isScholarshipAffiliateReferral,
+} from '../../../helpers';
 
 import './scholarshipInfoBlock.scss';
 
@@ -88,6 +93,16 @@ const ScholarshipInfoBlock = ({
           </a>
           .
         </p>
+      </div>
+      <div>
+        <SignupButtonContainer
+          className="w-full"
+          text={
+            isScholarshipAffiliateReferral()
+              ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+              : undefined
+          }
+        />
       </div>
     </div>
     <div className="md:w-1/2 p-6 text-base scholarship-info-block">
