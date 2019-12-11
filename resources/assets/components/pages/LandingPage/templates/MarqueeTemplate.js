@@ -135,8 +135,15 @@ const MarqueeTemplate = ({
               scholarshipDeadline={scholarshipDeadline}
               scholarshipDescription={scholarshipDescription}
               utmLabel={scholarshipAffiliateLabel.toLowerCase()}
-              closeModal={closeModal}
-            />
+            >
+              <SignupButtonContainer
+                text={
+                  isScholarshipAffiliateReferral()
+                    ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                    : undefined
+                }
+              />
+            </ScholarshipInfoBlockQuery>
           </Modal>
         ) : null}
       </article>

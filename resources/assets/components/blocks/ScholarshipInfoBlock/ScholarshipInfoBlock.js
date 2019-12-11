@@ -4,13 +4,8 @@ import PropTypes from 'prop-types';
 import Card from '../../utilities/Card/Card';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
-import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
-import SignupButtonContainer from '../../SignupButton/SignupButton';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
-import {
-  getHumanFriendlyDate,
-  isScholarshipAffiliateReferral,
-} from '../../../helpers';
+import { getHumanFriendlyDate } from '../../../helpers';
 
 import './scholarshipInfoBlock.scss';
 
@@ -31,6 +26,7 @@ const ScholarshipInfoBlock = ({
   affiliateSponsors,
   actionType,
   affiliateTitle,
+  children,
   scholarshipAmount,
   scholarshipCallToAction,
   scholarshipDeadline,
@@ -94,16 +90,7 @@ const ScholarshipInfoBlock = ({
           .
         </p>
       </div>
-      <div className="float-left w-2/3 lg:w-1/2 pt-6">
-        <SignupButtonContainer
-          className="w-full"
-          text={
-            isScholarshipAffiliateReferral()
-              ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-              : undefined
-          }
-        />
-      </div>
+      {children}
     </div>
     <div className="md:w-1/2 p-6 text-base scholarship-info-block">
       <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 rounded">
@@ -153,6 +140,7 @@ ScholarshipInfoBlock.propTypes = {
   actionType: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateTitle: PropTypes.string,
+  children: PropTypes.object,
   scholarshipAmount: PropTypes.number.isRequired,
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
@@ -163,6 +151,7 @@ ScholarshipInfoBlock.defaultProps = {
   actionType: null,
   affiliateSponsors: [],
   affiliateTitle: null,
+  children: null,
   scholarshipCallToAction: 'Win A Scholarship',
   scholarshipDescription: null,
 };
