@@ -27,6 +27,7 @@ const SchoolFinder = ({
   schoolFinderFormDescription,
   schoolNotAvailableDescription,
   schoolNotAvailableHeadline,
+  schoolSelectedConfirmation,
   userId,
 }) => (
   <div className="school-finder">
@@ -41,6 +42,9 @@ const SchoolFinder = ({
           >
             {schoolId ? (
               <div className="current-school p-3">
+                {schoolSelectedConfirmation ? (
+                  <p className="pb-3">{schoolSelectedConfirmation}</p>
+                ) : null}
                 <div className="border border-solid border-gray-200 rounded p-3">
                   {school.name ? (
                     <SchoolImpact school={school} actionId={actionId} />
@@ -71,6 +75,7 @@ SchoolFinder.propTypes = {
   schoolFinderFormDescription: PropTypes.string,
   schoolNotAvailableHeadline: PropTypes.string,
   schoolNotAvailableDescription: PropTypes.string,
+  schoolSelectedConfirmation: PropTypes.string,
 };
 
 SchoolFinder.defaultProps = {
@@ -78,6 +83,7 @@ SchoolFinder.defaultProps = {
   schoolFinderFormDescription: null,
   schoolNotAvailableHeadline: 'No School Selected',
   schoolNotAvailableDescription: null,
+  schoolSelectedConfirmation: null,
 };
 
 export default SchoolFinder;

@@ -33,6 +33,7 @@
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)
   - [Affiliate Scholarship Block](development/features/affiliate-scholarship-block.md)
   - [Analytics Waypoint](development/features/analytics-waypoint.md)
+  - [School Finder](development/features/school-finder.md)
 - [Contentful](development/contentful/README.md)
   - [Migration Scripts](development/contentful/migration-scripts.md)
   - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)

@@ -18,49 +18,61 @@ const SCHOOL_ACTION_QUERY = gql`
   }
 `;
 
-const SchoolImpact = ({ actionId, school }) => (
-  <div className="md:flex">
-    <div className="md:flex-auto mb-3 pb-3 md:pt-3 border-b border-solid border-gray-200 md:border-none">
-      <p className="school-name font-bold">{school.name}</p>
-      <span className="uppercase text-sm text-gray-400 font-bold">
-        {school.city}, {school.state}
-      </span>
-    </div>
-    <div className="quantity md:border-l md:pl-3 border-solid border-gray-200">
-      <Query
-        query={SCHOOL_ACTION_QUERY}
-        variables={{ actionId, schoolId: school.id }}
-      >
-        {result => {
-          const { noun, schoolActionStats, verb } = result.action;
-          const quantity = schoolActionStats.length
-            ? schoolActionStats[0].acceptedQuantity
-            : 0;
+const SchoolImpact = ({ actionId, school }) => {
+  const schoolClassName = actionId
+    ? 'mb-3 pb-3  md:pt-3 border-b border-solid border-gray-200 md:border-none'
+    : '';
 
-          return (
-            <React.Fragment>
-              <span className="quantity-value block font-league-gothic text-4xl leading-none">
-                {quantity}
-              </span>
-              <span className="quantity-label uppercase text-gray-400 font-bold">
-                {noun} {verb}
-              </span>
-            </React.Fragment>
-          );
-        }}
-      </Query>
+  return (
+    <div className="md:flex">
+      <div className={`md:flex-auto ${schoolClassName}`}>
+        <p className="school-name font-bold">{school.name}</p>
+        <span className="uppercase text-sm text-gray-400 font-bold">
+          {school.city}, {school.state}
+        </span>
+      </div>
+      {actionId ? (
+        <div className="quantity md:border-l md:pl-3 border-solid border-gray-200">
+          <Query
+            query={SCHOOL_ACTION_QUERY}
+            variables={{ actionId, schoolId: school.id }}
+          >
+            {result => {
+              const { noun, schoolActionStats, verb } = result.action;
+              const quantity = schoolActionStats.length
+                ? schoolActionStats[0].acceptedQuantity
+                : 0;
+
+              return (
+                <React.Fragment>
+                  <span className="quantity-value block font-league-gothic text-4xl leading-none">
+                    {quantity}
+                  </span>
+                  <span className="quantity-label uppercase text-gray-400 font-bold">
+                    {noun} {verb}
+                  </span>
+                </React.Fragment>
+              );
+            }}
+          </Query>
+        </div>
+      ) : null}
     </div>
-  </div>
-);
+  );
+};
 
 SchoolImpact.propTypes = {
-  actionId: PropTypes.number.isRequired,
+  actionId: PropTypes.number,
   school: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
   }).isRequired,
+};
+
+SchoolImpact.defaultProps = {
+  actionId: null,
 };
 
 export default SchoolImpact;

@@ -72,6 +72,9 @@ const ContentBlock = props => {
             schoolNotAvailableHeadline={
               additionalContent.schoolNotAvailableHeadline
             }
+            schoolSelectedConfirmation={
+              additionalContent.schoolSelectedConfirmation
+            }
           />
         </div>
       ) : null}
