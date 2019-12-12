@@ -22,6 +22,8 @@ A `SchoolFinder` can be displayed within a `ContentBlock` entry, by setting the 
 
 - `schoolSelectedConfirmation` - Description displayed when user has selected a school. This property is optional, default value is `null`.
 
+**Note** - This would be better implemented as a separate content type with fields instead hijacking the `additionalContent` JSON field of our `ContentBlock` content type. We may refactor if the feature will be used by multiple campaigns (was built for Teens For Jeans 2019).
+
 ### Example
 
 ```
