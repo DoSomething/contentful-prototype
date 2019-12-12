@@ -37,9 +37,13 @@ A `SchoolFinder` can be displayed within a `ContentBlock` entry, by setting the 
 
 ## Current Limitations
 
+- Colleges are currently not available to be selected via School Finder, only K-12 schools are listed.
+
+  - Colleges are not included in our Great Schools data set. We may want to add colleges to our Schools database, and store our own internal ID for schools instead of the Great Schools`universal-id` we're currently saving to a user `school_id`.
+
 - A user is currently unable to edit their school once it is set.
 
-- Colleges are currently not available to be selected via School Finder, only K-12 schools are listed.
+  - This is mainly to avoid the complexity around whether we'd need to update any posts the user has submitted in association with their previous `school_id` value.
 
 ## Links
 
