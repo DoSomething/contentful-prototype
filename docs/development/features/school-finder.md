@@ -43,8 +43,6 @@ A `SchoolFinder` can be displayed within a `ContentBlock` entry, by setting the 
 
 ## Links
 
-- Editorial instructions
+- [Editorial instructions](https://docs.google.com/document/d/1_sYkIseRBCUm3TmMvyB7iMAbMj4IOOTOz961rdl_2XY/edit#)
 
-- Product Brief
-
-- Technical Spec
+- [Technical Spec](https://docs.google.com/document/d/1c11vXT-nu5TGR4B8LyPPApQDYiTUcjgRMKaSP9nQ20M/edit?usp=sharing)
