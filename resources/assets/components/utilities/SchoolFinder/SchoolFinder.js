@@ -70,7 +70,7 @@ const SchoolFinder = ({
 );
 
 SchoolFinder.propTypes = {
-  actionId: PropTypes.number,
+  actionId: PropTypes.number.isRequired,
   userId: PropTypes.string.isRequired,
   schoolFinderFormDescription: PropTypes.string,
   schoolNotAvailableHeadline: PropTypes.string,
@@ -79,7 +79,6 @@ SchoolFinder.propTypes = {
 };
 
 SchoolFinder.defaultProps = {
-  actionId: null,
   schoolFinderFormDescription: null,
   schoolNotAvailableHeadline: 'No School Selected',
   schoolNotAvailableDescription: null,
