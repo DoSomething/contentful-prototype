@@ -132,14 +132,10 @@ const MarqueeTemplate = ({
               scholarshipDescription={scholarshipDescription}
               utmLabel={scholarshipAffiliateLabel.toLowerCase()}
             >
-              <div className="pt-6 w-2/3 lg:w-1/3">
+              <div className="pt-6 w-2/3 sm:w-1/2">
                 <SignupButtonContainer
-                  className="w-full"
-                  text={
-                    isScholarshipAffiliateReferral()
-                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                      : undefined
-                  }
+                  className="w-full md:px-2"
+                  text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
                 />
               </div>
             </ScholarshipInfoBlockQuery>

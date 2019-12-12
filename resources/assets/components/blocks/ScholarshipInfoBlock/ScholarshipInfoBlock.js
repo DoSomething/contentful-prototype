@@ -72,10 +72,10 @@ const ScholarshipInfoBlock = ({
       </div>
       <div className="bg-gray-100 flex">
         <div
-          className="bg-no-repeat bg-cover bg-center w-1/4 sm:w-1/6"
+          className="bg-no-repeat bg-cover bg-center w-1/4 lg:w-1/6"
           style={{ backgroundImage: `url(${ScholarshipMoneyHand})` }}
         />
-        <p className="w-3/4 sm:w-5/6 px-4 py-2 text-xs sm:text-sm">
+        <p className="w-3/4 lg:w-5/6 px-4 py-2 text-xs sm:text-base md:text-xs lg:text-sm">
           Since 1993, DoSomething.org has given out more than <b>$5,000,000</b>{' '}
           in scholarships. Check out stories from some of our{' '}
           <a
