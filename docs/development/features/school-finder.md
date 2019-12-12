@@ -10,7 +10,7 @@ Upon selecting a school, if the `SchoolFinder` is configured with an `actionId`,
 
 ## Usage Instructions
 
-A `SchoolFinder` can be displayed within a `ContentBlock` entry, by setting the following properties in the `additionalContent` JSON field:
+A `SchoolFinder` can be displayed within a [`ContentBlock`](development/content-types/content-block.md) entry, by setting the following properties in the `additionalContent` JSON field:
 
 - `showSchoolFinder` - If set to `true`, display a `SchoolFinder` below the `ContentBlock`
 
