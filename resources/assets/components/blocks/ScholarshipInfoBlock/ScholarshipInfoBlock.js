@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
-import TextContent from '../../utilities/TextContent/TextContent';
 import { getHumanFriendlyDate } from '../../../helpers';
+import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 
@@ -26,6 +26,7 @@ const ScholarshipInfoBlock = ({
   affiliateSponsors,
   actionType,
   affiliateTitle,
+  children,
   scholarshipAmount,
   scholarshipCallToAction,
   scholarshipDeadline,
@@ -89,6 +90,7 @@ const ScholarshipInfoBlock = ({
           .
         </p>
       </div>
+      {children}
     </div>
     <div className="md:w-1/2 p-6 text-base scholarship-info-block">
       <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 rounded">
@@ -138,6 +140,7 @@ ScholarshipInfoBlock.propTypes = {
   actionType: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateTitle: PropTypes.string,
+  children: PropTypes.object,
   scholarshipAmount: PropTypes.number.isRequired,
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
@@ -148,6 +151,7 @@ ScholarshipInfoBlock.defaultProps = {
   actionType: null,
   affiliateSponsors: [],
   affiliateTitle: null,
+  children: null,
   scholarshipCallToAction: 'Win A Scholarship',
   scholarshipDescription: null,
 };
