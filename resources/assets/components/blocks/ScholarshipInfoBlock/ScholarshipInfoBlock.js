@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
+import { getHumanFriendlyDate } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
-import { getHumanFriendlyDate } from '../../../helpers';
 
 import './scholarshipInfoBlock.scss';
 
