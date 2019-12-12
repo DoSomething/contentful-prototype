@@ -8,7 +8,7 @@ If they don't have a school set, the user is prompted to select their school's s
 
 Upon selecting a school, if the `SchoolFinder` is configured with an `actionId`, the selected school's aggregate approved quantity for the action will display next to the school information.
 
-## Usage
+## Usage Instructions
 
 A `SchoolFinder` can be displayed within a [`ContentBlock`](development/content-types/content-block.md) entry, by setting the following properties in the `additionalContent` JSON field:
 
