@@ -114,10 +114,11 @@ class ContentfulEntry extends React.Component {
           />
         );
 
+      case 'CampaignDashboard':
+        return <CampaignDashboard {...withoutNulls(json)} />;
+
       case 'campaignDashboard':
-        return (
-          <CampaignDashboard id={json.id} {...withoutNulls(json.fields)} />
-        );
+        return <CampaignDashboard {...withoutNulls(json.fields)} />;
 
       case 'CampaignUpdateBlock':
         return (
