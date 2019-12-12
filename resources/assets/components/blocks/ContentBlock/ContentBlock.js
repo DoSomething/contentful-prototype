@@ -62,6 +62,7 @@ const ContentBlock = props => {
       {additionalContent && additionalContent.showSchoolFinder ? (
         <div className="pt-3">
           <SchoolFinderContainer
+            actionId={additionalContent.actionId}
             schoolFinderFormDescription={
               additionalContent.schoolFinderFormDescription
             }

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import Card from '../Card/Card';
 import Query from '../../Query';
+import SchoolImpact from './SchoolImpact';
 import SchoolFinderForm from './SchoolFinderForm';
 
-// @TODO: Accept an actionId parameter to filter the school SchoolActionStats.
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
@@ -17,18 +17,20 @@ const USER_SCHOOL_QUERY = gql`
         name
         city
         state
-        schoolActionStats {
-          actionId
-          acceptedQuantity
-        }
       }
     }
   }
 `;
 
-const SchoolFinder = props => (
+const SchoolFinder = ({
+  actionId,
+  schoolFinderFormDescription,
+  schoolNotAvailableDescription,
+  schoolNotAvailableHeadline,
+  userId,
+}) => (
   <div className="school-finder">
-    <Query query={USER_SCHOOL_QUERY} variables={{ userId: props.userId }}>
+    <Query query={USER_SCHOOL_QUERY} variables={{ userId }}>
       {result => {
         const { schoolId, school } = result.user;
 
@@ -39,21 +41,21 @@ const SchoolFinder = props => (
           >
             {schoolId ? (
               <div className="current-school p-3">
-                <h3>
-                  {school.name ? school.name : props.schoolNotAvailableHeadline}
-                </h3>
-                {school.name ? (
-                  <small className="uppercase">
-                    {school.city}, {school.state}
-                  </small>
-                ) : (
-                  <p>{props.schoolNotAvailableDescription}</p>
-                )}
+                <div className="border border-solid border-gray-200 rounded p-3">
+                  {school.name ? (
+                    <SchoolImpact school={school} actionId={actionId} />
+                  ) : (
+                    <React.Fragment>
+                      <h3>{schoolNotAvailableHeadline}</h3>
+                      <p>{schoolNotAvailableDescription}</p>
+                    </React.Fragment>
+                  )}
+                </div>
               </div>
             ) : (
               <SchoolFinderForm
-                userId={props.userId}
-                description={props.schoolFinderFormDescription}
+                userId={userId}
+                description={schoolFinderFormDescription}
               />
             )}
           </Card>
@@ -64,6 +66,7 @@ const SchoolFinder = props => (
 );
 
 SchoolFinder.propTypes = {
+  actionId: PropTypes.number,
   userId: PropTypes.string.isRequired,
   schoolFinderFormDescription: PropTypes.string,
   schoolNotAvailableHeadline: PropTypes.string,
@@ -71,6 +74,7 @@ SchoolFinder.propTypes = {
 };
 
 SchoolFinder.defaultProps = {
+  actionId: null,
   schoolFinderFormDescription: null,
   schoolNotAvailableHeadline: 'No School Selected',
   schoolNotAvailableDescription: null,

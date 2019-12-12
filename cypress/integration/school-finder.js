@@ -14,6 +14,17 @@ const exampleSchool = {
   state: 'CA',
   schoolActionStats: [],
 };
+const exampleAction = {
+  id: 21,
+  noun: 'puppets',
+  verb: 'forgotten',
+  schoolActionStats: [
+    {
+      id: 4,
+      acceptedQuantity: 711,
+    },
+  ],
+};
 
 const schoolFinderConfig =
   exampleSchoolFinderCampaign.campaign.pages[0].fields.blocks[0].fields
@@ -47,7 +58,7 @@ describe('School Finder', () => {
     );
   });
 
-  it('Visit School Finder campaign and display user school info if set', () => {
+  it('Visit School Finder campaign and display user school, school impact if set', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('UserSchoolQuery', {
@@ -56,6 +67,9 @@ describe('School Finder', () => {
         school: exampleSchool,
       },
     });
+    cy.mockGraphqlOp('SchoolActionQuery', {
+      action: exampleAction,
+    });
 
     cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
 
@@ -63,7 +77,15 @@ describe('School Finder', () => {
     cy.get('.school-finder-form').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
-    cy.get('.school-finder h3').should('contain', exampleSchool.name);
+    cy.get('.school-finder .school-name').should('contain', exampleSchool.name);
+    cy.get('.school-finder .quantity-value').should(
+      'contain',
+      exampleAction.schoolActionStats[0].acceptedQuantity,
+    );
+    cy.get('.school-finder .quantity-label').should(
+      'contain',
+      `${exampleAction.noun} ${exampleAction.verb}`,
+    );
     cy.get('.school-finder').should(
       'not.contain',
       schoolFinderConfig.schoolFinderFormDescription,
@@ -71,6 +93,32 @@ describe('School Finder', () => {
     cy.get('.school-finder').should(
       'not.contain',
       schoolFinderConfig.schoolNotAvailableDescription,
+    );
+  });
+
+  it('Visit School Finder campaign and display user school, 0 for school impact if no action stats', () => {
+    const user = userFactory();
+    const exampleActionWithoutStats = cloneDeep(exampleAction);
+    exampleActionWithoutStats.schoolActionStats = [];
+
+    cy.mockGraphqlOp('UserSchoolQuery', {
+      user: {
+        schoolId: exampleSchool.id,
+        school: exampleSchool,
+      },
+    });
+    cy.mockGraphqlOp('SchoolActionQuery', {
+      action: exampleActionWithoutStats,
+    });
+
+    cy.authVisitCampaignWithSignup(user, exampleSchoolFinderCampaign);
+
+    cy.get('.current-school').should('have.length', 1);
+    cy.get('.school-finder .school-name').should('contain', exampleSchool.name);
+    cy.get('.school-finder .quantity-value').should('contain', 0);
+    cy.get('.school-finder .quantity-label').should(
+      'contain',
+      `${exampleAction.noun} ${exampleAction.verb}`,
     );
   });
 
