@@ -2,9 +2,11 @@
 
 ## Overview
 
-The `SchoolFinder` component provides an interface for an authenticated user to view or select their current school, updating their Northstar profile's `school_id` field upon submit. It also displays their school's impact for the [action](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/actions.md) set via the `action_id` property of the `SchoolFinder`.
+The `SchoolFinder` component provides an interface for an authenticated user to view or select their current school, updating their Northstar profile's `school_id` field upon submit.
 
-The user is prompted to select their school's state, and then is presented with an autocomplete dropdown of schools in the selected state. This list of schools is sourced from [Great Schools](https://www.greatschools.org/).
+If they don't have a school set, the user is prompted to select their school's state, and then is presented with an autocomplete dropdown of schools in the selected state. This list of schools is sourced from [Great Schools](https://www.greatschools.org/).
+
+Upon selecting a school, if the `SchoolFinder` is configured with an `actionId`, the selected school's aggregate approved quantity for the action will display next to the school information.
 
 ## Usage Instructions
 
@@ -12,9 +14,9 @@ A `SchoolFinder` can be displayed within a `ContentBlock` entry, by setting the 
 
 - `showSchoolFinder` - If set to `true`, display a `SchoolFinder` below the `ContentBlock`
 
-- `actionId` - The action to display the user school's aggregate quantity for
+- `actionId` - If set, display the selected school's aggregate quantity for given [action](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/actions.md). This property is optional, if not set - school impact is not displayed.
 
-- `schoolFinderFormDescription` - Description displayed above the school state/name select form. This property is optional, default value is `null`.
+- `schoolFinderFormDescription` - Optional. Description displayed above the school state/name select form. This property is optional, default value is `null`.
 
 - `schoolNotAvailableHeadline` - Headline displayed when user cannot find their school via dropdown. This property is optional, default value is "No School Selected".
 
