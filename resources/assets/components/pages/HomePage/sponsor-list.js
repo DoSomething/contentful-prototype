@@ -64,6 +64,31 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/4GkuPYrBnKPSKDcfyYppsL/dab4a609b2e5ed03f0bc42fea22ffb8d/nfl_huddle_for_100_dark-01.png',
   },
+   {
+    name: 'Cotton',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/4hV98gLRcrYAZ3BoCtmvx2/b944f3ee746028b560fe2055e2fd775a/Seal_of_Cotton_Tagline_Stacked.png',
+  },
+  {
+    name: 'Fossil',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/3HRncNccA84RmK3EKHbdZv/d601df9773e00a8b074a00ac5cab7dfc/Fossil_Only-White.png',
+  },
+    {
+    name: 'Susan Crown Exchange',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/5U3sV1c5CGlfUHl2AQRKCE/59576a9fd1e785cbfbea18db22a9109b/SCE_Logo_-_White_Circle__1_.png',
+  },
+    {
+    name: 'Aeropostale',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/7slWvGQqSktAkkc8Xpmx55/ce4553ab27b8247f1c41f2ff98e19ab0/AE__ROPOSTALE-LOGO-3.png',
+  },
+    {
+    name: 'Blue Shield of California',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/76GkhfoKBplUByDBRa70h1/de76788153ca7c63971f12385a6a331e/BSC_new_logo__002_.PNG',
+  },
 ];
 
 export default sponsorList;
