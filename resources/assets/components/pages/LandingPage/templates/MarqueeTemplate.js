@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
@@ -45,10 +45,6 @@ const MarqueeTemplate = ({
       setShowScholarshipModal(true);
     }
   }, []);
-
-  const closeModal = useCallback(() => {
-    setShowScholarshipModal(false);
-  }, [isAffiliated, displaySignupButton]);
 
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
@@ -136,13 +132,16 @@ const MarqueeTemplate = ({
               scholarshipDescription={scholarshipDescription}
               utmLabel={scholarshipAffiliateLabel.toLowerCase()}
             >
-              <SignupButtonContainer
-                text={
-                  isScholarshipAffiliateReferral()
-                    ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
-                    : undefined
-                }
-              />
+              <div className="pt-6 w-2/3 lg:w-1/3">
+                <SignupButtonContainer
+                  className="w-full"
+                  text={
+                    isScholarshipAffiliateReferral()
+                      ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
+                      : undefined
+                  }
+                />
+              </div>
             </ScholarshipInfoBlockQuery>
           </Modal>
         ) : null}
