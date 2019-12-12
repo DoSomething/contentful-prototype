@@ -46,8 +46,11 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
   return !showAffirmation ? (
     <div className="cta-popover-email-form pt-4">
-      {errorResponse && errorResponse.fields.email ? (
-        <div className="text-red-500">{errorResponse.fields.email[0]}</div>
+      {errorResponse ? (
+        <div className="text-red-500">
+          {get(errorResponse, `fields.email`, [])[0] ||
+            `Something Went Wrong...`}
+        </div>
       ) : null}
       <form className="email-form form pb-2" onSubmit={handleSubmit}>
         <input
