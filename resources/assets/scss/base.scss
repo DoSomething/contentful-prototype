@@ -108,6 +108,13 @@ p {
 // Override Forge rule for .text-field font-family (https://git.io/fjeFh).
 .text-field {
   font-family: theme('fontFamily.source-sans');
+  border-color: theme('colors.gray.400');
+}
+
+.text-field:disabled {
+  border-color: theme('colors.gray.400');
+  background-color: theme('colors.gray.100');
+  color: theme('colors.gray.500');
 }
 
 // Utility classes.
@@ -144,13 +151,13 @@ p {
 }
 
 .bordered {
-  border: 1px solid theme('colors.gray.400');
+  border: 1px solid theme('colors.transparent-black.10');
   background-clip: padding-box;
 }
 
 // @TODO:forge-removal Use class utilities to style footer.
 .footer a {
-  @apply text-gray-600;
+  @apply text-gray-500;
 }
 
 .word-break {
