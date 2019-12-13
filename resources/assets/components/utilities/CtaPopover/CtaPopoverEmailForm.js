@@ -36,7 +36,9 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       })
       .catch(error => {
         report(error);
-        setErrorResponse(error.response.error);
+        const errorMessage =
+          get(error, 'response.error.fields.email', [])[0] || error.response;
+        setErrorResponse(errorMessage);
 
         if (window.ENV.APP_ENV !== 'production') {
           console.log('🚫 failed response? caught the error!', error);
@@ -46,8 +48,8 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
   return !showAffirmation ? (
     <div className="cta-popover-email-form pt-4">
-      {errorResponse && errorResponse.fields.email ? (
-        <div className="text-red-500">{errorResponse.fields.email[0]}</div>
+      {errorResponse ? (
+        <div className="text-red-500">{errorResponse}</div>
       ) : null}
       <form className="email-form form pb-2" onSubmit={handleSubmit}>
         <input
