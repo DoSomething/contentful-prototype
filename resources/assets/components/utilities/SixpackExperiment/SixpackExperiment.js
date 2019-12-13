@@ -1,11 +1,28 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { get, snakeCase } from 'lodash';
 
-import { sixpack } from '../../../helpers';
-import ContentfulEntry from '../../ContentfulEntry';
-import Placeholder from '../Placeholder';
 import Empty from '../Empty';
+import Placeholder from '../Placeholder';
+import { sixpack } from '../../../helpers';
+import ContentfulEntryLoader from '../ContentfulEntryLoader/ContentfulEntryLoader';
+
+export const SixpackExperimentBlockFragment = gql`
+  fragment SixpackExperimentBlockFragment on SixpackExperimentBlock {
+    internalTitle
+    convertableActions
+    control {
+      id
+    }
+    alternatives {
+      id
+      internalTitle
+    }
+    trafficFraction
+    kpi
+  }
+`;
 
 class SixpackExperiment extends React.Component {
   constructor(props) {
@@ -15,7 +32,7 @@ class SixpackExperiment extends React.Component {
       selectedAlternative: null,
     };
 
-    this.experimentName = snakeCase(this.props.title);
+    this.experimentName = snakeCase(this.props.internalTitle);
   }
 
   componentDidMount() {
@@ -82,12 +99,12 @@ class SixpackExperiment extends React.Component {
     if (React.isValidElement(alternative)) {
       testAlternativeName = get(alternative.props, 'testName', null);
     } else {
-      // @TODO: probably want to use internalTitle but not all entities expose that.
-      // Defaults to title field, but we should aim to start exposing internalTitle on entities!
+      // The PHP Content API doesn't reliably return `internalTitle` for blocks.
+      // @TODO: We can remove this check after #169216496.
       testAlternativeName =
+        alternative.internalTitle ||
         get(alternative, 'fields.internalTitle') ||
-        get(alternative, 'fields.title') ||
-        null;
+        get(alternative, 'fields.title');
     }
 
     return testAlternativeName;
@@ -103,7 +120,7 @@ class SixpackExperiment extends React.Component {
     return React.isValidElement(selectedAlternative) ? (
       selectedAlternative
     ) : (
-      <ContentfulEntry json={selectedAlternative} />
+      <ContentfulEntryLoader id={selectedAlternative.id} />
     );
   }
 }
@@ -113,7 +130,7 @@ SixpackExperiment.propTypes = {
   control: PropTypes.object,
   convertableActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   kpi: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  internalTitle: PropTypes.string.isRequired,
   trafficFraction: PropTypes.number,
 };
 

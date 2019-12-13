@@ -20,6 +20,7 @@ import { CallToActionBlockFragment } from '../../CallToAction/CallToAction';
 import { GalleryBlockFragment } from '../../blocks/GalleryBlock/GalleryBlock';
 import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
 import { CampaignDashboardFragment } from '../CampaignDashboard/CampaignDashboard';
+import { SixpackExperimentBlockFragment } from '../SixpackExperiment/SixpackExperiment';
 import { CampaignUpdateBlockFragment } from '../../blocks/CampaignUpdate/CampaignUpdate';
 import { SocialDriveBlockFragment } from '../../actions/SocialDriveAction/SocialDriveAction';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
@@ -48,6 +49,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ...CampaignUpdateBlockFragment
       ...TextSubmissionBlockFragment
       ...PhotoSubmissionBlockFragment
+      ...SixpackExperimentBlockFragment
       ...VoterRegistrationBlockFragment
       ...PetitionSubmissionBlockFragment
       ...SelectionSubmissionBlockFragment
@@ -69,6 +71,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${CampaignUpdateBlockFragment}
   ${TextSubmissionBlockFragment}
   ${PhotoSubmissionBlockFragment}
+  ${SixpackExperimentBlockFragment}
   ${VoterRegistrationBlockFragment}
   ${PetitionSubmissionBlockFragment}
   ${SelectionSubmissionBlockFragment}

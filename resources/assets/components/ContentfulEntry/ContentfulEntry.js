@@ -320,6 +320,9 @@ class ContentfulEntry extends React.Component {
       case 'ShareBlock':
         return <ShareActionContainer id={json.id} {...withoutNulls(json)} />;
 
+      case 'SixpackExperimentBlock':
+        return <SixpackExperiment id={json.id} {...withoutNulls(json)} />;
+
       case 'sixpackExperiment':
         return (
           <SixpackExperiment id={json.id} {...withoutNulls(json.fields)} />
