@@ -72,12 +72,12 @@ const sponsorList = [
   {
     name: 'Fossil',
     image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/3HRncNccA84RmK3EKHbdZv/d601df9773e00a8b074a00ac5cab7dfc/Fossil_Only-White.png',
+      'https://images.ctfassets.net/81iqaqpfd8fy/4i6moLBxy61MN2Smul7E1U/ad572a42e7f2aa03ebedf4cc1aa7d726/Fossil_Dark.png',
   },
     {
     name: 'Susan Crown Exchange',
     image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/5U3sV1c5CGlfUHl2AQRKCE/59576a9fd1e785cbfbea18db22a9109b/SCE_Logo_-_White_Circle__1_.png',
+      'https://images.ctfassets.net/81iqaqpfd8fy/5byjLFhdpZR3YiuODDeREL/fb3e51db190bdac422fb685954d9778c/SCE_Dark.png',
   },
     {
     name: 'Aeropostale',
@@ -87,7 +87,7 @@ const sponsorList = [
     {
     name: 'Blue Shield of California',
     image:
-      'https://images.ctfassets.net/81iqaqpfd8fy/76GkhfoKBplUByDBRa70h1/de76788153ca7c63971f12385a6a331e/BSC_new_logo__002_.PNG',
+      'https://images.ctfassets.net/81iqaqpfd8fy/MNfsss3QMdRgW1uzSCSyb/f0ac2664fbbb5460182b658bc8e5a805/BSC_Dark.png',
   },
 ];
 
