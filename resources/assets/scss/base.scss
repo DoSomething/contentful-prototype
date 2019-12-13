@@ -123,7 +123,7 @@ p {
 }
 
 .color-gray {
-  color: $med-gray !important;
+  color: theme('colors.gray.600') !important;
 }
 
 .color-yellow {

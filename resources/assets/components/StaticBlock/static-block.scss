@@ -8,7 +8,7 @@
     display: block;
     width: 50%;
     height: 2px;
-    background-color: $med-gray;
+    background-color: theme('colors.gray.600');
     margin-bottom: theme('spacing.3');
   }
 }
