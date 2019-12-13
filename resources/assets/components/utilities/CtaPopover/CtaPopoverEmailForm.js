@@ -38,7 +38,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         report(error);
         const errorMessage = isString(error.response)
           ? error.response
-          : get(error, 'response.error.fields.email', [])[0] ||
+          : first(get(error, 'response.error.fields.email'))
             'Something went wrong...';
         setErrorResponse(errorMessage);
 
