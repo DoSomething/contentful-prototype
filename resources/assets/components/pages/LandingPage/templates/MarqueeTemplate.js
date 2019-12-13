@@ -56,7 +56,6 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
-  console.log('the dashboard', dashboard);
   return (
     <React.Fragment>
       <article className="marquee-landing-page">

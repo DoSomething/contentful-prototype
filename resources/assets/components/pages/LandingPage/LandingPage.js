@@ -81,7 +81,11 @@ LandingPage.propTypes = {
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
-  dashboard: PropTypes.object,
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   endDate: PropTypes.string,
   featureFlagUseLegacyTemplate: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
