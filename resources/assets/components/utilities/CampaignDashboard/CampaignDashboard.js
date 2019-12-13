@@ -48,27 +48,30 @@ const CampaignDashboard = props => {
   `;
 
   return (
-    <div className="bg-white text-black p-3" css={dashboardGrid}>
+    <div
+      className="bg-white text-black p-3 border-solid border-t border-gray-500 border-b"
+      css={dashboardGrid}
+    >
       <div className="text-center lg:text-left px-3 py-3">
+        <p className="text-gray-500 font-semibold uppercase">
+          {firstDescription}
+        </p>
         {firstValue ? (
           <strong className="font-league-gothic font-normal text-4xl leading-none">
             {firstValue}
           </strong>
         ) : null}
-        <p className="text-gray-500 font-semibold uppercase">
-          {firstDescription}
-        </p>
       </div>
 
       <div className="text-center lg:text-left px-3 py-3 border-solid border-gray-500 md:border-l">
+        <p className="text-gray-500 font-semibold uppercase">
+          {secondDescription}
+        </p>
         {secondValue ? (
           <strong className="font-league-gothic font-normal text-4xl leading-none">
             {secondValue}
           </strong>
         ) : null}
-        <p className="text-gray-500 font-semibold uppercase">
-          {secondDescription}
-        </p>
       </div>
 
       <div
