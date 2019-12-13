@@ -77,7 +77,9 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       </p>
     </div>
   ) : (
-    <div className="text-green-700">Thank You For Submitting Your Email</div>
+    <div className="text-white mt-3 italic">
+      Thank You For Submitting Your Email
+    </div>
   );
 };
 
