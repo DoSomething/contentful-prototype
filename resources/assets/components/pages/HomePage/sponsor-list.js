@@ -89,6 +89,11 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/MNfsss3QMdRgW1uzSCSyb/f0ac2664fbbb5460182b658bc8e5a805/BSC_Dark.png',
   },
+    {
+    name: 'HSBC Bank',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/nqrXUW4560jS9sCU3nLqo/bbf4cd2cd75fbacc058198a9d8c5bb13/HSBC_Bank_Dark.png',
+  },
 ];
 
 export default sponsorList;
