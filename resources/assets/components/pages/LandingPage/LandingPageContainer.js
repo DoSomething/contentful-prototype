@@ -25,6 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     contentfulId: state.campaign.id,
     content: landingPage.content,
     coverImage: state.campaign.coverImage,
+    dashboard: state.campaign.dashboard,
     endDate: state.campaign.endDate,
     featureFlagUseLegacyTemplate: get(
       state,

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../../Enclosure';
 import Modal from '../../../utilities/Modal/Modal';
+import ContentfulEntry from '../../../ContentfulEntry';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
 import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
@@ -26,6 +27,7 @@ const MarqueeTemplate = ({
   campaignId,
   content,
   coverImage,
+  dashboard,
   displaySignupButton,
   isClosed,
   isAffiliated,
@@ -54,6 +56,7 @@ const MarqueeTemplate = ({
     medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
+  console.log('the dashboard', dashboard);
   return (
     <React.Fragment>
       <article className="marquee-landing-page">
@@ -142,6 +145,7 @@ const MarqueeTemplate = ({
           </Modal>
         ) : null}
       </article>
+      {dashboard ? <ContentfulEntry json={dashboard} /> : null}
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </React.Fragment>
   );
@@ -155,6 +159,7 @@ MarqueeTemplate.propTypes = {
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
+  dashboard: PropTypes.object,
   displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool,
   isClosed: PropTypes.bool,
@@ -172,6 +177,7 @@ MarqueeTemplate.defaultProps = {
   affiliateSponsors: [],
   affiliateOptInContent: null,
   campaignId: null,
+  dashboard: null,
   displaySignupButton: true,
   isAffiliated: false,
   isClosed: false,

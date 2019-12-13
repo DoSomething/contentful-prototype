@@ -17,6 +17,7 @@ const LandingPage = props => {
     campaignId,
     content,
     coverImage,
+    dashboard,
     endDate,
     featureFlagUseLegacyTemplate,
     scholarshipAmount,
@@ -58,6 +59,7 @@ const LandingPage = props => {
           content={content}
           coverImage={coverImage}
           campaignId={campaignId}
+          dashboard={dashboard}
           endDate={endDate}
           scholarshipAmount={scholarshipAmount}
           scholarshipCallToAction={scholarshipCallToAction}
@@ -79,6 +81,7 @@ LandingPage.propTypes = {
   campaignId: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
+  dashboard: PropTypes.object,
   endDate: PropTypes.string,
   featureFlagUseLegacyTemplate: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
@@ -98,6 +101,7 @@ LandingPage.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
+  dashboard: null,
   endDate: null,
   featureFlagUseLegacyTemplate: false,
   scholarshipAmount: null,
