@@ -159,7 +159,11 @@ MarqueeTemplate.propTypes = {
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
-  dashboard: PropTypes.object,
+  dashboard: PropTypes.shape({
+    id: PropTypes.string,
+    type: PropTypes.string,
+    fields: PropTypes.object,
+  }),
   displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool,
   isClosed: PropTypes.bool,

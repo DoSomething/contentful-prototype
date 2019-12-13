@@ -23,7 +23,6 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     campaignEndDate: state.campaign.endDate,
-    dashboard: state.campaign.dashboard,
     entryContent,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
     landingPage: get(state.campaign, 'landingPage', null),
