@@ -17,7 +17,7 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
-  const { dashboard, entryContent, isCampaignClosed } = props;
+  const { entryContent, isCampaignClosed } = props;
 
   return (
     <React.Fragment>
@@ -27,8 +27,6 @@ const CampaignPage = props => {
       />
 
       <div className="main clearfix">
-        {dashboard ? <ContentfulEntry json={dashboard} /> : null}
-
         {!isCampaignClosed && !entryContent ? (
           <CampaignPageNavigationContainer />
         ) : null}
@@ -52,11 +50,6 @@ const CampaignPage = props => {
 };
 
 CampaignPage.propTypes = {
-  dashboard: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
   entryContent: PropTypes.object,
   isCampaignClosed: PropTypes.bool,
   landingPage: PropTypes.shape({
@@ -68,7 +61,6 @@ CampaignPage.propTypes = {
 };
 
 CampaignPage.defaultProps = {
-  dashboard: null,
   entryContent: null,
   isCampaignClosed: false,
   landingPage: null,

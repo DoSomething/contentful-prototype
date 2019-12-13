@@ -29,6 +29,7 @@ const mapStateToProps = (state, props) => ({
   campaignId: state.campaign.campaignId,
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
   content: get(state, 'campaign.landingPage.fields.content'),
+  dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
   featureFlagUseLegacyTemplate: get(
     state,
