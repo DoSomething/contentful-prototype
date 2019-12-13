@@ -99,7 +99,12 @@ class SixpackExperiment extends React.Component {
     if (React.isValidElement(alternative)) {
       testAlternativeName = get(alternative.props, 'testName', null);
     } else {
-      testAlternativeName = alternative.internalTitle;
+      // The PHP Content API doesn't reliably return `internalTitle` for blocks.
+      // @TODO: We can remove this check after #169216496.
+      testAlternativeName =
+        alternative.internalTitle ||
+        get(alternative, 'fields.internalTitle') ||
+        get(alternative, 'fields.title');
     }
 
     return testAlternativeName;
