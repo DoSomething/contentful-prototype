@@ -139,7 +139,7 @@
   .footnotes-list,
   .footnote-item p {
     font-size: $font-small;
-    color: $med-gray;
+    color: theme('colors.gray.600');
     overflow-wrap: break-word;
   }
 }

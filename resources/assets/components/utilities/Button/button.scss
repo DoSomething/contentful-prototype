@@ -31,3 +31,8 @@
 .button__attached-container {
   padding: theme('spacing.3');
 }
+
+.button[disabled],
+.button.is-disabled {
+  background: theme('colors.gray.400');
+}

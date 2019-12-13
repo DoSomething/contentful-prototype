@@ -63,7 +63,7 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
   }
 
   .nav-link {
-    color: #9b9b9b;
+    color: theme('colors.gray.600');
     display: inline-block;
     margin: 10px theme('spacing.3');
     text-transform: uppercase;

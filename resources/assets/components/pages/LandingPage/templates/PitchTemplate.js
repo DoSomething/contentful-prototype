@@ -94,7 +94,7 @@ const PitchTemplate = ({
 
       <CampaignInfoBarContainer />
 
-      <div className="info-bar -dark">
+      <div className="info-bar bg-gray-700">
         <div className="wrapper">
           A DoSomething.org campaign. Join millions of young people transforming
           their communities. Let&#39;s Do This!
