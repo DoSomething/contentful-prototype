@@ -30,7 +30,7 @@ The selection text is submitted using the [`storePost`](https://github.com/DoSom
 
 #### Post Submission State
 
-We wrap the form in an Apollo-GraqhQL [<Query>](https://www.apollographql.com/docs/react/essentials/queries#basic) component, querying Rogue for the user's posts filtered by the Action ID. If we find an existing post, we render the post submission state, otherwise, the form as usual. We err on the side of caution when it comes to displaying the form, so if the query returns an error, the user isn't blocked from form submission.
+We wrap the form in an Apollo-GraphQL [<Query>](https://www.apollographql.com/docs/react/essentials/queries#basic) component, querying Rogue for the user's posts filtered by the Action ID. If we find an existing post, we render the post submission state, otherwise, the form as usual. We err on the side of caution when it comes to displaying the form, so if the query returns an error, the user isn't blocked from form submission.
 
 #### Validation
 

@@ -19,6 +19,7 @@
 - [Architecture](development/architecture/README.md)
   - [Heroku](development/architecture/heroku.md)
 - [Content Types](development/content-types/README.md)
+  - [Content Block](development/content-types/content-block.md)
   - [Embed](development/content-types/embed.md)
   - [Metadata](development/content-types/metadata.md)
   - [Selection Submission Action](development/content-types/selection-submission-action.md)
