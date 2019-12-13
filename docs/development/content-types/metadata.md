@@ -2,7 +2,7 @@
 
 ## Overview
 
-All [pages](development/content-types/page.md) and campaigns on DoSomething.org contain a **Metadata** field that references a [`Metadata` content type](https://app.contentful.com/spaces/81iqaqpfd8fy/content_types/metadata/fields). This content type allows an editor to provide data for the page to help with SEO and sharing the content on social platforms.
+All pages and campaigns on DoSomething.org contain a **Metadata** field that references a [`Metadata` content type](https://app.contentful.com/spaces/81iqaqpfd8fy/content_types/metadata/fields). This content type allows an editor to provide data for the page to help with SEO and sharing the content on social platforms.
 
 ![Example Facebook Share With Metadata](../../.gitbook/assets/facebook-share-example.png)
 

@@ -2,7 +2,7 @@
 
 ## Overview
 
-A [Page](development/content-types/page.md) Block displaying headline, subtitle, supertitle, copy, and image. Commonly used to list steps in a campaign.
+Displaying headline, subtitle, supertitle, copy, and image. Commonly used to list steps in a campaign.
 
 ![Example Content Block](../../.gitbook/assets/content-block-example.png)
 
