@@ -15,7 +15,7 @@ class SixpackExperiment extends React.Component {
       selectedAlternative: null,
     };
 
-    this.experimentName = snakeCase(this.props.title);
+    this.experimentName = snakeCase(this.props.internalTitle);
   }
 
   componentDidMount() {
@@ -113,7 +113,7 @@ SixpackExperiment.propTypes = {
   control: PropTypes.object,
   convertableActions: PropTypes.arrayOf(PropTypes.string).isRequired,
   kpi: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  internalTitle: PropTypes.string.isRequired,
   trafficFraction: PropTypes.number,
 };
 
