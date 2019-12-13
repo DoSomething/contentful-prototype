@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { get, isString } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
@@ -36,8 +36,10 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       })
       .catch(error => {
         report(error);
-        const errorMessage =
-          get(error, 'response.error.fields.email', [])[0] || error.response;
+        const errorMessage = isString(error.response)
+          ? error.response
+          : get(error, 'response.error.fields.email', [])[0] ||
+            'Something went wrong...';
         setErrorResponse(errorMessage);
 
         if (window.ENV.APP_ENV !== 'production') {
