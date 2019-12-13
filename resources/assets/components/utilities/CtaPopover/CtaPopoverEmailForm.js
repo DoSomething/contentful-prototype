@@ -1,4 +1,4 @@
-import { get, isString } from 'lodash';
+import { get, isString, first } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { RestApiClient } from '@dosomething/gateway';
@@ -38,7 +38,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         report(error);
         const errorMessage = isString(error.response)
           ? error.response
-          : get(error, 'response.error.fields.email', [])[0] ||
+          : first(get(error, 'response.error.fields.email')) ||
             'Something went wrong...';
         setErrorResponse(errorMessage);
 
