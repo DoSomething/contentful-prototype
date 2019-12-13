@@ -19,6 +19,8 @@ export const SixpackExperimentBlockFragment = gql`
       id
       internalTitle
     }
+    trafficFraction
+    kpi
   }
 `;
 
