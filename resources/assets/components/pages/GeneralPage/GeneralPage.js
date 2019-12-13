@@ -149,7 +149,7 @@ const GeneralPage = props => {
       ) : null}
       {slug === 'about/easy-scholarships' ? (
         <DismissableElement
-          name="cta_popover_email"
+          name="cta_popover_scholarship_email"
           render={(handleClose, handleComplete) => (
             <DelayedElement delay={3}>
               <CtaPopover
