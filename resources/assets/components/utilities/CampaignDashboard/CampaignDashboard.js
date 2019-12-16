@@ -49,11 +49,11 @@ const CampaignDashboard = props => {
 
   return (
     <div
-      className="bg-white text-black p-3 border-solid border-t border-gray-500 border-b"
+      className="bg-white text-black p-3 border-solid border-t border-gray-400 border-b"
       css={dashboardGrid}
     >
       <div className="text-center lg:text-left px-3 py-3">
-        <p className="text-gray-500 font-semibold uppercase">
+        <p className="text-gray-600 font-semibold uppercase">
           {firstDescription}
         </p>
         {firstValue ? (
@@ -63,8 +63,8 @@ const CampaignDashboard = props => {
         ) : null}
       </div>
 
-      <div className="text-center lg:text-left px-3 py-3 border-solid border-gray-500 md:border-l">
-        <p className="text-gray-500 font-semibold uppercase">
+      <div className="text-center lg:text-left px-3 py-3 border-solid border-gray-400 md:border-l">
+        <p className="text-gray-600 font-semibold uppercase">
           {secondDescription}
         </p>
         {secondValue ? (
@@ -76,7 +76,7 @@ const CampaignDashboard = props => {
 
       <div
         css={shareGridElement}
-        className="md:flex text-left px-3 py-3 border-solid border-gray-500 border-t mt-3 lg:mt-0 lg:border-t-0 lg:border-l"
+        className="md:flex text-left px-3 py-3 border-solid border-gray-400 border-t mt-3 lg:mt-0 lg:border-t-0 lg:border-l"
       >
         <div className="md:flex-1 pr-3 mt-3 md:mt-0">
           {shareHeader ? <h3 className="text-black">{shareHeader}</h3> : null}
