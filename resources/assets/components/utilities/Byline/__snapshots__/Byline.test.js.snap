@@ -17,7 +17,7 @@ exports[`Byline default snapshot test 1`] = `
     </strong>
     <br />
     <p
-      className="footnote"
+      className="text-sm text-gray-600"
     >
       DoSomething.org Staff
     </p>
@@ -42,7 +42,7 @@ exports[`Byline with props snapshot test 1`] = `
     </strong>
     <br />
     <p
-      className="footnote"
+      className="text-sm text-gray-600"
     >
       Campaign Tester
     </p>
