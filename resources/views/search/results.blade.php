@@ -17,12 +17,12 @@
 
             {{-- @TODO:css-grid Remove horizontal padding once CSS Grid is implemented --}}
             <form class="flex mb-6 px-3 text-base lg:w-1/2" action="/us/search" method="GET" accept-charset="UTF-8">
-                <div class="flex-1 mr-3 relative">
+                <div class="border border-solid border-gray-400 flex-1 mr-3 relative rounded">
                     @include('svg.search-icon', [
                         'class' => 'absolute icon icon-search text-gray-400 fill-current m-3',
                         'style' => 'height: 18px; width: 18px; top: 3px;'
                     ])
-                    <input class="leading-none pl-10 text-input w-full" name="query" type="text" value="{{ $query }}">
+                    <input class="border-none leading-none pl-10 text-input w-full" name="query" type="text" value="{{ $query }}">
                 </div>
                 <input class="btn" type="submit" value="Search">
             </form>
