@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import editIcon from './editIcon.svg';
 
-const ReviewLink = ({ url }) => (
-  <a href={url}>
+const ReviewLink = ({ className, url }) => (
+  <a href={url} className={className}>
     <img
       className="post-badge"
       alt="Review this post."

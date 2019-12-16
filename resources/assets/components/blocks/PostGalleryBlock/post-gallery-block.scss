@@ -1,3 +1,9 @@
 .post-gallery-block-filter {
   max-width: 450px;
+
+  // @TODO:forge-removal Use class utilities to style border around select.
+  // Use EmotionJS to style chevron arrow for dropdown.
+  .select select {
+    @apply border border-solid border-gray-400;
+  }
 }

@@ -4,9 +4,10 @@ import classnames from 'classnames';
 import { Mutation } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 
-import './reaction.scss';
 import { BaseFigure } from '../Figure/Figure';
 import Spinner from '../../artifacts/Spinner/Spinner';
+
+import './reaction.scss';
 
 export const reactionButtonFragment = gql`
   fragment ReactionButton on Post {
@@ -25,7 +26,7 @@ const TOGGLE_REACTION = gql`
   }
 `;
 
-const ReactionButton = ({ post }) => (
+const ReactionButton = ({ className, post }) => (
   <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
     {(toggleReaction, { loading }) => {
       const button = loading ? (
@@ -39,16 +40,16 @@ const ReactionButton = ({ post }) => (
       );
 
       return (
-        <button type="button" className="reaction" onClick={toggleReaction}>
-          <BaseFigure
-            media={button}
-            alignment={post.reactions ? 'left' : null}
-            className="mb-0"
-          >
-            {post.reactions ? (
-              <span className="reaction__meta">{post.reactions}</span>
-            ) : null}
-          </BaseFigure>
+        <button
+          type="button"
+          className={classnames('reaction flex items-center', className)}
+          onClick={toggleReaction}
+        >
+          {button}
+
+          {post.reactions ? (
+            <span className="ml-2 text-gray-600">{post.reactions}</span>
+          ) : null}
         </button>
       );
     }}
@@ -60,3 +61,15 @@ ReactionButton.propTypes = {
 };
 
 export default ReactionButton;
+
+{
+  /* <BaseFigure
+  media={button}
+  alignment={post.reactions ? 'left' : null}
+  className="mb-0"
+>
+  {post.reactions ? (
+    <span className="reaction__meta">{post.reactions}</span>
+  ) : null}
+</BaseFigure> */
+}

@@ -14,7 +14,7 @@ import { BaseFigure } from '../Figure/Figure';
 import { isAuthenticated, isStaff } from '../../../helpers';
 import ReactionButton from '../ReactionButton/ReactionButton';
 
-import './post.scss';
+// import './post.scss';
 
 export const postCardFragment = gql`
   fragment PostCard on Post {
@@ -50,14 +50,16 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
     : get(post, 'user.firstName', 'A Doer');
 
   const reactionElement =
-    !hideReactions && isAuthenticated() ? <ReactionButton post={post} /> : null;
+    !hideReactions && isAuthenticated() ? (
+      <ReactionButton className="" post={post} />
+    ) : null;
 
   // Render the appropriate media for this post:
   let media = null;
   switch (post.type) {
     case 'text':
       media = (
-        <div className="px-3 py-6">
+        <div className="flex-grow px-3 py-6">
           <p className="italic text-black text-lg word-break">{post.text}</p>
         </div>
       );
@@ -65,7 +67,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
     case 'photo':
       media = (
         <LazyImage
-          className="post-photo"
+          className="post-photo w-full"
           alt={`${authorLabel}'s photo`}
           src={post.url}
         />
@@ -77,36 +79,51 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   }
 
   return (
-    <Card className={`rounded h-full post-ornament-${post.type}`} key={post.id}>
-      <div className="post">
-        <div className={classnames({ 'flex-grow': post.type === 'text' })}>
-          {media}
-        </div>
-        <BaseFigure
-          media={reactionElement}
-          alignment="right"
-          className="p-3 mb-0"
-        >
-          <h4>
-            {authorLabel}
-            {isStaff() ? <ReviewLink url={post.permalink} /> : null}
-            <PostBadge status={post.status} tags={post.tags} />
-          </h4>
+    <Card
+      className={`rounded h-full overflow-hidden post-ornament-${post.type}`}
+      key={post.id}
+    >
+      <div
+        className={classnames('post relative', {
+          'flex flex-col h-full border-l-8 border-solid border-gray-300':
+            post.type === 'text',
+        })}
+      >
+        {media}
 
-          {post.impact && !hideQuantity ? (
-            <p className="text-sm text-gray-600">{post.impact}</p>
-          ) : null}
+        <div className="p-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <h4 className="font-bold text-base">{authorLabel}</h4>
+
+              {isStaff() ? (
+                <ReviewLink className="ml-2" url={post.permalink} />
+              ) : null}
+
+              <PostBadge
+                className="ml-2"
+                status={post.status}
+                tags={post.tags}
+              />
+            </div>
+
+            {reactionElement}
+          </div>
 
           {isAnonymous ? (
-            <p className="text-sm text-gray-600">
+            <p className="mt-1 text-gray-600 text-sm">
               {format(post.createdAt, 'PPP')}
             </p>
           ) : null}
 
-          {post.type !== 'text' && post.text && !hideCaption ? (
-            <p className="text-gray-600">{post.text}</p>
+          {post.impact && !hideQuantity ? (
+            <p className="mt-1 text-gray-600 text-sm">{post.impact}</p>
           ) : null}
-        </BaseFigure>
+
+          {post.type !== 'text' && post.text && !hideCaption ? (
+            <p className="text-gray-600 mt-3">{post.text}</p>
+          ) : null}
+        </div>
       </div>
     </Card>
   );
@@ -126,3 +143,19 @@ PostCard.defaultProps = {
 };
 
 export default PostCard;
+
+{
+  /* <div className={classnames({ 'flex-grow': post.type === 'text' })}>
+          {media}
+        </div> */
+}
+
+{
+  /* <BaseFigure
+          media={reactionElement}
+          alignment="right"
+          className="p-3 mb-0"
+        >
+
+        </BaseFigure> */
+}
