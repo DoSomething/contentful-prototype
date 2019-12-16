@@ -1,5 +1,7 @@
 @import '../../../scss/next-toolbox';
 
+// @TODO:forge-removal Needed to define the color as a hex since the system
+// throws an error if theme() helper function is used in rgba() declaration below.
 $light-background-color: #f7fafc; // theme('colors.gray.100')
 
 .page-navigation {
