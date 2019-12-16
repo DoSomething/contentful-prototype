@@ -47,7 +47,7 @@ const Profile = props => (
         <li>
           <a
             href="mailto:trust@dosomething.org?subject=Delete my account"
-            className="secondary"
+            className="text-gray-600 font-normal underline"
           >
             Delete my account
           </a>
@@ -59,7 +59,7 @@ const Profile = props => (
         <li>
           <a
             href="/deauthorize"
-            className="secondary"
+            className="text-gray-600 font-normal underline"
             // TODO: Fix this analytics item
             onClick={() =>
               trackAnalyticsEvent({
