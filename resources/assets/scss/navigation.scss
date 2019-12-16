@@ -37,7 +37,7 @@
       padding: theme('spacing.3') theme('spacing.6');
 
       @include media($large) {
-        border-color: $black;
+        border-color: theme('colors.gray.900');
         display: block;
       }
     }
@@ -49,7 +49,7 @@
     .navigation__join {
       a {
         @include media($large) {
-          border-color: $white;
+          border-color: theme('colors.white');
         }
       }
     }

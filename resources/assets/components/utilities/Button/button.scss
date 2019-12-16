@@ -31,3 +31,11 @@
 .button__attached-container {
   padding: theme('spacing.3');
 }
+
+.button[disabled],
+.button.is-disabled,
+.button[disabled]:hover,
+.button.is-disabled:hover {
+  background: theme('colors.gray.400');
+  cursor: not-allowed;
+}

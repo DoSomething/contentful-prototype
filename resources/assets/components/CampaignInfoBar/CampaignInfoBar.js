@@ -9,7 +9,7 @@ const CampaignInfoBar = ({
   affiliateSponsors,
   contactEmail,
 }) => (
-  <div className="info-bar">
+  <div className="info-bar bg-gray-700">
     <div className="clearfix md:w-3/4 mx-auto px-3 py-6">
       <AffiliateCredits
         affiliateCreditText={affiliateCreditText}

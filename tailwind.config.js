@@ -14,17 +14,7 @@ module.exports = {
       transparent: colors.transparent,
       black: colors.black,
       white: colors.white,
-      gray: {
-        '100': '#f6f6f6',
-        '200': '#d7d7d7',
-        '300': '#c8c8c8',
-        '400': '#b9b9b9',
-        '500': '#a9a9a9',
-        '600': '#9a9a9a',
-        '700': '#8a8a8a',
-        '800': '#7b7b7b',
-        '900': '#626262',
-      },
+      gray: colors.gray,
       blue: {
         '100': '#86dfff',
         '200': '#6bd6ff',
@@ -106,6 +96,20 @@ module.exports = {
         '400': '#21c2ff',
         '500': '#00aced',
       },
+      'transparent-black': {
+        '10': 'rgba(0,0,0,0.1)',
+        '30': 'rgba(0,0,0,0.3)',
+        '50': 'rgba(0,0,0,0.5)',
+        '70': 'rgba(0,0,0,0.7)',
+        '90': 'rgba(0,0,0,0.9)',
+      },
+      'transparent-white': {
+        '10': 'rgba(255,255,255,0.1)',
+        '30': 'rgba(255,255,255,0.3)',
+        '50': 'rgba(255,255,255,0.5)',
+        '70': 'rgba(255,255,255,0.7)',
+        '90': 'rgba(255,255,255,0.9)',
+      },
     },
     fontFamily: {
       'source-sans': [
@@ -161,6 +165,9 @@ module.exports = {
         },
         '.clip-padding-box': {
           backgroundClip: 'padding-box',
+        },
+        '.z-max': {
+          zIndex: '10000',
         },
       };
 

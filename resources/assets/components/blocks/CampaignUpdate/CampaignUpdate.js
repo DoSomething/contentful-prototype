@@ -81,7 +81,7 @@ const CampaignUpdate = props => {
         {affiliateLogo ? (
           <AffiliatePromotion
             imgUrl={affiliateLogo}
-            textClassName="text-gray-400"
+            textClassName="text-gray-600"
           />
         ) : (
           <Byline

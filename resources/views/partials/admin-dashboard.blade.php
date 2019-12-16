@@ -1,14 +1,14 @@
-<div id="admin-dashboard" class="admin-dashboard">
+<div id="admin-dashboard" class="admin-dashboard bg-gray-700 border-b border-solid border-gray-800 z-max">
     <div class="wrapper base-12-grid">
-        <h1 class="admin-dashboard-title grid-full font-normal uppercase text-base text-gray-400 mb-6">
-            <span>Admin Dashboard</span>
+        <h1 class="admin-dashboard-title grid-full font-normal mb-8 relative text-base text-gray-600 uppercase">
+            <span class="bg-gray-700 pr-3 relative">Admin Dashboard</span>
         </h1>
 
-        <h2 class="font-normal grid-full mb-3 text-gray-900 uppercase">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
+        <h2 class="font-normal grid-full mb-4 text-base text-gray-500">{{ $admin['page']['type'] }} Settings &amp; Data</h2>
 
         <section class="panel grid-full-1/2 mb-6">
-            <div class="wrapper rounded bg-gray-300">
-                <h1 class="panel-title font-normal text-lg mb-3">
+            <div class="wrapper rounded bg-gray-100">
+                <h1 class="panel-title font-normal text-lg text-gray-700 mb-4">
                     @include('svg.cog-icon', ['class' => 'icon icon-cog inline align-baseline']) Configuration
                 </h1>
 
@@ -30,7 +30,7 @@
                                 @include('svg.trash-icon', ['class' => 'icon icon-trash inline align-baseline']) Clear the cache for this page
                             </a>
                         @else
-                            <em class="text-gray-600">Current page is not cached</em>
+                            <em class="text-gray-500">Current page is not cached</em>
                         @endif
                     </li>
                 </ul>
@@ -38,15 +38,15 @@
         </section>
 
         <section class="panel grid-full-1/2">
-            <div class="wrapper rounded bg-gray-300">
-                <h1 class="panel-title font-normal text-lg mb-3">
+            <div class="wrapper rounded bg-gray-100">
+                <h1 class="panel-title font-normal text-lg text-gray-700 mb-4">
                     @include('svg.chart-bar-icon', ['class' => 'icon icon-chart-bar inline align-baseline']) Metrics
                 </h1>
 
-                <p class="text-gray-600"><em>What's this? We're not sure yet, but let the tech team know if you have ideas!</em></p>
+                <p><em>What's this? We're not sure yet, but let the tech team know if you have ideas!</em></p>
             </div>
         </section>
     </div>
 
-    <a id="js-admin-dashboard-toggle" class="toggle">@include('svg.bug-icon', ['class' => 'icon icon-bug'])</a>
+    <a id="js-admin-dashboard-toggle" class="toggle bg-gray-700">@include('svg.bug-icon', ['class' => 'icon icon-bug'])</a>
 </div>

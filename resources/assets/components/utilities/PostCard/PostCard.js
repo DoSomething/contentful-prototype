@@ -94,11 +94,13 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
           </h4>
 
           {post.impact && !hideQuantity ? (
-            <p className="footnote">{post.impact}</p>
+            <p className="text-sm text-gray-600">{post.impact}</p>
           ) : null}
 
           {isAnonymous ? (
-            <p className="footnote">{format(post.createdAt, 'PPP')}</p>
+            <p className="text-sm text-gray-600">
+              {format(post.createdAt, 'PPP')}
+            </p>
           ) : null}
 
           {post.type !== 'text' && post.text && !hideCaption ? (

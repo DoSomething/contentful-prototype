@@ -12,7 +12,7 @@
     border-color: #80de19;
   }
   &.-yellow {
-    border-color: #ffec04;
+    border-color: theme('colors.yellow.500');
   }
 }
 .icon {

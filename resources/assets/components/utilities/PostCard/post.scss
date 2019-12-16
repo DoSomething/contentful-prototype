@@ -35,15 +35,15 @@
 }
 
 .chat-bubble.-post-bubble {
-  color: $black;
+  color: theme('colors.gray.900');
   background-color: $white;
   padding: theme('spacing.6') theme('spacing.3');
 
   p {
-    color: $black;
+    color: theme('colors.gray.900');
     font-size: $font-medium;
 
-    @include media($only-medium) {
+    @include media('(min-width: 760px) and (max-width: 960px)') {
       font-size: $font-regular;
     }
   }

@@ -6,8 +6,8 @@
 }
 
 .card__title {
-  color: $black;
-  background-color: $primary-color;
+  color: theme('colors.gray.900');
+  background-color: theme('colors.yellow.500');
   padding: theme('spacing.3');
 
   h1 {
@@ -18,10 +18,10 @@
   }
 
   a {
-    color: $black;
+    color: theme('colors.gray.900');
 
     &:hover {
-      color: rgba($black, 0.75); // @TODO should be a variable
+      opacity: theme('opacity.75');
       text-decoration: none;
     }
   }

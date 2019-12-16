@@ -57,7 +57,7 @@
         </ul>
     </div>
   </div>
-  <div class="footer__subfooter">
+  <div class="footer__subfooter border-gray-700">
     <ul>
       <li><a href="{{ config('app.url') }}/us/about/terms-service">Terms of Service</a></li>
       <li><a href="{{ config('app.url') }}/us/about/privacy-policy">Privacy Policy</a></li>

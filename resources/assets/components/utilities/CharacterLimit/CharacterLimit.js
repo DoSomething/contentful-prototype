@@ -7,7 +7,7 @@ const CharacterLimit = ({ className, text, limit }) => {
 
   return (
     <p
-      className={classNames(className, 'footnote', {
+      className={classNames(className, 'text-sm text-gray-600', {
         'color-error': remaining <= 0,
       })}
     >

@@ -24,7 +24,7 @@ const Byline = ({ author, jobTitle, photo, share, className }) => (
     >
       <strong>{author}</strong>
       <br />
-      <p className="footnote">{jobTitle}</p>
+      <p className="text-sm text-gray-600">{jobTitle}</p>
     </Figure>
     {share}
   </div>

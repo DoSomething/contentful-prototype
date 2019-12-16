@@ -19,14 +19,14 @@ const CampaignDashboard = props => {
     <div>
       <button
         type="button"
-        className="button -secondary"
+        className="btn bg-gray-600 hover:bg-gray-500"
         onClick={clickedShowAffirmation}
       >
         Show Affirmation
       </button>
       <button
         type="button"
-        className="button -secondary ml-3"
+        className="btn bg-gray-600 hover:bg-gray-500 ml-3"
         onClick={onSignUpClick}
       >
         {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}

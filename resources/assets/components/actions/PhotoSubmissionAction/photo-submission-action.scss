@@ -103,7 +103,7 @@
   }
 
   .quantity-display__units {
-    color: $med-gray;
+    color: theme('colors.gray.600');
     font-size: $font-regular;
     font-weight: $weight-bold;
     line-height: 1;

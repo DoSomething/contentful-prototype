@@ -1,7 +1,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .modal-portal {
-  background-color: $dark-background-color-transparent;
+  background-color: rgba(34, 34, 34, 0.9);
   display: none;
   overflow-y: scroll;
   z-index: 10000;
@@ -44,7 +44,7 @@
 }
 
 .modal__close {
-  color: $black;
+  color: theme('colors.gray.900');
   cursor: pointer;
   display: block;
   font-size: 34px;

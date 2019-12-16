@@ -2,7 +2,7 @@
 @import '../../../scss/next-toolbox.scss';
 
 .mosaic-lede-banner {
-  background-color: $dark-background-color;
+  background-color: theme('colors.gray.900');
   color: theme('colors.white');
   width: 100%;
 
@@ -80,8 +80,8 @@
 }
 
 .mosaic-lede-banner__headline-title {
-  background-color: $dark-background-color;
-  color: $primary-color;
+  background-color: theme('colors.gray.900');
+  color: theme('colors.yellow.500');
   font-family: theme('fontFamily.source-sans');
   font-size: 20px;
   padding-right: theme('spacing.3');
@@ -102,8 +102,8 @@
 
 .mosaic-lede-banner__headline-subtitle {
   color: theme('colors.white');
-  border-top: 8px solid $primary-color;
-  border-bottom: 8px solid $primary-color;
+  border-top: 8px solid theme('colors.yellow.500');
+  border-bottom: 8px solid theme('colors.yellow.500');
   font-family: theme('fontFamily.league-gothic');
   font-size: 42px;
   font-weight: normal;
@@ -123,7 +123,7 @@
   padding-top: theme('spacing.6');
 
   strong {
-    color: $primary-color;
+    color: theme('colors.yellow.500');
   }
 }
 

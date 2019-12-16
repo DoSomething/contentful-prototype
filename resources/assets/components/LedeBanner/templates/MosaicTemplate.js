@@ -109,7 +109,7 @@ const MosaicTemplate = props => {
               className="mosaic-lede-banner__sponsor pt-6 clear-both"
               imgUrl={affiliateSponsors[0].fields.logo.url}
               text={affiliateCreditText}
-              textClassName="text-gray-400"
+              textClassName="text-gray-600"
               title={affiliateSponsors[0].fields.logo.title}
             />
           ) : null}

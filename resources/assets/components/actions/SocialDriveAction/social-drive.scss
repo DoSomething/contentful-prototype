@@ -7,7 +7,7 @@
     }
 
     .share-text {
-      color: $off-black;
+      color: theme('colors.gray.900');
       padding-bottom: theme('spacing.2');
 
       @include media($large) {
@@ -76,7 +76,7 @@
     .page-views__text {
       font-size: $font-regular;
       font-weight: $weight-sbold;
-      color: $med-gray;
+      color: theme('colors.gray.600');
     }
 
     .page-views__amount {

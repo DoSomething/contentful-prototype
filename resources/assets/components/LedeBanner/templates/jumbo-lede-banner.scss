@@ -3,7 +3,7 @@
 
 .jumbo-lede-banner {
   align-items: center;
-  background-color: $black;
+  background-color: theme('colors.gray.900');
   background-position: center;
   background-size: cover;
   display: flex;
@@ -25,7 +25,7 @@
 }
 
 .jumbo-lede-banner__headline-title {
-  color: $primary-color;
+  color: theme('colors.yellow.500');
   font-family: theme('fontFamily.source-sans');
   font-size: $font-regular;
   line-height: 1.1;

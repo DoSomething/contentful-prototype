@@ -56,7 +56,7 @@
       left: 0;
       top: -1%;
       width: 4px;
-      background: $primary-color;
+      background: theme('colors.yellow.500');
       position: absolute;
     }
   }
@@ -75,7 +75,7 @@
     font-size: 42px;
     font-weight: $weight-normal;
     text-transform: uppercase;
-    color: $black;
+    color: theme('colors.gray.900');
   }
 
   h2,
@@ -83,7 +83,7 @@
   h4 {
     font-family: theme('fontFamily.source-sans');
     font-weight: $weight-bold;
-    color: $black;
+    color: theme('colors.gray.900');
   }
 
   h2 {
@@ -139,7 +139,7 @@
   .footnotes-list,
   .footnote-item p {
     font-size: $font-small;
-    color: $med-gray;
+    color: theme('colors.gray.600');
     overflow-wrap: break-word;
   }
 }
