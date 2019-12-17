@@ -45,11 +45,13 @@ const PostBadge = ({ className, status, tags }) => {
 };
 
 PostBadge.propTypes = {
+  className: PropTypes.string,
   status: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 PostBadge.defaultProps = {
+  className: null,
   tags: [],
 };
 

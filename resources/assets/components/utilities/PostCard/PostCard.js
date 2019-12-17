@@ -10,7 +10,6 @@ import Card from '../Card/Card';
 import PostBadge from './PostBadge';
 import LazyImage from '../LazyImage';
 import ReviewLink from './ReviewLink';
-import { BaseFigure } from '../Figure/Figure';
 import { isAuthenticated, isStaff } from '../../../helpers';
 import ReactionButton from '../ReactionButton/ReactionButton';
 
@@ -144,18 +143,6 @@ PostCard.defaultProps = {
 
 export default PostCard;
 
-{
-  /* <div className={classnames({ 'flex-grow': post.type === 'text' })}>
-          {media}
-        </div> */
-}
-
-{
-  /* <BaseFigure
-          media={reactionElement}
-          alignment="right"
-          className="p-3 mb-0"
-        >
-
-        </BaseFigure> */
-}
+// <div className={classnames({ 'flex-grow': post.type === 'text' })}>
+//  {media}
+// </div>
