@@ -289,6 +289,11 @@ class ContentfulEntry extends React.Component {
         return <QuizContainer {...json.fields} />;
       }
 
+      case 'QuizBlock': {
+        const QuizContainer = Loader(import('../Quiz/QuizContainer'));
+        return <QuizContainer {...json} />;
+      }
+
       case 'sectionBlock': {
         return (
           <SectionBlock

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { find, every, get } from 'lodash';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -17,6 +18,21 @@ import { trackAnalyticsEvent } from '../../helpers/analytics';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
 
 import './quiz.scss';
+
+export const QuizBlockFragment = gql`
+  fragment QuizBlockFragment on QuizBlock {
+    title
+    slug
+    autoSubmit
+    hideQuestionNumber
+    results
+    defaultResultBlock {
+      id
+    }
+    questions
+    additionalContent
+  }
+`;
 
 class Quiz extends React.Component {
   constructor(props) {
