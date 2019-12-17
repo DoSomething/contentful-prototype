@@ -19,7 +19,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  textColor: 'text-gray-400',
+  textColor: 'text-gray-600',
 };
 
 const ScholarshipInfoBlock = ({
