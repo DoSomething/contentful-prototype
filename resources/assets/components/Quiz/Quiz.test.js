@@ -119,7 +119,7 @@ test('clicking the button hides the quiz, shows the conclusion, and tracks the c
   expect(trackEventMock).toHaveBeenCalled();
   expect(history.push).toHaveBeenCalledTimes(0);
   expect(wrapper.find(QuizQuestion)).toHaveLength(0);
-  expect(wrapper.find('ContentfulEntry')).toHaveLength(1);
+  expect(wrapper.find('ContentfulEntryLoader')).toHaveLength(1);
 });
 
 test('a winning quiz resultBlock causes a redirect to the new quiz', () => {

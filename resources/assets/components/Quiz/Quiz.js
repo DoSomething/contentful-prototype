@@ -12,10 +12,10 @@ import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
 import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
-import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
 import { trackAnalyticsEvent } from '../../helpers/analytics';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
+import ContentfulEntryLoader from '../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 import './quiz.scss';
 
@@ -28,6 +28,15 @@ export const QuizBlockFragment = gql`
     results
     defaultResultBlock {
       id
+      ... on QuizBlock {
+        slug
+      }
+    }
+    resultBlocks {
+      id
+      ... on QuizBlock {
+        slug
+      }
     }
     questions
     additionalContent
@@ -156,7 +165,8 @@ class Quiz extends React.Component {
     const clickedSignupActionData = { shouldShowAffirmation: false };
 
     // Run a quiz conversion (campaign signup) if this quiz is not set to auto submit
-    if (!autoSubmit) {
+    // and we have a campaign context (e.g. not on `/us/blocks/:id` page).
+    if (!autoSubmit && campaignId) {
       if (!isAuthenticated) {
         // Append result and resultBlock IDs to URL, so that upon redirect from login flow, we can show their results
         appendResultParams(results);
@@ -177,7 +187,12 @@ class Quiz extends React.Component {
 
   // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
   quizResultBlockHandler = resultBlock => {
-    if (resultBlock && resultBlock.type === 'quiz') {
+    if (!resultBlock) {
+      return;
+    }
+
+    // Handle legacy PHP API & GraphQL's differing 'type' field:
+    if (resultBlock.type === 'quiz' || resultBlock.__typename === 'QuizBlock') {
       const { location, history, slug } = this.props;
 
       const resultBlockSlug = resultBlock.fields.slug;
@@ -244,7 +259,7 @@ class Quiz extends React.Component {
     const { result, resultBlock } = this.state.results;
 
     const defaultResult = defaultResultBlock ? (
-      <ContentfulEntry json={defaultResultBlock} />
+      <ContentfulEntryLoader id={defaultResultBlock.id} />
     ) : null;
 
     if (!resultBlock) {
@@ -266,7 +281,7 @@ class Quiz extends React.Component {
       }`;
     }
 
-    return <ContentfulEntry json={resultBlock} />;
+    return <ContentfulEntryLoader id={resultBlock.id} />;
   };
 
   render() {
