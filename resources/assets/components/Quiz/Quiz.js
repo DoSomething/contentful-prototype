@@ -195,7 +195,7 @@ class Quiz extends React.Component {
     if (resultBlock.type === 'quiz' || resultBlock.__typename === 'QuizBlock') {
       const { location, history, slug } = this.props;
 
-      const resultBlockSlug = resultBlock.fields.slug;
+      const resultBlockSlug = resultBlock.slug || resultBlock.fields.slug;
 
       // Retain the current pathname while replacing the active quiz's slug with the resultBlocks slug
       const newPath = location.pathname.replace(
