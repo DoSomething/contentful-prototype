@@ -274,13 +274,6 @@ class Quiz extends React.Component {
       );
     }
 
-    if (result) {
-      // Prepend the "quiz result" text to the specified block.
-      resultBlock.fields.content = `${result.content}\n\n${
-        resultBlock.fields.content
-      }`;
-    }
-
     return <ContentfulEntryLoader id={resultBlock.id} />;
   };
 
