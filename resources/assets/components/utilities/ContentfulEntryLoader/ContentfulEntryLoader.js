@@ -8,6 +8,7 @@ import { useQuery } from '@apollo/react-hooks';
 import NotFound from '../../NotFound';
 import { env } from '../../../helpers';
 import ContentfulEntry from '../../ContentfulEntry';
+import { QuizBlockFragment } from '../../Quiz/Quiz';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import { SoftEdgeBlockFragment } from '../../actions/SoftEdgeBlock';
@@ -35,6 +36,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
     block(id: $id, preview: $preview) {
       id
       ...LinkBlockFragment
+      ...QuizBlockFragment
       ...ShareBlockFragment
       ...EmbedBlockFragment
       ...ImagesBlockFragment
@@ -57,6 +59,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   }
 
   ${LinkBlockFragment}
+  ${QuizBlockFragment}
   ${ShareBlockFragment}
   ${EmbedBlockFragment}
   ${ImagesBlockFragment}
