@@ -5,12 +5,7 @@ import editIcon from './editIcon.svg';
 
 const ReviewLink = ({ className, url }) => (
   <a href={url} className={className}>
-    <img
-      className="post-badge"
-      alt="Review this post."
-      title="Review this post."
-      src={editIcon}
-    />
+    <img alt="review and edit icon" title="review this post" src={editIcon} />
   </a>
 );
 
