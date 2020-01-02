@@ -1,11 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Mutation } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 
-import './reaction.scss';
-import { BaseFigure } from '../Figure/Figure';
+import heartEmptyIcon from './heart_empty_icon.svg';
+import heartFilledIcon from './heart_filled_icon.svg';
 import Spinner from '../../artifacts/Spinner/Spinner';
 
 export const reactionButtonFragment = gql`
@@ -25,30 +26,37 @@ const TOGGLE_REACTION = gql`
   }
 `;
 
-const ReactionButton = ({ post }) => (
+// @TODO:accessibilty We should establish a "focus" style for when the reaction
+// button is focused by a keyboard only user.
+const ReactionButton = ({ className, post }) => (
   <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
     {(toggleReaction, { loading }) => {
-      const button = loading ? (
+      const heartIcon = post.reacted ? heartFilledIcon : heartEmptyIcon;
+
+      return loading ? (
         <Spinner size="20px" />
       ) : (
-        <div
-          className={classnames('reaction__button', {
-            '-reacted': post.reacted,
-          })}
-        />
-      );
+        <button
+          type="button"
+          className={classnames(
+            'reaction flex items-center focus:outline-none',
+            { 'is-reacted': post.reacted },
+            className,
+          )}
+          onClick={toggleReaction}
+        >
+          <img
+            alt="reaction heart icon"
+            className="reaction__icon"
+            src={heartIcon}
+            style={{ height: 18, width: 24, pointerEvents: 'none' }}
+          />
 
-      return (
-        <button type="button" className="reaction" onClick={toggleReaction}>
-          <BaseFigure
-            media={button}
-            alignment={post.reactions ? 'left' : null}
-            className="mb-0"
-          >
-            {post.reactions ? (
-              <span className="reaction__meta">{post.reactions}</span>
-            ) : null}
-          </BaseFigure>
+          {post.reactions ? (
+            <span className="reaction__count leading-none ml-2 text-gray-600">
+              {post.reactions}
+            </span>
+          ) : null}
         </button>
       );
     }}
@@ -56,7 +64,12 @@ const ReactionButton = ({ post }) => (
 );
 
 ReactionButton.propTypes = {
+  className: PropTypes.string,
   post: propType(reactionButtonFragment).isRequired,
+};
+
+ReactionButton.defaultProps = {
+  className: null,
 };
 
 export default ReactionButton;

@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import hiddenIcon from './hiddenIcon.svg';
 import pendingIcon from './pendingIcon.svg';
 import rejectedIcon from './rejectedIcon.svg';
 
-const PostBadge = ({ status, tags }) => {
+const PostBadge = ({ className, status, tags }) => {
   if (status === 'REJECTED') {
     return (
       <img
-        className="post-badge"
-        alt="This post has been marked as rejected."
+        className={classnames('rejected-icon', className)}
+        alt="rejected post icon"
         title="This post has been marked as rejected."
         src={rejectedIcon}
       />
@@ -20,8 +21,8 @@ const PostBadge = ({ status, tags }) => {
   if (status === 'PENDING') {
     return (
       <img
-        className="post-badge"
-        alt="This post is awaiting review."
+        className={classnames('pending-icon', className)}
+        alt="pending post icon"
         title="This post is awaiting review."
         src={pendingIcon}
       />
@@ -32,8 +33,8 @@ const PostBadge = ({ status, tags }) => {
   if (tags && tags.includes('hide-in-gallery')) {
     return (
       <img
-        className="post-badge"
-        alt="This post is hidden in the public gallery."
+        className={classnames('hidden-icon', className)}
+        alt="hidden post icon"
         title="This post is hidden in the public gallery."
         src={hiddenIcon}
       />
@@ -44,11 +45,13 @@ const PostBadge = ({ status, tags }) => {
 };
 
 PostBadge.propTypes = {
+  className: PropTypes.string,
   status: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 PostBadge.defaultProps = {
+  className: null,
   tags: [],
 };
 

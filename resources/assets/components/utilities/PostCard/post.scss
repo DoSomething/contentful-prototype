@@ -1,29 +1,5 @@
 @import '../../../scss/next-toolbox.scss';
 
-.post {
-  position: relative;
-  background: #fff;
-  font-family: theme('fontFamily.source-sans');
-  margin-bottom: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-
-  h4 {
-    display: inline;
-    font-size: $font-regular;
-    font-weight: $weight-bold;
-  }
-
-  .figure.-right > .figure__body {
-    overflow: unset;
-  }
-}
-
-.post-photo {
-  width: 100%;
-}
-
 .post-ornament-text {
   border-left: theme('spacing.3') solid rgba(#fff, 0.3);
   background-clip: padding-box; // Allow border to "see through" background.

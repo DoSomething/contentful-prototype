@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import editIcon from './editIcon.svg';
 
-const ReviewLink = ({ url }) => (
-  <a href={url}>
+const ReviewLink = ({ className, url }) => (
+  <a href={url} className={className}>
     <img
-      className="post-badge"
-      alt="Review this post."
+      className="review-icon"
+      alt="review and edit post icon"
       title="Review this post."
       src={editIcon}
     />
@@ -15,7 +15,12 @@ const ReviewLink = ({ url }) => (
 );
 
 ReviewLink.propTypes = {
+  className: PropTypes.string,
   url: PropTypes.string.isRequired,
+};
+
+ReviewLink.defaultProps = {
+  className: null,
 };
 
 export default ReviewLink;
