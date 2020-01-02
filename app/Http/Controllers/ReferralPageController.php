@@ -34,15 +34,15 @@ class ReferralPageController extends Controller
             // @TODO: Create an $entity object to pass to the get_metadata helper
             // (and refactor get_metadata helper to expect an $entity instead of $campaign)
             'metadata' => [
-              'title' => $title,
-              'description' => $callToAction,
-              'facebook_app_id' =>  config('services.analytics.facebook_id'),
-              'image' => [
-                'url' => asset('images/money-hand.png'),
-                'width' => '1200',
-                'height' => '1200',
-              ],
-              'url' => $request->fullUrl(),
+                'title' => $title,
+                'description' => $callToAction,
+                'facebook_app_id' =>  config('services.analytics.facebook_id'),
+                'image' => [
+                    'url' => asset('images/money-hand.png'),
+                    'width' => '1200',
+                    'height' => '1200',
+                ],
+                'url' => $request->fullUrl(),
             ],
         ])->cacheableWhenAnonymous();
     }
