@@ -1,4 +1,4 @@
-/* global window */
+/* global window, URL */
 /* eslint-disable jsx-a11y/heading-has-content */
 
 import React from 'react';
@@ -180,31 +180,36 @@ class Quiz extends React.Component {
       storeCampaignSignup(campaignId, clickedSignupActionData);
     }
 
-    this.quizResultBlockHandler(results.resultBlock);
+    // If the winning resultBlock is a Quiz, navigates to it:
+    const block = results.resultBlock;
+    if (block && (block.type === 'quiz' || block.__typename === 'QuizBlock')) {
+      this.quizResultBlockHandler(block);
+
+      return;
+    }
 
     this.setState({ showResults: true, results, renderScrollConcierge: true });
   };
 
-  // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
   quizResultBlockHandler = resultBlock => {
-    if (!resultBlock) {
-      return;
-    }
+    const { location, history, slug } = this.props;
 
-    // Handle legacy PHP API & GraphQL's differing 'type' field:
-    if (resultBlock.type === 'quiz' || resultBlock.__typename === 'QuizBlock') {
-      const { location, history, slug } = this.props;
+    const resultBlockSlug = resultBlock.slug || resultBlock.fields.slug;
 
-      const resultBlockSlug = resultBlock.slug || resultBlock.fields.slug;
+    let newPath = new URL(
+      `/us/blocks/${resultBlock.id}`,
+      window.location.origin,
+    ).pathname;
 
-      // Retain the current pathname while replacing the active quiz's slug with the resultBlocks slug
-      const newPath = location.pathname.replace(
+    // If we're on a "quiz" route, redirect to the user-friendly slug instead:
+    if (location.pathname.match('/quiz/')) {
+      newPath = location.pathname.replace(
         new RegExp(`/quiz/${slug}$`),
         `/quiz/${resultBlockSlug}`,
       );
-
-      history.push(newPath);
     }
+
+    history.push(newPath);
   };
 
   selectChoice = (questionId, choiceId) => {
