@@ -45,13 +45,16 @@ const ReactionButton = ({ className, post }) => (
           onClick={toggleReaction}
         >
           <img
-            src={heartIcon}
             alt="reaction heart icon"
+            className={classnames('reaction__icon', {
+              'is-reacted': post.reacted,
+            })}
+            src={heartIcon}
             style={{ height: 18, width: 24, pointerEvents: 'none' }}
           />
 
           {post.reactions ? (
-            <span className="leading-none ml-2 text-gray-600">
+            <span className="reaction__count leading-none ml-2 text-gray-600">
               {post.reactions}
             </span>
           ) : null}
