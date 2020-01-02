@@ -2,7 +2,7 @@
 
 This is **Phoenix**, the campaign experience for [DoSomething.org](https://www.dosomething.org)! Phoenix is built using [Laravel](https://laravel.com/docs), [Contentful](https://www.contentful.com), [React](https://reactjs.com/), and [Redux](http://redux.js.org).
 
-### Documentation
+## Documentation
 
 https://dosomething.gitbook.io/phoenix-documentation/
 
