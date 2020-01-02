@@ -40,8 +40,8 @@ const ReactionButton = ({ className, post }) => (
           type="button"
           className={classnames(
             'reaction flex items-center focus:outline-none',
-            className,
             { 'is-reacted': post.reacted },
+            className,
           )}
           onClick={toggleReaction}
         >
