@@ -1,12 +1,13 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Mutation } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 
+import heartEmptyIcon from './heart_empty_icon.svg';
+import heartFilledIcon from './heart_filled_icon.svg';
 import Spinner from '../../artifacts/Spinner/Spinner';
-
-import './reaction.scss';
 
 export const reactionButtonFragment = gql`
   fragment ReactionButton on Post {
@@ -25,29 +26,29 @@ const TOGGLE_REACTION = gql`
   }
 `;
 
-const ReactionButton = ({ post }) => (
+const ReactionButton = ({ className, post }) => (
   <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
     {(toggleReaction, { loading }) => {
-      const button = loading ? (
+      const heartIcon = post.reacted ? heartFilledIcon : heartEmptyIcon;
+
+      return loading ? (
         <Spinner size="20px" />
       ) : (
-        <div
-          className={classnames('reaction__button', {
-            '-reacted': post.reacted,
-          })}
-        />
-      );
-
-      return (
         <button
           type="button"
-          className="reaction flex items-center"
+          className={classnames('reaction flex items-center', className)}
           onClick={toggleReaction}
         >
-          {button}
+          <img
+            src={heartIcon}
+            alt="reaction heart icon"
+            style={{ height: 18, width: 24, pointerEvents: 'none' }}
+          />
 
           {post.reactions ? (
-            <span className="ml-2 text-gray-600">{post.reactions}</span>
+            <span className="leading-none ml-2 text-gray-600">
+              {post.reactions}
+            </span>
           ) : null}
         </button>
       );
@@ -56,17 +57,12 @@ const ReactionButton = ({ post }) => (
 );
 
 ReactionButton.propTypes = {
+  className: PropTypes.string,
   post: propType(reactionButtonFragment).isRequired,
 };
 
-export default ReactionButton;
+ReactionButton.defaultProps = {
+  className: null,
+};
 
-// <BaseFigure
-//   media={button}
-//   alignment={post.reactions ? 'left' : null}
-//   className="mb-0"
-// >
-//   {post.reactions ? (
-//     <span className="reaction__meta">{post.reactions}</span>
-//   ) : null}
-// </BaseFigure>
+export default ReactionButton;

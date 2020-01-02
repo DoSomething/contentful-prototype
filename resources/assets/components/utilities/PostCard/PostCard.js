@@ -13,8 +13,6 @@ import ReviewLink from './ReviewLink';
 import { isAuthenticated, isStaff } from '../../../helpers';
 import ReactionButton from '../ReactionButton/ReactionButton';
 
-// import './post.scss';
-
 export const postCardFragment = gql`
   fragment PostCard on Post {
     id
