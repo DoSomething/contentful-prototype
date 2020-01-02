@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import { Mutation } from 'react-apollo';
 import { propType } from 'graphql-anywhere';
 
-import { BaseFigure } from '../Figure/Figure';
 import Spinner from '../../artifacts/Spinner/Spinner';
 
 import './reaction.scss';
@@ -26,7 +25,7 @@ const TOGGLE_REACTION = gql`
   }
 `;
 
-const ReactionButton = ({ className, post }) => (
+const ReactionButton = ({ post }) => (
   <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
     {(toggleReaction, { loading }) => {
       const button = loading ? (
@@ -42,7 +41,7 @@ const ReactionButton = ({ className, post }) => (
       return (
         <button
           type="button"
-          className={classnames('reaction flex items-center', className)}
+          className="reaction flex items-center"
           onClick={toggleReaction}
         >
           {button}
@@ -62,14 +61,12 @@ ReactionButton.propTypes = {
 
 export default ReactionButton;
 
-{
-  /* <BaseFigure
-  media={button}
-  alignment={post.reactions ? 'left' : null}
-  className="mb-0"
->
-  {post.reactions ? (
-    <span className="reaction__meta">{post.reactions}</span>
-  ) : null}
-</BaseFigure> */
-}
+// <BaseFigure
+//   media={button}
+//   alignment={post.reactions ? 'left' : null}
+//   className="mb-0"
+// >
+//   {post.reactions ? (
+//     <span className="reaction__meta">{post.reactions}</span>
+//   ) : null}
+// </BaseFigure>

@@ -49,9 +49,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
     : get(post, 'user.firstName', 'A Doer');
 
   const reactionElement =
-    !hideReactions && isAuthenticated() ? (
-      <ReactionButton className="" post={post} />
-    ) : null;
+    !hideReactions && isAuthenticated() ? <ReactionButton post={post} /> : null;
 
   // Render the appropriate media for this post:
   let media = null;
@@ -78,22 +76,16 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   }
 
   return (
-    <Card
-      className={`rounded h-full overflow-hidden post-ornament-${post.type}`}
-      key={post.id}
-    >
+    <Card className="rounded h-full overflow-hidden" key={post.id}>
       <div
-        className={classnames('post relative', {
-          'flex flex-col h-full border-l-8 border-solid border-gray-300':
-            post.type === 'text',
-        })}
+        className={classnames('post bg-white flex flex-col h-full relative')}
       >
         {media}
 
         <div className="p-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <h4 className="font-bold text-base">{authorLabel}</h4>
+              <h4 className="font-bold m-0 text-base">{authorLabel}</h4>
 
               {isStaff() ? (
                 <ReviewLink className="ml-2" url={post.permalink} />
@@ -142,7 +134,3 @@ PostCard.defaultProps = {
 };
 
 export default PostCard;
-
-// <div className={classnames({ 'flex-grow': post.type === 'text' })}>
-//  {media}
-// </div>

@@ -15,7 +15,12 @@ const ReviewLink = ({ className, url }) => (
 );
 
 ReviewLink.propTypes = {
+  className: PropTypes.string,
   url: PropTypes.string.isRequired,
+};
+
+ReviewLink.defaultProps = {
+  className: null,
 };
 
 export default ReviewLink;
