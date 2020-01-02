@@ -38,7 +38,7 @@ describe('Campaign Gallery', () => {
       cy.get('.reaction__count').should('not.exist');
 
       // React to the post.
-      cy.get('.reaction__icon').click();
+      cy.get('.reaction').click();
 
       // The post should get a filled-in heart & display the total.
       cy.get('.reaction__icon').should('have.class', 'is-reacted');
