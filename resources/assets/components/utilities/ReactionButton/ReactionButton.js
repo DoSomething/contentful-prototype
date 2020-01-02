@@ -41,14 +41,13 @@ const ReactionButton = ({ className, post }) => (
           className={classnames(
             'reaction flex items-center focus:outline-none',
             className,
+            { 'is-reacted': post.reacted },
           )}
           onClick={toggleReaction}
         >
           <img
             alt="reaction heart icon"
-            className={classnames('reaction__icon', {
-              'is-reacted': post.reacted,
-            })}
+            className="reaction__icon"
             src={heartIcon}
             style={{ height: 18, width: 24, pointerEvents: 'none' }}
           />
