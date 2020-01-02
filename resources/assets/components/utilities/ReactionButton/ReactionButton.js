@@ -26,6 +26,8 @@ const TOGGLE_REACTION = gql`
   }
 `;
 
+// @TODO:accessibilty We should establish a "focus" style for when the reaction
+// button is focused by a keyboard only user.
 const ReactionButton = ({ className, post }) => (
   <Mutation mutation={TOGGLE_REACTION} variables={{ postId: post.id }}>
     {(toggleReaction, { loading }) => {
@@ -36,7 +38,10 @@ const ReactionButton = ({ className, post }) => (
       ) : (
         <button
           type="button"
-          className={classnames('reaction flex items-center', className)}
+          className={classnames(
+            'reaction flex items-center focus:outline-none',
+            className,
+          )}
           onClick={toggleReaction}
         >
           <img
