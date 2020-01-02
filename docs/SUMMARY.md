@@ -2,12 +2,6 @@
 
 - [🔥 Phoenix 🔥](README.md)
 
-## API Reference
-
-- [API v2](api-reference/api-v2/README.md)
-  - [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
-  - [Posts Resource](api-reference/api-v2/posts-resource.md)
-
 ## Installation + Usage
 
 - [Prerequisites](installation-and-usage/prerequisites.md)
@@ -38,6 +32,12 @@
 - [Contentful](development/contentful/README.md)
   - [Migration Scripts](development/contentful/migration-scripts.md)
   - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)
+
+## Phoenix API
+
+- [v2](api-reference/api-v2/README.md)
+  - [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
+  - [Posts Resource](api-reference/api-v2/posts-resource.md)
 
 ## Data + Performance
 
