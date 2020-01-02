@@ -10,8 +10,8 @@ const PostBadge = ({ className, status, tags }) => {
   if (status === 'REJECTED') {
     return (
       <img
-        className={classnames('post-badge', className)}
-        alt="This post has been marked as rejected."
+        className={classnames('rejected-icon', className)}
+        alt="rejected post icon"
         title="This post has been marked as rejected."
         src={rejectedIcon}
       />
@@ -21,8 +21,8 @@ const PostBadge = ({ className, status, tags }) => {
   if (status === 'PENDING') {
     return (
       <img
-        className={classnames('post-badge', className)}
-        alt="This post is awaiting review."
+        className={classnames('pending-icon', className)}
+        alt="pending post icon"
         title="This post is awaiting review."
         src={pendingIcon}
       />
@@ -33,8 +33,8 @@ const PostBadge = ({ className, status, tags }) => {
   if (tags && tags.includes('hide-in-gallery')) {
     return (
       <img
-        className={classnames('post-badge', className)}
-        alt="This post is hidden in the public gallery."
+        className={classnames('hidden-icon', className)}
+        alt="hidden post icon"
         title="This post is hidden in the public gallery."
         src={hiddenIcon}
       />
