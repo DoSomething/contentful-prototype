@@ -14,11 +14,17 @@ We maintain an export file of each Contentful content type in code, in order to 
 
 To create or edit a content type(s):
 
-1. Create a new branch
+### 1\) Create a new branch
 
-2. Make the changes on **Dev** via Contentful UI
+We'll use this branch to open a pull request with or new or updated export file(s) per the content type changes we'll be making.
 
-3. [Create a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving the migration to the relevant `contentful/content-types` file, e.g. `contentful/content-types/galleryBlock.js`
+### 2\) Make the changes on **Dev** via Contentful UI
+
+Use the web interface to create new content type, or add, update, or remove fields from existing content types.
+
+### 3\) Export the changes as migrations
+
+[Create a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving the migration to the relevant `contentful/content-types` file, e.g. `contentful/content-types/galleryBlock.js`
 
 ```bash
 $ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/galleryBlock.js
@@ -35,15 +41,19 @@ Fetching editor interface
 Migration file created at contentful/content-types/galleryBlock.js
 ```
 
-4. Open a pull request for review.
+### 4\) Create a pull request
 
-5. Upon merge, make changes to Contentful QA and Master.
+Once you've added all changes into the `contentful/content-types` files, open a pull request for review.
 
-### Update content type
+### 5\) Upon merge, apply changes to Contentful QA and Master.
+
+Once approved, the content type changes must manually be applied to the QA and Master environments.
+
+#### Update content type
 
 For updates to existing Content types, make the corresponding changes via the Contentful UI on QA and Master.
 
-### New content type
+#### New content type
 
 For brand new Content types, it’s easiest to run the CLI [import](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to qa and master:
 
