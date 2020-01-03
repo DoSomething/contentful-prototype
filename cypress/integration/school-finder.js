@@ -1,11 +1,9 @@
 /// <reference types="Cypress" />
 import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
+import exampleSchoolFinderCampaign from '../fixtures/contentful/exampleSchoolFinderCampaign';
 import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../resources/assets/constants/school-finder';
-import {
-  exampleCampaign,
-  exampleSchoolFinderCampaign,
-} from '../fixtures/contentful';
 
 const exampleSchool = {
   id: '3401458',

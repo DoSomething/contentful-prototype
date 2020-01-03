@@ -2,7 +2,7 @@
 
 import { MockList } from '../fixtures/graphql';
 import { userFactory } from '../fixtures/user';
-import { exampleCampaign } from '../fixtures/contentful';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 describe('Campaign Gallery', () => {
   // Configure a new "mock" server before each test:

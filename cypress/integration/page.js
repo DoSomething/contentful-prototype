@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { exampleFactPage } from '../fixtures/contentful';
+import exampleFactPage from '../fixtures/contentful/exampleFactPage';
 
 describe('Pages', () => {
   // Configure a new "mock" server before each test:

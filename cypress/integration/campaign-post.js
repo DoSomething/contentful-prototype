@@ -1,11 +1,11 @@
 /// <reference types="Cypress" />
 
+import { MockList } from 'graphql-tools';
 import { userFactory } from '../fixtures/user';
 import { campaignId } from '../fixtures/constants';
 import { existingSignup } from '../fixtures/signups';
-import { exampleCampaign } from '../fixtures/contentful';
 import { newTextPost, newPhotoPost } from '../fixtures/posts';
-import { MockList } from 'graphql-tools';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const SIGNUPS_API = `/api/v2/campaigns/${campaignId}/signups`;
 const CAMPAIGN_POSTS_API = `/api/v2/campaigns/${campaignId}/posts`;
