@@ -2,8 +2,8 @@
 
 import { userFactory } from '../fixtures/user';
 import { campaignId } from '../fixtures/constants';
-import { exampleCampaign } from '../fixtures/contentful';
 import { emptyResponse, newSignup } from '../fixtures/signups';
+import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const API = `/api/v2/campaigns/${campaignId}`;
 
