@@ -1,6 +1,4 @@
-# Contentful Content Management API Scripts
-
-## Content Management API Scripts
+# Content Management API Scripts
 
 ### Migration CLI - where it works.
 
