@@ -46,9 +46,6 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
     ? post.location || 'Anonymous'
     : get(post, 'user.firstName', 'A Doer');
 
-  const reactionElement =
-    !hideReactions && isAuthenticated() ? <ReactionButton post={post} /> : null;
-
   // Render the appropriate media for this post:
   let media = null;
   switch (post.type) {
@@ -74,10 +71,8 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   }
 
   return (
-    <Card className="rounded h-full overflow-hidden" key={post.id}>
-      <div
-        className={classnames('post bg-white flex flex-col h-full relative')}
-      >
+    <Card className="rounded h-full overflow-hidden" data-id={post.id}>
+      <div className="post bg-white flex flex-col h-full relative">
         {media}
 
         <div className="p-3">
@@ -96,7 +91,9 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
               />
             </div>
 
-            {reactionElement}
+            {!hideReactions && isAuthenticated() ? (
+              <ReactionButton post={post} />
+            ) : null}
           </div>
 
           {isAnonymous ? (
