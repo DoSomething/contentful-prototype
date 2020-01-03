@@ -1,7 +1,8 @@
-/* global window */
+/* global window, URL */
 /* eslint-disable jsx-a11y/heading-has-content */
 
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { find, every, get } from 'lodash';
 import ReactRouterPropTypes from 'react-router-prop-types';
@@ -11,12 +12,36 @@ import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
 import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
-import ContentfulEntry from '../ContentfulEntry';
 import ScrollConcierge from '../ScrollConcierge';
 import { trackAnalyticsEvent } from '../../helpers/analytics';
 import { calculateResult, resultParams, appendResultParams } from './helpers';
+import ContentfulEntryLoader from '../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 import './quiz.scss';
+
+export const QuizBlockFragment = gql`
+  fragment QuizBlockFragment on QuizBlock {
+    title
+    slug
+    autoSubmit
+    hideQuestionNumber
+    results
+    defaultResultBlock {
+      id
+      ... on QuizBlock {
+        slug
+      }
+    }
+    resultBlocks {
+      id
+      ... on QuizBlock {
+        slug
+      }
+    }
+    questions
+    additionalContent
+  }
+`;
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -140,7 +165,8 @@ class Quiz extends React.Component {
     const clickedSignupActionData = { shouldShowAffirmation: false };
 
     // Run a quiz conversion (campaign signup) if this quiz is not set to auto submit
-    if (!autoSubmit) {
+    // and we have a campaign context (e.g. not on `/us/blocks/:id` page).
+    if (!autoSubmit && campaignId) {
       if (!isAuthenticated) {
         // Append result and resultBlock IDs to URL, so that upon redirect from login flow, we can show their results
         appendResultParams(results);
@@ -154,26 +180,36 @@ class Quiz extends React.Component {
       storeCampaignSignup(campaignId, clickedSignupActionData);
     }
 
-    this.quizResultBlockHandler(results.resultBlock);
+    // If the winning resultBlock is a Quiz, navigates to it:
+    const block = results.resultBlock;
+    if (block && (block.type === 'quiz' || block.__typename === 'QuizBlock')) {
+      this.quizResultBlockHandler(block);
+
+      return;
+    }
 
     this.setState({ showResults: true, results, renderScrollConcierge: true });
   };
 
-  // If the winning resultBlock is a Quiz, navigates to the new resultBlock's slug
   quizResultBlockHandler = resultBlock => {
-    if (resultBlock && resultBlock.type === 'quiz') {
-      const { location, history, slug } = this.props;
+    const { location, history, slug } = this.props;
 
-      const resultBlockSlug = resultBlock.fields.slug;
+    const resultBlockSlug = resultBlock.slug || resultBlock.fields.slug;
 
-      // Retain the current pathname while replacing the active quiz's slug with the resultBlocks slug
-      const newPath = location.pathname.replace(
+    let newPath = new URL(
+      `/us/blocks/${resultBlock.id}`,
+      window.location.origin,
+    ).pathname;
+
+    // If we're on a "quiz" route, redirect to the user-friendly slug instead:
+    if (location.pathname.match('/quiz/')) {
+      newPath = location.pathname.replace(
         new RegExp(`/quiz/${slug}$`),
         `/quiz/${resultBlockSlug}`,
       );
-
-      history.push(newPath);
     }
+
+    history.push(newPath);
   };
 
   selectChoice = (questionId, choiceId) => {
@@ -228,7 +264,7 @@ class Quiz extends React.Component {
     const { result, resultBlock } = this.state.results;
 
     const defaultResult = defaultResultBlock ? (
-      <ContentfulEntry json={defaultResultBlock} />
+      <ContentfulEntryLoader id={defaultResultBlock.id} />
     ) : null;
 
     if (!resultBlock) {
@@ -243,14 +279,7 @@ class Quiz extends React.Component {
       );
     }
 
-    if (result) {
-      // Prepend the "quiz result" text to the specified block.
-      resultBlock.fields.content = `${result.content}\n\n${
-        resultBlock.fields.content
-      }`;
-    }
-
-    return <ContentfulEntry json={resultBlock} />;
+    return <ContentfulEntryLoader id={resultBlock.id} />;
   };
 
   render() {
