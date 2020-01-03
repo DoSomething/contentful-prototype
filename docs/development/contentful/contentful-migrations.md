@@ -1,18 +1,14 @@
 # Contentful Migrations
 
-We utilize the [Contentful Migrations CLI](https://github.com/contentful/migration-cli) to help with managing changes to our content models on Contentful. The Migration CLI allows us to create migration scripts that programmatically make the changes to a content type when they are run. Keeping changes to our content models in code allows us to better track our changes over time, and also allows modifying all instances of a content type in one fell swoop!
+We utilize the [Contentful Migrations CLI](https://github.com/contentful/migration-cli) to manage our Contentful content models. The Migration CLI allows us to create migration scripts that programmatically create or update a content type when they are run. Keeping changes to our content models in code allows us to better track our changes over time, and also allows modifying all instances of a content type in one fell swoop!
 
-However, we need to establish a proper process for how we run these migrations, since we currently do not have a system in place to run these migration scripts as part of our build and deploy steps. Once we have fine-tuned our process we will be looking into adding it as a step in our deploys.
-
-## Process
-
-For the time being, follow these steps when creating Contentful migrations and subsequently running them:
+Follow these steps when creating Contentful migrations and subsequently running them:
 
 ### 1\) Create the migration file
 
-Create a new migration file in `/contentful/migrations`.
+For new content types, create a new file in `/contentful/content-types` using the naming convention `contentType.js`.
 
-Use the following the naming convention `20XX_XX_XX_001_what_this_migration_does.js`. If there are multiple migrations created on a single calendar date, just keep increasing the three digit reference number `001`.
+For content type updates, create a new file in `/contentful/migrations` using naming convention `20XX_XX_XX_001_what_this_migration_does.js`. If there are multiple migrations created on a single calendar date, just keep increasing the three digit reference number `001`.
 
 ### 2\) Perform a test run of the migration.
 
