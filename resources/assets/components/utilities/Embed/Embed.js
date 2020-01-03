@@ -8,7 +8,7 @@ import classnames from 'classnames';
 import { Query } from 'react-apollo';
 
 import LazyImage from '../LazyImage';
-import linkIcon from './linkIcon.svg';
+import linkIcon from './link_icon.svg';
 import { isExternal } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
