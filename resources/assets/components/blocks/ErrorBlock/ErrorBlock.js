@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import errorIcon from './errorIcon.svg';
+import errorIcon from './error_icon.svg';
 import { report } from '../../../helpers';
 import Card from '../../utilities/Card/Card';
 
