@@ -30,7 +30,7 @@
   - [Analytics Waypoint](development/features/analytics-waypoint.md)
   - [School Finder](development/features/school-finder.md)
 - [Contentful](development/contentful/README.md)
-  - [Migrations](development/contentful/migrations.md)
+  - [Workflow](development/contentful/workflow.md)
   - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)
 
 ## Phoenix API
