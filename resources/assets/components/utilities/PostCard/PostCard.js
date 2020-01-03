@@ -3,7 +3,6 @@ import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { format } from 'date-fns';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { propType } from 'graphql-anywhere';
 
 import Card from '../Card/Card';
