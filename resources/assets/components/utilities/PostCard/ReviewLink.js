@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import editIcon from './editIcon.svg';
+import editIcon from './edit_icon.svg';
 
 const ReviewLink = ({ className, url }) => (
   <a href={url} className={className}>
