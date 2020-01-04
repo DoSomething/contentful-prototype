@@ -26,7 +26,7 @@ Use the web interface to create new content type, or add, update, or remove fiel
 
 ### 3\) Export the changes as migrations
 
-[Create a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving the migration to the relevant `contentful/content-types` file, e.g. `contentful/content-types/currentSchoolBlock.js`
+[Generate a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving it to the relevant `contentful/content-types` file, e.g. `contentful/content-types/currentSchoolBlock.js`
 
 ```bash
 $ contentful space generate migration -s $SPACE_ID -e dev -c currentSchoolBlock -f contentful/content-types/currentSchoolBlock.js
