@@ -18,7 +18,7 @@ To create or edit a Contentful content type(s):
 
 ### 1\) Create a new branch
 
-We'll use this branch to open a pull request with or new or updated export file(s) per the content type changes we'll be making.
+We'll use this branch to open a pull request to add or update export file(s) per the content type changes we'll be making.
 
 ### 2\) Make the changes on **Dev** via Contentful UI
 
@@ -60,7 +60,7 @@ For updates to existing Content types, make the corresponding changes via the Co
 For brand new Content types, it’s easiest to run the CLI [import](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to qa and master:
 
 ```bash
-$ contentful space import  --space-id $SPACE_ID --content-file contentful/content-types/galleryBlock.json
+$ contentful space import  --space-id $SPACE_ID  --environment-id qa --content-file contentful/content-types/galleryBlock.js --content-model-only true
 ```
 
 ## Notes
