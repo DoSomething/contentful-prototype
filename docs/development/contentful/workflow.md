@@ -60,3 +60,7 @@ For brand new Content types, it’s easiest to run the CLI [import](https://gith
 ```bash
 $ contentful space import  --space-id $SPACE_ID --content-file contentful/content-types/galleryBlock.json
 ```
+
+## Notes
+
+The migrations found in the `contentful/migrations` directory are from an earlier iteration of this workflow. We no longer add migrations here, but these files [do have value in the sense that they track migrations/content types which haven’t been ported over yet over to the `content-types` dir](https://dosomething.slack.com/archives/CP2D7UGAU/p1578081688027000?thread_ts=1577991900.006100&cid=CP2D7UGAU).
