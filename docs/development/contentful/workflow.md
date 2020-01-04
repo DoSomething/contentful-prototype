@@ -8,7 +8,7 @@ Our Contentful space has three environments:
 
 - **`master`**: Hosts our production content, and used for editorial workflows.
 
-- **`qa`**: An exact copy of `master`, refreshed weekly. Used to test any new migrations changes before deploying or running on production.
+- **`qa`**: An exact copy of `master`, refreshed weekly. Used to test any new changes before deploying or running on production.
 
 - **`dev`**: A sandbox environment consisting of test campaigns, beta content types, and dummy data. Developers can experiment here without breaking anything on the production end or adding clutter to the `master` environment. Migrations and new Content Types and fields can be fleshed out here, before moving forward to `qa` and `master`.
 
