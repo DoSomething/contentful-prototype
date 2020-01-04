@@ -1,5 +1,9 @@
 # Workflow
 
+We maintain an export file of each Contentful content type in code, in order to use pull requests for reviewing changes to the Contentful content types. The export files are created via the [Contentful CLI](https://github.com/contentful/contentful-cli).
+
+## Environments
+
 Our Contentful space has three environments:
 
 - **Master**: Hosts our production content, and used for editorial workflows.
@@ -8,11 +12,9 @@ Our Contentful space has three environments:
 
 - **Dev**: A sandbox environment consisting of test campaigns, beta content types, and dummy data. Developers can experiment here without breaking anything on the production end or adding clutter to the Master Environment. Migrations and new Content Types and fields can be fleshed out here, before moving forward to QA and Master.
 
-We maintain an export file of each Contentful content type in code, in order to review changes to the Contentful content types changes by pull request. The export files are created via the [Contentful CLI](https://github.com/contentful/contentful-cli).
-
 ## Process
 
-To create or edit a content type(s):
+To create or edit a Contentful content type(s):
 
 ### 1\) Create a new branch
 
