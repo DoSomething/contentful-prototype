@@ -26,7 +26,7 @@ Use the web interface to create new content type, or add, update, or remove fiel
 
 ### 3\) Export the changes as migrations
 
-[Create a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving the migration to the relevant `contentful/content-types` file, e.g. `contentful/content-types/galleryBlock.js`
+[Create a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving the migration to the relevant `contentful/content-types` file, e.g. `contentful/content-types/currentSchoolBlock.js`
 
 ```bash
 $ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/galleryBlock.js
@@ -35,12 +35,12 @@ $ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f con
 Upon success, you'll see:
 
 ```bash
-$ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/galleryBlock.js
+$ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/currentSchoolBlock.js
 
 Fetching content model
-Creating migration for content type: 'galleryBlock'
+Creating migration for content type: 'currentSchoolBlock'
 Fetching editor interface
-Migration file created at contentful/content-types/galleryBlock.js
+Migration file created at contentful/content-types/currentSchoolBlock.js
 ```
 
 ### 4\) Create a pull request
@@ -57,10 +57,41 @@ For updates to existing Content types, make the corresponding changes via the Co
 
 #### New content type
 
-For brand new Content types, it’s easiest to run the CLI [import](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to qa and master:
+For brand new Content types, it’s easiest to run the CLI [migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to qa and master:
 
 ```bash
-$ contentful space import  --space-id $SPACE_ID  --environment-id qa --content-file contentful/content-types/galleryBlock.js --content-model-only true
+$ contentful space migration --s $SPACE_ID --e qa --content-file contentful/content-types/currentSchoolBlock.js
+```
+
+Upon success, you'll see:
+
+```bash
+The following migration has been planned
+
+Environment: qa
+
+Create Content Type currentSchoolBlock
+  - name: "Current School Block"
+  - description: "Displays the user's current school, or allows them to select it if not set."
+  - displayField: "internalTitle"
+
+  Create field internalTitle
+    - name: "Internal Title"
+    - type: "Symbol"
+    - localized: false
+    - required: true
+    - validations: []
+    - disabled: false
+  ...
+```
+
+You'll be prompted whether to run the migration. Upon answering yes:
+
+```bash
+? Do you want to apply the migration Yes
+ ✔ Create Content Type currentSchoolBlock
+ ✔ Update field controls for Content Type currentSchoolBlock
+🎉  Migration successful
 ```
 
 ## Notes
