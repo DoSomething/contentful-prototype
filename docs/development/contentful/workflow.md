@@ -53,7 +53,7 @@ Once approved, the content type changes must manually be applied to the `qa` and
 
 #### Update content type
 
-For updates to existing Content types, make the corresponding changes via the Contentful UI on QA and Master.
+For updates to existing Content types, make the corresponding changes via the Contentful UI in the `qa` and `master` environments.
 
 #### New content type
 
