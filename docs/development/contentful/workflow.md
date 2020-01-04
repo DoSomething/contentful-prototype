@@ -6,11 +6,11 @@ We maintain an export file of each Contentful content type in code, in order to 
 
 Our Contentful space has three environments:
 
-- **Master**: Hosts our production content, and used for editorial workflows.
+- **`master`**: Hosts our production content, and used for editorial workflows.
 
-- **QA**: An exact copy of Master, refreshed weekly. Used for QA-ing any new migrations changes before deploying or running on production.
+- **`qa`**: An exact copy of `master`, refreshed weekly. Used to test any new migrations changes before deploying or running on production.
 
-- **Dev**: A sandbox environment consisting of test campaigns, beta content types, and dummy data. Developers can experiment here without breaking anything on the production end or adding clutter to the Master Environment. Migrations and new Content Types and fields can be fleshed out here, before moving forward to QA and Master.
+- **`dev`**: A sandbox environment consisting of test campaigns, beta content types, and dummy data. Developers can experiment here without breaking anything on the production end or adding clutter to the `master` environment. Migrations and new Content Types and fields can be fleshed out here, before moving forward to `qa` and `master`.
 
 ## Process
 
@@ -20,7 +20,7 @@ To create or edit a Contentful content type(s):
 
 We'll use this branch to open a pull request to add or update export file(s) per the content type changes we'll be making.
 
-### 2\) Make the changes on **Dev** via Contentful UI
+### 2\) Make the changes on **`dev`** via Contentful UI
 
 Use the web interface to create new content type, or add, update, or remove fields from existing content types.
 
@@ -47,9 +47,9 @@ Migration file created at contentful/content-types/currentSchoolBlock.js
 
 Once you've added all changes into the `contentful/content-types` files, open a pull request for review.
 
-### 5\) Upon merge, apply changes to Contentful QA and Master.
+### 5\) Upon merge, apply changes to Contentful `qa` and `master`.
 
-Once approved, the content type changes must manually be applied to the QA and Master environments.
+Once approved, the content type changes must manually be applied to the `qa` and `master` environments.
 
 #### Update content type
 
@@ -57,7 +57,7 @@ For updates to existing Content types, make the corresponding changes via the Co
 
 #### New content type
 
-For brand new Content types, it’s easiest to run the CLI [migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to qa and master:
+For brand new Content types, it’s easiest to run the CLI [migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to the `qa` and `master` environments:
 
 ```bash
 $ contentful space migration --s $SPACE_ID --e qa --content-file contentful/content-types/currentSchoolBlock.js
