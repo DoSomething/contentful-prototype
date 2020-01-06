@@ -7,7 +7,7 @@ import { contentfulImageUrl } from '../../../helpers';
 import { Figure } from '../../utilities/Figure/Figure';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
-import SchoolFinderContainer from '../../utilities/SchoolFinder/SchoolFinderContainer';
+import CurrentSchoolBlockContainer from '../CurrentSchoolBlock/CurrentSchoolBlockContainer';
 
 import './content-block.scss';
 
@@ -61,7 +61,7 @@ const ContentBlock = props => {
       )}
       {additionalContent && additionalContent.showSchoolFinder ? (
         <div className="pt-3">
-          <SchoolFinderContainer
+          <CurrentSchoolBlockContainer
             actionId={additionalContent.actionId}
             schoolFinderFormDescription={
               additionalContent.schoolFinderFormDescription

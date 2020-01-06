@@ -2,10 +2,10 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import Card from '../Card/Card';
+import Card from '../../utilities/Card/Card';
 import Query from '../../Query';
-import SchoolImpact from './SchoolImpact';
-import SchoolFinderForm from './SchoolFinderForm';
+import CurrentSchoolImpact from './CurrentSchoolImpact';
+import CurrentSchoolForm from './CurrentSchoolForm';
 
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
@@ -22,7 +22,7 @@ const USER_SCHOOL_QUERY = gql`
   }
 `;
 
-const SchoolFinder = ({
+const CurrentSchoolBlock = ({
   actionId,
   schoolFinderFormDescription,
   schoolNotAvailableDescription,
@@ -47,7 +47,7 @@ const SchoolFinder = ({
                 ) : null}
                 <div className="border border-solid border-gray-200 rounded p-3">
                   {school.name ? (
-                    <SchoolImpact school={school} actionId={actionId} />
+                    <CurrentSchoolImpact school={school} actionId={actionId} />
                   ) : (
                     <React.Fragment>
                       <h3>{schoolNotAvailableHeadline}</h3>
@@ -57,7 +57,7 @@ const SchoolFinder = ({
                 </div>
               </div>
             ) : (
-              <SchoolFinderForm
+              <CurrentSchoolForm
                 userId={userId}
                 description={schoolFinderFormDescription}
               />
@@ -69,7 +69,7 @@ const SchoolFinder = ({
   </div>
 );
 
-SchoolFinder.propTypes = {
+CurrentSchoolBlock.propTypes = {
   actionId: PropTypes.number,
   userId: PropTypes.string.isRequired,
   schoolFinderFormDescription: PropTypes.string,
@@ -78,7 +78,7 @@ SchoolFinder.propTypes = {
   schoolSelectedConfirmation: PropTypes.string,
 };
 
-SchoolFinder.defaultProps = {
+CurrentSchoolBlock.defaultProps = {
   actionId: null,
   schoolFinderFormDescription: null,
   schoolNotAvailableHeadline: 'No School Selected',
@@ -86,4 +86,4 @@ SchoolFinder.defaultProps = {
   schoolSelectedConfirmation: null,
 };
 
-export default SchoolFinder;
+export default CurrentSchoolBlock;
