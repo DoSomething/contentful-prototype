@@ -492,6 +492,7 @@ class SiteNavigation extends React.Component {
               <>
                 <li className="utility-nav__account-profile menu-nav__item">
                   <a
+                    id="utility-nav__account-profile"
                     href="/us/account/profile"
                     className="utility-nav__account-profile-icon"
                     onClick={e => this.analyzeEvent(e, { label: 'profile' })}
@@ -504,6 +505,7 @@ class SiteNavigation extends React.Component {
               <>
                 <li className="utility-nav__auth menu-nav__item">
                   <a
+                    id="utility-nav__auth"
                     href={this.props.authLoginUrl}
                     onClick={e => this.analyzeEvent(e, { label: 'log_in' })}
                   >
@@ -513,6 +515,7 @@ class SiteNavigation extends React.Component {
 
                 <li className="utility-nav__join menu-nav__item">
                   <a
+                    id="utility-nav__join"
                     href={this.props.authRegisterUrl}
                     onClick={e => this.analyzeEvent(e, { label: 'join_now' })}
                   >
