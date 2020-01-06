@@ -1,41 +1,99 @@
 # Workflow
 
+We maintain an export file of each Contentful content type in code, in order to use pull requests for reviewing changes to the Contentful content types. The export files are created via the [Contentful CLI](https://github.com/contentful/contentful-cli).
+
+## Environments
+
 Our Contentful space has three environments:
 
-- **Master**: Hosts our production content, and used for editorial workflows.
+- **`master`**: Hosts our production content, and used for editorial workflows.
 
-- **QA**: An exact copy of Master, refreshed weekly. Used for QA-ing any new migrations changes before deploying or running on production.
+- **`qa`**: An exact copy of `master`, refreshed weekly. Used to test any new changes before deploying or running on production.
 
-- **Dev**: A sandbox environment consisting of test campaigns, beta content types, and dummy data. Developers can experiment here without breaking anything on the production end or adding clutter to the Master Environment. Migrations and new Content Types and fields can be fleshed out here, before moving forward to QA and Master.
-
-We maintain an export file of each Contentful content type in code, in order to review changes to the Contentful content types changes by pull request.
+- **`dev`**: A sandbox environment consisting of test campaigns, beta content types, and dummy data. Developers can experiment here without breaking anything on the production end or adding clutter to the `master` environment. Migrations and new Content Types and fields can be fleshed out here, before moving forward to `qa` and `master`.
 
 ## Process
 
-To create or edit a content type(s):
+To create or edit a Contentful content type(s):
 
-1. Create a new branch
+### 1\) Create a new branch
 
-2. Make the changes on **Dev** via Contentful UI
+We'll use this branch to open a pull request to add or update export file(s) per the content type changes we'll be making.
 
-3. Export each content type added or edited, saving the migration to the relevant `contentful/content-types` file, e.g. `contentful/content-types/galleryBlock.js`
+### 2\) Make the changes on **`dev`** via Contentful UI
 
-4. Open a pull request for review.
+Use the web interface to create new content type, or add, update, or remove fields from existing content types.
 
-5. Upon merge, make changes to Contentful QA and Master.
+### 3\) Export the changes as migrations
 
-### Update content type
-
-For updates to existing Content types, make the corresponding changes via the Contentful UI on QA and Master.
-
-### New content type
-
-For brand new Content types, it’s easiest to run each new content type migration on qa and master directly from the [Contentful Migrations CLI](https://github.com/contentful/migration-cli). Run the migration from the project root using:
+[Generate a migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/generate/migration) for each content type added or edited, saving it to the relevant `contentful/content-types` file, e.g. `contentful/content-types/currentSchoolBlock.js`
 
 ```bash
-$ contentful-migration --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN contentful/content-types/galleryBlock.js
+$ contentful space generate migration -s $SPACE_ID -e dev -c currentSchoolBlock -f contentful/content-types/currentSchoolBlock.js
 ```
 
-If you have a `.contentfulrc.json` file setup in your home directory you can omit specifying the `--access-token`.
+Upon success, you'll see:
 
-You can obtain your user specific access token on Contentful within the Space Settings &gt; API Keys &gt; Personal Access Tokens.
+```bash
+$ contentful space generate migration -s $SPACE_ID -e dev -c galleryBlock -f contentful/content-types/currentSchoolBlock.js
+
+Fetching content model
+Creating migration for content type: 'currentSchoolBlock'
+Fetching editor interface
+Migration file created at contentful/content-types/currentSchoolBlock.js
+```
+
+### 4\) Create a pull request
+
+Once you've added all changes into the `contentful/content-types` files, open a pull request for review.
+
+### 5\) Upon merge, apply changes to Contentful `qa` and `master`.
+
+Once approved, the content type changes must manually be applied to the `qa` and `master` environments.
+
+#### Update content type
+
+For updates to existing Content types, make the corresponding changes via the Contentful UI in the `qa` and `master` environments.
+
+#### New content type
+
+For brand new Content types, it’s easiest to run the CLI [migration](https://github.com/contentful/contentful-cli/tree/master/docs/space/import) command to add new content types to the `qa` and `master` environments:
+
+```bash
+$ contentful space migration --s $SPACE_ID --e qa --content-file contentful/content-types/currentSchoolBlock.js
+```
+
+Upon success, you'll see:
+
+```bash
+The following migration has been planned
+
+Environment: qa
+
+Create Content Type currentSchoolBlock
+  - name: "Current School Block"
+  - description: "Displays the user's current school, or allows them to select it if not set."
+  - displayField: "internalTitle"
+
+  Create field internalTitle
+    - name: "Internal Title"
+    - type: "Symbol"
+    - localized: false
+    - required: true
+    - validations: []
+    - disabled: false
+  ...
+```
+
+You'll be prompted whether to run the migration. Upon answering yes:
+
+```bash
+? Do you want to apply the migration Yes
+ ✔ Create Content Type currentSchoolBlock
+ ✔ Update field controls for Content Type currentSchoolBlock
+🎉  Migration successful
+```
+
+## Notes
+
+The migrations found in the `contentful/migrations` directory are from an earlier iteration of this workflow. We no longer add migrations here, but these files [do have value in the sense that they track migrations/content types which haven’t been ported over yet over to the `content-types` dir](https://dosomething.slack.com/archives/CP2D7UGAU/p1578081688027000?thread_ts=1577991900.006100&cid=CP2D7UGAU).
