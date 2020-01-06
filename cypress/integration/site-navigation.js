@@ -10,7 +10,7 @@ const getViewportSizes = () => {
   return Object.keys(tailwindScreens).map(key => {
     const screenWidth = Number(tailwindScreens[key].replace('px', ''));
 
-    return [screenWidth, 900];
+    return { height: 900, width: screenWidth };
   });
 };
 
@@ -21,9 +21,9 @@ describe('Site Navigation', () => {
   beforeEach(() => cy.configureMocks());
 
   sizes.forEach(size => {
-    it(`Search for not found content on ${size} viewport`, () => {
+    it(`Search for not found content on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
-      cy.viewport(size[0], size[1]);
+      cy.viewport(size.width, size.height);
 
       // Go to an example site page:
       cy.withState(exampleFactPage).visit(
@@ -51,9 +51,9 @@ describe('Site Navigation', () => {
       cy.get('.utility-subnav').should('not.exist');
     });
 
-    it(`Login and Join Now links are rendered with expected href on ${size} viewport`, () => {
+    it(`Login and Join Now links are rendered with expected href on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
-      cy.viewport(size[0], size[1]);
+      cy.viewport(size.width, size.height);
 
       // Go to an example site page:
       cy.withState(exampleFactPage).visit(
