@@ -14,7 +14,7 @@ We use a few analytics services in Phoenix to track our events:
 
 ## Tracking an Event
 
-_@TODO: Update this with the new naming conventions based on the assorted `metadata` parameters, and the [naming conventions](https://github.com/orgs/DoSomething/teams/tech-leads/discussions/3)_
+_@TODO: Update this with the new naming conventions based on the assorted `metadata` parameters, and the [naming conventions](https://github.com/orgs/DoSomething/teams/deprecated-tech-leads/discussions/3)_
 
 To track a new event, simply import the `trackAnalyticsEvent` method from `/resources/assets/helpers/analytics.js` and pass it an object containing the following fields:
 
