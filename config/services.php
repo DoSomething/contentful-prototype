@@ -18,7 +18,6 @@ return [
         'customer_io_id' => env('CUSTOMER_IO_ID'),
         'facebook_id' => env('FACEBOOK_APP_ID'),
         'google_tag_manager_id' => env('GOOGLE_TAG_MANAGER_ID'),
-        'puck_url' => env('PUCK_URL'),
         'snowplow_url' => env('SNOWPLOW_URL'),
     ],
 

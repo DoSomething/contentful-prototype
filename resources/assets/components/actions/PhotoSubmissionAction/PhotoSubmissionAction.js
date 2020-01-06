@@ -44,7 +44,7 @@ export const PhotoSubmissionBlockFragment = gql`
   }
 `;
 
-const CAPTION_CHARACTER_LIMIT = '60';
+const CAPTION_CHARACTER_LIMIT = 60;
 
 class PhotoSubmissionAction extends PostForm {
   /**

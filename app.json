@@ -47,9 +47,6 @@
       "required": true
     },
     "NPM_CONFIG_PRODUCTION": "false",
-    "PUCK_URL": {
-      "required": true
-    },
     "ROGUE_URL": {
       "required": true
     },

@@ -6,8 +6,6 @@ We track a series of analytics events and user interactions throughout the user 
 
 We use a few analytics services in Phoenix to track our events:
 
-- [Puck](https://github.com/DoSomething/puck-client) is a DoSomething maintained open source JS analytics library which we use to track all of our events. The data is dispatched to and stored in our deployed Puck application which is ingested by the Data team and surfaced in Looker. _This service is being deprecated and is no longer ingested by our data warehouse._
-
 - [Google Tag Manager](https://marketingplatform.google.com/about/tag-manager/). Events are also dispatched to GTM via the [Data Layer](https://support.google.com/tagmanager/answer/6164391?hl=en), and are dispatched over to Google Analytics).
 
 - [Snowplow](https://snowplowanalytics.com/). We dispatch events using the [Snowplow JS Tracker](https://github.com/snowplow/snowplow-javascript-tracker), which pushes events to our Snowplow config & data warehouse via [Fivetran](https://fivetran.com/).
@@ -28,51 +26,44 @@ See listed events below for some examples.
 
 The following are all events currently tracked across the Phoenix application (this is _not_ an exhaustive list):
 
-| Event Name                                           | Event Description                                                                                                                    | Platforms          |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------ |
-| `phoenix_clicked_signup`                             | clicked to signup for a campaign on Phoenix                                                                                          | Puck, GA, Snowplow |
-| `phoenix_clicked_share_facebook`                     | clicked a Facebook share button                                                                                                      | Puck, GA, Snowplow |
-| `phoenix_cancelled_share_facebook`                   | canceled (or unsuccessful with) a Facebook share                                                                                     | Puck, GA, Snowplow |
-| `phoenix_completed_share_facebook`                   | successfully completed sharing on Facebook                                                                                           | Puck, GA, Snowplow |
-| `phoenix_clicked_share_twitter`                      | clicked a Twitter share button                                                                                                       | Puck, GA, Snowplow |
-| `phoenix_clicked_share_facebook_messenger`           | clicked a Facebook Messenger share button                                                                                            | Puck, GA, Snowplow |
-| `phoenix_cancelled_share_facebook_messenger`         | canceled (or was unsuccessful with) a Facebook Messenger share                                                                       | Puck, GA, Snowplow |
-| `phoenix_completed_share_facebook_messenger`         | successfully completed sharing on Facebook Messenger                                                                                 | Puck, GA, Snowplow |
-| `phoenix_failed_redirect_facebook_messenger_app`     | failed to be redirected to the Facebook Messenger App after clicking on the Facebook Messenger share button (applies to mobile only) | Puck, GA, Snowplow |
-| `phoenix_successful_redirect_facebook_messenger_app` | successfully redirected to the Facebook Messenger App after clicking on the Facebook Messenger share button (applies to mobile only) | Puck, GA, Snowplow |
-| `phoenix_clicked_share_email`                        | clicked an Email share button                                                                                                        | Puck, GA, Snowplow |
-| `phoenix_clicked_share_action_facebook`              | clicked a facebook share button on a Share Action                                                                                    | Puck, GA, Snowplow |
-| `phoenix_cancelled_share_action_facebook`            | canceled (or unsuccessful with) a Facebook share from a Share Action                                                                 | Puck, GA, Snowplow |
-| `phoenix_completed_share_action_facebook`            | Successfully completed sharing on Facebook from a Share Action                                                                       | Puck, GA, Snowplow |
-| `phoenix_clicked_share_action_twitter`               | clicked a Twitter share button on a Share Action                                                                                     | Puck, GA, Snowplow |
-| `phoenix_clicked_link_action`                        | clicked the link on a Link Action                                                                                                    | Puck, GA, Snowplow |
-| `phoenix_clicked_voter_registration_action`          | clicked the button on a Voter Registration Action                                                                                    | Puck, GA, Snowplow |
-| `phoenix_submitted_photo_submission_action`          | submitted a Photo Reportback                                                                                                         | Puck, GA, Snowplow |
-| `phoenix_submitted_text_submission_action`           | submitted a Text Reportback                                                                                                          | Puck, GA, Snowplow |
-| `phoenix_submitted_share_social_submission_action`   | submitted a Social Share Reportback                                                                                                  | Puck, GA, Snowplow |
-| `phoenix_submitted_referral_submission_action`       | submitted a Referral Reportback                                                                                                      | Puck, GA, Snowplow |
-| `phoenix_clicked_poll_locator`                       | clicked the search button on a Poll Locator                                                                                          | Puck, GA, Snowplow |
-| `phoenix_opened_modal`                               | opened a Modal (The specific modal ID is tracked within the Puck payload)                                                            | Puck, GA, Snowplow |
-| `phoenix_submitted_quiz`                             | submitted a quiz (The quiz results are tracked within the Puck payload)                                                              | Puck, GA, Snowplow |
-| `phoenix_abandoned_quiz`                             | abandoned a quiz before completion                                                                                                   | Puck, GA, Snowplow |
-| `phoenix_opened_modal_poll_locator`                  | opened a modal on a Poll Locater (the modal could contain poll location results or be empty)                                         | Puck, GA, Snowplow |
-| `phoenix_opened_modal_poll_locator_not_found`        | opened the 'Not Found' modal from a Poll Locator                                                                                     | Puck, GA, Snowplow |
-| `phoenix_clicked_copy_to_clipboard`                  | clicked the clipboard copy button in a Social Drive Action                                                                           | Puck, GA, Snowplow |
-| `phoenix_failed_post_request`                        | failed to send a POST request                                                                                                        | Puck, GA, Snowplow |
-| `phoenix_focused_text_submission_action_text`        | focused on the text field in a Text Submission Action form                                                                           | Puck, GA, Snowplow |
-| `phoenix_clicked_call_to_action_banner`              | clicked on the button in a CTA Banner                                                                                                | Puck, GA, Snowplow |
-| `phoenix_clicked_call_to_action_popover`             | clicked on the button in a CTA Popover                                                                                               | Puck, GA, Snowplow |
+| Event Name                                           | Event Description                                                                                                                    | Platforms    |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
+| `phoenix_clicked_signup`                             | clicked to signup for a campaign on Phoenix                                                                                          | GA, Snowplow |
+| `phoenix_clicked_share_facebook`                     | clicked a Facebook share button                                                                                                      | GA, Snowplow |
+| `phoenix_cancelled_share_facebook`                   | canceled (or unsuccessful with) a Facebook share                                                                                     | GA, Snowplow |
+| `phoenix_completed_share_facebook`                   | successfully completed sharing on Facebook                                                                                           | GA, Snowplow |
+| `phoenix_clicked_share_twitter`                      | clicked a Twitter share button                                                                                                       | GA, Snowplow |
+| `phoenix_clicked_share_facebook_messenger`           | clicked a Facebook Messenger share button                                                                                            | GA, Snowplow |
+| `phoenix_cancelled_share_facebook_messenger`         | canceled (or was unsuccessful with) a Facebook Messenger share                                                                       | GA, Snowplow |
+| `phoenix_completed_share_facebook_messenger`         | successfully completed sharing on Facebook Messenger                                                                                 | GA, Snowplow |
+| `phoenix_failed_redirect_facebook_messenger_app`     | failed to be redirected to the Facebook Messenger App after clicking on the Facebook Messenger share button (applies to mobile only) | GA, Snowplow |
+| `phoenix_successful_redirect_facebook_messenger_app` | successfully redirected to the Facebook Messenger App after clicking on the Facebook Messenger share button (applies to mobile only) | GA, Snowplow |
+| `phoenix_clicked_share_email`                        | clicked an Email share button                                                                                                        | GA, Snowplow |
+| `phoenix_clicked_share_action_facebook`              | clicked a facebook share button on a Share Action                                                                                    | GA, Snowplow |
+| `phoenix_cancelled_share_action_facebook`            | canceled (or unsuccessful with) a Facebook share from a Share Action                                                                 | GA, Snowplow |
+| `phoenix_completed_share_action_facebook`            | Successfully completed sharing on Facebook from a Share Action                                                                       | GA, Snowplow |
+| `phoenix_clicked_share_action_twitter`               | clicked a Twitter share button on a Share Action                                                                                     | GA, Snowplow |
+| `phoenix_clicked_link_action`                        | clicked the link on a Link Action                                                                                                    | GA, Snowplow |
+| `phoenix_clicked_voter_registration_action`          | clicked the button on a Voter Registration Action                                                                                    | GA, Snowplow |
+| `phoenix_submitted_photo_submission_action`          | submitted a Photo Reportback                                                                                                         | GA, Snowplow |
+| `phoenix_submitted_text_submission_action`           | submitted a Text Reportback                                                                                                          | GA, Snowplow |
+| `phoenix_submitted_share_social_submission_action`   | submitted a Social Share Reportback                                                                                                  | GA, Snowplow |
+| `phoenix_submitted_referral_submission_action`       | submitted a Referral Reportback                                                                                                      | GA, Snowplow |
+| `phoenix_clicked_poll_locator`                       | clicked the search button on a Poll Locator                                                                                          | GA, Snowplow |
+| `phoenix_opened_modal`                               | opened a Modal (The specific modal ID is tracked within the `context` payload as `modalType`)                                        | GA, Snowplow |
+| `phoenix_submitted_quiz`                             | submitted a quiz                                                                                                                     | GA, Snowplow |
+| `phoenix_abandoned_quiz`                             | abandoned a quiz before completion                                                                                                   | GA, Snowplow |
+| `phoenix_opened_modal_poll_locator`                  | opened a modal on a Poll Locater (the modal could contain poll location results or be empty)                                         | GA, Snowplow |
+| `phoenix_opened_modal_poll_locator_not_found`        | opened the 'Not Found' modal from a Poll Locator                                                                                     | GA, Snowplow |
+| `phoenix_clicked_copy_to_clipboard`                  | clicked the clipboard copy button in a Social Drive Action                                                                           | GA, Snowplow |
+| `phoenix_failed_post_request`                        | failed to send a POST request                                                                                                        | GA, Snowplow |
+| `phoenix_focused_text_submission_action_text`        | focused on the text field in a Text Submission Action form                                                                           | GA, Snowplow |
+| `phoenix_clicked_call_to_action_banner`              | clicked on the button in a CTA Banner                                                                                                | GA, Snowplow |
+| `phoenix_clicked_call_to_action_popover`             | clicked on the button in a CTA Popover                                                                                               | GA, Snowplow |
 
 {% hint style="info" %}
 We also track a Google Analytics [Pageview event](https://support.google.com/analytics/answer/6086080?hl=en) for every page view
 {% endhint %}
-
-### Events tracked internally by Puck
-
-| Event Name | Event Description                               | Platforms |
-| ---------- | ----------------------------------------------- | --------- |
-| `visit`    | tracked anytime another Puck event is triggered | Puck      |
-| `view`     | viewed a page                                   | Puck      |
 
 ### List of Waypoint events being tracked in Phoenix
 
@@ -90,21 +81,21 @@ Here's a list of active [waypoint events]('../features/analytics-waypoint.md') l
 
 ### Events tracked by [Northstar](https://github.com/DoSomething/northstar)
 
-| Event Name                                     | Event Description                                                                           | Platforms          |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------ |
-| `northstar_clicked_login`                      | clicked the 'Log In' button linking to the log in form                                      | Puck, GA, Snowplow |
-| `northstar_clicked_register`                   | clicked the 'Create a DoSomething.org account' link                                         | Puck, GA, Snowplow |
-| `northstar_clicked_forgot_password`            | clicked the 'Forgot your password?' link                                                    | Puck, GA, Snowplow |
-| `northstar_clicked_login_facebook`             | clicked the Facebook auth button                                                            | Puck, GA, Snowplow |
-| `northstar_clicked_login_google`               | clicked the Google auth button                                                              | Puck, GA, Snowplow |
-| `northstar_failed_validation`                  | Form was submitted but returned with validation errors (from the backend)                   | Puck, GA, Snowplow |
-| `northstar_focused_field_[field_name]`         | focused on a text field in the form.                                                        | Puck, GA, Snowplow |
-| `northstar_submitted_edit_profile`             | submitted the edit profile form                                                             | Puck, GA, Snowplow |
-| `northstar_submitted_forgot_password`          | clicked the Request New Password button or hit Enter key to submit the forgot password form | Puck, GA, Snowplow |
-| `northstar_submitted_login`                    | submitted the login form                                                                    | Puck, GA, Snowplow |
-| `northstar_submitted_reset_password`           | submitted the password reset form                                                           | Puck, GA, Snowplow |
-| `northstar_submitted_register`                 | submitted the registration form                                                             | Puck, GA, Snowplow |
-| `northstar_triggered_error_field_[field_name]` | inline validation error for specific input field                                            | Puck, GA, Snowplow |
-| `northstar_triggered_error_submit_register`    | register form was submitted but rejected inline due to validation errors                    | Puck, GA, Snowplow |
-| `northstar_triggered_suggestion_field_email`   | email field on registration form triggered a domain fix suggestion                          | Puck, GA, Snowplow |
-| `northstar_used_suggestion_field_email`        | used the suggested fix for the email field                                                  | Puck, GA, Snowplow |
+| Event Name                                     | Event Description                                                                           | Platforms    |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------ |
+| `northstar_clicked_login`                      | clicked the 'Log In' button linking to the log in form                                      | GA, Snowplow |
+| `northstar_clicked_register`                   | clicked the 'Create a DoSomething.org account' link                                         | GA, Snowplow |
+| `northstar_clicked_forgot_password`            | clicked the 'Forgot your password?' link                                                    | GA, Snowplow |
+| `northstar_clicked_login_facebook`             | clicked the Facebook auth button                                                            | GA, Snowplow |
+| `northstar_clicked_login_google`               | clicked the Google auth button                                                              | GA, Snowplow |
+| `northstar_failed_validation`                  | Form was submitted but returned with validation errors (from the backend)                   | GA, Snowplow |
+| `northstar_focused_field_[field_name]`         | focused on a text field in the form.                                                        | GA, Snowplow |
+| `northstar_submitted_edit_profile`             | submitted the edit profile form                                                             | GA, Snowplow |
+| `northstar_submitted_forgot_password`          | clicked the Request New Password button or hit Enter key to submit the forgot password form | GA, Snowplow |
+| `northstar_submitted_login`                    | submitted the login form                                                                    | GA, Snowplow |
+| `northstar_submitted_reset_password`           | submitted the password reset form                                                           | GA, Snowplow |
+| `northstar_submitted_register`                 | submitted the registration form                                                             | GA, Snowplow |
+| `northstar_triggered_error_field_[field_name]` | inline validation error for specific input field                                            | GA, Snowplow |
+| `northstar_triggered_error_submit_register`    | register form was submitted but rejected inline due to validation errors                    | GA, Snowplow |
+| `northstar_triggered_suggestion_field_email`   | email field on registration form triggered a domain fix suggestion                          | GA, Snowplow |
+| `northstar_used_suggestion_field_email`        | used the suggested fix for the email field                                                  | GA, Snowplow |
