@@ -63,6 +63,12 @@ async function processEntries(environment, args, entryType, process) {
     const entries = await attempt(() =>
       environment.getEntries({
         content_type: entryType,
+        // 1000 is the maximum amount the API will return (http://bit.ly/2uhYQsz).
+        // @TODO: Add pagination support to bulk process *all* entries.
+        limit: 1000,
+        // For now, if the content type exceeds 1000 entries, a hack is to increment this skip value by 1000
+        // and keep running the script until all entries are processed.
+        skip: 0,
       }),
     );
 
@@ -90,8 +96,8 @@ function linkReference(id) {
 
 // Configure and return a winston logger object (for easy logging to console and log file with specified title)
 function createLogger(title) {
-  const format = winston.format.printf(
-    info => (info.level === 'error' ? `error: ${info.message}` : info.message),
+  const format = winston.format.printf(info =>
+    info.level === 'error' ? `error: ${info.message}` : info.message,
   );
   const filename = `${__dirname}/logs/${title}_${new Date().getTime()}.txt`;
   winston.configure({
