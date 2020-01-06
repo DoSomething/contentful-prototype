@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { get, has, invert, mapValues } from 'lodash';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
@@ -16,6 +15,7 @@ import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './text-submission-action.scss';
 
@@ -150,9 +150,9 @@ class TextSubmissionAction extends PostForm {
           )}
           id={this.props.id}
         >
-          <PuckWaypoint
+          <AnalyticsWaypoint
             name="text_submission_action-top"
-            waypointData={{ blockId: this.props.id }}
+            context={{ blockId: this.props.id }}
           />
           <Card className="bordered rounded" title={this.props.title}>
             {formResponse ? <FormValidation response={formResponse} /> : null}
@@ -197,9 +197,9 @@ class TextSubmissionAction extends PostForm {
               <PrivacyLanguage />
             </form>
           </Card>
-          <PuckWaypoint
+          <AnalyticsWaypoint
             name="text_submission_action-bottom"
-            waypointData={{ blockId: this.props.id }}
+            context={{ blockId: this.props.id }}
           />
         </div>
 

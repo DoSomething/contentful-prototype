@@ -5,10 +5,12 @@ import { get } from '../../../helpers/storage';
 import VoterRegistrationAction from './VoterRegistrationAction';
 import LocalStorageMock from '../../../__mocks__/localStorageMock';
 import { trackAnalyticsEvent as trackEventMock } from '../../../helpers/analytics';
+import IntersectionObserverMock from '../../../__mocks__/intersectionObserverMock';
 
 jest.mock('../../../helpers/analytics');
 
 global.localStorage = new LocalStorageMock();
+global.IntersectionObserver = IntersectionObserverMock;
 
 const renderVoterRegistration = () =>
   mount(
