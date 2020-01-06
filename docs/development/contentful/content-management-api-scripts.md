@@ -86,3 +86,4 @@ If your script utilizes the `processEntries` helper method from `/helpers`, than
 
 - Since, unlike the migration CLI, there is no way to initially run the script to see if it's valid. You might want to first go about testing with a dummy \(staging / personal\) Contentful Space to ensure your script will behave as intended!
 - There is a suite of helper functions in `./helpers` containing some common logic we found ourselves running with these scripts.
+- If utilizing the `--all` flag to bulk process all entries of a content-type & if the content-type contains more then 1000 entries, a temporary workaround to the API's 1000 entry limit is to keep incrementing the `skip` parameter by 1000 in the `./helpers#processEntries` method to eventually process _all_ entries.
