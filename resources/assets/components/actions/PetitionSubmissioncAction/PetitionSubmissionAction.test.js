@@ -4,6 +4,9 @@ import { MockedProvider } from '@apollo/react-testing';
 
 import { USER_POSTS_QUERY } from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
 import PetitionSubmissionAction from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
+import IntersectionObserverMock from '../../../__mocks__/intersectionObserverMock';
+
+global.IntersectionObserver = IntersectionObserverMock;
 
 const mocks = [
   {
