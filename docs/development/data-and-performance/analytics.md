@@ -69,18 +69,14 @@ We also track a Google Analytics [Pageview event](https://support.google.com/ana
 
 ### Events tracked internally by Puck
 
-| Event Name         | Event Description                               | Platforms |
-| ------------------ | ----------------------------------------------- | --------- |
-| `visit`            | tracked anytime another Puck event is triggered | Puck      |
-| `view`             | viewed a page                                   | Puck      |
-| `waypoint reached` | reached a waypoint embedded on page             | Puck      |
+| Event Name | Event Description                               | Platforms |
+| ---------- | ----------------------------------------------- | --------- |
+| `visit`    | tracked anytime another Puck event is triggered | Puck      |
+| `view`     | viewed a page                                   | Puck      |
 
-### List of Waypoint events being tracked in Phoenix by Puck
+### List of Waypoint events being tracked in Phoenix
 
-{% hint style="info" %}
-These events would be categorized under the `waypoint reached` event name.
-The event's `data.waypointData` field will contain the `contentfulId` (ID of the contentful entry) for the specific block on the page. The following list will contain the individual `data.waypointName` values paired by the events being tracked for the viewport reaching the top and bottom of the respective blocks.
-{% endhint %}
+Here's a list of active [waypoint events]('../features/analytics-waypoint.md') labeled by their respective `context.name`s:
 
 - `petition_submission_action-top`, `petition_submission_action-bottom`
 - `text_submission_action-top`, `text_submission_action-top`
