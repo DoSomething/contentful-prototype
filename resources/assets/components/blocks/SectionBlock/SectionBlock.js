@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import TextContent from '../../utilities/TextContent/TextContent';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './section-block.scss';
 
@@ -30,10 +30,7 @@ const SectionBlock = props => {
       className={classnames('section-block', className)}
       style={{ backgroundColor }}
     >
-      <PuckWaypoint
-        name="section_block-top"
-        waypointData={{ contentfulId: id }}
-      />
+      <AnalyticsWaypoint name="section_block-top" context={{ blockId: id }} />
 
       <TextContent
         className="section-block__content base-12-grid"
@@ -44,9 +41,9 @@ const SectionBlock = props => {
         {content}
       </TextContent>
 
-      <PuckWaypoint
+      <AnalyticsWaypoint
         name="section_block-bottom"
-        waypointData={{ contentfulId: id }}
+        context={{ blockId: id }}
       />
     </section>
   );

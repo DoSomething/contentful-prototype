@@ -2,7 +2,6 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
@@ -15,6 +14,7 @@ import { formatPostPayload } from '../../../helpers/forms';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   dynamicString,
   loadFacebookSDK,
@@ -177,9 +177,9 @@ class ShareAction extends PostForm {
     return (
       <React.Fragment>
         <div className="share-action">
-          <PuckWaypoint
+          <AnalyticsWaypoint
             name="share_action-top"
-            waypointData={{ blockId: id }}
+            context={{ blockId: id }}
           />
           <Card title={title} className="rounded bordered">
             {content ? (
@@ -194,9 +194,9 @@ class ShareAction extends PostForm {
               Share on {isFacebook ? 'Facebook' : 'Twitter'}
             </Button>
           </Card>
-          <PuckWaypoint
+          <AnalyticsWaypoint
             name="share_action-bottom"
-            waypointData={{ blockId: id }}
+            context={{ blockId: id }}
           />
         </div>
         {this.state.showModal ? (

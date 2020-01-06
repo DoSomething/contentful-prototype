@@ -4,7 +4,6 @@ import { get, has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Query as ApolloQuery } from 'react-apollo';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
@@ -16,6 +15,7 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './petition-submission-action.scss';
 
@@ -129,9 +129,9 @@ class PetitionSubmissionAction extends PostForm {
           )}
           id={id}
         >
-          <PuckWaypoint
+          <AnalyticsWaypoint
             name="petition_submission_action-top"
-            waypointData={{ blockId: id }}
+            context={{ blockId: id }}
           />
           <ApolloQuery
             query={USER_POSTS_QUERY}
@@ -207,9 +207,9 @@ class PetitionSubmissionAction extends PostForm {
               );
             }}
           </ApolloQuery>
-          <PuckWaypoint
+          <AnalyticsWaypoint
             name="petition_submission_action-bottom"
-            waypointData={{ blockId: id }}
+            context={{ blockId: id }}
           />
         </div>
 

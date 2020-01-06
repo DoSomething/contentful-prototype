@@ -2,9 +2,9 @@ import React from 'react';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import LazyImage from '../LazyImage';
+import AnalyticsWaypoint from '../AnalyticsWaypoint/AnalyticsWaypoint';
 
 const IframeEmbed = ({ className, id, url, previewImage }) => {
   const iframeElement = () => (
@@ -13,7 +13,7 @@ const IframeEmbed = ({ className, id, url, previewImage }) => {
 
   return (
     <div id={id} className={classnames('embed', className)}>
-      <PuckWaypoint name="embed-top" waypointData={{ contentfulId: id }} />
+      <AnalyticsWaypoint name="embed-top" context={{ blockId: id }} />
 
       {previewImage ? (
         <Media query="(max-width: 759px)">
@@ -36,7 +36,7 @@ const IframeEmbed = ({ className, id, url, previewImage }) => {
         iframeElement()
       )}
 
-      <PuckWaypoint name="embed-bottom" waypointData={{ contentfulId: id }} />
+      <AnalyticsWaypoint name="embed-bottom" context={{ blockId: id }} />
     </div>
   );
 };

@@ -2,11 +2,11 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Gallery from '../Gallery/Gallery';
 import LoadMore from '../LoadMore/LoadMore';
 import PostCard from '../PostCard/PostCard';
+import AnalyticsWaypoint from '../AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './post-gallery.scss';
 
@@ -47,9 +47,9 @@ const PostGallery = props => {
   return posts.length ? (
     <div id={id} className={classnames('post-gallery', className)}>
       {waypointName ? (
-        <PuckWaypoint
+        <AnalyticsWaypoint
           name={`${waypointName}-top`}
-          waypointData={{ contentfulId: id }}
+          context={{ blockId: id }}
         />
       ) : null}
 
@@ -76,9 +76,9 @@ const PostGallery = props => {
       ) : null}
 
       {waypointName ? (
-        <PuckWaypoint
+        <AnalyticsWaypoint
           name={`${waypointName}-bottom`}
-          waypointData={{ contentfulId: id }}
+          context={{ blockId: id }}
         />
       ) : null}
     </div>

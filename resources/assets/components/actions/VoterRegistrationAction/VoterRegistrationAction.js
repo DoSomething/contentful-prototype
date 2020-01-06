@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { PuckWaypoint } from '@dosomething/puck-client';
 
 import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
@@ -9,6 +8,7 @@ import { dynamicString } from '../../../helpers';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import TextContent from '../../utilities/TextContent/TextContent';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './voter-registration-action.scss';
 
@@ -58,7 +58,7 @@ const VoterRegistrationAction = props => {
       className="rounded bordered voter-registration"
       title="Register to vote"
     >
-      <PuckWaypoint name="voter_registration_action-top" />
+      <AnalyticsWaypoint name="voter_registration_action-top" />
       <div className="p-3 clearfix">
         <TextContent>{content}</TextContent>
 
@@ -66,7 +66,7 @@ const VoterRegistrationAction = props => {
           Start Registration
         </ButtonLink>
       </div>
-      <PuckWaypoint name="voter_registration_action-bottom" />
+      <AnalyticsWaypoint name="voter_registration_action-bottom" />
     </Card>
   );
 };
