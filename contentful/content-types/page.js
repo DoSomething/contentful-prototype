@@ -174,6 +174,7 @@ module.exports = function(migration) {
             'callToAction',
             'campaignUpdate',
             'contentBlock',
+            'currentSchoolBlock',
             'customBlock',
             'embed',
             'galleryBlock',
@@ -241,52 +242,49 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  page.changeEditorInterface('internalTitle', 'singleLine', {
+  page.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
     helpText:
       'This title is used internally to help find this content. It will not be displayed anywhere on the rendered web page.',
   });
 
-  page.changeEditorInterface('title', 'singleLine', {});
-  page.changeEditorInterface('subTitle', 'singleLine', {});
+  page.changeFieldControl('title', 'builtin', 'singleLine', {});
+  page.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
 
-  page.changeEditorInterface('slug', 'slugEditor', {
+  page.changeFieldControl('slug', 'builtin', 'slugEditor', {
     helpText:
       'For an article page prefix with "articles/", a fact page prefix with "facts/" and for an about page prefix with "about/"',
   });
 
-  page.changeEditorInterface('metadata', 'entryLinkEditor', {});
+  page.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
+  page.changeFieldControl('authors', 'builtin', 'entryLinksEditor', {});
 
-  page.changeEditorInterface('authors', 'entryLinksEditor', {
-    bulkEditing: false,
+  page.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {
+    helpText: 'The cover image will display on the page before the content',
   });
 
-  page.changeEditorInterface('coverImage', 'assetLinkEditor', {
-    helpText: 'The cover image will display on the page before the content.',
-  });
+  page.changeFieldControl('content', 'builtin', 'markdown', {});
 
-  page.changeEditorInterface('content', 'markdown', {});
-
-  page.changeEditorInterface('sidebar', 'entryLinksEditor', {
+  page.changeFieldControl('sidebar', 'builtin', 'entryLinksEditor', {
     helpText: 'Add blocks to show up on alongside the main content.',
     bulkEditing: false,
   });
 
-  page.changeEditorInterface('blocks', 'entryLinksEditor', {
+  page.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
   });
 
-  page.changeEditorInterface('displaySocialShare', 'boolean', {
+  page.changeFieldControl('displaySocialShare', 'builtin', 'boolean', {
     helpText:
       "Select 'Yes' to display Social Sharing buttons on the bottom of the page. (Facebook & Twitter).",
     trueLabel: 'Yes',
     falseLabel: 'No',
   });
 
-  page.changeEditorInterface('hideFromNavigation', 'boolean', {
+  page.changeFieldControl('hideFromNavigation', 'builtin', 'boolean', {
     trueLabel: 'Yes',
     falseLabel: 'No',
   });
 
-  page.changeEditorInterface('socialOverride', 'entryLinkEditor', {});
-  page.changeEditorInterface('additionalContent', 'objectEditor', {});
+  page.changeFieldControl('socialOverride', 'builtin', 'entryLinkEditor', {});
+  page.changeFieldControl('additionalContent', 'builtin', 'objectEditor', {});
 };
