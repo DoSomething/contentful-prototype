@@ -63,17 +63,14 @@ const ContentBlock = props => {
         <div className="pt-3">
           <CurrentSchoolBlockContainer
             actionId={additionalContent.actionId}
-            schoolFinderFormDescription={
+            currentSchoolDescription={
+              additionalContent.schoolSelectedConfirmation
+            }
+            selectSchoolDescription={
               additionalContent.schoolFinderFormDescription
             }
             schoolNotAvailableDescription={
               additionalContent.schoolNotAvailableDescription
-            }
-            schoolNotAvailableHeadline={
-              additionalContent.schoolNotAvailableHeadline
-            }
-            schoolSelectedConfirmation={
-              additionalContent.schoolSelectedConfirmation
             }
           />
         </div>
