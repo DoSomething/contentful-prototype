@@ -169,6 +169,7 @@ class SiteNavigation extends React.Component {
               onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
             >
               <a
+                id="main-nav__causes"
                 href="/"
                 onClick={e =>
                   this.handleOnClickToggle(e, 'CausesSubNav', {

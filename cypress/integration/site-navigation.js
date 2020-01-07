@@ -4,23 +4,55 @@ import tailwind from '../../tailwind.config';
 import exampleFactPage from '../fixtures/contentful/exampleFactPage';
 
 // Return array of viewport sizes based on Tailwind configuration.
-const getViewportSizes = () => {
+const getViewportSizes = (specifiedSizes = []) => {
   const tailwindScreens = tailwind.theme.screens;
 
-  return Object.keys(tailwindScreens).map(key => {
-    const screenWidth = Number(tailwindScreens[key].replace('px', ''));
+  let screenSizes = Object.keys(tailwindScreens);
+
+  if (specifiedSizes.length) {
+    screenSizes = screenSizes.filter(size => {
+      return specifiedSizes.includes(size);
+    });
+  }
+
+  return screenSizes.map(size => {
+    const screenWidth = Number(tailwindScreens[size].replace('px', ''));
 
     return { height: 900, width: screenWidth };
   });
 };
 
-const sizes = getViewportSizes();
+const allSizes = getViewportSizes();
+
+const smallAndMediumSizes = getViewportSizes(['xs', 'sm', 'md']);
 
 describe('Site Navigation', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
-  sizes.forEach(size => {
+  allSizes.forEach(size => {
+    it(`Open and close the Search subnav on ${size.width}px by ${size.height}px viewport`, () => {
+      // Set the viewport:
+      cy.viewport(size.width, size.height);
+
+      // Go to an example site page:
+      cy.withState(exampleFactPage).visit(
+        '/us/facts/test-11-facts-about-testing',
+      );
+
+      // Find the Search icon in nav and click to open it:
+      cy.get('#nav .utility-nav__search-icon').click();
+
+      // Assert the Search subnav is visible:
+      cy.get('.utility-subnav').should('be.visible');
+
+      // Close the Search subnav:
+      cy.get('.btn__close--search-subnav').click();
+
+      // Assert the Search subnav is not still rendered on the page:
+      cy.get('.utility-subnav').should('not.exist');
+    });
+
     it(`Search for not found content on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
       cy.viewport(size.width, size.height);
@@ -30,10 +62,10 @@ describe('Site Navigation', () => {
         '/us/facts/test-11-facts-about-testing',
       );
 
-      // Find the search icon in nav and click on it:
+      // Find the Search icon in nav and click to open it:
       cy.get('#nav .utility-nav__search-icon').click();
 
-      // Assert the search subnav is visible:
+      // Assert the Search subnav is visible:
       cy.get('.utility-subnav').should('be.visible');
 
       // Try searching for some content we know will not be found and submit the search form:
@@ -47,7 +79,7 @@ describe('Site Navigation', () => {
       // Assert message received indicates query not found:
       cy.contains("couldn't find what you were looking for");
 
-      // Assert the subnav is not still rendered on search results page:
+      // Assert the Search subnav is not still rendered on search results page:
       cy.get('.utility-subnav').should('not.exist');
     });
 
@@ -69,6 +101,30 @@ describe('Site Navigation', () => {
       cy.get('#utility-nav__join')
         .should('have.attr', 'href')
         .and('include', '/authorize');
+    });
+  });
+
+  smallAndMediumSizes.forEach(size => {
+    it(`Open and close the Causes subnav on ${size.width}px by ${size.height}px viewport`, () => {
+      // Set the viewport:
+      cy.viewport(size.width, size.height);
+
+      // Go to an example site page:
+      cy.withState(exampleFactPage).visit(
+        '/us/facts/test-11-facts-about-testing',
+      );
+
+      // Find the Causes main nav item and click on it:
+      cy.get('#main-nav__causes').click();
+
+      // Assert the Causes subnav is visible:
+      cy.get('.main-subnav').should('be.visible');
+
+      // Close the Causes subnav:
+      cy.get('.btn__close--main-subnav').click();
+
+      // Assert the Causes subnav is not still rendered on page:
+      cy.get('.main-subnav').should('not.exist');
     });
   });
 });
