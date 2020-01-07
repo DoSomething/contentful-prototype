@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import requiredIf from 'react-required-if';
 
+// @TODO:forge-removal Switch to using new btn class.
 import './button.scss';
 
 const Button = ({
