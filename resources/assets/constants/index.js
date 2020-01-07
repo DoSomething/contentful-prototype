@@ -47,3 +47,7 @@ export const DEFAULT_REFERRAL_CAMPAIGN_ID = '9037';
 
 // Signup Button text for scholarship referrals:
 export const SCHOLARSHIP_SIGNUP_BUTTON_TEXT = 'Apply Now!';
+
+// Zendesk (sandbox) API endpoint:
+export const ZENDESK_API_ENDPOINT =
+  'https://dosomethingorg11412693296.zendesk.com/api/v2/requests.json';
