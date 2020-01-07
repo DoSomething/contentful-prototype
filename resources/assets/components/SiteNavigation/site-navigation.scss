@@ -111,20 +111,17 @@ $extraSmall: '(min-width: 360px)';
 
   > h1 {
     margin-bottom: 0;
+    color: black;
+    font-size: 22px;
+    font-weight: bold;
+    padding: 0 0 12px;
 
-    a {
-      color: black;
+    @include media($large) {
+      font-size: 18px;
+    }
+
+    @include media($larger) {
       font-size: 22px;
-      font-weight: bold;
-      padding: 0 0 12px;
-
-      @include media($large) {
-        font-size: 18px;
-      }
-
-      @include media($larger) {
-        font-size: 22px;
-      }
     }
   }
 }

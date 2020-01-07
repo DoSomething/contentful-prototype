@@ -3,8 +3,9 @@
 
 import React from 'react';
 import { get } from 'lodash';
-import classnames from 'classnames';
+import Media from 'react-media';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import SearchIcon from '../artifacts/SearchIcon/SearchIcon';
 import SiteNavigationFeature from './SiteNavigationFeature';
@@ -168,36 +169,47 @@ class SiteNavigation extends React.Component {
               onMouseEnter={() => this.handleMouseEnter('CausesSubNav')}
               onMouseLeave={() => this.handleMouseLeave('CausesSubNav')}
             >
-              <a
-                id="main-nav__causes"
-                href="/"
-                onClick={e =>
-                  this.handleOnClickToggle(e, 'CausesSubNav', {
-                    label: 'causes',
-                  })
-                }
+              <Media
+                queries={{
+                  large: '(min-width: 960px)',
+                }}
               >
-                Causes
-                <span className="main-nav__arrow" />
-              </a>
+                {matches => (
+                  <>
+                    {matches.large ? (
+                      <a
+                        href="/campaigns"
+                        onClick={e =>
+                          this.handleOnClickLink(e, {
+                            label: 'causes',
+                          })
+                        }
+                      >
+                        Causes
+                        <span className="main-nav__arrow" />
+                      </a>
+                    ) : (
+                      <a
+                        href="/"
+                        onClick={e =>
+                          this.handleOnClickToggle(e, 'CausesSubNav', {
+                            label: 'causes',
+                          })
+                        }
+                      >
+                        Causes
+                        <span className="main-nav__arrow" />
+                      </a>
+                    )}
+                  </>
+                )}
+              </Media>
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
                 <div className="main-subnav menu-subnav">
                   <div className="wrapper base-12-grid">
                     <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
-                      <h1>
-                        <a
-                          href="/us/campaigns"
-                          onClick={e => {
-                            this.handleOnClickLink(e, {
-                              noun: 'subnav_link',
-                              label: 'causes',
-                            });
-                          }}
-                        >
-                          Causes
-                        </a>
-                      </h1>
+                      <h1>Causes</h1>
                       <ul>
                         <li>
                           <a
