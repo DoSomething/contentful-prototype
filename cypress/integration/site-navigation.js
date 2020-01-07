@@ -26,7 +26,7 @@ const allSizes = getViewportSizes();
 
 const smallAndMediumSizes = getViewportSizes(['xs', 'sm', 'md']);
 
-const largePlusSizes = getViewportSizes(['lg', 'xl', 'xxl']);
+const largeSizes = getViewportSizes(['lg', 'xl', 'xxl']);
 
 describe('Site Navigation', () => {
   // Configure a new "mock" server before each test:
@@ -130,7 +130,7 @@ describe('Site Navigation', () => {
     });
   });
 
-  largePlusSizes.forEach(size => {
+  largeSizes.forEach(size => {
     it(`Can click Causes main nav item on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
       cy.viewport(size.width, size.height);
