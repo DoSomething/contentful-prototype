@@ -74,6 +74,8 @@ class Entity implements ArrayAccess, JsonSerializable
                 return new CompanyPage($block->entry);
             case 'contentBlock':
                 return new ContentBlock($block->entry);
+            case 'currentSchoolBlock':
+                return new CurrentSchoolBlock($block->entry);
             case 'customBlock':
                 if ($block->entry->type === 'join_cta') {
                     return new CallToAction($block->entry);

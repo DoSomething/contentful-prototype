@@ -24,10 +24,11 @@ const USER_SCHOOL_QUERY = gql`
 
 const CurrentSchoolBlock = ({
   actionId,
-  schoolFinderFormDescription,
+  currentSchoolTitle,
+  currentSchoolDescription,
   schoolNotAvailableDescription,
-  schoolNotAvailableHeadline,
-  schoolSelectedConfirmation,
+  selectSchoolTitle,
+  selectSchoolDescription,
   userId,
 }) => (
   <div className="school-finder">
@@ -37,20 +38,20 @@ const CurrentSchoolBlock = ({
 
         return (
           <Card
-            title={schoolId ? 'Your School' : 'Find Your School'}
+            title={schoolId ? currentSchoolTitle : selectSchoolTitle}
             className="rounded bordered"
           >
             {schoolId ? (
               <div className="current-school p-3">
-                {schoolSelectedConfirmation ? (
-                  <p className="pb-3">{schoolSelectedConfirmation}</p>
+                {currentSchoolDescription ? (
+                  <p className="pb-3">{currentSchoolDescription}</p>
                 ) : null}
                 <div className="border border-solid border-gray-200 rounded p-3">
                   {school.name ? (
                     <CurrentSchoolImpact school={school} actionId={actionId} />
                   ) : (
                     <React.Fragment>
-                      <h3>{schoolNotAvailableHeadline}</h3>
+                      <h3>School Not Available</h3>
                       <p>{schoolNotAvailableDescription}</p>
                     </React.Fragment>
                   )}
@@ -59,7 +60,7 @@ const CurrentSchoolBlock = ({
             ) : (
               <CurrentSchoolForm
                 userId={userId}
-                description={schoolFinderFormDescription}
+                description={selectSchoolDescription}
               />
             )}
           </Card>
@@ -71,19 +72,21 @@ const CurrentSchoolBlock = ({
 
 CurrentSchoolBlock.propTypes = {
   actionId: PropTypes.number,
-  userId: PropTypes.string.isRequired,
-  schoolFinderFormDescription: PropTypes.string,
-  schoolNotAvailableHeadline: PropTypes.string,
+  currentSchoolDescription: PropTypes.string,
+  currentSchoolTitle: PropTypes.string,
+  selectSchoolDescription: PropTypes.string,
+  selectSchoolTitle: PropTypes.string,
   schoolNotAvailableDescription: PropTypes.string,
-  schoolSelectedConfirmation: PropTypes.string,
+  userId: PropTypes.string.isRequired,
 };
 
 CurrentSchoolBlock.defaultProps = {
   actionId: null,
-  schoolFinderFormDescription: null,
-  schoolNotAvailableHeadline: 'No School Selected',
+  currentSchoolDescription: null,
+  currentSchoolTitle: 'Your School',
+  selectSchoolDescription: null,
+  selectSchoolTitle: 'Find Your School',
   schoolNotAvailableDescription: null,
-  schoolSelectedConfirmation: null,
 };
 
 export default CurrentSchoolBlock;
