@@ -6,15 +6,11 @@ Displays headline, subtitle, supertitle, copy, and image. Commonly used to list 
 
 ![Example Content Block](../../.gitbook/assets/content-block-example.png)
 
-A `ContentBlock` may also display a [School Finder via its additionalContent field](development/features/school-finder.md#usage-instructions). This is likely temporary if we use this for multiple campaigns, as a new content type would be better for the long-term.
-
-![Example Content Block With School Finder](../../.gitbook/assets/content-block-school-finder-example.png)
-
 ## Technical Notes
 
-- Available aas a `ContentBlock` in GraphQL.
+- Available as a `ContentBlock` in GraphQL.
 
-- For now, the `additionalContent` field is used to display a Current School Block. This will be deprecated in the near future, but the expected values are:
+- For now, the `additionalContent` field is used to display a Current School Block below a Section Block. This will be deprecated in the near future, but the expected values are:
 
 ```
 {

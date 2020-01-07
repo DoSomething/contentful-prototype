@@ -4,6 +4,8 @@
 
 Displays the authenticated user's current school (and optional school impact), or displays a school finder form to update their school.
 
+![Example Current School Block With Selected School](../../.gitbook/assets/current-school-block-selected-school.png)
+
 If the user does not have a `school_id` set on their Northstar profile, they are prompted to select their school's state, and then prompted to select their school from an autocomplete dropdown of schools in the selected state. This list of schools is sourced from [Great Schools](https://www.greatschools.org/). Upon save, the user's Northstar `school_id` field is updated with the selected school.
 
 ## Content Type Fields
