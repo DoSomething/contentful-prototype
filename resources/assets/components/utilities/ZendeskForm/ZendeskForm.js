@@ -73,8 +73,7 @@ const ZendeskForm = () => {
               detailed steps (click by click) on how you encountered the
               problem, what browser you&apos;re using, and if you&apos;re using
               a phone or computer. This will help our team recreate the issue
-              and come up with a solution. Screenshots that include the URL will
-              also help us troubleshoot!
+              and come up with a solution.
             </p>
           </div>
           <form onSubmit={handleSubmit}>
