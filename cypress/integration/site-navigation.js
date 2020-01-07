@@ -7,16 +7,16 @@ import exampleFactPage from '../fixtures/contentful/exampleFactPage';
 const getViewportSizes = (specifiedSizes = []) => {
   const tailwindScreens = tailwind.theme.screens;
 
-  let screenKeys = Object.keys(tailwindScreens);
+  let screenSizes = Object.keys(tailwindScreens);
 
   if (specifiedSizes.length) {
-    screenKeys = screenKeys.filter(size => {
+    screenSizes = screenSizes.filter(size => {
       return specifiedSizes.includes(size);
     });
   }
 
-  return screenKeys.map(key => {
-    const screenWidth = Number(tailwindScreens[key].replace('px', ''));
+  return screenSizes.map(size => {
+    const screenWidth = Number(tailwindScreens[size].replace('px', ''));
 
     return { height: 900, width: screenWidth };
   });
