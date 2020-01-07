@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import SchoolFinder from './SchoolFinder';
+import CurrentSchoolBlock from './CurrentSchoolBlock';
 import { getUserId } from '../../../selectors/user';
 
 const mapStateToProps = state => ({
   userId: getUserId(state),
 });
 
-export default connect(mapStateToProps)(SchoolFinder);
+export default connect(mapStateToProps)(CurrentSchoolBlock);

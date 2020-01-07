@@ -23,6 +23,7 @@ import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment'
 import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQuery';
 import CampaignUpdateContainer from '../blocks/CampaignUpdate/CampaignUpdateContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
+import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
 import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
@@ -162,6 +163,9 @@ class ContentfulEntry extends React.Component {
             {...withoutNulls(json)}
           />
         );
+
+      case 'currentSchoolBlock':
+        return <CurrentSchoolBlockContainer {...withoutNulls(json.fields)} />;
 
       case 'embed':
         return (

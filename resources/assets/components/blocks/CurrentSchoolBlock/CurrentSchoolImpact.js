@@ -18,7 +18,7 @@ const SCHOOL_ACTION_QUERY = gql`
   }
 `;
 
-const SchoolImpact = ({ actionId, school }) => {
+const CurrentSchoolImpact = ({ actionId, school }) => {
   const schoolClassName = actionId
     ? 'mb-3 pb-3  md:pt-3 border-b border-solid border-gray-200 md:border-none'
     : '';
@@ -61,7 +61,7 @@ const SchoolImpact = ({ actionId, school }) => {
   );
 };
 
-SchoolImpact.propTypes = {
+CurrentSchoolImpact.propTypes = {
   actionId: PropTypes.number,
   school: PropTypes.shape({
     id: PropTypes.string,
@@ -71,8 +71,8 @@ SchoolImpact.propTypes = {
   }).isRequired,
 };
 
-SchoolImpact.defaultProps = {
+CurrentSchoolImpact.defaultProps = {
   actionId: null,
 };
 
-export default SchoolImpact;
+export default CurrentSchoolImpact;

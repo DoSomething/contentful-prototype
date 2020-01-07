@@ -2,10 +2,10 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import Card from '../Card/Card';
+import Card from '../../utilities/Card/Card';
 import Query from '../../Query';
-import SchoolImpact from './SchoolImpact';
-import SchoolFinderForm from './SchoolFinderForm';
+import CurrentSchoolImpact from './CurrentSchoolImpact';
+import CurrentSchoolForm from './CurrentSchoolForm';
 
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
@@ -22,12 +22,13 @@ const USER_SCHOOL_QUERY = gql`
   }
 `;
 
-const SchoolFinder = ({
+const CurrentSchoolBlock = ({
   actionId,
-  schoolFinderFormDescription,
+  currentSchoolTitle,
+  currentSchoolDescription,
   schoolNotAvailableDescription,
-  schoolNotAvailableHeadline,
-  schoolSelectedConfirmation,
+  selectSchoolTitle,
+  selectSchoolDescription,
   userId,
 }) => (
   <div className="school-finder">
@@ -37,29 +38,29 @@ const SchoolFinder = ({
 
         return (
           <Card
-            title={schoolId ? 'Your School' : 'Find Your School'}
+            title={schoolId ? currentSchoolTitle : selectSchoolTitle}
             className="rounded bordered"
           >
             {schoolId ? (
               <div className="current-school p-3">
-                {schoolSelectedConfirmation ? (
-                  <p className="pb-3">{schoolSelectedConfirmation}</p>
+                {currentSchoolDescription ? (
+                  <p className="pb-3">{currentSchoolDescription}</p>
                 ) : null}
                 <div className="border border-solid border-gray-200 rounded p-3">
                   {school.name ? (
-                    <SchoolImpact school={school} actionId={actionId} />
+                    <CurrentSchoolImpact school={school} actionId={actionId} />
                   ) : (
                     <React.Fragment>
-                      <h3>{schoolNotAvailableHeadline}</h3>
+                      <h3>No School Selected</h3>
                       <p>{schoolNotAvailableDescription}</p>
                     </React.Fragment>
                   )}
                 </div>
               </div>
             ) : (
-              <SchoolFinderForm
+              <CurrentSchoolForm
                 userId={userId}
-                description={schoolFinderFormDescription}
+                description={selectSchoolDescription}
               />
             )}
           </Card>
@@ -69,21 +70,23 @@ const SchoolFinder = ({
   </div>
 );
 
-SchoolFinder.propTypes = {
+CurrentSchoolBlock.propTypes = {
   actionId: PropTypes.number,
-  userId: PropTypes.string.isRequired,
-  schoolFinderFormDescription: PropTypes.string,
-  schoolNotAvailableHeadline: PropTypes.string,
+  currentSchoolDescription: PropTypes.string,
+  currentSchoolTitle: PropTypes.string,
+  selectSchoolDescription: PropTypes.string,
+  selectSchoolTitle: PropTypes.string,
   schoolNotAvailableDescription: PropTypes.string,
-  schoolSelectedConfirmation: PropTypes.string,
+  userId: PropTypes.string.isRequired,
 };
 
-SchoolFinder.defaultProps = {
+CurrentSchoolBlock.defaultProps = {
   actionId: null,
-  schoolFinderFormDescription: null,
-  schoolNotAvailableHeadline: 'No School Selected',
+  currentSchoolDescription: null,
+  currentSchoolTitle: 'Your School',
+  selectSchoolDescription: null,
+  selectSchoolTitle: 'Find Your School',
   schoolNotAvailableDescription: null,
-  schoolSelectedConfirmation: null,
 };
 
-export default SchoolFinder;
+export default CurrentSchoolBlock;

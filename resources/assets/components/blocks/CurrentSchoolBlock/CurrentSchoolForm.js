@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
 
-import Button from '../Button/Button';
+import Button from '../../utilities/Button/Button';
 import SchoolSelect from './SchoolSelect';
-import SchoolStateSelect from '../UsaStateSelect';
+import SchoolStateSelect from '../../utilities/UsaStateSelect';
 
 const USER_SCHOOL_MUTATION = gql`
   mutation UserSchoolMutation($userId: String!, $schoolId: String) {
@@ -16,7 +16,7 @@ const USER_SCHOOL_MUTATION = gql`
   }
 `;
 
-const SchoolFinderForm = ({ description, userId }) => {
+const CurrentSchoolForm = ({ description, userId }) => {
   const [school, setSchool] = useState(null);
   const [schoolState, setSchoolState] = useState(null);
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
@@ -52,13 +52,13 @@ const SchoolFinderForm = ({ description, userId }) => {
   );
 };
 
-SchoolFinderForm.propTypes = {
+CurrentSchoolForm.propTypes = {
   description: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };
 
-SchoolFinderForm.defaultProps = {
+CurrentSchoolForm.defaultProps = {
   description: null,
 };
 
-export default SchoolFinderForm;
+export default CurrentSchoolForm;
