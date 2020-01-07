@@ -124,6 +124,7 @@ const MarqueeTemplate = ({
           <Modal
             className="-inverted -scholarship__info"
             onClose={() => setShowScholarshipModal(false)}
+            trackingId="SCHOLARSHIP_MODAL"
           >
             <ScholarshipInfoBlockQuery
               affiliateSponsors={affiliateSponsors}
