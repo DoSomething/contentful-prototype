@@ -51,7 +51,7 @@ const CurrentSchoolBlock = ({
                     <CurrentSchoolImpact school={school} actionId={actionId} />
                   ) : (
                     <React.Fragment>
-                      <h3>School Not Available</h3>
+                      <h3>No School Selected</h3>
                       <p>{schoolNotAvailableDescription}</p>
                     </React.Fragment>
                   )}
