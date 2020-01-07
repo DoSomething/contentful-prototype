@@ -178,6 +178,7 @@ class SiteNavigation extends React.Component {
                   <>
                     {matches.large ? (
                       <a
+                        id="main-nav__causes"
                         href="/campaigns"
                         onClick={e =>
                           this.handleOnClickLink(e, {
@@ -190,6 +191,7 @@ class SiteNavigation extends React.Component {
                       </a>
                     ) : (
                       <a
+                        id="main-nav__causes"
                         href="/"
                         onClick={e =>
                           this.handleOnClickToggle(e, 'CausesSubNav', {

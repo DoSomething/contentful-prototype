@@ -26,6 +26,8 @@ const allSizes = getViewportSizes();
 
 const smallAndMediumSizes = getViewportSizes(['xs', 'sm', 'md']);
 
+const largePlusSizes = getViewportSizes(['lg', 'xl', 'xxl']);
+
 describe('Site Navigation', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
@@ -105,7 +107,7 @@ describe('Site Navigation', () => {
   });
 
   smallAndMediumSizes.forEach(size => {
-    it(`Open and close the Causes subnav on ${size.width}px by ${size.height}px viewport`, () => {
+    it(`Can interact with toggleable Causes main nav item on ${size.width}px by ${size.height}px viewport`, () => {
       // Set the viewport:
       cy.viewport(size.width, size.height);
 
@@ -125,6 +127,28 @@ describe('Site Navigation', () => {
 
       // Assert the Causes subnav is not still rendered on page:
       cy.get('.main-subnav').should('not.exist');
+    });
+  });
+
+  largePlusSizes.forEach(size => {
+    it(`Can click Causes main nav item on ${size.width}px by ${size.height}px viewport`, () => {
+      // Set the viewport:
+      cy.viewport(size.width, size.height);
+
+      // Go to an example site page:
+      cy.withState(exampleFactPage).visit(
+        '/us/facts/test-11-facts-about-testing',
+      );
+
+      // Mouseover the Causes main nav item and assert it is visible:
+      cy.get('#main-nav__causes')
+        .trigger('mouseover')
+        .should('be.visible');
+
+      // Find the Causes main nav item and click on it:
+      cy.get('#main-nav__causes')
+        .should('have.attr', 'href')
+        .and('include', '/campaigns');
     });
   });
 });
