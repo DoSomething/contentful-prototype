@@ -39,7 +39,8 @@ const ScholarshipInfoBlockQuery = props => (
       campaignId: props.campaignId,
     }}
   >
-    {res => {
+    {(res, loading) => {
+      const isLoaded = !loading;
       const title = get(res, 'affiliate.title');
       const actions = get(res, 'actions', []);
       const actionItem = actions.find(
@@ -49,6 +50,7 @@ const ScholarshipInfoBlockQuery = props => (
         <ScholarshipInfoBlock
           affiliateTitle={title}
           actionType={get(actionItem, 'actionLabel', '')}
+          isLoaded={isLoaded}
           {...props}
         />
       );

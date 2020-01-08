@@ -11,7 +11,7 @@ import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-import ScholarshipInfoBlockQuery from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlockQuery';
+import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   contentfulImageUrl,
@@ -126,7 +126,7 @@ const MarqueeTemplate = ({
             onClose={() => setShowScholarshipModal(false)}
             trackingId="SCHOLARSHIP_MODAL"
           >
-            <ScholarshipInfoBlockQuery
+            <ScholarshipInfoBlock
               affiliateSponsors={affiliateSponsors}
               campaignId={numCampaignId}
               scholarshipAmount={scholarshipAmount}
@@ -141,7 +141,7 @@ const MarqueeTemplate = ({
                   text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
                 />
               </div>
-            </ScholarshipInfoBlockQuery>
+            </ScholarshipInfoBlock>
           </Modal>
         ) : null}
       </article>

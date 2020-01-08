@@ -23,7 +23,7 @@ const Query = ({ query, variables, children, hideSpinner }) => (
         return <ErrorBlock error={result.error} />;
       }
 
-      return children(result.data);
+      return children(result.data, result.loading);
     }}
   </ApolloQuery>
 );
