@@ -65,28 +65,14 @@ export default {
           blocks: [
             {
               id: '6Kj1Av7MnvNcCXLYHLGee0',
-              type: 'contentBlock',
+              type: 'currentSchoolBlock',
               fields: {
-                superTitle: 'Step 1',
-                title: 'Find Your School',
-                subTitle:
-                  'Win great prizes for your school and climb the leaderboard',
-                content:
-                  'Donec mollis neque eros, vitae venenatis turpis ultricies non. Sed ut tincidunt nulla, et sagittis mauris. Mauris tempor mauris sit amet nisi semper, quis pellentesque nunc congue. Nullam pharetra lacinia leo eu viverra. Nulla pellentesque augue nisi, nec tristique libero efficitur at. Join a school or no prizes, sucker.',
-                image: {
-                  url: null,
-                  description: null,
-                },
-                imageAlignment: null,
-                additionalContent: {
-                  actionId: 21,
-                  showSchoolFinder: true,
-                  schoolNotAvailableHeadline: 'No School Selected',
-                  schoolFinderFormDescription:
-                    'Pick your school and whatever. Invite your classmates to join this campaign and donate their jeans to win prizes and some other stuff.',
-                  schoolNotAvailableDescription:
-                    'No school copy goes here, please email Sahara with information about your school.',
-                },
+                internalTitle: 'Generic Current School Block',
+                actionId: 21,
+                selectSchoolDescription:
+                  'Pick your school and whatever. Invite your classmates to join this campaign and donate their jeans to win prizes and some other stuff.',
+                schoolNotAvailableDescription:
+                  'No school copy goes here, please email Sahara with information about your school.',
               },
             },
           ],
