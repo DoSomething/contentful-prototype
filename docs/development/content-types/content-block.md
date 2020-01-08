@@ -9,7 +9,3 @@ Displays headline, subtitle, supertitle, copy, and image. Commonly used to list 
 ## Technical Notes
 
 - Available as a `ContentBlock` in GraphQL.
-
-```
-
-```
