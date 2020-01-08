@@ -11,11 +11,6 @@ import '../../../scss/base.scss';
 import '../../../scss/gallery-grid.scss';
 import '../../blocks/GalleryBlock/GalleryBlock';
 
-import '../../../scss/base.scss';
-import './company-page.scss';
-import '../../../scss/gallery-grid.scss';
-import '../../blocks/GalleryBlock/GalleryBlock';
-
 const CompanyPage = props => {
   const { title, subTitle, coverImage, content } = props;
 
@@ -58,7 +53,6 @@ CompanyPage.defaultProps = {
   coverImage: {},
   content: null,
   subTitle: null,
-  subTitle: PropTypes.string.isRequired,
   content: PropTypes.object.isRequired,
 };
 
