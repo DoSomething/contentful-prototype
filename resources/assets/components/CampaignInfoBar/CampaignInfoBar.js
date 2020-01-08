@@ -5,8 +5,8 @@ import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 
 const CampaignInfoBar = ({
   affiliateCreditText,
-  affiliatePartners,
   affiliateSponsors,
+  affiliatePartners,
   contactEmail,
 }) => (
   <div className="info-bar bg-gray-700">
