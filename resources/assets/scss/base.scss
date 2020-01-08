@@ -59,7 +59,9 @@ html {
   font-family: theme('fontFamily.source-sans');
   // Resetting to a base 16px font-size; works better with default Tailwind.
   font-size: 16px;
+  height: 100%;
   line-height: 1.4;
+  width: 100%;
 }
 
 body {

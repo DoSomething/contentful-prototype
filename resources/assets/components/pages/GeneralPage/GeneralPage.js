@@ -48,10 +48,10 @@ const GeneralPage = props => {
   const ctaCopy = REGISTER_CTA_COPY[pageCategory];
 
   return (
-    <div>
+    <>
       <SiteNavigationContainer />
       <div className="main general-page base-12-grid">
-        <Enclosure className="grid-narrow">
+        {/* <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>
             {subTitle ? (
@@ -136,7 +136,7 @@ const GeneralPage = props => {
               ))}
             </ul>
           ) : null}
-        </Enclosure>
+        </Enclosure> */}
       </div>
 
       {ctaCopy && !isAuthenticated ? (
@@ -164,7 +164,7 @@ const GeneralPage = props => {
           )}
         />
       ) : null}
-    </div>
+    </>
   );
 };
 
