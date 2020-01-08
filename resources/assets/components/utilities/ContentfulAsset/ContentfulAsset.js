@@ -30,7 +30,7 @@ const ContentfulAsset = ({ id, width, height }) => (
       id,
       width,
       height,
-      preview: env('CONTENTFUL_USE_PREVIEW_API'),
+      preview: env('CONTENTFUL_USE_PREVIEW_API', false),
     }}
   >
     {({ loading, error, data }) => {

@@ -30,7 +30,7 @@ const AffiliateScholarshipBlockQuery = props => (
     query={AFFILIATE_QUERY}
     variables={{
       utmLabel: props.utmLabel,
-      preview: env('CONTENTFUL_USE_PREVIEW_API'),
+      preview: env('CONTENTFUL_USE_PREVIEW_API', false),
     }}
   >
     {res => {

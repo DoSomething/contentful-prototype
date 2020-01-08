@@ -520,8 +520,8 @@ export function findById(array, compareId) {
  * @param  {String} key
  * @return {String}
  */
-export function env(key) {
-  return (window.ENV || {})[key];
+export function env(key, defaultVal) {
+  return get(window.ENV, key, defaultVal);
 }
 
 /**

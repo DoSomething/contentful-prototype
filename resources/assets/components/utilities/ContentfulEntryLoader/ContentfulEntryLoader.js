@@ -87,7 +87,7 @@ const ContentfulEntryLoader = ({
   classNameByEntryDefault,
 }) => {
   const { loading, error, data } = useQuery(CONTENTFUL_BLOCK_QUERY, {
-    variables: { id, preview: env('CONTENTFUL_USE_PREVIEW_API') },
+    variables: { id, preview: env('CONTENTFUL_USE_PREVIEW_API', false) },
   });
 
   if (loading) {

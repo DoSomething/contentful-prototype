@@ -17,6 +17,7 @@ Cypress.on('window:before:load', window => {
     VOTER_REG_MODAL_ENABLED: false,
     SIXPACK_ENABLED: false,
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
+    CONTENTFUL_USE_PREVIEW_API: false,
   };
 
   // Remove built-in 'fetch' support since it cannot yet be mocked by Cypress.

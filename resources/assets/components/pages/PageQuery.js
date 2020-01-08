@@ -9,7 +9,10 @@ import Placeholder from '../utilities/Placeholder';
 
 const PageQuery = ({ query, variables, children }) => {
   const { loading, error, data } = useQuery(query, {
-    variables: { ...variables, preview: env('CONTENTFUL_USE_PREVIEW_API') },
+    variables: {
+      ...variables,
+      preview: env('CONTENTFUL_USE_PREVIEW_API', false),
+    },
   });
 
   if (loading) {

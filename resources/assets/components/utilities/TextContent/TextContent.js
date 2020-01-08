@@ -1,7 +1,7 @@
 import React from 'react';
-import { has } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { has, isString, isArray } from 'lodash';
 
 import RichTextDocument from './RichTextDocument';
 import StandardMarkdown from './StandardMarkdown';
@@ -23,21 +23,30 @@ const TextContent = ({
   classNameByEntry,
   classNameByEntryDefault,
   styles,
-}) =>
-  has(children, 'nodeType') ? (
-    <RichTextDocument
-      className={classnames('text-content', className)}
-      classNameByEntry={classNameByEntry}
-      classNameByEntryDefault={classNameByEntryDefault}
-      styles={styles}
-    >
-      {children}
-    </RichTextDocument>
-  ) : (
-    <StandardMarkdown className={classnames('text-content', className)}>
-      {children}
-    </StandardMarkdown>
-  );
+}) => {
+  if (has(children, 'nodeType')) {
+    return (
+      <RichTextDocument
+        className={classnames('text-content', className)}
+        classNameByEntry={classNameByEntry}
+        classNameByEntryDefault={classNameByEntryDefault}
+        styles={styles}
+      >
+        {children}
+      </RichTextDocument>
+    );
+  }
+
+  if (isString(children) || isArray(children)) {
+    return (
+      <StandardMarkdown className={classnames('text-content', className)}>
+        {children}
+      </StandardMarkdown>
+    );
+  }
+
+  return null;
+};
 
 TextContent.propTypes = {
   children: PropTypes.oneOfType([
