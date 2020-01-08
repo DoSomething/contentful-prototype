@@ -140,7 +140,7 @@ describe('Site Navigation', () => {
         '/us/facts/test-11-facts-about-testing',
       );
 
-      // Mouseover the Causes main nav item and assert it is visible:
+      // Mouseover the Causes main nav item and assert the subnav is visible:
       cy.get('#main-nav__causes')
         .trigger('mouseover')
         .should('be.visible');
