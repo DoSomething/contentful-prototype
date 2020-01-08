@@ -2,39 +2,57 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
+import LazyImage from '../../utilities/LazyImage';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { contentfulImageUrl } from '../../../helpers';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 import '../../../scss/base.scss';
-import './company-page.scss';
 import '../../../scss/gallery-grid.scss';
 import '../../blocks/GalleryBlock/GalleryBlock';
 
 const CompanyPage = props => {
-  const { title, subTitle } = props;
+  const { title, subTitle, coverImage, content } = props;
 
   return (
-    <div className="company-page">
-      <Enclosure className="container margin-bottom-lg ">
-        <div className="container bg-white padding-top-lg margin-bottom-lg base-12-grid">
-          <h1 className="league-gothic -lg caps-lock grid-wide">{title}</h1>
-          <h1 className="league-gothic text-md caps-lock grid-wide">
-            {subTitle}
-          </h1>
-        </div>
-        <div className="base-12-grid -p-0">
-          <TextContent className="company-page__content bg-white grid-wide p-8">
-            {props.content}
-          </TextContent>
-        </div>
-      </Enclosure>
+    <div>
+      <SiteNavigationContainer />
+      <div className="wrapper base-12-grid">
+        <Enclosure className="grid-wide card rounded border border-solid border-gray-300">
+          {coverImage.url ? (
+            <LazyImage
+              className="w-full"
+              alt={coverImage.description || 'Page Cover Image'}
+              src={contentfulImageUrl(coverImage.url, 1440, 620)}
+            />
+          ) : null}
+          <div className="m-4 md:m-12">
+            <h1 className="font-league-gothic uppercase text-3xl md:text-4xl">
+              {title}
+            </h1>
+            {subTitle ? <h2 className="text-lg my-3">{subTitle}</h2> : null}
+            <TextContent className="pt-4">{content}</TextContent>
+          </div>
+        </Enclosure>
+      </div>
     </div>
   );
 };
 
 CompanyPage.propTypes = {
   title: PropTypes.string.isRequired,
-  subTitle: PropTypes.string.isRequired,
-  content: PropTypes.object.isRequired,
+  subTitle: PropTypes.string,
+  coverImage: PropTypes.shape({
+    url: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  content: PropTypes.object,
+};
+
+CompanyPage.defaultProps = {
+  coverImage: {},
+  content: null,
+  subTitle: null,
 };
 
 export default CompanyPage;
