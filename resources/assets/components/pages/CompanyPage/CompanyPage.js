@@ -7,10 +7,6 @@ import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-import '../../../scss/base.scss';
-import '../../../scss/gallery-grid.scss';
-import '../../blocks/GalleryBlock/GalleryBlock';
-
 const CompanyPage = props => {
   const { title, subTitle, coverImage, content } = props;
 
