@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
@@ -34,6 +34,7 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
   }
 `;
 
+// @TODO: Move to Helper Functions?
 const Header = ({ content, textColor }) => (
   <div className={`font-bold uppercase ${textColor}`}>{content}</div>
 );
@@ -64,6 +65,8 @@ const ScholarshipInfoBlock = ({
       campaignId,
     },
   });
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   const isLoaded = !loading;
   const affiliateTitle = get(data, 'affiliate.title');
@@ -144,7 +147,7 @@ const ScholarshipInfoBlock = ({
         {children}
       </div>
       <div className="md:w-1/2 p-6 text-base scholarship-info-block">
-        <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 rounded">
+        <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 pb-2 rounded">
           {scholarshipAmount ? (
             <div>
               <Header
@@ -179,12 +182,17 @@ const ScholarshipInfoBlock = ({
             </div>
             <div>
               <Header content="Requirements" />
-              <ul className="mt-2 list-disc list-inside">
+              <ul className="mt-2 pb-2 list-disc list-inside">
                 <li>Under 26 years old</li>
                 <li>No minimum GPA</li>
                 <li>No essay</li>
               </ul>
             </div>
+          </div>
+          <div className="md:hidden text-center align-bottom">
+            <button type="button" onClick={() => setDrawerOpen(!drawerOpen)}>
+              <p className="text-sm font-bold">View More</p>
+            </button>
           </div>
         </div>
       </div>
