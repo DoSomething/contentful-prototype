@@ -53,7 +53,6 @@ CompanyPage.defaultProps = {
   coverImage: {},
   content: null,
   subTitle: null,
-  content: PropTypes.object.isRequired,
 };
 
 export default CompanyPage;
