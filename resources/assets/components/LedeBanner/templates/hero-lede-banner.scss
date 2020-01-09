@@ -1,13 +1,13 @@
 @import '../../../scss/next-toolbox.scss';
 
-.marquee-landing-page {
+.hero-landing-page {
   .cover-image {
     img {
       width: 100%;
     }
   }
 
-  .marquee-banner {
+  .hero-banner {
     margin-bottom: theme('spacing.3');
     grid-column: full-start / full-end;
 
@@ -20,13 +20,13 @@
     }
   }
 
-  .marquee-banner__headline-title {
+  .hero-banner__headline-title {
     text-transform: uppercase;
     font-size: $font-large;
     color: theme('colors.blurple.700');
   }
 
-  .marquee-banner__headline-subtitle {
+  .hero-banner__headline-subtitle {
     text-transform: uppercase;
     font-size: theme('fontSize.3xl');
     font-family: theme('fontFamily.league-gothic');
@@ -53,7 +53,7 @@
   }
 }
 
-.marquee-signup-button {
+.hero-signup-button {
   background-color: $white;
   border-top: 1px solid theme('colors.gray.200');
   bottom: 0;
