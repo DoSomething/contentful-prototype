@@ -6,14 +6,27 @@ import { RestApiClient } from '@dosomething/gateway';
 import Button from '../Button/Button';
 import { env, report } from '../../../helpers/index';
 import { tabularLog } from '../../../helpers/api';
-
 import './cta-popover-email-form.scss';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 const CtaPopoverEmailForm = ({ handleComplete }) => {
   const [emailValue, setEmailValue] = useState('');
   const [errorResponse, setErrorResponse] = useState(null);
   const [showAffirmation, setShowAffirmation] = useState(false);
   const handleChange = event => setEmailValue(event.target.value);
+
+  const handleFocus = () => {
+    trackAnalyticsEvent({
+      metadata: {
+        label: 'call_to_action_popover_email',
+        adjective: 'email',
+        category: 'site_action',
+        noun: 'call_to_action_popover',
+        target: 'field',
+        verb: 'focused',
+      },
+    });
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -32,6 +45,17 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         handleComplete();
         tabularLog(get(response, 'data', null));
 
+        trackAnalyticsEvent({
+          metadata: {
+            label: 'call_to_action_popover_email',
+            adjective: 'email',
+            category: 'authentication',
+            noun: 'form_submited_popover',
+            target: 'button',
+            verb: 'clicked',
+          },
+        });
+
         return response;
       })
       .catch(error => {
@@ -45,6 +69,18 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         if (window.ENV.APP_ENV !== 'production') {
           console.log('🚫 failed response? caught the error!', error);
         }
+
+        trackAnalyticsEvent({
+          context: { errorMessage },
+          metadata: {
+            label: 'submit_subscriptions_email_error',
+            adjective: 'email_error',
+            category: 'onboarding',
+            noun: 'form_submitted_popover_email_error',
+            target: 'button',
+            verb: 'error_triggered',
+          },
+        });
       });
   };
 
@@ -60,6 +96,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
           value={emailValue}
           placeholder="Enter your email address"
           onChange={handleChange}
+          onFocus={handleFocus}
         />
         <Button className="email-form__button" type="submit">
           Sign Up
