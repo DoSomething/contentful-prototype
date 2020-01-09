@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
 import LazyImage from '../../utilities/LazyImage';
-import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl } from '../../../helpers';
+import TextContent from '../../utilities/TextContent/TextContent';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 import '../../../scss/base.scss';
