@@ -12,9 +12,9 @@ const CtaPopoverButton = ({ buttonText, link }) => {
         category: 'site_action',
         target: 'button',
         verb: 'clicked',
-        noun: 'newsletter_cta',
+        noun: 'call_to_action',
         adjective: 'popover',
-        label: 'newsletter_cta__popover',
+        label: 'call_to_action_popover',
       },
       context: {
         url: link,
