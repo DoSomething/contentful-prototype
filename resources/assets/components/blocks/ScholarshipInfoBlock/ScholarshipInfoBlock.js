@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
 import Card from '../../utilities/Card/Card';
-import { env, getHumanFriendlyDate } from '../../../helpers';
+import { env, getHumanFriendlyDate, report } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
@@ -57,7 +57,7 @@ const ScholarshipInfoBlock = ({
   scholarshipDescription,
   utmLabel,
 }) => {
-  const { loading, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
+  const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
     variables: {
       utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
@@ -72,6 +72,11 @@ const ScholarshipInfoBlock = ({
     action => action.scholarshipEntry && action.reportback,
   );
   const actionType = get(actionItem, 'actionLabel', '');
+
+  if (error) {
+    console.error(`${error}`);
+    report(error);
+  }
 
   return (
     <Card className="flex flex-col-reverse md:flex-row">
