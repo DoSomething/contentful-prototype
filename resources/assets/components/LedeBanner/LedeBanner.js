@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CoverTemplate from './templates/CoverTemplate';
 import JumboTemplate from './templates/JumboTemplate';
 import MosaicTemplate from './templates/MosaicTemplate';
-import MarqueeTemplate from '../pages/LandingPage/templates/MarqueeTemplate';
+import MarqueeTemplate from './templates/MarqueeTemplate';
 
 const LedeBanner = props => {
   const { template, featureFlagUseLegacyTemplate } = props;

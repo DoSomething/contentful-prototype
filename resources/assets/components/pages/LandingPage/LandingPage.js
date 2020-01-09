@@ -3,119 +3,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PitchTemplate from './templates/PitchTemplate';
-import MarqueeTemplate from './templates/MarqueeTemplate';
-
-import './landing-page.scss';
+import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 
 const LandingPage = props => {
-  const {
-    additionalContent,
-    affiliateCreditText,
-    affiliateSponsors,
-    affiliateOptInContent,
-    campaignId,
-    content,
-    coverImage,
-    dashboard,
-    endDate,
-    featureFlagUseLegacyTemplate,
-    scholarshipAmount,
-    scholarshipCallToAction,
-    scholarshipDeadline,
-    scholarshipDescription,
-    showPartnerMsgOptIn,
-    sidebar,
-    signupArrowContent,
-    subtitle,
-    tagline,
-    title,
-  } = props;
+  const { isCampaignClosed } = props;
 
-  // @TODO: allow outputting multiple blocks in the sidebar.
-  const sidebarCTA = sidebar[0] && sidebar[0].fields;
-
-  return (
-    <React.Fragment>
-      {featureFlagUseLegacyTemplate ? (
-        <PitchTemplate
-          additionalContent={additionalContent}
-          campaignId={campaignId}
-          content={content}
-          scholarshipAmount={scholarshipAmount}
-          scholarshipDeadline={scholarshipDeadline}
-          showPartnerMsgOptIn={showPartnerMsgOptIn}
-          sidebarCTA={sidebarCTA}
-          signupArrowContent={signupArrowContent}
-          tagline={tagline}
-          title={title}
-        />
-      ) : (
-        <MarqueeTemplate
-          additionalContent={additionalContent}
-          affiliateCreditText={affiliateCreditText}
-          affiliateSponsors={affiliateSponsors}
-          affiliateOptInContent={affiliateOptInContent}
-          content={content}
-          coverImage={coverImage}
-          campaignId={campaignId}
-          dashboard={dashboard}
-          endDate={endDate}
-          scholarshipAmount={scholarshipAmount}
-          scholarshipCallToAction={scholarshipCallToAction}
-          scholarshipDeadline={scholarshipDeadline}
-          scholarshipDescription={scholarshipDescription}
-          subtitle={subtitle}
-          title={title}
-        />
-      )}
-    </React.Fragment>
-  );
+  return <LedeBannerContainer isClosed={isCampaignClosed} />;
 };
 
 LandingPage.propTypes = {
-  additionalContent: PropTypes.object,
-  affiliateCreditText: PropTypes.string,
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
-  affiliateOptInContent: PropTypes.object,
-  campaignId: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
-  coverImage: PropTypes.object.isRequired,
-  dashboard: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
-  endDate: PropTypes.string,
-  featureFlagUseLegacyTemplate: PropTypes.bool,
-  scholarshipAmount: PropTypes.number,
-  scholarshipCallToAction: PropTypes.string,
-  scholarshipDeadline: PropTypes.string,
-  scholarshipDescription: PropTypes.object,
-  showPartnerMsgOptIn: PropTypes.bool,
-  sidebar: PropTypes.arrayOf(PropTypes.object),
-  signupArrowContent: PropTypes.string,
-  subtitle: PropTypes.string.isRequired,
-  tagline: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  isCampaignClosed: PropTypes.bool,
 };
 
 LandingPage.defaultProps = {
-  additionalContent: null,
-  affiliateCreditText: undefined,
-  affiliateSponsors: [],
-  affiliateOptInContent: null,
-  dashboard: null,
-  endDate: null,
-  featureFlagUseLegacyTemplate: false,
-  scholarshipAmount: null,
-  scholarshipCallToAction: null,
-  scholarshipDeadline: null,
-  scholarshipDescription: null,
-  showPartnerMsgOptIn: false,
-  sidebar: null,
-  signupArrowContent: null,
-  tagline: 'Ready to start?',
+  isCampaignClosed: false,
 };
 
 export default LandingPage;

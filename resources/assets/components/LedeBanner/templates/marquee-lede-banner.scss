@@ -1,0 +1,126 @@
+@import '../../../scss/next-toolbox.scss';
+
+.marquee-landing-page {
+  .cover-image {
+    img {
+      width: 100%;
+    }
+  }
+
+  .marquee-banner {
+    margin-bottom: theme('spacing.3');
+    grid-column: full-start / full-end;
+
+    @include media($large) {
+      grid-column: wide-start / wide-end;
+    }
+
+    @include media($largest) {
+      grid-column: wide-start / span 7;
+    }
+  }
+
+  .marquee-banner__headline-title {
+    text-transform: uppercase;
+    font-size: $font-large;
+    color: theme('colors.blurple.700');
+  }
+
+  .marquee-banner__headline-subtitle {
+    text-transform: uppercase;
+    font-size: theme('fontSize.3xl');
+    font-family: theme('fontFamily.league-gothic');
+    font-weight: $weight-normal;
+
+    @include media($medium) {
+      font-size: theme('fontSize.4xl');
+    }
+  }
+
+  .primary {
+    margin-bottom: theme('spacing.6');
+  }
+
+  .secondary {
+    margin-bottom: theme('spacing.6');
+
+    @include media($largest) {
+      // @TODO: if primary content is short and this only spans 2, then grid rows are spread
+      // to reach bottom of this secondary area, and the content is spread out vertically.
+      // See if there is a better approach.
+      grid-row: 1 / span 3;
+    }
+  }
+}
+
+.marquee-signup-button {
+  background-color: $white;
+  border-top: 1px solid theme('colors.gray.200');
+  bottom: 0;
+  left: 0;
+  padding: theme('spacing.3');
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+
+  @include media($medium) {
+    background-color: none;
+    bottom: auto;
+    left: auto;
+    padding: 0;
+    position: static;
+    width: auto;
+    z-index: auto;
+  }
+
+  .button {
+    display: block;
+    margin: 0 auto;
+    max-width: 450px;
+    padding: theme('spacing.6');
+
+    @include media($medium) {
+      margin: 0 auto theme('spacing.3');
+    }
+  }
+}
+
+.pitch-landing-page {
+  .container__block {
+    // When inside a container wrapper, increase top/bottom padding
+    // on the container body.
+    padding: 0 gutters();
+    line-height: $comfortable-line-height;
+
+    // HACK: Since we use `.container__row` for vertical spacing, but collapse
+    // all "blocks" to stack on mobile, we need to add appropriate margins between
+    // blocks when they're stacked.
+    & + .container__block {
+      @include media($mobile) {
+        margin-top: theme('spacing.6');
+      }
+    }
+
+    &.-narrow {
+      @include media($tablet) {
+        @include span(9 of 12);
+      }
+    }
+
+    &.-half {
+      line-height: $unitless-line-height; // reset to "base" line height for smaller columns
+
+      @include media($tablet) {
+        @include span(6 of 12);
+      }
+    }
+
+    div + div {
+      margin-top: 48px;
+    }
+  }
+
+  .secondary {
+    display: block;
+  }
+}
