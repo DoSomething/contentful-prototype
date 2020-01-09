@@ -29,8 +29,8 @@
 
   @include media($larger) {
     grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: $base-spacing;
-    grid-row-gap: $base-spacing;
+    grid-column-gap: theme('spacing.6');
+    grid-row-gap: theme('spacing.6');
   }
 }
 .gallery-grid-quartet {
