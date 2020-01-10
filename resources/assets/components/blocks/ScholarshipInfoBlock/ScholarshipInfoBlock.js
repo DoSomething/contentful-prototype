@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
+import Media from 'react-media';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { jsx, css } from '@emotion/core';
@@ -187,28 +188,64 @@ const ScholarshipInfoBlock = ({
                   </p>
                 </div>
               ) : null}
-              <div
-                css={!drawerOpen ? isVisible : null}
-                className="lg:w-1/2 lg:float-right"
-              >
-                {isLoaded && actionType ? (
+              <Media queries={{ small: '(max-width: 480px)' }}>
+                {matches => (
                   <>
-                    <Header content="Action Type" />
-                    <p className="pb-2">{actionType}</p>
+                    {matches.small ? (
+                      <div
+                        css={!drawerOpen ? isVisible : null}
+                        className="lg:w-1/2 lg:float-right"
+                      >
+                        {isLoaded && actionType ? (
+                          <>
+                            <Header content="Action Type" />
+                            <p className="pb-2">{actionType}</p>
+                          </>
+                        ) : (
+                          <PlaceholderText size="medium" />
+                        )}
+                      </div>
+                    ) : (
+                      <div className="lg:w-1/2 lg:float-right">
+                        {isLoaded && actionType ? (
+                          <>
+                            <Header content="Action Type" />
+                            <p className="pb-2">{actionType}</p>
+                          </>
+                        ) : (
+                          <PlaceholderText size="medium" />
+                        )}
+                      </div>
+                    )}
                   </>
-                ) : (
-                  <PlaceholderText size="medium" />
                 )}
-              </div>
+              </Media>
             </div>
-            <div css={!drawerOpen ? isVisible : null}>
-              <Header content="Requirements" />
-              <ul className="mt-2 pb-2 list-disc list-inside">
-                <li>Under 26 years old</li>
-                <li>No minimum GPA</li>
-                <li>No essay</li>
-              </ul>
-            </div>
+            <Media queries={{ small: '(max-width: 480px)' }}>
+              {matches => (
+                <>
+                  {matches.small ? (
+                    <div css={!drawerOpen ? isVisible : null}>
+                      <Header content="Requirements" />
+                      <ul className="mt-2 pb-2 list-disc list-inside">
+                        <li>Under 26 years old</li>
+                        <li>No minimum GPA</li>
+                        <li>No essay</li>
+                      </ul>
+                    </div>
+                  ) : (
+                    <div>
+                      <Header content="Requirements" />
+                      <ul className="mt-2 pb-2 list-disc list-inside">
+                        <li>Under 26 years old</li>
+                        <li>No minimum GPA</li>
+                        <li>No essay</li>
+                      </ul>
+                    </div>
+                  )}
+                </>
+              )}
+            </Media>
           </div>
           <div className="md:hidden text-center align-bottom">
             <button type="button" onClick={toggleHiddenInfo}>
