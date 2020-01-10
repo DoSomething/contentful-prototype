@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import Media from 'react-media';
