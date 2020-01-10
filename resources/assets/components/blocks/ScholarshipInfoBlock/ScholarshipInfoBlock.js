@@ -73,7 +73,12 @@ const ScholarshipInfoBlock = ({
   const [detailsLabel, setDetailsLabel] = useState('More');
 
   const isVisible = css`
-    background-color: #f56565;
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; /* added line */
   `;
 
   const toggleHiddenInfo = () => {
@@ -183,7 +188,7 @@ const ScholarshipInfoBlock = ({
                 </div>
               ) : null}
               <div
-                css={drawerOpen ? isVisible : null}
+                css={!drawerOpen ? isVisible : null}
                 className="lg:w-1/2 lg:float-right"
               >
                 {isLoaded && actionType ? (
@@ -196,7 +201,7 @@ const ScholarshipInfoBlock = ({
                 )}
               </div>
             </div>
-            <div css={drawerOpen ? isVisible : null}>
+            <div css={!drawerOpen ? isVisible : null}>
               <Header content="Requirements" />
               <ul className="mt-2 pb-2 list-disc list-inside">
                 <li>Under 26 years old</li>
