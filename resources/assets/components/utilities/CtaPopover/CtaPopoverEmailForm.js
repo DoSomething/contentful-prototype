@@ -49,10 +49,10 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
           metadata: {
             label: 'call_to_action_popover_email',
             adjective: 'email',
-            category: 'authentication',
-            noun: 'form_submited_popover',
-            target: 'button',
-            verb: 'clicked',
+            category: 'site_action',
+            noun: 'call_to_action_popover',
+            target: 'form',
+            verb: 'submitted',
           },
         });
 
@@ -73,11 +73,11 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         trackAnalyticsEvent({
           context: { errorMessage },
           metadata: {
-            label: 'submit_subscriptions_email_error',
+            label: 'call_to_action_popover_email',
             adjective: 'email_error',
-            category: 'onboarding',
-            noun: 'form_submitted_popover_email_error',
-            target: 'button',
+            category: 'site-action',
+            noun: 'call_to_action_popover',
+            target: 'form',
             verb: 'error_triggered',
           },
         });
