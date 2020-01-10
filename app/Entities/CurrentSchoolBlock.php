@@ -13,6 +13,7 @@ class CurrentSchoolBlock extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'internalTitle' => $this->internalTitle,
+                'actionId' => $this->actionId,
                 'selectSchoolTitle' => $this->selectSchoolTitle,
                 'selectSchoolDescription' => $this->selectSchoolDescription,
                 'currentSchoolTitle' => $this->currentSchoolTitle,
