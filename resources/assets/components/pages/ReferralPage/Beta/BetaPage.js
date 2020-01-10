@@ -3,13 +3,10 @@ import gql from 'graphql-tag';
 
 import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
-import { query } from '../../../../helpers';
 import MoneyHandImage from './money-hand.svg';
+import { query, env } from '../../../../helpers';
 import CampaignLink from './BetaPageCampaignLink';
-import {
-  REFERRAL_CAMPAIGN_IDS,
-  DEFAULT_REFERRAL_CAMPAIGN_ID,
-} from '../../../../constants';
+import { REFERRAL_CAMPAIGN_IDS } from '../../../../constants';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
@@ -26,6 +23,11 @@ const BetaPage = () => {
   if (!userId) {
     return <ErrorPage />;
   }
+
+  // The Referral Campaign ID defaults to the Teens for Jeans campaign,
+  // or a test campaign for development environments.
+  const useDevCampaign = ['local', 'development'].includes(env('APP_ENV'));
+  const DEFAULT_REFERRAL_CAMPAIGN_ID = useDevCampaign ? '9001' : '9037';
 
   const queryCampaignId = query('campaign_id');
 
