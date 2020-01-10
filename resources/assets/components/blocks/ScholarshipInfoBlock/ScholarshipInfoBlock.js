@@ -1,13 +1,16 @@
+/** @jsx jsx */
+
 import React, { useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
+import { jsx, css } from '@emotion/core';
 
 import Card from '../../utilities/Card/Card';
-import { env, getHumanFriendlyDate, report } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
+import { env, getHumanFriendlyDate, report } from '../../../helpers';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
 
@@ -34,7 +37,7 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
   }
 `;
 
-// @TODO: Move to Helper Functions?
+// @TODO: Move to Helper Components?
 const Header = ({ content, textColor }) => (
   <div className={`font-bold uppercase ${textColor}`}>{content}</div>
 );
@@ -67,6 +70,16 @@ const ScholarshipInfoBlock = ({
   });
 
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [detailsLabel, setDetailsLabel] = useState('More');
+
+  const isVisible = css`
+    background-color: #f56565;
+  `;
+
+  const toggleHiddenInfo = () => {
+    setDrawerOpen(!drawerOpen);
+    setDetailsLabel('Less');
+  };
 
   const isLoaded = !loading;
   const affiliateTitle = get(data, 'affiliate.title');
@@ -169,7 +182,10 @@ const ScholarshipInfoBlock = ({
                   </p>
                 </div>
               ) : null}
-              <div className="lg:w-1/2 lg:float-right">
+              <div
+                css={drawerOpen ? isVisible : null}
+                className="lg:w-1/2 lg:float-right"
+              >
                 {isLoaded && actionType ? (
                   <>
                     <Header content="Action Type" />
@@ -180,7 +196,7 @@ const ScholarshipInfoBlock = ({
                 )}
               </div>
             </div>
-            <div>
+            <div css={drawerOpen ? isVisible : null}>
               <Header content="Requirements" />
               <ul className="mt-2 pb-2 list-disc list-inside">
                 <li>Under 26 years old</li>
@@ -190,8 +206,8 @@ const ScholarshipInfoBlock = ({
             </div>
           </div>
           <div className="md:hidden text-center align-bottom">
-            <button type="button" onClick={() => setDrawerOpen(!drawerOpen)}>
-              <p className="text-sm font-bold">View More</p>
+            <button type="button" onClick={toggleHiddenInfo}>
+              <p className="text-sm font-bold">{`View ${detailsLabel}`}</p>
             </button>
           </div>
         </div>
