@@ -17,6 +17,10 @@ class CompanyPage extends Entity implements JsonSerializable
                 'subTitle' => $this->subTitle,
                 'slug' => $this->slug,
                 'metadata' => $this->metadata ? new Metadata($this->metadata->entry) : null,
+                'coverImage' => [
+                    'description' => $this->coverImage ? $this->coverImage->getDescription() : '',
+                    'url' => get_image_url($this->coverImage),
+                ],
                 'content' => $this->content,
                 'blocks' => $this->parseBlocks($this->blocks),
             ],

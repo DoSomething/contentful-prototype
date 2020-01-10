@@ -97,7 +97,12 @@ const renderBlock = (block, imageAlignment, imageFit) => {
   }
 };
 
-const galleryTypes = { '2': 'duo', '3': 'triad', '4': 'quartet' };
+const galleryTypes = {
+  '2': 'duo',
+  '3': 'triad',
+  '4': 'quartet',
+  '5': 'quintet',
+};
 
 const GalleryBlock = props => {
   const { title, blocks, itemsPerRow, imageAlignment, imageFit } = props;
@@ -123,7 +128,7 @@ const GalleryBlock = props => {
 GalleryBlock.propTypes = {
   title: PropTypes.string,
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  itemsPerRow: PropTypes.oneOf([2, 3, 4]).isRequired,
+  itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
   imageAlignment: PropTypes.oneOf(['TOP', 'LEFT']).isRequired,
   imageFit: PropTypes.oneOf(['FILL', 'PAD']),
 };

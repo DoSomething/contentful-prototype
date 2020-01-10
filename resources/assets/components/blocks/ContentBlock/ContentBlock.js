@@ -7,7 +7,6 @@ import { contentfulImageUrl } from '../../../helpers';
 import { Figure } from '../../utilities/Figure/Figure';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
-import CurrentSchoolBlockContainer from '../CurrentSchoolBlock/CurrentSchoolBlockContainer';
 
 import './content-block.scss';
 
@@ -24,13 +23,11 @@ export const ContentBlockFragment = gql`
     }
     # Aliasing to avoid conflicting with *required* imageAlignment field in GalleryBlockFragment.
     contentBlockimageAlignment: imageAlignment
-    additionalContent
   }
 `;
 
 const ContentBlock = props => {
   const {
-    additionalContent,
     className,
     content,
     image,
@@ -59,28 +56,11 @@ const ContentBlock = props => {
       ) : (
         contentNode
       )}
-      {additionalContent && additionalContent.showSchoolFinder ? (
-        <div className="pt-3">
-          <CurrentSchoolBlockContainer
-            actionId={additionalContent.actionId}
-            currentSchoolDescription={
-              additionalContent.schoolSelectedConfirmation
-            }
-            selectSchoolDescription={
-              additionalContent.schoolFinderFormDescription
-            }
-            schoolNotAvailableDescription={
-              additionalContent.schoolNotAvailableDescription
-            }
-          />
-        </div>
-      ) : null}
     </div>
   );
 };
 
 ContentBlock.propTypes = {
-  additionalContent: PropTypes.object,
   className: PropTypes.string,
   content: PropTypes.string.isRequired,
   image: PropTypes.shape({
@@ -93,7 +73,6 @@ ContentBlock.propTypes = {
 };
 
 ContentBlock.defaultProps = {
-  additionalContent: null,
   className: null,
   image: {},
   imageAlignment: 'RIGHT',

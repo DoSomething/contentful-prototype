@@ -25,8 +25,7 @@ const exampleAction = {
 };
 
 const schoolFinderConfig =
-  exampleSchoolFinderCampaign.campaign.pages[0].fields.blocks[0].fields
-    .additionalContent;
+  exampleSchoolFinderCampaign.campaign.pages[0].fields.blocks[0].fields;
 
 describe('School Finder', () => {
   beforeEach(() => cy.configureMocks());
@@ -48,7 +47,7 @@ describe('School Finder', () => {
     cy.get('.school-finder h1').should('contain', 'Find Your School');
     cy.get('.school-finder').should(
       'contain',
-      schoolFinderConfig.schoolFinderFormDescription,
+      schoolFinderConfig.selectSchoolDescription,
     );
     cy.get('.school-finder').should(
       'not.contain',
@@ -86,7 +85,7 @@ describe('School Finder', () => {
     );
     cy.get('.school-finder').should(
       'not.contain',
-      schoolFinderConfig.schoolFinderFormDescription,
+      schoolFinderConfig.selectSchoolDescription,
     );
     cy.get('.school-finder').should(
       'not.contain',
@@ -143,7 +142,7 @@ describe('School Finder', () => {
     cy.get('.school-finder h1').should('contain', 'Your School');
     cy.get('.school-finder').should(
       'not.contain',
-      schoolFinderConfig.schoolFinderFormDescription,
+      schoolFinderConfig.selectSchoolDescription,
     );
     cy.get('.school-finder').should(
       'contain',
