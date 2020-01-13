@@ -13,6 +13,7 @@ import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
@@ -50,8 +51,9 @@ const GeneralPage = props => {
   return (
     <>
       <SiteNavigationContainer />
-      <div className="main general-page base-12-grid">
-        {/* <Enclosure className="grid-narrow">
+
+      <main className="main general-page base-12-grid" role="main">
+        <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>
             {subTitle ? (
@@ -136,34 +138,36 @@ const GeneralPage = props => {
               ))}
             </ul>
           ) : null}
-        </Enclosure> */}
-      </div>
+        </Enclosure>
 
-      {ctaCopy && !isAuthenticated ? (
-        <CtaBanner
-          title={ctaCopy.title}
-          content={ctaCopy.content}
-          link={authUrl}
-          buttonText={ctaCopy.buttonText}
-        />
-      ) : null}
-      {slug === 'about/easy-scholarships' ? (
-        <DismissableElement
-          name="cta_popover_scholarship_email"
-          render={(handleClose, handleComplete) => (
-            <DelayedElement delay={3}>
-              <CtaPopover
-                title="PAYS TO DO GOOD"
-                content="Want to earn easy scholarships for volunteering?
-                  Subscribe to DoSomething's monthly scholarship email."
-                handleClose={handleClose}
-              >
-                <CtaPopoverEmailForm handleComplete={handleComplete} />
-              </CtaPopover>
-            </DelayedElement>
-          )}
-        />
-      ) : null}
+        {ctaCopy && !isAuthenticated ? (
+          <CtaBanner
+            title={ctaCopy.title}
+            content={ctaCopy.content}
+            link={authUrl}
+            buttonText={ctaCopy.buttonText}
+          />
+        ) : null}
+        {slug === 'about/easy-scholarships' ? (
+          <DismissableElement
+            name="cta_popover_scholarship_email"
+            render={(handleClose, handleComplete) => (
+              <DelayedElement delay={3}>
+                <CtaPopover
+                  title="PAYS TO DO GOOD"
+                  content="Want to earn easy scholarships for volunteering?
+                Subscribe to DoSomething's monthly scholarship email."
+                  handleClose={handleClose}
+                >
+                  <CtaPopoverEmailForm handleComplete={handleComplete} />
+                </CtaPopover>
+              </DelayedElement>
+            )}
+          />
+        ) : null}
+      </main>
+
+      <SiteFooter />
     </>
   );
 };
