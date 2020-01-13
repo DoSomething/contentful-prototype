@@ -14,12 +14,12 @@ import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
-import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
@@ -52,7 +52,7 @@ const GeneralPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main className="main general-page base-12-grid" role="main">
+      <main className="main general-page base-12-grid bg-white" role="main">
         <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>
