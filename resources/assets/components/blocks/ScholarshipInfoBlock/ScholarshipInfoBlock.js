@@ -86,6 +86,10 @@ const ScholarshipInfoBlock = ({
   const toggleHiddenInfo = () => {
     setDrawerOpen(!drawerOpen);
     setDetailsLabel('Less');
+
+    if (drawerOpen && detailsLabel === 'Less') {
+      setDetailsLabel('More');
+    }
   };
 
   const isLoaded = !loading;
