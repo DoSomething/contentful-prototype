@@ -71,14 +71,14 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         }
 
         trackAnalyticsEvent({
-          context: { errorMessage },
+          context: { error, errorMessage },
           metadata: {
             label: 'call_to_action_popover_email',
-            adjective: 'email_error',
-            category: 'site-action',
-            noun: 'call_to_action_popover',
+            adjective: 'call_to_action_popover_email',
+            category: 'submission_failed',
+            noun: 'form_submission',
             target: 'form',
-            verb: 'error_triggered',
+            verb: 'failed',
           },
         });
       });
