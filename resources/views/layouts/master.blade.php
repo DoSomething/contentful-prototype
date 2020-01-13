@@ -35,18 +35,13 @@
     @endif
 
     <div id="fb-root"></div>
-    <div id="chrome" class="chrome">
-        {{-- <div class="wrapper"> --}}
-            @yield('content')
-            @include('partials.footer')
-        {{-- </div> --}}
+    <div id="chrome" class="chrome h-full my-0 mx-auto w-full">
+        @yield('content')
     </div>
 
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
 
     @include('partials.customer_io_script')
-
-    {{ dd($env) }}
 
     {{ isset($state) ? scriptify($state) : scriptify() }}
     {{ scriptify($env, 'ENV') }}
