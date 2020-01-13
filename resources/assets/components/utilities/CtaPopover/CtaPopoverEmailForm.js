@@ -71,7 +71,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         }
 
         trackAnalyticsEvent({
-          context: { cta_type: newsletter_scholarships, error, errorMessage },
+          context: { cta_type: 'newsletter_scholarships', error, errorMessage },
           metadata: {
             label: 'call_to_action_popover',
             adjective: 'call_to_action_popover',
