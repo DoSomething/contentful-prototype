@@ -9,7 +9,10 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { jsx, css } from '@emotion/core';
 
+import Header from './InfoHeader';
 import Card from '../../utilities/Card/Card';
+import ScholarshipActionType from './ScholarshipActionType';
+import ScholarshipRequirements from './ScholarshipRequirements';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import { env, getHumanFriendlyDate, report } from '../../../helpers';
@@ -39,20 +42,6 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
   }
 `;
 
-// @TODO: Move to Helper Components?
-const Header = ({ content, textColor }) => (
-  <div className={`font-bold uppercase ${textColor}`}>{content}</div>
-);
-
-Header.propTypes = {
-  content: PropTypes.string.isRequired,
-  textColor: PropTypes.string,
-};
-
-Header.defaultProps = {
-  textColor: 'text-gray-600',
-};
-
 const ScholarshipInfoBlock = ({
   affiliateSponsors,
   campaignId,
@@ -80,6 +69,7 @@ const ScholarshipInfoBlock = ({
     width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
+    transition: all 0.3s ease-out;
     white-space: nowrap; /* added line */
   `;
 
@@ -202,10 +192,7 @@ const ScholarshipInfoBlock = ({
                         className="lg:w-1/2 lg:float-right"
                       >
                         {isLoaded && actionType ? (
-                          <>
-                            <Header content="Action Type" />
-                            <p className="pb-2">{actionType}</p>
-                          </>
+                          <ScholarshipActionType actionLabel={actionType} />
                         ) : (
                           <PlaceholderText size="medium" />
                         )}
@@ -213,10 +200,7 @@ const ScholarshipInfoBlock = ({
                     ) : (
                       <div className="lg:w-1/2 lg:float-right">
                         {isLoaded && actionType ? (
-                          <>
-                            <Header content="Action Type" />
-                            <p className="pb-2">{actionType}</p>
-                          </>
+                          <ScholarshipActionType actionLabel={actionType} />
                         ) : (
                           <PlaceholderText size="medium" />
                         )}
@@ -231,22 +215,10 @@ const ScholarshipInfoBlock = ({
                 <>
                   {matches.small ? (
                     <div css={!drawerOpen ? isVisible : null}>
-                      <Header content="Requirements" />
-                      <ul className="mt-2 pb-2 list-disc list-inside">
-                        <li>Under 26 years old</li>
-                        <li>No minimum GPA</li>
-                        <li>No essay</li>
-                      </ul>
+                      <ScholarshipRequirements />
                     </div>
                   ) : (
-                    <div>
-                      <Header content="Requirements" />
-                      <ul className="mt-2 pb-2 list-disc list-inside">
-                        <li>Under 26 years old</li>
-                        <li>No minimum GPA</li>
-                        <li>No essay</li>
-                      </ul>
-                    </div>
+                    <ScholarshipRequirements />
                   )}
                 </>
               )}
