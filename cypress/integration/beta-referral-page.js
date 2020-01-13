@@ -1,16 +1,16 @@
 /// <reference types="Cypress" />
 
 import { userFactory } from '../fixtures/user';
-import { campaignId, userId } from '../fixtures/constants';
+import { userId } from '../fixtures/constants';
 
 describe('Beta Referral Page', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
 
-  it('Visit beta referral page, with valid user and campaign IDs', () => {
+  it('Visit beta referral page, with valid user', () => {
     const user = userFactory();
 
-    cy.visit(`/us/join?user_id=${userId}&campaign_id=${campaignId}`);
+    cy.visit(`/us/join?user_id=${userId}`);
 
     cy.contains('campaign scholarship');
     cy.contains('FAQ');
@@ -36,17 +36,5 @@ describe('Beta Referral Page', () => {
 
     // Our mock user ID won't exist in dev, we can expect a 404.
     cy.contains('Not Found');
-  });
-
-  it('Visit beta referral page, with valid user ID and no campaign ID', () => {
-    const user = userFactory();
-
-    cy.visit(`/us/join?user_id=${userId}`);
-
-    cy.get('.referral-page-campaign').should('have.length', 1);
-
-    cy.get('.referral-page-campaign > a')
-      .should('have.attr', 'href')
-      .and('include', `referrer_user_id=${userId}`);
   });
 });
