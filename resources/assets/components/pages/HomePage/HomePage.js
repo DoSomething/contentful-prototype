@@ -6,6 +6,7 @@ import { get } from 'lodash';
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl, env } from '../../../helpers';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -68,9 +69,10 @@ class HomePage extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         <SiteNavigationContainer />
-        <div className="home-page">
+
+        <main role="main" className="home-page relative">
           <header role="banner" className="header header--home">
             <div className="wrapper">
               <h1 className="header__title">{title}</h1>
@@ -96,30 +98,32 @@ class HomePage extends React.Component {
               ))}
             </ul>
           </section>
-        </div>
 
-        {env('NPS_SURVEY_ENABLED') ? (
-          <TrafficDistribution percentage={5} feature="nps_survey">
-            <DismissableElement
-              name="nps_survey"
-              render={(handleClose, handleComplete) => (
-                <DelayedElement delay={30}>
-                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                    <TypeFormEmbed
-                      displayType="modal"
-                      typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
-                      queryParameters={{
-                        northstar_id: get(window.AUTH, 'id', null),
-                      }}
-                      onSubmit={handleComplete}
-                    />
-                  </Modal>
-                </DelayedElement>
-              )}
-            />
-          </TrafficDistribution>
-        ) : null}
-      </React.Fragment>
+          {env('NPS_SURVEY_ENABLED') ? (
+            <TrafficDistribution percentage={100} feature="nps_survey">
+              <DismissableElement
+                name="nps_survey"
+                render={(handleClose, handleComplete) => (
+                  <DelayedElement delay={5}>
+                    <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                      <TypeFormEmbed
+                        displayType="modal"
+                        typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                        queryParameters={{
+                          northstar_id: get(window.AUTH, 'id', null),
+                        }}
+                        onSubmit={handleComplete}
+                      />
+                    </Modal>
+                  </DelayedElement>
+                )}
+              />
+            </TrafficDistribution>
+          ) : null}
+        </main>
+
+        <SiteFooter />
+      </>
     );
   }
 }

@@ -52,7 +52,7 @@ const GeneralPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main className="main general-page base-12-grid bg-white" role="main">
+      <main role="main" className="general-page base-12-grid bg-white relative">
         <Enclosure className="grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>

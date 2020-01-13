@@ -1,12 +1,13 @@
 import React from 'react';
 
+import SiteFooter from '../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 
 const ErrorPage = () => (
   <>
     <SiteNavigationContainer />
 
-    <main role="main" className="py-20">
+    <main role="main" className="py-20 relative">
       <article className="max-w-xl mx-auto text-center px-4 leading-relaxed mb-8">
         <header className="mb-8">
           <h2 className="text-purple-900 text-xl md:text-2xl mb-2">
@@ -39,6 +40,8 @@ const ErrorPage = () => (
         </p>
       </article>
     </main>
+
+    <SiteFooter />
   </>
 );
 
