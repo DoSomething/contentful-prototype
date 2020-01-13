@@ -72,7 +72,7 @@ const ScholarshipInfoBlock = ({
   });
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [detailsLabel, setDetailsLabel] = useState('More');
+  const [detailsLabel, setDetailsLabel] = useState('Show');
 
   const isVisible = css`
     position: absolute !important;
@@ -85,10 +85,10 @@ const ScholarshipInfoBlock = ({
 
   const toggleHiddenInfo = () => {
     setDrawerOpen(!drawerOpen);
-    setDetailsLabel('Less');
+    setDetailsLabel('Hide');
 
-    if (drawerOpen && detailsLabel === 'Less') {
-      setDetailsLabel('More');
+    if (drawerOpen && detailsLabel === 'Hide') {
+      setDetailsLabel('Show');
     }
   };
 
@@ -254,7 +254,7 @@ const ScholarshipInfoBlock = ({
           </div>
           <div className="md:hidden text-center align-bottom">
             <button type="button" onClick={toggleHiddenInfo}>
-              <p className="text-sm font-bold">{`View ${detailsLabel}`}</p>
+              <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
             </button>
           </div>
         </div>
