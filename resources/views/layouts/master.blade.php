@@ -46,6 +46,8 @@
 
     @include('partials.customer_io_script')
 
+    {{ dd($env) }}
+
     {{ isset($state) ? scriptify($state) : scriptify() }}
     {{ scriptify($env, 'ENV') }}
     {{ scriptify($auth, 'AUTH') }}
