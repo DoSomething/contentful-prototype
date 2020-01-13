@@ -4,6 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ContentfulEntry from '../../ContentfulEntry';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -23,48 +24,53 @@ const StoryPage = props => {
   };
 
   return (
-    <React.Fragment>
+    <>
       <SiteNavigationContainer />
-      <article className="story-page">
-        <header
-          role="banner"
-          className="lede-banner base-12-grid"
-          style={withoutNulls(styles)}
-        >
-          <div className="wrapper text-center">
-            <h1 className="lede-banner__headline-title color-white uppercase">
-              {title}
-            </h1>
-            {subTitle ? (
-              <h2 className="lede-banner__headline-subtitle color-yellow">
-                {subTitle}
-              </h2>
-            ) : null}
-          </div>
-        </header>
 
-        <SocialShareTray
-          // Pass through the current URL without the query parameters.
-          shareLink={window.location.href.split('?')[0]}
-          platforms={['facebook', 'twitter']}
-        />
+      <main role="main" className="relative">
+        <article className="story-page">
+          <header
+            role="banner"
+            className="lede-banner base-12-grid"
+            style={withoutNulls(styles)}
+          >
+            <div className="wrapper text-center">
+              <h1 className="lede-banner__headline-title color-white uppercase">
+                {title}
+              </h1>
+              {subTitle ? (
+                <h2 className="lede-banner__headline-subtitle color-yellow">
+                  {subTitle}
+                </h2>
+              ) : null}
+            </div>
+          </header>
 
-        {blocks.map(block => (
-          <ContentfulEntry
-            className="story-section"
-            classNameByEntry={{
-              EmbedBlock: 'grid-main',
-              PostGalleryBlock: 'grid-main',
-            }}
-            classNameByEntryDefault="grid-narrow"
-            key={block.id}
-            json={block}
+          <SocialShareTray
+            // Pass through the current URL without the query parameters.
+            shareLink={window.location.href.split('?')[0]}
+            platforms={['facebook', 'twitter']}
           />
-        ))}
-      </article>
 
-      <CampaignInfoBarContainer />
-    </React.Fragment>
+          {blocks.map(block => (
+            <ContentfulEntry
+              className="story-section"
+              classNameByEntry={{
+                EmbedBlock: 'grid-main',
+                PostGalleryBlock: 'grid-main',
+              }}
+              classNameByEntryDefault="grid-narrow"
+              key={block.id}
+              json={block}
+            />
+          ))}
+        </article>
+
+        <CampaignInfoBarContainer />
+      </main>
+
+      <SiteFooter />
+    </>
   );
 };
 

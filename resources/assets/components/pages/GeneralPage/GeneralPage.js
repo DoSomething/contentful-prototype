@@ -5,7 +5,6 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Enclosure from '../../Enclosure';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -52,8 +51,8 @@ const GeneralPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main role="main" className="general-page base-12-grid bg-white relative">
-        <Enclosure className="grid-narrow">
+      <main role="main" className="base-12-grid bg-white relative">
+        <article className="general-page grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>
             {subTitle ? (
@@ -138,7 +137,7 @@ const GeneralPage = props => {
               ))}
             </ul>
           ) : null}
-        </Enclosure>
+        </article>
 
         {ctaCopy && !isAuthenticated ? (
           <CtaBanner
