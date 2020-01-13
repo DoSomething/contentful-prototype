@@ -1,6 +1,7 @@
 /** @jsx jsx */
 
-import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import Media from 'react-media';
