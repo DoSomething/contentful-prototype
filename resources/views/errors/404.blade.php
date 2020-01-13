@@ -2,9 +2,10 @@
 
 @section('content')
     <div class="app bg-gray-100 min-h-full">
+
         <div id="nav-container"></div>
 
-        <main role="main" class="main px-3 py-20">
+        <main role="main" class="main px-3 py-20 relative">
 
             <article class="card rounded bordered max-w-xl mx-auto mb-8">
                 <header class="card__title">
@@ -28,5 +29,6 @@
         </main>
 
         @include('partials.footer')
+
     </div>
 @stop
