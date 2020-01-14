@@ -30,7 +30,7 @@ class ZendeskTicketsController extends Controller
 
         $northstarId = data_get($user, 'data.id');
         $userEmail = data_get($user, 'data.email');
-        $userName = data_get($user, 'data.display_name');
+        $userName = data_get($user, 'data.first_name').' '.data_get($user, 'data.last_initial').'.';
 
         $zendeskUser = Zendesk::users()->createOrUpdate([
             'email' => $userEmail,
