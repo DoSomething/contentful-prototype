@@ -2,24 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Enclosure from '../../../Enclosure';
-import Modal from '../../../utilities/Modal/Modal';
-import ContentfulEntry from '../../../ContentfulEntry';
-import TextContent from '../../../utilities/TextContent/TextContent';
-import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../../constants';
-import SignupButtonContainer from '../../../SignupButton/SignupButtonContainer';
-import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import CampaignInfoBarContainer from '../../../CampaignInfoBar/CampaignInfoBarContainer';
-import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
-import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
-import AffiliateOptInToggleContainer from '../../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
+import Enclosure from '../../Enclosure';
+import Modal from '../../utilities/Modal/Modal';
+import ContentfulEntry from '../../ContentfulEntry';
+import TextContent from '../../utilities/TextContent/TextContent';
+import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
+import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
+import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
+import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
+import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
+import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   contentfulImageUrl,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
-} from '../../../../helpers';
+} from '../../../helpers';
 
-const MarqueeTemplate = ({
+import './hero-lede-banner.scss';
+
+const HeroTemplate = ({
   additionalContent,
   affiliateCreditText,
   affiliateSponsors,
@@ -58,8 +60,8 @@ const MarqueeTemplate = ({
   };
   return (
     <React.Fragment>
-      <article className="marquee-landing-page">
-        <div className="base-12-grid bg-white cover-image">
+      <article className="hero-landing-page">
+        <div className="base-12-grid bg-gray-100 cover-image">
           <img
             className="grid-wide"
             alt={coverImage.description || `cover photo for ${title}`}
@@ -68,11 +70,11 @@ const MarqueeTemplate = ({
           />
         </div>
 
-        <div className="clearfix bg-white">
+        <div className="clearfix bg-gray-100">
           <Enclosure className="base-12-grid">
-            <header role="banner" className="marquee-banner">
-              <h1 className="marquee-banner__headline-title">{title}</h1>
-              <h2 className="marquee-banner__headline-subtitle">{subtitle}</h2>
+            <header role="banner" className="hero-banner">
+              <h1 className="hero-banner__headline-title">{title}</h1>
+              <h2 className="hero-banner__headline-subtitle">{subtitle}</h2>
             </header>
 
             <div className="grid-wide-7/10 primary">
@@ -96,7 +98,7 @@ const MarqueeTemplate = ({
 
             <div className="grid-wide-3/10 secondary">
               {!isAffiliated && displaySignupButton ? (
-                <div className="marquee-signup-button">
+                <div className="hero-signup-button">
                   <SignupButtonContainer
                     className="w-full"
                     text={
@@ -151,7 +153,7 @@ const MarqueeTemplate = ({
   );
 };
 
-MarqueeTemplate.propTypes = {
+HeroTemplate.propTypes = {
   additionalContent: PropTypes.object,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
@@ -175,7 +177,7 @@ MarqueeTemplate.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-MarqueeTemplate.defaultProps = {
+HeroTemplate.defaultProps = {
   additionalContent: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
@@ -191,4 +193,4 @@ MarqueeTemplate.defaultProps = {
   scholarshipDescription: null,
 };
 
-export default MarqueeTemplate;
+export default HeroTemplate;

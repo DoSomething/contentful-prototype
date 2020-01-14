@@ -3,6 +3,7 @@
 .chrome {
   > .wrapper {
     background: theme('colors.gray.100');
+    box-shadow: none;
   }
 
   &.-lock {
