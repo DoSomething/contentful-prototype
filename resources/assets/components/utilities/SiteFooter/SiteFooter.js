@@ -3,7 +3,7 @@ import React from 'react';
 import { PHOENIX_URL } from '../../../constants';
 
 const SiteFooter = () => (
-  <footer className="footer site-footer pb-32 md:pb-3">
+  <footer role="contentinfo" className="footer site-footer pb-32 md:pb-3">
     <div className="footer__columns">
       <div className="footer__column -social">
         <ul>
