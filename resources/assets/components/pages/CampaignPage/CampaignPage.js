@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Enclosure from '../../Enclosure';
-import ContentfulEntry from '../../ContentfulEntry';
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -36,7 +36,8 @@ const CampaignPage = props => {
           {!entryContent ? (
             <CampaignPageContent {...props} />
           ) : (
-            <ContentfulEntry json={entryContent} />
+            /* TODO: These should be blocks on a page: */
+            <ContentfulEntryLoader id={entryContent.id} />
           )}
         </Enclosure>
         {!entryContent ? (
