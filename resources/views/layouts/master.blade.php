@@ -35,7 +35,7 @@
     @endif
 
     <div id="fb-root"></div>
-    <div id="chrome" class="chrome h-full my-0 mx-auto w-full">
+    <div id="chrome" class="chrome h-full w-full">
         @yield('content')
     </div>
 

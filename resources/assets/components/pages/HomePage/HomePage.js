@@ -72,32 +72,34 @@ class HomePage extends React.Component {
       <>
         <SiteNavigationContainer />
 
-        <main role="main" className="home-page relative">
-          <header role="banner" className="header header--home">
-            <div className="wrapper">
-              <h1 className="header__title">{title}</h1>
-              <h2 className="header__subtitle">{subTitle}</h2>
-            </div>
-          </header>
+        <main role="main" className="relative">
+          <article className="home-page">
+            <header role="banner" className="header header--home">
+              <div className="wrapper">
+                <h1 className="header__title">{title}</h1>
+                <h2 className="header__subtitle">{subTitle}</h2>
+              </div>
+            </header>
 
-          <section className="home-page__gallery">
-            {blocks.map(this.renderGalleryBlock)}
-          </section>
+            <section className="home-page__gallery">
+              {blocks.map(this.renderGalleryBlock)}
+            </section>
 
-          <section className="container--sponsors md:w-3/4 mx-auto px-3 py-8">
-            <h4>Sponsors</h4>
-            <ul>
-              {sponsorList.map(sponsor => (
-                <li key={sponsor.name}>
-                  <img
-                    src={contentfulImageUrl(sponsor.image, '125', '40')}
-                    title={sponsor.name}
-                    alt={sponsor.name}
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
+            <section className="container--sponsors md:w-3/4 mx-auto px-3 py-8">
+              <h4>Sponsors</h4>
+              <ul>
+                {sponsorList.map(sponsor => (
+                  <li key={sponsor.name}>
+                    <img
+                      src={contentfulImageUrl(sponsor.image, '125', '40')}
+                      title={sponsor.name}
+                      alt={sponsor.name}
+                    />
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </article>
 
           {env('NPS_SURVEY_ENABLED') ? (
             <TrafficDistribution percentage={100} feature="nps_survey">

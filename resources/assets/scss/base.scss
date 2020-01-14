@@ -68,14 +68,11 @@ body {
   @apply bg-gray-300 text-gray-900;
 }
 
-.chrome {
-  max-width: 1440px;
-}
-
 .app {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: auto 1fr auto;
+  max-width: 1440px;
 }
 
 // Reset browser defaults so this behaves like <a>
