@@ -17,6 +17,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
   const handleFocus = () => {
     trackAnalyticsEvent({
+      context: { cta_type: 'newsletter_scholarships' },
       metadata: {
         adjective: 'email',
         category: 'site_action',
