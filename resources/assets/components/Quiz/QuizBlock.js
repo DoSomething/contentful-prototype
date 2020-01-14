@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import QuizResult from './QuizResult';
 import Quiz, { QuizBlockFragment } from './Quiz';
 import { useGate, isAuthenticated } from '../../helpers/auth';
 import ScrollConcierge from '../ScrollConcierge';
 import Spinner from '../artifacts/Spinner/Spinner';
-import ContentfulEntryLoader from '../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 export const QUIZ_QUERY = gql`
   query QuizBlockQuery($id: String!) {
@@ -50,7 +50,7 @@ const QuizBlock = props => {
       {data.block.__typename === 'QuizBlock' ? (
         <Quiz {...data.block} onComplete={setCurrentId} />
       ) : (
-        <ContentfulEntryLoader id={id} />
+        <QuizResult id={id} campaignId={props.additionalContent.campaignId} />
       )}
     </div>
   );
@@ -58,6 +58,9 @@ const QuizBlock = props => {
 
 QuizBlock.propTypes = {
   id: PropTypes.string.isRequired,
+  additionalContent: PropTypes.shape({
+    campaignId: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default QuizBlock;
