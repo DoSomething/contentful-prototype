@@ -170,6 +170,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Contentful\Laravel\ContentfulServiceProvider::class,
         Fideloper\Proxy\TrustedProxyServiceProvider::class,
+        Huddle\Zendesk\Providers\ZendeskServiceProvider::class,
 
         /*
          * DoSomething Service Providers...
@@ -239,6 +240,7 @@ return [
          * Package Aliases
          */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Zendesk' => Huddle\Zendesk\Facades\Zendesk::class,
 
     ],
 

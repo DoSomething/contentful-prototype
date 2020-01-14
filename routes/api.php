@@ -40,6 +40,9 @@ $router->group(['prefix' => 'v2'], function () {
     $this->get('/posts', 'Api\PostsController@index');
     $this->post('/posts', 'Api\PostsController@store');
 
+    // Zendesk Tickets
+    $this->post('/zendesk-tickets', 'Api\ZendeskTicketsController@store');
+
     // Unknown Route Fallback
     $this->fallback(function () {
         return response()->json(['message' => 'Not Found!'], 404);
