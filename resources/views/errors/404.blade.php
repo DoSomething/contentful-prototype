@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="app bg-gray-100 min-h-full">
+    <div class="app bg-gray-100 min-h-full mx-auto my-0">
 
         <div id="nav-container"></div>
 
