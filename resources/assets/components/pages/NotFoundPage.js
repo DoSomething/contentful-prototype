@@ -9,7 +9,9 @@ const NotFoundPage = () => (
     <SiteNavigationContainer />
 
     <main role="main" className="py-20 relative">
-      <NotFound className="max-w-xl mx-auto mb-8" />
+      <article class="not-found-page">
+        <NotFound className="max-w-xl mx-auto mb-8" />
+      </article>
     </main>
 
     <SiteFooter />
