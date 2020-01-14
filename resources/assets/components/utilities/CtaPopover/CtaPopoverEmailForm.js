@@ -46,11 +46,12 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         tabularLog(get(response, 'data', null));
 
         trackAnalyticsEvent({
+          context: { cta_type: 'newsletter_scholarships' },
           metadata: {
-            label: 'call_to_action_popover_email',
-            adjective: 'email',
+            label: 'call_to_action_popover',
+            adjective: 'call_to_action_popover',
             category: 'site_action',
-            noun: 'call_to_action_popover',
+            noun: 'submission',
             target: 'form',
             verb: 'submitted',
           },
@@ -76,7 +77,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
             label: 'call_to_action_popover',
             adjective: 'call_to_action_popover',
             category: 'submission_failed',
-            noun: 'form_submission',
+            noun: 'submission',
             target: 'form',
             verb: 'failed',
           },
