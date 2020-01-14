@@ -58,8 +58,6 @@ class CampaignController extends Controller
      */
     public function show($slug, Request $request)
     {
-        abort(500);
-
         $campaign = $this->campaignRepository->findBySlug($slug);
 
         return response()->view('app', [
