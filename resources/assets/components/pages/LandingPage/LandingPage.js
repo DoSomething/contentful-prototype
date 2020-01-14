@@ -21,6 +21,7 @@ const LandingPage = props => {
     scholarshipAmount,
     scholarshipDeadline,
     sidebarCTA,
+    signupArrowContent,
     tagline,
   } = props;
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
@@ -29,7 +30,10 @@ const LandingPage = props => {
 
   return (
     <React.Fragment>
-      <LedeBannerContainer isClosed={isCampaignClosed} />
+      <LedeBannerContainer
+        isClosed={isCampaignClosed}
+        signupArrowContent={signupArrowContent}
+      />
       {featureFlagUseLegacyTemplate ? (
         <>
           <div className="bg-white">
@@ -89,7 +93,8 @@ LandingPage.propTypes = {
     title: PropTypes.string,
     content: PropTypes.string,
   }),
-  tagline: PropTypes.string.isRequired,
+  signupArrowContent: PropTypes.string,
+  tagline: PropTypes.string,
 };
 
 LandingPage.defaultProps = {
@@ -101,6 +106,8 @@ LandingPage.defaultProps = {
     title: 'what you get',
     content: '*You could win a $5,000 dollar scholarship!*',
   },
+  signupArrowContent: null,
+  tagline: 'Ready to start?',
 };
 
 export default LandingPage;
