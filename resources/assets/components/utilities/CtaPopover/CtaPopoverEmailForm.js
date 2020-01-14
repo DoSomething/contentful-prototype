@@ -31,6 +31,18 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
+    trackAnalyticsEvent({
+      context: { cta_type: 'newsletter_scholarships' },
+      metadata: {
+        label: 'call_to_action_popover',
+        adjective: 'call_to_action_popover',
+        category: 'site_action',
+        noun: 'submission',
+        target: 'form',
+        verb: 'submitted',
+      },
+    });
+
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
 
     client
@@ -44,18 +56,6 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         setShowAffirmation(true);
         handleComplete();
         tabularLog(get(response, 'data', null));
-
-        trackAnalyticsEvent({
-          context: { cta_type: 'newsletter_scholarships' },
-          metadata: {
-            label: 'call_to_action_popover',
-            adjective: 'call_to_action_popover',
-            category: 'site_action',
-            noun: 'submission',
-            target: 'form',
-            verb: 'submitted',
-          },
-        });
 
         return response;
       })
