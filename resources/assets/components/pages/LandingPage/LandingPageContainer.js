@@ -14,8 +14,22 @@ const mapStateToProps = (state, ownProps) => {
   const landingPage = get(ownProps, 'landingPage.fields', ownProps);
 
   return {
+    campaignId: state.campaign.campaignId,
+    content: landingPage.content,
+    featureFlagUseLegacyTemplate: get(
+      state,
+      'campaign.additionalContent.featureFlagUseLegacyTemplate',
+    ),
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
+    scholarshipAmount: state.campaign.scholarshipAmount,
+    scholarshipDeadline: state.campaign.scholarshipDeadline,
     sidebar: landingPage.sidebar,
+    signupArrowContent: get(
+      state.campaign.additionalContent,
+      'signupArrowContent',
+      null,
+    ),
+    tagline: get(state.campaign.additionalContent, 'tagline'),
   };
 };
 
