@@ -8,7 +8,7 @@ const ErrorPage = () => (
     <SiteNavigationContainer />
 
     <main role="main" className="py-20 relative">
-      <article className="max-w-xl mx-auto text-center px-4 leading-relaxed mb-8">
+      <article className="error-page max-w-xl mx-auto text-center px-4 leading-relaxed mb-8">
         <header className="mb-8">
           <h2 className="text-purple-900 text-xl md:text-2xl mb-2">
             Something went wrong.
