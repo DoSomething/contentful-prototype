@@ -34,19 +34,6 @@ export const REGISTER_CTA_COPY = {
   },
 };
 
-// Campaign IDs running within the Refer a Friend initiative.
-// For now, limited to the Teens For Jeans campaign.
-// @see https://www.pivotaltracker.com/story/show/169376190
-export const REFERRAL_CAMPAIGN_IDS = [
-  '9001', // Used to test on dev.
-  '9037',
-];
-
-// The Referral Campaign ID defaults to the Teens for Jeans campaign,
-// or a test campaign for development environments.
-export const DEFAULT_REFERRAL_CAMPAIGN_ID =
-  process.env.NODE_ENV !== 'development' ? '9037' : '9001';
-
 // Signup Button text for scholarship referrals:
 export const SCHOLARSHIP_SIGNUP_BUTTON_TEXT = 'Apply Now!';
 
