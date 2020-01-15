@@ -63,13 +63,15 @@ const ScholarshipInfoBlock = ({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
 
+  const detail = css`
+    transition: all 0.3s ease-out;
+  `;
   const isVisible = css`
     position: absolute !important;
     height: 1px;
     width: 1px;
     overflow: hidden;
     clip: rect(1px, 1px, 1px, 1px);
-    transition: all 0.3s ease-out;
     white-space: nowrap; /* added line */
   `;
 
