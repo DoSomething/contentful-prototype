@@ -1,33 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Enclosure from '../../Enclosure';
 import AccountRoute from './AccountRoute';
 import AccountNavigation from './AccountNavigation';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 const Account = props => (
   <>
     <SiteNavigationContainer />
 
-    <Enclosure>
-      <div className="bg-white">
-        <div className="base-12-grid">
+    <main role="main">
+      <article>
+        <header className="base-12-grid bg-white">
           <div className="grid-wide pt-12">
             <h1 className="font-league-gothic font-normal text-4xl md:text-5xl uppercase">
               Welcome, {props.user.firstName}!
             </h1>
+
             <AccountNavigation {...props} />
           </div>
-        </div>
-      </div>
+        </header>
 
-      <div className="bg-gray">
-        <div className="base-12-grid">
+        <div className="base-12-grid bg-gray-100">
           <AccountRoute {...props} />
         </div>
-      </div>
-    </Enclosure>
+      </article>
+    </main>
+
+    <SiteFooter />
   </>
 );
 
