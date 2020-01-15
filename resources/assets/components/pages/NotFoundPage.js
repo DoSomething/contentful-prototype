@@ -8,7 +8,7 @@ const NotFoundPage = () => (
   <>
     <SiteNavigationContainer />
 
-    <main role="main" className="px-3 py-20 relative">
+    <main role="main" className="px-3 py-20">
       <NotFound className="max-w-xl mx-auto mb-8" />
     </main>
 
