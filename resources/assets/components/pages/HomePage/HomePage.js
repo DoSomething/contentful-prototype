@@ -72,7 +72,7 @@ class HomePage extends React.Component {
       <>
         <SiteNavigationContainer />
 
-        <main role="main" className="relative">
+        <main role="main">
           <article className="home-page">
             <header role="banner" className="header header--home">
               <div className="wrapper">
