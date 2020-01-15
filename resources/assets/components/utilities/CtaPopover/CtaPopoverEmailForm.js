@@ -6,8 +6,8 @@ import { RestApiClient } from '@dosomething/gateway';
 import Button from '../Button/Button';
 import { env, report } from '../../../helpers/index';
 import { tabularLog } from '../../../helpers/api';
-
 import './cta-popover-email-form.scss';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 const CtaPopoverEmailForm = ({ handleComplete }) => {
   const [emailValue, setEmailValue] = useState('');
@@ -15,8 +15,31 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
   const [showAffirmation, setShowAffirmation] = useState(false);
   const handleChange = event => setEmailValue(event.target.value);
 
+  const handleFocus = () => {
+    trackAnalyticsEvent({
+      context: { cta_type: 'newsletter_scholarships' },
+      metadata: {
+        adjective: 'email',
+        category: 'site_action',
+        noun: 'call_to_action_popover',
+        target: 'field',
+        verb: 'focused',
+      },
+    });
+  };
+
   const handleSubmit = event => {
     event.preventDefault();
+
+    trackAnalyticsEvent({
+      context: { cta_type: 'newsletter_scholarships' },
+      metadata: {
+        category: 'site_action',
+        noun: 'call_to_action_popover',
+        target: 'form',
+        verb: 'submitted',
+      },
+    });
 
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
 
@@ -45,6 +68,16 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         if (window.ENV.APP_ENV !== 'production') {
           console.log('🚫 failed response? caught the error!', error);
         }
+
+        trackAnalyticsEvent({
+          context: { cta_type: 'newsletter_scholarships', error, errorMessage },
+          metadata: {
+            category: 'site_action',
+            noun: 'call_to_action_popover_submission',
+            target: 'form',
+            verb: 'failed',
+          },
+        });
       });
   };
 
@@ -60,6 +93,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
           value={emailValue}
           placeholder="Enter your email address"
           onChange={handleChange}
+          onFocus={handleFocus}
         />
         <Button className="email-form__button" type="submit">
           Sign Up
