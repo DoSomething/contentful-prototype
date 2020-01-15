@@ -190,20 +190,16 @@ const ScholarshipInfoBlock = ({
                   <>
                     {matches.small ? (
                       <div css={!drawerOpen ? isVisible : null}>
-                        {isLoaded && actionType ? (
-                          <ScholarshipActionType actionLabel={actionType} />
-                        ) : (
-                          <PlaceholderText size="medium" />
-                        )}
+                        <ScholarshipActionType
+                          isLoaded={isLoaded}
+                          actionLabel={actionType}
+                        />
                       </div>
                     ) : (
-                      <div className="lg:w-1/2 lg:float-right">
-                        {isLoaded && actionType ? (
-                          <ScholarshipActionType actionLabel={actionType} />
-                        ) : (
-                          <PlaceholderText size="medium" />
-                        )}
-                      </div>
+                      <ScholarshipActionType
+                        isLoaded={isLoaded}
+                        actionLabel={actionType}
+                      />
                     )}
                   </>
                 )}
