@@ -11,7 +11,7 @@ const Account = props => (
     <SiteNavigationContainer />
 
     <main role="main">
-      <article>
+      <article className="account-page">
         <header className="base-12-grid bg-white">
           <div className="grid-wide pt-12">
             <h1 className="font-league-gothic font-normal text-4xl md:text-5xl uppercase">
