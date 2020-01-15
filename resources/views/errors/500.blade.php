@@ -5,7 +5,7 @@
 
         <div id="nav-container"></div>
 
-        <main role="main" class="px-3 py-20 relative">
+        <main role="main" class="px-3 py-20">
 
             {{-- @TODO:css-grid Remove horizontal padding once CSS Grid is implemented --}}
             <article class="max-w-xl mx-auto text-center px-3 leading-relaxed mb-8">
