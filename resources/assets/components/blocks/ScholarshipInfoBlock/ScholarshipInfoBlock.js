@@ -63,9 +63,9 @@ const ScholarshipInfoBlock = ({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
 
-  const detail = css`
-    transition: all 0.3s ease-out;
-  `;
+  // const detail = css`
+  //   transition: all 0.3s ease-out;
+  // `;
   const isVisible = css`
     position: absolute !important;
     height: 1px;
@@ -189,10 +189,7 @@ const ScholarshipInfoBlock = ({
                 {matches => (
                   <>
                     {matches.small ? (
-                      <div
-                        css={!drawerOpen ? isVisible : null}
-                        className="lg:w-1/2 lg:float-right"
-                      >
+                      <div css={!drawerOpen ? isVisible : null}>
                         {isLoaded && actionType ? (
                           <ScholarshipActionType actionLabel={actionType} />
                         ) : (
