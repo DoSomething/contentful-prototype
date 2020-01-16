@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const AdminDashboard = ({ enabled, children }) =>
-  enabled ? <div className="bg-gray-200 p-4">{children}</div> : null;
+  enabled ? (
+    <div className="legacy-admin-dashboard bg-gray-200 p-4">{children}</div>
+  ) : null;
 
 AdminDashboard.propTypes = {
   children: PropTypes.node.isRequired,

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Enclosure from '../../Enclosure';
 import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -59,8 +58,12 @@ const HeroTemplate = ({
     small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
   };
   return (
-    <React.Fragment>
-      <article className="hero-landing-page">
+    <>
+      {/*
+        @TODO: hero-landing-page class was added to help differentiate styling from mosaic template.
+        Should eventually be removed and use Tailwind. This will also help clean up the element hierarchy.
+      */}
+      <div className="hero-landing-page">
         <div className="base-12-grid bg-gray-100 cover-image">
           <img
             className="grid-wide"
@@ -71,7 +74,7 @@ const HeroTemplate = ({
         </div>
 
         <div className="clearfix bg-gray-100">
-          <Enclosure className="base-12-grid">
+          <div className="base-12-grid">
             <header role="banner" className="hero-banner">
               <h1 className="hero-banner__headline-title">{title}</h1>
               <h2 className="hero-banner__headline-subtitle">{subtitle}</h2>
@@ -120,8 +123,9 @@ const HeroTemplate = ({
                 scholarshipAmount={scholarshipAmount}
               />
             </div>
-          </Enclosure>
+          </div>
         </div>
+
         {showScholarshipModal && !isAffiliated ? (
           <Modal
             className="-inverted -scholarship__info"
@@ -146,10 +150,12 @@ const HeroTemplate = ({
             </ScholarshipInfoBlock>
           </Modal>
         ) : null}
-      </article>
+      </div>
+
       {dashboard ? <ContentfulEntry json={dashboard} /> : null}
+
       {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
-    </React.Fragment>
+    </>
   );
 };
 

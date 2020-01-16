@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PHOENIX_URL } from '../../../../constants';
+import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const AlphaPage = ({ userId }) => (
   <>
     <SiteNavigationContainer />
-    <div className="main general-page base-12-grid">
+
+    <main className="general-page base-12-grid relative">
       <div className="grid-narrow">
         <div className="my-6">
           <div className="general-page__heading text-center">
@@ -47,7 +49,9 @@ const AlphaPage = ({ userId }) => (
           </p>
         </div>
       </div>
-    </div>
+    </main>
+
+    <SiteFooter />
   </>
 );
 

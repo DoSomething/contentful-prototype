@@ -65,7 +65,7 @@ const CampaignPageContent = props => {
   const { content, sidebar, blocks } = subPage.fields;
 
   return (
-    <div className="campaign-page" id={subPage.id}>
+    <div className="campaign-page__content" id={subPage.id}>
       <ScrollConcierge />
       {content ? (
         <div className="row">

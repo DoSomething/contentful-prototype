@@ -6,7 +6,7 @@
 }
 
 // HACK: Ensure text post cards look okay on "classic" campaign pages.
-.campaign-page .post-ornament-text {
+.campaign-page__content .post-ornament-text {
   border-left-color: theme('colors.gray.200');
 }
 

@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+<<<<<<< HEAD
 import Enclosure from '../../Enclosure';
+=======
+import ContentfulEntry from '../../ContentfulEntry';
+>>>>>>> Last of the cleanup and updating stragglers. Also removing Enclosure component.
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
@@ -20,33 +24,33 @@ const CampaignPage = props => {
   const { entryContent, isCampaignClosed } = props;
 
   return (
-    <React.Fragment>
-      <LedeBannerContainer
-        displaySignupButton={Boolean(!entryContent)}
-        isClosed={isCampaignClosed}
-      />
+    <>
+      <article className="campaign-page">
+        <LedeBannerContainer
+          displaySignupButton={Boolean(!entryContent)}
+          isClosed={isCampaignClosed}
+        />
 
-      <div className="main clearfix">
-        {!isCampaignClosed && !entryContent ? (
-          <CampaignPageNavigationContainer />
-        ) : null}
+        <div className="clearfix relative">
+          {!isCampaignClosed && !entryContent ? (
+            <CampaignPageNavigationContainer />
+          ) : null}
 
-        <Enclosure className="md:w-3/4 mx-auto mt-6 mb-6">
-          {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
+          <div className="md:w-3/4 mx-auto mt-6 mb-6">
+            {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
+            {!entryContent ? (
+              <CampaignPageContent {...props} />
+            ) : (
+              <ContentfulEntry json={entryContent} />
+            )}
+          </div>
           {!entryContent ? (
-            <CampaignPageContent {...props} />
-          ) : (
-            /* TODO: These should be blocks on a page: */
-            <ContentfulEntryLoader id={entryContent.id} />
-          )}
-        </Enclosure>
-        {!entryContent ? (
-          <CallToActionContainer className="md:hidden" hideIfSignedUp />
-        ) : null}
-      </div>
-
+            <CallToActionContainer className="md:hidden" hideIfSignedUp />
+          ) : null}
+        </div>
+      </article>
       <CampaignInfoBarContainer />
-    </React.Fragment>
+    </>
   );
 };
 
