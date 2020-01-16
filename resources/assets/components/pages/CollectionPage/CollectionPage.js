@@ -69,17 +69,21 @@ const CollectionPageTemplate = ({
               <h2 className="my-3 uppercase color-white text-lg">
                 {superTitle}
               </h2>
+
               <h1 className="lede-banner__headline-title my-3 font-normal font-league-gothic color-white uppercase">
                 {title}
               </h1>
+
               <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
                 {description}
               </TextContent>
+
               {affiliate ? (
                 <div className="mt-6">
                   <p className="font-bold font-size-base text-gray-500 uppercase">
                     {affiliatePrefix}
                   </p>
+
                   <img
                     className="mt-2 affiliate-logo"
                     src={affiliate.logo.url}
