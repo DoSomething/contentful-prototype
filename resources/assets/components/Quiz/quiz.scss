@@ -1,97 +1,97 @@
 @import '../../scss/next-toolbox.scss';
 
-.quiz {
-  margin: 0 theme('spacing.3');
+.quiz__heading {
+  color: theme('colors.yellow.500');
+  font-size: $font-large;
+  font-weight: $weight-bold;
+  text-transform: uppercase;
+}
 
-  .quiz__heading {
-    color: theme('colors.yellow.500');
-    font-size: $font-large;
-    font-weight: $weight-bold;
-    text-transform: uppercase;
-  }
+.quiz__title {
+  font-family: theme('fontFamily.league-gothic');
+  font-size: $font-hero;
+  text-transform: uppercase;
+  margin-bottom: theme('spacing.6');
+}
 
-  .quiz__title {
+.question {
+  margin: theme('spacing.6') 0;
+
+  .question__title {
+    color: $white;
     font-family: theme('fontFamily.league-gothic');
-    font-size: $font-hero;
-    text-transform: uppercase;
-    margin-bottom: theme('spacing.6');
+    font-size: $font-larger;
+    font-weight: normal;
+    letter-spacing: 2px;
+
+    @include media($medium) {
+      font-size: $font-hero;
+      padding: theme('spacing.6');
+    }
   }
+}
 
-  .question {
-    margin: theme('spacing.6') 0;
+.question__choices {
+  margin-top: theme('spacing.6');
+  display: flex;
+  flex-wrap: wrap;
+}
 
-    .question__title {
-      color: $white;
-      font-family: theme('fontFamily.league-gothic');
-      font-size: $font-larger;
-      font-weight: normal;
-      letter-spacing: 2px;
+.choice {
+  margin-bottom: theme('spacing.3');
+  font-weight: $weight-bold;
+  text-decoration: none;
+  width: 100%;
+  outline: 0;
 
-      @include media($medium) {
-        font-size: $font-hero;
-        padding: theme('spacing.6');
-      }
+  &.background-image {
+    flex: 0 0 33%;
+    padding: 0 theme('spacing.3') theme('spacing.3') 0;
+
+    @include media($small) {
+      flex: 0 0 50%;
     }
   }
 
-  .question__choices {
-    margin-top: theme('spacing.6');
-    display: flex;
-    flex-wrap: wrap;
+  &:hover {
+    cursor: pointer;
   }
 
-  .choice {
-    margin-bottom: theme('spacing.3');
-    font-weight: $weight-bold;
-    text-decoration: none;
-    width: 100%;
+  &:focus {
     outline: 0;
-
-    &.background-image {
-      flex: 0 0 33%;
-      padding: 0 theme('spacing.3') theme('spacing.3') 0;
-
-      @include media($small) {
-        flex: 0 0 50%;
-      }
-    }
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    .-active {
-      border-color: $blue;
-      border-width: 2px;
-    }
   }
 
-  .quiz-conclusion {
-    margin-bottom: theme('spacing.6');
+  .-active {
+    border-color: $blue;
+    border-width: 2px;
+  }
+}
 
-    .conclusion__item {
-      display: inline-block;
-      vertical-align: middle;
-      box-sizing: border-box;
+.quiz-conclusion {
+  margin-bottom: theme('spacing.6');
 
-      @include media($small) {
-        width: 100%;
+  .conclusion__item {
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+
+    @include media($small) {
+      width: 100%;
+    }
+
+    @include media($tablet) {
+      &.-one-third {
+        width: 50%;
       }
 
-      @include media($tablet) {
-        &.-one-third {
-          width: 50%;
-        }
-
-        &.-two-thirds {
-          width: 50%;
-        }
+      &.-two-thirds {
+        width: 50%;
       }
+    }
 
-      button {
-        width: 100%;
-        min-height: 65px;
-      }
+    button {
+      width: 100%;
+      min-height: 65px;
     }
   }
 }

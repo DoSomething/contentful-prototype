@@ -1,159 +1,73 @@
-/* global window, URL */
-/* eslint-disable jsx-a11y/heading-has-content */
-
-import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { find, every, get } from 'lodash';
-import ReactRouterPropTypes from 'react-router-prop-types';
+import React, { useState } from 'react';
+import { countBy, every, entries, head, last, maxBy, omit } from 'lodash';
 
-import { query } from '../../helpers';
-import { Flex, FlexCell } from '../Flex';
 import QuizQuestion from './QuizQuestion';
-import Share from '../utilities/Share/Share';
 import QuizConclusion from './QuizConclusion';
-import ScrollConcierge from '../ScrollConcierge';
 import { trackAnalyticsEvent } from '../../helpers/analytics';
-import { calculateResult, resultParams, appendResultParams } from './helpers';
-import ContentfulEntryLoader from '../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 import './quiz.scss';
 
 export const QuizBlockFragment = gql`
   fragment QuizBlockFragment on QuizBlock {
     title
-    slug
-    autoSubmit
-    hideQuestionNumber
-    results
+    questions
     defaultResultBlock {
       id
-      ... on QuizBlock {
-        slug
-      }
     }
-    resultBlocks {
-      id
-      ... on QuizBlock {
-        slug
-      }
-    }
-    questions
+    autoSubmit
+    hideQuestionNumber
     additionalContent
   }
 `;
 
-class Quiz extends React.Component {
-  constructor(props) {
-    super(props);
+/**
+ * Find the most common result for the user's choices.
+ *
+ * @param  {Object} choices
+ * @param  {Array}  questions
+ * @return {Object}
+ */
+export const calculateResult = (choices, questions) => {
+  // We want to tally up the result blocks for each of the user's choices:
+  const talliedResults = countBy(questions, question => {
+    const selectedChoiceId = choices[question.id];
+    const selectedChoice = question.choices[selectedChoiceId];
 
-    // Grab state overrides from the query parameters
-    const resultId = query('resultId');
-    const resultBlockId = query('resultBlockId');
-    // Also ensuring user authentication before applying the showResults query param override
-    const showResults = query('showResults') && props.isAuthenticated;
+    return selectedChoice.resultBlock;
+  });
 
-    // Scrub the result override parameter from the current URL
-    const scrubbedParam = window.location.search.replace(
-      resultParams(resultId, resultBlockId),
-      '',
-    );
-    window.history.replaceState(window.location.state, '', scrubbedParam);
+  // If a choice doesn't have an explicit result, we just ignore it:
+  const filteredTally = omit(talliedResults, '', null, undefined);
 
-    const result = find(props.results, { id: resultId });
-    const resultBlock = find(props.resultBlocks, { id: resultBlockId });
+  // Finally, get the key with the largest tallied value:
+  return head(maxBy(entries(filteredTally), last));
+};
 
-    this.state = {
-      choices: {},
-      results: {
-        result,
-        resultBlock,
-      },
-      showResults,
-      // Show the scroll concierge for nested quizzes
-      renderScrollConcierge: get(props.additionalContent, 'isNestedQuiz'),
-      completedQuiz: false,
-    };
+const Quiz = ({
+  id,
+  questions,
+  title,
+  hideQuestionNumber,
+  defaultResultBlock,
+  additionalContent,
+  autoSubmit,
+  onComplete,
+}) => {
+  const [choices, setChoices] = useState({});
 
-    // Quickly hide scroll concierge so that we can re-render it when showing the quiz results
-    setTimeout(() => this.setState({ renderScrollConcierge: false }), 500);
-  }
+  const { callToAction, introduction, submitButtonText } = additionalContent;
+  const finishedQuiz = every(questions, question => !!choices[question.id]);
 
-  componentDidMount() {
-    window.addEventListener('beforeunload', this.trackAbandonedQuiz);
-  }
-
-  componentDidUpdate() {
-    if (!this.props.autoSubmit) {
-      return;
-    }
-
-    if (!this.state.completedQuiz && this.evaluateQuiz()) {
-      setTimeout(this.completeQuiz, 300);
-    }
-  }
-
-  componentWillUnmount() {
-    /*
-      Users would primarily be abandoning a quiz by exiting the page completely.
-      This addresses the edge case, where the quiz is abandoned while remaining within the page
-      (thus triggering the componentWillUnmount.)
-    */
-    window.removeEventListener('beforeunload', this.trackAbandonedQuiz);
-    this.trackAbandonedQuiz();
-  }
-
-  trackAbandonedQuiz = () => {
-    if (this.state.completedQuiz) {
-      return;
-    }
+  const completeQuiz = () => {
+    const resultBlockId = calculateResult(choices, questions);
 
     trackAnalyticsEvent({
-      context: { campaignId: this.props.campaignId, pageId: this.props.pageId },
-      metadata: {
-        category: 'campaign_action',
-        noun: 'quiz',
-        target: 'form',
-        verb: 'abandoned',
+      context: {
+        id,
+        campaignId: additionalContent.campaignId,
       },
-    });
-  };
-
-  evaluateQuiz = () => {
-    const questions = this.props.questions;
-
-    return every(questions, question => !!this.state.choices[question.id]);
-  };
-
-  completeQuiz = () => {
-    // Ensure all quiz questions have been answered
-    if (!this.evaluateQuiz()) {
-      return;
-    }
-
-    // This signifier is necessary to cover various post-completion states (auto submit quizzes, gated quizzes, etc.)
-    this.setState({ completedQuiz: true });
-
-    const {
-      questions,
-      resultBlocks,
-      autoSubmit,
-      isAuthenticated,
-      storeCampaignSignup,
-      campaignId,
-    } = this.props;
-
-    const results = calculateResult(
-      // @TODO: Refactor so this function's setState doesn't rely on result of `this.state`.
-      // eslint-disable-next-line react/no-access-state-in-setstate
-      this.state.choices,
-      questions,
-      this.props.results,
-      resultBlocks,
-    );
-
-    trackAnalyticsEvent({
-      context: { campaignId: this.props.campaignId, pageId: this.props.pageId },
       metadata: {
         category: 'campaign_action',
         noun: 'quiz',
@@ -162,160 +76,68 @@ class Quiz extends React.Component {
       },
     });
 
-    const clickedSignupActionData = { shouldShowAffirmation: false };
-
-    // Run a quiz conversion (campaign signup) if this quiz is not set to auto submit
-    // and we have a campaign context (e.g. not on `/us/blocks/:id` page).
-    if (!autoSubmit && campaignId) {
-      if (!isAuthenticated) {
-        // Append result and resultBlock IDs to URL, so that upon redirect from login flow, we can show their results
-        appendResultParams(results);
-
-        storeCampaignSignup(campaignId, clickedSignupActionData);
-
-        // Hard return so the results won't display before the login redirect
-        return;
-      }
-
-      storeCampaignSignup(campaignId, clickedSignupActionData);
-    }
-
-    // If the winning resultBlock is a Quiz, navigates to it:
-    const block = results.resultBlock;
-    if (block && (block.type === 'quiz' || block.__typename === 'QuizBlock')) {
-      this.quizResultBlockHandler(block);
-
-      return;
-    }
-
-    this.setState({ showResults: true, results, renderScrollConcierge: true });
+    onComplete(resultBlockId || defaultResultBlock.id);
   };
 
-  quizResultBlockHandler = resultBlock => {
-    const { location, history, slug } = this.props;
-
-    const resultBlockSlug = resultBlock.slug || resultBlock.fields.slug;
-
-    let newPath = new URL(
-      `/us/blocks/${resultBlock.id}`,
-      window.location.origin,
-    ).pathname;
-
-    // If we're on a "quiz" route, redirect to the user-friendly slug instead:
-    if (location.pathname.match('/quiz/')) {
-      newPath = location.pathname.replace(
-        new RegExp(`/quiz/${slug}$`),
-        `/quiz/${resultBlockSlug}`,
-      );
-    }
-
-    history.push(newPath);
+  const selectChoice = (questionId, choiceId) => {
+    setChoices({ ...choices, [questionId]: choiceId });
   };
 
-  selectChoice = (questionId, choiceId) => {
-    this.setState(state => ({
-      choices: {
-        ...state.choices,
-        [questionId]: choiceId,
-      },
-    }));
-  };
-
-  renderQuiz = () => {
-    const { questions, hideQuestionNumber } = this.props;
-
-    const { callToAction, introduction, submitButtonText } =
-      this.props.additionalContent || {};
-
-    return (
-      <React.Fragment>
-        {introduction}
-
-        {questions.map(question => (
-          <QuizQuestion
-            key={question.id}
-            id={question.id}
-            title={question.title}
-            choices={question.choices}
-            selectChoice={this.selectChoice}
-            hideQuestionNumber={hideQuestionNumber}
-            activeChoiceId={this.state.choices[question.id]}
-          />
-        ))}
-
-        {this.props.autoSubmit ? null : (
-          <QuizConclusion callToAction={callToAction}>
-            <button
-              type="submit"
-              className="button quiz__submit"
-              onClick={() => this.completeQuiz()}
-              disabled={!this.evaluateQuiz()}
-            >
-              {submitButtonText || 'Get Results'}
-            </button>
-          </QuizConclusion>
-        )}
-      </React.Fragment>
-    );
-  };
-
-  renderResult = () => {
-    const { defaultResultBlock } = this.props;
-    const { result, resultBlock } = this.state.results;
-
-    const defaultResult = defaultResultBlock ? (
-      <ContentfulEntryLoader id={defaultResultBlock.id} />
-    ) : null;
-
-    if (!resultBlock) {
-      // Return the result on it's own when no result block is found,
-      // or the 'default result block' if no result is determined.
-      return result ? (
-        <QuizConclusion callToAction={result.content}>
-          <Share className="quiz__share" parentSource="quiz" />
-        </QuizConclusion>
-      ) : (
-        defaultResult
-      );
-    }
-
-    return <ContentfulEntryLoader id={resultBlock.id} />;
-  };
-
-  render() {
-    // @TODO: The `h1` in this render method was causing 'jsx-a11y/heading-has-content'
-    // to complain. This seems like a known issue pending release: https://git.io/fN814
-    return (
-      <Flex className="quiz">
-        {this.state.renderScrollConcierge ? <ScrollConcierge /> : null}
-        <FlexCell width="two-thirds">
-          <h1 className="quiz__heading">Quiz</h1>
-          {this.props.title ? (
-            <h2 className="quiz__title">{this.props.title}</h2>
-          ) : null}
-
-          {this.state.showResults ? this.renderResult() : this.renderQuiz()}
-        </FlexCell>
-      </Flex>
-    );
+  // If this quiz automatically submits (often used for multi-step
+  // quizzes), then check if we can complete it on each render:
+  if (autoSubmit && finishedQuiz) {
+    completeQuiz();
   }
-}
+
+  return (
+    <div className="md:w-2/3">
+      <h1 className="quiz__heading">Quiz</h1>
+      {title ? <h2 className="quiz__title">{title}</h2> : null}
+
+      {introduction}
+
+      {questions.map(question => (
+        <QuizQuestion
+          key={question.id}
+          id={question.id}
+          title={question.title}
+          choices={question.choices}
+          selectChoice={selectChoice}
+          hideQuestionNumber={hideQuestionNumber}
+          activeChoiceId={choices[question.id]}
+        />
+      ))}
+
+      {autoSubmit ? null : (
+        <QuizConclusion callToAction={callToAction}>
+          <button
+            type="submit"
+            className="button quiz__submit"
+            onClick={completeQuiz}
+            disabled={!finishedQuiz}
+          >
+            {submitButtonText || 'Get Results'}
+          </button>
+        </QuizConclusion>
+      )}
+    </div>
+  );
+};
 
 Quiz.propTypes = {
+  id: PropTypes.string.isRequired,
+  onComplete: PropTypes.func.isRequired,
   autoSubmit: PropTypes.bool.isRequired,
   additionalContent: PropTypes.shape({
+    campaignId: PropTypes.number,
     callToAction: PropTypes.string.isRequired,
     introduction: PropTypes.string,
     submitButtonText: PropTypes.string,
-    isNestedQuiz: PropTypes.bool,
   }).isRequired,
-  campaignId: PropTypes.string.isRequired,
-  defaultResultBlock: PropTypes.object,
+  defaultResultBlock: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
   hideQuestionNumber: PropTypes.bool,
-  history: ReactRouterPropTypes.history.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  location: ReactRouterPropTypes.location.isRequired,
-  pageId: PropTypes.string,
   questions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -323,23 +145,12 @@ Quiz.propTypes = {
       choices: PropTypes.arrayOf(PropTypes.object).isRequired,
     }),
   ).isRequired,
-  results: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  resultBlocks: PropTypes.arrayOf(PropTypes.object),
-  slug: PropTypes.string.isRequired,
-  storeCampaignSignup: PropTypes.func.isRequired,
   title: PropTypes.string,
 };
 
 Quiz.defaultProps = {
   defaultResultBlock: null,
   hideQuestionNumber: false,
-  pageId: null,
-  resultBlocks: null,
   title: null,
 };
 

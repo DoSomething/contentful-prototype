@@ -288,14 +288,9 @@ class ContentfulEntry extends React.Component {
       case 'poll_locator':
         return <PollLocator {...withoutNulls(json.fields)} />;
 
-      case 'quiz': {
-        const QuizContainer = Loader(import('../Quiz/QuizContainer'));
-        return <QuizContainer {...json.fields} />;
-      }
-
       case 'QuizBlock': {
-        const QuizContainer = Loader(import('../Quiz/QuizContainer'));
-        return <QuizContainer {...json} />;
+        const QuizBlock = Loader(import('../Quiz/QuizBlock'));
+        return <QuizBlock {...json} />;
       }
 
       case 'sectionBlock': {
