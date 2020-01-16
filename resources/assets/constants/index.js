@@ -37,3 +37,8 @@ export const REGISTER_CTA_COPY = {
 // Signup Button text for scholarship referrals:
 export const SCHOLARSHIP_SIGNUP_BUTTON_TEXT = 'Apply Now!';
 
+// Help Center URL:
+export const HELP_LINK = 'https://help.dosomething.org/hc/en-us';
+
+// Help center - new ticket view URL:
+export const HELP_REQUEST_LINK = `${HELP_LINK}/requests/new`;
