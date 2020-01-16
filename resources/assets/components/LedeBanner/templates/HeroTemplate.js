@@ -141,6 +141,7 @@ const HeroTemplate = ({
                 <SignupButtonContainer
                   className="w-full md:px-2"
                   text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
+                  modal_type="scholarship_modal"
                 />
               </div>
             </ScholarshipInfoBlock>
