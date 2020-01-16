@@ -61,9 +61,11 @@ const CausePageTemplate = ({
               <h2 className="my-3 uppercase color-white text-lg">
                 {superTitle}
               </h2>
+
               <h1 className="lede-banner__headline-title my-3 font-normal font-league-gothic color-white uppercase">
                 {title}
               </h1>
+
               <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
                 {description}
               </TextContent>
@@ -82,9 +84,11 @@ const CausePageTemplate = ({
                     <p className="text-white text-lg font-bold uppercase">
                       {stat.title}
                     </p>
+
                     <p className="text-white text-5xl font-league-gothic -mt-3">
                       {stat.number.toLocaleString()}
                     </p>
+
                     <a
                       className="text-white hover:text-white font-normal underline cursor-pointer"
                       href={stat.link.url}
