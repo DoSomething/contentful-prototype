@@ -38,9 +38,15 @@ export default {
         active: true,
         jobTitle: 'Staff Engineer',
         email: 'dfurnes@dosomething.org',
-        photo: null,
-        alternatePhoto:
-          'https://images.ctfassets.net/81iqaqpfd8fy/3p0etbv0zYwYEso4AQysuS/4c571d69357c1fbc78bbd09d3e137c94/Dave_Furnes_Kid_Picture.png',
+        photo: {
+          url: null,
+          description: null,
+        },
+        alternatePhoto: {
+          url:
+            'https://images.ctfassets.net/81iqaqpfd8fy/3p0etbv0zYwYEso4AQysuS/4c571d69357c1fbc78bbd09d3e137c94/Dave_Furnes_Kid_Picture.png',
+          description: null,
+        },
         description: null,
         twitterId: 'dfurnes',
       },
@@ -76,7 +82,10 @@ export default {
           slug: 'test-example-campaign/action',
           metadata: null,
           authors: [],
-          coverImage: { description: '', url: null },
+          coverImage: {
+            description: '',
+            url: null,
+          },
           content: null,
           sidebar: [],
           blocks: [
@@ -89,8 +98,11 @@ export default {
                 subTitle: null,
                 content:
                   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis eleifend diam, sit amet imperdiet mi porttitor luctus. Etiam luctus sem nec nunc aliquam, et interdum arcu pellentesque. Duis dictum nibh vel nibh dignissim condimentum. Phasellus vel varius ante. Vivamus finibus quam quis justo venenatis, eu porta dolor porta.',
-                image: { url: null, description: null },
-                imageAlignment: 'right',
+                image: {
+                  url: null,
+                  description: null,
+                },
+                imageAlignment: null,
                 additionalContent: null,
               },
             },
@@ -117,11 +129,14 @@ export default {
               fields: {
                 superTitle: 'Step 2',
                 title: 'Prove It',
-                subTitle: null,
+                subTitle: 'Just small change to know what this does',
                 content:
-                  'Vestibulum rhoncus tellus vitae sem tempor volutpat. Duis quam metus, dictum id mollis et, imperdiet a sapien. Pellentesque tincidunt vehicula ex vel sodales. Morbi elementum sem mauris, at euismod urna elementum vulputate. Nulla bibendum augue sit amet est lacinia feugiat in imperdiet lectus.',
-                image: { url: null, description: null },
-                imageAlignment: 'right',
+                  'Vestibulum rhoncus tellus vitae sem tempor volutpat. Duis quam metus, dictum id mollis et, imperdiet a sapien. Pellentesque tincidunt vehicula ex vel sodales. Morbi elementum sem mauris, at euismod urna elementum vulputate. Nulla bibendum augue sit amet est lacinia feugiat in imperdiet lectus.\n',
+                image: {
+                  url: null,
+                  description: null,
+                },
+                imageAlignment: null,
                 additionalContent: null,
               },
             },
@@ -136,6 +151,7 @@ export default {
                 showQuantityField: true,
                 quantityFieldLabel: null,
                 quantityFieldPlaceholder: null,
+                numberOfParticipantsFieldLabel: null,
                 whyParticipatedFieldLabel: null,
                 whyParticipatedFieldPlaceholder: null,
                 buttonText: null,
@@ -163,6 +179,29 @@ export default {
           socialOverride: null,
         },
       },
+      {
+        id: '2Ju2Efyg6WPlrDfGATSyEw',
+        type: 'page',
+        fields: {
+          internalTitle: "[Test] Example Campaign FAQ's Page",
+          title: "FAQ's",
+          subTitle: null,
+          slug: 'test-example-campaign/faqs',
+          metadata: null,
+          authors: [],
+          coverImage: {
+            description: '',
+            url: null,
+          },
+          content:
+            '# Here are some commonly asked questions:\n\n## Why?\nBecause.',
+          sidebar: [],
+          blocks: [],
+          displaySocialShare: null,
+          hideFromNavigation: null,
+          socialOverride: null,
+        },
+      },
     ],
     landingPage: {
       id: '1Y1b56hDTnpx1HOj6qebt',
@@ -185,7 +224,9 @@ export default {
     staffPick: true,
     cause: 'animals',
     scholarshipAmount: 5000,
+    scholarshipCallToAction: null,
     scholarshipDeadline: '2020-06-24T00:00:00Z',
+    scholarshipDescription: null,
     affiliateOptInContent: null,
   },
 };
