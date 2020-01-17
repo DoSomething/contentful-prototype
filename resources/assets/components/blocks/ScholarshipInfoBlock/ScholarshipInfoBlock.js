@@ -1,13 +1,21 @@
-import React from 'react';
+/** @jsx jsx */
+
+// eslint-disable-next-line no-unused-vars
+import React, { useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
+import Media from 'react-media';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
+import { jsx, css } from '@emotion/core';
 
+import Header from './InfoHeader';
 import Card from '../../utilities/Card/Card';
-import { env, getHumanFriendlyDate, report } from '../../../helpers';
+import ScholarshipActionType from './ScholarshipActionType';
+import ScholarshipRequirements from './ScholarshipRequirements';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
+import { env, getHumanFriendlyDate, report } from '../../../helpers';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
 
@@ -34,19 +42,6 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
   }
 `;
 
-const Header = ({ content, textColor }) => (
-  <div className={`font-bold uppercase ${textColor}`}>{content}</div>
-);
-
-Header.propTypes = {
-  content: PropTypes.string.isRequired,
-  textColor: PropTypes.string,
-};
-
-Header.defaultProps = {
-  textColor: 'text-gray-600',
-};
-
 const ScholarshipInfoBlock = ({
   affiliateSponsors,
   campaignId,
@@ -64,6 +59,30 @@ const ScholarshipInfoBlock = ({
       campaignId,
     },
   });
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [detailsLabel, setDetailsLabel] = useState('Show');
+
+  // const detail = css`
+  //   transition: all 0.3s ease-out;
+  // `;
+  const isVisible = css`
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap; /* added line */
+  `;
+
+  const toggleHiddenInfo = () => {
+    setDrawerOpen(!drawerOpen);
+    setDetailsLabel('Hide');
+
+    if (drawerOpen && detailsLabel === 'Hide') {
+      setDetailsLabel('Show');
+    }
+  };
 
   const isLoaded = !loading;
   const affiliateTitle = get(data, 'affiliate.title');
@@ -144,7 +163,7 @@ const ScholarshipInfoBlock = ({
         {children}
       </div>
       <div className="md:w-1/2 p-6 text-base scholarship-info-block">
-        <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 rounded">
+        <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 pb-2 rounded">
           {scholarshipAmount ? (
             <div>
               <Header
@@ -166,25 +185,44 @@ const ScholarshipInfoBlock = ({
                   </p>
                 </div>
               ) : null}
-              <div className="lg:w-1/2 lg:float-right">
-                {isLoaded && actionType ? (
+              <Media queries={{ small: '(max-width: 480px)' }}>
+                {matches => (
                   <>
-                    <Header content="Action Type" />
-                    <p className="pb-2">{actionType}</p>
+                    {matches.small ? (
+                      <div css={!drawerOpen ? isVisible : null}>
+                        <ScholarshipActionType
+                          isLoaded={isLoaded}
+                          actionLabel={actionType}
+                        />
+                      </div>
+                    ) : (
+                      <ScholarshipActionType
+                        isLoaded={isLoaded}
+                        actionLabel={actionType}
+                      />
+                    )}
                   </>
-                ) : (
-                  <PlaceholderText size="medium" />
                 )}
-              </div>
+              </Media>
             </div>
-            <div>
-              <Header content="Requirements" />
-              <ul className="mt-2 list-disc list-inside">
-                <li>Under 26 years old</li>
-                <li>No minimum GPA</li>
-                <li>No essay</li>
-              </ul>
-            </div>
+            <Media queries={{ small: '(max-width: 480px)' }}>
+              {matches => (
+                <>
+                  {matches.small ? (
+                    <div css={!drawerOpen ? isVisible : null}>
+                      <ScholarshipRequirements />
+                    </div>
+                  ) : (
+                    <ScholarshipRequirements />
+                  )}
+                </>
+              )}
+            </Media>
+          </div>
+          <div className="md:hidden text-center align-bottom">
+            <button type="button" onClick={toggleHiddenInfo}>
+              <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
+            </button>
           </div>
         </div>
       </div>
