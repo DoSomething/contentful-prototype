@@ -6,10 +6,9 @@ Create a Zendesk Ticket for an authenticated user.
 {% endapi-method-summary %}
 
 {% api-method-description %}
-
-- Fetches user data via northstar then creates or updates a Zendesk user using the account email address with Northstar ID and Rogue profile URL.
-- Creates new Zendesk ticket for the user with the campaign title and question data.
-  {% endapi-method-description %}
+Fetches user data via northstar then creates or updates a Zendesk user using the account email address with Northstar ID and Rogue profile URL.
+Creates new Zendesk ticket for the user with the campaign title and question data.
+{% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
@@ -57,11 +56,8 @@ e.g.: 'I\'m having trouble reporting back on this campaign.'
 {% hint style="info" %}
 This endpoint utilizes the [zendesk-laravel](https://github.com/huddledigital/zendesk-laravel) package.
 To configure, make sure the following ENV variables are set in `.env`:
-
-- `ZENDESK_SUBDOMAIN`
-- `ZENDESK_USERNAME`
-- `ZENDESK_TOKEN`
-  {% endhint %}
+`ZENDESK_SUBDOMAIN`, `ZENDESK_USERNAME`, `ZENDESK_TOKEN`.
+{% endhint %}
 
 {% hint style="info" %}
 To test this endpoint without cluttering our Zendesk space, set the question to `'causeyhippo'` (which will trigger the ticket to be tagged and resolved as a test).
