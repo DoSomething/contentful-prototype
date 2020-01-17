@@ -79,21 +79,19 @@ const SiteFooter = () => (
             <a href="https://join.dosomething.org/">What is DoSomething.org?</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/our-people`}>Our Team</a>
+            <a href="/us/about/our-people">Our Team</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/our-financials`}>
-              Our Financials
-            </a>
+            <a href="/us/about/our-financials">Our Financials</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/our-press`}>Press</a>
+            <a href="/us/about/our-press">Press</a>
           </li>
           <li>
             <a href="https://lets.dosomething.org/">Web Magazine</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/contact-us`}>Contact Us</a>
+            <a href="/us/about/contact-us">Contact Us</a>
           </li>
         </ul>
       </div>
@@ -106,10 +104,10 @@ const SiteFooter = () => (
             </a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/our-partners`}>Partners</a>
+            <a href="/us/about/our-partners">Partners</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/hotline-list`}>Crisis Hotlines</a>
+            <a href="/us/about/hotline-list">Crisis Hotlines</a>
           </li>
         </ul>
       </div>
@@ -122,23 +120,19 @@ const SiteFooter = () => (
             </a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/easy-scholarships`}>
-              Scholarships
-            </a>
+            <a href="/us/about/easy-scholarships">Scholarships</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/join-our-team`}>Jobs</a>
+            <a href="/us/about/join-our-team">Jobs</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/internships`}>Internships</a>
+            <a href="/us/about/internships">Internships</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/articles/clubs-notify-me`}>
-              DoSomething Clubs
-            </a>
+            <a href="/us/articles/clubs-notify-me">DoSomething Clubs</a>
           </li>
           <li>
-            <a href={`${PHOENIX_URL}/us/about/donate`}>Donate</a>
+            <a href="/us/about/donate">Donate</a>
           </li>
           <li>
             <a href="https://help.dosomething.org/hc/en-us">Help Center</a>
@@ -149,10 +143,10 @@ const SiteFooter = () => (
     <div className="footer__subfooter border-gray-700">
       <ul>
         <li>
-          <a href={`${PHOENIX_URL}/us/about/terms-service`}>Terms of Service</a>
+          <a href="/us/about/terms-service">Terms of Service</a>
         </li>
         <li>
-          <a href={`${PHOENIX_URL}/us/about/privacy-policy`}>Privacy Policy</a>
+          <a href="/us/about/privacy-policy">Privacy Policy</a>
         </li>
       </ul>
     </div>

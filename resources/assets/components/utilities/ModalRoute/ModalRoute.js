@@ -56,7 +56,7 @@ class ModalRoute extends React.Component {
             {children}
           </StaticRouter>
         ) : (
-          <>{children}</>
+          children
         )}
       </>
     );
