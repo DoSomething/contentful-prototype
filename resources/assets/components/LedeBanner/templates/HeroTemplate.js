@@ -106,6 +106,7 @@ const HeroTemplate = ({
                         ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
                         : undefined
                     }
+                    contextSource="campaign_landing_page"
                   />
                   {affiliateOptInContent ? (
                     <AffiliateOptInToggleContainer
@@ -141,7 +142,7 @@ const HeroTemplate = ({
                 <SignupButtonContainer
                   className="w-full md:px-2"
                   text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
-                  trackingId="scholarship_modal"
+                  contextSource="scholarship_modal"
                 />
               </div>
             </ScholarshipInfoBlock>

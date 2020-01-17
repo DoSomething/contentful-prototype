@@ -11,12 +11,12 @@ const SignupButton = props => {
     campaignId,
     campaignTitle,
     className,
+    contextSource,
     disableSignup,
     endDate,
     pageId,
     storeCampaignSignup,
     text,
-    trackingId,
   } = props;
 
   // Decorate click handler for A/B tests & analytics.
@@ -43,7 +43,7 @@ const SignupButton = props => {
       },
       analytics: {
         context: {
-          modalType: trackingId,
+          contextSource,
           pageId,
         },
         label: campaignTitle,
@@ -74,12 +74,12 @@ SignupButton.propTypes = {
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
+  contextSource: PropTypes.string,
   disableSignup: PropTypes.bool,
   endDate: PropTypes.string,
   pageId: PropTypes.string.isRequired,
   storeCampaignSignup: PropTypes.func.isRequired,
   text: PropTypes.string,
-  trackingId: PropTypes.string,
 };
 
 SignupButton.defaultProps = {
@@ -87,10 +87,10 @@ SignupButton.defaultProps = {
   campaignActionText: 'Take Action',
   campaignTitle: null,
   className: null,
+  contextSource: null,
   disableSignup: false,
   endDate: null,
   text: null,
-  trackingId: null,
 };
 
 export default SignupButton;
