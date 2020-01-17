@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Huddle\Zendesk\Facades\Zendesk;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class ZendeskTicketsController extends Controller
@@ -35,7 +35,7 @@ class ZendeskTicketsController extends Controller
 
         Log::debug('[Phoenix] ZendeskTicketsController@store: Creating Zendesk ticket:', [
             'northstar_id' => $northstarId,
-            'question' => $question
+            'question' => $question,
         ]);
 
         $zendeskUser = Zendesk::users()->createOrUpdate([
