@@ -19,7 +19,7 @@ This feature is hardcoded, and consists of three user-facing touch points:
 
 ### Referral Page Banner
 
-After signing up for Teens For Jeans 2019, users who have the `refer-friends-scholarship` flag set will see a Referral Page Banner, which links them to the Alpha Referral Page.
+After signing up for Teens For Jeans 2019, users who have the `refer-friends-scholarship` flag set will see a Referral Page Banner within the signup Affirmation, which links to their Alpha Referral Page.
 
 ![Referral Page Banner Example](../../.gitbook/assets/referral-page-banner.png)
 
@@ -29,7 +29,7 @@ After signing up for Teens For Jeans 2019, users who have the `refer-friends-sch
 dosomething.org/us/refer-friends
 ```
 
-The Alpha Referral Page provides the link to the Beta Referral Page, which is what the user should share with their friends. The Beta Referral Page link will contain the current user's Northstar ID as a `user_id` query parameter.
+The user's Alpha Referral Page prompters the user to share their Beta Referral Page with their friends. The Beta Referral Page URL will contain the user's ID as a `user_id` query parameter.
 
 ![Alpha Referral Page Example](../../.gitbook/assets/alpha-referral-page.png)
 
@@ -39,9 +39,15 @@ The Alpha Referral Page provides the link to the Beta Referral Page, which is wh
 dosomething.org/join?user_id=55767609a59dbf3c7a8b4571
 ```
 
-The Beta Referral Page links to campaigns that the beta should join, in order to receive the reward along with the alpha (which is passed by the `user_id` query parameter).
+The Beta Referral Page links to campaigns that the beta should join, in order to receive the reward along with the alpha (which is set via the `user_id` query parameter).
 
-The campaign link will include the alpha's user ID as a `referrer_user_id` query parameter, which is used as the Northstar User `source_detail` when a beta registers as a new user, e.g. `https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be89469c64ec7d8b518d`
+The campaign URLs will include the alpha's user ID as a `referrer_user_id` query parameter:
+
+```
+https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be89469c64ec7d8b518d
+```
+
+This `referrer_user_id` query parameter will be added to the `source_detail` of any new user accounts created by betas.
 
 ![Beta Referral Page Example](../../.gitbook/assets/beta-referral-page.png)
 
