@@ -12,12 +12,12 @@ const CampaignInfoBar = ({
   contactEmail,
   isAffiliated,
 }) => {
-  const [showZendeskModal, updateShowZendeskModal] = useState(false);
+  const [showZendeskModal, setShowZendeskModal] = useState(false);
 
   return (
     <div className="info-bar bg-gray-700">
       {showZendeskModal ? (
-        <Modal onClose={() => updateShowZendeskModal(false)}>
+        <Modal onClose={() => setShowZendeskModal(false)}>
           <ZendeskFormContainer />
         </Modal>
       ) : null}
@@ -35,7 +35,7 @@ const CampaignInfoBar = ({
             <button
               type="button"
               className="underline"
-              onClick={() => updateShowZendeskModal(true)}
+              onClick={() => setShowZendeskModal(true)}
             >
               Contact Us
             </button>
