@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-<<<<<<< HEAD
-import Enclosure from '../../Enclosure';
-=======
-import ContentfulEntry from '../../ContentfulEntry';
->>>>>>> Last of the cleanup and updating stragglers. Also removing Enclosure component.
 import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
@@ -41,14 +36,16 @@ const CampaignPage = props => {
             {!entryContent ? (
               <CampaignPageContent {...props} />
             ) : (
-              <ContentfulEntry json={entryContent} />
+              <ContentfulEntryLoader json={entryContent} />
             )}
           </div>
+
           {!entryContent ? (
             <CallToActionContainer className="md:hidden" hideIfSignedUp />
           ) : null}
         </div>
       </article>
+
       <CampaignInfoBarContainer />
     </>
   );
