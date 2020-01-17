@@ -19,3 +19,7 @@ The [`/campaigns`](campaigns-resource.md) endpoint contains all endpoints relate
 ## Posts
 
 _More to come..._
+
+## Zendesk Tickets
+
+The [`/zendesk-tickets`](zendesk-tickets.md) endpoint allows creating Zendesk tickets for users.
