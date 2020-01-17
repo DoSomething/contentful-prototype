@@ -11,6 +11,7 @@ const SignupButton = props => {
     campaignId,
     campaignTitle,
     className,
+    contextSource,
     disableSignup,
     endDate,
     pageId,
@@ -42,6 +43,7 @@ const SignupButton = props => {
       },
       analytics: {
         context: {
+          contextSource,
           pageId,
         },
         label: campaignTitle,
@@ -72,6 +74,7 @@ SignupButton.propTypes = {
   campaignId: PropTypes.string.isRequired,
   campaignTitle: PropTypes.string,
   className: PropTypes.string,
+  contextSource: PropTypes.string,
   disableSignup: PropTypes.bool,
   endDate: PropTypes.string,
   pageId: PropTypes.string.isRequired,
@@ -84,6 +87,7 @@ SignupButton.defaultProps = {
   campaignActionText: 'Take Action',
   campaignTitle: null,
   className: null,
+  contextSource: null,
   disableSignup: false,
   endDate: null,
   text: null,

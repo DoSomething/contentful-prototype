@@ -17,7 +17,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
   const handleFocus = () => {
     trackAnalyticsEvent({
-      context: { cta_type: 'newsletter_scholarships' },
+      context: { contextSource: 'newsletter_scholarships' },
       metadata: {
         adjective: 'email',
         category: 'site_action',
@@ -32,7 +32,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
     event.preventDefault();
 
     trackAnalyticsEvent({
-      context: { cta_type: 'newsletter_scholarships' },
+      context: { contextSource: 'newsletter_scholarships' },
       metadata: {
         category: 'site_action',
         noun: 'call_to_action_popover',
@@ -70,7 +70,11 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
         }
 
         trackAnalyticsEvent({
-          context: { cta_type: 'newsletter_scholarships', error, errorMessage },
+          context: {
+            contextSource: 'newsletter_scholarships',
+            error,
+            errorMessage,
+          },
           metadata: {
             category: 'site_action',
             noun: 'call_to_action_popover_submission',
