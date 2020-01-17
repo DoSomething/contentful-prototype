@@ -41,6 +41,8 @@ dosomething.org/join?user_id=55767609a59dbf3c7a8b4571
 
 The Beta Referral Page links to campaigns that the beta should join, in order to receive the reward along with the alpha (which is set via the `user_id` query parameter).
 
+![Beta Referral Page Example](../../.gitbook/assets/beta-referral-page.png)
+
 The campaign URLs will include the alpha's user ID as a `referrer_user_id` query parameter:
 
 ```
@@ -49,11 +51,9 @@ https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be8946
 
 This `referrer_user_id` query parameter will be added to the `source_detail` of any new user accounts created by betas.
 
-![Beta Referral Page Example](../../.gitbook/assets/beta-referral-page.png)
-
 ## Iterations
 
-The previous (and first) iteration of Refer A Friend offered a \$5 gift card reward to any beta who registered and signed up for a staff pick campaign, as well as the alpha that referred them.
+The previous (and first) iteration of Refer A Friend offered a \$5 gift card reward to any beta who registered and signed up for a staff pick campaign, as well as the alpha that referred them. The referral page banner would only display for users with the `refer-friends` feature set.
 
 The list of campaigns to display the referral page banner for was hardcoded into the codebase. The beta referral page URL would include a `campaign_id` query parameter, e.g.:
 
