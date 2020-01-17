@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { first, get } from 'lodash';
 import { connect } from 'react-redux';
 
 import LandingPage from './LandingPage';
@@ -12,6 +12,8 @@ const mapStateToProps = (state, ownProps) => {
   // or a landingPage content type, the ownProps is structured a bit
   // differently. Revise once all landing pages use landingPage type.
   const landingPage = get(ownProps, 'landingPage.fields', ownProps);
+  // We use the first block in the landing page sidebar as the sidebar CTA.
+  const sidebarCTA = get(first(landingPage.sidebar), 'fields');
 
   return {
     campaignId: state.campaign.campaignId,
@@ -23,7 +25,7 @@ const mapStateToProps = (state, ownProps) => {
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
     scholarshipAmount: state.campaign.scholarshipAmount,
     scholarshipDeadline: state.campaign.scholarshipDeadline,
-    sidebar: landingPage.sidebar,
+    sidebarCTA,
     signupArrowContent: get(
       state.campaign.additionalContent,
       'signupArrowContent',
