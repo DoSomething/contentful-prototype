@@ -29,17 +29,19 @@ After signing up for Teens For Jeans 2019, users who have the `refer-friends-sch
 dosomething.org/us/refer-friends
 ```
 
-The Alpha Referral Page provides the link to the Beta Referral Page, which is what the user should share with their friends. The Beta Referral Page link will contain the current user's Northstar ID as a `referrer_user_id` query parameter.
+The Alpha Referral Page provides the link to the Beta Referral Page, which is what the user should share with their friends. The Beta Referral Page link will contain the current user's Northstar ID as a `user_id` query parameter.
 
 ![Alpha Referral Page Example](../../.gitbook/assets/alpha-referral-page.png)
 
 ### Beta Referral Page
 
 ```
-dosomething.org/join?referrer_user_id=55767609a59dbf3c7a8b4571
+dosomething.org/join?user_id=55767609a59dbf3c7a8b4571
 ```
 
-The Beta Referral Page links to campaigns that the beta should join, in order to receive the reward along with the alpha. The campaign link will contain the same `referrer_user_id` query parameter, which gets used by Northstar to set the `source_detail` of any beta user registrations.
+The Beta Referral Page links to campaigns that the beta should join, in order to receive the reward along with the alpha (which is passed by the `user_id` query parameter).
+
+The campaign link will include the alpha's user ID as a `referrer_user_id` query parameter, which is used as the Northstar User `source_detail` when a beta registers as a new user, e.g. `https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be89469c64ec7d8b518d`
 
 ![Beta Referral Page Example](../../.gitbook/assets/beta-referral-page.png)
 
