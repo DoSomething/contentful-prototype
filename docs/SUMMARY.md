@@ -29,6 +29,7 @@
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)
   - [Affiliate Scholarship Block](development/features/affiliate-scholarship-block.md)
   - [Analytics Waypoint](development/features/analytics-waypoint.md)
+  - [Refer A Friend](development/features/referral-pages.md)
 - [Contentful](development/contentful/README.md)
   - [Workflow](development/contentful/workflow.md)
   - [Content Management API Scripts](development/contentful/content-management-api-scripts.md)
