@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Huddle\Zendesk\Facades\Zendesk;
 use App\Http\Controllers\Controller;
 
@@ -31,6 +32,11 @@ class ZendeskTicketsController extends Controller
         $northstarId = data_get($user, 'data.id');
         $userEmail = data_get($user, 'data.email');
         $userName = data_get($user, 'data.first_name').' '.data_get($user, 'data.last_initial').'.';
+
+        Log::debug('[Phoenix] ZendeskTicketsController@store: Creating Zendesk ticket:', [
+            'northstar_id' => $northstarId,
+            'question' => $question
+        ]);
 
         $zendeskUser = Zendesk::users()->createOrUpdate([
             'email' => $userEmail,
