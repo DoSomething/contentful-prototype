@@ -53,9 +53,9 @@ This `referrer_user_id` query parameter will be added to the `source_detail` of 
 
 ## Iterations
 
-The previous (and first) iteration of Refer A Friend offered a \$5 gift card reward to any beta who registered and signed up for a staff pick campaign, as well as the alpha that referred them. The referral page banner would only display for users with the `refer-friends` feature set.
+The previous (and first) iteration of Refer A Friend offered a \$5 gift card reward to any beta who registered and signed up for a staff pick campaign, as well as the alpha that referred them. The Referral Page Banner would only display for users with the `refer-friends` feature set.
 
-The list of campaigns to display the referral page banner for was hardcoded into the codebase. The beta referral page URL would include a `campaign_id` query parameter, e.g.:
+The list of campaigns to display the Referral Page Banner for was hardcoded into the codebase. The Beta Referral Page URL would include a `campaign_id` query parameter, e.g.:
 
 ```
 dosomething.org/us/join?user_id=:userId&campaign_id=9037
