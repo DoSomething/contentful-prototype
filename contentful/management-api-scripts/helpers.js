@@ -69,8 +69,6 @@ async function processEntries(environment, args, entryType, process) {
         // For now, if the content type exceeds 1000 entries, a hack is to increment this skip value by 1000
         // and keep running the script until all entries are processed.
         skip: 0,
-        // @TODO: Why does this not work?
-        include: 3,
       }),
     );
 
