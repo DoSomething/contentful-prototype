@@ -36,7 +36,7 @@ const ZendeskForm = ({ campaignName, faqsLink, token }) => {
 
   return (
     <Card title={title} className="rounded bordered zendesk-form">
-      {!status.success ? (
+      {status.success ? (
         <p className="p-3 pb-6">
           Thanks for reaching out! We&apos;ve received your submission and will
           be in touch in 1-2 business days.
