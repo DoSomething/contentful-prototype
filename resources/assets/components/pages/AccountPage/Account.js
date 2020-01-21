@@ -10,7 +10,7 @@ const Account = props => (
   <>
     <SiteNavigationContainer />
 
-    <main role="main">
+    <main>
       <article className="account-page">
         <header className="base-12-grid bg-white">
           <div className="grid-wide pt-12">

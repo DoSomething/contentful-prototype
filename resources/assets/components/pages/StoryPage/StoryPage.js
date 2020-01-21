@@ -27,7 +27,7 @@ const StoryPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main role="main">
+      <main>
         <article className="story-page">
           <header
             role="banner"

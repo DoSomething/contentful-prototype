@@ -51,7 +51,7 @@ const GeneralPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main role="main" className="base-12-grid bg-white">
+      <main className="base-12-grid bg-white">
         <article className="general-page grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>

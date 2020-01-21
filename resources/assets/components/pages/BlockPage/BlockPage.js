@@ -14,7 +14,7 @@ const BlockPage = ({ match }) => (
   <>
     <SiteNavigationContainer />
 
-    <main role="main" className="clearfix">
+    <main className="clearfix">
       <div className="md:w-3/4 mx-auto my-16 px-3">
         <ContentfulEntryLoader id={match.params.id} />
       </div>

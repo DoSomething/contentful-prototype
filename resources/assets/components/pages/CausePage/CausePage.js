@@ -50,7 +50,7 @@ const CausePageTemplate = ({
     <>
       <SiteNavigationContainer />
 
-      <main role="main">
+      <main>
         <article className="cause-page">
           <header
             role="banner"

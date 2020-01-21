@@ -58,7 +58,7 @@ const CollectionPageTemplate = ({
     <>
       <SiteNavigationContainer />
 
-      <main role="main">
+      <main>
         <article className="collection-page">
           <header
             role="banner"

@@ -5,7 +5,7 @@
 
         <div id="nav-container"></div>
 
-        <main role="main" class="px-3 py-20">
+        <main class="px-3 py-20">
 
             <article class="card rounded bordered max-w-xl mx-auto mb-8">
                 <header class="card__title">

@@ -5,7 +5,7 @@
 
         <div id="nav-container"></div>
 
-        <main role="main" class="pb-16 pt-6">
+        <main class="pb-16 pt-6">
 
             <article class="md:w-3/4 mx-auto">
 

@@ -28,7 +28,7 @@ const Campaign = props => (
   >
     <SiteNavigationContainer />
 
-    <main role="main">
+    <main>
       <AdminDashboardContainer>
         <CampaignDashboardContainer />
       </AdminDashboardContainer>

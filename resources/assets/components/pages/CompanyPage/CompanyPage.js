@@ -14,7 +14,7 @@ const CompanyPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main role="main" className="wrapper base-12-grid">
+      <main className="wrapper base-12-grid">
         <article className="grid-wide card rounded border border-solid border-gray-300">
           {coverImage.url ? (
             <LazyImage
