@@ -35,7 +35,7 @@ class ZendeskTicketsController extends Controller
 
         Log::debug('[Phoenix] ZendeskTicketsController@store: Creating Zendesk ticket:', [
             'northstar_id' => $northstarId,
-            'question' => $question,
+            'question' => str_limit($question, 5000, '(...)'),
         ]);
 
         $zendeskUser = Zendesk::users()->createOrUpdate([
