@@ -69,12 +69,19 @@ async function processEntries(environment, args, entryType, process) {
         // For now, if the content type exceeds 1000 entries, a hack is to increment this skip value by 1000
         // and keep running the script until all entries are processed.
         skip: 0,
+        // @TODO: Why does this not work?
+        include: 3,
       }),
     );
 
     if (!entries) {
       return;
     }
+
+    winston.info(
+      `Found ${entries.items.length} entries with type ${entryType} in environment.`,
+      environment,
+    );
 
     for (var i = 0; i < entries.items.length; i++) {
       const entry = entries.items[i];
