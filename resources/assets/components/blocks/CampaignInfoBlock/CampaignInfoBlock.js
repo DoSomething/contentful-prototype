@@ -16,6 +16,7 @@ const CAMPAIGN_INFO_QUERY = gql`
     campaign(id: $campaignId) {
       id
       endDate
+      isOpen
       actions {
         actionLabel
         timeCommitmentLabel
@@ -26,7 +27,11 @@ const CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
+const CampaignInfoBlock = ({
+  campaignId,
+  scholarshipAmount,
+  scholarshipDeadline,
+}) => (
   <Card className="bordered p-3 rounded campaign-info">
     <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
 
@@ -35,6 +40,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
         {res => {
           const endDate = res.campaign.endDate;
           const actions = res.campaign.actions || [];
+          const isOpen = res.campaign.isOpen;
 
           let actionItem = actions.find(
             action => action.reportback && action.scholarshipEntry,
@@ -64,7 +70,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {scholarshipAmount && !isCampaignClosed(endDate) ? (
+              {scholarshipAmount && isOpen ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
@@ -85,10 +91,12 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
 CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
+  scholarshipDeadline: PropTypes.string,
 };
 
 CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
+  scholarshipDeadline: null,
 };
 
 export default CampaignInfoBlock;
