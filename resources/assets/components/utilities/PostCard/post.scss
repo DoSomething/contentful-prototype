@@ -1,15 +1,5 @@
 @import '../../../scss/next-toolbox.scss';
 
-.post-ornament-text {
-  border-left: theme('spacing.3') solid rgba(#fff, 0.3);
-  background-clip: padding-box; // Allow border to "see through" background.
-}
-
-// HACK: Ensure text post cards look okay on "classic" campaign pages.
-.campaign-page__content .post-ornament-text {
-  border-left-color: theme('colors.gray.200');
-}
-
 .chat-bubble.-post-bubble {
   color: theme('colors.gray.900');
   background-color: $white;
