@@ -77,7 +77,7 @@ Once your script is approved and merged you're ready to run it in any up to date
 You'll run the file as you would any regular `node.js` file, passing in the Contentful space ID and your access token:
 
 ```bash
-$ node contentful/content-management-scripts/20XX_XX_001_logs_all_entries.js --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
+$ node contentful/management-api-scripts/20XX_XX_001_logs_all_entries.js --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 ```
 
 If your script utilizes the `processEntries` helper method from `/helpers`, than the script can either be applied to all entries of the provided type through the `--all` flag, or a single entry of the provided type through `--[contentType]-id [id]` \(e.g. `--campaign-id 12345`\).

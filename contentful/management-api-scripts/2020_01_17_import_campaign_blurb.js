@@ -5,9 +5,6 @@ const {
   createLogger,
   getField,
   processEntries,
-  sleep,
-  withFields,
-  linkReference,
   constants,
 } = require('./helpers');
 
@@ -19,31 +16,58 @@ async function importCampaignBlurbFromLandingPageContent(
   environment,
   campaignEntry,
 ) {
-  const internalTitle = getField(campaignEntry, 'internalTitle');
+  const campaignEntryId = campaignEntry.sys.id;
+  const campaignInternalTitle = getField(campaignEntry, 'internalTitle');
   const landingPageEntry = getField(campaignEntry, 'landingPage');
   const landingPageEntryId = landingPageEntry ? landingPageEntry.sys.id : null;
 
   logger.info(
-    `Processing Campaign ${campaignEntry.sys.id} - ${internalTitle}\n`,
+    `Processing Campaign ${campaignEntryId} - ${campaignInternalTitle}\n`,
   );
 
-  logger.info('Campaign Blurb:');
-  logger.info(getField(campaignEntry, 'blurb'));
+  if (!landingPageEntryId) {
+    logger.info('Landing Page entry not found.');
 
-  if (landingPageEntryId) {
-    logger.info(`\nFetching Landing Page ${landingPageEntryId}\n`);
-
-    // @TODO: Shouldn't have to fetch here, should get loaded entry from processEntries.
-    const loadedLandingPageEntry = await environment.getEntry(
-      landingPageEntryId,
-    );
-    const landingPageContent = getField(loadedLandingPageEntry, 'content');
-
-    logger.info('Landing Page Content:');
-    logger.info(landingPageContent);
+    return;
   }
 
-  logger.info('----------------');
+  logger.info(`\nFetching Landing Page ${landingPageEntryId}\n`);
+
+  const loadedLandingPageEntry = await environment.getEntry(landingPageEntryId);
+  const landingPageContent = getField(loadedLandingPageEntry, 'content');
+
+  if (!landingPageContent) {
+    logger.info('Landing Page content field is not set.');
+
+    return;
+  }
+
+  // Determine if the campaign entry was already published to prevent publishing a draft entry.
+  const wasCampaignEntryPublished = await campaignEntry.isPublished();
+  // Initalize an object to write save to the Campaign blurb field.
+  const newBlurbValue = {};
+
+  // Update the Campaign blurb with its Landing Page content.
+  newBlurbValue[LOCALE] = landingPageContent;
+  campaignEntry.fields.blurb = newBlurbValue;
+
+  // Attempt to update the campaign entry.
+  const updatedCampaignEntry = await attempt(() => campaignEntry.update());
+
+  if (updatedCampaignEntry) {
+    logger.info(`-- Updated Campaign! [ID: ${campaignEntryId}]\n`);
+  }
+
+  if (updatedCampaignEntry && wasCampaignEntryPublished) {
+    // Attempt to publish the entry.
+    const publishedCampaignEntry = await attempt(() =>
+      updatedCampaignEntry.publish(),
+    );
+
+    if (publishedCampaignEntry) {
+      logger.info(`-- Published Campaign! [ID: ${campaignEntryId}]\n`);
+    }
+  }
 }
 
 contentManagementClient.init((environment, args) =>
