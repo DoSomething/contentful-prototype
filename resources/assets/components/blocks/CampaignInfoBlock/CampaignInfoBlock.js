@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import { getHumanFriendlyDate } from '../../../helpers';
+import { getHumanFriendlyDate, isCampaignClosed } from '../../../helpers';
 
 import './campaign-info-block.scss';
 
@@ -64,7 +64,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {scholarshipAmount ? (
+              {scholarshipAmount && !isCampaignClosed(endDate) ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
