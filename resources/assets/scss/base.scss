@@ -59,11 +59,20 @@ html {
   font-family: theme('fontFamily.source-sans');
   // Resetting to a base 16px font-size; works better with default Tailwind.
   font-size: 16px;
+  height: 100%;
   line-height: 1.4;
+  width: 100%;
 }
 
 body {
   @apply bg-gray-300 text-gray-900;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  max-width: 1440px;
 }
 
 // Reset browser defaults so this behaves like <a>

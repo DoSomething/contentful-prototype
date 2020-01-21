@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const AccountNavigation = props => (
-  <div className="page-navigation -no-fade">
+  <nav className="page-navigation -no-fade">
     <div className="nav-items">
       <NavLink
         className="nav-link"
@@ -37,7 +37,7 @@ const AccountNavigation = props => (
         Subscriptions
       </NavLink>
     </div>
-  </div>
+  </nav>
 );
 
 AccountNavigation.propTypes = {

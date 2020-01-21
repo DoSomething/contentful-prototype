@@ -6,6 +6,7 @@ import { get } from 'lodash';
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
 import { contentfulImageUrl, env } from '../../../helpers';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -68,58 +69,63 @@ class HomePage extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         <SiteNavigationContainer />
-        <div className="home-page">
-          <header role="banner" className="header header--home">
-            <div className="wrapper">
-              <h1 className="header__title">{title}</h1>
-              <h2 className="header__subtitle">{subTitle}</h2>
-            </div>
-          </header>
 
-          <section className="home-page__gallery">
-            {blocks.map(this.renderGalleryBlock)}
-          </section>
+        <main>
+          <article className="home-page">
+            <header role="banner" className="header header--home">
+              <div className="wrapper">
+                <h1 className="header__title">{title}</h1>
+                <h2 className="header__subtitle">{subTitle}</h2>
+              </div>
+            </header>
 
-          <section className="container--sponsors md:w-3/4 mx-auto px-3 py-8">
-            <h4>Sponsors</h4>
-            <ul>
-              {sponsorList.map(sponsor => (
-                <li key={sponsor.name}>
-                  <img
-                    src={contentfulImageUrl(sponsor.image, '125', '40')}
-                    title={sponsor.name}
-                    alt={sponsor.name}
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
-        </div>
+            <section className="home-page__gallery">
+              {blocks.map(this.renderGalleryBlock)}
+            </section>
 
-        {env('NPS_SURVEY_ENABLED') ? (
-          <TrafficDistribution percentage={5} feature="nps_survey">
-            <DismissableElement
-              name="nps_survey"
-              render={(handleClose, handleComplete) => (
-                <DelayedElement delay={30}>
-                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                    <TypeFormEmbed
-                      displayType="modal"
-                      typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
-                      queryParameters={{
-                        northstar_id: get(window.AUTH, 'id', null),
-                      }}
-                      onSubmit={handleComplete}
+            <section className="container--sponsors md:w-3/4 mx-auto px-3 py-8">
+              <h4>Sponsors</h4>
+              <ul>
+                {sponsorList.map(sponsor => (
+                  <li key={sponsor.name}>
+                    <img
+                      src={contentfulImageUrl(sponsor.image, '125', '40')}
+                      title={sponsor.name}
+                      alt={sponsor.name}
                     />
-                  </Modal>
-                </DelayedElement>
-              )}
-            />
-          </TrafficDistribution>
-        ) : null}
-      </React.Fragment>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </article>
+
+          {env('NPS_SURVEY_ENABLED') ? (
+            <TrafficDistribution percentage={100} feature="nps_survey">
+              <DismissableElement
+                name="nps_survey"
+                render={(handleClose, handleComplete) => (
+                  <DelayedElement delay={5}>
+                    <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                      <TypeFormEmbed
+                        displayType="modal"
+                        typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                        queryParameters={{
+                          northstar_id: get(window.AUTH, 'id', null),
+                        }}
+                        onSubmit={handleComplete}
+                      />
+                    </Modal>
+                  </DelayedElement>
+                )}
+              />
+            </TrafficDistribution>
+          ) : null}
+        </main>
+
+        <SiteFooter />
+      </>
     );
   }
 }

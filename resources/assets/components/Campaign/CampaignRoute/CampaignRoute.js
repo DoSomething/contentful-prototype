@@ -36,7 +36,7 @@ const CampaignRoute = props => {
   const baseUrl = match.url;
 
   return (
-    <React.Fragment>
+    <>
       {shouldShowAffirmation ? (
         <Modal onClose={clickedHideAffirmation}>
           <PostSignupModal
@@ -141,7 +141,7 @@ const CampaignRoute = props => {
           }}
         />
       </Switch>
-    </React.Fragment>
+    </>
   );
 };
 

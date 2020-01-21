@@ -1,13 +1,14 @@
 import React from 'react';
 
+import SiteFooter from '../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 
 const ErrorPage = () => (
   <>
     <SiteNavigationContainer />
 
-    <main role="main" className="py-20">
-      <article className="max-w-xl mx-auto text-center px-4 leading-relaxed mb-8">
+    <main className="py-20">
+      <article className="error-page max-w-xl mx-auto text-center px-4 leading-relaxed mb-8">
         <header className="mb-8">
           <h2 className="text-purple-900 text-xl md:text-2xl mb-2">
             Something went wrong.
@@ -39,6 +40,8 @@ const ErrorPage = () => (
         </p>
       </article>
     </main>
+
+    <SiteFooter />
   </>
 );
 

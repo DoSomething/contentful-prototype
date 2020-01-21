@@ -7,6 +7,7 @@ import { env } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
+import SiteFooter from '../utilities/SiteFooter/SiteFooter';
 import TypeFormEmbed from '../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../utilities/DelayedElement/DelayedElement';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
@@ -27,56 +28,60 @@ const Campaign = props => (
   >
     <SiteNavigationContainer />
 
-    <AdminDashboardContainer>
-      <CampaignDashboardContainer />
-    </AdminDashboardContainer>
+    <main>
+      <AdminDashboardContainer>
+        <CampaignDashboardContainer />
+      </AdminDashboardContainer>
 
-    <NotificationContainer />
+      <NotificationContainer />
 
-    {props.isAuthenticated && env('NPS_SURVEY_ENABLED') ? (
-      <TrafficDistribution percentage={5} feature="nps_survey">
-        <DismissableElement
-          name="nps_survey"
-          render={(handleClose, handleComplete) => (
-            <DelayedElement delay={60}>
-              <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                <TypeFormEmbed
-                  displayType="modal"
-                  typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
-                  queryParameters={{
-                    campaign_id: props.campaignId,
-                    northstar_id: props.userId,
-                  }}
-                  onSubmit={handleComplete}
-                />
-              </Modal>
-            </DelayedElement>
-          )}
-        />
-      </TrafficDistribution>
-    ) : null}
+      {props.isAuthenticated && env('NPS_SURVEY_ENABLED') ? (
+        <TrafficDistribution percentage={5} feature="nps_survey">
+          <DismissableElement
+            name="nps_survey"
+            render={(handleClose, handleComplete) => (
+              <DelayedElement delay={60}>
+                <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                  <TypeFormEmbed
+                    displayType="modal"
+                    typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
+                    queryParameters={{
+                      campaign_id: props.campaignId,
+                      northstar_id: props.userId,
+                    }}
+                    onSubmit={handleComplete}
+                  />
+                </Modal>
+              </DelayedElement>
+            )}
+          />
+        </TrafficDistribution>
+      ) : null}
 
-    {props.isAuthenticated &&
-    get(props, 'featureFlags.showVoterRegistrationModal') &&
-    env('VOTER_REG_MODAL_ENABLED') ? (
-      <TrafficDistribution percentage={50} feature="voter_reg_modal">
-        <DismissableElement
-          name="voter_reg_modal"
-          render={handleClose => (
-            <DelayedElement delay={30}>
-              <Modal
-                onClose={handleClose}
-                trackingId="VOTER_REGISTRATION_MODAL"
-              >
-                <VoterRegistrationModal />
-              </Modal>
-            </DelayedElement>
-          )}
-        />
-      </TrafficDistribution>
-    ) : null}
+      {props.isAuthenticated &&
+      get(props, 'featureFlags.showVoterRegistrationModal') &&
+      env('VOTER_REG_MODAL_ENABLED') ? (
+        <TrafficDistribution percentage={50} feature="voter_reg_modal">
+          <DismissableElement
+            name="voter_reg_modal"
+            render={handleClose => (
+              <DelayedElement delay={30}>
+                <Modal
+                  onClose={handleClose}
+                  trackingId="VOTER_REGISTRATION_MODAL"
+                >
+                  <VoterRegistrationModal />
+                </Modal>
+              </DelayedElement>
+            )}
+          />
+        </TrafficDistribution>
+      ) : null}
 
-    <CampaignRouteContainer {...props} />
+      <CampaignRouteContainer {...props} />
+    </main>
+
+    <SiteFooter />
   </ModalRoute>
 );
 

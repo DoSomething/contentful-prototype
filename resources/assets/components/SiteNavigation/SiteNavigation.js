@@ -150,7 +150,7 @@ class SiteNavigation extends React.Component {
 
   render() {
     return (
-      <nav role="navigation" id="nav" className="nav">
+      <nav role="navigation" id="nav" className="site-navigation">
         <div className="wrapper base-12-grid">
           <div className="logo-nav">
             <a

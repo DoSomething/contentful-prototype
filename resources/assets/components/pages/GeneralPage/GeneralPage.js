@@ -5,7 +5,6 @@ import get from 'lodash/get';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Enclosure from '../../Enclosure';
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -13,12 +12,13 @@ import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
-import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
-import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 import './general-page.scss';
@@ -48,10 +48,11 @@ const GeneralPage = props => {
   const ctaCopy = REGISTER_CTA_COPY[pageCategory];
 
   return (
-    <div>
+    <>
       <SiteNavigationContainer />
-      <div className="main general-page base-12-grid">
-        <Enclosure className="grid-narrow">
+
+      <main className="base-12-grid bg-white">
+        <article className="general-page grid-narrow">
           <div className="general-page__heading text-center">
             <h1 className="general-page__title uppercase">{title}</h1>
             {subTitle ? (
@@ -136,35 +137,37 @@ const GeneralPage = props => {
               ))}
             </ul>
           ) : null}
-        </Enclosure>
-      </div>
+        </article>
 
-      {ctaCopy && !isAuthenticated ? (
-        <CtaBanner
-          title={ctaCopy.title}
-          content={ctaCopy.content}
-          link={authUrl}
-          buttonText={ctaCopy.buttonText}
-        />
-      ) : null}
-      {slug === 'about/easy-scholarships' ? (
-        <DismissableElement
-          name="cta_popover_scholarship_email"
-          render={(handleClose, handleComplete) => (
-            <DelayedElement delay={3}>
-              <CtaPopover
-                title="PAYS TO DO GOOD"
-                content="Want to earn easy scholarships for volunteering?
-                  Subscribe to DoSomething's monthly scholarship email."
-                handleClose={handleClose}
-              >
-                <CtaPopoverEmailForm handleComplete={handleComplete} />
-              </CtaPopover>
-            </DelayedElement>
-          )}
-        />
-      ) : null}
-    </div>
+        {ctaCopy && !isAuthenticated ? (
+          <CtaBanner
+            title={ctaCopy.title}
+            content={ctaCopy.content}
+            link={authUrl}
+            buttonText={ctaCopy.buttonText}
+          />
+        ) : null}
+        {slug === 'about/easy-scholarships' ? (
+          <DismissableElement
+            name="cta_popover_scholarship_email"
+            render={(handleClose, handleComplete) => (
+              <DelayedElement delay={3}>
+                <CtaPopover
+                  title="PAYS TO DO GOOD"
+                  content="Want to earn easy scholarships for volunteering?
+                Subscribe to DoSomething's monthly scholarship email."
+                  handleClose={handleClose}
+                >
+                  <CtaPopoverEmailForm handleComplete={handleComplete} />
+                </CtaPopover>
+              </DelayedElement>
+            )}
+          />
+        ) : null}
+      </main>
+
+      <SiteFooter />
+    </>
   );
 };
 

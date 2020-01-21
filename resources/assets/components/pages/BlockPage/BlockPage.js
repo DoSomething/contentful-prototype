@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import Enclosure from '../../Enclosure';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
@@ -14,11 +14,13 @@ const BlockPage = ({ match }) => (
   <>
     <SiteNavigationContainer />
 
-    <div className="main clearfix">
-      <Enclosure className="md:w-3/4 mx-auto my-16 px-3">
+    <main className="clearfix">
+      <div className="md:w-3/4 mx-auto my-16 px-3">
         <ContentfulEntryLoader id={match.params.id} />
-      </Enclosure>
-    </div>
+      </div>
+    </main>
+
+    <SiteFooter />
   </>
 );
 

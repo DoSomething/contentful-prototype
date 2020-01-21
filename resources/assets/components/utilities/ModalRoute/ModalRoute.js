@@ -42,7 +42,7 @@ class ModalRoute extends React.Component {
     const { match, history, location, children } = this.props;
 
     return (
-      <div>
+      <>
         <Route
           path={`${match.url}/modal/:id`}
           render={routingProps => (
@@ -53,12 +53,12 @@ class ModalRoute extends React.Component {
         />
         {isModal(location) ? (
           <StaticRouter location={withoutModal(location)} context={{}}>
-            <div>{children}</div>
+            {children}
           </StaticRouter>
         ) : (
-          <div>{children}</div>
+          children
         )}
-      </div>
+      </>
     );
   }
 }

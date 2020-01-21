@@ -35,11 +35,8 @@
     @endif
 
     <div id="fb-root"></div>
-    <div id="chrome" class="chrome">
-        <div class="wrapper">
-            @yield('content')
-            @include('partials.footer')
-        </div>
+    <div id="chrome" class="chrome h-full w-full">
+        @yield('content')
     </div>
 
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
@@ -55,7 +52,7 @@
     @endisset
 
     @stack('scripts')
-    <script src="https://my.hellobar.com/f70465b5f088ff5df39e838a358d27109b365641.js" type="text/javascript" charset="utf-8" async="async"></script> 
+    <script src="https://my.hellobar.com/f70465b5f088ff5df39e838a358d27109b365641.js" type="text/javascript" charset="utf-8" async="async"></script>
 </body>
 
 </html>

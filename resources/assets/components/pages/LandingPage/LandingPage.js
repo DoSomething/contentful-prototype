@@ -3,7 +3,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Enclosure from '../../Enclosure';
 import Card from '../../utilities/Card/Card';
 import { getScholarshipAffiliateLabel } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -37,7 +36,7 @@ const LandingPage = props => {
       {featureFlagUseLegacyTemplate ? (
         <>
           <div className="bg-white">
-            <Enclosure className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
+            <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
               <div className="campaign-page clearfix">
                 <div className="primary">
                   {displayAffiliateScholarshipBlock ? (
@@ -60,7 +59,7 @@ const LandingPage = props => {
                   </Card>
                 </div>
               </div>
-            </Enclosure>
+            </div>
           </div>
 
           <CallToActionContainer

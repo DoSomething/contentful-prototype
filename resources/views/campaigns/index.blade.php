@@ -1,27 +1,33 @@
 @extends('layouts.master')
 
 @section('content')
-    <div id="nav-container"></div>
+    <div class="app bg-gray-100 min-h-full mx-auto my-0">
 
-    <main role="main" class="pb-16 pt-6">
+        <div id="nav-container"></div>
 
-        <article class="md:w-3/4 mx-auto">
+        <main class="pb-16 pt-6">
 
-            {{-- @TODO:css-grid Remove left padding once CSS Grid is implemented --}}
-            <h1 class="mb-6 pl-3">Campaigns For All Causes</h1>
+            <article class="md:w-3/4 mx-auto">
 
-            @include('partials.campaign_gallery', ['campaigns' => $campaigns])
+                {{-- @TODO:css-grid Remove left padding once CSS Grid is implemented --}}
+                <h1 class="mb-6 pl-3">Campaigns For All Causes</h1>
 
-            <div class="pagination clearfix mt-3">
-                @if($previousPage > 0)
-                    <a class="button -tertiary float-left clear-none" href="?page={{$previousPage}}">Previous</a>
-                @endif
+                @include('partials.campaign_gallery', ['campaigns' => $campaigns])
 
-                @if($campaigns->count() >= $count)
-                    <a class="button -tertiary float-right clear-none" href="?page={{$nextPage}}">Next</a>
-                @endif
-            </div>
+                <div class="pagination clearfix mt-3">
+                    @if($previousPage > 0)
+                        <a class="button -tertiary float-left clear-none" href="?page={{$previousPage}}">Previous</a>
+                    @endif
 
-        </article>
-    </main>
+                    @if($campaigns->count() >= $count)
+                        <a class="button -tertiary float-right clear-none" href="?page={{$nextPage}}">Next</a>
+                    @endif
+                </div>
+
+            </article>
+        </main>
+
+        @include('partials.footer')
+
+    </div>
 @stop

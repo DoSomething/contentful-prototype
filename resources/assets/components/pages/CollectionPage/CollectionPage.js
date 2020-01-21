@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
+import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -57,45 +58,56 @@ const CollectionPageTemplate = ({
     <>
       <SiteNavigationContainer />
 
-      <article className="collection-page">
-        <header
-          role="banner"
-          className="lede-banner base-12-grid"
-          style={withoutNulls(styles)}
-        >
-          <div className="title-lockup my-6">
-            <h2 className="my-3 uppercase color-white text-lg">{superTitle}</h2>
-            <h1 className="lede-banner__headline-title my-3 font-normal font-league-gothic color-white uppercase">
-              {title}
-            </h1>
-            <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
-              {description}
-            </TextContent>
-            {affiliate ? (
-              <div className="mt-6">
-                <p className="font-bold font-size-base text-gray-500 uppercase">
-                  {affiliatePrefix}
-                </p>
-                <img
-                  className="mt-2 affiliate-logo"
-                  src={affiliate.logo.url}
-                  alt={affiliate.logo.description || affiliate.title}
-                />
-              </div>
-            ) : null}
-          </div>
-        </header>
-        <TextContent
-          className="base-12-grid"
-          classNameByEntry={{
-            GalleryBlock: 'grid-full',
-            ContentBlock: 'grid-full-8/12',
-          }}
-          classNameByEntryDefault="grid-full-8/12"
-        >
-          {content}
-        </TextContent>
-      </article>
+      <main>
+        <article className="collection-page">
+          <header
+            role="banner"
+            className="lede-banner base-12-grid"
+            style={withoutNulls(styles)}
+          >
+            <div className="title-lockup my-6">
+              <h2 className="my-3 uppercase color-white text-lg">
+                {superTitle}
+              </h2>
+
+              <h1 className="lede-banner__headline-title my-3 font-normal font-league-gothic color-white uppercase">
+                {title}
+              </h1>
+
+              <TextContent styles={{ textColor: '#FFF', fontSize: '21px' }}>
+                {description}
+              </TextContent>
+
+              {affiliate ? (
+                <div className="mt-6">
+                  <p className="font-bold font-size-base text-gray-500 uppercase">
+                    {affiliatePrefix}
+                  </p>
+
+                  <img
+                    className="mt-2 affiliate-logo"
+                    src={affiliate.logo.url}
+                    alt={affiliate.logo.description || affiliate.title}
+                  />
+                </div>
+              ) : null}
+            </div>
+          </header>
+
+          <TextContent
+            className="base-12-grid"
+            classNameByEntry={{
+              GalleryBlock: 'grid-full',
+              ContentBlock: 'grid-full-8/12',
+            }}
+            classNameByEntryDefault="grid-full-8/12"
+          >
+            {content}
+          </TextContent>
+        </article>
+      </main>
+
+      <SiteFooter />
     </>
   );
 };
