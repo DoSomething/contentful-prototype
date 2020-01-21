@@ -51,92 +51,94 @@ const GeneralPage = props => {
     <>
       <SiteNavigationContainer />
 
-      <main className="base-12-grid bg-white">
-        <article className="general-page grid-narrow">
-          <div className="general-page__heading text-center">
-            <h1 className="general-page__title uppercase">{title}</h1>
-            {subTitle ? (
-              <p className="general-page__subtitle">{subTitle}</p>
-            ) : null}
+      <main>
+        <article className="general-page base-12-grid bg-white">
+          <div className="grid-narrow">
+            <div className="general-page__heading text-center">
+              <h1 className="general-page__title uppercase">{title}</h1>
+              {subTitle ? (
+                <p className="general-page__subtitle">{subTitle}</p>
+              ) : null}
 
-            {authors.length ? (
-              <div className="general-page__authors">
-                {authors.map(author => (
-                  <Byline
-                    key={author.id}
-                    author={author.fields.name}
-                    {...withoutNulls(author.fields)}
-                    photo={contentfulImageUrl(
-                      get(author, 'fields.photo.url'),
-                      175,
-                      175,
-                      'fill',
-                    )}
-                    className="byline--page-author"
-                  />
-                ))}
-              </div>
-            ) : null}
-          </div>
-
-          {coverImage.url ? (
-            <LazyImage
-              className="py-3 mx-auto"
-              alt={coverImage.description || 'Page Cover Image'}
-              src={contentfulImageUrl(coverImage.url, 1440, 620)}
-            />
-          ) : null}
-
-          {content ? (
-            <div className={classnames({ row: sidebar.length })}>
-              <div className="primary">
-                <TextContent>{content}</TextContent>
-              </div>
-
-              {sidebar.length ? (
-                <div className="secondary">
-                  {sidebar.map(block => (
-                    <div className="mx-3 mb-6" key={block.id}>
-                      <ContentfulEntry json={block} />
-                    </div>
+              {authors.length ? (
+                <div className="general-page__authors">
+                  {authors.map(author => (
+                    <Byline
+                      key={author.id}
+                      author={author.fields.name}
+                      {...withoutNulls(author.fields)}
+                      photo={contentfulImageUrl(
+                        get(author, 'fields.photo.url'),
+                        175,
+                        175,
+                        'fill',
+                      )}
+                      className="byline--page-author"
+                    />
                   ))}
                 </div>
               ) : null}
             </div>
-          ) : null}
 
-          {blocks.map(block => (
-            <div className="general-page__block my-6" key={block.id}>
-              <ContentfulEntry json={block} />
-            </div>
-          ))}
+            {coverImage.url ? (
+              <LazyImage
+                className="py-3 mx-auto"
+                alt={coverImage.description || 'Page Cover Image'}
+                src={contentfulImageUrl(coverImage.url, 1440, 620)}
+              />
+            ) : null}
 
-          {displaySocialShare ? (
-            <SocialShareTray
-              shareLink={window.location.href}
-              platforms={['facebook', 'twitter']}
-              title="found this useful?"
-              responsive
-            />
-          ) : null}
+            {content ? (
+              <div className={classnames({ row: sidebar.length })}>
+                <div className="primary">
+                  <TextContent>{content}</TextContent>
+                </div>
 
-          {authors.length ? (
-            <ul className="general-page__author-bios">
-              {authors.map(author => (
-                <li className="py-3" key={author.id}>
-                  <AuthorBio
-                    {...withoutNulls(author.fields)}
-                    photo={contentfulImageUrl(
-                      get(author, 'fields.photo.url'),
-                      175,
-                      175,
-                      'fill',
-                    )}
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : null}
+                {sidebar.length ? (
+                  <div className="secondary">
+                    {sidebar.map(block => (
+                      <div className="mx-3 mb-6" key={block.id}>
+                        <ContentfulEntry json={block} />
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
+            {blocks.map(block => (
+              <div className="general-page__block my-6" key={block.id}>
+                <ContentfulEntry json={block} />
+              </div>
+            ))}
+
+            {displaySocialShare ? (
+              <SocialShareTray
+                shareLink={window.location.href}
+                platforms={['facebook', 'twitter']}
+                title="found this useful?"
+                responsive
+              />
+            ) : null}
+
+            {authors.length ? (
+              <ul className="general-page__author-bios">
+                {authors.map(author => (
+                  <li className="py-3" key={author.id}>
+                    <AuthorBio
+                      {...withoutNulls(author.fields)}
+                      photo={contentfulImageUrl(
+                        get(author, 'fields.photo.url'),
+                        175,
+                        175,
+                        'fill',
+                      )}
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
         </article>
 
         {ctaCopy && !isAuthenticated ? (
