@@ -15,6 +15,7 @@ class ZendeskTicketsController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->middleware('throttle:10,60');
     }
 
     public function store(Request $request)
