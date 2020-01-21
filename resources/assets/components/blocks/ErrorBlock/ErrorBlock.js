@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import errorIcon from './error_icon.svg';
 import { report } from '../../../helpers';
 import Card from '../../utilities/Card/Card';
+import { HELP_REQUEST_LINK } from '../../../constants';
 
-const HELP_LINK = 'https://help.dosomething.org/hc/en-us/requests/new';
 const DEBUGGING = process.env.NODE_ENV !== 'production';
 
 const ErrorBlock = ({ error }) => {
@@ -20,7 +20,7 @@ const ErrorBlock = ({ error }) => {
       <img src={errorIcon} alt="Error" className="mx-auto my-8" />
       <p className="text-center my-4">
         <strong>Something went wrong!</strong> Try refreshing the page or{' '}
-        <a href={HELP_LINK}>reach out</a> to us.
+        <a href={HELP_REQUEST_LINK}>reach out</a> to us.
       </p>
       {DEBUGGING && error ? (
         <p className="color-error text-center my-4">

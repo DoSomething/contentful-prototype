@@ -32,4 +32,23 @@ export function getCampaignDataForNorthstar(state) {
   };
 }
 
+/**
+ * Get path to Campaign FAQs page.
+ *
+ * @param  {Object} state
+ * @return {String|Undefined}
+ */
+export function getCampaignFaqsPath(state) {
+  // Find the FAQs page & grab its slug value.
+  const faqsSlug = get(
+    state.campaign.pages.find(page =>
+      get(page, 'fields.slug', '').endsWith('/faqs'),
+    ),
+    'fields.slug',
+  );
+
+  // If found, return fully formed path to the FAQs page.
+  return faqsSlug ? `/us/campaigns/${faqsSlug}` : undefined;
+}
+
 export default null;

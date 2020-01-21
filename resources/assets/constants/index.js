@@ -37,6 +37,8 @@ export const REGISTER_CTA_COPY = {
 // Signup Button text for scholarship referrals:
 export const SCHOLARSHIP_SIGNUP_BUTTON_TEXT = 'Apply Now!';
 
-// Zendesk (sandbox) API endpoint:
-export const ZENDESK_API_ENDPOINT =
-  'https://dosomethingorg11412693296.zendesk.com/api/v2/requests.json';
+// Help Center URL:
+export const HELP_LINK = 'https://help.dosomething.org/hc/en-us';
+
+// Help center - new ticket view URL:
+export const HELP_REQUEST_LINK = `${HELP_LINK}/requests/new`;
