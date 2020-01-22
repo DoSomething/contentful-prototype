@@ -37,7 +37,7 @@ const LandingPage = props => {
         <>
           <div className="bg-white">
             <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
-              <div className="campaign-page clearfix">
+              <div className="campaign-page__content clearfix">
                 <div className="primary">
                   {displayAffiliateScholarshipBlock ? (
                     <AffiliateScholarshipBlockQuery
