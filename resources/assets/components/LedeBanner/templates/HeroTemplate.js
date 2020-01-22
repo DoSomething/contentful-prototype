@@ -119,7 +119,6 @@ const HeroTemplate = ({
               <CampaignInfoBlock
                 campaignId={numCampaignId}
                 scholarshipAmount={scholarshipAmount}
-                scholarshipDeadline={scholarshipDeadline}
               />
             </div>
           </Enclosure>

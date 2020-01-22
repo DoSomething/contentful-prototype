@@ -27,11 +27,7 @@ const CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const CampaignInfoBlock = ({
-  campaignId,
-  scholarshipAmount,
-  scholarshipDeadline,
-}) => (
+const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
   <Card className="bordered p-3 rounded campaign-info">
     <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
 
@@ -91,12 +87,10 @@ const CampaignInfoBlock = ({
 CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
-  scholarshipDeadline: PropTypes.string,
 };
 
 CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
-  scholarshipDeadline: null,
 };
 
 export default CampaignInfoBlock;
