@@ -46,6 +46,7 @@ Migration file created at contentful/content-types/currentSchoolBlock.js
 ### 4\) Create a pull request
 
 Once you've added all changes into the `contentful/content-types` files, open a pull request for review.
+_We find it helpful to update/create the documentation for the content type within this pull request to help clarify the changes in the migration_
 
 ### 5\) Upon merge, apply changes to Contentful `qa` and `master`.
 
