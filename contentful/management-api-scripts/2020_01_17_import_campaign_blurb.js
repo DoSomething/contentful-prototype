@@ -18,11 +18,26 @@ async function importCampaignBlurbFromLandingPageContent(
 ) {
   const campaignEntryId = campaignEntry.sys.id;
   const campaignInternalTitle = getField(campaignEntry, 'internalTitle');
+  const campaignAdditionalContent = getField(
+    campaignEntry,
+    'additionalContent',
+  );
+
+  if (
+    get(campaignAdditionalContent, 'featureFlagUseLegacyTemplate', false) ===
+    true
+  ) {
+    logger.info(
+      `Skipping legacy template Campaign ${campaignEntryId} - ${campaignInternalTitle}\n`,
+    );
+    return;
+  }
+
   const landingPageEntry = getField(campaignEntry, 'landingPage');
   const landingPageEntryId = landingPageEntry ? landingPageEntry.sys.id : null;
 
   logger.info(
-    `Processing Campaign ${campaignEntryId} - ${campaignInternalTitle}\n`,
+    `Processing Campaign ${campaignEntryId} - ${campaignInternalTitle}`,
   );
 
   if (!landingPageEntryId) {
@@ -31,7 +46,7 @@ async function importCampaignBlurbFromLandingPageContent(
     return;
   }
 
-  logger.info(`\nFetching Landing Page ${landingPageEntryId}\n`);
+  logger.info(`Fetching Landing Page ${landingPageEntryId}`);
 
   const loadedLandingPageEntry = await environment.getEntry(landingPageEntryId);
   const landingPageContent = getField(loadedLandingPageEntry, 'content');
