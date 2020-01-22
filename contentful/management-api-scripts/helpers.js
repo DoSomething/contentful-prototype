@@ -76,11 +76,6 @@ async function processEntries(environment, args, entryType, process) {
       return;
     }
 
-    winston.info(
-      `Found ${entries.items.length} entries with type ${entryType} in environment.`,
-      environment,
-    );
-
     for (var i = 0; i < entries.items.length; i++) {
       const entry = entries.items[i];
       await process(environment, entry);
