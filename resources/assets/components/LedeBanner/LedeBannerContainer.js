@@ -25,10 +25,11 @@ const mapStateToProps = (state, props) => ({
   ),
   affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
+  // @TODO: We won't need this blurb property once MosaicTemplate is retired.
   blurb: get(props, 'blurb', state.campaign.blurb),
   campaignId: state.campaign.campaignId,
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
-  content: get(state, 'campaign.landingPage.fields.content'),
+  content: get(state, 'campaign.blurb'),
   dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
   featureFlagUseLegacyTemplate: get(
