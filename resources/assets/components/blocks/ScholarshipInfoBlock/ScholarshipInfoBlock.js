@@ -77,11 +77,7 @@ const ScholarshipInfoBlock = ({
 
   const toggleHiddenInfo = () => {
     setDrawerOpen(!drawerOpen);
-    setDetailsLabel('Hide');
-
-    if (drawerOpen && detailsLabel === 'Hide') {
-      setDetailsLabel('Show');
-    }
+    setDetailsLabel(drawerOpen ? 'Show' : 'Hide');
   };
 
   const isLoaded = !loading;
@@ -219,7 +215,7 @@ const ScholarshipInfoBlock = ({
               )}
             </Media>
           </div>
-          <div className="md:hidden text-center align-bottom">
+          <div className="sm:hidden text-center align-bottom">
             <button type="button" onClick={toggleHiddenInfo}>
               <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
             </button>
