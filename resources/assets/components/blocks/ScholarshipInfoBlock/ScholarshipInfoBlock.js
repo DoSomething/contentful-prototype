@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { jsx, css } from '@emotion/core';
 
-import Header from './InfoHeader';
 import Card from '../../utilities/Card/Card';
 import ScholarshipActionType from './ScholarshipActionType';
 import ScholarshipRequirements from './ScholarshipRequirements';
@@ -162,10 +161,9 @@ const ScholarshipInfoBlock = ({
         <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 pb-2 rounded">
           {scholarshipAmount ? (
             <div>
-              <Header
-                content={scholarshipCallToAction}
-                textColor="text-purple-600"
-              />
+              <div className="font-bold uppercase text-purple-600">
+                {scholarshipCallToAction}
+              </div>
               <p className="font-league-gothic text-5xl pb-2">
                 ${scholarshipAmount.toLocaleString()}
               </p>
@@ -175,7 +173,9 @@ const ScholarshipInfoBlock = ({
             <div className="lg:flex">
               {scholarshipDeadline ? (
                 <div className="lg:w-1/2 lg:float-left">
-                  <Header content="Deadline" />
+                  <div className="font-bold uppercase text-gray-600">
+                    Deadline
+                  </div>
                   <p className="pb-2">
                     {getHumanFriendlyDate(scholarshipDeadline)}
                   </p>
