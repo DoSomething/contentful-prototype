@@ -77,7 +77,7 @@ Once your script is approved and merged you're ready to run it in any up to date
 You'll run the file as you would any regular `node.js` file, passing in the Contentful space ID and your access token:
 
 ```bash
-$ node contentful/content-management-scripts/20XX_XX_001_logs_all_entries.js --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
+$ node contentful/management-api-scripts/20XX_XX_001_logs_all_entries.js --space-id $SPACE_ID --access-token $CONTENTFUL_MANAGEMENT_ACCESS_TOKEN
 ```
 
 If your script utilizes the `processEntries` helper method from `/helpers`, than the script can either be applied to all entries of the provided type through the `--all` flag, or a single entry of the provided type through `--[contentType]-id [id]` \(e.g. `--campaign-id 12345`\).
@@ -85,5 +85,11 @@ If your script utilizes the `processEntries` helper method from `/helpers`, than
 #### Pro Tips
 
 - Since, unlike the migration CLI, there is no way to initially run the script to see if it's valid. You might want to first go about testing with a dummy \(staging / personal\) Contentful Space to ensure your script will behave as intended!
+
 - There is a suite of helper functions in `./helpers` containing some common logic we found ourselves running with these scripts.
+
 - If utilizing the `--all` flag to bulk process all entries of a content-type & if the content-type contains more then 1000 entries, a temporary workaround to the API's 1000 entry limit is to keep incrementing the `skip` parameter by 1000 in the `./helpers#processEntries` method to eventually process _all_ entries.
+
+## Notes
+
+- The Content Management API [does not support the `include` parameter to retrieve nested entries in a `getEntries` call](https://www.contentful.com/developers/docs/references/content-management-api/#/reference/search-parameters), so you'll need to make a `getEntry` request to access the fields of an entry reference field value.

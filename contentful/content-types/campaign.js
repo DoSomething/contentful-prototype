@@ -325,7 +325,7 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
-        linkContentType: ['landingPage', 'sixpackExperiment'],
+        linkContentType: ['landingPage', 'page', 'sixpackExperiment'],
       },
     ])
     .disabled(false)
@@ -476,116 +476,157 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
 
-  campaign.changeEditorInterface('internalTitle', 'singleLine', {
+  campaign.changeFieldControl('internalTitle', 'builtin', 'singleLine', {
     helpText:
       '(Example: "Teens for Jeans 2017") This title is used internally to help find this content in the CMS. It will not be displayed anywhere on the website.',
   });
 
-  campaign.changeEditorInterface('title', 'singleLine', {});
+  campaign.changeFieldControl('title', 'builtin', 'singleLine', {});
 
-  campaign.changeEditorInterface('slug', 'slugEditor', {
+  campaign.changeFieldControl('slug', 'builtin', 'slugEditor', {
     helpText:
       '(Example: example-campaign-title) Use hyphens to separate words.',
   });
 
-  campaign.changeEditorInterface('metadata', 'entryLinkEditor', {});
-  campaign.changeEditorInterface(
+  campaign.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
+  campaign.changeFieldControl(
     'legacyCampaignId',
+    'extension',
     'contentful-campaign-extension',
     {},
   );
 
-  campaign.changeEditorInterface('campaignSettings', 'entryLinkEditor', {
-    helpText:
-      'Configurable settings for a campaign, including Action Text overrides, enabling Sixpack, etc.',
-  });
+  campaign.changeFieldControl(
+    'campaignSettings',
+    'builtin',
+    'entryLinkEditor',
+    {
+      helpText:
+        'Configurable settings for a campaign, including Action Text overrides, enabling Sixpack, etc.',
+    },
+  );
 
-  campaign.changeEditorInterface('template', 'checkbox', {});
+  campaign.changeFieldControl('template', 'builtin', 'checkbox', {});
 
-  campaign.changeEditorInterface('endDate', 'datePicker', {
+  campaign.changeFieldControl('endDate', 'builtin', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
     helpText:
       "The date the campaign will close. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeEditorInterface('callToAction', 'singleLine', {});
+  campaign.changeFieldControl('callToAction', 'builtin', 'singleLine', {});
 
-  campaign.changeEditorInterface('blurb', 'markdown', {
+  campaign.changeFieldControl('blurb', 'builtin', 'markdown', {
     helpText:
       "Add a short blurb for the lede banner. Bolded items will use the campaign's primary color.",
   });
 
-  campaign.changeEditorInterface('coverImage', 'assetLinkEditor', {});
-  campaign.changeEditorInterface('campaignLead', 'entryLinkEditor', {});
+  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
+  campaign.changeFieldControl('campaignLead', 'builtin', 'entryLinkEditor', {});
 
-  campaign.changeEditorInterface('affiliateSponsors', 'entryLinksEditor', {
-    helpText:
-      'Sponsors are Affiliates that pay for and promote a campaign. They recieve logo top billing at the top of the campaign page. There should usually be just one of these.',
-    bulkEditing: false,
-  });
+  campaign.changeFieldControl(
+    'affiliateSponsors',
+    'builtin',
+    'entryLinksEditor',
+    {
+      helpText:
+        'Sponsors are Affiliates that pay for and promote a campaign. They recieve logo top billing at the top of the campaign page. There should usually be just one of these.',
+      bulkEditing: false,
+    },
+  );
 
-  campaign.changeEditorInterface('affiliatePartners', 'entryLinksEditor', {
-    helpText:
-      "Partners are Affiliates that give us strategic help or resources. They don't require logos and show up at the bottom bar of the campaign page.",
-    bulkEditing: false,
-  });
+  campaign.changeFieldControl(
+    'affiliatePartners',
+    'builtin',
+    'entryLinksEditor',
+    {
+      helpText:
+        "Partners are Affiliates that give us strategic help or resources. They don't require logos and show up at the bottom bar of the campaign page.",
+      bulkEditing: false,
+    },
+  );
 
-  campaign.changeEditorInterface('affirmation', 'entryLinkEditor', {
+  campaign.changeFieldControl('affirmation', 'builtin', 'entryLinkEditor', {
     helpText:
       'If no affirmation added, the affirmation will use default content.',
   });
 
-  campaign.changeEditorInterface('pages', 'entryLinksEditor', {
+  campaign.changeFieldControl('pages', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
   });
 
-  campaign.changeEditorInterface('quizzes', 'entryLinksEditor', {
+  campaign.changeFieldControl('quizzes', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
   });
 
-  campaign.changeEditorInterface('dashboard', 'entryLinkEditor', {});
-  campaign.changeEditorInterface('socialOverride', 'entryLinkEditor', {});
+  campaign.changeFieldControl('dashboard', 'builtin', 'entryLinkEditor', {});
+  campaign.changeFieldControl(
+    'socialOverride',
+    'builtin',
+    'entryLinkEditor',
+    {},
+  );
 
-  campaign.changeEditorInterface('landingPage', 'entryLinkEditor', {
+  campaign.changeFieldControl('landingPage', 'builtin', 'entryLinkEditor', {
     helpText: '',
   });
 
-  campaign.changeEditorInterface('staffPick', 'boolean', {
+  campaign.changeFieldControl('staffPick', 'builtin', 'boolean', {
     helpText: 'Is this a Staff Pick campaign?',
     trueLabel: 'Yes',
     falseLabel: 'No',
   });
 
-  campaign.changeEditorInterface('cause', 'radio', {
+  campaign.changeFieldControl('cause', 'builtin', 'radio', {
     helpText: 'Primary cause for this campaign',
   });
 
-  campaign.changeEditorInterface('scholarshipAmount', 'numberEditor', {
+  campaign.changeFieldControl('scholarshipAmount', 'builtin', 'numberEditor', {
     helpText: 'e.g. 5000',
   });
 
-  campaign.changeEditorInterface('scholarshipDeadline', 'datePicker', {
+  campaign.changeFieldControl('scholarshipDeadline', 'builtin', 'datePicker', {
     ampm: '12',
     format: 'timeZ',
     helpText:
       "Deadline to take action and qualify for the scholarship. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeEditorInterface('scholarshipCallToAction', 'singleLine', {
-    helpText:
-      "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
-  });
+  campaign.changeFieldControl(
+    'scholarshipCallToAction',
+    'builtin',
+    'singleLine',
+    {
+      helpText:
+        "This should mirror the language used on the scholarship partner's site e.g. Win An Anti-Vaping Scholarship",
+    },
+  );
 
-  campaign.changeEditorInterface('scholarshipDescription', 'richTextEditor', {
-    helpText:
-      'Add information about the scholarship & how it works with the campaign.',
-  });
+  campaign.changeFieldControl(
+    'scholarshipDescription',
+    'builtin',
+    'richTextEditor',
+    {
+      helpText:
+        'Add information about the scholarship & how it works with the campaign.',
+    },
+  );
 
-  campaign.changeEditorInterface('affiliateOptInContent', 'richTextEditor', {
-    helpText:
-      'If there is an affiliate opt in for this campaign, input the informational content to display alongside the opt in checkbox. The affiliate opt in checkbox will only appear if this field is populated.',
-  });
+  campaign.changeFieldControl(
+    'affiliateOptInContent',
+    'builtin',
+    'richTextEditor',
+    {
+      helpText:
+        'If there is an affiliate opt in for this campaign, input the informational content to display alongside the opt in checkbox. The affiliate opt in checkbox will only appear if this field is populated.',
+    },
+  );
 
-  campaign.changeEditorInterface('additionalContent', 'objectEditor', {});
+  campaign.changeFieldControl(
+    'additionalContent',
+    'builtin',
+    'objectEditor',
+    {},
+  );
 };
