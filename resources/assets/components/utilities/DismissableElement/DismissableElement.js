@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react';
 
 import { isTimestampValid, query } from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
+import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
-const DismissableElement = ({ name, render }) => {
+const DismissableElement = ({ name, render, context }) => {
   const [showElement, setShowElement] = useState(true);
 
   const handleCompletion = () => {
@@ -16,6 +17,16 @@ const DismissableElement = ({ name, render }) => {
     if (!getStorage(`hide_${name}`, 'boolean')) {
       // Mark the element as "dismissed" in local storage & hide it.
       setStorage(`dismissed_${name}`, 'timestamp', Date.now());
+
+      trackAnalyticsEvent({
+        context,
+        metadata: {
+          category: 'site_action',
+          noun: name,
+          target: 'dismissable_element',
+          verb: 'dismissed',
+        },
+      });
     }
     setShowElement(false);
   };
@@ -42,8 +53,13 @@ const DismissableElement = ({ name, render }) => {
 };
 
 DismissableElement.propTypes = {
+  context: PropTypes.object,
   name: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
+};
+
+DismissableElement.defaultProps = {
+  context: {},
 };
 
 export default DismissableElement;
