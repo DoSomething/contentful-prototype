@@ -325,7 +325,7 @@ module.exports = function(migration) {
     .required(false)
     .validations([
       {
-        linkContentType: ['landingPage', 'page', 'sixpackExperiment'],
+        linkContentType: ['landingPage', 'sixpackExperiment'],
       },
     ])
     .disabled(false)
