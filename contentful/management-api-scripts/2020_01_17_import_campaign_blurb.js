@@ -23,22 +23,20 @@ async function importCampaignBlurbFromLandingPageContent(
     'additionalContent',
   );
 
+  logger.info(
+    `Processing Campaign ${campaignEntryId} - ${campaignInternalTitle}`,
+  );
+
   if (
     get(campaignAdditionalContent, 'featureFlagUseLegacyTemplate', false) ===
     true
   ) {
-    logger.info(
-      `Skipping legacy template Campaign ${campaignEntryId} - ${campaignInternalTitle}\n`,
-    );
+    logger.info('Skipping import for legacy template.');
     return;
   }
 
   const landingPageEntry = getField(campaignEntry, 'landingPage');
   const landingPageEntryId = landingPageEntry ? landingPageEntry.sys.id : null;
-
-  logger.info(
-    `Processing Campaign ${campaignEntryId} - ${campaignInternalTitle}`,
-  );
 
   if (!landingPageEntryId) {
     logger.info('Landing Page entry not found.');
