@@ -16,6 +16,7 @@ const CAMPAIGN_INFO_QUERY = gql`
     campaign(id: $campaignId) {
       id
       endDate
+      isOpen
       actions {
         actionLabel
         timeCommitmentLabel
@@ -35,6 +36,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
         {res => {
           const endDate = res.campaign.endDate;
           const actions = res.campaign.actions || [];
+          const isOpen = res.campaign.isOpen;
 
           let actionItem = actions.find(
             action => action.reportback && action.scholarshipEntry,
@@ -64,7 +66,7 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {scholarshipAmount ? (
+              {scholarshipAmount && isOpen ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship

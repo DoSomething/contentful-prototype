@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { ObjectID } from 'bson';
+import { addMonths } from 'date-fns';
 
 /**
  * Return a list of N items for a field, with an optional
@@ -79,5 +80,9 @@ export const mocks = {
     quantity: () => Math.ceil(Math.random() * 99),
     reactions: () => Math.floor(Math.random() * 30),
     impact: () => `${Math.ceil(Math.random() * 99)} things done`,
+  }),
+  Campaign: () => ({
+    endDate: () => addMonths(new Date(), 1).toISOString(),
+    isOpen: true,
   }),
 };
