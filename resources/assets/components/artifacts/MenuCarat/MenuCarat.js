@@ -10,10 +10,6 @@ const MenuCarat = ({ color, width, height }) => (
         transition: all 0.2s ease-in-out;
         height: ${height};
         width: ${width};
-
-        .menu-carat:hover {
-          transform: rotate(180deg);
-        }
       `}
       viewBox="0 0 16 9"
       xmlns="http://www.w3.org/2000/svg"
