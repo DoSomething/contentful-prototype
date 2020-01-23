@@ -12,5 +12,5 @@ return [
     |
     */
 
-    'company_pages' => env('DS_COMPANY_PAGES', false),
+    'company_pages' => env('DS_ENABLE_COMPANY_PAGES', false),
 ];
