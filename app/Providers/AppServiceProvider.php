@@ -50,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
                 'VOTER_REG_MODAL_ENABLED' => config('services.timed_modals.voter_reg_modal.enabled'),
                 'CONTENTFUL_USE_PREVIEW_API' => config('contentful')['delivery.preview'],
+                'FEATURE_FLAGS' => config('features'),
             ]);
         });
 
