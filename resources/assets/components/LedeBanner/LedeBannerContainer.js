@@ -29,7 +29,7 @@ const mapStateToProps = (state, props) => ({
   blurb: get(props, 'blurb', state.campaign.blurb),
   campaignId: state.campaign.campaignId,
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
-  content: get(state, 'campaign.blurb'),
+  content: state.campaign.blurb,
   dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
   featureFlagUseLegacyTemplate: get(
