@@ -217,10 +217,14 @@ const ScholarshipInfoBlock = ({
             </Media>
           </div>
           <div className="sm:hidden text-center align-bottom flex justify-center">
-            <button type="button" className="pr-2" onClick={toggleHiddenInfo}>
-              <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
+            <button
+              type="button"
+              className="flex items-center"
+              onClick={toggleHiddenInfo}
+            >
+              <p className="text-sm font-bold pr-2">{`${detailsLabel} Details`}</p>
+              <MenuCarat />
             </button>
-            <MenuCarat />
           </div>
         </div>
       </div>
