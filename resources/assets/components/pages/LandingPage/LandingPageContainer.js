@@ -16,8 +16,8 @@ const mapStateToProps = (state, ownProps) => {
   const sidebarCTA = get(first(landingPage.sidebar), 'fields');
 
   return {
+    additionalContent: landingPage.additionalContent,
     campaignId: state.campaign.campaignId,
-    content: landingPage.content,
     featureFlagUseLegacyTemplate: get(
       state,
       'campaign.additionalContent.featureFlagUseLegacyTemplate',
