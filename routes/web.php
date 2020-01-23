@@ -49,7 +49,7 @@ $router->get('search', function () {
 // About pages (feature flagged. Overwrites the categorized about pages below.)
 if (config('features.company-pages')) {
     $router->view('us/about/{slug}', 'app');
-};
+}
 
 // Categorized Pages (articles, facts)
 $categories = 'articles|facts|about|stories';
