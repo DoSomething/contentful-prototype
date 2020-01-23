@@ -11,6 +11,7 @@ import { jsx, css } from '@emotion/core';
 
 import Card from '../../utilities/Card/Card';
 import ScholarshipActionType from './ScholarshipActionType';
+import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import ScholarshipRequirements from './ScholarshipRequirements';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
@@ -215,10 +216,11 @@ const ScholarshipInfoBlock = ({
               )}
             </Media>
           </div>
-          <div className="sm:hidden text-center align-bottom">
-            <button type="button" onClick={toggleHiddenInfo}>
+          <div className="sm:hidden text-center align-bottom flex justify-center">
+            <button type="button" className="pr-2" onClick={toggleHiddenInfo}>
               <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
             </button>
+            <MenuCarat />
           </div>
         </div>
       </div>
