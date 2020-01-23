@@ -7,6 +7,8 @@ import { get, set } from '../../../helpers/storage';
 import DismissableElement from './DismissableElement';
 import LocalStorageMock from '../../../__mocks__/localStorageMock';
 
+jest.mock('../../../helpers/analytics');
+
 // Name for our dismissable element.
 const NAME = 'fun_survey';
 
