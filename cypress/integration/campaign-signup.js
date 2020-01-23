@@ -6,6 +6,8 @@ import { emptyResponse, newSignup } from '../fixtures/signups';
 import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 
 const API = `/api/v2/campaigns/${campaignId}`;
+// Text included in the campaign blurb.
+const exampleBlurb = `Did you know that the world's oldest cat`;
 
 describe('Campaign Signup', () => {
   // Configure a new "mock" server before each test:
@@ -19,6 +21,7 @@ describe('Campaign Signup', () => {
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
+    cy.contains(exampleBlurb);
 
     // Mock the responses we'll be expecting once we hit "Join Now":
     cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
@@ -40,6 +43,7 @@ describe('Campaign Signup', () => {
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
+    cy.contains(exampleBlurb);
 
     // Mock the response we'll be expecting once we hit "Join Now":
     cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
@@ -57,6 +61,7 @@ describe('Campaign Signup', () => {
 
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
+    cy.contains(exampleBlurb);
 
     // We shouldn't see the "Join Now" button or affiramation modal,
     // since the user is already signed up for this campaign:
