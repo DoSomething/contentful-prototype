@@ -2,11 +2,11 @@
 
 ## Overview
 
-Manages the web experience of a [campaign](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/campaigns.md).
+Configures a [campaign](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/campaigns.md) for the web.
 
 ## Content Type Fields
 
-- **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc.
+- **Internal Title**: This is for our internal Contentful organization and will be how the entry shows up in search results, etc.
 
 - **Campaign ID** : The ID of the [campaign](https://github.com/DoSomething/rogue/blob/master/docs/endpoints/campaigns.md) to create signups and posts for.
 
