@@ -14,6 +14,6 @@ The landing page displayed on a [campaign](development/content-types/campaign.md
 
 - **Subtitle** : This too?
 
-- **Sidebar** : A multi-value reference field, only used on the legacy template.
+- **Sidebar** : A multi-value reference field, only displayed on the legacy campaign template.
 
 - **Additonal Content** : The legacy campaign template uses this field to display Landing Page content, expecting a `legacyTemplateContent` property.
