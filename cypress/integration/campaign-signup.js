@@ -22,6 +22,7 @@ describe('Campaign Signup', () => {
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
+    cy.get('.pitch-landing-page').should('have.length', 1);
 
     // Mock the responses we'll be expecting once we hit "Join Now":
     cy.route(`${API}/signups?filter[northstar_id]=${user.id}`, emptyResponse);
@@ -44,6 +45,7 @@ describe('Campaign Signup', () => {
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
+    cy.get('.pitch-landing-page').should('have.length', 1);
 
     // Mock the response we'll be expecting once we hit "Join Now":
     cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
@@ -62,6 +64,7 @@ describe('Campaign Signup', () => {
     cy.contains('Example Campaign');
     cy.contains('This is an example campaign for automated testing.');
     cy.contains(exampleBlurb);
+    cy.get('.pitch-landing-page').should('not.exist');
 
     // We shouldn't see the "Join Now" button or affiramation modal,
     // since the user is already signed up for this campaign:
