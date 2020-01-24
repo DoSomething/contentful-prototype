@@ -46,6 +46,11 @@ $router->get('search', function () {
     return redirect('/us'.request()->getRequestUri());
 });
 
+// About pages (feature flagged. Overwrites the categorized about pages below.)
+if (config('features.company-pages')) {
+    $router->view('us/about/{slug}', 'app');
+}
+
 // Categorized Pages (articles, facts)
 $categories = 'articles|facts|about|stories';
 

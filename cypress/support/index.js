@@ -13,8 +13,10 @@ Cypress.on('window:before:load', window => {
 
   // Custom ENV variables for the testing environment.
   window.ENV = {
-    NPS_SURVEY_ENABLED: false,
-    VOTER_REG_MODAL_ENABLED: false,
+    FEATURE_FLAGS: {
+      nps_survey: false,
+      voter_reg_modal: false,
+    },
     SIXPACK_ENABLED: false,
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.
     CONTENTFUL_USE_PREVIEW_API: false,

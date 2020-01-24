@@ -3,7 +3,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
-import { env } from '../../helpers';
+import { featureFlag } from '../../helpers';
 import Modal from '../utilities/Modal/Modal';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
@@ -35,7 +35,7 @@ const Campaign = props => (
 
       <NotificationContainer />
 
-      {props.isAuthenticated && env('NPS_SURVEY_ENABLED') ? (
+      {props.isAuthenticated && featureFlag('nps_survey') ? (
         <TrafficDistribution percentage={5} feature="nps_survey">
           <DismissableElement
             name="nps_survey"
@@ -60,7 +60,7 @@ const Campaign = props => (
 
       {props.isAuthenticated &&
       get(props, 'featureFlags.showVoterRegistrationModal') &&
-      env('VOTER_REG_MODAL_ENABLED') ? (
+      featureFlag('voter_reg_modal') ? (
         <TrafficDistribution percentage={50} feature="voter_reg_modal">
           <DismissableElement
             name="voter_reg_modal"

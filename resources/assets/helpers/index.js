@@ -525,6 +525,16 @@ export function env(key, defaultVal) {
 }
 
 /**
+ * Get feature flag value from window.ENV
+ *
+ * @param  {String} feature
+ * @return {*}
+ */
+export function featureFlag(feature) {
+  return get(env('FEATURE_FLAGS'), feature);
+}
+
+/**
  * Construct absolute URL with query params.
  *
  * @param {String} url

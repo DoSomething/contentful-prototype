@@ -5,8 +5,8 @@ import { get } from 'lodash';
 
 import sponsorList from './sponsor-list';
 import Modal from '../../utilities/Modal/Modal';
-import { contentfulImageUrl, env } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import { contentfulImageUrl, featureFlag } from '../../../helpers';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -101,7 +101,7 @@ class HomePage extends React.Component {
             </section>
           </article>
 
-          {env('NPS_SURVEY_ENABLED') ? (
+          {featureFlag('nps_survey') ? (
             <TrafficDistribution percentage={100} feature="nps_survey">
               <DismissableElement
                 name="nps_survey"
