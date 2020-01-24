@@ -63,9 +63,10 @@ const ScholarshipInfoBlock = ({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
 
-  // const detail = css`
-  //   transition: all 0.3s ease-out;
-  // `;
+  const detail = css`
+    transform: rotate(180deg);
+  `;
+
   const isVisible = css`
     position: absolute !important;
     height: 1px;
@@ -219,11 +220,11 @@ const ScholarshipInfoBlock = ({
           <div className="sm:hidden text-center align-bottom flex justify-center">
             <button
               type="button"
-              className="flex items-center"
+              className="flex items-center focus:outline-none"
               onClick={toggleHiddenInfo}
             >
               <p className="text-sm font-bold pr-2">{`${detailsLabel} Details`}</p>
-              <MenuCarat />
+              <MenuCarat css={drawerOpen ? detail : null} />
             </button>
           </div>
         </div>
