@@ -38,7 +38,7 @@ module.exports = function(migration) {
     .localized(true)
     .required(false)
     .validations([])
-    .disabled(true)
+    .disabled(false)
     .omitted(false);
 
   landingPage
