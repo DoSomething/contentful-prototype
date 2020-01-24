@@ -33,7 +33,7 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^[a-z\\-]+$',
+          pattern: '^[a-z[0-9]\\-]+$',
         },
 
         message:
@@ -59,25 +59,6 @@ module.exports = function(migration) {
     .linkType('Entry');
 
   companyPage
-    .createField('title')
-    .name('Title')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-  companyPage
-    .createField('subTitle')
-    .name('Subtitle')
-    .type('Symbol')
-    .localized(true)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-
-  companyPage
     .createField('coverImage')
     .name('Cover Image')
     .type('Link')
@@ -98,6 +79,25 @@ module.exports = function(migration) {
     .linkType('Asset');
 
   companyPage
+    .createField('title')
+    .name('Title')
+    .type('Symbol')
+    .localized(true)
+    .required(true)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  companyPage
+    .createField('subTitle')
+    .name('Subtitle')
+    .type('Symbol')
+    .localized(true)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  companyPage
     .createField('content')
     .name('Content')
     .type('RichText')
@@ -106,7 +106,7 @@ module.exports = function(migration) {
     .validations([
       {
         nodes: {
-          'embedded-entry-inline': [
+          'embedded-entry-block': [
             {
               linkContentType: [
                 'contentBlock',
@@ -133,10 +133,11 @@ module.exports = function(migration) {
           'embedded-entry-block',
           'embedded-asset-block',
           'hyperlink',
+          'asset-hyperlink',
         ],
 
         message:
-          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, and link to Url nodes are allowed',
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, and link to asset nodes are allowed',
       },
     ])
     .disabled(false)
@@ -150,13 +151,13 @@ module.exports = function(migration) {
   });
 
   companyPage.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
-  companyPage.changeFieldControl('title', 'builtin', 'singleLine', {});
-  companyPage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
   companyPage.changeFieldControl(
     'coverImage',
     'builtin',
     'assetLinkEditor',
     {},
   );
+  companyPage.changeFieldControl('title', 'builtin', 'singleLine', {});
+  companyPage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
   companyPage.changeFieldControl('content', 'builtin', 'richTextEditor', {});
 };

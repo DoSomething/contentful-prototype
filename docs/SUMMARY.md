@@ -15,6 +15,7 @@
 - [Content Types](development/content-types/README.md)
   - [Campaign](development/content-types/campaign.md)
   - [Content Block](development/content-types/content-block.md)
+  - [Company Page](development/content-types/company-page.md)
   - [Current School Block](development/content-types/current-school-block.md)
   - [Embed](development/content-types/embed.md)
   - [Landing Page](development/content-types/landing-page.md)
