@@ -16,7 +16,7 @@ Displays static organizational 'about' information. Company Pages are accessed v
 
 - **Subtitle**: The subtitle of the page
 
-- **Content**: The Rich Text content of the page. This can be content in markdown format, embedded Assets, or embedded entry blocks ([Content Blocks](./content-block.md), Images Blocks, & Link Actions).
+- **Content**: The Rich Text content of the page. This can be content in markdown format, embedded Assets, or valid embedded entry blocks.
 
 ## Technical Notes
 
