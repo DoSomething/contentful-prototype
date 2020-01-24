@@ -31,14 +31,25 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
+
   landingPage
     .createField('content')
     .name('Content')
-    .type('Text')
-    .localized(true)
+    .type('RichText')
+    .localized(false)
     .required(false)
-    .validations([])
-    .disabled(true)
+    .validations([
+      {
+        nodes: {
+          'entry-hyperlink': [
+            {
+              linkContentType: ['contentBlock', 'imagesBlock', 'linkAction'],
+            },
+          ],
+        },
+      },
+    ])
+    .disabled(false)
     .omitted(false);
 
   landingPage
@@ -95,9 +106,10 @@ module.exports = function(migration) {
   landingPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
   landingPage.changeFieldControl('title', 'builtin', 'singleLine', {});
   landingPage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
-  landingPage.changeFieldControl('content', 'builtin', 'markdown', {});
+  landingPage.changeFieldControl('content', 'builtin', 'richTextEditor', {});
 
   landingPage.changeFieldControl('sidebar', 'builtin', 'entryLinksEditor', {
+    helpText: 'Deprecated -- only displayed on legacy template',
     bulkEditing: false,
   });
 
