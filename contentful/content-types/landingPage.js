@@ -13,24 +13,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  landingPage
-    .createField('title')
-    .name('Title')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-  landingPage
-    .createField('subTitle')
-    .name('Subtitle')
-    .type('Symbol')
-    .localized(true)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
 
   landingPage
     .createField('content')
@@ -104,8 +86,6 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false);
   landingPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
-  landingPage.changeFieldControl('title', 'builtin', 'singleLine', {});
-  landingPage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
   landingPage.changeFieldControl('content', 'builtin', 'richTextEditor', {});
 
   landingPage.changeFieldControl('sidebar', 'builtin', 'entryLinksEditor', {
