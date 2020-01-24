@@ -1,13 +1,29 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
+import PageQuery from '../PageQuery';
 import LazyImage from '../../utilities/LazyImage';
-import { contentfulImageUrl } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-const CompanyPage = props => {
+export const COMPANY_PAGE_QUERY = gql`
+  query CollectionPageQuery($slug: String!, $preview: Boolean!) {
+    page: companyPageBySlug(slug: $slug, preview: $preview) {
+      coverImage {
+        url
+        description
+      }
+      title
+      subTitle
+      content
+    }
+  }
+`;
+
+const CompanyPageTemplate = props => {
   const { title, subTitle, coverImage, content } = props;
 
   return (
@@ -40,7 +56,7 @@ const CompanyPage = props => {
   );
 };
 
-CompanyPage.propTypes = {
+CompanyPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
   coverImage: PropTypes.shape({
@@ -50,10 +66,20 @@ CompanyPage.propTypes = {
   content: PropTypes.object,
 };
 
-CompanyPage.defaultProps = {
+CompanyPageTemplate.defaultProps = {
   coverImage: {},
   content: null,
   subTitle: null,
+};
+
+const CompanyPage = ({ slug }) => (
+  <PageQuery query={COMPANY_PAGE_QUERY} variables={{ slug }}>
+    {page => <CompanyPageTemplate {...withoutNulls(page)} />}
+  </PageQuery>
+);
+
+CompanyPage.propTypes = {
+  slug: PropTypes.string.isRequired,
 };
 
 export default CompanyPage;
