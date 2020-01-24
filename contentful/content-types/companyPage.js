@@ -1,7 +1,7 @@
 module.exports = function(migration) {
   const companyPage = migration
     .createContentType('companyPage')
-    .name('CompanyPage')
+    .name('Company Page')
     .description(
       'A custom page for DoSomething static pages with company information.',
     )
@@ -12,24 +12,6 @@ module.exports = function(migration) {
     .type('Symbol')
     .localized(false)
     .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-  companyPage
-    .createField('title')
-    .name('Title')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-  companyPage
-    .createField('subTitle')
-    .name('Subtitle')
-    .type('Symbol')
-    .localized(true)
-    .required(false)
     .validations([])
     .disabled(false)
     .omitted(false);
@@ -51,11 +33,11 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^(?!/)[a-zA-Z0-9-/]+$',
+          pattern: '^[a-z\\-]+$',
         },
 
         message:
-          'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs! Entry cannot start with a forward-slash.',
+          'Only alphanumeric and hyphen characters are allowed in slugs!',
       },
     ])
     .disabled(false)
@@ -76,35 +58,105 @@ module.exports = function(migration) {
     .omitted(false)
     .linkType('Entry');
 
-  // @TODO: remove linkAction from accepted types.
+  companyPage
+    .createField('title')
+    .name('Title')
+    .type('Symbol')
+    .localized(true)
+    .required(true)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  companyPage
+    .createField('subTitle')
+    .name('Subtitle')
+    .type('Symbol')
+    .localized(true)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+
+  companyPage
+    .createField('coverImage')
+    .name('Cover Image')
+    .type('Link')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        linkMimetypeGroup: ['image'],
+      },
+      {
+        assetFileSize: {
+          max: 20971520,
+        },
+      },
+    ])
+    .disabled(false)
+    .omitted(false)
+    .linkType('Asset');
+
   companyPage
     .createField('content')
     .name('Content')
     .type('RichText')
     .localized(false)
-    .required(false)
+    .required(true)
     .validations([
       {
         nodes: {
           'embedded-entry-inline': [
             {
-              linkContentType: ['galleryBlock', 'imagesBlock', 'linkAction'],
+              linkContentType: [
+                'contentBlock',
+                'galleryBlock',
+                'imagesBlock',
+                'linkAction',
+              ],
             },
           ],
         },
+      },
+      {
+        enabledNodeTypes: [
+          'heading-1',
+          'heading-2',
+          'heading-3',
+          'heading-4',
+          'heading-5',
+          'heading-6',
+          'ordered-list',
+          'unordered-list',
+          'hr',
+          'blockquote',
+          'embedded-entry-block',
+          'embedded-asset-block',
+          'hyperlink',
+        ],
+
+        message:
+          'Only heading 1, heading 2, heading 3, heading 4, heading 5, heading 6, ordered list, unordered list, horizontal rule, quote, block entry, asset, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
     .omitted(false);
 
-  companyPage.changeEditorInterface('internalTitle', 'singleLine', {});
-  companyPage.changeEditorInterface('title', 'singleLine', {});
-  companyPage.changeEditorInterface('subTitle', 'singleLine', {});
+  companyPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
 
-  companyPage.changeEditorInterface('slug', 'slugEditor', {
-    helpText: 'For an about page prefix with "about/", etc.',
+  companyPage.changeFieldControl('slug', 'builtin', 'slugEditor', {
+    helpText:
+      'e.g. "our-team". The URL for the Company Page will be prefixed with "about/" e.g. "https://dosomething.org/us/about/our-team".',
   });
 
-  companyPage.changeEditorInterface('metadata', 'entryLinkEditor', {});
-  companyPage.changeEditorInterface('content', 'richTextEditor', {});
+  companyPage.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
+  companyPage.changeFieldControl('title', 'builtin', 'singleLine', {});
+  companyPage.changeFieldControl('subTitle', 'builtin', 'singleLine', {});
+  companyPage.changeFieldControl(
+    'coverImage',
+    'builtin',
+    'assetLinkEditor',
+    {},
+  );
+  companyPage.changeFieldControl('content', 'builtin', 'richTextEditor', {});
 };
