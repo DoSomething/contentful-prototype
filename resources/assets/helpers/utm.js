@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 import { query } from '.';
 
 /**
@@ -14,3 +12,5 @@ export function getUtmParameters() {
     utm_campaign: query('utm_campaign'),
   };
 }
+
+export default null;

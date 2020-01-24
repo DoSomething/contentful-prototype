@@ -3,6 +3,7 @@
 import { forEach, get, isInteger } from 'lodash';
 
 import { query, withoutNulls } from '.';
+import { getUtmParameters } from './utm';
 
 /**
  * Calculate the difference between a total value and a submitted value.
@@ -125,9 +126,7 @@ export function formatPostPayload(data = {}) {
     withoutNulls({
       // @TODO: Pass in 'contentful_id' parameter here w/ the containing page ID.
       // contentful_id: contentfulId,
-      utm_source: query('utm_source'),
-      utm_medium: query('utm_medium'),
-      utm_campaign: query('utm_campaign'),
+      ...getUtmParameters(),
     }),
   );
 
