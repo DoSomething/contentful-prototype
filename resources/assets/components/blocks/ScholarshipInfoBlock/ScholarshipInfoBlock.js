@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { jsx, css } from '@emotion/core';
 
-import Header from './InfoHeader';
 import Card from '../../utilities/Card/Card';
 import ScholarshipActionType from './ScholarshipActionType';
+import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import ScholarshipRequirements from './ScholarshipRequirements';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
@@ -63,9 +63,10 @@ const ScholarshipInfoBlock = ({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
 
-  // const detail = css`
-  //   transition: all 0.3s ease-out;
-  // `;
+  const caratRotate = css`
+    transform: rotate(180deg);
+  `;
+
   const isVisible = css`
     position: absolute !important;
     height: 1px;
@@ -77,11 +78,7 @@ const ScholarshipInfoBlock = ({
 
   const toggleHiddenInfo = () => {
     setDrawerOpen(!drawerOpen);
-    setDetailsLabel('Hide');
-
-    if (drawerOpen && detailsLabel === 'Hide') {
-      setDetailsLabel('Show');
-    }
+    setDetailsLabel(drawerOpen ? 'Show' : 'Hide');
   };
 
   const isLoaded = !loading;
@@ -166,10 +163,9 @@ const ScholarshipInfoBlock = ({
         <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 pb-2 rounded">
           {scholarshipAmount ? (
             <div>
-              <Header
-                content={scholarshipCallToAction}
-                textColor="text-purple-600"
-              />
+              <h4 className="font-bold uppercase text-purple-600">
+                {scholarshipCallToAction}
+              </h4>
               <p className="font-league-gothic text-5xl pb-2">
                 ${scholarshipAmount.toLocaleString()}
               </p>
@@ -179,7 +175,9 @@ const ScholarshipInfoBlock = ({
             <div className="lg:flex">
               {scholarshipDeadline ? (
                 <div className="lg:w-1/2 lg:float-left">
-                  <Header content="Deadline" />
+                  <h4 className="font-bold uppercase text-gray-600">
+                    Deadline
+                  </h4>
                   <p className="pb-2">
                     {getHumanFriendlyDate(scholarshipDeadline)}
                   </p>
@@ -219,9 +217,14 @@ const ScholarshipInfoBlock = ({
               )}
             </Media>
           </div>
-          <div className="md:hidden text-center align-bottom">
-            <button type="button" onClick={toggleHiddenInfo}>
-              <p className="text-sm font-bold">{`${detailsLabel} Details`}</p>
+          <div className="sm:hidden text-center align-bottom flex justify-center">
+            <button
+              type="button"
+              className="flex items-center focus:outline-none"
+              onClick={toggleHiddenInfo}
+            >
+              <p className="text-sm font-bold pr-2">{`${detailsLabel} Details`}</p>
+              <MenuCarat css={drawerOpen ? caratRotate : null} />
             </button>
           </div>
         </div>
