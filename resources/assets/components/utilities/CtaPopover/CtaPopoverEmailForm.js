@@ -93,7 +93,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
       <form className="email-form form pb-2" onSubmit={handleSubmit}>
         <input
           className="text-field email-form__input"
-          type="email"
+          type="text"
           value={emailValue}
           placeholder="Enter your email address"
           onChange={handleChange}
