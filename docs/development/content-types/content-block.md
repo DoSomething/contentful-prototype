@@ -6,6 +6,6 @@ Displays headline, subtitle, supertitle, copy, and image. Commonly used to list 
 
 ![Example Content Block](../../.gitbook/assets/content-block-example.png)
 
-## Technical Notes
+## Content Type Fields
 
-- Available as a `ContentBlock` in GraphQL.
+- **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc.
