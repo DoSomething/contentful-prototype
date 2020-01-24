@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import { jsx, css } from '@emotion/core';
 
-const MenuCarat = ({ color, width, height, ...props }) => (
+const MenuCarat = ({ color, height, width, ...props }) => (
   <div className="menu-carat">
     <svg
       css={css`
