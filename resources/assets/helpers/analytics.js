@@ -191,6 +191,7 @@ export function getPageContext() {
 export function getUtmContext() {
   const utms = getUtmParameters();
 
+  // For analytics, we prefer camelCased keys:
   return mapKeys(utms, (value, key) => camelCase(key));
 }
 
