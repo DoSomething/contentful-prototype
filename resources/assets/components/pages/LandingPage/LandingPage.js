@@ -82,15 +82,18 @@ const LandingPage = props => {
           </div>
         </>
       ) : (
-        <div className="bg-white">
-          <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
-            <div className="campaign-page__content clearfix">
-              <div className="primary">
-                <TextContent>{content}</TextContent>
+        <>
+          <div className="bg-white">
+            <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
+              <div className="campaign-page__content clearfix">
+                <div className="primary">
+                  <TextContent>{content}</TextContent>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+          <CampaignInfoBarContainer />
+        </>
       )}
     </React.Fragment>
   );

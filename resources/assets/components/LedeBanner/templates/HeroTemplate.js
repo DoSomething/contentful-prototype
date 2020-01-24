@@ -155,8 +155,6 @@ const HeroTemplate = ({
       </div>
 
       {dashboard ? <ContentfulEntry json={dashboard} /> : null}
-
-      {!isAffiliated && !isClosed ? <CampaignInfoBarContainer /> : null}
     </>
   );
 };
