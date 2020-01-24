@@ -8,7 +8,6 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { SCHOLARSHIP_SIGNUP_BUTTON_TEXT } from '../../../constants';
 import SignupButtonContainer from '../../SignupButton/SignupButtonContainer';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliatePromotion';
 import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
@@ -30,7 +29,6 @@ const HeroTemplate = ({
   coverImage,
   dashboard,
   displaySignupButton,
-  isClosed,
   isAffiliated,
   scholarshipAmount,
   scholarshipCallToAction,
@@ -174,7 +172,6 @@ HeroTemplate.propTypes = {
   }),
   displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool,
-  isClosed: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string,
@@ -192,7 +189,6 @@ HeroTemplate.defaultProps = {
   dashboard: null,
   displaySignupButton: true,
   isAffiliated: false,
-  isClosed: false,
   scholarshipAmount: null,
   scholarshipCallToAction: null,
   scholarshipDeadline: null,
