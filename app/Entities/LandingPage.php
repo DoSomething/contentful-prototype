@@ -18,8 +18,6 @@ class LandingPage extends Entity implements JsonSerializable
             'type' => $this->getContentType(),
             'fields' => [
                 'internalTitle' => $this->internalTitle,
-                'title' => $this->title,
-                'subTitle' => $this->subTitle,
                 'content' => $this->content,
                 'sidebar' => $this->parseBlocks($this->sidebar),
                 'blocks' => $this->parseBlocks($this->blocks),
