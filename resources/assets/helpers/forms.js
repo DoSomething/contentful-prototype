@@ -2,7 +2,7 @@
 
 import { forEach, get, isInteger } from 'lodash';
 
-import { withoutNulls } from '.';
+import { withoutValueless } from '.';
 import { getUtmParameters } from './utm';
 
 /**
@@ -123,7 +123,7 @@ export function formatPostPayload(data = {}) {
 
   // Attach 'source_details' based on referring page/block & UTMs:
   formattedData.source_details = JSON.stringify(
-    withoutNulls({
+    withoutValueless({
       // @TODO: Pass in 'contentful_id' parameter here w/ the containing page ID.
       // contentful_id: contentfulId,
       ...getUtmParameters(),
