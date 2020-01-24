@@ -13,8 +13,8 @@ import AffiliateScholarshipBlockQuery from '../../blocks/AffiliateScholarshipBlo
 
 const LandingPage = props => {
   const {
+    additionalContent,
     campaignId,
-    content,
     isCampaignClosed,
     featureFlagUseLegacyTemplate,
     scholarshipAmount,
@@ -49,7 +49,11 @@ const LandingPage = props => {
                     />
                   ) : null}
 
-                  <TextContent>{content}</TextContent>
+                  {additionalContent.legacyTemplateContent ? (
+                    <TextContent>
+                      {additionalContent.legacyTemplateContent}
+                    </TextContent>
+                  ) : null}
                 </div>
                 <div className="secondary">
                   <Card title={sidebarCTA.title} className="rounded bordered">
@@ -82,8 +86,8 @@ const LandingPage = props => {
 };
 
 LandingPage.propTypes = {
+  additionalContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
-  content: PropTypes.string.isRequired,
   featureFlagUseLegacyTemplate: PropTypes.bool,
   isCampaignClosed: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
@@ -97,6 +101,7 @@ LandingPage.propTypes = {
 };
 
 LandingPage.defaultProps = {
+  additionalContent: null,
   featureFlagUseLegacyTemplate: false,
   isCampaignClosed: false,
   scholarshipAmount: null,
