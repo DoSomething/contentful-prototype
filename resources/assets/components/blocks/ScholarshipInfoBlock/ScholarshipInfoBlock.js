@@ -63,7 +63,7 @@ const ScholarshipInfoBlock = ({
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
 
-  const detail = css`
+  const caratRotate = css`
     transform: rotate(180deg);
   `;
 
@@ -224,7 +224,7 @@ const ScholarshipInfoBlock = ({
               onClick={toggleHiddenInfo}
             >
               <p className="text-sm font-bold pr-2">{`${detailsLabel} Details`}</p>
-              <MenuCarat css={drawerOpen ? detail : null} />
+              <MenuCarat css={drawerOpen ? caratRotate : null} />
             </button>
           </div>
         </div>
