@@ -11,6 +11,8 @@ const MenuCarat = ({ color, height, width, ...props }) => (
         height: ${height};
         width: ${width};
       `}
+      // adding the props here gives us the ability to pass another
+      // css prop to the component if there are one off cases we need to define
       {...props}
       viewBox="0 0 16 9"
       xmlns="http://www.w3.org/2000/svg"
