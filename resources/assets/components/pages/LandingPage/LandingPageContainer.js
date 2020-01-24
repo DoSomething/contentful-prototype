@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     additionalContent: landingPage.additionalContent,
     campaignId: state.campaign.campaignId,
+    content: landingPage.content,
     featureFlagUseLegacyTemplate: get(
       state,
       'campaign.additionalContent.featureFlagUseLegacyTemplate',

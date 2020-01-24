@@ -15,6 +15,7 @@ const LandingPage = props => {
   const {
     additionalContent,
     campaignId,
+    content,
     isCampaignClosed,
     featureFlagUseLegacyTemplate,
     scholarshipAmount,
@@ -80,7 +81,9 @@ const LandingPage = props => {
             </div>
           </div>
         </>
-      ) : null}
+      ) : (
+        <TextContent>{content}</TextContent>
+      )}
     </React.Fragment>
   );
 };
@@ -88,6 +91,7 @@ const LandingPage = props => {
 LandingPage.propTypes = {
   additionalContent: PropTypes.object,
   campaignId: PropTypes.string.isRequired,
+  content: PropTypes.object,
   featureFlagUseLegacyTemplate: PropTypes.bool,
   isCampaignClosed: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
@@ -102,6 +106,7 @@ LandingPage.propTypes = {
 
 LandingPage.defaultProps = {
   additionalContent: null,
+  content: null,
   featureFlagUseLegacyTemplate: false,
   isCampaignClosed: false,
   scholarshipAmount: null,
