@@ -33,7 +33,7 @@ module.exports = function(migration) {
       },
       {
         regexp: {
-          pattern: '^[a-z\\-]+$',
+          pattern: '^[a-z[0-9]\\-]+$',
         },
 
         message:
