@@ -41,7 +41,7 @@ const App = ({ store, history }) => {
                 <CollectionPage slug={routeProps.match.params.slug} />
               )}
             />
-            {featureFlag('company-pages') ? (
+            {featureFlag('company_pages') ? (
               <Route
                 path="/us/about/:slug"
                 render={() => (
