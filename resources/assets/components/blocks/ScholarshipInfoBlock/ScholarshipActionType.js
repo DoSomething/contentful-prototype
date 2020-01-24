@@ -7,7 +7,7 @@ const ScholarshipActionType = ({ actionLabel, isLoaded }) => (
   <>
     {isLoaded && actionLabel ? (
       <div className="lg:w-1/2 lg:float-right">
-        <div className="font-bold uppercase text-gray-600">Action Type</div>
+        <h4 className="font-bold uppercase text-gray-600">Action Type</h4>
         <p className="pb-2">{actionLabel}</p>
       </div>
     ) : (

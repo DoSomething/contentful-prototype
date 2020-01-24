@@ -7,6 +7,7 @@ const MenuCarat = ({ color, width, height, ...props }) => (
   <div className="menu-carat">
     <svg
       css={css`
+        pointerevents: 'none';
         height: ${height};
         width: ${width};
       `}
