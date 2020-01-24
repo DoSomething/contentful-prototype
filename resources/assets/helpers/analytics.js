@@ -1,8 +1,9 @@
 /* global window */
 
-import { get, snakeCase, startCase } from 'lodash';
+import { camelCase, get, mapKeys, snakeCase, startCase } from 'lodash';
 
-import { debug, stringifyNestedObjects, withoutValueless, query } from '.';
+import { getUtmParameters } from './utm';
+import { debug, stringifyNestedObjects, withoutValueless } from '.';
 
 /**
  * App name prefix used for event naming.
@@ -188,11 +189,9 @@ export function getPageContext() {
  * @return {Object}
  */
 export function getUtmContext() {
-  return {
-    utmSource: query('utm_source'),
-    utmMedium: query('utm_medium'),
-    utmCampaign: query('utm_campaign'),
-  };
+  const utms = getUtmParameters();
+
+  return mapKeys(utms, (value, key) => camelCase(key));
 }
 
 /**
