@@ -2,7 +2,7 @@
 
 import { forEach, get, isInteger } from 'lodash';
 
-import { query, withoutNulls } from '.';
+import { withoutNulls } from '.';
 import { getUtmParameters } from './utm';
 
 /**
