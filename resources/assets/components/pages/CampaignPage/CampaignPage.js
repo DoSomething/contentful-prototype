@@ -36,7 +36,7 @@ const CampaignPage = props => {
             {!entryContent ? (
               <CampaignPageContent {...props} />
             ) : (
-              <ContentfulEntryLoader json={entryContent} />
+              <ContentfulEntryLoader id={entryContent.id} />
             )}
           </div>
 
