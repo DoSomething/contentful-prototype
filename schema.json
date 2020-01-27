@@ -870,6 +870,79 @@
             "deprecationReason": null
           },
           {
+            "name": "paginatedSignups",
+            "description": null,
+            "args": [
+              {
+                "name": "campaignId",
+                "description": "The Campaign ID load signups for.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "source",
+                "description": "The signup source to load signups for.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "userId",
+                "description": "The user ID to load signups for.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "orderBy",
+                "description": "How to order the results (e.g. 'id,desc').",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": "\"id,desc\""
+              },
+              {
+                "name": "first",
+                "description": "Get the first N results.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": "20"
+              },
+              {
+                "name": "after",
+                "description": "The cursor to return results after.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SignupCollection",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "signupsByUserId",
             "description": "Get a paginated collection of signups by user ID.",
             "args": [
@@ -1381,6 +1454,43 @@
             "type": {
               "kind": "OBJECT",
               "name": "CollectionPage",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "companyPageBySlug",
+            "description": null,
+            "args": [
+              {
+                "name": "slug",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "preview",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": "false"
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CompanyPage",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4870,13 +4980,115 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "SignupCollection",
+        "description": "Experimental: A paginated list of signups. This is a 'Connection' in Relay's\nparlance, and follows the [Relay Cursor Connections](https://dfurn.es/338oQ6i) specification.",
+        "fields": [
+          {
+            "name": "edges",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "SignupEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pageInfo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SignupEdge",
+        "description": "Experimental: Signup in a paginated list.",
+        "fields": [
+          {
+            "name": "cursor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "node",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Signup",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INTERFACE",
         "name": "Block",
         "description": null,
         "fields": [
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5189,22 +5401,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this affiliate block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "title",
             "description": "The title for this affiliate.",
             "args": [],
@@ -5257,8 +5453,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5463,7 +5675,7 @@
           },
           {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5556,7 +5768,7 @@
           },
           {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5820,7 +6032,7 @@
           },
           {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5951,7 +6163,7 @@
           },
           {
             "name": "description",
-            "description": "The description, in Rich Text.",
+            "description": "The Rich Text description.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5967,7 +6179,7 @@
           },
           {
             "name": "content",
-            "description": "The content, in Rich Text.",
+            "description": "The Rich Text content.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -5995,7 +6207,7 @@
           },
           {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6110,7 +6322,7 @@
           },
           {
             "name": "description",
-            "description": "The description, in Rich Text.",
+            "description": "The Rich Text description.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6154,7 +6366,7 @@
           },
           {
             "name": "content",
-            "description": "The content, in Rich Text.",
+            "description": "The Rich Text content.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6170,7 +6382,146 @@
           },
           {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CompanyPage",
+        "description": null,
+        "fields": [
+          {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this company page.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": "The slug for this company page.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "The user-facing title for this company page.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "subTitle",
+            "description": "The subtitle for this page.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coverImage",
+            "description": "The cover image for this company page.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "content",
+            "description": "The Rich Text content for this company page.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "JSON",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -6827,6 +7178,43 @@
             "type": {
               "kind": "OBJECT",
               "name": "Post",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createSignup",
+            "description": "Create a signup.",
+            "args": [
+              {
+                "name": "campaignId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "detail",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "JSON",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Signup",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7667,22 +8055,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "header",
             "description": "The title displayed on this card.",
             "args": [],
@@ -7743,8 +8115,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -7960,8 +8348,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9004,8 +9408,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9090,22 +9510,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "shareHeader",
             "description": "Heading for the share section of the dashboard.",
             "args": [],
@@ -9178,8 +9582,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9235,22 +9655,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "content",
             "description": "The content of the campaign update.",
             "args": [],
@@ -9299,8 +9703,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9355,22 +9775,6 @@
         "name": "ContentBlock",
         "description": null,
         "fields": [
-          {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this link block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "superTitle",
             "description": "An optional supporting super-title.",
@@ -9500,8 +9904,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9613,8 +10033,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9739,22 +10175,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this gallery.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "title",
             "description": "Title of the gallery.",
             "args": [],
@@ -9831,8 +10251,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -9950,8 +10386,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -10092,22 +10544,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this link block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "title",
             "description": "The user-facing title for this link block.",
             "args": [],
@@ -10192,8 +10628,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -10248,22 +10700,6 @@
         "name": "PetitionSubmissionBlock",
         "description": null,
         "fields": [
-          {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this petition submission block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "actionId",
             "description": "The Action ID that posts will be submitted for.",
@@ -10385,8 +10821,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -10913,22 +11365,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this photo submission action.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "actionId",
             "description": "The Action ID that posts will be submitted for.",
             "args": [],
@@ -11097,8 +11533,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -11166,22 +11618,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this gallery.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "actionIds",
             "description": "The list of Action IDs to show in this gallery.",
             "args": [],
@@ -11242,8 +11678,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -11298,22 +11750,6 @@
         "name": "QuizBlock",
         "description": null,
         "fields": [
-          {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "title",
             "description": "The user-facing title for this quiz.",
@@ -11435,8 +11871,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -11492,22 +11944,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "backgroundColor",
             "description": "The hexadecimal background color for this section.",
             "args": [],
@@ -11548,8 +11984,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -11604,22 +12056,6 @@
         "name": "SelectionSubmissionBlock",
         "description": null,
         "fields": [
-          {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "actionId",
             "description": "The Rogue action ID for this submission block.",
@@ -11745,8 +12181,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -11801,22 +12253,6 @@
         "name": "ShareBlock",
         "description": null,
         "fields": [
-          {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this share block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "actionId",
             "description": "The Action ID that 'share' posts will be submitted for.",
@@ -11930,8 +12366,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12022,22 +12474,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "control",
             "description": "This (optional) block should be used as the control in the experiment.",
             "args": [],
@@ -12110,8 +12546,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12167,22 +12619,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "link",
             "description": "The link for this social drive, with dynamic string tokens.",
             "args": [],
@@ -12207,8 +12643,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12264,22 +12716,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "This title is used internally to help find this content.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "title",
             "description": "The user-facing title for this block.",
             "args": [],
@@ -12320,8 +12756,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12692,22 +13144,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this text submission action.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "actionId",
             "description": "The Action ID that posts will be submitted for.",
             "args": [],
@@ -12828,8 +13264,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
@@ -12897,22 +13349,6 @@
         "description": null,
         "fields": [
           {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this voter registration block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "title",
             "description": "The user-facing title for this voter registration block.",
             "args": [],
@@ -12961,8 +13397,24 @@
             "deprecationReason": null
           },
           {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "id",
-            "description": "The Contentful ID for this block.",
+            "description": "The Contentful ID for this entry.",
             "args": [],
             "type": {
               "kind": "NON_NULL",
