@@ -28,7 +28,7 @@ const MenuCarat = ({ color, cssStyles, height, width }) => (
 
 MenuCarat.propTypes = {
   color: PropTypes.string,
-  cssStyles: PropTypes.string,
+  cssStyles: PropTypes.object,
   width: PropTypes.string,
   height: PropTypes.string,
 };

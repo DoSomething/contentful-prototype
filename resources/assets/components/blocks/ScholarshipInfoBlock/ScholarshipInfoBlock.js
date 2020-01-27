@@ -221,7 +221,13 @@ const ScholarshipInfoBlock = ({
             >
               <p className="text-sm font-bold pr-2">{`${detailsLabel} Details`}</p>
               <MenuCarat
-                cssStyles={drawerOpen ? `transform: rotate(180deg);` : null}
+                cssStyles={
+                  drawerOpen
+                    ? css`
+                        transform: rotate(180deg);
+                      `
+                    : null
+                }
               />
             </button>
           </div>
