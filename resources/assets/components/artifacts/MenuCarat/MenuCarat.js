@@ -3,17 +3,17 @@
 import PropTypes from 'prop-types';
 import { jsx, css } from '@emotion/core';
 
-const MenuCarat = ({ color, height, width, ...props }) => (
+const MenuCarat = ({ color, cssStyles, height, width }) => (
   <div className="menu-carat">
     <svg
       css={css`
         pointerevents: 'none';
         height: ${height};
         width: ${width};
+        ${cssStyles};
       `}
       // adding the props here gives us the ability to pass another
       // css prop to the component if there are one off cases we need to define
-      {...props}
       viewBox="0 0 16 9"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -28,12 +28,14 @@ const MenuCarat = ({ color, height, width, ...props }) => (
 
 MenuCarat.propTypes = {
   color: PropTypes.string,
+  cssStyles: PropTypes.object,
   width: PropTypes.string,
   height: PropTypes.string,
 };
 
 MenuCarat.defaultProps = {
   color: '#202020',
+  cssStyles: null,
   width: '16px',
   height: '9px',
 };
