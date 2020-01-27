@@ -67,7 +67,5 @@ export function persistUtms() {
     const url = appendToQuery(sessionUtms);
 
     history.replaceState(null, '', url.href);
-
-    return;
   }
 }
