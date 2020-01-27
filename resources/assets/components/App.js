@@ -10,6 +10,7 @@ import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
+import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
@@ -41,11 +42,11 @@ const App = ({ store, history }) => {
                 <CollectionPage slug={routeProps.match.params.slug} />
               )}
             />
-            {featureFlag('company-pages') ? (
+            {featureFlag('company_pages') ? (
               <Route
                 path="/us/about/:slug"
-                render={() => (
-                  <h1 className="text-center mt-10">Company Page</h1>
+                render={routeProps => (
+                  <CompanyPage slug={routeProps.match.params.slug} />
                 )}
               />
             ) : null}

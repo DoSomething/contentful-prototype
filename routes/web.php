@@ -47,7 +47,7 @@ $router->get('search', function () {
 });
 
 // About pages (feature flagged. Overwrites the categorized about pages below.)
-if (config('features.company-pages')) {
+if (config('features.company_pages')) {
     $router->view('us/about/{slug}', 'app');
 }
 

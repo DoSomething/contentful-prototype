@@ -14,12 +14,16 @@ import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
+import {
+  contentfulImageUrl,
+  featureFlag,
+  withoutNulls,
+} from '../../../helpers';
 
 import './general-page.scss';
 
@@ -149,7 +153,7 @@ const GeneralPage = props => {
             buttonText={ctaCopy.buttonText}
           />
         ) : null}
-        {slug === 'about/easy-scholarships' ? (
+        {!featureFlag('company_pages') && slug === 'about/easy-scholarships' ? (
           <DismissableElement
             name="cta_popover_scholarship_email"
             context={{ contextSource: 'newsletter_scholarships' }}
