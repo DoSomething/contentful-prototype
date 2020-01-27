@@ -38,6 +38,7 @@ import NavApp from './components/NavApp';
 
 // DOM Helpers
 import { ready, debug } from './helpers';
+import { persistUtms } from './helpers/utm';
 import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
 import { bindFlashMessageEvents } from './helpers/flash-message';
@@ -47,6 +48,9 @@ import { analyze, trackAnalyticsPageView } from './helpers/analytics';
 ready(() => {
   // Enable Debug tools.
   debug();
+
+  // Persist any query param UTMs across the user journey on site.
+  persistUtms();
 
   // Configure store & history.
   const history = historyInit();
