@@ -55,11 +55,6 @@ export function persistUtms() {
   // Check to see if there are any in session storage:
   const sessionUtms = getSessionUtms(UTM_SESSION_KEY);
 
-  // // If no current query param utms and no utms in session storage, return.
-  // if (isEmpty(utms) && isEmpty(sessionUtms)) {
-  //   return;
-  // }
-
   // If no session utms, then store the current query param utms:
   if (isEmpty(sessionUtms) && !isEmpty(utms)) {
     setSessionUtms(UTM_SESSION_KEY, utms);
