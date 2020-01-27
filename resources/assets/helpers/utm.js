@@ -52,8 +52,8 @@ export function persistUtms() {
   // Get any current query param utms:
   const utms = withoutValueless(getUtmParameters());
 
-  // If no current query param utms, check to see if there are any in session storage:
-  let sessionUtms = getSessionUtms(UTM_SESSION_KEY);
+  // Check to see if there are any in session storage:
+  const sessionUtms = getSessionUtms(UTM_SESSION_KEY);
 
   // If no current query param utms and no utms in session storage, return.
   if (isEmpty(utms) && isEmpty(sessionUtms)) {
@@ -62,7 +62,7 @@ export function persistUtms() {
 
   // If no session utms, then store the current query param utms:
   if (isEmpty(sessionUtms)) {
-    sessionUtms = setSessionUtms(UTM_SESSION_KEY, utms);
+    setSessionUtms(UTM_SESSION_KEY, utms);
 
     return;
   }
@@ -72,5 +72,7 @@ export function persistUtms() {
     const url = appendToQuery(sessionUtms);
 
     history.replaceState(null, '', url.href);
+
+    return;
   }
 }
