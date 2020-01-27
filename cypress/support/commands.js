@@ -113,6 +113,20 @@ Cypress.Commands.add('withState', state => {
 });
 
 /**
+ * Set environment feature flag variables.
+ *
+ * @param {Object} featureFlag
+ */
+Cypress.Commands.add('withFeatureFlags', featureFlags => {
+  cy.on('window:before:load', window => {
+    window.ENV = {
+      ...window.ENV,
+      FEATURE_FLAGS: { ...window.ENV.FEATURE_FLAGS, ...featureFlags },
+    };
+  });
+});
+
+/**
  * Mock an existing signup for the logged-in user & given campaign.
  *
  * @param {Object} state
