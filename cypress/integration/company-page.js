@@ -24,7 +24,7 @@ describe('Company Page', () => {
   context('Company Pages feature flag turned on', () => {
     it('Renders a Company Page', () => {
       cy.withFeatureFlags({ company_pages: true }).visit(
-        `/us/about/company-page`,
+        `/us/${exampleAboutPage.page.fields.slug}`,
       );
 
       cy.contains('h1', 'Hello World');
