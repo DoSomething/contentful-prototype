@@ -4,14 +4,19 @@ import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
 import LazyImage from '../../utilities/LazyImage';
+import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 export const COMPANY_PAGE_QUERY = gql`
   query CollectionPageQuery($slug: String!, $preview: Boolean!) {
     page: companyPageBySlug(slug: $slug, preview: $preview) {
+      slug
       coverImage {
         url
         description
@@ -24,13 +29,13 @@ export const COMPANY_PAGE_QUERY = gql`
 `;
 
 const CompanyPageTemplate = props => {
-  const { title, subTitle, coverImage, content } = props;
+  const { title, subTitle, slug, coverImage, content } = props;
 
   return (
     <>
       <SiteNavigationContainer />
 
-      <main className="wrapper base-12-grid">
+      <main className="wrapper base-12-grid company-page">
         <article className="grid-wide card rounded border border-solid border-gray-300">
           {coverImage.url ? (
             <LazyImage
@@ -49,6 +54,25 @@ const CompanyPageTemplate = props => {
             <TextContent className="pt-4">{content}</TextContent>
           </div>
         </article>
+
+        {slug === 'easy-scholarships' ? (
+          <DismissableElement
+            name="cta_popover_scholarship_email"
+            context={{ contextSource: 'newsletter_scholarships' }}
+            render={(handleClose, handleComplete) => (
+              <DelayedElement delay={3}>
+                <CtaPopover
+                  title="PAYS TO DO GOOD"
+                  content="Want to earn easy scholarships for volunteering?
+                Subscribe to DoSomething's monthly scholarship email."
+                  handleClose={handleClose}
+                >
+                  <CtaPopoverEmailForm handleComplete={handleComplete} />
+                </CtaPopover>
+              </DelayedElement>
+            )}
+          />
+        ) : null}
       </main>
 
       <SiteFooter />
@@ -57,6 +81,7 @@ const CompanyPageTemplate = props => {
 };
 
 CompanyPageTemplate.propTypes = {
+  slug: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   subTitle: PropTypes.string,
   coverImage: PropTypes.shape({
