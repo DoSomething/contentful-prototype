@@ -45,6 +45,7 @@ class Page extends Entity implements JsonSerializable
                     'url' => get_image_url($this->coverImage),
                 ],
                 'content' => $this->content,
+                'additionalContent' => $this->additionalContent,
                 'sidebar' => $this->parseBlocks($this->sidebar),
                 'blocks' => $this->parseBlocks($this->blocks),
                 'displaySocialShare' => $this->displaySocialShare,
