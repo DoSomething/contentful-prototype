@@ -19,11 +19,7 @@ import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
-import {
-  contentfulImageUrl,
-  featureFlag,
-  withoutNulls,
-} from '../../../helpers';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 
 import './general-page.scss';
 
@@ -40,6 +36,7 @@ const GeneralPage = props => {
     subTitle,
     coverImage,
     content,
+    additionalContent,
     sidebar,
     blocks,
     displaySocialShare,
@@ -153,7 +150,8 @@ const GeneralPage = props => {
             buttonText={ctaCopy.buttonText}
           />
         ) : null}
-        {!featureFlag('company_pages') && slug === 'about/easy-scholarships' ? (
+        {additionalContent.display_scholarship_newsletter_cta_popover ===
+        true ? (
           <DismissableElement
             name="cta_popover_scholarship_email"
             context={{ contextSource: 'newsletter_scholarships' }}
@@ -188,6 +186,7 @@ GeneralPage.propTypes = {
     description: PropTypes.string,
   }),
   content: PropTypes.string,
+  additionalContent: PropTypes.object,
   sidebar: PropTypes.arrayOf(PropTypes.object),
   blocks: PropTypes.arrayOf(PropTypes.object).isRequired,
   displaySocialShare: PropTypes.bool,
@@ -199,6 +198,7 @@ GeneralPage.defaultProps = {
   authors: [],
   coverImage: {},
   content: null,
+  additionalContent: {},
   sidebar: [],
   subTitle: null,
   displaySocialShare: false,
