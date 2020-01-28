@@ -1,9 +1,6 @@
-/* global history */
-/* eslint-disable no-restricted-globals */
-
 import { isEmpty } from 'lodash';
 
-import { appendToQuery, query, withoutValueless } from '.';
+import { query, withoutValueless } from '.';
 
 const UTM_SESSION_KEY = 'ds_utm_params';
 
@@ -31,16 +28,20 @@ export function setSessionUtms(key, utms) {
 }
 
 /**
- * Get UTM parameters.
+ * Get UTMs from session storage or query parameters.
  *
  * @return {Object}
  */
 export function getUtmParameters() {
-  return {
-    utm_source: query('utm_source'),
-    utm_medium: query('utm_medium'),
-    utm_campaign: query('utm_campaign'),
-  };
+  const sessionUtms = getSessionUtms(UTM_SESSION_KEY);
+
+  return !isEmpty(sessionUtms)
+    ? sessionUtms
+    : withoutValueless({
+        utm_source: query('utm_source'),
+        utm_medium: query('utm_medium'),
+        utm_campaign: query('utm_campaign'),
+      });
 }
 
 /**
@@ -49,23 +50,19 @@ export function getUtmParameters() {
  * @return void
  */
 export function persistUtms() {
-  // Get any current query param utms:
-  const utms = withoutValueless(getUtmParameters());
-
-  // Check to see if there are any in session storage:
+  // Check to see if there are any utms in session storage:
   const sessionUtms = getSessionUtms(UTM_SESSION_KEY);
+
+  // If utms in session storage, no need to store them again, so exit out.
+  if (!isEmpty(sessionUtms)) {
+    return;
+  }
+
+  // Get any existing session utms or current query param utms:
+  const utms = getUtmParameters();
 
   // If no session utms, then store the current query param utms:
   if (isEmpty(sessionUtms) && !isEmpty(utms)) {
     setSessionUtms(UTM_SESSION_KEY, utms);
-
-    return;
-  }
-
-  // If no current query param utms, but found session utms, add them to the URL:
-  if (isEmpty(utms) && !isEmpty(sessionUtms)) {
-    const url = appendToQuery(sessionUtms);
-
-    history.replaceState(null, '', url.href);
   }
 }
