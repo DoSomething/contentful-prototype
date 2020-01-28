@@ -19,11 +19,7 @@ import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
-import {
-  contentfulImageUrl,
-  featureFlag,
-  withoutNulls,
-} from '../../../helpers';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 
 import './general-page.scss';
 
