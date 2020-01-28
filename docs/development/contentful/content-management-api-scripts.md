@@ -88,8 +88,6 @@ If your script utilizes the `processEntries` helper method from `/helpers`, than
 
 - There is a suite of helper functions in `./helpers` containing some common logic we found ourselves running with these scripts.
 
-- If utilizing the `--all` flag to bulk process all entries of a content-type & if the content-type contains more then 1000 entries, a temporary workaround to the API's 1000 entry limit is to keep incrementing the `skip` parameter by 1000 in the `./helpers#processEntries` method to eventually process _all_ entries.
-
 ## Notes
 
 - The Content Management API [does not support the `include` parameter to retrieve nested entries in a `getEntries` call](https://www.contentful.com/developers/docs/references/content-management-api/#/reference/search-parameters), so you'll need to make a `getEntry` request to access the fields of an entry reference field value.
