@@ -7,22 +7,20 @@ const UTM_SESSION_KEY = 'ds_utm_params';
 /**
  * Get UTM parameters from session storage.
  *
- * @param  {String} key
  * @return {Object}
  */
-export function getSessionUtms(key) {
-  return JSON.parse(sessionStorage.getItem(key));
+export function getSessionUtms() {
+  return JSON.parse(sessionStorage.getItem(UTM_SESSION_KEY));
 }
 
 /**
  * Store UTM parameters in session storage.
  *
- * @param  {String} key
  * @param  {Object} utms
  * @return {Object}
  */
-export function setSessionUtms(key, utms) {
-  sessionStorage.setItem(key, JSON.stringify(utms));
+export function setSessionUtms(utms) {
+  sessionStorage.setItem(UTM_SESSION_KEY, JSON.stringify(utms));
 
   return utms;
 }
@@ -33,7 +31,7 @@ export function setSessionUtms(key, utms) {
  * @return {Object}
  */
 export function getUtmParameters() {
-  const sessionUtms = getSessionUtms(UTM_SESSION_KEY);
+  const sessionUtms = getSessionUtms();
 
   return !isEmpty(sessionUtms)
     ? sessionUtms
@@ -51,7 +49,7 @@ export function getUtmParameters() {
  */
 export function persistUtms() {
   // Check to see if there are any utms in session storage:
-  const sessionUtms = getSessionUtms(UTM_SESSION_KEY);
+  const sessionUtms = getSessionUtms();
 
   // If utms in session storage, no need to store them again, so exit out.
   if (!isEmpty(sessionUtms)) {
@@ -63,6 +61,6 @@ export function persistUtms() {
 
   // If no session utms, then store the current query param utms:
   if (isEmpty(sessionUtms) && !isEmpty(utms)) {
-    setSessionUtms(UTM_SESSION_KEY, utms);
+    setSessionUtms(utms);
   }
 }
