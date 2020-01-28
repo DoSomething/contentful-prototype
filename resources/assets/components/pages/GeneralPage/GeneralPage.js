@@ -154,9 +154,8 @@ const GeneralPage = props => {
             buttonText={ctaCopy.buttonText}
           />
         ) : null}
-        {!featureFlag('company_pages') &&
-        additionalContent.display_scholarship_newsletter_cta_popover ===
-          true ? (
+        {additionalContent.display_scholarship_newsletter_cta_popover ===
+        true ? (
           <DismissableElement
             name="cta_popover_scholarship_email"
             context={{ contextSource: 'newsletter_scholarships' }}
