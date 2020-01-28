@@ -45,7 +45,7 @@ const CompanyPageTemplate = props => {
             />
           ) : null}
           <div className="m-4 md:m-12">
-            <h1 className="font-league-gothic uppercase text-3xl md:text-4xl">
+            <h1 className="font-league-gothic uppercase text-3xl md:text-5xl">
               {title}
             </h1>
 
