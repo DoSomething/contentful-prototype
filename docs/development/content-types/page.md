@@ -12,7 +12,7 @@ The Page Content Type is used across the app in several forms:
 
 - **Internal Title**: This is for our internal Contentful organization and will be how the block shows up in search results, etc.
 
-- **Title** _(optional)_: The title is displayed prominantly on the page, for articles/facts pages. For campaign subpages, it'll display as the sub navigation link on the campaign (unless the `hideFromNavigation` field is toggled off).
+- **Title**: The title is displayed prominantly on the page, for articles/facts pages. For campaign subpages, it'll display as the sub navigation link on the campaign (unless the `hideFromNavigation` field is toggled off).
 
 - **Subtitle** _(optional)_: The subtitle is displayed beneath the title, _only_ for articles/facts pages.
 
