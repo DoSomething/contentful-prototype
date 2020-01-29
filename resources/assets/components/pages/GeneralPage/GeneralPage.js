@@ -13,12 +13,12 @@ import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 import './general-page.scss';
