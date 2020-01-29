@@ -32,10 +32,8 @@ export function getUtms() {
  * @return void
  */
 export function persistUtms() {
-  const utms = parseUtmQuery();
-
   // If there are current query param utms, lets store them:
-  if (!isEmpty(utms)) {
+  if (!isEmpty(parseUtmQuery())) {
     sessionStorage.setItem(UTM_SESSION_KEY, JSON.stringify(utms));
   }
 }
