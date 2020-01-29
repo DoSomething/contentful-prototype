@@ -1,4 +1,4 @@
-import { getUtmParameters } from '../helpers/utm';
+import { getUtms } from '../helpers/utm';
 import { query, withoutValueless } from '../helpers';
 import { getCampaignDataForNorthstar } from './campaign';
 import { getStoryPageDataForNorthstar } from './storyPage';
@@ -12,7 +12,7 @@ export function getDataForNorthstar(state) {
     contentful_id: state.campaign.id || state.page.id,
     mode: query('mode') || null,
     referrer_user_id: query('referrer_user_id'),
-    ...getUtmParameters(),
+    ...getUtms(),
   });
 }
 
