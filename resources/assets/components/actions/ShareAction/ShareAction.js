@@ -9,12 +9,12 @@ import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
-import ContentfulEntry from '../../ContentfulEntry';
 import { formatPostPayload } from '../../../helpers/forms';
 import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import {
   dynamicString,
   loadFacebookSDK,
@@ -201,7 +201,7 @@ class ShareAction extends PostForm {
           <React.Fragment>
             {affirmationBlock ? (
               <Modal onClose={this.handleModalClose}>
-                <ContentfulEntry json={affirmationBlock} />
+                <ContentfulEntryLoader id={affirmationBlock.id} />
               </Modal>
             ) : (
               <PostCreatedModal
