@@ -35,26 +35,66 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   query ContentfulBlockQuery($id: String!, $preview: Boolean!) {
     block(id: $id, preview: $preview) {
       id
-      ...LinkBlockFragment
-      ...QuizBlockFragment
-      ...ShareBlockFragment
-      ...EmbedBlockFragment
-      ...ImagesBlockFragment
-      ...GalleryBlockFragment
-      ...ContentBlockFragment
-      ...SoftEdgeBlockFragment
-      ...AffirmationBlockFragment
-      ...SocialDriveBlockFragment
-      ...PostGalleryBlockFragment
-      ...CallToActionBlockFragment
-      ...CampaignDashboardFragment
-      ...CampaignUpdateBlockFragment
-      ...TextSubmissionBlockFragment
-      ...PhotoSubmissionBlockFragment
-      ...SixpackExperimentBlockFragment
-      ...VoterRegistrationBlockFragment
-      ...PetitionSubmissionBlockFragment
-      ...SelectionSubmissionBlockFragment
+      ... on LinkBlock {
+        ...LinkBlockFragment
+      }
+      ... on QuizBlock {
+        ...QuizBlockFragment
+      }
+      ... on ShareBlock {
+        ...ShareBlockFragment
+      }
+      ... on EmbedBlock {
+        ...EmbedBlockFragment
+      }
+      ... on ImagesBlock {
+        ...ImagesBlockFragment
+      }
+      ... on GalleryBlock {
+        ...GalleryBlockFragment
+      }
+      ... on ContentBlock {
+        ...ContentBlockFragment
+      }
+      ... on SoftEdgeBlock {
+        ...SoftEdgeBlockFragment
+      }
+      ... on AffirmationBlock {
+        ...AffirmationBlockFragment
+      }
+      ... on SocialDriveBlock {
+        ...SocialDriveBlockFragment
+      }
+      ... on PostGalleryBlock {
+        ...PostGalleryBlockFragment
+      }
+      ... on CallToActionBlock {
+        ...CallToActionBlockFragment
+      }
+      ... on CampaignDashboard {
+        ...CampaignDashboardFragment
+      }
+      ... on CampaignUpdateBlock {
+        ...CampaignUpdateBlockFragment
+      }
+      ... on TextSubmissionBlock {
+        ...TextSubmissionBlockFragment
+      }
+      ... on PhotoSubmissionBlock {
+        ...PhotoSubmissionBlockFragment
+      }
+      ... on SixpackExperimentBlock {
+        ...SixpackExperimentBlockFragment
+      }
+      ... on VoterRegistrationBlock {
+        ...VoterRegistrationBlockFragment
+      }
+      ... on PetitionSubmissionBlock {
+        ...PetitionSubmissionBlockFragment
+      }
+      ... on SelectionSubmissionBlock {
+        ...SelectionSubmissionBlockFragment
+      }
     }
   }
 
