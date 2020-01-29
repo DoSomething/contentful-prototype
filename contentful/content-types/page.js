@@ -59,6 +59,15 @@ module.exports = function(migration) {
         message:
           'Only alphanumeric, forward-slash, and hyphen characters are allowed in slugs!',
       },
+      {
+        prohibitRegexp: {
+          pattern: '^about\\/.+?$',
+          flags: null,
+        },
+
+        message:
+          '"about/" pages should use a Company Page entry. (Existing "about/" pages have been automatically ported over).',
+      },
     ])
     .disabled(false)
     .omitted(false);
@@ -252,7 +261,7 @@ module.exports = function(migration) {
 
   page.changeFieldControl('slug', 'builtin', 'slugEditor', {
     helpText:
-      'For an article page prefix with "articles/", a fact page prefix with "facts/" and for an about page prefix with "about/"',
+      'For an article page prefix with "articles/", a fact page prefix with "facts/", for a campaign page, prefix the slug with the campaign entry\'s slug value e.g. "teens-for-jeans/action". ("about/" pages should use a Company Page entry)',
   });
 
   page.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
