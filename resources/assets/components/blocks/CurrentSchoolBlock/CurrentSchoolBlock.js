@@ -7,6 +7,17 @@ import Query from '../../Query';
 import CurrentSchoolImpact from './CurrentSchoolImpact';
 import CurrentSchoolForm from './CurrentSchoolForm';
 
+export const CurrentSchoolBlockFragment = gql`
+  fragment CurrentSchoolBlockFragment on CurrentSchoolBlock {
+    actionId
+    currentSchoolTitle
+    currentSchoolDescription
+    schoolNotAvailableDescription
+    selectSchoolTitle
+    selectSchoolDescription
+  }
+`;
+
 const USER_SCHOOL_QUERY = gql`
   query UserSchoolQuery($userId: String!) {
     user(id: $userId) {
