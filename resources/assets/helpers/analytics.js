@@ -2,7 +2,7 @@
 
 import { camelCase, get, mapKeys, snakeCase, startCase } from 'lodash';
 
-import { getUtmParameters } from './utm';
+import { getUtms } from './utm';
 import { debug, stringifyNestedObjects, withoutValueless } from '.';
 
 /**
@@ -189,7 +189,7 @@ export function getPageContext() {
  * @return {Object}
  */
 export function getUtmContext() {
-  const utms = getUtmParameters();
+  const utms = getUtms();
 
   // For analytics, we prefer camelCased keys:
   return mapKeys(utms, (value, key) => camelCase(key));

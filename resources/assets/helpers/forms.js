@@ -3,7 +3,7 @@
 import { forEach, get, isInteger } from 'lodash';
 
 import { withoutValueless } from '.';
-import { getUtmParameters } from './utm';
+import { getUtms } from './utm';
 
 /**
  * Calculate the difference between a total value and a submitted value.
@@ -126,7 +126,7 @@ export function formatPostPayload(data = {}) {
     withoutValueless({
       // @TODO: Pass in 'contentful_id' parameter here w/ the containing page ID.
       // contentful_id: contentfulId,
-      ...getUtmParameters(),
+      ...getUtms(),
     }),
   );
 

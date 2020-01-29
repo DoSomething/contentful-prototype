@@ -5,41 +5,25 @@ import { query, withoutValueless } from '.';
 const UTM_SESSION_KEY = 'ds_utm_params';
 
 /**
- * Get UTM parameters from session storage.
- *
- * @return {Object}
+ * Parse UTM parameters from URL query.
  */
-export function getSessionUtms() {
-  return JSON.parse(sessionStorage.getItem(UTM_SESSION_KEY));
-}
+const parseUtmQuery = () =>
+  withoutValueless({
+    utm_source: query('utm_source'),
+    utm_medium: query('utm_medium'),
+    utm_campaign: query('utm_campaign'),
+  });
 
 /**
- * Store UTM parameters in session storage.
- *
- * @param  {Object} utms
- * @return {Object}
- */
-export function setSessionUtms(utms) {
-  sessionStorage.setItem(UTM_SESSION_KEY, JSON.stringify(utms));
-
-  return utms;
-}
-
-/**
- * Get UTMs from session storage or query parameters.
+ * Get UTMs from session storage or fallback to query parameters.
  *
  * @return {Object}
  */
-export function getUtmParameters() {
-  const sessionUtms = getSessionUtms();
+export function getUtms() {
+  const sessionUtms = JSON.parse(sessionStorage.getItem(UTM_SESSION_KEY));
 
-  return !isEmpty(sessionUtms)
-    ? sessionUtms
-    : withoutValueless({
-        utm_source: query('utm_source'),
-        utm_medium: query('utm_medium'),
-        utm_campaign: query('utm_campaign'),
-      });
+  // Just in case session storage fails, we'll fall back to current query:
+  return !isEmpty(sessionUtms) ? sessionUtms : parseUtmQuery();
 }
 
 /**
@@ -48,19 +32,10 @@ export function getUtmParameters() {
  * @return void
  */
 export function persistUtms() {
-  // Check to see if there are any utms in session storage:
-  const sessionUtms = getSessionUtms();
+  const utms = parseUtmQuery();
 
-  // If utms in session storage, no need to store them again, so exit out.
-  if (!isEmpty(sessionUtms)) {
-    return;
-  }
-
-  // Get any existing session utms or current query param utms:
-  const utms = getUtmParameters();
-
-  // If no session utms, then store the current query param utms:
-  if (isEmpty(sessionUtms) && !isEmpty(utms)) {
-    setSessionUtms(utms);
+  // If there are current query param utms, lets store them:
+  if (!isEmpty(utms)) {
+    sessionStorage.setItem(UTM_SESSION_KEY, JSON.stringify(utms));
   }
 }
