@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
-import AdminDashboard from './AdminDashboard';
 import { userHasRole } from '../../selectors/user';
+import LegacyAdminDashboard from './LegacyAdminDashboard';
 
 const mapStateToProps = state => ({
   enabled: userHasRole(state, ['admin', 'staff']),
 });
 
-export default connect(mapStateToProps)(AdminDashboard);
+export default connect(mapStateToProps)(LegacyAdminDashboard);

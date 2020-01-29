@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CampaignDashboard = props => {
+const LegacyCampaignDashboard = props => {
   const {
     campaignId,
     clickedShowAffirmation,
@@ -35,7 +35,7 @@ const CampaignDashboard = props => {
   );
 };
 
-CampaignDashboard.propTypes = {
+LegacyCampaignDashboard.propTypes = {
   campaignId: PropTypes.string.isRequired,
   isSignedUp: PropTypes.bool.isRequired,
   clickedShowAffirmation: PropTypes.func.isRequired,
@@ -43,4 +43,4 @@ CampaignDashboard.propTypes = {
   signupCreated: PropTypes.func.isRequired,
 };
 
-export default CampaignDashboard;
+export default LegacyCampaignDashboard;

@@ -15,10 +15,8 @@ import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
 import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
-import {
-  AdminDashboardContainer,
-  CampaignDashboardContainer,
-} from '../AdminDashboard';
+import LegacyAdminDashboardContainer from '../LegacyAdminDashboard/LegacyAdminDashboardContainer';
+import LegacyCampaignDashboardContainer from '../LegacyAdminDashboard/LegacyCampaignDashboard/LegacyCampaignDashboardContainer';
 
 const Campaign = props => (
   <ModalRoute
@@ -29,9 +27,9 @@ const Campaign = props => (
     <SiteNavigationContainer />
 
     <main>
-      <AdminDashboardContainer>
-        <CampaignDashboardContainer />
-      </AdminDashboardContainer>
+      <LegacyAdminDashboardContainer>
+        <LegacyCampaignDashboardContainer />
+      </LegacyAdminDashboardContainer>
 
       <NotificationContainer />
 
