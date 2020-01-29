@@ -25,6 +25,7 @@ import { SixpackExperimentBlockFragment } from '../SixpackExperiment/SixpackExpe
 import { CampaignUpdateBlockFragment } from '../../blocks/CampaignUpdate/CampaignUpdate';
 import { SocialDriveBlockFragment } from '../../actions/SocialDriveAction/SocialDriveAction';
 import { PostGalleryBlockFragment } from '../../blocks/PostGalleryBlock/PostGalleryBlockQuery';
+import { CurrentSchoolBlockFragment } from '../../blocks/CurrentSchoolBlock/CurrentSchoolBlock';
 import { TextSubmissionBlockFragment } from '../../actions/TextSubmissionAction/TextSubmissionAction';
 import { PhotoSubmissionBlockFragment } from '../../actions/PhotoSubmissionAction/PhotoSubmissionAction';
 import { VoterRegistrationBlockFragment } from '../../actions/VoterRegistrationAction/VoterRegistrationAction';
@@ -74,6 +75,9 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ... on CampaignDashboard {
         ...CampaignDashboardFragment
       }
+      ... on CurrentSchoolBlock {
+        ...CurrentSchoolBlockFragment
+      }
       ... on CampaignUpdateBlock {
         ...CampaignUpdateBlockFragment
       }
@@ -111,6 +115,7 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${PostGalleryBlockFragment}
   ${CallToActionBlockFragment}
   ${CampaignDashboardFragment}
+  ${CurrentSchoolBlockFragment}
   ${CampaignUpdateBlockFragment}
   ${TextSubmissionBlockFragment}
   ${PhotoSubmissionBlockFragment}

@@ -167,6 +167,9 @@ class ContentfulEntry extends React.Component {
       case 'currentSchoolBlock':
         return <CurrentSchoolBlockContainer {...withoutNulls(json.fields)} />;
 
+      case 'CurrentSchoolBlock':
+        return <CurrentSchoolBlockContainer {...withoutNulls(json)} />;
+
       case 'embed':
         return (
           <EmbedBlockContainer
