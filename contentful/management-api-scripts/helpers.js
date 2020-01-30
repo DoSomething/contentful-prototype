@@ -60,24 +60,43 @@ async function processEntries(environment, args, entryType, process) {
 
     await process(environment, entry);
   } else if (args['all']) {
-    const entries = await attempt(() =>
-      environment.getEntries({
-        content_type: entryType,
-        // 1000 is the maximum amount the API will return (http://bit.ly/2uhYQsz).
-        // @TODO: Add pagination support to bulk process *all* entries.
-        limit: 1000,
-        // For now, if the content type exceeds 1000 entries, a hack is to increment this skip value by 1000
-        // and keep running the script until all entries are processed.
-        skip: 0,
-      }),
-    );
+    // We're going to run through pagination, collecting *all* entries for this
+    // Content Type (1000 being the API limit). We'll first define our
+    // method to grab a single batch from Contentful.
+    const fetchEntries = async ({ skip }) =>
+      attempt(() =>
+        environment.getEntries({
+          content_type: entryType,
+          limit: 1000,
+          skip,
+        }),
+      );
+
+    // Fetch the initial batch of entries.
+    let entries = await fetchEntries({ skip: 0 });
 
     if (!entries) {
       return;
     }
 
-    for (var i = 0; i < entries.items.length; i++) {
-      const entry = entries.items[i];
+    // We'll store the cumulative mass of actual entry items in here.
+    const entryItems = entries.items;
+
+    // Ok, how many 'pages' do we need to run through to collect *all* entries?
+    const pageCount = Math.ceil(entries.total / 1000);
+
+    // For each subsequent page (we've already got the first),
+    // fetch its batch of entries.
+    for (let i = 1; i < pageCount; i++) {
+      const additionalEntries = await fetchEntries({ skip: i * 1000 });
+
+      if (additionalEntries) {
+        entryItems.push(...additionalEntries.items);
+      }
+    }
+
+    // Finally, yield each entry to the provided process function.
+    for (let entry of entryItems) {
       await process(environment, entry);
     }
   }
