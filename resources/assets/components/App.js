@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/react-common';
 import { Router, Route, Switch } from 'react-router-dom';
 
+import { env } from '../helpers';
 import graphqlClient from '../graphql';
-import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
@@ -42,14 +42,12 @@ const App = ({ store, history }) => {
                 <CollectionPage slug={routeProps.match.params.slug} />
               )}
             />
-            {featureFlag('company_pages') ? (
-              <Route
-                path="/us/about/:slug"
-                render={routeProps => (
-                  <CompanyPage slug={routeProps.match.params.slug} />
-                )}
-              />
-            ) : null}
+            <Route
+              path="/us/about/:slug"
+              render={routeProps => (
+                <CompanyPage slug={routeProps.match.params.slug} />
+              )}
+            />
             <Route path="/us/join" component={BetaReferralPage} />
             <Route
               path="/us/refer-friends"
