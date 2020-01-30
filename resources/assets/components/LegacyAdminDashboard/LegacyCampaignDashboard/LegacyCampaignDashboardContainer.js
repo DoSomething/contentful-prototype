@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import CampaignDashboard from './CampaignDashboard';
+import LegacyCampaignDashboard from './LegacyCampaignDashboard';
 import {
   clickedShowLandingPage,
   clickedShowActionPage,
@@ -34,4 +34,4 @@ const actionCreators = {
 export default connect(
   mapStateToProps,
   actionCreators,
-)(CampaignDashboard);
+)(LegacyCampaignDashboard);
