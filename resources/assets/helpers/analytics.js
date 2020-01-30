@@ -1,6 +1,13 @@
 /* global window */
 
-import { camelCase, get, mapKeys, snakeCase, startCase } from 'lodash';
+import {
+  camelCase,
+  get,
+  isString,
+  mapKeys,
+  snakeCase,
+  startCase,
+} from 'lodash';
 
 import { getUtms } from './utm';
 import { debug, stringifyNestedObjects, withoutValueless } from '.';
@@ -237,23 +244,26 @@ export function trackAnalyticsPageView(history) {
  * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent({ metadata, context = {}, service }) {
-  if (!metadata) {
-    console.error('The metadata object is missing!');
+export function trackAnalyticsEvent(name, { metadata, context = {}, service }) {
+  if (!name && !isString(name)) {
+    console.error('Please provide a string for the event name!');
+
     return;
   }
 
-  const { adjective, category, target, noun, verb } = metadata;
-  const label = metadata.label || noun;
-
-  const name = formatEventName(verb, noun, adjective);
-
-  const action = snakeCase(`${target}_${verb}`);
+  const { action, category, label, target } = metadata;
 
   const data = withoutValueless({
     ...context,
     ...getUtmContext(),
   });
 
-  sendToServices(name, category, action, label, data, service);
+  sendToServices(
+    `${APP_PREFIX}_${name}`,
+    category,
+    snakeCase(`${target}_${action}`),
+    label,
+    data,
+    service,
+  );
 }
