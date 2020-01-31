@@ -762,7 +762,7 @@ export function handleFacebookShareClick(href, trackingData) {
     action: 'button_clicked',
     category: 'social_share',
     label: 'facebook',
-    context: { trackingData, url: href },
+    context: { ...trackingData, url: href },
   });
 
   // @todo 12/13/2018: Use the showFacebookShareDialog to track
@@ -782,7 +782,7 @@ export function handleTwitterShareClick(href, trackingData, quote = '') {
     action: 'button_clicked',
     category: 'social_share',
     label: 'twitter',
-    context: { trackingData, url: href },
+    context: { ...trackingData, url: href },
   });
 
   showTwitterSharePrompt(href, quote);
