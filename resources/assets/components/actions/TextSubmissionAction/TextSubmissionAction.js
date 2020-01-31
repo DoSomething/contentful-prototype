@@ -71,15 +71,11 @@ class TextSubmissionAction extends PostForm {
   };
 
   handleFocus = () => {
-    trackAnalyticsEvent({
+    trackAnalyticsEvent('focused_text_submission_action_text', {
+      action: 'field_focused',
+      category: 'campaign_action',
+      label: 'text_submission_action',
       context: { blockId: this.props.id, pageId: this.props.pageId },
-      metadata: {
-        adjective: 'text',
-        category: 'campaign_action',
-        noun: 'text_submission_action', // @TODO: maybe set this using the formatEventNoun() helper?
-        target: 'field',
-        verb: 'focused',
-      },
     });
   };
 

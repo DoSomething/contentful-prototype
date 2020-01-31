@@ -301,6 +301,8 @@ export function trackAnalyticsEvent(name, metadata = {}) {
     return;
   }
 
+  console.log('💅 using new style...');
+
   const data = withoutValueless({
     ...context,
     ...getUtmContext(),

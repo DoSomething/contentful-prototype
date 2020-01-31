@@ -11,14 +11,11 @@ import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 
 const analyzeClick = (link, context) => {
-  trackAnalyticsEvent({
+  trackAnalyticsEvent('clicked_link_action', {
+    action: 'button_clicked',
+    category: 'campaign_action',
+    label: 'link_action',
     context: { ...context, url: link },
-    metadata: {
-      category: 'campaign_action',
-      noun: 'link_action',
-      target: 'button',
-      verb: 'clicked',
-    },
   });
 };
 

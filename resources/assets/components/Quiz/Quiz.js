@@ -63,16 +63,13 @@ const Quiz = ({
   const completeQuiz = () => {
     const resultBlockId = calculateResult(choices, questions);
 
-    trackAnalyticsEvent({
+    trackAnalyticsEvent('submitted_quiz', {
+      action: 'form_submitted',
+      category: 'campaign_action',
+      label: 'quiz',
       context: {
         id,
         campaignId: additionalContent.campaignId,
-      },
-      metadata: {
-        category: 'campaign_action',
-        noun: 'quiz',
-        target: 'form',
-        verb: 'submitted',
       },
     });
 

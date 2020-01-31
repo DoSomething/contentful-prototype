@@ -7,15 +7,10 @@ import './cta-banner.scss';
 
 const CtaBanner = ({ buttonText, content, link, title }) => {
   const handleClick = () =>
-    trackAnalyticsEvent({
-      metadata: {
-        category: 'site_action',
-        target: 'button',
-        verb: 'clicked',
-        noun: 'call_to_action',
-        adjective: 'banner',
-        label: 'call_to_action_banner',
-      },
+    trackAnalyticsEvent('clicked_call_to_action_banner', {
+      action: 'button_clicked',
+      category: 'site_action',
+      label: 'call_to_action_banner',
       context: {
         url: link,
       },
