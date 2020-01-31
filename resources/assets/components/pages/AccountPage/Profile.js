@@ -63,6 +63,7 @@ const Profile = props => (
             onClick={() =>
               trackAnalyticsEvent('clicked_nav_link_log_out', {
                 action: 'link_clicked',
+                // @TODO: we should rename the category to "authentication"
                 category: 'navigation',
                 label: 'log_out',
                 context: {
