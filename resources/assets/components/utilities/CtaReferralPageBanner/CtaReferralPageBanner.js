@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { featureFlag } from '../../../helpers';
+
 import './cta-referral-page-banner.scss';
 
 const CtaReferralPageBanner = ({ campaignId }) => (
   <React.Fragment>
-    {/* The Refer a Friend feature is limited to the Teens for Jeans campaign, */}
-    {/* or a test campaign for development environments. (hardcoded by design https://git.io/JvJ4H). */}
-    {['9037', '9001'].includes(campaignId) ? (
+    {featureFlag('referral_campaign_ids', []).includes(campaignId) ? (
       <div className="p-3">
         <div className="cta-register-banner md:px-6 pt-3 clearfix">
           <div className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left">
