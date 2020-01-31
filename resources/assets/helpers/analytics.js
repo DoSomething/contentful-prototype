@@ -4,7 +4,7 @@ import {
   camelCase,
   get,
   isString,
-  isObject,
+  isPlainObject,
   mapKeys,
   snakeCase,
   startCase,
@@ -280,11 +280,12 @@ export function legacyTrackAnalyticsEvent({ metadata, context = {}, service }) {
  * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent(name, metadata) {
+export function trackAnalyticsEvent(name, metadata = {}) {
   // @REMOVE: Temporarily check to see if name is an object, and if so send it to the
   // old legacyTrackAnalyticsEvent(); this will allow us to incrementally switch
   // calls to the new trackAnalyticsEvent() without breaking everything!
-  if (isObject(name)) {
+  if (isPlainObject(name)) {
+    console.log('🤔 sending to legacy function...');
     legacyTrackAnalyticsEvent(arguments[0]); // eslint-disable-line prefer-rest-params
 
     return;
@@ -295,11 +296,18 @@ export function trackAnalyticsEvent(name, metadata) {
   // checking against whether name is a string or object or will error out.
   const { action, category, label, context = {}, service } = metadata;
 
-  if (!name && !isString(name)) {
+  console.log('🐞 name: ', name);
+  console.log('🐞 !name: ', !name);
+  console.log('🐞 isString: ', isString(name));
+  console.log('🐞 !isString: ', !isString(name));
+
+  if (!isString(name)) {
     console.error('Please provide a string for the event name!');
 
     return;
   }
+
+  console.log('🤷‍♂️ whelp, we are continuing...');
 
   const data = withoutValueless({
     ...context,

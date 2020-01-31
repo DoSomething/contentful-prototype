@@ -44,11 +44,11 @@ const EVENT_CATEGORY = 'campaign_action';
 class ShareAction extends PostForm {
   state = { showModal: false };
 
-  contextData = {
+  getContextData = () => ({
     blockId: this.props.id,
     campaignId: this.props.campaignId,
     pageId: this.props.pageId,
-  };
+  });
 
   componentDidMount() {
     // If this is a Facebook share action, make sure we load SDK.
@@ -96,7 +96,7 @@ class ShareAction extends PostForm {
       action: 'button_clicked',
       category: EVENT_CATEGORY,
       label: 'facebook',
-      context: { ...this.contextData, ...trackingData },
+      context: { ...this.getContextData(), ...trackingData },
     });
 
     showFacebookShareDialog(url)
@@ -116,7 +116,7 @@ class ShareAction extends PostForm {
           action: 'action_completed',
           category: EVENT_CATEGORY,
           label: 'facebook',
-          context: { ...this.contextData, ...trackingData },
+          context: { ...this.getContextData(), ...trackingData },
         });
 
         this.setState({ showModal: true });
@@ -126,7 +126,7 @@ class ShareAction extends PostForm {
           action: 'action_cancelled',
           category: EVENT_CATEGORY,
           label: 'facebook',
-          context: { ...this.contextData, ...trackingData },
+          context: { ...this.getContextData(), ...trackingData },
         });
       });
   };
@@ -136,7 +136,7 @@ class ShareAction extends PostForm {
       action: 'button_clicked',
       category: EVENT_CATEGORY,
       label: 'twitter',
-      context: { ...this.contextData, url: this.props.link },
+      context: { ...this.getContextData(), url: this.props.link },
     });
 
     showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
