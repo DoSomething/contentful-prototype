@@ -4,8 +4,8 @@ import gql from 'graphql-tag';
 import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
 import MoneyHandImage from './money-hand.svg';
-import { query, env } from '../../../../helpers';
 import CampaignLink from './BetaPageCampaignLink';
+import { getReferralCampaignId, query } from '../../../../helpers';
 
 const REFERRAL_PAGE_USER = gql`
   query ReferralPageUserQuery($id: String!) {
@@ -22,12 +22,6 @@ const BetaPage = () => {
   if (!userId) {
     return <ErrorPage />;
   }
-
-  // The Refer a Friend feature is limited to the Teens for Jeans campaign,
-  // or a test campaign for development environments. (hardcoded by design https://git.io/JvJ4H).
-  const campaignId = ['local', 'development'].includes(env('APP_ENV'))
-    ? '9001'
-    : '9037';
 
   return (
     // We *do not* render a SiteNavigationContainer here to avoid losing the referral metadata (see https://git.io/JeX2A).
@@ -60,7 +54,10 @@ const BetaPage = () => {
                   </p>
                 </div>
                 <div className="my-6">
-                  <CampaignLink campaignId={campaignId} userId={userId} />
+                  <CampaignLink
+                    campaignId={getReferralCampaignId()}
+                    userId={userId}
+                  />
                 </div>
                 <div className="my-6">
                   <h3>FAQ</h3>
