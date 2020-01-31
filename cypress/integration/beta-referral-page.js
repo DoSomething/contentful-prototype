@@ -8,7 +8,7 @@ describe('Beta Referral Page', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
   const referralFeatureFlags = {
-    refferal_campaign_ids: [campaignId],
+    referral_campaign_ids: [campaignId],
     default_referral_campaign_id: campaignId,
   };
 
