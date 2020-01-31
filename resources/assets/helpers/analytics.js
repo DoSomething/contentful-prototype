@@ -1,6 +1,14 @@
 /* global window */
 
-import { camelCase, get, mapKeys, snakeCase, startCase } from 'lodash';
+import {
+  camelCase,
+  get,
+  isString,
+  isPlainObject,
+  mapKeys,
+  snakeCase,
+  startCase,
+} from 'lodash';
 
 import { getUtms } from './utm';
 import { debug, stringifyNestedObjects, withoutValueless } from '.';
@@ -95,9 +103,9 @@ export function analyzeWithSnowplow(name, category, action, label, data) {
 
   const analyticsEvent = [
     'trackStructEvent',
-    category,
-    action,
-    label,
+    snakeCase(category),
+    snakeCase(action),
+    snakeCase(label),
     name,
     null,
     [
@@ -231,13 +239,14 @@ export function trackAnalyticsPageView(history) {
  * Track an analytics event with a specified service.
  * (Defaults to tracking with all services.)
  *
+ * @deprecated
  * @param  {Object} options
  * @param  {Object} options.metadata
  * @param  {Object} options.context
  * @param  {String} options.service
  * @return {void}
  */
-export function trackAnalyticsEvent({ metadata, context = {}, service }) {
+export function legacyTrackAnalyticsEvent({ metadata, context = {}, service }) {
   if (!metadata) {
     console.error('The metadata object is missing!');
     return;
@@ -256,4 +265,53 @@ export function trackAnalyticsEvent({ metadata, context = {}, service }) {
   });
 
   sendToServices(name, category, action, label, data, service);
+}
+
+/**
+ * Track an analytics event with a specified service.
+ * (Defaults to tracking with all services.)
+ *
+ * @param  {String} name
+ * @param  {Object} metadata
+ * @param  {String} options.action
+ * @param  {String} options.category
+ * @param  {String} options.label
+ * @param  {Object} options.context
+ * @param  {String} options.service
+ * @return {void}
+ */
+export function trackAnalyticsEvent(name, metadata = {}) {
+  // @REMOVE: Temporarily check to see if name is an object, and if so send it to the
+  // old legacyTrackAnalyticsEvent(); this will allow us to incrementally switch
+  // calls to the new trackAnalyticsEvent() without breaking everything!
+  if (isPlainObject(name)) {
+    legacyTrackAnalyticsEvent(arguments[0]); // eslint-disable-line prefer-rest-params
+
+    return;
+  }
+
+  // @REMOVE: We will switch back to destructuring the variables in the function signature,
+  // but while we support the legacyTrackAnalyticsEvent(), we need to destruct after
+  // checking against whether name is a string or object or will error out.
+  const { action, category, label, context = {}, service } = metadata;
+
+  if (!isString(name)) {
+    console.error('Please provide a string for the event name!');
+
+    return;
+  }
+
+  const data = withoutValueless({
+    ...context,
+    ...getUtmContext(),
+  });
+
+  sendToServices(
+    `${APP_PREFIX}_${name}`,
+    category,
+    action,
+    label,
+    data,
+    service,
+  );
 }

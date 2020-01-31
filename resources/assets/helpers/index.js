@@ -741,16 +741,11 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
  * @param {Object} trackingData
  */
 export function handleFacebookShareClick(href, trackingData) {
-  trackAnalyticsEvent({
+  trackAnalyticsEvent('clicked_share_facebook', {
+    action: 'button_clicked',
+    category: 'social_share',
+    label: 'facebook',
     context: { trackingData, url: href },
-    metadata: {
-      category: 'social_share',
-      adjective: 'facebook',
-      label: 'facebook',
-      noun: 'share',
-      target: 'button',
-      verb: 'clicked',
-    },
   });
 
   // @todo 12/13/2018: Use the showFacebookShareDialog to track
@@ -766,16 +761,11 @@ export function handleFacebookShareClick(href, trackingData) {
  * @param {String} quote
  */
 export function handleTwitterShareClick(href, trackingData, quote = '') {
-  trackAnalyticsEvent({
+  trackAnalyticsEvent('clicked_share_twitter', {
+    action: 'button_clicked',
+    category: 'social_share',
+    label: 'twitter',
     context: { trackingData, url: href },
-    metadata: {
-      category: 'social_share',
-      adjective: 'twitter',
-      label: 'twitter',
-      noun: 'share',
-      target: 'button',
-      verb: 'clicked',
-    },
   });
 
   showTwitterSharePrompt(href, quote);

@@ -83,16 +83,12 @@ describe('ShareAction component', () => {
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
       expect(trackEventMock.mock.calls[0]).toEqual([
+        'clicked_share_action_facebook',
         {
+          action: 'button_clicked',
+          category: 'campaign_action',
           context: trackingData,
-          metadata: {
-            adjective: 'facebook',
-            category: 'campaign_action',
-            noun: 'share_action',
-            label: 'facebook',
-            target: 'button',
-            verb: 'clicked',
-          },
+          label: 'facebook',
         },
       ]);
     });
@@ -133,16 +129,12 @@ describe('ShareAction component', () => {
       expect(trackEventMock.mock.calls.length).toBeGreaterThan(0);
 
       expect(trackEventMock.mock.calls[0]).toEqual([
+        'clicked_share_action_twitter',
         {
+          action: 'button_clicked',
+          category: 'campaign_action',
+          label: 'twitter',
           context: trackingData,
-          metadata: {
-            adjective: 'twitter',
-            category: 'campaign_action',
-            noun: 'share_action',
-            label: 'twitter',
-            target: 'button',
-            verb: 'clicked',
-          },
         },
       ]);
     });
