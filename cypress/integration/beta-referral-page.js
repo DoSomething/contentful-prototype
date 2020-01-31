@@ -16,7 +16,7 @@ describe('Beta Referral Page', () => {
     const user = userFactory();
 
     cy.withFeatureFlags(referralFeatureFlags).visit(
-      `/us/join?user_id=${userId}?campaign_id=${campaignId}`,
+      `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
     );
 
     cy.contains('campaign scholarship');
