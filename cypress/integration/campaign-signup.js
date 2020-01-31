@@ -55,7 +55,7 @@ describe('Campaign Signup', () => {
     cy.get('.card.affirmation').contains('Thanks for joining us!');
   });
 
-  it('Display Referral Page Banner CTA in affirmation for configured campaign', () => {
+  it('Display Referral Page Banner CTA in affirmation for configured campaign & feature flagged user', () => {
     const user = userFactory();
 
     // Log in & visit the campaign pitch page:
@@ -65,6 +65,14 @@ describe('Campaign Signup', () => {
 
     // Mock the response we'll be expecting once we hit "Join Now":
     cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+
+    // Mock the GraphQL response for the user to ensure they have the
+    // Refer a Friend feature flag enabled.
+    cy.mockGraphqlOp('UserAccountAndSignupsCountQuery', {
+      user: {
+        hasReferFriendsScholarshipFlag: true,
+      },
+    });
 
     // Click "Join Now" & should get the affirmation modal:
     cy.contains('button', 'Join Us').click();
