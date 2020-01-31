@@ -528,10 +528,11 @@ export function env(key, defaultVal) {
  * Get feature flag value from window.ENV
  *
  * @param  {String} feature
+ * @param  {*}      defaultVal
  * @return {*}
  */
-export function featureFlag(feature) {
-  return get(env('FEATURE_FLAGS'), feature);
+export function featureFlag(feature, defaultVal) {
+  return get(env('FEATURE_FLAGS'), feature, defaultVal);
 }
 
 /**
