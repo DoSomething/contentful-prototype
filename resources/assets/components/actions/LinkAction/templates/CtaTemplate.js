@@ -15,8 +15,8 @@ const onLinkClick = (link, context) => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
 
   trackAnalyticsEvent('clicked_link_action', {
-    category: 'campaign_action',
     action: 'button_clicked',
+    category: 'campaign_action',
     label: 'link_action',
     context: { ...context, url: link },
   });
