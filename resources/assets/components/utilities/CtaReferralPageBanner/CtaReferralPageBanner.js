@@ -16,7 +16,10 @@ const CtaReferralPageBanner = ({ campaignId }) => (
               Refer a friend to this campaign, and you’ll *both* increase your
               chances of winning the campaign scholarship!
             </p>
-            <a href="/us/refer-friends" className="button p-3 -attached">
+            <a
+              href={`/us/refer-friends?campaign_id=${campaignId}`}
+              className="button p-3 -attached"
+            >
               Refer A Friend
             </a>
           </div>
