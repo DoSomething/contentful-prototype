@@ -564,6 +564,22 @@ export function query(key, url = window.location) {
 }
 
 /**
+ * Get referral campaign ID for refer-a-friend share URL.
+ *
+ * @return {string}
+ */
+export function getReferralCampaignId() {
+  const referralCampaignIds = featureFlag('referral_campaign_ids', []);
+  const defaultReferralCampaignId = featureFlag('default_referral_campaign_id');
+
+  const queryCampaignId = query('campaign_id');
+
+  return referralCampaignIds.includes(queryCampaignId)
+    ? queryCampaignId
+    : defaultReferralCampaignId;
+}
+
+/**
  * Load and return the Facebook SDK.
  */
 export function loadFacebookSDK() {
