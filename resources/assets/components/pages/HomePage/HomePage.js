@@ -102,7 +102,7 @@ class HomePage extends React.Component {
           </article>
 
           {featureFlag('nps_survey') ? (
-            <TrafficDistribution percentage={100} feature="nps_survey">
+            <TrafficDistribution percentage={5} feature="nps_survey">
               <DismissableElement
                 name="nps_survey"
                 render={(handleClose, handleComplete) => (
