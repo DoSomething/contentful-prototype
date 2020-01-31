@@ -94,7 +94,6 @@ function get_not_found_page_settings($prefix, $slug)
 function get_content_type_by_category($category)
 {
     $types = [
-        'about' => 'page',
         'articles' => 'page',
         'facts' => 'page',
         'stories' => 'storyPage',

@@ -16,7 +16,6 @@ Cypress.on('window:before:load', window => {
     FEATURE_FLAGS: {
       nps_survey: false,
       voter_reg_modal: false,
-      company_pages: false,
     },
     SIXPACK_ENABLED: false,
     SIXPACK_BASE_URL: 'http://sixpack.test', // Our Sixpack service will throw an error if this isn't set.

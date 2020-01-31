@@ -23,7 +23,3 @@ Displays static organizational 'about' information. Company Pages are accessed v
 #### GraphQL
 
 The Company Page is available as a `CompanyPage` in GraphQL.
-
-#### Feature Flag
-
-Currently, `/about/:slug` pages pull from regular Page entries in Contentful, and _not_ from Company Pages. To toggle on the new Company Pages, `DS_ENABLE_COMPANY_PAGES=true` must be set in the `.env` file.
