@@ -21,109 +21,100 @@ import {
 
 import './social-share-tray.scss';
 
+const EVENT_CATEGORY = 'social_share';
+
 class SocialShareTray extends React.Component {
   componentDidMount() {
     loadFacebookSDK();
   }
 
-  /**
-   * Component helper method for tracking analytics events.
-   *
-   * @param  {String} service
-   * @param  {String} noun
-   * @param  {String} target
-   * @param  {String} verb
-   * @param  {Object} data
-   * @return {Void}
-   */
-  trackEvent = (service, noun, target, verb, data = {}) => {
-    trackAnalyticsEvent({
-      context: { ...data },
-      metadata: {
-        adjective: service,
-        category: 'social_share',
-        label: service,
-        noun,
-        target,
-        verb,
-      },
-    });
-  };
-
   handleFacebookShareClick = (shareLink, trackLink) => {
-    this.trackEvent('facebook', 'share', 'button', 'clicked', {
-      url: trackLink,
+    trackAnalyticsEvent('clicked_share_facebook', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORY,
+      label: 'facebook',
+      context: { url: trackLink },
     });
 
     showFacebookShareDialog(shareLink)
       .then(() => {
-        this.trackEvent('facebook', 'share', 'action', 'completed', {
-          url: trackLink,
+        trackAnalyticsEvent('completed_share_facebook', {
+          action: 'action_completed',
+          category: EVENT_CATEGORY,
+          label: 'facebook',
+          context: {
+            url: trackLink,
+          },
         });
       })
       .catch(() => {
-        this.trackEvent('facebook', 'share', 'action', 'cancelled', {
-          url: trackLink,
+        trackAnalyticsEvent('cancelled_share_facebook', {
+          action: 'action_cancelled',
+          category: EVENT_CATEGORY,
+          label: 'facebook',
+          context: {
+            url: trackLink,
+          },
         });
       });
   };
 
   handleFacebookMessengerClick = (shareLink, trackLink) => {
-    this.trackEvent('facebook_messenger', 'share', 'button', 'clicked', {
-      url: trackLink,
+    trackAnalyticsEvent('clicked_share_facebook_messenger', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORY,
+      label: 'facebook_messenger',
+      contetxt: { url: trackLink },
     });
 
     if (getFormattedScreenSize() === 'large') {
       // Show Send Dialog for Desktop clients.
       showFacebookSendDialog(shareLink)
         .then(() => {
-          this.trackEvent(
-            'facebook_messenger',
-            'share',
-            'action',
-            'completed',
-            {
-              url: trackLink,
-            },
-          );
+          trackAnalyticsEvent('completed_share_facebook_messenger', {
+            action: 'action_completed',
+            category: EVENT_CATEGORY,
+            label: 'facebook_messenger',
+            context: { url: trackLink },
+          });
         })
         .catch(() => {
-          this.trackEvent(
-            'facebook_messenger',
-            'share',
-            'action',
-            'cancelled',
-            {
-              url: trackLink,
-            },
-          );
+          trackAnalyticsEvent('cancelled_share_facebook_messenger', {
+            action: 'action_cancelled',
+            category: EVENT_CATEGORY,
+            label: 'facebook_messenger',
+            context: { url: trackLink },
+          });
         });
     } else {
       // Redirect mobile / tablet clients to the Messenger app.
       facebookMessengerShare(shareLink)
         .then(() => {
-          this.trackEvent(
-            'facebook_messenger_app',
-            'redirect',
-            'redirect',
-            'successful',
-            { url: trackLink },
-          );
+          trackAnalyticsEvent('successful_redirect_facebook_messenger_app', {
+            action: 'redirect_successful',
+            category: EVENT_CATEGORY,
+            label: 'facebook_messenger_app',
+            context: { url: trackLink },
+          });
         })
         .catch(() => {
-          this.trackEvent(
-            'facebook_messenger_app',
-            'redirect',
-            'redirect',
-            'failed',
-            { url: trackLink },
-          );
+          trackAnalyticsEvent('failed_redirect_facebook_messenger_app', {
+            action: 'redirect_failed',
+            category: EVENT_CATEGORY,
+            label: 'facebook_messenger_app',
+            context: { url: trackLink },
+          });
         });
     }
   };
 
   handleEmailShareClick = (shareLink, trackLink) => {
-    this.trackEvent('email', 'share', 'button', 'clicked', { url: trackLink });
+    trackAnalyticsEvent('clicked_share_email', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORY,
+      label: 'email',
+      context: { url: trackLink },
+    });
 
     window.location = `mailto:?body=${encodeURIComponent(shareLink)}`;
   };

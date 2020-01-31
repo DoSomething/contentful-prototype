@@ -39,8 +39,16 @@ export const ShareBlockFragment = gql`
   }
 `;
 
+const EVENT_CATEGORY = 'campaign_action';
+
 class ShareAction extends PostForm {
   state = { showModal: false };
+
+  contextData = {
+    blockId: this.props.id,
+    campaignId: this.props.campaignId,
+    pageId: this.props.pageId,
+  };
 
   componentDidMount() {
     // If this is a Facebook share action, make sure we load SDK.
@@ -79,40 +87,17 @@ class ShareAction extends PostForm {
     });
   };
 
-  /**
-   * Component helper method for tracking analytics events.
-   *
-   * @param  {String} service
-   * @param  {String} target
-   * @param  {String} verb
-   * @param  {Object} data
-   * @return {Void}
-   */
-  trackEvent = (service, target, verb, data = {}) => {
-    trackAnalyticsEvent({
-      context: {
-        ...data,
-        blockId: this.props.id,
-        campaignId: this.props.campaignId,
-        pageId: this.props.pageId,
-      },
-      metadata: {
-        adjective: service,
-        category: 'campaign_action',
-        label: service,
-        noun: 'share_action',
-        target,
-        verb,
-      },
-    });
-  };
-
   handleFacebookClick = url => {
     const { link, userId } = this.props;
 
     let trackingData = { url: link };
 
-    this.trackEvent('facebook', 'button', 'clicked', trackingData);
+    trackAnalyticsEvent('clicked_share_action_facebook', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORY,
+      label: 'facebook',
+      context: { ...this.contextData, ...trackingData },
+    });
 
     showFacebookShareDialog(url)
       .then(() => {
@@ -127,18 +112,31 @@ class ShareAction extends PostForm {
         return Promise.resolve();
       })
       .then(() => {
-        this.trackEvent('facebook', 'action', 'completed', trackingData);
+        trackAnalyticsEvent('completed_share_action_facebook', {
+          action: 'action_completed',
+          category: EVENT_CATEGORY,
+          label: 'facebook',
+          context: { ...this.contextData, ...trackingData },
+        });
 
         this.setState({ showModal: true });
       })
       .catch(() => {
-        this.trackEvent('facebook', 'action', 'cancelled', trackingData);
+        trackAnalyticsEvent('cancelled_share_action_facebook', {
+          action: 'action_cancelled',
+          category: EVENT_CATEGORY,
+          label: 'facebook',
+          context: { ...this.contextData, ...trackingData },
+        });
       });
   };
 
   handleTwitterClick = url => {
-    this.trackEvent('twitter', 'button', 'clicked', {
-      url: this.props.link,
+    trackAnalyticsEvent('clicked_share_action_twitter', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORY,
+      label: 'twitter',
+      context: { ...this.contextData, url: this.props.link },
     });
 
     showTwitterSharePrompt(url, '', () => this.setState({ showModal: true }));
