@@ -239,6 +239,7 @@ export function trackAnalyticsPageView(history) {
  * Track an analytics event with a specified service.
  * (Defaults to tracking with all services.)
  *
+ * @deprecated
  * @param  {Object} options
  * @param  {Object} options.metadata
  * @param  {Object} options.context
