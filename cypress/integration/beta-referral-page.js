@@ -7,15 +7,11 @@ import { campaignId } from '../fixtures/constants';
 describe('Beta Referral Page', () => {
   // Configure a new "mock" server before each test:
   beforeEach(() => cy.configureMocks());
-  const referralFeatureFlags = {
-    referral_campaign_ids: [campaignId],
-    default_referral_campaign_id: campaignId,
-  };
 
   it('Visit beta referral page, with valid user and campaign IDs', () => {
     const user = userFactory();
 
-    cy.withFeatureFlags(referralFeatureFlags).visit(
+    cy.withFeatureFlags({ referral_campaign_ids: [campaignId] }).visit(
       `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
     );
 
@@ -48,7 +44,7 @@ describe('Beta Referral Page', () => {
   it('Visit beta referral page, with valid user ID and no campaign ID', () => {
     const user = userFactory();
 
-    cy.withFeatureFlags(referralFeatureFlags).visit(
+    cy.withFeatureFlags({ default_referral_campaign_id: campaignId }).visit(
       `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
     );
 
