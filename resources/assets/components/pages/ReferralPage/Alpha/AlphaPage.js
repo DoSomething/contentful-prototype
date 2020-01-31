@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { PHOENIX_URL } from '../../../../constants';
+import { getReferralCampaignId } from '../../../../helpers';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
@@ -22,7 +23,7 @@ const AlphaPage = ({ userId }) => (
           <SocialDriveActionContainer
             shareCardDescription="Invite your friends to join DoSomething. When your friend completes this campaign, you'll both increase your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
             shareCardTitle="Refer A Friend"
-            link={`${PHOENIX_URL}/us/join?user_id=${userId}`}
+            link={`${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${getReferralCampaignId()}`}
             hidePageViews
           />
         </div>

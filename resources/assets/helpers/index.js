@@ -528,10 +528,11 @@ export function env(key, defaultVal) {
  * Get feature flag value from window.ENV
  *
  * @param  {String} feature
+ * @param  {*}      defaultVal
  * @return {*}
  */
-export function featureFlag(feature) {
-  return get(env('FEATURE_FLAGS'), feature);
+export function featureFlag(feature, defaultVal) {
+  return get(env('FEATURE_FLAGS'), feature, defaultVal);
 }
 
 /**
@@ -560,6 +561,22 @@ export function query(key, url = window.location) {
   const search = queryString.parse(url.search);
 
   return search[key];
+}
+
+/**
+ * Get referral campaign ID for refer-a-friend share URL.
+ *
+ * @return {string}
+ */
+export function getReferralCampaignId() {
+  const referralCampaignIds = featureFlag('referral_campaign_ids', []);
+  const defaultReferralCampaignId = featureFlag('default_referral_campaign_id');
+
+  const queryCampaignId = query('campaign_id');
+
+  return referralCampaignIds.includes(queryCampaignId)
+    ? queryCampaignId
+    : defaultReferralCampaignId;
 }
 
 /**
