@@ -70,7 +70,7 @@ describe('Campaign Signup', () => {
     // Refer a Friend feature flag enabled.
     cy.mockGraphqlOp('UserAccountAndSignupsCountQuery', {
       user: {
-        hasReferFriendsScholarshipFlag: true,
+        hasFeatureFlag: () => true,
       },
     });
 
