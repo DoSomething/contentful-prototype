@@ -55,6 +55,23 @@ describe('Campaign Signup', () => {
     cy.get('.card.affirmation').contains('Thanks for joining us!');
   });
 
+  it('Display Referral Page Banner CTA in affirmation for configured campaign', () => {
+    const user = userFactory();
+
+    // Log in & visit the campaign pitch page:
+    cy.withFeatureFlags({
+      referral_campaign_ids: [campaignId],
+    }).authVisitCampaignWithoutSignup(user, exampleCampaign);
+
+    // Mock the response we'll be expecting once we hit "Join Now":
+    cy.route('POST', `${API}/signups`, newSignup(campaignId, user));
+
+    // Click "Join Now" & should get the affirmation modal:
+    cy.contains('button', 'Join Us').click();
+    cy.get('.card.affirmation').contains('Thanks for joining us!');
+    cy.get('.cta-register-banner').contains('Benefits With Friends');
+  });
+
   it('Visit with existing signup, as an authenticated user', () => {
     const user = userFactory();
 
