@@ -35,7 +35,7 @@ const VoterRegistrationAction = props => {
   const parsedLink = link && dynamicString(link, tokens);
 
   const handleClick = () => {
-    trackAnalyticsEvent('clicked_vote r_registration_action', {
+    trackAnalyticsEvent('clicked_voter_registration_action', {
       action: 'button_clicked',
       category: 'campaign_action',
       label: 'voter_registration',
