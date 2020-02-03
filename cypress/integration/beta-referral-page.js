@@ -13,6 +13,7 @@ describe('Beta Referral Page', () => {
 
     cy.withFeatureFlags({ referral_campaign_ids: [campaignId] }).visit(
       `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
+      // Allow some extra time to prevent timeouts on initial page load:
       { timeout: 10000 },
     );
 
