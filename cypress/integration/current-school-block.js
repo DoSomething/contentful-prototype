@@ -154,6 +154,12 @@ describe('School Finder', () => {
   it('Current School Block does not display school impact when Action is not set', () => {
     const user = userFactory();
 
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        currentSchoolTitle: 'Your School',
+        actionId: null,
+      },
+    });
     cy.mockGraphqlOp('UserSchoolQuery', {
       user: {
         schoolId: exampleSchool.id,

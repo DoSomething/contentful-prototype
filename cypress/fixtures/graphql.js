@@ -142,8 +142,10 @@ export const mocks = {
   CurrentSchoolBlock: () => ({
     currentSchoolDescription: null,
     currentSchoolTitle: null,
-    selectSchoolDescription: null,
+    selectSchoolDescription:
+      'Pick your school and whatever. Invite your classmates to join this campaign and donate their jeans to win prizes and some other stuff.',
     selectSchoolTitle: null,
-    schoolNotAvailableDescription: null,
+    schoolNotAvailableDescription:
+      'No school copy goes here, please email Sahara with information about your school.',
   }),
 };
