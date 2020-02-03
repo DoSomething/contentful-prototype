@@ -307,7 +307,7 @@ export function trackAnalyticsEvent(name, metadata = {}) {
   });
 
   sendToServices(
-    `${APP_PREFIX}_${name}`,
+    snakeCase(`${APP_PREFIX}_${name}`),
     category,
     action,
     label,

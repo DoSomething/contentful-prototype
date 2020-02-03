@@ -4,7 +4,7 @@ import { join } from 'path';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
-import { formatEventNoun, trackAnalyticsEvent } from '../helpers/analytics';
+import { trackAnalyticsEvent } from '../helpers/analytics';
 import {
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_INIT_ITEM,
@@ -12,6 +12,8 @@ import {
   POST_SUBMISSION_RESET_ITEM,
   POST_SUBMISSION_SUCCESSFUL,
 } from '../constants/action-types';
+
+const EVENT_SUFFIX = '_submission_action';
 
 /**
  * Fetch posts for the specified campaign.
@@ -83,19 +85,15 @@ export function storeCampaignPost(campaignId, data) {
   };
 
   // Track post submission event.
-  trackAnalyticsEvent({
+  trackAnalyticsEvent(`${type}${EVENT_SUFFIX}`, {
+    action: 'form_submitted',
+    category: 'campaign_action',
+    label: type,
     context: {
       actionId,
       blockId,
       campaignId,
       pageId,
-    },
-    metadata: {
-      category: 'campaign_action',
-      label: type,
-      noun: formatEventNoun(type),
-      target: 'form',
-      verb: 'submitted',
     },
   });
 
@@ -142,19 +140,15 @@ export function storePost(data) {
   };
 
   // Track post submission event.
-  trackAnalyticsEvent({
+  trackAnalyticsEvent(`${type}${EVENT_SUFFIX}`, {
+    action: 'form_submitted',
+    category: 'campaign_action',
+    label: type,
     context: {
       actionId,
       blockId,
       campaignId,
       pageId,
-    },
-    metadata: {
-      category: 'campaign_action',
-      label: type,
-      noun: formatEventNoun(type),
-      target: 'form',
-      verb: 'submitted',
     },
   });
 
