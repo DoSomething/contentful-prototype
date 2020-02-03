@@ -8,6 +8,16 @@ describe('Company Page', () => {
   it('Renders a Company Page', () => {
     cy.visit(`/us/${exampleAboutPage.page.fields.slug}`);
 
-    cy.contains('h1', 'Hello World');
+    cy.mockGraphqlOp('CompanyPageQuery', {
+      companyPageBySlug: {
+        title: 'Who We Are',
+        slug: 'about/who-we-are',
+      },
+    });
+
+    cy.withFeatureFlags({ company_pages: true });
+    cy.visit('/us/about/who-we-are');
+
+    cy.contains('h1', 'Who We Are');
   });
 });
