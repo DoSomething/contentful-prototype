@@ -1,10 +1,11 @@
 /// <reference types="Cypress" />
+
 import { cloneDeep } from 'lodash';
+
 import { userFactory } from '../fixtures/user';
-import exampleCampaign from '../fixtures/contentful/exampleCampaign';
+import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../resources/assets/constants/school-finder';
 import exampleCurrentSchoolBlockWithAction from '../fixtures/contentful/exampleCurrentSchoolBlockWithAction';
 import exampleCurrentSchoolBlockWithoutAction from '../fixtures/contentful/exampleCurrentSchoolBlockWithoutAction';
-import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../resources/assets/constants/school-finder';
 
 const exampleSchool = {
   id: '3401458',
