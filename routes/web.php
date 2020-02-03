@@ -26,7 +26,8 @@ $router->view('/us/account/{clientRoute?}', 'app')
     ->middleware('auth');
 
 // Campaigns index
-$router->get('us/campaigns', 'CampaignController@index');
+// $router->get('us/campaigns', 'CampaignController@index');
+$router->view('us/campaigns', 'app');
 $router->redirect('campaigns', 'us/campaigns');
 
 // Redirect routes for campaign specific URLs containing "/pages/".

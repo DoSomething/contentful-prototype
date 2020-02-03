@@ -8,6 +8,7 @@ import graphqlClient from '../graphql';
 import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
+import CampaignsPage from './pages/CampaignsPage';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
@@ -34,6 +35,7 @@ const App = ({ store, history }) => {
             />
             <Route path="/us/account" component={AccountContainer} />
             <Route path="/us/blocks/:id" component={BlockPage} />
+            <Route exact path="/us/campaigns" component={CampaignsPage} />
             <Route path="/us/campaigns/:slug" component={CampaignContainer} />
             <Route
               path="/us/causes/:slug"
