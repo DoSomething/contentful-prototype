@@ -6,7 +6,6 @@ import { get } from 'lodash';
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
 import { getUserId } from '../selectors/user';
-import { trackAnalyticsEvent } from '../helpers/analytics';
 import {
   SIGNUP_CREATED,
   OPENED_POST_SIGNUP_MODAL,
@@ -101,26 +100,9 @@ export function getCampaignSignups(id = null, query = {}) {
  * @return {Function}
  */
 export function storeCampaignSignup(campaignId, data = {}) {
-  const analytics = get(data, 'analytics', {});
   const path = join('api/v2/campaigns', campaignId, 'signups');
   const type = 'signup';
   const shouldShowAffirmation = get(data, 'shouldShowAffirmation', true);
-
-  // Track signup click submission event.
-  trackAnalyticsEvent({
-    context: {
-      campaignId,
-      ...get(analytics, 'context', {}),
-    },
-    metadata: {
-      adjective: get(analytics, 'adjective', null),
-      category: 'signup',
-      label: get(analytics, 'label', null),
-      noun: type,
-      target: get(analytics, 'target', null),
-      verb: 'clicked',
-    },
-  });
 
   return dispatch => {
     dispatch(
