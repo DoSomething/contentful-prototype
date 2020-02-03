@@ -13,6 +13,7 @@ describe('Beta Referral Page', () => {
 
     cy.withFeatureFlags({ referral_campaign_ids: [campaignId] }).visit(
       `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
+      { timeout: 10000 },
     );
 
     cy.contains('campaign scholarship');
