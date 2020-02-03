@@ -14,14 +14,11 @@ import './cta-template.scss';
 const onLinkClick = (link, context) => {
   window.open(link, isExternal(link) ? '_blank' : '_self');
 
-  trackAnalyticsEvent({
+  trackAnalyticsEvent('clicked_link_action', {
+    action: 'button_clicked',
+    category: 'campaign_action',
+    label: 'link_action',
     context: { ...context, url: link },
-    metadata: {
-      category: 'campaign_action',
-      noun: 'link_action',
-      target: 'button',
-      verb: 'clicked',
-    },
   });
 };
 

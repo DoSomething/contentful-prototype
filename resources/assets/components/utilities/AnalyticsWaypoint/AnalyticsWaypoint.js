@@ -11,14 +11,10 @@ const AnalyticsWaypoint = ({ name, context }) => {
 
   useEffect(() => {
     if (inView) {
-      trackAnalyticsEvent({
-        metadata: {
-          verb: 'reached',
-          noun: 'waypoint',
-          target: 'waypoint',
-          category: 'waypoint',
-          label: name,
-        },
+      trackAnalyticsEvent('reached_waypoint', {
+        action: 'waypoint_reached',
+        category: 'waypoint',
+        label: name,
         context: {
           ...context,
           name,

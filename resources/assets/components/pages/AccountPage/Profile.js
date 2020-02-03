@@ -60,20 +60,15 @@ const Profile = props => (
           <a
             href="/deauthorize"
             className="text-gray-600 font-normal underline"
-            // TODO: Fix this analytics item
             onClick={() =>
-              trackAnalyticsEvent({
+              trackAnalyticsEvent('clicked_nav_link_log_out', {
+                action: 'link_clicked',
+                // @TODO: we should rename the category to "authentication"
+                category: 'navigation',
+                label: 'log_out',
                 context: {
                   ...getPageContext(),
                   ...getUtmContext(),
-                },
-                metadata: {
-                  adjective: 'log_out',
-                  category: 'navigation',
-                  label: 'log_out',
-                  noun: 'nav_link',
-                  target: 'link',
-                  verb: 'clicked',
                 },
               })
             }

@@ -27,17 +27,14 @@ describe('The AnalyticsWaypoint component', () => {
     // The analytics event should now have been invoked.
     expect(trackEventMock.mock.calls.length).toBe(1);
     expect(trackEventMock.mock.calls[0]).toEqual([
+      'reached_waypoint',
       {
+        action: 'waypoint_reached',
+        category: 'waypoint',
+        label: waypointName,
         context: {
           name: waypointName,
           blockId,
-        },
-        metadata: {
-          verb: 'reached',
-          noun: 'waypoint',
-          target: 'waypoint',
-          category: 'waypoint',
-          label: waypointName,
         },
       },
     ]);
