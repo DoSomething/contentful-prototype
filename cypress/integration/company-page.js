@@ -15,7 +15,6 @@ describe('Company Page', () => {
       },
     });
 
-    cy.withFeatureFlags({ company_pages: true });
     cy.visit('/us/about/who-we-are');
 
     cy.contains('h1', 'Who We Are');
