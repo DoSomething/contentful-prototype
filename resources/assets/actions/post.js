@@ -85,7 +85,7 @@ export function storeCampaignPost(campaignId, data) {
   };
 
   // Track post submission event.
-  trackAnalyticsEvent(`${type}${EVENT_SUFFIX}`, {
+  trackAnalyticsEvent(`submitted_${type}${EVENT_SUFFIX}`, {
     action: 'form_submitted',
     category: 'campaign_action',
     label: type,
@@ -140,7 +140,7 @@ export function storePost(data) {
   };
 
   // Track post submission event.
-  trackAnalyticsEvent(`${type}${EVENT_SUFFIX}`, {
+  trackAnalyticsEvent(`submitted_${type}${EVENT_SUFFIX}`, {
     action: 'form_submitted',
     category: 'campaign_action',
     label: type,
