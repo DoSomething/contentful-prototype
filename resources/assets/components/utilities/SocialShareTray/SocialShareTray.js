@@ -64,7 +64,7 @@ class SocialShareTray extends React.Component {
       action: 'button_clicked',
       category: EVENT_CATEGORY,
       label: 'facebook_messenger',
-      contetxt: { url: trackLink },
+      context: { url: trackLink },
     });
 
     if (getFormattedScreenSize() === 'large') {
