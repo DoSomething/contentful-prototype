@@ -39,7 +39,7 @@ class PollLocator extends React.Component {
         .querySelector('#address-not-found');
       if (get(addressNotFoundModal, 'style.display') === 'block') {
         trackAnalyticsEvent('opened_modal_poll_locator_not_found', {
-          action: 'error_triggered',
+          action: 'modal_opened',
           category: 'modal',
           label: 'poll_locator',
         });
