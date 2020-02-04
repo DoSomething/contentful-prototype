@@ -8,7 +8,8 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
   @include clearfix;
 
   position: relative;
-  border: solid 1px theme('colors.gray.300');
+  border-top: solid 1px theme('colors.gray.300');
+  border-bottom: solid 1px theme('colors.gray.300');
 
   @include media($tablet) {
     position: sticky;
