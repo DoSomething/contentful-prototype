@@ -17,9 +17,11 @@ async function initContentManagementClient(callback) {
 
   if (!spaceId || !accessToken) {
     console.log(
-      'Please provide the space-id and access token arguments in the following format:',
+      'Please provide the space, environment & access token in the following format:',
     );
-    console.log('--space-id [space-id] --access-token [access-token]');
+    console.log(
+      '--space-id [id] --access-token [token] --environment-id [master|qa|dev]',
+    );
     return;
   }
   const environment = await getEnvironment(spaceId, accessToken, environmentId);
