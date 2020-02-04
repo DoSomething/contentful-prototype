@@ -18,14 +18,16 @@ const DismissableElement = ({ name, render, context }) => {
       // Mark the element as "dismissed" in local storage & hide it.
       setStorage(`dismissed_${name}`, 'timestamp', Date.now());
 
-      trackAnalyticsEvent({
+      trackAnalyticsEvent(`dismissed_${name}`, {
+        // @Question: maybe this should just be element_dismissed or even button_clicked?
+        // Or maybe it could be passed in and dependent on the element in question, since
+        // sometimes it is a modal and other times a delayed element...
+        // For context, there already is a modal_opened action, so for modals, a modal_closed
+        // would make sense to be passed in.
+        action: 'dismissable_element_dismissed',
+        category: 'site_action',
+        label: name,
         context,
-        metadata: {
-          category: 'site_action',
-          noun: name,
-          target: 'dismissable_element',
-          verb: 'dismissed',
-        },
       });
     }
     setShowElement(false);
