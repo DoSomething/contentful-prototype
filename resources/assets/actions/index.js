@@ -25,12 +25,6 @@ export const QUEUE_EVENT = 'QUEUE_EVENT';
 export const COMPLETED_EVENT = 'COMPLETED_EVENT';
 export * from './event';
 
-export const LOAD_PREVIOUS_QUIZ_STATE = 'LOAD_PREVIOUS_QUIZ_STATE';
-export const PICK_QUIZ_ANSWER = 'PICK_QUIZ_ANSWER';
-export const VIEW_QUIZ_RESULT = 'VIEW_QUIZ_RESULT';
-export const COMPARE_QUIZ_ANSWER = 'COMPARE_QUIZ_ANSWER';
-export const QUIZ_ERROR = 'QUIZ_ERROR';
-
 export const NEXT_SLIDE = 'NEXT_SLIDE';
 export * from './slideshow';
 
