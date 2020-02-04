@@ -19,4 +19,10 @@ describe('Company Page', () => {
 
     cy.contains('h1', 'Who We Are');
   });
-});
+    it('Renders a Newsletter Cta', () => {
+      cy.withFeatureFlags({ company_pages: true }).visit(
+        `/us/about/easy-scholarships`,
+      );
+    });
+  });
+
