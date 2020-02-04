@@ -8,6 +8,7 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
   @include clearfix;
 
   position: relative;
+  background-color: $white;
   border-top: solid 1px theme('colors.gray.300');
   border-bottom: solid 1px theme('colors.gray.300');
 
@@ -41,11 +42,6 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
     @include media($tablet) {
       display: none;
     }
-  }
-
-  &.is-stuck {
-    background-color: $white;
-    // border-bottom: 1px solid theme('colors.gray.200');
   }
 
   > .wrapper {
