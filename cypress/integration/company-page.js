@@ -17,12 +17,12 @@ describe('Company Page', () => {
 
     cy.visit('/us/about/who-we-are');
 
-    cy.contains('h1', 'Who We Are');
   });
-    it('Renders a Newsletter Cta', () => {
-      cy.withFeatureFlags({ company_pages: true }).visit(
-        `/us/about/easy-scholarships`,
-      );
-    });
+
+  it('Renders a Newsletter Cta', () => {
+    cy.visit(`/us/about/easy-scholarships`);
+    cy.wait(5000);
+    cy.contains('PAYS TO DO GOOD');
   });
+});
 
