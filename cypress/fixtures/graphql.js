@@ -147,5 +147,15 @@ export const mocks = {
     selectSchoolTitle: null,
     schoolNotAvailableDescription:
       'No school copy goes here, please email Sahara with information about your school.',
+  CompanyPage: () => ({
+    nodeType: 'form',
+    context: { contextSource: 'newsletter_scholarships' },
+    content: {
+      data: {},
+      title: 'PAYS TO DO GOOD',
+      content: 'Want to earn easy scholarships for volunteering?',
+      nodeType: 'text',
+    },
+    data: {},
   }),
 };
