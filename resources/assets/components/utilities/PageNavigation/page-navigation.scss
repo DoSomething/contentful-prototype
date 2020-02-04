@@ -8,6 +8,7 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
   @include clearfix;
 
   position: relative;
+  border: solid 1px theme('colors.gray.300');
 
   @include media($tablet) {
     position: sticky;
@@ -43,7 +44,7 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
 
   &.is-stuck {
     background-color: $white;
-    border-bottom: 1px solid theme('colors.gray.200');
+    // border-bottom: 1px solid theme('colors.gray.200');
   }
 
   > .wrapper {
@@ -72,14 +73,14 @@ $light-background-color: #f7fafc; // theme('colors.gray.100')
     border-bottom: 4px solid transparent;
 
     &:hover {
-      color: theme('colors.gray.900');
+      color: theme('colors.blurple.300');
       text-decoration: none;
-      border-bottom: 4px solid theme('colors.gray.600');
+      border-bottom: 4px solid theme('colors.blurple.300');
     }
 
     &.is-active {
-      color: theme('colors.gray.900');
-      border-bottom: 4px solid theme('colors.gray.900');
+      color: theme('colors.blurple.500');
+      border-bottom: 4px solid theme('colors.blurple.500');
     }
   }
 
