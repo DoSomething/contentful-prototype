@@ -5,7 +5,6 @@ export notifications from './notifications';
 export page from './page';
 export posts from './posts';
 export postSubmissions from './postSubmissions';
-export quiz from './quiz';
 export signups from './signups';
 export slideshow from './slideshow';
 export uploads from './uploads';

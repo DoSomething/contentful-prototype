@@ -7,15 +7,10 @@ import { trackAnalyticsEvent } from '../../../helpers/analytics';
 
 const CtaPopoverButton = ({ buttonText, link }) => {
   const handleClick = () =>
-    trackAnalyticsEvent({
-      metadata: {
-        category: 'site_action',
-        target: 'button',
-        verb: 'clicked',
-        noun: 'call_to_action',
-        adjective: 'popover',
-        label: 'call_to_action_popover',
-      },
+    trackAnalyticsEvent('clicked_call_to_action_popover', {
+      action: 'button_clicked',
+      category: 'site_action',
+      label: 'call_to_action_popover',
       context: {
         url: link,
       },

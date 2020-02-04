@@ -16,29 +16,22 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
   const handleChange = event => setEmailValue(event.target.value);
 
   const handleFocus = () => {
-    trackAnalyticsEvent({
+    trackAnalyticsEvent('focused_call_to_action_popover_email', {
+      action: 'field_focused',
+      category: 'site_action',
+      label: 'call_to_action_popover',
       context: { contextSource: 'newsletter_scholarships' },
-      metadata: {
-        adjective: 'email',
-        category: 'site_action',
-        noun: 'call_to_action_popover',
-        target: 'field',
-        verb: 'focused',
-      },
     });
   };
 
   const handleSubmit = event => {
     event.preventDefault();
 
-    trackAnalyticsEvent({
+    trackAnalyticsEvent('submitted_call_to_action_popover', {
+      action: 'form_submitted',
+      category: 'site_action',
+      label: 'call_to_action_popover',
       context: { contextSource: 'newsletter_scholarships' },
-      metadata: {
-        category: 'site_action',
-        noun: 'call_to_action_popover',
-        target: 'form',
-        verb: 'submitted',
-      },
     });
 
     const client = new RestApiClient(`${env('NORTHSTAR_URL')}`);
@@ -69,17 +62,14 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
           console.log('🚫 failed response? caught the error!', error);
         }
 
-        trackAnalyticsEvent({
+        trackAnalyticsEvent('failed_call_to_action_popover_submission', {
+          action: 'form_failed',
+          category: 'site_action',
+          label: 'call_to_action_popover_submission',
           context: {
             contextSource: 'newsletter_scholarships',
             error,
             errorMessage,
-          },
-          metadata: {
-            category: 'site_action',
-            noun: 'call_to_action_popover_submission',
-            target: 'form',
-            verb: 'failed',
           },
         });
       });

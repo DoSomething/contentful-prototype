@@ -18,13 +18,10 @@ class PollLocator extends React.Component {
   }
 
   handleSearchButtonClick = () => {
-    trackAnalyticsEvent({
-      metadata: {
-        category: 'campaign_action',
-        noun: 'poll_locator',
-        target: 'button',
-        verb: 'clicked',
-      },
+    trackAnalyticsEvent('clicked_poll_locator', {
+      action: 'button_clicked',
+      category: 'campaign_action',
+      label: 'poll_locator',
     });
   };
 
@@ -41,15 +38,10 @@ class PollLocator extends React.Component {
         .getElementById('_vit')
         .querySelector('#address-not-found');
       if (get(addressNotFoundModal, 'style.display') === 'block') {
-        trackAnalyticsEvent({
-          metadata: {
-            adjective: 'poll_locator_not_found',
-            category: 'modal',
-            label: 'poll_locator',
-            noun: 'modal',
-            target: 'modal',
-            verb: 'opened',
-          },
+        trackAnalyticsEvent('opened_modal_poll_locator_not_found', {
+          action: 'modal_opened',
+          category: 'modal',
+          label: 'poll_locator',
         });
       }
 
@@ -68,15 +60,10 @@ class PollLocator extends React.Component {
     this.vitModalObserver = new MutationObserver(() => {
       const modal = document.querySelector('html > #_vitModal');
       if (modal) {
-        trackAnalyticsEvent({
-          metadata: {
-            adjective: 'poll_locator',
-            category: 'modal',
-            label: 'poll_locator',
-            noun: 'modal',
-            target: 'modal',
-            verb: 'opened',
-          },
+        trackAnalyticsEvent('opened_modal_poll_locator', {
+          action: 'modal_opened',
+          category: 'modal',
+          label: 'poll_locator',
         });
       }
     });

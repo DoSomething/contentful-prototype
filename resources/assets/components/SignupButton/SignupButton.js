@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../utilities/Button/Button';
-import { query, withoutNulls, isCampaignClosed } from '../../helpers';
+import { trackAnalyticsEvent } from '../../helpers/analytics';
+import { isCampaignClosed, query, withoutNulls } from '../../helpers';
 
 const SignupButton = props => {
   const {
@@ -28,6 +29,18 @@ const SignupButton = props => {
       details.affiliateOptIn = true;
     }
 
+    // Track signup button click event before we store the signup.
+    trackAnalyticsEvent('clicked_signup', {
+      action: 'button_clicked',
+      category: 'signup',
+      label: campaignTitle,
+      context: {
+        campaignId,
+        contextSource,
+        pageId,
+      },
+    });
+
     storeCampaignSignup(campaignId, {
       body: {
         details: JSON.stringify(details),
@@ -40,14 +53,6 @@ const SignupButton = props => {
             utm_campaign: query('utm_campaign'),
           }),
         ),
-      },
-      analytics: {
-        context: {
-          contextSource,
-          pageId,
-        },
-        label: campaignTitle,
-        target: 'button',
       },
     });
   };
