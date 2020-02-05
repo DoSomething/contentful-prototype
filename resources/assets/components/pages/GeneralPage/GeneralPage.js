@@ -99,7 +99,7 @@ const GeneralPage = props => {
                   <div className="secondary">
                     {sidebar.map(block => (
                       <div className="mx-3 mb-6" key={block.id}>
-                        <ContentfulEntryLoader json={block} />
+                        <ContentfulEntryLoader id={block.id} />
                       </div>
                     ))}
                   </div>
