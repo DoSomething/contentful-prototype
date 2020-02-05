@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { get } = require('lodash');
 const parseArgs = require('minimist');
 const contentful = require('contentful-management');
@@ -13,7 +15,12 @@ async function initContentManagementClient(callback) {
     },
   });
 
-  const { spaceId, accessToken, environmentId } = args;
+  // If run from project root, use environment variables we've configured:
+  const spaceId = args.spaceId || process.env.CONTENTFUL_SPACE_ID;
+  const accessToken =
+    args.accessToken || process.env.CONTENTFUL_MANAGEMENT_API_KEY;
+  const environmentId =
+    args.environmentId || process.env.CONTENTFUL_ENVIRONMENT_ID;
 
   if (!spaceId || !accessToken) {
     console.log(
@@ -24,7 +31,9 @@ async function initContentManagementClient(callback) {
     );
     return;
   }
+
   const environment = await getEnvironment(spaceId, accessToken, environmentId);
+
   callback(environment, args);
 }
 

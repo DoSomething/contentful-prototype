@@ -15,11 +15,17 @@ const {
 
 const { LOCALE } = constants;
 
-// @TODO: Support using the appropriate Rogue environment?
-const ROGUE_API = 'https://activity-qa.dosomething.org/api/v3';
-const logger = createLogger('replace_staff_linked_entries_with_person');
+const { ROGUE_URL } = process.env;
+const logger = createLogger('create_post_galleries');
 
 contentManagementClient.init(async environment => {
+  logger.info(
+    `Running 'create_post_galleries', using Contentful's '${environment.sys.id}' environment & '${ROGUE_URL}'.`,
+  );
+  logger.info('Kicking things off in 5 seconds...');
+
+  await sleep(5000);
+
   const blocks = await environment.getEntries({
     content_type: 'customBlock',
     'fields.type': 'gallery',
@@ -65,7 +71,7 @@ contentManagementClient.init(async environment => {
 
       // Get the action ID from the first `photo` action for this campaign.
       const response = await fetch(
-        `${ROGUE_API}/actions?filter[campaign_id]=${campaignId}`,
+        `${ROGUE_URL}/api/v3/actions?filter[campaign_id]=${campaignId}`,
       );
 
       const { data } = await response.json();
