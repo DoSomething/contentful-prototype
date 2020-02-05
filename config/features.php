@@ -17,5 +17,5 @@ return [
     'voter_reg_modal' => env('DS_ENABLE_VOTER_REG_MODAL', false),
     'referral_campaign_ids' => explode(',', env('DS_REFERRAL_CAMPAIGN_IDS')),
     'default_referral_campaign_id' => env('DS_DEFAULT_REFERRAL_CAMPAIGN_ID'),
-    'dynamic_explore_campaigns' => env('DS_DYNAMIC_CAMPAIGNS_PAGE_ENABLED', false)
+    'dynamic_explore_campaigns' => env('DS_DYNAMIC_CAMPAIGNS_PAGE_ENABLED', false),
 ];
