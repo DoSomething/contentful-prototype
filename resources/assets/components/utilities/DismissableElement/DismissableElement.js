@@ -19,8 +19,8 @@ const DismissableElement = ({ name, render, context }) => {
       setStorage(`dismissed_${name}`, 'timestamp', Date.now());
 
       trackAnalyticsEvent(`dismissed_${name}`, {
-        // @see discussion regarding reducing this event action name to simpler version
-        // https://github.com/DoSomething/phoenix-next/pull/1906/files#r374962200
+        // @TODO: will discuss with Data Team possibility of reducing
+        // the action to just "element_dismissed".
         action: 'dismissable_element_dismissed',
         category: 'site_action',
         label: name,
