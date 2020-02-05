@@ -102,18 +102,20 @@ contentManagementClient.init(async environment => {
 
       await gallery.publish();
 
+      const actionList = `#${actionIds.join(', #')}`; // e.g. #1, #2, #3
       logger.info(
-        `→ Created "${galleryTitle}" (${gallery.sys.id}, action #${photoAction.id}).`,
+        `→ Created "${galleryTitle}" (${gallery.sys.id} for ${actionList}).`,
       );
 
       // Replace the link to the custom block with our new post gallery:
-      page.fields.blocks[LOCALE] = reject(
-        page.fields.blocks[LOCALE],
+      const customBlockIndex = page.fields.blocks[LOCALE].findIndex(
         block => block.sys.id === customBlock.sys.id,
       );
 
-      page.fields.blocks[LOCALE].push(linkReference(gallery.sys.id));
+      const newLink = linkReference(gallery.sys.id);
+      page.fields.blocks[LOCALE].splice(customBlockIndex, 1, newLink);
 
+      // Make sure that we don't publish an unpublished campaign by mistake:
       const wasPublished = await page.isPublished();
       const updatedPage = await page.update();
 
@@ -122,7 +124,6 @@ contentManagementClient.init(async environment => {
         continue;
       }
 
-      // Make sure that we don't publish an unpublished campaign by mistake:
       if (!wasPublished) {
         logger.warn(`→ Needs review: ${updatedPage.sys.id}`);
         continue;
