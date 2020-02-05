@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import CampaignCard from './CampaignCard';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
