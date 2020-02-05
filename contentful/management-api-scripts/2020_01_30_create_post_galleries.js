@@ -64,7 +64,7 @@ contentManagementClient.init(async environment => {
       });
 
       const campaign = campaignQuery.items[0];
-      const campaignId = campaign.fields.legacyCampaignId[LOCALE];
+      const campaignId = getField(campaign, 'legacyCampaignId');
 
       const pageTitle = getField(page, 'internalTitle');
       logger.info(`Looking at "${pageTitle}" (${campaignId})`);
