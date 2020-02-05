@@ -19,11 +19,8 @@ const DismissableElement = ({ name, render, context }) => {
       setStorage(`dismissed_${name}`, 'timestamp', Date.now());
 
       trackAnalyticsEvent(`dismissed_${name}`, {
-        // @Question: maybe this should just be element_dismissed or even button_clicked?
-        // Or maybe it could be passed in and dependent on the element in question, since
-        // sometimes it is a modal and other times a delayed element...
-        // For context, there already is a modal_opened action, so for modals, a modal_closed
-        // would make sense to be passed in.
+        // @see discussion regarding reducing this event action name to simpler version
+        // https://github.com/DoSomething/phoenix-next/pull/1906/files#r374962200
         action: 'dismissable_element_dismissed',
         category: 'site_action',
         label: name,
