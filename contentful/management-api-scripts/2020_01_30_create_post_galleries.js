@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax, no-await-in-loop, no-continue */
 
 const fetch = require('node-fetch');
-const { reject } = require('lodash');
+const { map, reject } = require('lodash');
 
 const { contentManagementClient } = require('./contentManagementClient');
 const {
@@ -75,10 +75,15 @@ contentManagementClient.init(async environment => {
       );
 
       const { data } = await response.json();
-      const photoAction = data.find(action => action.post_type === 'photo');
+      const actions = data.filter(action =>
+        ['photo', 'text'].includes(action.post_type),
+      );
+      const actionIds = map(actions, 'id');
 
-      if (!photoAction) {
-        logger.info(`⇢ Skipping '${id}', could not find action.`);
+      if (actionIds.length === 0) {
+        logger.info(
+          `⇢ Skipping '${id}', could not find any photo/text actions.`,
+        );
         continue;
       }
 
@@ -88,7 +93,7 @@ contentManagementClient.init(async environment => {
         'postGallery',
         withFields({
           internalTitle: galleryTitle,
-          actionIds: [String(photoAction.id)],
+          actionIds: actionIds.map(String),
           itemsPerRow: 3,
           filterType: 'none',
           hideReactions: false,
