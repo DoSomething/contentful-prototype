@@ -35,16 +35,12 @@ const Embed = props => {
   // @see https://github.com/DoSomething/phoenix-next/pull/1598#issuecomment-532744108
   /*
   const onClick = () => {
-    trackAnalyticsEvent({
+    trackAnalyticsEvent('clicked_link_embed', {
+      action: 'link_clicked',
+      category: 'site_action',
+      label: 'embed',
       context: {
         url,
-      },
-      metadata: {
-        category: 'site_action',
-        adjective: 'embed',
-        noun: 'link',
-        target: 'link',
-        verb: 'clicked',
       },
     });
   };

@@ -18,14 +18,13 @@ const DismissableElement = ({ name, render, context }) => {
       // Mark the element as "dismissed" in local storage & hide it.
       setStorage(`dismissed_${name}`, 'timestamp', Date.now());
 
-      trackAnalyticsEvent({
+      trackAnalyticsEvent(`dismissed_${name}`, {
+        // @TODO: will discuss with Data Team possibility of reducing
+        // the action to just "element_dismissed".
+        action: 'dismissable_element_dismissed',
+        category: 'site_action',
+        label: name,
         context,
-        metadata: {
-          category: 'site_action',
-          noun: name,
-          target: 'dismissable_element',
-          verb: 'dismissed',
-        },
       });
     }
     setShowElement(false);

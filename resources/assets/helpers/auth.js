@@ -37,14 +37,11 @@ export function bindTokenRefreshEvent() {
       if (expiresIn < 0) {
         console.log('Token has expired! Refreshing...');
 
-        trackAnalyticsEvent({
+        trackAnalyticsEvent('refreshed_token', {
+          action: 'token_refreshed',
+          category: 'authentication',
+          label: 'token',
           context: { skew },
-          metadata: {
-            category: 'authentication',
-            noun: 'token',
-            target: 'token',
-            verb: 'refreshed',
-          },
         });
 
         clearInterval(authCheck);
