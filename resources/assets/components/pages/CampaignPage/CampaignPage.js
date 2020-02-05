@@ -20,7 +20,7 @@ const CampaignPage = props => {
 
   return (
     <>
-      <article className="campaign-page">
+      <article className="campaign-page bg-white">
         <LedeBannerContainer
           displaySignupButton={Boolean(!entryContent)}
           isClosed={isCampaignClosed}

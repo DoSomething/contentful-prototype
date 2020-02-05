@@ -5,6 +5,7 @@
 .campaign-info {
   margin: 0 auto;
   max-width: 450px;
+  font-size: theme('fontSize.base');
 
   .affiliate-logo {
     max-height: 50px;
@@ -22,7 +23,7 @@
 
   dt {
     clear: right;
-    color: theme('colors.gray.500');
+    color: theme('colors.gray.600');
     font-weight: $weight-sbold;
     text-transform: uppercase;
 
