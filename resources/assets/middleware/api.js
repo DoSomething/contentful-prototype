@@ -96,8 +96,6 @@ const postRequest = (payload, dispatch, getState) => {
       const verb =
         statusCode === 200 && postType === 'signup' ? 'found' : 'completed';
 
-      console.log('💩 campaign ID: ', campaignId);
-
       trackAnalyticsEvent(`${verb}_${formatEventNoun(postType)}`, {
         action: `${postType}_${verb}`,
         category: 'campaign_action_test',

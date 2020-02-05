@@ -31,34 +31,21 @@ class SiteNavigation extends React.Component {
     };
   }
 
-  analyzeEvent = (event, analytics = {}) => {
-    const targets = {
-      A: 'link',
-      BUTTON: 'button',
-    };
+  analyzeEvent = (name, data = {}) => {
+    console.log('💩 event: ', name);
+    console.log('🧻 analytics: ', data);
 
-    const inferredTarget = get(targets, event.target.tagName, 'element');
+    const { action, category, label, context = {} } = data;
 
-    const target = get(analytics, 'target', inferredTarget);
-
-    const context = get(analytics, 'context', {});
-
-    const label = get(analytics, 'label', null);
-
-    trackAnalyticsEvent({
+    trackAnalyticsEvent(name, {
+      action,
+      category,
+      label,
       context: {
         ...getPageContext(),
         ...getUtmContext(),
         referrer: document.referrer,
         ...context,
-      },
-      metadata: {
-        adjective: get(analytics, 'adjective', label),
-        category: get(analytics, 'category', 'navigation'),
-        label,
-        noun: get(analytics, 'noun', 'nav_link'),
-        target,
-        verb: get(analytics, 'verb', 'clicked'),
       },
     });
   };
@@ -94,7 +81,9 @@ class SiteNavigation extends React.Component {
   };
 
   handleOnClickLink = (event, analytics = {}) => {
-    this.analyzeEvent(event, analytics);
+    console.log('🐞 analytics: ', analytics);
+
+    this.analyzeEvent(analytics.name, analytics);
 
     this.setState({
       activeSubNav: null,
@@ -155,7 +144,14 @@ class SiteNavigation extends React.Component {
           <div className="logo-nav">
             <a
               href="/"
-              onClick={e => this.handleOnClickLink(e, { label: 'homepage' })}
+              onClick={e =>
+                this.handleOnClickLink(e, {
+                  name: 'clicked_nav_link_homepage',
+                  action: 'link_clicked',
+                  category: 'navigation',
+                  label: 'homepage',
+                })
+              }
             >
               <DoSomethingLogo />
             </a>
@@ -182,6 +178,9 @@ class SiteNavigation extends React.Component {
                         href="/campaigns"
                         onClick={e =>
                           this.handleOnClickLink(e, {
+                            name: 'clicked_nav_link_causes',
+                            action: 'link_clicked',
+                            category: 'navigation',
                             label: 'causes',
                           })
                         }
@@ -218,7 +217,9 @@ class SiteNavigation extends React.Component {
                             href="/us/causes/education"
                             onClick={e => {
                               this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                                name: 'clicked_subnav_link_causes_education',
+                                action: 'link_clicked',
+                                category: 'navigation',
                                 label: 'causes_education',
                               });
                             }}
@@ -231,7 +232,10 @@ class SiteNavigation extends React.Component {
                             href="/us/causes/mental-health"
                             onClick={e => {
                               this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                                name:
+                                  'clicked_subnav_link_causes_mental_health',
+                                action: 'link_clicked',
+                                category: 'navigation',
                                 label: 'causes_mental_health',
                               });
                             }}
@@ -244,7 +248,10 @@ class SiteNavigation extends React.Component {
                             href="/us/causes/homelessness-and-poverty"
                             onClick={e => {
                               this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                                name:
+                                  'clicked_subnav_link_causes_homelessness_and_poverty',
+                                action: 'link_clicked',
+                                category: 'navigation',
                                 label: 'causes_homelessness_and_poverty',
                               });
                             }}
@@ -257,7 +264,9 @@ class SiteNavigation extends React.Component {
                             href="/us/causes/environment"
                             onClick={e => {
                               this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                                name: 'clicked_subnav_link_causes_environment',
+                                action: 'link_clicked',
+                                category: 'navigation',
                                 label: 'causes_environment',
                               });
                             }}
@@ -270,7 +279,9 @@ class SiteNavigation extends React.Component {
                             href="/us/causes/bullying"
                             onClick={e => {
                               this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                                name: 'clicked_subnav_link_causes_bullying',
+                                action: 'link_clicked',
+                                category: 'navigation',
                                 label: 'causes_bullying',
                               });
                             }}
@@ -283,7 +294,10 @@ class SiteNavigation extends React.Component {
                             href="/us/campaigns"
                             onClick={e => {
                               this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                                name:
+                                  'clicked_subnav_link_causes_all_campaigns',
+                                action: 'link_clicked',
+                                category: 'navigation',
                                 label: 'causes_all_campaigns',
                               });
                             }}
@@ -329,7 +343,12 @@ class SiteNavigation extends React.Component {
               <a
                 href="/us/about/easy-scholarships"
                 onClick={e =>
-                  this.handleOnClickLink(e, { label: 'scholarships' })
+                  this.handleOnClickLink(e, {
+                    name: 'clicked_nav_link_scholarships',
+                    action: 'link_clicked',
+                    category: 'navigation',
+                    label: 'scholarships',
+                  })
                 }
               >
                 Scholarships
@@ -339,7 +358,14 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="https://lets.dosomething.org"
-                onClick={e => this.handleOnClickLink(e, { label: 'articles' })}
+                onClick={e =>
+                  this.handleOnClickLink(e, {
+                    name: 'clicked_nav_link_articles',
+                    action: 'link_clicked',
+                    category: 'navigation',
+                    label: 'articles',
+                  })
+                }
               >
                 Articles
               </a>
@@ -348,7 +374,14 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="https://join.dosomething.org/"
-                onClick={e => this.handleOnClickLink(e, { label: 'about' })}
+                onClick={e =>
+                  this.handleOnClickLink(e, {
+                    name: 'clicked_nav_link_about',
+                    action: 'link_clicked',
+                    category: 'navigation',
+                    label: 'about',
+                  })
+                }
               >
                 About
               </a>
