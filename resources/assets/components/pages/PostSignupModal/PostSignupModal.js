@@ -17,7 +17,7 @@ const PostSignupModal = ({ affirmation, onClose }) => (
           onClose={onClose}
         />
       ) : (
-        <ContentfulEntryLoader json={affirmation.id} />
+        <ContentfulEntryLoader id={affirmation.id} />
       )}
     </SlideshowContainer>
   </div>
