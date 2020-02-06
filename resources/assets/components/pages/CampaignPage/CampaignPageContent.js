@@ -52,9 +52,10 @@ const CampaignPageContent = props => {
               className="mb-6 mx-3 clear-both"
               classNameByEntryDefault="md:w-3/4"
               classNameByEntry={{
+                ImagesBlock: 'w-full',
                 PostGalleryBlock: 'w-full',
                 PhotoSubmissionBlock: 'w-full',
-                ImagesBlock: 'w-full',
+                SocialDriveBlock: 'w-full',
               }}
             />
           </div>
