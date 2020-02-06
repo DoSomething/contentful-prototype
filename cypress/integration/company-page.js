@@ -17,6 +17,7 @@ describe('Company Page', () => {
 
     cy.visit('/us/about/who-we-are');
 
+    cy.contains('h1', 'Who We Are');
   });
 
   it('Renders a Newsletter Cta', () => {
@@ -48,4 +49,3 @@ describe('Company Page', () => {
 
   cy.contains('The email must be a valid email address.');
 });
-
