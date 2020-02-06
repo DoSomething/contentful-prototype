@@ -33,7 +33,7 @@ describe('Company Page', () => {
     cy.contains('Pays To Do Good');
   });
 
-  it('Renders a Newsletter Cta and Successful Input', () => {
+  it('Successful Submission', () => {
     cy.mockGraphqlOp('CompanyPageQuery', {
       companyPageBySlug: {
         title: 'Easy Scholarships',
@@ -57,7 +57,7 @@ describe('Company Page', () => {
     cy.contains('Thank You For Submitting Your Email');
   });
 
-  it('Renders a Newsletter Cta and Unsuccessful Input', () => {
+  it('Failed Submission', () => {
     cy.mockGraphqlOp('CompanyPageQuery', {
       companyPageBySlug: {
         title: 'Easy Scholarships',
