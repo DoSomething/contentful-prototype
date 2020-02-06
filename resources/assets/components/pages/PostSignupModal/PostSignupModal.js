@@ -1,13 +1,24 @@
 import React from 'react';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
+import { withoutNulls } from '../../../helpers';
 import SlideshowContainer from '../../Slideshow';
-import ContentfulEntry from '../../ContentfulEntry';
+import AffirmationContainer from '../../Affirmation/AffirmationContainer';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const PostSignupModal = ({ affirmation, onClose }) => (
   <div className="modal__slide">
     <SlideshowContainer slideshowId="post-signup-modal" hideCloseButton>
-      <ContentfulEntry json={{ ...affirmation, onClose }} />
+      {affirmation.type === 'affirmation' ? (
+        <AffirmationContainer
+          {...withoutNulls(affirmation.fields)}
+          author={get(affirmation, 'fields.author.fields')}
+          onClose={onClose}
+        />
+      ) : (
+        <ContentfulEntryLoader id={affirmation.id} />
+      )}
     </SlideshowContainer>
   </div>
 );
