@@ -98,7 +98,7 @@ const postRequest = (payload, dispatch, getState) => {
 
       trackAnalyticsEvent(`${verb}_${formatEventNoun(postType)}`, {
         action: `${postType}_${verb}`,
-        category: 'campaign_action_test',
+        category: 'campaign_action',
         label: campaignId || formatEventNoun(postType), // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
         context: {
           actionId,
