@@ -5,7 +5,6 @@ import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
-import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -31,13 +30,8 @@ const CampaignPage = props => {
             <CampaignPageNavigationContainer />
           ) : null}
 
-          <div className="md:w-3/4 mx-auto mt-6 mb-6">
-            {/* @TODO: after Action page migration, refactor and combine CampaignPage & CampaignSubPage and render Contentful Entry within CampaignPage component */}
-            {!entryContent ? (
-              <CampaignPageContent {...props} />
-            ) : (
-              <ContentfulEntryLoader id={entryContent.id} />
-            )}
+          <div className="md:w-3/4 mx-auto my-6">
+            <CampaignPageContent {...props} />
           </div>
 
           {!entryContent ? (

@@ -1,13 +1,12 @@
 import React from 'react';
-import { find, get } from 'lodash';
+import { find } from 'lodash';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { isCampaignClosed, parseContentfulType } from '../../../helpers';
+import { isCampaignClosed } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
@@ -22,45 +21,6 @@ const CampaignPageContent = props => {
   }
 
   const isClosed = isCampaignClosed(campaignEndDate);
-
-  const renderBlock = json => {
-    const type = parseContentfulType(json);
-
-    // @TODO (2018-10-11) Would like to rethink this approach with fullWidth.
-    let fullWidth = false;
-    if (
-      [
-        'photoSubmissionAction',
-        'gallery',
-        'postGallery',
-        'imagesBlock',
-      ].includes(type)
-    ) {
-      fullWidth = true;
-    }
-
-    // Only setting full column width for Content Blocks with an image
-    if (type === 'contentBlock' && get(json.fields.image, 'url')) {
-      fullWidth = true;
-    }
-
-    // Only setting full column width for Social Drive Actions displaying a page views info card.
-    if (type === 'socialDriveAction' && !json.fields.hidePageViews) {
-      fullWidth = true;
-    }
-
-    return (
-      <div
-        key={json.id}
-        id={`block-${json.id}`}
-        className={classnames('mb-6', 'mx-3', 'clear-both', {
-          primary: !fullWidth,
-        })}
-      >
-        <ContentfulEntryLoader id={json.id} />
-      </div>
-    );
-  };
 
   const { content, sidebar, blocks } = subPage.fields;
 
@@ -85,7 +45,20 @@ const CampaignPageContent = props => {
       ) : null}
 
       <div className="blocks clear-both">
-        {blocks.map(block => renderBlock(block))}
+        {blocks.map(block => (
+          <div key={block.id} id={`block-${block.id}`}>
+            <ContentfulEntryLoader
+              id={block.id}
+              className="mb-6 mx-3 clear-both"
+              classNameByEntryDefault="md:w-3/4"
+              classNameByEntry={{
+                PostGalleryBlock: 'w-full',
+                PhotoSubmissionBlock: 'w-full',
+                ImagesBlock: 'w-full',
+              }}
+            />
+          </div>
+        ))}
       </div>
 
       {isClosed ? null : (
