@@ -9,7 +9,7 @@ describe('Pages', () => {
   it('Visits site and sees cta', () => {
     cy.withState(exampleScholarshipPage).visit(
       '/us/facts/test-11-facts-about-testing',
-      cy.contains('Pays To Do Good'),
     );
+    cy.contains('PAYS TO DO GOOD');
   });
 });
