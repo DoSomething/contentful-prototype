@@ -14,7 +14,7 @@ import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContaine
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
 export const COMPANY_PAGE_QUERY = gql`
-  query CollectionPageQuery($slug: String!, $preview: Boolean!) {
+  query CompanyPageQuery($slug: String!, $preview: Boolean!) {
     page: companyPageBySlug(slug: $slug, preview: $preview) {
       slug
       coverImage {

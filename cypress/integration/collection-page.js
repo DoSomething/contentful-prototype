@@ -26,8 +26,15 @@ describe('Collection Page', () => {
   });
 
   it('Visit a working collection page', () => {
+    cy.mockGraphqlOp('CollectionPageQuery', {
+      collectionPageBySlug: {
+        title: 'Environment',
+        slug: 'collection',
+      },
+    });
+
     cy.visit('/us/collections/collection');
 
-    cy.contains('h1', 'Hello World');
+    cy.contains('h1', 'Environment');
   });
 });

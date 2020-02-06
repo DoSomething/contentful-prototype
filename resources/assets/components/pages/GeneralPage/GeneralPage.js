@@ -7,19 +7,19 @@ import classnames from 'classnames';
 
 import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
-import ContentfulEntry from '../../ContentfulEntry';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 import './general-page.scss';
 
@@ -99,7 +99,7 @@ const GeneralPage = props => {
                   <div className="secondary">
                     {sidebar.map(block => (
                       <div className="mx-3 mb-6" key={block.id}>
-                        <ContentfulEntry json={block} />
+                        <ContentfulEntryLoader id={block.id} />
                       </div>
                     ))}
                   </div>
@@ -109,7 +109,7 @@ const GeneralPage = props => {
 
             {blocks.map(block => (
               <div className="general-page__block my-6" key={block.id}>
-                <ContentfulEntry json={block} />
+                <ContentfulEntryLoader id={block.id} />
               </div>
             ))}
 

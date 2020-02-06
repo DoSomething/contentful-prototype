@@ -5,10 +5,10 @@ import classnames from 'classnames';
 
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
-import ContentfulEntry from '../../ContentfulEntry';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, parseContentfulType } from '../../../helpers';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages } = props;
@@ -57,7 +57,7 @@ const CampaignPageContent = props => {
           primary: !fullWidth,
         })}
       >
-        <ContentfulEntry json={json} />
+        <ContentfulEntryLoader id={json.id} />
       </div>
     );
   };
@@ -76,7 +76,7 @@ const CampaignPageContent = props => {
             <div className="secondary">
               {sidebar.map(block => (
                 <div className="mb-6 mx-3" key={block.id}>
-                  <ContentfulEntry json={block} />
+                  <ContentfulEntryLoader id={block.id} />
                 </div>
               ))}
             </div>
