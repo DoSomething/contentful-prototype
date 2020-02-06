@@ -60,74 +60,26 @@ class Entity implements ArrayAccess, JsonSerializable
         switch ($block->getContentType()) {
             case 'affirmation':
                 return new Affirmation($block->entry);
-            case 'callToAction':
-                return new CallToAction($block->entry);
             case 'campaign':
                 return new TruncatedCampaign($block->entry);
             case 'campaignDashboard':
                 return new CampaignDashboard($block->entry);
-            case 'campaignUpdate':
-                return new CampaignUpdate($block->entry);
-            case 'postGallery':
-                return new PostGallery($block->entry);
             case 'companyPage':
                 return new CompanyPage($block->entry);
-            case 'contentBlock':
-                return new ContentBlock($block->entry);
-            case 'currentSchoolBlock':
-                return new CurrentSchoolBlock($block->entry);
-            case 'customBlock':
-                if ($block->entry->type === 'join_cta') {
-                    return new CallToAction($block->entry);
-                }
-
-                if ($block->entry->type === 'campaign_update') {
-                    return new CampaignUpdate($block->entry);
-                }
-
-                return new CustomBlock($block->entry);
-            case 'embed':
-                return new Embed($block->entry);
-            case 'galleryBlock':
-                return new GalleryBlock($block->entry);
-            case 'imagesBlock':
-                return new ImagesBlock($block->entry);
             case 'landingPage':
                 return new LandingPage($block->entry);
-            case 'linkAction':
-                return new LinkAction($block->entry);
             case 'page':
                 return new Page($block->entry);
             case 'person':
                 return new Person($block->entry);
-            case 'petitionSubmissionAction':
-                return new PetitionSubmissionAction($block->entry);
-            case 'photoSubmissionAction':
-                return new PhotoSubmissionAction($block->entry);
-            case 'quiz':
-                return new Quiz($block->entry);
-            case 'referralSubmissionAction':
-                return new ReferralSubmissionAction($block->entry);
             case 'sectionBlock':
                 return new SectionBlock($block->entry);
-            case 'selectionSubmissionAction':
-                return new SelectionSubmissionAction($block->entry);
-            case 'shareAction':
-                return new ShareAction($block->entry);
             case 'sixpackExperiment':
                 return new SixpackExperiment($block->entry);
-            case 'socialDriveAction':
-                return new SocialDriveAction($block->entry);
-            case 'softEdgeWidgetAction':
-                return new SoftEdgeWidgetAction($block->entry);
             case 'storyPage':
                 return new TruncatedStoryPage($block->entry);
-            case 'textSubmissionAction':
-                return new TextSubmissionAction($block->entry);
-            case 'voterRegistrationAction':
-                return new VoterRegistrationAction($block->entry);
             default:
-                return $block->entry;
+                return ['id' => $block->entry->getId()];
         }
     }
 
