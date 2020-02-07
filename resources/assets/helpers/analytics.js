@@ -52,23 +52,6 @@ export function analyze(type, args, callback) {
 }
 
 /**
- * Parse analytics event name parameters into a snake cased string.
- *
- * @param  {String}      verb
- * @param  {String}      noun
- * @param  {String|Null} [adjective=null]
- * @return {void}
- */
-const formatEventName = (verb, noun, adjective = null) => {
-  let eventName = `${APP_PREFIX}_${snakeCase(verb)}_${snakeCase(noun)}`;
-
-  // Append adjective if defined.
-  eventName += adjective ? `_${snakeCase(adjective)}` : '';
-
-  return eventName;
-};
-
-/**
  * Send event to analyze with Google Analytics.
  *
  * @param  {String} category
