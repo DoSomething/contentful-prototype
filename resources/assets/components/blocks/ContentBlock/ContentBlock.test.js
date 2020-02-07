@@ -44,14 +44,6 @@ describe('ContentBlock component', () => {
     expect(wrapper.find('TextContent').length).toEqual(1);
   });
 
-  test('it renders the correct alignment class for "left" and "right" image props', () => {
-    let wrapper = shallow(<ContentBlock {...props} imageAlignment="left" />);
-    expect(wrapper.find('Figure').props().alignment).toEqual('left-collapse');
-
-    wrapper = shallow(<ContentBlock {...props} />);
-    expect(wrapper.find('Figure').props().alignment).toEqual('right-collapse');
-  });
-
   test('it works beautifully with content and an empty image prop', () => {
     const wrapper = shallow(
       <ContentBlock content="hi there" image={emptyImage} />,
