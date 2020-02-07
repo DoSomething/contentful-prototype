@@ -1,75 +1,79 @@
 import React from 'react';
+import gql from 'graphql-tag';
+// import { get } from 'lodash';
+// import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
 
+import CampaignCard from './CampaignCard';
+import Spinner from '../../artifacts/Spinner/Spinner';
+import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
+const CAMPAIGNS_QUERY = gql`
+  query CampaignsQuery($isOpen: Boolean, $cursor: String) {
+    campaigns: paginatedCampaigns(
+      isOpen: $isOpen
+      after: $cursor
+      first: 36
+      orderBy: "id,desc"
+      hasWebsite: true
+    ) {
+      edges {
+        cursor
+        node {
+          id
+          startDate
+          campaignWebsite {
+            url
+            coverImage {
+              url
+              description
+            }
+            showcaseTitle
+            showcaseDescription
+          }
+        }
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+`;
+
 const CampaignsPageTemplate = () => {
-  const campaigns = [
-    {
-      id: 1,
-      title: 'Teens For Jeans',
-      slug: 'https://dosomething.org',
-      coverImage: {
-        url:
-          'https://images.ctfassets.net/81iqaqpfd8fy/5ZgtT1Jpw3xIbmICwVkvo6/372fe8c45423155a80fe3402f3ebc1e8/NEW_RBC_Header_Photo.jpg?w=400&h=400&fit=fill',
-        description: 'Teens For Jeans',
-      },
-      tagline: 'Collect jeans for local youth experiencing homelessness.',
-      type: 'campaign',
-    },
-    {
-      id: 2,
-      title: 'Teens For Jeans',
-      slug: 'https://dosomething.org',
-      coverImage: {
-        url:
-          'https://images.ctfassets.net/81iqaqpfd8fy/5ZgtT1Jpw3xIbmICwVkvo6/372fe8c45423155a80fe3402f3ebc1e8/NEW_RBC_Header_Photo.jpg?w=400&h=400&fit=fill',
-        description: 'Teens For Jeans',
-      },
-      tagline: 'Collect jeans for local youth experiencing homelessness.',
-      type: 'campaign',
-    },
-    {
-      id: 3,
-      title: 'Teens For Jeans',
-      slug: 'https://dosomething.org',
-      coverImage: {
-        url:
-          'https://images.ctfassets.net/81iqaqpfd8fy/5ZgtT1Jpw3xIbmICwVkvo6/372fe8c45423155a80fe3402f3ebc1e8/NEW_RBC_Header_Photo.jpg?w=400&h=400&fit=fill',
-        description: 'Teens For Jeans',
-      },
-      tagline: 'Collect jeans for local youth experiencing homelessness.',
-      type: 'campaign',
-    },
-    {
-      id: 4,
-      title: 'Teens For Jeans',
-      slug: 'https://dosomething.org',
-      coverImage: {
-        url:
-          'https://images.ctfassets.net/81iqaqpfd8fy/5ZgtT1Jpw3xIbmICwVkvo6/372fe8c45423155a80fe3402f3ebc1e8/NEW_RBC_Header_Photo.jpg?w=400&h=400&fit=fill',
-        description: 'Teens For Jeans',
-      },
-      tagline: 'Collect jeans for local youth experiencing homelessness.',
-      type: 'campaign',
-    },
-  ];
-  const itemsPerRow = 4;
+  const { error, loading, data } = useQuery(CAMPAIGNS_QUERY, {
+    notifyOnNetworkStatusChange: true,
+  });
+
+  // const { endCursor, hasNextPage } = get(data, 'campaigns.pageInfo', {});
+
+  if (error) {
+    return <ErrorBlock error={error} />;
+  }
+
   return (
     <>
       <SiteNavigationContainer />
       <main className="md:w-3/4 mx-auto">
         <h1 className="w-full my-6">Campaigns For All Causes</h1>
-        <GalleryBlock
-          blocks={campaigns}
-          itemsPerRow={itemsPerRow}
-          imageAlignment="TOP"
-        />
+        {!loading ? (
+          data.campaigns.edges.map(campaign => {
+            return (
+              <CampaignCard campaign={campaign.node} key={campaign.cursor} />
+            );
+          })
+        ) : (
+          <Spinner className="flex justify-center p-6" />
+        )}
       </main>
       <SiteFooter />
     </>
   );
 };
+
+CampaignsPageTemplate.propTypes = {};
 
 export default CampaignsPageTemplate;
