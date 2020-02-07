@@ -93,21 +93,19 @@ const postRequest = (payload, dispatch, getState) => {
         },
       };
 
-      trackAnalyticsEvent({
+      const verb =
+        statusCode === 200 && postType === 'signup' ? 'found' : 'completed';
+
+      trackAnalyticsEvent(`${verb}_${formatEventNoun(postType)}`, {
+        action: `${postType}_${verb}`,
+        category: 'campaign_action',
+        label: campaignId || formatEventNoun(postType), // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
         context: {
           actionId,
           activityId: response.data.id,
           blockId,
           campaignId,
           pageId,
-        },
-        metadata: {
-          category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
-          label: campaignId, // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
-          noun: formatEventNoun(postType),
-          target: postType,
-          verb:
-            statusCode === 200 && postType === 'signup' ? 'found' : 'completed',
         },
       });
 
@@ -120,20 +118,16 @@ const postRequest = (payload, dispatch, getState) => {
     .catch(error => {
       report(error);
 
-      trackAnalyticsEvent({
+      trackAnalyticsEvent(`failed_${formatEventNoun(postType)}`, {
+        action: `${postType}_failed`,
+        category: 'campaign_action',
+        label: campaignId || formatEventNoun(postType), // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
         context: {
           actionId,
           blockId,
           campaignId,
           error,
           pageId,
-        },
-        metadata: {
-          category: 'campaign_action', // @TODO: this may need to get passed in as an argument.
-          label: campaignId, // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
-          noun: formatEventNoun(postType),
-          target: postType,
-          verb: 'failed',
         },
       });
 

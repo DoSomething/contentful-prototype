@@ -2,7 +2,6 @@
 /* eslint-disable id-length, jsx-a11y/interactive-supports-focus, jsx-a11y/no-autofocus */
 
 import React from 'react';
-import { get } from 'lodash';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -13,9 +12,10 @@ import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import {
-  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
   getUtmContext,
   getPageContext,
+  trackAnalyticsEvent,
 } from '../../helpers/analytics';
 
 import './site-navigation.scss';
@@ -31,38 +31,34 @@ class SiteNavigation extends React.Component {
     };
   }
 
-  analyzeEvent = (event, analytics = {}) => {
-    const targets = {
-      A: 'link',
-      BUTTON: 'button',
-    };
+  /**
+   * Parse event data and trigger analytics event.
+   *
+   * @param  {Object} data
+   * @return {null}
+   */
+  analyzeEvent = (data = {}) => {
+    const { action, category, label, name, context = {} } = data;
 
-    const inferredTarget = get(targets, event.target.tagName, 'element');
-
-    const target = get(analytics, 'target', inferredTarget);
-
-    const context = get(analytics, 'context', {});
-
-    const label = get(analytics, 'label', null);
-
-    trackAnalyticsEvent({
+    trackAnalyticsEvent(name, {
+      action,
+      category,
+      label,
       context: {
         ...getPageContext(),
         ...getUtmContext(),
         referrer: document.referrer,
         ...context,
       },
-      metadata: {
-        adjective: get(analytics, 'adjective', label),
-        category: get(analytics, 'category', 'navigation'),
-        label,
-        noun: get(analytics, 'noun', 'nav_link'),
-        target,
-        verb: get(analytics, 'verb', 'clicked'),
-      },
     });
   };
 
+  /**
+   * Handle mouse enter events, or otherwise hovering onto an element.
+   *
+   * @param  {String} subNavName
+   * @return {null}
+   */
   handleMouseEnter = subNavName => {
     const { isSubNavFixed } = this.state;
 
@@ -75,6 +71,11 @@ class SiteNavigation extends React.Component {
     });
   };
 
+  /**
+   * Handle mouse leave events, or otherwise hovering off of an element.
+   *
+   * @return {null}
+   */
   handleMouseLeave = () => {
     const { isSubNavFixed } = this.state;
 
@@ -87,14 +88,26 @@ class SiteNavigation extends React.Component {
     });
   };
 
+  /**
+   * Handle on change event on form inputs.
+   *
+   * @param  {Object} event
+   * @return {null}
+   */
   handleOnChange = event => {
     this.setState({
       searchInput: event.target.value,
     });
   };
 
-  handleOnClickLink = (event, analytics = {}) => {
-    this.analyzeEvent(event, analytics);
+  /**
+   * Handle on click events on an element.
+   *
+   * @param  {Object} analytics
+   * @return {null}
+   */
+  handleOnClickLink = (analytics = {}) => {
+    this.analyzeEvent(analytics);
 
     this.setState({
       activeSubNav: null,
@@ -102,10 +115,18 @@ class SiteNavigation extends React.Component {
     });
   };
 
+  /**
+   * Handle on click events that toggle an element.
+   *
+   * @param  {Object} event
+   * @param  {String} subNavName
+   * @param  {Object} analytics
+   * @return {null}
+   */
   handleOnClickToggle = (event, subNavName, analytics = {}) => {
     event.preventDefault();
 
-    this.analyzeEvent(event, analytics);
+    this.analyzeEvent(analytics);
 
     const { activeSubNav, isSubNavFixed } = this.state;
 
@@ -132,19 +153,18 @@ class SiteNavigation extends React.Component {
     });
   };
 
-  handleOnClickClose = (event, analytics = {}) => {
-    this.analyzeEvent(event, analytics);
+  /**
+   * Handle on click events that close a menu item.
+   *
+   * @param  {Object} analytics
+   * @return {null}
+   */
+  handleOnClickClose = (analytics = {}) => {
+    this.analyzeEvent(analytics);
 
     this.setState({
       activeSubNav: null,
       isSubNavFixed: false,
-    });
-  };
-
-  handleOnSubmit = (event, analytics = {}) => {
-    this.analyzeEvent(event, {
-      ...analytics,
-      context: { searchQuery: this.state.searchInput },
     });
   };
 
@@ -155,7 +175,14 @@ class SiteNavigation extends React.Component {
           <div className="logo-nav">
             <a
               href="/"
-              onClick={e => this.handleOnClickLink(e, { label: 'homepage' })}
+              onClick={() =>
+                this.handleOnClickLink({
+                  name: 'clicked_nav_link_homepage',
+                  action: 'link_clicked',
+                  category: EVENT_CATEGORIES.navigation,
+                  label: 'homepage',
+                })
+              }
             >
               <DoSomethingLogo />
             </a>
@@ -180,8 +207,11 @@ class SiteNavigation extends React.Component {
                       <a
                         id="main-nav__causes"
                         href="/campaigns"
-                        onClick={e =>
-                          this.handleOnClickLink(e, {
+                        onClick={() =>
+                          this.handleOnClickLink({
+                            name: 'clicked_nav_link_causes',
+                            action: 'link_clicked',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
                         }
@@ -195,6 +225,9 @@ class SiteNavigation extends React.Component {
                         href="/"
                         onClick={e =>
                           this.handleOnClickToggle(e, 'CausesSubNav', {
+                            name: 'clicked_nav_link_causes',
+                            action: 'link_clicked',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
                         }
@@ -216,9 +249,11 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/causes/education"
-                            onClick={e => {
-                              this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_education',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_education',
                               });
                             }}
@@ -229,9 +264,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/causes/mental-health"
-                            onClick={e => {
-                              this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_mental_health',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_mental_health',
                               });
                             }}
@@ -242,9 +280,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/causes/homelessness-and-poverty"
-                            onClick={e => {
-                              this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_homelessness_and_poverty',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_homelessness_and_poverty',
                               });
                             }}
@@ -255,9 +296,11 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/causes/environment"
-                            onClick={e => {
-                              this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_environment',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_environment',
                               });
                             }}
@@ -268,9 +311,11 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/causes/bullying"
-                            onClick={e => {
-                              this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_bullying',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_bullying',
                               });
                             }}
@@ -281,9 +326,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/campaigns"
-                            onClick={e => {
-                              this.handleOnClickLink(e, {
-                                noun: 'subnav_link',
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_all_campaigns',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_all_campaigns',
                               });
                             }}
@@ -301,10 +349,11 @@ class SiteNavigation extends React.Component {
                         url="/us/campaigns/mirror-messages"
                         title="Mirror Messages"
                         text="Create and post encouraging notes in your school bathrooms to brighten your classmates' day!"
-                        callback={e =>
-                          this.analyzeEvent(e, {
-                            noun: 'subnav_link',
-                            target: 'link',
+                        callback={() =>
+                          this.analyzeEvent({
+                            name: 'clicked_subnav_link_feature_mirror_messages',
+                            action: 'link_clicked',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'feature_mirror_messages',
                           })
                         }
@@ -313,10 +362,15 @@ class SiteNavigation extends React.Component {
 
                     {this.state.isSubNavFixed ? (
                       <CloseButton
-                        callback={this.handleOnClickClose}
+                        callback={() =>
+                          this.handleOnClickClose({
+                            name: 'clicked_nav_button_close_subnav',
+                            action: 'button_clicked',
+                            category: EVENT_CATEGORIES.navigation,
+                            label: 'close_subnav',
+                          })
+                        }
                         className="btn__close--subnav btn__close--main-subnav block"
-                        dataLabel="close_subnav"
-                        dataNoun="nav_button"
                         size="22px"
                       />
                     ) : null}
@@ -328,8 +382,13 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="/us/about/easy-scholarships"
-                onClick={e =>
-                  this.handleOnClickLink(e, { label: 'scholarships' })
+                onClick={() =>
+                  this.handleOnClickLink({
+                    name: 'clicked_nav_link_scholarships',
+                    action: 'link_clicked',
+                    category: EVENT_CATEGORIES.navigation,
+                    label: 'scholarships',
+                  })
                 }
               >
                 Scholarships
@@ -339,7 +398,14 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="https://lets.dosomething.org"
-                onClick={e => this.handleOnClickLink(e, { label: 'articles' })}
+                onClick={() =>
+                  this.handleOnClickLink({
+                    name: 'clicked_nav_link_articles',
+                    action: 'link_clicked',
+                    category: EVENT_CATEGORIES.navigation,
+                    label: 'articles',
+                  })
+                }
               >
                 Articles
               </a>
@@ -348,7 +414,14 @@ class SiteNavigation extends React.Component {
             <li className="menu-nav__item">
               <a
                 href="https://join.dosomething.org/"
-                onClick={e => this.handleOnClickLink(e, { label: 'about' })}
+                onClick={() =>
+                  this.handleOnClickLink({
+                    name: 'clicked_nav_link_about',
+                    action: 'link_clicked',
+                    category: EVENT_CATEGORIES.navigation,
+                    label: 'about',
+                  })
+                }
               >
                 About
               </a>
@@ -364,8 +437,10 @@ class SiteNavigation extends React.Component {
                 })}
                 onClick={e =>
                   this.handleOnClickToggle(e, 'SearchSubNav', {
+                    name: 'clicked_nav_button_search_form_toggle',
+                    action: 'link_clicked',
+                    category: EVENT_CATEGORIES.navigation,
                     label: 'search_form_toggle',
-                    noun: 'nav_button',
                   })
                 }
               >
@@ -383,13 +458,13 @@ class SiteNavigation extends React.Component {
                       acceptCharset="UTF-8"
                       action="/us/search"
                       method="GET"
-                      onSubmit={e =>
-                        this.handleOnSubmit(e, {
-                          category: 'search',
+                      onSubmit={() =>
+                        this.analyzeEvent({
+                          name: 'submitted_nav_form_search_subnav',
+                          action: 'form_submitted',
+                          category: EVENT_CATEGORIES.search,
                           label: 'search_subnav',
-                          noun: 'nav_form',
-                          target: 'form',
-                          verb: 'submitted',
+                          context: { searchQuery: this.state.searchInput },
                         })
                       }
                     >
@@ -400,13 +475,12 @@ class SiteNavigation extends React.Component {
                         name="query"
                         autoFocus
                         onChange={this.handleOnChange}
-                        onClick={e =>
-                          this.analyzeEvent(e, {
-                            category: 'search',
+                        onClick={() =>
+                          this.analyzeEvent({
+                            name: 'clicked_nav_form_search_subnav',
+                            action: 'form_clicked',
+                            category: EVENT_CATEGORIES.search,
                             label: 'search_subnav',
-                            noun: 'nav_form',
-                            target: 'form',
-                            verb: 'clicked',
                           })
                         }
                         value={this.state.searchInput}
@@ -419,10 +493,13 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/about/easy-scholarships"
-                            onClick={e =>
-                              this.analyzeEvent(e, {
+                            onClick={() =>
+                              this.analyzeEvent({
+                                name:
+                                  'clicked_subnav_link_scholarships_top_search',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'scholarships_top_search',
-                                noun: 'subnav_link',
                               })
                             }
                           >
@@ -433,10 +510,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/search?query=bullying"
-                            onClick={e =>
-                              this.analyzeEvent(e, {
+                            onClick={() =>
+                              this.analyzeEvent({
+                                name: 'clicked_subnav_link_bullying_top_search',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'bullying_top_search',
-                                noun: 'subnav_link',
                               })
                             }
                           >
@@ -447,10 +526,12 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/search?query=animals"
-                            onClick={e =>
-                              this.analyzeEvent(e, {
+                            onClick={() =>
+                              this.analyzeEvent({
+                                name: 'clicked_subnav_link_animals_top_search',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'animals_top_search',
-                                noun: 'subnav_link',
                               })
                             }
                           >
@@ -461,10 +542,13 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/facts/11-facts-about-cyber-bullying"
-                            onClick={e =>
-                              this.analyzeEvent(e, {
+                            onClick={() =>
+                              this.analyzeEvent({
+                                name:
+                                  'clicked_subnav_link_cyberbullying_top_search',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'cyberbullying_top_search',
-                                noun: 'subnav_link',
                               })
                             }
                           >
@@ -475,10 +559,13 @@ class SiteNavigation extends React.Component {
                         <li>
                           <a
                             href="/us/articles/volunteer-opportunities-for-teens"
-                            onClick={e =>
-                              this.analyzeEvent(e, {
+                            onClick={() =>
+                              this.analyzeEvent({
+                                name:
+                                  'clicked_subnav_link_volunteering_top_search',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'volunteering_top_search',
-                                noun: 'subnav_link',
                               })
                             }
                           >
@@ -489,10 +576,12 @@ class SiteNavigation extends React.Component {
                     </div>
 
                     <CloseButton
-                      callback={e =>
-                        this.handleOnClickClose(e, {
+                      callback={() =>
+                        this.handleOnClickClose({
+                          name: 'clicked_nav_button_close_search_subnav',
+                          action: 'button_clicked',
+                          category: EVENT_CATEGORIES.navigation,
                           label: 'close_search_subnav',
-                          noun: 'nav_button',
                         })
                       }
                       className="btn__close--subnav btn__close--search-subnav block"
@@ -510,7 +599,14 @@ class SiteNavigation extends React.Component {
                     id="utility-nav__account-profile"
                     href="/us/account/profile"
                     className="utility-nav__account-profile-icon"
-                    onClick={e => this.analyzeEvent(e, { label: 'profile' })}
+                    onClick={() =>
+                      this.analyzeEvent({
+                        name: 'clicked_nav_link_profile',
+                        action: 'link_clicked',
+                        category: EVENT_CATEGORIES.navigation,
+                        label: 'profile',
+                      })
+                    }
                   >
                     <ProfileIcon />
                   </a>
@@ -522,7 +618,14 @@ class SiteNavigation extends React.Component {
                   <a
                     id="utility-nav__auth"
                     href={this.props.authLoginUrl}
-                    onClick={e => this.analyzeEvent(e, { label: 'log_in' })}
+                    onClick={() =>
+                      this.analyzeEvent({
+                        name: 'clicked_nav_link_log_in',
+                        action: 'link_clicked',
+                        category: EVENT_CATEGORIES.navigation,
+                        label: 'log_in',
+                      })
+                    }
                   >
                     Log In
                   </a>
@@ -532,7 +635,14 @@ class SiteNavigation extends React.Component {
                   <a
                     id="utility-nav__join"
                     href={this.props.authRegisterUrl}
-                    onClick={e => this.analyzeEvent(e, { label: 'join_now' })}
+                    onClick={() =>
+                      this.analyzeEvent({
+                        name: 'clicked_nav_link_join_now',
+                        action: 'link_clicked',
+                        category: EVENT_CATEGORIES.navigation,
+                        label: 'join_now',
+                      })
+                    }
                   >
                     Join Now
                   </a>
@@ -545,10 +655,12 @@ class SiteNavigation extends React.Component {
         {this.state.activeSubNav ? (
           <div
             className="underlay"
-            onClick={e =>
-              this.handleOnClickClose(e, {
+            onClick={() =>
+              this.handleOnClickClose({
+                name: 'clicked_nav_element_underlay_close_subnav',
+                action: 'element_clicked',
+                category: EVENT_CATEGORIES.navigation,
                 label: 'underlay_close_subnav',
-                noun: 'nav_element',
               })
             }
             role="button"

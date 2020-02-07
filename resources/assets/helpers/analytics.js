@@ -20,6 +20,21 @@ import { debug, stringifyNestedObjects, withoutValueless } from '.';
  */
 const APP_PREFIX = 'phoenix';
 
+export const EVENT_CATEGORIES = {
+  accountEdit: 'account_edit',
+  authentication: 'authentication',
+  campaignAction: 'campaign_action',
+  focusedField: 'focused_field',
+  modal: 'modal',
+  navigation: 'navigation',
+  onboarding: 'onboarding',
+  search: 'search',
+  signup: 'signup',
+  siteAction: 'site_action',
+  socialShare: 'social_share',
+  waypoint: 'waypoint',
+};
+
 /**
  * Wrapper function to allow executing additional calls when an analytics event is triggered.
  *

@@ -22,7 +22,6 @@ const initialState = {
   postSubmissions: {
     items: {},
   },
-  quiz: {},
   signups: {
     data: [],
     thisCampaign: false,
