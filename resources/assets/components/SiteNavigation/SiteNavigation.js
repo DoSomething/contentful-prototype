@@ -12,9 +12,10 @@ import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
 import {
-  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
   getUtmContext,
   getPageContext,
+  trackAnalyticsEvent,
 } from '../../helpers/analytics';
 
 import './site-navigation.scss';
@@ -178,7 +179,7 @@ class SiteNavigation extends React.Component {
                 this.handleOnClickLink({
                   name: 'clicked_nav_link_homepage',
                   action: 'link_clicked',
-                  category: 'navigation',
+                  category: EVENT_CATEGORIES.navigation,
                   label: 'homepage',
                 })
               }
@@ -210,7 +211,7 @@ class SiteNavigation extends React.Component {
                           this.handleOnClickLink({
                             name: 'clicked_nav_link_causes',
                             action: 'link_clicked',
-                            category: 'navigation',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
                         }
@@ -226,7 +227,7 @@ class SiteNavigation extends React.Component {
                           this.handleOnClickToggle(e, 'CausesSubNav', {
                             name: 'clicked_nav_link_causes',
                             action: 'link_clicked',
-                            category: 'navigation',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'causes',
                           })
                         }
@@ -252,7 +253,7 @@ class SiteNavigation extends React.Component {
                               this.handleOnClickLink({
                                 name: 'clicked_subnav_link_causes_education',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_education',
                               });
                             }}
@@ -268,7 +269,7 @@ class SiteNavigation extends React.Component {
                                 name:
                                   'clicked_subnav_link_causes_mental_health',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_mental_health',
                               });
                             }}
@@ -284,7 +285,7 @@ class SiteNavigation extends React.Component {
                                 name:
                                   'clicked_subnav_link_causes_homelessness_and_poverty',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_homelessness_and_poverty',
                               });
                             }}
@@ -299,7 +300,7 @@ class SiteNavigation extends React.Component {
                               this.handleOnClickLink({
                                 name: 'clicked_subnav_link_causes_environment',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_environment',
                               });
                             }}
@@ -314,7 +315,7 @@ class SiteNavigation extends React.Component {
                               this.handleOnClickLink({
                                 name: 'clicked_subnav_link_causes_bullying',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_bullying',
                               });
                             }}
@@ -330,7 +331,7 @@ class SiteNavigation extends React.Component {
                                 name:
                                   'clicked_subnav_link_causes_all_campaigns',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'causes_all_campaigns',
                               });
                             }}
@@ -352,7 +353,7 @@ class SiteNavigation extends React.Component {
                           this.analyzeEvent({
                             name: 'clicked_subnav_link_feature_mirror_messages',
                             action: 'link_clicked',
-                            category: 'navigation',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'feature_mirror_messages',
                           })
                         }
@@ -365,7 +366,7 @@ class SiteNavigation extends React.Component {
                           this.handleOnClickClose({
                             name: 'clicked_nav_button_close_subnav',
                             action: 'button_clicked',
-                            category: 'navigation',
+                            category: EVENT_CATEGORIES.navigation,
                             label: 'close_subnav',
                           })
                         }
@@ -385,7 +386,7 @@ class SiteNavigation extends React.Component {
                   this.handleOnClickLink({
                     name: 'clicked_nav_link_scholarships',
                     action: 'link_clicked',
-                    category: 'navigation',
+                    category: EVENT_CATEGORIES.navigation,
                     label: 'scholarships',
                   })
                 }
@@ -401,7 +402,7 @@ class SiteNavigation extends React.Component {
                   this.handleOnClickLink({
                     name: 'clicked_nav_link_articles',
                     action: 'link_clicked',
-                    category: 'navigation',
+                    category: EVENT_CATEGORIES.navigation,
                     label: 'articles',
                   })
                 }
@@ -417,7 +418,7 @@ class SiteNavigation extends React.Component {
                   this.handleOnClickLink({
                     name: 'clicked_nav_link_about',
                     action: 'link_clicked',
-                    category: 'navigation',
+                    category: EVENT_CATEGORIES.navigation,
                     label: 'about',
                   })
                 }
@@ -438,7 +439,7 @@ class SiteNavigation extends React.Component {
                   this.handleOnClickToggle(e, 'SearchSubNav', {
                     name: 'clicked_nav_button_search_form_toggle',
                     action: 'link_clicked',
-                    category: 'navigation',
+                    category: EVENT_CATEGORIES.navigation,
                     label: 'search_form_toggle',
                   })
                 }
@@ -461,7 +462,7 @@ class SiteNavigation extends React.Component {
                         this.analyzeEvent({
                           name: 'submitted_nav_form_search_subnav',
                           action: 'form_submitted',
-                          category: 'search',
+                          category: EVENT_CATEGORIES.search,
                           label: 'search_subnav',
                           context: { searchQuery: this.state.searchInput },
                         })
@@ -478,7 +479,7 @@ class SiteNavigation extends React.Component {
                           this.analyzeEvent({
                             name: 'clicked_nav_form_search_subnav',
                             action: 'form_clicked',
-                            category: 'search',
+                            category: EVENT_CATEGORIES.search,
                             label: 'search_subnav',
                           })
                         }
@@ -497,7 +498,7 @@ class SiteNavigation extends React.Component {
                                 name:
                                   'clicked_subnav_link_scholarships_top_search',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'scholarships_top_search',
                               })
                             }
@@ -513,7 +514,7 @@ class SiteNavigation extends React.Component {
                               this.analyzeEvent({
                                 name: 'clicked_subnav_link_bullying_top_search',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'bullying_top_search',
                               })
                             }
@@ -529,7 +530,7 @@ class SiteNavigation extends React.Component {
                               this.analyzeEvent({
                                 name: 'clicked_subnav_link_animals_top_search',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'animals_top_search',
                               })
                             }
@@ -546,7 +547,7 @@ class SiteNavigation extends React.Component {
                                 name:
                                   'clicked_subnav_link_cyberbullying_top_search',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'cyberbullying_top_search',
                               })
                             }
@@ -563,7 +564,7 @@ class SiteNavigation extends React.Component {
                                 name:
                                   'clicked_subnav_link_volunteering_top_search',
                                 action: 'link_clicked',
-                                category: 'navigation',
+                                category: EVENT_CATEGORIES.navigation,
                                 label: 'volunteering_top_search',
                               })
                             }
@@ -579,7 +580,7 @@ class SiteNavigation extends React.Component {
                         this.handleOnClickClose({
                           name: 'clicked_nav_button_close_search_subnav',
                           action: 'button_clicked',
-                          category: 'navigation',
+                          category: EVENT_CATEGORIES.navigation,
                           label: 'close_search_subnav',
                         })
                       }
@@ -602,7 +603,7 @@ class SiteNavigation extends React.Component {
                       this.analyzeEvent({
                         name: 'clicked_nav_link_profile',
                         action: 'link_clicked',
-                        category: 'navigation',
+                        category: EVENT_CATEGORIES.navigation,
                         label: 'profile',
                       })
                     }
@@ -621,7 +622,7 @@ class SiteNavigation extends React.Component {
                       this.analyzeEvent({
                         name: 'clicked_nav_link_log_in',
                         action: 'link_clicked',
-                        category: 'navigation',
+                        category: EVENT_CATEGORIES.navigation,
                         label: 'log_in',
                       })
                     }
@@ -638,7 +639,7 @@ class SiteNavigation extends React.Component {
                       this.analyzeEvent({
                         name: 'clicked_nav_link_join_now',
                         action: 'link_clicked',
-                        category: 'navigation',
+                        category: EVENT_CATEGORIES.navigation,
                         label: 'join_now',
                       })
                     }
@@ -658,7 +659,7 @@ class SiteNavigation extends React.Component {
               this.handleOnClickClose({
                 name: 'clicked_nav_element_underlay_close_subnav',
                 action: 'element_clicked',
-                category: 'navigation',
+                category: EVENT_CATEGORIES.navigation,
                 label: 'underlay_close_subnav',
               })
             }

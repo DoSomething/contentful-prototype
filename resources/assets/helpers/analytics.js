@@ -20,6 +20,21 @@ import { debug, stringifyNestedObjects, withoutValueless } from '.';
  */
 const APP_PREFIX = 'phoenix';
 
+export const EVENT_CATEGORIES = {
+  accountEdit: 'account_edit',
+  authentication: 'authentication',
+  campaignAction: 'campaign_action',
+  focusedField: 'focused_field',
+  modal: 'modal',
+  navigation: 'navigation',
+  onboarding: 'onboarding',
+  search: 'search',
+  signup: 'signup',
+  siteAction: 'site_action',
+  socialShare: 'social_share',
+  waypoint: 'waypoint',
+};
+
 /**
  * Wrapper function to allow executing additional calls when an analytics event is triggered.
  *
@@ -294,6 +309,14 @@ export function trackAnalyticsEvent(name, metadata = {}) {
   // but while we support the legacyTrackAnalyticsEvent(), we need to destruct after
   // checking against whether name is a string or object or will error out.
   const { action, category, label, context = {}, service } = metadata;
+
+  // @TODO: uncomment out this code once all the events have had their categories
+  // updated to use the new EVENT_CATEGORIES object.
+  // if (!EVENT_CATEGORIES[category]) {
+  //   console.error('The event category specified is not valid!');
+
+  //   return;
+  // }
 
   if (!isString(name)) {
     console.error('Please provide a string for the event name!');
