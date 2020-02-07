@@ -33,7 +33,7 @@ describe('Company Page', () => {
     cy.contains('Pays To Do Good');
   });
 
-  it('Successful Submission', () => {
+  it('Handles Successful Newsletter Cta Submission', () => {
     cy.mockGraphqlOp('CompanyPageQuery', {
       companyPageBySlug: {
         title: 'Easy Scholarships',
@@ -42,8 +42,6 @@ describe('Company Page', () => {
     });
 
     cy.visit(`/us/about/easy-scholarships`);
-
-    cy.contains('Pays To Do Good');
 
     cy.route({
       method: 'POST',
@@ -57,7 +55,7 @@ describe('Company Page', () => {
     cy.contains('Thank You For Submitting Your Email');
   });
 
-  it('Failed Submission', () => {
+  it('Handles Failed Submission', () => {
     cy.mockGraphqlOp('CompanyPageQuery', {
       companyPageBySlug: {
         title: 'Easy Scholarships',
@@ -66,8 +64,6 @@ describe('Company Page', () => {
     });
 
     cy.visit(`/us/about/easy-scholarships`);
-
-    cy.contains('Pays To Do Good');
 
     cy.route({
       method: 'POST',
