@@ -310,14 +310,6 @@ export function trackAnalyticsEvent(name, metadata = {}) {
   // checking against whether name is a string or object or will error out.
   const { action, category, label, context = {}, service } = metadata;
 
-  // @TODO: uncomment out this code once all the events have had their categories
-  // updated to use the new EVENT_CATEGORIES object.
-  // if (!EVENT_CATEGORIES[category]) {
-  //   console.error('The event category specified is not valid!');
-
-  //   return;
-  // }
-
   if (!isString(name)) {
     console.error('Please provide a string for the event name!');
 
