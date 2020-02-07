@@ -64,7 +64,7 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/4GkuPYrBnKPSKDcfyYppsL/dab4a609b2e5ed03f0bc42fea22ffb8d/nfl_huddle_for_100_dark-01.png',
   },
-   {
+  {
     name: 'Cotton',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/4hV98gLRcrYAZ3BoCtmvx2/b944f3ee746028b560fe2055e2fd775a/Seal_of_Cotton_Tagline_Stacked.png',
@@ -74,22 +74,22 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/4i6moLBxy61MN2Smul7E1U/ad572a42e7f2aa03ebedf4cc1aa7d726/Fossil_Dark.png',
   },
-    {
+  {
     name: 'Susan Crown Exchange',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/5byjLFhdpZR3YiuODDeREL/fb3e51db190bdac422fb685954d9778c/SCE_Dark.png',
   },
-    {
+  {
     name: 'Aeropostale',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/7slWvGQqSktAkkc8Xpmx55/ce4553ab27b8247f1c41f2ff98e19ab0/AE__ROPOSTALE-LOGO-3.png',
   },
-    {
+  {
     name: 'Blue Shield of California',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/MNfsss3QMdRgW1uzSCSyb/f0ac2664fbbb5460182b658bc8e5a805/BSC_Dark.png',
   },
-    {
+  {
     name: 'HSBC Bank',
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/nqrXUW4560jS9sCU3nLqo/bbf4cd2cd75fbacc058198a9d8c5bb13/HSBC_Bank_Dark.png',

@@ -51,4 +51,3 @@ All links in a file are relative to that file's location in the directory struct
 {% hint style="info" %}
 All image assets are stored in a hidden directory in `/docs/.gitbooks/assets/`.
 {% endhint %}
-

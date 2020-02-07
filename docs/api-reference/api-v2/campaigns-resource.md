@@ -103,6 +103,7 @@ e.g.: 37,6LQzMvDNQcYQYwso8qSkQ8
   ]
 }
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -189,6 +190,7 @@ e.g.: 6LQzMvDNQcYQYwso8qSkQ8
   }
 }
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -225,6 +227,7 @@ e.g.: 6LQzMvDNQcYQYwso8qSkQ8
 ```text
 
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -298,6 +301,7 @@ e.g.: 3455
   }
 }
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -308,4 +312,3 @@ The request is proxied to Rogue and automatically adds the `filter[campaign_id]=
 
 Please refer to the [Rogue API Documentation](https://github.com/DoSomething/rogue/blob/master/documentation/endpoints/v3/posts.md#create-a-post) for further information.
 {% endhint %}
-

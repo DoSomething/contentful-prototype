@@ -17,7 +17,7 @@ There are a few separate components controlling what is displayed in the card, a
 The URL for the current user will need to contain the following UTM parameters:
 
 - `utm_source` with a value containing the word `scholarship`. e.g. `utm_source=scholarship_listing`
-- `utm_campaign` with the value of the referring affiliate's UTM label e.g. `utm_campaign=fastweb` (explained more below). If the value is a snake_cased string, the value should be the _first_ single value in the string e.g. `utm_campaign=fastweb_2019_07`.
+- `utm_campaign` with the value of the referring affiliate's UTM label e.g. `utm_campaign=fastweb` (explained more below). If the value is a snake*cased string, the value should be the \_first* single value in the string e.g. `utm_campaign=fastweb_2019_07`.
 
 ### Affilite info
 
