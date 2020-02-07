@@ -5,6 +5,7 @@ import CampaignPageContent from './CampaignPageContent';
 import { CallToActionContainer } from '../../CallToAction';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
 import './campaign-page.scss';
@@ -31,7 +32,12 @@ const CampaignPage = props => {
           ) : null}
 
           <div className="md:w-3/4 mx-auto my-6">
-            <CampaignPageContent {...props} />
+            {/* Render an entry (quiz), if provided. */}
+            {entryContent ? (
+              <ContentfulEntryLoader id={entryContent.id} />
+            ) : (
+              <CampaignPageContent {...props} />
+            )}
           </div>
 
           {!entryContent ? (
