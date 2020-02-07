@@ -28,12 +28,12 @@ const CampaignPageContent = props => {
     <div className="campaign-page__content" id={subPage.id}>
       <ScrollConcierge />
       {content ? (
-        <div className="row">
-          <div className="primary">
+        <div className="base-12-grid">
+          <div className="grid-wide-7/10">
             <TextContent className="mx-3">{content}</TextContent>
           </div>
           {sidebar.length ? (
-            <div className="secondary">
+            <div className="grid-wide-3/10">
               {sidebar.map(block => (
                 <div className="mb-6 mx-3" key={block.id}>
                   <ContentfulEntryLoader id={block.id} />
@@ -44,21 +44,21 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      <div className="blocks clear-both">
+      <div className="base-12-grid clear-both">
         {blocks.map(block => (
-          <div key={block.id} id={`block-${block.id}`}>
-            <ContentfulEntryLoader
-              id={block.id}
-              className="mb-6 mx-3 clear-both"
-              classNameByEntryDefault="md:w-3/4"
-              classNameByEntry={{
-                ImagesBlock: 'w-full',
-                PostGalleryBlock: 'w-full',
-                PhotoSubmissionBlock: 'w-full',
-                SocialDriveBlock: 'w-full',
-              }}
-            />
-          </div>
+          <ContentfulEntryLoader
+            key={block.id}
+            id={block.id}
+            className="mb-6 clear-both"
+            classNameByEntryDefault="grid-wide-7/10"
+            classNameByEntry={{
+              ContentBlock: 'grid-wide',
+              ImagesBlock: 'grid-wide',
+              PostGalleryBlock: 'grid-wide',
+              PhotoSubmissionBlock: 'grid-wide',
+              SocialDriveBlock: 'grid-wide',
+            }}
+          />
         ))}
       </div>
 

@@ -31,10 +31,15 @@ const CampaignPage = props => {
             <CampaignPageNavigationContainer />
           ) : null}
 
-          <div className="md:w-3/4 mx-auto my-6">
+          <div className="my-6">
             {/* Render an entry (quiz), if provided. */}
             {entryContent ? (
-              <ContentfulEntryLoader id={entryContent.id} />
+              <div className="base-12-grid">
+                <ContentfulEntryLoader
+                  className="grid-wide"
+                  id={entryContent.id}
+                />
+              </div>
             ) : (
               <CampaignPageContent {...props} />
             )}
