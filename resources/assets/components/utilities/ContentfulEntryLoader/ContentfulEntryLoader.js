@@ -164,7 +164,10 @@ const ContentfulEntryLoader = ({
   );
 
   return (
-    <div className={classnames(className, entryClassNames)}>
+    <div
+      data-contentful-id={id}
+      className={classnames(className, entryClassNames)}
+    >
       <ContentfulEntry json={data.block} />
     </div>
   );

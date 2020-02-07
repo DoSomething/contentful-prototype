@@ -59,8 +59,14 @@ describe('Campaign Post', () => {
 
     // We should see one "pending" post for each uploader:
     // @TODO: We need a better selector for this "entire" block...
-    cy.get('#block-3Au9UnzEBGMHjwlBSujlv5 .post').should('have.length', 1);
-    cy.get('#block-6fKwdXz8gYyqJiy42R5c3h .post').should('have.length', 1);
+    cy.get('[data-contentful-id=3Au9UnzEBGMHjwlBSujlv5] .post').should(
+      'have.length',
+      1,
+    );
+    cy.get('[data-contentful-id=6fKwdXz8gYyqJiy42R5c3h] .post').should(
+      'have.length',
+      1,
+    );
   });
 
   it('Create a photo post', () => {
