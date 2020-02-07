@@ -38,13 +38,11 @@ const CompanyPageTemplate = props => {
       <main className="wrapper base-12-grid company-page">
         <article className="grid-wide card rounded border border-solid border-gray-300">
           {coverImage.url ? (
-            <div style={{ maxHeight: '400px' }}>
-              <LazyImage
-                className="w-full"
-                alt={coverImage.description || 'Page Cover Image'}
-                src={contentfulImageUrl(coverImage.url, 1440, 620)}
-              />
-            </div>
+            <LazyImage
+              className="w-full"
+              alt={coverImage.description || 'Page Cover Image'}
+              src={contentfulImageUrl(coverImage.url, 1440, 620)}
+            />
           ) : null}
           <div className="m-4 md:m-12">
             <h1 className="font-league-gothic uppercase text-3xl md:text-5xl">
