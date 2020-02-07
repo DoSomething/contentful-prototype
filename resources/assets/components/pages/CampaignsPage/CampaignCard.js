@@ -2,10 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CampaignCard = ({ campaign }) => {
-  console.log(campaign);
   return (
     <div>
-      <h1>{campaign.campaignWebsite.showcaseTitle}</h1>
+      <a href={campaign.campaignWebsite.url}>
+        <img
+          src={campaign.campaignWebsite.coverImage.url}
+          alt={campaign.campaignWebsite.coverImage.description}
+        />
+        <h1>{campaign.campaignWebsite.showcaseTitle}</h1>
+        <p>{campaign.campaignWebsite.showcaseDescription}</p>
+      </a>
     </div>
   );
 };
