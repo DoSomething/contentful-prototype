@@ -73,11 +73,7 @@ class SocialDriveAction extends React.Component {
       <div
         className={classNames('clearfix pb-6', { 'lg:flex': !hidePageViews })}
       >
-        <div
-          className={classNames('social-drive-action', {
-            'lg:w-2/3 lg:pr-3': !hidePageViews,
-          })}
-        >
+        <div className="social-drive-action lg:w-2/3 lg:pr-3">
           <Card title={shareCardTitle} className="rounded bordered">
             {shareCardDescription ? (
               <div className="p-3">
