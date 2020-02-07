@@ -45,14 +45,14 @@ const QuizBlock = props => {
   }
 
   return (
-    <div className="mx-3">
+    <>
       {hasNavigated ? <ScrollConcierge trigger={id} /> : null}
       {data.block.__typename === 'QuizBlock' ? (
         <Quiz {...data.block} onComplete={setCurrentId} />
       ) : (
         <QuizResult id={id} campaignId={props.additionalContent.campaignId} />
       )}
-    </div>
+    </>
   );
 };
 

@@ -3,12 +3,10 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import LazyImage from '../../utilities/LazyImage';
 import { contentfulImageUrl } from '../../../helpers';
-import { Figure } from '../../utilities/Figure/Figure';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
-
-import './content-block.scss';
 
 export const ContentBlockFragment = gql`
   fragment ContentBlockFragment on ContentBlock {
@@ -39,23 +37,28 @@ const ContentBlock = props => {
   const contentNode = content ? <TextContent>{content}</TextContent> : null;
 
   return (
-    <div className={classnames('content-block', className)}>
+    <div className={classnames(className, 'pb-6')}>
       {title ? (
         <SectionHeader underlined superTitle={superTitle} title={title} />
       ) : null}
 
-      {image.url ? (
-        <Figure
-          image={contentfulImageUrl(image.url, '600', '600', 'fill')}
-          alt={image.description || 'content-block'}
-          alignment={`${imageAlignment.toLowerCase()}-collapse`}
-          size="one-third"
-        >
-          {contentNode}
-        </Figure>
-      ) : (
-        contentNode
-      )}
+      <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
+        {image.url ? (
+          <div
+            className={classnames('mb-3', 'col-span-1', {
+              'order-1': imageAlignment === 'LEFT',
+              'order-2': imageAlignment === 'RIGHT',
+            })}
+          >
+            <LazyImage
+              src={contentfulImageUrl(image.url, '600', '600', 'fill')}
+              alt={image.description || 'content-block'}
+            />
+          </div>
+        ) : null}
+
+        <div className="col-span-2 order-1">{contentNode}</div>
+      </div>
     </div>
   );
 };

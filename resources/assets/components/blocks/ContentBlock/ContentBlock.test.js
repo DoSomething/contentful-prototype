@@ -22,7 +22,7 @@ describe('ContentBlock component', () => {
     const wrapper = shallow(<ContentBlock {...props} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
-    expect(wrapper.find('Figure').length).toEqual(1);
+    expect(wrapper.find('LazyImage').length).toEqual(1);
     expect(wrapper.find('TextContent').length).toEqual(1);
 
     expect(shallowToJson(wrapper)).toMatchSnapshot();
@@ -40,16 +40,8 @@ describe('ContentBlock component', () => {
     const wrapper = shallow(<ContentBlock {...props} image={emptyImage} />);
 
     expect(wrapper.find('SectionHeader').length).toEqual(1);
-    expect(wrapper.find('Figure').length).toEqual(0);
+    expect(wrapper.find('LazyImage').length).toEqual(0);
     expect(wrapper.find('TextContent').length).toEqual(1);
-  });
-
-  test('it renders the correct alignment class for "left" and "right" image props', () => {
-    let wrapper = shallow(<ContentBlock {...props} imageAlignment="left" />);
-    expect(wrapper.find('Figure').props().alignment).toEqual('left-collapse');
-
-    wrapper = shallow(<ContentBlock {...props} />);
-    expect(wrapper.find('Figure').props().alignment).toEqual('right-collapse');
   });
 
   test('it works beautifully with content and an empty image prop', () => {

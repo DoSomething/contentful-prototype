@@ -2,66 +2,94 @@
 
 exports[`ContentBlock component does not include SectionHeader when there's no title 1`] = `
 <div
-  className="content-block"
+  className="pb-6"
 >
-  <Figure
-    alignment="right-collapse"
-    alt="cool image of http://image.com"
-    image="http://image.com/?fit=fill&h=600&w=600"
-    imageClassName={null}
-    size="one-third"
+  <div
+    className="md:grid grid-flow-row-dense grid-cols-3 gap-4"
   >
-    <TextContent
-      className={null}
-      classNameByEntry={Object {}}
-      classNameByEntryDefault={null}
-      styles={Object {}}
+    <div
+      className="mb-3 col-span-1"
     >
-      Test Content
-    </TextContent>
-  </Figure>
+      <LazyImage
+        alt="cool image of http://image.com"
+        asBackground={false}
+        className={null}
+        src="http://image.com/?fit=fill&h=600&w=600"
+      />
+    </div>
+    <div
+      className="col-span-2 order-1"
+    >
+      <TextContent
+        className={null}
+        classNameByEntry={Object {}}
+        classNameByEntryDefault={null}
+        styles={Object {}}
+      >
+        Test Content
+      </TextContent>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`ContentBlock component is rendered with the proper child components when image is set 1`] = `
 <div
-  className="content-block"
+  className="pb-6"
 >
   <SectionHeader
     superTitle="Test Super Title"
     title="Test Title"
     underlined={true}
   />
-  <Figure
-    alignment="right-collapse"
-    alt="cool image of http://image.com"
-    image="http://image.com/?fit=fill&h=600&w=600"
-    imageClassName={null}
-    size="one-third"
+  <div
+    className="md:grid grid-flow-row-dense grid-cols-3 gap-4"
   >
-    <TextContent
-      className={null}
-      classNameByEntry={Object {}}
-      classNameByEntryDefault={null}
-      styles={Object {}}
+    <div
+      className="mb-3 col-span-1"
     >
-      Test Content
-    </TextContent>
-  </Figure>
+      <LazyImage
+        alt="cool image of http://image.com"
+        asBackground={false}
+        className={null}
+        src="http://image.com/?fit=fill&h=600&w=600"
+      />
+    </div>
+    <div
+      className="col-span-2 order-1"
+    >
+      <TextContent
+        className={null}
+        classNameByEntry={Object {}}
+        classNameByEntryDefault={null}
+        styles={Object {}}
+      >
+        Test Content
+      </TextContent>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`ContentBlock component it works beautifully with content and an empty image prop 1`] = `
 <div
-  className="content-block"
+  className="pb-6"
 >
-  <TextContent
-    className={null}
-    classNameByEntry={Object {}}
-    classNameByEntryDefault={null}
-    styles={Object {}}
+  <div
+    className="md:grid grid-flow-row-dense grid-cols-3 gap-4"
   >
-    hi there
-  </TextContent>
+    <div
+      className="col-span-2 order-1"
+    >
+      <TextContent
+        className={null}
+        classNameByEntry={Object {}}
+        classNameByEntryDefault={null}
+        styles={Object {}}
+      >
+        hi there
+      </TextContent>
+    </div>
+  </div>
 </div>
 `;
