@@ -8,8 +8,6 @@ import { contentfulImageUrl } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
 
-import './content-block.scss';
-
 export const ContentBlockFragment = gql`
   fragment ContentBlockFragment on ContentBlock {
     superTitle
