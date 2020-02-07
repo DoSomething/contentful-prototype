@@ -8,7 +8,11 @@ import { PHOENIX_URL } from '../constants';
 import { API } from '../constants/action-types';
 import { getUserToken } from '../selectors/user';
 import { getRequest, setRequestHeaders, tabularLog } from '../helpers/api';
-import { formatEventNoun, trackAnalyticsEvent } from '../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  formatEventNoun,
+  trackAnalyticsEvent,
+} from '../helpers/analytics';
 
 /**
  * Send a GET request and dispatch actions.
@@ -98,7 +102,7 @@ const postRequest = (payload, dispatch, getState) => {
 
       trackAnalyticsEvent(`${verb}_${formatEventNoun(postType)}`, {
         action: `${postType}_${verb}`,
-        category: 'campaign_action',
+        category: EVENT_CATEGORIES.campaignAction,
         label: campaignId || formatEventNoun(postType), // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
         context: {
           actionId,
@@ -120,7 +124,7 @@ const postRequest = (payload, dispatch, getState) => {
 
       trackAnalyticsEvent(`failed_${formatEventNoun(postType)}`, {
         action: `${postType}_failed`,
-        category: 'campaign_action',
+        category: EVENT_CATEGORIES.campaignAction,
         label: campaignId || formatEventNoun(postType), // @TODO: make this the campaign title if available; but also may need to get passed in as an argument.
         context: {
           actionId,

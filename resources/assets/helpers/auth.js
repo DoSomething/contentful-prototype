@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash';
 import queryString from 'query-string';
 
 import { withoutValueless } from '.';
-import { trackAnalyticsEvent } from './analytics';
+import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 /**
  * Get the current UNIX timestamp (in seconds), optionally
@@ -39,7 +39,7 @@ export function bindTokenRefreshEvent() {
 
         trackAnalyticsEvent('refreshed_token', {
           action: 'token_refreshed',
-          category: 'authentication',
+          category: EVENT_CATEGORIES.authentication,
           label: 'token',
           context: { skew },
         });

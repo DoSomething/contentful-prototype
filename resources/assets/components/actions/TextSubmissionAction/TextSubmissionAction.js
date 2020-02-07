@@ -9,13 +9,16 @@ import Card from '../../utilities/Card/Card';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import FormValidation from '../../utilities/Form/FormValidation';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './text-submission-action.scss';
 
@@ -73,7 +76,7 @@ class TextSubmissionAction extends PostForm {
   handleFocus = () => {
     trackAnalyticsEvent('focused_text_submission_action_text', {
       action: 'field_focused',
-      category: 'campaign_action',
+      category: EVENT_CATEGORIES.campaignAction,
       label: 'text_submission_action',
       context: { blockId: this.props.id, pageId: this.props.pageId },
     });

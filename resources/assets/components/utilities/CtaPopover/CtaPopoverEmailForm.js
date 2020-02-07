@@ -7,7 +7,10 @@ import Button from '../Button/Button';
 import { env, report } from '../../../helpers/index';
 import { tabularLog } from '../../../helpers/api';
 import './cta-popover-email-form.scss';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const CtaPopoverEmailForm = ({ handleComplete }) => {
   const [emailValue, setEmailValue] = useState('');
@@ -18,7 +21,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
   const handleFocus = () => {
     trackAnalyticsEvent('focused_call_to_action_popover_email', {
       action: 'field_focused',
-      category: 'site_action',
+      category: EVENT_CATEGORIES.siteAction,
       label: 'call_to_action_popover',
       context: { contextSource: 'newsletter_scholarships' },
     });
@@ -29,7 +32,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
     trackAnalyticsEvent('submitted_call_to_action_popover', {
       action: 'form_submitted',
-      category: 'site_action',
+      category: EVENT_CATEGORIES.siteAction,
       label: 'call_to_action_popover',
       context: { contextSource: 'newsletter_scholarships' },
     });
@@ -64,7 +67,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
         trackAnalyticsEvent('failed_call_to_action_popover_submission', {
           action: 'form_failed',
-          category: 'site_action',
+          category: EVENT_CATEGORIES.siteAction,
           label: 'call_to_action_popover_submission',
           context: {
             contextSource: 'newsletter_scholarships',

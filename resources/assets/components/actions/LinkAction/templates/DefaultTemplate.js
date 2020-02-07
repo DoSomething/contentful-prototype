@@ -6,14 +6,17 @@ import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
 import { dynamicString } from '../../../../helpers';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
-import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
 
 const analyzeClick = (link, context) => {
   trackAnalyticsEvent('clicked_link_action', {
     action: 'button_clicked',
-    category: 'campaign_action',
+    category: EVENT_CATEGORIES.campaignAction,
     label: 'link_action',
     context: { ...context, url: link },
   });

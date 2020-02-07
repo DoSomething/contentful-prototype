@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../utilities/Button/Button';
-import { trackAnalyticsEvent } from '../../helpers/analytics';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
+import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
 const SignupButton = props => {
   const {
@@ -32,7 +32,7 @@ const SignupButton = props => {
     // Track signup button click event before we store the signup.
     trackAnalyticsEvent('clicked_signup', {
       action: 'button_clicked',
-      category: 'signup',
+      category: EVENT_CATEGORIES.signup,
       label: campaignTitle,
       context: {
         campaignId,

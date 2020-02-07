@@ -9,7 +9,10 @@ import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import messengerIcon from './messengerIcon.svg';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
   handleTwitterShareClick,
@@ -21,8 +24,6 @@ import {
 
 import './social-share-tray.scss';
 
-const EVENT_CATEGORY = 'social_share';
-
 class SocialShareTray extends React.Component {
   componentDidMount() {
     loadFacebookSDK();
@@ -31,7 +32,7 @@ class SocialShareTray extends React.Component {
   handleFacebookShareClick = (shareLink, trackLink) => {
     trackAnalyticsEvent('clicked_share_facebook', {
       action: 'button_clicked',
-      category: EVENT_CATEGORY,
+      category: EVENT_CATEGORIES.socialShare,
       label: 'facebook',
       context: { url: trackLink },
     });
@@ -40,7 +41,7 @@ class SocialShareTray extends React.Component {
       .then(() => {
         trackAnalyticsEvent('completed_share_facebook', {
           action: 'action_completed',
-          category: EVENT_CATEGORY,
+          category: EVENT_CATEGORIES.socialShare,
           label: 'facebook',
           context: {
             url: trackLink,
@@ -50,7 +51,7 @@ class SocialShareTray extends React.Component {
       .catch(() => {
         trackAnalyticsEvent('cancelled_share_facebook', {
           action: 'action_cancelled',
-          category: EVENT_CATEGORY,
+          category: EVENT_CATEGORIES.socialShare,
           label: 'facebook',
           context: {
             url: trackLink,
@@ -62,7 +63,7 @@ class SocialShareTray extends React.Component {
   handleFacebookMessengerClick = (shareLink, trackLink) => {
     trackAnalyticsEvent('clicked_share_facebook_messenger', {
       action: 'button_clicked',
-      category: EVENT_CATEGORY,
+      category: EVENT_CATEGORIES.socialShare,
       label: 'facebook_messenger',
       context: { url: trackLink },
     });
@@ -73,7 +74,7 @@ class SocialShareTray extends React.Component {
         .then(() => {
           trackAnalyticsEvent('completed_share_facebook_messenger', {
             action: 'action_completed',
-            category: EVENT_CATEGORY,
+            category: EVENT_CATEGORIES.socialShare,
             label: 'facebook_messenger',
             context: { url: trackLink },
           });
@@ -81,7 +82,7 @@ class SocialShareTray extends React.Component {
         .catch(() => {
           trackAnalyticsEvent('cancelled_share_facebook_messenger', {
             action: 'action_cancelled',
-            category: EVENT_CATEGORY,
+            category: EVENT_CATEGORIES.socialShare,
             label: 'facebook_messenger',
             context: { url: trackLink },
           });
@@ -92,7 +93,7 @@ class SocialShareTray extends React.Component {
         .then(() => {
           trackAnalyticsEvent('successful_redirect_facebook_messenger_app', {
             action: 'redirect_successful',
-            category: EVENT_CATEGORY,
+            category: EVENT_CATEGORIES.socialShare,
             label: 'facebook_messenger_app',
             context: { url: trackLink },
           });
@@ -100,7 +101,7 @@ class SocialShareTray extends React.Component {
         .catch(() => {
           trackAnalyticsEvent('failed_redirect_facebook_messenger_app', {
             action: 'redirect_failed',
-            category: EVENT_CATEGORY,
+            category: EVENT_CATEGORIES.socialShare,
             label: 'facebook_messenger_app',
             context: { url: trackLink },
           });
@@ -111,7 +112,7 @@ class SocialShareTray extends React.Component {
   handleEmailShareClick = (shareLink, trackLink) => {
     trackAnalyticsEvent('clicked_share_email', {
       action: 'button_clicked',
-      category: EVENT_CATEGORY,
+      category: EVENT_CATEGORIES.socialShare,
       label: 'email',
       context: { url: trackLink },
     });

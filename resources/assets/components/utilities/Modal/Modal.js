@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 import ReactDom from 'react-dom';
 
 import ModalContent from './ModalContent';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './modal.scss';
 
@@ -35,7 +38,7 @@ class Modal extends React.Component {
     if (this.props.trackingId) {
       trackAnalyticsEvent('opened_modal', {
         action: 'modal_opened',
-        category: 'modal',
+        category: EVENT_CATEGORIES.modal,
         label: this.props.trackingId || 'modal',
         context: {
           ...this.props.context,
@@ -56,7 +59,7 @@ class Modal extends React.Component {
     if (this.props.trackingId) {
       trackAnalyticsEvent('closed_modal', {
         action: 'modal_closed',
-        category: 'modal',
+        category: EVENT_CATEGORIES.modal,
         label: this.props.trackingId || 'modal',
         context: {
           ...this.props.context,

@@ -3,13 +3,16 @@ import PropTypes from 'prop-types';
 
 import './cta-popover-button.scss';
 import ButtonLink from '../ButtonLink/ButtonLink';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const CtaPopoverButton = ({ buttonText, link }) => {
   const handleClick = () =>
     trackAnalyticsEvent('clicked_call_to_action_popover', {
       action: 'button_clicked',
-      category: 'site_action',
+      category: EVENT_CATEGORIES.siteAction,
       label: 'call_to_action_popover',
       context: {
         url: link,
