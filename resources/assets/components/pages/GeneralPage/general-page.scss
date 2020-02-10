@@ -3,6 +3,12 @@
 .general-page {
   position: inherit;
 
+  // HACK: If a Content Block is found on a "general page" without an
+  // image, we want to force it to full-width so it looks normal.
+  .hack-article-content-widths {
+    grid-column: span 3 / span 3 !important;
+  }
+
   .general-page__heading {
     .general-page__title {
       font-family: theme('fontFamily.league-gothic');

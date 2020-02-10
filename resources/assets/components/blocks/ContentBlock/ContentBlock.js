@@ -57,7 +57,14 @@ const ContentBlock = props => {
           </div>
         ) : null}
 
-        <div className="col-span-2 order-1">{contentNode}</div>
+        <div
+          className={classnames('col-span-2', 'order-1', {
+            /* HACK: See 'general-page.scss'. */
+            'hack-article-content-widths': !image.url,
+          })}
+        >
+          {contentNode}
+        </div>
       </div>
     </div>
   );
