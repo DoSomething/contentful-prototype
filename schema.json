@@ -218,6 +218,20 @@
                 "defaultValue": null
               },
               {
+                "name": "causes",
+                "description": "Only return campaigns containing these causes.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "orderBy",
                 "description": "How to order the results (e.g. 'id,desc').",
                 "type": {
@@ -277,6 +291,30 @@
               {
                 "name": "isOpen",
                 "description": "Only return campaigns that are open or closed.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "causes",
+                "description": "Only return campaigns containing these causes.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "hasWebsite",
+                "description": "Only return campaigns that have a contentful campaign associated.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "Boolean",
@@ -3623,6 +3661,18 @@
             "deprecationReason": null
           },
           {
+            "name": "contentfulCampaignId",
+            "description": "The contentful campaign id where this campaign is being used.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "internalTitle",
             "description": "The internal name used to identify the campaign.",
             "args": [],
@@ -3745,6 +3795,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "campaignWebsite",
+            "description": "The contentful campaign that is associated with the rogue campaign.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CampaignWebsite",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -3794,6 +3856,654 @@
         "interfaces": [],
         "enumValues": null,
         "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CampaignWebsite",
+        "description": null,
+        "fields": [
+          {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "The user-facing title for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slug",
+            "description": "The slug for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "The URL for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "affirmation",
+            "description": "The block to display after a user signs up for a campaign.",
+            "args": [],
+            "type": {
+              "kind": "INTERFACE",
+              "name": "Block",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "callToAction",
+            "description": "The call to action tagline for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coverImage",
+            "description": "The cover image for this campaign.",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseTitle",
+            "description": "The showcase title (the title field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The showcase description (the callToAction field.)",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The showcase image (the coverImage field.)",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this entry.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [
+          {
+            "kind": "INTERFACE",
+            "name": "Showcasable",
+            "ofType": null
+          }
+        ],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Showcasable",
+        "description": null,
+        "fields": [
+          {
+            "name": "showcaseTitle",
+            "description": "The showcase title",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseDescription",
+            "description": "The showcase description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "showcaseImage",
+            "description": "The showcase image",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Asset",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this entry.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "CampaignWebsite",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "Page",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PersonBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentBlock",
+            "ofType": null
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Asset",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": "The unique ID for this Contentful asset.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "title",
+            "description": "Title for this asset.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": "Description for this asset.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "contentType",
+            "description": "Mime-type for this asset.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": "The URL where this file is available at.",
+            "args": [
+              {
+                "name": "w",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "h",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "fit",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ResizeOption",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "AbsoluteUrl",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ResizeOption",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "PAD",
+            "description": "Resize the image to the specified dimensions, padding the image if needed.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "FILL",
+            "description": "Resize the image to the specified dimensions, cropping the image if needed.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SCALE",
+            "description": "Resize the image to the specified dimensions, changing the original aspect ratio if needed.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "CROP",
+            "description": "Crop a part of the original image to fit into the specified dimensions.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "THUMB",
+            "description": "Create a thumbnail from the image.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INTERFACE",
+        "name": "Block",
+        "description": null,
+        "fields": [
+          {
+            "name": "internalTitle",
+            "description": "The internal-facing title for this block.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "id",
+            "description": "The Contentful ID for this entry.",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updatedAt",
+            "description": "The time this entry was last modified.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "createdAt",
+            "description": "The time when this entry was originally created.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "DateTime",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": [
+          {
+            "kind": "OBJECT",
+            "name": "AffiliateBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "AffirmationBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PersonBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CallToActionBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CampaignDashboard",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CampaignUpdateBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ImagesBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "EmbedBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PostGalleryBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "GalleryBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "LinkBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "CurrentSchoolBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PhotoSubmissionBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "QuizBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "SectionBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "SixpackExperimentBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "SelectionSubmissionBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "SocialDriveBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "SoftEdgeBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ShareBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "TextSubmissionBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "PetitionSubmissionBlock",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "VoterRegistrationBlock",
+            "ofType": null
+          }
+        ]
       },
       {
         "kind": "OBJECT",
@@ -5066,341 +5776,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "INTERFACE",
-        "name": "Block",
-        "description": null,
-        "fields": [
-          {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this block.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": "The Contentful ID for this entry.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": "The time this entry was last modified.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": "The time when this entry was originally created.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "AffiliateBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "AffirmationBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "PersonBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "CallToActionBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "CampaignDashboard",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "CampaignUpdateBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ImagesBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "EmbedBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "PostGalleryBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "GalleryBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "LinkBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ContentBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "CurrentSchoolBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "PhotoSubmissionBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "QuizBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "SectionBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "SixpackExperimentBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "SelectionSubmissionBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "SocialDriveBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "SoftEdgeBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ShareBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "TextSubmissionBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "PetitionSubmissionBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "VoterRegistrationBlock",
-            "ofType": null
-          }
-        ]
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Asset",
-        "description": null,
-        "fields": [
-          {
-            "name": "id",
-            "description": "The unique ID for this Contentful asset.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "title",
-            "description": "Title for this asset.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "description",
-            "description": "Description for this asset.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "contentType",
-            "description": "Mime-type for this asset.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "url",
-            "description": "The URL where this file is available at.",
-            "args": [
-              {
-                "name": "w",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "h",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "fit",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ResizeOption",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
-            "type": {
-              "kind": "SCALAR",
-              "name": "AbsoluteUrl",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "ResizeOption",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "PAD",
-            "description": "Resize the image to the specified dimensions, padding the image if needed.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "FILL",
-            "description": "Resize the image to the specified dimensions, cropping the image if needed.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SCALE",
-            "description": "Resize the image to the specified dimensions, changing the original aspect ratio if needed.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "CROP",
-            "description": "Crop a part of the original image to fit into the specified dimensions.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "THUMB",
-            "description": "Create a thumbnail from the image.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
         "kind": "OBJECT",
         "name": "AffiliateBlock",
         "description": null,
@@ -5524,319 +5899,6 @@
         ],
         "enumValues": null,
         "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "CampaignWebsite",
-        "description": null,
-        "fields": [
-          {
-            "name": "internalTitle",
-            "description": "The internal-facing title for this campaign.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "title",
-            "description": "The user-facing title for this campaign.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "slug",
-            "description": "The slug for this campaign.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "url",
-            "description": "The URL for this campaign.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "affirmation",
-            "description": "The block to display after a user signs up for a campaign.",
-            "args": [],
-            "type": {
-              "kind": "INTERFACE",
-              "name": "Block",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "callToAction",
-            "description": "The call to action tagline for this campaign.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "coverImage",
-            "description": "The cover image for this campaign.",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Asset",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "showcaseTitle",
-            "description": "The showcase title (the title field.)",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "showcaseDescription",
-            "description": "The showcase description (the callToAction field.)",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "showcaseImage",
-            "description": "The showcase image (the coverImage field.)",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Asset",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": "The Contentful ID for this entry.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": "The time this entry was last modified.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": "The time when this entry was originally created.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [
-          {
-            "kind": "INTERFACE",
-            "name": "Showcasable",
-            "ofType": null
-          }
-        ],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INTERFACE",
-        "name": "Showcasable",
-        "description": null,
-        "fields": [
-          {
-            "name": "showcaseTitle",
-            "description": "The showcase title",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "showcaseDescription",
-            "description": "The showcase description",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "showcaseImage",
-            "description": "The showcase image",
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "Asset",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "id",
-            "description": "The Contentful ID for this entry.",
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updatedAt",
-            "description": "The time this entry was last modified.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "createdAt",
-            "description": "The time when this entry was originally created.",
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "DateTime",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "CampaignWebsite",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "Page",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "PersonBlock",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "ContentBlock",
-            "ofType": null
-          }
-        ]
       },
       {
         "kind": "OBJECT",
@@ -10006,6 +10068,18 @@
           {
             "name": "quantityFieldPlaceholder",
             "description": "Optional placeholder for the quantity field.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "numberOfParticipantsFieldLabel",
+            "description": "Optional label for the 'number_of_participants' field. If empty, this field will be omitted.",
             "args": [],
             "type": {
               "kind": "SCALAR",
