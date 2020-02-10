@@ -803,7 +803,8 @@ export function findContentfulEntry(state, identifier) {
 
   return find(
     contentfulEntries,
-    entry => entry.id === identifier || entry.fields.slug === identifier,
+    entry =>
+      entry.id === identifier || get(entry, 'fields.slug') === identifier,
   );
 }
 
