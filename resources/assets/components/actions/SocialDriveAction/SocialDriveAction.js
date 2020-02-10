@@ -63,6 +63,7 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       link,
+      fullWidth,
       shareCardDescription,
       shareCardTitle,
       hidePageViews,
@@ -75,7 +76,7 @@ class SocialDriveAction extends React.Component {
       >
         <div
           className={classNames('social-drive-action', {
-            'lg:w-2/3 lg:pr-3': !hidePageViews,
+            'lg:w-2/3 lg:pr-3': !fullWidth,
           })}
         >
           <Card title={shareCardTitle} className="rounded bordered">
@@ -159,6 +160,7 @@ class SocialDriveAction extends React.Component {
 
 SocialDriveAction.propTypes = {
   campaignId: PropTypes.string,
+  fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
   shareCardTitle: PropTypes.string,
@@ -170,6 +172,7 @@ SocialDriveAction.propTypes = {
 
 SocialDriveAction.defaultProps = {
   campaignId: null,
+  fullWidth: false,
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',
   pageId: null,

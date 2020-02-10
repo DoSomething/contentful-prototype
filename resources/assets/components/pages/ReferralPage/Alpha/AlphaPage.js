@@ -25,6 +25,7 @@ const AlphaPage = ({ userId }) => (
             shareCardTitle="Refer A Friend"
             link={`${PHOENIX_URL}/us/join?user_id=${userId}&campaign_id=${getReferralCampaignId()}`}
             hidePageViews
+            fullWidth
           />
         </div>
 
