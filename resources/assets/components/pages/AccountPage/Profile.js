@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
 import {
-  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
   getPageContext,
   getUtmContext,
+  trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
@@ -64,7 +65,7 @@ const Profile = props => (
               trackAnalyticsEvent('clicked_nav_link_log_out', {
                 action: 'link_clicked',
                 // @TODO: we should rename the category to "authentication"
-                category: 'navigation',
+                category: EVENT_CATEGORIES.navigation,
                 label: 'log_out',
                 context: {
                   ...getPageContext(),

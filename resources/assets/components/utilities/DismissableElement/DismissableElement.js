@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react';
 
 import { isTimestampValid, query } from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const DismissableElement = ({ name, render, context }) => {
   const [showElement, setShowElement] = useState(true);
@@ -22,7 +25,7 @@ const DismissableElement = ({ name, render, context }) => {
         // @TODO: will discuss with Data Team possibility of reducing
         // the action to just "element_dismissed".
         action: 'dismissable_element_dismissed',
-        category: 'site_action',
+        category: EVENT_CATEGORIES.siteAction,
         label: name,
         context,
       });

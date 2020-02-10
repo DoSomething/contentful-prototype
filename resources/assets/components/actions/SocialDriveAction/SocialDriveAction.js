@@ -9,9 +9,12 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './social-drive.scss';
 
@@ -50,7 +53,7 @@ class SocialDriveAction extends React.Component {
 
     trackAnalyticsEvent('clicked_copy_to_clipboard', {
       action: 'button_clicked',
-      category: 'campaign_action',
+      category: EVENT_CATEGORIES.campaignAction,
       label: 'copy_to_clipboard',
       context: {
         campaignId: this.props.campaignId,

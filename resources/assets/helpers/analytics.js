@@ -4,7 +4,6 @@ import {
   camelCase,
   get,
   isString,
-  isPlainObject,
   mapKeys,
   snakeCase,
   startCase,
@@ -20,6 +19,9 @@ import { debug, stringifyNestedObjects, withoutValueless } from '.';
  */
 const APP_PREFIX = 'phoenix';
 
+/**
+ * List of available event categories.
+ */
 export const EVENT_CATEGORIES = {
   accountEdit: 'account_edit',
   authentication: 'authentication',
@@ -48,23 +50,6 @@ export function analyze(type, args, callback) {
 
   debug().log(type, args);
 }
-
-/**
- * Parse analytics event name parameters into a snake cased string.
- *
- * @param  {String}      verb
- * @param  {String}      noun
- * @param  {String|Null} [adjective=null]
- * @return {void}
- */
-const formatEventName = (verb, noun, adjective = null) => {
-  let eventName = `${APP_PREFIX}_${snakeCase(verb)}_${snakeCase(noun)}`;
-
-  // Append adjective if defined.
-  eventName += adjective ? `_${snakeCase(adjective)}` : '';
-
-  return eventName;
-};
 
 /**
  * Send event to analyze with Google Analytics.
@@ -254,64 +239,28 @@ export function trackAnalyticsPageView(history) {
  * Track an analytics event with a specified service.
  * (Defaults to tracking with all services.)
  *
- * @deprecated
- * @param  {Object} options
- * @param  {Object} options.metadata
- * @param  {Object} options.context
- * @param  {String} options.service
- * @return {void}
- */
-export function legacyTrackAnalyticsEvent({ metadata, context = {}, service }) {
-  if (!metadata) {
-    console.error('The metadata object is missing!');
-    return;
-  }
-
-  const { adjective, category, target, noun, verb } = metadata;
-  const label = metadata.label || noun;
-
-  const name = formatEventName(verb, noun, adjective);
-
-  const action = snakeCase(`${target}_${verb}`);
-
-  const data = withoutValueless({
-    ...context,
-    ...getUtmContext(),
-  });
-
-  sendToServices(name, category, action, label, data, service);
-}
-
-/**
- * Track an analytics event with a specified service.
- * (Defaults to tracking with all services.)
- *
  * @param  {String} name
  * @param  {Object} metadata
- * @param  {String} options.action
- * @param  {String} options.category
- * @param  {String} options.label
- * @param  {Object} options.context
- * @param  {String} options.service
+ * @param  {String} metadata.action
+ * @param  {String} metadata.category
+ * @param  {String} metadata.label
+ * @param  {Object} metadata.context
+ * @param  {String} metadata.service
  * @return {void}
  */
 export function trackAnalyticsEvent(name, metadata = {}) {
-  // @REMOVE: Temporarily check to see if name is an object, and if so send it to the
-  // old legacyTrackAnalyticsEvent(); this will allow us to incrementally switch
-  // calls to the new trackAnalyticsEvent() without breaking everything!
-  if (isPlainObject(name)) {
-    legacyTrackAnalyticsEvent(arguments[0]); // eslint-disable-line prefer-rest-params
+  const { action, category, label, context = {}, service } = metadata;
+
+  // Event name is required.
+  if (!isString(name)) {
+    console.error('Please provide a string for the event name!');
 
     return;
   }
 
-  // @REMOVE: We will switch back to destructuring the variables in the function signature,
-  // but while we support the legacyTrackAnalyticsEvent(), we need to destruct after
-  // checking against whether name is a string or object or will error out.
-  const { action, category, label, context = {}, service } = metadata;
-
-  if (!isString(name)) {
-    console.error('Please provide a string for the event name!');
+  // Event category should exist in list of available categories.
+  if (!Object.values(EVENT_CATEGORIES).includes(category)) {
+    console.error('The event category specified is not valid!');
 
     return;
   }

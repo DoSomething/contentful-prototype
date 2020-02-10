@@ -6,8 +6,11 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import Button from '../../../utilities/Button/Button';
 import { isExternal, dynamicString } from '../../../../helpers';
-import { trackAnalyticsEvent } from '../../../../helpers/analytics';
 import TextContent from '../../../utilities/TextContent/TextContent';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
 
 import './cta-template.scss';
 
@@ -16,7 +19,7 @@ const onLinkClick = (link, context) => {
 
   trackAnalyticsEvent('clicked_link_action', {
     action: 'button_clicked',
-    category: 'campaign_action',
+    category: EVENT_CATEGORIES.campaignAction,
     label: 'link_action',
     context: { ...context, url: link },
   });

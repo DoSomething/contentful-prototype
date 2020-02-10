@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './cta-banner.scss';
 
@@ -9,7 +12,7 @@ const CtaBanner = ({ buttonText, content, link, title }) => {
   const handleClick = () =>
     trackAnalyticsEvent('clicked_call_to_action_banner', {
       action: 'button_clicked',
-      category: 'site_action',
+      category: EVENT_CATEGORIES.siteAction,
       label: 'call_to_action_banner',
       context: {
         url: link,

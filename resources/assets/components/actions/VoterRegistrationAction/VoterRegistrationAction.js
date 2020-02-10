@@ -6,9 +6,12 @@ import Card from '../../utilities/Card/Card';
 import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './voter-registration-action.scss';
 
@@ -37,7 +40,7 @@ const VoterRegistrationAction = props => {
   const handleClick = () => {
     trackAnalyticsEvent('clicked_voter_registration_action', {
       action: 'button_clicked',
-      category: 'campaign_action',
+      category: EVENT_CATEGORIES.campaignAction,
       label: 'voter_registration',
       context: {
         blockId,

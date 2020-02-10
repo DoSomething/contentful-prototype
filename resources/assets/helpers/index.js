@@ -19,7 +19,7 @@ import {
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
-import { trackAnalyticsEvent } from './analytics';
+import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -760,7 +760,7 @@ export function showTwitterSharePrompt(href, quote = '', callback) {
 export function handleFacebookShareClick(href, trackingData) {
   trackAnalyticsEvent('clicked_share_facebook', {
     action: 'button_clicked',
-    category: 'social_share',
+    category: EVENT_CATEGORIES.socialShare,
     label: 'facebook',
     context: { ...trackingData, url: href },
   });
@@ -780,7 +780,7 @@ export function handleFacebookShareClick(href, trackingData) {
 export function handleTwitterShareClick(href, trackingData, quote = '') {
   trackAnalyticsEvent('clicked_share_twitter', {
     action: 'button_clicked',
-    category: 'social_share',
+    category: EVENT_CATEGORIES.socialShare,
     label: 'twitter',
     context: { ...trackingData, url: href },
   });
