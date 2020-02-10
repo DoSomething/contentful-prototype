@@ -19,4 +19,61 @@ describe('Company Page', () => {
 
     cy.contains('h1', 'Who We Are');
   });
+
+  it('Renders a Newsletter Cta', () => {
+    cy.mockGraphqlOp('CompanyPageQuery', {
+      companyPageBySlug: {
+        title: 'Easy Scholarships',
+        slug: 'easy-scholarships',
+      },
+    });
+
+    cy.visit(`/us/about/easy-scholarships`);
+
+    cy.contains('Pays To Do Good');
+  });
+
+  it('Handles Successful Newsletter Cta Submission', () => {
+    cy.mockGraphqlOp('CompanyPageQuery', {
+      companyPageBySlug: {
+        title: 'Easy Scholarships',
+        slug: 'easy-scholarships',
+      },
+    });
+
+    cy.visit(`/us/about/easy-scholarships`);
+
+    cy.route({
+      method: 'POST',
+      url: 'https://identity-dev.dosomething.org/v2/subscriptions',
+      status: 200,
+    });
+
+    cy.get('.email-form__input').type('vmack@dosomething.org');
+    cy.get('.email-form__button').click();
+
+    cy.contains('Thank You For Submitting Your Email');
+  });
+
+  it('Handles Failed Submission', () => {
+    cy.mockGraphqlOp('CompanyPageQuery', {
+      companyPageBySlug: {
+        title: 'Easy Scholarships',
+        slug: 'easy-scholarships',
+      },
+    });
+
+    cy.visit(`/us/about/easy-scholarships`);
+
+    cy.route({
+      method: 'POST',
+      url: 'https://identity-dev.dosomething.org/v2/subscriptions',
+      status: 422,
+    });
+
+    cy.get('.email-form__input').type('hsjadcusdcg');
+    cy.get('.email-form__button').click();
+
+    cy.contains('The email must be a valid email address.');
+  });
 });

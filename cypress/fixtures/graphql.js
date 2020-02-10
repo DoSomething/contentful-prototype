@@ -148,4 +148,14 @@ export const mocks = {
     schoolNotAvailableDescription:
       'No school copy goes here, please email Sahara with information about your school.',
   }),
+  CompanyPage: () => ({
+    nodeType: 'document',
+    content: {
+      data: {},
+      marks: [],
+      value: 'Hello World',
+      nodeType: 'text',
+    },
+    data: {},
+  }),
 };
