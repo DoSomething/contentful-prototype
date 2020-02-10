@@ -10,8 +10,8 @@ const Campaign = ({ campaign }) => {
         <img
           src={appendToQuery(
             {
-              w: 400,
-              h: 400,
+              width: 400,
+              height: 400,
               fit: 'fill',
             },
             campaign.coverImage.url,
