@@ -4,7 +4,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Spinner from '../artifacts/Spinner/Spinner';
-import { trackAnalyticsEvent } from '../../helpers/analytics';
+import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
 class PollLocator extends React.Component {
   componentDidMount() {
@@ -20,7 +20,7 @@ class PollLocator extends React.Component {
   handleSearchButtonClick = () => {
     trackAnalyticsEvent('clicked_poll_locator', {
       action: 'button_clicked',
-      category: 'campaign_action',
+      category: EVENT_CATEGORIES.campaignAction,
       label: 'poll_locator',
     });
   };
@@ -40,7 +40,7 @@ class PollLocator extends React.Component {
       if (get(addressNotFoundModal, 'style.display') === 'block') {
         trackAnalyticsEvent('opened_modal_poll_locator_not_found', {
           action: 'modal_opened',
-          category: 'modal',
+          category: EVENT_CATEGORIES.modal,
           label: 'poll_locator',
         });
       }
@@ -62,7 +62,7 @@ class PollLocator extends React.Component {
       if (modal) {
         trackAnalyticsEvent('opened_modal_poll_locator', {
           action: 'modal_opened',
-          category: 'modal',
+          category: EVENT_CATEGORIES.modal,
           label: 'poll_locator',
         });
       }

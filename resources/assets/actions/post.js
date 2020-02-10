@@ -4,7 +4,7 @@ import { join } from 'path';
 
 import apiRequest from './api';
 import { PHOENIX_URL } from '../constants';
-import { trackAnalyticsEvent } from '../helpers/analytics';
+import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../helpers/analytics';
 import {
   POST_SUBMISSION_FAILED,
   POST_SUBMISSION_INIT_ITEM,
@@ -87,7 +87,7 @@ export function storeCampaignPost(campaignId, data) {
   // Track post submission event.
   trackAnalyticsEvent(`submitted_${type}${EVENT_SUFFIX}`, {
     action: 'form_submitted',
-    category: 'campaign_action',
+    category: EVENT_CATEGORIES.campaignAction,
     label: type,
     context: {
       actionId,
@@ -142,7 +142,7 @@ export function storePost(data) {
   // Track post submission event.
   trackAnalyticsEvent(`submitted_${type}${EVENT_SUFFIX}`, {
     action: 'form_submitted',
-    category: 'campaign_action',
+    category: EVENT_CATEGORIES.campaignAction,
     label: type,
     context: {
       actionId,

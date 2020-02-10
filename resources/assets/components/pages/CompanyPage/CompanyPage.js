@@ -62,7 +62,7 @@ const CompanyPageTemplate = props => {
             render={(handleClose, handleComplete) => (
               <DelayedElement delay={3}>
                 <CtaPopover
-                  title="PAYS TO DO GOOD"
+                  title="Pays To Do Good"
                   content="Want to earn easy scholarships for volunteering?
                 Subscribe to DoSomething's monthly scholarship email."
                   handleClose={handleClose}

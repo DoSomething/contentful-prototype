@@ -10,11 +10,14 @@ import Modal from '../../utilities/Modal/Modal';
 import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import { formatPostPayload } from '../../../helpers/forms';
-import { trackAnalyticsEvent } from '../../../helpers/analytics';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 import {
   dynamicString,
   loadFacebookSDK,
@@ -38,8 +41,6 @@ export const ShareBlockFragment = gql`
     additionalContent
   }
 `;
-
-const EVENT_CATEGORY = 'campaign_action';
 
 class ShareAction extends PostForm {
   state = { showModal: false };
@@ -94,7 +95,7 @@ class ShareAction extends PostForm {
 
     trackAnalyticsEvent('clicked_share_action_facebook', {
       action: 'button_clicked',
-      category: EVENT_CATEGORY,
+      category: EVENT_CATEGORIES.campaignAction,
       label: 'facebook',
       context: { ...this.getContextData(), ...trackingData },
     });
@@ -114,7 +115,7 @@ class ShareAction extends PostForm {
       .then(() => {
         trackAnalyticsEvent('completed_share_action_facebook', {
           action: 'action_completed',
-          category: EVENT_CATEGORY,
+          category: EVENT_CATEGORIES.campaignAction,
           label: 'facebook',
           context: { ...this.getContextData(), ...trackingData },
         });
@@ -124,7 +125,7 @@ class ShareAction extends PostForm {
       .catch(() => {
         trackAnalyticsEvent('cancelled_share_action_facebook', {
           action: 'action_cancelled',
-          category: EVENT_CATEGORY,
+          category: EVENT_CATEGORIES.campaignAction,
           label: 'facebook',
           context: { ...this.getContextData(), ...trackingData },
         });
@@ -134,7 +135,7 @@ class ShareAction extends PostForm {
   handleTwitterClick = url => {
     trackAnalyticsEvent('clicked_share_action_twitter', {
       action: 'button_clicked',
-      category: EVENT_CATEGORY,
+      category: EVENT_CATEGORIES.campaignAction,
       label: 'twitter',
       context: { ...this.getContextData(), url: this.props.link },
     });

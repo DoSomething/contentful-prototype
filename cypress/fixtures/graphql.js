@@ -151,4 +151,14 @@ export const mocks = {
   PostGalleryBlock: () => ({
     hideReactions: false,
   }),
+  CompanyPage: () => ({
+    nodeType: 'document',
+    content: {
+      data: {},
+      marks: [],
+      value: 'Hello World',
+      nodeType: 'text',
+    },
+    data: {},
+  }),
 };
