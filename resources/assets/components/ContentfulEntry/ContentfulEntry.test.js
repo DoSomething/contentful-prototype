@@ -19,7 +19,7 @@ jest.mock(
 test('it can display a campaign update', () => {
   const wrapper = shallow(
     <ContentfulEntry
-      json={{ id: '12345', type: 'campaignUpdate', fields: {} }}
+      json={{ id: '12345', __typename: 'CampaignUpdateBlock', fields: {} }}
     />,
   );
   expect(wrapper.find('CampaignUpdateContainer')).toHaveLength(1);
@@ -28,31 +28,19 @@ test('it can display a campaign update', () => {
 test('it can display a CTA block', () => {
   const wrapper = shallow(
     <ContentfulEntry
-      json={{ id: '12345', type: 'callToAction', fields: {} }}
+      json={{
+        id: '12345',
+        __typename: 'CallToActionBlock',
+        visualStyle: 'LIGHT',
+      }}
     />,
   );
   expect(wrapper.find('CallToActionContainer')).toHaveLength(1);
 });
 
-test('it can display a static block', () => {
-  const wrapper = shallow(
-    <ContentfulEntry
-      json={{
-        id: '12345',
-        type: 'static',
-        fields: {
-          content: 'Donec ullamcorper fringilla.',
-          title: 'Nibh ornare',
-        },
-      }}
-    />,
-  );
-  expect(wrapper.find('StaticBlock')).toHaveLength(1);
-});
-
 test('it should display an error for an unknown block type', () => {
   const wrapper = shallow(
-    <ContentfulEntry json={{ id: '12345', type: 'tongue_cat' }} />,
+    <ContentfulEntry json={{ id: '12345', __typename: 'TongueCatBlock' }} />,
   );
   expect(wrapper.find('ErrorBlock')).toHaveLength(1);
 });

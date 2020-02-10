@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import Loader from '../utilities/Loader';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
-import CallToAction from '../CallToAction/CallToAction';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
+import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
@@ -67,7 +67,7 @@ class ContentfulEntry extends React.Component {
 
       case 'CallToActionBlock':
         return (
-          <CallToAction
+          <CallToActionContainer
             actionText={json.actionText}
             content={json.content}
             impactPrefix={json.impactPrefix}
