@@ -35,6 +35,7 @@ export const PhotoSubmissionBlockFragment = gql`
     showQuantityField
     quantityFieldLabel
     quantityFieldPlaceholder
+    numberOfParticipantsFieldLabel
     whyParticipatedFieldLabel
     whyParticipatedFieldPlaceholder
     buttonText
