@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 // import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
-import CampaignCard from './CampaignCard';
+import CampaignCards from './CampaignCard';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -58,13 +58,9 @@ const CampaignsPageTemplate = () => {
     <>
       <SiteNavigationContainer />
       <main className="md:w-3/4 mx-auto">
-        <h1 className="w-full my-6">Campaigns For All Causes</h1>
+        <h1 className="w-full my-6 pl-3">Campaigns For All Causes</h1>
         {!loading ? (
-          data.campaigns.edges.map(campaign => {
-            return (
-              <CampaignCard campaign={campaign.node} key={campaign.cursor} />
-            );
-          })
+          <CampaignCards campaigns={data.campaigns.edges} />
         ) : (
           <Spinner className="flex justify-center p-6" />
         )}
