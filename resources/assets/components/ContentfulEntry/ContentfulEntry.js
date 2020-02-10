@@ -2,18 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Loader from '../utilities/Loader';
-import StaticBlock from '../StaticBlock';
-import PollLocator from '../PollLocator/PollLocator';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
-import CallToAction from '../CallToAction/CallToAction';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
-import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import CallToActionContainer from '../CallToAction/CallToActionContainer';
+import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
@@ -24,7 +21,6 @@ import PostGalleryBlockQuery from '../blocks/PostGalleryBlock/PostGalleryBlockQu
 import CampaignUpdateContainer from '../blocks/CampaignUpdate/CampaignUpdateContainer';
 import SocialDriveActionContainer from '../actions/SocialDriveAction/SocialDriveActionContainer';
 import CurrentSchoolBlockContainer from '../blocks/CurrentSchoolBlock/CurrentSchoolBlockContainer';
-import CampaignGalleryBlockContainer from '../blocks/CampaignGalleryBlock/CampaignGalleryBlockContainer';
 import TextSubmissionActionContainer from '../actions/TextSubmissionAction/TextSubmissionActionContainer';
 import PhotoSubmissionActionContainer from '../actions/PhotoSubmissionAction/PhotoSubmissionActionContainer';
 import SubmissionGalleryBlockContainer from '../blocks/SubmissionGalleryBlock/SubmissionGalleryBlockContainer';
@@ -71,7 +67,7 @@ class ContentfulEntry extends React.Component {
 
       case 'CallToActionBlock':
         return (
-          <CallToAction
+          <CallToActionContainer
             actionText={json.actionText}
             content={json.content}
             impactPrefix={json.impactPrefix}
@@ -82,24 +78,12 @@ class ContentfulEntry extends React.Component {
           />
         );
 
-      case 'callToAction':
-        return (
-          <CallToActionContainer
-            actionText={json.fields.actionText}
-            content={json.fields.content}
-            impactPrefix={json.fields.impactPrefix}
-            impactSuffix={json.fields.impactSuffix}
-            impactValue={json.fields.impactValue}
-            visualStyle={json.fields.visualStyle}
-            useCampaignTagline={json.fields.useCampaignTagline}
-          />
-        );
+      // Note: This is loaded via legacy PHP Content API.
+      case 'campaignDashboard':
+        return <CampaignDashboard {...withoutNulls(json.fields)} />;
 
       case 'CampaignDashboard':
         return <CampaignDashboard {...withoutNulls(json)} />;
-
-      case 'campaignDashboard':
-        return <CampaignDashboard {...withoutNulls(json.fields)} />;
 
       case 'CampaignUpdateBlock':
         return (
@@ -109,27 +93,6 @@ class ContentfulEntry extends React.Component {
             author={json.author}
             content={json.content}
             link={json.link}
-          />
-        );
-
-      case 'campaignUpdate':
-        return (
-          <CampaignUpdateContainer
-            id={json.id}
-            affiliateLogo={json.fields.affiliateLogo}
-            author={json.fields.author}
-            content={json.fields.content}
-            displayOptions={json.fields.displayOptions}
-            link={json.fields.link}
-          />
-        );
-
-      case 'contentBlock':
-        return (
-          <ContentBlock
-            className={className}
-            id={json.id}
-            {...withoutNulls(json.fields)}
           />
         );
 
@@ -146,20 +109,8 @@ class ContentfulEntry extends React.Component {
           />
         );
 
-      case 'currentSchoolBlock':
-        return <CurrentSchoolBlockContainer {...withoutNulls(json.fields)} />;
-
       case 'CurrentSchoolBlock':
         return <CurrentSchoolBlockContainer {...withoutNulls(json)} />;
-
-      case 'embed':
-        return (
-          <EmbedBlockContainer
-            className={className}
-            id={json.id}
-            {...withoutNulls(json.fields)}
-          />
-        );
 
       case 'EmbedBlock':
         return (
@@ -167,18 +118,6 @@ class ContentfulEntry extends React.Component {
             className={className}
             id={json.id}
             {...withoutNulls(json)}
-          />
-        );
-
-      case 'gallery':
-        return <CampaignGalleryBlockContainer />;
-
-      case 'postGallery':
-        return (
-          <PostGalleryBlockQuery
-            id={json.id}
-            className={className}
-            {...withoutNulls(json.fields)}
           />
         );
 
@@ -191,48 +130,18 @@ class ContentfulEntry extends React.Component {
           />
         );
 
-      case 'galleryBlock':
-        return <GalleryBlock {...withoutNulls(json.fields)} />;
-
       case 'GalleryBlock':
         return <GalleryBlock {...withoutNulls(json)} />;
-
-      case 'imagesBlock':
-        return (
-          <ImagesBlock className={className} images={json.fields.images} />
-        );
 
       case 'ImagesBlock':
         return <ImagesBlock className={className} images={json.images} />;
 
+      // Note: This is loaded via legacy PHP Content API.
       case 'landingPage':
         return <LandingPageContainer {...json.fields} />;
 
       case 'LinkBlock':
         return <LinkActionContainer {...withoutNulls(json)} />;
-
-      case 'linkAction':
-        return (
-          <LinkActionContainer id={json.id} {...withoutNulls(json.fields)} />
-        );
-
-      case 'page':
-        return (
-          <StaticBlock
-            content={json.fields.content}
-            source={json.fields.source}
-            title={json.fields.title}
-          />
-        );
-
-      case 'petitionSubmissionAction':
-        return (
-          <PetitionSubmissionActionContainer
-            className={className}
-            id={json.id}
-            {...withoutNulls(json.fields)}
-          />
-        );
 
       case 'PetitionSubmissionBlock':
         return (
@@ -241,21 +150,6 @@ class ContentfulEntry extends React.Component {
             id={json.id}
             {...withoutNulls(json)}
           />
-        );
-
-      case 'photoSubmissionAction':
-        return (
-          <React.Fragment>
-            <PhotoSubmissionActionContainer
-              id={json.id}
-              {...withoutNulls(json.fields)}
-            />
-            <SubmissionGalleryBlockContainer
-              actionId={json.fields.actionId}
-              className="photo-submission-user-gallery mt-3"
-              type="photo"
-            />
-          </React.Fragment>
         );
 
       case 'PhotoSubmissionBlock':
@@ -270,14 +164,12 @@ class ContentfulEntry extends React.Component {
           </React.Fragment>
         );
 
-      case 'poll_locator':
-        return <PollLocator {...withoutNulls(json.fields)} />;
-
       case 'QuizBlock': {
         const QuizBlock = Loader(import('../Quiz/QuizBlock'));
         return <QuizBlock {...json} />;
       }
 
+      // Note: This is loaded via legacy PHP Content API.
       case 'sectionBlock': {
         return (
           <SectionBlock
@@ -290,21 +182,8 @@ class ContentfulEntry extends React.Component {
         );
       }
 
-      case 'selectionSubmissionAction':
-        return (
-          <SelectionSubmissionActionContainer
-            id={json.id}
-            {...withoutNulls(json.fields)}
-          />
-        );
-
       case 'SelectionSubmissionBlock':
         return <SelectionSubmissionActionContainer {...withoutNulls(json)} />;
-
-      case 'shareAction':
-        return (
-          <ShareActionContainer id={json.id} {...withoutNulls(json.fields)} />
-        );
 
       case 'ShareBlock':
         return <ShareActionContainer id={json.id} {...withoutNulls(json)} />;
@@ -320,38 +199,8 @@ class ContentfulEntry extends React.Component {
       case 'SocialDriveBlock':
         return <SocialDriveActionContainer {...json} />;
 
-      case 'socialDriveAction':
-        return <SocialDriveActionContainer {...json.fields} />;
-
       case 'SoftEdgeBlock':
         return <SoftEdgeBlock {...json} />;
-
-      case 'softEdgeWidgetAction':
-        return <SoftEdgeBlock {...json.fields} />;
-
-      case 'static':
-        return (
-          <StaticBlock
-            content={json.fields.content}
-            source={json.fields.source}
-            title={json.fields.title}
-          />
-        );
-
-      case 'textSubmissionAction':
-        return (
-          <React.Fragment>
-            <TextSubmissionActionContainer
-              id={json.id}
-              {...withoutNulls(json.fields)}
-            />
-            <SubmissionGalleryBlockContainer
-              actionId={json.fields.actionId}
-              className="text-submission-user-gallery mt-3"
-              type="text"
-            />
-          </React.Fragment>
-        );
 
       case 'TextSubmissionBlock':
         return (
@@ -366,14 +215,6 @@ class ContentfulEntry extends React.Component {
               type="text"
             />
           </React.Fragment>
-        );
-
-      case 'voterRegistrationAction':
-        return (
-          <VoterRegistrationActionContainer
-            blockId={json.id}
-            {...json.fields}
-          />
         );
 
       case 'VoterRegistrationBlock':
