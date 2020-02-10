@@ -79,7 +79,7 @@ exports[`ContentBlock component it works beautifully with content and an empty i
     className="md:grid grid-flow-row-dense grid-cols-3 gap-4"
   >
     <div
-      className="col-span-2 order-1"
+      className="col-span-2 order-1 hack-article-content-widths"
     >
       <TextContent
         className={null}
