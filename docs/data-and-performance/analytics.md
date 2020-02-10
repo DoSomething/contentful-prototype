@@ -1,6 +1,5 @@
 # Analytics
 
-<<<<<<< HEAD
 The structure of an analytics event is comprosised of a specified event name and an object providing additional event metadata. The metadata is based on the data structure that our third-party analytics platforms require, which includes the following properties:
 
 - **category**: referenced from a list of approved categories (it should not be created on the fly).
@@ -68,9 +67,3 @@ window.DS.Debug.enableLogs(['google', 'snowplow']);
 Example analytics event console log with DS Debug utility:
 
 ![Analytics Event Console Log Example](../.gitbook/assets/analyitcs-event-console-log-example.png)
-=======
-- **category**: pre-defined and approved by the Data Team; these should not be created on the fly, but referenced from a list of specified categories.
-- **action**: defines a specified item/element and describes the action that was taken upon it (e.g. "Button Clicked").
-- **label**: additional meta data about the action to help distinguish what it was (e.g. "Register", "Twitter" or "Email", to describe the "Button Clicked" action).
-- **context**: object containing all additional desired meta data around an event to help provide data around the full context of the event.
->>>>>>> Initial progress on analytics docs.
