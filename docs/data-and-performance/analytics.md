@@ -22,15 +22,11 @@ Import the function, along with the `EVENT_CATEGORIES` object, which contains a 
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
 // Within React component or other JS file:
-trackAnalyticsEvent('clicked_signup', {
+trackAnalyticsEvent('clicked_share_facebook', {
   action: 'button_clicked',
-  category: EVENT_CATEGORIES.signup,
-  label: campaignTitle,
-  context: {
-    campaignId,
-    contextSource,
-    pageId,
-  },
+  category: EVENT_CATEGORIES.socialShare,
+  label: 'facebook',
+  context: { url: trackLink },
 });
 ```
 
