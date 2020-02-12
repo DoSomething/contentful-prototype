@@ -34,8 +34,12 @@ CampaignGalleryItem.propTypes = {
   showcaseImage: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
-  }).isRequired,
+  }),
   slug: PropTypes.string.isRequired,
+};
+
+CampaignGalleryItem.defaultProps = {
+  showcaseImage: {},
 };
 
 export default CampaignGalleryItem;
