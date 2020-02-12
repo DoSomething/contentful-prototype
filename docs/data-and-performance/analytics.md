@@ -1,6 +1,6 @@
 # Analytics
 
-The structure of an analytics event is comprosised of a specified event name and an object providing additional event metadata. The metadata is based on the data structure that our third-party analytics platforms require, which includes the following properties:
+The structure of an analytics event is comprised of a specified event name and an object providing additional event metadata. The metadata is based on the data structure that our third-party analytics platforms require, which includes the following properties:
 
 - **category**: referenced from a list of approved categories (it should not be created on the fly).
 - **action**: defines a specified item/element and describes the action that was taken upon it (e.g. "Button Clicked").
