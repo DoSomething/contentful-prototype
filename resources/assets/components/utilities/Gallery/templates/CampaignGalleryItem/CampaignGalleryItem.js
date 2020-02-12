@@ -11,7 +11,7 @@ const CampaignGalleryItem = ({
   showcaseImage,
   slug,
 }) => (
-  <Card className="rounded">
+  <Card className="rounded h-full">
     <a className="campaign-gallery-item block" href={`/us/campaigns/${slug}`}>
       <Figure
         alt={`${showcaseImage.description || showcaseTitle}-photo`}
