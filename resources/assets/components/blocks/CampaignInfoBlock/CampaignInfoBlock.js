@@ -27,7 +27,11 @@ const CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
+const CampaignInfoBlock = ({
+  campaignId,
+  scholarshipAmount,
+  scholarshipDeadline,
+}) => (
   <Card className="bordered p-3 rounded campaign-info">
     <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
 
@@ -45,10 +49,20 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
           if (!actionItem) {
             actionItem = actions.find(action => action.reportback);
           }
-
           return (
             <>
-              {endDate ? (
+              {scholarshipAmount && isOpen ? (
+                <React.Fragment>
+                  <dt className="campaign-info__scholarship">
+                    Win A Scholarship
+                  </dt>
+                  <dd className="campaign-info__scholarship">
+                    {`$${scholarshipAmount.toLocaleString()}`}
+                  </dd>
+                </React.Fragment>
+              ) : null}
+
+              {endDate && !scholarshipAmount ? (
                 <>
                   <dt>Deadline</dt>
                   <dd>{getHumanFriendlyDate(endDate)}</dd>
@@ -66,16 +80,6 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {scholarshipAmount && isOpen ? (
-                <React.Fragment>
-                  <dt className="campaign-info__scholarship">
-                    Win A Scholarship
-                  </dt>
-                  <dd className="campaign-info__scholarship">
-                    {`$${scholarshipAmount.toLocaleString()}`}
-                  </dd>
-                </React.Fragment>
-              ) : null}
             </>
           );
         }}
@@ -87,10 +91,12 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
 CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
+  scholarshipDeadline: PropTypes.number,
 };
 
 CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
+  scholarshipDeadline: null,
 };
 
 export default CampaignInfoBlock;
