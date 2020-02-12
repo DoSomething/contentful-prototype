@@ -14,7 +14,6 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
     $causes: [String]
     $cursor: String
     $first: Int
-    $hasWebsite: Boolean
     $isOpen: Boolean
     $orderBy: String
   ) {
@@ -22,7 +21,7 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
       after: $cursor
       causes: $causes
       first: $first
-      hasWebsite: $hasWebsite
+      hasWebsite: true
       isOpen: $isOpen
       orderBy: $orderBy
     ) {
@@ -54,7 +53,7 @@ const PaginatedCampaignGallery = ({ className, itemsPerRow, variables }) => {
   const { error, loading, data, fetchMore } = useQuery(
     PAGINATED_CAMPAIGNS_QUERY,
     {
-      variables: { ...variables, hasWebsite: true },
+      variables: { ...variables },
       notifyOnNetworkStatusChange: true,
     },
   );
