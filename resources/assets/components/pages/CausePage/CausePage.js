@@ -8,12 +8,14 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/PaginatedCampaignGallery';
 
 import './cause-page.scss';
 
 export const CAUSE_PAGE_QUERY = gql`
   query CausePageQuery($slug: String!, $preview: Boolean!) {
     page: causePageBySlug(slug: $slug, preview: $preview) {
+      slug
       coverImage {
         url
         description
@@ -28,6 +30,7 @@ export const CAUSE_PAGE_QUERY = gql`
 `;
 
 const CausePageTemplate = ({
+  slug,
   coverImage,
   superTitle,
   title,
@@ -101,6 +104,15 @@ const CausePageTemplate = ({
             ) : null}
           </header>
 
+          <div className="base-12-grid">
+            <PaginatedCampaignGallery
+              className="grid-full"
+              itemsPerRow={4}
+              title="Campaigns"
+              variables={{ isOpen: true, first: 12, causes: [slug] }}
+            />
+          </div>
+
           <TextContent
             className="base-12-grid"
             classNameByEntry={{
@@ -120,6 +132,7 @@ const CausePageTemplate = ({
 };
 
 CausePageTemplate.propTypes = {
+  slug: PropTypes.string.isRequired,
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
