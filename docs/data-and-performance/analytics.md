@@ -6,7 +6,7 @@ The structure of an analytics event is comprised of a specified event name and a
 - **action**: defines a specified item/element and describes the action that was taken upon it (e.g. "Button Clicked").
 - **label**: additional meta data about the action to help distinguish what it was (e.g. "Register", "Twitter" or "Email", to describe the "Button Clicked" action).
 - **context**: object containing all additional desired meta data around an event to help provide data around the full context of the event.
-- **service**: specify which third-party service to send the analytics data; defaults to all supported analytics platforms.
+- **service**: specify which third-party service to send the analytics data; defaults to all supported analytics platforms and typically not specified.
 
 {% hint style="info" %}
 When an analytics event is triggered on a page, if the page has UTMs attached to the URL for the page (e.g. `?utm_campaign=teens_for_jeans&utm_medium=email&utm_source=dosomething`), these UTMs are automatically added to the payload in the `context`, so there is no need to manually do this when triggering the event!
