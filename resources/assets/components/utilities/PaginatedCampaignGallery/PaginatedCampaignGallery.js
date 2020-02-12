@@ -10,7 +10,7 @@ import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 
 const PAGINATED_CAMPAIGNS_QUERY = gql`
-  query campaignsByCauseQuery(
+  query CampaignsByCauseQuery(
     $causes: [String]
     $cursor: String
     $first: Int
