@@ -50,7 +50,12 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
   }
 `;
 
-const PaginatedCampaignGallery = ({ className, itemsPerRow, variables }) => {
+const PaginatedCampaignGallery = ({
+  className,
+  itemsPerRow,
+  title,
+  variables,
+}) => {
   const { error, loading, data, fetchMore } = useQuery(
     PAGINATED_CAMPAIGNS_QUERY,
     {
@@ -95,6 +100,7 @@ const PaginatedCampaignGallery = ({ className, itemsPerRow, variables }) => {
         blocks={campaigns}
         itemsPerRow={itemsPerRow}
         imageAlignment="TOP"
+        title={title}
       />
       {hasNextPage ? (
         <div className="p-6 text-center">
@@ -114,6 +120,7 @@ const PaginatedCampaignGallery = ({ className, itemsPerRow, variables }) => {
 PaginatedCampaignGallery.propTypes = {
   className: PropTypes.string,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
+  title: PropTypes.string,
   variables: PropTypes.shape({
     causes: PropTypes.arrayOf(PropTypes.string),
     isOpen: PropTypes.bool,
@@ -124,6 +131,7 @@ PaginatedCampaignGallery.propTypes = {
 
 PaginatedCampaignGallery.defaultProps = {
   className: null,
+  title: null,
   variables: {},
 };
 
