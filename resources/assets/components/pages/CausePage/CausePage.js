@@ -117,7 +117,7 @@ const CausePageTemplate = ({
             className="base-12-grid"
             classNameByEntry={{
               GalleryBlock: 'grid-full',
-              ContentBlock: 'grid-full-8/12',
+              ContentBlock: 'grid-full',
             }}
             classNameByEntryDefault="grid-full-8/12"
           >
