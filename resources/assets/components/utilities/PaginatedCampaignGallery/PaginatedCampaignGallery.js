@@ -15,6 +15,7 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
     $causes: [String]
     $cursor: String
     $first: Int
+    $hasWebsite: Boolean
     $isOpen: Boolean
     $orderBy: String
   ) {
