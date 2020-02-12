@@ -57,13 +57,17 @@ If no `context` information is specified in the ticket, please confirm with the 
 We also recommend reviewing the location where the event trigger is supposed to fire, and considering if there is any potential context data that is available to supply to the `context` object and mention it in the ticket. It could reveal that there is useful information that could help paint a full picture of the event that would be ideal to add to the `context` for analytics.
 {% endhint %}
 
-After adding an event trigger, you can test it in any of our environments by using the **DS Debug**, which can be called in the browser console using the following command:
+After adding an event trigger, you can test it in any of our environments by using the **DS Debug** console tool, which can be called in the browser console using the following command:
 
 ```js
 // Pass an array of services for which to show logs.
 window.DS.Debug.enableLogs(['google', 'snowplow']);
 ```
 
-Example analytics event console log with DS Debug utility:
+This will show logs when an analytics event is triggered and let you visualize the structure of the event that is sent to our analytics platforms, so you can confirm the structure is as intended.
+
+Example analytics event console log with DS Debug console tool:
 
 ![Analytics Event Console Log Example](../.gitbook/assets/analyitcs-event-console-log-example.png)
+
+That's about it!
