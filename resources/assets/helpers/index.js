@@ -13,6 +13,7 @@ import {
   isUndefined,
   mapValues,
   merge,
+  mergeWith,
   omitBy,
 } from 'lodash';
 
@@ -890,7 +891,7 @@ export function stringifyNestedObjects(data) {
 /**
  * Determine if a page is an 'Action' page.
  *
- * @param  {Object} dpage
+ * @param  {Object} page
  * @return {Boolean}
  */
 export function isActionPage(page) {
@@ -942,4 +943,18 @@ export function toggleClassHandler(button, target, toggleClass) {
   }
 
   button.addEventListener('mousedown', clickHandler, false);
+}
+
+/**
+ * Merge paginated GraphQL queries.
+ *
+ * @param {Object} previous
+ * @param {Object} [fetchMoreResult]
+ */
+export function updateQuery(previous, { fetchMoreResult }) {
+  return mergeWith({}, previous, fetchMoreResult, (dest, src) =>
+    // By default, Lodash's `merge` would try to merge *each* array
+    // item (e.g. `edges[0]` with then next page's `edges[0]`).
+    isArray(dest) ? [...dest, ...src] : undefined,
+  );
 }
