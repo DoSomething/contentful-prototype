@@ -64,6 +64,9 @@ const CampaignInfoBlock = ({
 
               {endDate && !scholarshipAmount ? (
                 <>
+                  <dt>Scholarship Deadline</dt>
+                  <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
+
                   <dt>Deadline</dt>
                   <dd>{getHumanFriendlyDate(endDate)}</dd>
                 </>
