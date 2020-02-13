@@ -12,7 +12,7 @@ const CampaignsIndexPage = () => (
       <PaginatedCampaignGallery
         className="grid-full px-6 md:px-0"
         itemsPerRow={4}
-        variables={{ isOpen: true, first: 36 }}
+        variables={{ isOpen: true, first: 36, orderBy: 'start_date,desc' }}
       />
     </main>
     <SiteFooter />
