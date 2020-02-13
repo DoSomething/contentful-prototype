@@ -12,7 +12,7 @@ const PageGalleryItem = ({
   showcaseImage,
   slug,
 }) => (
-  <Card className="rounded">
+  <Card className="rounded h-full">
     <a className="page-gallery-item block" href={`/us/${slug}`}>
       <Figure
         alt={`${showcaseImage.description || showcaseTitle}-photo`}

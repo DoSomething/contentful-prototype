@@ -11,7 +11,7 @@ const CampaignGalleryItem = ({
   showcaseImage,
   slug,
 }) => (
-  <Card className="rounded">
+  <Card className="rounded h-full">
     <a className="campaign-gallery-item block" href={`/us/campaigns/${slug}`}>
       <Figure
         alt={`${showcaseImage.description || showcaseTitle}-photo`}
@@ -34,8 +34,12 @@ CampaignGalleryItem.propTypes = {
   showcaseImage: PropTypes.shape({
     url: PropTypes.string,
     description: PropTypes.string,
-  }).isRequired,
+  }),
   slug: PropTypes.string.isRequired,
+};
+
+CampaignGalleryItem.defaultProps = {
+  showcaseImage: {},
 };
 
 export default CampaignGalleryItem;

@@ -62,7 +62,7 @@ const renderBlock = (block, imageAlignment, imageFit) => {
           showcaseTitle={fields.title}
           showcaseDescription={fields.tagline}
           showcaseImage={fields.coverImage}
-          {...fields}
+          {...withoutNulls(fields)}
         />
       );
 
