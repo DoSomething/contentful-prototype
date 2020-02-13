@@ -33,23 +33,25 @@ const CampaignInfoBlock = ({
   scholarshipDeadline,
 }) => (
   <Card className="bordered p-3 rounded campaign-info">
-    <dl className="clearfix">
-      <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
-        {res => {
-          const endDate = res.campaign.endDate;
-          const actions = res.campaign.actions || [];
-          const isOpen = res.campaign.isOpen;
+    <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
+      {res => {
+        const endDate = res.campaign.endDate;
+        const actions = res.campaign.actions || [];
+        const isOpen = res.campaign.isOpen;
 
-          let actionItem = actions.find(
-            action => action.reportback && action.scholarshipEntry,
-          );
+        let actionItem = actions.find(
+          action => action.reportback && action.scholarshipEntry,
+        );
 
-          if (!actionItem) {
-            actionItem = actions.find(action => action.reportback);
-          }
-          return (
-            <>
+        if (!actionItem) {
+          actionItem = actions.find(action => action.reportback);
+        }
+        return (
+          <>
+            {!scholarshipAmount ? (
               <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
+            ) : null}
+            <dl className="clearfix">
               {scholarshipAmount && isOpen ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
@@ -72,7 +74,7 @@ const CampaignInfoBlock = ({
               ) : null}
               {actionItem && actionItem.timeCommitmentLabel ? (
                 <React.Fragment>
-                  <dt>Time</dt>
+                  <dt className="campaign-info__time">Time</dt>
                   <dd>{actionItem.timeCommitmentLabel}</dd>
                 </React.Fragment>
               ) : null}
@@ -82,11 +84,11 @@ const CampaignInfoBlock = ({
                   <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
-            </>
-          );
-        }}
-      </Query>
-    </dl>
+            </dl>
+          </>
+        );
+      }}
+    </Query>
   </Card>
 );
 
