@@ -4,8 +4,6 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 const NewHomePage = () => {
-  console.log('✨ Rendering new homepage design ✨');
-
   return (
     <>
       <SiteNavigationContainer />
