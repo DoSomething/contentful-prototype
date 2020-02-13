@@ -35,7 +35,9 @@ const App = ({ store, history }) => {
             />
             <Route path="/us/account" component={AccountContainer} />
             <Route path="/us/blocks/:id" component={BlockPage} />
-            <Route exact path="/us/campaigns" component={CampaignsPage} />
+            {featureFlag('dynamic_explore_campaigns') ? (
+              <Route exact path="/us/campaigns" component={CampaignsPage} />
+            ) : null}
             <Route path="/us/campaigns/:slug" component={CampaignContainer} />
             <Route
               path="/us/causes/:slug"
