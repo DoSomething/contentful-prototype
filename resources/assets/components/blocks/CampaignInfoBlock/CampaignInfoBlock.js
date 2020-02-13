@@ -33,8 +33,6 @@ const CampaignInfoBlock = ({
   scholarshipDeadline,
 }) => (
   <Card className="bordered p-3 rounded campaign-info">
-    <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
-
     <dl className="clearfix">
       <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
         {res => {
@@ -51,6 +49,7 @@ const CampaignInfoBlock = ({
           }
           return (
             <>
+              <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
               {scholarshipAmount && isOpen ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
@@ -59,14 +58,14 @@ const CampaignInfoBlock = ({
                   <dd className="campaign-info__scholarship">
                     {`$${scholarshipAmount.toLocaleString()}`}
                   </dd>
+
+                  <dt>Scholarship Deadline</dt>
+                  <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
                 </React.Fragment>
               ) : null}
 
               {endDate && !scholarshipAmount ? (
                 <>
-                  <dt>Scholarship Deadline</dt>
-                  <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
-
                   <dt>Deadline</dt>
                   <dd>{getHumanFriendlyDate(endDate)}</dd>
                 </>
