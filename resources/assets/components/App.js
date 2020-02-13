@@ -4,12 +4,13 @@ import { Provider } from 'react-redux';
 import { ApolloProvider } from '@apollo/react-common';
 import { Router, Route, Switch } from 'react-router-dom';
 
-import { env } from '../helpers';
 import graphqlClient from '../graphql';
+import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
 import CausePage from './pages/CausePage/CausePage';
+import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
@@ -26,7 +27,11 @@ const App = ({ store, history }) => {
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
         <Router history={history}>
           <Switch>
-            <Route exact path="/us" component={HomePage} />
+            <Route
+              exact
+              path="/us"
+              component={featureFlag('new_homepage') ? NewHomePage : HomePage}
+            />
             <Route path="/us/account" component={AccountContainer} />
             <Route path="/us/blocks/:id" component={BlockPage} />
             <Route path="/us/campaigns/:slug" component={CampaignContainer} />
