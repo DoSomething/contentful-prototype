@@ -10,8 +10,8 @@ import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-const CAMPAIGNS_QUERY = gql`
-  query CampaignsQuery($isOpen: Boolean, $cursor: String) {
+const CAMPAIGNS_PAGE_QUERY = gql`
+  query CampaignsPageQuery($isOpen: Boolean, $cursor: String) {
     campaigns: paginatedCampaigns(
       isOpen: $isOpen
       after: $cursor
@@ -25,13 +25,15 @@ const CAMPAIGNS_QUERY = gql`
           id
           startDate
           campaignWebsite {
+            slug
             url
-            coverImage {
-              url
-              description
-            }
             showcaseTitle
             showcaseDescription
+            showcaseImage {
+              url
+              title
+              description
+            }
           }
         }
       }
@@ -43,8 +45,8 @@ const CAMPAIGNS_QUERY = gql`
   }
 `;
 
-const CampaignsPageTemplate = () => {
-  const { error, loading, data } = useQuery(CAMPAIGNS_QUERY, {
+const CampaignsIndexPage = () => {
+  const { error, loading, data } = useQuery(CAMPAIGNS_PAGE_QUERY, {
     notifyOnNetworkStatusChange: true,
   });
 
@@ -70,6 +72,6 @@ const CampaignsPageTemplate = () => {
   );
 };
 
-CampaignsPageTemplate.propTypes = {};
+CampaignsIndexPage.propTypes = {};
 
-export default CampaignsPageTemplate;
+export default CampaignsIndexPage;

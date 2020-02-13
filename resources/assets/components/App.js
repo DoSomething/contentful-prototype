@@ -13,10 +13,10 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
-import CampaignsPage from './pages/CampaignsPage/CampaignsPage';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import AccountContainer from './pages/AccountPage/AccountContainer';
+import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
@@ -36,7 +36,11 @@ const App = ({ store, history }) => {
             <Route path="/us/account" component={AccountContainer} />
             <Route path="/us/blocks/:id" component={BlockPage} />
             {featureFlag('dynamic_explore_campaigns') ? (
-              <Route exact path="/us/campaigns" component={CampaignsPage} />
+              <Route
+                exact
+                path="/us/campaigns"
+                component={CampaignsIndexPage}
+              />
             ) : null}
             <Route path="/us/campaigns/:slug" component={CampaignContainer} />
             <Route

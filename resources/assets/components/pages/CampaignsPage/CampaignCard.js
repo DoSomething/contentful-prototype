@@ -1,6 +1,10 @@
+/* eslint-disable id-length */
+// need to disable this rule to properly set the width and height properties for the image url
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 import { appendToQuery } from '../../../helpers';
 
 const Campaign = ({ campaign }) => {
@@ -10,13 +14,13 @@ const Campaign = ({ campaign }) => {
         <img
           src={appendToQuery(
             {
-              width: 400,
-              height: 400,
+              w: 400,
+              h: 300,
               fit: 'fill',
             },
-            campaign.coverImage.url,
+            campaign.showcaseImage.url,
           )}
-          alt={campaign.coverImage.description}
+          alt={campaign.showcaseImage.title}
         />
         <div className="gallery-item__meta">
           <h1 className="gallery-item__title">{campaign.showcaseTitle}</h1>
@@ -33,20 +37,29 @@ Campaign.propTypes = {
   campaign: PropTypes.object.isRequired,
 };
 
-const CampaignCards = ({ campaigns }) => (
-  <>
-    <ul className="gallery-grid gallery-grid-quartet">
-      {campaigns.map(campaign => {
-        return (
-          <Campaign
-            campaign={campaign.node.campaignWebsite}
-            key={`contentful-campaign${campaign.cursor}`}
-          />
-        );
-      })}
-    </ul>
-  </>
-);
+const CampaignCards = ({ campaigns }) => {
+  const newCampaigns = campaigns.map(newCampaign => {
+    return {
+      id: newCampaign.cursor,
+      campaign: newCampaign.node.campaignWebsite,
+      type: 'campaign',
+    };
+  });
+
+  const itemsPerRow = 4;
+
+  console.log(newCampaigns);
+  return (
+    <>
+      <GalleryBlock
+        blocks={newCampaigns}
+        itemsPerRow={itemsPerRow}
+        imageAlignment="TOP"
+        imageFit="FILL"
+      />
+    </>
+  );
+};
 
 CampaignCards.propTypes = {
   campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
