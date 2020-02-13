@@ -30,6 +30,7 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
         cursor
         node {
           id
+          startDate
           campaignWebsite {
             id
             slug
