@@ -37,6 +37,7 @@ e.g.: 123456
 ```text
 
 ```
+
 {% endapi-method-response-example %}
 {% endapi-method-response %}
 {% endapi-method-spec %}
@@ -45,4 +46,3 @@ e.g.: 123456
 {% hint style="danger" %}
 Currently not fully implemented.
 {% endhint %}
-
