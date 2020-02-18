@@ -69,6 +69,15 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
+  campaign
+    .createField('displayReferralPage')
+    .name('Display Refer A Friend')
+    .type('Boolean')
+    .localized(false)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
 
   campaign
     .createField('campaignSettings')
@@ -495,6 +504,11 @@ module.exports = function(migration) {
     'contentful-campaign-extension',
     {},
   );
+
+  campaign.changeFieldControl('displayReferralPage', 'builtin', 'boolean', {
+    trueLabel: 'Yes',
+    falseLabel: 'No',
+  });
 
   campaign.changeFieldControl(
     'campaignSettings',
