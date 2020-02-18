@@ -35,48 +35,6 @@ module.exports = function(migration) {
     .omitted(false);
 
   landingPage
-    .createField('sidebar')
-    .name('Sidebar')
-    .type('Array')
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false)
-    .items({
-      type: 'Link',
-
-      validations: [
-        {
-          linkContentType: ['callToAction', 'contentBlock', 'customBlock'],
-        },
-      ],
-
-      linkType: 'Entry',
-    });
-
-  landingPage
-    .createField('blocks')
-    .name('Blocks')
-    .type('Array')
-    .localized(false)
-    .required(false)
-    .validations([])
-    .disabled(true)
-    .omitted(false)
-    .items({
-      type: 'Link',
-
-      validations: [
-        {
-          linkContentType: ['callToAction', 'contentBlock', 'customBlock'],
-        },
-      ],
-
-      linkType: 'Entry',
-    });
-
-  landingPage
     .createField('additionalContent')
     .name('Additional Content')
     .type('Object')
@@ -88,16 +46,12 @@ module.exports = function(migration) {
   landingPage.changeFieldControl('internalTitle', 'builtin', 'singleLine', {});
   landingPage.changeFieldControl('content', 'builtin', 'richTextEditor', {});
 
-  landingPage.changeFieldControl('sidebar', 'builtin', 'entryLinksEditor', {
-    helpText: 'Deprecated -- only displayed on legacy template',
-    bulkEditing: false,
-  });
-
-  landingPage.changeFieldControl('blocks', 'builtin', 'entryLinksEditor', {});
   landingPage.changeFieldControl(
     'additionalContent',
     'builtin',
     'objectEditor',
-    {},
+    {
+      helpText: 'Only used for legacy template',
+    },
   );
 };
