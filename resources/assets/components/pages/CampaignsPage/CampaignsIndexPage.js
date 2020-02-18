@@ -7,6 +7,7 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 const CampaignsIndexPage = () => {
   const [causes, setCauses] = useState([]);
   const handleSelect = event => setCauses([...causes, event.target.value]);
+  // const clearAll = () => setCauses([]);
 
   return (
     <>
@@ -38,7 +39,12 @@ const CampaignsIndexPage = () => {
         <PaginatedCampaignGallery
           className="grid-full px-6 md:px-0"
           itemsPerRow={4}
-          variables={{ isOpen: true, first: 36, orderBy: 'start_date,desc' }}
+          variables={{
+            isOpen: true,
+            first: 36,
+            orderBy: 'start_date,desc',
+            causes,
+          }}
         />
       </main>
       <SiteFooter />
