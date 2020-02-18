@@ -20,11 +20,6 @@
       padding-bottom: theme('spacing.3');
     }
   }
-  .campaign-info__time {
-    border-top: 1px solid theme('colors.gray.300');
-    float: none;
-    padding-top: theme('spacing.3');
-  }
 
   dt {
     clear: right;
@@ -56,10 +51,5 @@
     font-family: theme('fontFamily.league-gothic');
     font-size: theme('fontSize.3xl');
     line-height: 1;
-  }
-  dd.campaign-info__time {
-    border-top: 1px solid theme('colors.gray.300');
-    float: none;
-    padding-top: theme('spacing.3');
   }
 }

@@ -63,6 +63,7 @@ const CampaignInfoBlock = ({
 
                   <dt>Scholarship Deadline</dt>
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
+                  <hr className="clear-both pb-3 colors-gray-600" />
                 </React.Fragment>
               ) : null}
 
@@ -74,7 +75,7 @@ const CampaignInfoBlock = ({
               ) : null}
               {actionItem && actionItem.timeCommitmentLabel ? (
                 <React.Fragment>
-                  <dt className="campaign-info__time">Time</dt>
+                  <dt>Time</dt>
                   <dd>{actionItem.timeCommitmentLabel}</dd>
                 </React.Fragment>
               ) : null}
