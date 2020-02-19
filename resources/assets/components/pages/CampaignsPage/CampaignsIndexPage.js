@@ -16,8 +16,8 @@ const CampaignsIndexPage = () => {
       setCauses([...causes, event.target.value]);
     }
   };
+  const clearAll = () => setCauses([]);
 
-  // const clearAll = () => setCauses([]);
   console.log('the causes array is updating correctly', causes);
   return (
     <>
@@ -45,6 +45,9 @@ const CampaignsIndexPage = () => {
             />
             Education
           </label>
+          <button onClick={clearAll} type="button">
+            clear
+          </button>
         </form>
         <PaginatedCampaignGallery
           className="grid-full px-6 md:px-0"
