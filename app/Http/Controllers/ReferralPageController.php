@@ -21,12 +21,7 @@ class ReferralPageController extends Controller
 
         // Fetch user to display their first name in page metadata.
         $user = gateway('northstar')->getUser('id', $userId);
-
-        if (! $user) {
-            abort(404);
-        }
-
-        $title = 'Do Something Good With '.$user->first_name.'!';
+        $title = $user ? 'Do Something Good With '.$user->first_name.'!' : null;
 
         return response()->view('app', [
             'headTitle' => $title,
@@ -34,7 +29,7 @@ class ReferralPageController extends Controller
             // (and refactor get_metadata helper to expect an $entity instead of $campaign)
             'metadata' => [
                 'title' => $title,
-                'description' => 'Make an impact with '.$user->first_name.' by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)',
+                'description' => $user ? 'Make an impact with '.$user->first_name.' by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)' : null,
                 'facebook_app_id' =>  config('services.analytics.facebook_id'),
                 'image' => [
                     'url' => asset('images/money-hand.png'),
