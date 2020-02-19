@@ -6,9 +6,19 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 
 const CampaignsIndexPage = () => {
   const [causes, setCauses] = useState([]);
-  const handleSelect = event => setCauses([...causes, event.target.value]);
-  // const clearAll = () => setCauses([]);
+  const handleSelect = event => {
+    if (causes.includes(event.target.value)) {
+      const newCauses = causes.filter(cause => {
+        return cause !== event.target.value;
+      });
+      setCauses([...newCauses]);
+    } else {
+      setCauses([...causes, event.target.value]);
+    }
+  };
 
+  // const clearAll = () => setCauses([]);
+  console.log('the causes array is updating correctly', causes);
   return (
     <>
       <SiteNavigationContainer />
