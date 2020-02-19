@@ -7,6 +7,7 @@ import CampaignsFilterBar from './CampaignsFilterBar/CampaignsFilterBar';
 
 const CampaignsIndexPage = () => {
   const [causes, setCauses] = useState([]);
+
   const handleSelect = event => {
     if (causes.includes(event.target.value)) {
       const newCauses = causes.filter(cause => {
@@ -17,8 +18,9 @@ const CampaignsIndexPage = () => {
       setCauses([...causes, event.target.value]);
     }
   };
-  const clearAll = () => setCauses([]);
-
+  const clearAll = () => {
+    setCauses([]);
+  };
   console.log('the causes array is updating correctly', causes);
   return (
     <>
