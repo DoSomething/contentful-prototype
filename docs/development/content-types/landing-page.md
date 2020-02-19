@@ -10,6 +10,4 @@ The landing page displayed on a [campaign](development/content-types/campaign.md
 
 - **Content** : A Rich Text field, which can embed `contentBlock`, `imagesBlock`, and `linkAction` entries.
 
-- **Sidebar** : A multi-value reference field, only displayed on the legacy campaign template.
-
-- **Additonal Content** : The legacy campaign template uses this field to display Landing Page content, expecting a `legacyTemplateContent` property.
+- **Additional Content** : The legacy campaign template uses this field to display Landing Page content, expecting a `legacyTemplateContent` property.
