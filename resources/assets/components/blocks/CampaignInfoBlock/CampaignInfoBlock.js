@@ -27,28 +27,47 @@ const CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
+const CampaignInfoBlock = ({
+  campaignId,
+  scholarshipAmount,
+  scholarshipDeadline,
+}) => (
   <Card className="bordered p-3 rounded campaign-info">
-    <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
+    <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
+      {res => {
+        const endDate = res.campaign.endDate;
+        const actions = res.campaign.actions || [];
+        const isOpen = res.campaign.isOpen;
 
-    <dl className="clearfix">
-      <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
-        {res => {
-          const endDate = res.campaign.endDate;
-          const actions = res.campaign.actions || [];
-          const isOpen = res.campaign.isOpen;
+        let actionItem = actions.find(
+          action => action.reportback && action.scholarshipEntry,
+        );
 
-          let actionItem = actions.find(
-            action => action.reportback && action.scholarshipEntry,
-          );
+        if (!actionItem) {
+          actionItem = actions.find(action => action.reportback);
+        }
+        return (
+          <>
+            {!scholarshipAmount ? (
+              <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
+            ) : null}
+            <dl className="clearfix">
+              {scholarshipAmount && isOpen ? (
+                <React.Fragment>
+                  <dt className="campaign-info__scholarship">
+                    Win A Scholarship
+                  </dt>
+                  <dd className="campaign-info__scholarship">
+                    {`$${scholarshipAmount.toLocaleString()}`}
+                  </dd>
 
-          if (!actionItem) {
-            actionItem = actions.find(action => action.reportback);
-          }
+                  <dt>Next Deadline</dt>
+                  <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
+                  <hr className="clear-both pb-3 border-gray-500" />
+                </React.Fragment>
+              ) : null}
 
-          return (
-            <>
-              {endDate ? (
+              {endDate && !scholarshipAmount ? (
                 <>
                   <dt>Deadline</dt>
                   <dd>{getHumanFriendlyDate(endDate)}</dd>
@@ -66,31 +85,23 @@ const CampaignInfoBlock = ({ campaignId, scholarshipAmount }) => (
                   <dd>{actionItem.actionLabel}</dd>
                 </React.Fragment>
               ) : null}
-              {scholarshipAmount && isOpen ? (
-                <React.Fragment>
-                  <dt className="campaign-info__scholarship">
-                    Win A Scholarship
-                  </dt>
-                  <dd className="campaign-info__scholarship">
-                    {`$${scholarshipAmount.toLocaleString()}`}
-                  </dd>
-                </React.Fragment>
-              ) : null}
-            </>
-          );
-        }}
-      </Query>
-    </dl>
+            </dl>
+          </>
+        );
+      }}
+    </Query>
   </Card>
 );
 
 CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
+  scholarshipDeadline: PropTypes.number,
 };
 
 CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
+  scholarshipDeadline: null,
 };
 
 export default CampaignInfoBlock;
