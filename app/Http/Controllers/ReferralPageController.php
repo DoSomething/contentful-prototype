@@ -13,23 +13,19 @@ class ReferralPageController extends Controller
      */
     public function show(Request $request)
     {
-        $userId = $request->query('user_id');
-
-        if (! $userId) {
-            abort(404);
-        }
-
-        // Fetch user to display their first name in page metadata.
-        $user = gateway('northstar')->getUser('id', $userId);
-        $title = $user ? 'Do Something Good With '.$user->first_name.'!' : null;
-
+        /**
+         * Note: We avoid querying Northstar to display user's first name because the Cypress tests
+         * for this page time out.
+         * @see https://github.com/DoSomething/phoenix-next/pull/1932#issuecomment-587720454
+         */
+        $title = 'Do Something Good With Your Friend!';
         return response()->view('app', [
             'headTitle' => $title,
             // @TODO: Create an $entity object to pass to the get_metadata helper
             // (and refactor get_metadata helper to expect an $entity instead of $campaign)
             'metadata' => [
                 'title' => $title,
-                'description' => $user ? 'Make an impact with '.$user->first_name.' by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)' : null,
+                'description' => 'Make an impact with your friend by completing one of DoSomething\'s volunteer campaigns. (You\'ll both increase your chances of winning the campaign scholarship!)',
                 'facebook_app_id' =>  config('services.analytics.facebook_id'),
                 'image' => [
                     'url' => asset('images/money-hand.png'),
