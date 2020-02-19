@@ -104,13 +104,13 @@ const PaginatedCampaignGallery = ({
       />
       {hasNextPage ? (
         <div className="p-6 text-center">
-          <Button
-            className="-tertiary"
-            onClick={handleViewMore}
-            disabled={loading}
-          >
-            view more...
-          </Button>
+          {!loading ? (
+            <Button className="-tertiary" onClick={handleViewMore}>
+              view more...
+            </Button>
+          ) : (
+            <Spinner className="flex justify-center" />
+          )}
         </div>
       ) : null}
     </div>
