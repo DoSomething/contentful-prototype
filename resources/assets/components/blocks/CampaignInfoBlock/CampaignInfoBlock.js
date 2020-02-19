@@ -61,7 +61,7 @@ const CampaignInfoBlock = ({
                     {`$${scholarshipAmount.toLocaleString()}`}
                   </dd>
 
-                  <dt>Scholarship Deadline</dt>
+                  <dt>Next Deadline</dt>
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
                   <hr className="clear-both pb-3 border-gray-500" />
                 </React.Fragment>
