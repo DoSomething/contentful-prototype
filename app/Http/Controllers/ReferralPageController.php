@@ -19,6 +19,7 @@ class ReferralPageController extends Controller
          * @see https://github.com/DoSomething/phoenix-next/pull/1932#issuecomment-587720454
          */
         $title = 'Do Something Good With Your Friend!';
+
         return response()->view('app', [
             'headTitle' => $title,
             // @TODO: Create an $entity object to pass to the get_metadata helper
