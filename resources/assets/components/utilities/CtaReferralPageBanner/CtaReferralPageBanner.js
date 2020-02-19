@@ -1,18 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { featureFlag } from '../../../helpers';
-
 import './cta-referral-page-banner.scss';
 
-const CtaReferralPageBanner = ({
-  campaignId,
-  campaignWebsiteId,
-  displayReferralPage,
-}) => (
+const CtaReferralPageBanner = ({ campaignId, displayReferralPage }) => (
   <React.Fragment>
-    {displayReferralPage ||
-    featureFlag('referral_campaign_ids', []).includes(campaignId) ? (
+    {displayReferralPage ? (
       <div className="p-3">
         <div className="cta-register-banner md:px-6 pt-3 clearfix">
           <div className="cta-register-banner__content p-6 md:pr-0 text-center md:text-left">
@@ -22,7 +15,7 @@ const CtaReferralPageBanner = ({
               chances of winning the campaign scholarship!
             </p>
             <a
-              href={`/us/refer-friends?campaign_website_id=${campaignWebsiteId}`}
+              href={`/us/refer-friends?campaign_id=${campaignId}`}
               className="button p-3 -attached"
             >
               Refer A Friend
@@ -36,7 +29,6 @@ const CtaReferralPageBanner = ({
 
 CtaReferralPageBanner.propTypes = {
   campaignId: PropTypes.string.isRequired,
-  campaignWebsiteId: PropTypes.string.isRequired,
   displayReferralPage: PropTypes.bool,
 };
 
