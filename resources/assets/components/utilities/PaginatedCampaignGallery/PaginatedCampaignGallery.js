@@ -106,7 +106,7 @@ const PaginatedCampaignGallery = ({
         <div className="p-6 text-center">
           {!loading ? (
             <Button className="-tertiary" onClick={handleViewMore}>
-              view more...
+              view more
             </Button>
           ) : (
             <Spinner className="flex justify-center" />
