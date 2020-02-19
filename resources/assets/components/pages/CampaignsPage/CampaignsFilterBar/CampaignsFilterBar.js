@@ -2,9 +2,9 @@ import React from 'react';
 
 import CauseFilter from './CauseFilter';
 
-const CampaignsFilterBar = () => (
+const CampaignsFilterBar = props => (
   <>
-    <CauseFilter />
+    <CauseFilter {...props} />
   </>
 );
 
