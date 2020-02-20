@@ -51,7 +51,7 @@ export const operations = {
       title: faker.lorem.words(),
       description: faker.lorem.sentence(),
       providerName: faker.company.companyName(),
-      thumbnailUrl: faker.image.imageUrl(),
+      thumbnailUrl: '/apple-touch-icon.png',
       html: null,
     },
   },

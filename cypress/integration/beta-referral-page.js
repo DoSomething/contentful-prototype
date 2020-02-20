@@ -9,12 +9,8 @@ describe('Beta Referral Page', () => {
   beforeEach(() => cy.configureMocks());
 
   it('Visit beta referral page, with valid user and campaign ID set', () => {
-    const user = userFactory();
-
     cy.withFeatureFlags({ referral_campaign_ids: [campaignId] }).visit(
       `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
-      // Allow some extra time to prevent timeouts on initial page load:
-      { timeout: 10000 },
     );
 
     cy.contains('campaign scholarship');
@@ -28,8 +24,6 @@ describe('Beta Referral Page', () => {
   });
 
   it('Visit beta referral page, with valid user ID and no campaign ID set', () => {
-    const user = userFactory();
-
     cy.withFeatureFlags({ default_referral_campaign_id: campaignId }).visit(
       `/us/join?user_id=${userId}}`,
     );
@@ -42,8 +36,6 @@ describe('Beta Referral Page', () => {
   });
 
   it('Visit beta referral page, without user ID set', () => {
-    const user = userFactory();
-
     cy.withFeatureFlags({ default_referral_campaign_id: campaignId }).visit(
       `/us/join?campaign_id=${campaignId}}`,
     );
