@@ -13,7 +13,7 @@ const AlphaPage = ({ userId }) =>
     <>
       <SiteNavigationContainer />
 
-      <main className="general-page base-12-grid relative">
+      <main className="general-page alpha-referral-page base-12-grid relative">
         <article className="grid-narrow">
           <div className="general-page__heading text-center my-6">
             <h1 className="general-page__title uppercase">
