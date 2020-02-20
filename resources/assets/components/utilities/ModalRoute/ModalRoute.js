@@ -7,7 +7,7 @@ import { StaticRouter } from 'react-router';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import Modal from '../Modal/Modal';
-import ContentfulEntryContainer from '../../ContentfulEntry/ContentfulEntryContainer';
+import ContentfulEntryLoader from '../ContentfulEntryLoader/ContentfulEntryLoader';
 
 // Helpers:
 const isModal = location => location.pathname.includes('/modal/');
@@ -47,7 +47,9 @@ class ModalRoute extends React.Component {
           path={`${match.url}/modal/:id`}
           render={routingProps => (
             <Modal onClose={() => history.push(this.previousLocation)}>
-              <ContentfulEntryContainer id={routingProps.match.params.id} />
+              <ContentfulEntryLoader
+                id={routingProps.match.params.id}
+              />
             </Modal>
           )}
         />
