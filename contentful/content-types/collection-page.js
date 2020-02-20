@@ -146,7 +146,7 @@ module.exports = function(migration) {
         },
 
         message:
-          'We only support adding one affiliate at the moment. Need more? Hop into #team-product on Slack and chat with us!',
+          'We only support adding one affiliate at the moment. Need more? Hop into #help-product on Slack and chat with us!',
       },
     ])
     .disabled(false)
