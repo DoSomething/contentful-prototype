@@ -7,7 +7,7 @@ describe('Beta Referral Page', () => {
   beforeEach(() => cy.configureMocks());
 
   it('Visit beta referral page, with valid user and campaign ID set', () => {
-    cy.withFeatureFlags({ referral_campaign_ids: [campaignId] }).visit(
+    cy.visit(
       `/us/join?user_id=${userId}&campaign_id=${campaignId}`,
     );
 
@@ -22,21 +22,14 @@ describe('Beta Referral Page', () => {
   });
 
   it('Visit beta referral page, with valid user ID and no campaign ID set', () => {
-    cy.withFeatureFlags({ default_referral_campaign_id: campaignId }).visit(
-      `/us/join?user_id=${userId}}`,
-    );
+    cy.visit(`/us/join?user_id=${userId}`);
 
-    cy.get('.referral-page-campaign').should('have.length', 1);
-
-    cy.get('.referral-page-campaign > a')
-      .should('have.attr', 'href')
-      .and('include', `referrer_user_id=${userId}`);
+    cy.get('.referral-page-campaign').should('have.length', 0);
+    cy.get('.error-page').should('have.length', 1);
   });
 
   it('Visit beta referral page, without user ID set', () => {
-    cy.withFeatureFlags({ default_referral_campaign_id: campaignId }).visit(
-      `/us/join?campaign_id=${campaignId}}`,
-    );
+    cy.visit(`/us/join?campaign_id=${campaignId}`);
 
     cy.get('.referral-page-campaign').should('have.length', 0);
     cy.get('.error-page').should('have.length', 1);
