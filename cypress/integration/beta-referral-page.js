@@ -1,8 +1,6 @@
 /// <reference types="Cypress" />
 
-import { userFactory } from '../fixtures/user';
-import { userId } from '../fixtures/constants';
-import { campaignId } from '../fixtures/constants';
+import { userId, campaignId } from '../fixtures/constants';
 
 describe('Beta Referral Page', () => {
   // Configure a new "mock" server before each test:
