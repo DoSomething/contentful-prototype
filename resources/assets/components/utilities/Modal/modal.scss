@@ -1,5 +1,11 @@
 @import '../../../scss/next-toolbox.scss';
 
+// HACK: If a Content Block is found inside a "modal" without an
+// image, we want to force it to full-width so it looks normal.
+.modal .hack-article-content-widths {
+  grid-column: span 3 / span 3 !important;
+}
+
 .modal-portal {
   background-color: rgba(34, 34, 34, 0.9);
   display: none;

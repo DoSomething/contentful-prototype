@@ -49,6 +49,7 @@ class ModalRoute extends React.Component {
             <Modal onClose={() => history.push(this.previousLocation)}>
               <ContentfulEntryLoader
                 id={routingProps.match.params.id}
+                classNameByEntry={{ ContentBlock: 'bg-white rounded p-6' }}
               />
             </Modal>
           )}
