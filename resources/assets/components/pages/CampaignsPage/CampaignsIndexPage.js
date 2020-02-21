@@ -37,7 +37,7 @@ const CampaignsIndexPage = () => {
           <button
             onClick={handleFilterToggle}
             type="button"
-            className="flex items-center px-2 py-2 border-solid border border-black-600 rounded-lg"
+            className="flex items-center px-2 py-2 border-solid border border-black-600 rounded-lg focus:outline-none"
           >
             <p className="font-bold pr-2">Causes</p>
             <MenuCarat
@@ -51,11 +51,12 @@ const CampaignsIndexPage = () => {
             />
           </button>
         </div>
-        <div className="pl-6 md:pl-0 m-2">
+        <div className="pl-6 md:pl-0 m-2 md:w-1/2">
           <CampaignsFilterBar
-            showFilters={showFilters}
-            handleSelect={handleSelect}
             clearAll={clearAll}
+            handleSelect={handleSelect}
+            handleFilterToggle={handleFilterToggle}
+            showFilters={showFilters}
           />
         </div>
         <PaginatedCampaignGallery
