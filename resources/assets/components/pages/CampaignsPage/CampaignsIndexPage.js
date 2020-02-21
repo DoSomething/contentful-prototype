@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { css } from '@emotion/core';
 
+import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import CampaignsFilterBar from './CampaignsFilterBar/CampaignsFilterBar';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/PaginatedCampaignGallery';
-import CampaignsFilterBar from './CampaignsFilterBar/CampaignsFilterBar';
 
 const CampaignsIndexPage = () => {
   const [causes, setCauses] = useState([]);
+  const [showFilters, setShowFilters] = useState(false);
 
   const handleSelect = event => {
     if (causes.includes(event.target.value)) {
@@ -18,16 +21,43 @@ const CampaignsIndexPage = () => {
       setCauses([...causes, event.target.value]);
     }
   };
+
   const clearAll = () => {
     setCauses([]);
   };
-  console.log('the causes array is updating correctly', causes);
+
+  const handleFilterToggle = () => setShowFilters(!showFilters);
+
   return (
     <>
       <SiteNavigationContainer />
       <main className="md:w-3/4 mx-auto">
         <h1 className="w-full my-6 pl-6 md:pl-0">Explore Campaigns</h1>
-        <CampaignsFilterBar handleSelect={handleSelect} clearAll={clearAll} />
+        <div className="pl-6 md:pl-0 mb-6">
+          <button
+            onClick={handleFilterToggle}
+            type="button"
+            className="flex items-center px-2 py-2 border-solid border border-black-600 rounded-lg"
+          >
+            <p className="font-bold pr-2">Causes</p>
+            <MenuCarat
+              cssStyles={
+                showFilters
+                  ? css`
+                      transform: rotate(180deg);
+                    `
+                  : null
+              }
+            />
+          </button>
+        </div>
+        <div className="pl-6 md:pl-0 m-2">
+          <CampaignsFilterBar
+            showFilters={showFilters}
+            handleSelect={handleSelect}
+            clearAll={clearAll}
+          />
+        </div>
         <PaginatedCampaignGallery
           className="grid-full px-6 md:px-0"
           itemsPerRow={4}

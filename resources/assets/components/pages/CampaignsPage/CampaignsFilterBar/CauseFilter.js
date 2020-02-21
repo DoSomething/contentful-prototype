@@ -1,5 +1,9 @@
+/** @jsx jsx */
+
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
+import { jsx, css } from '@emotion/core';
 
 // would it make more sense to have this saved as an env variable? since it def could be re used until the rogue API is updated
 const causes = [
@@ -68,15 +72,24 @@ const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
   </>
 );
 
+const isVisible = css`
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap; /* added line */
+`;
+
 CauseInputs.propTypes = {
   causeName: PropTypes.string.isRequired,
   causeValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
 };
 
-const CauseFilter = ({ clearAll, handleSelect }) => (
-  <div>
-    <form className="base-12-grid">
+const CauseFilter = ({ clearAll, handleSelect, showFilters }) => (
+  <div css={!showFilters ? isVisible : null} className="md:w-1/2">
+    <form>
       {causes.map(cause => {
         return (
           <CauseInputs
@@ -97,6 +110,7 @@ const CauseFilter = ({ clearAll, handleSelect }) => (
 CauseFilter.propTypes = {
   clearAll: PropTypes.func.isRequired,
   handleSelect: PropTypes.func.isRequired,
+  showFilters: PropTypes.bool.isRequired,
 };
 
 export default CauseFilter;
