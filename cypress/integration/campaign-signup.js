@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 
+import { cloneDeep } from 'lodash';
 import { userFactory } from '../fixtures/user';
 import { campaignId } from '../fixtures/constants';
 import { emptyResponse, newSignup } from '../fixtures/signups';
@@ -8,6 +9,9 @@ import exampleCampaign from '../fixtures/contentful/exampleCampaign';
 const API = `/api/v2/campaigns/${campaignId}`;
 // Text included in the campaign blurb.
 const exampleBlurb = `Did you know that the world's oldest cat`;
+const exampleReferralCampaign = cloneDeep(exampleCampaign);
+
+exampleReferralCampaign.campaign.displayReferralPage = true;
 
 describe('Campaign Signup', () => {
   // Configure a new "mock" server before each test:
@@ -60,9 +64,7 @@ describe('Campaign Signup', () => {
       const user = userFactory();
 
       // Log in & visit the campaign pitch page:
-      cy.withFeatureFlags({
-        referral_campaign_ids: [campaignId],
-      }).authVisitCampaignWithoutSignup(user, exampleCampaign);
+      cy.authVisitCampaignWithoutSignup(user, exampleReferralCampaign);
 
       // Mock the response we'll be expecting once we hit "Join Now":
       cy.route('POST', `${API}/signups`, newSignup(campaignId, user));

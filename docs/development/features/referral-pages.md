@@ -15,7 +15,7 @@ We offer a second scholarship entry as the reward. Users who have `refer-friends
 
 ## Details
 
-To opt a campaign into the referral feature, its campaign ID must be added to the list of IDs configured on the `DS_REFERRAL_CAMPAIGN_IDS` environment variable.
+To opt a campaign into the referral feature, its `displayReferralPage` field should be set to `true`.
 
 ### Referral Page Banner
 
@@ -26,12 +26,14 @@ After signing up for the campaign, users who have the `refer-friends-scholarship
 ### Alpha Referral Page
 
 ```
-dosomething.org/us/refer-friends
+dosomething.org/us/refer-friends?campaign_id=123
 ```
 
 The user's Alpha Referral Page prompts the user to share their Beta Referral Page with their friends. The Beta Referral Page URL will contain the user's ID as a `user_id` query parameter as well as the `campaign_id` containing the referral campaign.
 
 ![Alpha Referral Page Example](../../.gitbook/assets/alpha-referral-page.png)
+
+If the `campaign_id` query parameter is missing completely, an `ErrorPage` component will displayed.
 
 ### Beta Referral Page
 
@@ -43,9 +45,9 @@ The Beta Referral Page links to the campaign that the beta should join (set via 
 
 ![Beta Referral Page Example](../../.gitbook/assets/beta-referral-page.png)
 
-If the Campaign ID assigned in the URL's `campaign_id` query parameter is _not_ included in the configured feature flag list, or if the query parameter is missing completely, the campaign will default to the configured `DS_DEFAULT_REFERRAL_CAMPAIGN_ID` environment variable.
+If the `campaign_id` query parameter is missing completely, an `ErrorPage` component will displayed.
 
-The campaign URLs will include the alpha's user ID as a `referrer_user_id` query parameter:
+The campaign URL that the Beta Page links to will include the alpha's user ID as a `referrer_user_id` query parameter:
 
 ```
 https://www.dosomething.org/us/campaigns/teens-jeans?referrer_user_id=5547be89469c64ec7d8b518d
@@ -55,7 +57,7 @@ This `referrer_user_id` query parameter will be added to the `source_detail` of 
 
 ## Iterations
 
-The first iteration of Refer A Friend offered a \$5 gift card reward to any beta who registered and signed up for a staff pick campaign, as well as the alpha that referred them. The Referral Page Banner would only display for users with the `refer-friends` feature set.
+The first iteration of Refer A Friend (RAF) offered a \$5 gift card reward to any beta who registered and signed up for a staff pick campaign, as well as the alpha that referred them. The Referral Page Banner would only display for users with the `refer-friends` feature set.
 
 The list of campaigns to display the Referral Page Banner for was hardcoded into the codebase. The Beta Referral Page URL would include a `campaign_id` query parameter, e.g.:
 
@@ -65,6 +67,4 @@ dosomething.org/us/join?user_id=:userId&campaign_id=9037
 
 If this campaign ID matched a hardcoded referral page campaign, we'd link to this campaign in the first block on the Beta Referral Page.
 
-We've updated this functionality to allow the list of campaigns (as well as the default campaign) to be configured via environment variable feature flags.
-
-As we formalize this feature and continue adding referral campaigns in the future, we anticipate adding a new boolean property to the Rogue campaign that indicates whether the campaign is a referral campaign.
+The second iteration of RAF allowed the list of campaigns (as well as the default campaign) to be configured via environment variable feature flags. This was deprecated in [#1940](https://github.com/DoSomething/phoenix-next/pull/1940) by the addition of the `displayReferralPage` field.

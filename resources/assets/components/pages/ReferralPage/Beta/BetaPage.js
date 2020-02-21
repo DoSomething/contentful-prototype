@@ -18,8 +18,9 @@ const REFERRAL_PAGE_USER = gql`
 
 const BetaPage = () => {
   const userId = query('user_id');
+  const campaignId = getReferralCampaignId();
 
-  if (!userId) {
+  if (!userId || !campaignId) {
     return <ErrorPage />;
   }
 
@@ -54,10 +55,7 @@ const BetaPage = () => {
                   </p>
                 </div>
                 <div className="my-6">
-                  <CampaignLink
-                    campaignId={getReferralCampaignId()}
-                    userId={userId}
-                  />
+                  <CampaignLink campaignId={campaignId} userId={userId} />
                 </div>
                 <div className="my-6">
                   <h3>FAQ</h3>
