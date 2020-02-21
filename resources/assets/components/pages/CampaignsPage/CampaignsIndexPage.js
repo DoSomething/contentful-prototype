@@ -3,7 +3,7 @@ import { css } from '@emotion/core';
 
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import CampaignsFilterBar from './CampaignsFilterBar/CampaignsFilterBar';
+import CampaignsFilters from './CampaignsFilters/CampaignsFilters';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/PaginatedCampaignGallery';
 
@@ -52,7 +52,7 @@ const CampaignsIndexPage = () => {
           </button>
         </div>
         <div className="pl-6 md:pl-0 m-2 md:w-1/2">
-          <CampaignsFilterBar
+          <CampaignsFilters
             clearAll={clearAll}
             handleSelect={handleSelect}
             handleFilterToggle={handleFilterToggle}

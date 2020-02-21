@@ -2,10 +2,10 @@ import React from 'react';
 
 import CauseFilter from './CauseFilter';
 
-const CampaignsFilterBar = props => (
+const CampaignsFilters = props => (
   <>
     <CauseFilter {...props} />
   </>
 );
 
-export default CampaignsFilterBar;
+export default CampaignsFilters;
