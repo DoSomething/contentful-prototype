@@ -15,7 +15,6 @@ const CampaignsIndexPage = () => {
 
   const handleSelect = event => {
     if (causes.includes(event.target.value)) {
-      console.log('is there a checked? on target', event.target);
       const newCauses = causes.filter(cause => {
         return cause !== event.target.value;
       });
