@@ -13,15 +13,6 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  campaign
-    .createField('title')
-    .name('Title')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
 
   campaign
     .createField('slug')
@@ -36,12 +27,32 @@ module.exports = function(migration) {
       {
         regexp: {
           pattern: '^[a-zA-Z0-9-]+$',
+          flags: null,
         },
 
         message:
           'Only alphanumeric and hyphen characters are allowed in slugs!',
       },
     ])
+    .disabled(false)
+    .omitted(false);
+
+  campaign
+    .createField('title')
+    .name('Title')
+    .type('Symbol')
+    .localized(true)
+    .required(true)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
+  campaign
+    .createField('callToAction')
+    .name('Call To Action Tagline')
+    .type('Symbol')
+    .localized(true)
+    .required(true)
+    .validations([])
     .disabled(false)
     .omitted(false);
 
@@ -130,35 +141,14 @@ module.exports = function(migration) {
     .validations([])
     .disabled(false)
     .omitted(false);
-  campaign
-    .createField('callToAction')
-    .name('Call To Action Tagline')
-    .type('Symbol')
-    .localized(true)
-    .required(true)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
-  campaign
-    .createField('blurb')
-    .name('Blurb')
-    .type('Text')
-    .localized(true)
-    .required(false)
-    .validations([])
-    .disabled(false)
-    .omitted(false);
 
   campaign
     .createField('coverImage')
     .name('Cover Image')
     .type('Link')
     .localized(false)
-    .required(true)
+    .required(false)
     .validations([
-      {
-        linkMimetypeGroup: ['image'],
-      },
       {
         assetFileSize: {
           max: 20971520,
@@ -168,6 +158,16 @@ module.exports = function(migration) {
     .disabled(false)
     .omitted(false)
     .linkType('Asset');
+
+  campaign
+    .createField('blurb')
+    .name('Blurb')
+    .type('Text')
+    .localized(true)
+    .required(false)
+    .validations([])
+    .disabled(false)
+    .omitted(false);
 
   campaign
     .createField('campaignLead')
@@ -240,6 +240,21 @@ module.exports = function(migration) {
           'shareAction',
           'voterRegistrationAction',
         ],
+      },
+    ])
+    .disabled(false)
+    .omitted(false)
+    .linkType('Entry');
+
+  campaign
+    .createField('landingPage')
+    .name('Landing Page')
+    .type('Link')
+    .localized(false)
+    .required(false)
+    .validations([
+      {
+        linkContentType: ['landingPage', 'sixpackExperiment'],
       },
     ])
     .disabled(false)
@@ -322,22 +337,7 @@ module.exports = function(migration) {
         linkContentType: ['socialOverride'],
       },
     ])
-    .disabled(false)
-    .omitted(false)
-    .linkType('Entry');
-
-  campaign
-    .createField('landingPage')
-    .name('Landing Page')
-    .type('Link')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        linkContentType: ['landingPage', 'sixpackExperiment'],
-      },
-    ])
-    .disabled(false)
+    .disabled(true)
     .omitted(false)
     .linkType('Entry');
 
@@ -431,16 +431,10 @@ module.exports = function(migration) {
           'unordered-list',
           'hr',
           'blockquote',
-          'embedded-entry-block',
-          'embedded-asset-block',
           'hyperlink',
-          'entry-hyperlink',
-          'asset-hyperlink',
-          'embedded-entry-inline',
         ],
-
         message:
-          'Only ordered list, unordered list, horizontal rule, quote, block entry, asset, link to Url, link to entry, link to asset, and inline entry nodes are allowed',
+          'Only ordered list, unordered list, horizontal rule, quote, and link to Url nodes are allowed',
       },
     ])
     .disabled(false)
@@ -464,8 +458,8 @@ module.exports = function(migration) {
         nodes: {},
       },
       {
-        enabledMarks: ['bold', 'italic', 'underline'],
-        message: 'Only bold, italic, and underline marks are allowed',
+        enabledMarks: ['bold', 'underline', 'italic'],
+        message: 'Only bold, underline, and italic marks are allowed',
       },
       {
         enabledNodeTypes: ['hyperlink'],
@@ -490,13 +484,13 @@ module.exports = function(migration) {
       '(Example: "Teens for Jeans 2017") This title is used internally to help find this content in the CMS. It will not be displayed anywhere on the website.',
   });
 
-  campaign.changeFieldControl('title', 'builtin', 'singleLine', {});
-
   campaign.changeFieldControl('slug', 'builtin', 'slugEditor', {
     helpText:
       '(Example: example-campaign-title) Use hyphens to separate words.',
   });
 
+  campaign.changeFieldControl('title', 'builtin', 'singleLine', {});
+  campaign.changeFieldControl('callToAction', 'builtin', 'singleLine', {});
   campaign.changeFieldControl('metadata', 'builtin', 'entryLinkEditor', {});
   campaign.changeFieldControl(
     'legacyCampaignId',
@@ -506,6 +500,7 @@ module.exports = function(migration) {
   );
 
   campaign.changeFieldControl('displayReferralPage', 'builtin', 'boolean', {
+    helpText: 'Please do not edit this without support from a product person.',
     trueLabel: 'Yes',
     falseLabel: 'No',
   });
@@ -529,14 +524,13 @@ module.exports = function(migration) {
       "The date the campaign will close. (Confirm that you've set the UTC-04:00 or UTC-05:00 timezones for EST/EDT (https://time.is/compare/UTC)).",
   });
 
-  campaign.changeFieldControl('callToAction', 'builtin', 'singleLine', {});
+  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
 
   campaign.changeFieldControl('blurb', 'builtin', 'markdown', {
     helpText:
       "Add a short blurb for the lede banner. Bolded items will use the campaign's primary color.",
   });
 
-  campaign.changeFieldControl('coverImage', 'builtin', 'assetLinkEditor', {});
   campaign.changeFieldControl('campaignLead', 'builtin', 'entryLinkEditor', {});
 
   campaign.changeFieldControl(
@@ -566,6 +560,10 @@ module.exports = function(migration) {
       'If no affirmation added, the affirmation will use default content.',
   });
 
+  campaign.changeFieldControl('landingPage', 'builtin', 'entryLinkEditor', {
+    helpText: '',
+  });
+
   campaign.changeFieldControl('pages', 'builtin', 'entryLinksEditor', {
     bulkEditing: false,
   });
@@ -581,10 +579,6 @@ module.exports = function(migration) {
     'entryLinkEditor',
     {},
   );
-
-  campaign.changeFieldControl('landingPage', 'builtin', 'entryLinkEditor', {
-    helpText: '',
-  });
 
   campaign.changeFieldControl('staffPick', 'builtin', 'boolean', {
     helpText: 'Is this a Staff Pick campaign?',
@@ -623,7 +617,7 @@ module.exports = function(migration) {
     'richTextEditor',
     {
       helpText:
-        'Add information about the scholarship & how it works with the campaign.',
+        "Add information about the scholarship & how it works with the campaign. This should match the description on our partner's site.",
     },
   );
 
