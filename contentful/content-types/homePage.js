@@ -114,10 +114,13 @@ module.exports = function(migration) {
   });
 
   homePage.changeEditorInterface('campaigns', 'entryLinksEditor', {
+    helpText:
+      'Add campaigns (Campaign or StoryPage entries) to showcase on the home page.',
     bulkEditing: false,
   });
 
   homePage.changeEditorInterface('articles', 'entryLinksEditor', {
+    helpText: 'Add articles (Page entries) to showcase on the home page.',
     bulkEditing: false,
   });
 
