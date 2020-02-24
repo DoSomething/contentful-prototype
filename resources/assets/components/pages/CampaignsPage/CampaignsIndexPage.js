@@ -1,6 +1,8 @@
+import Media from 'react-media';
 import React, { useState } from 'react';
 import { css } from '@emotion/core';
 
+import Modal from '../../utilities/Modal/Modal';
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import CampaignsFilters from './CampaignsFilters/CampaignsFilters';
@@ -13,6 +15,7 @@ const CampaignsIndexPage = () => {
 
   const handleSelect = event => {
     if (causes.includes(event.target.value)) {
+      console.log('is there a checked? on target', event.target);
       const newCauses = causes.filter(cause => {
         return cause !== event.target.value;
       });
@@ -51,14 +54,40 @@ const CampaignsIndexPage = () => {
             />
           </button>
         </div>
-        <div className="pl-6 md:pl-0 m-2 md:w-1/2">
-          <CampaignsFilters
-            clearAll={clearAll}
-            handleSelect={handleSelect}
-            handleFilterToggle={handleFilterToggle}
-            showFilters={showFilters}
-          />
-        </div>
+        <Media
+          queries={{
+            large: '(min-width: 960px)',
+          }}
+        >
+          {matches => (
+            <>
+              {matches.large ? (
+                <div className="pl-6 md:pl-0 m-2 md:w-1/2">
+                  <CampaignsFilters
+                    clearAll={clearAll}
+                    handleSelect={handleSelect}
+                    handleFilterToggle={handleFilterToggle}
+                    showFilters={showFilters}
+                  />
+                </div>
+              ) : (
+                <>
+                  {showFilters ? (
+                    <Modal onClose={() => handleFilterToggle()}>
+                      <CampaignsFilters
+                        clearAll={clearAll}
+                        handleSelect={handleSelect}
+                        handleFilterToggle={handleFilterToggle}
+                        showFilters={showFilters}
+                      />
+                    </Modal>
+                  ) : null}
+                </>
+              )}
+            </>
+          )}
+        </Media>
+
         <PaginatedCampaignGallery
           className="grid-full px-6 md:px-0"
           itemsPerRow={4}

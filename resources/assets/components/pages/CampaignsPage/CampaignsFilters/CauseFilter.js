@@ -12,54 +12,66 @@ const causes = [
   {
     name: 'Animal Welfare',
     value: 'animal-welfare',
+    checked: false,
   },
   {
     name: 'Bullying',
     value: 'bullying',
+    checked: false,
   },
   {
     name: 'Education',
     value: 'education',
+    checked: false,
   },
   {
     name: 'Environment',
     value: 'environment',
+    checked: false,
   },
   {
     name: 'Gender Rights & Equality',
     value: 'gender-rights',
+    checked: false,
   },
   {
     name: 'Homelessness & Poverty',
     value: 'homelessness-and-poverty',
+    checked: false,
   },
   {
     name: 'Immigration & Refugees',
     value: 'immigration',
+    checked: false,
   },
   {
     name: 'LGBTQ+ Rights & Equality',
     value: 'lgbtq-rights',
+    checked: false,
   },
   {
     name: 'Mental Health',
     value: 'mental-health',
+    checked: false,
   },
   {
     name: 'Physical Health',
     value: 'physical-health',
+    checked: false,
   },
   {
     name: 'Racial Justice & Equity',
     value: 'racial-justice',
+    checked: false,
   },
   {
     name: 'Sexual Harassment & Assault',
     value: 'sexual-harassment',
+    checked: false,
   },
 ];
 
-const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
+const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   <>
     <label className="flex justify-start pb-2" htmlFor={causeName}>
       <input
@@ -68,6 +80,7 @@ const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
         type="checkbox"
         value={causeValue}
         onClick={handleSelect}
+        checked={causeChecked}
       />
       <span className="pl-4">{causeName}</span>
     </label>
@@ -83,9 +96,14 @@ const isVisible = css`
 `;
 
 CauseInputs.propTypes = {
+  causeChecked: PropTypes.bool,
   causeName: PropTypes.string.isRequired,
   causeValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
+};
+
+CauseInputs.defaultProps = {
+  causeChecked: false,
 };
 
 const CauseFilter = ({
@@ -96,7 +114,7 @@ const CauseFilter = ({
 }) => (
   <div
     css={!showFilters ? isVisible : null}
-    className="w-1/3 bg-white shadow-lg absolute z-500"
+    className="bg-white shadow-lg absolute z-500"
   >
     <form>
       <div className="w-full p-4 border-0 border-solid rounded-lg border-0">
@@ -107,6 +125,7 @@ const CauseFilter = ({
               handleSelect={handleSelect}
               causeName={cause.name}
               causeValue={cause.value}
+              causeChecked={cause.checked}
             />
           );
         })}
@@ -119,7 +138,7 @@ const CauseFilter = ({
         >
           <p className="font-bold text-blue-500">clear</p>
         </button>
-        <Button onClick={handleFilterToggle}>Show All Campaigns</Button>
+        <Button onClick={handleFilterToggle}>Show Campaigns</Button>
       </div>
     </form>
   </div>
