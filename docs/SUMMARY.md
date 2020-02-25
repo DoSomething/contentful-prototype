@@ -23,6 +23,7 @@
   - [Page](development/content-types/page.md)
   - [Selection Submission Action](development/content-types/selection-submission-action.md)
 - [Features](development/features/README.md)
+  - [Paginated Campaign Gallery](development/features/paginated-campaign-gallery.md)
   - [Sixpack A/B Testing](development/features/sixpack/sixpack-a-b-testing.md)
     - [Code Tests](development/features/sixpack/sixpack-code-tests.md)
     - [Contentful Tests](development/features/sixpack/sixpack-contentful-tests.md)
