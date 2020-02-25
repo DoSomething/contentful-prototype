@@ -11,7 +11,7 @@ The `PaginatedCampaignGallery` accepts a list of variables used to optionally fi
 - an `orderBy` (comma separated) String to program the sorting (`'id,desc'`)
 - a `first` integer to determine how many campaigns to pull at a time
 
-Additionaly, it accepts a couple of gallery specific props:
+Additionally, it accepts a couple of gallery specific props:
 
 - `itemsPerRow`
 - _(optional)_ `title`
