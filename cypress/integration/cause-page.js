@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 import { GraphQLError } from 'graphql';
-import { MockList } from '../fixtures/graphql';
 
 describe('Cause Page', () => {
   // Configure a new "mock" server before each test:
