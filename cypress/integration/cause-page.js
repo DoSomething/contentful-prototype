@@ -62,20 +62,22 @@ describe('Cause Page', () => {
     cy.visit('/us/causes/education');
 
     // Find the 'view more' button.
-    cy.get('[data-ref=paginated-campaign-gallery] button').then($btn => {
-      // Now let's ensure that there's *not* another page once we click 'view more'.
-      cy.mockGraphqlOp('PaginatedCampaignQuery', {
-        paginatedCampaigns: {
-          pageInfo: {
-            hasNextPage: false,
+    cy.get('[data-ref=paginated-campaign-gallery] button').then(
+      $viewMorebutton => {
+        // Now let's ensure that there's *not* another page once we click 'view more'.
+        cy.mockGraphqlOp('PaginatedCampaignQuery', {
+          paginatedCampaigns: {
+            pageInfo: {
+              hasNextPage: false,
+            },
           },
-        },
-      });
+        });
 
-      $btn.click();
+        $viewMorebutton.click();
 
-      // The button should no longer display.
-      cy.get($btn.selector).should('not.exist');
-    });
+        // The button should no longer display.
+        cy.get($viewMorebutton.selector).should('not.exist');
+      },
+    );
   });
 });
