@@ -11,7 +11,7 @@ import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
 
 const PAGINATED_CAMPAIGNS_QUERY = gql`
-  query CampaignsByCauseQuery(
+  query PaginatedCampaignQuery(
     $causes: [String]
     $cursor: String
     $first: Int
@@ -95,7 +95,7 @@ const PaginatedCampaignGallery = ({
   }
 
   return (
-    <div className={className}>
+    <div className={className} data-ref="paginated-campaign-gallery">
       <GalleryBlock
         blocks={campaigns}
         itemsPerRow={itemsPerRow}
