@@ -1,4 +1,4 @@
-# Company Page
+# Cause Page
 
 ## Overview
 
