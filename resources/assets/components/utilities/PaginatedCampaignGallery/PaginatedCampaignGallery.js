@@ -95,7 +95,7 @@ const PaginatedCampaignGallery = ({
   }
 
   return (
-    <div className={className}>
+    <div className={className} data-ref="paginated-campaign-gallery">
       <GalleryBlock
         blocks={campaigns}
         itemsPerRow={itemsPerRow}
