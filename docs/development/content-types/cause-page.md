@@ -12,9 +12,11 @@ Displays a collection of (optional) stats, campaigns and article content revolvi
 
 - **Slug**: The URL slug, which we prefix with `/causes/`. e.g. `dosomething.org/causes/environment`. _This must be a [valid cause name](https://github.com/DoSomething/rogue/blob/78cfb1abcdd590afd253fb4e9b8d9e83831bbb1f/app/Types/Cause.php) on Rogue since we use this value to query campaign content via Rogue._
 
-- **Cover Image**: Displays in the banner at the top of the page.
+- **Cover Image**: Displays as the background image of the banner at the top of the page.
 
 - **Supertitle**: Shows up atop the title in the banner (can be used as a nice prefix to the title) e.g. "Let's do something about the".
+
+- **Title**: Displays right under the Supertitle. This is the title of the page. e.g. "Environment".
 
 - **Description**: The Rich Text description (information/introduction) for this cause page. Displays in the banner below the title.
 
