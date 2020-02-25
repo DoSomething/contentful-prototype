@@ -71,7 +71,7 @@ const causes = [
   },
 ];
 
-const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
+const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
   <>
     <label className="flex justify-start pb-2" htmlFor={causeName}>
       <input
@@ -80,7 +80,7 @@ const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
         type="checkbox"
         value={causeValue}
         onClick={handleSelect}
-        checked={causeChecked}
+        // checked={causeChecked}
       />
       <span className="pl-4">{causeName}</span>
     </label>
@@ -96,14 +96,14 @@ const isVisible = css`
 `;
 
 CauseInputs.propTypes = {
-  causeChecked: PropTypes.bool,
+  // causeChecked: PropTypes.bool,
   causeName: PropTypes.string.isRequired,
   causeValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
 };
 
 CauseInputs.defaultProps = {
-  causeChecked: false,
+  // causeChecked: false,
 };
 
 const CauseFilter = ({
@@ -114,7 +114,7 @@ const CauseFilter = ({
 }) => (
   <div
     css={!showFilters ? isVisible : null}
-    className="bg-white shadow-lg absolute z-500"
+    className="lg:w-1/3 bg-white shadow-lg lg:absolute z-10000000000"
   >
     <form>
       <div className="w-full p-4 border-0 border-solid rounded-lg border-0">
