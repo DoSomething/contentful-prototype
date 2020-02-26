@@ -15,24 +15,19 @@ describe('Campaign Info Bar', () => {
   });
 
   context('Unaffiliated users', () => {
-    it("Displays a mailto link to the campaign lead's email address", () => {
-      const campaignLeadEmail =
-        exampleCampaign.campaign.campaignLead.fields.email;
+    it('Displays a link to the help center', () => {
+      cy.anonVisitCampaign(exampleCampaign);
 
-      cy.withState(exampleCampaign).visit(
-        '/us/campaigns/test-example-campaign',
+      cy.get('.info-bar .info-bar__secondary a').contains(
+        'Visit our Help Center',
       );
-
-      cy.get('.info-bar .info-bar__secondary a')
-        .should('have.attr', 'href')
-        .and('include', `mailto:${campaignLeadEmail}`);
     });
   });
 
   context('Affiliated users', () => {
     it('Displays a button triggering the Zendesk Form in a modal', () => {
       const user = userFactory();
-      cy.authVisitCampaignWithSignup(user, exampleCampaign);
+      cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
       cy.get('.info-bar .info-bar__secondary button')
         .contains('button', 'Contact Us')
