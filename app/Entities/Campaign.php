@@ -42,38 +42,18 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
-     * Parse the campaign lead from other
+     * Parse the campaign lead
      *
      * @param  Entry $campaignlead
-     * @param  array $additionalContent
      * @return array
      */
-    public function parseCampaignLead($campaignlead, $additionalContent)
+    public function parseCampaignLead($campaignlead)
     {
         if ($campaignlead) {
             // @TODO (2018-09-13): We should make the CampaignLead field required and thus
             // no longer need a conditional check here.
             return  new Person($campaignlead->entry);
         }
-
-        // @TODO (2018-08-29): we should do away with this additional content item.
-        $email = $additionalContent['campaignLead']['email'] ?? 'campaignhelp@dosomething.org';
-        $name = $additionalContent['campaignLead']['name'] ?? 'Us';
-
-        return [
-            'id' => str_random(22),
-            'type' => 'person',
-            'fields' => [
-                'name' => $name,
-                'type' => 'staff',
-                'active' => true,
-                'jobTitle' => null,
-                'email' => $email,
-                'photo' => null,
-                'alternatePhoto' => null,
-                'description' => null,
-            ],
-        ];
     }
 
     /**
@@ -138,7 +118,7 @@ class Campaign extends Entity implements JsonSerializable
                 'url' => get_image_url($this->coverImage),
                 'landscapeUrl' => get_image_url($this->coverImage, 'landscape'),
             ],
-            'campaignLead' => $this->parseCampaignLead($this->campaignLead, $this->additionalContent),
+            'campaignLead' => $this->parseCampaignLead($this->campaignLead),
             'affiliateSponsors' => $this->parseAffiliates($this->affiliateSponsors),
             'affiliatePartners' => $this->parseAffiliates($this->affiliatePartners),
             'quizzes' => $this->parseQuizzes($this->quizzes),
