@@ -10,6 +10,7 @@ const CampaignInfoBar = ({
   affiliateCreditText,
   affiliateSponsors,
   affiliatePartners,
+  campaignTitle,
   contactEmail,
 }) => {
   const [showZendeskModal, setShowZendeskModal] = useState(false);
@@ -40,7 +41,13 @@ const CampaignInfoBar = ({
               Contact Us
             </button>
           ) : (
-            <a href={`mailto:${contactEmail}`}>Contact {contactEmail}</a>
+            <a
+              href={encodeURI(
+                `mailto:${contactEmail}?subject=Question About ${campaignTitle}`,
+              )}
+            >
+              Contact {contactEmail}
+            </a>
           )}
         </div>
       </div>
@@ -52,6 +59,7 @@ CampaignInfoBar.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
+  campaignTitle: PropTypes.string,
   contactEmail: PropTypes.string,
 };
 
@@ -59,6 +67,7 @@ CampaignInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
+  campaignTitle: 'Campaign',
   contactEmail: 'campaignshelp@dosomething.org',
 };
 
