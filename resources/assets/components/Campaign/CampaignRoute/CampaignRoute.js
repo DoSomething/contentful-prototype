@@ -17,11 +17,7 @@ import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContaine
 
 const CampaignRoute = props => {
   const {
-    affiliateCreditText,
-    affiliatePartners,
-    affiliateSponsors,
     affirmation,
-    campaignLead,
     clickedHideAffirmation,
     endDate,
     hasCommunityPage,
@@ -70,15 +66,7 @@ const CampaignRoute = props => {
                 );
               }
 
-              return (
-                <CampaignClosedPage
-                  endDate={props.endDate}
-                  affiliateCreditText={affiliateCreditText}
-                  affiliatePartners={affiliatePartners}
-                  affiliateSponsors={affiliateSponsors}
-                  campaignLead={campaignLead}
-                />
-              );
+              return <CampaignClosedPage endDate={props.endDate} />;
             }
 
             if (!isClosed && isSignedUp) {
@@ -146,14 +134,7 @@ const CampaignRoute = props => {
 };
 
 CampaignRoute.propTypes = {
-  affiliateCreditText: PropTypes.string,
-  affiliatePartners: PropTypes.arrayOf(PropTypes.object),
-  affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affirmation: PropTypes.object.isRequired,
-  campaignLead: PropTypes.shape({
-    name: PropTypes.string,
-    email: PropTypes.string,
-  }),
   clickedHideAffirmation: PropTypes.func.isRequired,
   endDate: PropTypes.string,
   hasCommunityPage: PropTypes.bool.isRequired,
@@ -165,10 +146,6 @@ CampaignRoute.propTypes = {
 };
 
 CampaignRoute.defaultProps = {
-  affiliateCreditText: undefined,
-  affiliatePartners: [],
-  affiliateSponsors: [],
-  campaignLead: {},
   endDate: null,
   landingPage: {},
 };
