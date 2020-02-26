@@ -57,7 +57,7 @@ class Campaign extends Entity implements JsonSerializable
         }
 
         // @TODO (2018-08-29): we should do away with this additional content item.
-        $email = $additionalContent['campaignLead']['email'] ?? 'help@dosomething.org';
+        $email = $additionalContent['campaignLead']['email'] ?? 'campaignhelp@dosomething.org';
         $name = $additionalContent['campaignLead']['name'] ?? 'Us';
 
         return [

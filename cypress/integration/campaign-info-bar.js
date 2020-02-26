@@ -14,14 +14,12 @@ describe('Campaign Info Bar', () => {
     cy.get('.info-bar').should('contain', affiliateTitle);
   });
 
-  context('Unaffiliated users', () => {
+  context('Unauthenticated users', () => {
     it("Displays a mailto link to the campaign lead's email address", () => {
       const campaignLeadEmail =
         exampleCampaign.campaign.campaignLead.fields.email;
 
-      cy.withState(exampleCampaign).visit(
-        '/us/campaigns/test-example-campaign',
-      );
+      cy.anonVisitCampaign(exampleCampaign);
 
       cy.get('.info-bar .info-bar__secondary a')
         .should('have.attr', 'href')
@@ -29,10 +27,10 @@ describe('Campaign Info Bar', () => {
     });
   });
 
-  context('Affiliated users', () => {
+  context('Authenticated users', () => {
     it('Displays a button triggering the Zendesk Form in a modal', () => {
       const user = userFactory();
-      cy.authVisitCampaignWithSignup(user, exampleCampaign);
+      cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
       cy.get('.info-bar .info-bar__secondary button')
         .contains('button', 'Contact Us')

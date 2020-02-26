@@ -9,7 +9,7 @@ describe('Zendesk Modal', () => {
     cy.configureMocks();
 
     const user = userFactory();
-    cy.authVisitCampaignWithSignup(user, exampleCampaign);
+    cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
 
     cy.get('.info-bar .info-bar__secondary button')
       .contains('button', 'Contact Us')

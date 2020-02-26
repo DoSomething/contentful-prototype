@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
 import Modal from '../utilities/Modal/Modal';
+import { isAuthenticated } from '../../helpers/auth';
 import AffiliateCredits from '../utilities/AffiliateCredits/AffiliateCredits';
 import ZendeskFormContainer from '../utilities/ZendeskForm/ZendeskFormContainer';
 
@@ -9,8 +10,8 @@ const CampaignInfoBar = ({
   affiliateCreditText,
   affiliateSponsors,
   affiliatePartners,
+  campaignTitle,
   contactEmail,
-  isAffiliated,
 }) => {
   const [showZendeskModal, setShowZendeskModal] = useState(false);
 
@@ -31,7 +32,7 @@ const CampaignInfoBar = ({
 
         <div className="info-bar__secondary">
           Questions?{' '}
-          {isAffiliated ? (
+          {isAuthenticated() ? (
             <button
               type="button"
               className="underline"
@@ -40,7 +41,13 @@ const CampaignInfoBar = ({
               Contact Us
             </button>
           ) : (
-            <a href={`mailto:${contactEmail}`}>Contact {contactEmail}</a>
+            <a
+              href={encodeURI(
+                `mailto:${contactEmail}?subject=Question About ${campaignTitle}`,
+              )}
+            >
+              Email Us
+            </a>
           )}
         </div>
       </div>
@@ -52,16 +59,16 @@ CampaignInfoBar.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliatePartners: PropTypes.arrayOf(PropTypes.object),
+  campaignTitle: PropTypes.string,
   contactEmail: PropTypes.string,
-  isAffiliated: PropTypes.bool,
 };
 
 CampaignInfoBar.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliatePartners: [],
-  contactEmail: 'help@dosomething.org',
-  isAffiliated: false,
+  campaignTitle: 'Campaign',
+  contactEmail: 'campaignhelp@dosomething.org',
 };
 
 export default CampaignInfoBar;

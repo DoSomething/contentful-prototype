@@ -10,7 +10,7 @@ The form submits via the internal `api/v2/zendesk-tickets` API which creates a n
 
 Render the `<ZendeskFormContainer/>` component from any page with a valid `campaign` in Redux state.
 
-Be sure to render the `ZendeskFormContainer` conditionally for affiliated users, since the zendesk tickets endpoint is gated and requires an authenticated user. Additionally, we prefer to only render the form for users signed up for the campaign.
+Be sure to render the `ZendeskFormContainer` conditionally for authenticated users, since the zendesk tickets endpoint is gated and requires an authenticated user.
 
 {% hint style="info" %}
 If testing the Zendesk form, use 'causeyhippo' as the question text which will trigger an automatic resolve and categorization over in our Zendesk space.
