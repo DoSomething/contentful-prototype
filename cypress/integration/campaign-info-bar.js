@@ -14,17 +14,20 @@ describe('Campaign Info Bar', () => {
     cy.get('.info-bar').should('contain', affiliateTitle);
   });
 
-  context('Unaffiliated users', () => {
-    it('Displays a link to the help center', () => {
+  context('Unauthenticated users', () => {
+    it("Displays a mailto link to the campaign lead's email address", () => {
+      const campaignLeadEmail =
+        exampleCampaign.campaign.campaignLead.fields.email;
+
       cy.anonVisitCampaign(exampleCampaign);
 
-      cy.get('.info-bar .info-bar__secondary a').contains(
-        'Visit our Help Center',
-      );
+      cy.get('.info-bar .info-bar__secondary a')
+        .should('have.attr', 'href')
+        .and('include', `mailto:${campaignLeadEmail}`);
     });
   });
 
-  context('Affiliated users', () => {
+  context('Authenticated users', () => {
     it('Displays a button triggering the Zendesk Form in a modal', () => {
       const user = userFactory();
       cy.authVisitCampaignWithoutSignup(user, exampleCampaign);
