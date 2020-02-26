@@ -68,7 +68,7 @@ CampaignInfoBar.defaultProps = {
   affiliateSponsors: [],
   affiliatePartners: [],
   campaignTitle: 'Campaign',
-  contactEmail: 'campaignshelp@dosomething.org',
+  contactEmail: 'campaignhelp@dosomething.org',
 };
 
 export default CampaignInfoBar;
