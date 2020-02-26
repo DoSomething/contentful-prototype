@@ -46,7 +46,7 @@ const CampaignInfoBar = ({
                 `mailto:${contactEmail}?subject=Question About ${campaignTitle}`,
               )}
             >
-              Contact {contactEmail}
+              Email Us
             </a>
           )}
         </div>
