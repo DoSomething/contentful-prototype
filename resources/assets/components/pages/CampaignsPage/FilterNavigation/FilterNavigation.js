@@ -6,12 +6,15 @@ import FilterSubNav from './FilterSubNav';
 import Modal from '../../../utilities/Modal/Modal';
 // import staticCauses from '../CampaignFilters/CauseVariables';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
+import staticCauses from '../CampaignFilters/CauseVariables';
 
 const FilterNavigation = ({ causes, setCauses }) => {
   const [chosenFilter, setChosenFilter] = useState('');
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleCauseSelect = event => {
+    staticCauses[event.target.value].checked = !staticCauses[event.target.value]
+      .checked;
     if (causes.includes(event.target.value)) {
       const newCauses = causes.filter(cause => {
         return cause !== event.target.value;
@@ -23,11 +26,9 @@ const FilterNavigation = ({ causes, setCauses }) => {
   };
 
   const clearAllSelected = () => {
-    // causes.forEach(cause => {
-    //   where name === cause
-    //     if cause.checked === true then set to false
-
-    // })
+    causes.forEach(cause => {
+      staticCauses[cause].checked = !staticCauses[cause].checked;
+    });
     if (causes) {
       setCauses([]);
     }

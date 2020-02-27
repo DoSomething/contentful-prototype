@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import causes from './CauseVariables';
 import Button from '../../../utilities/Button/Button';
 
-const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
+const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   <>
     <label className="flex justify-start pb-2" htmlFor={causeName}>
       <input
@@ -13,7 +13,7 @@ const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
         type="checkbox"
         value={causeValue}
         onClick={handleSelect}
-        // checked={causeChecked}
+        checked={causeChecked}
       />
       <span className="pl-4">{causeName}</span>
     </label>
@@ -21,27 +21,27 @@ const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
 );
 
 CauseInputs.propTypes = {
-  // causeChecked: PropTypes.bool,
+  causeChecked: PropTypes.bool,
   causeName: PropTypes.string.isRequired,
   causeValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
 };
 
 CauseInputs.defaultProps = {
-  // causeChecked: false,
+  causeChecked: false,
 };
 
 const CauseFilter = ({ clearAll, handleMenuToggle, handleCauseSelect }) => (
   <form>
     <div className="w-full p-4 border-0 border-solid rounded-lg border-0">
-      {causes.map(cause => {
+      {Object.keys(causes).map(cause => {
         return (
           <CauseInputs
-            key={cause.value}
+            key={causes[cause].value}
             handleSelect={handleCauseSelect}
-            causeName={cause.name}
-            causeValue={cause.value}
-            causeChecked={cause.checked}
+            causeName={causes[cause].name}
+            causeValue={causes[cause].value}
+            causeChecked={causes[cause].checked}
           />
         );
       })}
