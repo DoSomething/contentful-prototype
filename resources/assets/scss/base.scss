@@ -90,6 +90,23 @@ button {
   }
 }
 
+// Utility class for treating buttons like links:
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: theme('colors.blue.500');
+  text-decoration: underline;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+  color: theme('colors.blue.300');
+}
+
 h1,
 h2,
 h3,
