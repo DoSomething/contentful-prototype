@@ -6,6 +6,7 @@ import BadgesTab from './BadgesTab';
 import Profile from './Profile';
 import Subscriptions from './Subscriptions';
 import UserPostsQuery from './UserPostsQuery';
+import DeleteAccountTab from './DeleteAccountTab';
 
 const AccountRoute = props => (
   <Switch>
@@ -20,6 +21,10 @@ const AccountRoute = props => (
       render={() => <Subscriptions {...props} />}
     />
     <Route path="/us/account/profile" render={() => <Profile {...props} />} />
+    <Route
+      path="/us/account/delete"
+      render={() => <DeleteAccountTab {...props} />}
+    />
     <Route
       path="/us/account/campaigns"
       render={() => <UserPostsQuery userId={props.userId} />}

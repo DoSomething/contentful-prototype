@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import FormItem from './FormItem';
 import { env } from '../../../helpers/index';
@@ -46,12 +47,12 @@ const Profile = props => (
       <h3>Data and Privacy</h3>
       <ul className="mt-3">
         <li>
-          <a
-            href="mailto:trust@dosomething.org?subject=Delete my account"
+          <Link
+            to="/us/account/delete"
             className="text-gray-600 font-normal underline"
           >
             Delete my account
-          </a>
+          </Link>
         </li>
       </ul>
 
