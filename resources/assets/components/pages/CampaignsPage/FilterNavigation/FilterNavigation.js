@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 
 import FilterSubNav from './FilterSubNav';
 import Modal from '../../../utilities/Modal/Modal';
+// import staticCauses from '../CampaignFilters/CauseVariables';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
 
 const FilterNavigation = ({ causes, setCauses }) => {
-  const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [chosenFilter, setChosenFilter] = useState('');
+  const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleCauseSelect = event => {
     if (causes.includes(event.target.value)) {
@@ -21,7 +22,7 @@ const FilterNavigation = ({ causes, setCauses }) => {
     }
   };
 
-  const clearAll = () => {
+  const clearAllSelected = () => {
     // causes.forEach(cause => {
     //   where name === cause
     //     if cause.checked === true then set to false
@@ -61,7 +62,7 @@ const FilterNavigation = ({ causes, setCauses }) => {
               {matches.large ? (
                 <>
                   <FilterSubNav
-                    clearAll={clearAll}
+                    clearAll={clearAllSelected}
                     handleCauseSelect={handleCauseSelect}
                     handleMenuToggle={handleMenuToggle}
                     showFilterMenu={showFilterMenu}
@@ -73,7 +74,7 @@ const FilterNavigation = ({ causes, setCauses }) => {
                   {showFilterMenu ? (
                     <Modal onClose={() => handleMenuToggle()}>
                       <FilterSubNav
-                        clearAll={clearAll}
+                        clearAll={clearAllSelected}
                         handleCauseSelect={handleCauseSelect}
                         handleMenuToggle={handleMenuToggle}
                         showFilterMenu={showFilterMenu}
