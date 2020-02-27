@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
 import Query from '../../../Query';
+import { env } from '../../../../helpers';
 import Embed from '../../../utilities/Embed/Embed';
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 
 const REFERRAL_PAGE_CAMPAIGN = gql`
-  query ReferralPageCampaignQuery($campaignId: String!) {
-    campaignWebsiteByCampaignId(campaignId: $campaignId) {
+  query ReferralPageCampaignQuery($campaignId: String!, $preview: Boolean!) {
+    campaignWebsiteByCampaignId(campaignId: $campaignId, preview: $preview) {
       id
       url
     }
@@ -16,7 +17,13 @@ const REFERRAL_PAGE_CAMPAIGN = gql`
 `;
 
 const ReferralPageCampaignLink = ({ campaignId, userId }) => (
-  <Query query={REFERRAL_PAGE_CAMPAIGN} variables={{ campaignId }}>
+  <Query
+    query={REFERRAL_PAGE_CAMPAIGN}
+    variables={{
+      campaignId,
+      preview: env('CONTENTFUL_USE_PREVIEW_API', false),
+    }}
+  >
     {res => {
       const data = res.campaignWebsiteByCampaignId;
 
