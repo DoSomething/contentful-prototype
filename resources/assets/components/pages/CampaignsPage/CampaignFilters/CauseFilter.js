@@ -1,9 +1,5 @@
-/** @jsx jsx */
-
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, css } from '@emotion/core';
 
 import Button from '../../../utilities/Button/Button';
 
@@ -87,14 +83,6 @@ const CauseInputs = ({ causeName, causeValue, handleSelect }) => (
   </>
 );
 
-const isVisible = css`
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap; /* added line */
-`;
-
 CauseInputs.propTypes = {
   // causeChecked: PropTypes.bool,
   causeName: PropTypes.string.isRequired,
@@ -106,49 +94,38 @@ CauseInputs.defaultProps = {
   // causeChecked: false,
 };
 
-const CauseFilter = ({
-  clearAll,
-  handleFilterToggle,
-  handleSelect,
-  showFilters,
-}) => (
-  <div
-    css={!showFilters ? isVisible : null}
-    className="lg:w-1/3 bg-white shadow-lg lg:absolute z-10000000000"
-  >
-    <form>
-      <div className="w-full p-4 border-0 border-solid rounded-lg border-0">
-        {causes.map(cause => {
-          return (
-            <CauseInputs
-              key={cause.value}
-              handleSelect={handleSelect}
-              causeName={cause.name}
-              causeValue={cause.value}
-              causeChecked={cause.checked}
-            />
-          );
-        })}
-      </div>
-      <div className="w-full border-t border-gray-300 border-solid py-2">
-        <button
-          className="w-1/2 text-right pr-6 focus:outline-none"
-          onClick={clearAll}
-          type="button"
-        >
-          <p className="font-bold text-blue-500">clear</p>
-        </button>
-        <Button onClick={handleFilterToggle}>Show Campaigns</Button>
-      </div>
-    </form>
-  </div>
+const CauseFilter = ({ clearAll, handleMenuToggle, handleCauseSelect }) => (
+  <form>
+    <div className="w-full p-4 border-0 border-solid rounded-lg border-0">
+      {causes.map(cause => {
+        return (
+          <CauseInputs
+            key={cause.value}
+            handleSelect={handleCauseSelect}
+            causeName={cause.name}
+            causeValue={cause.value}
+            causeChecked={cause.checked}
+          />
+        );
+      })}
+    </div>
+    <div className="w-full border-t border-gray-300 border-solid py-2">
+      <button
+        className="w-1/2 text-right pr-6 focus:outline-none"
+        onClick={clearAll}
+        type="button"
+      >
+        <p className="font-bold text-blue-500">clear</p>
+      </button>
+      <Button onClick={handleMenuToggle}>Show Campaigns</Button>
+    </div>
+  </form>
 );
 
 CauseFilter.propTypes = {
   clearAll: PropTypes.func.isRequired,
-  handleFilterToggle: PropTypes.func.isRequired,
-  handleSelect: PropTypes.func.isRequired,
-  showFilters: PropTypes.bool.isRequired,
+  handleMenuToggle: PropTypes.func.isRequired,
+  handleCauseSelect: PropTypes.func.isRequired,
 };
 
 export default CauseFilter;
