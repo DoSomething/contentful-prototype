@@ -29,7 +29,7 @@ const renderedFilterMenu = props => {
 const FilterSubNav = props => (
   <div
     css={!props.showFilterMenu ? isVisible : null}
-    className="lg:w-1/3 bg-white shadow-lg lg:absolute z-10000000000"
+    className="lg:w-1/2 bg-white shadow-lg lg:absolute"
   >
     {renderedFilterMenu(props)}
   </div>

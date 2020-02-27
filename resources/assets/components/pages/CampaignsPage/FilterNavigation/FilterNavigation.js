@@ -42,46 +42,50 @@ const FilterNavigation = ({ causes, setCauses }) => {
   };
 
   return (
-    <div className="pl-6 md:pl-0 mb-6">
-      <MenuButton
-        title="Causes"
-        onClick={handleMenuToggle}
-        toggleCarat={showFilterMenu}
-      />
-      <Media
-        queries={{
-          large: '(min-width: 960px)',
-        }}
-      >
-        {matches => (
-          <>
-            {matches.large ? (
-              <>
-                <FilterSubNav
-                  clearAll={clearAll}
-                  handleCauseSelect={handleCauseSelect}
-                  handleMenuToggle={handleMenuToggle}
-                  showFilterMenu={showFilterMenu}
-                  chosenFilter={chosenFilter}
-                />
-              </>
-            ) : (
-              <>
-                {showFilterMenu ? (
-                  <Modal onClose={() => handleMenuToggle()}>
-                    <FilterSubNav
-                      clearAll={clearAll}
-                      handleCauseSelect={handleCauseSelect}
-                      handleMenuToggle={handleMenuToggle}
-                      showFilterMenu={showFilterMenu}
-                    />
-                  </Modal>
-                ) : null}
-              </>
-            )}
-          </>
-        )}
-      </Media>
+    <div className="w-full pl-6 md:pl-0 mb-6 z-50 relative">
+      <>
+        <MenuButton
+          title="Causes"
+          onClick={handleMenuToggle}
+          toggleCarat={showFilterMenu}
+        />
+      </>
+      <>
+        <Media
+          queries={{
+            large: '(min-width: 960px)',
+          }}
+        >
+          {matches => (
+            <>
+              {matches.large ? (
+                <>
+                  <FilterSubNav
+                    clearAll={clearAll}
+                    handleCauseSelect={handleCauseSelect}
+                    handleMenuToggle={handleMenuToggle}
+                    showFilterMenu={showFilterMenu}
+                    chosenFilter={chosenFilter}
+                  />
+                </>
+              ) : (
+                <>
+                  {showFilterMenu ? (
+                    <Modal onClose={() => handleMenuToggle()}>
+                      <FilterSubNav
+                        clearAll={clearAll}
+                        handleCauseSelect={handleCauseSelect}
+                        handleMenuToggle={handleMenuToggle}
+                        showFilterMenu={showFilterMenu}
+                      />
+                    </Modal>
+                  ) : null}
+                </>
+              )}
+            </>
+          )}
+        </Media>
+      </>
     </div>
   );
 };
