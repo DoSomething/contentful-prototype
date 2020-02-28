@@ -22,7 +22,7 @@ const renderedFilterMenu = props => {
     case 'Causes':
       return <CauseFilter {...fields} />;
     default:
-      return <div>Goodbye World.</div>;
+      return null;
   }
 };
 
