@@ -50,6 +50,11 @@ const FilterNavigation = ({ causes, setCauses }) => {
           title="Causes"
           onClick={handleMenuToggle}
           toggleCarat={showFilterMenu}
+          className={
+            showFilterMenu
+              ? 'bg-white border-none shadow-lg rounded-b-none'
+              : ''
+          }
         />
       </>
       <>
