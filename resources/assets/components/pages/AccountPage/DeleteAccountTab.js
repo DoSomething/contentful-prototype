@@ -18,6 +18,7 @@ const DeleteAccountMutation = gql`
     requestDeletion(id: $id) {
       id
       deletionRequestedAt
+      emailSubscriptionTopics
     }
   }
 `;
