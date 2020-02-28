@@ -13,6 +13,9 @@ const DeleteAccountQuery = gql`
   }
 `;
 
+// We're including 'emailSubscriptionTopics' in this query so that
+// if the user clicks over to their subscriptions tab, this update
+// will be displayed (without a full page refresh).
 const DeleteAccountMutation = gql`
   mutation DeleteAccountMutation($id: String!) {
     requestDeletion(id: $id) {
