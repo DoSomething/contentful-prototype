@@ -65,10 +65,10 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
           console.log('🚫 failed response? caught the error!', error);
         }
 
-        trackAnalyticsEvent('failed_call_to_action_popover_submission', {
+        trackAnalyticsEvent('failed_call_to_action_popover', {
           action: 'form_failed',
           category: EVENT_CATEGORIES.siteAction,
-          label: 'call_to_action_popover_submission',
+          label: 'call_to_action_popover',
           context: {
             contextSource: 'newsletter_scholarships',
             error,
