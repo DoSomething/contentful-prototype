@@ -44,7 +44,7 @@ const FilterNavigation = ({ causes, setCauses }) => {
   };
 
   return (
-    <div className="w-full pl-6 md:pl-0 mb-6 z-50 lg:relative">
+    <div className="campaigns-page-filters w-full pl-6 md:pl-0 mb-6 z-50 lg:relative">
       <>
         <MenuButton
           title="Causes"
@@ -84,6 +84,7 @@ const FilterNavigation = ({ causes, setCauses }) => {
                         handleCauseSelect={handleCauseSelect}
                         handleMenuToggle={handleMenuToggle}
                         showFilterMenu={showFilterMenu}
+                        chosenFilter={chosenFilter}
                       />
                     </Modal>
                   ) : null}

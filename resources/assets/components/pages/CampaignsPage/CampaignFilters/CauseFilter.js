@@ -33,7 +33,7 @@ CauseInputs.defaultProps = {
 
 const CauseFilter = ({ clearAll, handleMenuToggle, handleCauseSelect }) => (
   <form>
-    <div className="w-full p-4 border-0 border-solid rounded-lg border-0">
+    <div className="cause-filter w-full p-4 border-0 border-solid rounded-lg border-0 flex flex-col flex-wrap">
       {Object.keys(causes).map(cause => {
         return (
           <CauseInputs
@@ -46,9 +46,9 @@ const CauseFilter = ({ clearAll, handleMenuToggle, handleCauseSelect }) => (
         );
       })}
     </div>
-    <div className="w-full border-t border-gray-300 border-solid py-2">
+    <div className="w-full flex space-between justify-end border-t border-gray-300 border-solid py-2 px-6">
       <button
-        className="w-1/2 text-right pr-6 focus:outline-none"
+        className="pr-6 focus:outline-none"
         onClick={clearAll}
         type="button"
       >

@@ -5,13 +5,15 @@ import FilterNavigation from './FilterNavigation/FilterNavigation';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/PaginatedCampaignGallery';
 
+import './campaigns-page.scss';
+
 const CampaignsIndexPage = () => {
   const [causes, setCauses] = useState([]);
 
   return (
     <>
       <SiteNavigationContainer />
-      <main className="md:w-3/4 mx-auto">
+      <main className="campaigns-page md:w-3/4 mx-auto">
         <h1 className="w-full my-6 pl-6 md:pl-0">Explore Campaigns</h1>
         <FilterNavigation causes={causes} setCauses={setCauses} />
         <PaginatedCampaignGallery

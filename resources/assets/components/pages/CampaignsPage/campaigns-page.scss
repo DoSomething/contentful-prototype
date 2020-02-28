@@ -1,0 +1,9 @@
+@import '../../../scss/next-toolbox';
+
+.campaigns-page {
+  .cause-filter {
+    @include media($largest) {
+      max-height: 250px;
+    }
+  }
+}
