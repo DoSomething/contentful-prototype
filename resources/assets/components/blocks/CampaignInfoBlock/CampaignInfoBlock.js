@@ -52,7 +52,7 @@ const CampaignInfoBlock = ({
               <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
             ) : null}
             <dl className="clearfix">
-              {scholarshipAmount && isOpen ? (
+              {scholarshipAmount && scholarshipDeadline && isOpen ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
