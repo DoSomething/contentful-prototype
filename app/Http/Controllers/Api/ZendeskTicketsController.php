@@ -28,11 +28,15 @@ class ZendeskTicketsController extends Controller
         $campaignName = $request->campaign_name;
         $question = $request->question;
 
-        $user = gateway('northstar')->withToken(token())->get('v1/profile');
+        $northstarId = auth()->id();
 
-        $northstarId = data_get($user, 'data.id');
+        // Fetch user details from Northstar:
+        $user = gateway('northstar')->withToken(token())->get('v2/users/'.$northstarId, [
+            'include' => 'email',
+        ]);
+
         $userEmail = data_get($user, 'data.email');
-        $userName = data_get($user, 'data.first_name').' '.data_get($user, 'data.last_initial').'.';
+        $userName = data_get($user, 'data.display_name');
 
         Log::debug('[Phoenix] ZendeskTicketsController@store: Creating Zendesk ticket:', [
             'northstar_id' => $northstarId,
