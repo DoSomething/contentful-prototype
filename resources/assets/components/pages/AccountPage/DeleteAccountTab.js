@@ -85,8 +85,9 @@ const DeleteAccountForm = () => {
           We received your account deletion request on{' '}
           {format(deletionRequestedAt, 'PPP')}.
         </strong>{' '}
-        You have been unsubscribed from all emails and text messages, and your
-        account will be permanently deleted within {remainingDays}.
+        You have been unsubscribed from all DoSomething.org emails &amp; text
+        marketing, and your account will be permanently deleted within{' '}
+        {remainingDays}.
       </p>
       <p>
         We&apos;ll send you one final reminder message before that happens. In
