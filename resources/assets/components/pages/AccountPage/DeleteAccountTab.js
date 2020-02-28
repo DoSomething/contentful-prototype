@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import classnames from 'classnames';
-import { format } from 'date-fns';
+import { format, formatDistanceStrict, addDays } from 'date-fns';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const DeleteAccountQuery = gql`
@@ -54,10 +54,10 @@ const DeleteAccountForm = () => {
     return <div className="spinner" />;
   }
 
-  const pendingDeletionRequest = data.user.deletionRequestedAt;
+  const { deletionRequestedAt } = data.user;
 
   // If we don't have a pending deletion request, let user submit one:
-  if (!pendingDeletionRequest) {
+  if (!deletionRequestedAt) {
     return (
       <button
         onClick={deleteUser}
@@ -71,16 +71,22 @@ const DeleteAccountForm = () => {
     );
   }
 
+  const scheduledDeletion = addDays(deletionRequestedAt, 14);
+  const remainingDays = formatDistanceStrict(new Date(), scheduledDeletion, {
+    unit: 'day',
+    roundingMethod: 'ceil',
+  });
+
   // Otherwise, display some information about their request:
   return (
     <>
       <p>
         <strong className="text-red-500">
           We received your account deletion request on{' '}
-          {format(data.user.deletionRequestedAt, 'PPP')}.
+          {format(deletionRequestedAt, 'PPP')}.
         </strong>{' '}
-        You&apos;ve been unsubscribed from all emails and text messages, and
-        your account will be permanently deleted in 14 days.
+        You have been unsubscribed from all emails and text messages, and your
+        account will be permanently deleted within {remainingDays}.
       </p>
       <p>
         We&apos;ll send you one final reminder message before that happens. In
