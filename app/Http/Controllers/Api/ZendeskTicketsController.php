@@ -6,27 +6,43 @@ use Illuminate\Http\Request;
 use Huddle\Zendesk\Facades\Zendesk;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Repositories\RogueCampaignRepository;
 
 class ZendeskTicketsController extends Controller
 {
     /**
-     * ZendeskController constructor.
+     * Rogue Campaign repository instance.
+     *
+     * @var RogueCampaignRepository
      */
-    public function __construct()
+    private $rogueCampaignRepository;
+
+    /**
+     * ZendeskController constructor.
+     *
+     * @param RogueCampaignRepository $rogueCampaignRepository
+     */
+    public function __construct(RogueCampaignRepository $rogueCampaignRepository)
     {
         $this->middleware('auth:api');
         $this->middleware('throttle:10,60');
+
+        $this->rogueCampaignRepository = $rogueCampaignRepository;
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'campaign_id' => 'required|string',
             'campaign_name' => 'required|string',
             'question' => 'required|string',
         ]);
 
         $campaignName = $request->campaign_name;
         $question = $request->question;
+
+        $rogueCampaign = $this->rogueCampaignRepository->getCampaign($request->campaign_id);
+        $campaignCause = data_get($rogueCampaign, 'data.cause_names', [])[0];
 
         $northstarId = auth()->id();
 
@@ -42,6 +58,11 @@ class ZendeskTicketsController extends Controller
             'northstar_id' => $northstarId,
             'question' => str_limit($question, 5000, '(...)'),
         ]);
+
+        $zendeskGroups = Zendesk::groups()->findAll();
+        // Find the Zendesk group whose name matches the Campaign's first cause name.
+        $zendeskGroup = collect($zendeskGroups->groups)->firstWhere('name', $campaignCause);
+        $zendeskGroupId = optional($zendeskGroup)->id;
 
         $zendeskUser = Zendesk::users()->createOrUpdate([
             'email' => $userEmail,
@@ -64,6 +85,7 @@ class ZendeskTicketsController extends Controller
             'comment' => [
                 'body' => $questionSubject.': '.$question,
             ],
+            'group_id' => $zendeskGroupId,
             // @TODO: Assign priority based on campaign's staff pick status.
             // 'priority' => 'normal',
             // @TODO: Append browser & ip address using env variable zendesk field IDs.
