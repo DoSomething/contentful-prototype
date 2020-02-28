@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import causes from './CauseVariables';
-import Button from '../../../utilities/Button/Button';
+import Button from '../../../../utilities/Button/Button';
 
 const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   <>

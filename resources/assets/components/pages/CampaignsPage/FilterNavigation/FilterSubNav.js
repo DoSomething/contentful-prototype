@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { jsx, css } from '@emotion/core';
 
 import { withoutNulls } from '../../../../helpers';
-import CauseFilter from '../CampaignFilters/CauseFilter';
+import CauseFilter from '../CampaignFilters/CauseFilter/CauseFilter';
 
 const isVisible = css`
   height: 1px;

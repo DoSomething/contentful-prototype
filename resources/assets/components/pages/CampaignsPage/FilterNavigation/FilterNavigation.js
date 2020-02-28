@@ -6,7 +6,7 @@ import FilterSubNav from './FilterSubNav';
 import Modal from '../../../utilities/Modal/Modal';
 // import staticCauses from '../CampaignFilters/CauseVariables';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
-import staticCauses from '../CampaignFilters/CauseVariables';
+import staticCauses from '../CampaignFilters/CauseFilter/CauseVariables';
 
 const FilterNavigation = ({ causes, setCauses }) => {
   const [chosenFilter, setChosenFilter] = useState('');
