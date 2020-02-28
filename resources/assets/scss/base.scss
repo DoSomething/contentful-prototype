@@ -39,6 +39,16 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
   box-shadow: 0 0 3px theme('colors.blue.500');
 }
 
+// Helper class to style 'button' elements as links:
+.link-button {
+  @apply inline bg-transparent border-none cursor-pointer text-blue-500 underline m-0 p-0;
+}
+
+.link-button:hover,
+.link-button:focus {
+  @apply text-blue-300;
+}
+
 @tailwind utilities;
 
 /*
