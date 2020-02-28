@@ -9,7 +9,12 @@
 
 // Homepage
 $router->redirect('/', '/us');
-$router->get('/us', 'HomePageController');
+
+if (config('features.new_homepage')) {
+    $router->view('/us', 'app');
+} else {
+    $router->get('/us', 'HomePageController');
+}
 
 // Authentication
 $router->get('/authorize', 'AuthController@getAuthorization')->name('authorize');
