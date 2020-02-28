@@ -9,6 +9,7 @@ import { getCampaignFaqsPath } from '../../../selectors/campaign';
  */
 const mapStateToProps = state => ({
   token: getUserToken(state),
+  campaignId: state.campaign.campaignId,
   campaignName: state.campaign.title,
   faqsLink: getCampaignFaqsPath(state),
 });
