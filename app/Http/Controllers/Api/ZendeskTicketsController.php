@@ -42,7 +42,8 @@ class ZendeskTicketsController extends Controller
         $question = $request->question;
 
         $rogueCampaign = $this->rogueCampaignRepository->getCampaign($request->campaign_id);
-        $campaignCause = data_get($rogueCampaign, 'data.cause_names', [])[0];
+        $campaignCauses = data_get($rogueCampaign, 'data.cause_names', []);
+        $campaignCause = array_shift($campaignCauses);
 
         $northstarId = auth()->id();
 
