@@ -43,7 +43,12 @@ const CampaignRoute = props => {
       ) : null}
 
       <Switch>
-        <Route path={join(baseUrl, 'blocks/:id')} component={BlockPage} />
+        <Route
+          path={join(baseUrl, 'blocks/:id')}
+          render={routeProps => (
+            <BlockPage hideNavigation match={routeProps.match} />
+          )}
+        />
 
         <Route
           path={join(baseUrl, 'quiz/:slug')}
