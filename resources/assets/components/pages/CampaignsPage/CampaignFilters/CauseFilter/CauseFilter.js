@@ -5,19 +5,17 @@ import causes from './CauseVariables';
 import Button from '../../../../utilities/Button/Button';
 
 const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
-  <>
-    <label className="flex justify-start pb-2" htmlFor={causeName}>
-      <input
-        name={causeValue}
-        id={causeValue}
-        type="checkbox"
-        value={causeValue}
-        onClick={handleSelect}
-        checked={causeChecked}
-      />
-      <span className="pl-4">{causeName}</span>
-    </label>
-  </>
+  <label className="flex justify-start pb-2" htmlFor={causeName}>
+    <input
+      name={causeValue}
+      id={causeValue}
+      type="checkbox"
+      value={causeValue}
+      onClick={handleSelect}
+      checked={causeChecked}
+    />
+    <span className="pl-4">{causeName}</span>
+  </label>
 );
 
 CauseInput.propTypes = {
