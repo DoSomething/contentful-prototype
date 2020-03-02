@@ -60,9 +60,12 @@ class ZendeskTicketsController extends Controller
             'question' => str_limit($question, 5000, '(...)'),
         ]);
 
-        $zendeskGroups = Zendesk::groups()->findAll();
-        // Find the Zendesk group whose name matches the Campaign's first cause name.
-        $zendeskGroup = collect($zendeskGroups->groups)->firstWhere('name', $campaignCause);
+        // Find the Zendesk groups where the name matches the Campaign's first cause name.
+        $zendeskGroups = optional(
+            Zendesk::search()->find('type:group name:".'.$campaignCause.'"')
+        )->results;
+        // Filter out the *exact* matching group. (The search API includes a more generous matching logic).
+        $zendeskGroup = collect($zendeskGroups)->firstWhere('name', $campaignCause);
         $zendeskGroupId = optional($zendeskGroup)->id;
 
         $zendeskUser = Zendesk::users()->createOrUpdate([
