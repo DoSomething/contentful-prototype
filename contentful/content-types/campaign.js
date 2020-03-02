@@ -420,7 +420,7 @@ module.exports = function(migration) {
         },
 
         message:
-          "Keep it short and sweet! This should mirror the description from our partner's site.",
+          "The scholarship description is limited to 300 characters! This should mirror the description from our partner's site.",
       },
       {
         nodes: {},
