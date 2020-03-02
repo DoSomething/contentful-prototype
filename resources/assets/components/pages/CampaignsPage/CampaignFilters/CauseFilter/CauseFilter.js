@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import causes from './CauseVariables';
 import Button from '../../../../utilities/Button/Button';
 
-const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
+const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   <>
     <label className="flex justify-start pb-2" htmlFor={causeName}>
       <input
@@ -20,14 +20,14 @@ const CauseInputs = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   </>
 );
 
-CauseInputs.propTypes = {
+CauseInput.propTypes = {
   causeChecked: PropTypes.bool,
   causeName: PropTypes.string.isRequired,
   causeValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
 };
 
-CauseInputs.defaultProps = {
+CauseInput.defaultProps = {
   causeChecked: false,
 };
 
@@ -36,7 +36,7 @@ const CauseFilter = ({ clearAll, handleMenuToggle, handleCauseSelect }) => (
     <div className="cause-filter w-full p-4 border-0 border-solid rounded-lg border-0 flex flex-col flex-wrap">
       {Object.keys(causes).map(cause => {
         return (
-          <CauseInputs
+          <CauseInput
             key={causes[cause].value}
             handleSelect={handleCauseSelect}
             causeName={causes[cause].name}
