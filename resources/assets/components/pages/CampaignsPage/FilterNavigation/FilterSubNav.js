@@ -3,17 +3,14 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { jsx, css } from '@emotion/core';
 
 import { withoutNulls } from '../../../../helpers';
 import CauseFilter from '../CampaignFilters/CauseFilter/CauseFilter';
 
 const isVisible = css`
-  height: 1px;
-  width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap; /* added line */
+  display: none;
 `;
 
 const renderedFilterMenu = props => {
@@ -28,19 +25,22 @@ const renderedFilterMenu = props => {
 
 const FilterSubNav = props => (
   <div
-    css={!props.showFilterMenu ? isVisible : null}
-    className="lg:w-1/2 bg-white shadow-lg lg:absolute"
+    css={!props.chosenFilter ? isVisible : null}
+    className={classNames('w-1/2 bg-white shadow-lg absolute', props.className)}
+    aria-expanded={Boolean(props.chosenFilter)}
   >
     {renderedFilterMenu(props)}
   </div>
 );
 
 FilterSubNav.propTypes = {
-  showFilterMenu: PropTypes.bool,
+  chosenFilter: PropTypes.string,
+  className: PropTypes.string,
 };
 
 FilterSubNav.defaultProps = {
-  showFilterMenu: false,
+  chosenFilter: '',
+  className: null,
 };
 
 export default FilterSubNav;
