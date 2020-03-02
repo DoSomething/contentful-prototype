@@ -139,6 +139,11 @@ const HeroTemplate = ({
               scholarshipCallToAction={scholarshipCallToAction || undefined}
               scholarshipDeadline={scholarshipDeadline}
               scholarshipDescription={scholarshipDescription}
+              numberOfScholarships={get(
+                additionalContent,
+                'numberOfScholarships',
+                1,
+              )}
               utmLabel={scholarshipAffiliateLabel.toLowerCase()}
             >
               <div className="pt-6 w-2/3 sm:w-1/2">

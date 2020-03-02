@@ -50,6 +50,7 @@ const ScholarshipInfoBlock = ({
   scholarshipCallToAction,
   scholarshipDeadline,
   scholarshipDescription,
+  numberOfScholarships,
   utmLabel,
 }) => {
   const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
@@ -172,7 +173,7 @@ const ScholarshipInfoBlock = ({
               {scholarshipDeadline ? (
                 <div className="lg:w-1/2 lg:float-left">
                   <h4 className="font-bold uppercase text-gray-600">
-                    Deadline
+                    Next Deadline
                   </h4>
                   <p className="pb-2">
                     {getHumanFriendlyDate(scholarshipDeadline)}
@@ -212,6 +213,9 @@ const ScholarshipInfoBlock = ({
                 </>
               )}
             </Media>
+            <div className="font-bold uppercase text-gray-600">
+              HOW IT WORKS
+            </div>
           </div>
           <div className="sm:hidden text-center align-bottom flex justify-center">
             <button
@@ -245,6 +249,7 @@ ScholarshipInfoBlock.propTypes = {
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
   scholarshipDescription: PropTypes.object,
+  numberOfScholarships: PropTypes.number.isRequired,
   utmLabel: PropTypes.string.isRequired,
 };
 
