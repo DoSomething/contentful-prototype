@@ -7,12 +7,15 @@ Create a Zendesk Ticket for an authenticated user.
 
 {% api-method-description %}
 Fetches user data via northstar then creates or updates a Zendesk user using the account email address with Northstar ID and Rogue profile URL.
-Creates new Zendesk ticket for the user with the campaign title and question data.
+Creates new Zendesk ticket for the user with the campaign title and question data. Assigns a group ID using the campaign's first Cause Name to match an existing Zendesk Group.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-path-parameters %}
+{% api-method-parameter name="campaign_id" type="string" required=true %}
+e.g.: '9001'
+{% endapi-method-parameter %}
 {% api-method-parameter name="campaign_name" type="string" required=true %}
 e.g.: 'Teens for Jeans'
 {% endapi-method-parameter %}
@@ -28,23 +31,13 @@ e.g.: 'I\'m having trouble reporting back on this campaign.'
 
 {% endapi-method-response-example-description %}
 
-```javascript
+```json
 {
-    "zendesk_ticket": {
-      "ticket": {
-        "id":      35436,
-        "subject": "My printer is on fire!",
-        ...
-      }
-    },
-    "zendesk_user": {
-        "user": {
-            "id": 123,
-            "name": "Mendel B.",
-            "email": "mendel.com",
-            ...
-        }
-    }
+  "ticket": {
+    "id": 1234,
+    "subject": "My printer is on fire!"
+    // ...
+  }
 }
 ```
 
