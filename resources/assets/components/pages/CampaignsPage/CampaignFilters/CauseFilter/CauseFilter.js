@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { get } from 'lodash';
 
-import Button from '../../../../utilities/Button/Button';
-
 const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   <label className="flex justify-start pb-2" htmlFor={causeName}>
     <input
@@ -29,7 +27,7 @@ CauseInput.defaultProps = {
   causeChecked: false,
 };
 
-const CauseFilter = ({ filters, setFilters, handleMenuToggle }) => {
+const CauseFilter = ({ filters, setFilters }) => {
   const causes = get(filters, 'causes', []);
 
   const causeLabels = {
@@ -66,7 +64,7 @@ const CauseFilter = ({ filters, setFilters, handleMenuToggle }) => {
 
   return (
     <form>
-      <div className="cause-filter w-full p-4 border-0 border-solid rounded-lg border-0 flex flex-col flex-wrap">
+      <div className="cause-filter w-full p-4 flex flex-col flex-wrap">
         {Object.keys(causeLabels).map(cause => {
           return (
             <CauseInput
@@ -79,7 +77,7 @@ const CauseFilter = ({ filters, setFilters, handleMenuToggle }) => {
           );
         })}
       </div>
-      <div className="w-full flex space-between justify-end border-t border-gray-300 border-solid py-2 px-6">
+      <div className="w-full flex justify-start py-2 px-4">
         <button
           className="pr-6 focus:outline-none"
           onClick={clearAllSelected}
@@ -87,7 +85,6 @@ const CauseFilter = ({ filters, setFilters, handleMenuToggle }) => {
         >
           <p className="font-bold text-blue-500">clear</p>
         </button>
-        <Button onClick={handleMenuToggle}>Show Campaigns</Button>
       </div>
     </form>
   );
@@ -95,7 +92,6 @@ const CauseFilter = ({ filters, setFilters, handleMenuToggle }) => {
 
 CauseFilter.propTypes = {
   filters: PropTypes.object.isRequired,
-  handleMenuToggle: PropTypes.func.isRequired,
   setFilters: PropTypes.func.isRequired,
 };
 

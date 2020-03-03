@@ -17,7 +17,10 @@ const renderedFilterMenu = props => {
 
 const FilterSubNav = props => (
   <div
-    className={classNames('w-full bg-white', props.className)}
+    className={classNames(
+      'w-full bg-white border-solid border-t border-gray-300 ',
+      props.className,
+    )}
     aria-expanded={Boolean(props.chosenFilter)}
   >
     {renderedFilterMenu(props)}
