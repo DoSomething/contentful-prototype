@@ -15,11 +15,15 @@ const CampaignsIndexPage = () => {
     <>
       <SiteNavigationContainer />
 
+      <div className="bg-white">
+        <div className="md:w-3/4 mx-auto">
+          <h1 className="w-full my-6 pl-6 md:pl-0">Explore Campaigns</h1>
+
+          <FilterNavigation filters={filters} setFilters={setFilters} />
+        </div>
+      </div>
+
       <main className="campaigns-page md:w-3/4 mx-auto">
-        <h1 className="w-full my-6 pl-6 md:pl-0">Explore Campaigns</h1>
-
-        <FilterNavigation filters={filters} setFilters={setFilters} />
-
         <PaginatedCampaignGallery
           className="grid-full px-6 md:px-0"
           itemsPerRow={4}
