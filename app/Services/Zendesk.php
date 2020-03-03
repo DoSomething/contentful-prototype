@@ -64,9 +64,7 @@ class Zendesk
             // ],
         ];
 
-        $zendeskTicket = ZendeskClient::tickets()->create($zendeskTicketData);
-
-        return [$zendeskTicket, $zendeskUser];
+        return ZendeskClient::tickets()->create($zendeskTicketData);
     }
 
     /**
