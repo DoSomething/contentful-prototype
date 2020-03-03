@@ -23,7 +23,7 @@ class ZendeskTicketsController extends Controller
     public function __construct(Zendesk $zendesk)
     {
         $this->middleware('auth:api');
-        // $this->middleware('throttle:10,60');
+        $this->middleware('throttle:10,60');
 
         $this->zendesk = $zendesk;
     }
