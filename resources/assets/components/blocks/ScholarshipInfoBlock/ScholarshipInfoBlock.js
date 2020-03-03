@@ -215,6 +215,10 @@ const ScholarshipInfoBlock = ({
             </Media>
             <div className="font-bold uppercase text-gray-600">
               HOW IT WORKS
+              <div>
+                <numberOfScholarships /> scholarships will be given out before
+                (endDate). Learn More
+              </div>
             </div>
           </div>
           <div className="sm:hidden text-center align-bottom flex justify-center">
