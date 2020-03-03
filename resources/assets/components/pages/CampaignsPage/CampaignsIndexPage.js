@@ -15,7 +15,7 @@ const CampaignsIndexPage = () => {
     <>
       <SiteNavigationContainer />
 
-      <div className="bg-white">
+      <div className="bg-white border-b border-gray-300 border-solid">
         <div className="md:w-3/4 mx-auto">
           <h1 className="w-full my-6 pl-6 md:pl-0">Explore Campaigns</h1>
 

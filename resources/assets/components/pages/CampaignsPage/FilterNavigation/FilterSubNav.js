@@ -1,22 +1,14 @@
-/** @jsx jsx */
-
-// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { jsx, css } from '@emotion/core';
 
 import { withoutNulls } from '../../../../helpers';
 import CauseFilter from '../CampaignFilters/CauseFilter/CauseFilter';
 
-const isVisible = css`
-  display: none;
-`;
-
 const renderedFilterMenu = props => {
   const fields = withoutNulls(props);
   switch (fields.chosenFilter) {
-    case 'Causes':
+    case 'Cause':
       return <CauseFilter {...fields} />;
     default:
       return null;
@@ -25,7 +17,6 @@ const renderedFilterMenu = props => {
 
 const FilterSubNav = props => (
   <div
-    css={!props.chosenFilter ? isVisible : null}
     className={classNames('w-full bg-white', props.className)}
     aria-expanded={Boolean(props.chosenFilter)}
   >

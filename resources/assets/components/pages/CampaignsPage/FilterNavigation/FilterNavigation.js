@@ -19,14 +19,20 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
   return (
     <div className="campaigns-page-filters w-full pl-6 md:pl-0 mb-6 z-50 bg-white">
-      <MenuButton
-        title="Causes"
-        onClick={handleMenuToggle}
-        toggleCarat={Boolean(chosenFilter)}
-        className={
-          chosenFilter ? 'bg-white border-none shadow-lg rounded-b-none' : ''
-        }
-      />
+      <div className="base-12-grid items-center filter-nav">
+        <h6 className="color-gray-200">FILTERS</h6>
+        <MenuButton
+          title="Cause"
+          onClick={handleMenuToggle}
+          hideCarat
+          titleColor={chosenFilter ? 'color-white' : 'filter-nav-button'}
+          className={
+            chosenFilter
+              ? 'bg-blurple-500 border-none'
+              : 'bg-white border border-solid border-blurple-500'
+          }
+        />
+      </div>
 
       <FilterSubNav
         handleMenuToggle={handleMenuToggle}
