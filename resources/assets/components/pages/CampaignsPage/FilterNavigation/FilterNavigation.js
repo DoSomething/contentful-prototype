@@ -18,9 +18,9 @@ const FilterNavigation = ({ filters, setFilters }) => {
   };
 
   return (
-    <div className="md:w-full z-50 bg-white">
-      <div className="base-12-grid items-center filter-nav md:w-3/4 mx-auto pl-6 md:pl-0">
-        <h6 className="color-gray-200">FILTERS</h6>
+    <div className="md:w-full bg-white">
+      <div className="flex items-center filter-nav md:w-3/4 mx-auto pl-6 md:pl-0 pt-2 md:pt-0 pb-6">
+        <h6 className="color-gray-200 pr-4">FILTERS</h6>
         <MenuButton
           title="Cause"
           onClick={handleMenuToggle}
