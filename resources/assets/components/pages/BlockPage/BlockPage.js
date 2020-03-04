@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -10,9 +11,9 @@ import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/Content
  *
  * @returns {ReactElement}
  */
-const BlockPage = ({ match }) => (
+const BlockPage = ({ match, hideNavigation }) => (
   <>
-    <SiteNavigationContainer />
+    {!hideNavigation ? <SiteNavigationContainer /> : null}
 
     <main className="clearfix">
       <div className="md:w-3/4 mx-auto my-16 px-3">
@@ -25,7 +26,12 @@ const BlockPage = ({ match }) => (
 );
 
 BlockPage.propTypes = {
+  hideNavigation: PropTypes.bool,
   match: ReactRouterPropTypes.match.isRequired,
+};
+
+BlockPage.defaultProps = {
+  hideNavigation: false,
 };
 
 export default BlockPage;
