@@ -36,6 +36,11 @@
   }
 }
 
+.base-12-grid.filter-nav {
+  padding-top: 6px;
+  grid-column-gap: 0.05em;
+}
+
 .filter-nav-button {
   color: theme('colors.blurple.500');
 }

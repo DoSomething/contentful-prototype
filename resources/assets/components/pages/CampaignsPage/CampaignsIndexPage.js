@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { get } from 'lodash';
+import React, { useState } from 'react';
 
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import FilterNavigation from './FilterNavigation/FilterNavigation';
@@ -15,9 +15,9 @@ const CampaignsIndexPage = () => {
     <>
       <SiteNavigationContainer />
 
-      <div className="bg-white border-b border-gray-300 border-solid">
-        <div className="md:w-3/4 mx-auto pl-6 md:pl-0">
-          <h1 className="w-full mt-6">Explore Campaigns</h1>
+      <div className="bg-white border-b border-gray-300 border-solid ">
+        <div className="md:w-3/4 mx-auto pt-6 md:pt-10 pl-6 md:pl-0">
+          <h2 className="w-full mt-6">Explore Campaigns</h2>
         </div>
         <FilterNavigation filters={filters} setFilters={setFilters} />
       </div>
