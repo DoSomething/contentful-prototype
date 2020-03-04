@@ -18,7 +18,7 @@ const CampaignsIndexPage = () => {
       <main>
         <div className="bg-white border-b border-gray-300 border-solid mb-6">
           <div className="md:w-3/4 mx-auto pt-6 md:pt-10 pl-6 md:pl-0">
-            <h2 className="w-full mt-6 md:mb-2">Explore Campaigns</h2>
+            <h1 className="w-full mt-6 md:mb-2 text-xl">Explore Campaigns</h1>
           </div>
           <FilterNavigation filters={filters} setFilters={setFilters} />
         </div>

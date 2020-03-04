@@ -26,21 +26,22 @@
 }
 
 .filter-nav {
-  padding-left: 25px;
+  // padding-left: 25px;
 
-  @include media($medium) {
-    padding-left: inherit;
-  }
-  h6 {
+  // @include media($medium) {
+  //   padding-left: inherit;
+  // }
+  h1 {
     color: theme('colors.gray.600');
   }
 }
 
-.base-12-grid.filter-nav {
-  padding-top: 6px;
-  grid-column-gap: 0.05em;
-}
-
 .filter-nav-button {
   color: theme('colors.blurple.500');
+}
+
+.gray-filter-nav {
+  h1 {
+    color: theme('colors.gray.600');
+  }
 }
