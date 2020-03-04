@@ -17,7 +17,7 @@ const MenuButton = ({
     onClick={() => onClick(title)}
     type="button"
     className={classnames(
-      'flex items-center px-2 py-2 border-solid border border-black-600 rounded-lg focus:outline-none',
+      'items-center px-2 py-2 border-solid border border-black-600 rounded-lg focus:outline-none',
       className,
     )}
   >

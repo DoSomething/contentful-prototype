@@ -18,8 +18,8 @@ const FilterNavigation = ({ filters, setFilters }) => {
   };
 
   return (
-    <div className="campaigns-page-filters w-full pl-6 md:pl-0 mb-6 z-50 bg-white">
-      <div className="base-12-grid items-center filter-nav">
+    <div className="campaigns-page-filters md:w-full mb-6 z-50 bg-white">
+      <div className="base-12-grid items-center filter-nav md:w-3/4 mx-auto pl-6 md:pl-0">
         <h6 className="color-gray-200">FILTERS</h6>
         <MenuButton
           title="Cause"
@@ -33,14 +33,19 @@ const FilterNavigation = ({ filters, setFilters }) => {
           }
         />
       </div>
-
-      <FilterSubNav
-        handleMenuToggle={handleMenuToggle}
-        chosenFilter={chosenFilter}
-        filters={filters}
-        setFilters={setFilters}
-        className={!chosenFilter ? 'hidden' : ''}
-      />
+      <div
+        className={chosenFilter ? 'border-solid border-t border-gray-300' : ''}
+      >
+        <div className="md:w-3/4 mx-auto pl-6 md:pl-0">
+          <FilterSubNav
+            handleMenuToggle={handleMenuToggle}
+            chosenFilter={chosenFilter}
+            filters={filters}
+            setFilters={setFilters}
+            className={!chosenFilter ? 'hidden' : ''}
+          />
+        </div>
+      </div>
     </div>
   );
 };

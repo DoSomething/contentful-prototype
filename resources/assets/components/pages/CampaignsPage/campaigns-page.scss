@@ -1,13 +1,36 @@
 @import '../../../scss/next-toolbox';
 
 .cause-filter {
-  @include media($largest) {
-    max-height: 250px;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 theme('spacing.3');
+  overflow: hidden;
+
+  @include media('(min-width: 425px)') {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: theme('spacing.3');
+  }
+
+  @include media($medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: theme('spacing.6');
   }
 }
 
 .filter-nav {
-  padding-left: inherit;
+  padding-left: 25px;
+
+  @include media($medium) {
+    padding-left: inherit;
+  }
   h6 {
     color: theme('colors.gray.600');
   }
