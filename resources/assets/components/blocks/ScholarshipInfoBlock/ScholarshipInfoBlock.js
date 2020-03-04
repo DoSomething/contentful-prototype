@@ -200,24 +200,36 @@ const ScholarshipInfoBlock = ({
                 )}
               </Media>
             </div>
-            <Media queries={{ small: '(max-width: 480px)' }}>
-              {matches => (
-                <>
-                  {matches.small ? (
-                    <div css={!drawerOpen ? isVisible : null}>
+            <div>
+              <Media queries={{ small: '(max-width: 480px)' }}>
+                {matches => (
+                  <>
+                    {matches.small ? (
+                      <div css={!drawerOpen ? isVisible : null}>
+                        <ScholarshipRequirements />
+                      </div>
+                    ) : (
                       <ScholarshipRequirements />
-                    </div>
-                  ) : (
-                    <ScholarshipRequirements />
-                  )}
-                </>
-              )}
-            </Media>
-            <div className="font-bold uppercase text-gray-600">
-              HOW IT WORKS
-              <div>
-                <numberOfScholarships /> scholarships will be given out before
-                (endDate). Learn More
+                    )}
+                  </>
+                )}
+              </Media>
+              <div className="lg:w-1/2 lg:float-right">
+                <h5 className="font-bold uppercase text-gray-600">
+                  HOW IT WORKS
+                </h5>
+                <div className="mt-2 pb-2">
+                  {numberOfScholarships} scholarships will be given out before
+                  (endDate).{' '}
+                  <a
+                    href="https://help.dosomething.org/hc/en-us/categories/201026747-Scholarships"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-200 underline"
+                  >
+                    Learn More!
+                  </a>{' '}
+                </div>
               </div>
             </div>
           </div>
