@@ -29,7 +29,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
           hideCarat
           className={
             chosenFilter
-              ? 'bg-blurple-500 color-white'
+              ? 'bg-blurple-500 color-white border border-solid border-blurple-500'
               : 'bg-white border border-solid border-blurple-500 filter-nav-button'
           }
         />
