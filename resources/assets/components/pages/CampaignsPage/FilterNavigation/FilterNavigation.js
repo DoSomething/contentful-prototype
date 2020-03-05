@@ -11,7 +11,9 @@ const FilterNavigation = ({ filters, setFilters }) => {
   const handleMenuToggle = filterName => {
     if (chosenFilter) {
       setChosenFilter('');
+      document.getElementById(filterName).blur();
     } else {
+      document.getElementById(filterName).focus();
       setChosenFilter(filterName);
     }
     setShowFilterMenu(!showFilterMenu);
@@ -25,11 +27,10 @@ const FilterNavigation = ({ filters, setFilters }) => {
           title="Cause"
           onClick={handleMenuToggle}
           hideCarat
-          titleColor={chosenFilter ? 'color-white' : 'filter-nav-button'}
           className={
             chosenFilter
-              ? 'bg-blurple-500 border-none'
-              : 'bg-white border border-solid border-blurple-500'
+              ? 'bg-blurple-500 color-white'
+              : 'bg-white border border-solid border-blurple-500 filter-nav-button'
           }
         />
       </div>

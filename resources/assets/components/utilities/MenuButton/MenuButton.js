@@ -5,23 +5,17 @@ import { css } from '@emotion/core';
 
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 
-const MenuButton = ({
-  className,
-  hideCarat,
-  onClick,
-  titleColor,
-  title,
-  toggleCarat,
-}) => (
+const MenuButton = ({ className, hideCarat, onClick, title, toggleCarat }) => (
   <button
     onClick={() => onClick(title)}
     type="button"
+    id={title}
     className={classnames(
-      'items-center px-2 py-2 border-solid border border-black-600 rounded-lg focus:outline-none',
+      'px-2 py-2 border-solid border border-black-600 shadow-none focus:shadow-none focus:bg-blurple-500 focus:text-white focus:outline-none rounded-lg btn',
       className,
     )}
   >
-    <p className={classnames('font-bold', titleColor)}>{title}</p>
+    {title}
     {!hideCarat ? (
       <div className="pl-2">
         <MenuCarat
@@ -44,14 +38,12 @@ MenuButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   hideCarat: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  titleColor: PropTypes.string,
   toggleCarat: PropTypes.bool,
 };
 
 MenuButton.defaultProps = {
   className: null,
   hideCarat: false,
-  titleColor: null,
   toggleCarat: false,
 };
 
