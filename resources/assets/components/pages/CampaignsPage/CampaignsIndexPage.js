@@ -22,7 +22,7 @@ const CampaignsIndexPage = () => {
           </h1>
           <FilterNavigation filters={filters} setFilters={setFilters} />
         </div>
-        <div className="md:w-3/4 mx-auto">
+        <div className="md:w-3/4 mx-auto mb-6">
           <PaginatedCampaignGallery
             className="grid-full px-6 md:px-0"
             itemsPerRow={4}
