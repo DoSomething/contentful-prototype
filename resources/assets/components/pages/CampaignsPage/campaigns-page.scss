@@ -26,17 +26,12 @@
 }
 
 .filter-nav {
-  h1 {
+  h1,
+  h2 {
     color: theme('colors.gray.600');
   }
 }
 
 .filter-nav-button {
   color: theme('colors.blurple.500');
-}
-
-.gray-filter-nav {
-  h1 {
-    color: theme('colors.gray.600');
-  }
 }
