@@ -25,6 +25,13 @@ class CampaignController extends Controller
         $this->campaignRepository = $campaignRepository;
     }
 
+    public function test(Request $request, $thing) {
+        dd($this->route->thing);
+        $request->validate([
+            'thing' => 'in:hello',
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *

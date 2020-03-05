@@ -85,6 +85,8 @@ $router->view('us/collections/{slug}', 'app');
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
 
+$router->get('us/test/{thing}', 'CampaignController@test');
+
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.
 $router->fallback(function () {
