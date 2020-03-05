@@ -40,6 +40,11 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
       scholarshipEntry
       reportback
     }
+
+    campaign(id: $campaignId) {
+      id
+      endDate
+    }
   }
 `;
 
@@ -51,6 +56,7 @@ const ScholarshipInfoBlock = ({
   scholarshipCallToAction,
   scholarshipDeadline,
   scholarshipDescription,
+  numberOfScholarships,
   utmLabel,
 }) => {
   const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
@@ -80,6 +86,7 @@ const ScholarshipInfoBlock = ({
 
   const isLoaded = !loading;
   const affiliateTitle = get(data, 'affiliate.title');
+  const endDate = get(data, 'campaign.endDate');
   const actions = get(data, 'actions', []);
   const actionItem = actions.find(
     action => action.scholarshipEntry && action.reportback,
@@ -219,10 +226,16 @@ const ScholarshipInfoBlock = ({
                   <>
                     {matches.small ? (
                       <div css={!drawerOpen ? isVisible : null}>
-                        <ScholarshipInstructions />
+                        <ScholarshipInstructions
+                          numberOfScholarships={numberOfScholarships}
+                          endDate={getHumanFriendlyDate(endDate)}
+                        />
                       </div>
                     ) : (
-                      <ScholarshipInstructions />
+                      <ScholarshipInstructions
+                        numberOfScholarships={numberOfScholarships}
+                        endDate={getHumanFriendlyDate(endDate)}
+                      />
                     )}
                   </>
                 )}
@@ -261,6 +274,7 @@ ScholarshipInfoBlock.propTypes = {
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
   scholarshipDescription: PropTypes.object,
+  numberOfScholarships: PropTypes.number.isRequired,
   utmLabel: PropTypes.string.isRequired,
 };
 
