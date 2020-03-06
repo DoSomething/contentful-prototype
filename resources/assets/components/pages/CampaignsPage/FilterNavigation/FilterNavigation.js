@@ -21,7 +21,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
   return (
     <div className="md:w-full bg-white">
-      <div className="flex items-center filter-nav md:w-3/4 mx-auto pl-6 md:pl-0 pt-2 md:pt-0 pb-6">
+      <div className="flex items-center filter-nav md:w-3/4 mx-auto pt-2 md:pt-0 pb-6 pl-6 md:pl-0">
         <h2 className="gray-filter-nav pr-4 text-base uppercase">Filters</h2>
         <MenuButton
           title="Cause"
