@@ -13,6 +13,7 @@ import Card from '../../utilities/Card/Card';
 import ScholarshipActionType from './ScholarshipActionType';
 import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
 import ScholarshipRequirements from './ScholarshipRequirements';
+import ScholarshipInstructions from './ScholarshipInstructions';
 import TextContent from '../../utilities/TextContent/TextContent';
 import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import { env, getHumanFriendlyDate, report } from '../../../helpers';
@@ -39,6 +40,11 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
       scholarshipEntry
       reportback
     }
+
+    campaign(id: $campaignId) {
+      id
+      endDate
+    }
   }
 `;
 
@@ -50,6 +56,7 @@ const ScholarshipInfoBlock = ({
   scholarshipCallToAction,
   scholarshipDeadline,
   scholarshipDescription,
+  numberOfScholarships,
   utmLabel,
 }) => {
   const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
@@ -79,6 +86,7 @@ const ScholarshipInfoBlock = ({
 
   const isLoaded = !loading;
   const affiliateTitle = get(data, 'affiliate.title');
+  const endDate = get(data, 'campaign.endDate');
   const actions = get(data, 'actions', []);
   const actionItem = actions.find(
     action => action.scholarshipEntry && action.reportback,
@@ -172,7 +180,7 @@ const ScholarshipInfoBlock = ({
               {scholarshipDeadline ? (
                 <div className="lg:w-1/2 lg:float-left">
                   <h4 className="font-bold uppercase text-gray-600">
-                    Deadline
+                    Next Deadline
                   </h4>
                   <p className="pb-2">
                     {getHumanFriendlyDate(scholarshipDeadline)}
@@ -199,19 +207,40 @@ const ScholarshipInfoBlock = ({
                 )}
               </Media>
             </div>
-            <Media queries={{ small: '(max-width: 480px)' }}>
-              {matches => (
-                <>
-                  {matches.small ? (
-                    <div css={!drawerOpen ? isVisible : null}>
+            <div className="lg:flex">
+              <Media queries={{ small: '(max-width: 480px)' }}>
+                {matches => (
+                  <>
+                    {matches.small ? (
+                      <div css={!drawerOpen ? isVisible : null}>
+                        <ScholarshipRequirements />
+                      </div>
+                    ) : (
                       <ScholarshipRequirements />
-                    </div>
-                  ) : (
-                    <ScholarshipRequirements />
-                  )}
-                </>
-              )}
-            </Media>
+                    )}
+                  </>
+                )}
+              </Media>
+              <Media queries={{ small: '(max-width: 480px)' }}>
+                {matches => (
+                  <>
+                    {matches.small ? (
+                      <div css={!drawerOpen ? isVisible : null}>
+                        <ScholarshipInstructions
+                          numberOfScholarships={numberOfScholarships}
+                          endDate={getHumanFriendlyDate(endDate)}
+                        />
+                      </div>
+                    ) : (
+                      <ScholarshipInstructions
+                        numberOfScholarships={numberOfScholarships}
+                        endDate={getHumanFriendlyDate(endDate)}
+                      />
+                    )}
+                  </>
+                )}
+              </Media>
+            </div>
           </div>
           <div className="sm:hidden text-center align-bottom flex justify-center">
             <button
@@ -245,6 +274,7 @@ ScholarshipInfoBlock.propTypes = {
   scholarshipCallToAction: PropTypes.string,
   scholarshipDeadline: PropTypes.string.isRequired,
   scholarshipDescription: PropTypes.object,
+  numberOfScholarships: PropTypes.number.isRequired,
   utmLabel: PropTypes.string.isRequired,
 };
 
