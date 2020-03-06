@@ -96,7 +96,9 @@ async function processEntries(environment, args, entryType, process) {
     }
 
     // Finally, yield each entry to the provided process function.
-    for (let entry of entryItems) {
+    for (let i = 0; i < entryItems.length; i++) {
+      const entry = entryItems[i];
+
       await process(environment, entry);
     }
   }
