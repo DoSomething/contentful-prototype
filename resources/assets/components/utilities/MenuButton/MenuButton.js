@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { css } from '@emotion/core';
 
-import MenuCarat from '../../artifacts/MenuCarat/MenuCarat';
-
-const MenuButton = ({ className, hideCarat, onClick, title, toggleCarat }) => (
+const MenuButton = ({ className, onClick, title }) => (
   <button
     onClick={() => onClick(title)}
     type="button"
@@ -16,35 +13,17 @@ const MenuButton = ({ className, hideCarat, onClick, title, toggleCarat }) => (
     )}
   >
     {title}
-    {!hideCarat ? (
-      <div className="pl-2">
-        <MenuCarat
-          cssStyles={
-            toggleCarat
-              ? css`
-                  transform: rotate(180deg);
-                  pl-2
-                `
-              : null
-          }
-        />
-      </div>
-    ) : null}
   </button>
 );
 
 MenuButton.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func.isRequired,
-  hideCarat: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  toggleCarat: PropTypes.bool,
 };
 
 MenuButton.defaultProps = {
   className: null,
-  hideCarat: false,
-  toggleCarat: false,
 };
 
 export default MenuButton;
