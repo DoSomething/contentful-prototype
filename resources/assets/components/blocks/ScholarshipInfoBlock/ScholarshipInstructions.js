@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ScholarshipInstructions = ({ numberOfScholarships, endDate }) => (
   <div className="lg:w-1/2 lg:float-right lg:pl-6">
-    <h5 className="font-bold uppercase text-gray-600">HOW IT WORKS</h5>
+    <h4 className="font-bold uppercase text-gray-600">HOW IT WORKS</h4>
     <div className="mt-2 pb-2">
       {numberOfScholarships} scholarship{numberOfScholarships > 1 ? 's' : null}{' '}
       will be given out before {endDate}.{' '}
