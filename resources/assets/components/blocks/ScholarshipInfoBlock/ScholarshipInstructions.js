@@ -11,9 +11,9 @@ const ScholarshipInstructions = ({ numberOfScholarships, endDate }) => (
         href="https://help.dosomething.org/hc/en-us/categories/201026747-Scholarships"
         target="_blank"
         rel="noopener noreferrer"
-        className="underline"
+        className="underline text-black font-normal"
       >
-        Learn More!
+        Learn More
       </a>{' '}
     </div>
   </div>
