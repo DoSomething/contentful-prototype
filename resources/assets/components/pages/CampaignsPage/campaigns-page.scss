@@ -1,0 +1,26 @@
+@import '../../../scss/next-toolbox';
+
+.cause-filter {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0 theme('spacing.3');
+  overflow: hidden;
+
+  @include media('(min-width: 425px)') {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: theme('spacing.3');
+  }
+
+  @include media($medium) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media($large) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media($larger) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: theme('spacing.6');
+  }
+}
