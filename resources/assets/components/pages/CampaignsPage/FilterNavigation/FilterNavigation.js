@@ -21,15 +21,15 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
   return (
     <div className="md:w-full bg-white">
-      <div className="flex items-center filter-nav md:w-3/4 mx-auto pt-2 md:pt-0 pb-6 pl-6 md:pl-0">
-        <h2 className="gray-filter-nav pr-4 text-base uppercase">Filters</h2>
+      <div className="flex items-center md:w-3/4 mx-auto pt-2 md:pt-0 pb-6 pl-6 md:pl-0">
+        <h2 className="text-gray-600 pr-4 text-base uppercase">Filters</h2>
         <MenuButton
           title="Cause"
           onClick={handleMenuToggle}
           className={
             chosenFilter
-              ? 'bg-blurple-500 color-white border border-solid border-blurple-500'
-              : 'bg-white border border-solid border-blurple-500 filter-nav-button'
+              ? 'bg-blurple-500 text-white border border-solid border-blurple-500'
+              : 'bg-white border border-solid border-blurple-500 text-blurple-500'
           }
         />
       </div>
