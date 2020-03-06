@@ -3,7 +3,7 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
-  <label className="flex justify-start pb-2" htmlFor={causeName}>
+  <label className="flex justify-start pb-2" htmlFor={causeValue}>
     <input
       name={causeValue}
       id={causeValue}

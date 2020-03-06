@@ -9,7 +9,9 @@ const renderedFilterMenu = props => {
   const fields = withoutNulls(props);
   switch (fields.chosenFilter) {
     case 'Cause':
-      return <CauseFilter {...fields} />;
+      return (
+        <CauseFilter filters={fields.filters} setFilters={fields.setFilters} />
+      );
     default:
       return null;
   }
