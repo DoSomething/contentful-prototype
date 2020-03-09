@@ -26,6 +26,7 @@ export const EVENT_CATEGORIES = {
   accountEdit: 'account_edit',
   authentication: 'authentication',
   campaignAction: 'campaign_action',
+  filter: 'filter',
   focusedField: 'focused_field',
   modal: 'modal',
   navigation: 'navigation',

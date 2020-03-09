@@ -4,6 +4,11 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
+import {
+  EVENT_CATEGORIES,
+  getPageContext,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 import Button from '../Button/Button';
 import { updateQuery } from '../../../helpers';
 import Spinner from '../../artifacts/Spinner/Spinner';
@@ -67,6 +72,12 @@ const PaginatedCampaignGallery = ({
   const { endCursor, hasNextPage } = get(data, 'campaigns.pageInfo', {});
 
   const handleViewMore = () => {
+    trackAnalyticsEvent('clicked_link_view_more_campaigns', {
+      action: 'link_clicked',
+      category: EVENT_CATEGORIES.navigation,
+      label: 'cause',
+      context: { ...getPageContext() },
+    });
     fetchMore({
       variables: { cursor: endCursor },
       updateQuery,

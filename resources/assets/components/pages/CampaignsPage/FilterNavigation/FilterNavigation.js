@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import {
+  EVENT_CATEGORIES,
+  getPageContext,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
 import FilterSubNav from './FilterSubNav';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
 
@@ -9,6 +14,13 @@ const FilterNavigation = ({ filters, setFilters }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleMenuToggle = filterName => {
+    trackAnalyticsEvent(`clicked_filter_button_${filterName.lowercase()}`, {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: `${filterName.lowercase()}`,
+      context: { ...getPageContext() },
+    });
+
     if (chosenFilter) {
       setChosenFilter('');
       document.getElementById(filterName).blur();
@@ -52,7 +64,12 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
 FilterNavigation.propTypes = {
   filters: PropTypes.object.isRequired,
+  pageId: PropTypes.string,
   setFilters: PropTypes.func.isRequired,
+};
+
+FilterNavigation.defaultProps = {
+  pageId: null,
 };
 
 export default FilterNavigation;
