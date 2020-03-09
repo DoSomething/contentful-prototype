@@ -81,10 +81,10 @@ const replacePageModalsWithContentBlocks = async (
     );
 
     // Replace the page modal Contentful ID with the derived Content Block ID.
-    contentBlockEntry.fields.content[LOCALE] = contentBlockContent.replace(
-      modalEntryId,
-      derivedContentBlock.sys.id,
-    );
+    contentBlockEntry.fields.content[LOCALE] = getField(
+      contentBlockEntry,
+      'content',
+    ).replace(modalEntryId, derivedContentBlock.sys.id);
 
     replacedPagesIdList.push(modalEntryId);
 
