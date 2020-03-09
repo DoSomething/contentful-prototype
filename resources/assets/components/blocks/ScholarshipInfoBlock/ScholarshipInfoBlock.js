@@ -120,7 +120,7 @@ const ScholarshipInfoBlock = ({
             </>
           ) : null}
         </div>
-        <div className="pt-6 pb-8">
+        <div className="pt-6 pb-8 clear-both">
           {isLoaded ? (
             <strong className="text-lg">
               Welcome
