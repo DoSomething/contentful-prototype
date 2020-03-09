@@ -1,3 +1,8 @@
+/**
+ * Tailwind Screens
+ *
+ * Available screen size breakpoints used by Tailwind and for use in component imports.
+ */
 module.exports = {
   xs: '360px',
   sm: '480px',
