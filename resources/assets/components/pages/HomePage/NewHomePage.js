@@ -167,7 +167,7 @@ const NewHomePage = () => {
             </div>
           </section>
 
-          {/* @TODO: need to remove the top/bottom padding from base-12-grid class and
+          {/* @TODO: Need to remove the top/bottom padding from base-12-grid class and
           let components add their own padding otherwise it is hard to override. */}
           <section className="base-12-grid bg-white py-8">
             <div className="grid-wide text-center">
@@ -189,7 +189,7 @@ const NewHomePage = () => {
             </div>
           </section>
 
-          {/* Need to deal with padding specified in grid class :\ */}
+          {/* @TODO: See earlier comment regarding base-12-grid. */}
           <article className="base-12-grid bg-yellow-500 py-4">
             <div className="grid-wide py-4 text-center">
               <div className="text-left">
