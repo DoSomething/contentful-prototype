@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ScholarshipInstructions = ({ numberOfScholarships, endDate }) => (
-  <div className="lg:w-1/2 lg:float-right lg:pl-6">
+  <div className="lg:w-1/2 lg:float-right lg:pl-4">
     <h4 className="font-bold uppercase text-gray-600">HOW IT WORKS</h4>
-    <div className="mt-2 pb-2">
+    <div className="mt-2 pb-4">
       {numberOfScholarships} scholarship{numberOfScholarships > 1 ? 's' : null}{' '}
       will be given out before {endDate}.{' '}
       <a

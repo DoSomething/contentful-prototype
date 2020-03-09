@@ -164,13 +164,13 @@ const ScholarshipInfoBlock = ({
         {children}
       </div>
       <div className="md:w-1/2 p-6 text-base scholarship-info-block">
-        <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 pb-2 rounded">
+        <div className="bg-white mx-2 my-6 md:mx-6 md:my-10 p-6 pb-4 rounded">
           {scholarshipAmount ? (
             <div>
               <h4 className="font-bold uppercase text-purple-600">
                 {scholarshipCallToAction}
               </h4>
-              <p className="font-league-gothic text-5xl pb-2">
+              <p className="font-league-gothic text-5xl pb-4">
                 ${scholarshipAmount.toLocaleString()}
               </p>
             </div>
@@ -182,7 +182,7 @@ const ScholarshipInfoBlock = ({
                   <h4 className="font-bold uppercase text-gray-600">
                     Next Deadline
                   </h4>
-                  <p className="pb-2">
+                  <p className="pb-4">
                     {getHumanFriendlyDate(scholarshipDeadline)}
                   </p>
                 </div>
