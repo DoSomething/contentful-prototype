@@ -1,41 +1,21 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import NavigationLink from '../../utilities/NavigationLink/NavigationLink';
+
 const AccountNavigation = props => (
-  <nav className="page-navigation -no-fade">
-    <div className="nav-items">
-      <NavLink
-        className="nav-link"
-        activeClassName="is-active"
-        to="/us/account/campaigns"
-      >
-        Campaigns
-      </NavLink>
+  <nav className="base-12-grid page-navigation -no-fade">
+    <div className="grid-wide nav-items">
+      <NavigationLink to="/us/account/campaigns">Campaigns</NavigationLink>
       {props.user.hasBadgesFlag ? (
-        <NavLink
-          className="nav-link"
-          activeClassName="is-active"
-          to="/us/account/profile/badges"
-        >
-          Badges
-        </NavLink>
+        <NavigationLink to="/us/account/profile/badges">Badges</NavigationLink>
       ) : null}
-      <NavLink
-        className="nav-link"
-        activeClassName="is-active"
-        exact
-        to="/us/account/profile"
-      >
+      <NavigationLink exact to="/us/account/profile">
         Profile
-      </NavLink>
-      <NavLink
-        className="nav-link"
-        activeClassName="is-active"
-        to="/us/account/profile/subscriptions"
-      >
+      </NavigationLink>
+      <NavigationLink to="/us/account/profile/subscriptions">
         Subscriptions
-      </NavLink>
+      </NavigationLink>
     </div>
   </nav>
 );

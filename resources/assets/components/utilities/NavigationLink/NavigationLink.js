@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 const NavigationLink = props => (
   <NavLink
     {...props}
-    className={classnames('nav-link', props.className)}
+    className={classnames('nav-link text-lg', props.className)}
     activeClassName="is-active"
   >
     {props.children}
@@ -23,3 +23,5 @@ NavigationLink.defaultProps = {
 };
 
 export default NavigationLink;
+
+// margin: 10px theme('spacing.3');

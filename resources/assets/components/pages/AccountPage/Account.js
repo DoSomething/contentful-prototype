@@ -17,10 +17,9 @@ const Account = props => (
             <h1 className="font-league-gothic font-normal text-4xl md:text-5xl uppercase">
               Welcome, {props.user.firstName}!
             </h1>
-
-            <AccountNavigation {...props} />
           </div>
         </header>
+        <AccountNavigation {...props} />
 
         <div className="base-12-grid bg-gray-100">
           <AccountRoute {...props} />
