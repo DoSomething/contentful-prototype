@@ -10,7 +10,7 @@ import Badge from '../pages/AccountPage/Badge';
 import TextContent from '../utilities/TextContent/TextContent';
 
 const BADGE_QUERY = gql`
-  query AccountQuery($userId: String!) {
+  query UserBadgeQuery($userId: String!) {
     user(id: $userId) {
       id
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
