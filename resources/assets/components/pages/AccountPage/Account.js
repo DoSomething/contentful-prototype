@@ -12,17 +12,16 @@ const Account = props => (
 
     <main>
       <article className="account-page">
-        <header className="base-12-grid bg-white">
+        <header className="base-12-grid bg-gray-100">
           <div className="grid-wide pt-12">
             <h1 className="font-league-gothic font-normal text-4xl md:text-5xl uppercase">
               Welcome, {props.user.firstName}!
             </h1>
-
-            <AccountNavigation {...props} />
           </div>
         </header>
+        <AccountNavigation {...props} />
 
-        <div className="base-12-grid bg-gray-100">
+        <div className="base-12-grid bg-white">
           <AccountRoute {...props} />
         </div>
       </article>

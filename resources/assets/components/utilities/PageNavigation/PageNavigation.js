@@ -63,21 +63,19 @@ class PageNavigation extends React.Component {
       <div
         ref={node => (this.node = node)}
         id="page-navigation"
-        className={classnames('page-navigation mb-8', {
+        className={classnames('base-12-grid page-navigation', {
           'is-stuck': this.state.isStuck,
         })}
       >
-        <div className="wrapper">
-          <div className="nav-items">
-            {this.props.pages.map(page => (
-              <NavigationLink key={page.id} to={page.slug}>
-                {page.title}
-              </NavigationLink>
-            ))}
-          </div>
-
-          {this.props.children}
+        <div className="grid-wide nav-items">
+          {this.props.pages.map(page => (
+            <NavigationLink key={page.id} to={page.slug}>
+              {page.title}
+            </NavigationLink>
+          ))}
         </div>
+
+        {this.props.children}
       </div>
     );
   }
