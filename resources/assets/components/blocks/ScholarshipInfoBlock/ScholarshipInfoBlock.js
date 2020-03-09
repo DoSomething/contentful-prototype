@@ -1,7 +1,6 @@
 /** @jsx jsx */
 
-// eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import Media from 'react-media';
@@ -106,7 +105,7 @@ const ScholarshipInfoBlock = ({
             <DoSomethingLogo className="h-16" />
           </div>
           {affiliateSponsors.length ? (
-            <>
+            <Fragment>
               <div className="h-full pt-2 float-left text-4xl text-black leading-none">
                 &times;
               </div>
@@ -117,7 +116,7 @@ const ScholarshipInfoBlock = ({
                   alt={affiliateSponsors[0].fields.logo.title}
                 />
               </div>
-            </>
+            </Fragment>
           ) : null}
         </div>
         <div className="pt-6 pb-8 clear-both">
@@ -189,7 +188,7 @@ const ScholarshipInfoBlock = ({
               ) : null}
               <Media queries={{ small: '(max-width: 480px)' }}>
                 {matches => (
-                  <>
+                  <Fragment>
                     {matches.small ? (
                       <div css={!drawerOpen ? isVisible : null}>
                         <ScholarshipActionType
@@ -203,14 +202,14 @@ const ScholarshipInfoBlock = ({
                         actionLabel={actionType}
                       />
                     )}
-                  </>
+                  </Fragment>
                 )}
               </Media>
             </div>
             <div className="lg:flex">
               <Media queries={{ small: '(max-width: 480px)' }}>
                 {matches => (
-                  <>
+                  <Fragment>
                     {matches.small ? (
                       <div css={!drawerOpen ? isVisible : null}>
                         <ScholarshipRequirements />
@@ -218,12 +217,12 @@ const ScholarshipInfoBlock = ({
                     ) : (
                       <ScholarshipRequirements />
                     )}
-                  </>
+                  </Fragment>
                 )}
               </Media>
               <Media queries={{ small: '(max-width: 480px)' }}>
                 {matches => (
-                  <>
+                  <Fragment>
                     {matches.small ? (
                       <div css={!drawerOpen ? isVisible : null}>
                         <ScholarshipInstructions
@@ -237,7 +236,7 @@ const ScholarshipInfoBlock = ({
                         endDate={getHumanFriendlyDate(endDate)}
                       />
                     )}
-                  </>
+                  </Fragment>
                 )}
               </Media>
             </div>
