@@ -20,6 +20,24 @@ const EMAIL_SUBSCRIPTIONS_MUTATION = gql`
   }
 `;
 
+const EMAIL_SUBSCRIPTION_MUTATION = gql`
+  mutation EmailSubscriptionTopic(
+    $id: String!
+    $topic: EmailSubscriptionTopic!
+    $subscribed: Boolean!
+  ) {
+    updateEmailSubscriptionTopic(
+      id: $id
+      topic: $topic
+      subscribed: $subscribed
+    ) {
+      id
+      topic
+      subscribed
+    }
+  }
+`;
+
 class EmailSubscriptions extends React.Component {
   constructor(props) {
     super(props);
@@ -55,64 +73,85 @@ class EmailSubscriptions extends React.Component {
 
   render() {
     return (
-      <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
-        {emailSubscriptionsMutation => (
-          <form
-            className="pb-6"
-            onSubmit={event => {
-              event.preventDefault();
-              emailSubscriptionsMutation({
-                variables: {
-                  userId: this.props.user.id,
-                  emailSubscriptionTopics: this.state.emailSubscriptionTopics,
-                },
-              });
-              this.setState({
-                showAffirmation: true,
-              });
-            }}
-          >
-            {this.state.showAffirmation ? (
-              <p className="color-success">
-                Your subscriptions have been updated!
-              </p>
-            ) : null}
-            <div className="form-wrapper">
-              <EmailSubscriptionCheckbox
-                identifier="COMMUNITY"
-                title="Community"
-                description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
-                userTopics={this.state.emailSubscriptionTopics}
-                onChange={this.handleTopicChange}
-              />
-              <EmailSubscriptionCheckbox
-                identifier="NEWS"
-                title="News"
-                description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
-                userTopics={this.state.emailSubscriptionTopics}
-                onChange={this.handleTopicChange}
-              />
-              <EmailSubscriptionCheckbox
-                identifier="LIFESTYLE"
-                title="Lifestyle"
-                description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
-                userTopics={this.state.emailSubscriptionTopics}
-                onChange={this.handleTopicChange}
-              />
-              <EmailSubscriptionCheckbox
-                identifier="SCHOLARSHIPS"
-                title="Scholarships"
-                description="Alerts on new ways to earn scholarships by doing social
+      <>
+        <Mutation mutation={EMAIL_SUBSCRIPTION_MUTATION}>
+          {emailSubscriptionMutation => (
+            <button
+              type="button"
+              onClick={event => {
+                event.preventDefault();
+                emailSubscriptionMutation({
+                  variables: {
+                    userId: this.props.user.id,
+                    topic: 'NEWS',
+                    subscribed: false,
+                  },
+                });
+              }}
+            >
+              Hello world
+            </button>
+          )}
+        </Mutation>
+        <Mutation mutation={EMAIL_SUBSCRIPTIONS_MUTATION}>
+          {emailSubscriptionsMutation => (
+            <form
+              className="pb-6"
+              onSubmit={event => {
+                event.preventDefault();
+                emailSubscriptionsMutation({
+                  variables: {
+                    userId: this.props.user.id,
+                    emailSubscriptionTopics: this.state.emailSubscriptionTopics,
+                  },
+                });
+                this.setState({
+                  showAffirmation: true,
+                });
+              }}
+            >
+              {this.state.showAffirmation ? (
+                <p className="color-success">
+                  Your subscriptions have been updated!
+                </p>
+              ) : null}
+              <div className="form-wrapper">
+                <EmailSubscriptionCheckbox
+                  identifier="COMMUNITY"
+                  title="Community"
+                  description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+                <EmailSubscriptionCheckbox
+                  identifier="NEWS"
+                  title="News"
+                  description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+                <EmailSubscriptionCheckbox
+                  identifier="LIFESTYLE"
+                  title="Lifestyle"
+                  description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+                <EmailSubscriptionCheckbox
+                  identifier="SCHOLARSHIPS"
+                  title="Scholarships"
+                  description="Alerts on new ways to earn scholarships by doing social
                       good, plus announcements of scholarship winners."
-                userTopics={this.state.emailSubscriptionTopics}
-                onChange={this.handleTopicChange}
-              />
-            </div>
+                  userTopics={this.state.emailSubscriptionTopics}
+                  onChange={this.handleTopicChange}
+                />
+              </div>
 
-            <Button type="submit">Save subscriptions</Button>
-          </form>
-        )}
-      </Mutation>
+              <Button type="submit">Save subscriptions</Button>
+            </form>
+          )}
+        </Mutation>
+      </>
     );
   }
 }

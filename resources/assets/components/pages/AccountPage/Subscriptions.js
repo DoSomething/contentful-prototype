@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import EmailSubscriptions from './EmailSubscriptions';
 
 const Subscriptions = props => (
-  <div className="grid-wide-2/3">
+  <div className="grid-wide">
     <h2>Email Subscriptions</h2>
     <EmailSubscriptions {...props} />
   </div>
