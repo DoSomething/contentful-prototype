@@ -2,78 +2,52 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Services\Zendesk;
 use Illuminate\Http\Request;
-use Huddle\Zendesk\Facades\Zendesk;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class ZendeskTicketsController extends Controller
 {
     /**
-     * ZendeskController constructor.
+     * Zendesk service instance.
+     *
+     * @var Zendesk
      */
-    public function __construct()
+    private $zendesk;
+
+    /**
+     * ZendeskController constructor.
+     *
+     * @param Zendesk $zendesk
+     */
+    public function __construct(Zendesk $zendesk)
     {
         $this->middleware('auth:api');
         $this->middleware('throttle:10,60');
+
+        $this->zendesk = $zendesk;
     }
 
+    /**
+     * Create a new Zendesk ticket.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
+            'campaign_id' => 'required|string',
             'campaign_name' => 'required|string',
             'question' => 'required|string',
         ]);
 
-        $campaignName = $request->campaign_name;
-        $question = $request->question;
+        $zendeskTicket = $this->zendesk->createTicket(
+            $request->campaign_id,
+            $request->campaign_name,
+            $request->question
+        );
 
-        $user = gateway('northstar')->withToken(token())->get('v1/profile');
-
-        $northstarId = data_get($user, 'data.id');
-        $userEmail = data_get($user, 'data.email');
-        $userName = data_get($user, 'data.first_name').' '.data_get($user, 'data.last_initial').'.';
-
-        Log::debug('[Phoenix] ZendeskTicketsController@store: Creating Zendesk ticket:', [
-            'northstar_id' => $northstarId,
-            'question' => str_limit($question, 5000, '(...)'),
-        ]);
-
-        $zendeskUser = Zendesk::users()->createOrUpdate([
-            'email' => $userEmail,
-            'name' => $userName,
-            // Custom user attributes:
-            'user_fields' => [
-                'profile_uid' => $northstarId,
-                // User's Rogue profile URL:
-                'profile_url' => config('services.rogue.url').'/users/'.$northstarId,
-            ],
-        ]);
-
-        $questionSubject = 'Question about '.$campaignName;
-
-        $zendeskTicketData = [
-            'requester' => [
-                'email' => $userEmail,
-            ],
-            'subject' => $questionSubject,
-            'comment' => [
-                'body' => $questionSubject.': '.$question,
-            ],
-            // @TODO: Assign priority based on campaign's staff pick status.
-            // 'priority' => 'normal',
-            // @TODO: Append browser & ip address using env variable zendesk field IDs.
-            // 'custom_fields' = [
-            //      ['id' => 'browser...', 'value' => $request->userAgent()],
-            //      ['id' => 'ip...', 'value' => $request->ip()],
-            // ],
-        ];
-
-        $ticket = Zendesk::tickets()->create($zendeskTicketData);
-
-        return response()->json([
-            'zendesk_ticket' => $ticket,
-            'zendesk_user' => $zendeskUser,
-        ]);
+        return response()->json($zendeskTicket);
     }
 }

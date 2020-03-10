@@ -8,7 +8,7 @@ import { report } from '../../../helpers';
 import { postRequest } from '../../../helpers/api';
 import { HELP_LINK, HELP_REQUEST_LINK } from '../../../constants';
 
-const ZendeskForm = ({ campaignName, faqsLink, token }) => {
+const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
   const [question, setQuestion] = useState('');
   const [status, setStatus] = useState({
     loading: false,
@@ -21,7 +21,11 @@ const ZendeskForm = ({ campaignName, faqsLink, token }) => {
 
     setStatus({ ...status, loading: true });
 
-    const data = { campaign_name: campaignName, question };
+    const data = {
+      campaign_id: campaignId,
+      campaign_name: campaignName,
+      question,
+    };
 
     postRequest('/api/v2/zendesk-tickets', data, token)
       .then(() => setStatus({ ...status, loading: false, success: true }))
@@ -109,6 +113,7 @@ const ZendeskForm = ({ campaignName, faqsLink, token }) => {
 };
 
 ZendeskForm.propTypes = {
+  campaignId: PropTypes.string.isRequired,
   campaignName: PropTypes.string.isRequired,
   token: PropTypes.string.isRequired,
   faqsLink: PropTypes.string,
