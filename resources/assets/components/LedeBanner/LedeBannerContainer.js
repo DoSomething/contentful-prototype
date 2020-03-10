@@ -26,7 +26,7 @@ const mapStateToProps = (state, props) => ({
   numberOfScholarships: get(
     state,
     'campaign.additionalContent.numberOfScholarships',
-    1,
+    null,
   ),
 
   affiliateOptInContent: state.campaign.affiliateOptInContent,
