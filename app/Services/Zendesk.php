@@ -134,8 +134,10 @@ class Zendesk
         $firstCampaignCause = $this->getFirstCampaignCauseName($campaignId);
 
         $zendeskGroups = optional(
-            // Zendesk Search API: http://bit.ly/2TihwCC
-            ZendeskClient::search()->find('type:group name:".'.$firstCampaignCause.'"')
+            remember('zendesk_groups', 15, function () use ($firstCampaignCause) {
+                // Zendesk Search API: http://bit.ly/2TihwCC
+                return ZendeskClient::search()->find('type:group name:".'.$firstCampaignCause.'"');
+            })
         )->results;
 
         // Filter out the *exact* matching group. (The search API includes a more generous matching logic).
