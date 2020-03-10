@@ -23,7 +23,12 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.affiliateCreditText',
     undefined,
   ),
-  numberOfScholarships: get(state, 'campaign.additionalContent', null),
+  numberOfScholarships: get(
+    state,
+    'campaign.additionalContent.numberOfScholarships',
+    1,
+  ),
+
   affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
   // @TODO: We won't need this blurb property once MosaicTemplate is retired.
@@ -40,7 +45,6 @@ const mapStateToProps = (state, props) => ({
   isAffiliated: isSignedUp(state),
   scholarshipAmount: state.campaign.scholarshipAmount,
   scholarshipDeadline: state.campaign.scholarshipDeadline,
-  numberOfScholarships: state.campaign.additionalContent,
   subtitle: get(props, 'subtitle', state.campaign.callToAction),
   title: get(props, 'title', state.campaign.title),
 });
