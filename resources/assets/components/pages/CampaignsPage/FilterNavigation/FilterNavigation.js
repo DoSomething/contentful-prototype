@@ -14,10 +14,10 @@ const FilterNavigation = ({ filters, setFilters }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleMenuToggle = filterName => {
-    trackAnalyticsEvent(`clicked_filter_button_${filterName.lowercase()}`, {
+    trackAnalyticsEvent(`clicked_filter_button_${filterName}`, {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
-      label: `${filterName.lowercase()}`,
+      label: `${filterName}`,
       context: { ...getPageContext() },
     });
 
@@ -64,12 +64,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
 FilterNavigation.propTypes = {
   filters: PropTypes.object.isRequired,
-  pageId: PropTypes.string,
   setFilters: PropTypes.func.isRequired,
-};
-
-FilterNavigation.defaultProps = {
-  pageId: null,
 };
 
 export default FilterNavigation;
