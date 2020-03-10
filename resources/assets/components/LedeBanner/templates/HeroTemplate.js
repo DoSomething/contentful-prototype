@@ -34,6 +34,7 @@ const HeroTemplate = ({
   scholarshipCallToAction,
   scholarshipDeadline,
   scholarshipDescription,
+  numberOfScholarships,
   subtitle,
   title,
 }) => {
@@ -168,6 +169,7 @@ HeroTemplate.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateOptInContent: PropTypes.object,
+  numberOfScholarships: PropTypes.number,
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
@@ -191,6 +193,7 @@ HeroTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
+  numberOfScholarships: null,
   campaignId: null,
   dashboard: null,
   displaySignupButton: true,
