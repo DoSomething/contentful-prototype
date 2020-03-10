@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 
 import {
   EVENT_CATEGORIES,
-  getPageContext,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import FilterSubNav from './FilterSubNav';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
 
-const FilterNavigation = ({ filters, setFilters }) => {
+const FilterNavigation = ({ filters, link, setFilters }) => {
   const [chosenFilter, setChosenFilter] = useState('');
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
@@ -18,7 +17,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
       label: `${filterName}`,
-      context: { ...getPageContext() },
+      context: { url: link },
     });
 
     if (chosenFilter) {
@@ -64,6 +63,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
 FilterNavigation.propTypes = {
   filters: PropTypes.object.isRequired,
+  link: PropTypes.string.isRequired,
   setFilters: PropTypes.func.isRequired,
 };
 
