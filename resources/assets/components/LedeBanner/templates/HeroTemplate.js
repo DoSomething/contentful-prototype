@@ -189,7 +189,7 @@ HeroTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
-  numberOfScholarships: null,
+  numberOfScholarships: 1,
   campaignId: null,
   dashboard: null,
   displaySignupButton: true,
