@@ -69,6 +69,12 @@ const CauseFilter = ({ filters, setFilters, link }) => {
   };
 
   const clearAllSelected = () => {
+    trackAnalyticsEvent('filter_clear_options_cause', {
+      action: 'link_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: 'cause',
+      context: { url: link },
+    });
     if (causes) {
       setFilters({ causes: [] });
     }
