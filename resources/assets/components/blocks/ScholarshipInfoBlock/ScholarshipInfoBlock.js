@@ -1,12 +1,10 @@
-/** @jsx jsx */
-
-import { Fragment, useState } from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import { useQuery } from 'react-apollo';
-import { jsx, css } from '@emotion/core';
+import React, { Fragment, useState } from 'react';
 
 import Card from '../../utilities/Card/Card';
 import ScholarshipActionType from './ScholarshipActionType';

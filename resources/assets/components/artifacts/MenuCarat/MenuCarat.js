@@ -1,7 +1,6 @@
-/** @jsx jsx */
-
+import React from 'react';
 import PropTypes from 'prop-types';
-import { jsx, css } from '@emotion/core';
+import { css } from '@emotion/core';
 
 const MenuCarat = ({ color, cssStyles, height, width }) => (
   <div className="menu-carat">

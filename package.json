@@ -38,7 +38,8 @@
           "withPolyfills": false
         }
       ],
-      "@babel/preset-flow"
+      "@babel/preset-flow",
+      "@emotion/babel-preset-css-prop"
     ]
   },
   "browserslist": [
@@ -70,6 +71,7 @@
     "@contentful/rich-text-types": "^13.4.0",
     "@dosomething/forge": "^6.10.0",
     "@dosomething/gateway": "^2.0.1",
+    "@emotion/babel-preset-css-prop": "^10.0.27",
     "@emotion/core": "^10.0.27",
     "@typeform/embed": "^0.12.2",
     "apollo-cache-inmemory": "^1.6.5",
