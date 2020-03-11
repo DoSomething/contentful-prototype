@@ -32,7 +32,7 @@ CauseInput.defaultProps = {
   causeChecked: false,
 };
 
-const CauseFilter = ({ filters, setFilters }) => {
+const CauseFilter = ({ filters, setFilters, link }) => {
   const causes = get(filters, 'causes', []);
 
   const causeLabels = {
@@ -52,10 +52,10 @@ const CauseFilter = ({ filters, setFilters }) => {
 
   const handleCauseSelect = event => {
     trackAnalyticsEvent('clicked_filter_options_cause', {
-      action: 'option_clicked',
+      action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
-      label: 'cause',
-      context: { value: event.target.value },
+      label: event.target.name,
+      context: { value: event.target.value, url: link },
     });
 
     if (causes.includes(event.target.value)) {
@@ -104,7 +104,12 @@ const CauseFilter = ({ filters, setFilters }) => {
 
 CauseFilter.propTypes = {
   filters: PropTypes.object.isRequired,
+  link: PropTypes.string,
   setFilters: PropTypes.func.isRequired,
+};
+
+CauseFilter.defaultProps = {
+  link: null,
 };
 
 export default CauseFilter;

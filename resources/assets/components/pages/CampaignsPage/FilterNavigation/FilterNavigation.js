@@ -13,10 +13,11 @@ const FilterNavigation = ({ filters, link, setFilters }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleMenuToggle = filterName => {
+    console.log(filterName);
     trackAnalyticsEvent(`clicked_filter_button_${filterName}`, {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
-      label: `${filterName}`,
+      label: `${filterName.toLowerCase()}`,
       context: { url: link },
     });
 
@@ -51,6 +52,7 @@ const FilterNavigation = ({ filters, link, setFilters }) => {
           <FilterSubNav
             handleMenuToggle={handleMenuToggle}
             chosenFilter={chosenFilter}
+            link={link}
             filters={filters}
             setFilters={setFilters}
             className={!chosenFilter ? 'hidden' : ''}
