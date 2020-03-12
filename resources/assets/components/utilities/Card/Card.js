@@ -2,19 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import './card.scss';
-
 const renderHeader = (title, link, onClose) => (
-  <header className="card__title rounded-t clip-padding-box">
+  <header className="text-gray-900 bg-yellow-500 p-3 rounded-t clip-padding-box">
     {link ? (
-      <h1>
-        <a href={link}>{title}</a>
+      <h1 className="inline font-source-sans text-base uppercase">
+        <a
+          className="text-gray-900 hover:opacity-75 hover:no-underline"
+          href={link}
+        >
+          {title}
+        </a>
       </h1>
     ) : (
       <h1>{title}</h1>
     )}
     {onClose ? (
-      <button type="button" className="card__exit" onClick={onClose}>
+      <button
+        type="button"
+        className="float-right text-xl -mt-2 hover:cursor-pointer"
+        onClick={onClose}
+      >
         &times;
       </button>
     ) : null}
@@ -28,7 +35,9 @@ const Card = ({
   title = null,
   onClose,
 }) => (
-  <article className={classnames('card clip-padding-box', className)}>
+  <article
+    className={classnames('bg-white w-full clip-padding-box', className)}
+  >
     {title ? renderHeader(title, link, onClose) : null}
 
     {children}
