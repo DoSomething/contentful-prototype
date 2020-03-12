@@ -13,7 +13,6 @@ const FilterNavigation = ({ filters, setFilters }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleMenuToggle = filterName => {
-    console.log(filterName);
     trackAnalyticsEvent(`clicked_filter_button_${filterName}`, {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
