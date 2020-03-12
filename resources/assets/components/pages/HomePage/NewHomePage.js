@@ -7,6 +7,7 @@ import sponsorList from './sponsor-list';
 import { contentfulImageUrl } from '../../../helpers';
 import tailwindScreens from '../../../../../tailwind.screens';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 const NewHomePage = () => {
@@ -117,6 +118,8 @@ const NewHomePage = () => {
                 <a href="/">earn volunteer credits</a> for school! Seriously.
               </p>
 
+              <HomePageCampaignGallery />
+
               <a
                 href="/us/campaigns"
                 className="btn bg-blurple-500 focus:bg-blurple-700 inline-block my-8 py-4 px-8 text-lg"
@@ -157,6 +160,8 @@ const NewHomePage = () => {
                   css={centerHorizontalRule}
                 />
               </h2>
+
+              {/* <HomePageArticlesGallery /> */}
 
               <a
                 href="/us/articles"
