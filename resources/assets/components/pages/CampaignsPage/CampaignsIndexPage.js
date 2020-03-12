@@ -1,7 +1,6 @@
 import { get } from 'lodash';
 import React, { useState } from 'react';
 
-import { PHOENIX_URL } from '../../../constants';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import FilterNavigation from './FilterNavigation/FilterNavigation';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
@@ -11,7 +10,6 @@ import './campaigns-page.scss';
 
 const CampaignsIndexPage = () => {
   const [filters, setFilters] = useState({ causes: [] });
-  const link = `${PHOENIX_URL}/us/campaigns`;
 
   return (
     <>
@@ -22,11 +20,7 @@ const CampaignsIndexPage = () => {
           <h1 className="md:w-3/4 mx-auto mt-6 md:mb-2 text-xl pl-6 md:pl-0">
             Explore Campaigns
           </h1>
-          <FilterNavigation
-            link={link}
-            filters={filters}
-            setFilters={setFilters}
-          />
+          <FilterNavigation filters={filters} setFilters={setFilters} />
         </div>
         <div className="md:w-3/4 mx-auto mb-6">
           <PaginatedCampaignGallery
@@ -40,7 +34,6 @@ const CampaignsIndexPage = () => {
               // potentially concatenate all filters to single array 🤔
               causes: get(filters, 'causes', []),
             }}
-            link={link}
           />
         </div>
       </main>

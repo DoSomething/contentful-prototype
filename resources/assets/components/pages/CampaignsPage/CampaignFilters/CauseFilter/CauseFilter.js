@@ -32,7 +32,7 @@ CauseInput.defaultProps = {
   causeChecked: false,
 };
 
-const CauseFilter = ({ filters, setFilters, link }) => {
+const CauseFilter = ({ filters, setFilters }) => {
   const causes = get(filters, 'causes', []);
 
   const causeLabels = {
@@ -55,7 +55,7 @@ const CauseFilter = ({ filters, setFilters, link }) => {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
       label: event.target.value,
-      context: { value: event.target.value, url: link },
+      context: { value: event.target.value },
     });
 
     if (causes.includes(event.target.value)) {
@@ -73,7 +73,6 @@ const CauseFilter = ({ filters, setFilters, link }) => {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.filter,
       label: 'cause',
-      context: { url: link },
     });
     if (causes) {
       setFilters({ causes: [] });
@@ -110,12 +109,7 @@ const CauseFilter = ({ filters, setFilters, link }) => {
 
 CauseFilter.propTypes = {
   filters: PropTypes.object.isRequired,
-  link: PropTypes.string,
   setFilters: PropTypes.func.isRequired,
-};
-
-CauseFilter.defaultProps = {
-  link: null,
 };
 
 export default CauseFilter;

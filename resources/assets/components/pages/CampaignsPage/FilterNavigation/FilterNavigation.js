@@ -8,7 +8,7 @@ import {
 import FilterSubNav from './FilterSubNav';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
 
-const FilterNavigation = ({ filters, link, setFilters }) => {
+const FilterNavigation = ({ filters, setFilters }) => {
   const [chosenFilter, setChosenFilter] = useState('');
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
@@ -18,7 +18,6 @@ const FilterNavigation = ({ filters, link, setFilters }) => {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
       label: `${filterName.toLowerCase()}`,
-      context: { url: link },
     });
 
     if (chosenFilter) {
@@ -52,7 +51,6 @@ const FilterNavigation = ({ filters, link, setFilters }) => {
           <FilterSubNav
             handleMenuToggle={handleMenuToggle}
             chosenFilter={chosenFilter}
-            link={link}
             filters={filters}
             setFilters={setFilters}
             className={!chosenFilter ? 'hidden' : ''}
@@ -65,7 +63,6 @@ const FilterNavigation = ({ filters, link, setFilters }) => {
 
 FilterNavigation.propTypes = {
   filters: PropTypes.object.isRequired,
-  link: PropTypes.string.isRequired,
   setFilters: PropTypes.func.isRequired,
 };
 

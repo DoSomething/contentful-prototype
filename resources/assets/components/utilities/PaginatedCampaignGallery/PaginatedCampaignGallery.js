@@ -57,7 +57,6 @@ const PAGINATED_CAMPAIGNS_QUERY = gql`
 const PaginatedCampaignGallery = ({
   className,
   itemsPerRow,
-  link,
   title,
   variables,
 }) => {
@@ -76,7 +75,6 @@ const PaginatedCampaignGallery = ({
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: 'view_more',
-      context: { url: link },
     });
     fetchMore({
       variables: { cursor: endCursor },
@@ -131,7 +129,6 @@ const PaginatedCampaignGallery = ({
 PaginatedCampaignGallery.propTypes = {
   className: PropTypes.string,
   itemsPerRow: PropTypes.oneOf([2, 3, 4, 5]).isRequired,
-  link: PropTypes.string,
   title: PropTypes.string,
   variables: PropTypes.shape({
     causes: PropTypes.arrayOf(PropTypes.string),
@@ -143,7 +140,6 @@ PaginatedCampaignGallery.propTypes = {
 
 PaginatedCampaignGallery.defaultProps = {
   className: null,
-  link: null,
   title: null,
   variables: {},
 };
