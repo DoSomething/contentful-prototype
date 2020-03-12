@@ -9,6 +9,7 @@ import LazyImage from '../../utilities/LazyImage';
 import Byline from '../../utilities/Byline/Byline';
 import { REGISTER_CTA_COPY } from '../../../constants';
 import AuthorBio from '../../utilities/Author/AuthorBio';
+import ArticleHeader from '../../utilities/ArticleHeader';
 import CtaBanner from '../../utilities/CtaBanner/CtaBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -55,12 +56,7 @@ const GeneralPage = props => {
       <main>
         <article className="general-page base-12-grid bg-white">
           <div className="grid-narrow">
-            <div className="general-page__heading text-center">
-              <h1 className="general-page__title uppercase">{title}</h1>
-              {subTitle ? (
-                <p className="general-page__subtitle">{subTitle}</p>
-              ) : null}
-
+            <ArticleHeader title={title} subtitle={subTitle}>
               {authors.length ? (
                 <div className="general-page__authors">
                   {authors.map(author => (
@@ -79,7 +75,7 @@ const GeneralPage = props => {
                   ))}
                 </div>
               ) : null}
-            </div>
+            </ArticleHeader>
 
             {coverImage.url ? (
               <LazyImage

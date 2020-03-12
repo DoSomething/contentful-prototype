@@ -9,65 +9,13 @@
     grid-column: span 3 / span 3 !important;
   }
 
-  .general-page__heading {
-    .general-page__title {
-      font-family: theme('fontFamily.league-gothic');
-      font-size: $font-larger;
-      font-weight: $weight-normal;
-
-      @include media($medium) {
-        font-size: $font-hero;
-      }
-
-      @include media($large) {
-        font-size: $font-superhero;
-      }
-    }
-
-    .general-page__subtitle {
-      font-family: theme('fontFamily.source-sans');
-      font-weight: $weight-bold;
-      margin-top: theme('spacing.3');
-
-      @include media($medium) {
-        font-size: $font-large;
-      }
-    }
-
-    &:after {
-      content: '';
-      display: block;
-      height: 5px;
-      background: linear-gradient(
-        to right,
-        $blue 0%,
-        $blue 33.3%,
-        $purple 33.3%,
-        $purple 66.6%,
-        $yellow 66.6%,
-        $yellow 100%
-      );
-      margin: theme('spacing.12') 10px;
-
-      @include media($medium) {
-        margin: theme('spacing.12') 0;
-      }
-    }
-  }
-
   .general-page__authors {
     display: inline-block;
-    margin: theme('spacing.6') auto 0;
     text-align: left;
-
-    @include media($large) {
-      margin-top: 36px;
-    }
   }
 
   .general-page__author-bios {
     border-top: 2px solid #dcdcdc;
-    margin: theme('spacing.6') theme('spacing.3') 0;
     padding: theme('spacing.3') 0;
   }
 
