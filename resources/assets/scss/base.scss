@@ -49,6 +49,11 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
   @apply text-blue-300;
 }
 
+// Helper class to keep border from collapsing:
+.border-no-clip {
+  background-clip: padding-box;
+}
+
 @tailwind utilities;
 
 /*

@@ -1,7 +1,9 @@
 /* eslint-disable react/no-danger */
 
 import React from 'react';
+import tw from 'twin.macro';
 import gql from 'graphql-tag';
+import { css } from '@emotion/core';
 import { get, truncate } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
@@ -12,8 +14,6 @@ import linkIcon from './link_icon.svg';
 import { isExternal } from '../../../helpers';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import PlaceholderText from '../PlaceholderText/PlaceholderText';
-
-import './embed.scss';
 
 const EMBED_QUERY = gql`
   query EmbedQuery($url: AbsoluteUrl!) {
@@ -26,6 +26,11 @@ const EMBED_QUERY = gql`
       html
     }
   }
+`;
+
+const previewImageCss = css`
+  ${tw`bg-gray-200 bg-cover bg-center`}
+  flex: 0 0 150px;
 `;
 
 const Embed = props => {
@@ -49,7 +54,7 @@ const Embed = props => {
   return (
     <div
       className={classnames(
-        'bg-white bordered overflow-hidden rounded',
+        'bg-white border border-solid border-transparent-black-10 border-no-clip overflow-hidden rounded',
         className,
       )}
     >
@@ -72,17 +77,20 @@ const Embed = props => {
           ) : (
             <a
               href={url}
-              className="embed__linker"
+              className="no-underline hover:no-underline"
               target={isExternal(url) ? '_blank' : '_self'}
               rel="noopener noreferrer"
             >
-              <div className="embed">
+              <div
+                className="flex flex-col md:flex-row"
+                style={{ minHeight: '100px' }}
+              >
                 <LazyImage
-                  className="embed__image"
+                  css={previewImageCss}
                   src={isLoaded && embed ? embed.thumbnailUrl : null}
                   asBackground
                 />
-                <div className="embed__content p-3">
+                <div className="flex-auto p-3">
                   <div className="my-3 mr-3">
                     <h3>
                       {isLoaded ? (
@@ -91,7 +99,7 @@ const Embed = props => {
                         <PlaceholderText size="medium" />
                       )}
                     </h3>
-                    <p className="color-gray">
+                    <p className="text-gray-600 font-normal">
                       {isLoaded ? (
                         truncate(embed ? embed.description : '', {
                           length: 240,
@@ -100,7 +108,7 @@ const Embed = props => {
                         <PlaceholderText size="large" />
                       )}
                     </p>
-                    <p className="footnote mt-3 font-bold uppercase">
+                    <p className="text-gray-700 text-sm mt-3 font-bold uppercase">
                       {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,
@@ -112,7 +120,7 @@ const Embed = props => {
                   </div>
                 </div>
                 {badged ? (
-                  <div className="button embed__badge flex item-center justify-center">
+                  <div className="bg-blue-500 hover:bg-blue-300 flex-initial flex item-center justify-center p-3 border-none">
                     <img src={linkIcon} alt="link" />
                   </div>
                 ) : null}
