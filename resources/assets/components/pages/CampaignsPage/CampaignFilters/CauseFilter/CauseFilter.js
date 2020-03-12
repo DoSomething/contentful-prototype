@@ -54,7 +54,7 @@ const CauseFilter = ({ filters, setFilters, link }) => {
     trackAnalyticsEvent('clicked_filter_options_cause', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
-      label: event.target.name,
+      label: event.target.value,
       context: { value: event.target.value, url: link },
     });
 
