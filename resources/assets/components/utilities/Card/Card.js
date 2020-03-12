@@ -36,7 +36,7 @@ const Card = ({
   onClose,
 }) => (
   <article
-    className={classnames('bg-white w-full clip-padding-box', className)}
+    className={classnames('card bg-white w-full clip-padding-box', className)}
   >
     {title ? renderHeader(title, link, onClose) : null}
 
