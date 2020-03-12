@@ -44,7 +44,9 @@ const mapStateToProps = (state, props) => ({
   ),
   isAffiliated: isSignedUp(state),
   scholarshipAmount: state.campaign.scholarshipAmount,
+  scholarshipCallToAction: state.campaign.scholarshipCallToAction,
   scholarshipDeadline: state.campaign.scholarshipDeadline,
+  scholarshipDescription: state.campaign.scholarshipDescription,
   subtitle: get(props, 'subtitle', state.campaign.callToAction),
   title: get(props, 'title', state.campaign.title),
 });
