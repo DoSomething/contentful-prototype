@@ -23,6 +23,12 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.affiliateCreditText',
     undefined,
   ),
+  numberOfScholarships: get(
+    state,
+    'campaign.additionalContent.numberOfScholarships',
+    undefined,
+  ),
+
   affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
   // @TODO: We won't need this blurb property once MosaicTemplate is retired.

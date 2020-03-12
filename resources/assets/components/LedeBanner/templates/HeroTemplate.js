@@ -34,6 +34,7 @@ const HeroTemplate = ({
   scholarshipCallToAction,
   scholarshipDeadline,
   scholarshipDescription,
+  numberOfScholarships,
   subtitle,
   title,
 }) => {
@@ -139,11 +140,7 @@ const HeroTemplate = ({
               scholarshipCallToAction={scholarshipCallToAction || undefined}
               scholarshipDeadline={scholarshipDeadline}
               scholarshipDescription={scholarshipDescription}
-              numberOfScholarships={get(
-                additionalContent,
-                'numberOfScholarships',
-                1,
-              )}
+              numberOfScholarships={numberOfScholarships}
               utmLabel={scholarshipAffiliateLabel.toLowerCase()}
             >
               <div className="pt-6 w-2/3 sm:w-1/2">
@@ -168,6 +165,7 @@ HeroTemplate.propTypes = {
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateOptInContent: PropTypes.object,
+  numberOfScholarships: PropTypes.number,
   campaignId: PropTypes.string,
   content: PropTypes.string.isRequired,
   coverImage: PropTypes.object.isRequired,
@@ -191,6 +189,7 @@ HeroTemplate.defaultProps = {
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
+  numberOfScholarships: 1,
   campaignId: null,
   dashboard: null,
   displaySignupButton: true,
