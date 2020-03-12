@@ -14,6 +14,7 @@ exports[`ContentBlock component does not include SectionHeader when there's no t
         alt="cool image of http://image.com"
         asBackground={false}
         className={null}
+        css={null}
         src="http://image.com/?fit=fill&h=600&w=600"
       />
     </div>
@@ -52,6 +53,7 @@ exports[`ContentBlock component is rendered with the proper child components whe
         alt="cool image of http://image.com"
         asBackground={false}
         className={null}
+        css={null}
         src="http://image.com/?fit=fill&h=600&w=600"
       />
     </div>

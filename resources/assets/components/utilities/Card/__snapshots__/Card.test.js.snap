@@ -2,10 +2,10 @@
 
 exports[`it generates a card snapshot 1`] = `
 <article
-  className="card clip-padding-box bordered p-3 rounded"
+  className="bg-white w-full clip-padding-box bordered p-3 rounded"
 >
   <header
-    className="card__title rounded-t clip-padding-box"
+    className="text-gray-900 bg-yellow-500 p-3 rounded-t clip-padding-box"
   >
     <h1>
       Awesomest Content Ever
