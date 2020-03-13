@@ -7,7 +7,7 @@ const ArticleLede = styled.div`
   ::after {
     content: '';
 
-    ${tw`block my-12 h-1`}
+    ${tw`block h-1 my-12`}
     background: linear-gradient(
       to right,
       #23b7fb 0%,
@@ -20,8 +20,8 @@ const ArticleLede = styled.div`
   }
 `;
 
-const ArticleTitle = tw.h1`text-black font-league-gothic font-normal text-2xl md:text-4xl lg:text-5xl text-center uppercase`;
-const ArticleSubtitle = tw.p`text-black font-source-sans font-bold md:text-xl text-center`;
+const ArticleTitle = tw.h1`font-league-gothic font-normal text-black text-center text-2xl md:text-4xl lg:text-5xl uppercase`;
+const ArticleSubtitle = tw.p`font-source-sans font-bold text-black text-center md:text-xl`;
 
 const ArticleHeader = ({ title, subtitle, children }) => (
   <ArticleLede>
