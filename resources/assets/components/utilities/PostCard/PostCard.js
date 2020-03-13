@@ -70,7 +70,10 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
   }
 
   return (
-    <Card className="rounded h-full overflow-hidden" data-id={post.id}>
+    <Card
+      className="border border-solid border-transparent-black-10 border-no-clip rounded h-full overflow-hidden"
+      data-id={post.id}
+    >
       <div className="post bg-white flex flex-col h-full relative">
         {media}
 

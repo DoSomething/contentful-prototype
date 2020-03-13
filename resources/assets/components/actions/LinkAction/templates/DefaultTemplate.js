@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
@@ -32,13 +31,9 @@ const DefaultTemplate = props => {
     link,
     pageId,
     source,
+    title,
     userId,
   } = props;
-
-  // The affiliate logo specific text is hard-coded for OZY. Though we can set this title
-  // in Contentful, we currently can't for CampaignUpdates which have a similar affiliate flow,
-  // so this ensures consistency until we make this part of the content editing process.
-  const title = affiliateLogo ? 'See More Be More Do More' : props.title;
 
   const href = dynamicString(link, {
     userId,
@@ -73,12 +68,7 @@ const DefaultTemplate = props => {
 
   return (
     <div className="link-action">
-      <Card
-        title={title}
-        className={classnames('bordered rounded', {
-          'affiliate-content': affiliateLogo,
-        })}
-      >
+      <Card title={title} className="bordered rounded">
         {content ? <TextContent className="p-3">{content}</TextContent> : null}
 
         {affiliateLogo ? (

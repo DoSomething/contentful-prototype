@@ -5,6 +5,7 @@ import Query from '../../../Query';
 import ErrorPage from '../../ErrorPage';
 import MoneyHandImage from './money-hand.svg';
 import CampaignLink from './BetaPageCampaignLink';
+import ArticleHeader from '../../../utilities/ArticleHeader';
 import { getReferralCampaignId, query } from '../../../../helpers';
 
 const REFERRAL_PAGE_USER = gql`
@@ -38,11 +39,7 @@ const BetaPage = () => {
           <div className="main general-page base-12-grid">
             <div className="grid-narrow">
               <div className="my-6">
-                <div className="general-page__heading text-center">
-                  <h1 className="general-page__title uppercase">
-                    Hey, {firstName}’s friend!
-                  </h1>
-                </div>
+                <ArticleHeader title={`Hey, ${firstName}’s friend!`} />
                 <div className="my-6">
                   <img src={MoneyHandImage} alt="Hand with money envelope" />
                 </div>

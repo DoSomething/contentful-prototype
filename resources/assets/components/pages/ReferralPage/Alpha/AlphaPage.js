@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ErrorPage from '../../ErrorPage';
 import { PHOENIX_URL } from '../../../../constants';
 import { getReferralCampaignId } from '../../../../helpers';
+import ArticleHeader from '../../../utilities/ArticleHeader';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
@@ -15,12 +16,7 @@ const AlphaPage = ({ userId }) =>
 
       <main className="general-page alpha-referral-page base-12-grid relative">
         <article className="grid-narrow">
-          <div className="general-page__heading text-center my-6">
-            <h1 className="general-page__title uppercase">
-              Want Free Money for School?
-            </h1>
-          </div>
-
+          <ArticleHeader title="Want Free Money for School?" />
           <div className="my-6">
             <SocialDriveActionContainer
               shareCardDescription="Invite your friends to join DoSomething. When your friend completes this campaign, you'll both increase your chances of winning the campaign scholarship! Every friend you refer earns you an additional shot at winning the scholarship. (Psst...there's no limit on how many you can refer!)"
