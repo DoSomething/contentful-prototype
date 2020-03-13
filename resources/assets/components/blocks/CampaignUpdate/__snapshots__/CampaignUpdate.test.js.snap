@@ -2,11 +2,11 @@
 
 exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
 <Card
-  className="rounded bordered affiliate-content"
+  className="rounded bordered"
   id="1234567890"
   link={null}
   onClose={null}
-  title="See More Be More Do More"
+  title="Campaign Update"
 >
   <TextContent
     className="p-3"
@@ -32,11 +32,11 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
 
 exports[`it generates a campaign update snapshot 1`] = `
 <Card
-  className="rounded bordered affiliate-content"
+  className="rounded bordered"
   id="1234567890"
   link={null}
   onClose={null}
-  title="See More Be More Do More"
+  title="Campaign Update"
 >
   <TextContent
     className="p-3"

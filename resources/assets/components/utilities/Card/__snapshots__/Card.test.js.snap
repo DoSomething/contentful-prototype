@@ -7,7 +7,9 @@ exports[`it generates a card snapshot 1`] = `
   <header
     className="text-gray-900 bg-yellow-500 p-3 rounded-t clip-padding-box"
   >
-    <h1>
+    <h1
+      className="inline font-source-sans text-base uppercase"
+    >
       Awesomest Content Ever
     </h1>
   </header>

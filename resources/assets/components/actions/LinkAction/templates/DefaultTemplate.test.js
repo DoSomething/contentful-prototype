@@ -71,10 +71,6 @@ describe('DefaultTemplate component', () => {
       <DefaultTemplate {...props} content="Look here!" />,
     );
 
-    it('does not add an "affiliate-content" class to the Card', () => {
-      expect(wrapper.find('Card').hasClass('affiliate-content')).toEqual(false);
-    });
-
     it('does not render a AffiliatePromotion component', () => {
       expect(wrapper.find('AffiliatePromotion')).toHaveLength(0);
     });
@@ -91,10 +87,6 @@ describe('DefaultTemplate component', () => {
         }}
       />,
     );
-
-    it('adds an "affiliate-content" class to the Card', () => {
-      expect(wrapper.find('Card').hasClass('affiliate-content')).toEqual(true);
-    });
 
     it('renders a AffiliatePromotion component', () => {
       expect(wrapper.find('AffiliatePromotion')).toHaveLength(1);
