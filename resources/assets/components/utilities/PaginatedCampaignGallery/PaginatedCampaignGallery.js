@@ -71,7 +71,7 @@ const PaginatedCampaignGallery = ({
   const { endCursor, hasNextPage } = get(data, 'campaigns.pageInfo', {});
 
   const handleViewMore = () => {
-    trackAnalyticsEvent('clicked_link_view_more_campaigns', {
+    trackAnalyticsEvent('clicked_view_more_link_campaigns', {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
       label: 'view_more_campaigns',
