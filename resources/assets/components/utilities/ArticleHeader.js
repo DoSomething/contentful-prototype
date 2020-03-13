@@ -20,7 +20,7 @@ const ArticleLede = styled.div`
   }
 `;
 
-const ArticleTitle = tw.h1`text-black font-league-gothic font-normal text-2xl md:text-4xl lg:text-5xl lg:text-5xl text-center uppercase`;
+const ArticleTitle = tw.h1`text-black font-league-gothic font-normal text-2xl md:text-4xl lg:text-5xl text-center uppercase`;
 const ArticleSubtitle = tw.p`text-black font-source-sans font-bold md:text-xl text-center`;
 
 const ArticleHeader = ({ title, subtitle, children }) => (
