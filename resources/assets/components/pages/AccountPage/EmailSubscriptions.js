@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
@@ -54,23 +53,22 @@ const EmailSubscriptionToggle = ({ identifier, name, image, description }) => {
 
   return (
     <div className="card rounded border-solid border-2 border-gray-300">
-      <img
-        className=""
-        style={{ width: '100%' }}
-        src={image}
-        alt="newsletter"
-      />
-      <div className="p-4">
-        <h3 className="text-base">{name}</h3>
-        <p className="pb-4">{description}</p>
+      <div className="flex flex-col h-full">
+        <img
+          className="pb-4"
+          style={{ width: '100%' }}
+          src={image}
+          alt="newsletter"
+        />
+        <h3 className="text-base px-4">{name}</h3>
+        <p className="pb-4 px-4 flex-grow">{description}</p>
         <button
           type="button"
-          className={classnames(
-            'button -attached bg-blurple-500 hover:bg-blurple-300',
-            {
-              'is-loading': modifying,
-            },
-          )}
+          className={
+            !topics.includes(identifier)
+              ? 'btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300'
+              : 'btn mx-4 mb-4 bg-white border border-solid border-blurple-500 text-blurple-500 hover:border-blurple-300 hover:text-blurple-200'
+          }
           onClick={() =>
             updateSubscription({
               variables: {
@@ -80,7 +78,7 @@ const EmailSubscriptionToggle = ({ identifier, name, image, description }) => {
             })
           }
         >
-          {topics.includes(identifier) ? 'unsubscribe' : 'gimme'}
+          {topics.includes(identifier) ? 'Unsubscribe' : 'Subscribe'}
         </button>
       </div>
     </div>
