@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
+import NewsletterImages from './NewsletterImages';
+
 const EMAIL_SUBSCRIPTION_QUERY = gql`
   query EmailSubscriptionsQuery($userId: String!) {
     user(id: $userId) {
@@ -30,7 +32,7 @@ const EMAIL_SUBSCRIPTION_MUTATION = gql`
   }
 `;
 
-const EmailSubscriptionToggle = ({ identifier, name, description }) => {
+const EmailSubscriptionToggle = ({ identifier, name, image, description }) => {
   const options = { variables: { userId: window.AUTH.id } };
 
   // Make the initial query to get the user's subscriptions
@@ -52,9 +54,12 @@ const EmailSubscriptionToggle = ({ identifier, name, description }) => {
 
   return (
     <div className="card rounded border-solid border-2 border-gray-300">
-      <div className="bg-gray-400" style={{ height: '150px', width: '100%' }}>
-        {' '}
-      </div>
+      <img
+        className=""
+        style={{ width: '100%' }}
+        src={image}
+        alt="newsletter"
+      />
       <div className="p-4">
         <h3 className="text-base">{name}</h3>
         <p className="pb-4">{description}</p>
@@ -85,6 +90,7 @@ const EmailSubscriptionToggle = ({ identifier, name, description }) => {
 EmailSubscriptionToggle.propTypes = {
   identifier: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 
@@ -93,21 +99,25 @@ const EmailSubscriptions = () => (
     <EmailSubscriptionToggle
       identifier="COMMUNITY"
       name="What You're Doing"
+      image={NewsletterImages.CommunityNewsletter}
       description="A roundup of photos, writing, and stories of impact from the DoSomething community and members like you."
     />
     <EmailSubscriptionToggle
       identifier="NEWS"
       name="The Breakdown"
+      image={NewsletterImages.NewsNewsletter}
       description="Don’t just read the news…*change* the news. Our current events newsletter has headlines, along with immediate ways to impact them."
     />
     <EmailSubscriptionToggle
       identifier="LIFESTYLE"
       name="The Boost"
+      image={NewsletterImages.LifestyleNewsletter}
       description="Stories of incredible young people, actionable how-tos, inspirational playlists, and other content to live your best life and help others do the same."
     />
     <EmailSubscriptionToggle
       identifier="SCHOLARSHIPS"
       name="Pays to Do Good"
+      image={NewsletterImages.ScholarshipNewsletter}
       description="Alerts on new ways to earn scholarships by doing social good, plus announcements of scholarship winners."
     />
   </div>
