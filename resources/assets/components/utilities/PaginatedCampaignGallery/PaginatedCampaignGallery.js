@@ -74,7 +74,7 @@ const PaginatedCampaignGallery = ({
     trackAnalyticsEvent('clicked_link_view_more_campaigns', {
       action: 'link_clicked',
       category: EVENT_CATEGORIES.siteAction,
-      label: 'view_more',
+      label: 'view_more_campaigns',
     });
     fetchMore({
       variables: { cursor: endCursor },
