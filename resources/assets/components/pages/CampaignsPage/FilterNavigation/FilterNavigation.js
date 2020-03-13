@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../helpers/analytics';
 import FilterSubNav from './FilterSubNav';
 import MenuButton from '../../../utilities/MenuButton/MenuButton';
 
@@ -9,6 +13,12 @@ const FilterNavigation = ({ filters, setFilters }) => {
   const [showFilterMenu, setShowFilterMenu] = useState(false);
 
   const handleMenuToggle = filterName => {
+    trackAnalyticsEvent(`clicked_filter_button_${filterName}`, {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: `${filterName}_filter_menu`,
+    });
+
     if (chosenFilter) {
       setChosenFilter('');
       document.getElementById(filterName).blur();

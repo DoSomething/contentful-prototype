@@ -2,6 +2,11 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../../../helpers/analytics';
+
 const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
   <label className="flex justify-start pb-2" htmlFor={causeValue}>
     <input
@@ -46,6 +51,13 @@ const CauseFilter = ({ filters, setFilters }) => {
   };
 
   const handleCauseSelect = event => {
+    trackAnalyticsEvent('clicked_filter_options_cause', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: event.target.value,
+      context: { value: event.target.value },
+    });
+
     if (causes.includes(event.target.value)) {
       const newCauses = causes.filter(cause => {
         return cause !== event.target.value;
@@ -57,6 +69,11 @@ const CauseFilter = ({ filters, setFilters }) => {
   };
 
   const clearAllSelected = () => {
+    trackAnalyticsEvent('clicked_filter_clear_options_cause', {
+      action: 'link_clicked',
+      category: EVENT_CATEGORIES.filter,
+      label: 'cause',
+    });
     if (causes) {
       setFilters({ causes: [] });
     }
