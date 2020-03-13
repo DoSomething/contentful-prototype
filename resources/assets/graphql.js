@@ -22,7 +22,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 
 // Create an authentication link with the user's access token.
 const authLink = setContext((request, context) => {
-  const accessToken = window.AUTH.token;
+  const accessToken = null; // window.AUTH.token;
 
   if (accessToken) {
     return {

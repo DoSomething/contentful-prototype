@@ -5,7 +5,8 @@
  */
 export const MEDIA_MEDIUM_SIZE_MIN = 759;
 
-export const PHOENIX_URL = window.location.origin;
+// TODO: ¯\_(ツ)_/¯
+export const PHOENIX_URL = 'http://localhost:3000';
 
 // Apollo GraphQL loading states:
 export const NetworkStatus = {
