@@ -36,7 +36,7 @@ const CompanyPageTemplate = props => {
       <SiteNavigationContainer />
 
       <main className="wrapper base-12-grid company-page">
-        <article className="grid-wide card rounded border border-solid border-gray-300">
+        <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">
           {coverImage.url ? (
             <LazyImage
               className="w-full"
