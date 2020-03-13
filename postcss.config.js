@@ -1,4 +1,3 @@
 module.exports = {
-  sourceMap: true,
-  plugins: [require('tailwindcss'), require('autoprefixer')],
+  plugins: ['postcss-import', 'tailwindcss', 'autoprefixer'],
 };

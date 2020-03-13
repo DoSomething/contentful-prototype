@@ -1,0 +1,93 @@
+@import 'tailwindcss/base.css';
+@import 'fonts.css';
+
+body {
+  width: 100%;
+  background: #ddd;
+  color: #444;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', 'Helvetica', 'Arial',
+    sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.44444;
+}
+
+p + p,
+p + ul,
+p + ol,
+ul + p,
+ul + ul,
+ul + ol,
+ol + p,
+ol + ol,
+ol + ul {
+  @apply mt-3;
+}
+
+a {
+  @apply text-blue-500 font-semibold no-underline;
+}
+
+a:hover {
+  @apply text-blue-300 underline;
+}
+
+a:active {
+  @apply text-blue-700 underline;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply block text-black mb-1;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  @apply text-xl;
+}
+
+h2 {
+  @apply text-lg;
+}
+
+h3 {
+  @apply text-lg text-gray-800 font-semibold;
+}
+
+h4,
+h5,
+h6 {
+  @apply text-base text-gray-800 font-semibold;
+}
+
+p + h1,
+p + h2,
+p + h3,
+p + h4,
+p + h5,
+p + h6,
+ul + h1,
+ul + h2,
+ul + h3,
+ul + h4,
+ul + h5,
+ul + h6,
+ol + h1,
+ol + h2,
+ol + h3,
+ol + h4,
+ol + h5,
+ol + h6 {
+  @apply mt-12;
+}

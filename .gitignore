@@ -21,6 +21,7 @@ npm-debug.log
 yarn-error.log
 .env
 .DS_Store
+.next
 
 junit.xml
 npm-debug.log
