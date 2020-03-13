@@ -16,7 +16,7 @@ const FilterNavigation = ({ filters, setFilters }) => {
     trackAnalyticsEvent(`clicked_filter_button_${filterName}`, {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
-      label: `${filterName.toLowerCase()}_filter_menu`,
+      label: `${filterName}_filter_menu`,
     });
 
     if (chosenFilter) {
