@@ -14,7 +14,7 @@ const AppContainer = styled.div`
 function MyApp({ Component, pageProps }) {
   return (
     <AppContainer>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </AppContainer>
   );
 }
