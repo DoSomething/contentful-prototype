@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next --port 4000",
     "next:build": "next build",
     "test": "jest --watch",
     "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
