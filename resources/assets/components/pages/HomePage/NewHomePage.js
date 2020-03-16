@@ -1,8 +1,10 @@
 /** @jsx jsx */
 
+import gql from 'graphql-tag';
 import { Fragment } from 'react';
 import { jsx, css } from '@emotion/core';
 
+import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
 import { contentfulImageUrl } from '../../../helpers';
 import tailwindScreens from '../../../../../tailwind.screens';
@@ -10,7 +12,50 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-const NewHomePage = () => {
+const HOME_PAGE_QUERY = gql`
+  query HomePageQuery($preview: Boolean!) {
+    page: homePage(preview: $preview) {
+      id
+      title
+      subTitle
+      campaigns {
+        __typename
+        ... on Showcasable {
+          showcaseTitle
+          showcaseDescription
+          showcaseImage {
+            url
+          }
+        }
+        ... on CampaignWebsite {
+          id
+          url
+        }
+        ... on StoryPageWebsite {
+          id
+          url
+        }
+      }
+      articles {
+        showcaseTitle
+        showcaseDescription
+        showcaseImage {
+          url
+        }
+        slug
+      }
+      additionalContent
+    }
+  }
+`;
+
+const NewHomePageTemplate = ({
+  additionalContent,
+  articles,
+  campaigns,
+  subTitle,
+  title,
+}) => {
   const centerHorizontalRule = css`
     @media (min-width: ${tailwindScreens.md}) {
       margin-top: -2px;
@@ -50,7 +95,7 @@ const NewHomePage = () => {
                   }
                 `}
               >
-                We are a youth-led movement for good
+                {title}
               </h1>
             </div>
 
@@ -118,7 +163,7 @@ const NewHomePage = () => {
                 <a href="/">earn volunteer credits</a> for school! Seriously.
               </p>
 
-              <HomePageCampaignGallery />
+              <HomePageCampaignGallery campaigns={campaigns} />
 
               <a
                 href="/us/campaigns"
@@ -222,5 +267,11 @@ const NewHomePage = () => {
     </Fragment>
   );
 };
+
+const NewHomePage = () => (
+  <PageQuery query={HOME_PAGE_QUERY}>
+    {page => <NewHomePageTemplate {...page} />}
+  </PageQuery>
+);
 
 export default NewHomePage;
