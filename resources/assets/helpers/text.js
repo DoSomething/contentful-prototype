@@ -9,7 +9,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { contentfulImageUrl, isExternal } from '.';
 import ContentfulAsset from '../components/utilities/ContentfulAsset/ContentfulAsset';
-import ContentfulEntryLoader from '../components/utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+// import ContentfulEntryLoader from '../components/utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 /**
  * Format any Contentful image URLs in Markdown string to resize them.

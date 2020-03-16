@@ -57,7 +57,7 @@ export function appendToQuery(
  */
 export function isExternal(url) {
   // TODO: ¯\_(ツ)_/¯
-  return new URL(String(url)).hostname !== 'localhost';
+  return new URL(String(url), 'http://localhost:4000').hostname !== 'localhost';
 }
 
 /**
