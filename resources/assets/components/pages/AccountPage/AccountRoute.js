@@ -1,11 +1,12 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Switch, Route } from 'react-router-dom';
 
-import BadgesTab from './BadgesTab';
 import Profile from './Profile';
+import BadgesTab from './BadgesTab';
 import Subscriptions from './Subscriptions';
 import UserPostsQuery from './UserPostsQuery';
+import { featureFlag } from '../../../helpers';
 import DeleteAccountTab from './DeleteAccountTab';
 
 const AccountRoute = props => (
@@ -14,6 +15,19 @@ const AccountRoute = props => (
       <Route
         path="/us/account/profile/badges"
         render={() => <BadgesTab {...props} />}
+      />
+    ) : null}
+    {featureFlag('volunteer_credits') ? (
+      <Route
+        path="/us/account/profile/credits"
+        render={() => (
+          <h1 className="grid-wide">
+            I&apos;m a credits teapot{' '}
+            <span role="img" aria-label="a little teapot emoji">
+              🍵
+            </span>
+          </h1>
+        )}
       />
     ) : null}
     <Route

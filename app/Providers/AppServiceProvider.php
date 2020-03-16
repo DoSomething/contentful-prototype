@@ -42,13 +42,11 @@ class AppServiceProvider extends ServiceProvider
                 'FACEBOOK_APP_ID' => config('services.analytics.facebook_id'),
                 'GRAPHQL_URL' => config('services.graphql.url'),
                 'NORTHSTAR_URL' => config('services.northstar.url'),
-                'NPS_SURVEY_ENABLED' => config('services.timed_modals.nps_survey.enabled'),
                 'PHOENIX_URL' => config('app.url'),
                 'SIXPACK_BASE_URL' => config('services.sixpack.url'),
                 'SIXPACK_COOKIE_PREFIX' => config('services.sixpack.prefix'),
                 'SIXPACK_ENABLED' => config('services.sixpack.enabled'),
                 'SIXPACK_TIMEOUT' => config('services.sixpack.timeout'),
-                'VOTER_REG_MODAL_ENABLED' => config('services.timed_modals.voter_reg_modal.enabled'),
                 'CONTENTFUL_USE_PREVIEW_API' => config('contentful')['delivery.preview'],
                 'FEATURE_FLAGS' => config('features'),
             ]);

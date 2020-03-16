@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { featureFlag } from '../../../helpers';
 import NavigationLink from '../../utilities/NavigationLink/NavigationLink';
 
 const AccountNavigation = props => (
@@ -9,6 +10,11 @@ const AccountNavigation = props => (
       <NavigationLink to="/us/account/campaigns">Campaigns</NavigationLink>
       {props.user.hasBadgesFlag ? (
         <NavigationLink to="/us/account/profile/badges">Badges</NavigationLink>
+      ) : null}
+      {featureFlag('volunteer_credits') ? (
+        <NavigationLink to="/us/account/profile/credits">
+          Credits
+        </NavigationLink>
       ) : null}
       <NavigationLink exact to="/us/account/profile">
         Profile
