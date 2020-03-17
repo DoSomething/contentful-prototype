@@ -1,5 +1,3 @@
-// const { colors } = require('tailwindcss/defaultTheme');
-
 const screens = require('./tailwind.screens');
 
 module.exports = {
