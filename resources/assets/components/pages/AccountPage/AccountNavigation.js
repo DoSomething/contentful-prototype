@@ -16,6 +16,11 @@ const AccountNavigation = props => (
           Credits
         </NavigationLink>
       ) : null}
+      {featureFlag('cause_preferences') ? (
+        <NavigationLink to="/us/account/profile/interests">
+          Interests
+        </NavigationLink>
+      ) : null}
       <NavigationLink exact to="/us/account/profile">
         Profile
       </NavigationLink>

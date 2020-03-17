@@ -17,4 +17,5 @@ return [
     'voter_reg_modal' => env('DS_ENABLE_VOTER_REG_MODAL', false),
     'dynamic_explore_campaigns' => env('DS_ENABLE_DYNAMIC_CAMPAIGNS_PAGE', false),
     'volunteer_credits' => env('DS_ENABLE_VOLUNTEER_CREDITS', false),
+    'cause_preferences' => env('DS_ENABLE_CAUSE_INTERESTS_PAGE', false)
 ];
