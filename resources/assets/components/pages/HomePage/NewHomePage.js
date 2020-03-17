@@ -1,8 +1,7 @@
-/** @jsx jsx */
-
 import gql from 'graphql-tag';
-import { Fragment } from 'react';
-import { jsx, css } from '@emotion/core';
+import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
+import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
@@ -49,13 +48,7 @@ const HOME_PAGE_QUERY = gql`
   }
 `;
 
-const NewHomePageTemplate = ({
-  additionalContent,
-  articles,
-  campaigns,
-  subTitle,
-  title,
-}) => {
+const NewHomePageTemplate = ({ campaigns, title }) => {
   const centerHorizontalRule = css`
     @media (min-width: ${tailwindScreens.md}) {
       margin-top: -2px;
@@ -142,7 +135,7 @@ const NewHomePageTemplate = ({
               background: linear-gradient(
                 to bottom,
                 rgba(255, 255, 255, 1) 25%,
-                rgba(255, 255, 255, 0) 100%
+                #f7fafc
               );
             `}
           >
@@ -157,17 +150,26 @@ const NewHomePageTemplate = ({
                 />
               </h2>
 
-              <p className="my-6">
+              <p className="my-6 text-lg">
                 You can even{' '}
-                <a href="/us/about/easy-scholarships">win scholarships</a> and{' '}
-                <a href="/">earn volunteer credits</a> for school! Seriously.
+                <a
+                  href="/us/about/easy-scholarships"
+                  className="font-normal text-blurple-500 underline"
+                >
+                  win scholarships
+                </a>{' '}
+                and{' '}
+                <a href="/" className="font-normal text-blurple-500 underline">
+                  earn volunteer credits
+                </a>{' '}
+                for school! Seriously.
               </p>
 
               <HomePageCampaignGallery campaigns={campaigns} />
 
               <a
                 href="/us/campaigns"
-                className="btn bg-blurple-500 focus:bg-blurple-700 inline-block my-8 py-4 px-8 text-lg"
+                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block my-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
               >
                 See More Campaigns
               </a>
@@ -210,7 +212,7 @@ const NewHomePageTemplate = ({
 
               <a
                 href="/us/articles"
-                className="btn bg-blurple-500 focus:bg-blurple-700 inline-block my-8 py-4 px-8 text-lg"
+                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block my-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
               >
                 See More Articles
               </a>
@@ -254,7 +256,7 @@ const NewHomePageTemplate = ({
 
               <a
                 href="/authorize"
-                className="btn bg-blurple-500 inline-block mt-8 py-4 px-16 text-lg"
+                className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 hover:no-underline py-4 px-16 text-lg hover:text-white"
               >
                 Join Now
               </a>
@@ -266,6 +268,15 @@ const NewHomePageTemplate = ({
       <SiteFooter />
     </Fragment>
   );
+};
+
+NewHomePageTemplate.propTypes = {
+  title: PropTypes.string,
+  campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+NewHomePageTemplate.defaultProps = {
+  title: 'We Are A Youth-Led Movement For Good',
 };
 
 const NewHomePage = () => (
