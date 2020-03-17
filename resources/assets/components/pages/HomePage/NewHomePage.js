@@ -20,7 +20,6 @@ const HOME_PAGE_QUERY = gql`
       title
       subTitle
       campaigns {
-        __typename
         ... on Showcasable {
           showcaseTitle
           showcaseDescription
