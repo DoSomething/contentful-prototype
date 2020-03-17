@@ -2,10 +2,12 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { React, Fragment } from 'react';
+import resolveConfig from 'tailwindcss/resolveConfig';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
 import { contentfulImageUrl } from '../../../helpers';
+import tailwindConfig from '../../../../../tailwind.config';
 import tailwindScreens from '../../../../../tailwind.screens';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
@@ -49,6 +51,8 @@ const HOME_PAGE_QUERY = gql`
 `;
 
 const NewHomePageTemplate = ({ campaigns, title }) => {
+  const tailwindGray = resolveConfig(tailwindConfig).theme.colors.gray;
+
   const centerHorizontalRule = css`
     @media (min-width: ${tailwindScreens.md}) {
       margin-top: -2px;
@@ -135,7 +139,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
               background: linear-gradient(
                 to bottom,
                 rgba(255, 255, 255, 1) 25%,
-                #f7fafc
+                ${tailwindGray['100']}
               );
             `}
           >
