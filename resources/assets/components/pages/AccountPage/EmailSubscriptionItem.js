@@ -28,7 +28,7 @@ const EMAIL_SUBSCRIPTION_MUTATION = gql`
     }
   }
 `;
-const EmailSubscriptionItem = ({ identifier, name, image, description }) => {
+const EmailSubscriptionItem = ({ topic, name, image, description }) => {
   const options = { variables: { userId: window.AUTH.id } };
 
   // Make the initial query to get the user's subscriptions
@@ -62,20 +62,20 @@ const EmailSubscriptionItem = ({ identifier, name, image, description }) => {
         <button
           type="button"
           className={
-            !topics.includes(identifier)
+            !topics.includes(topic)
               ? 'btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300'
               : 'btn mx-4 mb-4 bg-white border border-solid border-blurple-500 text-blurple-500 hover:border-blurple-300 hover:text-blurple-200'
           }
           onClick={() =>
             updateSubscription({
               variables: {
-                topic: identifier,
-                subscribed: !topics.includes(identifier),
+                topic,
+                subscribed: !topics.includes(topic),
               },
             })
           }
         >
-          {topics.includes(identifier) ? 'Unsubscribe' : 'Subscribe'}
+          {topics.includes(topic) ? 'Unsubscribe' : 'Subscribe'}
         </button>
       </div>
     </div>
@@ -83,7 +83,7 @@ const EmailSubscriptionItem = ({ identifier, name, image, description }) => {
 };
 
 EmailSubscriptionItem.propTypes = {
-  identifier: PropTypes.string.isRequired,
+  topic: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
