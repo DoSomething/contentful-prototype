@@ -141,7 +141,16 @@ class ContentfulEntry extends React.Component {
         return <LandingPageContainer {...json.fields} />;
 
       case 'LinkBlock':
-        return <LinkActionContainer {...withoutNulls(json)} />;
+        return (
+          <LinkActionContainer
+            {...withoutNulls({
+              ...json,
+              // Resolves the aliases used in the LinkBlockFragment.
+              title: json.linkBlockTitle,
+              link: json.linkActionLink,
+            })}
+          />
+        );
 
       case 'PetitionSubmissionBlock':
         return (

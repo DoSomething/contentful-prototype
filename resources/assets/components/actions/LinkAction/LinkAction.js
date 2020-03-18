@@ -9,9 +9,9 @@ import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoi
 
 export const LinkBlockFragment = gql`
   fragment LinkBlockFragment on LinkBlock {
-    title
+    linkBlockTitle: title
     content
-    link
+    linkBlockLink: link
     buttonText
     affiliateLogo {
       url(w: 200, h: 100)
