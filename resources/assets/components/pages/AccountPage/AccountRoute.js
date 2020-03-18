@@ -8,7 +8,7 @@ import Subscriptions from './Subscriptions';
 import UserPostsQuery from './UserPostsQuery';
 import { featureFlag } from '../../../helpers';
 import DeleteAccountTab from './DeleteAccountTab';
-import CausePreferences from './Interests/CausePreferences';
+import Interests from './Interests/Interests';
 
 const AccountRoute = props => (
   <Switch>
@@ -34,7 +34,7 @@ const AccountRoute = props => (
     {featureFlag('cause_preferences') ? (
       <Route
         path="/us/account/profile/interests"
-        render={() => <CausePreferences {...props} />}
+        render={() => <Interests {...props} />}
       />
     ) : null}
     <Route
