@@ -51,10 +51,10 @@ const HeroTemplate = ({
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {
-    extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'),
-    large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'),
-    medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
-    small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
+    extraLarge: contentfulImageUrl(coverImage.url, '2880', '1620', 'fill'),
+    large: contentfulImageUrl(coverImage.url, '1440', '810', 'fill'),
+    medium: contentfulImageUrl(coverImage.url, '1024', '576', 'fill'),
+    small: contentfulImageUrl(coverImage.url, '640', '360', 'fill'),
   };
   return (
     <>
@@ -67,7 +67,7 @@ const HeroTemplate = ({
           <img
             className="grid-wide"
             alt={coverImage.description || `cover photo for ${title}`}
-            srcSet={`${coverImageUrls.small} 360w, ${coverImageUrls.medium} 720w, ${coverImageUrls.large} 1440w, ${coverImageUrls.extraLarge} 2880w`}
+            srcSet={`${coverImageUrls.small} 640w, ${coverImageUrls.medium} 1024w, ${coverImageUrls.large} 1440w, ${coverImageUrls.extraLarge} 2880w`}
             src={coverImageUrls.small}
           />
         </div>
