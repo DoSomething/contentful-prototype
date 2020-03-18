@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import FormItem from './FormItem';
-import { env } from '../../../helpers/index';
+import { env } from '../../../../helpers/index';
 import {
   EVENT_CATEGORIES,
   getPageContext,
   getUtmContext,
   trackAnalyticsEvent,
-} from '../../../helpers/analytics';
+} from '../../../../helpers/analytics';
 // import VoterRegStatusBlock from './VoterRegStatusBlock';
 
 const Profile = props => (

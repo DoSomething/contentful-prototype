@@ -7,10 +7,10 @@ import Query from '../Query';
 import { Flex, FlexCell } from '../Flex';
 import Card from '../utilities/Card/Card';
 import Share from '../utilities/Share/Share';
-import Badge from '../pages/AccountPage/Badge';
 import Byline from '../utilities/Byline/Byline';
-import TextContent from '../utilities/TextContent/TextContent';
 import { contentfulImageUrl } from '../../helpers';
+import Badge from '../pages/AccountPage/Badges/Badge';
+import TextContent from '../utilities/TextContent/TextContent';
 import CtaReferralPageBannerContainer from '../utilities/CtaReferralPageBanner/CtaReferralPageBannerContainer';
 
 import './affirmation.scss';

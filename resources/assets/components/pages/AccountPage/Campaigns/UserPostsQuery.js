@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
-import PaginatedQuery from '../../PaginatedQuery';
-import PostGallery from '../../utilities/PostGallery/PostGallery';
-import { postCardFragment } from '../../utilities/PostCard/PostCard';
-import { reactionButtonFragment } from '../../utilities/ReactionButton/ReactionButton';
 import EmptyStateBlock from './EmptyStateBlock';
+import PaginatedQuery from '../../../PaginatedQuery';
+import PostGallery from '../../../utilities/PostGallery/PostGallery';
+import { postCardFragment } from '../../../utilities/PostCard/PostCard';
+import { reactionButtonFragment } from '../../../utilities/ReactionButton/ReactionButton';
 
 const USER_POSTS_QUERY = gql`
   query UserPostsQuery($userId: String!, $count: Int, $page: Int) {

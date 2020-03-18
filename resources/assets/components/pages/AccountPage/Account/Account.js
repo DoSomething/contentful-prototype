@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import AccountRoute from './AccountRoute';
 import AccountNavigation from './AccountNavigation';
-import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
+import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 
 const Account = props => (
   <>

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
-import Profile from './Profile';
-import BadgesTab from './BadgesTab';
-import Subscriptions from './Subscriptions';
-import Interests from './Interests/Interests';
-import UserPostsQuery from './UserPostsQuery';
-import { featureFlag } from '../../../helpers';
-import DeleteAccountTab from './DeleteAccountTab';
+import Profile from '../Profile/Profile';
+import BadgesTab from '../Badges/BadgesTab';
+import Interests from '../Interests/Interests';
+import { featureFlag } from '../../../../helpers';
+import UserPostsQuery from '../Campaigns/UserPostsQuery';
+import DeleteAccountTab from '../Profile/DeleteAccountTab';
+import Subscriptions from '../Subscriptions/Subscriptions';
 
 const AccountRoute = props => (
   <Switch>

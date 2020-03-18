@@ -15,8 +15,8 @@ import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
-import AccountContainer from './pages/AccountPage/AccountContainer';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
+import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
