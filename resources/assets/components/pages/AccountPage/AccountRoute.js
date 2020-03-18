@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Profile from './Profile';
 import BadgesTab from './BadgesTab';
 import Subscriptions from './Subscriptions';
+import Interests from './Interests/Interests';
 import UserPostsQuery from './UserPostsQuery';
 import { featureFlag } from '../../../helpers';
 import DeleteAccountTab from './DeleteAccountTab';
@@ -28,6 +29,12 @@ const AccountRoute = props => (
             </span>
           </h1>
         )}
+      />
+    ) : null}
+    {featureFlag('cause_preferences') ? (
+      <Route
+        path="/us/account/profile/interests"
+        render={() => <Interests {...props} />}
       />
     ) : null}
     <Route

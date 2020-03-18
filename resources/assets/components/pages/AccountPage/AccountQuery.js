@@ -22,7 +22,6 @@ const ACCOUNT_QUERY = gql`
 
 const AccountQuery = ({ userId }) => {
   const Account = Loader(import('./Account'));
-
   return (
     <Query query={ACCOUNT_QUERY} variables={{ userId }}>
       {result => <Account {...result} userId={userId} />}
