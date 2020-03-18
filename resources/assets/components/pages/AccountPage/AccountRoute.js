@@ -5,10 +5,10 @@ import { Switch, Route } from 'react-router-dom';
 import Profile from './Profile';
 import BadgesTab from './BadgesTab';
 import Subscriptions from './Subscriptions';
+import Interests from './Interests/Interests';
 import UserPostsQuery from './UserPostsQuery';
 import { featureFlag } from '../../../helpers';
 import DeleteAccountTab from './DeleteAccountTab';
-import Interests from './Interests/Interests';
 
 const AccountRoute = props => (
   <Switch>
