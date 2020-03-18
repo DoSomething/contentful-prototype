@@ -1,6 +1,7 @@
 /* global window, document, Blob, URL */
 
 import queryString from 'query-string';
+import resolveConfig from 'tailwindcss/resolveConfig';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
@@ -20,6 +21,7 @@ import {
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
+import tailwindConfig from '../../../tailwind.config';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
@@ -916,6 +918,12 @@ export function getScholarshipAffiliateLabel() {
   // If the utm_source contains 'scholarship', we assume this visit to be a referral from a
   // scholarship affiliate and return the affiliate's UTM label.
   return isScholarshipAffiliateReferral() ? utmLabel : null;
+}
+
+export function tailwind() {
+  const tailwindSettings = resolveConfig(tailwindConfig);
+
+  console.log(tailwindSettings);
 }
 
 /**

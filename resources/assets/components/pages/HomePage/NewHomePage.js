@@ -6,7 +6,7 @@ import resolveConfig from 'tailwindcss/resolveConfig';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
-import { contentfulImageUrl } from '../../../helpers';
+import { contentfulImageUrl, tailwind } from '../../../helpers';
 import tailwindConfig from '../../../../../tailwind.config';
 import tailwindScreens from '../../../../../tailwind.screens';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -51,6 +51,8 @@ const HOME_PAGE_QUERY = gql`
 
 const NewHomePageTemplate = ({ campaigns, title }) => {
   const tailwindGray = resolveConfig(tailwindConfig).theme.colors.gray;
+
+  tailwind();
 
   const centerHorizontalRule = css`
     @media (min-width: ${tailwindScreens.md}) {
