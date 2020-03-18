@@ -437,7 +437,6 @@ function metadata_fallback()
         ],
     ];
 
-
     return array_get($HARDCODED_METADATA, request()->path());
 }
 
