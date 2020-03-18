@@ -147,7 +147,7 @@ class ContentfulEntry extends React.Component {
               ...json,
               // Resolves the aliases used in the LinkBlockFragment.
               title: json.linkBlockTitle,
-              link: json.linkActionLink,
+              link: json.linkBlockLink,
             })}
           />
         );
