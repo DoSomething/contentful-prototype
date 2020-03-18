@@ -4,8 +4,15 @@ import PropTypes from 'prop-types';
 import EmailSubscriptions from './EmailSubscriptions';
 
 const Subscriptions = props => (
-  <div className="grid-wide-2/3">
-    <h2>Email Subscriptions</h2>
+  <div className="grid-wide">
+    <div className="pb-4">
+      <h2 className="text-lg">Email Subscriptions</h2>
+      <p>
+        We tailor your emails and other communication based on your favorite
+        cause areas.
+      </p>
+    </div>
+
     <EmailSubscriptions {...props} />
   </div>
 );
