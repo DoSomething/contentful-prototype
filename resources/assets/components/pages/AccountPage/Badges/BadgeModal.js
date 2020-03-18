@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Badge from './Badge';
-import Modal from '../../utilities/Modal/Modal';
+import Modal from '../../../utilities/Modal/Modal';
 
 const BadgeModal = props => {
   const { name, earned, children, onClose } = props;

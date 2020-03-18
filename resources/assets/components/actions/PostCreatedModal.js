@@ -1,12 +1,12 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { get } from 'lodash';
 
 import Query from '../Query';
 import Card from '../utilities/Card/Card';
 import Modal from '../utilities/Modal/Modal';
-import Badge from '../pages/AccountPage/Badge';
+import Badge from '../pages/AccountPage/Badges/Badge';
 import TextContent from '../utilities/TextContent/TextContent';
 
 const BADGE_QUERY = gql`

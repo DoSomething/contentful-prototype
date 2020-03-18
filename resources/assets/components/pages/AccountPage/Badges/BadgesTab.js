@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 import Badge from './Badge';
 import BadgeModal from './BadgeModal';
-import Query from '../../Query';
+import Query from '../../../Query';
 import './badges-tab.scss';
 
 const CONFIRMED = 'CONFIRMED';
