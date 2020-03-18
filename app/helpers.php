@@ -418,8 +418,7 @@ function get_metadata($entry)
  * A hacky function that allows us to fall back to hard-coded metadata for special
  * pages that don't support editor-specified metadata (e.g. campaign collections).
  *
- * @param array $metadata
- * @param string $path
+ * @return array
  */
 function metadata_fallback()
 {
