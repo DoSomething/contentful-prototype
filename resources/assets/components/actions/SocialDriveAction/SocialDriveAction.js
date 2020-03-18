@@ -40,7 +40,6 @@ class SocialDriveAction extends React.Component {
     const { userId, token } = this.props;
 
     const href = dynamicString(this.props.link, { userId });
-
     postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
       .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
       .catch(() => this.setState({ shortenedLink: href, count: 'N/A' }));
@@ -71,8 +70,7 @@ class SocialDriveAction extends React.Component {
       shareCardTitle,
       hidePageViews,
     } = this.props;
-    const shortenedLink = this.state.shortenedLink;
-
+    const { shortenedLink } = this.state;
     return (
       <div
         className={classNames('clearfix pb-6', { 'lg:flex': !hidePageViews })}
@@ -150,6 +148,14 @@ class SocialDriveAction extends React.Component {
                   total page views
                 </span>
                 <h1 className="page-views__amount">
+                  {shortenedLink ? this.state.count : '?'}
+                </h1>
+              </div>
+              <div className="p-3 voter-registrations">
+                <span className="voter-registrations__text uppercase">
+                  total voter registrations
+                </span>
+                <h1 className="voter-registrations__amount">
                   {shortenedLink ? this.state.count : '?'}
                 </h1>
               </div>
