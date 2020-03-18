@@ -429,7 +429,7 @@ function metadata_fallback()
             'title' => 'Don\'t let COVID-19 stop you from changing the world.',
             'description' => 'Join millions of DoSomething members using our resources to stay healthy, fight anxiety, and make a difference on the causes we care about, from mental health to climate change and beyond. Let’s Do This.',
             'image' => [
-                'url' => 'https://images.ctfassets.net/81iqaqpfd8fy/1IkA8BVk0iBqJhQfsX1uF3/0dece4512c587291aa3eab7e22f21984/corona_banner.jpg?f=center&fit=fill&h=1200&w=1200',
+                'url' => 'https://images.ctfassets.net/81iqaqpfd8fy/6Ko2KXJ0fCKmZIm2G6ATEs/2ef1f7694fb81a824940aa697d27cb9f/COVID_metadata.jpg?f=center&fit=fill&h=1200&w=1200',
                 'width' => '1200',
                 'height' => '1200',
             ],
