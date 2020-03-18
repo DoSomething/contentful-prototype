@@ -51,10 +51,10 @@ const HeroTemplate = ({
   // @TODO: If this experiment is successful we should turn generating the series urls for
   // the cover image photo at different sizes into a helper function!
   const coverImageUrls = {
-    extraLarge: contentfulImageUrl(coverImage.url, '2232', '1000', 'fill'),
-    large: contentfulImageUrl(coverImage.url, '1116', '500', 'fill'),
-    medium: contentfulImageUrl(coverImage.url, '720', '350', 'fill'),
-    small: contentfulImageUrl(coverImage.url, '360', '200', 'fill'),
+    extraLarge: contentfulImageUrl(coverImage.url, '1920', '1080', 'fill'),
+    large: contentfulImageUrl(coverImage.url, '1440', '810', 'fill'),
+    medium: contentfulImageUrl(coverImage.url, '1024', '576', 'fill'),
+    small: contentfulImageUrl(coverImage.url, '640', '360', 'fill'),
   };
   return (
     <>
