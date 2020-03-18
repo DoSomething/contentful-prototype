@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { featureFlag } from '../../../helpers';
-import NavigationLink from '../../utilities/NavigationLink/NavigationLink';
+import { featureFlag } from '../../../../helpers';
+import NavigationLink from '../../../utilities/NavigationLink/NavigationLink';
 
 const AccountNavigation = props => (
   <nav className="base-12-grid page-navigation -no-fade">

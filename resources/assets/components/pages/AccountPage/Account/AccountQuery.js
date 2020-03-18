@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 
-import Loader from '../../utilities/Loader';
-import Query from '../../Query';
+import Loader from '../../../utilities/Loader';
+import Query from '../../../Query';
 
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {
