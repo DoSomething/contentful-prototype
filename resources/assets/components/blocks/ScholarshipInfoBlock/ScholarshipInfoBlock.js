@@ -45,6 +45,21 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
   }
 `;
 
+const SCHOLARSHIP_INFO_QUERY = gql`
+  query ScholarshipAffiliateQuery($campaignId: Int!) {
+    actions(campaignId: $campaignId) {
+      actionLabel
+      scholarshipEntry
+      reportback
+    }
+
+    campaign(id: $campaignId) {
+      id
+      endDate
+    }
+  }
+`;
+
 const ScholarshipInfoBlock = ({
   affiliateSponsors,
   campaignId,
@@ -56,12 +71,16 @@ const ScholarshipInfoBlock = ({
   numberOfScholarships,
   utmLabel,
 }) => {
-  const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
-    variables: {
-      utmLabel,
-      preview: env('CONTENTFUL_USE_PREVIEW_API'),
-      campaignId,
-    },
+  const queryName = utmLabel
+    ? SCHOLARSHIP_AFFILIATE_QUERY
+    : SCHOLARSHIP_INFO_QUERY;
+
+  const queryVariables = utmLabel
+    ? { utmLabel, preview: env('CONTENTFUL_USE_PREVIEW_API'), campaignId }
+    : { campaignId };
+
+  const { loading, error, data } = useQuery(queryName, {
+    variables: queryVariables,
   });
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -272,7 +291,7 @@ ScholarshipInfoBlock.propTypes = {
   scholarshipDeadline: PropTypes.string.isRequired,
   scholarshipDescription: PropTypes.object,
   numberOfScholarships: PropTypes.number.isRequired,
-  utmLabel: PropTypes.string.isRequired,
+  utmLabel: PropTypes.string,
 };
 
 ScholarshipInfoBlock.defaultProps = {
@@ -281,5 +300,6 @@ ScholarshipInfoBlock.defaultProps = {
   children: null,
   scholarshipCallToAction: 'Win A Scholarship',
   scholarshipDescription: null,
+  utmLabel: null,
 };
 export default ScholarshipInfoBlock;

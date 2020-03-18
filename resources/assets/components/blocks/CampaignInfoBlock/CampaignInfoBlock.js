@@ -31,6 +31,7 @@ const CampaignInfoBlock = ({
   campaignId,
   scholarshipAmount,
   scholarshipDeadline,
+  showModal,
 }) => (
   <Card className="bordered p-3 rounded campaign-info">
     <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
@@ -63,6 +64,11 @@ const CampaignInfoBlock = ({
 
                   <dt>Next Deadline</dt>
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
+                  <div>
+                    <button type="button" onClick={showModal}>
+                      <p>View Scholarship Details</p>
+                    </button>
+                  </div>
                   <hr className="clear-both pb-3 border-gray-500" />
                 </React.Fragment>
               ) : null}
@@ -97,11 +103,13 @@ CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.number,
+  showModal: PropTypes.func,
 };
 
 CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
   scholarshipDeadline: null,
+  showModal: null,
 };
 
 export default CampaignInfoBlock;
