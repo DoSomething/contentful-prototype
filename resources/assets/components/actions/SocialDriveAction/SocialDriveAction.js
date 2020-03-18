@@ -10,6 +10,7 @@ import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import { dynamicString, withoutTokens } from '../../../helpers';
+import { featureFlag } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
   EVENT_CATEGORIES,
@@ -151,14 +152,16 @@ class SocialDriveAction extends React.Component {
                   {shortenedLink ? this.state.count : '?'}
                 </h1>
               </div>
-              <div className="p-3 voter-registrations">
-                <span className="voter-registrations__text uppercase">
-                  total voter registrations
-                </span>
-                <h1 className="voter-registrations__amount">
-                  {shortenedLink ? this.state.count : '?'}
-                </h1>
-              </div>
+              {featureFlag('voter_reg_drive_total') ? (
+                <div className="p-3 voter-registrations">
+                  <span className="voter-registrations__text uppercase">
+                    total voter registrations
+                  </span>
+                  <h1 className="voter-registrations__amount">
+                    {shortenedLink ? this.state.count : '?'}
+                  </h1>
+                </div>
+              ) : null}
             </Card>
           </div>
         ) : null}
