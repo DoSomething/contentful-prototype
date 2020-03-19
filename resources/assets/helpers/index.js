@@ -1,6 +1,7 @@
 /* global window, document, Blob, URL */
 
 import queryString from 'query-string';
+import resolveConfig from 'tailwindcss/resolveConfig';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
@@ -9,6 +10,7 @@ import {
   isEmpty,
   isNil,
   isNull,
+  isString,
   isObjectLike,
   isUndefined,
   mapValues,
@@ -20,6 +22,7 @@ import {
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
+import tailwindConfig from '../../../tailwind.config';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
@@ -374,19 +377,13 @@ export function makeHash(string) {
  *
  * @param  {String} type
  * @param  {Object} options
- * @param  {String} key  An id or a slug for the content.
+ * @param  {String} options.domain
+ * @param  {String} options.slug
+ * @param  {String} options.type
+ * @param  {String} options.key  An id or a slug for the content.
  * @return {String}
- * @flow
  */
-export function makeShareLink(
-  resource,
-  options: {
-    domain: string,
-    slug?: string,
-    key: string,
-    type: 'blocks' | 'modal',
-  },
-) {
+export function makeShareLink(resource, options = {}) {
   switch (resource) {
     case 'campaigns':
       return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;
@@ -916,6 +913,29 @@ export function getScholarshipAffiliateLabel() {
   // If the utm_source contains 'scholarship', we assume this visit to be a referral from a
   // scholarship affiliate and return the affiliate's UTM label.
   return isScholarshipAffiliateReferral() ? utmLabel : null;
+}
+
+/**
+ * Get specified theme setting from the resolved Tailwind configuration object.
+ *
+ * @param {String} themeSetting
+ */
+export function tailwind(themeSetting) {
+  if (!isString(themeSetting)) {
+    throw new Error(
+      'Please specify a theme setting as a string to retrieve from Tailwind.',
+    );
+  }
+
+  const setting = get(resolveConfig(tailwindConfig).theme, themeSetting, null);
+
+  if (!setting) {
+    console.error(
+      `The ${themeSetting} setting specified was not found in the Tailwind theme configuration.`,
+    );
+  }
+
+  return setting;
 }
 
 /**
