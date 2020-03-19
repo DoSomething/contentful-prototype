@@ -10,6 +10,7 @@ import {
   isEmpty,
   isNil,
   isNull,
+  isString,
   isObjectLike,
   isUndefined,
   mapValues,
@@ -926,7 +927,21 @@ export function getScholarshipAffiliateLabel() {
  * @param {String} themeSetting
  */
 export function tailwind(themeSetting) {
-  return get(resolveConfig(tailwindConfig).theme, themeSetting, null);
+  if (!isString(themeSetting)) {
+    throw new Error(
+      'Please specify a theme setting as a string to retrieve from Tailwind.',
+    );
+  }
+
+  const setting = get(resolveConfig(tailwindConfig).theme, themeSetting, null);
+
+  if (!setting) {
+    console.error(
+      `The ${themeSetting} setting specified was not found in the Tailwind theme configuration.`,
+    );
+  }
+
+  return setting;
 }
 
 /**
