@@ -63,8 +63,8 @@ const EmailSubscriptionItem = ({ topic, name, image, description }) => {
           type="button"
           className={
             !topics.includes(topic)
-              ? 'btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300'
-              : 'btn mx-4 mb-4 bg-white border border-solid border-blurple-500 text-blurple-500 hover:border-blurple-300 hover:text-blurple-200'
+              ? 'btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none'
+              : 'btn mx-4 mb-4 bg-white text-blurple-500 border border-solid border-blurple-500 hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500 focus:outline-none'
           }
           onClick={() =>
             updateSubscription({
