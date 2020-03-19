@@ -920,10 +920,13 @@ export function getScholarshipAffiliateLabel() {
   return isScholarshipAffiliateReferral() ? utmLabel : null;
 }
 
-export function tailwind() {
-  const tailwindSettings = resolveConfig(tailwindConfig);
-
-  console.log(tailwindSettings);
+/**
+ * Get specified theme setting from the resolved Tailwind configuration object.
+ *
+ * @param {String} themeSetting
+ */
+export function tailwind(themeSetting) {
+  return get(resolveConfig(tailwindConfig).theme, themeSetting, null);
 }
 
 /**

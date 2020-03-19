@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
-import resolveConfig from 'tailwindcss/resolveConfig';
 
-import tailwindConfig from '../../../../../tailwind.config';
+import { tailwind } from '../../../helpers';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItemV2';
 import CampaignGalleryFeaturedItem from '../../utilities/Gallery/templates/CampaignGalleryFeaturedItem/CampaignGalleryFeaturedItem';
 
 const HomePageCampaignGallery = ({ campaigns }) => {
-  const tailwindSpacing = resolveConfig(tailwindConfig).theme.spacing;
-  const tailwindScreens = resolveConfig(tailwindConfig).theme.screens;
+  const tailwindSpacing = tailwind('spacing');
+  const tailwindScreens = tailwind('screens');
 
   return (
     <ul

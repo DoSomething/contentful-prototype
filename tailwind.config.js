@@ -1,8 +1,13 @@
-const screens = require('./tailwind.screens');
-
 module.exports = {
   theme: {
-    screens,
+    screens: {
+      xs: '360px',
+      sm: '480px',
+      md: '760px',
+      lg: '960px',
+      xl: '1060px',
+      xxl: '1280px',
+    },
     colors: {
       transparent: 'transparent',
       black: '#000',
