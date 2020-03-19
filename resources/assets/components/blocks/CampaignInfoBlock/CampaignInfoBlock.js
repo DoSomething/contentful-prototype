@@ -65,8 +65,12 @@ const CampaignInfoBlock = ({
                   <dt>Next Deadline</dt>
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
                   <div>
-                    <button type="button" onClick={showModal}>
-                      <p className="view__details">View Scholarship Details</p>
+                    <button
+                      className="text-blue-500"
+                      type="button"
+                      onClick={showModal}
+                    >
+                      View Scholarship Details
                     </button>
                   </div>
                   <hr className="clear-both pb-3 border-gray-500" />
