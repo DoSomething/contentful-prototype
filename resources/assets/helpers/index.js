@@ -381,15 +381,7 @@ export function makeHash(string) {
  * @return {String}
  * @flow
  */
-export function makeShareLink(
-  resource,
-  options: {
-    domain: string,
-    slug?: string,
-    key: string,
-    type: 'blocks' | 'modal',
-  },
-) {
+export function makeShareLink(resource, options = {}) {
   switch (resource) {
     case 'campaigns':
       return `${options.domain}/us/campaigns/${options.slug}/${options.type}/${options.key}`;

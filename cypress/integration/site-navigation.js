@@ -1,9 +1,11 @@
 /// <reference types="Cypress" />
 
-import tailwindScreens from '../../tailwind.screens';
+import { tailwind } from '../../resources/assets/helpers';
 import exampleFactPage from '../fixtures/contentful/exampleFactPage';
 
 // Return array of viewport sizes based on Tailwind configuration.
+const tailwindScreens = tailwind('screens');
+
 const getViewportSizes = (specifiedSizes = []) => {
   let screenSizes = Object.keys(tailwindScreens);
 
