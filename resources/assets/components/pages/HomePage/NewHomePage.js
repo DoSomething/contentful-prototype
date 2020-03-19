@@ -6,7 +6,6 @@ import { React, Fragment } from 'react';
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
 import { contentfulImageUrl, tailwind } from '../../../helpers';
-// import tailwindScreens from '../../../../../tailwind.screens';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
