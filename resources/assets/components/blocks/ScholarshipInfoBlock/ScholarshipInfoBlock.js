@@ -31,17 +31,6 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
     affiliate(utmLabel: $utmLabel, preview: $preview) {
       title
     }
-
-    actions(campaignId: $campaignId) {
-      actionLabel
-      scholarshipEntry
-      reportback
-    }
-
-    campaign(id: $campaignId) {
-      id
-      endDate
-    }
   }
 `;
 
