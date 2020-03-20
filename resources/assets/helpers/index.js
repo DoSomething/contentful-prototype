@@ -149,6 +149,22 @@ export function contentfulImageUrl(
 }
 
 /**
+ * Generate srcset value at specified sizes for a Contentful Image URL.
+ *
+ * @param {String} url
+ * @param {Object} sizes
+ */
+export function contentfulImageSrcset(url, sizes) {
+  const sources = sizes.map(size => {
+    return `${contentfulImageUrl(url, size.width, size.height, 'fill')} ${
+      size.width
+    }w`;
+  });
+
+  return sources.join(', ');
+}
+
+/**
  * Return a string with tokens replaced by specified values.
  *
  * @param  {String} string

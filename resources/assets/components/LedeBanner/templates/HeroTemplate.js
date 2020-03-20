@@ -13,6 +13,7 @@ import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipI
 import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
   contentfulImageUrl,
+  contentfulImageSrcset,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
 } from '../../../helpers';
@@ -48,14 +49,13 @@ const HeroTemplate = ({
     }
   }, []);
 
-  // @TODO: If this experiment is successful we should turn generating the series urls for
-  // the cover image photo at different sizes into a helper function!
-  const coverImageUrls = {
-    extraLarge: contentfulImageUrl(coverImage.url, '2880', '1620', 'fill'),
-    large: contentfulImageUrl(coverImage.url, '1440', '810', 'fill'),
-    medium: contentfulImageUrl(coverImage.url, '1024', '576', 'fill'),
-    small: contentfulImageUrl(coverImage.url, '640', '360', 'fill'),
-  };
+  const srcset = contentfulImageSrcset(coverImage.url, [
+    { height: 360, width: 640 },
+    { height: 576, width: 1024 },
+    { height: 810, width: 1440 },
+    { height: 1620, width: 2880 },
+  ]);
+
   return (
     <>
       {/*
@@ -67,8 +67,8 @@ const HeroTemplate = ({
           <img
             className="grid-wide"
             alt={coverImage.description || `cover photo for ${title}`}
-            srcSet={`${coverImageUrls.small} 640w, ${coverImageUrls.medium} 1024w, ${coverImageUrls.large} 1440w, ${coverImageUrls.extraLarge} 2880w`}
-            src={coverImageUrls.small}
+            srcSet={srcset}
+            src={contentfulImageUrl(coverImage.url, '1440', '810', 'fill')}
           />
         </div>
 
