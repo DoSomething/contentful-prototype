@@ -16,7 +16,6 @@ const ACCOUNT_QUERY = gql`
       email
       emailSubscriptionTopics
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
-      causes
     }
   }
 `;
