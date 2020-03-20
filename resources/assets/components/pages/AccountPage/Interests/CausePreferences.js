@@ -87,7 +87,7 @@ const CausePreferences = () => {
   const { causes } = data.user;
 
   return (
-    <div className="gallery-grid gallery-grid-duo">
+    <div className="gallery-grid gallery-grid-duo my-6">
       {Object.keys(causeItems).map(cause => (
         <CausePreferenceItem
           cause={cause}

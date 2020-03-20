@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-// import classNames from 'classnames';
+import classNames from 'classnames';
 import { useMutation } from '@apollo/react-hooks';
 
 const CAUSE_PREFERENCE_MUTATION = gql`
@@ -26,18 +26,20 @@ const CausePreferenceItem = ({ cause, causes, description, title }) => {
   const [updateInterest] = useMutation(CAUSE_PREFERENCE_MUTATION, options);
 
   return (
-    <div className="border border-solid border-gray-300 p-4 rounded-md flex space-between">
-      <div>
+    <div className="border border-solid border-gray-300 p-4 rounded-md flex justify-between">
+      <div className="align-middle md:mt-4">
         <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
+
       <button
         type="button"
-        className={
+        className={classNames(
+          'btn mx-4 mb-6 md:my-4 border border-solid border-blurple-500 focus:outline-none align-middle',
           !causes.includes(cause)
-            ? 'btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none'
-            : 'btn mx-4 mb-4 bg-white border border-solid border-blurple-500 text-blurple-500 hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500 focus:outline-none'
-        }
+            ? 'bg-blurple-500 text-white hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white'
+            : 'bg-white border text-blurple-500 border-solid hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500',
+        )}
         onClick={() =>
           updateInterest({
             variables: {
