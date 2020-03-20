@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getUtms } from '../../helpers/utm';
 import Button from '../utilities/Button/Button';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
@@ -48,9 +49,7 @@ const SignupButton = props => {
           withoutNulls({
             contentful_id: pageId,
             referrer_user_id: query('referrer_user_id'),
-            utm_source: query('utm_source'),
-            utm_medium: query('utm_medium'),
-            utm_campaign: query('utm_campaign'),
+            ...getUtms(),
           }),
         ),
       },
