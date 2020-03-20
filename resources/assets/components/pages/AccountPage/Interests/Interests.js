@@ -2,7 +2,7 @@ import React from 'react';
 
 import CausePreferences from './CausePreferences';
 
-const Interests = props => (
+const Interests = () => (
   <div className="grid-wide">
     <h1>Your Cause Interests</h1>
     <p>
@@ -10,7 +10,7 @@ const Interests = props => (
       areas.
     </p>
 
-    <CausePreferences {...props} />
+    <CausePreferences />
   </div>
 );
 

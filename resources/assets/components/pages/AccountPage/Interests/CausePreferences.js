@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import CausePreferenceItem from './CausePreferenceItem';
 
-const CausePreferences = ({ user }) => {
+const CausePreferences = () => {
   const causeItems = {
     ANIMAL_WELFARE: {
       title: 'Animal Welfare',
@@ -29,7 +28,7 @@ const CausePreferences = ({ user }) => {
       title: 'Homelessness & Poverty',
       description: 'Some description',
     },
-    IMMIGRATION: {
+    IMMIGRATION_REFUGEES: {
       title: 'Immigration & Refugees',
       description: 'Some description',
     },
@@ -62,19 +61,10 @@ const CausePreferences = ({ user }) => {
           cause={cause}
           title={causeItems[cause].title}
           description={causeItems[cause].description}
-          userId={user.id}
-          userCauses={user.causes}
         />
       ))}
     </div>
   );
-};
-
-CausePreferences.propTypes = {
-  user: PropTypes.shape({
-    causes: PropTypes.array,
-    id: PropTypes.string,
-  }).isRequired,
 };
 
 export default CausePreferences;
