@@ -1,16 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { useMutation, useQuery } from '@apollo/react-hooks';
-
-const CAUSE_PREFERENCE_QUERY = gql`
-  query CausePreferenceQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      causes
-    }
-  }
-`;
+// import classNames from 'classnames';
+import { useMutation } from '@apollo/react-hooks';
 
 const CAUSE_PREFERENCE_MUTATION = gql`
   mutation CausePreferences(
@@ -29,27 +21,16 @@ const CAUSE_PREFERENCE_MUTATION = gql`
   }
 `;
 
-const CausePreferenceItem = ({ cause, description, title }) => {
+const CausePreferenceItem = ({ cause, causes, description, title }) => {
   const options = { variables: { userId: window.AUTH.id } };
-
-  // Make the initial query to get the user's subscriptions
-  const { data, loading, error } = useQuery(CAUSE_PREFERENCE_QUERY, options);
   const [updateInterest] = useMutation(CAUSE_PREFERENCE_MUTATION, options);
 
-  if (error) {
-    return <p>Something went wrong!</p>;
-  }
-
-  if (loading) {
-    return <div className="spinner" />;
-  }
-
-  const { causes } = data.user;
-
   return (
-    <div className="border border-solid border-gray-300">
-      <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
-      <p>{description}</p>
+    <div className="border border-solid border-gray-300 p-4 rounded-md flex space-between">
+      <div>
+        <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
+        <p className="text-sm text-gray-500">{description}</p>
+      </div>
       <button
         type="button"
         className={
@@ -74,6 +55,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
 
 CausePreferenceItem.propTypes = {
   cause: PropTypes.string.isRequired,
+  causes: PropTypes.instanceOf(Array).isRequired,
   description: PropTypes.string,
   title: PropTypes.string,
 };
