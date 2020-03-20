@@ -5,8 +5,8 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
-import { contentfulImageUrl, tailwind } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import { contentfulImageUrl, tailwind } from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 

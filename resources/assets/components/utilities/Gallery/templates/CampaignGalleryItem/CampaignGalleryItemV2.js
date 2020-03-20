@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { contentfulImageUrl } from '../../../../../helpers';
+import {
+  contentfulImageUrl,
+  contentfulImageSrcset,
+} from '../../../../../helpers';
 
 const CampaignGalleryItemV2 = ({
   showcaseDescription,
@@ -9,12 +12,17 @@ const CampaignGalleryItemV2 = ({
   showcaseTitle,
   url,
 }) => {
+  const srcset = contentfulImageSrcset(showcaseImage.url, [
+    { height: 205, width: 365 },
+    { height: 410, width: 730 },
+  ]);
+
   return (
     <article className="flex flex-col h-full relative text-left">
       <img
         alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
-        className="w-full"
-        src={contentfulImageUrl(showcaseImage.url, '360', '200', 'fill')}
+        srcSet={srcset}
+        src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
       />
 
       <div className="bg-white border border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b-sm">
