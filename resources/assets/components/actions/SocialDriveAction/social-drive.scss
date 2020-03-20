@@ -86,4 +86,19 @@
       line-height: $font-hero;
     }
   }
+
+  .voter-registrations {
+    .voter-registrations__text {
+      font-size: $font-regular;
+      font-weight: $weight-sbold;
+      color: theme('colors.gray.600');
+    }
+
+    .voter-registrations__amount {
+      font-family: theme('fontFamily.league-gothic');
+      font-size: $font-hero;
+      font-weight: $weight-normal;
+      line-height: $font-hero;
+    }
+  }
 }

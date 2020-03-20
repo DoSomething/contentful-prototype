@@ -9,7 +9,7 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import { dynamicString, withoutTokens } from '../../../helpers';
+import { dynamicString, withoutTokens, featureFlag } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
   EVENT_CATEGORIES,
@@ -40,7 +40,6 @@ class SocialDriveAction extends React.Component {
     const { userId, token } = this.props;
 
     const href = dynamicString(this.props.link, { userId });
-
     postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
       .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
       .catch(() => this.setState({ shortenedLink: href, count: 'N/A' }));
@@ -71,8 +70,7 @@ class SocialDriveAction extends React.Component {
       shareCardTitle,
       hidePageViews,
     } = this.props;
-    const shortenedLink = this.state.shortenedLink;
-
+    const { shortenedLink } = this.state;
     return (
       <div
         className={classNames('clearfix pb-6', { 'lg:flex': !hidePageViews })}
@@ -153,6 +151,16 @@ class SocialDriveAction extends React.Component {
                   {shortenedLink ? this.state.count : '?'}
                 </h1>
               </div>
+              {featureFlag('voter_reg_drive_total') ? (
+                <div className="p-3 voter-registrations">
+                  <span className="voter-registrations__text uppercase">
+                    total voter registrations
+                  </span>
+                  <h1 className="voter-registrations__amount">
+                    {shortenedLink ? this.state.count : '?'}
+                  </h1>
+                </div>
+              ) : null}
             </Card>
           </div>
         ) : null}
