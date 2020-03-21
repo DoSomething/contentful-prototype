@@ -60,17 +60,22 @@ const ScholarshipInfoBlock = ({
   numberOfScholarships,
   utmLabel,
 }) => {
-  const queryName = utmLabel
+  const scholarshipAffiliateQuery = utmLabel
     ? SCHOLARSHIP_AFFILIATE_QUERY
-    : SCHOLARSHIP_INFO_QUERY;
+    : null;
+  const scholarshipInfoQuery = utmLabel ? SCHOLARSHIP_INFO_QUERY : null;
 
   const queryVariables = utmLabel
     ? { utmLabel, preview: env('CONTENTFUL_USE_PREVIEW_API'), campaignId }
     : { campaignId };
 
-  const { loading, error, data } = useQuery(queryName, {
-    variables: queryVariables,
-  });
+  const { loading, error, data } = useQuery(
+    scholarshipAffiliateQuery,
+    scholarshipInfoQuery,
+    {
+      variables: queryVariables,
+    },
+  );
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
