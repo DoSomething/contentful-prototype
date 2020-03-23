@@ -36,7 +36,14 @@ const CompanyPageTemplate = props => {
     <>
       <SiteNavigationContainer />
 
-      <CallToActionBlock />
+      <CallToActionBlock
+        supertitle="hello world"
+        title="Voter Registration Stuff"
+        text="These tools are designed with the ability to be customized for you--
+            we can rapidly spin up impactful, branded pages to get your audience
+            registered to vote."
+        classes="bg-purple-700"
+      />
 
       <main className="wrapper base-12-grid company-page">
         <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">
