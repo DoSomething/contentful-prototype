@@ -5,14 +5,11 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
+import * as NewsletterImages from './NewsletterImages';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl, tailwind } from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
-import newsletterNewsImage from './Images/newsletter_news.svg';
-import newsletterCommunityImage from './Images/newsletter_community.svg';
-import newsletterLifestyleImage from './Images/newsletter_lifestyle.svg';
-import newsletterScholarshipsImage from './Images/newsletter_scholarships.svg';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {
@@ -232,7 +229,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   <NewsletterItem
                     content="Create change with millions of others."
                     title="Community"
-                    image={newsletterCommunityImage}
+                    image={NewsletterImages.Community}
                     link={{ copy: 'Join the Communty', url: '/' }}
                   />
                 </li>
@@ -241,7 +238,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   <NewsletterItem
                     content="Make an impact on today's headlines."
                     title="News"
-                    image={newsletterNewsImage}
+                    image={NewsletterImages.News}
                     link={{ copy: 'Get News', url: '/' }}
                   />
                 </li>
@@ -250,7 +247,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   <NewsletterItem
                     content="Live your best life and help others do the same."
                     title="Lifestyle"
-                    image={newsletterLifestyleImage}
+                    image={NewsletterImages.Lifestyle}
                     link={{ copy: 'Start Reading', url: '/' }}
                   />
                 </li>
@@ -259,7 +256,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   <NewsletterItem
                     content="Qualify for easy scholarships, no GPA or essay required."
                     title="Scholarships"
-                    image={newsletterScholarshipsImage}
+                    image={NewsletterImages.Scholarships}
                     link={{ copy: 'Find Scholarships', url: '/' }}
                   />
                 </li>
