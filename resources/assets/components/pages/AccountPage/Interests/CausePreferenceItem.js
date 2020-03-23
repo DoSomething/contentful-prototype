@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 
-import PlaceholderText from '../../../utilities/PlaceholderText/PlaceholderText';
-
 const CAUSE_PREFERENCE_QUERY = gql`
   query CausePreferenceQuery($userId: String!) {
     user(id: $userId) {
