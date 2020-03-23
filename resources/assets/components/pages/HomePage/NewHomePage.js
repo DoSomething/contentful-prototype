@@ -5,6 +5,7 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
+import * as NewsletterImages from './NewsletterImages';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl, tailwind } from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
@@ -45,6 +46,35 @@ const HOME_PAGE_QUERY = gql`
     }
   }
 `;
+
+const NewsletterItem = ({ content, image, link, title }) => (
+  <div className="flex flex-col h-full">
+    <img
+      alt={`${title} newsletter badge`}
+      className="mb-4 mx-auto"
+      css={css`
+        height: 180px;
+        width: 180px;
+      `}
+      src={image}
+    />
+    <h3 className="mb-2 text-white">{title}</h3>
+    <p className="mb-4 flex-grow text-white">{content}</p>
+    <a href={link.url} className="font-normal text-white underline">
+      {link.copy}
+    </a>
+  </div>
+);
+
+NewsletterItem.propTypes = {
+  content: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  link: PropTypes.shape({
+    copy: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 const NewHomePageTemplate = ({ campaigns, title }) => {
   const tailwindGray = tailwind('colors.gray');
@@ -178,22 +208,59 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
           </section>
 
           <article className="base-12-grid bg-purple-400">
-            <div className="grid-wide text-center">
-              <h2 className="text-white">
-                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-3xl uppercase">
+            <div className="grid-wide text-center py-5 lg:py-10">
+              <h2 className="text-white mb-4">
+                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Inspired.
                 </span>{' '}
-                <span className="block lg:inline-block font-league-gothic font-normal lg:px-1 tracking-wide text-3xl uppercase">
+                <span className="block lg:inline-block font-league-gothic font-normal lg:px-1 tracking-wide text-4xl uppercase">
                   Get Entertained.
                 </span>{' '}
-                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-3xl uppercase">
+                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Active.
                 </span>
               </h2>
-
               <p className="text-lg text-white">
                 Sign up for one of our newsletters.
               </p>
+
+              <ul className="md:col-gap-8 lg:col-gap-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-8 row-gap-8">
+                <li className="text-white">
+                  <NewsletterItem
+                    content="Create change with millions of others."
+                    title="Community"
+                    image={NewsletterImages.Community}
+                    link={{ copy: 'Join the Communty', url: '/' }}
+                  />
+                </li>
+
+                <li className="text-white">
+                  <NewsletterItem
+                    content="Make an impact on today's headlines."
+                    title="News"
+                    image={NewsletterImages.News}
+                    link={{ copy: 'Get News', url: '/' }}
+                  />
+                </li>
+
+                <li className="text-white">
+                  <NewsletterItem
+                    content="Live your best life and help others do the same."
+                    title="Lifestyle"
+                    image={NewsletterImages.Lifestyle}
+                    link={{ copy: 'Start Reading', url: '/' }}
+                  />
+                </li>
+
+                <li className="text-white">
+                  <NewsletterItem
+                    content="Qualify for easy scholarships, no GPA or essay required."
+                    title="Scholarships"
+                    image={NewsletterImages.Scholarships}
+                    link={{ copy: 'Find Scholarships', url: '/' }}
+                  />
+                </li>
+              </ul>
             </div>
           </article>
 
