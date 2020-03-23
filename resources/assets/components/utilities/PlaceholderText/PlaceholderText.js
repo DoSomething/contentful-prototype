@@ -2,18 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { css, keyframes } from '@emotion/core';
 
-// TODO: Extract:
-const grays = {
-  100: '#f7fafc',
-  200: '#edf2f7',
-  300: '#e2e8f0',
-  400: '#cbd5e0',
-  500: '#a0aec0',
-  600: '#718096',
-  700: '#4a5568',
-  800: '#2d3748',
-  900: '#1a202c',
-};
+import { tailwind } from '../../../helpers';
 
 const shimmer = keyframes`
   0% {
@@ -25,6 +14,7 @@ const shimmer = keyframes`
 `;
 
 const PlaceholderText = ({ size }) => {
+  const grays = tailwind('colors.gray');
   const widths = {
     small: '25%',
     medium: '60%',
