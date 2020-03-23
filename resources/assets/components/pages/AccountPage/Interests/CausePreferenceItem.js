@@ -45,8 +45,8 @@ const CausePreferenceItem = ({ cause, description, title }) => {
   const causes = get(data, 'user.causes', []);
 
   return (
-    <div className="border border-solid border-gray-300 p-4 rounded-md flex justify-between">
-      <div className="align-middle md:mt-4">
+    <div className="border border-solid border-gray-300 p-4 rounded-md flex justify-between content-center">
+      <div className="w-2/3 lg:w-3/4 pr-2">
         <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
@@ -54,7 +54,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
       <button
         type="button"
         className={classNames(
-          'btn mx-4 mb-8 md:mb-0 lg:my-4 border border-solid border-blurple-500 focus:outline-none align-middle',
+          'btn w-1/3 lg:w-1/4 border border-solid border-blurple-500 focus:outline-none align-middle',
           !causes.includes(cause)
             ? 'bg-blurple-500 text-white hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white'
             : 'bg-white border text-blurple-500 border-solid hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500',
@@ -69,7 +69,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
         }
       >
         {!loading ? (
-          <>{causes.includes(cause) ? 'Unfollow' : 'Follow'}</>
+          <>{causes.includes(cause) ? 'Unfollow' : ' Follow '}</>
         ) : (
           <div className="spinner" />
         )}
