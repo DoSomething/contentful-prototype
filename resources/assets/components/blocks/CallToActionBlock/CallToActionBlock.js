@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 import classnames from 'classnames';
 
 const CallToActionBlock = ({ supertitle, title, text, classes }) => {
@@ -21,7 +22,12 @@ const CallToActionBlock = ({ supertitle, title, text, classes }) => {
     <div className={classnames('wrapper', style.background)}>
       <div className="base-12-grid">
         <div className="grid-narrow text-center my-4">
-          <h3 className="text-m font-source-sans text-yellow-500 font-bold uppercase">
+          <h3
+            className="text-m font-source-sans font-bold uppercase"
+            css={css`
+              background-color: hotpink;
+            `}
+          >
             {supertitle}
           </h3>
           <h3 className="text-4xl font-league-gothic text-white font-bold uppercase">
