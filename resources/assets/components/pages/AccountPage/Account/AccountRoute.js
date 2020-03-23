@@ -34,7 +34,7 @@ const AccountRoute = props => (
     {featureFlag('cause_preferences') ? (
       <Route
         path="/us/account/profile/interests"
-        render={() => <Interests {...props} />}
+        render={() => <Interests />}
       />
     ) : null}
     <Route
