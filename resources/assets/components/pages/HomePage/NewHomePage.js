@@ -9,6 +9,10 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl, tailwind } from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import newsletterNewsImage from './Images/newsletter_news.svg';
+import newsletterCommunityImage from './Images/newsletter_community.svg';
+import newsletterLifestyleImage from './Images/newsletter_lifestyle.svg';
+import newsletterScholarshipsImage from './Images/newsletter_scholarships.svg';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {
@@ -45,6 +49,32 @@ const HOME_PAGE_QUERY = gql`
     }
   }
 `;
+
+const NewsletterItem = ({ children, image, link, title }) => (
+  <div className="flex flex-col h-full">
+    <img
+      alt={`${title} newsletter badge`}
+      className="mb-4 mx-auto"
+      css={css`
+        height: 180px;
+        width: 180px;
+      `}
+      src={image}
+    />
+    <h3 className="mb-2 text-white">{title}</h3>
+    <p className="mb-4 flex-grow text-white">{children}</p>
+    <a href={link.url} className="font-normal text-white underline">
+      {link.copy}
+    </a>
+  </div>
+);
+
+NewsletterItem.propTypes = {
+  children: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  link: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+};
 
 const NewHomePageTemplate = ({ campaigns, title }) => {
   const tailwindGray = tailwind('colors.gray');
@@ -178,22 +208,63 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
           </section>
 
           <article className="base-12-grid bg-purple-400">
-            <div className="grid-wide text-center">
-              <h2 className="text-white">
-                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-3xl uppercase">
+            <div className="grid-wide text-center py-5 lg:py-10">
+              <h2 className="text-white mb-4">
+                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Inspired.
                 </span>{' '}
-                <span className="block lg:inline-block font-league-gothic font-normal lg:px-1 tracking-wide text-3xl uppercase">
+                <span className="block lg:inline-block font-league-gothic font-normal lg:px-1 tracking-wide text-4xl uppercase">
                   Get Entertained.
                 </span>{' '}
-                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-3xl uppercase">
+                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Active.
                 </span>
               </h2>
-
               <p className="text-lg text-white">
                 Sign up for one of our newsletters.
               </p>
+
+              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-16 mt-8">
+                <li className="text-white mb-8 lg:mb-0">
+                  <NewsletterItem
+                    title="Community"
+                    image={newsletterCommunityImage}
+                    link={{ copy: 'Join the Communty', url: '/' }}
+                  >
+                    Create change with millions of others.
+                  </NewsletterItem>
+                </li>
+
+                <li className="text-white mb-8 md:mb-0">
+                  <NewsletterItem
+                    title="News"
+                    image={newsletterNewsImage}
+                    link={{ copy: 'Get News', url: '/' }}
+                  >
+                    Make an impact on today&apos;s headlines.
+                  </NewsletterItem>
+                </li>
+
+                <li className="text-white mb-8 lg:mb-0">
+                  <NewsletterItem
+                    title="Lifestyle"
+                    image={newsletterLifestyleImage}
+                    link={{ copy: 'Start Reading', url: '/' }}
+                  >
+                    Live your best life and help others do the same.
+                  </NewsletterItem>
+                </li>
+
+                <li className="text-white">
+                  <NewsletterItem
+                    title="Scholarships"
+                    image={newsletterScholarshipsImage}
+                    link={{ copy: 'Find Scholarships', url: '/' }}
+                  >
+                    Qualify for easy scholarships, no GPA or essay required.
+                  </NewsletterItem>
+                </li>
+              </ul>
             </div>
           </article>
 
