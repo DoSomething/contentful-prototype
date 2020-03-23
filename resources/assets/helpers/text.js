@@ -48,7 +48,10 @@ function cleanupStandardMarkdown(markdown) {
 function getMarkdownItInstance() {
   const markdownIt = new MarkdownIt();
 
+  // Add support for Markdown[^1] footnotes syntax. [^1]: https://git.io/JvMXJ
   markdownIt.use(markdownItFootnote);
+
+  // Open external Markdown links in new tabs.
   markdownIt.use(iterator, 'url_new_win', 'link_open', (tokens, index) => {
     const token = tokens[index];
     const hrefIndex = token.attrIndex('href');
@@ -56,6 +59,7 @@ function getMarkdownItInstance() {
 
     if (isExternal(url)) {
       token.attrPush(['target', '_blank']);
+      token.attrPush(['rel', 'noopener noreferrer']); // See: https://mathiasbynens.github.io/rel-noopener/
     }
   });
 
