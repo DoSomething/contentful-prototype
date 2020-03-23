@@ -1,8 +1,20 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+
+import PlaceholderText from '../../../utilities/PlaceholderText/PlaceholderText';
+
+const CAUSE_PREFERENCE_QUERY = gql`
+  query CausePreferenceQuery($userId: String!) {
+    user(id: $userId) {
+      id
+      causes
+    }
+  }
+`;
 
 const CAUSE_PREFERENCE_MUTATION = gql`
   mutation CausePreferences(
@@ -21,9 +33,18 @@ const CAUSE_PREFERENCE_MUTATION = gql`
   }
 `;
 
-const CausePreferenceItem = ({ cause, causes, description, title }) => {
+const CausePreferenceItem = ({ cause, description, title }) => {
   const options = { variables: { userId: window.AUTH.id } };
+
+  // Make the initial query to get the user's subscriptions
+  const { data, loading, error } = useQuery(CAUSE_PREFERENCE_QUERY, options);
   const [updateInterest] = useMutation(CAUSE_PREFERENCE_MUTATION, options);
+
+  if (error) {
+    return <p>Something went wrong!</p>;
+  }
+
+  const causes = get(data, 'user.causes', []);
 
   return (
     <div className="border border-solid border-gray-300 p-4 rounded-md flex justify-between">
@@ -35,7 +56,7 @@ const CausePreferenceItem = ({ cause, causes, description, title }) => {
       <button
         type="button"
         className={classNames(
-          'btn mx-4 mb-6 md:my-4 border border-solid border-blurple-500 focus:outline-none align-middle',
+          'btn mx-4 mb-8 md:mb-0 lg:my-4 border border-solid border-blurple-500 focus:outline-none align-middle',
           !causes.includes(cause)
             ? 'bg-blurple-500 text-white hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white'
             : 'bg-white border text-blurple-500 border-solid hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500',
@@ -49,7 +70,11 @@ const CausePreferenceItem = ({ cause, causes, description, title }) => {
           })
         }
       >
-        {causes.includes(cause) ? 'Unfollow' : 'Follow'}
+        {!loading ? (
+          <>{causes.includes(cause) ? 'Unfollow' : 'Follow'}</>
+        ) : (
+          <div className="spinner" />
+        )}
       </button>
     </div>
   );
@@ -57,7 +82,6 @@ const CausePreferenceItem = ({ cause, causes, description, title }) => {
 
 CausePreferenceItem.propTypes = {
   cause: PropTypes.string.isRequired,
-  causes: PropTypes.instanceOf(Array).isRequired,
   description: PropTypes.string,
   title: PropTypes.string,
 };

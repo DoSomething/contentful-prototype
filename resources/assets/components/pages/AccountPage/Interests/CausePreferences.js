@@ -1,17 +1,6 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
 
 import CausePreferenceItem from './CausePreferenceItem';
-
-const CAUSE_PREFERENCE_QUERY = gql`
-  query CausePreferenceQuery($userId: String!) {
-    user(id: $userId) {
-      id
-      causes
-    }
-  }
-`;
 
 const CausePreferences = () => {
   const causeItems = {
@@ -70,28 +59,11 @@ const CausePreferences = () => {
         'Do Something about sexual harassment, assault, and violence near you.',
     },
   };
-
-  const options = { variables: { userId: window.AUTH.id } };
-
-  // Make the initial query to get the user's subscriptions
-  const { data, loading, error } = useQuery(CAUSE_PREFERENCE_QUERY, options);
-
-  if (error) {
-    return <p>Something went wrong!</p>;
-  }
-
-  if (loading) {
-    return <div className="spinner align-center" />;
-  }
-
-  const { causes } = data.user;
-
   return (
     <div className="gallery-grid gallery-grid-duo my-6">
       {Object.keys(causeItems).map(cause => (
         <CausePreferenceItem
           cause={cause}
-          causes={causes}
           title={causeItems[cause].title}
           description={causeItems[cause].description}
         />
