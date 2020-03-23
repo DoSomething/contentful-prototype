@@ -10,6 +10,7 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
+import CallToActionBlock from '../../blocks/CallToActionBlock/CallToActionBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
 
@@ -34,6 +35,8 @@ const CompanyPageTemplate = props => {
   return (
     <>
       <SiteNavigationContainer />
+
+      <CallToActionBlock />
 
       <main className="wrapper base-12-grid company-page">
         <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">
