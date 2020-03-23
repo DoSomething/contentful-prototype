@@ -72,7 +72,10 @@ const NewsletterItem = ({ children, image, link, title }) => (
 NewsletterItem.propTypes = {
   children: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  link: PropTypes.object.isRequired,
+  link: PropTypes.shapeOf({
+    copy: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
   title: PropTypes.string.isRequired,
 };
 
@@ -224,8 +227,8 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                 Sign up for one of our newsletters.
               </p>
 
-              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-16 mt-8">
-                <li className="text-white mb-8 lg:mb-0">
+              <ul className="md:col-gap-8 lg:col-gap-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-8 row-gap-8">
+                <li className="text-white">
                   <NewsletterItem
                     title="Community"
                     image={newsletterCommunityImage}
@@ -235,7 +238,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   </NewsletterItem>
                 </li>
 
-                <li className="text-white mb-8 md:mb-0">
+                <li className="text-white">
                   <NewsletterItem
                     title="News"
                     image={newsletterNewsImage}
@@ -245,7 +248,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   </NewsletterItem>
                 </li>
 
-                <li className="text-white mb-8 lg:mb-0">
+                <li className="text-white">
                   <NewsletterItem
                     title="Lifestyle"
                     image={newsletterLifestyleImage}
