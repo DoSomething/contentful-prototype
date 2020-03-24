@@ -26,7 +26,10 @@ const CampaignPreview = ({ campaignWebsite }) => {
       `}
     >
       <LazyImage
-        className="w-1/3 h-16"
+        className="h-16"
+        css={css`
+          min-width: 33%;
+        `}
         src={showcaseImageUrl}
         alt={
           campaignWebsite.showcaseImage.description || 'Campaign showcase image'
