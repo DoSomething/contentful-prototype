@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
+import Credits from '../Credits/Credits';
 import Profile from '../Profile/Profile';
 import BadgesTab from '../Badges/BadgesTab';
 import Interests from '../Interests/Interests';
@@ -19,17 +20,7 @@ const AccountRoute = props => (
       />
     ) : null}
     {featureFlag('volunteer_credits') ? (
-      <Route
-        path="/us/account/profile/credits"
-        render={() => (
-          <h1 className="grid-wide">
-            I&apos;m a credits teapot{' '}
-            <span role="img" aria-label="a little teapot emoji">
-              🍵
-            </span>
-          </h1>
-        )}
-      />
+      <Route path="/us/account/profile/credits" component={Credits} />
     ) : null}
     {featureFlag('cause_preferences') ? (
       <Route
