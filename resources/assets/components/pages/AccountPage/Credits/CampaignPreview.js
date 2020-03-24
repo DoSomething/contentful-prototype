@@ -1,12 +1,10 @@
 import React from 'react';
-import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import LazyImage from '../../../utilities/LazyImage';
 import {
   contentfulImageUrl,
-  tailwind,
   getFormattedScreenSize,
 } from '../../../../helpers';
 
@@ -31,17 +29,11 @@ const CampaignPreview = ({ campaignWebsite }) => {
           min-width: 33%;
         `}
         src={showcaseImageUrl}
-        alt={
-          campaignWebsite.showcaseImage.description || 'Campaign showcase image'
-        }
+        alt={showcaseImage.description || 'Campaign showcase image'}
       />
       <div className="pl-3">
-        <h3 className="font-bold text-base text-blue-500">
-          {campaignWebsite.showcaseTitle}
-        </h3>
-        <p className="mt-1 text-gray-500 text-sm">
-          {campaignWebsite.showcaseDescription}
-        </p>
+        <h3 className="font-bold text-base text-blue-500">{showcaseTitle}</h3>
+        <p className="mt-1 text-gray-500 text-sm">{showcaseDescription}</p>
       </div>
     </div>
   );
