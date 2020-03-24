@@ -54,9 +54,10 @@ const Embed = props => {
   return (
     <div
       className={classnames(
-        'bg-white border border-solid border-transparent-black-10 border-no-clip overflow-hidden rounded',
+        'border-no-clip border-transparent-black-10',
         className,
       )}
+      css={tw`bg-white border border-solid overflow-hidden rounded`}
     >
       <Query query={EMBED_QUERY} variables={{ url }}>
         {({ loading, error, data }) => {
@@ -77,12 +78,12 @@ const Embed = props => {
           ) : (
             <a
               href={url}
-              className="no-underline hover:no-underline"
+              css={tw`no-underline hover:no-underline`}
               target={isExternal(url) ? '_blank' : '_self'}
               rel="noopener noreferrer"
             >
               <div
-                className="flex flex-col md:flex-row"
+                css={tw`flex flex-col md:flex-row`}
                 style={{ minHeight: '100px' }}
               >
                 <LazyImage
@@ -90,8 +91,8 @@ const Embed = props => {
                   src={isLoaded && embed ? embed.thumbnailUrl : null}
                   asBackground
                 />
-                <div className="flex-auto p-3">
-                  <div className="my-3 mr-3">
+                <div css={tw`flex-auto p-3`}>
+                  <div css={tw`my-3 mr-3`}>
                     <h3>
                       {isLoaded ? (
                         truncate(embed ? embed.title : url, { length: 60 })
@@ -99,7 +100,7 @@ const Embed = props => {
                         <PlaceholderText size="medium" />
                       )}
                     </h3>
-                    <p className="text-gray-600 font-normal">
+                    <p css={tw`text-gray-600 font-normal`}>
                       {isLoaded ? (
                         truncate(embed ? embed.description : '', {
                           length: 240,
@@ -108,7 +109,7 @@ const Embed = props => {
                         <PlaceholderText size="large" />
                       )}
                     </p>
-                    <p className="text-gray-700 text-sm mt-3 font-bold uppercase">
+                    <p css={tw`text-gray-700 text-sm mt-3 font-bold uppercase`}>
                       {isLoaded ? (
                         truncate(embed ? embed.providerName : 'External Link', {
                           length: 60,
@@ -120,7 +121,9 @@ const Embed = props => {
                   </div>
                 </div>
                 {badged ? (
-                  <div className="bg-blue-500 hover:bg-blue-300 flex-initial flex item-center justify-center p-3 border-none">
+                  <div
+                    css={tw`bg-blue-500 hover:bg-blue-300 flex-initial flex justify-center p-3 border-none`}
+                  >
                     <img src={linkIcon} alt="link" />
                   </div>
                 ) : null}
