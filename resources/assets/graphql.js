@@ -1,5 +1,6 @@
 /* global window */
 
+import fetch from 'isomorphic-fetch';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { ApolloClient } from 'apollo-client';
@@ -56,5 +57,6 @@ export default uri => {
   return new ApolloClient({
     link: ApolloLink.from([errorLink, authLink, persistedLink, httpLink]),
     cache: new InMemoryCache({ fragmentMatcher }),
+    fetch,
   });
 };

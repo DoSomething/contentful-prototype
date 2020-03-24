@@ -25,3 +25,21 @@ yarn-error.log
 junit.xml
 npm-debug.log
 /contentful/management-api-scripts/logs
+
+# Gatsby:
+.cache
+
+# Frustratingly, we can't change Gatsby's output directory
+# (see: https://git.io/Jvy06) so this conflicts with Laravel:
+public/page-data
+public/app*
+public/chunk-map.json
+public/commons*
+public/component*
+public/index.html
+public/static
+public/styles*
+public/us*
+public/assets
+public/webpack*
+pb
