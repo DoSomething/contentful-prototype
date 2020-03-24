@@ -60,7 +60,10 @@ const NewsletterItem = ({ content, image, link, title }) => (
     />
     <h3 className="mb-2 text-white">{title}</h3>
     <p className="mb-4 flex-grow text-white">{content}</p>
-    <a href={link.url} className="font-normal text-white underline">
+    <a
+      href={link.url}
+      className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+    >
       {link.copy}
     </a>
   </div>
@@ -134,7 +137,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
             >
               <div className="px-4 py-5 text-center">
                 <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  5 million+
+                  5 million
                 </p>
                 <p className="m-0 text-white uppercase">Jeans Donated</p>
                 <p className="italic m-0 text-white">Teens for Jeans</p>
@@ -142,7 +145,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
 
               <div className="px-4 py-5 text-center">
                 <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  3.7 million+
+                  3.7 million
                 </p>
                 <p className="m-0 text-white uppercase">
                   Cigarette Butts Collected
@@ -152,10 +155,12 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
 
               <div className="px-4 py-5 text-center">
                 <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  1,572+
+                  585,965
                 </p>
-                <p className="m-0 text-white uppercase">Photographs Burned</p>
-                <p className="italic m-0 text-white">Breakup Bash</p>
+                <p className="m-0 text-white uppercase">
+                  Period Products Donated
+                </p>
+                <p className="italic m-0 text-white">Power to the Period</p>
               </div>
             </div>
           </header>
@@ -181,19 +186,16 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                 />
               </h2>
 
-              <p className="my-6 text-lg">
-                You can even{' '}
+              <p className="my-6 lg:mb-8 text-lg">
+                Choose a campaign below to make an impact and enter for a chance
+                to{' '}
                 <a
                   href="/us/about/easy-scholarships"
-                  className="font-normal text-blurple-500 underline"
+                  className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
                 >
-                  win scholarships
-                </a>{' '}
-                and{' '}
-                <a href="/" className="font-normal text-blurple-500 underline">
-                  earn volunteer credits
-                </a>{' '}
-                for school! Seriously.
+                  earn scholarships
+                </a>
+                . (Talk about a win-win.)
               </p>
 
               <HomePageCampaignGallery campaigns={campaigns} />
@@ -230,7 +232,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Create change with millions of others."
                     title="Community"
                     image={NewsletterImages.Community}
-                    link={{ copy: 'Join the Communty', url: '/' }}
+                    link={{
+                      copy: 'Join the Communty',
+                      url: 'https://wyd.dosomething.org',
+                    }}
                   />
                 </li>
 
@@ -239,7 +244,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Make an impact on today's headlines."
                     title="News"
                     image={NewsletterImages.News}
-                    link={{ copy: 'Get News', url: '/' }}
+                    link={{
+                      copy: 'Get News',
+                      url: 'https://breakdown.dosomething.org',
+                    }}
                   />
                 </li>
 
@@ -248,7 +256,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Live your best life and help others do the same."
                     title="Lifestyle"
                     image={NewsletterImages.Lifestyle}
-                    link={{ copy: 'Start Reading', url: '/' }}
+                    link={{
+                      copy: 'Start Reading',
+                      url: 'https://boost.dosomething.org',
+                    }}
                   />
                 </li>
 
@@ -257,7 +268,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Qualify for easy scholarships, no GPA or essay required."
                     title="Scholarships"
                     image={NewsletterImages.Scholarships}
-                    link={{ copy: 'Find Scholarships', url: '/' }}
+                    link={{
+                      copy: 'Find Scholarships',
+                      url: 'https://pays.dosomething.org',
+                    }}
                   />
                 </li>
               </ul>
