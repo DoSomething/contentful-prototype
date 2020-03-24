@@ -5,7 +5,11 @@
  */
 export const MEDIA_MEDIUM_SIZE_MIN = 759;
 
-export const PHOENIX_URL = window.location.origin;
+// TODO: How do we improve this?
+export const PHOENIX_URL =
+  typeof window !== 'undefined'
+    ? window.location.origin
+    : 'https://localhost:4000';
 
 // Apollo GraphQL loading states:
 export const NetworkStatus = {

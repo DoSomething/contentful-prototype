@@ -59,10 +59,7 @@ export function appendToQuery(
  * @return {Boolean}
  */
 export function isExternal(url) {
-  return (
-    new URL(String(url), window.location.origin).hostname !==
-    window.location.hostname
-  );
+  return new URL(String(url), 'http://localhost:4000').hostname !== 'localhost';
 }
 
 /**
@@ -535,6 +532,10 @@ export function findById(array, compareId) {
  * @return {String}
  */
 export function env(key, defaultVal) {
+  if (!process.browser) {
+    return defaultVal;
+  }
+
   return get(window.ENV, key, defaultVal);
 }
 
@@ -570,7 +571,7 @@ export function makeUrl(path, queryParameters) {
  * @param  {URL|Location}   url
  * @return {String|Undefined}
  */
-export function query(key, url = window.location) {
+export function query(key, url = 'http://localhost:4000') {
   // Ensure we have a URL object from the location.
   const search = queryString.parse(url.search);
 
