@@ -25,7 +25,7 @@ const CampaignGalleryItemV2 = ({
         src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
       />
 
-      <div className="bg-white border border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b-sm">
+      <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b-sm">
         <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
           Featured
         </div>
