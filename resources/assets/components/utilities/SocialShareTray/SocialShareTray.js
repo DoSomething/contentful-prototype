@@ -9,6 +9,8 @@ import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import messengerIcon from './messengerIcon.svg';
+import instagramIcon from './instagramIcon.svg';
+import snapchatIcon from './snapchatIcon.svg';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -20,6 +22,8 @@ import {
   showFacebookSendDialog,
   facebookMessengerShare,
   getFormattedScreenSize,
+  showInstagramSharePrompt,
+  showSnapchatSharePrompt,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
@@ -123,7 +127,6 @@ class SocialShareTray extends React.Component {
   render() {
     const { shareLink, platforms, responsive, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
-
     return (
       <div className="social-share-tray p-3 text-center">
         {title ? <p className="title uppercase font-bold">{title}</p> : null}
@@ -137,6 +140,30 @@ class SocialShareTray extends React.Component {
               }
               disabled={!shareLink}
               icon={facebookIcon}
+              text="Share"
+            />
+          ) : null}
+
+          {platforms.includes('instagram') ? (
+            <ShareButton
+              className="instagram bg-instagram-500 hover:bg-instagram-400"
+              onClick={() =>
+                showInstagramSharePrompt(shareLink, { url: trackLink })
+              }
+              disabled={!shareLink}
+              icon={instagramIcon}
+              text="Share"
+            />
+          ) : null}
+
+          {platforms.includes('snapchat') ? (
+            <ShareButton
+              className="snapchat bg-snapchat-500 hover:bg-snapchat-400"
+              onClick={() =>
+                showSnapchatSharePrompt(shareLink, { url: trackLink })
+              }
+              disabled={!shareLink}
+              icon={snapchatIcon}
               text="Share"
             />
           ) : null}
@@ -191,7 +218,14 @@ SocialShareTray.propTypes = {
 SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
-  platforms: ['facebook', 'twitter', 'messenger', 'email'],
+  platforms: [
+    'facebook',
+    'instagram',
+    'snapchat',
+    'twitter',
+    'messenger',
+    'email',
+  ],
   title: null,
   responsive: false,
 };
