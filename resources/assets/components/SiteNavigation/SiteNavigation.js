@@ -348,7 +348,7 @@ class SiteNavigation extends React.Component {
                         imageAlt="Girl with headphones reading a tablet"
                         url="/us/collections/corona-virus-campaigns"
                         title="COVID-19 News & Resources"
-                        text="Resources to stay healthy, fight anxiety, and make a difference on the causes we care about, from mental health to climate change and beyond"
+                        text="Resources to stay healthy, fight anxiety, and make a difference on the causes we care about, from mental health to climate change and beyond."
                         callback={() =>
                           this.analyzeEvent({
                             name:
