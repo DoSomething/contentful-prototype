@@ -35,7 +35,7 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
 `;
 
 const SCHOLARSHIP_INFO_QUERY = gql`
-  query ScholarshipAffiliateQuery($campaignId: Int!) {
+  query ScholarshipInfoQuery($campaignId: Int!) {
     actions(campaignId: $campaignId) {
       actionLabel
       scholarshipEntry
@@ -60,22 +60,23 @@ const ScholarshipInfoBlock = ({
   numberOfScholarships,
   utmLabel,
 }) => {
-  const scholarshipAffiliateQuery = utmLabel
-    ? SCHOLARSHIP_AFFILIATE_QUERY
-    : null;
-  const scholarshipInfoQuery = utmLabel ? SCHOLARSHIP_INFO_QUERY : null;
+  let loading;
+  let error;
+  let data;
 
-  const queryVariables = utmLabel
-    ? { utmLabel, preview: env('CONTENTFUL_USE_PREVIEW_API'), campaignId }
-    : { campaignId };
+  if (utmLabel) {
+    ({ loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
+      variables: {
+        utmLabel,
+        preview: env('CONTENTFUL_USE_PREVIEW_API'),
+        campaignId,
+      },
+    }));
+  }
 
-  const { loading, error, data } = useQuery(
-    scholarshipAffiliateQuery,
-    scholarshipInfoQuery,
-    {
-      variables: queryVariables,
-    },
-  );
+  const { loading2, error2, data2 } = useQuery(SCHOLARSHIP_INFO_QUERY, {
+    variables: { campaignId },
+  });
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [detailsLabel, setDetailsLabel] = useState('Show');
@@ -94,16 +95,15 @@ const ScholarshipInfoBlock = ({
     setDetailsLabel(drawerOpen ? 'Show' : 'Hide');
   };
 
-  const isLoaded = !loading;
+  const isLoaded = !loading && !loading2;
   const affiliateTitle = get(data, 'affiliate.title');
-  const endDate = get(data, 'campaign.endDate');
-  const actions = get(data, 'actions', []);
+  const endDate = get(data2, 'campaign.endDate');
+  const actions = get(data2, 'actions', []);
   const actionItem = actions.find(
     action => action.scholarshipEntry && action.reportback,
   );
   const actionType = get(actionItem, 'actionLabel', '');
-
-  if (error) {
+  if (error || error2) {
     console.error(`${error}`);
     report(error);
   }
