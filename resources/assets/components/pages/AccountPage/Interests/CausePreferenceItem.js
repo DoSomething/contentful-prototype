@@ -46,7 +46,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
 
   return (
     <div className="border border-solid border-gray-300 p-4 rounded-md flex justify-between">
-      <div className="w-2/3 lg:w-3/4 pr-2">
+      <div className="w-2/3 lg:w-3/4 pr-4">
         <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
