@@ -744,6 +744,36 @@ export function showFacebookSharePrompt(href, callback) {
 }
 
 /**
+ * Share a link by opening a Instagram share prompt.
+ *
+ * @param  {String} href
+ * @param  {String} quote
+ */
+export function showInstagramSharePrompt(href, quote = '', callback) {
+  const intent = makeUrl('https://www.instagram.com/###?ref=badge', {
+    url: href,
+    text: quote,
+  });
+
+  openDialog(intent, callback);
+}
+
+/**
+ * Share a link by opening a Snapchat share prompt.
+ *
+ * @param  {String} href
+ * @param  {String} quote
+ */
+export function showSnapchatSharePrompt(href, quote = '', callback) {
+  const intent = makeUrl('https://www.snapchat.com/', {
+    url: href,
+    text: quote,
+  });
+
+  openDialog(intent, callback);
+}
+
+/**
  * Share a link by opening a Twitter share prompt.
  *
  * @param  {String} href
