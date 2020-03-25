@@ -17,21 +17,16 @@ const CampaignPreview = ({ campaignWebsite }) => {
       : contentfulImageUrl(showcaseImage.url, 640, 360, 'fill');
 
   return (
-    <div
-      className="max-w-md flex"
-      css={css`
-        min-width: 250px;
-      `}
-    >
+    <div className="max-w-md flex md:block xl:flex">
       <LazyImage
-        className="h-16"
+        className="h-16 md:mb-2 xl:m-0"
         css={css`
           min-width: 33%;
         `}
         src={showcaseImageUrl}
         alt={showcaseImage.description || 'Campaign showcase image'}
       />
-      <div className="pl-3">
+      <div className="pl-3 md:p-0 xl:pl-3">
         <h3 className="font-bold text-base text-blue-500">{showcaseTitle}</h3>
         <p className="mt-1 text-gray-500 text-sm">{showcaseDescription}</p>
       </div>
