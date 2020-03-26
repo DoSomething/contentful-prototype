@@ -17,7 +17,7 @@ const USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY = gql`
   }
 `;
 
-const VoterRegistrationStats = ({ pageViewsCount, userId }) => {
+const VoterRegistrationDriveInfo = ({ pageViewsCount, userId }) => {
   return (
     <div className="social-drive-information mt-6' lg:w-1/3 lg:pl-3 lg:mt-0'">
       <Card className="bordered rounded" title="More info">
@@ -55,13 +55,13 @@ const VoterRegistrationStats = ({ pageViewsCount, userId }) => {
   );
 };
 
-VoterRegistrationStats.propTypes = {
+VoterRegistrationDriveInfo.propTypes = {
   pageViewsCount: PropTypes.string,
   userId: PropTypes.string.isRequired,
 };
 
-VoterRegistrationStats.defaultProps = {
+VoterRegistrationDriveInfo.defaultProps = {
   pageViewsCount: '?',
 };
 
-export default VoterRegistrationStats;
+export default VoterRegistrationDriveInfo;

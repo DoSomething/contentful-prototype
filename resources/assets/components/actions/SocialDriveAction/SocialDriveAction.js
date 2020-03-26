@@ -9,7 +9,7 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import VoterRegistrationStats from './VoterRegistrationStats';
+import VoterRegistrationDriveInfo from './VoterRegistrationDriveInfo';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
@@ -129,7 +129,7 @@ class SocialDriveAction extends React.Component {
         </div>
 
         {!hidePageViews ? (
-          <VoterRegistrationStats
+          <VoterRegistrationDriveInfo
             userId={userId}
             pageViewsCount={this.state.count}
           />
