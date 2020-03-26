@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
 import LazyImage from '../../utilities/LazyImage';
+import PhotoBanner from '../../blocks/PhotoBanner/PhotoBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
@@ -37,14 +38,7 @@ const CompanyPageTemplate = props => {
     <>
       <SiteNavigationContainer />
 
-      <CallToActionBlock
-        supertitle="hello world"
-        title="Voter Registration Stuff"
-        text="These tools are designed with the ability to be customized for you--
-            we can rapidly spin up impactful, branded pages to get your audience
-            registered to vote."
-        classes="bg-purple-700"
-      />
+      <PhotoBanner />
 
       <main className="wrapper base-12-grid company-page">
         <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">
@@ -90,6 +84,15 @@ const CompanyPageTemplate = props => {
           />
         ) : null}
       </main>
+
+      <CallToActionBlock
+        supertitle="hello world"
+        title="Voter Registration Stuff"
+        text="These tools are designed with the ability to be customized for you--
+            we can rapidly spin up impactful, branded pages to get your audience
+            registered to vote."
+        classes="bg-purple-700"
+      />
 
       <SiteFooter />
     </>

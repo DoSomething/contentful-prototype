@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { css } from '@emotion/core';
+// import { css } from '@emotion/core';
 import classnames from 'classnames';
 
 const CallToActionBlock = ({ supertitle, title, text, classes }) => {
