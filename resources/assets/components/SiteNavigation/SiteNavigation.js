@@ -260,6 +260,19 @@ class SiteNavigation extends React.Component {
                           >
                             Education
                           </a>
+                          <a
+                            href="/us/causes/gun-violence"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_gun_violence',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_gun_violence',
+                              });
+                            }}
+                          >
+                            Gun Violence
+                          </a>
                         </li>
                         <li>
                           <a
@@ -275,6 +288,22 @@ class SiteNavigation extends React.Component {
                             }}
                           >
                             Mental Health
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/physical-health"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_physical_health',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_physical_health',
+                              });
+                            }}
+                          >
+                            Physical Health
                           </a>
                         </li>
                         <li>
@@ -310,6 +339,22 @@ class SiteNavigation extends React.Component {
                         </li>
                         <li>
                           <a
+                            href="/us/causes/sexual-harassment"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_sexual_harassment',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_sexual_harassment',
+                              });
+                            }}
+                          >
+                            Sexual Harassment
+                          </a>
+                        </li>
+                        <li>
+                          <a
                             href="/us/causes/bullying"
                             onClick={() => {
                               this.handleOnClickLink({
@@ -321,6 +366,85 @@ class SiteNavigation extends React.Component {
                             }}
                           >
                             Bullying
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/gender-rights"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_gender_rights',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_gender_rights',
+                              });
+                            }}
+                          >
+                            Gender Rights
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/racial-justice"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_racial_justice',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_racial_justice',
+                              });
+                            }}
+                          >
+                            Racial Justice
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/discrimination"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_discrimination',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_discrimination',
+                              });
+                            }}
+                          >
+                            Discrimination
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/lgbtq-rights"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_lgbtq_rights',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_lgbtq_rights',
+                              });
+                            }}
+                          >
+                            LGBTQ+ Rights
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/voter-registration"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_voter_registration',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_voter_registration',
+                              });
+                            }}
+                          >
+                            Voter Registration
                           </a>
                         </li>
                         <li>
