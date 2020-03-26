@@ -6,6 +6,7 @@ import { React, Fragment } from 'react';
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
 import * as NewsletterImages from './NewsletterImages';
+import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import { contentfulImageUrl, tailwind } from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
@@ -35,6 +36,7 @@ const HOME_PAGE_QUERY = gql`
         }
       }
       articles {
+        id
         showcaseTitle
         showcaseDescription
         showcaseImage {
@@ -79,7 +81,7 @@ NewsletterItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const NewHomePageTemplate = ({ campaigns, title }) => {
+const NewHomePageTemplate = ({ articles, campaigns, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
@@ -176,7 +178,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
             `}
           >
             <div className="grid-wide text-center">
-              <h2 className="relative">
+              <h2 className="mb-6 relative">
                 <span className="bg-white font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
                   Take Action
                 </span>
@@ -186,7 +188,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                 />
               </h2>
 
-              <p className="my-6 lg:mb-8 text-lg">
+              <p className="mb-6 lg:mb-8 text-lg">
                 Choose a campaign below to make an impact and enter for a chance
                 to{' '}
                 <a
@@ -280,7 +282,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
 
           <section className="base-12-grid bg-gray-100">
             <div className="grid-wide text-center">
-              <h2 className="relative">
+              <h2 className="mb-6 relative">
                 <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
                   Read About It
                 </span>
@@ -290,7 +292,7 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                 />
               </h2>
 
-              {/* <HomePageArticlesGallery /> */}
+              <HomePageArticleGallery articles={articles} />
 
               <a
                 href="/us/articles"
@@ -353,8 +355,9 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
 };
 
 NewHomePageTemplate.propTypes = {
-  title: PropTypes.string,
+  articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  title: PropTypes.string,
 };
 
 NewHomePageTemplate.defaultProps = {
