@@ -615,7 +615,7 @@ export function loadFacebookSDK() {
  * Load and return the Snapchat SDK.
  */
 export function loadSnapchatSDK() {
-  return new Promise(resolve => {
+
     const script = document.createElement('script');
     script.id = 'snapkit-creative-kit-sdk';
     script.src = 'https://sdk.snapkit.com/js/v1/create.js';
@@ -626,7 +626,6 @@ export function loadSnapchatSDK() {
         document.getElementsByClassName('snapchat-share-button'),
       );
     };
-  });
 }
 
 /**
