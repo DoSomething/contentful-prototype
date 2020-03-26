@@ -6,11 +6,14 @@ import { featureFlag } from '../../../helpers';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 
-// @TODO: This query needs to filter by completed voter registrations before we go live.
-
 const USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY = gql`
   query UserVoterRegistrationReferralCount($userId: String!) {
-    postsCount(referrerUserId: $userId, type: "voter-reg", limit: 50)
+    postsCount(
+      referrerUserId: $userId
+      type: "voter-reg"
+      status: [REGISTER_FORM, REGISTER_OVR]
+      limit: 51
+    )
   }
 `;
 
@@ -41,7 +44,7 @@ const VoterRegistrationStats = ({ pageViewsCount, userId }) => {
             >
               {data => (
                 <h1 className="voter-registrations__amount">
-                  {data.postsCount}
+                  {data.postsCount === 51 ? '50+' : data.postsCount}
                 </h1>
               )}
             </Query>
