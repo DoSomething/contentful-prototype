@@ -41,7 +41,7 @@ const campaigns = [
 const TableHeader = tw.th`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
 
 const VolunteerCreditsTable = () => (
-  <table className="border border-solid border-gray-200 border-collapse">
+  <table className="border border-solid border-gray-200 border-collapse w-full">
     <thead>
       <tr>
         <TableHeader>Campaign Info</TableHeader>

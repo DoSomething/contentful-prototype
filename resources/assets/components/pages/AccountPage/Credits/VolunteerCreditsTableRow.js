@@ -27,9 +27,8 @@ const DownloadButton = ({ pending }) => (
     type="button"
     css={css`
       height: 65px;
-      width: 150px;
     `}
-    className={classNames('button', { 'is-disabled': pending })}
+    className={classNames('button w-full max-w-md', { 'is-disabled': pending })}
   >
     {pending ? 'Pending' : 'Download'}
   </button>
@@ -69,9 +68,9 @@ const VolunteerCreditsTableRow = ({
         </>
       ) : (
         <TableData>
-          <CampaignPreview campaignWebsite={campaignWebsite} mobile />
+          <CampaignPreview campaignWebsite={campaignWebsite} />
 
-          <ul className="py-3 max-w-sm">
+          <ul className="py-5 max-w-sm">
             <PostDetail detail="Action Type" value={actionType} />
             <PostDetail detail="Volunteer Hours" value={volunteerHours} />
             <PostDetail detail="Date Completed" value={dateCompleted} />
