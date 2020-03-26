@@ -1,10 +1,12 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
+import { featureFlag } from '../../../helpers';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
+
+// @TODO: This query needs to filter by completed voter registrations before we go live.
 
 const USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY = gql`
   query UserVoterRegistrationReferralCount($userId: String!) {
@@ -28,22 +30,35 @@ const VoterRegistrationStats = ({ pageViewsCount, userId }) => {
           <span className="page-views__text uppercase">Total page views</span>
           <h1 className="page-views__amount">{pageViewsCount}</h1>
         </div>
-        <div className="p-3 voter-registrations">
-          <span className="voter-registrations__text uppercase">
-            Total voter registrations
-          </span>
-          <Query
-            query={USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY}
-            variables={{ userId }}
-          >
-            {data => (
-              <h1 className="voter-registrations__amount">{data.postsCount}</h1>
-            )}
-          </Query>
-        </div>
+        {featureFlag('voter_reg_drive_total') ? (
+          <div className="p-3 voter-registrations">
+            <span className="voter-registrations__text uppercase">
+              Total voter registrations
+            </span>
+            <Query
+              query={USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY}
+              variables={{ userId }}
+            >
+              {data => (
+                <h1 className="voter-registrations__amount">
+                  {data.postsCount}
+                </h1>
+              )}
+            </Query>
+          </div>
+        ) : null}
       </Card>
     </div>
   );
+};
+
+VoterRegistrationStats.propTypes = {
+  pageViewsCount: PropTypes.string,
+  userId: PropTypes.string.isRequired,
+};
+
+VoterRegistrationStats.defaultProps = {
+  pageViewsCount: '?',
 };
 
 export default VoterRegistrationStats;

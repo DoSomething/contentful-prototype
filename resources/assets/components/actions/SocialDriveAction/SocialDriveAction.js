@@ -10,7 +10,7 @@ import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import VoterRegistrationStats from './VoterRegistrationStats';
-import { dynamicString, withoutTokens, featureFlag } from '../../../helpers';
+import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
   EVENT_CATEGORIES,
