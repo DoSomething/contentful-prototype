@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItemV2';
 
 const HomePageArticleGallery = ({ articles }) => {
-  console.log('🤬', articles);
-
   return (
     <ul className="article-gallery mt-0 gap-8 grid grid-cols-1 md:grid-cols-2 xxl:grid-cols-4">
       {articles.map(article => {
