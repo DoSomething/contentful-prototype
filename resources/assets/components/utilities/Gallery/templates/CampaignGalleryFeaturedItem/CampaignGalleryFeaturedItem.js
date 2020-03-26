@@ -53,7 +53,7 @@ const CampaignGalleryFeaturedItem = ({
         />
       </div>
 
-      <div className="bg-white border-b border-l xxl:border-l-0 border-r xxl:border-t border-gray-300 border-solid flex xxl:block flex-col flex-grow p-4 xxl:p-8 xxl:pl-0 rounded-b-sm">
+      <div className="bg-white border-b border-l xxl:border-l-0 border-r xxl:border-t border-gray-300 border-solid flex xxl:block flex-col flex-grow p-4 xxl:p-8 xxl:pl-0 rounded-b xxl:rounded-b-none">
         <div className="font-bold text-base text-purple-500 xxl:text-lg uppercase">
           Featured
         </div>

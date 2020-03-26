@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  contentfulImageUrl,
   contentfulImageSrcset,
+  contentfulImageUrl,
 } from '../../../../../helpers';
 
-const CampaignGalleryItemV2 = ({
+const CampaignGalleryItem = ({
   showcaseDescription,
   showcaseImage,
   showcaseTitle,
@@ -25,7 +25,7 @@ const CampaignGalleryItemV2 = ({
         src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
       />
 
-      <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b-sm">
+      <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
         <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
           Featured
         </div>
@@ -47,11 +47,11 @@ const CampaignGalleryItemV2 = ({
   );
 };
 
-CampaignGalleryItemV2.propTypes = {
+CampaignGalleryItem.propTypes = {
   showcaseDescription: PropTypes.string.isRequired,
   showcaseImage: PropTypes.object.isRequired,
   showcaseTitle: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
-export default CampaignGalleryItemV2;
+export default CampaignGalleryItem;
