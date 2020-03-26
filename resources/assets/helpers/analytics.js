@@ -251,7 +251,6 @@ export function trackAnalyticsPageView(history) {
  */
 export function trackAnalyticsEvent(name, metadata = {}) {
   const { action, category, label, context = {}, service } = metadata;
-
   // Event name is required.
   if (!isString(name)) {
     console.error('Please provide a string for the event name!');

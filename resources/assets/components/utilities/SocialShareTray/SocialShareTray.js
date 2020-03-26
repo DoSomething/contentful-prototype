@@ -22,8 +22,8 @@ import {
   showFacebookSendDialog,
   facebookMessengerShare,
   getFormattedScreenSize,
-  showInstagramSharePrompt,
-  showSnapchatSharePrompt,
+  handleInstagramShareClick,
+  handleSnapchatShareClick,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
@@ -146,9 +146,9 @@ class SocialShareTray extends React.Component {
 
           {platforms.includes('instagram') ? (
             <ShareButton
-              className="instagram bg-instagram-500 hover:bg-instagram-400"
+              className="instagram bg-red-500 hover:bg-red-300"
               onClick={() =>
-                showInstagramSharePrompt(shareLink, { url: trackLink })
+                handleInstagramShareClick(shareLink, { url: trackLink })
               }
               disabled={!shareLink}
               icon={instagramIcon}
@@ -158,9 +158,9 @@ class SocialShareTray extends React.Component {
 
           {platforms.includes('snapchat') ? (
             <ShareButton
-              className="snapchat bg-snapchat-500 hover:bg-snapchat-400"
+              className="snapchat bg-yellow-400 hover:bg-yellow-200 text-black"
               onClick={() =>
-                showSnapchatSharePrompt(shareLink, { url: trackLink })
+                handleSnapchatShareClick(shareLink, { url: trackLink })
               }
               disabled={!shareLink}
               icon={snapchatIcon}

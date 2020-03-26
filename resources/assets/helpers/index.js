@@ -744,7 +744,7 @@ export function showFacebookSharePrompt(href, callback) {
 }
 
 /**
- * Share a link by opening a Instagram share prompt.
+ * Open a tab for Instagram for the user.
  *
  * @param  {String} href
  * @param  {String} quote
@@ -759,7 +759,7 @@ export function showInstagramSharePrompt(href, quote = '', callback) {
 }
 
 /**
- * Share a link by opening a Snapchat share prompt.
+ * Open a tab for Snapchat for the user.
  *
  * @param  {String} href
  * @param  {String} quote
@@ -805,6 +805,41 @@ export function handleFacebookShareClick(href, trackingData) {
   // @todo 12/13/2018: Use the showFacebookShareDialog to track
   // 'completed' and 'cancelled' events as well.
   showFacebookSharePrompt(href);
+}
+
+/**
+ * Handle click event from a Instagram share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ * @param {String} quote
+ */
+export function handleInstagramShareClick(href, trackingData, quote = '') {
+  trackAnalyticsEvent('clicked_share_twitter', {
+    action: 'button_clicked',
+    category: EVENT_CATEGORIES.socialShare,
+    label: 'twitter',
+    context: { ...trackingData, url: href },
+  });
+  showInstagramSharePrompt(href, quote);
+}
+
+/**
+ * Handle click event from a Snapchat share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ * @param {String} quote
+ */
+export function handleSnapchatShareClick(href, trackingData, quote = '') {
+  trackAnalyticsEvent('clicked_share_twitter', {
+    action: 'button_clicked',
+    category: EVENT_CATEGORIES.socialShare,
+    label: 'twitter',
+    context: { ...trackingData, url: href },
+  });
+
+  showSnapchatSharePrompt(href, quote);
 }
 
 /**
