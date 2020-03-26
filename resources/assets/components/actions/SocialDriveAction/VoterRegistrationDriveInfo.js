@@ -2,7 +2,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import { featureFlag } from '../../../helpers';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 
@@ -33,23 +32,21 @@ const VoterRegistrationDriveInfo = ({ pageViewsCount, userId }) => {
           <span className="page-views__text uppercase">Total page views</span>
           <h1 className="page-views__amount">{pageViewsCount}</h1>
         </div>
-        {featureFlag('voter_reg_drive_total') ? (
-          <div className="p-3 voter-registrations">
-            <span className="voter-registrations__text uppercase">
-              Total voter registrations
-            </span>
-            <Query
-              query={USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY}
-              variables={{ userId }}
-            >
-              {data => (
-                <h1 className="voter-registrations__amount">
-                  {data.postsCount === 51 ? '50+' : data.postsCount}
-                </h1>
-              )}
-            </Query>
-          </div>
-        ) : null}
+        <div className="p-3 voter-registrations">
+          <span className="voter-registrations__text uppercase">
+            Total voter registrations
+          </span>
+          <Query
+            query={USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY}
+            variables={{ userId }}
+          >
+            {data => (
+              <h1 className="voter-registrations__amount">
+                {data.postsCount === 51 ? '50+' : data.postsCount}
+              </h1>
+            )}
+          </Query>
+        </div>
       </Card>
     </div>
   );
