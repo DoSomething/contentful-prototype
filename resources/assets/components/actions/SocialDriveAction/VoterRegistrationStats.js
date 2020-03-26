@@ -3,24 +3,18 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 
 const USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY = gql`
-  query UserVoterRegistrationReferralCount($id: String!) {
-    user(id: $id) {
-      id
-      firstName
-    }
+  query UserVoterRegistrationReferralCount($userId: String!) {
+    postsCount(referrerUserId: $userId, type: "voter-reg", limit: 50)
   }
 `;
 
-const VoterRegistrationStats = ({ hidePageViews, userId, pageViewsCount }) => {
+const VoterRegistrationStats = ({ pageViewsCount, userId }) => {
   return (
-    <div
-      className={classNames('social-drive-information mt-6', {
-        'lg:w-1/3 lg:pl-3 lg:mt-0': !hidePageViews,
-      })}
-    >
+    <div className="social-drive-information mt-6' lg:w-1/3 lg:pl-3 lg:mt-0'">
       <Card className="bordered rounded" title="More info">
         <div className="link-info p-3">
           <p className="info__title">What happens next?</p>
@@ -38,7 +32,14 @@ const VoterRegistrationStats = ({ hidePageViews, userId, pageViewsCount }) => {
           <span className="voter-registrations__text uppercase">
             Total voter registrations
           </span>
-          <h1 className="voter-registrations__amount">?</h1>
+          <Query
+            query={USER_VOTER_REGISTRATION_REFERRAL_COUNT_QUERY}
+            variables={{ userId }}
+          >
+            {data => (
+              <h1 className="voter-registrations__amount">{data.postsCount}</h1>
+            )}
+          </Query>
         </div>
       </Card>
     </div>
