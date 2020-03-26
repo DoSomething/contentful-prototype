@@ -60,21 +60,20 @@ const ScholarshipInfoBlock = ({
   numberOfScholarships,
   utmLabel,
 }) => {
-  let loading;
-  let error;
-  let data;
+  const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
+    skip: utmLabel === null,
+    variables: {
+      utmLabel,
+      preview: env('CONTENTFUL_USE_PREVIEW_API'),
+      campaignId,
+    },
+  });
 
-  if (utmLabel) {
-    ({ loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
-      variables: {
-        utmLabel,
-        preview: env('CONTENTFUL_USE_PREVIEW_API'),
-        campaignId,
-      },
-    }));
-  }
-
-  const { loading2, error2, data2 } = useQuery(SCHOLARSHIP_INFO_QUERY, {
+  const {
+    loading: scholarshipLoading,
+    error: scholarshipError,
+    data: scholarshipData,
+  } = useQuery(SCHOLARSHIP_INFO_QUERY, {
     variables: { campaignId },
   });
 
@@ -95,15 +94,15 @@ const ScholarshipInfoBlock = ({
     setDetailsLabel(drawerOpen ? 'Show' : 'Hide');
   };
 
-  const isLoaded = !loading && !loading2;
+  const isLoaded = !loading && !scholarshipLoading;
   const affiliateTitle = get(data, 'affiliate.title');
-  const endDate = get(data2, 'campaign.endDate');
-  const actions = get(data2, 'actions', []);
+  const endDate = get(scholarshipData, 'campaign.endDate');
+  const actions = get(scholarshipData, 'actions', []);
   const actionItem = actions.find(
     action => action.scholarshipEntry && action.reportback,
   );
   const actionType = get(actionItem, 'actionLabel', '');
-  if (error || error2) {
+  if (error || scholarshipError) {
     console.error(`${error}`);
     report(error);
   }
