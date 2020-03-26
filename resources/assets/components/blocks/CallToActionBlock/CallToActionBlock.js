@@ -24,9 +24,9 @@ const CallToActionBlock = ({ supertitle, title, text, classes }) => {
         <div className="grid-narrow text-center my-4">
           <h3
             className="text-m font-source-sans font-bold uppercase"
-            css={css`
-              background-color: hotpink;
-            `}
+            // css={css`
+            //   background-color: hotpink;
+            // `}
           >
             {supertitle}
           </h3>

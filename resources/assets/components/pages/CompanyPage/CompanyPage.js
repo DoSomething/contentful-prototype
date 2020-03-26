@@ -13,6 +13,7 @@ import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm'
 import CallToActionBlock from '../../blocks/CallToActionBlock/CallToActionBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
+import ScholarshipFeatureBlock from '../../blocks/ScholarshipFeatureBlock/ScholarshipFeatureBlock';
 
 export const COMPANY_PAGE_QUERY = gql`
   query CompanyPageQuery($slug: String!, $preview: Boolean!) {
@@ -62,6 +63,11 @@ const CompanyPageTemplate = props => {
             {subTitle ? <h2 className="text-lg my-3">{subTitle}</h2> : null}
 
             <TextContent className="pt-4">{content}</TextContent>
+            <ScholarshipFeatureBlock />
+            <ScholarshipFeatureBlock />
+            <ScholarshipFeatureBlock />
+            <ScholarshipFeatureBlock />
+            <ScholarshipFeatureBlock />
           </div>
         </article>
 
