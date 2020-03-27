@@ -36,7 +36,7 @@ describe('Voter Registration Drive', () => {
     cy.authVisitBlockPermalink(user, blockId);
 
     // @TODO: This value never gets set, the input value is stuck on "Loading..."
-    //cy.get('.link-bar input').should('contain.value', shortenedLink);\
+    //cy.get('.link-bar input').should('contain.value', shortenedLink);
 
     cy.contains('.page-views__text', 'Total page views');
     cy.contains('.voter-registrations__text', 'Total voter registrations');

@@ -38,6 +38,17 @@ New GraphQL types, fields, queries, and mutations should be reflected in the roo
 $ apollo client:download-schema --endpoint=http://graphql-dev.dosomething.org/graphql schema.json
 ```
 
+{% hint style="warning" %}
+Note: This command won't work until we remove the duplicate `UserPostsQuery` definitions in the codebase. It fails with this error:
+
+```
+ ›   dosomething-graphql-dev-lambda": Error: ️️There are multiple definitions
+ ›   for the `UserPostsQuery` operation. Please rename or remove all operations
+ ›   with the duplicated name before continuing.
+```
+
+{% endhint %}
+
 ## Code Style
 
 We use [Prettier](https://prettier.io/) to format our code & [ESLint](http://eslint.org/) to catch common mistakes.
