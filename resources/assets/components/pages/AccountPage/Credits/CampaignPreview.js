@@ -19,10 +19,7 @@ const CampaignPreview = ({ campaignWebsite }) => {
   return (
     <div className="flex">
       <LazyImage
-        className="h-16 md:hidden xl:block"
-        css={css`
-          min-width: 33%;
-        `}
+        className="h-16 sm:h-auto xl:h-16 md:hidden xl:block"
         src={showcaseImageUrl}
         alt={showcaseImage.description || 'Campaign showcase image'}
       />
