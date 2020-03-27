@@ -104,7 +104,7 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
               className="base-12-grid"
               css={css`
                 background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=775&w=400');
-                background-position: top center;
+                background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
                 padding-bottom: 250px;
@@ -119,9 +119,10 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
               `}
             >
               <h1
-                className="font-league-gothic font-normal grid-wide leading-none m-0 px-4 md:px-20 py-24 text-yellow-500 text-center uppercase"
+                className="font-league-gothic font-normal grid-wide m-0 px-2 md:px-0 lg:px-16 py-24 text-yellow-500 text-center uppercase"
                 css={css`
                   font-size: 84px;
+                  line-height: 1.1;
 
                   @media (min-width: ${tailwindScreens.md}) {
                     font-size: 120px;
