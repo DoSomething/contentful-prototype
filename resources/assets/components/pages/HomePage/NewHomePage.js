@@ -49,6 +49,24 @@ const HOME_PAGE_QUERY = gql`
   }
 `;
 
+const ImpactStatistic = ({ campaignName, impactLabel, impactValue }) => (
+  <div className="px-4 py-5 text-center">
+    <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
+      {impactValue}
+    </p>
+    <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
+      {impactLabel}
+    </p>
+    <p className="italic m-0 text-white">{campaignName}</p>
+  </div>
+);
+
+ImpactStatistic.propTypes = {
+  campaignName: PropTypes.string.isRequired,
+  impactLabel: PropTypes.string.isRequired,
+  impactValue: PropTypes.string.isRequired,
+};
+
 const NewsletterItem = ({ content, image, link, title }) => (
   <div className="flex flex-col h-full">
     <img
@@ -145,44 +163,24 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
                 }
               `}
             >
-              <div
-                className="bg-blurple-500 py-4 grid-wide"
-                css={css`
-                  @media (min-width: ${tailwindScreens.xl}) {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr;
-                  }
-                `}
-              >
-                <div className="px-4 py-5  text-center">
-                  <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
-                    5 million
-                  </p>
-                  <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
-                    Jeans Donated
-                  </p>
-                  <p className="italic m-0 text-white">Teens for Jeans</p>
-                </div>
+              <div className="bg-blurple-500 py-4 grid-wide xl:grid xl:grid-cols-3">
+                <ImpactStatistic
+                  campaignName="Teens for Jeans"
+                  impactLabel="Jeans Donated"
+                  impactValue="5 million"
+                />
 
-                <div className="px-4 py-5 text-center">
-                  <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
-                    3.7 million
-                  </p>
-                  <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
-                    Cigarette Butts Collected
-                  </p>
-                  <p className="italic m-0 text-white">Get the Filter Out</p>
-                </div>
+                <ImpactStatistic
+                  campaignName="Get the Filter Out"
+                  impactLabel="Cigarette Butts Collected"
+                  impactValue="3.7 million"
+                />
 
-                <div className="px-4 py-5 text-center">
-                  <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
-                    585,965
-                  </p>
-                  <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
-                    Period Products Donated
-                  </p>
-                  <p className="italic m-0 text-white">Power to the Period</p>
-                </div>
+                <ImpactStatistic
+                  campaignName="Power to the Period"
+                  impactLabel="Period Products Donated"
+                  impactValue="585,965"
+                />
               </div>
             </div>
           </header>
