@@ -28,6 +28,7 @@ const DownloadButton = ({ pending }) => (
     css={css`
       height: 65px;
     `}
+    /* @TODO: Test out using the btn class here instead of the Forge class. */
     className={classNames('button w-full', { 'is-disabled': pending })}
   >
     {pending ? 'Pending' : 'Download'}
