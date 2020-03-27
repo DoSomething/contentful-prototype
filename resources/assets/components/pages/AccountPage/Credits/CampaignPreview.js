@@ -10,6 +10,7 @@ import {
 const CampaignPreview = ({ campaignWebsite }) => {
   const { showcaseTitle, showcaseDescription, showcaseImage } = campaignWebsite;
 
+  // @TODO: Can we use srcset instead of this logic?
   const showcaseImageUrl =
     getFormattedScreenSize() === 'small'
       ? contentfulImageUrl(showcaseImage.url, 200, 100, 'fill')
