@@ -15,7 +15,7 @@ const Credits = () => (
       </p>
     </div>
 
-    <div className="grid-wide my-8 overflow-scroll">
+    <div className="grid-wide my-8">
       <VolunteerCreditsTable />
     </div>
   </>
