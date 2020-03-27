@@ -4,12 +4,17 @@ import { userFactory } from '../fixtures/user';
 
 /**
  * This ID correponds to the dev Contentful entry for a socialDriveAction that is configured
- * to display page views. We only enable this setting for voter registration drives.
+ * to display page views, which is only used when linking to a user's voter registration drives.
+ *
+ * @see docs/development/content-types/social-drive-action.md
  */
 const blockId = '2T5ARr1AViKw2Kw0Q4S0so';
+
+// Configure mock data to use for each test:
+const user = userFactory();
 const linksApiUrl = `/api/v2/links`;
 const shortenedLink = 'https://dosome.click/ngzdjp';
-const unshortenedLink = 'https://vote.dosomething.org?referral=true';
+const unshortenedLink = `https://vote.dosomething.org/member-drive?r=user:${user.id},referral=true`;
 const contentfulBlockQueryResult = {
   block: {
     id: blockId,
