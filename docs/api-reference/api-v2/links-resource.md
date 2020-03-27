@@ -8,6 +8,7 @@ description: List of API endpoints for the Links resource.
 {% api-method-summary %}
 Shorten a URL.
 {% endapi-method-summary %}
+{% endapi-method %}
 
 {% hint style="info" %}
 The request is proxied to [Bertly](http://github.com/dosomething/bertly) to shorten a given URL.
