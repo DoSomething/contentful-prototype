@@ -10,14 +10,14 @@ Shorten a URL.
 {% endapi-method-summary %}
 
 {% api-method-description %}
-The request is proxied to [Bertly](http://github.com/dosomething/bertly) to shorten a given URL.
+The request is proxied to Bertly (http://github.com/dosomething/bertly) to shorten a given URL.
 {% endapi-method-description %}
 
 {% api-method-spec %}
 {% api-method-request %}
 {% api-method-path-parameters %}
 {% api-method-parameter name="url" type="string" required=true %}
-e.g.: 'https://vote.dosomething.org/member-drive?userId=58e68d5da0bfad4c3b4cd722&r=user:58e68d5da0bfad4c3b4cd722,campaignID:7059,campaignRunID:8128,source:web,source_details:onlinedrivereferral,referral=true'
+e.g.: 'https://vote.dosomething.org/member-drive?r=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true'
 {% endapi-method-parameter %}
 {% endapi-method-path-parameters %}
 {% endapi-method-request %}
