@@ -36,14 +36,13 @@ describe('Voter Registration Drive', () => {
       postsCount: (root, { referrerUserId }) => 11,
     });
 
-    cy.route('POST', linksApiUrl, { shortenedLink, count: 7 });
+    cy.route('POST', linksApiUrl, { url: shortenedLink, count: 17 });
 
     cy.authVisitBlockPermalink(user, blockId);
 
-    // @TODO: This value never gets set, the input value is stuck on "Loading..."
-    //cy.get('.link-bar input').should('contain.value', shortenedLink);
-
+    cy.get('.link-bar input').should('contain.value', shortenedLink);
     cy.contains('.page-views__text', 'Total page views');
+    cy.contains('h1.page-views__amount', 17);
     cy.contains('.voter-registrations__text', 'Total voter registrations');
     cy.contains('h1.voter-registrations__amount', 11);
   });
@@ -61,8 +60,6 @@ describe('Voter Registration Drive', () => {
 
     cy.authVisitBlockPermalink(user, blockId);
 
-    cy.contains('.page-views__text', 'Total page views');
-    cy.contains('.voter-registrations__text', 'Total voter registrations');
     cy.contains('h1.voter-registrations__amount', '50+');
   });
 
@@ -72,7 +69,7 @@ describe('Voter Registration Drive', () => {
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
 
     cy.mockGraphqlOp('UserVoterRegistrationReferralCount', {
-      postsCount: (root, { referrerUserId }) => 51,
+      postsCount: (root, { referrerUserId }) => 11,
     });
 
     cy.authVisitBlockPermalink(user, blockId);
