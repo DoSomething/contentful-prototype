@@ -19,8 +19,14 @@ describe('Voter Registration Drive', () => {
       },
     });
 
+    cy.mockGraphqlOp('UserVoterRegistrationReferralCount', {
+      postsCount: (root, { referrerUserId }) => 11,
+    });
+
     cy.login(user).visit(voterRegistrationDriveBlockUrl);
 
     cy.contains('.page-views__text', 'Total page views');
+    cy.contains('.voter-registrations__text', 'Total voter registrations');
+    cy.contains('h1.voter-registrations__amount', 11);
   });
 });
