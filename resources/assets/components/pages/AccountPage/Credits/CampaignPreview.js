@@ -17,7 +17,7 @@ const CampaignPreview = ({ campaignWebsite }) => {
       : contentfulImageUrl(showcaseImage.url, 640, 360, 'fill');
 
   return (
-    <div className="max-w-md flex">
+    <div className="flex">
       <LazyImage
         className="h-16 md:hidden xl:block"
         css={css`

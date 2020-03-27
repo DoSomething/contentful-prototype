@@ -28,7 +28,7 @@ const DownloadButton = ({ pending }) => (
     css={css`
       height: 65px;
     `}
-    className={classNames('button w-full max-w-md', { 'is-disabled': pending })}
+    className={classNames('button w-full', { 'is-disabled': pending })}
   >
     {pending ? 'Pending' : 'Download'}
   </button>
