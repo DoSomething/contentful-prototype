@@ -99,26 +99,30 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
 
       <main>
         <article>
-          <header
-            role="banner"
-            className="bg-white p-4"
-            css={css`
-              background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&h=775&w=400');
-              background-size: 100% auto;
-              background-repeat: no-repeat;
-              @media (min-width: ${tailwindScreens.md}) {
-                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&h=700&w=700');
-              }
-              @media (min-width: ${tailwindScreens.lg}) {
-                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&h=539&w=1440');
-              }
-            `}
-          >
-            <div className="">
+          <header role="banner" className="bg-white pb-4">
+            <div
+              className="base-12-grid"
+              css={css`
+                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=775&w=400');
+                background-position: top center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                padding-bottom: 250px;
+
+                @media (min-width: ${tailwindScreens.md}) {
+                  background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=700&w=700');
+                  padding-bottom: 104px;
+                }
+                @media (min-width: ${tailwindScreens.lg}) {
+                  background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=539&w=1440');
+                }
+              `}
+            >
               <h1
-                className="font-league-gothic font-normal leading-none m-0 py-24 text-yellow-500 text-center uppercase"
+                className="font-league-gothic font-normal grid-wide leading-none m-0 px-4 md:px-20 py-24 text-yellow-500 text-center uppercase"
                 css={css`
                   font-size: 84px;
+
                   @media (min-width: ${tailwindScreens.md}) {
                     font-size: 120px;
                   }
@@ -129,40 +133,55 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
             </div>
 
             <div
-              className="bg-blurple-500 py-5"
+              className="base-12-grid"
               css={css`
+                margin-top: -250px;
+                padding-bottom: 0;
+                padding-top: 0;
+
                 @media (min-width: ${tailwindScreens.md}) {
-                  display: grid;
-                  grid-template-columns: 1fr 1fr 1fr;
+                  margin-top: -104px;
                 }
               `}
             >
-              <div className="px-4 py-5 text-center">
-                <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  5 million
-                </p>
-                <p className="m-0 text-white uppercase">Jeans Donated</p>
-                <p className="italic m-0 text-white">Teens for Jeans</p>
-              </div>
+              <div
+                className="bg-blurple-500 py-4 grid-wide"
+                css={css`
+                  @media (min-width: ${tailwindScreens.xl}) {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                  }
+                `}
+              >
+                <div className="px-4 py-5  text-center">
+                  <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
+                    5 million
+                  </p>
+                  <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
+                    Jeans Donated
+                  </p>
+                  <p className="italic m-0 text-white">Teens for Jeans</p>
+                </div>
 
-              <div className="px-4 py-5 text-center">
-                <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  3.7 million
-                </p>
-                <p className="m-0 text-white uppercase">
-                  Cigarette Butts Collected
-                </p>
-                <p className="italic m-0 text-white">Get the Filter Out</p>
-              </div>
+                <div className="px-4 py-5 text-center">
+                  <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
+                    3.7 million
+                  </p>
+                  <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
+                    Cigarette Butts Collected
+                  </p>
+                  <p className="italic m-0 text-white">Get the Filter Out</p>
+                </div>
 
-              <div className="px-4 py-5 text-center">
-                <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  585,965
-                </p>
-                <p className="m-0 text-white uppercase">
-                  Period Products Donated
-                </p>
-                <p className="italic m-0 text-white">Power to the Period</p>
+                <div className="px-4 py-5 text-center">
+                  <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
+                    585,965
+                  </p>
+                  <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
+                    Period Products Donated
+                  </p>
+                  <p className="italic m-0 text-white">Power to the Period</p>
+                </div>
               </div>
             </div>
           </header>
