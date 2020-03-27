@@ -70,7 +70,7 @@ const VolunteerCreditsTableRow = ({
         <TableData>
           <CampaignPreview campaignWebsite={campaignWebsite} />
 
-          <ul className="py-5 max-w-md">
+          <ul className="py-5">
             <PostDetail detail="Action Type" value={actionType} />
             <PostDetail detail="Volunteer Hours" value={volunteerHours} />
             <PostDetail detail="Date Completed" value={dateCompleted} />
