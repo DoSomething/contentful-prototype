@@ -16,6 +16,7 @@ import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import { env, getHumanFriendlyDate, report } from '../../../helpers';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 
 import './scholarshipInfoBlock.scss';
 
@@ -102,8 +103,8 @@ const ScholarshipInfoBlock = ({
     action => action.scholarshipEntry && action.reportback,
   );
   const actionType = get(actionItem, 'actionLabel', '');
-  if (error || scholarshipError) {
-    console.error(`${error}`);
+  if ({ ErrorBlock } || scholarshipError) {
+    console.error(`[ErrorBlock] ${error}`);
     report(error);
   }
 
