@@ -19,6 +19,7 @@ The request is proxied to [Bertly](http://github.com/dosomething/bertly) to shor
 {% api-method-parameter name="url" type="string" required=true %}
 e.g.: 'https://vote.dosomething.org/member-drive?userId=58e68d5da0bfad4c3b4cd722&r=user:58e68d5da0bfad4c3b4cd722,campaignID:7059,campaignRunID:8128,source:web,source_details:onlinedrivereferral,referral=true'
 {% endapi-method-parameter %}
+{% endapi-method-path-parameters %}
 {% endapi-method-request %}
 
 {% api-method-response %}
@@ -38,7 +39,3 @@ e.g.: 'https://vote.dosomething.org/member-drive?userId=58e68d5da0bfad4c3b4cd722
 {% endapi-method-response %}
 {% endapi-method-spec %}
 {% endapi-method %}
-
-{% hint style="info" %}
-
-{% endhint %}
