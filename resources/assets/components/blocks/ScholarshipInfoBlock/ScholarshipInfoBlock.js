@@ -103,7 +103,8 @@ const ScholarshipInfoBlock = ({
     action => action.scholarshipEntry && action.reportback,
   );
   const actionType = get(actionItem, 'actionLabel', '');
-  if ({ ErrorBlock } || scholarshipError) {
+  if (error || scholarshipError) {
+    <ErrorBlock />;
     console.error(`[ErrorBlock] ${error}`);
     report(error);
   }
