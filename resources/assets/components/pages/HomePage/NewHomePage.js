@@ -129,7 +129,7 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
 
                 @media (min-width: ${tailwindScreens.md}) {
                   background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=700&w=700');
-                  padding-bottom: 104px;
+                  padding-bottom: 100px;
                 }
                 @media (min-width: ${tailwindScreens.lg}) {
                   background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=539&w=1440');
@@ -159,7 +159,7 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
                 padding-top: 0;
 
                 @media (min-width: ${tailwindScreens.md}) {
-                  margin-top: -104px;
+                  margin-top: -100px;
                 }
               `}
             >
