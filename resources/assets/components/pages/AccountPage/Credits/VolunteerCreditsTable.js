@@ -6,6 +6,7 @@ import { css } from '@emotion/core';
 import { tailwind } from '../../../../helpers';
 import VolunteerCreditsTableRow from './VolunteerCreditsTableRow';
 
+// @TODO: Replace this stubbed data with volunteer credit post results from GraphQL.
 const IMAGE_URLS = [
   'https://images.ctfassets.net/81iqaqpfd8fy/2dbyLUKxyUiuOe06i2W4uE/7ebdb15c6aa34e6c94f415ec01f6d482/GAS_2018_Header_1_Landscape.jpg',
   'https://images.ctfassets.net/81iqaqpfd8fy/62BX09Cjx2qIVRT7BblL4r/5d3e08c03a07032733092a6bd70da734/Covid19_Campaign_Header.jpg',
