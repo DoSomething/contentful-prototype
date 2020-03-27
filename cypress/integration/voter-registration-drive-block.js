@@ -2,7 +2,11 @@
 
 import { userFactory } from '../fixtures/user';
 
-const voterRegistrationDriveBlockUrl = '/us/blocks/2T5ARr1AViKw2Kw0Q4S0so';
+/**
+ * This ID correponds to the dev Contentful entry for a socialDriveAction that is configured
+ * to display page views. We only enable this setting for voter registration drives.
+ */
+const blockId = '2T5ARr1AViKw2Kw0Q4S0so';
 
 describe('Voter Registration Drive', () => {
   beforeEach(() => cy.configureMocks());
@@ -23,7 +27,7 @@ describe('Voter Registration Drive', () => {
       postsCount: (root, { referrerUserId }) => 11,
     });
 
-    cy.login(user).visit(voterRegistrationDriveBlockUrl);
+    cy.authVisitBlockPermalink(user, blockId);
 
     cy.contains('.page-views__text', 'Total page views');
     cy.contains('.voter-registrations__text', 'Total voter registrations');
@@ -46,7 +50,7 @@ describe('Voter Registration Drive', () => {
       postsCount: (root, { referrerUserId }) => 51,
     });
 
-    cy.login(user).visit(voterRegistrationDriveBlockUrl);
+    cy.authVisitBlockPermalink(user, blockId);
 
     cy.contains('.page-views__text', 'Total page views');
     cy.contains('.voter-registrations__text', 'Total voter registrations');
