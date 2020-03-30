@@ -1,9 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
 
+import ErrorPage from '../../ErrorPage';
+import NotFoundPage from '../../NotFoundPage';
 import Loader from '../../../utilities/Loader';
-import Query from '../../../Query';
+import Placeholder from '../../../utilities/Placeholder';
 
 const ACCOUNT_QUERY = gql`
   query AccountQuery($userId: String!) {
@@ -21,12 +24,24 @@ const ACCOUNT_QUERY = gql`
 `;
 
 const AccountQuery = ({ userId }) => {
+  const { loading, error, data } = useQuery(ACCOUNT_QUERY, {
+    variables: { userId },
+  });
+
+  if (loading) {
+    return <Placeholder />;
+  }
+
+  if (error) {
+    return <ErrorPage />;
+  }
+
+  if (!data.user) {
+    return <NotFoundPage />;
+  }
+
   const Account = Loader(import('./Account'));
-  return (
-    <Query query={ACCOUNT_QUERY} variables={{ userId }}>
-      {result => <Account {...result} userId={userId} />}
-    </Query>
-  );
+  return <Account {...data} userId={userId} />;
 };
 
 AccountQuery.propTypes = {
