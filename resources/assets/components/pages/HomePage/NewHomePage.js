@@ -407,11 +407,12 @@ NewHomePageTemplate.propTypes = {
   campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   title: PropTypes.string,
 };
 
 NewHomePageTemplate.defaultProps = {
+  coverImage: null,
   title: 'We Are A Youth-Led Movement For Good',
 };
 
