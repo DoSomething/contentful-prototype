@@ -114,7 +114,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
     }
   `;
 
-  const headerBackgroundStyles = !coverImage
+  const headerBackgroundStyles = coverImage
     ? css`
         background-image: url(${contentfulImageUrl(
           coverImage.url,
