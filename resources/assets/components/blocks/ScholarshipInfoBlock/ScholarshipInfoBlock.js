@@ -106,7 +106,7 @@ const ScholarshipInfoBlock = ({
   if (error || scholarshipError) {
     console.error(`[ErrorBlock] ${error}`);
     report(error);
-    return <ErrorBlock />;
+    return <ErrorBlock error={error || scholarshipError} />;
   }
 
   return (
