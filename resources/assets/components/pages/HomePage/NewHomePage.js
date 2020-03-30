@@ -259,7 +259,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </section>
 
-          <article className="newsletters-cta base-12-grid bg-purple-400">
+          <article className="newsletters-cta base-12-grid bg-purple-700">
             <div className="grid-wide text-center py-5 lg:py-10">
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
