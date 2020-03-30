@@ -149,7 +149,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
       <SiteNavigationContainer />
 
       <main>
-        <article>
+        <article className="home-page">
           <header role="banner" className="bg-white pb-4">
             <div
               className="base-12-grid bg-purple-500"
@@ -216,7 +216,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </header>
 
           <section
-            className="base-12-grid bg-gray-100"
+            className="campaigns-section base-12-grid bg-gray-100"
             css={css`
               background: linear-gradient(
                 to bottom,
@@ -259,7 +259,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </section>
 
-          <article className="base-12-grid bg-purple-400">
+          <article className="newsletters-cta base-12-grid bg-purple-400">
             <div className="grid-wide text-center py-5 lg:py-10">
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
@@ -328,7 +328,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </article>
 
-          <section className="base-12-grid bg-gray-100">
+          <section className="articles-section base-12-grid bg-gray-100">
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
                 <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
@@ -353,7 +353,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
           {/* @TODO: Need to remove the top/bottom padding from base-12-grid class and
           let components add their own padding otherwise it is hard to override. */}
-          <section className="base-12-grid bg-white py-8">
+          <section className="sponsors-section base-12-grid bg-white py-8">
             <div className="grid-wide text-center">
               <h2 className="font-bold mb-3 text-base text-center text-gray-500 uppercase">
                 Sponsors
@@ -374,7 +374,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </section>
 
           {/* @TODO: See earlier comment regarding base-12-grid. */}
-          <article className="base-12-grid bg-yellow-500 py-4">
+          <article className="signup-cta base-12-grid bg-yellow-500 py-4">
             <div className="grid-wide py-4 text-center">
               <div className="text-left">
                 <h1 className="font-bold text-2xl">
