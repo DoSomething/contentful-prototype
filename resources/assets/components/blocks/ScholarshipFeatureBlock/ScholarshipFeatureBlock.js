@@ -36,7 +36,7 @@ const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
         </div>
         <button
           type="button"
-          className="btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
+          className="btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
         >
           Apply Now
         </button>

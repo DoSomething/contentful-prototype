@@ -34,12 +34,12 @@ const CallToActionBlock = ({ supertitle, title, text, classes }) => {
             {title}
           </h3>
           <p className="text-white pb-4">{text}</p>
-          <a
-            className="btn mx-4 bg-blurple-500 text-white hover:bg-blurple-300 hover:text-white"
-            href="https://google.com"
+          <button
+            type="button"
+            className="btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
           >
             Button text
-          </a>
+          </button>
         </div>
       </div>
     </div>
