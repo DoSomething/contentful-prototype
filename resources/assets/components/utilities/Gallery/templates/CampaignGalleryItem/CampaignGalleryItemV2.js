@@ -10,6 +10,7 @@ const CampaignGalleryItem = ({
   showcaseDescription,
   showcaseImage,
   showcaseTitle,
+  staffPick,
   url,
 }) => {
   const srcset = contentfulImageSrcset(showcaseImage.url, [
@@ -26,9 +27,11 @@ const CampaignGalleryItem = ({
       />
 
       <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
-        <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
-          Featured
-        </div>
+        {staffPick ? (
+          <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
+            Featured
+          </div>
+        ) : null}
 
         <h1 className="font-bold mb-3 text-base text-blurple-500">
           {showcaseTitle}
@@ -51,7 +54,12 @@ CampaignGalleryItem.propTypes = {
   showcaseDescription: PropTypes.string.isRequired,
   showcaseImage: PropTypes.object.isRequired,
   showcaseTitle: PropTypes.string.isRequired,
+  staffPick: PropTypes.bool,
   url: PropTypes.string.isRequired,
+};
+
+CampaignGalleryItem.defaultProps = {
+  staffPick: false,
 };
 
 export default CampaignGalleryItem;

@@ -55,6 +55,7 @@ const HomePageCampaignGallery = ({ campaigns }) => {
                 showcaseDescription={campaign.showcaseDescription}
                 showcaseImage={campaign.showcaseImage}
                 showcaseTitle={campaign.showcaseTitle}
+                staffPick={campaign.staffPick}
                 url={campaign.url}
               />
             )}

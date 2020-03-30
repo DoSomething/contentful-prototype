@@ -18,6 +18,9 @@ const HOME_PAGE_QUERY = gql`
       id
       title
       subTitle
+      coverImage {
+        url
+      }
       campaigns {
         ... on Showcasable {
           showcaseTitle
@@ -28,6 +31,7 @@ const HOME_PAGE_QUERY = gql`
         }
         ... on CampaignWebsite {
           id
+          staffPick
           url
         }
         ... on StoryPageWebsite {
@@ -99,7 +103,7 @@ NewsletterItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const NewHomePageTemplate = ({ articles, campaigns, title }) => {
+const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
@@ -110,30 +114,56 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
     }
   `;
 
+  const headerBackgroundStyles = coverImage
+    ? css`
+        background-image: url(${contentfulImageUrl(
+          coverImage.url,
+          '400',
+          '775',
+          'fill',
+        )});
+
+        @media (min-width: ${tailwindScreens.md}) {
+          background-image: url(${contentfulImageUrl(
+            coverImage.url,
+            '700',
+            '700',
+            'fill',
+          )});
+        }
+
+        @media (min-width: ${tailwindScreens.lg}) {
+          background-image: url(${contentfulImageUrl(
+            coverImage.url,
+            '1440',
+            '539',
+            'fill',
+          )});
+        }
+      `
+    : null;
+
   return (
     <Fragment>
       {/* @TODO: Once EmotionJS supports shorthand syntax for React.Fragment, switch <Fragment> out for <> syntax! */}
       <SiteNavigationContainer />
 
       <main>
-        <article>
+        <article data-test="home-page">
           <header role="banner" className="bg-white pb-4">
             <div
-              className="base-12-grid"
+              className="base-12-grid bg-gray-200"
               css={css`
-                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=775&w=400');
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
                 padding-bottom: 250px;
 
                 @media (min-width: ${tailwindScreens.md}) {
-                  background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=700&w=700');
                   padding-bottom: 100px;
                 }
-                @media (min-width: ${tailwindScreens.lg}) {
-                  background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=539&w=1440');
-                }
+
+                ${headerBackgroundStyles}
               `}
             >
               <h1
@@ -194,6 +224,7 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
                 ${tailwindGray['100']}
               );
             `}
+            data-test="campaigns-section"
           >
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
@@ -229,7 +260,10 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
             </div>
           </section>
 
-          <article className="base-12-grid bg-purple-400">
+          <article
+            className="base-12-grid bg-purple-700"
+            data-test="newsletters-cta"
+          >
             <div className="grid-wide text-center py-5 lg:py-10">
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
@@ -298,7 +332,10 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
             </div>
           </article>
 
-          <section className="base-12-grid bg-gray-100">
+          <section
+            className="base-12-grid bg-gray-100"
+            data-test="articles-section"
+          >
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
                 <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
@@ -323,7 +360,10 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
 
           {/* @TODO: Need to remove the top/bottom padding from base-12-grid class and
           let components add their own padding otherwise it is hard to override. */}
-          <section className="base-12-grid bg-white py-8">
+          <section
+            className="base-12-grid bg-white py-8"
+            data-test="sponsors-section"
+          >
             <div className="grid-wide text-center">
               <h2 className="font-bold mb-3 text-base text-center text-gray-500 uppercase">
                 Sponsors
@@ -344,7 +384,10 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
           </section>
 
           {/* @TODO: See earlier comment regarding base-12-grid. */}
-          <article className="base-12-grid bg-yellow-500 py-4">
+          <article
+            className="base-12-grid bg-yellow-500 py-4"
+            data-test="signup-cta"
+          >
             <div className="grid-wide py-4 text-center">
               <div className="text-left">
                 <h1 className="font-bold text-2xl">
@@ -375,10 +418,14 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
 NewHomePageTemplate.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  coverImage: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }),
   title: PropTypes.string,
 };
 
 NewHomePageTemplate.defaultProps = {
+  coverImage: null,
   title: 'We Are A Youth-Led Movement For Good',
 };
 
