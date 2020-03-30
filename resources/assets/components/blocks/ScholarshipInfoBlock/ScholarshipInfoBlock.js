@@ -104,9 +104,9 @@ const ScholarshipInfoBlock = ({
   );
   const actionType = get(actionItem, 'actionLabel', '');
   if (error || scholarshipError) {
-    <ErrorBlock />;
     console.error(`[ErrorBlock] ${error}`);
     report(error);
+    return <ErrorBlock />;
   }
 
   return (
