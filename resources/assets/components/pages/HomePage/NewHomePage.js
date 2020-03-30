@@ -114,7 +114,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
     }
   `;
 
-  const headerBackgroundStyles = coverImage
+  const headerBackgroundStyles = !coverImage
     ? css`
         background-image: url(${contentfulImageUrl(
           coverImage.url,
@@ -152,7 +152,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
         <article className="home-page">
           <header role="banner" className="bg-white pb-4">
             <div
-              className="base-12-grid bg-purple-500"
+              className="base-12-grid bg-gray-200"
               css={css`
                 background-position: center center;
                 background-repeat: no-repeat;
