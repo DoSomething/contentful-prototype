@@ -14,7 +14,7 @@ const Account = props => (
       <article className="account-page">
         <header className="base-12-grid bg-gray-100">
           <div className="grid-wide pt-12">
-            <h1 className="font-league-gothic font-normal text-4xl md:text-5xl uppercase">
+            <h1 className="font-league-gothic font-normal text-6xl md:text-5xl uppercase">
               Welcome, {props.user.firstName}!
             </h1>
           </div>

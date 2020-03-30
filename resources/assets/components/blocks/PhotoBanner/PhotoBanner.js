@@ -13,17 +13,27 @@ const PhotoBanner = ({ title, description }) => {
   // )});
 
   return (
-    <div
-      className="base-12-grid bg-yellow-200 h-64"
-      css={css`
-        background-image: url('https://picsum.photos/1400/800/?blur');
-      `}
-    >
-      <div className="grid-wide">
-        <h1 className="text-4xl text-white font-league-gothic uppercase">
-          {title}
-        </h1>
-        <p className="text-lg text-white">{description}</p>
+    <div className="bg-gray-900">
+      <div
+        className="base-12-grid flex items-end"
+        css={css`
+          background-image: url(https://picsum.photos/1440/400/);
+          height: 400px;
+          overflow: hidden;
+        `}
+      >
+        <div className="grid-wide">
+          <h1 className="text-6xl text-white font-league-gothic uppercase">
+            {title}
+          </h1>
+          <p className="text-lg text-white">{description}</p>
+          {/* <button
+            type="button"
+            className="btn my-4 bg-blurple-500 text-white hover:bg-blurple-300 hover:text-white"
+          >
+            Hello world
+          </button> */}
+        </div>
       </div>
     </div>
   );
@@ -32,16 +42,12 @@ const PhotoBanner = ({ title, description }) => {
 PhotoBanner.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  coverImage: PropTypes.shape({
-    description: PropTypes.string,
-    url: PropTypes.string,
-  }).isRequired,
 };
 
 PhotoBanner.defaultProps = {
-  title: 'Would You Rather',
+  title: 'Easy Scholarships',
   description:
-    'Take our Would You Rather-style quiz and and share a personal finance guide with a friend.',
+    'Make an impact with millions of young people, and earn easy scholarships for volunteering.',
 };
 
 export default PhotoBanner;

@@ -40,8 +40,8 @@ const CompanyPageTemplate = props => {
 
       <PhotoBanner />
 
-      <main className="wrapper base-12-grid company-page">
-        <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">
+      <main className="wrapper base-12-grid bg-white">
+        <article className="grid-wide bg-white overflow-hidden">
           {coverImage.url ? (
             <LazyImage
               className="w-full"
@@ -49,7 +49,7 @@ const CompanyPageTemplate = props => {
               src={contentfulImageUrl(coverImage.url, 1440, 620)}
             />
           ) : null}
-          <div className="m-4 md:m-12">
+          <div className="">
             <h1 className="font-league-gothic uppercase text-3xl md:text-5xl">
               {title}
             </h1>
@@ -57,11 +57,11 @@ const CompanyPageTemplate = props => {
             {subTitle ? <h2 className="text-lg my-3">{subTitle}</h2> : null}
 
             <TextContent className="pt-4">{content}</TextContent>
-            <ScholarshipFeatureBlock />
-            <ScholarshipFeatureBlock />
-            <ScholarshipFeatureBlock />
-            <ScholarshipFeatureBlock />
-            <ScholarshipFeatureBlock />
+            <div className="gallery-grid-triad">
+              <ScholarshipFeatureBlock />
+              <ScholarshipFeatureBlock />
+              <ScholarshipFeatureBlock />
+            </div>
           </div>
         </article>
 
