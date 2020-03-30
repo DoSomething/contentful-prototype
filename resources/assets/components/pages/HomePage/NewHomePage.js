@@ -18,6 +18,9 @@ const HOME_PAGE_QUERY = gql`
       id
       title
       subTitle
+      coverImage {
+        url
+      }
       campaigns {
         ... on Showcasable {
           showcaseTitle
@@ -28,6 +31,7 @@ const HOME_PAGE_QUERY = gql`
         }
         ... on CampaignWebsite {
           id
+          staffPick
           url
         }
         ... on StoryPageWebsite {
@@ -99,7 +103,7 @@ NewsletterItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const NewHomePageTemplate = ({ articles, campaigns, title }) => {
+const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
@@ -110,6 +114,35 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
     }
   `;
 
+  const headerBackgroundStyles = coverImage
+    ? css`
+        background-image: url(${contentfulImageUrl(
+          coverImage.url,
+          '400',
+          '775',
+          'fill',
+        )});
+
+        @media (min-width: ${tailwindScreens.md}) {
+          background-image: url(${contentfulImageUrl(
+            coverImage.url,
+            '700',
+            '700',
+            'fill',
+          )});
+        }
+
+        @media (min-width: ${tailwindScreens.lg}) {
+          background-image: url(${contentfulImageUrl(
+            coverImage.url,
+            '1440',
+            '539',
+            'fill',
+          )});
+        }
+      `
+    : null;
+
   return (
     <Fragment>
       {/* @TODO: Once EmotionJS supports shorthand syntax for React.Fragment, switch <Fragment> out for <> syntax! */}
@@ -119,21 +152,18 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
         <article>
           <header role="banner" className="bg-white pb-4">
             <div
-              className="base-12-grid"
+              className="base-12-grid bg-purple-500"
               css={css`
-                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=775&w=400');
                 background-position: center center;
                 background-repeat: no-repeat;
                 background-size: cover;
                 padding-bottom: 250px;
 
                 @media (min-width: ${tailwindScreens.md}) {
-                  background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=700&w=700');
                   padding-bottom: 100px;
                 }
-                @media (min-width: ${tailwindScreens.lg}) {
-                  background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&f=center&h=539&w=1440');
-                }
+
+                ${headerBackgroundStyles}
               `}
             >
               <h1
@@ -375,6 +405,9 @@ const NewHomePageTemplate = ({ articles, campaigns, title }) => {
 NewHomePageTemplate.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  coverImage: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
   title: PropTypes.string,
 };
 
