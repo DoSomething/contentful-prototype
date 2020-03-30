@@ -13,27 +13,30 @@ const PhotoBanner = ({ title, description }) => {
   // )});
 
   return (
-    <div className="bg-gray-900">
+    <div
+      className="base-12-grid relative"
+      css={css`
+        background-image: url(https://picsum.photos/1440/400/);
+        height: 400px;
+      `}
+    >
       <div
-        className="base-12-grid flex items-end"
+        className="absolute w-full h-full"
         css={css`
-          background-image: url(https://picsum.photos/1440/400/);
-          height: 400px;
-          overflow: hidden;
+          background: rgba(0, 0, 0, 0.5);
         `}
-      >
-        <div className="grid-wide">
-          <h1 className="text-6xl text-white font-league-gothic uppercase">
-            {title}
-          </h1>
-          <p className="text-lg text-white">{description}</p>
-          {/* <button
+      />
+      <div className="grid-wide relative flex flex-column items-end">
+        <h1 className="text-6xl text-white font-league-gothic uppercase">
+          {title}
+        </h1>
+        <p className="text-lg text-white">{description}</p>
+        {/* <button
             type="button"
             className="btn my-4 bg-blurple-500 text-white hover:bg-blurple-300 hover:text-white"
           >
             Hello world
           </button> */}
-        </div>
       </div>
     </div>
   );

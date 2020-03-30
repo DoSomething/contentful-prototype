@@ -23,7 +23,7 @@ const CallToActionBlock = ({ supertitle, title, text, classes }) => {
       <div className="base-12-grid">
         <div className="grid-narrow text-center my-4">
           <h3
-            className="text-m font-source-sans font-bold uppercase"
+            className="text-m text-yellow-500 font-source-sans font-bold uppercase"
             // css={css`
             //   background-color: hotpink;
             // `}
