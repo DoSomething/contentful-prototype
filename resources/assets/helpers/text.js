@@ -1,8 +1,9 @@
 import React from 'react';
-import { get } from 'lodash';
+import { get, isArray, isString, kebabCase } from 'lodash';
 import classnames from 'classnames';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
+import markdownItAnchor from 'markdown-it-anchor';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import markdownItFootnote from 'markdown-it-footnote';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -41,6 +42,28 @@ function cleanupStandardMarkdown(markdown) {
 }
 
 /**
+ * Transform the given content into a linkable slug.
+ *
+ * @param {String|React.ReactNode} children
+ * @return {String}
+ */
+function slugify(children) {
+  // If we've received an array (likely React child text nodes), we'll
+  // look into the first element to get the "text content":
+  const text = isArray(children) ? children[0] : children;
+
+  // Only try to stringify text (so if we're passed, say, a set of React
+  // elements instead of text nodes, we won't try to stringify those):
+  if (!isString(text)) {
+    return null;
+  }
+
+  // Since these are user-editable, we'll prefix them to ensure they don't
+  // conflict with application IDs (e.g. #app or #navigation-container).
+  return `heading--${kebabCase(text)}`;
+}
+
+/**
  * Get a customized instance of MarkdownIt.
  *
  * @return {Object}
@@ -51,7 +74,11 @@ function getMarkdownItInstance() {
   // Add support for Markdown[^1] footnotes syntax. [^1]: https://git.io/JvMXJ
   markdownIt.use(markdownItFootnote);
 
-  // Open external Markdown links in new tabs.
+  // Add linkable anchors to heading elements:
+  markdownIt.use(markdownItAnchor, { slugify });
+
+  // We use 'markdown-it-for-inline' to make a simple overrides: https://git.io/Jv714
+  // This rule transforms Markdown links to open in a new tab if external:
   markdownIt.use(iterator, 'url_new_win', 'link_open', (tokens, index) => {
     const token = tokens[index];
     const hrefIndex = token.attrIndex('href');
@@ -87,6 +114,7 @@ export function parseRichTextDocument(
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
         <h1
+          id={slugify(children)}
           className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
@@ -95,6 +123,7 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
         <h2
+          id={slugify(children)}
           className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
@@ -103,6 +132,7 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.HEADING_3]: (node, children) => (
         <h3
+          id={slugify(children)}
           className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
@@ -111,6 +141,7 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.HEADING_4]: (node, children) => (
         <h4
+          id={slugify(children)}
           className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
@@ -119,6 +150,7 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.HEADING_5]: (node, children) => (
         <h5
+          id={slugify(children)}
           className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
@@ -127,6 +159,7 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.HEADING_6]: (node, children) => (
         <h6
+          id={slugify(children)}
           className={classnames(classNameByEntryDefault)}
           style={{ color: textColor }}
         >
