@@ -122,6 +122,7 @@ const HeroTemplate = ({
                 campaignId={numCampaignId}
                 scholarshipAmount={scholarshipAmount}
                 scholarshipDeadline={scholarshipDeadline}
+                showModal={setShowScholarshipModal}
               />
             </div>
           </div>
@@ -141,7 +142,11 @@ const HeroTemplate = ({
               scholarshipDeadline={scholarshipDeadline}
               scholarshipDescription={scholarshipDescription}
               numberOfScholarships={numberOfScholarships}
-              utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+              utmLabel={
+                scholarshipAffiliateLabel
+                  ? scholarshipAffiliateLabel.toLowerCase()
+                  : null
+              }
             >
               <div className="pt-6 w-2/3 sm:w-1/2">
                 <SignupButtonContainer

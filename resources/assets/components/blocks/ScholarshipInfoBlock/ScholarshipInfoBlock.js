@@ -16,6 +16,7 @@ import ScholarshipMoneyHand from '../../../images/scholarships.svg';
 import { env, getHumanFriendlyDate, report } from '../../../helpers';
 import DoSomethingLogo from '../../utilities/DoSomethingLogo/DoSomethingLogo';
 import PlaceholderText from '../../utilities/PlaceholderText/PlaceholderText';
+import ErrorBlock from '../ErrorBlock/ErrorBlock';
 
 import './scholarshipInfoBlock.scss';
 
@@ -31,7 +32,11 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
     affiliate(utmLabel: $utmLabel, preview: $preview) {
       title
     }
+  }
+`;
 
+const SCHOLARSHIP_INFO_QUERY = gql`
+  query ScholarshipInfoQuery($campaignId: Int!) {
     actions(campaignId: $campaignId) {
       actionLabel
       scholarshipEntry
@@ -57,11 +62,20 @@ const ScholarshipInfoBlock = ({
   utmLabel,
 }) => {
   const { loading, error, data } = useQuery(SCHOLARSHIP_AFFILIATE_QUERY, {
+    skip: utmLabel === null,
     variables: {
       utmLabel,
       preview: env('CONTENTFUL_USE_PREVIEW_API'),
       campaignId,
     },
+  });
+
+  const {
+    loading: scholarshipLoading,
+    error: scholarshipError,
+    data: scholarshipData,
+  } = useQuery(SCHOLARSHIP_INFO_QUERY, {
+    variables: { campaignId },
   });
 
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -81,18 +95,18 @@ const ScholarshipInfoBlock = ({
     setDetailsLabel(drawerOpen ? 'Show' : 'Hide');
   };
 
-  const isLoaded = !loading;
+  const isLoaded = !loading && !scholarshipLoading;
   const affiliateTitle = get(data, 'affiliate.title');
-  const endDate = get(data, 'campaign.endDate');
-  const actions = get(data, 'actions', []);
+  const endDate = get(scholarshipData, 'campaign.endDate');
+  const actions = get(scholarshipData, 'actions', []);
   const actionItem = actions.find(
     action => action.scholarshipEntry && action.reportback,
   );
   const actionType = get(actionItem, 'actionLabel', '');
-
-  if (error) {
-    console.error(`${error}`);
+  if (error || scholarshipError) {
+    console.error(`[ErrorBlock] ${error}`);
     report(error);
+    return <ErrorBlock error={error || scholarshipError} />;
   }
 
   return (
@@ -272,7 +286,7 @@ ScholarshipInfoBlock.propTypes = {
   scholarshipDeadline: PropTypes.string.isRequired,
   scholarshipDescription: PropTypes.object,
   numberOfScholarships: PropTypes.number.isRequired,
-  utmLabel: PropTypes.string.isRequired,
+  utmLabel: PropTypes.string,
 };
 
 ScholarshipInfoBlock.defaultProps = {
@@ -281,5 +295,6 @@ ScholarshipInfoBlock.defaultProps = {
   children: null,
   scholarshipCallToAction: 'Win A Scholarship',
   scholarshipDescription: null,
+  utmLabel: null,
 };
 export default ScholarshipInfoBlock;
