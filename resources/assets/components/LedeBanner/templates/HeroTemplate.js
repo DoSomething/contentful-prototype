@@ -128,7 +128,7 @@ const HeroTemplate = ({
           </div>
         </div>
 
-        {showScholarshipModal && !isAffiliated ? (
+        {showScholarshipModal ? (
           <Modal
             className="-inverted -scholarship__info"
             onClose={() => setShowScholarshipModal(false)}

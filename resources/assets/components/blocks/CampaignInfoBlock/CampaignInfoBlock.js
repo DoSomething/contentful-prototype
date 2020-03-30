@@ -66,14 +66,14 @@ const CampaignInfoBlock = ({
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
                   <div>
                     <button
-                      className="text-blue-500"
+                      className="text-blue-500 pb-4"
                       type="button"
                       onClick={showModal}
                     >
                       View Scholarship Details
                     </button>
                   </div>
-                  <hr className="clear-both pb-3 border-gray-500" />
+                  <hr className="clear-both pb-4 border-gray-300" />
                 </React.Fragment>
               ) : null}
 
