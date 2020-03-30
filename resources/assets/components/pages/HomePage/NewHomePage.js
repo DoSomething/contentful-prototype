@@ -149,7 +149,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
       <SiteNavigationContainer />
 
       <main>
-        <article className="home-page">
+        <article data-test="home-page">
           <header role="banner" className="bg-white pb-4">
             <div
               className="base-12-grid bg-gray-200"
@@ -216,7 +216,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </header>
 
           <section
-            className="campaigns-section base-12-grid bg-gray-100"
+            className="base-12-grid bg-gray-100"
             css={css`
               background: linear-gradient(
                 to bottom,
@@ -224,6 +224,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 ${tailwindGray['100']}
               );
             `}
+            data-test="campaigns-section"
           >
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
@@ -259,7 +260,10 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </section>
 
-          <article className="newsletters-cta base-12-grid bg-purple-700">
+          <article
+            className="base-12-grid bg-purple-700"
+            data-test="newsletters-cta"
+          >
             <div className="grid-wide text-center py-5 lg:py-10">
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
@@ -328,7 +332,10 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </article>
 
-          <section className="articles-section base-12-grid bg-gray-100">
+          <section
+            className="base-12-grid bg-gray-100"
+            data-test="articles-section"
+          >
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
                 <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
@@ -353,7 +360,10 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
           {/* @TODO: Need to remove the top/bottom padding from base-12-grid class and
           let components add their own padding otherwise it is hard to override. */}
-          <section className="sponsors-section base-12-grid bg-white py-8">
+          <section
+            className="base-12-grid bg-white py-8"
+            data-test="sponsors-section"
+          >
             <div className="grid-wide text-center">
               <h2 className="font-bold mb-3 text-base text-center text-gray-500 uppercase">
                 Sponsors
@@ -374,7 +384,10 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </section>
 
           {/* @TODO: See earlier comment regarding base-12-grid. */}
-          <article className="signup-cta base-12-grid bg-yellow-500 py-4">
+          <article
+            className="base-12-grid bg-yellow-500 py-4"
+            data-test="signup-cta"
+          >
             <div className="grid-wide py-4 text-center">
               <div className="text-left">
                 <h1 className="font-bold text-2xl">
