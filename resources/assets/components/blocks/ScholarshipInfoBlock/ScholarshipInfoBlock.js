@@ -24,11 +24,7 @@ import './scholarshipInfoBlock.scss';
  * The GraphQL query to load data for this component.
  */
 const SCHOLARSHIP_AFFILIATE_QUERY = gql`
-  query ScholarshipAffiliateQuery(
-    $utmLabel: String!
-    $preview: Boolean!
-    $campaignId: Int!
-  ) {
+  query ScholarshipAffiliateQuery($utmLabel: String!, $preview: Boolean!) {
     affiliate(utmLabel: $utmLabel, preview: $preview) {
       title
     }

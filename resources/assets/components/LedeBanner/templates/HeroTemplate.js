@@ -148,13 +148,15 @@ const HeroTemplate = ({
                   : null
               }
             >
-              <div className="pt-6 w-2/3 sm:w-1/2">
-                <SignupButtonContainer
-                  className="w-full md:px-2"
-                  text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
-                  contextSource="scholarship_modal"
-                />
-              </div>
+              {!isAffiliated && displaySignupButton ? (
+                <div className="pt-6 w-2/3 sm:w-1/2">
+                  <SignupButtonContainer
+                    className="w-full md:px-2"
+                    text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
+                    contextSource="scholarship_modal"
+                  />
+                </div>
+              ) : null}
             </ScholarshipInfoBlock>
           </Modal>
         ) : null}
