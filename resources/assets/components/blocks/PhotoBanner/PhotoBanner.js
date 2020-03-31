@@ -26,7 +26,7 @@ const PhotoBanner = ({ title, description }) => {
           background: rgba(0, 0, 0, 0.5);
         `}
       />
-      <div className="grid-wide relative flex flex-column items-end">
+      <div className="grid-wide relative flex flex-col justify-end">
         <h1 className="text-6xl text-white font-league-gothic uppercase">
           {title}
         </h1>
