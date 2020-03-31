@@ -122,7 +122,7 @@ const HeroTemplate = ({
                 campaignId={numCampaignId}
                 scholarshipAmount={scholarshipAmount}
                 scholarshipDeadline={scholarshipDeadline}
-                showModal={setShowScholarshipModal}
+                showModal={() => setShowScholarshipModal(true)}
               />
             </div>
           </div>
