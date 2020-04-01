@@ -40,7 +40,7 @@ const CampaignGalleryItem = ({
         <p className="flex-grow">{showcaseDescription}</p>
 
         <a
-          className="btn bg-white border border-solid border-blurple-500 hover:border-blurple-300 hover:no-underline text-blurple-500 hover:text-blurple-200 mt-4 w-full"
+          className="btn bg-white border-2 border-solid border-blurple-500 hover:border-blurple-300 hover:no-underline text-blurple-500 hover:text-blurple-200 mt-4 w-full"
           href={url}
         >
           Get Started
