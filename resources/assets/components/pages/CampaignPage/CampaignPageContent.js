@@ -10,7 +10,7 @@ import { isCampaignClosed } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
-  const { campaignEndDate, match, pages } = props;
+  const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -26,7 +26,7 @@ const CampaignPageContent = props => {
 
   return (
     <div className="campaign-page__content" id={subPage.id}>
-      <ScrollConcierge />
+      <ScrollConcierge trigger={!shouldShowAffirmation} />
       {content ? (
         <div className="base-12-grid py-3 md:py-6">
           <div className="grid-wide-7/10">
@@ -93,6 +93,7 @@ CampaignPageContent.propTypes = {
       }),
     }),
   ),
+  shouldShowAffirmation: PropTypes.bool,
 };
 
 CampaignPageContent.defaultProps = {
@@ -101,6 +102,7 @@ CampaignPageContent.defaultProps = {
   match: {
     params: {},
   },
+  shouldShowAffirmation: false,
 };
 
 export default CampaignPageContent;
