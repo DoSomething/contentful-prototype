@@ -23,7 +23,9 @@ const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
           </a>
         </h4>
         <p className="px-4">{description}</p>
-        <span className="px-4 text-sm text-gray-400">$$$$ from Taco Bell</span>
+        <span className="px-4 pt-2 text-sm text-gray-500">
+          Provided by DoSomething.org
+        </span>
         <div className="px-4 pt-4">
           <div className="lg:float-left lg:pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
