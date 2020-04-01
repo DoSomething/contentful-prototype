@@ -28,7 +28,7 @@ const CampaignPageContent = props => {
     <div className="campaign-page__content" id={subPage.id}>
       <ScrollConcierge />
       {content ? (
-        <div className="base-12-grid">
+        <div className="base-12-grid py-3 md:py-6">
           <div className="grid-wide-7/10">
             <TextContent className="mx-3">{content}</TextContent>
           </div>
@@ -44,23 +44,25 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      <div className="base-12-grid clear-both">
-        {blocks.map(block => (
-          <ContentfulEntryLoader
-            key={block.id}
-            id={block.id}
-            className="mb-6 clear-both"
-            classNameByEntryDefault="grid-wide-7/10"
-            classNameByEntry={{
-              ContentBlock: 'grid-wide',
-              ImagesBlock: 'grid-wide',
-              PostGalleryBlock: 'grid-wide',
-              PhotoSubmissionBlock: 'grid-wide',
-              SocialDriveBlock: 'grid-wide',
-            }}
-          />
-        ))}
-      </div>
+      {blocks.length ? (
+        <div className="base-12-grid clear-both py-3 md:py-6">
+          {blocks.map(block => (
+            <ContentfulEntryLoader
+              key={block.id}
+              id={block.id}
+              className="mb-6 clear-both"
+              classNameByEntryDefault="grid-wide-7/10"
+              classNameByEntry={{
+                ContentBlock: 'grid-wide',
+                ImagesBlock: 'grid-wide',
+                PostGalleryBlock: 'grid-wide',
+                PhotoSubmissionBlock: 'grid-wide',
+                SocialDriveBlock: 'grid-wide',
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
 
       {isClosed ? null : (
         <CallToActionContainer
