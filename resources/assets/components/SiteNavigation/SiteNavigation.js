@@ -242,7 +242,7 @@ class SiteNavigation extends React.Component {
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
                 <div className="main-subnav menu-subnav">
-                  <div className="wrapper base-12-grid">
+                  <div className="wrapper base-12-grid py-3 md:py-6">
                     <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
                       <h1>Causes</h1>
                       <ul>
@@ -576,7 +576,7 @@ class SiteNavigation extends React.Component {
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
                 <div className="utility-subnav menu-subnav" name="search">
-                  <div className="wrapper base-12-grid">
+                  <div className="wrapper base-12-grid py-3 md:py-6">
                     <form
                       className="search"
                       id="utility-subnav__search"

@@ -150,9 +150,9 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
       <main>
         <article data-test="home-page">
-          <header role="banner" className="bg-white pb-4">
+          <header role="banner" className="bg-white">
             <div
-              className="base-12-grid bg-gray-200"
+              className="base-12-grid bg-gray-200 pt-3 md:pt-6"
               css={css`
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -185,8 +185,6 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               className="base-12-grid"
               css={css`
                 margin-top: -250px;
-                padding-bottom: 0;
-                padding-top: 0;
 
                 @media (min-width: ${tailwindScreens.md}) {
                   margin-top: -100px;
@@ -216,7 +214,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </header>
 
           <section
-            className="base-12-grid bg-gray-100"
+            className="base-12-grid bg-gray-100 py-8"
             css={css`
               background: linear-gradient(
                 to bottom,
@@ -228,7 +226,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           >
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
-                <span className="bg-white font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
+                <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
                   Take Action
                 </span>
                 <span
@@ -253,7 +251,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
               <a
                 href="/us/campaigns"
-                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block my-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
               >
                 See More Campaigns
               </a>
@@ -261,10 +259,10 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </section>
 
           <article
-            className="base-12-grid bg-purple-700"
+            className="base-12-grid bg-purple-700 py-8 lg:py-12"
             data-test="newsletters-cta"
           >
-            <div className="grid-wide text-center py-5 lg:py-10">
+            <div className="grid-wide text-center">
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Inspired.
@@ -333,12 +331,12 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
           </article>
 
           <section
-            className="base-12-grid bg-gray-100"
+            className="base-12-grid bg-gray-100 py-8"
             data-test="articles-section"
           >
             <div className="grid-wide text-center">
               <h2 className="mb-6 relative">
-                <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
+                <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
                   Read About It
                 </span>
                 <span
@@ -351,7 +349,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
               <a
                 href="/us/articles"
-                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block my-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
               >
                 See More Articles
               </a>
@@ -383,13 +381,12 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </section>
 
-          {/* @TODO: See earlier comment regarding base-12-grid. */}
           <article
-            className="base-12-grid bg-yellow-500 py-4"
+            className="base-12-grid bg-yellow-500 py-16"
             data-test="signup-cta"
           >
-            <div className="grid-wide py-4 text-center">
-              <div className="text-left">
+            <div className="xl:flex grid-wide xl:items-center text-center">
+              <div className="text-left xl:w-8/12">
                 <h1 className="font-bold text-2xl">
                   Join our youth-led movement for good
                 </h1>
@@ -399,12 +396,14 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 </p>
               </div>
 
-              <a
-                href="/authorize"
-                className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 hover:no-underline py-4 px-16 text-lg hover:text-white"
-              >
-                Join Now
-              </a>
+              <div className="flex-grow">
+                <a
+                  href="/authorize"
+                  className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
+                >
+                  Join Now
+                </a>
+              </div>
             </div>
           </article>
         </article>
