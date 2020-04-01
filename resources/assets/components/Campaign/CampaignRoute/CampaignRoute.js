@@ -106,7 +106,12 @@ const CampaignRoute = props => {
 
             if (isClosed) {
               if (slug === 'community' && hasCommunityPage) {
-                return <CampaignPageContainer {...routeProps} />;
+                return (
+                  <CampaignPageContainer
+                    {...routeProps}
+                    shouldShowAffirmation={shouldShowAffirmation}
+                  />
+                );
               }
 
               return (
@@ -130,7 +135,12 @@ const CampaignRoute = props => {
               );
             }
 
-            return <CampaignPageContainer {...routeProps} />;
+            return (
+              <CampaignPageContainer
+                {...routeProps}
+                shouldShowAffirmation={shouldShowAffirmation}
+              />
+            );
           }}
         />
       </Switch>
