@@ -29,8 +29,8 @@ const PageGalleryItem = ({
           src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
         />
 
-        <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex-grow p-4 rounded-b">
-          <h1 className="font-bold mb-3 text-base text-blurple-500">
+        <div className="bg-white border-b-2 border-l-2 border-r-2 border-gray-300 border-solid flex-grow p-4 rounded-b">
+          <h1 className="font-bold mb-2 text-base text-blurple-500">
             {showcaseTitle}
           </h1>
 
