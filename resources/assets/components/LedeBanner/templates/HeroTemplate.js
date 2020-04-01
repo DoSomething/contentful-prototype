@@ -41,11 +41,15 @@ const HeroTemplate = ({
 }) => {
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const [showScholarshipModal, setShowScholarshipModal] = useState(false);
+  const [
+    showReferralScholarshipModal,
+    setShowReferralScholarshipModal,
+  ] = useState(false);
   const numCampaignId = Number(campaignId);
 
   useEffect(() => {
     if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
-      setShowScholarshipModal(true);
+      setShowReferralScholarshipModal(true);
     }
   }, []);
 
@@ -128,10 +132,14 @@ const HeroTemplate = ({
           </div>
         </div>
 
-        {showScholarshipModal ? (
+        {(showReferralScholarshipModal && !isAffiliated) ||
+        showScholarshipModal ? (
           <Modal
             className="-inverted -scholarship__info"
-            onClose={() => setShowScholarshipModal(false)}
+            onClose={() => {
+              setShowScholarshipModal(false);
+              setShowReferralScholarshipModal(false);
+            }}
             trackingId="SCHOLARSHIP_MODAL"
           >
             <ScholarshipInfoBlock
