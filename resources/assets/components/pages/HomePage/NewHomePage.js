@@ -85,8 +85,10 @@ const NewsletterItem = ({ content, image, link, title }) => (
     <h3 className="mb-2 text-white">{title}</h3>
     <p className="mb-4 flex-grow text-white">{content}</p>
     <a
-      href={link.url}
       className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+      href={link.url}
+      rel="noopener noreferrer"
+      target="_blank"
     >
       {link.copy}
     </a>

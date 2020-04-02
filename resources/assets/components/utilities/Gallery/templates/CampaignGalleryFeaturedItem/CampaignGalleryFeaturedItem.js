@@ -26,7 +26,7 @@ const CampaignGalleryFeaturedItem = ({
     <article
       className="xxl:bg-white xxl:col-gap-8 flex flex-col xxl:grid xxl:grid-cols-3 h-full text-left rounded"
       css={css`
-        box-shadow: inset 0px 0px 0px 1px ${tailwindGray['300']};
+        box-shadow: inset 0px 0px 0px 2px ${tailwindGray['300']};
       `}
     >
       <div
@@ -53,12 +53,12 @@ const CampaignGalleryFeaturedItem = ({
         />
       </div>
 
-      <div className="bg-white border-b border-l xxl:border-l-0 border-r xxl:border-t border-gray-300 border-solid flex xxl:block flex-col flex-grow p-4 xxl:p-8 xxl:pl-0 rounded-b xxl:rounded-b-none">
+      <div className="bg-white border-b-2 border-l-2 xxl:border-l-0 border-r-2 xxl:border-t-2 border-gray-300 border-solid flex xxl:block flex-col flex-grow p-4 xxl:p-8 xxl:pl-0 rounded-b xxl:rounded-b-none">
         <div className="font-bold text-base text-purple-500 xxl:text-lg uppercase">
           Featured
         </div>
 
-        <h1 className="font-normal font-league-gothic mb-3 text-3xl text-gray-900 uppercase">
+        <h1 className="font-normal font-league-gothic mb-2 text-3xl text-gray-900 uppercase">
           {showcaseTitle}
         </h1>
 
