@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 // import classnames from 'classnames';
 
 // Vertical
-const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
+const ScholarshipFeatureBlock = ({
+  title,
+  description,
+  deadline,
+  amount,
+  staffPick,
+}) => {
   return (
     <article className="flex flex-col h-full relative text-left">
       <img
@@ -13,10 +19,16 @@ const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
         alt="test"
       />
       <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
+        {staffPick ? (
+          <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
+            Featured
+          </div>
+        ) : null}
+
         <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
           Featured
         </div>
-        <h4 className="">
+        <h4>
           <a
             className="text-blurple-500 hover:text-blurple-300"
             href="https://google.com"
@@ -24,10 +36,10 @@ const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
             {title}
           </a>
         </h4>
-        <p className="">{description}</p>
-        <span className="pt-2 text-sm text-gray-500">
+        <p className="flex-grow">{description}</p>
+        {/* <span className="pt-2 text-sm text-gray-500">
           Provided by DoSomething.org
-        </span>
+        </span> */}
         <div className="pt-4">
           <div className="lg:float-left lg:pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
@@ -85,6 +97,7 @@ ScholarshipFeatureBlock.propTypes = {
   description: PropTypes.string,
   deadline: PropTypes.string,
   amount: PropTypes.string,
+  staffPick: PropTypes.bool.isRequired,
 };
 
 ScholarshipFeatureBlock.defaultProps = {

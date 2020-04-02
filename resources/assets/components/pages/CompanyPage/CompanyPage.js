@@ -73,6 +73,7 @@ const CompanyPageTemplate = props => {
                 description="Don't let COVID-19 stop you from changing the world."
                 deadline="April 15, 2020"
                 amount="$500"
+                staffPick
               />
             </div>
 
@@ -89,30 +90,35 @@ const CompanyPageTemplate = props => {
                 description="Share your tips on how you manage stress!"
                 deadline="April 30, 2020"
                 amount="$1,000"
+                staffPick={false}
               />
               <ScholarshipFeatureBlock
                 title="Ready to Vote? Quiz"
                 description="Take and share our online quiz with friends to educate them on everything they need to know to vote in the upcoming elections."
                 deadline="April 15, 2020"
                 amount="$1000"
+                staffPick={false}
               />
               <ScholarshipFeatureBlock
                 title="Run an Online Voter Registration Drive"
                 description="Share a link to help your friends register to vote online!"
                 deadline="April 30, 2020"
                 amount="$1,500"
+                staffPick={false}
               />
               <ScholarshipFeatureBlock
                 title="Would You Rather?"
                 description="Take our Would You Rather-style quiz and and share a personal finance guide with a friend."
                 deadline="April 30, 2020"
                 amount="$2,500"
+                staffPick
               />
               <ScholarshipFeatureBlock
                 title="COVID-19 Response"
                 description="Don't let COVID-19 stop you from changing the world."
                 deadline="April 15, 2020"
                 amount="$500"
+                staffPick={false}
               />
             </div>
             <div className="pb-6">
