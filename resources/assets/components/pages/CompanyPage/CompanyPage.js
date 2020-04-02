@@ -60,14 +60,14 @@ const CompanyPageTemplate = props => {
 
             {/* DELETE EVERYTHING BELOW THIS LATER */}
 
-            <div className="pb-6">
+            <div className="pt-6">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
                   <span>Got 5 minutes? </span>
                 </h1>
               </div>
             </div>
-            <div className="gallery-grid-triad my-4">
+            <div className="gallery-grid-triad mb-4">
               <ScholarshipFeatureBlock
                 title="COVID-19 Response"
                 description="Don't let COVID-19 stop you from changing the world."
@@ -76,7 +76,7 @@ const CompanyPageTemplate = props => {
               />
             </div>
 
-            <div className="pb-6">
+            <div className="pt-6">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
                   <span>April Scholarships</span>
@@ -84,11 +84,36 @@ const CompanyPageTemplate = props => {
               </div>
             </div>
             <div className="gallery-grid-triad my-4">
-              <ScholarshipFeatureBlock />
-              <ScholarshipFeatureBlock />
-              <ScholarshipFeatureBlock />
-              <ScholarshipFeatureBlock />
-              <ScholarshipFeatureBlock />
+              <ScholarshipFeatureBlock
+                title="New State of Mind"
+                description="Share your tips on how you manage stress!"
+                deadline="April 30, 2020"
+                amount="$1,000"
+              />
+              <ScholarshipFeatureBlock
+                title="Ready to Vote? Quiz"
+                description="Take and share our online quiz with friends to educate them on everything they need to know to vote in the upcoming elections."
+                deadline="April 15, 2020"
+                amount="$1000"
+              />
+              <ScholarshipFeatureBlock
+                title="Run an Online Voter Registration Drive"
+                description="Share a link to help your friends register to vote online!"
+                deadline="April 30, 2020"
+                amount="$1,500"
+              />
+              <ScholarshipFeatureBlock
+                title="Would You Rather?"
+                description="Take our Would You Rather-style quiz and and share a personal finance guide with a friend."
+                deadline="April 30, 2020"
+                amount="$2,500"
+              />
+              <ScholarshipFeatureBlock
+                title="COVID-19 Response"
+                description="Don't let COVID-19 stop you from changing the world."
+                deadline="April 15, 2020"
+                amount="$500"
+              />
             </div>
             <div className="pb-6">
               <div className="flex__cell -two-thirds section-header w-full">

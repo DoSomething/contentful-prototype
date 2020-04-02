@@ -6,15 +6,17 @@ import PropTypes from 'prop-types';
 // Vertical
 const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
   return (
-    <div className="card rounded border-solid border-2 border-gray-300">
-      <div className="flex flex-col h-full">
-        <img
-          className="pb-4"
-          style={{ width: '100%' }}
-          src="https://picsum.photos/384/216"
-          alt="test"
-        />
-        <h4 className="px-4">
+    <article className="flex flex-col h-full relative text-left">
+      <img
+        style={{ width: '100%' }}
+        src="https://picsum.photos/384/216"
+        alt="test"
+      />
+      <div className="bg-white border-b border-l border-r border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
+        <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
+          Featured
+        </div>
+        <h4 className="">
           <a
             className="text-blurple-500 hover:text-blurple-300"
             href="https://google.com"
@@ -22,11 +24,11 @@ const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
             {title}
           </a>
         </h4>
-        <p className="px-4">{description}</p>
-        <span className="px-4 pt-2 text-sm text-gray-500">
+        <p className="">{description}</p>
+        <span className="pt-2 text-sm text-gray-500">
           Provided by DoSomething.org
         </span>
-        <div className="px-4 pt-4">
+        <div className="pt-4">
           <div className="lg:float-left lg:pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
             <p className="pb-4">{deadline}</p>
@@ -38,12 +40,12 @@ const ScholarshipFeatureBlock = ({ title, description, deadline, amount }) => {
         </div>
         <button
           type="button"
-          className="btn mx-4 mb-4 bg-blurple-500 border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
+          className="btn bg-blurple-500 border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
         >
           Apply Now
         </button>
       </div>
-    </div>
+    </article>
   );
 };
 
