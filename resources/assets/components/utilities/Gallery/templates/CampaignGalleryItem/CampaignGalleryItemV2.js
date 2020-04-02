@@ -20,11 +20,13 @@ const CampaignGalleryItem = ({
 
   return (
     <article className="flex flex-col h-full relative text-left">
-      <img
-        alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
-        srcSet={srcset}
-        src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
-      />
+      <a className="block" href={url}>
+        <img
+          alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
+          srcSet={srcset}
+          src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
+        />
+      </a>
 
       <div className="bg-white border-b-2 border-l-2 border-r-2 border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
         {staffPick ? (
@@ -33,8 +35,10 @@ const CampaignGalleryItem = ({
           </div>
         ) : null}
 
-        <h1 className="font-bold mb-2 text-base text-blurple-500">
-          {showcaseTitle}
+        <h1 className="font-bold mb-2 text-base">
+          <a className="text-blurple-500 hover:text-blurple-300" href={url}>
+            {showcaseTitle}
+          </a>
         </h1>
 
         <p className="flex-grow">{showcaseDescription}</p>

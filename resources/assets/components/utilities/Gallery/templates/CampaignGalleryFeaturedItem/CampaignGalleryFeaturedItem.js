@@ -45,12 +45,16 @@ const CampaignGalleryFeaturedItem = ({
           }
         `}
       >
-        <img
-          alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
-          className="xxl:invisible"
-          srcSet={srcset}
-          src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
-        />
+        <a className="block" href={url}>
+          <img
+            alt={
+              showcaseImage.description || `Cover photo for ${showcaseTitle}`
+            }
+            className="xxl:invisible"
+            srcSet={srcset}
+            src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
+          />
+        </a>
       </div>
 
       <div className="bg-white border-b-2 border-l-2 xxl:border-l-0 border-r-2 xxl:border-t-2 border-gray-300 border-solid flex xxl:block flex-col flex-grow p-4 xxl:p-8 xxl:pl-0 rounded-b xxl:rounded-b-none">
