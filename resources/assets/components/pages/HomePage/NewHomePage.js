@@ -8,7 +8,11 @@ import sponsorList from './sponsor-list';
 import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import { contentfulImageUrl, tailwind } from '../../../helpers';
+import {
+  contentfulImageUrl,
+  isAuthenticated,
+  tailwind,
+} from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
@@ -383,31 +387,33 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </section>
 
-          <article
-            className="base-12-grid bg-yellow-500 py-16"
-            data-test="signup-cta"
-          >
-            <div className="xl:flex grid-wide xl:items-center text-center">
-              <div className="text-left xl:w-8/12">
-                <h1 className="font-bold text-2xl">
-                  Join our youth-led movement for good
-                </h1>
-                <p className="text-lg">
-                  Make an impact with millions of young people, and earn easy
-                  scholarships for volunteering.
-                </p>
-              </div>
+          {isAuthenticated() ? null : (
+            <article
+              className="base-12-grid bg-yellow-500 py-16"
+              data-test="signup-cta"
+            >
+              <div className="xl:flex grid-wide xl:items-center text-center">
+                <div className="text-left xl:w-8/12">
+                  <h1 className="font-bold text-2xl">
+                    Join our youth-led movement for good
+                  </h1>
+                  <p className="text-lg">
+                    Make an impact with millions of young people, and earn easy
+                    scholarships for volunteering.
+                  </p>
+                </div>
 
-              <div className="flex-grow">
-                <a
-                  href="/authorize"
-                  className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
-                >
-                  Join Now
-                </a>
+                <div className="flex-grow">
+                  <a
+                    href="/authorize"
+                    className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
+                  >
+                    Join Now
+                  </a>
+                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          )}
         </article>
       </main>
 
