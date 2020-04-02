@@ -16,8 +16,9 @@ const PhotoBanner = ({ title, description }) => {
     <div
       className="base-12-grid relative"
       css={css`
-        background-image: url(https://picsum.photos/1440/400/);
-        height: 400px;
+        background-image: url(https://images.ctfassets.net/81iqaqpfd8fy/4lmeKi7HHC3wzKYwbHs8PY/40c35db6ad14ea421d231fe7aa7bc158/ScholarshipsBanner1.jpg);
+        height: 500px;
+        background-size: cover;
       `}
     >
       <div
