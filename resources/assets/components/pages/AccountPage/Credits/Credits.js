@@ -1,6 +1,6 @@
 import React from 'react';
 
-import VolunteerCreditsTable from './VolunteerCreditsTable';
+import VolunteerCreditsQuery from './VolunteerCreditsQuery';
 import SectionHeader from '../../../utilities/SectionHeader/SectionHeader';
 
 const Credits = () => (
@@ -16,7 +16,7 @@ const Credits = () => (
     </div>
 
     <div className="grid-wide my-8">
-      <VolunteerCreditsTable />
+      <VolunteerCreditsQuery />
     </div>
   </>
 );
