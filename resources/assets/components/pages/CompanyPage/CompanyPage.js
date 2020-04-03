@@ -60,14 +60,14 @@ const CompanyPageTemplate = props => {
 
             {/* DELETE EVERYTHING BELOW THIS LATER */}
 
-            <div className="pt-6">
+            <div className="pt-8">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
                   <span>Got 5 minutes? </span>
                 </h1>
               </div>
             </div>
-            <div className="gallery-grid-triad mb-4">
+            <div className="gallery-grid-triad mb-4" style={{ paddingLeft: 0 }}>
               <ScholarshipFeatureBlock
                 title="COVID-19 Response"
                 description="Don't let COVID-19 stop you from changing the world."
@@ -77,14 +77,14 @@ const CompanyPageTemplate = props => {
               />
             </div>
 
-            <div className="pt-6">
+            <div className="pt-8">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
                   <span>April Scholarships</span>
                 </h1>
               </div>
             </div>
-            <div className="gallery-grid-triad my-4">
+            <div className="gallery-grid-triad my-4" style={{ paddingLeft: 0 }}>
               <ScholarshipFeatureBlock
                 title="New State of Mind"
                 description="Share your tips on how you manage stress!"
@@ -104,7 +104,7 @@ const CompanyPageTemplate = props => {
                 description="Share a link to help your friends register to vote online!"
                 deadline="April 30, 2020"
                 amount="$1,500"
-                staffPick={false}
+                staffPick
               />
               <ScholarshipFeatureBlock
                 title="Would You Rather?"
@@ -121,7 +121,7 @@ const CompanyPageTemplate = props => {
                 staffPick={false}
               />
             </div>
-            <div className="pb-6">
+            <div className="pb-8">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
                   <span>How It Works</span>
@@ -143,7 +143,7 @@ const CompanyPageTemplate = props => {
                 </div>
               </div>
             </div>
-            <div className="pb-6">
+            <div className="pb-8">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
                   <span>Testimonial</span>
@@ -189,7 +189,7 @@ const CompanyPageTemplate = props => {
                 </div>
               </div>
             </div>
-            <div className="pb-6">
+            <div className="pb-8">
               <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
                 <div className="col-span-2 order-1 hack-article-content-widths">
                   <div className="markdown with-lists text-content">
@@ -204,7 +204,7 @@ const CompanyPageTemplate = props => {
                 </div>
               </div>
             </div>
-            <div className="pb-6">
+            <div className="pb-8">
               <div className="md:grid grid-flow-row-dense grid-cols-3 gap-4">
                 <div className="col-span-2 order-1 hack-article-content-widths">
                   <div className="markdown with-lists text-content">
