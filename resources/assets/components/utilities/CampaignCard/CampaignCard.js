@@ -1,12 +1,29 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import {
-  contentfulImageSrcset,
-  contentfulImageUrl,
-} from '../../../../../helpers';
+import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
-const CampaignGalleryItem = ({
+export const campaignCardFragment = gql`
+  fragment CampaignCard on Showcasable {
+    showcaseTitle
+    showcaseDescription
+    showcaseImage {
+      url
+    }
+    ... on CampaignWebsite {
+      id
+      staffPick
+      url
+    }
+    ... on StoryPageWebsite {
+      id
+      url
+    }
+  }
+`;
+
+const CampaignCard = ({
   showcaseDescription,
   showcaseImage,
   showcaseTitle,
@@ -54,7 +71,7 @@ const CampaignGalleryItem = ({
   );
 };
 
-CampaignGalleryItem.propTypes = {
+CampaignCard.propTypes = {
   showcaseDescription: PropTypes.string.isRequired,
   showcaseImage: PropTypes.object.isRequired,
   showcaseTitle: PropTypes.string.isRequired,
@@ -62,8 +79,8 @@ CampaignGalleryItem.propTypes = {
   url: PropTypes.string.isRequired,
 };
 
-CampaignGalleryItem.defaultProps = {
+CampaignCard.defaultProps = {
   staffPick: false,
 };
 
-export default CampaignGalleryItem;
+export default CampaignCard;

@@ -6,9 +6,9 @@ import {
   contentfulImageUrl,
   contentfulImageSrcset,
   tailwind,
-} from '../../../../../helpers';
+} from '../../../helpers';
 
-const CampaignGalleryFeaturedItem = ({
+const CampaignCardFeatured = ({
   showcaseDescription,
   showcaseImage,
   showcaseTitle,
@@ -79,11 +79,11 @@ const CampaignGalleryFeaturedItem = ({
   );
 };
 
-CampaignGalleryFeaturedItem.propTypes = {
+CampaignCardFeatured.propTypes = {
   showcaseDescription: PropTypes.string.isRequired,
   showcaseImage: PropTypes.object.isRequired,
   showcaseTitle: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
-export default CampaignGalleryFeaturedItem;
+export default CampaignCardFeatured;
