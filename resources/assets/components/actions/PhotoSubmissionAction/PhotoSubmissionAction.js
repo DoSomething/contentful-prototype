@@ -297,6 +297,25 @@ class PhotoSubmissionAction extends PostForm {
         : null,
     );
 
+    if (!this.props.userId) {
+      // creating account, but not getting redirected back to the page (might be a local vs. real thing, also not happening on campaigns)
+      return (
+        <React.Fragment>
+          <div className="clearfix">
+            <div className="photo-submission-action" />
+            <Card
+              className={classnames('bordered rounded', this.props.className)}
+              title={this.props.title}
+            >
+              <a id="utility-nav__join" href={this.props.authRegisterUrl}>
+                Add Photo
+              </a>
+            </Card>
+          </div>
+        </React.Fragment>
+      );
+    }
+
     return (
       <React.Fragment>
         <div className="clearfix">
