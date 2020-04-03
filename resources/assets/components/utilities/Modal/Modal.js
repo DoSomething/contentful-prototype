@@ -22,6 +22,8 @@ class Modal extends React.Component {
     this.el = document.createElement('div');
     this.el.className = 'wrapper';
     this.scrollOffset = window.scrollY;
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +34,7 @@ class Modal extends React.Component {
     );
     this.modalPortal.classList.add('is-active');
     this.modalPortal.appendChild(this.el);
+    document.addEventListener('click', this.handleClick, false);
 
     // Track in analytics that the modal opened:
     // @TODO: See if this conflicts with the DissmissableElement analytics events.
@@ -54,6 +57,7 @@ class Modal extends React.Component {
     window.scroll(0, this.scrollOffset);
     this.modalPortal.classList.remove('is-active');
     this.modalPortal.removeChild(this.el);
+    document.removeEventListener('click', this.handleClick, false);
 
     // Track in analytics that the modal closed:
     if (this.props.trackingId) {
@@ -67,6 +71,13 @@ class Modal extends React.Component {
         },
       });
     }
+  }
+
+  handleClick(event) {
+    if (event.target !== this.el) {
+      return;
+    }
+    this.props.onClose();
   }
 
   render() {
