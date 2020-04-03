@@ -47,7 +47,7 @@ const VolunteerCreditsTable = ({ posts }) =>
   ) : null;
 
 VolunteerCreditsTable.propTypes = {
-  posts: PropTypes.object.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default VolunteerCreditsTable;
