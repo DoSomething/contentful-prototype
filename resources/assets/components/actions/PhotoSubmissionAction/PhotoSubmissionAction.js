@@ -103,15 +103,17 @@ class PhotoSubmissionAction extends PostForm {
    * @return {void}
    */
   componentDidMount() {
-    const request = getUserCampaignSignups(
-      this.props.userId,
-      this.props.campaignId,
-    );
+    if (this.props.campaignId) {
+      const request = getUserCampaignSignups(
+        this.props.userId,
+        this.props.campaignId,
+      );
 
-    // @TODO: handle if errors.
-    request.then(response => {
-      this.handleSignupResponse(response.data[0]);
-    });
+      // @TODO: handle if errors.
+      request.then(response => {
+        this.handleSignupResponse(response.data[0]);
+      });
+    }
   }
 
   /**
