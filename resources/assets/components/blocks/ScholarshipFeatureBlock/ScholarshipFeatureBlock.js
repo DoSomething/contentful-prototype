@@ -38,12 +38,18 @@ const ScholarshipFeatureBlock = ({
         </span> */}
         <div className="pt-4">
           <div className="lg:float-left lg:pr-8">
+            <h4 className="font-bold uppercase text-gray-600">Amount</h4>
+            <p className="">{amount}</p>
+          </div>
+        </div>
+        <div className="pt-4">
+          <div className="lg:float-left lg:pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
             <p className="pb-4">{deadline}</p>
           </div>
           <div className="lg:float-left">
-            <h4 className="font-bold uppercase text-gray-600">Amount</h4>
-            <p className="pb-4">{amount}</p>
+            <h4 className="font-bold uppercase text-gray-600">Time</h4>
+            <p className="pb-4">Less than 5 Minutes</p>
           </div>
         </div>
         <button
