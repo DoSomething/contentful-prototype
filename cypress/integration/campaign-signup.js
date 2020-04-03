@@ -38,7 +38,7 @@ describe('Campaign Signup', () => {
       .handleLogin(user);
 
     cy.contains('Thanks for joining us!');
-    cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
+    cy.get('body').type('{esc}', { force: true });
     cy.get('.card.affirmation').should('not.exist');
   });
 
