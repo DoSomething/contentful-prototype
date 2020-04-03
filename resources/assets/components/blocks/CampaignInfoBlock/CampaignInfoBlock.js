@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 import { getHumanFriendlyDate } from '../../../helpers';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './campaign-info-block.scss';
 
@@ -40,6 +44,15 @@ const CampaignInfoBlock = ({
         const actions = res.campaign.actions || [];
         const isOpen = res.campaign.isOpen;
 
+        const handleViewMorelinkSelect = () => {
+          trackAnalyticsEvent('phoenix_clicked_view_more_link_scholarships', {
+            action: 'link_clicked',
+            category: EVENT_CATEGORIES.modal,
+            label: 'SCHOLARSHIP_MODAL',
+            context: { campaignId },
+          });
+        };
+
         let actionItem = actions.find(
           action => action.reportback && action.scholarshipEntry,
         );
@@ -68,7 +81,7 @@ const CampaignInfoBlock = ({
                     <button
                       className="text-blue-500 pb-4"
                       type="button"
-                      onClick={showModal}
+                      onClick={showModal && handleViewMorelinkSelect}
                     >
                       View Scholarship Details
                     </button>
