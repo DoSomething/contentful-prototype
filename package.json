@@ -102,6 +102,7 @@
     "gatsby": "^2.19.49",
     "gatsby-plugin-apollo": "^3.0.1",
     "gatsby-plugin-postcss": "^2.2.1",
+    "gatsby-source-graphql": "^2.3.0",
     "gatsby-theme-apollo": "^2.0.0",
     "graphql": "~14.6.0",
     "graphql-anywhere": "^4.2.6",

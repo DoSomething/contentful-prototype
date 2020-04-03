@@ -11,6 +11,15 @@ module.exports = {
     {
       resolve: 'gatsby-theme-apollo',
     },
+    // ...
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'DS',
+        fieldName: 'dosomething',
+        url: 'https://graphql-qa.dosomething.org/graphql',
+      },
+    },
     // We use PostCSS for Tailwind, Autoprefixer, & compiled imports.
     {
       resolve: 'gatsby-plugin-postcss',
