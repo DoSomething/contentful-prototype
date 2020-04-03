@@ -63,7 +63,7 @@ const CompanyPageTemplate = props => {
             <div className="pt-8">
               <div className="flex__cell -two-thirds section-header w-full">
                 <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
-                  <span>Got 5 minutes? </span>
+                  <span>April Scholarships</span>
                 </h1>
               </div>
             </div>
@@ -75,16 +75,14 @@ const CompanyPageTemplate = props => {
                 amount="$500"
                 staffPick
               />
-            </div>
 
-            <div className="pt-8">
-              <div className="flex__cell -two-thirds section-header w-full">
-                <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
-                  <span>April Scholarships</span>
-                </h1>
-              </div>
-            </div>
-            <div className="gallery-grid-triad my-4" style={{ paddingLeft: 0 }}>
+              <ScholarshipFeatureBlock
+                title="Ready to Vote? Quiz"
+                description="Take and share our online quiz with friends to educate them on everything they need to know to vote in the upcoming elections."
+                deadline="April 15, 2020"
+                amount="$1,000"
+                staffPick={false}
+              />
               <ScholarshipFeatureBlock
                 title="New State of Mind"
                 description="Share your tips on how you manage stress!"
@@ -92,13 +90,16 @@ const CompanyPageTemplate = props => {
                 amount="$1,000"
                 staffPick={false}
               />
-              <ScholarshipFeatureBlock
-                title="Ready to Vote? Quiz"
-                description="Take and share our online quiz with friends to educate them on everything they need to know to vote in the upcoming elections."
-                deadline="April 15, 2020"
-                amount="$1000"
-                staffPick={false}
-              />
+            </div>
+
+            <div className="pt-8">
+              <div className="flex__cell -two-thirds section-header w-full">
+                <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
+                  <span>Quick Scholarships</span>
+                </h1>
+              </div>
+            </div>
+            <div className="gallery-grid-triad my-4" style={{ paddingLeft: 0 }}>
               <ScholarshipFeatureBlock
                 title="Run an Online Voter Registration Drive"
                 description="Share a link to help your friends register to vote online!"
