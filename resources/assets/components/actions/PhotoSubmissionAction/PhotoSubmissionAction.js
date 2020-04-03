@@ -216,15 +216,29 @@ class PhotoSubmissionAction extends PostForm {
       school_id: await this.getUserActionSchoolId(),
     });
 
-    // Send request to store the campaign photo submission post.
-    this.props.storeCampaignPost(this.props.campaignId, {
+    const data = {
       action,
       actionId: this.props.actionId,
       blockId: this.props.id,
       body: formatPostPayload(formFields),
       pageId: this.props.pageId,
+      campaignId: this.props.campaignId,
       type,
-    });
+    };
+
+    // Send request to store the campaign photo submission post.
+    if (this.props.actionId) {
+      this.props.storePost(data);
+    } else {
+      this.props.storeCampaignPost(this.props.campaignId, {
+        action,
+        actionId: this.props.actionId,
+        blockId: this.props.id,
+        body: formatPostPayload(formFields),
+        pageId: this.props.pageId,
+        type,
+      });
+    }
   };
 
   /**
@@ -478,7 +492,7 @@ PhotoSubmissionAction.propTypes = {
   actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
   buttonText: PropTypes.string,
-  campaignId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string,
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
@@ -492,6 +506,7 @@ PhotoSubmissionAction.propTypes = {
   resetPostSubmissionItem: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   storeCampaignPost: PropTypes.func.isRequired,
+  storePost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
     items: PropTypes.object,
@@ -507,6 +522,7 @@ PhotoSubmissionAction.defaultProps = {
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
+  campaignId: null,
   captionFieldLabel: 'Add a title to your photo.',
   captionFieldPlaceholder: '60 characters or less',
   className: null,
