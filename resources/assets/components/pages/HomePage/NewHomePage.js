@@ -219,50 +219,52 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </header>
 
-          <section
-            className="base-12-grid bg-gray-100 py-8"
-            css={css`
-              background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 1) 25%,
-                ${tailwindGray['100']}
-              );
-            `}
-            data-test="campaigns-section"
-          >
-            <div className="grid-wide text-center">
-              <h2 className="mb-6 relative">
-                <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                  Take Action
-                </span>
-                <span
-                  className="absolute bg-purple-500 block h-1 w-full z-0"
-                  css={centerHorizontalRule}
-                />
-              </h2>
+          {campaigns ? (
+            <section
+              className="base-12-grid bg-gray-100 py-8"
+              css={css`
+                background: linear-gradient(
+                  to bottom,
+                  rgba(255, 255, 255, 1) 25%,
+                  ${tailwindGray['100']}
+                );
+              `}
+              data-test="campaigns-section"
+            >
+              <div className="grid-wide text-center">
+                <h2 className="mb-6 relative">
+                  <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
+                    Take Action
+                  </span>
+                  <span
+                    className="absolute bg-purple-500 block h-1 w-full z-0"
+                    css={centerHorizontalRule}
+                  />
+                </h2>
 
-              <p className="mb-6 lg:mb-8 text-lg">
-                Choose a campaign below to make an impact and enter for a chance
-                to{' '}
+                <p className="mb-6 lg:mb-8 text-lg">
+                  Choose a campaign below to make an impact and enter for a
+                  chance to{' '}
+                  <a
+                    href="/us/about/easy-scholarships"
+                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                  >
+                    earn scholarships
+                  </a>
+                  . (Talk about a win-win.)
+                </p>
+
+                <HomePageCampaignGallery campaigns={campaigns} />
+
                 <a
-                  href="/us/about/easy-scholarships"
-                  className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                  href="/us/campaigns"
+                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
                 >
-                  earn scholarships
+                  See More Campaigns
                 </a>
-                . (Talk about a win-win.)
-              </p>
-
-              <HomePageCampaignGallery campaigns={campaigns} />
-
-              <a
-                href="/us/campaigns"
-                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-              >
-                See More Campaigns
-              </a>
-            </div>
-          </section>
+              </div>
+            </section>
+          ) : null}
 
           <article
             className="base-12-grid bg-purple-700 py-8 lg:py-12"
@@ -336,31 +338,33 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </div>
           </article>
 
-          <section
-            className="base-12-grid bg-gray-100 py-8"
-            data-test="articles-section"
-          >
-            <div className="grid-wide text-center">
-              <h2 className="mb-6 relative">
-                <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                  Read About It
-                </span>
-                <span
-                  className="absolute bg-purple-500 block h-1 w-full z-0"
-                  css={centerHorizontalRule}
-                />
-              </h2>
+          {articles ? (
+            <section
+              className="base-12-grid bg-gray-100 py-8"
+              data-test="articles-section"
+            >
+              <div className="grid-wide text-center">
+                <h2 className="mb-6 relative">
+                  <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
+                    Read About It
+                  </span>
+                  <span
+                    className="absolute bg-purple-500 block h-1 w-full z-0"
+                    css={centerHorizontalRule}
+                  />
+                </h2>
 
-              <HomePageArticleGallery articles={articles} />
+                <HomePageArticleGallery articles={articles} />
 
-              <a
-                href="/us/articles"
-                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-              >
-                See More Articles
-              </a>
-            </div>
-          </section>
+                <a
+                  href="/us/articles"
+                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                >
+                  See More Articles
+                </a>
+              </div>
+            </section>
+          ) : null}
 
           {/* @TODO: Need to remove the top/bottom padding from base-12-grid class and
           let components add their own padding otherwise it is hard to override. */}
@@ -423,8 +427,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 };
 
 NewHomePageTemplate.propTypes = {
-  articles: PropTypes.arrayOf(PropTypes.object).isRequired,
-  campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  articles: PropTypes.arrayOf(PropTypes.object),
+  campaigns: PropTypes.arrayOf(PropTypes.object),
   coverImage: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }),
@@ -432,6 +436,8 @@ NewHomePageTemplate.propTypes = {
 };
 
 NewHomePageTemplate.defaultProps = {
+  articles: null,
+  campaigns: null,
   coverImage: null,
   title: 'We Are A Youth-Led Movement For Good',
 };
