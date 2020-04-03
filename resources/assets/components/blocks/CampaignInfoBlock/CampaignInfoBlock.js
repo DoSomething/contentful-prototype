@@ -44,7 +44,8 @@ const CampaignInfoBlock = ({
         const actions = res.campaign.actions || [];
         const isOpen = res.campaign.isOpen;
 
-        const handleViewMorelinkSelect = () => {
+        const handleViewMoreLinkSelect = () => {
+          showModal();
           trackAnalyticsEvent('phoenix_clicked_view_more_link_scholarships', {
             action: 'link_clicked',
             category: EVENT_CATEGORIES.modal,
@@ -81,7 +82,7 @@ const CampaignInfoBlock = ({
                     <button
                       className="text-blue-500 pb-4"
                       type="button"
-                      onClick={showModal && handleViewMorelinkSelect}
+                      onClick={handleViewMoreLinkSelect}
                     >
                       View Scholarship Details
                     </button>
