@@ -24,10 +24,6 @@ const ScholarshipFeatureBlock = ({
             Featured
           </div>
         ) : null}
-
-        <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
-          Featured
-        </div>
         <h4>
           <a
             className="text-blurple-500 hover:text-blurple-300"
