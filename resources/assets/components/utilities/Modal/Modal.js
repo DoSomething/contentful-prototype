@@ -20,7 +20,6 @@ class Modal extends React.Component {
 
     this.chrome = document.getElementById('chrome');
     this.el = document.createElement('div');
-    // this.el.className = 'wrapper';
     this.el.classList = 'wrapper modal-container';
     this.scrollOffset = window.scrollY;
 
