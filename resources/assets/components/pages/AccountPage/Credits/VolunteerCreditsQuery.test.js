@@ -2,14 +2,11 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import { MockedProvider } from '@apollo/react-testing';
-import { getHumanFriendlyDate } from '../../../../helpers';
 
 import {
   mockPostsResponse,
   mockParsedPostsData,
-} from './volunteer-credits-mock-data.js';
-
-import VolunteerCreditsTable from './VolunteerCreditsTable';
+} from './volunteer-credits-mock-data';
 import VolunteerCreditsQuery, {
   VOLUNTEER_CREDIT_POSTS_QUERY,
 } from './VolunteerCreditsQuery';
