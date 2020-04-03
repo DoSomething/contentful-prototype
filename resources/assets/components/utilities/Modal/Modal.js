@@ -20,7 +20,8 @@ class Modal extends React.Component {
 
     this.chrome = document.getElementById('chrome');
     this.el = document.createElement('div');
-    this.el.className = 'wrapper';
+    // this.el.className = 'wrapper';
+    this.el.classList = 'wrapper modal-container';
     this.scrollOffset = window.scrollY;
 
     this.handleModalCloseClick = this.handleModalCloseClick.bind(this);
@@ -35,7 +36,7 @@ class Modal extends React.Component {
     );
     this.modalPortal.classList.add('is-active');
     this.modalPortal.appendChild(this.el);
-    document.addEventListener('click', this.handleModalCloseClick, false);
+    this.el.addEventListener('click', this.handleModalCloseClick, false);
     document.addEventListener('keydown', this.handleModalCloseEsc, false);
 
     // Track in analytics that the modal opened:
@@ -59,7 +60,7 @@ class Modal extends React.Component {
     window.scroll(0, this.scrollOffset);
     this.modalPortal.classList.remove('is-active');
     this.modalPortal.removeChild(this.el);
-    document.removeEventListener('click', this.handleModalCloseClick, false);
+    this.el.removeEventListener('click', this.handleModalCloseClick, false);
     document.removeEventListener('keydown', this.handleModalCloseEsc, false);
 
     // Track in analytics that the modal closed:

@@ -38,6 +38,8 @@ describe('Campaign Signup', () => {
       .handleLogin(user);
 
     cy.contains('Thanks for joining us!');
+    cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
+    cy.get('.card.affirmation').should('not.exist');
   });
 
   it('Create signup, as an authenticated user', () => {
@@ -57,6 +59,8 @@ describe('Campaign Signup', () => {
     // Click "Join Now" & should get the affirmation modal:
     cy.contains('button', 'Join Us').click();
     cy.get('.card.affirmation').contains('Thanks for joining us!');
+    cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
+    cy.get('.card.affirmation').should('not.exist');
   });
 
   context('Campaign ID configured as referral campaign', () => {
