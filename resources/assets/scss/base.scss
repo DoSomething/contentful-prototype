@@ -21,7 +21,7 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 }
 
 .btn:active {
-  @apply text-blurple-100;
+  @apply bg-blurple-700;
 }
 
 .btn:hover {
@@ -29,8 +29,8 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 }
 
 .btn:focus {
-  @apply bg-blurple-300;
-  box-shadow: 0 0 3px theme('colors.blurple.500');
+  @apply bg-blurple-300 border-white;
+  outline: 2px solid theme('colors.blurple.300');
 }
 
 .btn:disabled {
