@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import { propType } from 'graphql-anywhere';
 
 import {
   contentfulImageUrl,
@@ -28,12 +28,9 @@ export const campaignCardFeaturedFragment = gql`
   }
 `;
 
-const CampaignCardFeatured = ({
-  showcaseDescription,
-  showcaseImage,
-  showcaseTitle,
-  url,
-}) => {
+const CampaignCardFeatured = ({ campaign }) => {
+  const { showcaseDescription, showcaseImage, showcaseTitle, url } = campaign;
+
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
@@ -100,10 +97,7 @@ const CampaignCardFeatured = ({
 };
 
 CampaignCardFeatured.propTypes = {
-  showcaseDescription: PropTypes.string.isRequired,
-  showcaseImage: PropTypes.object.isRequired,
-  showcaseTitle: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  campaign: propType(campaignCardFeaturedFragment).isRequired,
 };
 
 export default CampaignCardFeatured;

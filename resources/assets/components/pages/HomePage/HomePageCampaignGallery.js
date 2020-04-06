@@ -44,12 +44,7 @@ const HomePageCampaignGallery = ({ campaigns }) => {
             `}
           >
             {firstItem ? (
-              <CampaignCardFeatured
-                showcaseDescription={campaign.showcaseDescription}
-                showcaseImage={campaign.showcaseImage}
-                showcaseTitle={campaign.showcaseTitle}
-                url={campaign.url}
-              />
+              <CampaignCardFeatured campaign={campaign} />
             ) : (
               <CampaignCard campaign={campaign} />
             )}
