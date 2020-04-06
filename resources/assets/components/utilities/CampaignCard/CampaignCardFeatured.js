@@ -1,4 +1,5 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
@@ -7,6 +8,25 @@ import {
   contentfulImageSrcset,
   tailwind,
 } from '../../../helpers';
+
+export const campaignCardFeaturedFragment = gql`
+  fragment CampaignCardFeatured on Showcasable {
+    showcaseTitle
+    showcaseDescription
+    showcaseImage {
+      url
+    }
+    ... on CampaignWebsite {
+      id
+      staffPick
+      url
+    }
+    ... on StoryPageWebsite {
+      id
+      url
+    }
+  }
+`;
 
 const CampaignCardFeatured = ({
   showcaseDescription,

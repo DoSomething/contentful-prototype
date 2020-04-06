@@ -1,6 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
+import { propType } from 'graphql-anywhere';
 
 import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
@@ -23,13 +23,15 @@ export const campaignCardFragment = gql`
   }
 `;
 
-const CampaignCard = ({
-  showcaseDescription,
-  showcaseImage,
-  showcaseTitle,
-  staffPick,
-  url,
-}) => {
+const CampaignCard = ({ campaign }) => {
+  const {
+    showcaseDescription,
+    showcaseImage,
+    showcaseTitle,
+    staffPick,
+    url,
+  } = campaign;
+
   const srcset = contentfulImageSrcset(showcaseImage.url, [
     { height: 205, width: 365 },
     { height: 410, width: 730 },
@@ -72,15 +74,7 @@ const CampaignCard = ({
 };
 
 CampaignCard.propTypes = {
-  showcaseDescription: PropTypes.string.isRequired,
-  showcaseImage: PropTypes.object.isRequired,
-  showcaseTitle: PropTypes.string.isRequired,
-  staffPick: PropTypes.bool,
-  url: PropTypes.string.isRequired,
-};
-
-CampaignCard.defaultProps = {
-  staffPick: false,
+  campaign: propType(campaignCardFragment).isRequired,
 };
 
 export default CampaignCard;

@@ -51,13 +51,7 @@ const HomePageCampaignGallery = ({ campaigns }) => {
                 url={campaign.url}
               />
             ) : (
-              <CampaignCard
-                showcaseDescription={campaign.showcaseDescription}
-                showcaseImage={campaign.showcaseImage}
-                showcaseTitle={campaign.showcaseTitle}
-                staffPick={campaign.staffPick}
-                url={campaign.url}
-              />
+              <CampaignCard campaign={campaign} />
             )}
           </li>
         );

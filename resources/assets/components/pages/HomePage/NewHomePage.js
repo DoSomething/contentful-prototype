@@ -9,8 +9,10 @@ import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
+import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 import {
   contentfulImageUrl,
   isAuthenticated,
@@ -28,21 +30,18 @@ const HOME_PAGE_QUERY = gql`
       }
       campaigns {
         ...CampaignCard
+        ...CampaignCardFeatured
       }
       articles {
-        id
-        showcaseTitle
-        showcaseDescription
-        showcaseImage {
-          url
-        }
-        slug
+        ...PageCard
       }
       additionalContent
     }
   }
 
   ${campaignCardFragment}
+  ${campaignCardFeaturedFragment}
+  ${pageCardFragment}
 `;
 
 const ImpactStatistic = ({ campaignName, impactLabel, impactValue }) => (
