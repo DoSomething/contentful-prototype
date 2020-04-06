@@ -17,12 +17,20 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 // @TODO:forge-removal Rename this class to "button".
 .btn {
-  @apply bg-blue-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+  @apply bg-blurple-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+}
+
+.btn:active {
+  @apply text-blurple-100;
+}
+
+.btn:hover {
+  @apply bg-blurple-300;
 }
 
 .btn:focus {
-  @apply bg-blue-300;
-  box-shadow: 0 0 3px theme('colors.blue.500');
+  @apply bg-blurple-300;
+  box-shadow: 0 0 3px theme('colors.blurple.500');
 }
 
 .btn:disabled {

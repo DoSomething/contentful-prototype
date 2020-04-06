@@ -86,7 +86,7 @@ const CampaignCardFeatured = ({ campaign }) => {
         <p className="flex-grow xxl:text-lg">{showcaseDescription}</p>
 
         <a
-          className="btn bg-blurple-500 hover:bg-blurple-300 text-white hover:text-white mt-4 xxl:mt-8 hover:no-underline p-4 xxl:px-8 text-lg w-full xxl:w-auto"
+          className="btn text-white hover:text-white mt-4 xxl:mt-8 hover:no-underline p-4 xxl:px-8 text-lg w-full xxl:w-auto"
           href={url}
         >
           Get Started
