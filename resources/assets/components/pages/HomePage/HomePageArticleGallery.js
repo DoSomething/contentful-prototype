@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItemV2';
+import PageCard from '../../utilities/PageCard/PageCard';
 
 const HomePageArticleGallery = ({ articles }) => {
   return (
@@ -9,12 +9,7 @@ const HomePageArticleGallery = ({ articles }) => {
       {articles.map(article => {
         return (
           <li key={article.id}>
-            <PageGalleryItem
-              showcaseDescription={article.showcaseDescription}
-              showcaseImage={article.showcaseImage}
-              showcaseTitle={article.showcaseTitle}
-              slug={article.slug}
-            />
+            <PageCard page={article} />
           </li>
         );
       })}

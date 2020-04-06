@@ -1,19 +1,36 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
 import { css } from '@emotion/core';
+import { propType } from 'graphql-anywhere';
 
 import {
   contentfulImageUrl,
   contentfulImageSrcset,
   tailwind,
-} from '../../../../../helpers';
+} from '../../../helpers';
 
-const CampaignGalleryFeaturedItem = ({
-  showcaseDescription,
-  showcaseImage,
-  showcaseTitle,
-  url,
-}) => {
+export const campaignCardFeaturedFragment = gql`
+  fragment CampaignCardFeatured on Showcasable {
+    showcaseTitle
+    showcaseDescription
+    showcaseImage {
+      url
+    }
+    ... on CampaignWebsite {
+      id
+      staffPick
+      url
+    }
+    ... on StoryPageWebsite {
+      id
+      url
+    }
+  }
+`;
+
+const CampaignCardFeatured = ({ campaign }) => {
+  const { showcaseDescription, showcaseImage, showcaseTitle, url } = campaign;
+
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
@@ -79,11 +96,8 @@ const CampaignGalleryFeaturedItem = ({
   );
 };
 
-CampaignGalleryFeaturedItem.propTypes = {
-  showcaseDescription: PropTypes.string.isRequired,
-  showcaseImage: PropTypes.object.isRequired,
-  showcaseTitle: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+CampaignCardFeatured.propTypes = {
+  campaign: propType(campaignCardFeaturedFragment).isRequired,
 };
 
-export default CampaignGalleryFeaturedItem;
+export default CampaignCardFeatured;

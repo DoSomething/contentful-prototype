@@ -1,18 +1,37 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { propType } from 'graphql-anywhere';
 
-import {
-  contentfulImageSrcset,
-  contentfulImageUrl,
-} from '../../../../../helpers';
+import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
-const CampaignGalleryItem = ({
-  showcaseDescription,
-  showcaseImage,
-  showcaseTitle,
-  staffPick,
-  url,
-}) => {
+export const campaignCardFragment = gql`
+  fragment CampaignCard on Showcasable {
+    showcaseTitle
+    showcaseDescription
+    showcaseImage {
+      url
+    }
+    ... on CampaignWebsite {
+      id
+      staffPick
+      url
+    }
+    ... on StoryPageWebsite {
+      id
+      url
+    }
+  }
+`;
+
+const CampaignCard = ({ campaign }) => {
+  const {
+    showcaseDescription,
+    showcaseImage,
+    showcaseTitle,
+    staffPick,
+    url,
+  } = campaign;
+
   const srcset = contentfulImageSrcset(showcaseImage.url, [
     { height: 205, width: 365 },
     { height: 410, width: 730 },
@@ -54,16 +73,8 @@ const CampaignGalleryItem = ({
   );
 };
 
-CampaignGalleryItem.propTypes = {
-  showcaseDescription: PropTypes.string.isRequired,
-  showcaseImage: PropTypes.object.isRequired,
-  showcaseTitle: PropTypes.string.isRequired,
-  staffPick: PropTypes.bool,
-  url: PropTypes.string.isRequired,
+CampaignCard.propTypes = {
+  campaign: propType(campaignCardFragment).isRequired,
 };
 
-CampaignGalleryItem.defaultProps = {
-  staffPick: false,
-};
-
-export default CampaignGalleryItem;
+export default CampaignCard;

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers';
-import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItemV2';
-import CampaignGalleryFeaturedItem from '../../utilities/Gallery/templates/CampaignGalleryFeaturedItem/CampaignGalleryFeaturedItem';
+import CampaignCard from '../../utilities/CampaignCard/CampaignCard';
+import CampaignCardFeatured from '../../utilities/CampaignCard/CampaignCardFeatured';
 
 const HomePageCampaignGallery = ({ campaigns }) => {
   const tailwindSpacing = tailwind('spacing');
@@ -44,20 +44,9 @@ const HomePageCampaignGallery = ({ campaigns }) => {
             `}
           >
             {firstItem ? (
-              <CampaignGalleryFeaturedItem
-                showcaseDescription={campaign.showcaseDescription}
-                showcaseImage={campaign.showcaseImage}
-                showcaseTitle={campaign.showcaseTitle}
-                url={campaign.url}
-              />
+              <CampaignCardFeatured campaign={campaign} />
             ) : (
-              <CampaignGalleryItem
-                showcaseDescription={campaign.showcaseDescription}
-                showcaseImage={campaign.showcaseImage}
-                showcaseTitle={campaign.showcaseTitle}
-                staffPick={campaign.staffPick}
-                url={campaign.url}
-              />
+              <CampaignCard campaign={campaign} />
             )}
           </li>
         );

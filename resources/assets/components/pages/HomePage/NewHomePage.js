@@ -8,13 +8,16 @@ import sponsorList from './sponsor-list';
 import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
+import HomePageCampaignGallery from './HomePageCampaignGallery';
+import { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
+import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 import {
   contentfulImageUrl,
   isAuthenticated,
   tailwind,
 } from '../../../helpers';
-import HomePageCampaignGallery from './HomePageCampaignGallery';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {
@@ -26,35 +29,19 @@ const HOME_PAGE_QUERY = gql`
         url
       }
       campaigns {
-        ... on Showcasable {
-          showcaseTitle
-          showcaseDescription
-          showcaseImage {
-            url
-          }
-        }
-        ... on CampaignWebsite {
-          id
-          staffPick
-          url
-        }
-        ... on StoryPageWebsite {
-          id
-          url
-        }
+        ...CampaignCard
+        ...CampaignCardFeatured
       }
       articles {
-        id
-        showcaseTitle
-        showcaseDescription
-        showcaseImage {
-          url
-        }
-        slug
+        ...PageCard
       }
       additionalContent
     }
   }
+
+  ${campaignCardFragment}
+  ${campaignCardFeaturedFragment}
+  ${pageCardFragment}
 `;
 
 const ImpactStatistic = ({ campaignName, impactLabel, impactValue }) => (

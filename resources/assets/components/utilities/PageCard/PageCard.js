@@ -1,17 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import gql from 'graphql-tag';
+import { propType } from 'graphql-anywhere';
 
-import {
-  contentfulImageSrcset,
-  contentfulImageUrl,
-} from '../../../../../helpers';
+import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
-const PageGalleryItem = ({
-  showcaseDescription,
-  showcaseImage,
-  showcaseTitle,
-  slug,
-}) => {
+export const pageCardFragment = gql`
+  fragment PageCard on Page {
+    id
+    showcaseTitle
+    showcaseDescription
+    showcaseImage {
+      url
+    }
+    slug
+  }
+`;
+
+const PageCard = ({ page }) => {
+  const { showcaseDescription, showcaseImage, showcaseTitle, slug } = page;
+
   const srcset = contentfulImageSrcset(showcaseImage.url, [
     { height: 205, width: 365 },
     { height: 410, width: 730 },
@@ -43,11 +50,8 @@ const PageGalleryItem = ({
   );
 };
 
-PageGalleryItem.propTypes = {
-  showcaseDescription: PropTypes.string.isRequired,
-  showcaseImage: PropTypes.object.isRequired,
-  showcaseTitle: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
+PageCard.propTypes = {
+  page: propType(pageCardFragment).isRequired,
 };
 
-export default PageGalleryItem;
+export default PageCard;
