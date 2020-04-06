@@ -46,7 +46,7 @@ const CampaignInfoBlock = ({
 
         const handleViewMoreLinkSelect = () => {
           showModal();
-          trackAnalyticsEvent('phoenix_clicked_view_more_link_scholarships', {
+          trackAnalyticsEvent('clicked_view_more_link_scholarships', {
             action: 'link_clicked',
             category: EVENT_CATEGORIES.modal,
             label: 'SCHOLARSHIP_MODAL',
