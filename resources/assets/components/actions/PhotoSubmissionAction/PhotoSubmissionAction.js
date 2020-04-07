@@ -299,7 +299,6 @@ class PhotoSubmissionAction extends PostForm {
 
     // If we don't have an authenticated user, then this is a story page
     if (!this.props.userId) {
-      // add scroll concierge
       return (
         <React.Fragment>
           <div className="clearfix">
