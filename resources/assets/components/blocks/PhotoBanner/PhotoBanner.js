@@ -4,7 +4,13 @@ import { css } from '@emotion/core';
 
 // import { contentfulImageUrl } from '../../../helpers';
 
-const PhotoBanner = ({ title, description }) => {
+const PhotoBanner = ({
+  title,
+  supertitle,
+  description,
+  hasButton,
+  buttonLink,
+}) => {
   // background-image: url(${contentfulImageUrl(
   //   coverImage.url,
   //   '1600',
@@ -28,30 +34,37 @@ const PhotoBanner = ({ title, description }) => {
         `}
       />
       <div className="grid-wide relative flex flex-col justify-end">
+        {supertitle ? (
+          <h4 className="text-m text-white">{supertitle}</h4>
+        ) : null}
         <h1 className="text-6xl text-white font-league-gothic uppercase">
           {title}
         </h1>
         <p className="text-lg text-white">{description}</p>
-        {/* <button
+        {hasButton ? (
+          <button
             type="button"
             className="btn my-4 bg-blurple-500 text-white hover:bg-blurple-300 hover:text-white"
           >
-            Hello world
-          </button> */}
+            <a href={buttonLink}>Hello world</a>
+          </button>
+        ) : null}
       </div>
     </div>
   );
 };
 
 PhotoBanner.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  supertitle: PropTypes.string,
+  description: PropTypes.string.isRequired,
+  hasButton: PropTypes.bool.isRequired,
+  buttonLink: PropTypes.string,
 };
 
 PhotoBanner.defaultProps = {
-  title: 'Easy Scholarships',
-  description:
-    'Make an impact with millions of young people, and earn easy scholarships for volunteering.',
+  supertitle: '',
+  buttonLink: '',
 };
 
 export default PhotoBanner;

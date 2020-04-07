@@ -38,7 +38,12 @@ const CompanyPageTemplate = props => {
     <>
       <SiteNavigationContainer />
 
-      <PhotoBanner title={title} />
+      <PhotoBanner
+        title={title}
+        description="Hello world"
+        hasButton
+        buttonLink="http://google.com"
+      />
 
       <main className="wrapper base-12-grid bg-white">
         <article className="grid-wide bg-white overflow-hidden">
