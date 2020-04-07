@@ -4,19 +4,19 @@ import styled from '@emotion/styled';
 
 import '../resources/assets/tailwind.css';
 
-const AppContainer = styled.div`
+const Chrome = styled.div`
   ${tw`w-full relative bg-white mx-auto overflow-auto`}
 
   max-width: 1440px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
-function MyApp({ Component, pageProps }) {
+function Application({ Component, pageProps }) {
   return (
-    <AppContainer>
+    <Chrome>
       <Component {...pageProps} />
-    </AppContainer>
+    </Chrome>
   );
 }
 
-export default MyApp;
+export default Application;
