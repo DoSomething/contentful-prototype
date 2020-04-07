@@ -1,12 +1,36 @@
 import React from 'react';
 import tw from 'twin.macro';
 import Media from 'react-media';
-import { css } from '@emotion/core';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import {
+  Document,
+  Page,
+  PDFDownloadLink,
+  StyleSheet,
+  Text,
+  View,
+} from '@react-pdf/renderer';
 
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
+
+// PDF template styles.
+const styles = StyleSheet.create({
+  page: { backgroundColor: 'tomato' },
+  section: { color: 'white', textAlign: 'center', margin: 30 },
+});
+
+// PDF template.
+const PdfTemplate = () => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.section}>
+        <Text>Certificate of Credit.</Text>
+      </View>
+    </Page>
+  </Document>
+);
 
 // A list-item displaying a Post detail and value.
 const PostDetail = ({ detail, value }) => (
@@ -23,16 +47,14 @@ PostDetail.propTypes = {
 
 // The certificate PDF Download button with pending/ready state.
 const DownloadButton = ({ pending }) => (
-  <button
-    type="button"
-    css={css`
-      height: 65px;
-    `}
+  <PDFDownloadLink
+    document={<PdfTemplate />}
+    fileName="dosomething-volunteer-credit-certificate.pdf"
     /* @TODO: Test out using the btn class here instead of the Forge class. */
-    className={classNames('button w-full', { 'is-disabled': pending })}
+    className={classNames('button w-full py-4', { 'is-disabled': pending })}
   >
     {pending ? 'Pending' : 'Download'}
-  </button>
+  </PDFDownloadLink>
 );
 
 DownloadButton.propTypes = {
