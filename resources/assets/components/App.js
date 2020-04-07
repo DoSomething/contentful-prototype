@@ -25,6 +25,22 @@ const App = ({ store, history }) => {
 
   return (
     <Provider store={store}>
+      <div className="w-full flex justify-center bg-yellow-500 p-4 fixed z-50">
+        <button type="button" className="modal__close">
+          &times;
+        </button>
+        <p className="pb-2 md:pr-4 md:pb-0 align-middle">
+          Make your voice heard. Register to vote in less than 2 minutes.
+        </p>
+        <a
+          className="py-2 px-4 border border-solid-blurple rounded-md bg-blurple-500 text-white uppercase"
+          href="https://vote.dosomething.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Get Started
+        </a>
+      </div>
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
         <Router history={history}>
           <Switch>
