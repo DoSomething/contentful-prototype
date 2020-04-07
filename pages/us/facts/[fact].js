@@ -1,17 +1,15 @@
 import React from 'react';
 import tw from 'twin.macro';
 import gql from 'graphql-tag';
-import { useRouter } from 'next/router';
-import { useQuery } from '@apollo/react-hooks';
+import { css } from '@emotion/core';
 
-import { withApollo } from '../../../resources/assets/withApollo';
+import createApolloClient from '../../../resources/assets/graphql';
 import LazyImage from '../../../resources/assets/components/utilities/LazyImage';
 import GeneralPage from '../../../resources/assets/components/utilities/GeneralPage';
 import ArticleHeader from '../../../resources/assets/components/utilities/ArticleHeader';
 import StandardMarkdown from '../../../resources/assets/components/utilities/TextContent/StandardMarkdown';
-import { css } from '@emotion/core';
 
-const FactPageQuery = gql`
+const FACT_PAGE_QUERY = gql`
   query FactPageQuery($slug: String!) {
     page: pageBySlug(slug: $slug) {
       id
@@ -51,26 +49,12 @@ const markdownStyles = css`
   }
 `;
 
-const FactPage = () => {
-  const { query } = useRouter();
-
-  const { data, loading, error } = useQuery(FactPageQuery, {
-    variables: { slug: `facts/${query.fact}` },
-  });
-
-  if (loading) {
-    return 'LOADING...';
-  }
-
-  if (error) {
-    return 'ERR: KABLAM!';
-  }
-
-  if (!data.page) {
+const FactPage = ({ page }) => {
+  if (!page) {
     return 'ERR: NOT FOUND';
   }
 
-  const { title, subTitle, coverImage, content } = data.page;
+  const { title, subTitle, coverImage, content } = page;
 
   return (
     <GeneralPage>
@@ -87,4 +71,26 @@ const FactPage = () => {
   );
 };
 
-export default withApollo({ ssr: true })(FactPage);
+export async function getStaticProps({ params }) {
+  const GRAPHQL_URL = 'https://graphql-qa.dosomething.org/graphql';
+  const graphql = createApolloClient(GRAPHQL_URL);
+
+  const { data } = await graphql.query({
+    query: FACT_PAGE_QUERY,
+    variables: { slug: `facts/${params.fact}` },
+  });
+
+  return { props: data };
+}
+
+export function getStaticPaths() {
+  return {
+    paths: [
+      { params: { fact: '11-facts-about-animal-testing' } },
+      { params: { fact: '11-facts-about-volcanoes' } },
+    ],
+    fallback: true,
+  };
+}
+
+export default FactPage;
