@@ -58,6 +58,7 @@ const CampaignPageContent = props => {
                 PostGalleryBlock: 'grid-wide',
                 PhotoSubmissionBlock: 'grid-wide',
                 SocialDriveBlock: 'grid-wide',
+                QuizBlock: 'grid-wide',
               }}
             />
           ))}
