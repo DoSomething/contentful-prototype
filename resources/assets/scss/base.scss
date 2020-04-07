@@ -17,7 +17,7 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 // @TODO:forge-removal Rename this class to "button".
 .btn {
-  @apply bg-blurple-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+  @apply bg-blurple-500 border-2 border-solid border-blurple-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
 }
 
 .btn:active {
