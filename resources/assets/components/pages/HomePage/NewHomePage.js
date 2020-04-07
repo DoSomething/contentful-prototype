@@ -12,6 +12,7 @@ import HomePageCampaignGallery from './HomePageCampaignGallery';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 import {
   contentfulImageUrl,
@@ -144,6 +145,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
       <main>
         <article data-test="home-page">
           <header role="banner" className="bg-white">
+            <AnalyticsWaypoint name="impact_section_top" />
+
             <div
               className="base-12-grid bg-gray-200 pt-3 md:pt-6"
               css={css`
@@ -204,6 +207,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 />
               </div>
             </div>
+
+            <AnalyticsWaypoint name="impact_section_bottom" />
           </header>
 
           {campaigns ? (
@@ -219,6 +224,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               data-test="campaigns-section"
             >
               <div className="grid-wide text-center">
+                <AnalyticsWaypoint name="campaign_section_top" />
+
                 <h2 className="mb-6 relative">
                   <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
                     Take Action
@@ -249,6 +256,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 >
                   See More Campaigns
                 </a>
+
+                <AnalyticsWaypoint name="campaign_section_bottom" />
               </div>
             </section>
           ) : null}
@@ -258,6 +267,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             data-test="newsletters-cta"
           >
             <div className="grid-wide text-center">
+              <AnalyticsWaypoint name="newsletter_cta_top" />
+
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Inspired.
@@ -322,6 +333,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   />
                 </li>
               </ul>
+
+              <AnalyticsWaypoint name="newsletter_cta_bottom" />
             </div>
           </article>
 
@@ -331,6 +344,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               data-test="articles-section"
             >
               <div className="grid-wide text-center">
+                <AnalyticsWaypoint name="article_section_top" />
+
                 <h2 className="mb-6 relative">
                   <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
                     Read About It
@@ -349,6 +364,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 >
                   See More Articles
                 </a>
+
+                <AnalyticsWaypoint name="article_section_bottom" />
               </div>
             </section>
           ) : null}
@@ -360,6 +377,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             data-test="sponsors-section"
           >
             <div className="grid-wide text-center">
+              <AnalyticsWaypoint name="sponsor_section_top" />
+
               <h2 className="font-bold mb-3 text-base text-center text-gray-500 uppercase">
                 Sponsors
               </h2>
@@ -375,6 +394,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   </li>
                 ))}
               </ul>
+
+              <AnalyticsWaypoint name="sponsor_section_bottom" />
             </div>
           </section>
 
@@ -384,6 +405,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               data-test="signup-cta"
             >
               <div className="xl:flex grid-wide xl:items-center text-center">
+                <AnalyticsWaypoint name="join_cta_top" />
+
                 <div className="text-left xl:w-8/12">
                   <h1 className="font-bold text-2xl">
                     Join our youth-led movement for good
@@ -402,6 +425,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     Join Now
                   </a>
                 </div>
+
+                <AnalyticsWaypoint name="join_cta_bottom" />
               </div>
             </article>
           )}
