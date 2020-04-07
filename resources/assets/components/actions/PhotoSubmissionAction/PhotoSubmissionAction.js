@@ -297,8 +297,9 @@ class PhotoSubmissionAction extends PostForm {
         : null,
     );
 
+    // If we don't have an authenticated user, then this is a story page
     if (!this.props.userId) {
-      // creating account, but not getting redirected back to the page (might be a local vs. real thing, also not happening on campaigns)
+      // add scroll concierge
       return (
         <React.Fragment>
           <div className="clearfix">
@@ -307,9 +308,11 @@ class PhotoSubmissionAction extends PostForm {
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
             >
-              <a id="utility-nav__join" href={this.props.authRegisterUrl}>
-                Add Photo
-              </a>
+              <div className="text-center p-2">
+                <a className="btn" href={this.props.authRegisterUrl}>
+                  Add Photo
+                </a>
+              </div>
             </Card>
           </div>
         </React.Fragment>
