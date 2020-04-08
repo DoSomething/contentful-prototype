@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "GRAPHQL_URL": "https://graphql-qa.dosomething.org"
+    }
+  }
+}
