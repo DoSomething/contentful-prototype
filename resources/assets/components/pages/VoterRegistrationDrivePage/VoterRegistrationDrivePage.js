@@ -65,7 +65,11 @@ const VoterRegistrationDrivePage = ({ userId }) => {
                 </p>
               </div>
               <div className="grid-wide-3/10 secondary">
-                <CampaignInfoBlock campaignId={9001} />
+                <CampaignInfoBlock
+                  campaignId={9001}
+                  scholarshipAmount={1500}
+                  scholarshipDeadline={7000000}
+                />
               </div>
             </div>
           </div>
