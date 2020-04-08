@@ -308,7 +308,7 @@ class PhotoSubmissionAction extends PostForm {
               title={this.props.title}
             >
               <div className="text-center p-2">
-                <a className="btn" href={this.props.authRegisterUrl}>
+                <a className="button w-full" href={this.props.authRegisterUrl}>
                   Add Photo
                 </a>
               </div>
