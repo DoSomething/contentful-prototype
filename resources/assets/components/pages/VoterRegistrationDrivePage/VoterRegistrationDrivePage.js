@@ -10,6 +10,7 @@ import Placeholder from '../../utilities/Placeholder';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../blocks/ContentBlock/ContentBlock';
+import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
 const VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY = gql`
@@ -64,11 +65,7 @@ const VoterRegistrationDrivePage = ({ userId }) => {
                 </p>
               </div>
               <div className="grid-wide-3/10 secondary">
-                <Card className="bordered p-3 rounded campaign-info">
-                  <dt className="campaign-info__scholarship">
-                    Win A Scholarship
-                  </dt>
-                </Card>
+                <CampaignInfoBlock campaignId={9001} />
               </div>
             </div>
           </div>
