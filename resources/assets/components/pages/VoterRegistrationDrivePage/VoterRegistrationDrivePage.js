@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import ErrorPage from '../ErrorPage';
 import NotFoundPage from '../NotFoundPage';
+import Card from '../../utilities/Card/Card';
 import Placeholder from '../../utilities/Placeholder';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -45,13 +46,31 @@ const VoterRegistrationDrivePage = ({ userId }) => {
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
-          <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
-            <header role="banner" className="hero-banner">
-              <h1 className="hero-banner__headline-title">Ready, Set, Vote!</h1>
-              <h2 className="hero-banner__headline-subtitle">
-                {data.user.firstName} has invited you to register to vote!
-              </h2>
-            </header>
+          <div className="clearfix bg-gray-100">
+            <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
+              <header role="banner" className="hero-banner">
+                <h1 className="hero-banner__headline-title">
+                  Ready, Set, Vote!
+                </h1>
+                <h2 className="hero-banner__headline-subtitle">
+                  {data.user.firstName} has invited you to register to vote!
+                </h2>
+              </header>
+              <div className="grid-wide-7/10 primary">
+                <p>
+                  Voting is important for young people because we can affect
+                  change on issues we care about most like climate change,
+                  living wages, and student loan reform.
+                </p>
+              </div>
+              <div className="grid-wide-3/10 secondary">
+                <Card className="bordered p-3 rounded campaign-info">
+                  <dt className="campaign-info__scholarship">
+                    Win A Scholarship
+                  </dt>
+                </Card>
+              </div>
+            </div>
           </div>
         </div>
         <div className="bg-white">
