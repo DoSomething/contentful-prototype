@@ -86,9 +86,17 @@ export async function getStaticProps({ params }) {
 export function getStaticPaths() {
   return {
     paths: [
+      // TODO: We'd want to query these a build-time:
       { params: { fact: '11-facts-about-animal-testing' } },
+      { params: { fact: '11-facts-about-avalanches' } },
+      { params: { fact: '11-facts-about-bullying' } },
+      { params: { fact: '11-facts-about-earthquakes' } },
+      { params: { fact: '11-facts-about-free-speech' } },
+      { params: { fact: '11-facts-about-organic-food' } },
       { params: { fact: '11-facts-about-volcanoes' } },
     ],
+    // If we hit a page that isn't provided in the above list of
+    // paths, we'll try to render it on-demand:
     fallback: true,
   };
 }
