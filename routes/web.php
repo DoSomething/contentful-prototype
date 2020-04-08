@@ -90,6 +90,9 @@ $router->view('us/collections/{slug}', 'app');
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
 
+// Voter Registration Drives
+$router->view('us/members/{userId}/voter-registration-drive', 'app');
+
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.
 $router->fallback(function () {
