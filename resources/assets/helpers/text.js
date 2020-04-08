@@ -131,12 +131,17 @@ export function parseRichTextDocument(
       ),
       [BLOCKS.PARAGRAPH]: (node, children) =>
         children[0] ? (
-          <p
-            className={classnames(classNameByEntryDefault)}
-            style={{ color: textColor, fontSize }}
-          >
-            {children}
-          </p>
+          <div className="base-12-grid">
+            <p
+              className={classnames(
+                'col-start-2 col-span-7',
+                classNameByEntryDefault,
+              )}
+              style={{ color: textColor, fontSize }}
+            >
+              {children}
+            </p>
+          </div>
         ) : null,
       [BLOCKS.UL_LIST]: (node, children) => (
         <ul
