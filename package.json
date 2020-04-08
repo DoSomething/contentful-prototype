@@ -18,7 +18,7 @@
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
     "schema:fetch": "apollo service:download --endpoint https://graphql-dev.dosomething.org/graphql",
     "schema:fragments": "node bootstrap/getFragmentTypes.js",
-    "heroku-postbuild": "npm run build && npm run next:build"
+    "heroku-postbuild": "npm run next:build"
   },
   "husky": {
     "hooks": {
