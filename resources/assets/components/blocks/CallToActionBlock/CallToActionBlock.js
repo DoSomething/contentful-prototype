@@ -1,39 +1,86 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import { css } from '@emotion/core';
-import classnames from 'classnames';
+import { css } from '@emotion/core';
 
-const CallToActionBlock = ({ supertitle, title, text, classes }) => {
-  console.log(classes);
+import { tailwind } from '../../../helpers';
+
+const CallToActionBlock = ({ supertitle, title, text, template }) => {
   // Define a set of styles, then switch case through them?
-  const styleSet = 1;
-  let style;
+  const tailwindGray = tailwind('colors.gray');
+  const tailwindPurple = tailwind('colors.purple');
+  const tailwindYellow = tailwind('colors.yellow');
+  const tailwindBlurple = tailwind('colors.blurple');
 
-  const purple = {
-    background: 'bg-purple-700',
-    titleColor: 'text-white',
-  };
+  const centerPurpleStyleSet = css`
+    background-color: ${tailwindPurple['500']};
+    text-align: center;
 
-  if (styleSet === 1) {
-    style = purple;
+    h2 {
+      color: ${tailwindYellow['500']};
+    }
+
+    h3 {
+      color: white;
+    }
+
+    p {
+      color: white;
+    }
+  `;
+
+  const centerBlueStyleSet = css`
+    background-color: ${tailwindBlurple['500']};
+    text-align: center;
+
+    h2 {
+      color: white;
+    }
+
+    h3 {
+      color: ${tailwindYellow['500']};
+    }
+
+    p {
+      color: white;
+    }
+  `;
+
+  const leftYellowStyleSet = css`
+    background-color: ${tailwindYellow['500']};
+    text-align: left;
+
+    h2 {
+      color: ${tailwindGray['900']};
+    }
+  `;
+
+  // Logic goes here
+  let styles;
+  switch (template.template) {
+    case 1:
+      styles = centerPurpleStyleSet;
+      break;
+    case 2:
+      styles = leftYellowStyleSet;
+      break;
+    case 3:
+      styles = centerBlueStyleSet;
+      break;
+    default:
+      styles = centerPurpleStyleSet;
   }
 
   return (
-    <div className={classnames('wrapper', style.background)}>
+    <div css={styles}>
       <div className="base-12-grid">
-        <div className="grid-narrow text-center my-4">
-          <h3
-            className="text-m text-yellow-500 font-source-sans font-bold uppercase"
-            // css={css`
-            //   background-color: hotpink;
-            // `}
-          >
+        <div className="grid-narrow my-4">
+          <h3 className="text-m font-source-sans font-bold uppercase">
             {supertitle}
           </h3>
-          <h3 className="text-4xl font-league-gothic text-white font-bold uppercase">
+          <h2 className="text-4xl font-league-gothic font-bold uppercase">
             {title}
-          </h3>
-          <p className="text-white pb-4">{text}</p>
+          </h2>
+          <p className="text-lg pb-4">{text}</p>
           <button
             type="button"
             className="btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
@@ -50,7 +97,7 @@ CallToActionBlock.propTypes = {
   supertitle: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
-  classes: PropTypes.string.isRequired,
+  template: PropTypes.number.isRequired,
 };
 
 CallToActionBlock.defaultProps = {

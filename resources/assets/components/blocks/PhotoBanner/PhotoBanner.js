@@ -63,8 +63,8 @@ PhotoBanner.propTypes = {
 };
 
 PhotoBanner.defaultProps = {
-  supertitle: '',
-  buttonLink: '',
+  supertitle: null,
+  buttonLink: null,
 };
 
 export default PhotoBanner;
