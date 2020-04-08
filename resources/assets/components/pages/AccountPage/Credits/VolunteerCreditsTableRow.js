@@ -46,16 +46,24 @@ PostDetail.propTypes = {
 };
 
 // The certificate PDF Download button with pending/ready state.
-const DownloadButton = ({ pending }) => (
-  <PDFDownloadLink
-    document={<PdfTemplate />}
-    fileName="dosomething-volunteer-credit-certificate.pdf"
-    /* @TODO: Test out using the btn class here instead of the Forge class. */
-    className={classNames('button w-full py-4', { 'is-disabled': pending })}
-  >
-    {pending ? 'Pending' : 'Download'}
-  </PDFDownloadLink>
-);
+const buttonClassNames = 'btn w-full py-4 text-lg';
+const DownloadButton = ({ pending }) =>
+  pending ? (
+    <button type="button" disabled className={buttonClassNames}>
+      Pending
+    </button>
+  ) : (
+    <PDFDownloadLink
+      document={<PdfTemplate />}
+      fileName="dosomething-volunteer-credit-certificate.pdf"
+      className={classNames(
+        buttonClassNames,
+        'hover:bg-blue-300 hover:no-underline hover:text-white',
+      )}
+    >
+      Download
+    </PDFDownloadLink>
+  );
 
 DownloadButton.propTypes = {
   pending: PropTypes.bool,
