@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next --port 4000",
     "next:build": "next build",
+    "next:start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci --runInBand --reporters=default --reporters=jest-junit",
     "cypress": "cypress open",
@@ -17,7 +18,7 @@
     "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
     "schema:fetch": "apollo service:download --endpoint https://graphql-dev.dosomething.org/graphql",
     "schema:fragments": "node bootstrap/getFragmentTypes.js",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build && npm run next:build"
   },
   "husky": {
     "hooks": {
