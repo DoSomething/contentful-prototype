@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/react-hooks';
 
 import ErrorPage from '../ErrorPage';
 import NotFoundPage from '../NotFoundPage';
-import Card from '../../utilities/Card/Card';
 import Placeholder from '../../utilities/Placeholder';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
@@ -42,6 +41,8 @@ const VoterRegistrationDrivePage = ({ userId }) => {
     return <NotFoundPage />;
   }
 
+  const { firstName } = data.user;
+
   return (
     <>
       <SiteNavigationContainer />
@@ -54,7 +55,7 @@ const VoterRegistrationDrivePage = ({ userId }) => {
                   Ready, Set, Vote!
                 </h1>
                 <h2 className="hero-banner__headline-subtitle">
-                  {data.user.firstName} has invited you to register to vote!
+                  {firstName} has invited you to register to vote!
                 </h2>
               </header>
               <div className="grid-wide-7/10 primary">
@@ -63,12 +64,15 @@ const VoterRegistrationDrivePage = ({ userId }) => {
                   change on issues we care about most like climate change,
                   living wages, and student loan reform.
                 </p>
+                <p>- {firstName}</p>
               </div>
               <div className="grid-wide-3/10 secondary">
                 <CampaignInfoBlock
-                  campaignId={9001}
+                  campaignId={
+                    process.env.NODE_ENV === 'production' ? 9008 : 9035
+                  }
                   scholarshipAmount={1500}
-                  scholarshipDeadline={7000000}
+                  scholarshipDeadline="2020-04-30"
                 />
               </div>
             </div>
@@ -95,6 +99,12 @@ const VoterRegistrationDrivePage = ({ userId }) => {
               <ul>
                 <li>Does my vote actually matter?</li>
                 <li>Is registering to vote online safe?</li>
+                <li>Am I registered to vote?</li>
+                <li>I’m not 18. Can I still register to vote?</li>
+                <li>Can I register to vote without a driver’s license?</li>
+                <li>How do I vote if I’m at college in a different state?</li>
+                <li>When are my elections?</li>
+                <li>Where can I find more information?</li>
               </ul>
             </div>
             <ContentBlock

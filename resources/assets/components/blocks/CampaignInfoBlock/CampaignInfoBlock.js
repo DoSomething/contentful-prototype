@@ -120,7 +120,7 @@ const CampaignInfoBlock = ({
 CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
-  scholarshipDeadline: PropTypes.number,
+  scholarshipDeadline: PropTypes.string,
   showModal: PropTypes.func,
 };
 
