@@ -23,4 +23,8 @@ ScrollConcierge.propTypes = {
   trigger: PropTypes.any, // eslint-disable-line
 };
 
+ScrollConcierge.defaultProps = {
+  trigger: null,
+};
+
 export default ScrollConcierge;

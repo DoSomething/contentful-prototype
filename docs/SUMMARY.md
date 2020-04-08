@@ -23,6 +23,7 @@
   - [Metadata](development/content-types/metadata.md)
   - [Page](development/content-types/page.md)
   - [Selection Submission Action](development/content-types/selection-submission-action.md)
+  - [Social Drive Action](development/content-types/social-drive-action.md)
 - [Features](development/features/README.md)
   - [Paginated Campaign Gallery](development/features/paginated-campaign-gallery.md)
   - [Sixpack A/B Testing](development/features/sixpack/sixpack-a-b-testing.md)
@@ -45,6 +46,7 @@
 
 - [v2](api-reference/api-v2/README.md)
   - [Campaigns Resource](api-reference/api-v2/campaigns-resource.md)
+  - [Links Resource](api-reference/api-v2/links-resource.md)
   - [Posts Resource](api-reference/api-v2/posts-resource.md)
   - [Zendesk Endpoint](api-reference/api-v2/zendesk-tickets.md)
 

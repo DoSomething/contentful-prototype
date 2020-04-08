@@ -242,7 +242,7 @@ class SiteNavigation extends React.Component {
 
               {this.state.activeSubNav === 'CausesSubNav' ? (
                 <div className="main-subnav menu-subnav">
-                  <div className="wrapper base-12-grid">
+                  <div className="wrapper base-12-grid py-3 md:py-6">
                     <section className="main-subnav__links-causes menu-subnav__links menu-subnav__section">
                       <h1>Causes</h1>
                       <ul>
@@ -260,6 +260,19 @@ class SiteNavigation extends React.Component {
                           >
                             Education
                           </a>
+                          <a
+                            href="/us/causes/gun-violence"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_gun_violence',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_gun_violence',
+                              });
+                            }}
+                          >
+                            Gun Violence
+                          </a>
                         </li>
                         <li>
                           <a
@@ -275,6 +288,22 @@ class SiteNavigation extends React.Component {
                             }}
                           >
                             Mental Health
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/physical-health"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_physical_health',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_physical_health',
+                              });
+                            }}
+                          >
+                            Physical Health
                           </a>
                         </li>
                         <li>
@@ -310,6 +339,22 @@ class SiteNavigation extends React.Component {
                         </li>
                         <li>
                           <a
+                            href="/us/causes/sexual-harassment"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_sexual_harassment',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_sexual_harassment',
+                              });
+                            }}
+                          >
+                            Sexual Harassment
+                          </a>
+                        </li>
+                        <li>
+                          <a
                             href="/us/causes/bullying"
                             onClick={() => {
                               this.handleOnClickLink({
@@ -321,6 +366,85 @@ class SiteNavigation extends React.Component {
                             }}
                           >
                             Bullying
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/gender-rights"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_gender_rights',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_gender_rights',
+                              });
+                            }}
+                          >
+                            Gender Rights
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/racial-justice"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_racial_justice',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_racial_justice',
+                              });
+                            }}
+                          >
+                            Racial Justice
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/discrimination"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_discrimination',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_discrimination',
+                              });
+                            }}
+                          >
+                            Discrimination
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/lgbtq-rights"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name: 'clicked_subnav_link_causes_lgbtq_rights',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_lgbtq_rights',
+                              });
+                            }}
+                          >
+                            LGBTQ+ Rights
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            href="/us/causes/voter-registration"
+                            onClick={() => {
+                              this.handleOnClickLink({
+                                name:
+                                  'clicked_subnav_link_causes_voter_registration',
+                                action: 'link_clicked',
+                                category: EVENT_CATEGORIES.navigation,
+                                label: 'causes_voter_registration',
+                              });
+                            }}
+                          >
+                            Voter Registration
                           </a>
                         </li>
                         <li>
@@ -344,17 +468,18 @@ class SiteNavigation extends React.Component {
 
                     <section className="main-subnav__featured menu-subnav__content menu-subnav__section">
                       <SiteNavigationFeature
-                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/5md4atcQCcWCMomiO22iyU/02de733ce619eb881fe69a9793e9bee9/pasted_image_at_2017_04_26_04_12_pm.png?fit=fill&h=500&w=1100"
-                        imageAlt="Mirror adorned with positive post it notes"
-                        url="/us/campaigns/mirror-messages"
-                        title="Mirror Messages"
-                        text="Create and post encouraging notes in your school bathrooms to brighten your classmates' day!"
+                        imageSrc="https://images.ctfassets.net/81iqaqpfd8fy/6Ko2KXJ0fCKmZIm2G6ATEs/2ef1f7694fb81a824940aa697d27cb9f/COVID_metadata.jpg?fit=fill&h=500&w=1100"
+                        imageAlt="Girl with headphones reading a tablet"
+                        url="/us/collections/corona-virus-campaigns"
+                        title="COVID-19 News & Resources"
+                        text="Resources to stay healthy, fight anxiety, and make a difference on the causes we care about, from mental health to climate change and beyond."
                         callback={() =>
                           this.analyzeEvent({
-                            name: 'clicked_subnav_link_feature_mirror_messages',
+                            name:
+                              'clicked_subnav_link_feature_covid_19_collection',
                             action: 'link_clicked',
                             category: EVENT_CATEGORIES.navigation,
-                            label: 'feature_mirror_messages',
+                            label: 'feature_covid_19_collection',
                           })
                         }
                       />
@@ -451,7 +576,7 @@ class SiteNavigation extends React.Component {
 
               {this.state.activeSubNav === 'SearchSubNav' ? (
                 <div className="utility-subnav menu-subnav" name="search">
-                  <div className="wrapper base-12-grid">
+                  <div className="wrapper base-12-grid py-3 md:py-6">
                     <form
                       className="search"
                       id="utility-subnav__search"

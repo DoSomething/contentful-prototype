@@ -1143,12 +1143,36 @@
                 "defaultValue": null
               },
               {
+                "name": "referrerUserId",
+                "description": "The referrer user ID to count posts for.",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "source",
                 "description": "# The post source to count posts for.",
                 "type": {
                   "kind": "SCALAR",
                   "name": "String",
                   "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "status",
+                "description": "The post statuses to count posts for.",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "ReviewStatus",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null
               },

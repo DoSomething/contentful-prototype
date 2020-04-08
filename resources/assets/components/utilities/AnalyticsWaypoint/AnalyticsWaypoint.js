@@ -26,7 +26,7 @@ const AnalyticsWaypoint = ({ name, context }) => {
     }
   }, [inView]);
 
-  return <div ref={ref} />;
+  return <div ref={ref} data-test="waypoint" />;
 };
 
 AnalyticsWaypoint.propTypes = {

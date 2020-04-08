@@ -9,7 +9,8 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import { dynamicString, withoutTokens, featureFlag } from '../../../helpers';
+import VoterRegistrationDriveInfo from './VoterRegistrationDriveInfo';
+import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
   EVENT_CATEGORIES,
@@ -69,6 +70,7 @@ class SocialDriveAction extends React.Component {
       shareCardDescription,
       shareCardTitle,
       hidePageViews,
+      userId,
     } = this.props;
     const { shortenedLink } = this.state;
     return (
@@ -127,42 +129,10 @@ class SocialDriveAction extends React.Component {
         </div>
 
         {!hidePageViews ? (
-          <div
-            className={classNames('social-drive-information mt-6', {
-              'lg:w-1/3 lg:pl-3 lg:mt-0': !hidePageViews,
-            })}
-          >
-            <Card className="bordered rounded" title="More info">
-              <div className="link-info p-3">
-                <p className="info__title">What happens next?</p>
-
-                <p className="info__text">
-                  As you share your voter registration page, we&#39;ll keep
-                  track of how many people you bring in. Check back often and
-                  try to get as many views as possible!
-                </p>
-              </div>
-
-              <div className="p-3 page-views">
-                <span className="page-views__text uppercase">
-                  total page views
-                </span>
-                <h1 className="page-views__amount">
-                  {shortenedLink ? this.state.count : '?'}
-                </h1>
-              </div>
-              {featureFlag('voter_reg_drive_total') ? (
-                <div className="p-3 voter-registrations">
-                  <span className="voter-registrations__text uppercase">
-                    total voter registrations
-                  </span>
-                  <h1 className="voter-registrations__amount">
-                    {shortenedLink ? this.state.count : '?'}
-                  </h1>
-                </div>
-              ) : null}
-            </Card>
-          </div>
+          <VoterRegistrationDriveInfo
+            userId={userId}
+            pageViewsCount={this.state.count}
+          />
         ) : null}
       </div>
     );

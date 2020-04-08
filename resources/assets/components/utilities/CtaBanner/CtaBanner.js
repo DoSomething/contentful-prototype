@@ -20,7 +20,7 @@ const CtaBanner = ({ buttonText, content, link, title }) => {
     });
 
   return (
-    <div className="cta-banner base-12-grid">
+    <div className="cta-banner base-12-grid py-3 md:py-6">
       <div className="grid-narrow m-3">
         <h3 className="text-m text-yellow-500 font-bold uppercase">{title}</h3>
         <p className="text-white mt-3">{content}</p>

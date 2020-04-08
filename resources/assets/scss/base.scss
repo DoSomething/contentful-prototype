@@ -213,13 +213,15 @@ p {
   // 4 columns
   grid-template-columns: [full-start] 1fr 1fr [midway] 1fr 1fr [full-end];
   grid-column-gap: theme('spacing.3');
-  padding: theme('spacing.3');
+  padding-left: theme('spacing.3');
+  padding-right: theme('spacing.3');
 
   @include media($medium) {
     // 8 columns
     grid-template-columns: [full-start] 1fr [main-start] 1fr 1fr 1fr [midway] 1fr 1fr 1fr [main-end] 1fr [full-end];
     grid-column-gap: theme('spacing.6');
-    padding: theme('spacing.6') theme('spacing.12');
+    padding-left: theme('spacing.12');
+    padding-right: theme('spacing.12');
   }
 
   @include media($large) {

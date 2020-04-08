@@ -14,7 +14,7 @@ const AlphaPage = ({ userId }) =>
     <>
       <SiteNavigationContainer />
 
-      <main className="general-page alpha-referral-page base-12-grid relative">
+      <main className="general-page alpha-referral-page base-12-grid py-3 md:py-6 relative">
         <article className="grid-narrow">
           <ArticleHeader title="Want Free Money for School?" />
           <div className="my-6">

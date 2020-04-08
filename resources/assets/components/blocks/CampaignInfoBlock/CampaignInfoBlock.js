@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 import { getHumanFriendlyDate } from '../../../helpers';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 import './campaign-info-block.scss';
 
@@ -31,6 +35,7 @@ const CampaignInfoBlock = ({
   campaignId,
   scholarshipAmount,
   scholarshipDeadline,
+  showModal,
 }) => (
   <Card className="bordered p-3 rounded campaign-info">
     <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
@@ -38,6 +43,16 @@ const CampaignInfoBlock = ({
         const endDate = res.campaign.endDate;
         const actions = res.campaign.actions || [];
         const isOpen = res.campaign.isOpen;
+
+        const handleViewMoreLinkSelect = () => {
+          showModal();
+          trackAnalyticsEvent('clicked_view_more_link_scholarships', {
+            action: 'link_clicked',
+            category: EVENT_CATEGORIES.modal,
+            label: 'SCHOLARSHIP_MODAL',
+            context: { campaignId },
+          });
+        };
 
         let actionItem = actions.find(
           action => action.reportback && action.scholarshipEntry,
@@ -63,7 +78,16 @@ const CampaignInfoBlock = ({
 
                   <dt>Next Deadline</dt>
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
-                  <hr className="clear-both pb-3 border-gray-500" />
+                  <div>
+                    <button
+                      className="text-blue-500 pb-4"
+                      type="button"
+                      onClick={handleViewMoreLinkSelect}
+                    >
+                      View Scholarship Details
+                    </button>
+                  </div>
+                  <hr className="clear-both pb-3 border-gray-300" />
                 </React.Fragment>
               ) : null}
 
@@ -97,11 +121,13 @@ CampaignInfoBlock.propTypes = {
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.number,
+  showModal: PropTypes.func,
 };
 
 CampaignInfoBlock.defaultProps = {
   scholarshipAmount: null,
   scholarshipDeadline: null,
+  showModal: null,
 };
 
 export default CampaignInfoBlock;
