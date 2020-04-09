@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
-import { isTimestampValid, query } from '../../../helpers';
+import {
+  getTimeinMilliseconds,
+  isTimestampValid,
+  query,
+} from '../../../helpers';
 import { get as getStorage, set as setStorage } from '../../../helpers/storage';
 import {
   EVENT_CATEGORIES,
@@ -46,7 +50,10 @@ const DismissableElement = ({ name, render, context }) => {
 
     // Was the element dismissed less than 30 days ago?
     const dismissalTime = getStorage(`dismissed_${name}`, 'timestamp');
-    const isDismissed = isTimestampValid(dismissalTime, 30 * 1440 * 60 * 1000);
+    const isDismissed = isTimestampValid(
+      dismissalTime,
+      getTimeinMilliseconds(7),
+    );
 
     return !shouldNotSee && !isDismissed && showElement;
   };
