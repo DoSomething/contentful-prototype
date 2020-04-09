@@ -182,6 +182,7 @@ class SiteNavigation extends React.Component {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
+              link="https://vote.dosomething.org/"
             />
           )}
         />
