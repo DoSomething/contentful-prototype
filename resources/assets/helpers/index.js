@@ -994,7 +994,6 @@ export function updateQuery(previous, { fetchMoreResult }) {
  * @param {Number} days
  */
 export function getMillisecondsFromDays(days) {
-  console.log(days);
   // # of days * 1440 minutes in a day * 60 minutes * 1000 milliseconds
   return days * 1440 * 60 * 1000;
 }
