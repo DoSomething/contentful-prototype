@@ -26,3 +26,5 @@ yarn-error.log
 junit.xml
 npm-debug.log
 /contentful/management-api-scripts/logs
+
+.now
