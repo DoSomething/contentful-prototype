@@ -18,6 +18,8 @@ import CollectionPage from './pages/CollectionPage/CollectionPage';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
+import SitewideCtaBanner from './utilities/SitewideCtaBanner/SitewideCtaBanner';
+import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
 const App = ({ store, history }) => {
@@ -25,6 +27,21 @@ const App = ({ store, history }) => {
 
   return (
     <Provider store={store}>
+      {featureFlag('sitewide_cta_banner') ? (
+        <DismissableElement
+          name="sitewide_banner_voter_registration"
+          context={{ contextSource: 'voter_registration' }}
+          render={(handleClose, handleComplete) => (
+            <SitewideCtaBanner
+              cta="Get Started"
+              description="Make your voice heard. Register to vote in less than 2 minutes."
+              handleClose={handleClose}
+              handleComplete={handleComplete}
+              link="https://vote.dosomething.org/"
+            />
+          )}
+        />
+      ) : null}
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
         <Router history={history}>
           <Switch>
