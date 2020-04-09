@@ -78,6 +78,7 @@ const NewsletterItem = ({ content, image, link, title }) => (
     <p className="mb-4 flex-grow text-white">{content}</p>
     <a
       className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+      data-label={`newsletter_cta_${title.toLowerCase()}`}
       href={link.url}
       rel="noopener noreferrer"
       target="_blank"
@@ -242,6 +243,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   <a
                     href="/us/about/easy-scholarships"
                     className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="signup_cta_authorize"
                     data-label="campaign_section_earn_scholarships"
                   >
                     earn scholarships
@@ -254,6 +256,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <a
                   href="/us/campaigns"
                   className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                  data-label="signup_cta_authorize"
                   data-label="campaign_section_show_more"
                 >
                   See More Campaigns
@@ -363,6 +366,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <a
                   href="/us/articles"
                   className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                  data-label="signup_cta_authorize"
                   data-label="article_section_show_more"
                 >
                   See More Articles
@@ -424,6 +428,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   <a
                     href="/authorize"
                     className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
+                    data-label="signup_cta_authorize"
                   >
                     Join Now
                   </a>

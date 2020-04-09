@@ -106,8 +106,6 @@ ready(() => {
   // Track link clicks for Snowplow analytics.
   document.body.addEventListener('click', clickEvent => {
     if (clickEvent.target.tagName.toLowerCase() === 'a') {
-      clickEvent.preventDefault();
-
       trackAnalyticsLinkClick(clickEvent.target);
     }
   });
