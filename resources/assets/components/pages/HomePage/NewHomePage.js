@@ -242,6 +242,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   <a
                     href="/us/about/easy-scholarships"
                     className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="campaign_section_earn_scholarships"
                   >
                     earn scholarships
                   </a>
@@ -253,6 +254,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <a
                   href="/us/campaigns"
                   className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                  data-label="campaign_section_show_more"
                 >
                   See More Campaigns
                 </a>
@@ -361,6 +363,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <a
                   href="/us/articles"
                   className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                  data-label="article_section_show_more"
                 >
                   See More Articles
                 </a>
