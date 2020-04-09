@@ -993,7 +993,7 @@ export function updateQuery(previous, { fetchMoreResult }) {
  *
  * @param {Number} days
  */
-export function getTimeinMilliseconds(days) {
+export function getMillisecondsFromDays(days) {
   // default to 30 days if no value is provided
   const numOfDays = days || 30;
 

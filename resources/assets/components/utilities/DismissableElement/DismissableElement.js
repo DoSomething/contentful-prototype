@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 import {
-  getTimeinMilliseconds,
+  getMillisecondsFromDays,
   isTimestampValid,
   query,
 } from '../../../helpers';
@@ -52,7 +52,7 @@ const DismissableElement = ({ name, render, context }) => {
     const dismissalTime = getStorage(`dismissed_${name}`, 'timestamp');
     const isDismissed = isTimestampValid(
       dismissalTime,
-      getTimeinMilliseconds(7),
+      getMillisecondsFromDays(7),
     );
 
     return !shouldNotSee && !isDismissed && showElement;
