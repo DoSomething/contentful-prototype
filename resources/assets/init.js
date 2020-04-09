@@ -91,6 +91,13 @@ ready(() => {
     bindAdminDashboardEvents();
   }
 
+  // Track link clicks for Snowplow analytics.
+  document.body.addEventListener('click', clickEvent => {
+    if (clickEvent.target.tagName.toLowerCase() === 'a') {
+      trackAnalyticsLinkClick(clickEvent.target);
+    }
+  });
+
   // Render the application!
   const appElement = document.getElementById('app');
   if (appElement) {
@@ -102,11 +109,4 @@ ready(() => {
   if (navAppElement) {
     ReactDom.render(<NavApp store={store} history={history} />, navAppElement);
   }
-
-  // Track link clicks for Snowplow analytics.
-  document.body.addEventListener('click', clickEvent => {
-    if (clickEvent.target.tagName.toLowerCase() === 'a') {
-      trackAnalyticsLinkClick(clickEvent.target);
-    }
-  });
 });
