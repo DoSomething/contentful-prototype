@@ -1,5 +1,6 @@
 import React from 'react';
 import tw from 'twin.macro';
+import Head from 'next/head';
 import Link from 'next/link';
 
 import { withApollo } from '../resources/assets/withApollo';
@@ -12,6 +13,9 @@ const Section = tw.div`my-6`;
 const Homepage = () => {
   return (
     <GeneralPage>
+      <Head>
+        <title>Next.js Prototype</title>
+      </Head>
       <ArticleHeader title="Next.js Prototype" />
       <Section>
         <p>

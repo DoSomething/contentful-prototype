@@ -1,5 +1,6 @@
 import React from 'react';
 import tw from 'twin.macro';
+import Head from 'next/head';
 import gql from 'graphql-tag';
 import { css } from '@emotion/core';
 
@@ -58,6 +59,9 @@ const FactPage = ({ page }) => {
 
   return (
     <GeneralPage>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <ArticleHeader title={title} subtitle={subTitle} />
       {coverImage ? (
         <LazyImage
