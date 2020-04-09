@@ -12,7 +12,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
 
-const DismissableElement = ({ name, render, context }) => {
+const DismissableElement = ({ daysToReRender, name, render, context }) => {
   const [showElement, setShowElement] = useState(true);
 
   const handleCompletion = () => {
@@ -52,7 +52,7 @@ const DismissableElement = ({ name, render, context }) => {
     const dismissalTime = getStorage(`dismissed_${name}`, 'timestamp');
     const isDismissed = isTimestampValid(
       dismissalTime,
-      getMillisecondsFromDays(7),
+      getMillisecondsFromDays(daysToReRender),
     );
 
     return !shouldNotSee && !isDismissed && showElement;
@@ -63,12 +63,14 @@ const DismissableElement = ({ name, render, context }) => {
 
 DismissableElement.propTypes = {
   context: PropTypes.object,
+  daysToReRender: PropTypes.number,
   name: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
 };
 
 DismissableElement.defaultProps = {
   context: {},
+  daysToReRender: 30,
 };
 
 export default DismissableElement;
