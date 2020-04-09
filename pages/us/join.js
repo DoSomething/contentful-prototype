@@ -1,5 +1,6 @@
 import React from 'react';
 import tw from 'twin.macro';
+import Head from 'next/head';
 import gql from 'graphql-tag';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
@@ -49,20 +50,30 @@ const BetaPage = () => {
   }
 
   const firstName = data.user.firstName;
+  const title = `Hey, ${firstName}’s friend!`;
+  const description = `
+    Your friend ${firstName} just invited you to volunteer through this
+    campaign from DoSomething.org. Once you complete your first
+    DoSomething campaign, you’ll both increase your chances of winning the
+    campaign scholarship!`;
 
   return (
     <GeneralPage>
-      <ArticleHeader title={`Hey, ${firstName}’s friend!`} />
+      <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta
+          property="og:image"
+          content="https://www.dosomething.org/images/money-hand.png"
+        />
+      </Head>
+      <ArticleHeader title={title} />
       <Section>
         <img src={MoneyHandImage} alt="Hand with money envelope" />
       </Section>
       <Section>
-        <p>
-          Your friend {firstName} just invited you to volunteer through this
-          campaign from DoSomething.org. Once you complete your first
-          DoSomething campaign, you’ll both increase your chances of winning the
-          campaign scholarship!
-        </p>
+        <p>{description}</p>
       </Section>
       <Section>
         <CampaignLink campaignId={campaignId} userId={userId} />
