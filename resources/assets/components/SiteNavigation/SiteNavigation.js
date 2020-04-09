@@ -11,7 +11,7 @@ import SiteNavigationFeature from './SiteNavigationFeature';
 import CloseButton from '../artifacts/CloseButton/CloseButton';
 import ProfileIcon from '../artifacts/ProfileIcon/ProfileIcon';
 import DoSomethingLogo from '../utilities/DoSomethingLogo/DoSomethingLogo';
-import DismissableElement from '../utilities/DismissableElement/DismissableElement';
+import SitewideCtaBanner from '../utilities/SitewideCtaBanner/SitewideCtaBanner';
 import {
   EVENT_CATEGORIES,
   getUtmContext,
@@ -172,33 +172,7 @@ class SiteNavigation extends React.Component {
   render() {
     return (
       <>
-        <DismissableElement
-          name="sitewide_banner_voter_registration"
-          context={{ contextSource: 'voter_registration' }}
-          render={(handleClose, handleComplete) => (
-            <div className="w-full flex justify-center bg-yellow-500 p-4 fixed z-50">
-              <button
-                type="button"
-                className="modal__close"
-                onClick={handleClose}
-              >
-                &times;
-              </button>
-              <p className="pb-2 md:pr-4 md:pb-0 align-middle">
-                Make your voice heard. Register to vote in less than 2 minutes.
-              </p>
-              <a
-                className="py-2 px-4 border border-solid-blurple rounded-md bg-blurple-500 text-white uppercase"
-                href="https://vote.dosomething.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handleComplete}
-              >
-                Get Started
-              </a>
-            </div>
-          )}
-        />
+        <SitewideCtaBanner />
         <nav role="navigation" id="nav" className="site-navigation">
           <div className="wrapper base-12-grid">
             <div className="logo-nav">
