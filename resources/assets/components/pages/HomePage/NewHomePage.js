@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
@@ -5,17 +6,23 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
+import Modal from '../../utilities/Modal/Modal';
 import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
+import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 import {
   contentfulImageUrl,
+  featureFlag,
   isAuthenticated,
   tailwind,
 } from '../../../helpers';
@@ -436,6 +443,28 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             </article>
           )}
         </article>
+
+        {featureFlag('nps_survey') ? (
+          <TrafficDistribution percentage={5} feature="nps_survey">
+            <DismissableElement
+              name="nps_survey"
+              render={(handleClose, handleComplete) => (
+                <DelayedElement delay={5}>
+                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                    <TypeFormEmbed
+                      displayType="modal"
+                      typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                      queryParameters={{
+                        northstar_id: get(window.AUTH, 'id', null),
+                      }}
+                      onSubmit={handleComplete}
+                    />
+                  </Modal>
+                </DelayedElement>
+              )}
+            />
+          </TrafficDistribution>
+        ) : null}
       </main>
 
       <SiteFooter />
