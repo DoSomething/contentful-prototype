@@ -987,3 +987,14 @@ export function updateQuery(previous, { fetchMoreResult }) {
     isArray(dest) ? [...dest, ...src] : undefined,
   );
 }
+
+/**
+ * Formula to convert time to milliseconds.
+ *
+ * @param {Number} days
+ */
+export function getMillisecondsFromDays(days) {
+  // # of days * 1440 minutes in a day * 60 minutes * 1000 milliseconds
+  // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
+  return days * 1440 * 60 * 1000;
+}
