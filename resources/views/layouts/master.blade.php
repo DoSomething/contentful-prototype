@@ -34,8 +34,10 @@
 
     <div id="fb-root"></div>
     <div id="chrome" class="chrome h-full w-full">
+        <div id="sitewide-cta-banner" class="sitewide-cta-banner" role="presentation"></div>
         @yield('content')
     </div>
+
 
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
 

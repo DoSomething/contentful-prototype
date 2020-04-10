@@ -1,0 +1,11 @@
+@import '../../../scss/next-toolbox.scss';
+
+.sitewide-cta-banner {
+  overflow-y: auto;
+  display: block;
+  width: 100%;
+
+  > .wrapper {
+    position: relative;
+  }
+}
