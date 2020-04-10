@@ -133,6 +133,7 @@ export function snowplowLog(data) {
       console.log('Element ID: ', data[2]);
       console.log('Element Classes: ', data[3]);
       console.log('Element Content: ', `"${data[5]}"`);
+      console.log('Context: ', JSON.parse(data[6][0].data.payload));
       break;
 
     case 'trackStructEvent':
