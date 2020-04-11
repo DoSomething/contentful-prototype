@@ -42,6 +42,19 @@ const VoterRegistrationDrivePage = ({ userId }) => {
   }
 
   const { firstName } = data.user;
+  /**
+   * Because this component isn't associated with a campaign Contentful entry, we don't have a
+   * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
+   * this hardcoded -- but we will eventually need to figure out how to display the modal to show
+   * additional scholarship information.
+   */
+  const campaignInfoBlock = (
+    <CampaignInfoBlock
+      campaignId={process.env.NODE_ENV === 'production' ? 9008 : 9035}
+      scholarshipAmount={1500}
+      scholarshipDeadline="2020-04-30"
+    />
+  );
 
   return (
     <>
@@ -67,13 +80,7 @@ const VoterRegistrationDrivePage = ({ userId }) => {
                 <p>- {firstName}</p>
               </div>
               <div className="grid-wide-3/10 secondary">
-                <CampaignInfoBlock
-                  campaignId={
-                    process.env.NODE_ENV === 'production' ? 9008 : 9035
-                  }
-                  scholarshipAmount={1500}
-                  scholarshipDeadline="2020-04-30"
-                />
+                {campaignInfoBlock}
               </div>
             </div>
           </div>
@@ -86,6 +93,7 @@ const VoterRegistrationDrivePage = ({ userId }) => {
               content="If you aren’t pre-registered or registered to vote, take 2 minutes to register at your current address. You’ll have the option to  register with an online form or directly with your state."
             />
             <div className="pb-6">
+              {/* We will eventually want to add form fields for email and zip, and send as query parameters to Rock the Vote */}
               <ButtonLink
                 link={`https://register.rockthevote.com/registrants/new?partner=37187&source=user:${userId},source:web,source_details:onlinedrivereferral,referral=true`}
               >
@@ -97,6 +105,7 @@ const VoterRegistrationDrivePage = ({ userId }) => {
                 Learn The Facts
               </h1>
               <ul>
+                {/* These will eventually expand/collapse with more information. */}
                 <li>Does my vote actually matter?</li>
                 <li>Is registering to vote online safe?</li>
                 <li>Am I registered to vote?</li>
