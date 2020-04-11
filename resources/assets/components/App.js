@@ -21,6 +21,7 @@ import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import SitewideCtaBanner from './utilities/SitewideCtaBanner/SitewideCtaBanner';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
+import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -80,6 +81,14 @@ const App = ({ store, history }) => {
               )}
             />
             <Route path="/us/join" component={BetaReferralPage} />
+            <Route
+              path="/us/members/:userId/voter-registration-drive"
+              render={routeProps => (
+                <VoterRegistrationDrivePage
+                  userId={routeProps.match.params.userId}
+                />
+              )}
+            />
             <Route
               path="/us/refer-friends"
               component={AlphaReferralPageContainer}
