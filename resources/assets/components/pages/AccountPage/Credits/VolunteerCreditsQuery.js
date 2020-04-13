@@ -1,8 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
+import { get, groupBy, last } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
-import { get, groupBy, last, findLast } from 'lodash';
 
 import { getUserId } from '../../../../helpers/auth';
 import Spinner from '../../../artifacts/Spinner/Spinner';
