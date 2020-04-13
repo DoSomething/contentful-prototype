@@ -91,18 +91,9 @@ const VolunteerCreditsQuery = () => {
 
     const campaignWebsite = lastPost.campaign.campaignWebsite;
 
-    // Find the earliest accepted post and grab it's photo URL.
-    const firstAcceptedPost = findLast(
-      posts,
-      post => post.status === 'ACCEPTED',
-    );
-    const photo = get(firstAcceptedPost, 'url');
-
-    // The certificate download button will be disabled if there is no 'accepted' post.
-    const pending = !firstAcceptedPost;
+    const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
 
     // Calculate total quantity of accepted posts.
-    const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
     const quantity = acceptedPosts.reduce(
       (totalQuantity, post) => totalQuantity + post.quantity,
       0,
@@ -111,15 +102,22 @@ const VolunteerCreditsQuery = () => {
     // Generate human-friendly impact label based on quantity and action noun + verb.
     const impactLabel = `${pluralize(noun, quantity, true)} ${verb}`;
 
+    // Grab the photo URL of the earliest accepted post.
+    const firstAcceptedPost = last(acceptedPosts);
+    const photo = get(firstAcceptedPost, 'url');
+
+    // The certificate download button will be disabled if there is no 'accepted' post.
+    const pending = !firstAcceptedPost;
+
     return {
       id,
       campaignWebsite,
       actionLabel,
       dateCompleted: getHumanFriendlyDate(createdAt),
       volunteerHours: timeCommitmentLabel,
-      pending,
-      photo,
       impactLabel,
+      photo,
+      pending,
     };
   });
 
