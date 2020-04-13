@@ -26,33 +26,31 @@ import DismissableElement from './utilities/DismissableElement/DismissableElemen
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
-const App = ({ store, history, props }) => {
+const App = ({ store, history }) => {
   initializeStore(store);
 
   return (
     <Provider store={store}>
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
-        {props.isAuthenticated ? (
-          <TrafficDistribution percentage={5} feature="nps_survey">
-            <DismissableElement
-              name="nps_survey"
-              render={(handleClose, handleComplete) => (
-                <DelayedElement delay={60}>
-                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                    <TypeFormEmbed
-                      displayType="modal"
-                      typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
-                      queryParameters={{
-                        northstar_id: get(window.AUTH, 'id', null),
-                      }}
-                      onSubmit={handleComplete}
-                    />
-                  </Modal>
-                </DelayedElement>
-              )}
-            />
-          </TrafficDistribution>
-        ) : null}
+        <TrafficDistribution percentage={5} feature="nps_survey">
+          <DismissableElement
+            name="nps_survey"
+            render={(handleClose, handleComplete) => (
+              <DelayedElement delay={60}>
+                <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                  <TypeFormEmbed
+                    displayType="modal"
+                    typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
+                    queryParameters={{
+                      northstar_id: get(window.AUTH, 'id', null),
+                    }}
+                    onSubmit={handleComplete}
+                  />
+                </Modal>
+              </DelayedElement>
+            )}
+          />
+        </TrafficDistribution>
         <Router history={history}>
           <Switch>
             <Route
@@ -104,12 +102,6 @@ const App = ({ store, history, props }) => {
 App.propTypes = {
   store: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  props: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool,
-};
-
-App.defaultProps = {
-  isAuthenticated: false,
 };
 
 export default App;
