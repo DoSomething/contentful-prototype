@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { groupBy, last } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
+import { get, groupBy, last, findLast } from 'lodash';
 
 import { getUserId } from '../../../../helpers/auth';
 import Spinner from '../../../artifacts/Spinner/Spinner';
@@ -24,6 +24,7 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
           createdAt
           quantity
           status
+          url
           actionDetails {
             id
             actionLabel
@@ -85,6 +86,13 @@ const VolunteerCreditsQuery = () => {
     // The certificate download button will be disabled if there is no 'accepted' post.
     const pending = posts.every(post => post.status === 'PENDING');
 
+    // Find the earliest accepted post and grab it's photo URL.
+    const firstAcceptedPost = findLast(
+      posts,
+      post => post.status === 'ACCEPTED',
+    );
+    const photo = get(firstAcceptedPost, 'url');
+
     return {
       id,
       campaignWebsite,
@@ -92,6 +100,7 @@ const VolunteerCreditsQuery = () => {
       dateCompleted: getHumanFriendlyDate(createdAt),
       volunteerHours: timeCommitmentLabel,
       pending,
+      photo,
     };
   });
 
