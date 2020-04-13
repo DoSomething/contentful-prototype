@@ -39,7 +39,7 @@ const VolunteerCreditsTable = ({ posts }) =>
               }
             `}
           >
-            <VolunteerCreditsTableRow {...post} />
+            <VolunteerCreditsTableRow post={post} />
           </tr>
         ))}
       </tbody>

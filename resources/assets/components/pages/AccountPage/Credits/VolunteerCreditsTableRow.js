@@ -14,6 +14,7 @@ import {
 
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
+import { postType } from './VolunteerCreditsQuery';
 
 // PDF template styles.
 const styles = StyleSheet.create({
@@ -47,14 +48,14 @@ PostDetail.propTypes = {
 
 // The certificate PDF Download button with pending/ready state.
 const buttonClassNames = 'btn w-full py-4 text-lg';
-const DownloadButton = ({ pending }) =>
-  pending ? (
+const DownloadButton = ({ post }) =>
+  post.pending ? (
     <button type="button" disabled className={buttonClassNames}>
       Pending
     </button>
   ) : (
     <PDFDownloadLink
-      document={<PdfTemplate />}
+      document={<PdfTemplate post={post} />}
       fileName="dosomething-volunteer-credit-certificate.pdf"
       className={classNames(
         buttonClassNames,
@@ -66,59 +67,49 @@ const DownloadButton = ({ pending }) =>
   );
 
 DownloadButton.propTypes = {
-  pending: PropTypes.bool,
-};
-
-DownloadButton.defaultProps = {
-  pending: false,
+  post: postType.isRequired,
 };
 
 const TableData = tw.td`align-middle p-4 pr-6`;
 
-const VolunteerCreditsTableRow = ({
-  campaignWebsite,
-  actionLabel,
-  dateCompleted,
-  volunteerHours,
-  pending,
-}) => (
-  <Media query={`(min-width: ${tailwind('screens.md')})`}>
-    {matches =>
-      matches ? (
-        <>
+const VolunteerCreditsTableRow = ({ post }) => {
+  const { campaignWebsite, actionLabel, dateCompleted, volunteerHours } = post;
+
+  return (
+    <Media query={`(min-width: ${tailwind('screens.md')})`}>
+      {matches =>
+        matches ? (
+          <>
+            <TableData>
+              <CampaignPreview campaignWebsite={campaignWebsite} />
+            </TableData>
+            <TableData>{actionLabel}</TableData>
+            <TableData>{dateCompleted}</TableData>
+            <TableData>{volunteerHours}</TableData>
+            <TableData>
+              <DownloadButton post={post} />
+            </TableData>
+          </>
+        ) : (
           <TableData>
             <CampaignPreview campaignWebsite={campaignWebsite} />
-          </TableData>
-          <TableData>{actionLabel}</TableData>
-          <TableData>{dateCompleted}</TableData>
-          <TableData>{volunteerHours}</TableData>
-          <TableData>
-            <DownloadButton pending={pending} />
-          </TableData>
-        </>
-      ) : (
-        <TableData>
-          <CampaignPreview campaignWebsite={campaignWebsite} />
 
-          <ul className="py-5">
-            <PostDetail detail="Action Type" value={actionLabel} />
-            <PostDetail detail="Volunteer Hours" value={volunteerHours} />
-            <PostDetail detail="Date Completed" value={dateCompleted} />
-          </ul>
+            <ul className="py-5">
+              <PostDetail detail="Action Type" value={actionLabel} />
+              <PostDetail detail="Volunteer Hours" value={volunteerHours} />
+              <PostDetail detail="Date Completed" value={dateCompleted} />
+            </ul>
 
-          <DownloadButton pending={pending} />
-        </TableData>
-      )
-    }
-  </Media>
-);
+            <DownloadButton post={post} />
+          </TableData>
+        )
+      }
+    </Media>
+  );
+};
 
 VolunteerCreditsTableRow.propTypes = {
-  actionLabel: PropTypes.string.isRequired,
-  campaignWebsite: PropTypes.object.isRequired,
-  dateCompleted: PropTypes.string.isRequired,
-  volunteerHours: PropTypes.string.isRequired,
-  pending: PropTypes.bool.isRequired,
+  post: postType.isRequired,
 };
 
 export default VolunteerCreditsTableRow;
