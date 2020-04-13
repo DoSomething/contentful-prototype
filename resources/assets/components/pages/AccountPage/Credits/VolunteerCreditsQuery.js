@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import pluralize from 'pluralize';
 import { useQuery } from '@apollo/react-hooks';
 import { get, groupBy, last, findLast } from 'lodash';
 
@@ -29,6 +30,8 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
             id
             actionLabel
             timeCommitmentLabel
+            noun
+            verb
           }
           campaign {
             campaignWebsite {
@@ -79,7 +82,12 @@ const VolunteerCreditsQuery = () => {
     // We use the ID as the unique 'key' when we map over the formatted post data.
     const { id, createdAt } = lastPost;
 
-    const { timeCommitmentLabel, actionLabel } = lastPost.actionDetails;
+    const {
+      timeCommitmentLabel,
+      actionLabel,
+      noun,
+      verb,
+    } = lastPost.actionDetails;
 
     const campaignWebsite = lastPost.campaign.campaignWebsite;
 
@@ -93,6 +101,16 @@ const VolunteerCreditsQuery = () => {
     // The certificate download button will be disabled if there is no 'accepted' post.
     const pending = !firstAcceptedPost;
 
+    // Calculate total quantity of accepted posts.
+    const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
+    const quantity = acceptedPosts.reduce(
+      (totalQuantity, post) => totalQuantity + post.quantity,
+      0,
+    );
+
+    // Generate human-friendly impact label based on quantity and action noun + verb.
+    const impactLabel = `${pluralize(noun, quantity, true)} ${verb}`;
+
     return {
       id,
       campaignWebsite,
@@ -101,6 +119,7 @@ const VolunteerCreditsQuery = () => {
       volunteerHours: timeCommitmentLabel,
       pending,
       photo,
+      impactLabel,
     };
   });
 
