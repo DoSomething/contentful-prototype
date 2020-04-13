@@ -21,6 +21,7 @@ export const postCardFragment = gql`
     text
     tags
     impact
+    quantity
     location(format: HUMAN_FORMAT)
     signupId
     createdAt
@@ -104,7 +105,7 @@ const PostCard = ({ post, hideCaption, hideQuantity, hideReactions }) => {
             </p>
           ) : null}
 
-          {post.impact && !hideQuantity ? (
+          {post.quantity && post.impact && !hideQuantity ? (
             <p className="mt-1 text-gray-600 text-sm">{post.impact}</p>
           ) : null}
 
