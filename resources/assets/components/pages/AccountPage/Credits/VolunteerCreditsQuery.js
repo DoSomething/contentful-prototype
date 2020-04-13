@@ -83,15 +83,15 @@ const VolunteerCreditsQuery = () => {
 
     const campaignWebsite = lastPost.campaign.campaignWebsite;
 
-    // The certificate download button will be disabled if there is no 'accepted' post.
-    const pending = posts.every(post => post.status === 'PENDING');
-
     // Find the earliest accepted post and grab it's photo URL.
     const firstAcceptedPost = findLast(
       posts,
       post => post.status === 'ACCEPTED',
     );
     const photo = get(firstAcceptedPost, 'url');
+
+    // The certificate download button will be disabled if there is no 'accepted' post.
+    const pending = !firstAcceptedPost;
 
     return {
       id,
