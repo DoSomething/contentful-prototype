@@ -60,7 +60,6 @@ export const mockPostsResponse = [
       quantity: null,
       status: 'PENDING',
       url: 'images/1',
-      quantity: 1,
       actionDetails: ACTION_ONE,
       campaign: {
         campaignWebsite: CAMPAIGN_ONE,
@@ -74,7 +73,6 @@ export const mockPostsResponse = [
       quantity: 1,
       status: 'PENDING',
       url: 'images/2',
-      quantity: 1,
       actionDetails: ACTION_TWO,
       campaign: {
         campaignWebsite: CAMPAIGN_TWO,
@@ -88,7 +86,6 @@ export const mockPostsResponse = [
       quantity: 1,
       status: 'PENDING',
       url: 'images/3',
-      quantity: 1,
       actionDetails: ACTION_TWO,
       campaign: {
         campaignWebsite: CAMPAIGN_TWO,
@@ -102,7 +99,6 @@ export const mockPostsResponse = [
       quantity: 90,
       status: 'PENDING',
       url: 'images/4',
-      quantity: 1,
       actionDetails: ACTION_TWO,
       campaign: {
         campaignWebsite: CAMPAIGN_TWO,
@@ -116,7 +112,6 @@ export const mockPostsResponse = [
       quantity: 1,
       status: 'ACCEPTED',
       url: 'images/5',
-      quantity: 1,
       actionDetails: ACTION_THREE,
       campaign: {
         campaignWebsite: CAMPAIGN_THREE,
@@ -130,7 +125,6 @@ export const mockPostsResponse = [
       quantity: 1,
       status: 'ACCEPTED',
       url: 'images/6',
-      quantity: 1,
       actionDetails: ACTION_THREE,
       campaign: {
         campaignWebsite: CAMPAIGN_THREE,
