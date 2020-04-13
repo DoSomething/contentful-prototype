@@ -1,11 +1,9 @@
 import { createPortal } from 'react-dom';
 import React, { useRef, useEffect } from 'react';
 
-import SitewideCtaBannerContent from './SitewideCtaBannerContent';
+import SitewideBannerContent from './SitewideBannerContent';
 
-import './sitewidectabanner.scss';
-
-const SitewideCtaBanner = props => {
+const SitewideBanner = props => {
   const usePortal = id => {
     const rootElem = useRef(document.createElement('div'));
 
@@ -19,11 +17,11 @@ const SitewideCtaBanner = props => {
 
     return rootElem.current;
   };
-  const children = <SitewideCtaBannerContent {...props} />;
+  const children = <SitewideBannerContent {...props} />;
 
-  const target = usePortal('sitewide-cta-banner');
+  const target = usePortal('banner-portal');
 
   return createPortal(children, target);
 };
 
-export default SitewideCtaBanner;
+export default SitewideBanner;

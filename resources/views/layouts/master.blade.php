@@ -37,7 +37,7 @@
         @yield('content')
     </div>
 
-    <div id="sitewide-cta-banner" class="sitewide-cta-banner" role="presentation"></div>
+    <div id="banner-portal" class="top-0 left-0 w-full block absolute z-500" role="presentation"></div>
 
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
 

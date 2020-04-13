@@ -18,7 +18,7 @@ import CollectionPage from './pages/CollectionPage/CollectionPage';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
-import SitewideCtaBanner from './utilities/SitewideCtaBanner/SitewideCtaBanner';
+import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
@@ -33,7 +33,7 @@ const App = ({ store, history }) => {
           daysToReRender={7}
           context={{ contextSource: 'voter_registration' }}
           render={(handleClose, handleComplete) => (
-            <SitewideCtaBanner
+            <SitewideBanner
               cta="Get Started"
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}

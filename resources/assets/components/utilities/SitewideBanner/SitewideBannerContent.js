@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const SiteWideCtaBannerContent = ({
+const SitewideBannerContent = ({
   cta,
   description,
   handleClose,
@@ -31,7 +31,7 @@ const SiteWideCtaBannerContent = ({
   );
 };
 
-SiteWideCtaBannerContent.propTypes = {
+SitewideBannerContent.propTypes = {
   cta: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
@@ -39,4 +39,4 @@ SiteWideCtaBannerContent.propTypes = {
   link: PropTypes.string.isRequired,
 };
 
-export default SiteWideCtaBannerContent;
+export default SitewideBannerContent;

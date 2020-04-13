@@ -181,6 +181,9 @@ module.exports = {
         '.z-max': {
           zIndex: '10000',
         },
+        '.z-500': {
+          zIndex: '500',
+        },
       };
 
       addUtilities(newUtilities);
