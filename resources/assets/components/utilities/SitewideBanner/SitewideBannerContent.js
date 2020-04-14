@@ -9,7 +9,7 @@ const SitewideBannerContent = ({
   link,
 }) => {
   return (
-    <div className="w-full flex justify-center bg-yellow-500 p-4 fixed z-50">
+    <div className="w-full flex justify-center bg-yellow-500 p-4 z-50">
       <button type="button" className="modal__close" onClick={handleClose}>
         &times;
       </button>

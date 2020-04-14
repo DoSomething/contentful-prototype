@@ -184,6 +184,9 @@ module.exports = {
         '.z-500': {
           zIndex: '500',
         },
+        '.z-1000': {
+          zIndex: '1000',
+        },
       };
 
       addUtilities(newUtilities);
