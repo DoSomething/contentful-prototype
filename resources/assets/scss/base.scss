@@ -17,24 +17,28 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 // @TODO:forge-removal Rename this class to "button".
 .btn {
-  @apply bg-blurple-500 border-2 border-solid border-blurple-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+  @apply cursor-pointer font-bold font-source-sans inline-block no-underline py-3 px-4 rounded text-center text-white outline-none;
 }
 
 .btn:active {
-  @apply bg-blurple-700;
+  @apply text-white;
 }
 
 .btn:hover {
-  @apply bg-blurple-300;
+  @apply text-white no-underline;
 }
 
-.btn:focus {
-  @apply bg-blurple-300 border-white;
-  outline: 2px solid theme('colors.blurple.300');
-}
+// .btn:focus {
+//   @apply bg-blurple-300 border-white;
+//   outline: 2px solid theme('colors.blurple.300');
+// }
 
 .btn:disabled {
   @apply cursor-not-allowed bg-gray-400 text-gray-100;
+}
+
+.btn:disabled:hover {
+  @apply bg-gray-900;
 }
 
 // @TODO:forge-removal Rename this class to "text-field".
@@ -63,6 +67,18 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 }
 
 @tailwind utilities;
+
+.focus\:outline-blurple-300:focus {
+  outline-color: theme('colors.blurple.300');
+}
+
+.focus\:outline-solid:focus {
+  outline-style: solid;
+}
+
+.focus\:outline-2:focus {
+  outline-width: 2px;
+}
 
 /*
 |-------------------------------------------------------------------------------

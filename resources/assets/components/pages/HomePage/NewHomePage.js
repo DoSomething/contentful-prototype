@@ -26,6 +26,10 @@ import {
   isAuthenticated,
   tailwind,
 } from '../../../helpers';
+import ButtonLink from '../../utilities/Button/ButtonLink';
+import ButtonElement from '../../utilities/Button/ButtonElement';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
+import SecondaryButton from '../../utilities/Button/SecondaryButton';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {
@@ -233,6 +237,61 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             >
               <div className="grid-wide text-center">
                 <AnalyticsWaypoint name="campaign_section_top" />
+
+                <ButtonElement
+                  className="bg-green-500 hover:bg-green-700 mb-12"
+                  onClick={() => console.log('😈')}
+                  text="Button Element"
+                />
+
+                <br />
+
+                <ButtonElement
+                  className="bg-green-500 hover:bg-green-700 mb-12"
+                  isDisabled={true}
+                  onClick={() => console.log('😈')}
+                  text="Button Element Disabled"
+                />
+
+                <br />
+
+                <ButtonLink
+                  className="bg-red-500 hover:bg-red-700 mb-12"
+                  href="/"
+                  text="Button Link"
+                />
+
+                <br />
+
+                <PrimaryButton
+                  className="mb-10"
+                  text="Primary Button Element"
+                  onClick={() => console.log('😈')}
+                />
+
+                <br />
+
+                <PrimaryButton
+                  className="mb-12"
+                  href="/"
+                  text="Primary Button Link"
+                />
+
+                <br />
+
+                <SecondaryButton
+                  className="mb-12"
+                  onClick={() => console.log('😈')}
+                  text="Secondary Button Element"
+                />
+
+                <br />
+
+                <SecondaryButton
+                  className="mb-12"
+                  href="/"
+                  text="Secondary Button Link"
+                />
 
                 <h2 className="mb-6 relative">
                   <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
