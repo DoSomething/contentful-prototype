@@ -38,7 +38,6 @@
         @yield('content')
     </div>
 
-
     <div id="modal-portal" class="modal-portal" role="presentation"></div>
 
     @include('partials.customer_io_script')
