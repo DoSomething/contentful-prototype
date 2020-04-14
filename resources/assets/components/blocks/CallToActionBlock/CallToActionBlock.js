@@ -4,32 +4,26 @@ import { css } from '@emotion/core';
 
 import { tailwind } from '../../../helpers';
 
-const CallToActionBlock = ({ supertitle, title, text, template }) => {
+const CallToActionBlock = ({
+  supertitle,
+  title,
+  text,
+  template,
+  alignment,
+}) => {
   // Define a set of styles, then switch case through them?
-  const tailwindGray = tailwind('colors.gray');
   const tailwindPurple = tailwind('colors.purple');
   const tailwindYellow = tailwind('colors.yellow');
-  const tailwindBlurple = tailwind('colors.blurple');
 
-  const centerPurpleStyleSet = css`
-    background-color: ${tailwindPurple['500']};
-    text-align: center;
+  // const purple = {
+  //   background: "purple",
+  //   supertitle: "yellow",
+  //   title: "white",
+  //   paragraph: "white"
+  // }
 
-    h2 {
-      color: ${tailwindYellow['500']};
-    }
-
-    h3 {
-      color: white;
-    }
-
-    p {
-      color: white;
-    }
-  `;
-
-  const centerBlueStyleSet = css`
-    background-color: ${tailwindBlurple['500']};
+  const purpleStyleSet = css`
+    background-color: ${tailwindPurple['700']};
     text-align: center;
 
     h2 {
@@ -45,35 +39,58 @@ const CallToActionBlock = ({ supertitle, title, text, template }) => {
     }
   `;
 
-  const leftYellowStyleSet = css`
+  const yellowStyleSet = css`
     background-color: ${tailwindYellow['500']};
-    text-align: left;
+    text-align: center;
+
+    h2,
+    h3,
+    p {
+      color: black;
+    }
+  `;
+
+  const voterRegStyleSet = css`
+    background-color: #000047;
+    text-align: center;
 
     h2 {
-      color: ${tailwindGray['900']};
+      color: #00ff75;
+    }
+
+    h3 {
+      color: ${tailwindYellow['500']};
+    }
+
+    p {
+      color: white;
     }
   `;
 
   // Logic goes here
+  // Look at Lodash get later
   let styles;
-  switch (template.template) {
-    case 1:
-      styles = centerPurpleStyleSet;
+  switch (template) {
+    case 'purple':
+      styles = purpleStyleSet;
       break;
-    case 2:
-      styles = leftYellowStyleSet;
+    case 'yellow':
+      styles = yellowStyleSet;
       break;
-    case 3:
-      styles = centerBlueStyleSet;
+    case 'voterReg':
+      styles = voterRegStyleSet;
       break;
     default:
-      styles = centerPurpleStyleSet;
+      styles = purpleStyleSet;
   }
+
+  // and combine with alignment logic
+  console.log(alignment);
 
   return (
     <div css={styles}>
       <div className="base-12-grid">
-        <div className="grid-narrow my-4">
+        <div className="grid-narrow my-8">
           <h3 className="text-m font-source-sans font-bold uppercase">
             {supertitle}
           </h3>
@@ -83,7 +100,7 @@ const CallToActionBlock = ({ supertitle, title, text, template }) => {
           <p className="text-lg pb-4">{text}</p>
           <button
             type="button"
-            className="btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
+            className="btn mx-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
           >
             Button text
           </button>
@@ -97,7 +114,8 @@ CallToActionBlock.propTypes = {
   supertitle: PropTypes.string,
   title: PropTypes.string,
   text: PropTypes.string,
-  template: PropTypes.number.isRequired,
+  template: PropTypes.string.isRequired,
+  alignment: PropTypes.oneOf(['LEFT', 'CENTER']).isRequired,
 };
 
 CallToActionBlock.defaultProps = {

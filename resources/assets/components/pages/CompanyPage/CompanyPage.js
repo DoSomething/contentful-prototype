@@ -3,18 +3,17 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
-import LazyImage from '../../utilities/LazyImage';
+// import LazyImage from '../../utilities/LazyImage';
 import PhotoBanner from '../../blocks/PhotoBanner/PhotoBanner';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { contentfulImageUrl, withoutNulls } from '../../../helpers';
+import { withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
-import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import CallToActionBlock from '../../blocks/CallToActionBlock/CallToActionBlock';
+import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
-import ScholarshipFeatureBlock from '../../blocks/ScholarshipFeatureBlock/ScholarshipFeatureBlock';
 
 export const COMPANY_PAGE_QUERY = gql`
   query CompanyPageQuery($slug: String!, $preview: Boolean!) {
@@ -40,12 +39,12 @@ const CompanyPageTemplate = props => {
 
       <main className="wrapper bg-white">
         <article className="bg-white overflow-hidden">
-          <PhotoBanner
+          {/* <PhotoBanner
             title={title}
             description={subTitle}
             hasButton={false}
             buttonLink="http://google.com"
-          />
+          /> */}
           {/* {coverImage.url ? (
             <LazyImage
               className="w-full"
@@ -61,6 +60,14 @@ const CompanyPageTemplate = props => {
             {content}
           </TextContent>
         </article>
+
+        <CallToActionBlock
+          supertitle="Hello World"
+          title="DoSomething Voter Registration"
+          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget nisl non sapien consectetur venenatis. Donec nec finibus ante. In tellus erat, facilisis non ultrices nec, ornare sed neque. "
+          template="voterReg"
+          alignment="CENTER"
+        />
 
         {slug === 'easy-scholarships' ? (
           <DismissableElement
