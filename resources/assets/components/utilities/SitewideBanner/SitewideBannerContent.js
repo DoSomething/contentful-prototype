@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CloseButton from '../../artifacts/CloseButton/CloseButton';
+
 const SitewideBannerContent = ({
   cta,
   description,
@@ -10,9 +12,11 @@ const SitewideBannerContent = ({
 }) => {
   return (
     <div className="w-full flex justify-center bg-yellow-500 p-4 z-50">
-      <button type="button" className="modal__close" onClick={handleClose}>
-        &times;
-      </button>
+      <CloseButton
+        callback={handleClose}
+        className="block absolute right-0 top-0 pt-2 pr-4"
+        size="14px"
+      />
       <div className="flex flex-wrap justify-center items-center pt-4 md:pt-0">
         <h1 className="pb-2 md:pr-4 md:pb-0 text-center text-base">
           {description}

@@ -15,10 +15,10 @@ import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
+import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
-import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 
@@ -38,7 +38,7 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link="https://vote.dosomething.org/"
+              link="https://vote.dosomething.org/?r=source:web,source_details:hellobar"
             />
           )}
         />
