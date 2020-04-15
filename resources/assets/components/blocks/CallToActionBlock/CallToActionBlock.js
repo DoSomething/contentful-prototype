@@ -6,6 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { tailwind } from '../../../helpers';
 
+const { get } = require('lodash');
+
 const CALL_TO_ACTION_QUERY = gql`
   query CallToActionBlockQuery($id: String!) {
     block(id: $id) {
@@ -96,28 +98,31 @@ const CallToActionBlock = ({ id }) => {
     }
   `;
 
+  const leftAlignment = css`
+    text-align: left;
+  `;
+
+  const centerAlignment = css`
+    text-align: center;
+  `;
+
   // Logic goes here
   // Look at Lodash get later
-  let styles;
-  switch (template) {
-    case 'PURPLE':
-      styles = purpleStyleSet;
-      break;
-    case 'YELLOW':
-      styles = yellowStyleSet;
-      break;
-    case 'VOTER_REGISTRATION':
-      styles = voterRegStyleSet;
-      break;
-    default:
-      styles = purpleStyleSet;
-  }
+  const styleObject = {
+    PURPLE: purpleStyleSet,
+    YELLOW: yellowStyleSet,
+    VOTER_REGISTRATION: voterRegStyleSet,
+  };
 
-  // and combine with alignment logic
-  console.log(alignment);
+  const alignmentObject = {
+    LEFT: leftAlignment,
+    CENTER: centerAlignment,
+  };
 
+  const templateStyles = get(styleObject, template);
+  const alignmentStyles = get(alignmentObject, alignment);
   return (
-    <div css={styles}>
+    <div css={[templateStyles, alignmentStyles]}>
       <div className="base-12-grid">
         <div className="grid-narrow my-8">
           <h3 className="text-m font-source-sans font-bold uppercase">
@@ -129,7 +134,7 @@ const CallToActionBlock = ({ id }) => {
           <p className="text-lg pb-4">{content}</p>
           <a
             href={link}
-            className="btn mx-4 bg-blurple-500 text-white text-lg border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
+            className="btn bg-blurple-500 text-white text-lg border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
           >
             {linkText}
           </a>
