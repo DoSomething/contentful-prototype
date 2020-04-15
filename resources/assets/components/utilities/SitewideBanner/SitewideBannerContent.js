@@ -22,7 +22,7 @@ const SitewideBannerContent = ({
           {description}
         </h1>
         <a
-          className="py-2 px-4 border border-solid-blurple rounded-md bg-blurple-500 text-white uppercase"
+          className="py-2 px-4 hover:bg-blurple-300 hover:text-white hover:no-underline border border-solid-blurple rounded-md bg-blurple-500 text-white uppercase"
           href={link}
           target="_blank"
           rel="noopener noreferrer"
