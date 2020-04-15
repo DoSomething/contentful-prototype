@@ -1,26 +1,55 @@
 import React from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
+import { useQuery } from '@apollo/react-hooks';
 
 import { tailwind } from '../../../helpers';
 
-const CallToActionBlock = ({
-  supertitle,
-  title,
-  text,
-  template,
-  alignment,
-}) => {
+const CALL_TO_ACTION_QUERY = gql`
+  query CallToActionBlockQuery($id: String!) {
+    block(id: $id) {
+      id
+      ... on CallToActionBlock {
+        superTitle
+        title
+        content
+        linkText
+        link
+        template
+        alignment
+      }
+    }
+  }
+`;
+
+const CallToActionBlock = ({ id }) => {
+  // Make the initial query to get the cta content
+  const { data, loading, error } = useQuery(CALL_TO_ACTION_QUERY, {
+    variables: { id },
+  });
+
+  if (error) {
+    return <p>Something went wrong!</p>;
+  }
+
+  if (loading) {
+    return <div className="spinner" />;
+  }
+
+  const {
+    superTitle,
+    title,
+    content,
+    linkText,
+    link,
+    template,
+    alignment,
+  } = data.block;
+
   // Define a set of styles, then switch case through them?
   const tailwindPurple = tailwind('colors.purple');
   const tailwindYellow = tailwind('colors.yellow');
-
-  // const purple = {
-  //   background: "purple",
-  //   supertitle: "yellow",
-  //   title: "white",
-  //   paragraph: "white"
-  // }
 
   const purpleStyleSet = css`
     background-color: ${tailwindPurple['700']};
@@ -71,13 +100,13 @@ const CallToActionBlock = ({
   // Look at Lodash get later
   let styles;
   switch (template) {
-    case 'purple':
+    case 'PURPLE':
       styles = purpleStyleSet;
       break;
-    case 'yellow':
+    case 'YELLOW':
       styles = yellowStyleSet;
       break;
-    case 'voterReg':
+    case 'VOTER_REGISTRATION':
       styles = voterRegStyleSet;
       break;
     default:
@@ -92,18 +121,18 @@ const CallToActionBlock = ({
       <div className="base-12-grid">
         <div className="grid-narrow my-8">
           <h3 className="text-m font-source-sans font-bold uppercase">
-            {supertitle}
+            {superTitle}
           </h3>
           <h2 className="text-4xl font-league-gothic font-bold uppercase">
             {title}
           </h2>
-          <p className="text-lg pb-4">{text}</p>
-          <button
-            type="button"
-            className="btn mx-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
+          <p className="text-lg pb-4">{content}</p>
+          <a
+            href={link}
+            className="btn mx-4 bg-blurple-500 text-white text-lg border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
           >
-            Button text
-          </button>
+            {linkText}
+          </a>
         </div>
       </div>
     </div>
@@ -111,17 +140,7 @@ const CallToActionBlock = ({
 };
 
 CallToActionBlock.propTypes = {
-  supertitle: PropTypes.string,
-  title: PropTypes.string,
-  text: PropTypes.string,
-  template: PropTypes.string.isRequired,
-  alignment: PropTypes.oneOf(['LEFT', 'CENTER']).isRequired,
-};
-
-CallToActionBlock.defaultProps = {
-  supertitle: null,
-  title: null,
-  text: null,
+  id: PropTypes.string.isRequired,
 };
 
 export default CallToActionBlock;
