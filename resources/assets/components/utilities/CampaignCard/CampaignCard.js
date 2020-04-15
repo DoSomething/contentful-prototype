@@ -49,7 +49,7 @@ const CampaignCard = ({ campaign }) => {
 
       <div className="bg-white border-b-2 border-l-2 border-r-2 border-gray-300 border-solid flex flex-col flex-grow p-4 rounded-b">
         {staffPick ? (
-          <div className="absolute bg-purple-500 font-bold px-3 py-1 right-0 text-base text-white top-0 uppercase">
+          <div className="absolute bg-purple-500 font-bold left-0 px-3 py-1 text-base text-white top-0 uppercase">
             Featured
           </div>
         ) : null}
