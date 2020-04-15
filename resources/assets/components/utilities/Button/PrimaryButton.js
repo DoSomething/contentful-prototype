@@ -1,5 +1,4 @@
 import React from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -15,7 +14,7 @@ import ButtonElement from './ButtonElement';
  * @param {Object} props
  */
 const PrimaryButton = props => {
-  const { className, href, isDisabled, onClick, text } = props;
+  const { className, href, isDisabled, onClick, text, type } = props;
 
   const classes = classnames(
     'bg-blurple-500 active:bg-blurple-700 focus:bg-blurple-300 hover:bg-blurple-300',
@@ -35,6 +34,7 @@ const PrimaryButton = props => {
       isDisabled={isDisabled}
       onClick={onClick}
       text={text}
+      type={type}
     />
   );
 };
@@ -45,6 +45,7 @@ PrimaryButton.propTypes = {
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
 PrimaryButton.defaultProps = {
@@ -52,6 +53,7 @@ PrimaryButton.defaultProps = {
   href: null,
   isDisabled: false,
   onClick: null,
+  type: 'button',
 };
 
 export default PrimaryButton;

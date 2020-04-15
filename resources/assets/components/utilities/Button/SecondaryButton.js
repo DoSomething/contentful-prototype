@@ -14,7 +14,7 @@ import ButtonElement from './ButtonElement';
  * @param {Object} props
  */
 const SecondaryButton = props => {
-  const { className, href, isDisabled, onClick, text } = props;
+  const { className, href, isDisabled, onClick, text, type } = props;
 
   const classes = classnames(
     'bg-white focus:bg-gray-300',
@@ -34,6 +34,7 @@ const SecondaryButton = props => {
       isDisabled={isDisabled}
       onClick={onClick}
       text={text}
+      type={type}
     />
   );
 };
@@ -44,6 +45,7 @@ SecondaryButton.propTypes = {
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
 SecondaryButton.defaultProps = {
@@ -51,6 +53,7 @@ SecondaryButton.defaultProps = {
   href: null,
   isDisabled: false,
   onClick: null,
+  type: 'button',
 };
 
 export default SecondaryButton;
