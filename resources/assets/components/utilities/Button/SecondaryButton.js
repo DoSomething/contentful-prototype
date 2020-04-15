@@ -5,6 +5,14 @@ import classnames from 'classnames';
 import ButtonLink from './ButtonLink';
 import ButtonElement from './ButtonElement';
 
+/**
+ * Secondary style element or link button.
+ *
+ * Secondary buttons have a white background with a blurple colored border and text,
+ * along with associated pseudo state styles.
+ *
+ * @param {Object} props
+ */
 const SecondaryButton = props => {
   const { className, href, isDisabled, onClick, text } = props;
 

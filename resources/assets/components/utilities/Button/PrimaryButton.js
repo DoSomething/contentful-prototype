@@ -6,6 +6,14 @@ import classnames from 'classnames';
 import ButtonLink from './ButtonLink';
 import ButtonElement from './ButtonElement';
 
+/**
+ * Primary style element or link button.
+ *
+ * Primary buttons have a blurple background and border with white text,
+ * along with associated pseudo state styles.
+ *
+ * @param {Object} props
+ */
 const PrimaryButton = props => {
   const { className, href, isDisabled, onClick, text } = props;
 
