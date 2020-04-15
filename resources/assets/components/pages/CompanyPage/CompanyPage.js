@@ -3,14 +3,12 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import PageQuery from '../PageQuery';
-// import LazyImage from '../../utilities/LazyImage';
-import PhotoBanner from '../../blocks/PhotoBanner/PhotoBanner';
+import LazyImage from '../../utilities/LazyImage';
 import CtaPopover from '../../utilities/CtaPopover/CtaPopover';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { withoutNulls } from '../../../helpers';
+import { contentfulImageUrl, withoutNulls } from '../../../helpers';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
-import CallToActionBlock from '../../blocks/CallToActionBlock/CallToActionBlock';
 import CtaPopoverEmailForm from '../../utilities/CtaPopover/CtaPopoverEmailForm';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
@@ -37,37 +35,25 @@ const CompanyPageTemplate = props => {
     <>
       <SiteNavigationContainer />
 
-      <main className="wrapper bg-white">
-        <article className="bg-white overflow-hidden">
-          {/* <PhotoBanner
-            title={title}
-            description={subTitle}
-            hasButton={false}
-            buttonLink="http://google.com"
-          /> */}
-          {/* {coverImage.url ? (
+      <main className="wrapper base-12-grid company-page py-3 md:py-6">
+        <article className="grid-wide bg-white rounded border border-solid border-gray-300 overflow-hidden">
+          {coverImage.url ? (
             <LazyImage
               className="w-full"
               alt={coverImage.description || 'Page Cover Image'}
               src={contentfulImageUrl(coverImage.url, 1440, 620)}
             />
-          ) : null} */}
+          ) : null}
+          <div className="m-4 md:m-12">
+            <h1 className="font-league-gothic uppercase text-3xl md:text-5xl">
+              {title}
+            </h1>
 
-          <TextContent
-            className="pt-4"
-            classNameByEntry={{ GalleryBlock: 'base-12-grid' }}
-          >
-            {content}
-          </TextContent>
+            {subTitle ? <h2 className="text-lg my-3">{subTitle}</h2> : null}
+
+            <TextContent className="pt-4">{content}</TextContent>
+          </div>
         </article>
-
-        <CallToActionBlock
-          supertitle="Hello World"
-          title="DoSomething Voter Registration"
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget nisl non sapien consectetur venenatis. Donec nec finibus ante. In tellus erat, facilisis non ultrices nec, ornare sed neque. "
-          template="voterReg"
-          alignment="CENTER"
-        />
 
         {slug === 'easy-scholarships' ? (
           <DismissableElement
