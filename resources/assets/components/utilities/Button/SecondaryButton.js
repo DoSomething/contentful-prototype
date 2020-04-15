@@ -6,7 +6,7 @@ import ButtonLink from './ButtonLink';
 import ButtonElement from './ButtonElement';
 
 const SecondaryButton = props => {
-  const { className, href, onClick, text } = props;
+  const { className, href, isDisabled, onClick, text } = props;
 
   const classes = classnames(
     'bg-white focus:bg-gray-300',
@@ -20,12 +20,20 @@ const SecondaryButton = props => {
     return <ButtonLink className={classes} href={href} text={text} />;
   }
 
-  return <ButtonElement className={classes} onClick={onClick} text={text} />;
+  return (
+    <ButtonElement
+      className={classes}
+      isDisabled={isDisabled}
+      onClick={onClick}
+      text={text}
+    />
+  );
 };
 
 SecondaryButton.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string,
+  isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
 };
@@ -33,6 +41,7 @@ SecondaryButton.propTypes = {
 SecondaryButton.defaultProps = {
   className: null,
   href: null,
+  isDisabled: false,
   onClick: null,
 };
 

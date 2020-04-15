@@ -7,7 +7,7 @@ import ButtonLink from './ButtonLink';
 import ButtonElement from './ButtonElement';
 
 const PrimaryButton = props => {
-  const { className, isDisabled, href, onClick, text } = props;
+  const { className, href, isDisabled, onClick, text } = props;
 
   const classes = classnames(
     'bg-blurple-500 active:bg-blurple-700 focus:bg-blurple-300 hover:bg-blurple-300',
@@ -33,16 +33,16 @@ const PrimaryButton = props => {
 
 PrimaryButton.propTypes = {
   className: PropTypes.string,
-  isDisabled: PropTypes.bool,
   href: PropTypes.string,
+  isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
 };
 
 PrimaryButton.defaultProps = {
   className: null,
-  isDisabled: false,
   href: null,
+  isDisabled: false,
   onClick: null,
 };
 
