@@ -26,7 +26,6 @@ const CALL_TO_ACTION_QUERY = gql`
 `;
 
 const CallToActionBlock = ({ id }) => {
-  // Make the initial query to get the cta content
   const { data, loading, error } = useQuery(CALL_TO_ACTION_QUERY, {
     variables: { id },
   });
@@ -49,30 +48,24 @@ const CallToActionBlock = ({ id }) => {
     alignment,
   } = data.block;
 
-  // Define a set of styles, then switch case through them?
   const tailwindPurple = tailwind('colors.purple');
   const tailwindYellow = tailwind('colors.yellow');
 
   const purpleStyleSet = css`
     background-color: ${tailwindPurple['700']};
-    text-align: center;
 
-    h2 {
+    h2,
+    p {
       color: white;
     }
 
     h3 {
       color: ${tailwindYellow['500']};
     }
-
-    p {
-      color: white;
-    }
   `;
 
   const yellowStyleSet = css`
     background-color: ${tailwindYellow['500']};
-    text-align: center;
 
     h2,
     h3,
@@ -83,7 +76,6 @@ const CallToActionBlock = ({ id }) => {
 
   const voterRegStyleSet = css`
     background-color: #000047;
-    text-align: center;
 
     h2 {
       color: #00ff75;
@@ -106,8 +98,6 @@ const CallToActionBlock = ({ id }) => {
     text-align: center;
   `;
 
-  // Logic goes here
-  // Look at Lodash get later
   const styleObject = {
     PURPLE: purpleStyleSet,
     YELLOW: yellowStyleSet,
@@ -119,8 +109,9 @@ const CallToActionBlock = ({ id }) => {
     CENTER: centerAlignment,
   };
 
-  const templateStyles = get(styleObject, template);
-  const alignmentStyles = get(alignmentObject, alignment);
+  const templateStyles = get(styleObject, template, 'PURPLE');
+  const alignmentStyles = get(alignmentObject, alignment, 'CENTER');
+
   return (
     <div css={[templateStyles, alignmentStyles]}>
       <div className="base-12-grid">
