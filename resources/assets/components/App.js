@@ -30,7 +30,7 @@ const App = ({ store, history }) => {
     <Provider store={store}>
       {featureFlag('sitewide_cta_banner') ? (
         <DismissableElement
-          name="sitewide_banner_voter_registration"
+          name="sitewide_banner_call_to_action"
           daysToReRender={7}
           context={{ contextSource: 'voter_registration' }}
           render={(handleClose, handleComplete) => (
