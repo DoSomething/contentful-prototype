@@ -25,7 +25,7 @@ $router->get('/deauthorize', 'AuthController@getDeauthorization')->name('deautho
 $router->redirect('/next/logout', '/deauthorize', 302);
 
 // Profile
-$router->redirect('/northstar/{id}', '/us/account/profile');
+$router->redirect('/northstar/{id}', '/us/account');
 $router->view('/us/account/{clientRoute?}', 'app')
     ->where('clientRoute', '.*')
     ->middleware('auth');
