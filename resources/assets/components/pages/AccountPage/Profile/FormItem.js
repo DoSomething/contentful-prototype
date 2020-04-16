@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FormItem = props => (
-  <div className="mt-6">
-    <h5>{props.title}</h5>
+  <div className="mt-4">
+    <h5 className="text-gray-700">{props.title}</h5>
     <p>{props.value}</p>
   </div>
 );

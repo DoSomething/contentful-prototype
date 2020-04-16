@@ -73,9 +73,7 @@ const PostCreatedModal = ({ affirmationContent, onClose, title, userId }) => (
                         completing your {config[count].descriptor} campaign.
                         Congratulations!
                       </p>
-                      <a href="/us/account/profile/badges">
-                        View all my badges
-                      </a>
+                      <a href="/us/account/badges">View all my badges</a>
                     </Badge>
                   );
                 }}

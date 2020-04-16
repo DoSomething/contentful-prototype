@@ -722,7 +722,7 @@ class SiteNavigation extends React.Component {
                 <li className="utility-nav__account-profile menu-nav__item">
                   <a
                     id="utility-nav__account-profile"
-                    href="/us/account/profile"
+                    href="/us/account"
                     className="utility-nav__account-profile-icon"
                     onClick={() =>
                       this.analyzeEvent({
