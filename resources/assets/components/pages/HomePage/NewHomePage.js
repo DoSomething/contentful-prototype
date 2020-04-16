@@ -369,7 +369,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <HomePageArticleGallery articles={articles} />
 
                 <a
-                  href="/us/articles"
+                  href="https://lets.dosomething.org/"
                   className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
                   data-label="article_section_show_more"
                 >
