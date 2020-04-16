@@ -32,25 +32,27 @@ const App = ({ store, history }) => {
   return (
     <Provider store={store}>
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
-        <TrafficDistribution percentage={5} feature="nps_survey">
-          <DismissableElement
-            name="nps_survey"
-            render={(handleClose, handleComplete) => (
-              <DelayedElement delay={60}>
-                <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
-                  <TypeFormEmbed
-                    displayType="modal"
-                    typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
-                    queryParameters={{
-                      northstar_id: get(window.AUTH, 'id', null),
-                    }}
-                    onSubmit={handleComplete}
-                  />
-                </Modal>
-              </DelayedElement>
-            )}
-          />
-        </TrafficDistribution>
+        {!NewHomePage ? (
+          <TrafficDistribution percentage={5} feature="nps_survey">
+            <DismissableElement
+              name="nps_survey"
+              render={(handleClose, handleComplete) => (
+                <DelayedElement delay={60}>
+                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                    <TypeFormEmbed
+                      displayType="modal"
+                      typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
+                      queryParameters={{
+                        northstar_id: get(window.AUTH, 'id', null),
+                      }}
+                      onSubmit={handleComplete}
+                    />
+                  </Modal>
+                </DelayedElement>
+              )}
+            />
+          </TrafficDistribution>
+        ) : null}
         <Router history={history}>
           <Switch>
             <Route
