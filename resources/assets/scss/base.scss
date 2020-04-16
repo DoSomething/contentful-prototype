@@ -18,8 +18,22 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 // @TODO:forge-removal Rename this class to "button".
 .btn {
   @apply bg-blue-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+
+  // @TODO: to be uncommented in following PR and replace above rules.
+  // @apply cursor-pointer font-bold font-source-sans inline-block no-underline py-3 px-4 rounded text-center text-white outline-none;
 }
 
+// @TODO: to be uncommented in following PR.
+// .btn:active {
+//   @apply text-white;
+// }
+
+// @TODO: to be uncommented in following PR.
+// .btn:hover {
+//   @apply text-white no-underline;
+// }
+
+// @TODO: remove in following PR.
 .btn:focus {
   @apply bg-blue-300;
   box-shadow: 0 0 3px theme('colors.blue.500');
@@ -27,6 +41,12 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 .btn:disabled {
   @apply cursor-not-allowed bg-gray-400 text-gray-100;
+
+  // @TODO: to be uncommented in following PR and replace above rules.
+  // @apply cursor-not-allowed;
+  // background-color: theme('colors.gray.400') !important;
+  // border-color: transparent !important;
+  // color: theme('colors.gray.100') !important;
 }
 
 // @TODO:forge-removal Rename this class to "text-field".
@@ -55,6 +75,18 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 }
 
 @tailwind utilities;
+
+.focus\:outline-blurple-300:focus {
+  outline-color: theme('colors.blurple.300');
+}
+
+.focus\:outline-solid:focus {
+  outline-style: solid;
+}
+
+.focus\:outline-2:focus {
+  outline-width: 2px;
+}
 
 /*
 |-------------------------------------------------------------------------------

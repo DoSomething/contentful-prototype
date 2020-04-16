@@ -159,7 +159,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'active', 'hover', 'focus'],
+    borderColor: ['responsive', 'active', 'hover', 'focus'],
+    textColor: ['responsive', 'active', 'hover', 'focus'],
+  },
   plugins: [
     function({ addUtilities }) {
       const newUtilities = {
