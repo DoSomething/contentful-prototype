@@ -79,7 +79,7 @@ class Entity implements ArrayAccess, JsonSerializable
             case 'storyPage':
                 return new TruncatedStoryPage($block->entry);
             default:
-                return ['id' => $block->entry->getId()];
+                return ['id' => $block->entry->getId(), 'type' => $block->getContentType()];
         }
     }
 

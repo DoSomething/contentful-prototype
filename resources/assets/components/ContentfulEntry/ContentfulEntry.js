@@ -9,11 +9,11 @@ import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
 import SectionBlock from '../blocks/SectionBlock/SectionBlock';
 import AffirmationContainer from '../Affirmation/AffirmationContainer';
-import CallToActionContainer from '../CallToAction/CallToActionContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
 import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
+import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
 import SixpackExperiment from '../utilities/SixpackExperiment/SixpackExperiment';
@@ -65,18 +65,9 @@ class ContentfulEntry extends React.Component {
           />
         );
 
+      case 'callToAction':
       case 'CallToActionBlock':
-        return (
-          <CallToActionContainer
-            actionText={json.actionText}
-            content={json.content}
-            impactPrefix={json.impactPrefix}
-            impactSuffix={json.impactSuffix}
-            impactValue={json.impactValue}
-            visualStyle={json.visualStyle.toLowerCase()}
-            useCampaignTagline={json.useCampaignTagline}
-          />
-        );
+        return <CallToActionBlock {...withoutNulls(json)} />;
 
       // Note: This is loaded via legacy PHP Content API.
       case 'campaignDashboard':
