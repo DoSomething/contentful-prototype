@@ -118,7 +118,10 @@ const VolunteerCreditsQuery = () => {
     );
 
     // Generate human-friendly impact label based on quantity and action noun + verb.
-    const impactLabel = `${pluralize(noun, quantity, true)} ${verb}`;
+    // Will be 'null' for actions where we don't collect quantity info, or where total impact tallies to 0.
+    const impactLabel = quantity
+      ? `${pluralize(noun, quantity, true)} ${verb}`
+      : null;
 
     // Grab the photo URL of the earliest accepted post.
     const firstAcceptedPost = last(acceptedPosts);
