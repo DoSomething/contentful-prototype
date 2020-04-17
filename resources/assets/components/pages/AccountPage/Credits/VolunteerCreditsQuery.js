@@ -1,6 +1,8 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { groupBy, last } from 'lodash';
+import pluralize from 'pluralize';
+import PropTypes from 'prop-types';
+import { get, groupBy, last } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
 import { getUserId } from '../../../../helpers/auth';
@@ -24,10 +26,13 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
           createdAt
           quantity
           status
+          url
           actionDetails {
             id
             actionLabel
             timeCommitmentLabel
+            noun
+            verb
           }
           campaign {
             campaignWebsite {
@@ -44,6 +49,22 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
     }
   }
 `;
+
+export const postType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  campaignWebsite: PropTypes.shape({
+    showcaseImage: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  actionLabel: PropTypes.string.isRequired,
+  dateCompleted: PropTypes.string.isRequired,
+  volunteerHours: PropTypes.string.isRequired,
+  impactLabel: PropTypes.string.isRequired,
+  photo: PropTypes.string,
+  pending: PropTypes.bool.isRequired,
+});
 
 const VolunteerCreditsQuery = () => {
   const options = { variables: { userId: getUserId() } };
@@ -78,12 +99,33 @@ const VolunteerCreditsQuery = () => {
     // We use the ID as the unique 'key' when we map over the formatted post data.
     const { id, createdAt } = lastPost;
 
-    const { timeCommitmentLabel, actionLabel } = lastPost.actionDetails;
+    const {
+      timeCommitmentLabel,
+      actionLabel,
+      noun,
+      verb,
+    } = lastPost.actionDetails;
 
     const campaignWebsite = lastPost.campaign.campaignWebsite;
 
+    const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
+
+    // Calculate total quantity of accepted posts.
+    // @TODO: How do we handle 'null' quantity on a post? Or generally, actions not collecting quantity?
+    const quantity = acceptedPosts.reduce(
+      (totalQuantity, post) => totalQuantity + post.quantity,
+      0,
+    );
+
+    // Generate human-friendly impact label based on quantity and action noun + verb.
+    const impactLabel = `${pluralize(noun, quantity, true)} ${verb}`;
+
+    // Grab the photo URL of the earliest accepted post.
+    const firstAcceptedPost = last(acceptedPosts);
+    const photo = get(firstAcceptedPost, 'url');
+
     // The certificate download button will be disabled if there is no 'accepted' post.
-    const pending = posts.every(post => post.status === 'PENDING');
+    const pending = !firstAcceptedPost;
 
     return {
       id,
@@ -91,6 +133,8 @@ const VolunteerCreditsQuery = () => {
       actionLabel,
       dateCompleted: getHumanFriendlyDate(createdAt),
       volunteerHours: timeCommitmentLabel,
+      impactLabel,
+      photo,
       pending,
     };
   });
