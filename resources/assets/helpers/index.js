@@ -824,7 +824,7 @@ export function handleSnapchatShareClick(href, trackingData, quote = '') {
   trackAnalyticsEvent('clicked_share_snapchat', {
     action: 'button_clicked',
     category: EVENT_CATEGORIES.socialShare,
-    label: 'twitter',
+    label: 'snapchat',
     context: { ...trackingData, url: href },
   });
 

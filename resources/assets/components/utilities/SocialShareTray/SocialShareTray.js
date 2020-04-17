@@ -206,14 +206,7 @@ SocialShareTray.propTypes = {
 SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
-  platforms: [
-    'facebook',
-    'instagram',
-    'snapchat',
-    'twitter',
-    'messenger',
-    'email',
-  ],
+  platforms: ['facebook', 'snapchat', 'twitter', 'messenger', 'email'],
   title: null,
   responsive: false,
 };
