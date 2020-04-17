@@ -10,7 +10,7 @@ import Badge from '../pages/AccountPage/Badges/Badge';
 import TextContent from '../utilities/TextContent/TextContent';
 
 const BADGE_QUERY = gql`
-  query UserBadgeQuery($userId: String!) {
+  query PostCreatedModalBadgeQuery($userId: String!) {
     user(id: $userId) {
       id
       hasBadgesFlag: hasFeatureFlag(feature: "badges")
@@ -19,7 +19,7 @@ const BADGE_QUERY = gql`
 `;
 
 const POST_COUNT_BADGE = gql`
-  query PostsCountQuery($userId: String!) {
+  query PostsCreatedModalCountQuery($userId: String!) {
     postsCount(userId: $userId, limit: 4)
   }
 `;
