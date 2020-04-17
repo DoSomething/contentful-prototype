@@ -5,8 +5,8 @@ import { featureFlag } from '../../../../helpers';
 import NavigationLink from '../../../utilities/NavigationLink/NavigationLink';
 
 const AccountNavigation = props => (
-  <nav className="base-12-grid page-navigation py-3 md:py-6 -no-fade -mx-3">
-    <div className="grid-wide nav-items">
+  <nav className="base-12-grid page-navigation py-3 md:py-6 -no-fade">
+    <div className="grid-wide nav-items -mx-3">
       <NavigationLink exact to="/us/account">
         Account
       </NavigationLink>
