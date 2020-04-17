@@ -26,8 +26,8 @@ export const SelectionSubmissionBlockFragment = gql`
   }
 `;
 
-const USER_POSTS_QUERY = gql`
-  query UserPostsQuery($userId: String!, $actionIds: [Int]!) {
+const SELECTION_SUBMISSION_BLOCK_QUERY = gql`
+  query SelectionSubmissionBlockQuery($userId: String!, $actionIds: [Int]!) {
     posts(userId: $userId, actionIds: $actionIds) {
       text
     }
@@ -129,7 +129,7 @@ class SelectionSubmissionAction extends PostForm {
         <TextContent className="p-3">{richText}</TextContent>
 
         <Query
-          query={USER_POSTS_QUERY}
+          query={SELECTION_SUBMISSION_BLOCK_QUERY}
           variables={{ userId, actionIds: [actionId] }}
         >
           {({ loading, data }) => {

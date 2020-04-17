@@ -32,8 +32,8 @@ export const PetitionSubmissionBlockFragment = gql`
   }
 `;
 
-export const USER_POSTS_QUERY = gql`
-  query UserPostsQuery($userId: String!, $actionIds: [Int]!) {
+export const PETITION_SUBMISSION_BLOCK_QUERY = gql`
+  query PetitionSubmissionBlockQuery($userId: String!, $actionIds: [Int]!) {
     posts(userId: $userId, actionIds: $actionIds) {
       text
     }
@@ -134,7 +134,7 @@ class PetitionSubmissionAction extends PostForm {
             context={{ blockId: id }}
           />
           <ApolloQuery
-            query={USER_POSTS_QUERY}
+            query={PETITION_SUBMISSION_BLOCK_QUERY}
             variables={{ userId, actionIds: [actionId] }}
             queryName="userPosts"
             skip={!userId}
