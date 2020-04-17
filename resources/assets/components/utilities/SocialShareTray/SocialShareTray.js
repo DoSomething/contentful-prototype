@@ -9,7 +9,6 @@ import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
 import messengerIcon from './messengerIcon.svg';
-import instagramIcon from './instagramIcon.svg';
 import snapchatIcon from './snapchatIcon.svg';
 import {
   EVENT_CATEGORIES,
