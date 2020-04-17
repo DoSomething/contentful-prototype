@@ -23,6 +23,7 @@ import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
+import { toDateWithOptions } from 'date-fns/fp';
 
 // Helper Constants
 export const EMPTY_IMAGE =

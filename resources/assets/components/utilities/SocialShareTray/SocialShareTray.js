@@ -32,6 +32,7 @@ import './social-share-tray.scss';
 class SocialShareTray extends React.Component {
   componentDidMount() {
     loadFacebookSDK();
+    loadSnapchatSDK();
   }
 
   /**
