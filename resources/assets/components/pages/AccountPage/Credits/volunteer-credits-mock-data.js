@@ -143,7 +143,7 @@ export const mockParsedPostsData = [
     volunteerHours: ACTION_ONE.timeCommitmentLabel,
     pending: true,
     photo: undefined,
-    impactLabel: '0 things done',
+    impactLabel: null,
   },
   {
     id: 4,
@@ -153,7 +153,7 @@ export const mockParsedPostsData = [
     volunteerHours: ACTION_TWO.timeCommitmentLabel,
     pending: true,
     photo: undefined,
-    impactLabel: '0 things done',
+    impactLabel: null,
   },
   {
     id: 6,
