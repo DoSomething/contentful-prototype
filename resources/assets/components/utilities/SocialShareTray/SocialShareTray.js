@@ -17,12 +17,12 @@ import {
 } from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
+  loadSnapchatSDK,
   handleTwitterShareClick,
   showFacebookShareDialog,
   showFacebookSendDialog,
   facebookMessengerShare,
   getFormattedScreenSize,
-  handleInstagramShareClick,
   handleSnapchatShareClick,
 } from '../../../helpers';
 
@@ -31,6 +31,7 @@ import './social-share-tray.scss';
 class SocialShareTray extends React.Component {
   componentDidMount() {
     loadFacebookSDK();
+    loadSnapchatSDK();
   }
 
   handleFacebookShareClick = (shareLink, trackLink) => {
@@ -144,21 +145,9 @@ class SocialShareTray extends React.Component {
             />
           ) : null}
 
-          {platforms.includes('instagram') ? (
-            <ShareButton
-              className="instagram bg-red-500 hover:bg-red-300"
-              onClick={() =>
-                handleInstagramShareClick(shareLink, { url: trackLink })
-              }
-              disabled={!shareLink}
-              icon={instagramIcon}
-              text="Share"
-            />
-          ) : null}
-
           {platforms.includes('snapchat') ? (
             <ShareButton
-              className="snapchat bg-yellow-400 hover:bg-yellow-200 text-black"
+              className="snapchat-share-button snapchat bg-yellow-400 hover:bg-yellow-200 text-black"
               onClick={() =>
                 handleSnapchatShareClick(shareLink, { url: trackLink })
               }

@@ -23,6 +23,7 @@ import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
+import { toDateWithOptions } from 'date-fns/fp';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -609,6 +610,26 @@ export function loadFacebookSDK() {
     script.src = '//connect.facebook.net/en_US/sdk.js';
     document.head.append(script);
   });
+}
+
+/**
+ * Load and return the Snapchat SDK.
+ */
+export function loadSnapchatSDK() {
+  return new Promise(resolve => {
+    // @TODO create tag name
+
+    const script = document.createElement('script');
+    script.src = 'https://sdk.snapkit.com/js/v1/create.js';
+    document.head.append(script);
+  });
+
+  // @TODO   customize the button, then content
+  window.snapKitInit = function() {
+    snap.creativekit.initalizeShareButtons(
+      document.getElementsByClassName('snapchat-share-button'),
+    );
+  };
 }
 
 /**
