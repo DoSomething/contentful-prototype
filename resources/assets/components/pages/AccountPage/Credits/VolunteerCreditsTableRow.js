@@ -3,35 +3,13 @@ import tw from 'twin.macro';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  Document,
-  Page,
-  PDFDownloadLink,
-  StyleSheet,
-  Text,
-  View,
-} from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
-import { postType } from './VolunteerCreditsQuery';
-
-// PDF template styles.
-const styles = StyleSheet.create({
-  page: { backgroundColor: 'tomato' },
-  section: { color: 'white', textAlign: 'center', margin: 30 },
-});
-
-// PDF template.
-const PdfTemplate = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Certificate of Credit.</Text>
-      </View>
-    </Page>
-  </Document>
-);
+import CertificateTemplate, {
+  certificatePostType,
+} from './CertificateTemplate';
 
 // A list-item displaying a Post detail and value.
 const PostDetail = ({ detail, value }) => (
@@ -48,14 +26,14 @@ PostDetail.propTypes = {
 
 // The certificate PDF Download button with pending/ready state.
 const buttonClassNames = 'btn w-full py-4 text-lg';
-const DownloadButton = ({ post }) =>
-  post.pending ? (
+const DownloadButton = ({ certificatePost }) =>
+  certificatePost.pending ? (
     <button type="button" disabled className={buttonClassNames}>
       Pending
     </button>
   ) : (
     <PDFDownloadLink
-      document={<PdfTemplate post={post} />}
+      document={<CertificateTemplate certificatePost={certificatePost} />}
       fileName="dosomething-volunteer-credit-certificate.pdf"
       className={classNames(
         buttonClassNames,
@@ -67,13 +45,18 @@ const DownloadButton = ({ post }) =>
   );
 
 DownloadButton.propTypes = {
-  post: postType.isRequired,
+  certificatePost: certificatePostType.isRequired,
 };
 
 const TableData = tw.td`align-middle p-4 pr-6`;
 
-const VolunteerCreditsTableRow = ({ post }) => {
-  const { campaignWebsite, actionLabel, dateCompleted, volunteerHours } = post;
+const VolunteerCreditsTableRow = ({ certificatePost }) => {
+  const {
+    campaignWebsite,
+    actionLabel,
+    dateCompleted,
+    volunteerHours,
+  } = certificatePost;
 
   return (
     <Media query={`(min-width: ${tailwind('screens.md')})`}>
@@ -87,7 +70,7 @@ const VolunteerCreditsTableRow = ({ post }) => {
             <TableData>{dateCompleted}</TableData>
             <TableData>{volunteerHours}</TableData>
             <TableData>
-              <DownloadButton post={post} />
+              <DownloadButton certificatePost={certificatePost} />
             </TableData>
           </>
         ) : (
@@ -100,7 +83,7 @@ const VolunteerCreditsTableRow = ({ post }) => {
               <PostDetail detail="Date Completed" value={dateCompleted} />
             </ul>
 
-            <DownloadButton post={post} />
+            <DownloadButton certificatePost={certificatePost} />
           </TableData>
         )
       }
@@ -109,7 +92,7 @@ const VolunteerCreditsTableRow = ({ post }) => {
 };
 
 VolunteerCreditsTableRow.propTypes = {
-  post: postType.isRequired,
+  certificatePost: certificatePostType.isRequired,
 };
 
 export default VolunteerCreditsTableRow;
