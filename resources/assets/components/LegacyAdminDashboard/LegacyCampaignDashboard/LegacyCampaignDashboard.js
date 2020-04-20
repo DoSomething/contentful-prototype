@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ElementButton from '../../utilities/Button/ElementButton';
+
 const LegacyCampaignDashboard = props => {
   const {
     campaignId,
@@ -17,20 +19,17 @@ const LegacyCampaignDashboard = props => {
 
   return (
     <div>
-      <button
-        type="button"
-        className="btn bg-gray-600 hover:bg-gray-500"
+      <ElementButton
+        className="bg-gray-600 hover:bg-gray-500"
         onClick={clickedShowAffirmation}
-      >
-        Show Affirmation
-      </button>
-      <button
-        type="button"
-        className="btn bg-gray-600 hover:bg-gray-500 ml-3"
+        text="Show Affirmation"
+      />
+
+      <ElementButton
+        className="bg-gray-600 hover:bg-gray-500 ml-3"
         onClick={onSignUpClick}
-      >
-        {`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
-      </button>
+        text={`Mock ${isSignedUp ? 'Un-sign Up' : 'Sign Up'}`}
+      />
     </div>
   );
 };
