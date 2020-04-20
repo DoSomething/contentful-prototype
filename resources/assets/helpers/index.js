@@ -1,7 +1,6 @@
 /* global window, document, Blob, URL */
 
 import queryString from 'query-string';
-import resolveConfig from 'tailwindcss/resolveConfig';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
@@ -22,7 +21,7 @@ import {
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
-import tailwindConfig from '../../../tailwind.config';
+import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
@@ -943,7 +942,7 @@ export function tailwind(themeSetting) {
     );
   }
 
-  const setting = get(resolveConfig(tailwindConfig).theme, themeSetting, null);
+  const setting = get(tailwindVariables, themeSetting, null);
 
   if (!setting) {
     console.error(
