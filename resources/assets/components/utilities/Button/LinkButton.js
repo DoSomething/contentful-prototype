@@ -8,22 +8,22 @@ import classnames from 'classnames';
  *
  * @param {Object} props
  */
-const ButtonLink = ({ className, href, onClick, text }) => (
+const LinkButton = ({ className, href, onClick, text }) => (
   <a href={href} className={classnames('btn', className)} onClick={onClick}>
     {text}
   </a>
 );
 
-ButtonLink.propTypes = {
+LinkButton.propTypes = {
   className: PropTypes.string,
   href: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
 };
 
-ButtonLink.defaultProps = {
+LinkButton.defaultProps = {
   className: null,
   onClick: null,
 };
 
-export default ButtonLink;
+export default LinkButton;

@@ -10,7 +10,7 @@ import classnames from 'classnames';
  *
  * @param {Object} props
  */
-const ButtonElement = ({ className, isDisabled, onClick, text, type }) => (
+const ElementButton = ({ className, isDisabled, onClick, text, type }) => (
   <button
     className={classnames('btn', className)}
     disabled={isDisabled}
@@ -21,7 +21,7 @@ const ButtonElement = ({ className, isDisabled, onClick, text, type }) => (
   </button>
 );
 
-ButtonElement.propTypes = {
+ElementButton.propTypes = {
   className: PropTypes.string,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
@@ -29,11 +29,11 @@ ButtonElement.propTypes = {
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
-ButtonElement.defaultProps = {
+ElementButton.defaultProps = {
   className: null,
   isDisabled: false,
   onClick: null,
   type: 'button',
 };
 
-export default ButtonElement;
+export default ElementButton;

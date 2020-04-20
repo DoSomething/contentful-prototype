@@ -2,6 +2,7 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
 
+import SecondaryButton from '../Button/SecondaryButton';
 import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
 
 export const campaignCardFragment = gql`
@@ -62,12 +63,11 @@ const CampaignCard = ({ campaign }) => {
 
         <p className="flex-grow">{showcaseDescription}</p>
 
-        <a
-          className="btn bg-white border-2 border-solid border-blurple-500 focus:bg-white hover:bg-white hover:border-blurple-300 hover:no-underline text-blurple-500 hover:text-blurple-200 mt-4 w-full"
+        <SecondaryButton
+          className="mt-4 w-full"
           href={url}
-        >
-          Get Started
-        </a>
+          text="Get Started"
+        />
       </div>
     </article>
   );

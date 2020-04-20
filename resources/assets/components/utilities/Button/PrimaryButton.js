@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import ButtonLink from './ButtonLink';
-import ButtonElement from './ButtonElement';
+import LinkButton from './LinkButton';
+import ElementButton from './ElementButton';
 
 /**
  * Primary style element or link button.
@@ -25,11 +25,11 @@ const PrimaryButton = props => {
   );
 
   if (href) {
-    return <ButtonLink className={classes} href={href} text={text} />;
+    return <LinkButton className={classes} href={href} text={text} />;
   }
 
   return (
-    <ButtonElement
+    <ElementButton
       className={classes}
       isDisabled={isDisabled}
       onClick={onClick}
