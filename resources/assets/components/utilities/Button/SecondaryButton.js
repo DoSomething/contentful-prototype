@@ -20,6 +20,7 @@ const SecondaryButton = props => {
     'bg-white focus:bg-gray-300',
     'border-2 border-solid border-blurple-500 active:border-blurple-700 focus:border-white hover:border-blurple-300',
     'focus:outline-2 focus:outline-blurple-300 focus:outline-solid',
+    'text-base',
     'text-blurple-500 active:text-blurple-700 focus:text-blurple-300 hover:text-blurple-300',
     className,
   );
