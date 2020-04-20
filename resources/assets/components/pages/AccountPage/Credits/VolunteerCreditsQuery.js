@@ -125,7 +125,7 @@ const VolunteerCreditsQuery = () => {
     };
   });
 
-  return <VolunteerCreditsTable posts={formattedPostData} />;
+  return <VolunteerCreditsTable certificatePosts={formattedPostData} />;
 };
 
 export default VolunteerCreditsQuery;

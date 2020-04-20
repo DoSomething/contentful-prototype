@@ -15,9 +15,9 @@ import {
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
 
-// Volunteer credit table generated 'post' prop type.
-export const postType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
+// Volunteer credit table generated 'certificatePost' prop type.
+export const certificatePostType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
   campaignWebsite: PropTypes.shape({
     showcaseImage: PropTypes.shape({
       url: PropTypes.string.isRequired,
@@ -27,7 +27,7 @@ export const postType = PropTypes.shape({
   actionLabel: PropTypes.string.isRequired,
   dateCompleted: PropTypes.string.isRequired,
   volunteerHours: PropTypes.string.isRequired,
-  impactLabel: PropTypes.string.isRequired,
+  impactLabel: PropTypes.string,
   photo: PropTypes.string,
   pending: PropTypes.bool.isRequired,
 });
@@ -64,14 +64,14 @@ PostDetail.propTypes = {
 
 // The certificate PDF Download button with pending/ready state.
 const buttonClassNames = 'btn w-full py-4 text-lg';
-const DownloadButton = ({ post }) =>
-  post.pending ? (
+const DownloadButton = ({ certificatePost }) =>
+  certificatePost.pending ? (
     <button type="button" disabled className={buttonClassNames}>
       Pending
     </button>
   ) : (
     <PDFDownloadLink
-      document={<PdfTemplate post={post} />}
+      document={<PdfTemplate certificatePost={certificatePost} />}
       fileName="dosomething-volunteer-credit-certificate.pdf"
       className={classNames(
         buttonClassNames,
@@ -83,13 +83,18 @@ const DownloadButton = ({ post }) =>
   );
 
 DownloadButton.propTypes = {
-  post: postType.isRequired,
+  certificatePost: certificatePostType.isRequired,
 };
 
 const TableData = tw.td`align-middle p-4 pr-6`;
 
-const VolunteerCreditsTableRow = ({ post }) => {
-  const { campaignWebsite, actionLabel, dateCompleted, volunteerHours } = post;
+const VolunteerCreditsTableRow = ({ certificatePost }) => {
+  const {
+    campaignWebsite,
+    actionLabel,
+    dateCompleted,
+    volunteerHours,
+  } = certificatePost;
 
   return (
     <Media query={`(min-width: ${tailwind('screens.md')})`}>
@@ -103,7 +108,7 @@ const VolunteerCreditsTableRow = ({ post }) => {
             <TableData>{dateCompleted}</TableData>
             <TableData>{volunteerHours}</TableData>
             <TableData>
-              <DownloadButton post={post} />
+              <DownloadButton certificatePost={certificatePost} />
             </TableData>
           </>
         ) : (
@@ -116,7 +121,7 @@ const VolunteerCreditsTableRow = ({ post }) => {
               <PostDetail detail="Date Completed" value={dateCompleted} />
             </ul>
 
-            <DownloadButton post={post} />
+            <DownloadButton certificatePost={certificatePost} />
           </TableData>
         )
       }
@@ -125,7 +130,7 @@ const VolunteerCreditsTableRow = ({ post }) => {
 };
 
 VolunteerCreditsTableRow.propTypes = {
-  post: postType.isRequired,
+  certificatePost: certificatePostType.isRequired,
 };
 
 export default VolunteerCreditsTableRow;
