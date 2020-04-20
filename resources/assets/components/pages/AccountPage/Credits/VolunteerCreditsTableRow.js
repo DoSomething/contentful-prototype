@@ -14,7 +14,23 @@ import {
 
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
-import { postType } from './VolunteerCreditsQuery';
+
+// Volunteer credit table generated 'post' prop type.
+export const postType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  campaignWebsite: PropTypes.shape({
+    showcaseImage: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+      description: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
+  actionLabel: PropTypes.string.isRequired,
+  dateCompleted: PropTypes.string.isRequired,
+  volunteerHours: PropTypes.string.isRequired,
+  impactLabel: PropTypes.string.isRequired,
+  photo: PropTypes.string,
+  pending: PropTypes.bool.isRequired,
+});
 
 // PDF template styles.
 const styles = StyleSheet.create({

@@ -1,7 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
-import PropTypes from 'prop-types';
 import { get, groupBy, last } from 'lodash';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -49,22 +48,6 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
     }
   }
 `;
-
-export const postType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  campaignWebsite: PropTypes.shape({
-    showcaseImage: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      description: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
-  actionLabel: PropTypes.string.isRequired,
-  dateCompleted: PropTypes.string.isRequired,
-  volunteerHours: PropTypes.string.isRequired,
-  impactLabel: PropTypes.string.isRequired,
-  photo: PropTypes.string,
-  pending: PropTypes.bool.isRequired,
-});
 
 const VolunteerCreditsQuery = () => {
   const options = { variables: { userId: getUserId() } };

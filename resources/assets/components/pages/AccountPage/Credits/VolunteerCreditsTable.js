@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { tailwind } from '../../../../helpers';
-import VolunteerCreditsTableRow from './VolunteerCreditsTableRow';
+import VolunteerCreditsTableRow, { postType } from './VolunteerCreditsTableRow';
 
 const TableHeader = tw.th`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
 
@@ -47,7 +47,7 @@ const VolunteerCreditsTable = ({ posts }) =>
   ) : null;
 
 VolunteerCreditsTable.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape(postType)).isRequired,
 };
 
 export default VolunteerCreditsTable;
