@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { tailwind } from '../../../../helpers';
-import VolunteerCreditsTableRow, {
-  certificatePostType,
-} from './VolunteerCreditsTableRow';
+import { certificatePostType } from './CertificateTemplate';
+import VolunteerCreditsTableRow from './VolunteerCreditsTableRow';
 
 const TableHeader = tw.th`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
 

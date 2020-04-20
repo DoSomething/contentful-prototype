@@ -3,51 +3,13 @@ import tw from 'twin.macro';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import {
-  Document,
-  Page,
-  PDFDownloadLink,
-  StyleSheet,
-  Text,
-  View,
-} from '@react-pdf/renderer';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
-
-// Volunteer credit table generated 'certificatePost' prop type.
-export const certificatePostType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  campaignWebsite: PropTypes.shape({
-    showcaseImage: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      description: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
-  actionLabel: PropTypes.string.isRequired,
-  dateCompleted: PropTypes.string.isRequired,
-  volunteerHours: PropTypes.string.isRequired,
-  impactLabel: PropTypes.string,
-  photo: PropTypes.string,
-  pending: PropTypes.bool.isRequired,
-});
-
-// PDF template styles.
-const styles = StyleSheet.create({
-  page: { backgroundColor: 'tomato' },
-  section: { color: 'white', textAlign: 'center', margin: 30 },
-});
-
-// PDF template.
-const PdfTemplate = () => (
-  <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Certificate of Credit.</Text>
-      </View>
-    </Page>
-  </Document>
-);
+import CertificateTemplate, {
+  certificatePostType,
+} from './CertificateTemplate';
 
 // A list-item displaying a Post detail and value.
 const PostDetail = ({ detail, value }) => (
@@ -71,7 +33,7 @@ const DownloadButton = ({ certificatePost }) =>
     </button>
   ) : (
     <PDFDownloadLink
-      document={<PdfTemplate certificatePost={certificatePost} />}
+      document={<CertificateTemplate certificatePost={certificatePost} />}
       fileName="dosomething-volunteer-credit-certificate.pdf"
       className={classNames(
         buttonClassNames,
