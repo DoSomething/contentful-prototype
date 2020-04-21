@@ -262,7 +262,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <PrimaryButton
                   className="mt-8 py-4 px-8 text-lg"
-                  data-label="campaign_section_show_more"
+                  data={{ 'data-label': 'campaign_section_show_more' }}
                   href="/us/campaigns"
                   text="See More Campaigns"
                 />
@@ -370,7 +370,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <PrimaryButton
                   className="mt-8 py-4 px-8 text-lg"
-                  data-label="article_section_show_more"
+                  data={{ 'data-label': 'article_section_show_more' }}
                   href="https://lets.dosomething.org/"
                   text="See More Articles"
                 />
@@ -430,7 +430,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <div className="flex-grow">
                   <PrimaryButton
                     className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
-                    data-label="signup_cta_authorize"
+                    data={{ 'data-label': 'signup_cta_authorize' }}
                     href="/authorize"
                     text="Join Now"
                   />
