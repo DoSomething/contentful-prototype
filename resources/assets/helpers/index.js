@@ -1002,9 +1002,9 @@ export function getMillisecondsFromDays(days) {
 /**
  * Build URL with UTMs for Voter Registration Content
  *
- * @param {String} baseUrl
  * @param {String} source
  * @param {String} sourceDetails
+ * @param {String} url
  */
 
 export function buildVoterRegUrl(source = 'web', sourceDetails, url) {
