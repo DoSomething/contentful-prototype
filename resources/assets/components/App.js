@@ -5,7 +5,6 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Router, Route, Switch } from 'react-router-dom';
 
 import graphqlClient from '../graphql';
-import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import BlockPage from './pages/BlockPage/BlockPage';
@@ -13,6 +12,7 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
+import { env, featureFlag, buildVoterRegUrl } from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
@@ -39,7 +39,7 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link="https://vote.dosomething.org/?r=source:web,source_details:hellobar"
+              link={buildVoterRegUrl('web', 'hellobar')}
             />
           )}
         />
