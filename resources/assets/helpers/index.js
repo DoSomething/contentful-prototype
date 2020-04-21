@@ -617,19 +617,17 @@ export function loadFacebookSDK() {
  */
 export function loadSnapchatSDK() {
   return new Promise(resolve => {
-    // @TODO create tag name
-
     const script = document.createElement('script');
+    script.id = 'snapkit-creative-kit-sdk';
     script.src = 'https://sdk.snapkit.com/js/v1/create.js';
     document.head.append(script);
-  });
 
-  // @TODO   customize the button, then content
-  window.snapKitInit = function() {
-    snap.creativekit.initalizeShareButtons(
-      document.getElementsByClassName('snapchat-share-button'),
-    );
-  };
+    window.snapKitInit = function() {
+      snap.creativekit.initalizeShareButtons(
+        document.getElementsByClassName('snapchat-share-button'),
+      );
+    };
+  });
 }
 
 /**
@@ -764,21 +762,6 @@ export function showFacebookSharePrompt(href, callback) {
 }
 
 /**
- * Open a tab for Snapchat for the user.
- *
- * @param  {String} href
- * @param  {String} quote
- */
-export function showSnapchatSharePrompt(href, quote = '', callback) {
-  const intent = makeUrl('https://www.snapchat.com/', {
-    url: href,
-    text: quote,
-  });
-
-  openDialog(intent, callback);
-}
-
-/**
  * Share a link by opening a Twitter share prompt.
  *
  * @param  {String} href
@@ -817,17 +800,18 @@ export function handleFacebookShareClick(href, trackingData) {
  *
  * @param {String} href
  * @param {Object} trackingData
- * @param {String} quote
+ *
  */
-export function handleSnapchatShareClick(href, trackingData, quote = '') {
+export function handleSnapchatShareClick(href, trackingData) {
+  console.log('href:', href);
+  console.log('trackingData:', trackingData);
+
   trackAnalyticsEvent('clicked_share_snapchat', {
     action: 'button_clicked',
     category: EVENT_CATEGORIES.socialShare,
     label: 'snapchat',
     context: { ...trackingData, url: href },
   });
-
-  showSnapchatSharePrompt(href, quote);
 }
 
 /**
