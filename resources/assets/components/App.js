@@ -39,11 +39,7 @@ const App = ({ store, history }) => {
               description="Make your voice heard. Register to vote in less than 2 minutes."
               handleClose={handleClose}
               handleComplete={handleComplete}
-              link={buildVoterRegUrl(
-                'https://vote.dosomething.org/',
-                'web',
-                'hellobar',
-              )}
+              link={buildVoterRegUrl('web', 'hellobar')}
             />
           )}
         />

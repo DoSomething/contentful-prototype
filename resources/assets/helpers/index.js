@@ -1007,13 +1007,17 @@ export function getMillisecondsFromDays(days) {
  * @param {String} sourceDetails
  */
 
-export function buildVoterRegUrl(baseUrl, source = 'web', sourceDetails) {
+export function buildVoterRegUrl(
+  baseUrl = 'https://vote.dosomething.org/',
+  source = 'web',
+  sourceDetails,
+) {
   const isUserId =
     window.AUTH.isAuthenticated && window.AUTH.id
-      ? `user:${window.AUTH.id}`
+      ? `user:${window.AUTH.id},`
       : '';
 
-  const UrlWithParams = `${baseUrl}?r=${isUserId},source:${source},source_details:${sourceDetails}`;
+  const UrlWithParams = `${baseUrl}?r=${isUserId}source:${source},source_details:${sourceDetails}`;
 
   return UrlWithParams;
 }
