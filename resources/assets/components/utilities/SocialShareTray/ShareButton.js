@@ -36,6 +36,7 @@ ShareButton.defaultProps = {
   onClick: () => {},
   disabled: false,
   text: 'Share',
+  dataShareUrl: '',
 };
 
 export default ShareButton;
