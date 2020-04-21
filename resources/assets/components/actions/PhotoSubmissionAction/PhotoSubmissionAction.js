@@ -103,15 +103,17 @@ class PhotoSubmissionAction extends PostForm {
    * @return {void}
    */
   componentDidMount() {
-    const request = getUserCampaignSignups(
-      this.props.userId,
-      this.props.campaignId,
-    );
+    if (this.props.campaignId) {
+      const request = getUserCampaignSignups(
+        this.props.userId,
+        this.props.campaignId,
+      );
 
-    // @TODO: handle if errors.
-    request.then(response => {
-      this.handleSignupResponse(response.data[0]);
-    });
+      // @TODO: handle if errors.
+      request.then(response => {
+        this.handleSignupResponse(response.data[0]);
+      });
+    }
   }
 
   /**
@@ -214,15 +216,29 @@ class PhotoSubmissionAction extends PostForm {
       school_id: await this.getUserActionSchoolId(),
     });
 
-    // Send request to store the campaign photo submission post.
-    this.props.storeCampaignPost(this.props.campaignId, {
+    const data = {
       action,
       actionId: this.props.actionId,
       blockId: this.props.id,
       body: formatPostPayload(formFields),
       pageId: this.props.pageId,
+      campaignId: this.props.campaignId,
       type,
-    });
+    };
+
+    // Send request to store the campaign photo submission post.
+    if (this.props.actionId) {
+      this.props.storePost(data);
+    } else {
+      this.props.storeCampaignPost(this.props.campaignId, {
+        action,
+        actionId: this.props.actionId,
+        blockId: this.props.id,
+        body: formatPostPayload(formFields),
+        pageId: this.props.pageId,
+        type,
+      });
+    }
   };
 
   /**
@@ -280,6 +296,27 @@ class PhotoSubmissionAction extends PostForm {
         ? mapValues(invert(this.fields()), value => formErrors[value])
         : null,
     );
+
+    // If we don't have an authenticated user, then this is a story page
+    if (!this.props.userId) {
+      return (
+        <React.Fragment>
+          <div className="clearfix">
+            <div className="photo-submission-action" />
+            <Card
+              className={classnames('bordered rounded', this.props.className)}
+              title={this.props.title}
+            >
+              <div className="text-center p-2">
+                <a className="button w-full" href={this.props.authRegisterUrl}>
+                  Add Photo
+                </a>
+              </div>
+            </Card>
+          </div>
+        </React.Fragment>
+      );
+    }
 
     return (
       <React.Fragment>
@@ -476,7 +513,7 @@ PhotoSubmissionAction.propTypes = {
   actionId: PropTypes.number,
   affirmationContent: PropTypes.string,
   buttonText: PropTypes.string,
-  campaignId: PropTypes.string.isRequired,
+  campaignId: PropTypes.string,
   captionFieldLabel: PropTypes.string,
   captionFieldPlaceholder: PropTypes.string,
   className: PropTypes.string,
@@ -490,6 +527,7 @@ PhotoSubmissionAction.propTypes = {
   resetPostSubmissionItem: PropTypes.func.isRequired,
   showQuantityField: PropTypes.bool,
   storeCampaignPost: PropTypes.func.isRequired,
+  storePost: PropTypes.func.isRequired,
   submissions: PropTypes.shape({
     isPending: PropTypes.bool,
     items: PropTypes.object,
@@ -505,6 +543,7 @@ PhotoSubmissionAction.defaultProps = {
   affirmationContent:
     "Thanks for joining the movement, and submitting your photo! After we review your submission, we'll add it to the public gallery alongside submissions from all the other members taking action in this campaign.",
   buttonText: 'Submit a new photo',
+  campaignId: null,
   captionFieldLabel: 'Add a title to your photo.',
   captionFieldPlaceholder: '60 characters or less',
   className: null,

@@ -31,7 +31,7 @@ const StoryPage = props => {
         <article className="story-page">
           <header
             role="banner"
-            className="lede-banner base-12-grid"
+            className="lede-banner base-12-grid py-3 md:py-6"
             style={withoutNulls(styles)}
           >
             <div className="wrapper text-center">

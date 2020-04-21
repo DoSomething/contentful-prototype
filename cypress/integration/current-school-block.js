@@ -4,6 +4,7 @@ import { cloneDeep } from 'lodash';
 
 import { userFactory } from '../fixtures/user';
 import { SCHOOL_NOT_AVAILABLE_SCHOOL_ID } from '../../resources/assets/constants/school-finder';
+// @TODO: Refactor this test to use authVisitBlockPermalink instead of fixtures.
 import exampleCurrentSchoolBlockWithAction from '../fixtures/contentful/exampleCurrentSchoolBlockWithAction';
 import exampleCurrentSchoolBlockWithoutAction from '../fixtures/contentful/exampleCurrentSchoolBlockWithoutAction';
 

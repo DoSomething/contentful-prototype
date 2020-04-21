@@ -33,7 +33,7 @@ const SectionBlock = props => {
       <AnalyticsWaypoint name="section_block-top" context={{ blockId: id }} />
 
       <TextContent
-        className="section-block__content base-12-grid"
+        className="section-block__content base-12-grid py-3 md:py-6"
         classNameByEntry={classNameByEntry}
         classNameByEntryDefault={classNameByEntryDefault}
         styles={styles}

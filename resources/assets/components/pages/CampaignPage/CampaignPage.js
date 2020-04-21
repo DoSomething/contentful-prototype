@@ -21,10 +21,7 @@ const CampaignPage = props => {
   return (
     <>
       <article className="campaign-page bg-white">
-        <LedeBannerContainer
-          displaySignupButton={Boolean(!entryContent)}
-          isClosed={isCampaignClosed}
-        />
+        <LedeBannerContainer isClosed={isCampaignClosed} />
 
         <div className="clearfix relative">
           {!isCampaignClosed && !entryContent ? (
@@ -34,7 +31,7 @@ const CampaignPage = props => {
           <div className="my-6">
             {/* Render an entry (quiz), if provided. */}
             {entryContent ? (
-              <div className="base-12-grid">
+              <div className="base-12-grid py-3 md:py-6">
                 <ContentfulEntryLoader
                   className="grid-wide"
                   id={entryContent.id}

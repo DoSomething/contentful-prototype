@@ -1,3 +1,5 @@
+const variables = require('./tailwind.variables');
+
 module.exports = {
   theme: {
     screens: {
@@ -167,7 +169,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ['responsive', 'active', 'hover', 'focus'],
+    borderColor: ['responsive', 'active', 'hover', 'focus'],
+    textColor: ['responsive', 'active', 'hover', 'focus'],
+  },
   plugins: [
     function({ addUtilities }) {
       const newUtilities = {
@@ -188,6 +194,12 @@ module.exports = {
         },
         '.z-max': {
           zIndex: '10000',
+        },
+        '.z-500': {
+          zIndex: '500',
+        },
+        '.z-1000': {
+          zIndex: '1000',
         },
       };
 

@@ -28,6 +28,7 @@ const mapStateToProps = (state, ownProps) => {
     landingPage: get(state.campaign, 'landingPage', null),
     noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
+    shouldShowAffirmation: state.signups.shouldShowAffirmation,
     shouldShowLandingPage: shouldShowLandingPage(state, entryContent),
     tagline: get(state.campaign.additionalContent, 'tagline'),
     title: state.campaign.title,

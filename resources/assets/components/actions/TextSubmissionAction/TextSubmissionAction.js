@@ -112,7 +112,7 @@ class TextSubmissionAction extends PostForm {
     };
 
     // Send request to store the text submission post.
-    // (Use campaign ID independant post method if actionId is provided).
+    // (Use campaign ID independent post method if actionId is provided).
     if (this.props.actionId) {
       this.props.storePost(data);
     } else {

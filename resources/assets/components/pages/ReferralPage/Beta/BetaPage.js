@@ -36,7 +36,7 @@ const BetaPage = () => {
         const firstName = data.user.firstName;
 
         return (
-          <div className="main general-page base-12-grid">
+          <div className="main general-page base-12-grid py-3 md:py-6">
             <div className="grid-narrow">
               <div className="my-6">
                 <ArticleHeader title={`Hey, ${firstName}’s friend!`} />

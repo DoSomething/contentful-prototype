@@ -59,6 +59,7 @@
     "SIXPACK_ENABLED": "true",
     "SIXPACK_TIMEOUT": {
       "required": true
-    }
+    },
+    "DS_ENABLE_NEW_HOMEPAGE": "true"
   }
 }

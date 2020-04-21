@@ -43,7 +43,11 @@ import { init as historyInit } from './history';
 import { bindTokenRefreshEvent } from './helpers/auth';
 import { bindFlashMessageEvents } from './helpers/flash-message';
 import { bindAdminDashboardEvents } from './helpers/admin-dashboard';
-import { analyze, trackAnalyticsPageView } from './helpers/analytics';
+import {
+  analyze,
+  trackAnalyticsLinkClick,
+  trackAnalyticsPageView,
+} from './helpers/analytics';
 
 ready(() => {
   // Enable Debug tools.
@@ -86,6 +90,13 @@ ready(() => {
   if (window.AUTH.isAuthenticated && window.AUTH.role !== 'user') {
     bindAdminDashboardEvents();
   }
+
+  // Track link clicks for Snowplow analytics.
+  document.body.addEventListener('click', clickEvent => {
+    if (clickEvent.target.tagName.toLowerCase() === 'a') {
+      trackAnalyticsLinkClick(clickEvent.target);
+    }
+  });
 
   // Render the application!
   const appElement = document.getElementById('app');

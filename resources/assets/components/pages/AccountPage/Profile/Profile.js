@@ -14,9 +14,14 @@ import {
 
 const Profile = props => (
   <React.Fragment>
-    <div className="grid-wide-2/3 pb-6">
-      <h2>Profile Info</h2>
-
+    <div className="grid-wide">
+      <h1 className="text-xl">Account</h1>
+      <p className="text-gray-600">
+        Update your personal information and manage your account.
+      </p>
+    </div>
+    <div className="grid-wide-2/3 my-6">
+      <h2 className="text-lg">Profile Info</h2>
       <FormItem
         title="Name"
         value={`${props.user.firstName} ${props.user.lastName}`}
@@ -43,8 +48,8 @@ const Profile = props => (
         </a>
       </div>
     </div>
-    <div className="grid-wide-1/3 pb-6">
-      <h3>Data and Privacy</h3>
+    <div className="grid-wide-1/3 my-6">
+      <h2 className="text-lg">Data and Privacy</h2>
       <ul className="mt-3">
         <li>
           <Link
@@ -56,7 +61,7 @@ const Profile = props => (
         </li>
       </ul>
 
-      <h3>Administration</h3>
+      <h2 className="text-lg">Administration</h2>
       <ul className="mt-3">
         <li>
           <a

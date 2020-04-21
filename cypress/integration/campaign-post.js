@@ -104,7 +104,7 @@ describe('Campaign Post', () => {
 
       // Mock the backend response:
       const response = newPhotoPost(campaignId, user);
-      cy.route('POST', CAMPAIGN_POSTS_API, response).as('submitPost');
+      cy.route('POST', POSTS_API, response).as('submitPost');
 
       // Submit the form, and assert we made the API request:
       cy.contains('Submit a new photo').click();
