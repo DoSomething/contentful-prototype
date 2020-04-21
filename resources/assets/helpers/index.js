@@ -1012,12 +1012,7 @@ export function buildVoterRegUrl(
   source = 'web',
   sourceDetails,
 ) {
-  const isUserId =
-    window.AUTH.isAuthenticated && window.AUTH.id
-      ? `user:${window.AUTH.id},`
-      : '';
+  const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
 
-  const UrlWithParams = `${baseUrl}?r=${isUserId}source:${source},source_details:${sourceDetails}`;
-
-  return UrlWithParams;
+  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
 }
