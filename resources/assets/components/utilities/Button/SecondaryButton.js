@@ -25,17 +25,17 @@ const SecondaryButton = props => {
     type,
   } = props;
 
-  const activeClasses = isActive
-    ? classnames('bg-gray-200 border-blurple-700 text-blurple-700')
-    : classnames('');
+  const baseClasses = !isActive
+    ? classnames('bg-white border-blurple-500 text-blurple-500')
+    : classnames('bg-gray-200 border-blurple-700 text-blurple-700');
 
   const classes = classnames(
-    'bg-white active:bg-gray-200',
-    'border-2 border-solid border-blurple-500 active:border-blurple-700 focus:rounded-none hover:border-blurple-300',
+    baseClasses,
+    'active:bg-gray-200',
+    'border-2 border-solid active:border-blurple-700 hover:border-blurple-300 focus:rounded-none',
     'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
     'text-base',
-    'text-blurple-500 active:text-blurple-700 hover:text-blurple-300',
-    activeClasses,
+    'active:text-blurple-700 hover:text-blurple-300',
     className,
   );
 

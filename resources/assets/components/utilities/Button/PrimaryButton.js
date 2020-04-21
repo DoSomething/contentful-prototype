@@ -14,24 +14,41 @@ import ElementButton from './ElementButton';
  * @param {Object} props
  */
 const PrimaryButton = props => {
-  const { className, href, isDisabled, onClick, text, type } = props;
+  const {
+    className,
+    data,
+    href,
+    isActive,
+    isDisabled,
+    onClick,
+    text,
+    type,
+  } = props;
+
+  const baseClasses = !isActive
+    ? classnames('bg-blurple-500 border-blurple-500')
+    : classnames('bg-blurple-700 border-blurple-700');
 
   const classes = classnames(
-    'bg-blurple-500 active:bg-blurple-700 focus:bg-blurple-300 hover:bg-blurple-300',
-    'border-2 border-solid border-blurple-500 focus:border-white hover:border-blurple-300',
-    'focus:outline-2 focus:outline-blurple-300 focus:outline-solid',
+    baseClasses,
+    'active:bg-blurple-700 focus:bg-blurple-400 hover:bg-blurple-400',
+    'border-2 border-solid active:border-blurple-700 focus:border-blurple-400 hover:border-blurple-400 focus:rounded-none',
+    'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
     'text-base',
     'text-white hover:text-white',
     className,
   );
 
   if (href) {
-    return <LinkButton className={classes} href={href} text={text} />;
+    return (
+      <LinkButton className={classes} data={data} href={href} text={text} />
+    );
   }
 
   return (
     <ElementButton
       className={classes}
+      data={data}
       isDisabled={isDisabled}
       onClick={onClick}
       text={text}
@@ -42,7 +59,9 @@ const PrimaryButton = props => {
 
 PrimaryButton.propTypes = {
   className: PropTypes.string,
+  data: PropTypes.object,
   href: PropTypes.string,
+  isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
@@ -51,7 +70,9 @@ PrimaryButton.propTypes = {
 
 PrimaryButton.defaultProps = {
   className: null,
+  data: {},
   href: null,
+  isActive: false,
   isDisabled: false,
   onClick: null,
   type: 'button',
