@@ -105,7 +105,7 @@ module.exports = {
         '500': '#e4405f',
       },
       snapchat: {
-        '400': '#4a6dbc',
+        '400': '#fffc00',
         '500': '#39579a',
       },
       messenger: {
