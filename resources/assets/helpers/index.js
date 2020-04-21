@@ -998,3 +998,22 @@ export function getMillisecondsFromDays(days) {
   // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
   return days * 1440 * 60 * 1000;
 }
+
+/**
+ * Build URL with UTMs for Voter Registration Content
+ *
+ * @param {String} baseUrl
+ * @param {String} source
+ * @param {String} sourceDetails
+ */
+
+export function buildVoterRegUrl(baseUrl, source = 'web', sourceDetails) {
+  const isUserId =
+    window.AUTH.isAuthenticated && window.AUTH.id
+      ? `user:${window.AUTH.id}`
+      : '';
+
+  const UrlWithParams = `${baseUrl}?r=${isUserId},source:${source},source_details:${sourceDetails}`;
+
+  return UrlWithParams;
+}
