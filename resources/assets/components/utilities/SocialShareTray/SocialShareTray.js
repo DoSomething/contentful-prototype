@@ -138,7 +138,9 @@ class SocialShareTray extends React.Component {
 
   render() {
     const { shareLink, platforms, responsive, title } = this.props;
+
     const trackLink = this.props.trackLink || this.props.shareLink;
+
     return (
       <div className="social-share-tray p-3 text-center">
         {title ? <p className="title uppercase font-bold">{title}</p> : null}
