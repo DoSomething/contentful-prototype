@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { MockedProvider } from '@apollo/react-testing';
 
-import { USER_POSTS_QUERY } from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
+import { PETITION_SUBMISSION_BLOCK_QUERY } from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
 import PetitionSubmissionAction from './PetitionSubmissionAction'; // eslint-disable-line import/no-duplicates
 import IntersectionObserverMock from '../../../__mocks__/intersectionObserverMock';
 
@@ -11,7 +11,7 @@ global.IntersectionObserver = IntersectionObserverMock;
 const mocks = [
   {
     request: {
-      query: USER_POSTS_QUERY,
+      query: PETITION_SUBMISSION_BLOCK_QUERY,
       variables: {
         userId: '1',
         actionIds: [1],

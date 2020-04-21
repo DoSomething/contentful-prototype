@@ -97,10 +97,8 @@ const badgeModalContent = {
     unearnedText: (
       <span>
         Want to unlock this badge?{' '}
-        <a href="/us/account/profile/subscriptions">
-          Sign up for The Breakdown
-        </a>
-        , our current events newsletter.
+        <a href="/us/account/subscriptions">Sign up for The Breakdown</a>, our
+        current events newsletter.
       </span>
     ),
   },
@@ -155,8 +153,11 @@ class BadgesTab extends React.Component {
 
     return (
       <div className="grid-wide bg-gray pb-6 wrapper">
-        <h2 className="mb-3">Your Badges</h2>
-        <ul className="gallery-grid-sextet">
+        <h1 className="text-xl">Badges</h1>
+        <p className="text-gray-600">
+          Earn badges and rewards for making a difference.
+        </p>
+        <ul className="gallery-grid-sextet -mx-3">
           <Query query={SIGNUP_COUNT_BADGE} variables={{ userId }}>
             {data => (
               <li>

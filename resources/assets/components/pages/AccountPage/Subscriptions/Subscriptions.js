@@ -5,9 +5,11 @@ import EmailSubscriptions from './EmailSubscriptions';
 
 const Subscriptions = props => (
   <div className="grid-wide">
-    <div className="pb-4">
-      <h2 className="text-lg">Email Subscriptions</h2>
-    </div>
+    <h1 className="text-xl">Email Subscriptions</h1>
+    <p className="text-gray-600">
+      Our newsletters can help you stay informed, stay entertained, and even
+      help you win scholarships.
+    </p>
 
     <EmailSubscriptions {...props} />
   </div>

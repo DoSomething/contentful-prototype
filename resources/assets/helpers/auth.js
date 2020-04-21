@@ -81,6 +81,13 @@ export function buildAuthRedirectUrl(options = null, actionId = null) {
 export const isAuthenticated = () => window.AUTH.isAuthenticated;
 
 /**
+ * Get the user id.
+ *
+ * @return {String}
+ */
+export const getUserId = () => window.AUTH.id;
+
+/**
  * This hook allows a component to trigger an authentication gate, and
  * optionally "flash" data to the session for when they return.
  *

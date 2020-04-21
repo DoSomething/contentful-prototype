@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
@@ -5,11 +6,26 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
+import Modal from '../../utilities/Modal/Modal';
 import * as NewsletterImages from './NewsletterImages';
+import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import { contentfulImageUrl, tailwind } from '../../../helpers';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
+import { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
+import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
+import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
+import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
+import {
+  contentfulImageUrl,
+  featureFlag,
+  isAuthenticated,
+  tailwind,
+} from '../../../helpers';
 
 const HOME_PAGE_QUERY = gql`
   query HomePageQuery($preview: Boolean!) {
@@ -17,35 +33,42 @@ const HOME_PAGE_QUERY = gql`
       id
       title
       subTitle
+      coverImage {
+        url
+      }
       campaigns {
-        ... on Showcasable {
-          showcaseTitle
-          showcaseDescription
-          showcaseImage {
-            url
-          }
-        }
-        ... on CampaignWebsite {
-          id
-          url
-        }
-        ... on StoryPageWebsite {
-          id
-          url
-        }
+        ...CampaignCard
+        ...CampaignCardFeatured
       }
       articles {
-        showcaseTitle
-        showcaseDescription
-        showcaseImage {
-          url
-        }
-        slug
+        ...PageCard
       }
       additionalContent
     }
   }
+
+  ${campaignCardFragment}
+  ${campaignCardFeaturedFragment}
+  ${pageCardFragment}
 `;
+
+const ImpactStatistic = ({ campaignName, impactLabel, impactValue }) => (
+  <div className="px-4 py-5 text-center">
+    <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
+      {impactValue}
+    </p>
+    <p className="font-bold m-0 mb-2 text-lg text-white uppercase">
+      {impactLabel}
+    </p>
+    <p className="italic m-0 text-white">{campaignName}</p>
+  </div>
+);
+
+ImpactStatistic.propTypes = {
+  campaignName: PropTypes.string.isRequired,
+  impactLabel: PropTypes.string.isRequired,
+  impactValue: PropTypes.string.isRequired,
+};
 
 const NewsletterItem = ({ content, image, link, title }) => (
   <div className="flex flex-col h-full">
@@ -60,7 +83,13 @@ const NewsletterItem = ({ content, image, link, title }) => (
     />
     <h3 className="mb-2 text-white">{title}</h3>
     <p className="mb-4 flex-grow text-white">{content}</p>
-    <a href={link.url} className="font-normal text-white underline">
+    <a
+      className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+      data-label={`newsletter_cta_${title.toLowerCase()}`}
+      href={link.url}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
       {link.copy}
     </a>
   </div>
@@ -76,7 +105,7 @@ NewsletterItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-const NewHomePageTemplate = ({ campaigns, title }) => {
+const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
 
@@ -87,33 +116,66 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
     }
   `;
 
+  const headerBackgroundStyles = coverImage
+    ? css`
+        background-image: url(${contentfulImageUrl(
+          coverImage.url,
+          '400',
+          '775',
+          'fill',
+        )});
+
+        @media (min-width: ${tailwindScreens.md}) {
+          background-image: url(${contentfulImageUrl(
+            coverImage.url,
+            '700',
+            '700',
+            'fill',
+          )});
+        }
+
+        @media (min-width: ${tailwindScreens.lg}) {
+          background-image: url(${contentfulImageUrl(
+            coverImage.url,
+            '1440',
+            '539',
+            'fill',
+          )});
+        }
+      `
+    : null;
+
   return (
     <Fragment>
       {/* @TODO: Once EmotionJS supports shorthand syntax for React.Fragment, switch <Fragment> out for <> syntax! */}
       <SiteNavigationContainer />
 
       <main>
-        <article>
-          <header
-            role="banner"
-            className="bg-white p-4"
-            css={css`
-              background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&h=775&w=400');
-              background-size: 100% auto;
-              background-repeat: no-repeat;
-              @media (min-width: ${tailwindScreens.md}) {
-                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&h=700&w=700');
-              }
-              @media (min-width: ${tailwindScreens.lg}) {
-                background-image: url('https://images.ctfassets.net/81iqaqpfd8fy/4k8rv5sN0kii0AoCawc6UQ/c22c3c132d1bb43055b6bafc248fcea5/vn7gpbosm9rx.jpg?fit=fill&h=539&w=1440');
-              }
-            `}
-          >
-            <div className="">
+        <article data-test="home-page">
+          <header role="banner" className="bg-white">
+            <AnalyticsWaypoint name="impact_section_top" />
+
+            <div
+              className="base-12-grid bg-gray-200 pt-3 md:pt-6"
+              css={css`
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                padding-bottom: 250px;
+
+                @media (min-width: ${tailwindScreens.md}) {
+                  padding-bottom: 100px;
+                }
+
+                ${headerBackgroundStyles}
+              `}
+            >
               <h1
-                className="font-league-gothic font-normal leading-none m-0 py-24 text-yellow-500 text-center uppercase"
+                className="font-league-gothic font-normal grid-wide m-0 px-2 md:px-0 lg:px-16 py-24 text-yellow-500 text-center uppercase"
                 css={css`
                   font-size: 84px;
+                  line-height: 1.1;
+
                   @media (min-width: ${tailwindScreens.md}) {
                     font-size: 120px;
                   }
@@ -124,91 +186,99 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
             </div>
 
             <div
-              className="bg-blurple-500 py-5"
+              className="base-12-grid"
               css={css`
+                margin-top: -250px;
+
                 @media (min-width: ${tailwindScreens.md}) {
-                  display: grid;
-                  grid-template-columns: 1fr 1fr 1fr;
+                  margin-top: -100px;
                 }
               `}
             >
-              <div className="px-4 py-5 text-center">
-                <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  5 million+
-                </p>
-                <p className="m-0 text-white uppercase">Jeans Donated</p>
-                <p className="italic m-0 text-white">Teens for Jeans</p>
-              </div>
+              <div className="bg-blurple-500 py-4 grid-wide xl:grid xl:grid-cols-3">
+                <ImpactStatistic
+                  campaignName="Teens for Jeans"
+                  impactLabel="Jeans Donated"
+                  impactValue="5 million"
+                />
 
-              <div className="px-4 py-5 text-center">
-                <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  3.7 million+
-                </p>
-                <p className="m-0 text-white uppercase">
-                  Cigarette Butts Collected
-                </p>
-                <p className="italic m-0 text-white">Get the Filter Out</p>
-              </div>
+                <ImpactStatistic
+                  campaignName="Get the Filter Out"
+                  impactLabel="Cigarette Butts Collected"
+                  impactValue="3.7 million"
+                />
 
-              <div className="px-4 py-5 text-center">
-                <p className="font-league-gothic text-5xl text-teal-300 uppercase">
-                  1,572+
-                </p>
-                <p className="m-0 text-white uppercase">Photographs Burned</p>
-                <p className="italic m-0 text-white">Breakup Bash</p>
+                <ImpactStatistic
+                  campaignName="Power to the Period"
+                  impactLabel="Period Products Donated"
+                  impactValue="585,965"
+                />
               </div>
             </div>
+
+            <AnalyticsWaypoint name="impact_section_bottom" />
           </header>
 
-          <section
-            className="base-12-grid bg-gray-100"
-            css={css`
-              background: linear-gradient(
-                to bottom,
-                rgba(255, 255, 255, 1) 25%,
-                ${tailwindGray['100']}
-              );
-            `}
+          {campaigns ? (
+            <section
+              className="base-12-grid bg-gray-100 py-8"
+              css={css`
+                background: linear-gradient(
+                  to bottom,
+                  rgba(255, 255, 255, 1) 25%,
+                  ${tailwindGray['100']}
+                );
+              `}
+              data-test="campaigns-section"
+            >
+              <div className="grid-wide text-center">
+                <AnalyticsWaypoint name="campaign_section_top" />
+
+                <h2 className="mb-6 relative">
+                  <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
+                    Take Action
+                  </span>
+                  <span
+                    className="absolute bg-purple-500 block h-1 w-full z-0"
+                    css={centerHorizontalRule}
+                  />
+                </h2>
+
+                <p className="mb-6 lg:mb-8 text-lg">
+                  Choose a campaign below to make an impact and enter for a
+                  chance to{' '}
+                  <a
+                    href="/us/about/easy-scholarships"
+                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="campaign_section_earn_scholarships"
+                  >
+                    earn scholarships
+                  </a>
+                  . (Talk about a win-win.)
+                </p>
+
+                <HomePageCampaignGallery campaigns={campaigns} />
+
+                <a
+                  href="/us/campaigns"
+                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                  data-label="campaign_section_show_more"
+                >
+                  See More Campaigns
+                </a>
+
+                <AnalyticsWaypoint name="campaign_section_bottom" />
+              </div>
+            </section>
+          ) : null}
+
+          <article
+            className="base-12-grid bg-purple-700 py-8 lg:py-12"
+            data-test="newsletters-cta"
           >
             <div className="grid-wide text-center">
-              <h2 className="relative">
-                <span className="bg-white font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
-                  Take Action
-                </span>
-                <span
-                  className="absolute bg-purple-500 block h-1 w-full z-0"
-                  css={centerHorizontalRule}
-                />
-              </h2>
+              <AnalyticsWaypoint name="newsletter_cta_top" />
 
-              <p className="my-6 text-lg">
-                You can even{' '}
-                <a
-                  href="/us/about/easy-scholarships"
-                  className="font-normal text-blurple-500 underline"
-                >
-                  win scholarships
-                </a>{' '}
-                and{' '}
-                <a href="/" className="font-normal text-blurple-500 underline">
-                  earn volunteer credits
-                </a>{' '}
-                for school! Seriously.
-              </p>
-
-              <HomePageCampaignGallery campaigns={campaigns} />
-
-              <a
-                href="/us/campaigns"
-                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block my-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-              >
-                See More Campaigns
-              </a>
-            </div>
-          </section>
-
-          <article className="base-12-grid bg-purple-400">
-            <div className="grid-wide text-center py-5 lg:py-10">
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Inspired.
@@ -230,7 +300,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Create change with millions of others."
                     title="Community"
                     image={NewsletterImages.Community}
-                    link={{ copy: 'Join the Communty', url: '/' }}
+                    link={{
+                      copy: 'Join the Communty',
+                      url: 'https://wyd.dosomething.org',
+                    }}
                   />
                 </li>
 
@@ -239,7 +312,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Make an impact on today's headlines."
                     title="News"
                     image={NewsletterImages.News}
-                    link={{ copy: 'Get News', url: '/' }}
+                    link={{
+                      copy: 'Get News',
+                      url: 'https://breakdown.dosomething.org',
+                    }}
                   />
                 </li>
 
@@ -248,7 +324,10 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Live your best life and help others do the same."
                     title="Lifestyle"
                     image={NewsletterImages.Lifestyle}
-                    link={{ copy: 'Start Reading', url: '/' }}
+                    link={{
+                      copy: 'Start Reading',
+                      url: 'https://boost.dosomething.org',
+                    }}
                   />
                 </li>
 
@@ -257,40 +336,60 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                     content="Qualify for easy scholarships, no GPA or essay required."
                     title="Scholarships"
                     image={NewsletterImages.Scholarships}
-                    link={{ copy: 'Find Scholarships', url: '/' }}
+                    link={{
+                      copy: 'Find Scholarships',
+                      url: 'https://pays.dosomething.org',
+                    }}
                   />
                 </li>
               </ul>
+
+              <AnalyticsWaypoint name="newsletter_cta_bottom" />
             </div>
           </article>
 
-          <section className="base-12-grid bg-gray-100">
-            <div className="grid-wide text-center">
-              <h2 className="relative">
-                <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block py-2 px-6 relative text-3xl tracking-wide uppercase z-10">
-                  Read About It
-                </span>
-                <span
-                  className="absolute bg-purple-500 block h-1 w-full z-0"
-                  css={centerHorizontalRule}
-                />
-              </h2>
+          {articles ? (
+            <section
+              className="base-12-grid bg-gray-100 py-8"
+              data-test="articles-section"
+            >
+              <div className="grid-wide text-center">
+                <AnalyticsWaypoint name="article_section_top" />
 
-              {/* <HomePageArticlesGallery /> */}
+                <h2 className="mb-6 relative">
+                  <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
+                    Read About It
+                  </span>
+                  <span
+                    className="absolute bg-purple-500 block h-1 w-full z-0"
+                    css={centerHorizontalRule}
+                  />
+                </h2>
 
-              <a
-                href="/us/articles"
-                className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block my-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-              >
-                See More Articles
-              </a>
-            </div>
-          </section>
+                <HomePageArticleGallery articles={articles} />
+
+                <a
+                  href="https://lets.dosomething.org/"
+                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
+                  data-label="article_section_show_more"
+                >
+                  See More Articles
+                </a>
+
+                <AnalyticsWaypoint name="article_section_bottom" />
+              </div>
+            </section>
+          ) : null}
 
           {/* @TODO: Need to remove the top/bottom padding from base-12-grid class and
           let components add their own padding otherwise it is hard to override. */}
-          <section className="base-12-grid bg-white py-8">
+          <section
+            className="base-12-grid bg-white py-8"
+            data-test="sponsors-section"
+          >
             <div className="grid-wide text-center">
+              <AnalyticsWaypoint name="sponsor_section_top" />
+
               <h2 className="font-bold mb-3 text-base text-center text-gray-500 uppercase">
                 Sponsors
               </h2>
@@ -306,31 +405,66 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
                   </li>
                 ))}
               </ul>
+
+              <AnalyticsWaypoint name="sponsor_section_bottom" />
             </div>
           </section>
 
-          {/* @TODO: See earlier comment regarding base-12-grid. */}
-          <article className="base-12-grid bg-yellow-500 py-4">
-            <div className="grid-wide py-4 text-center">
-              <div className="text-left">
-                <h1 className="font-bold text-2xl">
-                  Join our youth-led movement for good
-                </h1>
-                <p className="text-lg">
-                  Make an impact with millions of young people, and earn easy
-                  scholarships for volunteering.
-                </p>
-              </div>
+          {isAuthenticated() ? null : (
+            <article
+              className="base-12-grid bg-yellow-500 py-16"
+              data-test="signup-cta"
+            >
+              <div className="xl:flex grid-wide xl:items-center text-center">
+                <AnalyticsWaypoint name="join_cta_top" />
 
-              <a
-                href="/authorize"
-                className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 hover:no-underline py-4 px-16 text-lg hover:text-white"
-              >
-                Join Now
-              </a>
-            </div>
-          </article>
+                <div className="text-left xl:w-8/12">
+                  <h1 className="font-bold text-2xl">
+                    Join our youth-led movement for good
+                  </h1>
+                  <p className="text-lg">
+                    Make an impact with millions of young people, and earn easy
+                    scholarships for volunteering.
+                  </p>
+                </div>
+
+                <div className="flex-grow">
+                  <a
+                    href="/authorize"
+                    className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
+                    data-label="signup_cta_authorize"
+                  >
+                    Join Now
+                  </a>
+                </div>
+
+                <AnalyticsWaypoint name="join_cta_bottom" />
+              </div>
+            </article>
+          )}
         </article>
+
+        {featureFlag('nps_survey') ? (
+          <TrafficDistribution percentage={5} feature="nps_survey">
+            <DismissableElement
+              name="nps_survey"
+              render={(handleClose, handleComplete) => (
+                <DelayedElement delay={5}>
+                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                    <TypeFormEmbed
+                      displayType="modal"
+                      typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                      queryParameters={{
+                        northstar_id: get(window.AUTH, 'id', null),
+                      }}
+                      onSubmit={handleComplete}
+                    />
+                  </Modal>
+                </DelayedElement>
+              )}
+            />
+          </TrafficDistribution>
+        ) : null}
       </main>
 
       <SiteFooter />
@@ -339,11 +473,18 @@ const NewHomePageTemplate = ({ campaigns, title }) => {
 };
 
 NewHomePageTemplate.propTypes = {
+  articles: PropTypes.arrayOf(PropTypes.object),
+  campaigns: PropTypes.arrayOf(PropTypes.object),
+  coverImage: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }),
   title: PropTypes.string,
-  campaigns: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 NewHomePageTemplate.defaultProps = {
+  articles: null,
+  campaigns: null,
+  coverImage: null,
   title: 'We Are A Youth-Led Movement For Good',
 };
 

@@ -63,7 +63,7 @@ class PageNavigation extends React.Component {
       <div
         ref={node => (this.node = node)}
         id="page-navigation"
-        className={classnames('base-12-grid page-navigation', {
+        className={classnames('base-12-grid page-navigation py-3 md:py-6', {
           'is-stuck': this.state.isStuck,
         })}
       >

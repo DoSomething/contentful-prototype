@@ -54,7 +54,7 @@ const GeneralPage = props => {
       <SiteNavigationContainer />
 
       <main>
-        <article className="general-page base-12-grid bg-white">
+        <article className="general-page base-12-grid bg-white py-3 md:py-6">
           <div className="grid-narrow">
             <ArticleHeader title={title} subtitle={subTitle}>
               {authors.length ? (

@@ -62,7 +62,7 @@ const CollectionPageTemplate = ({
         <article className="collection-page">
           <header
             role="banner"
-            className="lede-banner base-12-grid"
+            className="lede-banner base-12-grid py-3 md:py-6"
             style={withoutNulls(styles)}
           >
             <div className="title-lockup my-6">
@@ -95,7 +95,7 @@ const CollectionPageTemplate = ({
           </header>
 
           <TextContent
-            className="base-12-grid"
+            className="base-12-grid py-3 md:py-6"
             classNameByEntry={{
               GalleryBlock: 'grid-full',
               ContentBlock: 'grid-full-8/12',

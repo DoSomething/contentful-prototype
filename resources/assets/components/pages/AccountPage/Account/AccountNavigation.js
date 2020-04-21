@@ -5,26 +5,22 @@ import { featureFlag } from '../../../../helpers';
 import NavigationLink from '../../../utilities/NavigationLink/NavigationLink';
 
 const AccountNavigation = props => (
-  <nav className="base-12-grid page-navigation -no-fade">
-    <div className="grid-wide nav-items">
+  <nav className="base-12-grid page-navigation py-3 md:py-6 -no-fade">
+    <div className="grid-wide nav-items -mx-3">
+      <NavigationLink exact to="/us/account">
+        Account
+      </NavigationLink>
       <NavigationLink to="/us/account/campaigns">Campaigns</NavigationLink>
       {props.user.hasBadgesFlag ? (
-        <NavigationLink to="/us/account/profile/badges">Badges</NavigationLink>
+        <NavigationLink to="/us/account/badges">Badges</NavigationLink>
       ) : null}
       {featureFlag('volunteer_credits') ? (
-        <NavigationLink to="/us/account/profile/credits">
-          Credits
-        </NavigationLink>
+        <NavigationLink to="/us/account/credits">Credits</NavigationLink>
       ) : null}
       {featureFlag('cause_preferences') ? (
-        <NavigationLink to="/us/account/profile/interests">
-          Interests
-        </NavigationLink>
+        <NavigationLink to="/us/account/interests">Interests</NavigationLink>
       ) : null}
-      <NavigationLink exact to="/us/account/profile">
-        Profile
-      </NavigationLink>
-      <NavigationLink to="/us/account/profile/subscriptions">
+      <NavigationLink to="/us/account/subscriptions">
         Subscriptions
       </NavigationLink>
     </div>

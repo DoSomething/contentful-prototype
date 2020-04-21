@@ -197,3 +197,12 @@ Cypress.Commands.add('authVisitCampaignWithoutSignup', function(
     .withoutSignup(contentfulCampaign.campaign.campaignId)
     .visit(`${campaignPath}${contentfulCampaign.campaign.slug}`);
 });
+
+/**
+ * Mock visiting the Block permalink for given ID with given user.
+ *
+ * @param {Object} state
+ */
+Cypress.Commands.add('authVisitBlockPermalink', function(user, blockId) {
+  cy.login(user).visit(`us/blocks/${blockId}`);
+});

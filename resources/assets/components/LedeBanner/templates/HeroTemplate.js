@@ -29,7 +29,6 @@ const HeroTemplate = ({
   content,
   coverImage,
   dashboard,
-  displaySignupButton,
   isAffiliated,
   scholarshipAmount,
   scholarshipCallToAction,
@@ -41,11 +40,15 @@ const HeroTemplate = ({
 }) => {
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const [showScholarshipModal, setShowScholarshipModal] = useState(false);
+  const [
+    showReferralScholarshipModal,
+    setShowReferralScholarshipModal,
+  ] = useState(false);
   const numCampaignId = Number(campaignId);
 
   useEffect(() => {
     if (scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline) {
-      setShowScholarshipModal(true);
+      setShowReferralScholarshipModal(true);
     }
   }, []);
 
@@ -63,7 +66,7 @@ const HeroTemplate = ({
         Should eventually be removed and use Tailwind. This will also help clean up the element hierarchy.
       */}
       <div className="hero-landing-page">
-        <div className="base-12-grid bg-gray-100 cover-image">
+        <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
           <img
             className="grid-wide"
             alt={coverImage.description || `cover photo for ${title}`}
@@ -73,7 +76,7 @@ const HeroTemplate = ({
         </div>
 
         <div className="clearfix bg-gray-100">
-          <div className="base-12-grid">
+          <div className="base-12-grid py-3 md:py-6">
             <header role="banner" className="hero-banner">
               <h1 className="hero-banner__headline-title">{title}</h1>
               <h2 className="hero-banner__headline-subtitle">{subtitle}</h2>
@@ -99,7 +102,7 @@ const HeroTemplate = ({
             </div>
 
             <div className="grid-wide-3/10 secondary">
-              {!isAffiliated && displaySignupButton ? (
+              {!isAffiliated ? (
                 <div className="hero-signup-button">
                   <SignupButtonContainer
                     className="w-full"
@@ -122,15 +125,20 @@ const HeroTemplate = ({
                 campaignId={numCampaignId}
                 scholarshipAmount={scholarshipAmount}
                 scholarshipDeadline={scholarshipDeadline}
+                showModal={() => setShowScholarshipModal(true)}
               />
             </div>
           </div>
         </div>
 
-        {showScholarshipModal && !isAffiliated ? (
+        {(showReferralScholarshipModal && !isAffiliated) ||
+        showScholarshipModal ? (
           <Modal
             className="-inverted -scholarship__info"
-            onClose={() => setShowScholarshipModal(false)}
+            onClose={() => {
+              setShowScholarshipModal(false);
+              setShowReferralScholarshipModal(false);
+            }}
             trackingId="SCHOLARSHIP_MODAL"
           >
             <ScholarshipInfoBlock
@@ -141,15 +149,21 @@ const HeroTemplate = ({
               scholarshipDeadline={scholarshipDeadline}
               scholarshipDescription={scholarshipDescription}
               numberOfScholarships={numberOfScholarships}
-              utmLabel={scholarshipAffiliateLabel.toLowerCase()}
+              utmLabel={
+                scholarshipAffiliateLabel
+                  ? scholarshipAffiliateLabel.toLowerCase()
+                  : null
+              }
             >
-              <div className="pt-6 w-2/3 sm:w-1/2">
-                <SignupButtonContainer
-                  className="w-full md:px-2"
-                  text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
-                  contextSource="scholarship_modal"
-                />
-              </div>
+              {!isAffiliated ? (
+                <div className="pt-6 w-2/3 sm:w-1/2">
+                  <SignupButtonContainer
+                    className="w-full md:px-2"
+                    text={SCHOLARSHIP_SIGNUP_BUTTON_TEXT}
+                    contextSource="scholarship_modal"
+                  />
+                </div>
+              ) : null}
             </ScholarshipInfoBlock>
           </Modal>
         ) : null}
@@ -174,7 +188,6 @@ HeroTemplate.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipCallToAction: PropTypes.string,
@@ -192,7 +205,6 @@ HeroTemplate.defaultProps = {
   numberOfScholarships: 1,
   campaignId: null,
   dashboard: null,
-  displaySignupButton: true,
   isAffiliated: false,
   scholarshipAmount: null,
   scholarshipCallToAction: null,
