@@ -39,7 +39,6 @@ class SocialShareTray extends React.Component {
    * a bertly link. This is done because the snapchatSDK needs a link to provide to the user that opened the link
    * if no link is provided it will pass the current page URL as our attachmenturl
    *
-   * @return {void}
    */
 
   componentDidUpdate(prevProps) {
