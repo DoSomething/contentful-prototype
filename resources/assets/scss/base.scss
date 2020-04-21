@@ -62,8 +62,8 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 @tailwind utilities;
 
-.focus\:outline-blurple-300:focus {
-  outline-color: theme('colors.blurple.300');
+.focus\:outline-blurple-100:focus {
+  outline-color: theme('colors.blurple.100');
 }
 
 .focus\:outline-solid:focus {
@@ -72,6 +72,10 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 .focus\:outline-2:focus {
   outline-width: 2px;
+}
+
+.focus\:rounded-none:focus {
+  border-radius: 0;
 }
 
 /*

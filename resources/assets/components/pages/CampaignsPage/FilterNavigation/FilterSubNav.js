@@ -7,11 +7,12 @@ import CauseFilter from '../CampaignFilters/CauseFilter/CauseFilter';
 
 const renderedFilterMenu = props => {
   const fields = withoutNulls(props);
-  switch (fields.chosenFilter) {
-    case 'Cause':
+  switch (fields.activeFilter) {
+    case 'cause':
       return (
         <CauseFilter filters={fields.filters} setFilters={fields.setFilters} />
       );
+
     default:
       return null;
   }
@@ -20,19 +21,19 @@ const renderedFilterMenu = props => {
 const FilterSubNav = props => (
   <div
     className={classNames('w-full bg-white pt-6', props.className)}
-    aria-expanded={Boolean(props.chosenFilter)}
+    aria-expanded={Boolean(props.activeFilter)}
   >
     {renderedFilterMenu(props)}
   </div>
 );
 
 FilterSubNav.propTypes = {
-  chosenFilter: PropTypes.string,
+  activeFilter: PropTypes.string,
   className: PropTypes.string,
 };
 
 FilterSubNav.defaultProps = {
-  chosenFilter: '',
+  activeFilter: '',
   className: null,
 };
 
