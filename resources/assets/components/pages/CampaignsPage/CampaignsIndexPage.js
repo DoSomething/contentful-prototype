@@ -9,7 +9,7 @@ import PaginatedCampaignGallery from '../../utilities/PaginatedCampaignGallery/P
 import './campaigns-page.scss';
 
 const CampaignsIndexPage = () => {
-  const [filters, setFilters] = useState({ causes: [], duration: [] });
+  const [filters, setFilters] = useState({ causes: [] });
 
   return (
     <>
