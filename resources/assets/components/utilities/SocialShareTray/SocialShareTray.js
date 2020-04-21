@@ -37,7 +37,6 @@ class SocialShareTray extends React.Component {
    * a bertly link. This is done because the snapchatSDK needs a link to provide to the user that opened the link
    * if no link is provided it will pass the current page URL as our attachmenturl
    *
-   * @return {void}
    */
 
   componentDidUpdate(prevProps) {
@@ -156,8 +155,12 @@ class SocialShareTray extends React.Component {
               text="Share"
             />
           ) : null}
-
-          {platforms.includes('snapchat') ? (
+          {platforms.includes('snapchat') &&
+          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent,
+          ) ? (
+            // checks if snapchat is included as a platform to render
+            // and if the user is viewing snapchat on mobile Web view
             <ShareButton
               className="snapchat-share-button snapchat bg-snapchat-400 hover:bg-yellow-300 text-black"
               onClick={() =>
