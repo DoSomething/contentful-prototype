@@ -23,6 +23,8 @@ import {
   facebookMessengerShare,
   getFormattedScreenSize,
   handleSnapchatShareClick,
+  isUserOnDesktop,
+  featureFlag,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
@@ -36,7 +38,6 @@ class SocialShareTray extends React.Component {
    * Check to see if the sharedLink is present within
    * a bertly link. This is done because the snapchatSDK needs a link to provide to the user that opened the link
    * if no link is provided it will pass the current page URL as our attachmenturl
-   *
    */
 
   componentDidUpdate(prevProps) {
@@ -140,7 +141,6 @@ class SocialShareTray extends React.Component {
     const { shareLink, platforms, responsive, title } = this.props;
 
     const trackLink = this.props.trackLink || this.props.shareLink;
-
     return (
       <div className="social-share-tray p-3 text-center">
         {title ? <p className="title uppercase font-bold">{title}</p> : null}
@@ -157,12 +157,10 @@ class SocialShareTray extends React.Component {
               text="Share"
             />
           ) : null}
-          {platforms.includes('snapchat') &&
-          /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-            navigator.userAgent,
-          ) ? (
-            // checks if snapchat is included as a platform to render
-            // and if the user is viewing snapchat on mobile Web view
+
+          {featureFlag('snapchat_button') &&
+          platforms.includes('snapchat') &&
+          isUserOnDesktop() ? (
             <ShareButton
               className="snapchat-share-button snapchat bg-snapchat-400 hover:bg-yellow-300 text-black"
               onClick={() =>
@@ -174,6 +172,7 @@ class SocialShareTray extends React.Component {
               text="Share"
             />
           ) : null}
+
           {platforms.includes('twitter') ? (
             <ShareButton
               className="twitter bg-twitter-500 hover:bg-twitter-400"
@@ -224,14 +223,7 @@ SocialShareTray.propTypes = {
 SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
-  platforms: [
-    'facebook',
-    'instagram',
-    'snapchat',
-    'twitter',
-    'messenger',
-    'email',
-  ],
+  platforms: ['facebook', 'snapchat', 'twitter', 'messenger', 'email'],
   title: null,
   responsive: false,
 };
