@@ -32,12 +32,12 @@ const App = ({ store, history }) => {
   return (
     <Provider store={store}>
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
-        {!NewHomePage ? (
-          <TrafficDistribution percentage={5} feature="nps_survey">
+        {history.location.pathname !== '/us' ? (
+          <TrafficDistribution percentage={100} feature="nps_survey">
             <DismissableElement
               name="nps_survey"
               render={(handleClose, handleComplete) => (
-                <DelayedElement delay={60}>
+                <DelayedElement delay={0}>
                   <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                     <TypeFormEmbed
                       displayType="modal"
