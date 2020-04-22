@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CloseButton from '../../artifacts/CloseButton/CloseButton';
+import {
+  EVENT_CATEGORIES,
+  trackAnalyticsEvent,
+} from '../../../helpers/analytics';
 
 const SitewideBannerContent = ({
   cta,
@@ -10,6 +14,16 @@ const SitewideBannerContent = ({
   handleComplete,
   link,
 }) => {
+  const handleCompleteWithTracking = () => {
+    handleComplete();
+
+    trackAnalyticsEvent('clicked_call_to_action_sitewide_banner', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.siteAction,
+      label: 'sitewide_banner',
+      context: { contextSource: 'voter_registration' },
+    });
+  };
   return (
     <div className="w-full flex justify-center bg-yellow-500 p-4 z-50">
       <CloseButton
@@ -26,7 +40,7 @@ const SitewideBannerContent = ({
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleComplete}
+          onClick={handleCompleteWithTracking}
         >
           {cta}
         </a>
