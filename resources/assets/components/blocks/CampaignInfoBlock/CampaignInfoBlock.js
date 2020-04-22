@@ -70,21 +70,25 @@ const CampaignInfoBlock = ({
           actionItem = actions.find(action => action.reportback);
         }
 
+        // Decide if we want to display scholarship information
+        let showScholarshipInfo = false;
+
+        if (
+          scholarshipAmount &&
+          scholarshipDeadline &&
+          isOpen &&
+          actionItem.scholarshipEntry
+        ) {
+          showScholarshipInfo = true;
+        }
+
         return (
           <>
-            {!(
-              scholarshipAmount &&
-              scholarshipDeadline &&
-              isOpen &&
-              actionItem.scholarshipEntry
-            ) ? (
+            {!showScholarshipInfo ? (
               <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
             ) : null}
             <dl className="clearfix">
-              {scholarshipAmount &&
-              scholarshipDeadline &&
-              isOpen &&
-              actionItem.scholarshipEntry ? (
+              {showScholarshipInfo ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
@@ -108,7 +112,7 @@ const CampaignInfoBlock = ({
                 </React.Fragment>
               ) : null}
 
-              {endDate && !scholarshipAmount ? (
+              {endDate && !showScholarshipInfo ? (
                 <>
                   <dt>Deadline</dt>
                   <dd>{getHumanFriendlyDate(endDate)}</dd>
