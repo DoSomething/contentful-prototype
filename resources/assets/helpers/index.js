@@ -1046,3 +1046,19 @@ export function buildVoterRegUrl(source = 'web', sourceDetails, url) {
 
   return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
 }
+
+/**
+ * Check to see if user is on desktop or mobile.
+ *
+ * @return {Boolean}
+ */
+export function isUserOnDesktop() {
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
+  ) {
+    return true;
+  }
+  return false;
+}
