@@ -23,7 +23,6 @@ import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
-import { toDateWithOptions } from 'date-fns/fp';
 
 // Helper Constants
 export const EMPTY_IMAGE =
@@ -803,9 +802,6 @@ export function handleFacebookShareClick(href, trackingData) {
  *
  */
 export function handleSnapchatShareClick(href, trackingData) {
-  console.log('href:', href);
-  console.log('trackingData:', trackingData);
-
   trackAnalyticsEvent('clicked_share_snapchat', {
     action: 'button_clicked',
     category: EVENT_CATEGORIES.socialShare,
@@ -1049,4 +1045,20 @@ export function buildVoterRegUrl(source = 'web', sourceDetails, url) {
   const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
 
   return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
+}
+
+/**
+ * Check to see if user is on desktop or mobile.
+ *
+ * @return {Boolean}
+ */
+export function isUserOnDesktop() {
+  if (
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent,
+    )
+  ) {
+    return true;
+  }
+  return false;
 }
