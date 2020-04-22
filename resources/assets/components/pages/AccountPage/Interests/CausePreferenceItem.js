@@ -2,8 +2,10 @@ import React from 'react';
 import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { useMutation, useQuery } from '@apollo/react-hooks';
+
+import Spinner from '../../../artifacts/Spinner/Spinner';
+import ToggleButton from '../../../utilities/Button/ToggleButton';
 
 const CAUSE_PREFERENCE_QUERY = gql`
   query CausePreferenceQuery($userId: String!) {
@@ -45,35 +47,32 @@ const CausePreferenceItem = ({ cause, description, title }) => {
   const causes = get(data, 'user.causes', []);
 
   return (
-    <div className="border border-solid border-gray-300 p-4 rounded-md flex justify-between">
+    <div className="border border-solid border-gray-300 p-4 rounded-md flex">
       <div className="w-2/3 lg:w-3/4 pr-4">
         <h1 className="text-blurple-500 text-base text-bold">{title}</h1>
+
         <p className="text-sm text-gray-500">{description}</p>
       </div>
+
       <div className="w-1/3 lg:w-1/4">
-        <button
-          type="button"
-          className={classNames(
-            'btn w-full border border-solid border-blurple-500 focus:outline-none',
-            !causes.includes(cause)
-              ? 'bg-blurple-500 text-white hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white'
-              : 'bg-white border text-blurple-500 border-solid hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500',
-          )}
-          onClick={() =>
-            updateInterest({
-              variables: {
-                cause,
-                interested: !causes.includes(cause),
-              },
-            })
-          }
-        >
-          {!loading ? (
-            <>{causes.includes(cause) ? 'Unfollow' : ' Follow '}</>
-          ) : (
-            <div className="spinner" />
-          )}
-        </button>
+        {loading ? (
+          <Spinner className="flex justify-center p-2" />
+        ) : (
+          <ToggleButton
+            activateText="Follow"
+            className="w-full"
+            deactivateText="Unfollow"
+            isToggled={causes.includes(cause)}
+            onClick={() =>
+              updateInterest({
+                variables: {
+                  cause,
+                  interested: !causes.includes(cause),
+                },
+              })
+            }
+          />
+        )}
       </div>
     </div>
   );
