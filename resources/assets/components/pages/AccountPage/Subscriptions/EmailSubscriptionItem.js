@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
+import ToggleButton from '../../../utilities/Button/ToggleButton';
+
 const EMAIL_SUBSCRIPTION_QUERY = gql`
   query EmailSubscriptionsQuery($userId: String!) {
     user(id: $userId) {
@@ -51,32 +53,28 @@ const EmailSubscriptionItem = ({ topic, name, image, description }) => {
   return (
     <div className="card rounded border-solid border-2 border-gray-300">
       <div className="flex flex-col h-full">
-        <img
-          className="pb-4"
-          style={{ width: '100%' }}
-          src={image}
-          alt="newsletter"
-        />
-        <h3 className="text-base px-4">{name}</h3>
-        <p className="pb-4 px-4 flex-grow">{description}</p>
-        <button
-          type="button"
-          className={
-            !topics.includes(topic)
-              ? 'btn mx-4 mb-4 bg-blurple-500 text-white border border-solid border-blurple-500 hover:bg-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none'
-              : 'btn mx-4 mb-4 bg-white text-blurple-500 border border-solid border-blurple-500 hover:border-blurple-300 hover:text-blurple-200 focus:bg-white focus:text-blurple-500 focus:outline-none'
-          }
-          onClick={() =>
-            updateSubscription({
-              variables: {
-                topic,
-                subscribed: !topics.includes(topic),
-              },
-            })
-          }
-        >
-          {topics.includes(topic) ? 'Unsubscribe' : 'Subscribe'}
-        </button>
+        <img style={{ width: '100%' }} src={image} alt="newsletter" />
+
+        <div className="p-4 flex flex-col flex-grow">
+          <h3 className="text-base">{name}</h3>
+
+          <p className="flex-grow">{description}</p>
+
+          <ToggleButton
+            activateText="Subscribe"
+            deactivateText="Unsubscribe"
+            isToggled={topics.includes(topic)}
+            className="mt-4"
+            onClick={() =>
+              updateSubscription({
+                variables: {
+                  topic,
+                  subscribed: !topics.includes(topic),
+                },
+              })
+            }
+          />
+        </div>
       </div>
     </div>
   );

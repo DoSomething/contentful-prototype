@@ -34,8 +34,7 @@ const PrimaryButton = props => {
     'active:bg-blurple-700 focus:bg-blurple-400 hover:bg-blurple-400',
     'border-2 border-solid active:border-blurple-700 focus:border-blurple-400 hover:border-blurple-400 focus:rounded-none',
     'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
-    'text-base',
-    'text-white hover:text-white',
+    'text-base text-white hover:text-white',
     className,
   );
 
