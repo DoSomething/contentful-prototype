@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import ButtonLink from './ButtonLink';
-import ButtonElement from './ButtonElement';
+import LinkButton from './LinkButton';
+import ElementButton from './ElementButton';
 
 /**
  * Secondary style element or link button.
@@ -14,23 +14,41 @@ import ButtonElement from './ButtonElement';
  * @param {Object} props
  */
 const SecondaryButton = props => {
-  const { className, href, isDisabled, onClick, text, type } = props;
+  const {
+    className,
+    data,
+    href,
+    isActive,
+    isDisabled,
+    onClick,
+    text,
+    type,
+  } = props;
+
+  const baseClasses = !isActive
+    ? classnames('bg-white border-blurple-500 text-blurple-500')
+    : classnames('bg-gray-200 border-blurple-700 text-blurple-700');
 
   const classes = classnames(
-    'bg-white focus:bg-gray-300',
-    'border-2 border-solid border-blurple-500 active:border-blurple-700 focus:border-white hover:border-blurple-300',
-    'focus:outline-2 focus:outline-blurple-300 focus:outline-solid',
-    'text-blurple-500 active:text-blurple-700 focus:text-blurple-300 hover:text-blurple-300',
+    baseClasses,
+    'active:bg-gray-200',
+    'border-2 border-solid active:border-blurple-700 hover:border-blurple-300 focus:rounded-none',
+    'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
+    'text-base',
+    'active:text-blurple-700 hover:text-blurple-300',
     className,
   );
 
   if (href) {
-    return <ButtonLink className={classes} href={href} text={text} />;
+    return (
+      <LinkButton className={classes} data={data} href={href} text={text} />
+    );
   }
 
   return (
-    <ButtonElement
+    <ElementButton
       className={classes}
+      data={data}
       isDisabled={isDisabled}
       onClick={onClick}
       text={text}
@@ -41,7 +59,9 @@ const SecondaryButton = props => {
 
 SecondaryButton.propTypes = {
   className: PropTypes.string,
+  data: PropTypes.object,
   href: PropTypes.string,
+  isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
@@ -50,7 +70,9 @@ SecondaryButton.propTypes = {
 
 SecondaryButton.defaultProps = {
   className: null,
+  data: {},
   href: null,
+  isActive: false,
   isDisabled: false,
   onClick: null,
   type: 'button',

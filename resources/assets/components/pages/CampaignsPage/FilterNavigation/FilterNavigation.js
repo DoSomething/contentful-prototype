@@ -1,4 +1,6 @@
+import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
+import { startCase } from 'lodash';
 import React, { useState } from 'react';
 
 import {
@@ -6,56 +8,60 @@ import {
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import FilterSubNav from './FilterSubNav';
-import MenuButton from '../../../utilities/MenuButton/MenuButton';
+import SecondaryButton from '../../../utilities/Button/SecondaryButton';
 
 const FilterNavigation = ({ filters, setFilters }) => {
-  const [chosenFilter, setChosenFilter] = useState('');
-  const [showFilterMenu, setShowFilterMenu] = useState(false);
+  const [activeFilter, setActiveFilter] = useState(null);
 
-  const handleMenuToggle = filterName => {
-    trackAnalyticsEvent(`clicked_filter_button_${filterName}`, {
+  const filterCategoryNames = Object.keys(filters).map(filter =>
+    pluralize.singular(filter),
+  );
+
+  const handleMenuToggle = event => {
+    const selectedFilter = event.target.dataset.filter;
+
+    trackAnalyticsEvent(`clicked_filter_button_${selectedFilter}`, {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.filter,
-      label: `${filterName}_filter_menu`,
+      label: `${selectedFilter}_filter_menu`,
     });
 
-    if (chosenFilter) {
-      setChosenFilter('');
-      document.getElementById(filterName).blur();
-    } else {
-      document.getElementById(filterName).focus();
-      setChosenFilter(filterName);
+    if (activeFilter === selectedFilter) {
+      return setActiveFilter(null);
     }
-    setShowFilterMenu(!showFilterMenu);
+
+    return setActiveFilter(selectedFilter);
   };
 
   return (
     <div className="md:w-full bg-white">
       <div className="flex items-center md:w-3/4 mx-auto pt-2 md:pt-0 pb-6 pl-6 md:pl-0">
         <h2 className="text-gray-600 pr-4 text-base uppercase">Filters</h2>
-        <MenuButton
-          title="Cause"
-          onClick={handleMenuToggle}
-          className={
-            chosenFilter
-              ? 'bg-blurple-500 text-white border border-solid border-blurple-500'
-              : 'bg-white border border-solid border-blurple-500 text-blurple-500'
-          }
-        />
-      </div>
-      <div
-        className={chosenFilter ? 'border-solid border-t border-gray-300' : ''}
-      >
-        <div className="md:w-3/4 mx-auto pl-6 md:pl-0">
-          <FilterSubNav
-            handleMenuToggle={handleMenuToggle}
-            chosenFilter={chosenFilter}
-            filters={filters}
-            setFilters={setFilters}
-            className={!chosenFilter ? 'hidden' : ''}
+
+        {filterCategoryNames.map(name => (
+          <SecondaryButton
+            key={`${name}_button`}
+            className="mr-8"
+            data={{ 'data-filter': name }}
+            onClick={handleMenuToggle}
+            text={startCase(name)}
+            isActive={activeFilter === name}
           />
-        </div>
+        ))}
       </div>
+
+      {activeFilter ? (
+        <div className="border-solid border-t border-gray-300">
+          <div className="md:w-3/4 mx-auto pl-6 md:pl-0">
+            <FilterSubNav
+              activeFilter={activeFilter}
+              filters={filters}
+              setFilters={setFilters}
+              className={!activeFilter ? 'hidden' : ''}
+            />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

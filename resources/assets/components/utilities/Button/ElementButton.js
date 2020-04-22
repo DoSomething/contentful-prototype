@@ -10,30 +10,42 @@ import classnames from 'classnames';
  *
  * @param {Object} props
  */
-const ButtonElement = ({ className, isDisabled, onClick, text, type }) => (
-  <button
-    className={classnames('btn', className)}
-    disabled={isDisabled}
-    onClick={onClick}
-    type={type}
-  >
-    {text}
-  </button>
-);
+const ElementButton = ({
+  className,
+  data,
+  isDisabled,
+  onClick,
+  text,
+  type,
+}) => {
+  return (
+    <button
+      className={classnames('btn', className)}
+      disabled={isDisabled}
+      onClick={onClick}
+      type={type}
+      {...data}
+    >
+      {text}
+    </button>
+  );
+};
 
-ButtonElement.propTypes = {
+ElementButton.propTypes = {
   className: PropTypes.string,
+  data: PropTypes.object,
   isDisabled: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
 };
 
-ButtonElement.defaultProps = {
+ElementButton.defaultProps = {
   className: null,
+  data: {},
   isDisabled: false,
   onClick: null,
   type: 'button',
 };
 
-export default ButtonElement;
+export default ElementButton;

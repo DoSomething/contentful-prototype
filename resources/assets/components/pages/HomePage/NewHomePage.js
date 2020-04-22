@@ -11,6 +11,7 @@ import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
 import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
@@ -259,13 +260,12 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <HomePageCampaignGallery campaigns={campaigns} />
 
-                <a
+                <PrimaryButton
+                  className="mt-8 py-4 px-8 text-lg"
+                  data={{ 'data-label': 'campaign_section_show_more' }}
                   href="/us/campaigns"
-                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-                  data-label="campaign_section_show_more"
-                >
-                  See More Campaigns
-                </a>
+                  text="See More Campaigns"
+                />
 
                 <AnalyticsWaypoint name="campaign_section_bottom" />
               </div>
@@ -368,13 +368,12 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <HomePageArticleGallery articles={articles} />
 
-                <a
+                <PrimaryButton
+                  className="mt-8 py-4 px-8 text-lg"
+                  data={{ 'data-label': 'article_section_show_more' }}
                   href="https://lets.dosomething.org/"
-                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-                  data-label="article_section_show_more"
-                >
-                  See More Articles
-                </a>
+                  text="See More Articles"
+                />
 
                 <AnalyticsWaypoint name="article_section_bottom" />
               </div>
@@ -429,13 +428,12 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 </div>
 
                 <div className="flex-grow">
-                  <a
+                  <PrimaryButton
+                    className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
+                    data={{ 'data-label': 'signup_cta_authorize' }}
                     href="/authorize"
-                    className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
-                    data-label="signup_cta_authorize"
-                  >
-                    Join Now
-                  </a>
+                    text="Join Now"
+                  />
                 </div>
 
                 <AnalyticsWaypoint name="join_cta_bottom" />

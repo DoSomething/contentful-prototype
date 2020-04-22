@@ -15,7 +15,7 @@ const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
       type="checkbox"
       value={causeValue}
       onClick={handleSelect}
-      checked={causeChecked}
+      defaultChecked={causeChecked}
     />
     <span className="pl-4">{causeName}</span>
   </label>
