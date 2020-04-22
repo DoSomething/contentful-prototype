@@ -21,6 +21,7 @@ import {
 import './hero-lede-banner.scss';
 
 const HeroTemplate = ({
+  actionToDisplay,
   additionalContent,
   affiliateCreditText,
   affiliateSponsors,
@@ -126,6 +127,7 @@ const HeroTemplate = ({
                 scholarshipAmount={scholarshipAmount}
                 scholarshipDeadline={scholarshipDeadline}
                 showModal={() => setShowScholarshipModal(true)}
+                actionToDisplay={actionToDisplay}
               />
             </div>
           </div>
@@ -175,6 +177,7 @@ const HeroTemplate = ({
 };
 
 HeroTemplate.propTypes = {
+  actionToDisplay: PropTypes.number,
   additionalContent: PropTypes.object,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
@@ -198,6 +201,7 @@ HeroTemplate.propTypes = {
 };
 
 HeroTemplate.defaultProps = {
+  actionToDisplay: null,
   additionalContent: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
