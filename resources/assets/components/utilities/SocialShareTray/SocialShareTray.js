@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Media from 'react-media';
 
 import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
@@ -23,7 +24,6 @@ import {
   facebookMessengerShare,
   getFormattedScreenSize,
   handleSnapchatShareClick,
-  isUserOnDesktop,
   featureFlag,
 } from '../../../helpers';
 
@@ -35,9 +35,9 @@ class SocialShareTray extends React.Component {
   }
 
   /**
-   * Check to see if the sharedLink is present within
-   * a bertly link. This is done because the snapchatSDK needs a link to provide to the user that opened the link
-   * if no link is provided it will pass the current page URL as our attachmenturl
+   * Once snapchat loads the SDK it will search the DOM for a snapchat-share-button class
+   * once this is found it will check for the attribute called data-share-url.
+   * If the sharedLink URL isn't provided it be assigned a empty.
    */
 
   componentDidUpdate(prevProps) {
@@ -139,7 +139,6 @@ class SocialShareTray extends React.Component {
 
   render() {
     const { shareLink, platforms, responsive, title } = this.props;
-
     const trackLink = this.props.trackLink || this.props.shareLink;
     return (
       <div className="social-share-tray p-3 text-center">
@@ -157,22 +156,20 @@ class SocialShareTray extends React.Component {
               text="Share"
             />
           ) : null}
-
-          {featureFlag('snapchat_button') &&
-          platforms.includes('snapchat') &&
-          isUserOnDesktop() ? (
-            <ShareButton
-              className="snapchat-share-button snapchat bg-snapchat-400 hover:bg-yellow-300 text-black"
-              onClick={() =>
-                handleSnapchatShareClick(shareLink, { url: trackLink })
-              }
-              dataShareUrl={shareLink}
-              disabled={!shareLink}
-              icon={snapchatIcon}
-              text="Share"
-            />
+          {featureFlag('snapchat_button') && platforms.includes('snapchat') ? (
+            <Media query="(max-width: 759px)">
+              <ShareButton
+                className="snapchat-share-button snapchat bg-snapchat-400 hover:bg-yellow-300 text-black"
+                onClick={() =>
+                  handleSnapchatShareClick(shareLink, { url: trackLink })
+                }
+                dataShareUrl={shareLink}
+                disabled={!shareLink}
+                icon={snapchatIcon}
+                text="Share"
+              />
+            </Media>
           ) : null}
-
           {platforms.includes('twitter') ? (
             <ShareButton
               className="twitter bg-twitter-500 hover:bg-twitter-400"
