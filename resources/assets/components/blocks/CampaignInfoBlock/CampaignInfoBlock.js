@@ -22,6 +22,7 @@ const CAMPAIGN_INFO_QUERY = gql`
       endDate
       isOpen
       actions {
+        id
         actionLabel
         timeCommitmentLabel
         scholarshipEntry
@@ -36,6 +37,7 @@ const CampaignInfoBlock = ({
   scholarshipAmount,
   scholarshipDeadline,
   showModal,
+  actionToDisplay,
 }) => (
   <Card className="bordered p-3 rounded campaign-info">
     <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
@@ -54,20 +56,35 @@ const CampaignInfoBlock = ({
           });
         };
 
-        let actionItem = actions.find(
-          action => action.reportback && action.scholarshipEntry,
-        );
+        // Decide which action to display
+        let actionItem;
 
+        if (actionToDisplay) {
+          actionItem = actions.find(action => action.id === actionToDisplay);
+        } else {
+          actionItem = actions.find(
+            action => action.reportback && action.scholarshipEntry,
+          );
+        }
         if (!actionItem) {
           actionItem = actions.find(action => action.reportback);
         }
+
         return (
           <>
-            {!scholarshipAmount ? (
+            {!(
+              scholarshipAmount &&
+              scholarshipDeadline &&
+              isOpen &&
+              actionItem.scholarshipEntry
+            ) ? (
               <h1 className="mb-3 text-lg uppercase">Campaign Info</h1>
             ) : null}
             <dl className="clearfix">
-              {scholarshipAmount && scholarshipDeadline && isOpen ? (
+              {scholarshipAmount &&
+              scholarshipDeadline &&
+              isOpen &&
+              actionItem.scholarshipEntry ? (
                 <React.Fragment>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
@@ -118,6 +135,7 @@ const CampaignInfoBlock = ({
 );
 
 CampaignInfoBlock.propTypes = {
+  actionToDisplay: PropTypes.number,
   campaignId: PropTypes.number.isRequired,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
@@ -125,6 +143,7 @@ CampaignInfoBlock.propTypes = {
 };
 
 CampaignInfoBlock.defaultProps = {
+  actionToDisplay: null,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showModal: null,
