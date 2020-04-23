@@ -5,7 +5,9 @@ import {
   Page,
   Text,
   View,
+  Image,
   Font,
+  StyleSheet,
 } from '@react-pdf/renderer';
 
 // Volunteer credit table generated 'certificatePost' prop type.
@@ -57,17 +59,193 @@ const colors = {
 
 // PDF template styles.
 const styles = StyleSheet.create({
-  page: { backgroundColor: 'tomato' },
-  section: { color: 'white', textAlign: 'center', margin: 30 },
+  flex: { display: 'flex', flexDirection: 'row' },
+  postDetailsTitle: {
+    fontWeight: 'bold',
+    color: colors.purple,
+    textTransform: 'uppercase',
+  },
 });
 
-// PDF template.
+// We're still stubbing the data for now so:
+// eslint-disable-next-line no-unused-vars
 const CertificateTemplate = ({ certificatePost }) => (
   <Document>
-    <Page size="A4" style={styles.page}>
-      <View style={styles.section}>
-        <Text>Certificate of Credit.</Text>
-        <Text>{certificatePost.id}</Text>
+    <Page
+      orientation="landscape"
+      style={{ fontSize: 14, fontFamily: 'Source Sans Pro' }}
+    >
+      <View
+        style={{
+          border: `13 solid ${colors.lightBlue}`,
+          height: '100%',
+          paddingHorizontal: 100,
+        }}
+      >
+        <View
+          style={[styles.flex, { justifyContent: 'center', marginTop: 30 }]}
+        >
+          <View>
+            <Image
+              src="/images/dosomething-logo.jpg"
+              style={{ height: 50, width: 60 }}
+            />
+          </View>
+
+          <View style={{ alignSelf: 'center' }}>
+            <Text style={{ paddingLeft: 20, fontWeight: 'bold', fontSize: 20 }}>
+              &#43;
+            </Text>
+          </View>
+          <View>
+            {/* @TODO add the campaign sponsor here as an Image */}
+            <Text
+              style={{
+                marginLeft: 20,
+                border: '1 solid black',
+                height: 50,
+                width: 50,
+                fontSize: 10,
+                textAlign: 'center',
+              }}
+            >
+              Sponsor logo
+            </Text>
+          </View>
+        </View>
+
+        <Image
+          style={{ marginTop: 15 }}
+          src="/images/volunteer-credit-certificate-title.jpg"
+        />
+
+        <View style={{ textAlign: 'center', marginTop: -25 }}>
+          <Text>DoSomething.org certifies that</Text>
+          <Text
+            style={{
+              fontSize: 34,
+              fontFamily: 'League Gothic',
+              color: colors.purple,
+            }}
+          >
+            Mendel
+          </Text>
+          <Text>has completed the following volunteering campaign:</Text>
+        </View>
+
+        <View
+          style={[
+            styles.flex,
+            {
+              border: `2 solid ${colors.lightBlue}`,
+              marginTop: 20,
+              height: 150,
+              lineHeight: 1.1,
+            },
+          ]}
+        >
+          <View
+            style={{
+              width: '25%',
+              borderRight: `2 solid ${colors.lightBlue}`,
+            }}
+          >
+            <Image src="https://activity-dev.dosomething.org/images/6YpKv0kz8n" />
+          </View>
+
+          <View style={{ width: '75%', padding: '10 0 5 30' }}>
+            <Text
+              style={{
+                fontSize: 24,
+                textTransform: 'uppercase',
+                fontFamily: 'League Gothic',
+                color: colors.darkBlue,
+              }}
+            >
+              Love Letters Challenge
+            </Text>
+
+            <Text style={{ fontStyle: 'italic' }}>
+              Make a valentine&apos;s day card to show an adult you care.
+            </Text>
+
+            <View style={{ fontSize: 12 }}>
+              <View style={[styles.flex, { marginTop: 10 }]}>
+                <View style={{ width: '40%' }}>
+                  <Text style={styles.postDetailsTitle}>Date Completed</Text>
+                  <Text>January 21, 2020</Text>
+                </View>
+
+                <View>
+                  <Text style={styles.postDetailsTitle}>Volunteer Hours*</Text>
+                  <Text>3 hours</Text>
+                </View>
+              </View>
+
+              <View style={{ marginTop: 10 }}>
+                <Text style={styles.postDetailsTitle}>Impact</Text>
+                <Text>20 cards created</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+
+        <View style={{ fontSize: 9, marginTop: 25, lineHeight: 1.1 }}>
+          <View style={styles.flex}>
+            <View style={{ width: '50%' }}>
+              <Text>[signature]</Text>
+            </View>
+
+            <View style={{ width: '50%' }}>
+              <Text style={{ textAlign: 'right' }}>
+                Learn more about the DoSomething Volunteer{'\n'} Credit program
+                at
+                <Text style={{ fontWeight: 'bold' }}>
+                  {' '}
+                  dosomething.org/volunteer
+                </Text>
+              </Text>
+            </View>
+          </View>
+
+          <View style={[styles.flex, { lineHeight: 1.1 }]}>
+            <View style={{ width: '50%' }}>
+              <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
+                Maddy Allison
+              </Text>
+              <Text style={{ fontStyle: 'italic' }}>
+                Community Associate, DoSomething.org
+              </Text>
+            </View>
+
+            <View style={{ width: '50%' }}>
+              <Text style={{ marginTop: 10, textAlign: 'right' }}>
+                For questions and verification issues, please reach out to Maddy
+                {'\n'} at{' '}
+                <Text style={{ fontWeight: 'bold' }}>
+                  volunteer@dosomething.org
+                </Text>{' '}
+                or call{' '}
+                <Text style={{ fontWeight: 'bold' }}>(212)-254-2390</Text>
+              </Text>
+            </View>
+          </View>
+        </View>
+
+        <View
+          style={[
+            styles.flex,
+            { marginTop: 20, marginBottom: 10, justifyContent: 'center' },
+          ]}
+        >
+          <Text style={{ fontSize: 7, width: '90%', textAlign: 'center' }}>
+            *DoSomething.org is the largest not-for-profit exclusively for young
+            people and social change. We encourage self-directed activism and
+            volunteerism through our structured campaign programs. Estimated
+            hours are based on our calculations of the average time it would
+            take to complete the action specified in the campaign program.
+          </Text>
+        </View>
       </View>
     </Page>
   </Document>
