@@ -34,7 +34,7 @@ module.exports = function(migration) {
 
   callToAction
     .createField('link')
-    .name('Link Location')
+    .name('Link Destination')
     .type('Symbol')
     .required(true)
     .localized(false);
