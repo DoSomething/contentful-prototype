@@ -76,6 +76,7 @@ const CertificateTemplate = ({ certificatePost }) => (
     <Page
       orientation="landscape"
       style={{ fontSize: 14, fontFamily: 'Source Sans Pro' }}
+      size="letter"
     >
       <View
         style={{
