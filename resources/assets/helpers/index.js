@@ -622,7 +622,7 @@ export function loadSnapchatSDK() {
 
   window.snapKitInit = function() {
     snap.creativekit.initalizeShareButtons(
-      //  eslint-disable-line no-undef
+      // eslint-disable-line no-undef
       document.getElementsByClassName('snapchat-share-button'),
     );
   };
