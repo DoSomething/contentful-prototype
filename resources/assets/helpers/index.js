@@ -1,4 +1,5 @@
 /* global window, document, Blob, URL */
+/* eslint-disable no-undef */
 
 import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
@@ -615,16 +616,16 @@ export function loadFacebookSDK() {
  * Load and return the Snapchat SDK.
  */
 export function loadSnapchatSDK() {
-    const script = document.createElement('script');
-    script.id = 'snapkit-creative-kit-sdk';
-    script.src = 'https://sdk.snapkit.com/js/v1/create.js';
-    document.head.append(script);
+  const script = document.createElement('script');
+  script.id = 'snapkit-creative-kit-sdk';
+  script.src = 'https://sdk.snapkit.com/js/v1/create.js';
+  document.head.append(script);
 
-    window.snapKitInit = function() {
-      snap.creativekit.initalizeShareButtons(
-        document.getElementsByClassName('snapchat-share-button'),
-      );
-    };
+  window.snapKitInit = function() {
+    snap.creativekit.initalizeShareButtons(
+      document.getElementsByClassName('snapchat-share-button'),
+    );
+  };
 }
 
 /**
