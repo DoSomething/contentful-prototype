@@ -1,5 +1,4 @@
-/* global window, document, Blob, URL */
-/* eslint-disable no-undef */
+/* global window, document, Blob, URL, snap */
 
 import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';

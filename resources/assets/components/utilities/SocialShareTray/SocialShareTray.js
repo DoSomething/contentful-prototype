@@ -1,16 +1,16 @@
 /* global window */
 
 import React from 'react';
+import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Media from 'react-media';
 
 import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
-import messengerIcon from './messengerIcon.svg';
 import snapchatIcon from './snapchatIcon.svg';
+import messengerIcon from './messengerIcon.svg';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -39,7 +39,6 @@ class SocialShareTray extends React.Component {
    * once this is found it will check for the attribute called data-share-url.
    * If the sharedLink URL isn't provided it be assigned a empty.
    */
-
   componentDidUpdate(prevProps) {
     if (!prevProps.shareLink && this.props.shareLink) {
       loadSnapchatSDK();
@@ -139,7 +138,6 @@ class SocialShareTray extends React.Component {
 
   render() {
     const { shareLink, platforms, responsive, title } = this.props;
-
     const trackLink = this.props.trackLink || this.props.shareLink;
     return (
       <div className="social-share-tray p-3 text-center">
