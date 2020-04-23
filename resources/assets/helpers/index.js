@@ -1,4 +1,5 @@
 /* global window, document, Blob, URL */
+/* eslint-disable no-undef */
 
 import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
@@ -622,7 +623,6 @@ export function loadSnapchatSDK() {
 
   window.snapKitInit = function() {
     snap.creativekit.initalizeShareButtons(
-      // eslint-disable-line no-undef
       document.getElementsByClassName('snapchat-share-button'),
     );
   };
