@@ -35,18 +35,6 @@ class SocialShareTray extends React.Component {
   }
 
   /**
-   * Check to see if the sharedLink is present within
-   * a bertly link. This is done because the snapchatSDK needs a link to provide to the user that opened the link
-   * if no link is provided it will pass the current page URL as our attachmenturl
-   */
-
-  componentDidUpdate(prevProps) {
-    if (!prevProps.shareLink && this.props.shareLink) {
-      loadSnapchatSDK();
-    }
-  }
-
-  /**
    * Once snapchat loads the SDK it will search the DOM for a snapchat-share-button class
    * once this is found it will check for the attribute called data-share-url.
    * If the sharedLink URL isn't provided it be assigned a empty.
