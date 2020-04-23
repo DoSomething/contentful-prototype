@@ -48,6 +48,13 @@ Font.register({
   fontStyle: 'normal',
 });
 
+// PDF colors config.
+const colors = {
+  lightBlue: '#5fc6c8',
+  darkBlue: '#3b3d98',
+  purple: '#864f9f',
+};
+
 // PDF template styles.
 const styles = StyleSheet.create({
   page: { backgroundColor: 'tomato' },
