@@ -10,6 +10,13 @@ import {
   StyleSheet,
 } from '@react-pdf/renderer';
 
+import doSomethingLogo from './dosomething-logo.jpg';
+import leagueGothic from '../../../../fonts/leaguegothic-regular.woff';
+import certificateTitle from './volunteer-credit-certificate-title.jpg';
+import sourceSansPro from '../../../../fonts/sourcesanspro-regular.woff';
+import sourceSansProBold from '../../../../fonts/sourcesanspro-bold.woff';
+import sourceSansProItalic from '../../../../fonts/sourcesanspro-italic.woff';
+
 // Volunteer credit table generated 'certificatePost' prop type.
 export const certificatePostType = PropTypes.shape({
   id: PropTypes.number.isRequired,
@@ -33,13 +40,13 @@ export const certificatePostType = PropTypes.shape({
 Font.register({
   family: 'Source Sans Pro',
   fonts: [
-    { src: '/fonts/sourcesanspro-regular.woff' },
+    { src: sourceSansPro },
     {
-      src: '/fonts/sourcesanspro-bold.woff',
+      src: sourceSansProBold,
       fontWeight: 700,
     },
     {
-      src: '/fonts/sourcesanspro-italic.woff',
+      src: sourceSansProItalic,
       fontStyle: 'italic',
     },
   ],
@@ -47,7 +54,7 @@ Font.register({
 
 Font.register({
   family: 'League Gothic',
-  src: '/fonts/leaguegothic-regular.woff',
+  src: leagueGothic,
   fontWeight: 400,
   fontStyle: 'normal',
 });
@@ -89,10 +96,7 @@ const CertificateTemplate = ({ certificatePost }) => (
           style={[styles.flex, { justifyContent: 'center', marginTop: 30 }]}
         >
           <View>
-            <Image
-              src="/images/dosomething-logo.jpg"
-              style={{ height: 55, width: 65 }}
-            />
+            <Image src={doSomethingLogo} style={{ height: 55, width: 65 }} />
           </View>
 
           <View style={{ alignSelf: 'center' }}>
@@ -117,10 +121,7 @@ const CertificateTemplate = ({ certificatePost }) => (
           </View>
         </View>
 
-        <Image
-          style={{ marginTop: 15 }}
-          src="/images/volunteer-credit-certificate-title.jpg"
-        />
+        <Image style={{ marginTop: 15 }} src={certificateTitle} />
 
         <View style={{ textAlign: 'center', marginTop: -25 }}>
           <Text>DoSomething.org certifies that</Text>
