@@ -38,7 +38,10 @@ const CausePreferenceItem = ({ cause, description, title }) => {
 
   // Make the initial query to get the user's subscriptions
   const { data, loading, error } = useQuery(CAUSE_PREFERENCE_QUERY, options);
-  const [updateInterest] = useMutation(CAUSE_PREFERENCE_MUTATION, options);
+  const [updateInterest, { loading: modifying }] = useMutation(
+    CAUSE_PREFERENCE_MUTATION,
+    options,
+  );
 
   if (error) {
     return <p>Something went wrong!</p>;
@@ -62,6 +65,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
             activateText="Follow"
             className="w-full"
             deactivateText="Unfollow"
+            isDisabled={modifying}
             isToggled={causes.includes(cause)}
             onClick={() =>
               updateInterest({

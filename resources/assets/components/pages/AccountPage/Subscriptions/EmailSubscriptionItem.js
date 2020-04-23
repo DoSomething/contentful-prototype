@@ -53,7 +53,11 @@ const EmailSubscriptionItem = ({ topic, name, image, description }) => {
   return (
     <div className="card rounded border-solid border-2 border-gray-300">
       <div className="flex flex-col h-full">
-        <img style={{ width: '100%' }} src={image} alt="newsletter" />
+        <img
+          style={{ width: '100%' }}
+          src={image}
+          alt={`${name.toLowerCase()} newsletter logo`}
+        />
 
         <div className="p-4 flex flex-col flex-grow">
           <h3 className="text-base">{name}</h3>
