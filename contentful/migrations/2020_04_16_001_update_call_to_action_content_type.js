@@ -1,26 +1,6 @@
 module.exports = function(migration) {
   const callToAction = migration.editContentType('callToAction');
 
-  // Prod
-  // Internal title
-  // Display options XX
-  // Visual styles XX
-  // Ue campaign tagline XX
-  // Content
-  // Impract prefix XX
-  // Impact value XX
-  // Impact suffix XX
-  // Action text XX
-
-  // Internal title
-  // Supertitle ++
-  // Title ++
-  // Content
-  // Link Text ++
-  // Link Location ++
-  // Template ++
-  // Alignment ++
-
   callToAction
     .createField('superTitle')
     .name('Supertitle')
