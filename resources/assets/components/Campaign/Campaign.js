@@ -8,7 +8,6 @@ import Modal from '../utilities/Modal/Modal';
 import NotificationContainer from '../Notification';
 import ModalRoute from '../utilities/ModalRoute/ModalRoute';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';
-import TypeFormEmbed from '../utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from '../utilities/DelayedElement/DelayedElement';
 import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
 import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
