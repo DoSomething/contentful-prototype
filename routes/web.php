@@ -6,6 +6,7 @@
  * @var \Illuminate\Routing\Router $router
  * @see \App\Providers\RouteServiceProvider
  */
+$router->view('pdf', 'app');
 
 // Homepage
 $router->redirect('/', '/us');
