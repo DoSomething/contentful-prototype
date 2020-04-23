@@ -37,16 +37,7 @@ module.exports = function(migration) {
     .name('Link Location')
     .type('Symbol')
     .required(true)
-    .localized(false)
-    .validations([
-      {
-        regexp: {
-          pattern:
-            '^((ftp|http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?$|tel\\:?\\d[ -.]?\\(?\\d\\d\\d\\)?[ -.]?\\d\\d\\d[ -.]?\\d\\d\\d\\d$)',
-          message: 'Please provide a valid URL',
-        },
-      },
-    ]);
+    .localized(false);
 
   callToAction
     .createField('template')
