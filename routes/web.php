@@ -25,7 +25,7 @@ $router->get('/deauthorize', 'AuthController@getDeauthorization')->name('deautho
 $router->redirect('/next/logout', '/deauthorize', 302);
 
 // Profile
-$router->redirect('/northstar/{id}', '/us/account/profile');
+$router->redirect('/northstar/{id}', '/us/account');
 $router->view('/us/account/{clientRoute?}', 'app')
     ->where('clientRoute', '.*')
     ->middleware('auth');
@@ -89,6 +89,9 @@ $router->view('us/collections/{slug}', 'app');
 
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
+
+// Voter Registration Drives
+$router->view('us/members/{userId}/voter-registration-drive', 'app');
 
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.

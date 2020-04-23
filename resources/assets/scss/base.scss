@@ -17,16 +17,26 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 // @TODO:forge-removal Rename this class to "button".
 .btn {
-  @apply bg-blue-500 cursor-pointer font-bold font-source-sans inline-block py-3 px-4 rounded text-center text-white outline-none;
+  @apply cursor-pointer font-bold font-source-sans inline-block no-underline py-3 px-4 rounded text-center text-white outline-none;
 }
 
-.btn:focus {
-  @apply bg-blue-300;
-  box-shadow: 0 0 3px theme('colors.blue.500');
+.btn:active {
+  @apply text-white;
+}
+
+.btn:hover {
+  @apply text-white no-underline;
 }
 
 .btn:disabled {
-  @apply cursor-not-allowed bg-gray-400 text-gray-100;
+  @apply cursor-not-allowed;
+  background-color: theme('colors.gray.500') !important;
+  border-color: transparent !important;
+  color: theme('colors.gray.100') !important;
+}
+
+.btn.is-loading:disabled {
+  @apply cursor-wait;
 }
 
 // @TODO:forge-removal Rename this class to "text-field".
@@ -56,6 +66,22 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 @tailwind utilities;
 
+.focus\:outline-blurple-100:focus {
+  outline-color: theme('colors.blurple.100');
+}
+
+.focus\:outline-solid:focus {
+  outline-style: solid;
+}
+
+.focus\:outline-2:focus {
+  outline-width: 2px;
+}
+
+.focus\:rounded-none:focus {
+  border-radius: 0;
+}
+
 /*
 |-------------------------------------------------------------------------------
 | START: DEPRECATION WARNING!!
@@ -74,9 +100,12 @@ html {
   font-family: theme('fontFamily.source-sans');
   // Resetting to a base 16px font-size; works better with default Tailwind.
   font-size: 16px;
-  height: 100%;
   line-height: 1.4;
   width: 100%;
+}
+
+html {
+  height: 100%;
 }
 
 body {

@@ -29,7 +29,6 @@ const HeroTemplate = ({
   content,
   coverImage,
   dashboard,
-  displaySignupButton,
   isAffiliated,
   scholarshipAmount,
   scholarshipCallToAction,
@@ -103,7 +102,7 @@ const HeroTemplate = ({
             </div>
 
             <div className="grid-wide-3/10 secondary">
-              {!isAffiliated && displaySignupButton ? (
+              {!isAffiliated ? (
                 <div className="hero-signup-button">
                   <SignupButtonContainer
                     className="w-full"
@@ -156,7 +155,7 @@ const HeroTemplate = ({
                   : null
               }
             >
-              {!isAffiliated && displaySignupButton ? (
+              {!isAffiliated ? (
                 <div className="pt-6 w-2/3 sm:w-1/2">
                   <SignupButtonContainer
                     className="w-full md:px-2"
@@ -189,7 +188,6 @@ HeroTemplate.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  displaySignupButton: PropTypes.bool,
   isAffiliated: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipCallToAction: PropTypes.string,
@@ -207,7 +205,6 @@ HeroTemplate.defaultProps = {
   numberOfScholarships: 1,
   campaignId: null,
   dashboard: null,
-  displaySignupButton: true,
   isAffiliated: false,
   scholarshipAmount: null,
   scholarshipCallToAction: null,

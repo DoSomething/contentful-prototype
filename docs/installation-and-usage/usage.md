@@ -32,22 +32,11 @@ To run JavaScript [Cypress](https://www.cypress.io/) tests locally, run:
 $ npm run cypress
 ```
 
-New GraphQL types, fields, queries, and mutations should be reflected in the root `schema.json` file that is used by our Cypress test suite to mock GraphQL requests. The easiest way to update the schema is by using the [Apollo CLI](https://www.apollographql.com/docs/devtools/cli/):
+New GraphQL types, fields, queries, and mutations should be reflected in the root `schema.json` file that is used by our Cypress test suite to mock GraphQL requests. The easiest way to update the schema is by using the `schema:fetch` command:
 
 ```bash
-$ apollo client:download-schema --endpoint=http://graphql-dev.dosomething.org/graphql schema.json
+$ npm run schema:fetch
 ```
-
-{% hint style="warning" %}
-Note: This command won't work until we remove the duplicate `UserPostsQuery` definitions in the codebase. It fails with this error:
-
-```
- ›   dosomething-graphql-dev-lambda": Error: ️️There are multiple definitions
- ›   for the `UserPostsQuery` operation. Please rename or remove all operations
- ›   with the duplicated name before continuing.
-```
-
-{% endhint %}
 
 ## Code Style
 

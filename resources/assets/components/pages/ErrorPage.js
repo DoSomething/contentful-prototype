@@ -62,7 +62,7 @@ const ErrorPage = ({ error }) => {
 };
 
 ErrorPage.propTypes = {
-  error: PropTypes.oneOf([PropTypes.object, PropTypes.string]),
+  error: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 ErrorPage.defaultProps = {

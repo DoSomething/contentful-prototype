@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
@@ -5,16 +6,24 @@ import { React, Fragment } from 'react';
 
 import PageQuery from '../PageQuery';
 import sponsorList from './sponsor-list';
+import Modal from '../../utilities/Modal/Modal';
 import * as NewsletterImages from './NewsletterImages';
 import HomePageArticleGallery from './HomePageArticleGallery';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import HomePageCampaignGallery from './HomePageCampaignGallery';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { pageCardFragment } from '../../utilities/PageCard/PageCard';
+import TypeFormEmbed from '../../utilities/TypeFormEmbed/TypeFormEmbed';
+import DelayedElement from '../../utilities/DelayedElement/DelayedElement';
 import { campaignCardFragment } from '../../utilities/CampaignCard/CampaignCard';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
+import DismissableElement from '../../utilities/DismissableElement/DismissableElement';
+import TrafficDistribution from '../../utilities/TrafficDistribution/TrafficDistribution';
 import { campaignCardFeaturedFragment } from '../../utilities/CampaignCard/CampaignCardFeatured';
 import {
   contentfulImageUrl,
+  featureFlag,
   isAuthenticated,
   tailwind,
 } from '../../../helpers';
@@ -77,6 +86,7 @@ const NewsletterItem = ({ content, image, link, title }) => (
     <p className="mb-4 flex-grow text-white">{content}</p>
     <a
       className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
+      data-label={`newsletter_cta_${title.toLowerCase()}`}
       href={link.url}
       rel="noopener noreferrer"
       target="_blank"
@@ -144,6 +154,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
       <main>
         <article data-test="home-page">
           <header role="banner" className="bg-white">
+            <AnalyticsWaypoint name="impact_section_top" />
+
             <div
               className="base-12-grid bg-gray-200 pt-3 md:pt-6"
               css={css`
@@ -204,6 +216,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 />
               </div>
             </div>
+
+            <AnalyticsWaypoint name="impact_section_bottom" />
           </header>
 
           {campaigns ? (
@@ -219,6 +233,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               data-test="campaigns-section"
             >
               <div className="grid-wide text-center">
+                <AnalyticsWaypoint name="campaign_section_top" />
+
                 <h2 className="mb-6 relative">
                   <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
                     Take Action
@@ -235,6 +251,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   <a
                     href="/us/about/easy-scholarships"
                     className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="campaign_section_earn_scholarships"
                   >
                     earn scholarships
                   </a>
@@ -243,12 +260,14 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <HomePageCampaignGallery campaigns={campaigns} />
 
-                <a
+                <PrimaryButton
+                  className="mt-8 py-4 px-8 text-lg"
+                  data={{ 'data-label': 'campaign_section_show_more' }}
                   href="/us/campaigns"
-                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-                >
-                  See More Campaigns
-                </a>
+                  text="See More Campaigns"
+                />
+
+                <AnalyticsWaypoint name="campaign_section_bottom" />
               </div>
             </section>
           ) : null}
@@ -258,6 +277,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             data-test="newsletters-cta"
           >
             <div className="grid-wide text-center">
+              <AnalyticsWaypoint name="newsletter_cta_top" />
+
               <h2 className="text-white mb-4">
                 <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
                   Get Inspired.
@@ -322,6 +343,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   />
                 </li>
               </ul>
+
+              <AnalyticsWaypoint name="newsletter_cta_bottom" />
             </div>
           </article>
 
@@ -331,6 +354,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               data-test="articles-section"
             >
               <div className="grid-wide text-center">
+                <AnalyticsWaypoint name="article_section_top" />
+
                 <h2 className="mb-6 relative">
                   <span className="bg-gray-100 font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
                     Read About It
@@ -343,12 +368,14 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <HomePageArticleGallery articles={articles} />
 
-                <a
-                  href="/us/articles"
-                  className="btn bg-blurple-500 hover:bg-blurple-300 focus:bg-blurple-700 inline-block mt-8 hover:no-underline py-4 px-8 text-lg hover:text-white"
-                >
-                  See More Articles
-                </a>
+                <PrimaryButton
+                  className="mt-8 py-4 px-8 text-lg"
+                  data={{ 'data-label': 'article_section_show_more' }}
+                  href="https://lets.dosomething.org/"
+                  text="See More Articles"
+                />
+
+                <AnalyticsWaypoint name="article_section_bottom" />
               </div>
             </section>
           ) : null}
@@ -360,6 +387,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             data-test="sponsors-section"
           >
             <div className="grid-wide text-center">
+              <AnalyticsWaypoint name="sponsor_section_top" />
+
               <h2 className="font-bold mb-3 text-base text-center text-gray-500 uppercase">
                 Sponsors
               </h2>
@@ -375,6 +404,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   </li>
                 ))}
               </ul>
+
+              <AnalyticsWaypoint name="sponsor_section_bottom" />
             </div>
           </section>
 
@@ -384,6 +415,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
               data-test="signup-cta"
             >
               <div className="xl:flex grid-wide xl:items-center text-center">
+                <AnalyticsWaypoint name="join_cta_top" />
+
                 <div className="text-left xl:w-8/12">
                   <h1 className="font-bold text-2xl">
                     Join our youth-led movement for good
@@ -395,17 +428,41 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 </div>
 
                 <div className="flex-grow">
-                  <a
+                  <PrimaryButton
+                    className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
+                    data={{ 'data-label': 'signup_cta_authorize' }}
                     href="/authorize"
-                    className="btn bg-blurple-500 hover:bg-blurple-300 inline-block mt-8 xl:m-0 hover:no-underline py-4 px-16 text-lg hover:text-white xl:ml-auto"
-                  >
-                    Join Now
-                  </a>
+                    text="Join Now"
+                  />
                 </div>
+
+                <AnalyticsWaypoint name="join_cta_bottom" />
               </div>
             </article>
           )}
         </article>
+
+        {featureFlag('nps_survey') ? (
+          <TrafficDistribution percentage={5} feature="nps_survey">
+            <DismissableElement
+              name="nps_survey"
+              render={(handleClose, handleComplete) => (
+                <DelayedElement delay={5}>
+                  <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                    <TypeFormEmbed
+                      displayType="modal"
+                      typeformUrl="https://dosomething.typeform.com/to/iEdy7C"
+                      queryParameters={{
+                        northstar_id: get(window.AUTH, 'id', null),
+                      }}
+                      onSubmit={handleComplete}
+                    />
+                  </Modal>
+                </DelayedElement>
+              )}
+            />
+          </TrafficDistribution>
+        ) : null}
       </main>
 
       <SiteFooter />

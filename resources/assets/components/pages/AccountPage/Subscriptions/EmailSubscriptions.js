@@ -5,7 +5,7 @@ import NewsletterImages from './NewsletterImages';
 import EmailSubscriptionItem from './EmailSubscriptionItem';
 
 const EmailSubscriptions = () => (
-  <div className="gallery-grid gallery-grid-quartet">
+  <div className="gallery-grid gallery-grid-quartet my-6 -mx-3">
     <EmailSubscriptionItem
       topic="COMMUNITY"
       name="What You're Doing"

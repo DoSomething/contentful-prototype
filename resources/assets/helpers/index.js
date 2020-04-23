@@ -1,7 +1,6 @@
 /* global window, document, Blob, URL */
 
 import queryString from 'query-string';
-import resolveConfig from 'tailwindcss/resolveConfig';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
 import {
   get,
@@ -22,7 +21,7 @@ import {
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
 import { isSignedUp } from '../selectors/signup';
-import tailwindConfig from '../../../tailwind.config';
+import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
 // Helper Constants
@@ -943,7 +942,7 @@ export function tailwind(themeSetting) {
     );
   }
 
-  const setting = get(resolveConfig(tailwindConfig).theme, themeSetting, null);
+  const setting = get(tailwindVariables, themeSetting, null);
 
   if (!setting) {
     console.error(
@@ -986,4 +985,30 @@ export function updateQuery(previous, { fetchMoreResult }) {
     // item (e.g. `edges[0]` with then next page's `edges[0]`).
     isArray(dest) ? [...dest, ...src] : undefined,
   );
+}
+
+/**
+ * Formula to convert time to milliseconds.
+ *
+ * @param {Number} days
+ */
+export function getMillisecondsFromDays(days) {
+  // # of days * 1440 minutes in a day * 60 minutes * 1000 milliseconds
+  // @TODO make this more flexible, ie. get milliseconds from hours vs days etc
+  return days * 1440 * 60 * 1000;
+}
+
+/**
+ * Build URL with UTMs for Voter Registration Content
+ *
+ * @param {String} source
+ * @param {String} sourceDetails
+ * @param {String} url
+ */
+
+export function buildVoterRegUrl(source = 'web', sourceDetails, url) {
+  const baseUrl = url || 'https://vote.dosomething.org/';
+  const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
+
+  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
 }

@@ -33,6 +33,7 @@
     @endif
 
     <div id="fb-root"></div>
+    <div id="banner-portal" class="top-0 left-0 w-full block sticky z-1000" role="presentation"></div>
     <div id="chrome" class="chrome h-full w-full">
         @yield('content')
     </div>

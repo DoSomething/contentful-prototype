@@ -60,9 +60,10 @@ const CausePreferences = () => {
     },
   };
   return (
-    <div className="gallery-grid gallery-grid-duo my-6">
+    <div className="gallery-grid gallery-grid-duo my-6 -mx-3">
       {Object.keys(causeItems).map(cause => (
         <CausePreferenceItem
+          key={`${cause.toLowerCase()}_item`}
           cause={cause}
           title={causeItems[cause].title}
           description={causeItems[cause].description}

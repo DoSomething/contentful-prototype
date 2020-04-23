@@ -205,6 +205,41 @@ export function getUtmContext() {
 }
 
 /**
+ * Track link clicks for Snowplow Analytics.
+ *
+ * @param {Object} link
+ * @param {Object} data
+ * @return {void}
+ */
+export function trackAnalyticsLinkClick(link, data = {}) {
+  const context = {
+    referrer: link.baseURI,
+    ...data,
+  };
+
+  const analyticsEvent = [
+    'trackLinkClick',
+    link.href,
+    link.id,
+    [...link.classList],
+    get(link.dataset, 'label', ''),
+    link.text,
+    [
+      {
+        schema: `${window.ENV.PHOENIX_URL}/snowplow_schema.json`,
+        data: {
+          payload: JSON.stringify(withoutValueless(context)),
+        },
+      },
+    ],
+  ];
+
+  analyze('snowplow', analyticsEvent, payload => {
+    window.snowplow(...payload);
+  });
+}
+
+/**
  * Track page views on initial load and for any changes in History interface.
  *
  * @param  {Object} history

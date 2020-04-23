@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 
 import { tailwind } from '../../../../helpers';
+import { certificatePostType } from './CertificateTemplate';
 import VolunteerCreditsTableRow from './VolunteerCreditsTableRow';
 
 const TableHeader = tw.th`bg-blurple-500 font-bold p-4 pr-6 text-left text-white`;
 
-const VolunteerCreditsTable = ({ posts }) =>
-  posts.length ? (
+const VolunteerCreditsTable = ({ certificatePosts }) =>
+  certificatePosts.length ? (
     <table className="border border-solid border-gray-200 border-collapse w-full">
       <thead>
         <tr>
@@ -30,16 +31,16 @@ const VolunteerCreditsTable = ({ posts }) =>
       </thead>
 
       <tbody>
-        {posts.map(post => (
+        {certificatePosts.map(certificatePost => (
           <tr
-            key={post.id}
+            key={certificatePost.id}
             css={css`
               :not(:first-of-type) {
                 border-top: 2px solid ${tailwind('colors.gray.200')};
               }
             `}
           >
-            <VolunteerCreditsTableRow {...post} />
+            <VolunteerCreditsTableRow certificatePost={certificatePost} />
           </tr>
         ))}
       </tbody>
@@ -47,7 +48,7 @@ const VolunteerCreditsTable = ({ posts }) =>
   ) : null;
 
 VolunteerCreditsTable.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
+  certificatePosts: PropTypes.arrayOf(certificatePostType).isRequired,
 };
 
 export default VolunteerCreditsTable;

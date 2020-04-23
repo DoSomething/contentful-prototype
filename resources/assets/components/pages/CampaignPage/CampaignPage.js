@@ -21,10 +21,7 @@ const CampaignPage = props => {
   return (
     <>
       <article className="campaign-page bg-white">
-        <LedeBannerContainer
-          displaySignupButton={Boolean(!entryContent)}
-          isClosed={isCampaignClosed}
-        />
+        <LedeBannerContainer isClosed={isCampaignClosed} />
 
         <div className="clearfix relative">
           {!isCampaignClosed && !entryContent ? (

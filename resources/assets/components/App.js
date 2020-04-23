@@ -6,7 +6,6 @@ import { ApolloProvider } from '@apollo/react-common';
 import { Router, Route, Switch } from 'react-router-dom';
 
 import graphqlClient from '../graphql';
-import { env, featureFlag } from '../helpers';
 import { initializeStore } from '../store/store';
 import HomePage from './pages/HomePage/HomePage';
 import Modal from './utilities/Modal/Modal';
@@ -15,22 +14,41 @@ import CausePage from './pages/CausePage/CausePage';
 import NewHomePage from './pages/HomePage/NewHomePage';
 import CompanyPage from './pages/CompanyPage/CompanyPage';
 import CampaignContainer from './Campaign/CampaignContainer';
+import { env, featureFlag, buildVoterRegUrl } from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
+import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
 import CampaignsIndexPage from './pages/CampaignsPage/CampaignsIndexPage';
 import AccountContainer from './pages/AccountPage/Account/AccountContainer';
 import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
+import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
 
   return (
     <Provider store={store}>
+      {featureFlag('sitewide_cta_banner') ? (
+        <DismissableElement
+          name="sitewide_banner_call_to_action"
+          daysToReRender={7}
+          context={{ contextSource: 'voter_registration' }}
+          render={(handleClose, handleComplete) => (
+            <SitewideBanner
+              cta="Get Started"
+              description="Make your voice heard. Register to vote in less than 2 minutes."
+              handleClose={handleClose}
+              handleComplete={handleComplete}
+              link={buildVoterRegUrl('web', 'hellobar')}
+            />
+          )}
+        />
+      ) : null}
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
         {history.location.pathname !== '/us' ? (
           <TrafficDistribution percentage={100} feature="nps_survey">
@@ -89,6 +107,14 @@ const App = ({ store, history }) => {
               )}
             />
             <Route path="/us/join" component={BetaReferralPage} />
+            <Route
+              path="/us/members/:userId/voter-registration-drive"
+              render={routeProps => (
+                <VoterRegistrationDrivePage
+                  userId={routeProps.match.params.userId}
+                />
+              )}
+            />
             <Route
               path="/us/refer-friends"
               component={AlphaReferralPageContainer}

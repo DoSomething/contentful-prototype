@@ -22,7 +22,10 @@ const USER_POSTS_QUERY = gql`
 
 const UserPostsQuery = ({ userId }) => (
   <div className="grid-wide">
-    <h2 className="mb-3">Your Uploads</h2>
+    <h1 className="text-xl">Campaign Uploads</h1>
+    <p className="mb-6 text-gray-600">
+      These are all your uploads and submissions to DoSomething campaigns.
+    </p>
     <PaginatedQuery
       query={USER_POSTS_QUERY}
       queryName="postsByUserId"

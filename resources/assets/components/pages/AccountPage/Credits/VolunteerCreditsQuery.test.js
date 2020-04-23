@@ -56,8 +56,8 @@ describe('VolunteerCreditsQuery component', () => {
     });
 
     expect(wrapper.find('volunteer-credits-table').length).toEqual(1);
-    expect(wrapper.find('volunteer-credits-table').prop('posts')).toEqual(
-      mockParsedPostsData,
-    );
+    expect(
+      wrapper.find('volunteer-credits-table').prop('certificatePosts'),
+    ).toEqual(mockParsedPostsData);
   });
 });
