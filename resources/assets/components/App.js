@@ -82,12 +82,8 @@ const App = ({ store, history }) => {
             />
             <Route path="/us/join" component={BetaReferralPage} />
             <Route
-              path="/us/members/:userId/voter-registration-drive"
-              render={routeProps => (
-                <VoterRegistrationDrivePage
-                  userId={routeProps.match.params.userId}
-                />
-              )}
+              path="/us/my-voter-registration-drive"
+              component={VoterRegistrationDrivePage}
             />
             <Route
               path="/us/refer-friends"

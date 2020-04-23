@@ -1,9 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorPage from '../ErrorPage';
+import { query } from '../../../helpers';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
@@ -21,7 +21,13 @@ const VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY = gql`
   }
 `;
 
-const VoterRegistrationDrivePage = ({ userId }) => {
+const VoterRegistrationDrivePage = () => {
+  const userId = query('referrer_user_id');
+
+  if (!userId) {
+    return <NotFoundPage />;
+  }
+
   const { loading, error, data } = useQuery(
     VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY,
     {
@@ -130,10 +136,6 @@ const VoterRegistrationDrivePage = ({ userId }) => {
       <SiteFooter />
     </>
   );
-};
-
-VoterRegistrationDrivePage.propTypes = {
-  userId: PropTypes.string.isRequired,
 };
 
 export default VoterRegistrationDrivePage;
