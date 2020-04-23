@@ -33,13 +33,13 @@ export const certificatePostType = PropTypes.shape({
 Font.register({
   family: 'Source Sans Pro',
   fonts: [
-    { src: '../../../../fonts/sourcesanspro-regular.woff' },
+    { src: '/fonts/sourcesanspro-regular.woff' },
     {
-      src: '../../../../fonts/sourcesanspro-bold.woff',
+      src: '/fonts/sourcesanspro-bold.woff',
       fontWeight: 700,
     },
     {
-      src: '../../../../fonts/sourcesanspro-italic.woff',
+      src: '/fonts/sourcesanspro-italic.woff',
       fontStyle: 'italic',
     },
   ],
@@ -47,7 +47,7 @@ Font.register({
 
 Font.register({
   family: 'League Gothic',
-  src: '../../../../fonts/leaguegothic-regular.woff',
+  src: '/fonts/leaguegothic-regular.woff',
   fontWeight: 400,
   fontStyle: 'normal',
 });
