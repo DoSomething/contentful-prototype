@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 
+import Spinner from '../../../artifacts/Spinner/Spinner';
 import ToggleButton from '../../../utilities/Button/ToggleButton';
 
 const EMAIL_SUBSCRIPTION_QUERY = gql`
@@ -35,17 +36,13 @@ const EmailSubscriptionItem = ({ topic, name, image, description }) => {
 
   // Make the initial query to get the user's subscriptions
   const { data, loading, error } = useQuery(EMAIL_SUBSCRIPTION_QUERY, options);
-  const [updateSubscription] = useMutation(
+  const [updateSubscription, { loading: modifying }] = useMutation(
     EMAIL_SUBSCRIPTION_MUTATION,
     options,
   );
 
   if (error) {
     return <p>Something went wrong!</p>;
-  }
-
-  if (loading) {
-    return <div className="spinner" />;
   }
 
   const topics = data.user.emailSubscriptionTopics;
@@ -64,20 +61,26 @@ const EmailSubscriptionItem = ({ topic, name, image, description }) => {
 
           <p className="flex-grow">{description}</p>
 
-          <ToggleButton
-            activateText="Subscribe"
-            deactivateText="Unsubscribe"
-            isToggled={topics.includes(topic)}
-            className="mt-4"
-            onClick={() =>
-              updateSubscription({
-                variables: {
-                  topic,
-                  subscribed: !topics.includes(topic),
-                },
-              })
-            }
-          />
+          {loading ? (
+            <Spinner className="flex justify-center p-2" />
+          ) : (
+            <ToggleButton
+              activateText="Subscribe"
+              deactivateText="Unsubscribe"
+              isDisabled={modifying}
+              isLoading={modifying}
+              isToggled={topics.includes(topic)}
+              className="mt-4"
+              onClick={() =>
+                updateSubscription({
+                  variables: {
+                    topic,
+                    subscribed: !topics.includes(topic),
+                  },
+                })
+              }
+            />
+          )}
         </div>
       </div>
     </div>

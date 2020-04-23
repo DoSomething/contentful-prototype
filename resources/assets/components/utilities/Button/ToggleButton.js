@@ -11,8 +11,9 @@ const ToggleButton = props => {
     data,
     deactivateText,
     isDisabled,
-    onClick,
+    isLoading,
     isToggled,
+    onClick,
     type,
   } = props;
 
@@ -22,6 +23,7 @@ const ToggleButton = props => {
     'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
     'text-base text-white hover:text-white',
     className,
+    { 'is-loading': isLoading },
   );
 
   const deactivateClasses = classnames(
@@ -30,6 +32,7 @@ const ToggleButton = props => {
     'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
     'text-base text-blurple-500 active:text-blurple-700 hover:text-blurple-300',
     className,
+    { 'is-loading': isLoading },
   );
 
   return (
@@ -50,6 +53,7 @@ ToggleButton.propTypes = {
   data: PropTypes.object,
   deactivateText: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   isToggled: PropTypes.bool,
   onClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -59,6 +63,7 @@ ToggleButton.defaultProps = {
   className: null,
   data: {},
   isDisabled: false,
+  isLoading: false,
   isToggled: false,
   onClick: null,
   type: 'button',

@@ -66,6 +66,7 @@ const CausePreferenceItem = ({ cause, description, title }) => {
             className="w-full"
             deactivateText="Unfollow"
             isDisabled={modifying}
+            isLoading={modifying}
             isToggled={causes.includes(cause)}
             onClick={() =>
               updateInterest({
