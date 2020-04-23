@@ -14,6 +14,8 @@ import {
 export const certificatePostType = PropTypes.shape({
   id: PropTypes.number.isRequired,
   campaignWebsite: PropTypes.shape({
+    showcaseTitle: PropTypes.string.isRequired,
+    showcaseDescription: PropTypes.string.isRequired,
     showcaseImage: PropTypes.shape({
       url: PropTypes.string.isRequired,
       description: PropTypes.string,
