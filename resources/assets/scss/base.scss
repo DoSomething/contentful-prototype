@@ -35,6 +35,10 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
   color: theme('colors.gray.100') !important;
 }
 
+.btn.is-loading:disabled {
+  @apply cursor-wait;
+}
+
 // @TODO:forge-removal Rename this class to "text-field".
 .text-input {
   @apply bg-white p-3 border border-gray-200 border-solid font-source-sans rounded;

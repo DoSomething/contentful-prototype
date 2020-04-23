@@ -32,10 +32,9 @@ const SecondaryButton = props => {
   const classes = classnames(
     baseClasses,
     'active:bg-gray-200',
-    'border-2 border-solid active:border-blurple-700 hover:border-blurple-300 focus:rounded-none',
+    'border-2 active:border-blurple-700 hover:border-blurple-300 border-solid focus:rounded-none',
     'focus:outline-2 focus:outline-blurple-100 focus:outline-solid',
-    'text-base',
-    'active:text-blurple-700 hover:text-blurple-300',
+    'text-base active:text-blurple-700 hover:text-blurple-300',
     className,
   );
 
