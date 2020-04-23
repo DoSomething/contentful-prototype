@@ -1,3 +1,13 @@
+// Sets up the following model for the Call To Action content type:
+// Internal title
+// Supertitle ++
+// Title ++
+// Content
+// Link Text ++
+// Link Location ++
+// Template ++
+// Alignment ++
+
 module.exports = function(migration) {
   const callToAction = migration.editContentType('callToAction');
 
