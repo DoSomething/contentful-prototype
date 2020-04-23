@@ -1,6 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  Font,
+} from '@react-pdf/renderer';
 
 // Volunteer credit table generated 'certificatePost' prop type.
 export const certificatePostType = PropTypes.shape({
@@ -17,6 +23,29 @@ export const certificatePostType = PropTypes.shape({
   impactLabel: PropTypes.string,
   photo: PropTypes.string,
   pending: PropTypes.bool.isRequired,
+});
+
+// Fonts need to be explicitly registered with the PDF renderer.
+Font.register({
+  family: 'Source Sans Pro',
+  fonts: [
+    { src: '../../../../fonts/sourcesanspro-regular.woff' },
+    {
+      src: '../../../../fonts/sourcesanspro-bold.woff',
+      fontWeight: 700,
+    },
+    {
+      src: '../../../../fonts/sourcesanspro-italic.woff',
+      fontStyle: 'italic',
+    },
+  ],
+});
+
+Font.register({
+  family: 'League Gothic',
+  src: '../../../../fonts/leaguegothic-regular.woff',
+  fontWeight: 400,
+  fontStyle: 'normal',
 });
 
 // PDF template styles.
