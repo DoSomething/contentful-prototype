@@ -1,6 +1,7 @@
 /* global window */
 
 import React from 'react';
+import Media from 'react-media';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -8,6 +9,7 @@ import ShareButton from './ShareButton';
 import emailIcon from './emailIcon.svg';
 import twitterIcon from './twitterIcon.svg';
 import facebookIcon from './facebookIcon.svg';
+import snapchatIcon from './snapchatIcon.svg';
 import messengerIcon from './messengerIcon.svg';
 import {
   EVENT_CATEGORIES,
@@ -15,11 +17,14 @@ import {
 } from '../../../helpers/analytics';
 import {
   loadFacebookSDK,
+  loadSnapchatSDK,
   handleTwitterShareClick,
   showFacebookShareDialog,
   showFacebookSendDialog,
   facebookMessengerShare,
   getFormattedScreenSize,
+  handleSnapchatShareClick,
+  featureFlag,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
@@ -27,6 +32,17 @@ import './social-share-tray.scss';
 class SocialShareTray extends React.Component {
   componentDidMount() {
     loadFacebookSDK();
+  }
+
+  /**
+   * Once snapchat loads the SDK it will search the DOM for a snapchat-share-button class
+   * once this is found it will check for the attribute called data-share-url.
+   * If the sharedLink URL isn't provided it be assigned a empty.
+   */
+  componentDidUpdate(prevProps) {
+    if (!prevProps.shareLink && this.props.shareLink) {
+      loadSnapchatSDK();
+    }
   }
 
   handleFacebookShareClick = (shareLink, trackLink) => {
@@ -123,7 +139,6 @@ class SocialShareTray extends React.Component {
   render() {
     const { shareLink, platforms, responsive, title } = this.props;
     const trackLink = this.props.trackLink || this.props.shareLink;
-
     return (
       <div className="social-share-tray p-3 text-center">
         {title ? <p className="title uppercase font-bold">{title}</p> : null}
@@ -139,6 +154,20 @@ class SocialShareTray extends React.Component {
               icon={facebookIcon}
               text="Share"
             />
+          ) : null}
+          {featureFlag('snapchat_button') && platforms.includes('snapchat') ? (
+            <Media query="(max-width: 759px)">
+              <ShareButton
+                className="snapchat-share-button snapchat bg-snapchat-400 hover:bg-yellow-300 text-black"
+                onClick={() =>
+                  handleSnapchatShareClick(shareLink, { url: trackLink })
+                }
+                dataShareUrl={shareLink}
+                disabled={!shareLink}
+                icon={snapchatIcon}
+                text="Share"
+              />
+            </Media>
           ) : null}
 
           {platforms.includes('twitter') ? (
@@ -191,7 +220,7 @@ SocialShareTray.propTypes = {
 SocialShareTray.defaultProps = {
   shareLink: null,
   trackLink: null,
-  platforms: ['facebook', 'twitter', 'messenger', 'email'],
+  platforms: ['facebook', 'snapchat', 'twitter', 'messenger', 'email'],
   title: null,
   responsive: false,
 };

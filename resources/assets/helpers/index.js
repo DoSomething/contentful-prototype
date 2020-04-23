@@ -1,4 +1,4 @@
-/* global window, document, Blob, URL */
+/* global window, document, Blob, URL, snap */
 
 import queryString from 'query-string';
 import { format, getTime, isBefore, isWithinInterval } from 'date-fns';
@@ -612,6 +612,22 @@ export function loadFacebookSDK() {
 }
 
 /**
+ * Load and return the Snapchat SDK.
+ */
+export function loadSnapchatSDK() {
+  const script = document.createElement('script');
+  script.id = 'snapkit-creative-kit-sdk';
+  script.src = 'https://sdk.snapkit.com/js/v1/create.js';
+  document.head.append(script);
+
+  window.snapKitInit = function() {
+    snap.creativekit.initalizeShareButtons(
+      document.getElementsByClassName('snapchat-share-button'),
+    );
+  };
+}
+
+/**
  * Share a link by generating a Facebook dialog.
  * Get a callback if the share is successful or not.
  *
@@ -774,6 +790,22 @@ export function handleFacebookShareClick(href, trackingData) {
   // @todo 12/13/2018: Use the showFacebookShareDialog to track
   // 'completed' and 'cancelled' events as well.
   showFacebookSharePrompt(href);
+}
+
+/**
+ * Handle click event from a Snapchat share button
+ *
+ * @param {String} href
+ * @param {Object} trackingData
+ *
+ */
+export function handleSnapchatShareClick(href, trackingData) {
+  trackAnalyticsEvent('clicked_share_snapchat', {
+    action: 'button_clicked',
+    category: EVENT_CATEGORIES.socialShare,
+    label: 'snapchat',
+    context: { ...trackingData, url: href },
+  });
 }
 
 /**
