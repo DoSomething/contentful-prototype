@@ -151,7 +151,6 @@ class SocialShareTray extends React.Component {
 
   render() {
     const { shareLink, platforms, responsive, title } = this.props;
-
     const trackLink = this.props.trackLink || this.props.shareLink;
     return (
       <div className="social-share-tray p-3 text-center">
@@ -183,7 +182,6 @@ class SocialShareTray extends React.Component {
               />
             </Media>
           ) : null}
-
           {platforms.includes('twitter') ? (
             <ShareButton
               className="twitter bg-twitter-500 hover:bg-twitter-400"
