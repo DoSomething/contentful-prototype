@@ -19,7 +19,7 @@ const CertificateDownloadButton = ({ certificatePost }) =>
       fileName="dosomething-volunteer-credit-certificate.pdf"
       className={classNames(
         buttonClassNames,
-        'hover:bg-blue-300 hover:no-underline hover:text-white',
+        'bg-blue-500 hover:bg-blue-300 hover:no-underline hover:text-white',
       )}
     >
       Download
