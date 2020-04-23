@@ -13,9 +13,9 @@ import ContentBlock from '../../blocks/ContentBlock/ContentBlock';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-const VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY = gql`
-  query VoterRegistrationDrivePageUserQuery($id: String!) {
-    user(id: $id) {
+const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
+  query VoterRegistrationDrivePageReffererUserQuery($referrerUserId: String!) {
+    user(id: $referrerUserId) {
       id
       firstName
     }
@@ -23,16 +23,16 @@ const VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY = gql`
 `;
 
 const VoterRegistrationDrivePage = () => {
-  const userId = query('referrer_user_id');
+  const referrerUserId = query('referrer_user_id');
 
-  if (!userId) {
+  if (!referrerUserId) {
     return <NotFoundPage />;
   }
 
   const { loading, error, data } = useQuery(
-    VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY,
+    VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY,
     {
-      variables: { id: userId },
+      variables: { referrerUserId },
     },
   );
 
@@ -102,7 +102,7 @@ const VoterRegistrationDrivePage = () => {
             <div className="pb-6">
               {/* We will eventually want to add form fields for email and zip, and send as query parameters to Rock the Vote */}
               <ButtonLink
-                link={`https://register.rockthevote.com/registrants/new?partner=37187&source=user:${userId},source:web,source_details:onlinedrivereferral,referral=true`}
+                link={`https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
               >
                 Register To Vote
               </ButtonLink>
