@@ -2,14 +2,11 @@ import React from 'react';
 import tw from 'twin.macro';
 import Media from 'react-media';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 
 import { tailwind } from '../../../../helpers';
 import CampaignPreview from './CampaignPreview';
-import CertificateTemplate, {
-  certificatePostType,
-} from './CertificateTemplate';
+import { certificatePostType } from './CertificateTemplate';
+import CertificateDownloadButton from './CertificateDownloadButton';
 
 // A list-item displaying a Post detail and value.
 const PostDetail = ({ detail, value }) => (
@@ -22,30 +19,6 @@ const PostDetail = ({ detail, value }) => (
 PostDetail.propTypes = {
   detail: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-};
-
-// The certificate PDF Download button with pending/ready state.
-const buttonClassNames = 'btn w-full py-4 text-lg';
-const DownloadButton = ({ certificatePost }) =>
-  certificatePost.pending ? (
-    <button type="button" disabled className={buttonClassNames}>
-      Pending
-    </button>
-  ) : (
-    <PDFDownloadLink
-      document={<CertificateTemplate certificatePost={certificatePost} />}
-      fileName="dosomething-volunteer-credit-certificate.pdf"
-      className={classNames(
-        buttonClassNames,
-        'hover:bg-blue-300 hover:no-underline hover:text-white',
-      )}
-    >
-      Download
-    </PDFDownloadLink>
-  );
-
-DownloadButton.propTypes = {
-  certificatePost: certificatePostType.isRequired,
 };
 
 const TableData = tw.td`align-middle p-4 pr-6`;
@@ -70,7 +43,7 @@ const VolunteerCreditsTableRow = ({ certificatePost }) => {
             <TableData>{dateCompleted}</TableData>
             <TableData>{volunteerHours}</TableData>
             <TableData>
-              <DownloadButton certificatePost={certificatePost} />
+              <CertificateDownloadButton certificatePost={certificatePost} />
             </TableData>
           </>
         ) : (
@@ -83,7 +56,7 @@ const VolunteerCreditsTableRow = ({ certificatePost }) => {
               <PostDetail detail="Date Completed" value={dateCompleted} />
             </ul>
 
-            <DownloadButton certificatePost={certificatePost} />
+            <CertificateDownloadButton certificatePost={certificatePost} />
           </TableData>
         )
       }
