@@ -107,6 +107,11 @@ const VoterRegistrationDrivePage = () => {
                   living wages, and student loan reform.
                 </p>
                 <p>- {firstName}</p>
+                <p>
+                  250,000+ young people have registered to vote via DoSomething
+                  (it takes less than 2 minutes!). After you register, share
+                  with your friends to enter to win a $1,500 scholarship!
+                </p>
               </div>
               <div className="grid-wide-3/10 secondary">
                 {campaignInfoBlock}
