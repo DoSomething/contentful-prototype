@@ -50,8 +50,8 @@ const App = ({ store, history }) => {
         />
       ) : null}
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
-        {!featureFlag('sitewide_nps_survey') &&
-        history.location.pathname !== '/us' ? (
+        {featureFlag('sitewide_nps_survey') &&
+        window.location.pathname !== '/us' ? (
           <TrafficDistribution percentage={5} feature="nps_survey">
             <DismissableElement
               name="nps_survey"
@@ -63,7 +63,7 @@ const App = ({ store, history }) => {
                       typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
                       queryParameters={{
                         northstar_id: get(window.AUTH, 'id', null),
-                        url: get(window.location),
+                        url: window.location.pathname,
                       }}
                       onSubmit={handleComplete}
                     />
