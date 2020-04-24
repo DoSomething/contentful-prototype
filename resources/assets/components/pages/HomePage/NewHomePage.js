@@ -53,6 +53,11 @@ const HOME_PAGE_QUERY = gql`
   ${pageCardFragment}
 `;
 
+/**
+ * Impact statistic component for homepage header banner.
+ *
+ * @param {Object}
+ */
 const ImpactStatistic = ({ campaignName, impactLabel, impactValue }) => (
   <div className="px-4 py-5 text-center">
     <p className="font-league-gothic leading-none mb-1 text-5xl text-teal-300 uppercase">
@@ -71,19 +76,32 @@ ImpactStatistic.propTypes = {
   impactValue: PropTypes.string.isRequired,
 };
 
+/**
+ * Newsletter item for newsletter section.
+ *
+ * @param {Object}
+ */
 const NewsletterItem = ({ content, image, link, title }) => (
   <div className="flex flex-col h-full">
-    <img
-      alt={`${title} newsletter badge`}
-      className="mb-4 mx-auto"
-      css={css`
-        height: 180px;
-        width: 180px;
-      `}
-      src={image}
-    />
-    <h3 className="mb-2 text-white">{title}</h3>
+    <a className="block mb-4 mx-auto no-underline" href={link.url}>
+      <img
+        alt={`${title} newsletter badge`}
+        css={css`
+          height: 180px;
+          width: 180px;
+        `}
+        src={image}
+      />
+    </a>
+
+    <h3 className="mb-2">
+      <a className="text-white hover:text-yellow-300" href={link.url}>
+        {title}
+      </a>
+    </h3>
+
     <p className="mb-4 flex-grow text-white">{content}</p>
+
     <a
       className="font-normal text-white hover:text-yellow-300 underline hover:no-underline"
       data-label={`newsletter_cta_${title.toLowerCase()}`}
@@ -106,6 +124,11 @@ NewsletterItem.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
+/**
+ * Home Page template.
+ *
+ * @param {Object}
+ */
 const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
   const tailwindGray = tailwind('colors.gray');
   const tailwindScreens = tailwind('screens');
@@ -204,7 +227,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 />
 
                 <ImpactStatistic
-                  campaignName="Get the Filter Out"
+                  campaignName="GTFO (Get The Filter Out)"
                   impactLabel="Cigarette Butts Collected"
                   impactValue="3.7 million"
                 />
@@ -237,7 +260,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <h2 className="mb-6 relative">
                   <span className="bg-white font-league-gothic font-normal leading-tight inline-block px-6 relative text-3xl md:text-4xl uppercase z-10">
-                    Take Action
+                    Take Action!
                   </span>
                   <span
                     className="absolute bg-purple-500 block h-1 w-full z-0"
@@ -257,6 +280,25 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   </a>
                   . (Talk about a win-win.)
                 </p>
+
+                {/*
+                // @TODO: After volunteer credits launch use this copy for campaigns section:
+                <p className="mb-3 text-lg">
+                  Choose a campaign below to make an impact{' '}
+                  <a
+                    href="/us/about/easy-scholarships"
+                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="campaign_section_earn_scholarships"
+                  >
+                    win scholarships
+                  </a>
+                  , and earn volunteer credits for school.
+                </p>
+
+                <p className="mb-6 lg:mb-8 mt-0 text-lg">
+                  Talk about a win-win-win.
+                </p>
+                */}
 
                 <HomePageCampaignGallery campaigns={campaigns} />
 
@@ -279,66 +321,63 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
             <div className="grid-wide text-center">
               <AnalyticsWaypoint name="newsletter_cta_top" />
 
-              <h2 className="text-white mb-4">
-                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
-                  Get Inspired.
-                </span>{' '}
-                <span className="block lg:inline-block font-league-gothic font-normal lg:px-1 tracking-wide text-4xl uppercase">
-                  Get Entertained.
-                </span>{' '}
-                <span className="block lg:inline-block font-league-gothic font-normal tracking-wide text-4xl uppercase">
-                  Get Active.
-                </span>
+              <h2 className="font-league-gothic font-normal mb-4 tracking-wide text-4xl text-white uppercase">
+                Impact &amp; Inspiration For Your Inbox
               </h2>
+
               <p className="text-lg text-white">
-                Sign up for one of our newsletters.
+                Subscribe to a DoSomething newsletter.
               </p>
 
               <ul className="md:col-gap-8 lg:col-gap-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-8 row-gap-8">
                 <li className="text-white">
                   <NewsletterItem
-                    content="Create change with millions of others."
+                    content="How DoSomething members are changing the world, and how you can too."
                     title="Community"
                     image={NewsletterImages.Community}
                     link={{
-                      copy: 'Join the Communty',
-                      url: 'https://wyd.dosomething.org',
+                      copy: 'Join Us',
+                      url:
+                        'https://join.dosomething.org/#page-block-71pdxfteosc',
                     }}
                   />
                 </li>
 
                 <li className="text-white">
                   <NewsletterItem
-                    content="Make an impact on today's headlines."
-                    title="News"
-                    image={NewsletterImages.News}
-                    link={{
-                      copy: 'Get News',
-                      url: 'https://breakdown.dosomething.org',
-                    }}
-                  />
-                </li>
-
-                <li className="text-white">
-                  <NewsletterItem
-                    content="Live your best life and help others do the same."
-                    title="Lifestyle"
-                    image={NewsletterImages.Lifestyle}
-                    link={{
-                      copy: 'Start Reading',
-                      url: 'https://boost.dosomething.org',
-                    }}
-                  />
-                </li>
-
-                <li className="text-white">
-                  <NewsletterItem
-                    content="Qualify for easy scholarships, no GPA or essay required."
+                    content="Earn the chance to win scholarships for volunteering. No essay or GPA required...ever."
                     title="Scholarships"
                     image={NewsletterImages.Scholarships}
                     link={{
                       copy: 'Find Scholarships',
-                      url: 'https://pays.dosomething.org',
+                      url:
+                        'https://join.dosomething.org/#page-block-sy2dstz4b6',
+                    }}
+                  />
+                </li>
+
+                <li className="text-white">
+                  <NewsletterItem
+                    content="Read the headlines. Change the headlines."
+                    title="News"
+                    image={NewsletterImages.News}
+                    link={{
+                      copy: 'Get News',
+                      url:
+                        'https://join.dosomething.org/#page-block-ay8syiyhro5',
+                    }}
+                  />
+                </li>
+
+                <li className="text-white">
+                  <NewsletterItem
+                    content="Boost your mood. Boost your knowledge. Boost yourself into action!"
+                    title="Lifestyle"
+                    image={NewsletterImages.Lifestyle}
+                    link={{
+                      copy: 'Get Inspired',
+                      url:
+                        'https://join.dosomething.org/#page-block-85qyo7ii8fh',
                     }}
                   />
                 </li>
@@ -422,8 +461,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     Join our youth-led movement for good
                   </h1>
                   <p className="text-lg">
-                    Make an impact with millions of young people, and earn easy
-                    scholarships for volunteering.
+                    Make an impact with millions of young people, and earn a
+                    chance to win scholarships.
                   </p>
                 </div>
 
