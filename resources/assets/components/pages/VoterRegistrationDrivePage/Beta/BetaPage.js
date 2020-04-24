@@ -22,6 +22,11 @@ const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
   }
 `;
 
+// Because we don't have a link to contentful, this image url will need to get updated if we want a new coverImage
+
+const coverImageUrl =
+  'https://images.ctfassets.net/81iqaqpfd8fy/3uyVbvfCxFTp4zWYQCXJSG/eb10583a58a040dc374ad9b5447b65d3/vote.dosomething.2020__1_.jpg?h=250';
+
 const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
 
@@ -63,11 +68,28 @@ const VoterRegistrationDrivePage = () => {
     />
   );
 
+  const srcset = contentfulImageSrcset(coverImageUrl, [
+    { height: 360, width: 640 },
+    { height: 576, width: 1024 },
+    { height: 810, width: 1440 },
+    { height: 1620, width: 2880 },
+  ]);
+
   return (
     <>
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
+          <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
+            <img
+              className="grid-wide"
+              alt={
+                'Collage of eight smiling young people with "I Voted" stickers'
+              }
+              srcSet={srcset}
+              src={contentfulImageUrl(coverImageUrl, '1440', '810', 'fill')}
+            />
+          </div>
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
