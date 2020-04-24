@@ -56,13 +56,14 @@ const App = ({ store, history }) => {
             <DismissableElement
               name="nps_survey"
               render={(handleClose, handleComplete) => (
-                <DelayedElement delay={60}>
+                <DelayedElement delay={30}>
                   <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
                     <TypeFormEmbed
                       displayType="modal"
                       typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
                       queryParameters={{
                         northstar_id: get(window.AUTH, 'id', null),
+                        url: get(window.location),
                       }}
                       onSubmit={handleComplete}
                     />
