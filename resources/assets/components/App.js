@@ -50,7 +50,8 @@ const App = ({ store, history }) => {
         />
       ) : null}
       <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
-        {history.location.pathname !== '/us' ? (
+        {!featureFlag('sitewide_nps_survey') &&
+        history.location.pathname !== '/us' ? (
           <TrafficDistribution percentage={5} feature="nps_survey">
             <DismissableElement
               name="nps_survey"
