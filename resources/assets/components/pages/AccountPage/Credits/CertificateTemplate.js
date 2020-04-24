@@ -144,22 +144,20 @@ const CertificateTemplate = ({ certificatePost }) => (
             styles.flex,
             {
               border: `2 solid ${colors.lightBlue}`,
-              marginTop: 20,
-              height: 150,
+              marginTop: 15,
               lineHeight: 1.1,
             },
           ]}
         >
-          <View
+          <Image
             style={{
               width: '24%',
               borderRight: `2 solid ${colors.lightBlue}`,
             }}
-          >
-            <Image src="https://activity-dev.dosomething.org/images/6YpKv0kz8n" />
-          </View>
+            src="https://activity-dev.dosomething.org/images/6YpKv0kz8n"
+          />
 
-          <View style={{ width: '75%', padding: '10 0 5 30' }}>
+          <View style={{ width: '75%', padding: '10 0 15 30' }}>
             <Text
               style={{
                 fontSize: 25,
@@ -171,6 +169,7 @@ const CertificateTemplate = ({ certificatePost }) => (
               Love Letters Challenge
             </Text>
 
+            {/* @TODO adjust font size if character count is greater then 100 */}
             <Text style={{ fontStyle: 'italic' }}>
               Make a valentine&apos;s day card to show an adult you care.
             </Text>
@@ -196,7 +195,7 @@ const CertificateTemplate = ({ certificatePost }) => (
           </View>
         </View>
 
-        <View style={{ fontSize: 10, marginTop: 25, lineHeight: 1.1 }}>
+        <View style={{ fontSize: 10, marginTop: 20, lineHeight: 1.1 }}>
           <View style={styles.flex}>
             <View style={{ width: '50%' }}>
               <Text>[signature]</Text>
