@@ -337,7 +337,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     image={NewsletterImages.Community}
                     link={{
                       copy: 'Join Us',
-                      url: 'https://wyd.dosomething.org',
+                      url:
+                        'https://join.dosomething.org/#page-block-71pdxfteosc',
                     }}
                   />
                 </li>
@@ -349,7 +350,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     image={NewsletterImages.Scholarships}
                     link={{
                       copy: 'Find Scholarships',
-                      url: 'https://pays.dosomething.org',
+                      url:
+                        'https://join.dosomething.org/#page-block-sy2dstz4b6',
                     }}
                   />
                 </li>
@@ -361,7 +363,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     image={NewsletterImages.News}
                     link={{
                       copy: 'Get News',
-                      url: 'https://breakdown.dosomething.org',
+                      url:
+                        'https://join.dosomething.org/#page-block-ay8syiyhro5',
                     }}
                   />
                 </li>
@@ -373,7 +376,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                     image={NewsletterImages.Lifestyle}
                     link={{
                       copy: 'Get Inspired',
-                      url: 'https://boost.dosomething.org',
+                      url:
+                        'https://join.dosomething.org/#page-block-85qyo7ii8fh',
                     }}
                   />
                 </li>
