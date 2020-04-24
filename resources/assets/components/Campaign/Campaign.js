@@ -29,8 +29,30 @@ const Campaign = props => (
       <LegacyAdminDashboardContainer>
         <LegacyCampaignDashboardContainer />
       </LegacyAdminDashboardContainer>
-
       <NotificationContainer />
+
+      {props.isAuthenticated && !featureFlag('sitewide_nps_survey') ? (
+        <TrafficDistribution percentage={5} feature="nps_survey">
+          <DismissableElement
+            name="nps_survey"
+            render={(handleClose, handleComplete) => (
+              <DelayedElement delay={60}>
+                <Modal onClose={handleClose} trackingId="SURVEY_MODAL">
+                  <TypeFormEmbed
+                    displayType="modal"
+                    typeformUrl="https://dosomething.typeform.com/to/Bvcwvm"
+                    queryParameters={{
+                      campaign_id: props.campaignId,
+                      northstar_id: props.userId,
+                    }}
+                    onSubmit={handleComplete}
+                  />
+                </Modal>
+              </DelayedElement>
+            )}
+          />
+        </TrafficDistribution>
+      ) : null}
 
       {props.isAuthenticated &&
       get(props, 'featureFlags.showVoterRegistrationModal') &&
