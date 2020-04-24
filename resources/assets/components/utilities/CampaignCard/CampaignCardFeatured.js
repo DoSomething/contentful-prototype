@@ -68,7 +68,7 @@ const CampaignCardFeatured = ({ campaign }) => {
             alt={
               showcaseImage.description || `Cover photo for ${showcaseTitle}`
             }
-            className="xxl:invisible"
+            className="xxl:invisible pointer-events-none"
             srcSet={srcset}
             src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
           />
