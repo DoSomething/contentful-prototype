@@ -75,6 +75,9 @@ $router->view('us/refer-friends', 'app')
 // Blocks
 $router->view('us/blocks/{id}', 'app');
 
+// Voter Registration Drives
+$router->view('us/my-voter-registration-drive', 'app');
+
 // Pages
 $router->get('us/{slug}', 'PageController@show');
 $router->get('{slug}', function ($slug) {
@@ -89,9 +92,6 @@ $router->view('us/collections/{slug}', 'app');
 
 // Cache
 $router->get('cache/{cacheId}', 'CacheController');
-
-// Voter Registration Drives
-$router->view('us/members/{userId}/voter-registration-drive', 'app');
 
 // Unknown Route Fallback
 // Ensures we run through web middleware when rendering 404 pages.

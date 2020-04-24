@@ -1,31 +1,38 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
 import { useQuery } from '@apollo/react-hooks';
 
 import ErrorPage from '../ErrorPage';
+import { query } from '../../../helpers';
 import NotFoundPage from '../NotFoundPage';
 import Placeholder from '../../utilities/Placeholder';
+import VoterRegistrationFaq from './VoterRegistrationFaq';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../blocks/ContentBlock/ContentBlock';
 import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-const VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY = gql`
-  query VoterRegistrationDrivePageUserQuery($id: String!) {
-    user(id: $id) {
+const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
+  query VoterRegistrationDrivePageReffererUserQuery($referrerUserId: String!) {
+    user(id: $referrerUserId) {
       id
       firstName
     }
   }
 `;
 
-const VoterRegistrationDrivePage = ({ userId }) => {
+const VoterRegistrationDrivePage = () => {
+  const referrerUserId = query('referrer_user_id');
+
+  if (!referrerUserId) {
+    return <NotFoundPage />;
+  }
+
   const { loading, error, data } = useQuery(
-    VOTER_REGISTRATION_DRIVE_PAGE_USER_QUERY,
+    VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY,
     {
-      variables: { id: userId },
+      variables: { referrerUserId },
     },
   );
 
@@ -95,26 +102,13 @@ const VoterRegistrationDrivePage = ({ userId }) => {
             <div className="pb-6">
               {/* We will eventually want to add form fields for email and zip, and send as query parameters to Rock the Vote */}
               <ButtonLink
-                link={`https://register.rockthevote.com/registrants/new?partner=37187&source=user:${userId},source:web,source_details:onlinedrivereferral,referral=true`}
+                link={`https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
               >
                 Register To Vote
               </ButtonLink>
             </div>
             <div className="pb-6">
-              <h1 className="section-header__title font-normal font-league-gothic uppercase text-4xl -underlined pb-3">
-                Learn The Facts
-              </h1>
-              <ul>
-                {/* These will eventually expand/collapse with more information. */}
-                <li>Does my vote actually matter?</li>
-                <li>Is registering to vote online safe?</li>
-                <li>Am I registered to vote?</li>
-                <li>I’m not 18. Can I still register to vote?</li>
-                <li>Can I register to vote without a driver’s license?</li>
-                <li>How do I vote if I’m at college in a different state?</li>
-                <li>When are my elections?</li>
-                <li>Where can I find more information?</li>
-              </ul>
+              <VoterRegistrationFaq />
             </div>
             <ContentBlock
               superTitle="Step 2"
@@ -130,10 +124,6 @@ const VoterRegistrationDrivePage = ({ userId }) => {
       <SiteFooter />
     </>
   );
-};
-
-VoterRegistrationDrivePage.propTypes = {
-  userId: PropTypes.string.isRequired,
 };
 
 export default VoterRegistrationDrivePage;
