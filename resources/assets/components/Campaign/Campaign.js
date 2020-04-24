@@ -30,9 +30,12 @@ const Campaign = props => (
       <LegacyAdminDashboardContainer>
         <LegacyCampaignDashboardContainer />
       </LegacyAdminDashboardContainer>
+
       <NotificationContainer />
 
-      {props.isAuthenticated && !featureFlag('sitewide_nps_survey') ? (
+      {props.isAuthenticated &&
+      featureFlag('nps_survey') &&
+      !featureFlag('sitewide_nps_survey') ? (
         <TrafficDistribution percentage={5} feature="nps_survey">
           <DismissableElement
             name="nps_survey"
