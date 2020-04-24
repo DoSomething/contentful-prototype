@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { pdf } from '@react-pdf/renderer';
 
 import CertificateTemplate, {
@@ -6,41 +6,46 @@ import CertificateTemplate, {
 } from './CertificateTemplate';
 
 const CertificateDownloadButton = ({ certificatePost }) => {
-  const handleClick = () => {
-    // Render the certificate template as a PDF in Blob data form.
-    pdf(<CertificateTemplate certificatePost={certificatePost} />)
-      .toBlob()
-      .then(blob => {
-        // Create a phantom <a> tag to download the certificate for the user.
-        const phantomDownloadLink = document.createElement('a');
-        // Assign the generated PDF blob data as the download link.
-        phantomDownloadLink.href = URL.createObjectURL(blob);
-        // Assign the certificate file name.
-        phantomDownloadLink.download =
-          // @TODO: Update filename to include campaign title and exclude 'credit'.
-          'dosomething-volunteer-credit-certificate.pdf';
+  const [isPdfGenerated, setIsPdfGenerated] = useState(false);
+  const pdfLink = useRef(null);
 
-        // 'Click' the link to trigger the download.
-        phantomDownloadLink.click();
-      })
-      .catch(() => {
-        // Report error, update button error state.
-      });
+  const handleClick = () => {
+    if (!isPdfGenerated) {
+      setIsPdfGenerated(true);
+
+      pdf(<CertificateTemplate certificatePost={certificatePost} />)
+        .toBlob()
+        .then(blob => {
+          pdfLink.current.href = URL.createObjectURL(blob);
+          pdfLink.current.click();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
   };
 
-  const { pending } = certificatePost;
+  if (certificatePost.pending) {
+    return (
+      <button type="button" disabled className="btn w-full py-4 text-lg">
+        Pending
+      </button>
+    );
+  }
 
   // @TODO Handle loading and error state.
   return (
-    // @TODO: Use one of our in-house button components.
-    <button
-      type="button"
-      disabled={pending}
-      className="btn w-full py-4 text-lg bg-blue-500 hover:bg-blue-300 active:no-outline"
-      onClick={() => !pending && handleClick()}
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <a
+      role="link"
+      tabIndex="0"
+      download="certa.pdf"
+      ref={pdfLink}
+      className="btn w-full py-4 text-lg bg-blue-500 hover:bg-blue-300"
+      onClick={() => handleClick()}
     >
-      {pending ? 'Pending' : 'Download'}
-    </button>
+      Download
+    </a>
   );
 };
 
