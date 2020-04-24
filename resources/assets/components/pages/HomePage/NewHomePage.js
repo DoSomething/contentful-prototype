@@ -268,6 +268,21 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   />
                 </h2>
 
+                <p className="mb-6 lg:mb-8 text-lg">
+                  Choose a campaign below to make an impact and enter for a
+                  chance to{' '}
+                  <a
+                    href="/us/about/easy-scholarships"
+                    className="font-normal text-blurple-500 hover:text-blurple-300 underline hover:no-underline"
+                    data-label="campaign_section_earn_scholarships"
+                  >
+                    earn scholarships
+                  </a>
+                  . (Talk about a win-win.)
+                </p>
+
+                {/*
+                // @TODO: After volunteer credits launch use this copy for campaigns section:
                 <p className="mb-3 text-lg">
                   Choose a campaign below to make an impact{' '}
                   <a
@@ -283,6 +298,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <p className="mb-6 lg:mb-8 mt-0 text-lg">
                   Talk about a win-win-win.
                 </p>
+                */}
 
                 <HomePageCampaignGallery campaigns={campaigns} />
 
