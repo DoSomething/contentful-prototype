@@ -443,7 +443,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
         </article>
 
         {featureFlag('nps_survey') ? (
-          <TrafficDistribution percentage={5} feature="nps_survey">
+          <TrafficDistribution percentage={5} feature="homepage_nps_survey">
             <DismissableElement
               name="nps_survey"
               render={(handleClose, handleComplete) => (
