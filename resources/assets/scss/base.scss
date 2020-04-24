@@ -17,7 +17,7 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 
 // @TODO:forge-removal Rename this class to "button".
 .btn {
-  @apply cursor-pointer font-bold font-source-sans inline-block no-underline py-3 px-4 rounded text-center text-white outline-none;
+  @apply cursor-pointer font-bold font-source-sans inline-block no-underline py-3 px-4 rounded text-base text-center text-white outline-none;
 }
 
 .btn:active {
@@ -25,7 +25,7 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 }
 
 .btn:hover {
-  @apply text-white no-underline;
+  @apply cursor-pointer text-white no-underline;
 }
 
 .btn:disabled {

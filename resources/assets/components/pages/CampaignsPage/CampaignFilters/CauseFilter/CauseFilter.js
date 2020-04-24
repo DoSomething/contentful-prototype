@@ -2,53 +2,65 @@ import React from 'react';
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
+import ElementButton from '../../../../utilities/Button/ElementButton';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../../../helpers/analytics';
 
-const CauseInput = ({ causeChecked, causeName, causeValue, handleSelect }) => (
-  <label className="flex justify-start pb-2" htmlFor={causeValue}>
+const causeLabels = {
+  'animal-welfare': 'Animal Welfare',
+  bullying: 'Bullying',
+  education: 'Education',
+  environment: 'Environment',
+  'gender-rights': 'Gender Rights & Equality',
+  'homelessness-and-poverty': 'Homelessness & Poverty',
+  immigration: 'Immigration & Refugees',
+  'lgbtq-rights': 'LGBTQ+ Rights & Equality',
+  'mental-health': 'Mental Health',
+  'physical-health': 'Physical Health',
+  'racial-justice': 'Racial Justice & Equity',
+  'sexual-harassment': 'Sexual Harassment & Assault',
+};
+
+/**
+ * Checkbox input component.
+ *
+ * @param {Object}
+ */
+const CauseInput = ({ causeName, causeValue, handleSelect, isChecked }) => (
+  <label className="flex items-start justify-start pb-2" htmlFor={causeValue}>
     <input
-      name={causeValue}
       id={causeValue}
+      checked={isChecked}
+      className="mt-1"
+      name={causeValue}
+      onChange={handleSelect}
       type="checkbox"
       value={causeValue}
-      onClick={handleSelect}
-      defaultChecked={causeChecked}
     />
     <span className="pl-4">{causeName}</span>
   </label>
 );
 
 CauseInput.propTypes = {
-  causeChecked: PropTypes.bool,
+  isChecked: PropTypes.bool,
   causeName: PropTypes.string.isRequired,
   causeValue: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
 };
 
 CauseInput.defaultProps = {
-  causeChecked: false,
+  isChecked: false,
 };
 
+/**
+ * Filter menu form with series of checkbox inputs.
+ *
+ * @param {Object}
+ */
 const CauseFilter = ({ filters, setFilters }) => {
   const causes = get(filters, 'causes', []);
-
-  const causeLabels = {
-    'animal-welfare': 'Animal Welfare',
-    bullying: 'Bullying',
-    education: 'Education',
-    environment: 'Environment',
-    'gender-rights': 'Gender Rights & Equality',
-    'homelessness-and-poverty': 'Homelessness & Poverty',
-    immigration: 'Immigration & Refugees',
-    'lgbtq-rights': 'LGBTQ+ Rights & Equality',
-    'mental-health': 'Mental Health',
-    'physical-health': 'Physical Health',
-    'racial-justice': 'Racial Justice & Equity',
-    'sexual-harassment': 'Sexual Harassment & Assault',
-  };
 
   const handleCauseSelect = event => {
     trackAnalyticsEvent('clicked_filter_options_cause', {
@@ -74,6 +86,7 @@ const CauseFilter = ({ filters, setFilters }) => {
       category: EVENT_CATEGORIES.filter,
       label: 'cause',
     });
+
     if (causes) {
       setFilters({ causes: [] });
     }
@@ -89,19 +102,18 @@ const CauseFilter = ({ filters, setFilters }) => {
               handleSelect={handleCauseSelect}
               causeName={causeLabels[cause]}
               causeValue={cause}
-              causeChecked={causes.includes(cause)}
+              isChecked={causes.includes(cause)}
             />
           );
         })}
       </div>
+
       <div className="w-full flex justify-start py-2 px-4">
-        <button
-          className="pr-6 focus:outline-none"
+        <ElementButton
+          className="font-bold p-2 text-blue-500 hover:text-blue-300"
+          text="clear"
           onClick={clearAllSelected}
-          type="button"
-        >
-          <p className="font-bold text-blue-500">clear</p>
-        </button>
+        />
       </div>
     </form>
   );
