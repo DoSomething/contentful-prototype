@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
+import AlphaPage from '../VoterRegistrationDrivePage/AlphaPage/AlphaPage';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
+  console.log(props.location.pathname);
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -23,6 +25,10 @@ const CampaignPageContent = props => {
   const isClosed = isCampaignClosed(campaignEndDate);
 
   const { content, sidebar, blocks } = subPage.fields;
+
+  const isAlphaVoterRegistrationDrivePage =
+    props.location.pathname ===
+    '/us/campaigns/online-registration-drive/action';
 
   return (
     <div className="campaign-page__content" id={subPage.id}>
@@ -44,7 +50,13 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      {blocks.length ? (
+      {isAlphaVoterRegistrationDrivePage ? (
+        <div className="base-12-grid clear-both py-3 md:py-6">
+          <AlphaPage />
+        </div>
+      ) : null}
+
+      {blocks.length && !isAlphaVoterRegistrationDrivePage ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
           {blocks.map(block => (
             <ContentfulEntryLoader
