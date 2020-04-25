@@ -7,12 +7,11 @@ import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import AlphaPage from '../VoterRegistrationDrivePage/AlphaPage/AlphaPage';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { isCampaignClosed } from '../../../helpers';
+import { isCampaignClosed, featureFlag } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
-  console.log(props.location.pathname);
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -28,7 +27,8 @@ const CampaignPageContent = props => {
 
   const isAlphaVoterRegistrationDrivePage =
     props.location.pathname ===
-    '/us/campaigns/online-registration-drive/action';
+      '/us/campaigns/online-registration-drive/action' &&
+    featureFlag('voter_reg_alpha_page');
 
   return (
     <div className="campaign-page__content" id={subPage.id}>
@@ -91,6 +91,9 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       slug: PropTypes.string.isRequired,
@@ -111,6 +114,7 @@ CampaignPageContent.propTypes = {
 
 CampaignPageContent.defaultProps = {
   campaignEndDate: null,
+  location: {},
   pages: [],
   match: {
     params: {},
