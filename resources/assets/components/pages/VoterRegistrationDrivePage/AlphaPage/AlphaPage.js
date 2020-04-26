@@ -4,19 +4,11 @@ import { PHOENIX_URL } from '../../../../constants';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
-/*
-// @TODO: 
-const shareAction = (
-  <SocialDriveActionContainer
-    link={betaUrl}
-    fullWidth
-  />
-);
-*/
-
 const AlphaPage = () => {
+  // TODO: Send through referral URL.
   const betaUrl = 'https://vote.dosomething.org';
 
+  // TODO: Query GraphQL for voter registration referrals, render dynamic count.
   return (
     <React.Fragment>
       <ContentBlock
@@ -24,9 +16,15 @@ const AlphaPage = () => {
         content="You have registered **1 person** so far."
         className="grid-wide"
       />
+      {/* @TODO: Add images and referral user names*/}
       <ContentBlock
         title="How to share"
-        content="Use the sharing tools below to track how many people you register to vote! To enter the scholarship, you must upload a screenshot of each share.  Each upload counts as a scholarship entry - the more you share, the more your chances of winning! Check out the Official Scholarship Rules for more information."
+        content="Use the sharing tools below to track how many people you register to vote! To enter the scholarship, you must [upload a screenshot of each share](/us/campaigns/online-registration-drive/submit-photo). Each upload counts as a scholarship entry - the more you share, the more your chances of winning! Check out the [Official Scholarship Rules](/us/campaigns/online-registration-drive/submit-photo) for more information."
+        className="grid-wide"
+      />
+      <SocialDriveActionContainer
+        link={betaUrl}
+        fullWidth
         className="grid-wide"
       />
       <ContentBlock
