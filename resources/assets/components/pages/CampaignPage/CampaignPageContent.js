@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
-import AlphaPage from '../VoterRegistrationDrivePage/AlphaPage/AlphaPage';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { isCampaignClosed, featureFlag } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import AlphaVoterRegistrationDrivePageContainer from '../VoterRegistrationDrivePage/Alpha/AlphaPageContainer';
 
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
@@ -52,7 +52,7 @@ const CampaignPageContent = props => {
 
       {isAlphaVoterRegistrationDrivePage ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
-          <AlphaPage />
+          <AlphaVoterRegistrationDrivePageContainer />
         </div>
       ) : null}
 

@@ -1,12 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { PHOENIX_URL } from '../../../../constants';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
-const AlphaPage = () => {
-  // TODO: Send through referral URL.
-  const betaUrl = 'https://vote.dosomething.org';
+const AlphaPage = ({ userId }) => {
+  const betaUrl = `https://vote.dosomething.org/member-drive?userId=${userId}&r=user:${userId},source:web,source_details:onlinedrivereferral,referral=true`;
 
   // TODO: Query GraphQL for voter registration referrals, render dynamic count.
   return (
@@ -34,6 +33,10 @@ const AlphaPage = () => {
       />
     </React.Fragment>
   );
+};
+
+AlphaPage.propTypes = {
+  userId: PropTypes.string.isRequired,
 };
 
 export default AlphaPage;
