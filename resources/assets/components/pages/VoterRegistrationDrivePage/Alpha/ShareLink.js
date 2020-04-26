@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const ShareLink = ({ referrerUserId }) => (
