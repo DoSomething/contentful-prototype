@@ -26,7 +26,7 @@ import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from './utilities/TrafficDistribution/TrafficDistribution';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
-import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
+import BetaVoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/Beta/BetaPage';
 
 const App = ({ store, history }) => {
   initializeStore(store);
@@ -111,7 +111,7 @@ const App = ({ store, history }) => {
             <Route path="/us/join" component={BetaReferralPage} />
             <Route
               path="/us/my-voter-registration-drive"
-              component={VoterRegistrationDrivePage}
+              component={BetaVoterRegistrationDrivePage}
             />
             <Route
               path="/us/refer-friends"
