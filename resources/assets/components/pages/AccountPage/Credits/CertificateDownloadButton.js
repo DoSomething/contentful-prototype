@@ -6,19 +6,19 @@ import CertificateTemplate, {
 } from './CertificateTemplate';
 
 const CertificateDownloadButton = ({ certificatePost }) => {
-  const [isPdfGenerated, setIsPdfGenerated] = useState(false);
+  const [hasGeneratedPdf, setHasgeneratedPdf] = useState(false);
   const pdfLink = useRef(null);
 
   const handleClick = () => {
-    if (!isPdfGenerated) {
-      setIsPdfGenerated(true);
-
+    if (!hasGeneratedPdf) {
       try {
         pdf(<CertificateTemplate certificatePost={certificatePost} />)
           .toBlob()
           .then(blob => {
             pdfLink.current.href = URL.createObjectURL(blob);
             pdfLink.current.click();
+
+            setHasgeneratedPdf(true);
           })
           .catch(error => {
             console.error(error);
@@ -46,7 +46,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
       download="certa.pdf"
       ref={pdfLink}
       className="btn w-full py-4 text-lg bg-blue-500 hover:bg-blue-300"
-      onClick={() => handleClick()}
+      onClick={handleClick}
     >
       Download
     </a>
