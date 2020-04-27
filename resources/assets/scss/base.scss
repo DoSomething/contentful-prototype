@@ -15,12 +15,11 @@ $forge-path: '../../../node_modules/@dosomething/forge/assets/';
 | everything together. We're getting there!
 */
 
-// @TODO:forge-removal Rename this class to "button".
-a > *,
-.btn > * {
+a > * {
   pointer-events: none;
 }
 
+// @TODO:forge-removal Rename this class to "button".
 .btn {
   @apply cursor-pointer font-bold font-source-sans inline-block no-underline py-3 px-4 rounded text-base text-center text-white outline-none;
 }
