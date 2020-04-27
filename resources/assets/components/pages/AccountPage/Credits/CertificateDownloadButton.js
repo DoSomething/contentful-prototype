@@ -13,15 +13,19 @@ const CertificateDownloadButton = ({ certificatePost }) => {
     if (!isPdfGenerated) {
       setIsPdfGenerated(true);
 
-      pdf(<CertificateTemplate certificatePost={certificatePost} />)
-        .toBlob()
-        .then(blob => {
-          pdfLink.current.href = URL.createObjectURL(blob);
-          pdfLink.current.click();
-        })
-        .catch(error => {
-          console.error(error);
-        });
+      try {
+        pdf(<CertificateTemplate certificatePost={certificatePost} />)
+          .toBlob()
+          .then(blob => {
+            pdfLink.current.href = URL.createObjectURL(blob);
+            pdfLink.current.click();
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
