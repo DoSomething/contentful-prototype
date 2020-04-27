@@ -7,12 +7,16 @@ import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 
 const ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
   query AlphaVoterRegistrationReferrals($referrerUserId: String!) {
-    postsCount(
+    posts(
       referrerUserId: $referrerUserId
       type: "voter-reg"
       status: [REGISTER_FORM, REGISTER_OVR]
-      limit: 51
-    )
+    ) {
+      id
+      user {
+        displayName
+      }
+    }
   }
 `;
 
@@ -22,7 +26,7 @@ const ReferralsSection = ({ referrerUserId }) => (
     variables={{ referrerUserId }}
   >
     {data => {
-      const countStr = data.postsCount === 51 ? '50+' : data.postsCount;
+      const countStr = data.posts.length === 51 ? '50+' : data.posts.length;
 
       return (
         <React.Fragment>
