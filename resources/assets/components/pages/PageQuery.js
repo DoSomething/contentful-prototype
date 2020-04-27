@@ -20,7 +20,7 @@ const PageQuery = ({ query, variables, children }) => {
   }
 
   if (error) {
-    return <ErrorPage />;
+    return <ErrorPage error={error} />;
   }
 
   if (!data.page) {

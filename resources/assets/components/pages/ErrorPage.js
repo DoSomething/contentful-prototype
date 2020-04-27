@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { report } from '../../helpers';
-import { HELP_REQUEST_LINK } from '../../constants';
+import ErrorDetails from '../utilities/ErrorDetails';
 import SiteFooter from '../utilities/SiteFooter/SiteFooter';
 import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
-
-const DEBUGGING = process.env.NODE_ENV !== 'production';
 
 const ErrorPage = ({ error }) => {
   // Print error to console & report to New Relic:
@@ -35,21 +33,7 @@ const ErrorPage = ({ error }) => {
             movement of 5 million young people making an impact in their
             communities.
           </p>
-          <p className="text-sm text-gray-800 m-0">
-            If you continue to run into problems, contact our{' '}
-            <a
-              href={HELP_REQUEST_LINK}
-              className="font-semibold text-gray-800 hover:text-gray-400 underline"
-            >
-              support squad
-            </a>
-            !
-          </p>
-          {DEBUGGING && error ? (
-            <p className="color-error text-center my-4">
-              <code>{JSON.stringify(error)}</code>
-            </p>
-          ) : null}
+          <ErrorDetails error={error} />
         </article>
       </main>
 
