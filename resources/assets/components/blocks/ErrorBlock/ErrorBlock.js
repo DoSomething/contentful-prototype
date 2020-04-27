@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import errorIcon from './error_icon.svg';
@@ -10,10 +10,7 @@ const DEBUGGING = process.env.NODE_ENV !== 'production';
 
 const ErrorBlock = ({ error }) => {
   // Print error to console & report to New Relic:
-  if (error) {
-    console.error(`[ErrorBlock] ${error}`);
-    report(error);
-  }
+  useEffect(() => report(error), []);
 
   return (
     <Card className="rounded bordered p-3">

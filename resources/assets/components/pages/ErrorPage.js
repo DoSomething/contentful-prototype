@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { report } from '../../helpers';
@@ -10,10 +10,7 @@ const DEBUGGING = process.env.NODE_ENV !== 'production';
 
 const ErrorPage = ({ error }) => {
   // Print error to console & report to New Relic:
-  if (error) {
-    console.error(`[ErrorPage] ${error}`);
-    report(error);
-  }
+  useEffect(() => report(error), []);
 
   return (
     <>
