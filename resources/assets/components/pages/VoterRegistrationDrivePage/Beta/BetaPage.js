@@ -28,6 +28,7 @@ const ALPHA_CAMPAIGN_INFO_QUERY = gql`
     campaign(id: $campaignId) {
       id
       campaignWebsite {
+        title
         coverImage {
           url
           description
@@ -76,7 +77,7 @@ const VoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
-  const { coverImage } = alphaData.campaign.campaignWebsite;
+  const { coverImage, title } = alphaData.campaign.campaignWebsite;
   /**
    * Because this component isn't associated with a campaign Contentful entry, we don't have a
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
@@ -96,7 +97,7 @@ const VoterRegistrationDrivePage = () => {
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
-          <CoverImage coverImage={coverImage} />
+          <CoverImage coverImage={coverImage} title={title} />
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
