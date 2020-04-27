@@ -6,8 +6,9 @@ import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { isCampaignClosed } from '../../../helpers';
+import { isCampaignClosed, featureFlag } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import AlphaVoterRegistrationDrivePageContainer from '../VoterRegistrationDrivePage/Alpha/AlphaPageContainer';
 
 const CampaignPageContent = props => {
   const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
@@ -23,6 +24,11 @@ const CampaignPageContent = props => {
   const isClosed = isCampaignClosed(campaignEndDate);
 
   const { content, sidebar, blocks } = subPage.fields;
+
+  const isAlphaVoterRegistrationDrivePage =
+    props.location.pathname ===
+      '/us/campaigns/online-registration-drive/action' &&
+    featureFlag('voter_reg_alpha_page');
 
   return (
     <div className="campaign-page__content" id={subPage.id}>
@@ -44,7 +50,13 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      {blocks.length ? (
+      {isAlphaVoterRegistrationDrivePage ? (
+        <div className="base-12-grid clear-both py-3 md:py-6">
+          <AlphaVoterRegistrationDrivePageContainer />
+        </div>
+      ) : null}
+
+      {blocks.length && !isAlphaVoterRegistrationDrivePage ? (
         <div className="base-12-grid clear-both py-3 md:py-6">
           {blocks.map(block => (
             <ContentfulEntryLoader
@@ -79,6 +91,9 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   campaignEndDate: PropTypes.string,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
   match: PropTypes.shape({
     params: PropTypes.shape({
       slug: PropTypes.string.isRequired,
@@ -99,6 +114,7 @@ CampaignPageContent.propTypes = {
 
 CampaignPageContent.defaultProps = {
   campaignEndDate: null,
+  location: {},
   pages: [],
   match: {
     params: {},

@@ -2,16 +2,16 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-import ErrorPage from '../ErrorPage';
-import { query } from '../../../helpers';
-import NotFoundPage from '../NotFoundPage';
-import Placeholder from '../../utilities/Placeholder';
-import VoterRegistrationFaq from './VoterRegistrationFaq';
-import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
-import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
-import ContentBlock from '../../blocks/ContentBlock/ContentBlock';
-import CampaignInfoBlock from '../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import ErrorPage from '../../ErrorPage';
+import { query } from '../../../../helpers';
+import NotFoundPage from '../../NotFoundPage';
+import Placeholder from '../../../utilities/Placeholder';
+import Faq from './Faq';
+import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
+import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
+import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
+import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 
 const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
   query VoterRegistrationDrivePageReffererUserQuery($referrerUserId: String!) {
@@ -108,7 +108,7 @@ const VoterRegistrationDrivePage = () => {
               </ButtonLink>
             </div>
             <div className="pb-6">
-              <VoterRegistrationFaq />
+              <Faq />
             </div>
             <ContentBlock
               superTitle="Step 2"
