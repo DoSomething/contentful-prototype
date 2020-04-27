@@ -14,7 +14,6 @@ import CampaignRouteContainer from './CampaignRoute/CampaignRouteContainer';
 import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 import DismissableElement from '../utilities/DismissableElement/DismissableElement';
 import TrafficDistribution from '../utilities/TrafficDistribution/TrafficDistribution';
-import VoterRegistrationModal from '../pages/VoterRegistrationModal/VoterRegistrationModal';
 import LegacyAdminDashboardContainer from '../LegacyAdminDashboard/LegacyAdminDashboardContainer';
 import LegacyCampaignDashboardContainer from '../LegacyAdminDashboard/LegacyCampaignDashboard/LegacyCampaignDashboardContainer';
 
@@ -58,26 +57,6 @@ const Campaign = props => (
         </TrafficDistribution>
       ) : null}
 
-      {props.isAuthenticated &&
-      get(props, 'featureFlags.showVoterRegistrationModal') &&
-      featureFlag('voter_reg_modal') ? (
-        <TrafficDistribution percentage={50} feature="voter_reg_modal">
-          <DismissableElement
-            name="voter_reg_modal"
-            render={handleClose => (
-              <DelayedElement delay={30}>
-                <Modal
-                  onClose={handleClose}
-                  trackingId="VOTER_REGISTRATION_MODAL"
-                >
-                  <VoterRegistrationModal />
-                </Modal>
-              </DelayedElement>
-            )}
-          />
-        </TrafficDistribution>
-      ) : null}
-
       <CampaignRouteContainer {...props} />
     </main>
 
@@ -87,6 +66,7 @@ const Campaign = props => (
 
 Campaign.propTypes = {
   campaignId: PropTypes.string,
+  // TODO: If we still need additonalContent, document why.
   featureFlags: PropTypes.objectOf(PropTypes.bool),
   history: ReactRouterPropTypes.history.isRequired,
   isAuthenticated: PropTypes.bool,
