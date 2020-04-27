@@ -86,7 +86,6 @@ const NewsletterItem = ({ content, image, link, title }) => (
     <a className="block mb-4 mx-auto no-underline" href={link.url}>
       <img
         alt={`${title} newsletter badge`}
-        className="pointer-events-none"
         css={css`
           height: 180px;
           width: 180px;

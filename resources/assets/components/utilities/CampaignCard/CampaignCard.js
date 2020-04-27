@@ -43,7 +43,6 @@ const CampaignCard = ({ campaign }) => {
       <a className="block" href={url}>
         <img
           alt={showcaseImage.description || `Cover photo for ${showcaseTitle}`}
-          className="pointer-events-none"
           srcSet={srcset}
           src={contentfulImageUrl(showcaseImage.url, '365', '205', 'fill')}
         />
