@@ -8,7 +8,7 @@ import ErrorDetails from '../../utilities/ErrorDetails';
 
 const ErrorBlock = ({ error }) => {
   // Print error to console & report to New Relic:
-  useEffect(() => report(error), []);
+  useEffect(() => report(error), [error]);
 
   return (
     <Card className="rounded bordered p-3">

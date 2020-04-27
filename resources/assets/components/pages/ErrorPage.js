@@ -8,7 +8,7 @@ import SiteNavigationContainer from '../SiteNavigation/SiteNavigationContainer';
 
 const ErrorPage = ({ error }) => {
   // Print error to console & report to New Relic:
-  useEffect(() => report(error), []);
+  useEffect(() => report(error), [error]);
 
   return (
     <>
