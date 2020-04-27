@@ -5,12 +5,12 @@ import { makeUrl } from '../../helpers';
 import { HELP_REQUEST_LINK } from '../../constants';
 
 const ErrorDetails = ({ error }) => {
-  const context = `${+new Date()}, ${window.AUTH ? window.AUTH.id : 'N/A'}`;
+  const context = `${+new Date()}, ID: ${window.AUTH ? window.AUTH.id : 'N/A'}`;
 
   let message = error;
   if (error instanceof Error) {
     const trace = error.stack.toString().split(/\r\n|\n/)[0];
-    message = `${error.message} ${trace}, ${context}`;
+    message = `${error.message} ${trace}`;
   }
 
   const technicalDetails = `${message}, ${context}`;
