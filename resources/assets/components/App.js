@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { PDFViewer } from '@react-pdf/renderer';
 import { ApolloProvider } from '@apollo/react-common';
 import { Router, Route, Switch } from 'react-router-dom';
-import { css } from '@emotion/core';
 
 import graphqlClient from '../graphql';
 import { env, featureFlag } from '../helpers';
@@ -24,7 +22,6 @@ import PageDispatcherContainer from './PageDispatcher/PageDispatcherContainer';
 import DismissableElement from './utilities/DismissableElement/DismissableElement';
 import AlphaReferralPageContainer from './pages/ReferralPage/Alpha/AlphaPageContainer';
 import VoterRegistrationDrivePage from './pages/VoterRegistrationDrivePage/VoterRegistrationDrivePage';
-import CertificateTemplate from './pages/AccountPage/Credits/CertificateTemplate';
 
 const App = ({ store, history }) => {
   initializeStore(store);
