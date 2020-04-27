@@ -1,12 +1,12 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { css } from '@emotion/core';
 import { useQuery } from '@apollo/react-hooks';
 
 import { tailwind } from '../../../helpers';
-
-const { get } = require('lodash');
+import Spinner from '../../artifacts/Spinner/Spinner';
 
 const CALL_TO_ACTION_QUERY = gql`
   query CallToActionBlockQuery($id: String!) {
@@ -35,7 +35,7 @@ const CallToActionBlock = ({ id }) => {
   }
 
   if (loading) {
-    return <div className="spinner" />;
+    return <Spinner className="flex justify-center p-2" />;
   }
 
   const {
@@ -113,23 +113,21 @@ const CallToActionBlock = ({ id }) => {
   const alignmentStyles = get(alignmentObject, alignment, 'CENTER');
 
   return (
-    <div css={[templateStyles, alignmentStyles]}>
-      <div className="base-12-grid">
-        <div className="grid-narrow my-8">
-          <h3 className="text-m font-source-sans font-bold uppercase">
-            {superTitle}
-          </h3>
-          <h2 className="text-4xl font-league-gothic font-bold uppercase">
-            {title}
-          </h2>
-          <p className="text-lg pb-4">{content}</p>
-          <a
-            href={link}
-            className="btn bg-blurple-500 text-white text-lg border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
-          >
-            {linkText}
-          </a>
-        </div>
+    <div className="base-12-grid" css={[templateStyles, alignmentStyles]}>
+      <div className="grid-narrow my-8">
+        <h3 className="text-m font-source-sans font-bold uppercase">
+          {superTitle}
+        </h3>
+        <h2 className="text-4xl font-league-gothic font-bold uppercase">
+          {title}
+        </h2>
+        <p className="text-lg pb-4">{content}</p>
+        <a
+          href={link}
+          className="btn bg-blurple-500 text-white text-lg border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
+        >
+          {linkText}
+        </a>
       </div>
     </div>
   );
