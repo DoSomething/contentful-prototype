@@ -1,11 +1,11 @@
 import React from 'react';
-
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 
 import { contentfulImageUrl, contentfulImageSrcset } from '../../../helpers';
 
-const CoverImage = ({ coverImage }) => {
-  const srcset = contentfulImageSrcset(coverImage.url, [
+const CoverImage = ({ coverImage, title }) => {
+  const srcset = contentfulImageSrcset(get(coverImage, 'url'), [
     { height: 360, width: 640 },
     { height: 576, width: 1024 },
     { height: 810, width: 1440 },
@@ -15,9 +15,12 @@ const CoverImage = ({ coverImage }) => {
     <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
       <img
         className="grid-wide"
-        alt={coverImage.description || `cover photo for my registration drive`}
+        alt={
+          get(coverImage, 'description') ||
+          `cover photo for ${title || 'my registration drive'}`
+        }
         srcSet={srcset}
-        src={contentfulImageUrl(coverImage.url, '1440', '810', 'fill')}
+        src={contentfulImageUrl(get(coverImage, 'url'), '1440', '810', 'fill')}
       />
     </div>
   );
@@ -25,6 +28,11 @@ const CoverImage = ({ coverImage }) => {
 
 CoverImage.propTypes = {
   coverImage: PropTypes.object.isRequired,
+  title: PropTypes.string,
+};
+
+CoverImage.defaultProps = {
+  title: null,
 };
 
 export default CoverImage;

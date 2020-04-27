@@ -13,8 +13,6 @@ import AffiliatePromotion from '../../utilities/AffiliatePromotion/AffiliateProm
 import ScholarshipInfoBlock from '../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import AffiliateOptInToggleContainer from '../../AffiliateOptInToggle/AffiliateOptInToggleContainer';
 import {
-  contentfulImageUrl,
-  contentfulImageSrcset,
   isScholarshipAffiliateReferral,
   getScholarshipAffiliateLabel,
 } from '../../../helpers';
@@ -53,13 +51,6 @@ const HeroTemplate = ({
       setShowReferralScholarshipModal(true);
     }
   }, []);
-
-  const srcset = contentfulImageSrcset(coverImage.url, [
-    { height: 360, width: 640 },
-    { height: 576, width: 1024 },
-    { height: 810, width: 1440 },
-    { height: 1620, width: 2880 },
-  ]);
 
   return (
     <>
