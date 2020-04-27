@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const ShareLink = ({ referrerUserId }) => (
-  <SocialDriveActionContainer
-    link={`https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
-    fullWidth
-    className="grid-wide"
-  />
+  <div className="grid-wide">
+    <SocialDriveActionContainer
+      link={`https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
+      fullWidth
+    />
+  </div>
 );
 
 ShareLink.propTypes = {
