@@ -1,13 +1,15 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-import ErrorPage from '../../ErrorPage';
+import Faq from './Faq';
 import { query } from '../../../../helpers';
+import ErrorPage from '../../ErrorPage';
 import NotFoundPage from '../../NotFoundPage';
 import Placeholder from '../../../utilities/Placeholder';
-import Faq from './Faq';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
+import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
@@ -22,13 +24,17 @@ const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
   }
 `;
 
-// Because we don't have a link to contentful, this image url will need to get updated if we want a new coverImage
-
-const coverImageUrl =
-  'https://images.ctfassets.net/81iqaqpfd8fy/3uyVbvfCxFTp4zWYQCXJSG/eb10583a58a040dc374ad9b5447b65d3/vote.dosomething.2020__1_.jpg?h=250';
+const ALPHA_CAMPAIGN_COVER_IMAGE_QUERY = gql`
+  query AlphaCampaignCoverImageQuery($campaignId: Int!) {
+    campaign(id: $campaignId) {
+      id
+    }
+  }
+`;
 
 const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
+  const rogueCampaignId = process.env.NODE_ENV === 'production' ? 9008 : 9001;
 
   if (!referrerUserId) {
     return <NotFoundPage />;
@@ -40,6 +46,14 @@ const VoterRegistrationDrivePage = () => {
       variables: { referrerUserId },
     },
   );
+
+  const {
+    loading: alphaLoading,
+    error: alphaError,
+    data: alphaData,
+  } = useQuery(ALPHA_CAMPAIGN_COVER_IMAGE_QUERY, {
+    variables: { campaignId: 9001 },
+  });
 
   if (loading) {
     return <Placeholder />;
@@ -54,6 +68,7 @@ const VoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
+  const url = alphaData;
   /**
    * Because this component isn't associated with a campaign Contentful entry, we don't have a
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
@@ -62,34 +77,19 @@ const VoterRegistrationDrivePage = () => {
    */
   const campaignInfoBlock = (
     <CampaignInfoBlock
-      campaignId={process.env.NODE_ENV === 'production' ? 9008 : 9035}
+      campaignId={rogueCampaignId}
       scholarshipAmount={1500}
       scholarshipDeadline="2020-04-30"
     />
   );
 
-  const srcset = contentfulImageSrcset(coverImageUrl, [
-    { height: 360, width: 640 },
-    { height: 576, width: 1024 },
-    { height: 810, width: 1440 },
-    { height: 1620, width: 2880 },
-  ]);
-
+  console.log('alphaData:', url);
   return (
     <>
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
-          <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
-            <img
-              className="grid-wide"
-              alt={
-                'Collage of eight smiling young people with "I Voted" stickers'
-              }
-              srcSet={srcset}
-              src={contentfulImageUrl(coverImageUrl, '1440', '810', 'fill')}
-            />
-          </div>
+          <CoverImage coverImage={url} />
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
