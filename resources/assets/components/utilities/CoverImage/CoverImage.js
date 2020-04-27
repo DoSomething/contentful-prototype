@@ -15,10 +15,7 @@ const CoverImage = ({ coverImage, title }) => {
     <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
       <img
         className="grid-wide"
-        alt={
-          get(coverImage, 'description') ||
-          `cover photo for ${title || 'my registration drive'}`
-        }
+        alt={get(coverImage, 'description') || `cover photo for ${title}`}
         srcSet={srcset}
         src={contentfulImageUrl(get(coverImage, 'url'), '1440', '810', 'fill')}
       />
