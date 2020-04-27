@@ -870,15 +870,30 @@ export function parseContentfulType(json, defaultType) {
 /**
  * Report a caught error to New Relic.
  *
- * @param {Error}  error
+ * @param {Error|string}  error
  * @param {Object} customAttributes
  */
 export function report(error, customAttributes = null) {
+  let errorInstance;
+
+  // Print to the console for devs:
+  console.error(`[report] ${error}`);
+
+  // If we're not running New Relic here, don't report:
   if (!window.newrelic) {
     return;
   }
 
-  window.newrelic.noticeError(error, customAttributes);
+  // New Relic's 'noticeError' expects an Error instance:
+  if (isString(error)) {
+    errorInstance = new Error(error);
+  }
+
+  if (isNull(error)) {
+    errorInstance = new Error('Unknown error');
+  }
+
+  window.newrelic.noticeError(errorInstance, customAttributes);
 }
 
 /*
