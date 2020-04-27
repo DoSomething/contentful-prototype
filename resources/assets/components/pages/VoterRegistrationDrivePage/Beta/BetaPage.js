@@ -1,11 +1,10 @@
 import React from 'react';
-import { get } from 'lodash';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from 'react-apollo';
 
 import Faq from './Faq';
-import { query } from '../../../../helpers';
 import ErrorPage from '../../ErrorPage';
+import { query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
@@ -24,10 +23,16 @@ const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
   }
 `;
 
-const ALPHA_CAMPAIGN_COVER_IMAGE_QUERY = gql`
-  query AlphaCampaignCoverImageQuery($campaignId: Int!) {
+const ALPHA_CAMPAIGN_INFO_QUERY = gql`
+  query AlphaCampaignInfoQuery($campaignId: Int!) {
     campaign(id: $campaignId) {
       id
+      campaignWebsite {
+        coverImage {
+          url
+          description
+        }
+      }
     }
   }
 `;
@@ -51,15 +56,18 @@ const VoterRegistrationDrivePage = () => {
     loading: alphaLoading,
     error: alphaError,
     data: alphaData,
-  } = useQuery(ALPHA_CAMPAIGN_COVER_IMAGE_QUERY, {
-    variables: { campaignId: 9001 },
+  } = useQuery(ALPHA_CAMPAIGN_INFO_QUERY, {
+    variables: {
+      campaignId: rogueCampaignId,
+    },
   });
 
-  if (loading) {
+  if (loading || alphaLoading) {
     return <Placeholder />;
   }
 
-  if (error) {
+  if (error || alphaError) {
+    console.error(`[ErrorBlock] ${error}`);
     return <ErrorPage />;
   }
 
@@ -68,7 +76,7 @@ const VoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
-  const url = alphaData;
+  const { coverImage } = alphaData.campaign.campaignWebsite;
   /**
    * Because this component isn't associated with a campaign Contentful entry, we don't have a
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
@@ -83,13 +91,12 @@ const VoterRegistrationDrivePage = () => {
     />
   );
 
-  console.log('alphaData:', url);
   return (
     <>
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
-          <CoverImage coverImage={url} />
+          <CoverImage coverImage={coverImage} />
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
