@@ -92,6 +92,9 @@ ready(() => {
   }
 
   // Track link clicks for Snowplow analytics.
+  // @see https://css-tricks.com/slightly-careful-sub-elements-clickable-things/
+  // CSS rule in base.scss helps ensure only links trigger event clicks, regardless
+  // of nested elements inside of link.
   document.body.addEventListener('click', clickEvent => {
     if (clickEvent.target.tagName.toLowerCase() === 'a') {
       trackAnalyticsLinkClick(clickEvent.target);
