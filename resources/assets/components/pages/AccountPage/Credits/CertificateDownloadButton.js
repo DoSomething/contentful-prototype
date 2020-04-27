@@ -1,30 +1,57 @@
-import React from 'react';
-import classNames from 'classnames';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import React, { useRef, useState } from 'react';
+import { pdf } from '@react-pdf/renderer';
 
 import CertificateTemplate, {
   certificatePostType,
 } from './CertificateTemplate';
 
-// The certificate PDF Download button with pending/ready state.
-const buttonClassNames = 'btn w-full py-4 text-lg';
-const CertificateDownloadButton = ({ certificatePost }) =>
-  certificatePost.pending ? (
-    <button type="button" disabled className={buttonClassNames}>
-      Pending
-    </button>
-  ) : (
-    <PDFDownloadLink
-      document={<CertificateTemplate certificatePost={certificatePost} />}
-      fileName="dosomething-volunteer-credit-certificate.pdf"
-      className={classNames(
-        buttonClassNames,
-        'bg-blue-500 hover:bg-blue-300 hover:no-underline hover:text-white',
-      )}
+const CertificateDownloadButton = ({ certificatePost }) => {
+  const [hasGeneratedPdf, setHasgeneratedPdf] = useState(false);
+  const pdfLink = useRef(null);
+
+  const handleClick = () => {
+    if (!hasGeneratedPdf) {
+      try {
+        pdf(<CertificateTemplate certificatePost={certificatePost} />)
+          .toBlob()
+          .then(blob => {
+            pdfLink.current.href = URL.createObjectURL(blob);
+            pdfLink.current.click();
+
+            setHasgeneratedPdf(true);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  if (certificatePost.pending) {
+    return (
+      <button type="button" disabled className="btn w-full py-4 text-lg">
+        Pending
+      </button>
+    );
+  }
+
+  // @TODO Handle loading and error state.
+  return (
+    // eslint-disable-next-line jsx-a11y/anchor-is-valid
+    <a
+      role="link"
+      tabIndex="0"
+      download="certa.pdf"
+      ref={pdfLink}
+      className="btn w-full py-4 text-lg bg-blue-500 hover:bg-blue-300"
+      onClick={handleClick}
     >
       Download
-    </PDFDownloadLink>
+    </a>
   );
+};
 
 CertificateDownloadButton.propTypes = {
   certificatePost: certificatePostType.isRequired,
