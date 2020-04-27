@@ -97,24 +97,6 @@ const App = ({ store, history }) => {
               component={AlphaReferralPageContainer}
             />
             <Route path="/us/:slug" component={PageDispatcherContainer} />
-            <Route
-              path="/pdf"
-              render={() => (
-                <div
-                  style={{ height: 1000, width: 1500 }}
-                  css={css`
-                    iframe {
-                      height: 1000px;
-                      width: 1000px;
-                    }
-                  `}
-                >
-                  <PDFViewer>
-                    <CertificateTemplate />
-                  </PDFViewer>
-                </div>
-              )}
-            />
           </Switch>
         </Router>
       </ApolloProvider>
