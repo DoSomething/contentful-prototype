@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
-import { set } from '../../../helpers/storage';
 import { dynamicString } from '../../../helpers';
 import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
 import TextContent from '../../utilities/TextContent/TextContent';

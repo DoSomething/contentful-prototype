@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import { get } from '../../../helpers/storage';
 import VoterRegistrationAction from './VoterRegistrationAction';
 import LocalStorageMock from '../../../__mocks__/localStorageMock';
 import { trackAnalyticsEvent as trackEventMock } from '../../../helpers/analytics';
