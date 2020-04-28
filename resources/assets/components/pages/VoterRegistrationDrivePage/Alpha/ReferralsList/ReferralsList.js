@@ -22,7 +22,7 @@ const ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY = gql`
 `;
 
 const ReferralsList = ({ referrerUserId }) => (
-  <div className="grid-wide clearfix wrapper">
+  <div className="grid-wide clearfix wrapper pb-6">
     <SectionHeader underlined title="Get 3 friends to register!" />
     <Query
       query={ALPHA_VOTER_REGISTRATION_REFERRALS_QUERY}
@@ -34,24 +34,23 @@ const ReferralsList = ({ referrerUserId }) => (
 
         for (let i = 0; i < 3; i += 1) {
           items.push(
-            <li key={i}>
-              <ReferralsListItem
-                label={data.posts[i] ? data.posts[i].user.displayName : null}
-              />
-            </li>,
+            <ReferralsListItem
+              key={i}
+              label={data.posts[i] ? data.posts[i].user.displayName : null}
+            />,
           );
         }
 
         return (
           <div>
-            <p>
+            <div className="pb-6">
               You have registered{' '}
               <strong>
                 {countStr} {countStr === '1' ? 'person' : 'people'}
               </strong>{' '}
               so far.
-            </p>
-            <ul className="gallery-grid-triplet -mx-3">{items}</ul>
+            </div>
+            <div className="clearfix flex">{items}</div>
           </div>
         );
       }}
