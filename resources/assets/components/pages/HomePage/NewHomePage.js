@@ -268,7 +268,7 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   />
                 </h2>
 
-                <p className="mb-6 lg:mb-8 text-lg">
+                <p className="mb-3 text-lg">
                   Choose a campaign below to make an impact and enter for a
                   chance to{' '}
                   <a
@@ -278,7 +278,11 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                   >
                     earn scholarships
                   </a>
-                  . (Talk about a win-win.)
+                  .
+                </p>
+
+                <p className="mb-6 lg:mb-8 mt-0 text-lg">
+                  (Talk about a win-win.)
                 </p>
 
                 {/*
