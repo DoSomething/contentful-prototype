@@ -101,9 +101,7 @@ const VoterRegistrationDrivePage = () => {
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
-                <h1 className="hero-banner__headline-title">
-                  Ready, Set, Vote!
-                </h1>
+                <h1 className="hero-banner__headline-title">{title}</h1>
                 <h2 className="hero-banner__headline-subtitle">
                   {firstName} has invited you to register to vote!
                 </h2>
