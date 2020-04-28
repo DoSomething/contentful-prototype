@@ -34,6 +34,10 @@ export const certificatePostType = PropTypes.shape({
   impactLabel: PropTypes.string,
   photo: PropTypes.string,
   pending: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+  }),
 });
 
 // Fonts need to be explicitly registered with the PDF renderer.
