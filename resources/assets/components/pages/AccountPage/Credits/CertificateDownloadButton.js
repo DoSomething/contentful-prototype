@@ -9,12 +9,12 @@ import CertificateTemplate, {
 } from './CertificateTemplate';
 
 const CertificateDownloadButton = ({ certificatePost }) => {
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pdfLink, setPdfLink] = useState(null);
   const [buttonText, setButtonText] = useState(
     certificatePost.pending ? 'pending' : 'download',
   );
+  const [generatePdfError, setGeneratePdfError] = useState(null);
 
   // Dynamically toggles the button text to 'loading' while we're in loading state.
   useEffect(() => {
@@ -28,14 +28,14 @@ const CertificateDownloadButton = ({ certificatePost }) => {
   /**
    * Handle PDF rendering errors.
    *
-   * @param {Error} err
+   * @param {Error} error
    */
-  const handleError = err => {
+  const handleError = error => {
     setLoading(false);
 
-    setError(err);
+    setGeneratePdfError(error);
     // @TODO: Track analytics. Report error to NR.
-    console.error(err);
+    console.error(error);
   };
 
   /**
@@ -64,8 +64,8 @@ const CertificateDownloadButton = ({ certificatePost }) => {
           // Catch any errors from the PDF data -> blob conversion.
           .catch(reject);
         // Catch any errors from the initial PDF render.
-      } catch (err) {
-        reject(err);
+      } catch (error) {
+        reject(error);
       }
     });
 
@@ -95,8 +95,8 @@ const CertificateDownloadButton = ({ certificatePost }) => {
       .catch(handleError);
   };
 
-  if (error) {
-    return <ErrorBlock error={error} />;
+  if (generatePdfError) {
+    return <ErrorBlock error={generatePdfError} />;
   }
 
   return (
