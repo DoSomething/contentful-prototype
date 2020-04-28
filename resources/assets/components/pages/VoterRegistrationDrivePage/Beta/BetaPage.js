@@ -40,7 +40,7 @@ const ALPHA_CAMPAIGN_INFO_QUERY = gql`
 
 const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
-  const rogueCampaignId = process.env.NODE_ENV === 'production' ? 9054 : 9001;
+  const rogueCampaignId = process.env.NODE_ENV === 'production' ? 9054 : 9006;
 
   if (!referrerUserId) {
     return <NotFoundPage />;
@@ -83,6 +83,8 @@ const VoterRegistrationDrivePage = () => {
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
    * this hardcoded -- but we will eventually need to figure out how to display the modal to show
    * additional scholarship information.
+   *
+   * 04/28/20 - keeping the scholarship info hard coded for v1 and hiding details link
    */
   const campaignInfoBlock = (
     <CampaignInfoBlock
