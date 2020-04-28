@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
 import { pdf } from '@react-pdf/renderer';
+import React, { useState, useEffect } from 'react';
 
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
 import CertificateTemplate, {
@@ -11,6 +11,12 @@ const CertificateDownloadButton = ({ certificatePost }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [pdfLink, setPdfLink] = useState(null);
+  const [buttonText, setButtonText] = useState(
+    certificatePost.pending ? 'pending' : 'download',
+  );
+
+  // Dynamically toggles the button text to 'loading' while we're in loading state.
+  useEffect(() => setButtonText(loading ? 'loading' : 'download'), [loading]);
 
   /**
    * Handle PDF rendering errors.
@@ -82,22 +88,6 @@ const CertificateDownloadButton = ({ certificatePost }) => {
       .catch(handleError);
   };
 
-  /**
-   * Generate button text per PDF status.
-   *
-   */
-  const buttonText = () => {
-    if (certificatePost.pending) {
-      return 'Pending';
-    }
-
-    if (loading) {
-      return 'Loading';
-    }
-
-    return 'Download';
-  };
-
   if (error) {
     return <ErrorBlock error={error} />;
   }
@@ -105,7 +95,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
   return (
     <button
       type="button"
-      className={classNames('btn w-full py-4 text-lg', {
+      className={classNames('btn w-full py-4 text-lg capitalize', {
         'bg-blue-500 hover:bg-blue-300': !certificatePost.pending,
         'is-loading': loading,
       })}
@@ -113,7 +103,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
       // If a sneaky user removes the 'disabled' attribute we don't want to trigger the PDF download.
       onClick={() => !certificatePost.pending && handleClick()}
     >
-      {buttonText()}
+      {buttonText}
     </button>
   );
 };
