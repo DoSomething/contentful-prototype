@@ -39,10 +39,11 @@ const ReferralsList = ({ referrerUserId }) => (
          */
         for (let i = 0; i < 3; i += 1) {
           items.push(
-            <ReferralsListItem
-              key={i}
-              label={data.posts[i] ? data.posts[i].user.displayName : null}
-            />,
+            <li key={i} className="float-left pr-6">
+              <ReferralsListItem
+                label={data.posts[i] ? data.posts[i].user.displayName : null}
+              />
+            </li>,
           );
         }
 
@@ -55,7 +56,7 @@ const ReferralsList = ({ referrerUserId }) => (
               </strong>{' '}
               so far.
             </div>
-            <div className="clearfix flex flex-row">{items}</div>
+            <ul className="clearfix">{items}</ul>
           </div>
         );
       }}
