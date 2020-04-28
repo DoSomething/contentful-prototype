@@ -50,8 +50,8 @@ const BetaVoterRegistrationDrivePage = () => {
     BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY,
     {
       variables: {
-        campaignId: voterRegistrationDriveCampaignId,
         referrerUserId,
+        voterRegistrationDriveCampaignId,
       },
     },
   );
