@@ -134,9 +134,10 @@ const CertificateTemplate = ({ certificatePost }) => (
               fontSize: 35,
               fontFamily: 'League Gothic',
               color: colors.purple,
+              textTransform: 'capitalize',
             }}
           >
-            Mendel
+            {`${certificatePost.user.firstName} ${certificatePost.user.lastName}`}
           </Text>
           <Text style={{ marginTop: 5 }}>
             has completed the following volunteering campaign:
