@@ -14,13 +14,14 @@ const ElementButton = ({
   className,
   data,
   isDisabled,
+  isLoading,
   onClick,
   text,
   type,
 }) => {
   return (
     <button
-      className={classnames('btn', className)}
+      className={classnames('btn', className, { 'is-loading': isLoading })}
       disabled={isDisabled}
       onClick={onClick}
       type={type}
@@ -35,6 +36,7 @@ ElementButton.propTypes = {
   className: PropTypes.string,
   data: PropTypes.object,
   isDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -44,6 +46,7 @@ ElementButton.defaultProps = {
   className: null,
   data: {},
   isDisabled: false,
+  isLoading: false,
   onClick: null,
   type: 'button',
 };

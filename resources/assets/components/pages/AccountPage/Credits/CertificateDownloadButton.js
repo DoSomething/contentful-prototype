@@ -3,6 +3,7 @@ import { pdf } from '@react-pdf/renderer';
 import React, { useState, useEffect } from 'react';
 
 import ErrorBlock from '../../../blocks/ErrorBlock/ErrorBlock';
+import ElementButton from '../../../utilities/Button/ElementButton';
 import CertificateTemplate, {
   certificatePostType,
 } from './CertificateTemplate';
@@ -99,18 +100,17 @@ const CertificateDownloadButton = ({ certificatePost }) => {
   }
 
   return (
-    <button
+    <ElementButton
       type="button"
-      className={classNames('btn w-full py-4 text-lg capitalize', {
+      className={classNames('w-full py-4 text-lg capitalize', {
         'bg-blue-500 hover:bg-blue-300': !certificatePost.pending,
-        'is-loading': loading,
       })}
-      disabled={certificatePost.pending || loading}
+      isDisabled={certificatePost.pending || loading}
+      isLoading={loading}
       // If a sneaky user removes the 'disabled' attribute we don't want to trigger the PDF download.
       onClick={() => !certificatePost.pending && handleClick()}
-    >
-      {buttonText}
-    </button>
+      text={buttonText}
+    />
   );
 };
 
