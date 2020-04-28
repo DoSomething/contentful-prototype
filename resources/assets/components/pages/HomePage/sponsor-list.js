@@ -94,6 +94,16 @@ const sponsorList = [
     image:
       'https://images.ctfassets.net/81iqaqpfd8fy/nqrXUW4560jS9sCU3nLqo/bbf4cd2cd75fbacc058198a9d8c5bb13/HSBC_Bank_Dark.png',
   },
+  {
+    name: "Harry's",
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/CZzZhXTkyXnUW66YS2Lmp/37e5fcd1ae9b0d3752c19d16867f8681/HarrysBW.png',
+  },
+  {
+    name: 'Hollister',
+    image:
+      'https://images.ctfassets.net/81iqaqpfd8fy/l1Z2GocsPmamhjYlAb111/4c7e9664a5621b160aa74131064d6b97/Hollister_Logo_Dark.png',
+  },
 ];
 
 export default sponsorList;

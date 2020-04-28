@@ -22,6 +22,7 @@ const PageCard = ({ page }) => {
   const srcset = contentfulImageSrcset(showcaseImage.url, [
     { height: 205, width: 365 },
     { height: 410, width: 730 },
+    { height: 820, width: 1460 },
   ]);
 
   return (
