@@ -54,7 +54,6 @@ const CertificateDownloadButton = ({ certificatePost }) => {
             // Save this download link in state so we can just 'click' it again if necessary.
             setPdfLink(phantomLink);
 
-            // Cool, we're no longer loading.
             setLoading(false);
 
             // All set! We pass along the link so that on the initial process we can click the
