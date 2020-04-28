@@ -135,7 +135,6 @@ const CertificateTemplate = ({ certificatePost }) => (
               textTransform: 'capitalize',
             }}
           >
-            Brent From-Work
             {`${certificatePost.user.firstName} ${certificatePost.user.lastName}`}
           </Text>
           <Text style={{ marginTop: 5 }}>
