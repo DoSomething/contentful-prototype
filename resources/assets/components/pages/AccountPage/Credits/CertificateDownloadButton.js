@@ -45,7 +45,6 @@ const CertificateDownloadButton = ({ certificatePost }) => {
             // Create a 'phantom' link so we can download the PDF on the user's behalf.
             const phantomLink = document.createElement('a');
 
-            // Convert the PDF Blob to a URL and assign it as the link's href.
             // Clicking the link will now download the pdf automatically.
             phantomLink.href = URL.createObjectURL(blob);
             // Assign the PDF filename.
