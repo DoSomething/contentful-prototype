@@ -103,7 +103,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
     <ElementButton
       type="button"
       className={classNames('w-full py-4 text-lg capitalize', {
-        'bg-blue-500 hover:bg-blue-300': !certificatePost.pending,
+        'bg-blurple-500 hover:bg-blurple-300': !certificatePost.pending,
       })}
       isDisabled={certificatePost.pending || loading}
       isLoading={loading}
