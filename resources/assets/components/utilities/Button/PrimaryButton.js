@@ -20,6 +20,7 @@ const PrimaryButton = props => {
     href,
     isActive,
     isDisabled,
+    isLoading,
     onClick,
     text,
     type,
@@ -49,6 +50,7 @@ const PrimaryButton = props => {
       className={classes}
       data={data}
       isDisabled={isDisabled}
+      isLoading={isLoading}
       onClick={onClick}
       text={text}
       type={type}
@@ -62,6 +64,7 @@ PrimaryButton.propTypes = {
   href: PropTypes.string,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
@@ -73,6 +76,7 @@ PrimaryButton.defaultProps = {
   href: null,
   isActive: false,
   isDisabled: false,
+  isLoading: false,
   onClick: null,
   type: 'button',
 };

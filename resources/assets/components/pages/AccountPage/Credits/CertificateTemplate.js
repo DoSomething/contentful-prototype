@@ -80,8 +80,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// We're still stubbing the data for now so:
-// eslint-disable-next-line no-unused-vars
 const CertificateTemplate = ({ certificatePost }) => (
   <Document>
     <Page
@@ -159,7 +157,7 @@ const CertificateTemplate = ({ certificatePost }) => (
               width: '24%',
               borderRight: `2 solid ${colors.lightBlue}`,
             }}
-            src="https://activity-dev.dosomething.org/images/6YpKv0kz8n"
+            src={certificatePost.photo}
           />
 
           <View style={{ width: '75%', padding: '10 0 15 30' }}>
@@ -171,30 +169,30 @@ const CertificateTemplate = ({ certificatePost }) => (
                 color: colors.darkBlue,
               }}
             >
-              Love Letters Challenge
+              {certificatePost.campaignWebsite.showcaseTitle}
             </Text>
 
             {/* @TODO adjust font size if character count is greater then 100 */}
             <Text style={{ fontStyle: 'italic' }}>
-              Make a valentine&apos;s day card to show an adult you care.
+              {certificatePost.campaignWebsite.showcaseDescription}
             </Text>
 
             <View style={{ fontSize: 13 }}>
               <View style={[styles.flex, { marginTop: 10 }]}>
                 <View style={{ width: '40%' }}>
                   <Text style={styles.postDetailsTitle}>Date Completed</Text>
-                  <Text>January 21, 2020</Text>
+                  <Text>{certificatePost.dateCompleted}</Text>
                 </View>
 
                 <View>
                   <Text style={styles.postDetailsTitle}>Volunteer Hours*</Text>
-                  <Text>3 hours</Text>
+                  <Text>{certificatePost.volunteerHours}</Text>
                 </View>
               </View>
 
               <View style={{ marginTop: 10 }}>
                 <Text style={styles.postDetailsTitle}>Impact</Text>
-                <Text>20 cards created</Text>
+                <Text>{certificatePost.impactLabel}</Text>
               </View>
             </View>
           </View>
