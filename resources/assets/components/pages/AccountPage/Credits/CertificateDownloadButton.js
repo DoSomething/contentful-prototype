@@ -45,7 +45,6 @@ const CertificateDownloadButton = ({ certificatePost }) => {
             // Create a 'phantom' link so we can download the PDF on the user's behalf.
             const phantomLink = document.createElement('a');
 
-            // Clicking the link will now download the pdf automatically.
             phantomLink.href = URL.createObjectURL(blob);
             // Assign the PDF filename.
             // @TODO: Update filename per https://www.pivotaltracker.com/story/show/172439408/comments/213717690.
