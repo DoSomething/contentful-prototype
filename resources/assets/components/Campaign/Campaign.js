@@ -66,8 +66,6 @@ const Campaign = props => (
 
 Campaign.propTypes = {
   campaignId: PropTypes.string,
-  // TODO: If we still need additonalContent, document why.
-  featureFlags: PropTypes.objectOf(PropTypes.bool),
   history: ReactRouterPropTypes.history.isRequired,
   isAuthenticated: PropTypes.bool,
   location: ReactRouterPropTypes.location.isRequired,
@@ -77,7 +75,6 @@ Campaign.propTypes = {
 
 Campaign.defaultProps = {
   campaignId: null,
-  featureFlags: null,
   isAuthenticated: false,
   userId: null,
 };
