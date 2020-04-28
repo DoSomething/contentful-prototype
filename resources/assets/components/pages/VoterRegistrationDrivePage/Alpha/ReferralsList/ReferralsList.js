@@ -32,6 +32,7 @@ const ReferralsList = ({ referrerUserId }) => (
         const countStr = data.posts.length === 51 ? '50+' : data.posts.length;
         const items = [];
 
+        // We want to display three items, regardless of how many referral posts were found.
         for (let i = 0; i < 3; i += 1) {
           items.push(
             <ReferralsListItem
