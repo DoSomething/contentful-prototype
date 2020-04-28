@@ -48,7 +48,7 @@ const ReferralsList = ({ referrerUserId }) => (
         }
 
         return (
-          <div>
+          <>
             <div className="pb-6">
               You have registered{' '}
               <strong>
@@ -57,7 +57,7 @@ const ReferralsList = ({ referrerUserId }) => (
               so far.
             </div>
             <ul className="clearfix">{items}</ul>
-          </div>
+          </>
         );
       }}
     </Query>
