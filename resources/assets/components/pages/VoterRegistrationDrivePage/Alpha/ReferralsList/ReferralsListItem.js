@@ -7,11 +7,7 @@ import { BaseFigure } from '../../../../utilities/Figure/Figure';
 const ReferralsListItem = props => {
   const { label } = props;
 
-  const media = (
-    <div>
-      <img src={VoterRegistrationImage} alt="Registered to vote" />
-    </div>
-  );
+  const media = <img src={VoterRegistrationImage} alt="Registered to vote" />;
 
   return (
     <BaseFigure media={media} size="medium">
