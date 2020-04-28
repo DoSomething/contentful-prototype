@@ -15,3 +15,7 @@ Configures a [campaign](https://github.com/DoSomething/rogue/blob/master/docs/en
 - **Blurb** : Long text displayed in the LedeBanner.
 
 - **Landing Page** : Reference to a [Landing Page](development/content-types/landing-page.md) or Sixpack Experiment entry, displayed when the current user has not signed up for the campaign.
+
+- **Additional Content** : A JSON field, which may contain the following properties:
+
+  - `featureFlags` - (Deprecated). Expects an object property. This was only ever used with a `showVoterRegistrationModal` key, and support was removed in [#2073](https://github.com/DoSomething/phoenix-next/pull/2073).
