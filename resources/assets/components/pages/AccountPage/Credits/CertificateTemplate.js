@@ -76,8 +76,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// We're still stubbing the data for now so:
-// eslint-disable-next-line no-unused-vars
 const CertificateTemplate = ({ certificatePost }) => (
   <Document>
     <Page
