@@ -40,7 +40,7 @@ const ALPHA_CAMPAIGN_INFO_QUERY = gql`
 
 const VoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
-  const rogueCampaignId = process.env.NODE_ENV === 'production' ? 9008 : 9001;
+  const rogueCampaignId = process.env.NODE_ENV === 'production' ? 9054 : 9001;
 
   if (!referrerUserId) {
     return <NotFoundPage />;
@@ -87,6 +87,7 @@ const VoterRegistrationDrivePage = () => {
   const campaignInfoBlock = (
     <CampaignInfoBlock
       campaignId={rogueCampaignId}
+      hideScholarshipDetails
       scholarshipAmount={1500}
       scholarshipDeadline="2020-04-30"
     />
@@ -106,13 +107,15 @@ const VoterRegistrationDrivePage = () => {
                   {firstName} has invited you to register to vote!
                 </h2>
               </header>
-              <div className="grid-wide-7/10 primary">
-                <p>
-                  Voting is important for young people because we can affect
-                  change on issues we care about most like climate change,
-                  living wages, and student loan reform.
-                </p>
-                <p>- {firstName}</p>
+              <div className="grid-wide-7/10 primary markdown">
+                <blockquote>
+                  <p>
+                    Voting is important for young people because we can affect
+                    change on issues we care about most like climate change,
+                    living wages, and student loan reform.
+                  </p>
+                  <p>- {firstName}</p>
+                </blockquote>
                 <p>
                   250,000+ young people have registered to vote via DoSomething
                   (it takes less than 2 minutes!). After you register, share
