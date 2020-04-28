@@ -12,7 +12,7 @@
     "build": "npm run schema:fragments && webpack --env=production",
     "stat": "webpack --env=production --profile --json > stats.json",
     "analyze": "npm run stat && webpack-bundle-analyzer stats.json public/next/assets",
-    "format": "prettier --write \"{docs,resources}/**/*.{js,md,scss,graphql}\"",
+    "format": "prettier --write \"{resources}/**/*.{js,md,scss,graphql}\"",
     "schema:fetch": "apollo service:download --endpoint https://graphql-dev.dosomething.org/graphql",
     "schema:fragments": "node bootstrap/getFragmentTypes.js",
     "heroku-postbuild": "npm run build"
