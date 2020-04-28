@@ -18,9 +18,8 @@ const CertificateDownloadButton = ({ certificatePost }) => {
    * @param {Error} err
    */
   const handleError = err => {
-    // We're no longer loading.
     setLoading(false);
-    // Update the local error state.
+
     setError(err);
     // @TODO: Track analytics. Report error to NR.
     console.error(err);
@@ -47,9 +46,6 @@ const CertificateDownloadButton = ({ certificatePost }) => {
             // @TODO: Update filename per https://www.pivotaltracker.com/story/show/172439408/comments/213717690.
             phantomLink.download = 'certificate.pdf';
 
-
-            // All set! We pass along the link so that on the initial process we can click the
-            // link directly without referring to the local link in state which saves asynchronously.
             resolve(phantomLink);
           })
           // Catch any errors from the PDF data -> blob conversion.
@@ -65,7 +61,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
    *
    */
   const handleClick = () => {
-    // If we've already generated a pdfLink, we can simply 'click' it to download the pdf.
+    // If we've already generated a pdfLink, simply 'click' it to download the PDF.
     if (pdfLink) {
       pdfLink.click();
       return;
