@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Referrals from './Referrals';
 import ShareLink from './ShareLink';
+import ReferralsList from './ReferralsList/ReferralsList';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 
 const AlphaPage = ({ userId }) => (
   <React.Fragment>
-    <Referrals referrerUserId={userId} />
+    <ReferralsList referrerUserId={userId} />
     <ShareLink referrerUserId={userId} />
     <ContentBlock
       title="FAQs"
