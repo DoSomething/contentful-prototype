@@ -133,6 +133,12 @@ export const mockPostsResponse = [
   },
 ];
 
+export const mockUserResponse = {
+  id: '123',
+  firstName: 'Brent',
+  lastName: 'Sakkoy',
+};
+
 // Mocked paginatedPost data should be parsed into the following result:
 export const mockParsedPostsData = [
   {
@@ -144,6 +150,7 @@ export const mockParsedPostsData = [
     pending: true,
     photo: undefined,
     impactLabel: null,
+    user: mockUserResponse,
   },
   {
     id: 4,
@@ -154,6 +161,7 @@ export const mockParsedPostsData = [
     pending: true,
     photo: undefined,
     impactLabel: null,
+    user: mockUserResponse,
   },
   {
     id: 6,
@@ -164,5 +172,6 @@ export const mockParsedPostsData = [
     pending: false,
     impactLabel: '2 things done',
     photo: 'images/6',
+    user: mockUserResponse,
   },
 ];

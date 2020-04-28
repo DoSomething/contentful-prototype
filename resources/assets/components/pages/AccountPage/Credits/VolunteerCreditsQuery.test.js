@@ -5,6 +5,7 @@ import { MockedProvider } from '@apollo/react-testing';
 
 import {
   mockPostsResponse,
+  mockUserResponse,
   mockParsedPostsData,
 } from './volunteer-credits-mock-data';
 import VolunteerCreditsQuery, {
@@ -34,6 +35,7 @@ const mocks = [
         paginatedPosts: {
           edges: mockPostsResponse,
         },
+        user: mockUserResponse,
       },
     },
   },
