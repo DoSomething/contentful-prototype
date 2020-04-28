@@ -34,6 +34,10 @@ export const certificatePostType = PropTypes.shape({
   impactLabel: PropTypes.string,
   photo: PropTypes.string,
   pending: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+  }),
 });
 
 // Fonts need to be explicitly registered with the PDF renderer.
@@ -128,9 +132,11 @@ const CertificateTemplate = ({ certificatePost }) => (
               fontSize: 35,
               fontFamily: 'League Gothic',
               color: colors.purple,
+              textTransform: 'capitalize',
             }}
           >
             Brent From-Work
+            {`${certificatePost.user.firstName} ${certificatePost.user.lastName}`}
           </Text>
           <Text style={{ marginTop: 5 }}>
             has completed the following volunteering campaign:

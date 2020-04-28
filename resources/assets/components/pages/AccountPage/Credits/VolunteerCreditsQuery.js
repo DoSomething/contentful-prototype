@@ -46,6 +46,12 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
         }
       }
     }
+
+    user(id: $userId) {
+      id
+      firstName
+      lastName
+    }
   }
 `;
 
@@ -122,6 +128,7 @@ const VolunteerCreditsQuery = () => {
       impactLabel,
       photo,
       pending,
+      user: data.user,
     };
   });
 
