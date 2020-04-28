@@ -32,10 +32,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
    * @return {Promise|Undefined}
    */
   const generatePdfLink = () =>
-    new Promise(resolve => {
-      // We'll be 'loading' until the PDF link is generated.
-      setLoading(true);
-
+    new Promise((resolve, reject) => {
       // Playing it safe to catch any errors caused by the initial PDF rendering step.
       try {
         // Render the PDF template.
@@ -50,20 +47,16 @@ const CertificateDownloadButton = ({ certificatePost }) => {
             // @TODO: Update filename per https://www.pivotaltracker.com/story/show/172439408/comments/213717690.
             phantomLink.download = 'certificate.pdf';
 
-            // Save this download link in state so we can just 'click' it again if necessary.
-            setPdfLink(phantomLink);
-
-            setLoading(false);
 
             // All set! We pass along the link so that on the initial process we can click the
             // link directly without referring to the local link in state which saves asynchronously.
             resolve(phantomLink);
           })
           // Catch any errors from the PDF data -> blob conversion.
-          .catch(err => handleError(err));
+          .catch(reject);
         // Catch any errors from the initial PDF render.
       } catch (err) {
-        handleError(err);
+        reject(err);
       }
     });
 
@@ -78,8 +71,19 @@ const CertificateDownloadButton = ({ certificatePost }) => {
       return;
     }
 
-    // generate the phantom PDF link, and 'click' it to download the pdf!
-    generatePdfLink().then(link => link.click());
+    setLoading(true);
+
+    // Generate the phantom PDF link, and 'click' it to download the PDF!
+    generatePdfLink()
+      .then(link => {
+        // Save this download link in state so we can just 'click' it again if necessary.
+        setPdfLink(link);
+
+        link.click();
+
+        setLoading(false);
+      })
+      .catch(handleError);
   };
 
   /**
