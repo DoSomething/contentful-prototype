@@ -40,7 +40,6 @@ const CertificateDownloadButton = ({ certificatePost }) => {
       try {
         // Render the PDF template.
         pdf(<CertificateTemplate certificatePost={certificatePost} />)
-          // Convert the data to a Blob object.
           .toBlob()
           .then(blob => {
             // Create a 'phantom' link so we can download the PDF on the user's behalf.
