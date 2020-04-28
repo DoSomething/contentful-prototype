@@ -49,8 +49,6 @@ const VoterRegistrationAction = props => {
         url: parsedLink,
       },
     });
-
-    set(`${props.userId}_hide_voter_reg_modal`, 'boolean', true);
   };
 
   return (

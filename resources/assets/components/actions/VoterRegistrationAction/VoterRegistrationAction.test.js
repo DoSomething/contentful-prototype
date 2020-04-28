@@ -39,13 +39,4 @@ describe('clicking the VoterRegistrationAction button', () => {
     wrapper.find('ButtonLink').simulate('click');
     expect(trackEventMock).toHaveBeenCalled();
   });
-
-  test('sets the user to be hidden from voter_reg_modal in local storage', () => {
-    const wrapper = renderVoterRegistration();
-    wrapper.find('ButtonLink').simulate('click');
-
-    expect(
-      get(`${'551234567890abcdefghijkl'}_hide_voter_reg_modal`, 'boolean'),
-    ).toBe(true);
-  });
 });
