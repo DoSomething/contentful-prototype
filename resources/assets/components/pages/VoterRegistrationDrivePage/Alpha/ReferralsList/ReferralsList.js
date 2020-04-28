@@ -33,7 +33,10 @@ const ReferralsList = ({ referrerUserId }) => (
         const numberOfReferrals = data.posts.length;
         const items = [];
 
-        // We want to display three items, regardless of how many referral posts were found.
+        /**
+         * If there are no referral posts, we want to display three empty list items, which is why
+         * we're looping from 0 to 2 here (vs slicing our data.posts array).
+         */
         for (let i = 0; i < 3; i += 1) {
           items.push(
             <ReferralsListItem
