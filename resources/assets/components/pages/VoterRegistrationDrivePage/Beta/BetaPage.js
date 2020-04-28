@@ -14,18 +14,17 @@ import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 
-const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
-  query VoterRegistrationDrivePageReffererUserQuery($referrerUserId: String!) {
+const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
+  query VoterRegistrationDrivePageReffererUserQuery(
+    $referrerUserId: String!
+    $voterRegistrationDriveCampaignId: Int!
+  ) {
     user(id: $referrerUserId) {
       id
       firstName
     }
-  }
-`;
 
-const ALPHA_CAMPAIGN_INFO_QUERY = gql`
-  query AlphaCampaignInfoQuery($campaignId: Int!) {
-    campaign(id: $campaignId) {
+    campaign(id: $voterRegistrationDriveCampaignId) {
       id
       campaignWebsite {
         title
@@ -38,36 +37,30 @@ const ALPHA_CAMPAIGN_INFO_QUERY = gql`
   }
 `;
 
-const VoterRegistrationDrivePage = () => {
+const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
-  const rogueCampaignId = process.env.NODE_ENV === 'production' ? 9054 : 9006;
+  const voterRegistrationDriveCampaignId =
+    process.env.NODE_ENV === 'production' ? 9054 : 9006;
 
   if (!referrerUserId) {
     return <NotFoundPage />;
   }
 
   const { loading, error, data } = useQuery(
-    VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY,
+    BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY,
     {
-      variables: { referrerUserId },
+      variables: {
+        campaignId: voterRegistrationDriveCampaignId,
+        referrerUserId,
+      },
     },
   );
 
-  const {
-    loading: alphaLoading,
-    error: alphaError,
-    data: alphaData,
-  } = useQuery(ALPHA_CAMPAIGN_INFO_QUERY, {
-    variables: {
-      campaignId: rogueCampaignId,
-    },
-  });
-
-  if (loading || alphaLoading) {
+  if (loading) {
     return <Placeholder />;
   }
 
-  if (error || alphaError) {
+  if (error) {
     return <ErrorPage />;
   }
 
@@ -76,7 +69,7 @@ const VoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
-  const { coverImage, title } = alphaData.campaign.campaignWebsite;
+  const { coverImage, title } = data.campaign.campaignWebsite;
   /**
    * Because this component isn't associated with a campaign Contentful entry, we don't have a
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
@@ -87,7 +80,7 @@ const VoterRegistrationDrivePage = () => {
    */
   const campaignInfoBlock = (
     <CampaignInfoBlock
-      campaignId={rogueCampaignId}
+      campaignId={voterRegistrationDriveCampaignId}
       hideScholarshipDetails
       scholarshipAmount={1500}
       scholarshipDeadline="2020-04-30"
@@ -163,4 +156,4 @@ const VoterRegistrationDrivePage = () => {
   );
 };
 
-export default VoterRegistrationDrivePage;
+export default BetaVoterRegistrationDrivePage;
