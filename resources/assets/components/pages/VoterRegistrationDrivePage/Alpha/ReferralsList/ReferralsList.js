@@ -47,6 +47,14 @@ const ReferralsList = ({ referrerUserId }) => (
             </li>,
           );
         }
+        // If we have more than 3 referral posts, append the remaining amount we haven't displayed:
+        if (numberOfReferrals > 3) {
+          items.push(
+            <li key={4} className="md:float-left sm:clearfix">
+              + {numberOfReferrals - 3} more
+            </li>,
+          );
+        }
 
         return (
           <>
