@@ -8,7 +8,7 @@ const ReferralsListItem = props => {
   const { label } = props;
 
   const media = (
-    <div style={{ position: 'relative' }}>
+    <div>
       <img src={VoterRegistrationImage} alt="Registered to vote" />
     </div>
   );
