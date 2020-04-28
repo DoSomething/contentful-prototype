@@ -73,12 +73,7 @@ const CampaignInfoBlock = ({
         // Decide if we want to display scholarship information
         let showScholarshipInfo = false;
 
-        if (
-          scholarshipAmount &&
-          scholarshipDeadline &&
-          isOpen &&
-          actionItem.scholarshipEntry
-        ) {
+        if (scholarshipAmount && scholarshipDeadline && isOpen) {
           showScholarshipInfo = true;
         }
 
