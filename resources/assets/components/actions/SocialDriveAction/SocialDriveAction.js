@@ -131,7 +131,7 @@ class SocialDriveAction extends React.Component {
         {!hidePageViews ? (
           <VoterRegistrationDriveInfo
             userId={userId}
-            pageViewsCount={`${this.state.count}`}
+            pageViewsCount={this.state.count}
           />
         ) : null}
       </div>

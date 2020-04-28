@@ -53,7 +53,7 @@ const VoterRegistrationDriveInfo = ({ pageViewsCount, userId }) => {
 };
 
 VoterRegistrationDriveInfo.propTypes = {
-  pageViewsCount: PropTypes.string,
+  pageViewsCount: PropTypes.number,
   userId: PropTypes.string.isRequired,
 };
 

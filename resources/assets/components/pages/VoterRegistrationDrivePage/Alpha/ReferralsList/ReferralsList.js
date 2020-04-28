@@ -50,7 +50,7 @@ const ReferralsList = ({ referrerUserId }) => (
               </strong>{' '}
               so far.
             </div>
-            <div className="clearfix flex">{items}</div>
+            <div className="clearfix flex flex-row">{items}</div>
           </div>
         );
       }}
