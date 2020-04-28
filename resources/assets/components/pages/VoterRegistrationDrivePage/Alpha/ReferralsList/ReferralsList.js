@@ -1,5 +1,6 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
 
 import Query from '../../../../Query';
@@ -29,7 +30,7 @@ const ReferralsList = ({ referrerUserId }) => (
       variables={{ referrerUserId }}
     >
       {data => {
-        const countStr = data.posts.length === 51 ? '50+' : data.posts.length;
+        const numberOfReferrals = data.posts.length;
         const items = [];
 
         // We want to display three items, regardless of how many referral posts were found.
@@ -47,7 +48,7 @@ const ReferralsList = ({ referrerUserId }) => (
             <div className="pb-6">
               You have registered{' '}
               <strong>
-                {countStr} {countStr === '1' ? 'person' : 'people'}
+                {numberOfReferrals} {pluralize('person', numberOfReferrals)}
               </strong>{' '}
               so far.
             </div>
