@@ -68,7 +68,6 @@ const VoterRegistrationDrivePage = () => {
   }
 
   if (error || alphaError) {
-    console.error(`[ErrorBlock] ${error}`);
     return <ErrorPage />;
   }
 
