@@ -16,7 +16,13 @@ const CertificateDownloadButton = ({ certificatePost }) => {
   );
 
   // Dynamically toggles the button text to 'loading' while we're in loading state.
-  useEffect(() => setButtonText(loading ? 'loading' : 'download'), [loading]);
+  useEffect(() => {
+    if (certificatePost.pending) {
+      return;
+    }
+
+    setButtonText(loading ? 'loading' : 'download');
+  }, [loading]);
 
   /**
    * Handle PDF rendering errors.
