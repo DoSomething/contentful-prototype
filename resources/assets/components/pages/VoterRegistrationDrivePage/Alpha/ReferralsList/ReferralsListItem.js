@@ -27,7 +27,7 @@ ReferralsListItem.propTypes = {
 };
 
 ReferralsListItem.defaultProps = {
-  label: null,
+  label: '???',
 };
 
 export default ReferralsListItem;

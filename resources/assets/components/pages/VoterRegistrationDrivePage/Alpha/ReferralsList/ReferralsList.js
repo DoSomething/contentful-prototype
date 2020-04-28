@@ -1,4 +1,5 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import pluralize from 'pluralize';
 import PropTypes from 'prop-types';
@@ -41,7 +42,7 @@ const ReferralsList = ({ referrerUserId }) => (
           items.push(
             <li key={i} className="float-left pr-6">
               <ReferralsListItem
-                label={data.posts[i] ? data.posts[i].user.displayName : null}
+                label={get(data.posts[i], 'user.displayName')}
               />
             </li>,
           );
