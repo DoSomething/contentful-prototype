@@ -33,6 +33,7 @@ const ReferralsList = ({ referrerUserId }) => (
       {data => {
         const numberOfReferrals = data.posts.length;
         const items = [];
+        let moreReferralsIndicator = null;
 
         /**
          * If there are no referral posts, we want to display three empty list items, which is why
@@ -47,25 +48,33 @@ const ReferralsList = ({ referrerUserId }) => (
             </li>,
           );
         }
+
         // If we have more than 3 referral posts, append the remaining amount we haven't displayed:
         if (numberOfReferrals > 3) {
-          items.push(
-            <li key={4} className="md:float-left sm:clearfix">
-              + {numberOfReferrals - 3} more
-            </li>,
+          const moreReferralslabel = `+ ${numberOfReferrals - 3} more`;
+
+          moreReferralsIndicator = (
+            <div className="text-center md:text-left md:pt-16">
+              {moreReferralslabel}
+            </div>
           );
         }
 
         return (
           <>
-            <div className="pb-6">
+            <div className="pb-3 md:pb-6">
               You have registered{' '}
               <strong>
                 {numberOfReferrals} {pluralize('person', numberOfReferrals)}
               </strong>{' '}
               so far.
             </div>
-            <ul className="clearfix">{items}</ul>
+            <div className="md:flex">
+              <div>
+                <ul className="clearfix align-middle">{items}</ul>
+              </div>
+              {moreReferralsIndicator}
+            </div>
           </>
         );
       }}
