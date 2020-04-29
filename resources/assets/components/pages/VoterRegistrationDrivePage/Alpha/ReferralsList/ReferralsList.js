@@ -33,7 +33,6 @@ const ReferralsList = ({ referrerUserId }) => (
       {data => {
         const numberOfReferrals = data.posts.length;
         const items = [];
-        let moreReferralsIndicator = null;
 
         /**
          * If there are no referral posts, we want to display three empty list items, which is why
@@ -46,17 +45,6 @@ const ReferralsList = ({ referrerUserId }) => (
                 label={get(data.posts[i], 'user.displayName')}
               />
             </li>,
-          );
-        }
-
-        // If we have more than 3 referral posts, append the remaining amount we haven't displayed:
-        if (numberOfReferrals > 3) {
-          const moreReferralslabel = `+ ${numberOfReferrals - 3} more`;
-
-          moreReferralsIndicator = (
-            <div className="text-center md:text-left md:pt-16">
-              {moreReferralslabel}
-            </div>
           );
         }
 
@@ -73,7 +61,11 @@ const ReferralsList = ({ referrerUserId }) => (
               <div>
                 <ul className="clearfix align-middle">{items}</ul>
               </div>
-              {moreReferralsIndicator}
+              {numberOfReferrals > 3 ? (
+                <div className="text-center md:text-left md:pt-16">
+                  {`+ ${numberOfReferrals - 3} more`}
+                </div>
+              ) : null}
             </div>
           </>
         );
