@@ -59,7 +59,7 @@ const HeroTemplate = ({
         Should eventually be removed and use Tailwind. This will also help clean up the element hierarchy.
       */}
       <div className="hero-landing-page">
-        <CoverImage coverImage={coverImage} title={title} />
+        <CoverImage coverImage={coverImage} />
         <div className="clearfix bg-gray-100">
           <div className="base-12-grid py-3 md:py-6">
             <header role="banner" className="hero-banner">

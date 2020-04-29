@@ -27,7 +27,6 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
     campaign(id: $voterRegistrationDriveCampaignId) {
       id
       campaignWebsite {
-        title
         coverImage {
           url
           description
@@ -69,7 +68,7 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
-  const { coverImage, title } = data.campaign.campaignWebsite;
+  const { coverImage } = data.campaign.campaignWebsite;
   /**
    * Because this component isn't associated with a campaign Contentful entry, we don't have a
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
@@ -92,7 +91,7 @@ const BetaVoterRegistrationDrivePage = () => {
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
-          <CoverImage coverImage={coverImage} title={title} />
+          <CoverImage coverImage={coverImage} />
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
