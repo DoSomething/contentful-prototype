@@ -99,7 +99,7 @@ const BetaVoterRegistrationDrivePage = () => {
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
-          <CoverImage coverImage={coverImage} title={title} />
+          <CoverImage coverImage={coverImage} />
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
