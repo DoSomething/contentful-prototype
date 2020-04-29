@@ -17,13 +17,11 @@ const ReferralsListItem = props => {
   );
 
   return (
-    <BaseFigure
-      media={media}
-      size="medium"
-      className={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}
-    >
-      <p className="referral-list-item-label">{label}</p>
-    </BaseFigure>
+    <div data-test={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}>
+      <BaseFigure media={media} size="medium">
+        <p>{label}</p>
+      </BaseFigure>
+    </div>
   );
 };
 

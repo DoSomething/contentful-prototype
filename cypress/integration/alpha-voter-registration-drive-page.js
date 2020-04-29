@@ -71,7 +71,8 @@ describe('Alpha Voter Registration Drive Page', () => {
       voter_reg_alpha_page: true,
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('.referral-list-item-completed').should('have.length', 0);
+    cy.get('[data-test=referral-list-item-empty]').should('have.length', 3);
+    cy.get('[data-test=referral-list-item-completed]').should('have.length', 0);
     cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
   });
 
@@ -86,14 +87,14 @@ describe('Alpha Voter Registration Drive Page', () => {
       voter_reg_alpha_page: true,
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('.referral-list-item-completed').should('have.length', 2);
-    cy.nth('.referral-list-item-completed', 0).within(() => {
-      cy.get('.referral-list-item-label').contains('Jesus Q.');
+    cy.get('[data-test=referral-list-item-completed]').should('have.length', 2);
+    cy.nth('[data-test=referral-list-item-completed]', 0).within(() => {
+      cy.get('.figure__body').contains('Jesus Q.');
     });
-    cy.nth('.referral-list-item-completed', 1).within(() => {
-      cy.get('.referral-list-item-label').contains('Walter S.');
+    cy.nth('[data-test=referral-list-item-completed]', 1).within(() => {
+      cy.get('.figure__body').contains('Walter S.');
     });
-    cy.get('.referral-list-item-empty').should('have.length', 1);
+    cy.get('[data-test=referral-list-item-empty]').should('have.length', 1);
     cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
   });
 
@@ -114,17 +115,17 @@ describe('Alpha Voter Registration Drive Page', () => {
       voter_reg_alpha_page: true,
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('.referral-list-item-completed').should('have.length', 3);
-    cy.nth('.referral-list-item-completed', 0).within(() => {
-      cy.get('.referral-list-item-label').contains('Sarah C.');
+    cy.get('[data-test=referral-list-item-completed]').should('have.length', 3);
+    cy.nth('[data-test=referral-list-item-completed]', 0).within(() => {
+      cy.get('p').contains('Sarah C.');
     });
-    cy.nth('.referral-list-item-completed', 1).within(() => {
-      cy.get('.referral-list-item-label').contains('Kyle R.');
+    cy.nth('[data-test=referral-list-item-completed]', 1).within(() => {
+      cy.get('.figure__body').contains('Kyle R.');
     });
-    cy.nth('.referral-list-item-completed', 2).within(() => {
-      cy.get('.referral-list-item-label').contains('John C.');
+    cy.nth('[data-test=referral-list-item-completed]', 2).within(() => {
+      cy.get('.figure__body').contains('John C.');
     });
-    cy.get('.referral-list-item-empty').should('have.length', 0);
+    cy.get('[data-test=referral-list-item-empty]').should('have.length', 0);
     cy.get('[data-test=additional-referrals-count]').contains('+ 2 more');
   });
 });
