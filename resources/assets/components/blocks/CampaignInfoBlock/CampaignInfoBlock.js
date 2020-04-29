@@ -34,6 +34,7 @@ const CAMPAIGN_INFO_QUERY = gql`
 
 const CampaignInfoBlock = ({
   campaignId,
+  hideScholarshipDetails,
   scholarshipAmount,
   scholarshipDeadline,
   showModal,
@@ -94,15 +95,17 @@ const CampaignInfoBlock = ({
 
                   <dt>Next Deadline</dt>
                   <dd>{getHumanFriendlyDate(scholarshipDeadline)}</dd>
-                  <div>
-                    <button
-                      className="text-blue-500 pb-4"
-                      type="button"
-                      onClick={handleViewMoreLinkSelect}
-                    >
-                      View Scholarship Details
-                    </button>
-                  </div>
+                  {!hideScholarshipDetails ? (
+                    <div>
+                      <button
+                        className="text-blue-500 pb-4"
+                        type="button"
+                        onClick={handleViewMoreLinkSelect}
+                      >
+                        View Scholarship Details
+                      </button>
+                    </div>
+                  ) : null}
                   <hr className="clear-both pb-3 border-gray-300" />
                 </React.Fragment>
               ) : null}
@@ -136,6 +139,7 @@ const CampaignInfoBlock = ({
 CampaignInfoBlock.propTypes = {
   actionToDisplay: PropTypes.number,
   campaignId: PropTypes.number.isRequired,
+  hideScholarshipDetails: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
   scholarshipDeadline: PropTypes.string,
   showModal: PropTypes.func,
@@ -143,6 +147,7 @@ CampaignInfoBlock.propTypes = {
 
 CampaignInfoBlock.defaultProps = {
   actionToDisplay: null,
+  hideScholarshipDetails: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showModal: null,

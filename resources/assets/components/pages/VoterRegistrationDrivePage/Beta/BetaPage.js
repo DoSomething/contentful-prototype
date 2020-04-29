@@ -1,38 +1,58 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery } from 'react-apollo';
 
+import Faq from './Faq';
 import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Placeholder from '../../../utilities/Placeholder';
-import Faq from './Faq';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
+import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 
-const VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY = gql`
-  query VoterRegistrationDrivePageReffererUserQuery($referrerUserId: String!) {
+const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
+  query VoterRegistrationDrivePageReffererUserQuery(
+    $referrerUserId: String!
+    $voterRegistrationDriveCampaignId: Int!
+  ) {
     user(id: $referrerUserId) {
       id
       firstName
     }
+
+    campaign(id: $voterRegistrationDriveCampaignId) {
+      id
+      campaignWebsite {
+        title
+        coverImage {
+          url
+          description
+        }
+      }
+    }
   }
 `;
 
-const VoterRegistrationDrivePage = () => {
+const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
+  const voterRegistrationDriveCampaignId =
+    process.env.NODE_ENV === 'production' ? 9054 : 9004;
 
   if (!referrerUserId) {
     return <NotFoundPage />;
   }
 
   const { loading, error, data } = useQuery(
-    VOTER_REGISTRATION_DRIVE_PAGE_REFERRER_USER_QUERY,
+    BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY,
     {
-      variables: { referrerUserId },
+      variables: {
+        referrerUserId,
+        voterRegistrationDriveCampaignId,
+      },
     },
   );
 
@@ -49,15 +69,19 @@ const VoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
+  const { coverImage, title } = data.campaign.campaignWebsite;
   /**
    * Because this component isn't associated with a campaign Contentful entry, we don't have a
    * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
    * this hardcoded -- but we will eventually need to figure out how to display the modal to show
    * additional scholarship information.
+   *
+   * 04/28/20 - keeping the scholarship info hard coded for v1 and hiding details link
    */
   const campaignInfoBlock = (
     <CampaignInfoBlock
-      campaignId={process.env.NODE_ENV === 'production' ? 9008 : 9035}
+      campaignId={voterRegistrationDriveCampaignId}
+      hideScholarshipDetails
       scholarshipAmount={1500}
       scholarshipDeadline="2020-04-30"
     />
@@ -68,23 +92,29 @@ const VoterRegistrationDrivePage = () => {
       <SiteNavigationContainer />
       <main>
         <div className="hero-landing-page">
+          <CoverImage coverImage={coverImage} />
           <div className="clearfix bg-gray-100">
             <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
               <header role="banner" className="hero-banner">
-                <h1 className="hero-banner__headline-title">
-                  Ready, Set, Vote!
-                </h1>
+                <h1 className="hero-banner__headline-title">{title}</h1>
                 <h2 className="hero-banner__headline-subtitle">
                   {firstName} has invited you to register to vote!
                 </h2>
               </header>
-              <div className="grid-wide-7/10 primary">
+              <div className="grid-wide-7/10 primary markdown">
+                <blockquote>
+                  <p>
+                    Voting is important for young people because we can affect
+                    change on issues we care about most like climate change,
+                    living wages, and student loan reform.
+                  </p>
+                  <p>- {firstName}</p>
+                </blockquote>
                 <p>
-                  Voting is important for young people because we can affect
-                  change on issues we care about most like climate change,
-                  living wages, and student loan reform.
+                  250,000+ young people have registered to vote via DoSomething
+                  (it takes less than 2 minutes!). After you register, share
+                  with your friends to enter to win a $1,500 scholarship!
                 </p>
-                <p>- {firstName}</p>
               </div>
               <div className="grid-wide-3/10 secondary">
                 {campaignInfoBlock}
@@ -126,4 +156,4 @@ const VoterRegistrationDrivePage = () => {
   );
 };
 
-export default VoterRegistrationDrivePage;
+export default BetaVoterRegistrationDrivePage;
