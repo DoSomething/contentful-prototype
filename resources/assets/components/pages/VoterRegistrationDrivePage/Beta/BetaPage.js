@@ -41,6 +41,7 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
 
 const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
+  // in order to test the scholarship info in dev, we're using 9001 since it is an open campaign
   const voterRegistrationDriveCampaignId =
     process.env.NODE_ENV === 'production' ? 9054 : 9001;
   const scholarshipAmount = 1500;
