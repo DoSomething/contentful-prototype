@@ -8,9 +8,9 @@ import { isSignedUp } from '../../selectors/signup';
  * Provide state from the Redux store as props for this component.
  */
 const mapStateToProps = (state, props) => ({
-  actionToDisplay: get(
+  actionIdToDisplay: get(
     state,
-    'campaign.additionalContent.actionToDisplay',
+    'campaign.additionalContent.actionIdToDisplay',
     null,
   ),
   affiliatedActionText: get(
