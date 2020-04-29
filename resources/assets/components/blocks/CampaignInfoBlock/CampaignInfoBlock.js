@@ -146,12 +146,8 @@ CampaignInfoBlock.propTypes = {
 };
 
 CampaignInfoBlock.defaultProps = {
-<<<<<<< HEAD
-  actionToDisplay: null,
-  hideScholarshipDetails: false,
-=======
   actionIdToDisplay: null,
->>>>>>> Rename "actionToDisplay" to "actionIdToDisplay"
+  hideScholarshipDetails: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,
   showModal: null,
