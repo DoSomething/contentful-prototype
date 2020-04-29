@@ -6,6 +6,7 @@ import Faq from './Faq';
 import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
+import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
@@ -13,6 +14,7 @@ import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
+import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 
 const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
   query VoterRegistrationDrivePageReffererUserQuery(
@@ -41,6 +43,8 @@ const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
   const voterRegistrationDriveCampaignId =
     process.env.NODE_ENV === 'production' ? 9054 : 9004;
+  const scholarshipAmount = 1500;
+  const scholarshipDeadline = '2020-04-30';
 
   if (!referrerUserId) {
     return <NotFoundPage />;
@@ -82,8 +86,8 @@ const BetaVoterRegistrationDrivePage = () => {
     <CampaignInfoBlock
       campaignId={voterRegistrationDriveCampaignId}
       hideScholarshipDetails
-      scholarshipAmount={1500}
-      scholarshipDeadline="2020-04-30"
+      scholarshipAmount={scholarshipAmount}
+      scholarshipDeadline={scholarshipDeadline}
     />
   );
 
@@ -150,6 +154,31 @@ const BetaVoterRegistrationDrivePage = () => {
             </ButtonLink>
           </div>
         </div>
+        {showReferralScholarshipModal || showScholarshipModal ? (
+          <Modal
+            className="-inverted -scholarship__info"
+            onClose={() => {
+              setShowScholarshipModal(false);
+              setShowReferralScholarshipModal(false);
+            }}
+            trackingId="SCHOLARSHIP_MODAL"
+          >
+            <ScholarshipInfoBlock
+              affiliateSponsors={affiliateSponsors}
+              campaignId={voterRegistrationDriveCampaignId}
+              scholarshipAmount={scholarshipAmount}
+              scholarshipCallToAction={scholarshipCallToAction || undefined}
+              scholarshipDeadline={scholarshipDeadline}
+              scholarshipDescription={scholarshipDescription}
+              numberOfScholarships={numberOfScholarships}
+              utmLabel={
+                scholarshipAffiliateLabel
+                  ? scholarshipAffiliateLabel.toLowerCase()
+                  : null
+              }
+            />
+          </Modal>
+        ) : null}
       </main>
       <SiteFooter />
     </>
