@@ -40,7 +40,7 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
 const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
   const voterRegistrationDriveCampaignId =
-    process.env.NODE_ENV === 'production' ? 9054 : 9006;
+    process.env.NODE_ENV === 'production' ? 9054 : 9001;
 
   if (!referrerUserId) {
     return <NotFoundPage />;
