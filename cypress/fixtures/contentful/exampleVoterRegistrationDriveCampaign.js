@@ -79,12 +79,6 @@ export default {
             {
               id: '5iEu4rcj8IGucmMmwqCwm0',
             },
-            {
-              id: '2T5ARr1AViKw2Kw0Q4S0so',
-            },
-            {
-              id: '2fAcVG90xyIcaegG0cKWyM',
-            },
           ],
           displaySocialShare: null,
           hideFromNavigation: false,

@@ -7,17 +7,24 @@ import CompletedRegistrationImage from './completed-registration.svg';
 
 const ReferralsListItem = props => {
   const { label } = props;
+  const isEmpty = label === '???';
 
   const media = (
     <img
-      src={label ? CompletedRegistrationImage : EmptyRegistrationImage}
-      alt={label ? 'Completed voter registration icon' : 'Empty circle icon'}
+      src={!isEmpty ? CompletedRegistrationImage : EmptyRegistrationImage}
+      alt={!isEmpty ? 'Completed voter registration icon' : 'Empty circle icon'}
     />
   );
 
   return (
-    <BaseFigure media={media} size="medium">
-      <p>{label}</p>
+    <BaseFigure
+      media={media}
+      size="medium"
+      className={
+        !isEmpty ? 'referral-list-item-completed' : 'referral-list-item-empty'
+      }
+    >
+      <p className="referral-list-item-label">{label}</p>
     </BaseFigure>
   );
 };
