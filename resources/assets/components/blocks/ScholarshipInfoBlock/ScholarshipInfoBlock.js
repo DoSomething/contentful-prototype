@@ -48,7 +48,7 @@ const SCHOLARSHIP_INFO_QUERY = gql`
 `;
 
 const ScholarshipInfoBlock = ({
-  actionToDisplay,
+  actionIdToDisplay,
   affiliateSponsors,
   campaignId,
   children,
@@ -101,8 +101,8 @@ const ScholarshipInfoBlock = ({
   // Decide which action to display
   let actionItem;
 
-  if (actionToDisplay) {
-    actionItem = actions.find(action => action.id === actionToDisplay);
+  if (actionIdToDisplay) {
+    actionItem = actions.find(action => action.id === actionIdToDisplay);
   } else {
     actionItem = actions.find(
       action => action.scholarshipEntry && action.reportback,
@@ -285,7 +285,7 @@ const ScholarshipInfoBlock = ({
 };
 
 ScholarshipInfoBlock.propTypes = {
-  actionToDisplay: PropTypes.number,
+  actionIdToDisplay: PropTypes.number,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.number,
   children: PropTypes.object,
@@ -298,7 +298,7 @@ ScholarshipInfoBlock.propTypes = {
 };
 
 ScholarshipInfoBlock.defaultProps = {
-  actionToDisplay: null,
+  actionIdToDisplay: null,
   affiliateSponsors: [],
   campaignId: null,
   children: null,
