@@ -1,3 +1,4 @@
+import kebabCase from 'lodash/kebabCase';
 import { pdf } from '@react-pdf/renderer';
 import React, { useState, useEffect } from 'react';
 
@@ -40,7 +41,7 @@ const CertificateDownloadButton = ({ certificatePost }) => {
   /**
    * Generate the certificate PDF data, and build a phantom download link.
    *
-   * @return {Promise|Undefined}
+   * @return {Promise}
    */
   const generatePdfLink = () =>
     new Promise((resolve, reject) => {
@@ -54,9 +55,11 @@ const CertificateDownloadButton = ({ certificatePost }) => {
             const phantomLink = document.createElement('a');
 
             phantomLink.href = URL.createObjectURL(blob);
+
             // Assign the PDF filename.
-            // @TODO: Update filename per https://www.pivotaltracker.com/story/show/172439408/comments/213717690.
-            phantomLink.download = 'certificate.pdf';
+            phantomLink.download = `dosomething-volunteer-certificate-${kebabCase(
+              certificatePost.campaignWebsite.showcaseTitle,
+            )}.pdf`;
 
             resolve(phantomLink);
           })
