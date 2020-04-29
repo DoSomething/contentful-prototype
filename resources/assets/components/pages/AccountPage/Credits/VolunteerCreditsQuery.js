@@ -41,6 +41,11 @@ export const VOLUNTEER_CREDIT_POSTS_QUERY = gql`
               }
               showcaseTitle
               showcaseDescription
+              affiliateSponsors {
+                logo {
+                  url
+                }
+              }
             }
           }
         }
