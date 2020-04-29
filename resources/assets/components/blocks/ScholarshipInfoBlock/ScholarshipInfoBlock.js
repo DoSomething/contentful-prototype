@@ -34,6 +34,7 @@ const SCHOLARSHIP_AFFILIATE_QUERY = gql`
 const SCHOLARSHIP_INFO_QUERY = gql`
   query ScholarshipInfoQuery($campaignId: Int!) {
     actions(campaignId: $campaignId) {
+      id
       actionLabel
       scholarshipEntry
       reportback
@@ -47,6 +48,7 @@ const SCHOLARSHIP_INFO_QUERY = gql`
 `;
 
 const ScholarshipInfoBlock = ({
+  actionToDisplay,
   affiliateSponsors,
   campaignId,
   children,
@@ -95,9 +97,18 @@ const ScholarshipInfoBlock = ({
   const affiliateTitle = get(data, 'affiliate.title');
   const endDate = get(scholarshipData, 'campaign.endDate');
   const actions = get(scholarshipData, 'actions', []);
-  const actionItem = actions.find(
-    action => action.scholarshipEntry && action.reportback,
-  );
+
+  // Decide which action to display
+  let actionItem;
+
+  if (actionToDisplay) {
+    actionItem = actions.find(action => action.id === actionToDisplay);
+  } else {
+    actionItem = actions.find(
+      action => action.scholarshipEntry && action.reportback,
+    );
+  }
+
   const actionType = get(actionItem, 'actionLabel', '');
   if (error || scholarshipError) {
     console.error(`[ErrorBlock] ${error}`);
@@ -274,6 +285,7 @@ const ScholarshipInfoBlock = ({
 };
 
 ScholarshipInfoBlock.propTypes = {
+  actionToDisplay: PropTypes.number,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   campaignId: PropTypes.number,
   children: PropTypes.object,
@@ -286,6 +298,7 @@ ScholarshipInfoBlock.propTypes = {
 };
 
 ScholarshipInfoBlock.defaultProps = {
+  actionToDisplay: null,
   affiliateSponsors: [],
   campaignId: null,
   children: null,

@@ -128,6 +128,7 @@ const HeroTemplate = ({
             trackingId="SCHOLARSHIP_MODAL"
           >
             <ScholarshipInfoBlock
+              actionToDisplay={actionToDisplay}
               affiliateSponsors={affiliateSponsors}
               campaignId={numCampaignId}
               scholarshipAmount={scholarshipAmount}
