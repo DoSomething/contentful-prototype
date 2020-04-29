@@ -59,10 +59,13 @@ const ReferralsList = ({ referrerUserId }) => (
             </div>
             <div className="md:flex">
               <div>
-                <ul className="clearfix align-middle">{items}</ul>
+                <ul className="clearfix">{items}</ul>
               </div>
               {numberOfReferrals > 3 ? (
-                <div className="text-center md:text-left md:pt-16">
+                <div
+                  id="additional-referrals-count"
+                  className="text-center md:text-left md:pt-16"
+                >
                   {`+ ${numberOfReferrals - 3} more`}
                 </div>
               ) : null}
