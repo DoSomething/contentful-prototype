@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
@@ -42,9 +42,11 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
 const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
   const voterRegistrationDriveCampaignId =
-    process.env.NODE_ENV === 'production' ? 9054 : 9004;
+    process.env.NODE_ENV === 'production' ? 9054 : 9001;
   const scholarshipAmount = 1500;
   const scholarshipDeadline = '2020-04-30';
+
+  const [showScholarshipModal, setShowScholarshipModal] = useState(false);
 
   if (!referrerUserId) {
     return <NotFoundPage />;
@@ -85,9 +87,9 @@ const BetaVoterRegistrationDrivePage = () => {
   const campaignInfoBlock = (
     <CampaignInfoBlock
       campaignId={voterRegistrationDriveCampaignId}
-      hideScholarshipDetails
       scholarshipAmount={scholarshipAmount}
       scholarshipDeadline={scholarshipDeadline}
+      showModal={() => setShowScholarshipModal(true)}
     />
   );
 
@@ -154,28 +156,19 @@ const BetaVoterRegistrationDrivePage = () => {
             </ButtonLink>
           </div>
         </div>
-        {showReferralScholarshipModal || showScholarshipModal ? (
+        {showScholarshipModal ? (
           <Modal
             className="-inverted -scholarship__info"
             onClose={() => {
               setShowScholarshipModal(false);
-              setShowReferralScholarshipModal(false);
             }}
-            trackingId="SCHOLARSHIP_MODAL"
+            trackingId="SCHOLARSHIP_MODAL_BETA_VOTER_REGISTRATION"
           >
             <ScholarshipInfoBlock
-              affiliateSponsors={affiliateSponsors}
               campaignId={voterRegistrationDriveCampaignId}
               scholarshipAmount={scholarshipAmount}
-              scholarshipCallToAction={scholarshipCallToAction || undefined}
               scholarshipDeadline={scholarshipDeadline}
-              scholarshipDescription={scholarshipDescription}
-              numberOfScholarships={numberOfScholarships}
-              utmLabel={
-                scholarshipAffiliateLabel
-                  ? scholarshipAffiliateLabel.toLowerCase()
-                  : null
-              }
+              numberOfScholarships={1}
             />
           </Modal>
         ) : null}
