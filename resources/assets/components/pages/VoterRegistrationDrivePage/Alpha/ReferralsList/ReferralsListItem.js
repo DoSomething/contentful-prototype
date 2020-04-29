@@ -20,9 +20,7 @@ const ReferralsListItem = props => {
     <BaseFigure
       media={media}
       size="medium"
-      className={
-        !isEmpty ? 'referral-list-item-completed' : 'referral-list-item-empty'
-      }
+      className={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}
     >
       <p className="referral-list-item-label">{label}</p>
     </BaseFigure>
