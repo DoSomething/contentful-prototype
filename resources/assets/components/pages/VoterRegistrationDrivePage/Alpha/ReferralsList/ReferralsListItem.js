@@ -17,7 +17,7 @@ const ReferralsListItem = props => {
 
   return (
     <BaseFigure media={media} size="medium">
-      <p>{label || '???'}</p>
+      <p>{label}</p>
     </BaseFigure>
   );
 };
