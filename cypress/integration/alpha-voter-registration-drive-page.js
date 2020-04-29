@@ -33,7 +33,10 @@ describe('Alpha Voter Registration Drive Page', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('#alpha-voter-registration-drive-page').should('have.length', 0);
+    cy.get('[data-test=alpha-voter-registration-drive-page]').should(
+      'have.length',
+      0,
+    );
 
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
@@ -47,7 +50,10 @@ describe('Alpha Voter Registration Drive Page', () => {
       voter_reg_alpha_page: true,
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('#alpha-voter-registration-drive-page').should('have.length', 1);
+    cy.get('[data-test=alpha-voter-registration-drive-page]').should(
+      'have.length',
+      1,
+    );
 
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
@@ -66,7 +72,7 @@ describe('Alpha Voter Registration Drive Page', () => {
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('.referral-list-item-completed').should('have.length', 0);
-    cy.get('#additional-referrals-count').should('have.length', 0);
+    cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
   });
 
   it('Alpha OVRD page displays 2 completed icons if user has 2 referrals', () => {
@@ -88,7 +94,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       cy.get('.referral-list-item-label').contains('Walter S.');
     });
     cy.get('.referral-list-item-empty').should('have.length', 1);
-    cy.get('#additional-referrals-count').should('have.length', 0);
+    cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
   });
 
   it('Alpha OVRD page displays 3 completed icons and additinonal count if user has 5 referrals', () => {
@@ -119,6 +125,6 @@ describe('Alpha Voter Registration Drive Page', () => {
       cy.get('.referral-list-item-label').contains('John C.');
     });
     cy.get('.referral-list-item-empty').should('have.length', 0);
-    cy.get('#additional-referrals-count').contains('+ 2 more');
+    cy.get('[data-test=additional-referrals-count]').contains('+ 2 more');
   });
 });

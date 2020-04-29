@@ -61,7 +61,7 @@ const ReferralsList = ({ referrerUserId }) => (
               <ul className="clearfix">{items}</ul>
               {numberOfReferrals > 3 ? (
                 <div
-                  id="additional-referrals-count"
+                  data-test="additional-referrals-count"
                   className="text-center md:text-left md:pt-16"
                 >
                   {`+ ${numberOfReferrals - 3} more`}
