@@ -27,7 +27,14 @@ export const certificatePostType = PropTypes.shape({
       url: PropTypes.string.isRequired,
       description: PropTypes.string,
     }).isRequired,
-  }).isRequired,
+    affiliateSponsors: PropTypes.arrayOf(
+      PropTypes.shape({
+        logo: PropTypes.shape({
+          url: PropTypes.string.isRequired,
+        }).isRequired,
+      }),
+    ),
+  }),
   actionLabel: PropTypes.string.isRequired,
   dateCompleted: PropTypes.string.isRequired,
   volunteerHours: PropTypes.string.isRequired,
