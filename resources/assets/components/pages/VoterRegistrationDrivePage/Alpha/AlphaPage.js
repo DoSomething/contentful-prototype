@@ -6,7 +6,10 @@ import ReferralsList from './ReferralsList/ReferralsList';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 
 const AlphaPage = ({ userId }) => (
-  <div id="alpha-voter-registration-drive-page">
+  <div
+    className="base-12-grid clear-both py-3 md:py-6"
+    id="alpha-voter-registration-drive-page"
+  >
     <ReferralsList referrerUserId={userId} />
     <ShareLink referrerUserId={userId} />
     <ContentBlock

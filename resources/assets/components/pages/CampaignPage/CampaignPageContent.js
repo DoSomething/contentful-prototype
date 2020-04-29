@@ -51,9 +51,7 @@ const CampaignPageContent = props => {
       ) : null}
 
       {isAlphaVoterRegistrationDrivePage ? (
-        <div className="base-12-grid clear-both py-3 md:py-6">
-          <AlphaVoterRegistrationDrivePageContainer />
-        </div>
+        <AlphaVoterRegistrationDrivePageContainer />
       ) : null}
 
       {blocks.length && !isAlphaVoterRegistrationDrivePage ? (
