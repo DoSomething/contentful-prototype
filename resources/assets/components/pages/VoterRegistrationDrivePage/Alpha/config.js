@@ -1,7 +1,7 @@
 import { isDevEnvironment } from '../../../../helpers';
 
 export const faq = {
-  actionId: isDevEnvironment ? 27 : 1025,
+  contentBlockId: isDevEnvironment ? '6H22Y1wmICy05pM9twIGGR' : null,
 };
 
 export const shareLink = {
