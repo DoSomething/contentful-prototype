@@ -18,10 +18,13 @@ const USER_ACCEPTED_POSTS_COUNT_FOR_ACTION_QUERY = gql`
 
 const AcceptedPostsCount = ({ actionId, userId }) => {
   return (
-    <div className="social-drive-information mt-6' lg:w-1/3 lg:pl-3 lg:mt-0'">
+    <div
+      data-test="accepted-posts-count"
+      className="mt-6' lg:w-1/3 lg:pl-3 lg:mt-0'"
+    >
       <Card className="bordered rounded" title="More info">
-        <div className="p-3 voter-registrations">
-          <span className="voter-registrations__text uppercase">
+        <div data-test="accepted-posts-count-label" className="p-3">
+          <span className="font-bold uppercase text-gray-600">
             Total scholarship entries
           </span>
           <Query
@@ -29,7 +32,7 @@ const AcceptedPostsCount = ({ actionId, userId }) => {
             variables={{ actionId, userId }}
           >
             {data => (
-              <h1 className="voter-registrations__amount">
+              <h1 data-test="accepted-posts-count-amount">
                 {data.postsCount === 51 ? '50+' : data.postsCount}
               </h1>
             )}

@@ -10,7 +10,7 @@ const ShareLink = ({ referrerUserId }) => (
       link={`https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
       fullWidth
       actionId={shareLink.actionId}
-      hidePageViews={true}
+      hidePageViews
     />
   </div>
 );
