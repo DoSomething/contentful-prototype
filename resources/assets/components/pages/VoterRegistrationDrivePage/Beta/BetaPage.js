@@ -4,7 +4,7 @@ import { useQuery } from 'react-apollo';
 
 import Faq from './Faq';
 import ErrorPage from '../../ErrorPage';
-import { query } from '../../../../helpers';
+import { isDevEnvironment, query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
@@ -17,23 +17,20 @@ import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationConta
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 
 const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
-  query VoterRegistrationDrivePageReffererUserQuery(
+  query BetaVoterRegistrationDrivePageQuery(
     $referrerUserId: String!
-    $voterRegistrationDriveCampaignId: Int!
+    $voterRegistrationDriveCampaignWebsiteId: String!
   ) {
     user(id: $referrerUserId) {
       id
       firstName
     }
 
-    campaign(id: $voterRegistrationDriveCampaignId) {
-      id
-      campaignWebsite {
-        title
-        coverImage {
-          url
-          description
-        }
+    campaignWebsite(id: $voterRegistrationDriveCampaignWebsiteId) {
+      title
+      coverImage {
+        url
+        description
       }
     }
   }
@@ -41,12 +38,13 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
 
 const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
-  // in order to test the scholarship info in dev, we're using 9001 since it is an open campaign
-  const voterRegistrationDriveCampaignId =
-    process.env.NODE_ENV === 'production' ? 9054 : 9001;
+  /**
+   * The CampaignWebsite ID is the same across all Contentful environments for OVRD.
+   * @see /docs/development/features/voter-registration
+   */
+  const voterRegistrationDriveCampaignWebsiteId = '3pwxnRZxociqMaQCMcGOyc';
   const scholarshipAmount = 1500;
   const scholarshipDeadline = '2020-04-30';
-
   const [showScholarshipModal, setShowScholarshipModal] = useState(false);
 
   if (!referrerUserId) {
@@ -58,7 +56,7 @@ const BetaVoterRegistrationDrivePage = () => {
     {
       variables: {
         referrerUserId,
-        voterRegistrationDriveCampaignId,
+        voterRegistrationDriveCampaignWebsiteId,
       },
     },
   );
@@ -68,7 +66,7 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   if (error) {
-    return <ErrorPage />;
+    return <ErrorPage error={error} />;
   }
 
   if (!data.user) {
@@ -76,21 +74,21 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
-  const { coverImage, title } = data.campaign.campaignWebsite;
+  const { coverImage, title } = data.campaignWebsite;
+
   /**
-   * Because this component isn't associated with a campaign Contentful entry, we don't have a
-   * scholarship amount or deadline to pull from. We may need to hardcode a Contentful ID, or keep
-   * this hardcoded -- but we will eventually need to figure out how to display the modal to show
-   * additional scholarship information.
+   * TODO: Add campaignId, scholarshipAmount, and scholarshipDeadline as available properties
+   * to our CampaignWebsite type in GraphQL to avoid hardcoding.
    *
-   * 04/28/20 - keeping the scholarship info hard coded for v1 and hiding details link
+   * For now, we're hiding the scholarship details.
    */
   const campaignInfoBlock = (
     <CampaignInfoBlock
-      campaignId={voterRegistrationDriveCampaignId}
       scholarshipAmount={scholarshipAmount}
       scholarshipDeadline={scholarshipDeadline}
       showModal={() => setShowScholarshipModal(true)}
+      campaignId={isDevEnvironment ? 9035 : 9054}
+      hideScholarshipDetails
     />
   );
 
@@ -166,7 +164,7 @@ const BetaVoterRegistrationDrivePage = () => {
             trackingId="SCHOLARSHIP_MODAL_BETA_VOTER_REGISTRATION"
           >
             <ScholarshipInfoBlock
-              campaignId={voterRegistrationDriveCampaignId}
+              campaignId={isDevEnvironment ? 9035 : 9054}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
               numberOfScholarships={1}

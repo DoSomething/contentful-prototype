@@ -38,7 +38,7 @@ const CampaignInfoBlock = ({
   scholarshipAmount,
   scholarshipDeadline,
   showModal,
-  actionToDisplay,
+  actionIdToDisplay,
 }) => (
   <Card className="bordered p-3 rounded campaign-info">
     <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
@@ -60,8 +60,8 @@ const CampaignInfoBlock = ({
         // Decide which action to display
         let actionItem;
 
-        if (actionToDisplay) {
-          actionItem = actions.find(action => action.id === actionToDisplay);
+        if (actionIdToDisplay) {
+          actionItem = actions.find(action => action.id === actionIdToDisplay);
         } else {
           actionItem = actions.find(
             action => action.reportback && action.scholarshipEntry,
@@ -137,7 +137,7 @@ const CampaignInfoBlock = ({
 );
 
 CampaignInfoBlock.propTypes = {
-  actionToDisplay: PropTypes.number,
+  actionIdToDisplay: PropTypes.number,
   campaignId: PropTypes.number.isRequired,
   hideScholarshipDetails: PropTypes.bool,
   scholarshipAmount: PropTypes.number,
@@ -146,7 +146,7 @@ CampaignInfoBlock.propTypes = {
 };
 
 CampaignInfoBlock.defaultProps = {
-  actionToDisplay: null,
+  actionIdToDisplay: null,
   hideScholarshipDetails: false,
   scholarshipAmount: null,
   scholarshipDeadline: null,

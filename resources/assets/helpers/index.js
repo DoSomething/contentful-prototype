@@ -206,6 +206,15 @@ export function isAuthenticated() {
 }
 
 /**
+ * Check to see if running in a development enviroment.
+ *
+ * @return {Boolean}
+ */
+export function isDevEnvironment() {
+  return ['local', 'development'].includes(get(window.ENV, 'APP_ENV', 'local'));
+}
+
+/**
  * Check to see if user is a DS.org staffer.
  *
  * @return {Boolean}
