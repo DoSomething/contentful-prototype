@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { first, get } from 'lodash';
 import {
   Document,
   Page,
@@ -88,6 +89,11 @@ const styles = StyleSheet.create({
 });
 
 const CertificateTemplate = ({ certificatePost }) => {
+  const sponsorLogo = get(
+    first(certificatePost.campaignWebsite.affiliateSponsors),
+    'logo.url',
+  );
+
   return (
     <Document>
       <Page
@@ -109,28 +115,31 @@ const CertificateTemplate = ({ certificatePost }) => {
               <Image src={doSomethingLogo} style={{ height: 55, width: 65 }} />
             </View>
 
-            <View style={{ alignSelf: 'center' }}>
-              <Text
-                style={{ paddingLeft: 20, fontWeight: 'bold', fontSize: 24 }}
-              >
-                &#43;
-              </Text>
-            </View>
-            <View>
-              {/* @TODO add the campaign sponsor here as an Image */}
-              <Text
-                style={{
-                  marginLeft: 20,
-                  border: '1 solid black',
-                  height: 55,
-                  width: 65,
-                  fontSize: 10,
-                  textAlign: 'center',
-                }}
-              >
-                Sponsor logo
-              </Text>
-            </View>
+            {sponsorLogo ? (
+              <View style={styles.flex}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text
+                    style={{
+                      paddingLeft: 20,
+                      fontWeight: 'bold',
+                      fontSize: 24,
+                    }}
+                  >
+                    &#43;
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    src={sponsorLogo}
+                    style={{
+                      marginLeft: 20,
+                      height: 55,
+                      width: 65,
+                    }}
+                  />
+                </View>
+              </View>
+            ) : null}
           </View>
 
           <Image style={{ marginTop: 15 }} src={certificateTitle} />
