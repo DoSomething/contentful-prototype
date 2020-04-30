@@ -4,7 +4,7 @@ import { useQuery } from 'react-apollo';
 
 import Faq from './Faq';
 import ErrorPage from '../../ErrorPage';
-import { isDevEnvironment, query } from '../../../../helpers';
+import { query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
@@ -27,11 +27,14 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
     }
 
     campaignWebsite(id: $voterRegistrationDriveCampaignWebsiteId) {
+      campaignId
       title
       coverImage {
         url
         description
       }
+      scholarshipAmount
+      scholarshipDeadline
     }
   }
 `;
@@ -43,8 +46,6 @@ const BetaVoterRegistrationDrivePage = () => {
    * @see /docs/development/features/voter-registration
    */
   const voterRegistrationDriveCampaignWebsiteId = '3pwxnRZxociqMaQCMcGOyc';
-  const scholarshipAmount = 1500;
-  const scholarshipDeadline = '2020-04-30';
   const [showScholarshipModal, setShowScholarshipModal] = useState(false);
 
   if (!referrerUserId) {
@@ -74,7 +75,13 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   const { firstName } = data.user;
-  const { coverImage, title } = data.campaignWebsite;
+  const {
+    campaignId,
+    coverImage,
+    title,
+    scholarshipAmount,
+    scholarshipDeadline,
+  } = data.campaignWebsite;
 
   /**
    * TODO: Add campaignId, scholarshipAmount, and scholarshipDeadline as available properties
@@ -87,8 +94,7 @@ const BetaVoterRegistrationDrivePage = () => {
       scholarshipAmount={scholarshipAmount}
       scholarshipDeadline={scholarshipDeadline}
       showModal={() => setShowScholarshipModal(true)}
-      campaignId={isDevEnvironment ? 9035 : 9054}
-      hideScholarshipDetails
+      campaignId={campaignId}
     />
   );
 
@@ -164,7 +170,7 @@ const BetaVoterRegistrationDrivePage = () => {
             trackingId="SCHOLARSHIP_MODAL_BETA_VOTER_REGISTRATION"
           >
             <ScholarshipInfoBlock
-              campaignId={isDevEnvironment ? 9035 : 9054}
+              campaignId={campaignId}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
               numberOfScholarships={1}
