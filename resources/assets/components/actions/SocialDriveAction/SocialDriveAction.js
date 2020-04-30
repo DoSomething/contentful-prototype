@@ -131,7 +131,7 @@ class SocialDriveAction extends React.Component {
         </div>
 
         {/* This will be deprecated once our alpha voter reg drive feature is enabled */}
-        {!hidePageViews ? (
+        {hidePageViews === true ? (
           <VoterRegistrationDriveInfo
             userId={userId}
             pageViewsCount={this.state.count}
