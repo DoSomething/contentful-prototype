@@ -77,10 +77,10 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   const {
+    additionalContent,
     campaignId,
     scholarshipAmount,
     scholarshipDeadline,
-    additionalContent,
   } = data.campaignWebsite;
 
   return (
@@ -132,7 +132,7 @@ const BetaVoterRegistrationDrivePage = () => {
               campaignId={campaignId}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
-              numberOfScholarships={additionalContent.numberOfScholarships}
+              numberOfScholarships={additionalContent.numberOfScholarships || 1}
             />
           </Modal>
         ) : null}

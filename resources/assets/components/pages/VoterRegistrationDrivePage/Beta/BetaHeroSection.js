@@ -9,9 +9,9 @@ const BetaHeroSection = ({ user, campaignInfo, modalToggle }) => {
   const {
     campaignId,
     coverImage,
-    title,
     scholarshipAmount,
     scholarshipDeadline,
+    title,
   } = campaignInfo;
   return (
     <div className="hero-landing-page">
