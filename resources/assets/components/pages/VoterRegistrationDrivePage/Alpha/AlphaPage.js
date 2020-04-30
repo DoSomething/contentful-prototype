@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ShareLink from './ShareLink';
+import { faq, shareLink } from './config';
 import ReferralsList from './ReferralsList/ReferralsList';
-import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
+import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
+import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const AlphaPage = ({ userId }) => (
   <div
@@ -11,11 +12,21 @@ const AlphaPage = ({ userId }) => (
     data-test="alpha-voter-registration-drive-page"
   >
     <ReferralsList referrerUserId={userId} />
-    <ShareLink referrerUserId={userId} />
-    <ContentBlock
-      title="FAQs"
-      content="What are some tips for sharing?"
-      className="grid-wide"
+    <ContentfulEntryLoader
+      id={shareLink.contentBlockId}
+      className="grid-wide clearfix wrapper pb-3"
+    />
+    <div className="grid-wide">
+      <SocialDriveActionContainer
+        link={`https://vote.dosomething.org/member-drive?userId=${userId}&r=user:${userId},source:web,source_details:onlinedrivereferral,referral=true`}
+        fullWidth
+        actionId={shareLink.actionId}
+        hidePageViews
+      />
+    </div>
+    <ContentfulEntryLoader
+      id={faq.contentBlockId}
+      className="grid-wide clearfix wrapper pb-3"
     />
   </div>
 );

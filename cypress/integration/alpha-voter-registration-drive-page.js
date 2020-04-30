@@ -37,7 +37,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       'have.length',
       0,
     );
-
+    cy.get('[data-test=accepted-posts-count]').should('have.length', 0);
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
     ).should('have.length', 1);
@@ -54,7 +54,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       'have.length',
       1,
     );
-
+    cy.get('[data-test=accepted-posts-count]').should('have.length', 1);
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
     ).should('have.length', 0);
@@ -127,5 +127,35 @@ describe('Alpha Voter Registration Drive Page', () => {
     });
     cy.get('[data-test=referral-list-item-empty]').should('have.length', 0);
     cy.get('[data-test=additional-referrals-count]').contains('+ 2 more');
+  });
+
+  it('Renders count of approved posts when less than 50', () => {
+    const user = userFactory();
+    const actionId = faker.random.number();
+
+    cy.mockGraphqlOp('UserAcceptedPostsCountForAction', {
+      postsCount: (root, { userId, actionId }) => 11,
+    });
+
+    cy.withFeatureFlags({
+      voter_reg_alpha_page: true,
+    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('[data-test=accepted-posts-count-amount]').contains(11);
+  });
+
+  it('Renders 50+ approved posts when count is 51', () => {
+    const user = userFactory();
+    const actionId = faker.random.number();
+
+    cy.mockGraphqlOp('UserAcceptedPostsCountForAction', {
+      postsCount: (root, { userId, actionId }) => 51,
+    });
+
+    cy.withFeatureFlags({
+      voter_reg_alpha_page: true,
+    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('[data-test=accepted-posts-count-amount]').contains('50+');
   });
 });
