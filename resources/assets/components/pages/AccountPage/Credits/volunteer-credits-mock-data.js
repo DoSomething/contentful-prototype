@@ -153,7 +153,7 @@ export const mockUserResponse = {
 // Mocked paginatedPost data should be parsed into the following result:
 export const mockParsedPostsData = [
   {
-    id: 1,
+    actionId: 1,
     campaignWebsite: CAMPAIGN_ONE,
     actionLabel: ACTION_ONE.actionLabel,
     dateCompleted: 'April 1st, 2020',
@@ -164,7 +164,7 @@ export const mockParsedPostsData = [
     user: mockUserResponse,
   },
   {
-    id: 4,
+    actionId: 2,
     campaignWebsite: CAMPAIGN_TWO,
     actionLabel: ACTION_TWO.actionLabel,
     dateCompleted: 'December 10th, 2019',
@@ -175,7 +175,7 @@ export const mockParsedPostsData = [
     user: mockUserResponse,
   },
   {
-    id: 6,
+    actionId: 3,
     campaignWebsite: CAMPAIGN_THREE,
     actionLabel: ACTION_THREE.actionLabel,
     dateCompleted: 'November 21st, 2019',
