@@ -9,6 +9,7 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
+import AcceptedPostsCount from './AcceptedPostsCount';
 import VoterRegistrationDriveInfo from './VoterRegistrationDriveInfo';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
@@ -65,6 +66,7 @@ class SocialDriveAction extends React.Component {
 
   render() {
     const {
+      actionId,
       link,
       fullWidth,
       shareCardDescription,
@@ -128,11 +130,16 @@ class SocialDriveAction extends React.Component {
           </Card>
         </div>
 
+        {/* This will be deprecated once our alpha voter reg drive feature is enabled */}
         {!hidePageViews ? (
           <VoterRegistrationDriveInfo
             userId={userId}
             pageViewsCount={this.state.count}
           />
+        ) : null}
+
+        {actionId ? (
+          <AcceptedPostsCount userId={userId} actionId={actionId} />
         ) : null}
       </div>
     );
@@ -140,6 +147,7 @@ class SocialDriveAction extends React.Component {
 }
 
 SocialDriveAction.propTypes = {
+  actionId: PropTypes.number,
   campaignId: PropTypes.string,
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
@@ -152,6 +160,7 @@ SocialDriveAction.propTypes = {
 };
 
 SocialDriveAction.defaultProps = {
+  actionId: null,
   campaignId: null,
   fullWidth: false,
   shareCardDescription: null,
