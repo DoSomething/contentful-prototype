@@ -20,7 +20,7 @@ import sourceSansProItalic from '../../../../fonts/sourcesanspro-italic.woff';
 
 // Volunteer credit table generated 'certificatePost' prop type.
 export const certificatePostType = PropTypes.shape({
-  id: PropTypes.number.isRequired,
+  actionId: PropTypes.number.isRequired,
   campaignWebsite: PropTypes.shape({
     showcaseTitle: PropTypes.string.isRequired,
     showcaseDescription: PropTypes.string.isRequired,
