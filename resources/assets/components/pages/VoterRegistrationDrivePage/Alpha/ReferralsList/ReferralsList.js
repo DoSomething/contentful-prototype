@@ -50,14 +50,24 @@ const ReferralsList = ({ referrerUserId }) => (
 
         return (
           <>
-            <div className="pb-6">
+            <div className="pb-3 md:pb-6">
               You have registered{' '}
               <strong>
                 {numberOfReferrals} {pluralize('person', numberOfReferrals)}
               </strong>{' '}
               so far.
             </div>
-            <ul className="clearfix">{items}</ul>
+            <div className="md:flex">
+              <ul className="clearfix">{items}</ul>
+              {numberOfReferrals > 3 ? (
+                <div
+                  data-test="additional-referrals-count"
+                  className="text-center md:text-left md:pt-16"
+                >
+                  {`+ ${numberOfReferrals - 3} more`}
+                </div>
+              ) : null}
+            </div>
           </>
         );
       }}

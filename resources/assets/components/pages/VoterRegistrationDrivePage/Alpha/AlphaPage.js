@@ -6,7 +6,10 @@ import ReferralsList from './ReferralsList/ReferralsList';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 
 const AlphaPage = ({ userId }) => (
-  <React.Fragment>
+  <div
+    className="base-12-grid clear-both py-3 md:py-6"
+    data-test="alpha-voter-registration-drive-page"
+  >
     <ReferralsList referrerUserId={userId} />
     <ShareLink referrerUserId={userId} />
     <ContentBlock
@@ -14,7 +17,7 @@ const AlphaPage = ({ userId }) => (
       content="What are some tips for sharing?"
       className="grid-wide"
     />
-  </React.Fragment>
+  </div>
 );
 
 AlphaPage.propTypes = {
