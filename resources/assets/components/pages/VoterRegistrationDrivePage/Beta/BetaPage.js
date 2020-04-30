@@ -35,6 +35,7 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
       }
       scholarshipAmount
       scholarshipDeadline
+      additionalContent
     }
   }
 `;
@@ -81,6 +82,7 @@ const BetaVoterRegistrationDrivePage = () => {
     title,
     scholarshipAmount,
     scholarshipDeadline,
+    additionalContent,
   } = data.campaignWebsite;
 
   /**
@@ -173,7 +175,7 @@ const BetaVoterRegistrationDrivePage = () => {
               campaignId={campaignId}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
-              numberOfScholarships={1}
+              numberOfScholarships={additionalContent.numberOfScholarships}
             />
           </Modal>
         ) : null}
