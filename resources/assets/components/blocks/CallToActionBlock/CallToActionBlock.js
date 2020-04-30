@@ -119,10 +119,13 @@ const CallToActionBlock = ({ id }) => {
         <h3 className="text-m font-source-sans font-bold uppercase">
           {superTitle}
         </h3>
+
         <h2 className="text-4xl font-league-gothic font-bold uppercase">
           {title}
         </h2>
+
         <p className="text-lg pb-4">{content}</p>
+
         <PrimaryButton href={link} text={linkText} />
       </div>
     </div>
