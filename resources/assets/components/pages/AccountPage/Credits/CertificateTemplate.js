@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { first, get } from 'lodash';
 import {
   Document,
   Page,
@@ -27,7 +28,14 @@ export const certificatePostType = PropTypes.shape({
       url: PropTypes.string.isRequired,
       description: PropTypes.string,
     }).isRequired,
-  }).isRequired,
+    affiliateSponsors: PropTypes.arrayOf(
+      PropTypes.shape({
+        logo: PropTypes.shape({
+          url: PropTypes.string.isRequired,
+        }).isRequired,
+      }),
+    ),
+  }),
   actionLabel: PropTypes.string.isRequired,
   dateCompleted: PropTypes.string.isRequired,
   volunteerHours: PropTypes.string.isRequired,
@@ -80,185 +88,200 @@ const styles = StyleSheet.create({
   },
 });
 
-const CertificateTemplate = ({ certificatePost }) => (
-  <Document>
-    <Page
-      orientation="landscape"
-      size="letter"
-      style={{ fontSize: 15, fontFamily: 'Source Sans Pro' }}
-    >
-      <View
-        style={{
-          border: `11 solid ${colors.lightBlue}`,
-          height: '100%',
-          paddingHorizontal: 65,
-        }}
+const CertificateTemplate = ({ certificatePost }) => {
+  const sponsorLogo = get(
+    first(certificatePost.campaignWebsite.affiliateSponsors),
+    'logo.url',
+  );
+
+  return (
+    <Document>
+      <Page
+        orientation="landscape"
+        size="letter"
+        style={{ fontSize: 15, fontFamily: 'Source Sans Pro' }}
       >
         <View
-          style={[styles.flex, { justifyContent: 'center', marginTop: 30 }]}
+          style={{
+            border: `11 solid ${colors.lightBlue}`,
+            height: '100%',
+            paddingHorizontal: 65,
+          }}
         >
-          <View>
-            <Image src={doSomethingLogo} style={{ height: 55, width: 65 }} />
-          </View>
-
-          <View style={{ alignSelf: 'center' }}>
-            <Text style={{ paddingLeft: 20, fontWeight: 'bold', fontSize: 24 }}>
-              &#43;
-            </Text>
-          </View>
-          <View>
-            {/* @TODO add the campaign sponsor here as an Image */}
-            <Text
-              style={{
-                marginLeft: 20,
-                border: '1 solid black',
-                height: 55,
-                width: 65,
-                fontSize: 10,
-                textAlign: 'center',
-              }}
-            >
-              Sponsor logo
-            </Text>
-          </View>
-        </View>
-
-        <Image style={{ marginTop: 15 }} src={certificateTitle} />
-
-        <View style={{ textAlign: 'center', marginTop: -25 }}>
-          <Text>DoSomething.org certifies that</Text>
-          <Text
-            style={{
-              fontSize: 35,
-              fontFamily: 'League Gothic',
-              color: colors.purple,
-              textTransform: 'capitalize',
-            }}
+          <View
+            style={[styles.flex, { justifyContent: 'center', marginTop: 30 }]}
           >
-            {`${certificatePost.user.firstName} ${certificatePost.user.lastName}`}
-          </Text>
-          <Text style={{ marginTop: 5 }}>
-            has completed the following volunteering campaign:
-          </Text>
-        </View>
+            <View>
+              <Image src={doSomethingLogo} style={{ height: 55, width: 65 }} />
+            </View>
 
-        <View
-          style={[
-            styles.flex,
-            {
-              border: `2 solid ${colors.lightBlue}`,
-              marginTop: 15,
-              lineHeight: 1.1,
-            },
-          ]}
-        >
-          <Image
-            style={{
-              width: '24%',
-              borderRight: `2 solid ${colors.lightBlue}`,
-            }}
-            src={certificatePost.photo}
-          />
+            {sponsorLogo ? (
+              <View style={styles.flex}>
+                <View style={{ alignSelf: 'center' }}>
+                  <Text
+                    style={{
+                      paddingLeft: 20,
+                      fontWeight: 'bold',
+                      fontSize: 24,
+                    }}
+                  >
+                    &#43;
+                  </Text>
+                </View>
+                <View>
+                  <Image
+                    src={sponsorLogo}
+                    style={{
+                      marginLeft: 20,
+                      height: 55,
+                      width: 65,
+                    }}
+                  />
+                </View>
+              </View>
+            ) : null}
+          </View>
 
-          <View style={{ width: '75%', padding: '10 0 15 30' }}>
+          <Image style={{ marginTop: 15 }} src={certificateTitle} />
+
+          <View style={{ textAlign: 'center', marginTop: -25 }}>
+            <Text>DoSomething.org certifies that</Text>
             <Text
               style={{
-                fontSize: 25,
-                textTransform: 'uppercase',
+                fontSize: 35,
                 fontFamily: 'League Gothic',
-                color: colors.darkBlue,
+                color: colors.purple,
+                textTransform: 'capitalize',
               }}
             >
-              {certificatePost.campaignWebsite.showcaseTitle}
+              {`${certificatePost.user.firstName} ${certificatePost.user.lastName}`}
             </Text>
-
-            {/* @TODO adjust font size if character count is greater then 100 */}
-            <Text style={{ fontStyle: 'italic' }}>
-              {certificatePost.campaignWebsite.showcaseDescription}
+            <Text style={{ marginTop: 5 }}>
+              has completed the following volunteering campaign:
             </Text>
-
-            <View style={{ fontSize: 13 }}>
-              <View style={[styles.flex, { marginTop: 10 }]}>
-                <View style={{ width: '40%' }}>
-                  <Text style={styles.postDetailsTitle}>Date Completed</Text>
-                  <Text>{certificatePost.dateCompleted}</Text>
-                </View>
-
-                <View>
-                  <Text style={styles.postDetailsTitle}>Volunteer Hours*</Text>
-                  <Text>{certificatePost.volunteerHours}</Text>
-                </View>
-              </View>
-
-              <View style={{ marginTop: 10 }}>
-                <Text style={styles.postDetailsTitle}>Impact</Text>
-                <Text>{certificatePost.impactLabel}</Text>
-              </View>
-            </View>
-          </View>
-        </View>
-
-        <View style={{ fontSize: 10, marginTop: 20, lineHeight: 1.1 }}>
-          <View style={styles.flex}>
-            <View style={{ width: '50%' }}>
-              <Text>[signature]</Text>
-            </View>
-
-            <View style={{ width: '50%' }}>
-              <Text style={{ textAlign: 'right' }}>
-                Learn more about the DoSomething Volunteer{'\n'} Credit program
-                at
-                <Text style={{ fontWeight: 'bold' }}>
-                  {' '}
-                  dosomething.org/volunteer
-                </Text>
-              </Text>
-            </View>
           </View>
 
-          <View style={[styles.flex, { lineHeight: 1.1 }]}>
-            <View style={{ width: '50%' }}>
-              <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
-                Maddy Allison
+          <View
+            style={[
+              styles.flex,
+              {
+                border: `2 solid ${colors.lightBlue}`,
+                marginTop: 15,
+                lineHeight: 1.1,
+              },
+            ]}
+          >
+            <Image
+              style={{
+                width: '24%',
+                borderRight: `2 solid ${colors.lightBlue}`,
+              }}
+              src={certificatePost.photo}
+            />
+
+            <View style={{ width: '75%', padding: '10 0 15 30' }}>
+              <Text
+                style={{
+                  fontSize: 25,
+                  textTransform: 'uppercase',
+                  fontFamily: 'League Gothic',
+                  color: colors.darkBlue,
+                }}
+              >
+                {certificatePost.campaignWebsite.showcaseTitle}
               </Text>
+
+              {/* @TODO adjust font size if character count is greater then 100 */}
               <Text style={{ fontStyle: 'italic' }}>
-                Community Associate, DoSomething.org
+                {certificatePost.campaignWebsite.showcaseDescription}
               </Text>
-            </View>
 
-            <View style={{ width: '50%' }}>
-              <Text style={{ marginTop: 10, textAlign: 'right' }}>
-                For questions and verification issues, please reach out to Maddy
-                {'\n'} at{' '}
-                <Text style={{ fontWeight: 'bold' }}>
-                  volunteer@dosomething.org
-                </Text>{' '}
-                or call{' '}
-                <Text style={{ fontWeight: 'bold' }}>(212)-254-2390</Text>
-              </Text>
+              <View style={{ fontSize: 13 }}>
+                <View style={[styles.flex, { marginTop: 10 }]}>
+                  <View style={{ width: '40%' }}>
+                    <Text style={styles.postDetailsTitle}>Date Completed</Text>
+                    <Text>{certificatePost.dateCompleted}</Text>
+                  </View>
+
+                  <View>
+                    <Text style={styles.postDetailsTitle}>
+                      Volunteer Hours*
+                    </Text>
+                    <Text>{certificatePost.volunteerHours}</Text>
+                  </View>
+                </View>
+
+                <View style={{ marginTop: 10 }}>
+                  <Text style={styles.postDetailsTitle}>Impact</Text>
+                  <Text>{certificatePost.impactLabel}</Text>
+                </View>
+              </View>
             </View>
           </View>
-        </View>
 
-        <View
-          style={[
-            styles.flex,
-            { marginTop: 20, marginBottom: 10, justifyContent: 'center' },
-          ]}
-        >
-          <Text style={{ fontSize: 8, width: '95%', textAlign: 'center' }}>
-            *DoSomething.org is the largest not-for-profit exclusively for young
-            people and social change. We encourage self-directed activism and
-            volunteerism through our structured campaign programs. Estimated
-            hours are based on our calculations of the average time it would
-            take to complete the action specified in the campaign program.
-          </Text>
-        </View>
-      </View>
-    </Page>
-  </Document>
-);
+          <View style={{ fontSize: 10, marginTop: 20, lineHeight: 1.1 }}>
+            <View style={styles.flex}>
+              <View style={{ width: '50%' }}>
+                <Text>[signature]</Text>
+              </View>
 
+              <View style={{ width: '50%' }}>
+                <Text style={{ textAlign: 'right' }}>
+                  Learn more about the DoSomething Volunteer{'\n'} Credit
+                  program at
+                  <Text style={{ fontWeight: 'bold' }}>
+                    {' '}
+                    dosomething.org/volunteer
+                  </Text>
+                </Text>
+              </View>
+            </View>
+
+            <View style={[styles.flex, { lineHeight: 1.1 }]}>
+              <View style={{ width: '50%' }}>
+                <Text style={{ marginTop: 10, fontWeight: 'bold' }}>
+                  Maddy Allison
+                </Text>
+                <Text style={{ fontStyle: 'italic' }}>
+                  Community Associate, DoSomething.org
+                </Text>
+              </View>
+
+              <View style={{ width: '50%' }}>
+                <Text style={{ marginTop: 10, textAlign: 'right' }}>
+                  For questions and verification issues, please reach out to
+                  Maddy
+                  {'\n'} at{' '}
+                  <Text style={{ fontWeight: 'bold' }}>
+                    volunteer@dosomething.org
+                  </Text>{' '}
+                  or call{' '}
+                  <Text style={{ fontWeight: 'bold' }}>(212)-254-2390</Text>
+                </Text>
+              </View>
+            </View>
+          </View>
+
+          <View
+            style={[
+              styles.flex,
+              { marginTop: 20, marginBottom: 10, justifyContent: 'center' },
+            ]}
+          >
+            <Text style={{ fontSize: 8, width: '95%', textAlign: 'center' }}>
+              *DoSomething.org is the largest not-for-profit exclusively for
+              young people and social change. We encourage self-directed
+              activism and volunteerism through our structured campaign
+              programs. Estimated hours are based on our calculations of the
+              average time it would take to complete the action specified in the
+              campaign program.
+            </Text>
+          </View>
+        </View>
+      </Page>
+    </Document>
+  );
+};
 CertificateTemplate.propTypes = {
   certificatePost: certificatePostType.isRequired,
 };
