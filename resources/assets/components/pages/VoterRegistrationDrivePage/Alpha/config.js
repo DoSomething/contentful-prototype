@@ -6,4 +6,5 @@ export const faq = {
 
 export const shareLink = {
   actionId: isDevEnvironment ? 27 : 1025,
+  contentBlockId: isDevEnvironment ? '1xcG1CTinKwn3Iyxtcc0f4' : null,
 };

@@ -74,10 +74,13 @@ class SocialDriveAction extends React.Component {
       hidePageViews,
       userId,
     } = this.props;
+
     const { shortenedLink } = this.state;
+    const displaySidebar = hidePageViews === false || actionId;
+
     return (
       <div
-        className={classNames('clearfix pb-6', { 'lg:flex': !hidePageViews })}
+        className={classNames('clearfix pb-6', { 'lg:flex': displaySidebar })}
       >
         <div
           className={classNames('social-drive-action', {
