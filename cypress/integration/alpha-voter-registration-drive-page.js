@@ -98,7 +98,7 @@ describe('Alpha Voter Registration Drive Page', () => {
     cy.get('[data-test=additional-referrals-count]').should('have.length', 0);
   });
 
-  it('Alpha OVRD page displays 3 completed icons and additinonal count if user has 5 referrals', () => {
+  it('Alpha OVRD page displays 3 completed icons and additional count if user has 5 referrals', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('AlphaVoterRegistrationReferrals', {
