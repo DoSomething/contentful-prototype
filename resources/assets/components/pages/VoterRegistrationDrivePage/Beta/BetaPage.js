@@ -6,13 +6,12 @@ import Faq from './Faq';
 import ErrorPage from '../../ErrorPage';
 import { query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
+import BetaHeroSection from './BetaHeroSection';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
-import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
-import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 
@@ -49,6 +48,8 @@ const BetaVoterRegistrationDrivePage = () => {
   const voterRegistrationDriveCampaignWebsiteId = '3pwxnRZxociqMaQCMcGOyc';
   const [showScholarshipModal, setShowScholarshipModal] = useState(false);
 
+  const modalToggle = () => setShowScholarshipModal(true);
+
   if (!referrerUserId) {
     return <NotFoundPage />;
   }
@@ -75,66 +76,22 @@ const BetaVoterRegistrationDrivePage = () => {
     return <NotFoundPage />;
   }
 
-  const { firstName } = data.user;
   const {
     campaignId,
-    coverImage,
-    title,
     scholarshipAmount,
     scholarshipDeadline,
     additionalContent,
   } = data.campaignWebsite;
 
-  /**
-   * TODO: Add campaignId, scholarshipAmount, and scholarshipDeadline as available properties
-   * to our CampaignWebsite type in GraphQL to avoid hardcoding.
-   *
-   * For now, we're hiding the scholarship details.
-   */
-  const campaignInfoBlock = (
-    <CampaignInfoBlock
-      scholarshipAmount={scholarshipAmount}
-      scholarshipDeadline={scholarshipDeadline}
-      showModal={() => setShowScholarshipModal(true)}
-      campaignId={campaignId}
-    />
-  );
-
   return (
     <>
       <SiteNavigationContainer />
       <main>
-        <div className="hero-landing-page">
-          <CoverImage coverImage={coverImage} />
-          <div className="clearfix bg-gray-100">
-            <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
-              <header role="banner" className="hero-banner">
-                <h1 className="hero-banner__headline-title">{title}</h1>
-                <h2 className="hero-banner__headline-subtitle">
-                  {firstName} has invited you to register to vote!
-                </h2>
-              </header>
-              <div className="grid-wide-7/10 primary markdown">
-                <blockquote>
-                  <p>
-                    Voting is important for young people because we can affect
-                    change on issues we care about most like climate change,
-                    living wages, and student loan reform.
-                  </p>
-                  <p>- {firstName}</p>
-                </blockquote>
-                <p>
-                  250,000+ young people have registered to vote via DoSomething
-                  (it takes less than 2 minutes!). After you register, share
-                  with your friends to enter to win a $1,500 scholarship!
-                </p>
-              </div>
-              <div className="grid-wide-3/10 secondary">
-                {campaignInfoBlock}
-              </div>
-            </div>
-          </div>
-        </div>
+        <BetaHeroSection
+          user={data.user}
+          campaignInfo={data.campaignWebsite}
+          modalToggle={modalToggle}
+        />
         <div className="bg-white">
           <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
             <ContentBlock
