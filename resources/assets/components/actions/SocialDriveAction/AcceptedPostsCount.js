@@ -20,7 +20,7 @@ const AcceptedPostsCount = ({ actionId, userId }) => {
   return (
     <div
       data-test="accepted-posts-count"
-      className="mt-6' lg:w-1/3 lg:pl-3 lg:mt-0'"
+      className="mt-6 lg:w-1/3 lg:pl-3 lg:mt-0"
     >
       <Card className="bordered rounded" title="More info">
         <div className="p-3">
