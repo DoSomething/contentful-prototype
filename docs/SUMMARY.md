@@ -36,6 +36,7 @@
   - [Affiliate Opt In](development/features/affiliate-opt-in.md)
   - [Affiliate Scholarship Block](development/features/affiliate-scholarship-block.md)
   - [Analytics Waypoint](development/features/analytics-waypoint.md)
+  - [Voter Registration](development/features/voter-registration.md)
   - [Refer A Friend](development/features/referral-pages.md)
   - [Zendesk Form](development/features/zendesk-form.md)
 - [Contentful](development/contentful/README.md)
