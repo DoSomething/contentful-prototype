@@ -35,7 +35,7 @@ test('it can display a CTA block', () => {
       }}
     />,
   );
-  expect(wrapper.find('CallToActionContainer')).toHaveLength(1);
+  expect(wrapper.find('CallToActionBlock')).toHaveLength(1);
 });
 
 test('it should display an error for an unknown block type', () => {

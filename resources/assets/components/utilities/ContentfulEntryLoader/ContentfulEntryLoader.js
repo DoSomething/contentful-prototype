@@ -17,7 +17,6 @@ import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
 import { AffirmationBlockFragment } from '../../Affirmation/Affirmation';
 import { ImagesBlockFragment } from '../../blocks/ImagesBlock/ImagesBlock';
 import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
-import { CallToActionBlockFragment } from '../../CallToAction/CallToAction';
 import { GalleryBlockFragment } from '../../blocks/GalleryBlock/GalleryBlock';
 import { ContentBlockFragment } from '../../blocks/ContentBlock/ContentBlock';
 import { CampaignDashboardFragment } from '../CampaignDashboard/CampaignDashboard';
@@ -69,9 +68,6 @@ const CONTENTFUL_BLOCK_QUERY = gql`
       ... on PostGalleryBlock {
         ...PostGalleryBlockFragment
       }
-      ... on CallToActionBlock {
-        ...CallToActionBlockFragment
-      }
       ... on CampaignDashboard {
         ...CampaignDashboardFragment
       }
@@ -113,7 +109,6 @@ const CONTENTFUL_BLOCK_QUERY = gql`
   ${AffirmationBlockFragment}
   ${SocialDriveBlockFragment}
   ${PostGalleryBlockFragment}
-  ${CallToActionBlockFragment}
   ${CampaignDashboardFragment}
   ${CurrentSchoolBlockFragment}
   ${CampaignUpdateBlockFragment}
