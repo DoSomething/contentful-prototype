@@ -7,6 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { tailwind } from '../../../helpers';
 import Spinner from '../../artifacts/Spinner/Spinner';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 
 const CALL_TO_ACTION_QUERY = gql`
   query CallToActionBlockQuery($id: String!) {
@@ -122,12 +123,7 @@ const CallToActionBlock = ({ id }) => {
           {title}
         </h2>
         <p className="text-lg pb-4">{content}</p>
-        <a
-          href={link}
-          className="btn bg-blurple-500 text-white text-lg border border-solid border-blurple-500 hover:bg-blurple-300 hover:border-blurple-300 focus:bg-blurple-500 focus:text-white focus:outline-none"
-        >
-          {linkText}
-        </a>
+        <PrimaryButton href={link} text={linkText} />
       </div>
     </div>
   );
