@@ -23,7 +23,7 @@ const AcceptedPostsCount = ({ actionId, userId }) => {
       className="mt-6' lg:w-1/3 lg:pl-3 lg:mt-0'"
     >
       <Card className="bordered rounded" title="More info">
-        <div data-test="accepted-posts-count-label" className="p-3">
+        <div className="p-3">
           <span className="font-bold uppercase text-gray-600">
             Total scholarship entries
           </span>
