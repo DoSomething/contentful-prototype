@@ -38,9 +38,9 @@ In May 2020, we will release updated versions of both the alpha and beta OVRD pa
 
 The OVRD (Ready Set Vote) campaign action page will still be used as the alpha page, except we render a hardcoded template instead of the Contentful blocks field. This is hardcoded because it displays one-off features, such as a list of the beta's that the alpha has gotten to register to vote via their OVRD, that we don't need to make re-usable by other campaigns or pages at this time.
 
-We use hardcode specific `ContentBlock` ID's and Action ID's to display some of the components on the alpha page.
+We hardcode specific configuration `ContentBlock` ID's and Action ID's:
 
-_Production:_
+**Production:**
 
 Content:
 
@@ -49,9 +49,9 @@ Content:
 
 Total scholarship entries:
 
-- [Share Photo Post Action](https://activity-dev.dosomething.org/actions/27) - 27
+- [Share Photo Post Action](https://activity.dosomething.org/actions/1025) - 1025
 
-_Dev:_
+**Dev:**
 
 Content:
 
@@ -60,7 +60,7 @@ Content:
 
 Total scholarship entries:
 
-- [Share Photo Post Action](https://activity.dosomething.org/actions/1025) - 1025
+- [Share Photo Post Action](https://activity-dev.dosomething.org/actions/27) - 27
 
 ### Beta page
 
