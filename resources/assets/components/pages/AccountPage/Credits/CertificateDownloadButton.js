@@ -7,6 +7,10 @@ import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import CertificateTemplate, {
   certificatePostType,
 } from './CertificateTemplate';
+import {
+  trackAnalyticsEvent,
+  EVENT_CATEGORIES,
+} from '../../../../helpers/analytics';
 
 const CertificateDownloadButton = ({ certificatePost }) => {
   const [loading, setLoading] = useState(false);
@@ -34,8 +38,16 @@ const CertificateDownloadButton = ({ certificatePost }) => {
     setLoading(false);
 
     setGeneratePdfError(error);
-    // @TODO: Track analytics. Report error to NR.
-    console.error(error);
+
+    trackAnalyticsEvent('failed_pdf_download_volunteer_credits_table', {
+      category: EVENT_CATEGORIES.siteAction,
+      action: 'pdf_download_failed',
+      label: 'volunteer_credits_table',
+      context: {
+        actionId: certificatePost.actionId,
+        errorMessage: error.message,
+      },
+    });
   };
 
   /**
@@ -76,6 +88,13 @@ const CertificateDownloadButton = ({ certificatePost }) => {
    *
    */
   const handleClick = () => {
+    trackAnalyticsEvent('clicked_download_button_volunteer_credits_table', {
+      category: EVENT_CATEGORIES.siteAction,
+      action: 'button_clicked',
+      label: 'volunteer_credits_table',
+      context: { actionId: certificatePost.actionId },
+    });
+
     // If we've already generated a pdfLink, simply 'click' it to download the PDF.
     if (pdfLink) {
       pdfLink.click();
