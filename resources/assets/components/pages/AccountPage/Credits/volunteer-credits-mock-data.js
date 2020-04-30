@@ -23,6 +23,14 @@ const ACTION_THREE = {
   verb: 'done',
 };
 
+const AFFILIATE_SPONSORS = [
+  {
+    logo: {
+      url: 'https://images/sponsor-logo',
+    },
+  },
+];
+
 // Mock Campaign Website Showcase:
 const CAMPAIGN_ONE = {
   showcaseImage: {
@@ -31,6 +39,7 @@ const CAMPAIGN_ONE = {
   },
   showcaseTitle: 'Example Campaign 1',
   showcaseDescription: 'Example Description 1',
+  affiliateSponsors: AFFILIATE_SPONSORS,
 };
 
 const CAMPAIGN_TWO = {
@@ -40,6 +49,7 @@ const CAMPAIGN_TWO = {
   },
   showcaseTitle: 'Example Campaign 2',
   showcaseDescription: 'Example Description 2',
+  affiliateSponsors: AFFILIATE_SPONSORS,
 };
 
 const CAMPAIGN_THREE = {
@@ -49,6 +59,7 @@ const CAMPAIGN_THREE = {
   },
   showcaseTitle: 'Example Campaign 3',
   showcaseDescription: 'Example Description 3',
+  affiliateSponsors: AFFILIATE_SPONSORS,
 };
 
 // Mock reponse paginatedPost data from GraphQL:
