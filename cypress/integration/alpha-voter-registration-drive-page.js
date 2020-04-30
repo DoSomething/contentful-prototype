@@ -37,7 +37,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       'have.length',
       0,
     );
-
+    cy.get('[data-test=accepted-posts-count]').should('have.length', 0);
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
     ).should('have.length', 1);
@@ -54,7 +54,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       'have.length',
       1,
     );
-
+    cy.get('[data-test=accepted-posts-count]').should('have.length', 1);
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
     ).should('have.length', 0);
