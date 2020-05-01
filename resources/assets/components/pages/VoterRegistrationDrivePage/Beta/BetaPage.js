@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
+import {
+  faq,
+  registerToVote,
+  voterRegistrationDriveCampaignLink,
+} from './config';
 import ErrorPage from '../../ErrorPage';
 import HeroSection from './HeroSection';
 import { query } from '../../../../helpers';
@@ -10,11 +15,6 @@ import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
-import {
-  faq,
-  registerToVote,
-  voterRegistrationDriveCampaignLink,
-} from './config';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
