@@ -6,8 +6,14 @@ export const faq = {
     : '4yP8BdIdiGU0qwZaFyzmsm',
 };
 
-export const register = {
+export const registerToVote = {
   contentBlockId: isDevEnvironment()
-    ? '1xcG1CTinKwn3Iyxtcc0f4'
-    : '3fj7mXlyrcJZ3mUKXqco1R',
+    ? 'bt0jUBYJaKoi1oab25Wmx'
+    : '2d2i2M3yn4RB9pZYVzQxGm',
+};
+
+export const voterRegistrationDriveCampaignSignup = {
+  contentBlockId: isDevEnvironment()
+    ? '3p2qz2JPCvgVitgRVBoMFz'
+    : '30rCn63G1rnpzojCXC9PmF',
 };

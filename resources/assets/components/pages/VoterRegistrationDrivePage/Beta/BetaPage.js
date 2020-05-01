@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
-import { faq, register } from './config';
 import ErrorPage from '../../ErrorPage';
 import HeroSection from './HeroSection';
 import { query } from '../../../../helpers';
@@ -11,7 +10,11 @@ import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
-import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
+import {
+  faq,
+  registerToVote,
+  voterRegistrationDriveCampaignSignup,
+} from './config';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -95,10 +98,9 @@ const BetaVoterRegistrationDrivePage = () => {
         />
         <div className="bg-white">
           <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
-            <ContentBlock
-              superTitle="Step 1"
-              title="Register To Vote"
-              content="If you aren’t pre-registered or registered to vote, take 2 minutes to register at your current address. You’ll have the option to  register with an online form or directly with your state."
+            <ContentfulEntryLoader
+              id={registerToVote.contentBlockId}
+              className="grid-wide clearfix wrapper pb-3"
             />
             <div className="pb-6">
               {/* We will eventually want to add form fields for email and zip, and send as query parameters to Rock the Vote */}
@@ -112,10 +114,9 @@ const BetaVoterRegistrationDrivePage = () => {
               id={faq.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
-            <ContentBlock
-              superTitle="Step 2"
-              title="Share With Your Friends"
-              content="Every time you share your voter registration page before April 30, you'll be entered for a chance at winning a $1,500 scholarship."
+            <ContentfulEntryLoader
+              id={voterRegistrationDriveCampaignSignup.contentBlockId}
+              className="grid-wide clearfix wrapper pb-3"
             />
             <ButtonLink link="/us/campaigns/online-registration-drive">
               Get Started
