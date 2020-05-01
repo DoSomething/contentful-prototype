@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
-import Faq from './Faq';
+import { faq, register } from './config';
 import ErrorPage from '../../ErrorPage';
 import HeroSection from './HeroSection';
 import { query } from '../../../../helpers';
@@ -14,6 +14,7 @@ import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
+import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
   query BetaVoterRegistrationDrivePageQuery(
@@ -107,9 +108,10 @@ const BetaVoterRegistrationDrivePage = () => {
                 Register To Vote
               </ButtonLink>
             </div>
-            <div className="pb-6">
-              <Faq />
-            </div>
+            <ContentfulEntryLoader
+              id={faq.contentBlockId}
+              className="grid-wide clearfix wrapper pb-3"
+            />
             <ContentBlock
               superTitle="Step 2"
               title="Share With Your Friends"
