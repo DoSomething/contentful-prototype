@@ -145,7 +145,7 @@ const ContentfulEntryLoader = ({
   if (!data.block) {
     return (
       <div className={classnames(className, 'grid-narrow')}>
-        <NotFound />
+        <NotFound id={id} />
       </div>
     );
   }

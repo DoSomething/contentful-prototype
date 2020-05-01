@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
-import Faq from './Faq';
+import {
+  faq,
+  registerToVote,
+  voterRegistrationDriveCampaignLink,
+} from './config';
 import ErrorPage from '../../ErrorPage';
 import HeroSection from './HeroSection';
 import { query } from '../../../../helpers';
@@ -11,9 +15,9 @@ import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
-import ContentBlock from '../../../blocks/ContentBlock/ContentBlock';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
+import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
   query BetaVoterRegistrationDrivePageQuery(
@@ -73,7 +77,7 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   if (!data.user) {
-    return <NotFoundPage />;
+    return <NotFoundPage id={referrerUserId} />;
   }
 
   const {
@@ -94,10 +98,9 @@ const BetaVoterRegistrationDrivePage = () => {
         />
         <div className="bg-white">
           <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
-            <ContentBlock
-              superTitle="Step 1"
-              title="Register To Vote"
-              content="If you aren’t pre-registered or registered to vote, take 2 minutes to register at your current address. You’ll have the option to  register with an online form or directly with your state."
+            <ContentfulEntryLoader
+              id={registerToVote.contentBlockId}
+              className="grid-wide clearfix wrapper pb-3"
             />
             <div className="pb-6">
               {/* We will eventually want to add form fields for email and zip, and send as query parameters to Rock the Vote */}
@@ -107,13 +110,13 @@ const BetaVoterRegistrationDrivePage = () => {
                 Register To Vote
               </ButtonLink>
             </div>
-            <div className="pb-6">
-              <Faq />
-            </div>
-            <ContentBlock
-              superTitle="Step 2"
-              title="Share With Your Friends"
-              content="Every time you share your voter registration page before April 30, you'll be entered for a chance at winning a $1,500 scholarship."
+            <ContentfulEntryLoader
+              id={faq.contentBlockId}
+              className="grid-wide clearfix wrapper pb-3"
+            />
+            <ContentfulEntryLoader
+              id={voterRegistrationDriveCampaignLink.contentBlockId}
+              className="grid-wide clearfix wrapper pb-3"
             />
             <ButtonLink link="/us/campaigns/online-registration-drive">
               Get Started
