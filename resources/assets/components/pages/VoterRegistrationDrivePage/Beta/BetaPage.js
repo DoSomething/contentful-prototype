@@ -13,7 +13,7 @@ import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import {
   faq,
   registerToVote,
-  voterRegistrationDriveCampaignSignup,
+  voterRegistrationDriveCampaignLink,
 } from './config';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
@@ -115,7 +115,7 @@ const BetaVoterRegistrationDrivePage = () => {
               className="grid-wide clearfix wrapper pb-3"
             />
             <ContentfulEntryLoader
-              id={voterRegistrationDriveCampaignSignup.contentBlockId}
+              id={voterRegistrationDriveCampaignLink.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
             <ButtonLink link="/us/campaigns/online-registration-drive">

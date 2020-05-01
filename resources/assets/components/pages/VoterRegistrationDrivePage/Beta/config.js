@@ -12,7 +12,7 @@ export const registerToVote = {
     : '2d2i2M3yn4RB9pZYVzQxGm',
 };
 
-export const voterRegistrationDriveCampaignSignup = {
+export const voterRegistrationDriveCampaignLink = {
   contentBlockId: isDevEnvironment()
     ? '3p2qz2JPCvgVitgRVBoMFz'
     : '30rCn63G1rnpzojCXC9PmF',
