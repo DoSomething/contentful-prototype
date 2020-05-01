@@ -15,6 +15,7 @@ import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
+import StartVoterRegistrationForm from './StartVoterRegistrationForm';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
@@ -103,12 +104,7 @@ const BetaVoterRegistrationDrivePage = () => {
               className="grid-wide clearfix wrapper pb-3"
             />
             <div className="pb-6">
-              {/* We will eventually want to add form fields for email and zip, and send as query parameters to Rock the Vote */}
-              <ButtonLink
-                link={`https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
-              >
-                Register To Vote
-              </ButtonLink>
+              <StartVoterRegistrationForm referrerUserId={referrerUserId} />
             </div>
             <ContentfulEntryLoader
               id={faq.contentBlockId}
