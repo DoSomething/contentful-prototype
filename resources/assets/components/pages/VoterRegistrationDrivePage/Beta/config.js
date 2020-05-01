@@ -21,7 +21,10 @@ export const voterRegistrationDriveCampaignLink = {
     : '30rCn63G1rnpzojCXC9PmF',
 };
 
-// Map of query string parameters and the voting reasons to display in the hero section quote.
+/**
+ * Map of the 'voting-reasons` query values, and the corresponding voting reason to display.
+ * e.g. /my-voter-registration-page?voting-reasons=gun-violence,immigration-reform&referrer_user_id=583d...
+ */
 export const votingReasons = {
   'climate-change': 'climate change',
   'gun-violence': 'gun violence',

@@ -13,6 +13,11 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
     scholarshipDeadline,
     title,
   } = campaignInfo;
+
+  /**
+   * TODO: Check for a voting-reasons query parameter, and render values in quote if present.
+   * @see https://www.pivotaltracker.com/story/show/172087475
+   */
   return (
     <div className="hero-landing-page">
       <CoverImage coverImage={coverImage} />
