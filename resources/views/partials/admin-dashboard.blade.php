@@ -1,5 +1,5 @@
 <div id="admin-dashboard" class="admin-dashboard bg-gray-700 border-b border-solid border-gray-800 z-max">
-    <div class="wrapper base-12-grid">
+    <div class="wrapper base-12-grid pt-6">
         <h1 class="admin-dashboard-title grid-full font-normal mb-8 relative text-base text-gray-600 uppercase">
             <span class="bg-gray-700 pr-3 relative">Admin Dashboard</span>
         </h1>
