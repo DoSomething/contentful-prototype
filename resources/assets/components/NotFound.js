@@ -9,7 +9,7 @@ import TextContent from './utilities/TextContent/TextContent';
 const zendeskUrl =
   'https://help.dosomething.org/hc/en-us/articles/115016093488-Help-The-page-I-m-looking-for-says-Page-Not-Found-';
 
-const NotFound = ({ id, className }) => (
+const NotFound = ({ className, id }) => (
   <Card title="Not Found" className={classnames('rounded bordered', className)}>
     <TextContent className="p-3">
       __We searched our site, but couldn&apos;t find what you were looking
