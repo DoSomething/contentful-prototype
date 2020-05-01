@@ -33,7 +33,7 @@ const VolunteerCreditsTable = ({ certificatePosts }) =>
       <tbody>
         {certificatePosts.map(certificatePost => (
           <tr
-            key={certificatePost.id}
+            key={certificatePost.actionId}
             css={css`
               :not(:first-of-type) {
                 border-top: 2px solid ${tailwind('colors.gray.200')};

@@ -91,9 +91,10 @@ const VolunteerCreditsQuery = () => {
     const lastPost = last(posts);
 
     // We use the ID as the unique 'key' when we map over the formatted post data.
-    const { id, createdAt } = lastPost;
+    const { createdAt } = lastPost;
 
     const {
+      id,
       timeCommitmentLabel,
       actionLabel,
       noun,
@@ -125,7 +126,7 @@ const VolunteerCreditsQuery = () => {
     const pending = !firstAcceptedPost;
 
     return {
-      id,
+      actionId: id,
       campaignWebsite,
       actionLabel,
       dateCompleted: getHumanFriendlyDate(createdAt),
