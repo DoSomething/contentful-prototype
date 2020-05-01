@@ -11,8 +11,8 @@ import classnames from 'classnames';
  * @param {Object} props
  */
 const ElementButton = ({
+  attributes,
   className,
-  data,
   isDisabled,
   isLoading,
   onClick,
@@ -25,7 +25,7 @@ const ElementButton = ({
       disabled={isDisabled}
       onClick={onClick}
       type={type}
-      {...data}
+      {...attributes}
     >
       {text}
     </button>
@@ -33,8 +33,8 @@ const ElementButton = ({
 };
 
 ElementButton.propTypes = {
+  attributes: PropTypes.object,
   className: PropTypes.string,
-  data: PropTypes.object,
   isDisabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   onClick: PropTypes.func,
@@ -43,8 +43,8 @@ ElementButton.propTypes = {
 };
 
 ElementButton.defaultProps = {
+  attributes: {},
   className: null,
-  data: {},
   isDisabled: false,
   isLoading: false,
   onClick: null,

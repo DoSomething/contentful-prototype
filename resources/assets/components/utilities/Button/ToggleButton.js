@@ -6,9 +6,9 @@ import ElementButton from './ElementButton';
 
 const ToggleButton = props => {
   const {
+    attributes,
     activateText,
     className,
-    data,
     deactivateText,
     isDisabled,
     isLoading,
@@ -37,8 +37,8 @@ const ToggleButton = props => {
 
   return (
     <ElementButton
+      attributes={attributes}
       className={isToggled ? deactivateClasses : activateClasses}
-      data={data}
       isDisabled={isDisabled}
       onClick={onClick}
       text={isToggled ? deactivateText : activateText}
@@ -48,9 +48,9 @@ const ToggleButton = props => {
 };
 
 ToggleButton.propTypes = {
-  className: PropTypes.string,
   activateText: PropTypes.string.isRequired,
-  data: PropTypes.object,
+  attributes: PropTypes.object,
+  className: PropTypes.string,
   deactivateText: PropTypes.string.isRequired,
   isDisabled: PropTypes.bool,
   isLoading: PropTypes.bool,
@@ -60,8 +60,8 @@ ToggleButton.propTypes = {
 };
 
 ToggleButton.defaultProps = {
+  attributes: {},
   className: null,
-  data: {},
   isDisabled: false,
   isLoading: false,
   isToggled: false,

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import PrimaryButton from '../Button/PrimaryButton';
 import CloseButton from '../../artifacts/CloseButton/CloseButton';
 import {
   EVENT_CATEGORIES,
@@ -25,25 +26,25 @@ const SitewideBannerContent = ({
     });
   };
   return (
-    <div className="w-full flex justify-center bg-yellow-500 p-4 z-50">
+    <div className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 sm:px-10 z-50">
       <CloseButton
         callback={handleClose}
-        className="block absolute right-0 top-0 pt-4 md:pt-2 pr-6 md:pr-2"
+        className="block absolute right-0 top-0 p-4"
         size="14px"
       />
-      <div className="flex flex-wrap justify-center items-center">
-        <h1 className="text-center text-base m-4 md:mx-6 md:my-2">
+      <div className="md:flex items-center text-center">
+        {/* m-4 md:mx-6 md:my-2 */}
+        <h1 className="mb-4 md:mb-0 md:mr-4 text-center text-base">
           {description}
         </h1>
-        <a
-          className="py-2 px-4 hover:bg-blurple-300 hover:text-white hover:no-underline border border-solid-blurple rounded-md bg-blurple-500 text-white uppercase"
+
+        <PrimaryButton
+          attributes={{ rel: 'noopener noreferrer', target: '_blank' }}
+          className="py-2 px-4"
           href={link}
-          target="_blank"
-          rel="noopener noreferrer"
           onClick={handleCompleteWithTracking}
-        >
-          {cta}
-        </a>
+          text={cta}
+        />
       </div>
     </div>
   );

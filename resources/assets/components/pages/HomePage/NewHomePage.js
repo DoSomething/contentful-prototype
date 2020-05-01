@@ -307,8 +307,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <HomePageCampaignGallery campaigns={campaigns} />
 
                 <PrimaryButton
+                  attributes={{ 'data-label': 'campaign_section_show_more' }}
                   className="mt-8 py-4 px-8 text-lg"
-                  data={{ 'data-label': 'campaign_section_show_more' }}
                   href="/us/campaigns"
                   text="See More Campaigns"
                 />
@@ -412,8 +412,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
                 <HomePageArticleGallery articles={articles} />
 
                 <PrimaryButton
+                  attributes={{ 'data-label': 'article_section_show_more' }}
                   className="mt-8 py-4 px-8 text-lg"
-                  data={{ 'data-label': 'article_section_show_more' }}
                   href="https://lets.dosomething.org/"
                   text="See More Articles"
                 />
@@ -472,8 +472,8 @@ const NewHomePageTemplate = ({ articles, campaigns, coverImage, title }) => {
 
                 <div className="flex-grow">
                   <PrimaryButton
+                    attributes={{ 'data-label': 'signup_cta_authorize' }}
                     className="mt-8 xl:m-0 py-4 px-16 text-lg xl:ml-auto"
-                    data={{ 'data-label': 'signup_cta_authorize' }}
                     href="/authorize"
                     text="Join Now"
                   />

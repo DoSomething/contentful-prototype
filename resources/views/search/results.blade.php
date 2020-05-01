@@ -26,7 +26,7 @@
                         ])
                         <input class="border-none leading-none pl-10 text-input w-full" name="query" type="text" value="{{ $query }}">
                     </div>
-                    <input class="btn" type="submit" value="Search">
+                    <input class="btn bg-blurple-500 hover:bg-blurple-400" type="submit" value="Search">
                 </form>
 
                 @if(! empty($campaigns))
