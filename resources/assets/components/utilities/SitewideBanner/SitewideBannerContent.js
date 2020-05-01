@@ -33,7 +33,6 @@ const SitewideBannerContent = ({
         size="14px"
       />
       <div className="md:flex items-center text-center">
-        {/* m-4 md:mx-6 md:my-2 */}
         <h1 className="mb-4 md:mb-0 md:mr-4 text-center text-base">
           {description}
         </h1>
