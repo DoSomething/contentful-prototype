@@ -4,9 +4,9 @@ import { useQuery } from 'react-apollo';
 
 import Faq from './Faq';
 import ErrorPage from '../../ErrorPage';
+import HeroSection from './HeroSection';
 import { query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
-import BetaHeroSection from './BetaHeroSection';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
 import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
@@ -87,7 +87,7 @@ const BetaVoterRegistrationDrivePage = () => {
     <>
       <SiteNavigationContainer />
       <main>
-        <BetaHeroSection
+        <HeroSection
           user={data.user}
           campaignInfo={data.campaignWebsite}
           modalToggle={modalToggle}

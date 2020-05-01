@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
-const BetaHeroSection = ({ user, campaignInfo, modalToggle }) => {
+const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   const { firstName } = user;
   const {
     campaignId,
@@ -53,9 +53,9 @@ const BetaHeroSection = ({ user, campaignInfo, modalToggle }) => {
   );
 };
 
-export default BetaHeroSection;
+export default HeroSection;
 
-BetaHeroSection.propTypes = {
+HeroSection.propTypes = {
   user: PropTypes.object.isRequired,
   campaignInfo: PropTypes.object.isRequired,
   modalToggle: PropTypes.func.isRequired,
