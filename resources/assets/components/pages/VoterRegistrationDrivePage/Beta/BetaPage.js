@@ -77,7 +77,7 @@ const BetaVoterRegistrationDrivePage = () => {
   }
 
   if (!data.user) {
-    return <NotFoundPage />;
+    return <NotFoundPage id={referrerUserId} />;
   }
 
   const {
