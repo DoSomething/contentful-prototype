@@ -23,7 +23,7 @@
     @include('partials.snowplow_script')
 </head>
 
-<body>
+<body class="min-h-full">
     @if (has_staff_access() && isset($admin) && data_get($admin, 'page'))
         @include('partials.admin-dashboard')
     @endif
@@ -34,7 +34,7 @@
 
     <div id="fb-root"></div>
     <div id="banner-portal" class="top-0 left-0 w-full block sticky z-1000" role="presentation"></div>
-    <div id="chrome" class="chrome h-full w-full">
+    <div id="chrome" class="chrome min-h-screen w-full">
         @yield('content')
     </div>
 

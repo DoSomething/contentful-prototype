@@ -52,6 +52,7 @@ const App = ({ store, history }) => {
             )}
           />
         ) : null}
+
         <ApolloProvider client={graphqlClient(env('GRAPHQL_URL'))}>
           {featureFlag('sitewide_nps_survey') &&
           window.location.pathname !== '/us' ? (
@@ -76,6 +77,7 @@ const App = ({ store, history }) => {
               />
             </TrafficDistribution>
           ) : null}
+
           <Router history={history}>
             <Switch>
               <Route
@@ -83,8 +85,11 @@ const App = ({ store, history }) => {
                 path="/us"
                 component={featureFlag('new_homepage') ? NewHomePage : HomePage}
               />
+
               <Route path="/us/account" component={AccountContainer} />
+
               <Route path="/us/blocks/:id" component={BlockPage} />
+
               {featureFlag('dynamic_explore_campaigns') ? (
                 <Route
                   exact
@@ -92,34 +97,42 @@ const App = ({ store, history }) => {
                   component={CampaignsIndexPage}
                 />
               ) : null}
+
               <Route path="/us/campaigns/:slug" component={CampaignContainer} />
+
               <Route
                 path="/us/causes/:slug"
                 render={routeProps => (
                   <CausePage slug={routeProps.match.params.slug} />
                 )}
               />
+
               <Route
                 path="/us/collections/:slug"
                 render={routeProps => (
                   <CollectionPage slug={routeProps.match.params.slug} />
                 )}
               />
+
               <Route
                 path="/us/about/:slug"
                 render={routeProps => (
                   <CompanyPage slug={routeProps.match.params.slug} />
                 )}
               />
+
               <Route path="/us/join" component={BetaReferralPage} />
+
               <Route
                 path="/us/my-voter-registration-drive"
                 component={BetaVoterRegistrationDrivePage}
               />
+
               <Route
                 path="/us/refer-friends"
                 component={AlphaReferralPageContainer}
               />
+
               <Route path="/us/:slug" component={PageDispatcherContainer} />
             </Switch>
           </Router>
