@@ -28,8 +28,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
             <blockquote>
               <p>
                 Voting is important for young people because we can affect
-                change on issues we care about most like climate change, living
-                wages, and student loan reform.
+                change on issues we care about most.
               </p>
               <p>- {firstName}</p>
             </blockquote>
