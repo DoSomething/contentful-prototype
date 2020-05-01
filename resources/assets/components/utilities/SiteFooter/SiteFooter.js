@@ -86,7 +86,7 @@ const SiteFooter = () => (
             <a href="/us/about/our-press">Press</a>
           </li>
           <li>
-            <a href="https://lets.dosomething.org/">Web Magazine</a>
+            <a href="https://lets.dosomething.org/">Articles</a>
           </li>
           <li>
             <a href="/us/about/contact-us">Contact Us</a>
