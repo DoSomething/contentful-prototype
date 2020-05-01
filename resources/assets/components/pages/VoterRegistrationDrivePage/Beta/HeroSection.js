@@ -13,6 +13,11 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
     scholarshipDeadline,
     title,
   } = campaignInfo;
+
+  /**
+   * TODO: Check for a voting-reasons query parameter, and render values in quote if present.
+   * @see https://www.pivotaltracker.com/story/show/172087475
+   */
   return (
     <div className="hero-landing-page">
       <CoverImage coverImage={coverImage} />
@@ -28,8 +33,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
             <blockquote>
               <p>
                 Voting is important for young people because we can affect
-                change on issues we care about most like climate change, living
-                wages, and student loan reform.
+                change on issues we care about most.
               </p>
               <p>- {firstName}</p>
             </blockquote>
