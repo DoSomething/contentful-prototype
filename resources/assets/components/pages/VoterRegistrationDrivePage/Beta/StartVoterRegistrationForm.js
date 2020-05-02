@@ -1,6 +1,8 @@
+import React, { useState } from 'react';
+import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import React, { useState, useRef } from 'react';
-
+import Card from '../../../../components/utilities/Card/Card';
+import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -49,7 +51,6 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
         category: EVENT_CATEGORIES.campaignAction,
         label: 'voter_registration',
         context: {
-          blockId,
           campaignId,
           url,
         },
@@ -58,6 +59,7 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
       redirectToRockTheVote();
   };
 
+  let enabled = emailValue.length > 0 && zipcodeValue.length > 0;
   return (
     <>
       <Card className="bordered rounded" title="Register Online to vote">
@@ -94,6 +96,7 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
         <PrimaryButton
           onClick={handleClick}
           text="Register To Vote"
+          isDisabled={enabled}
         />
       </Card>
     </>
