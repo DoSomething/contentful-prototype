@@ -85,58 +85,61 @@ const VolunteerCreditsQuery = () => {
 
   // Next, we parse out the specific data points we'll want from the larger
   // group of action posts generally, and from certain posts specifically.
-  const formattedPostData = Object.values(postsGroupedByAction).map(posts => {
-    // We need the last post since it has the earliest 'createdAt' date.
-    // We'll also use it to retrieve some other common post metadata.
-    const lastPost = last(posts);
+  const formattedPostData = Object.values(postsGroupedByAction)
+    .map(posts => {
+      // We need the last post since it has the earliest 'createdAt' date.
+      // We'll also use it to retrieve some other common post metadata.
+      const lastPost = last(posts);
 
-    // We use the ID as the unique 'key' when we map over the formatted post data.
-    const { createdAt } = lastPost;
+      // We use the ID as the unique 'key' when we map over the formatted post data.
+      const { createdAt } = lastPost;
 
-    const {
-      id,
-      timeCommitmentLabel,
-      actionLabel,
-      noun,
-      verb,
-    } = lastPost.actionDetails;
+      const {
+        id,
+        timeCommitmentLabel,
+        actionLabel,
+        noun,
+        verb,
+      } = lastPost.actionDetails;
 
-    const campaignWebsite = lastPost.campaign.campaignWebsite;
+      const campaignWebsite = lastPost.campaign.campaignWebsite;
 
-    const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
+      const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
 
-    // Calculate total quantity of accepted posts.
-    // @TODO: How do we handle 'null' quantity on a post? Or generally, actions not collecting quantity?
-    const quantity = acceptedPosts.reduce(
-      (totalQuantity, post) => totalQuantity + post.quantity,
-      0,
-    );
+      // Calculate total quantity of accepted posts.
+      // @TODO: How do we handle 'null' quantity on a post? Or generally, actions not collecting quantity?
+      const quantity = acceptedPosts.reduce(
+        (totalQuantity, post) => totalQuantity + post.quantity,
+        0,
+      );
 
-    // Generate human-friendly impact label based on quantity and action noun + verb.
-    // Will be 'null' for actions where we don't collect quantity info, or where total impact tallies to 0.
-    const impactLabel = quantity
-      ? `${pluralize(noun, quantity, true)} ${verb}`
-      : null;
+      // Generate human-friendly impact label based on quantity and action noun + verb.
+      // Will be 'null' for actions where we don't collect quantity info, or where total impact tallies to 0.
+      const impactLabel = quantity
+        ? `${pluralize(noun, quantity, true)} ${verb}`
+        : null;
 
-    // Grab the photo URL of the earliest accepted post.
-    const firstAcceptedPost = last(acceptedPosts);
-    const photo = get(firstAcceptedPost, 'url');
+      // Grab the photo URL of the earliest accepted post.
+      const firstAcceptedPost = last(acceptedPosts);
+      const photo = get(firstAcceptedPost, 'url');
 
-    // The certificate download button will be disabled if there is no 'accepted' post.
-    const pending = !firstAcceptedPost;
+      // The certificate download button will be disabled if there is no 'accepted' post.
+      const pending = !firstAcceptedPost;
 
-    return {
-      actionId: id,
-      campaignWebsite,
-      actionLabel,
-      dateCompleted: getHumanFriendlyDate(createdAt),
-      volunteerHours: timeCommitmentLabel,
-      impactLabel,
-      photo,
-      pending,
-      user: data.user,
-    };
-  });
+      return {
+        actionId: id,
+        campaignWebsite,
+        actionLabel,
+        dateCompleted: getHumanFriendlyDate(createdAt),
+        volunteerHours: timeCommitmentLabel,
+        impactLabel,
+        photo,
+        pending,
+        user: data.user,
+      };
+    })
+    // The certificates & display table won't function without campaign website data.
+    .filter(post => post.campaignWebsite);
 
   return <VolunteerCreditsTable certificatePosts={formattedPostData} />;
 };

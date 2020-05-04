@@ -23,6 +23,14 @@ const ACTION_THREE = {
   verb: 'done',
 };
 
+const ACTION_FOUR = {
+  id: 4,
+  actionLabel: 'Sit Around',
+  timeCommitmentLabel: '0 time',
+  noun: 'nothing',
+  verb: 'done',
+};
+
 const AFFILIATE_SPONSORS = [
   {
     logo: {
@@ -139,6 +147,19 @@ export const mockPostsResponse = [
       actionDetails: ACTION_THREE,
       campaign: {
         campaignWebsite: CAMPAIGN_THREE,
+      },
+    },
+  },
+  {
+    node: {
+      id: 7,
+      createdAt: '2019-11-22',
+      quantity: 1,
+      status: 'ACCEPTED',
+      url: 'images/7',
+      actionDetails: ACTION_FOUR,
+      campaign: {
+        campaignWebsite: null,
       },
     },
   },
