@@ -1081,3 +1081,19 @@ export function buildVoterRegUrl(
 
   return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails},${formatUserDetails}`;
 }
+
+export function isValidEmailSyntax(string) {
+  const email = string.toUpperCase();
+  if (email.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]+$/)) {
+    let lastChar = '';
+    for (let i = 0, len = email.length; i < len; i++) {
+      // fail if we see two dots in a row
+      if (lastChar === '.' && email[i] === '.') {
+        return false;
+      }
+      lastChar = email[i];
+    }
+    return true;
+  }
+  return false;
+}

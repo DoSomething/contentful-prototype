@@ -1,17 +1,23 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import Card from '../../../utilities/Card/Card';
-import { buildVoterRegUrl } from '../../../../helpers/index';
+import {
+  buildVoterRegUrl,
+  isValidEmailSyntax,
+} from '../../../../helpers/index';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 
 const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
   const [emailValue, setEmailValue] = useState('');
   const [zipcodeValue, setZipcodeValue] = useState('');
+  const [emailLabel, setEmailLabel] = useState('email');
+  const [zipCodeLabel, setZipCodeLabel] = useState('zipcode');
+  const zipCodeLength = useRef(0);
   const url = buildVoterRegUrl(
     'web',
     'onlinedrivereferral,referral=true',
@@ -30,10 +36,24 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
     window.location = url;
   };
 
-  const handleChange = event =>
-    event.target.name === 'email'
-      ? setEmailValue(event.target.value)
-      : setZipcodeValue(event.target.value);
+  const handleChange = event => {
+    if (event.target.name === 'email') {
+      isValidEmailSyntax(event.target.value)
+        ? () => {
+            setEmailValue(event.target.value);
+            setEmailLabel(event.target.name);
+          }
+        : setEmailLabel('Please include a valid email address');
+    }
+
+    if (event.target.name === 'zipcode') {
+      zipCodeLength === 5
+        ? () => {
+            setZipcodeValue(event.target.value);
+          }
+        : setZipCodeLabel('Please provide a valid zip code');
+    }
+  };
 
   const handleClick = () => {
     if (!isDisabled) {
@@ -58,23 +78,28 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
         <form className="form pb-2">
           <div>
             <label htmlFor="zipcode">
-              zipcode
+              {zipCodeLabel}
               <input
+                ref={zipCodeLength}
                 className="text-field"
+                pattern="[0-9]*"
                 type="text"
                 name="zipcode"
+                minLength="5"
                 placeholder="zipcode"
                 value={zipcodeValue}
                 onChange={handleChange}
+                required
               />
             </label>
           </div>
 
           <div>
             <label htmlFor="email">
-              email
+              {emailLabel}
               <input
                 className="text-field"
+                required
                 type="text"
                 name="email"
                 placeholder="email"
