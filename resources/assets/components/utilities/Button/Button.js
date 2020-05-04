@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import requiredIf from 'react-required-if';
 
-// @TODO:forge-removal Switch to using new btn class.
+// =============================================================================
+// @DEPRECATED
+// This component is being deprecated in favor of the new series of customizable
+// button components.
+// =============================================================================
+
 import './button.scss';
 
 const Button = ({

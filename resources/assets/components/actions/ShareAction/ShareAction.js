@@ -7,9 +7,9 @@ import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import Modal from '../../utilities/Modal/Modal';
-import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import { formatPostPayload } from '../../../helpers/forms';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { SOCIAL_SHARE_TYPE } from '../../../constants/post-types';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
@@ -174,32 +174,36 @@ class ShareAction extends PostForm {
     });
 
     return (
-      <React.Fragment>
+      <>
         <div className="share-action">
           <AnalyticsWaypoint
             name="share_action-top"
             context={{ blockId: id }}
           />
+
           <Card title={title} className="rounded bordered">
-            {content ? (
-              <TextContent className="p-3">{content}</TextContent>
-            ) : null}
-            {hideEmbed ? null : (
-              <div className="p-3">
-                <Embed url={link} />
-              </div>
-            )}
-            <Button attached onClick={() => handleShareClick(href)}>
-              Share on {isFacebook ? 'Facebook' : 'Twitter'}
-            </Button>
+            <div className="p-3">
+              {content ? (
+                <TextContent className="mb-3">{content}</TextContent>
+              ) : null}
+
+              {hideEmbed ? null : <Embed className="mb-3" url={link} />}
+
+              <PrimaryButton
+                className="block mt-6 text-lg w-full"
+                onClick={() => handleShareClick(href)}
+                text={`Share on ${isFacebook ? 'Facebook' : 'Twitter'}`}
+              />
+            </div>
           </Card>
+
           <AnalyticsWaypoint
             name="share_action-bottom"
             context={{ blockId: id }}
           />
         </div>
         {this.state.showModal ? (
-          <React.Fragment>
+          <>
             {affirmationBlock ? (
               <Modal onClose={this.handleModalClose}>
                 <ContentfulEntryLoader id={affirmationBlock.id} />
@@ -212,9 +216,9 @@ class ShareAction extends PostForm {
                 userId={this.props.userId}
               />
             )}
-          </React.Fragment>
+          </>
         ) : null}
-      </React.Fragment>
+      </>
     );
   }
 }

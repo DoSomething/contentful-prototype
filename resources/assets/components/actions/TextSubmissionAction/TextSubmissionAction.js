@@ -6,10 +6,10 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
-import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import { getFieldErrors, formatPostPayload } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
@@ -141,7 +141,7 @@ class TextSubmissionAction extends PostForm {
     );
 
     return (
-      <React.Fragment>
+      <>
         <div
           className={classnames(
             'text-submission-action mb-6',
@@ -159,7 +159,7 @@ class TextSubmissionAction extends PostForm {
             <form onSubmit={this.handleSubmit}>
               <div className="p-3">
                 <label
-                  className={classnames('field-label', {
+                  className={classnames('field-label h-auto', {
                     'has-error': has(errors, 'text'),
                   })}
                   htmlFor="text"
@@ -182,20 +182,24 @@ class TextSubmissionAction extends PostForm {
                   text={this.state.textValue}
                 />
               </div>
-              <Button
-                type="submit"
-                loading={submissionItem && submissionItem.isPending}
-                disabled={
-                  !this.state.textValue ||
-                  this.state.textValue.length > CHARACTER_LIMIT
-                }
-                attached
-              >
-                {this.props.buttonText}
-              </Button>
+
+              <div className="p-3">
+                <PrimaryButton
+                  className="text-lg w-full"
+                  isDisabled={
+                    !this.state.textValue ||
+                    this.state.textValue.length > CHARACTER_LIMIT
+                  }
+                  isLoading={submissionItem && submissionItem.isPending}
+                  text={this.props.buttonText}
+                  type="submit"
+                />
+              </div>
+
               <PrivacyLanguage />
             </form>
           </Card>
+
           <AnalyticsWaypoint
             name="text_submission_action-bottom"
             context={{ blockId: this.props.id }}
@@ -222,7 +226,7 @@ class TextSubmissionAction extends PostForm {
             userId={this.props.userId}
           />
         ) : null}
-      </React.Fragment>
+      </>
     );
   }
 }
