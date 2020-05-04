@@ -13,6 +13,8 @@ import {
 } from '../../../../helpers/index';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 
+import { buildVoterRegUrl } from '../../../../helpers/index';
+
 const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
   const [emailValue, setEmailValue] = useState('');
   const [zipcodeValue, setZipcodeValue] = useState('');
@@ -51,15 +53,16 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
         category: EVENT_CATEGORIES.campaignAction,
         label: 'voter_registration',
         context: {
+          blockId,
           campaignId,
           url,
         },
       });
 
       redirectToRockTheVote();
+    }
   };
 
-  let enabled = emailValue.length > 0 && zipcodeValue.length > 0;
   return (
     <>
       <Card className="bordered rounded" title="Register Online to vote">
@@ -95,8 +98,8 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
         </form>
         <PrimaryButton
           onClick={handleClick}
+          isDisabled={isDisabled}
           text="Register To Vote"
-          isDisabled={enabled}
         />
       </Card>
     </>
