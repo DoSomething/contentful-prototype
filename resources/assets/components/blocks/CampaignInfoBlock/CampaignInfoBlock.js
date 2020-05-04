@@ -86,7 +86,7 @@ const CampaignInfoBlock = ({
             ) : null}
             <dl className="clearfix">
               {showScholarshipInfo ? (
-                <React.Fragment>
+                <>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
                   </dt>
@@ -108,7 +108,7 @@ const CampaignInfoBlock = ({
                     </div>
                   ) : null}
                   <hr className="clear-both pb-3 border-gray-300" />
-                </React.Fragment>
+                </>
               ) : null}
 
               {endDate && !showScholarshipInfo ? (
@@ -118,24 +118,24 @@ const CampaignInfoBlock = ({
                 </>
               ) : null}
               {actionItem && actionItem.timeCommitmentLabel ? (
-                <React.Fragment>
+                <>
                   <dt>Time</dt>
                   <dd>{actionItem.timeCommitmentLabel}</dd>
-                </React.Fragment>
+                </>
               ) : null}
               {actionItem && actionItem.actionLabel ? (
-                <React.Fragment>
+                <>
                   <dt>Action Type</dt>
                   <dd>{actionItem.actionLabel}</dd>
-                </React.Fragment>
+                </>
               ) : null}
               {featureFlag('volunteer_credits') && actionItem ? (
-                <React.Fragment>
+                <>
                   <dt>Volunteer Credit</dt>
                   <dd data-test="volunteer-credit-value">
                     {actionItem.volunteerCredit ? 'Yes' : 'No'}
                   </dd>
-                </React.Fragment>
+                </>
               ) : null}
             </dl>
           </>
