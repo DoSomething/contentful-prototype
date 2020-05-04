@@ -73,6 +73,7 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
               <input
                 ref={zipCodeLength}
                 className="text-field"
+                pattern="[0-9]*"
                 type="text"
                 name="zipcode"
                 value={zipcodeValue}
