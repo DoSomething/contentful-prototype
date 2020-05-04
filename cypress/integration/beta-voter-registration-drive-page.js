@@ -26,8 +26,20 @@ function getBetaPagePathForUser(user) {
   return `${betaPagePath}?referrer_user_id=${user.id}`;
 }
 
-describe('Beta Voter Registration Drive Page', () => {
-  beforeEach(() => cy.configureMocks());
+describe('Beta Voter Registration Drive (OVRD) Page', () => {
+  beforeEach(() => {
+    cy.configureMocks();
+    // Mock the ContentBlock queries used for various sections on the beta OVRD page.
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        __typename: 'ContentBlock',
+        superTitle: faker.lorem.words(),
+        title: faker.company.bsBuzz(),
+        subTitle: faker.lorem.words(),
+        content: faker.lorem.sentence(),
+      },
+    });
+  });
 
   it('Beta OVRD page displays NotFoundPage if referrer user ID not present', () => {
     cy.visit(betaPagePath);
@@ -76,6 +88,8 @@ describe('Beta Voter Registration Drive Page', () => {
     );
   });
 
+  // Eventually the quote will change if a voting-options query parameter exists.
+  // @see https://www.pivotaltracker.com/story/show/172087475
   it('Beta OVRD quote displays default if no voting-options query parameter found', () => {
     const user = userFactory();
 
@@ -94,5 +108,20 @@ describe('Beta Voter Registration Drive Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
     ).contains(`- ${user.firstName}`);
+  });
+
+  it('Beta OVRD HeroSection displays scholarship info in blurb', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=beta-voter-registration-drive-page-blurb]').contains(
+      `250,000+ young people have registered to vote via DoSomething (it takes less than 2 minutes!). After you register, share with your friends to enter to win a $1,500 scholarship!`,
+    );
   });
 });

@@ -18,7 +18,7 @@ function fakePost(displayName) {
   };
 }
 
-describe('Alpha Voter Registration Drive Page', () => {
+describe('Alpha Voter Registration Drive (OVRD) Page', () => {
   beforeEach(() => cy.configureMocks());
 
   it('Legacy Alpha OVRD action page blocks display when feature flag disabled', () => {
