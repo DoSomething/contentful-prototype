@@ -114,8 +114,8 @@ const CallToActionBlock = ({ id }) => {
   const alignmentStyles = get(alignmentObject, alignment, 'CENTER');
 
   return (
-    <div className="base-12-grid" css={[templateStyles, alignmentStyles]}>
-      <div className="grid-narrow my-8">
+    <div css={[templateStyles, alignmentStyles]}>
+      <div className="max-w-3xl mx-auto p-8">
         <h3 className="text-m font-source-sans font-bold uppercase">
           {superTitle}
         </h3>
