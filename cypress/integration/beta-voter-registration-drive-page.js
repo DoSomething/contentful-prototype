@@ -2,10 +2,10 @@
 
 import faker from 'faker';
 import { userFactory } from '../fixtures/user';
-import exampleVoterRegistrationDriveCampaign from '../fixtures/contentful/exampleVoterRegistrationDriveCampaign';
 
 const betaPagePath = '/us/my-voter-registration-drive';
 
+// Mock response for the campaignWebsite query within our BetaVoterRegistrationDrivePageQuery.
 const campaignWebsite = {
   campaignId: faker.random.number(),
   title: faker.company.catchPhraseDescriptor(),
@@ -18,6 +18,10 @@ const campaignWebsite = {
   additionalContent: null,
 };
 
+/**
+ * @param Object user
+ * @return String
+ */
 function getBetaPagePathForUser(user) {
   return `${betaPagePath}?referrer_user_id=${user.id}`;
 }
@@ -70,5 +74,25 @@ describe('Beta Voter Registration Drive Page', () => {
     cy.get('.hero-banner__headline-subtitle').contains(
       `${user.firstName} has invited you to register to vote!`,
     );
+  });
+
+  it('Beta OVRD quote displays default if no voting-options query parameter found', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-text]',
+    ).contains(
+      'Voting is important for young people because we can affect change on issues we care about most.',
+    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-byline]',
+    ).contains(`- ${user.firstName}`);
   });
 });

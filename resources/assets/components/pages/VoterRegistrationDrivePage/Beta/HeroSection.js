@@ -31,11 +31,13 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           </header>
           <div className="grid-wide-7/10 primary markdown">
             <blockquote>
-              <p>
+              <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can affect
                 change on issues we care about most.
               </p>
-              <p>- {firstName}</p>
+              <p data-test="beta-voter-registration-drive-page-quote-byline">
+                - {firstName}
+              </p>
             </blockquote>
             <p>
               250,000+ young people have registered to vote via DoSomething (it
