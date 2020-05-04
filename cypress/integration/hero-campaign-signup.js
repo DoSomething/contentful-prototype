@@ -89,6 +89,58 @@ describe('Hero Template Landing Page', () => {
     cy.contains('Win A Scholarship');
   });
 
+  describe('Landing Page Displays the Volunteer Credit value', () => {
+    it('Displays Yes when the action earns volunteer credit', () => {
+      cy.mockGraphqlOp('CampaignInfoQuery', {
+        campaign: (root, { campaignId }) => ({
+          id: campaignId,
+          actions: () => [
+            {
+              actionLabel: 'Share Something',
+              timeCommitmentLabel: '1 hour',
+              scholarshipEntry: false,
+              reportback: true,
+              volunteerCredit: true,
+            },
+          ],
+        }),
+      });
+
+      // Visit the campaign pitch page:
+      cy.withFeatureFlags({ volunteer_credits: true })
+        .withState(exampleCampaign)
+        .visit('/us/campaigns/test-example-campaign');
+
+      cy.contains('Volunteer Credit');
+      cy.get('[data-test=volunteer-credit-value]').contains('Yes');
+    });
+
+    it('Displays No when the action does not earn volunteer credit', () => {
+      cy.mockGraphqlOp('CampaignInfoQuery', {
+        campaign: (root, { campaignId }) => ({
+          id: campaignId,
+          actions: () => [
+            {
+              actionLabel: 'Share Something',
+              timeCommitmentLabel: '1 hour',
+              scholarshipEntry: false,
+              reportback: true,
+              volunteerCredit: false,
+            },
+          ],
+        }),
+      });
+
+      // Visit the campaign pitch page:
+      cy.withFeatureFlags({ volunteer_credits: true })
+        .withState(exampleCampaign)
+        .visit('/us/campaigns/test-example-campaign');
+
+      cy.contains('Volunteer Credit');
+      cy.get('[data-test=volunteer-credit-value]').contains('No');
+    });
+  });
+
   it('Create signup, as an anonymous user', () => {
     const user = userFactory();
 

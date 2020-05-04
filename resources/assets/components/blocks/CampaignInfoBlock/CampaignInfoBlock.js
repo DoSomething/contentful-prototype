@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import { getHumanFriendlyDate } from '../../../helpers';
+import { featureFlag, getHumanFriendlyDate } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -27,6 +27,7 @@ const CAMPAIGN_INFO_QUERY = gql`
         timeCommitmentLabel
         scholarshipEntry
         reportback
+        volunteerCredit
       }
     }
   }
@@ -85,7 +86,7 @@ const CampaignInfoBlock = ({
             ) : null}
             <dl className="clearfix">
               {showScholarshipInfo ? (
-                <React.Fragment>
+                <>
                   <dt className="campaign-info__scholarship">
                     Win A Scholarship
                   </dt>
@@ -107,7 +108,7 @@ const CampaignInfoBlock = ({
                     </div>
                   ) : null}
                   <hr className="clear-both pb-3 border-gray-300" />
-                </React.Fragment>
+                </>
               ) : null}
 
               {endDate && !showScholarshipInfo ? (
@@ -117,16 +118,24 @@ const CampaignInfoBlock = ({
                 </>
               ) : null}
               {actionItem && actionItem.timeCommitmentLabel ? (
-                <React.Fragment>
+                <>
                   <dt>Time</dt>
                   <dd>{actionItem.timeCommitmentLabel}</dd>
-                </React.Fragment>
+                </>
               ) : null}
               {actionItem && actionItem.actionLabel ? (
-                <React.Fragment>
+                <>
                   <dt>Action Type</dt>
                   <dd>{actionItem.actionLabel}</dd>
-                </React.Fragment>
+                </>
+              ) : null}
+              {featureFlag('volunteer_credits') && actionItem ? (
+                <>
+                  <dt>Volunteer Credit</dt>
+                  <dd data-test="volunteer-credit-value">
+                    {actionItem.volunteerCredit ? 'Yes' : 'No'}
+                  </dd>
+                </>
               ) : null}
             </dl>
           </>
