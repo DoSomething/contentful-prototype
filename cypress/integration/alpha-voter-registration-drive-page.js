@@ -37,7 +37,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       'have.length',
       0,
     );
-    cy.get('[data-test=accepted-posts-count]').should('have.length', 0);
+    cy.get('[data-test=total-accepted-quantity]').should('have.length', 0);
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
     ).should('have.length', 1);
@@ -54,7 +54,7 @@ describe('Alpha Voter Registration Drive Page', () => {
       'have.length',
       1,
     );
-    cy.get('[data-test=accepted-posts-count]').should('have.length', 1);
+    cy.get('[data-test=total-accepted-quantity]').should('have.length', 1);
     cy.get(
       `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
     ).should('have.length', 0);
@@ -129,33 +129,33 @@ describe('Alpha Voter Registration Drive Page', () => {
     cy.get('[data-test=additional-referrals-count]').contains('+ 2 more');
   });
 
-  it('Renders count of approved posts when less than 50', () => {
+  it('Renders sum of quantity if approved posts query returns results', () => {
     const user = userFactory();
     const actionId = faker.random.number();
 
-    cy.mockGraphqlOp('UserAcceptedPostsCountForAction', {
-      postsCount: (root, { userId, actionId }) => 11,
+    cy.mockGraphqlOp('UserAcceptedPostsForAction', {
+      posts: [{ quantity: 10 }, { quantity: 20 }, { quantity: 30 }],
     });
 
     cy.withFeatureFlags({
       voter_reg_alpha_page: true,
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('[data-test=accepted-posts-count-amount]').contains(11);
+    cy.get('[data-test=total-accepted-quantity-value]').contains('60');
   });
 
-  it('Renders 50+ approved posts when count is 51', () => {
+  it('Renders 0 if approved posts query does not return any results', () => {
     const user = userFactory();
     const actionId = faker.random.number();
 
-    cy.mockGraphqlOp('UserAcceptedPostsCountForAction', {
-      postsCount: (root, { userId, actionId }) => 51,
+    cy.mockGraphqlOp('UserAcceptedPostsForAction', {
+      posts: [],
     });
 
     cy.withFeatureFlags({
       voter_reg_alpha_page: true,
     }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('[data-test=accepted-posts-count-amount]').contains('50+');
+    cy.get('[data-test=total-accepted-quantity-value]').contains('0');
   });
 });

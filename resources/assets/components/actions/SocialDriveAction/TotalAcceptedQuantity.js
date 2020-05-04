@@ -1,25 +1,23 @@
 import React from 'react';
 import gql from 'graphql-tag';
+import { sumBy } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
 
-const USER_ACCEPTED_POSTS_COUNT_FOR_ACTION_QUERY = gql`
-  query UserAcceptedPostsCountForAction($userId: String!, $actionId: Int!) {
-    postsCount(
-      userId: $userId
-      actionIds: [$actionId]
-      status: [ACCEPTED]
-      limit: 51
-    )
+const USER_ACCEPTED_POSTS_FOR_ACTION_QUERY = gql`
+  query UserAcceptedPostsForAction($userId: String!, $actionId: Int!) {
+    posts(userId: $userId, actionIds: [$actionId], status: [ACCEPTED]) {
+      quantity
+    }
   }
 `;
 
-const AcceptedPostsCount = ({ actionId, userId }) => {
+const TotalAcceptedQuantity = ({ actionId, userId }) => {
   return (
     <div
-      data-test="accepted-posts-count"
+      data-test="total-accepted-quantity"
       className="mt-6 lg:w-1/3 lg:pl-3 lg:mt-0"
     >
       <Card className="bordered rounded" title="More info">
@@ -28,12 +26,12 @@ const AcceptedPostsCount = ({ actionId, userId }) => {
             Total scholarship entries
           </span>
           <Query
-            query={USER_ACCEPTED_POSTS_COUNT_FOR_ACTION_QUERY}
+            query={USER_ACCEPTED_POSTS_FOR_ACTION_QUERY}
             variables={{ actionId, userId }}
           >
             {data => (
-              <h1 data-test="accepted-posts-count-amount">
-                {data.postsCount === 51 ? '50+' : data.postsCount}
+              <h1 data-test="total-accepted-quantity-value">
+                {sumBy(data.posts, post => post.quantity)}
               </h1>
             )}
           </Query>
@@ -43,9 +41,9 @@ const AcceptedPostsCount = ({ actionId, userId }) => {
   );
 };
 
-AcceptedPostsCount.propTypes = {
+TotalAcceptedQuantity.propTypes = {
   actionId: PropTypes.number.isRequired,
   userId: PropTypes.string.isRequired,
 };
 
-export default AcceptedPostsCount;
+export default TotalAcceptedQuantity;

@@ -9,7 +9,7 @@ import linkIcon from './linkIcon.svg';
 import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
-import AcceptedPostsCount from './AcceptedPostsCount';
+import TotalAcceptedQuantity from './TotalAcceptedQuantity';
 import VoterRegistrationDriveInfo from './VoterRegistrationDriveInfo';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
@@ -142,7 +142,7 @@ class SocialDriveAction extends React.Component {
         ) : null}
 
         {actionId ? (
-          <AcceptedPostsCount userId={userId} actionId={actionId} />
+          <TotalAcceptedQuantity userId={userId} actionId={actionId} />
         ) : null}
       </div>
     );
