@@ -104,7 +104,11 @@ const BetaVoterRegistrationDrivePage = () => {
               className="grid-wide clearfix wrapper pb-3"
             />
             <div className="pb-6">
-              <StartVoterRegistrationForm referrerUserId={referrerUserId} />
+              <StartVoterRegistrationForm
+                referrerUserId={referrerUserId}
+                blockId={registerToVote.contentBlockId}
+                campaignId={campaignId}
+              />
             </div>
             <ContentfulEntryLoader
               id={faq.contentBlockId}
