@@ -1,17 +1,17 @@
 /* eslint-disable react/no-array-index-key */
 
 import React from 'react';
+import tw from 'twin.macro';
 import PropTypes from 'prop-types';
+import { css } from '@emotion/core';
 
 import Card from '../../utilities/Card/Card';
-import { getScholarshipAffiliateLabel } from '../../../helpers';
 import TextContent from '../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
+import { getScholarshipAffiliateLabel, tailwind } from '../../../helpers';
 import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliateScholarshipBlockQuery from '../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
-
-import './landing-page.scss';
 
 const LandingPage = props => {
   const {
@@ -29,6 +29,16 @@ const LandingPage = props => {
   const scholarshipAffiliateLabel = getScholarshipAffiliateLabel();
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
+
+  const landingPageHeadingOneStyle = css`
+    h1 {
+      ${tw`mb-6 text-4xl`}
+
+      span {
+        border-bottom: 5px solid ${tailwind('colors.yellow.500')};
+      }
+    }
+  `;
 
   return (
     <React.Fragment>
@@ -86,10 +96,10 @@ const LandingPage = props => {
       ) : (
         <>
           {content ? (
-            <div className="bg-white landing-page">
+            <div className="bg-white">
               <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
                 <div className="campaign-page__content clearfix">
-                  <div className="primary">
+                  <div className="primary" css={landingPageHeadingOneStyle}>
                     <TextContent>{content}</TextContent>
                   </div>
                 </div>
