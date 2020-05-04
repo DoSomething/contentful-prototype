@@ -15,8 +15,8 @@ import ElementButton from './ElementButton';
  */
 const PrimaryButton = props => {
   const {
+    attributes,
     className,
-    data,
     href,
     isActive,
     isDisabled,
@@ -41,14 +41,20 @@ const PrimaryButton = props => {
 
   if (href) {
     return (
-      <LinkButton className={classes} data={data} href={href} text={text} />
+      <LinkButton
+        attributes={attributes}
+        className={classes}
+        href={href}
+        onClick={onClick}
+        text={text}
+      />
     );
   }
 
   return (
     <ElementButton
+      attributes={attributes}
       className={classes}
-      data={data}
       isDisabled={isDisabled}
       isLoading={isLoading}
       onClick={onClick}
@@ -59,8 +65,8 @@ const PrimaryButton = props => {
 };
 
 PrimaryButton.propTypes = {
+  attributes: PropTypes.object,
   className: PropTypes.string,
-  data: PropTypes.object,
   href: PropTypes.string,
   isActive: PropTypes.bool,
   isDisabled: PropTypes.bool,
@@ -71,8 +77,8 @@ PrimaryButton.propTypes = {
 };
 
 PrimaryButton.defaultProps = {
+  attributes: {},
   className: null,
-  data: {},
   href: null,
   isActive: false,
   isDisabled: false,

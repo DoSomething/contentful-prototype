@@ -8,28 +8,28 @@ import classnames from 'classnames';
  *
  * @param {Object} props
  */
-const LinkButton = ({ className, data, href, onClick, text }) => (
+const LinkButton = ({ attributes, className, href, onClick, text }) => (
   <a
     className={classnames('btn', className)}
     href={href}
     onClick={onClick}
-    {...data}
+    {...attributes}
   >
     {text}
   </a>
 );
 
 LinkButton.propTypes = {
+  attributes: PropTypes.object,
   className: PropTypes.string,
-  data: PropTypes.object,
   href: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   text: PropTypes.string.isRequired,
 };
 
 LinkButton.defaultProps = {
+  attributes: {},
   className: null,
-  data: {},
   onClick: null,
 };
 

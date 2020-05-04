@@ -40,12 +40,12 @@ const FilterNavigation = ({ filters, setFilters }) => {
 
         {filterCategoryNames.map(name => (
           <SecondaryButton
-            key={`${name}_button`}
+            attributes={{ 'data-filter': name }}
             className="mr-8"
-            data={{ 'data-filter': name }}
+            isActive={activeFilter === name}
+            key={`${name}_button`}
             onClick={handleMenuToggle}
             text={startCase(name)}
-            isActive={activeFilter === name}
           />
         ))}
       </div>
