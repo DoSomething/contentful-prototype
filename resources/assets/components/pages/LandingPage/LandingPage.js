@@ -30,6 +30,7 @@ const LandingPage = props => {
   const displayAffiliateScholarshipBlock =
     scholarshipAffiliateLabel && scholarshipAmount && scholarshipDeadline;
 
+  // @TODO: Implement this as a custom (rich text) renderer per https://git.io/JfGlf.
   const landingPageHeadingOneStyle = css`
     h1 {
       ${tw`mb-6 text-4xl`}
