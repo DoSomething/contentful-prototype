@@ -10,7 +10,7 @@ import {
 
 import { buildVoterRegUrl } from '../../../../helpers/index';
 
-const StartVoterRegistrationForm = ({ referrerUserId }) => {
+const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
   const [emailValue, setEmailValue] = useState('');
   const [zipcodeValue, setZipcodeValue] = useState('');
   const url = buildVoterRegUrl(
@@ -25,26 +25,34 @@ const StartVoterRegistrationForm = ({ referrerUserId }) => {
 
   // `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
 
-  const handleChange = event => {
+  const isDisabled = !zipcodeValue || !emailValue;
+
+  const redirectToRockTheVote = () => {
+    window.location = url;
+  };
+
+  const handleChange = event =>
     event.target.name === 'email'
       ? setEmailValue(event.target.value)
       : setZipcodeValue(event.target.value);
-  };
 
   const handleClick = () => {
-    trackAnalyticsEvent('click_voter_registration_action'),
-      {
+    if (!isDisabled) {
+      trackAnalyticsEvent('click_voter_registration_action', {
         action: 'button_clicked',
         category: EVENT_CATEGORIES.campaignAction,
         label: 'voter_registration',
         context: {
+          blockId,
           campaignId,
           url,
         },
-      };
+      });
+
+      redirectToRockTheVote();
+    }
   };
 
-  let enabled = emailValue.length > 0 && zipcodeValue.length > 0;
   return (
     <>
       <Card className="bordered rounded" title="Register Online to vote">
@@ -79,9 +87,8 @@ const StartVoterRegistrationForm = ({ referrerUserId }) => {
         </form>
         <PrimaryButton
           onClick={handleClick}
-          href={url}
+          isDisabled={isDisabled}
           text="Register To Vote"
-          isDisabled={enabled}
         />
       </Card>
     </>
