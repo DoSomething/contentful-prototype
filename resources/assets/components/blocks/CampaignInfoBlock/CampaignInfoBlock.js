@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Query from '../../Query';
 import Card from '../../utilities/Card/Card';
-import { getHumanFriendlyDate } from '../../../helpers';
+import { featureFlag, getHumanFriendlyDate } from '../../../helpers';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -27,6 +27,7 @@ const CAMPAIGN_INFO_QUERY = gql`
         timeCommitmentLabel
         scholarshipEntry
         reportback
+        volunteerCredit
       }
     }
   }
@@ -126,6 +127,14 @@ const CampaignInfoBlock = ({
                 <React.Fragment>
                   <dt>Action Type</dt>
                   <dd>{actionItem.actionLabel}</dd>
+                </React.Fragment>
+              ) : null}
+              {featureFlag('volunteer_credits') && actionItem ? (
+                <React.Fragment>
+                  <dt>Volunteer Credit</dt>
+                  <dd data-test="volunteer-credit-value">
+                    {actionItem.volunteerCredit ? 'Yes' : 'No'}
+                  </dd>
                 </React.Fragment>
               ) : null}
             </dl>
