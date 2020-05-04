@@ -1,0 +1,13 @@
+@import '../../../scss/next-toolbox';
+
+.pitch-landing-page {
+  h1 {
+    margin-bottom: theme('spacing.6');
+
+    font-size: theme('fontSize.4xl');
+
+    span {
+      border-bottom: 5px solid theme('colors.yellow.500');
+    }
+  }
+}

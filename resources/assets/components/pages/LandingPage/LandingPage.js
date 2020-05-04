@@ -11,6 +11,8 @@ import CallToActionContainer from '../../CallToAction/CallToActionContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 import AffiliateScholarshipBlockQuery from '../../blocks/AffiliateScholarshipBlock/AffiliateScholarshipBlockQuery';
 
+import './landing-page.scss';
+
 const LandingPage = props => {
   const {
     additionalContent,
