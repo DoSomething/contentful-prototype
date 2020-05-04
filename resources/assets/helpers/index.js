@@ -1060,11 +1060,24 @@ export function getMillisecondsFromDays(days) {
  * @param {String} source
  * @param {String} sourceDetails
  * @param {String} url
+ * @param {Object} userDetails
  */
 
-export function buildVoterRegUrl(source = 'web', sourceDetails, url) {
+export function buildVoterRegUrl(
+  source = 'web',
+  sourceDetails,
+  url,
+  userDetails,
+) {
   const baseUrl = url || 'https://vote.dosomething.org/';
   const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
+  const formatUserDetails = Object.keys(userDetails).reduce(
+    (accumulator, detail) => {
+      // finalString = ''
+      return accumulator + `&` + `${detail}=${userDetails[detail]}`;
+    },
+    '',
+  );
 
-  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
+  return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails},${formatUserDetails}`;
 }
