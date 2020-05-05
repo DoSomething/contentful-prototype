@@ -31,16 +31,19 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           </header>
           <div className="grid-wide-7/10 primary markdown">
             <blockquote>
-              <p>
+              <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can affect
                 change on issues we care about most.
               </p>
-              <p>- {firstName}</p>
+              <p data-test="beta-voter-registration-drive-page-quote-byline">
+                - {firstName}
+              </p>
             </blockquote>
-            <p>
+            <p data-test="beta-voter-registration-drive-page-blurb">
               250,000+ young people have registered to vote via DoSomething (it
               takes less than 2 minutes!). After you register, share with your
-              friends to enter to win a $1,500 scholarship!
+              friends to enter to win a $
+              {`${scholarshipAmount.toLocaleString()}`} scholarship!
             </p>
           </div>
           <div className="grid-wide-3/10 secondary">
