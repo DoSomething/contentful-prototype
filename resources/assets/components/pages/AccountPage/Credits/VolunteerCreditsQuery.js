@@ -91,7 +91,6 @@ const VolunteerCreditsQuery = () => {
       // We'll also use it to retrieve some other common post metadata.
       const lastPost = last(posts);
 
-      // We use the ID as the unique 'key' when we map over the formatted post data.
       const { actionDetails, createdAt } = lastPost;
 
       const {
