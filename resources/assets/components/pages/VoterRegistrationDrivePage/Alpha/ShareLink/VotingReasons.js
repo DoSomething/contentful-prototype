@@ -34,7 +34,11 @@ const VotingReasons = ({ onSelect }) => {
 };
 
 VotingReasons.propTypes = {
-  onSelect: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+};
+
+VotingReasons.defaultProps = {
+  onSelect: PropTypes.null,
 };
 
 export default VotingReasons;

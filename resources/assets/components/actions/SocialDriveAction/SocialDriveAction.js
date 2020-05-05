@@ -12,7 +12,6 @@ import { postRequest } from '../../../helpers/api';
 import TotalAcceptedQuantity from './TotalAcceptedQuantity';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
-import VotingReasons from '../../pages/VoterRegistrationDrivePage/Alpha/ShareLink/VotingReasons';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -91,7 +90,7 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       actionId,
-      displayVotingReasons,
+      queryOptions,
       link,
       fullWidth,
       shareCardDescription,
@@ -100,6 +99,17 @@ class SocialDriveAction extends React.Component {
     } = this.props;
 
     const { shortenedLink } = this.state;
+
+    let querySelector = null;
+
+    if (queryOptions) {
+      querySelector = React.cloneElement(queryOptions, {
+        onSelect: query =>
+          this.setState({
+            expandedLink: this.getDynamicUrl(query),
+          }),
+      });
+    }
 
     return (
       <div
@@ -119,15 +129,7 @@ class SocialDriveAction extends React.Component {
               </div>
             ) : null}
 
-            {displayVotingReasons ? (
-              <VotingReasons
-                onSelect={query => {
-                  this.setState({
-                    expandedLink: this.getDynamicUrl(query),
-                  });
-                }}
-              />
-            ) : null}
+            {querySelector}
 
             <div className="p-3">
               <Embed url={link} />
@@ -179,7 +181,7 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
-  displayVotingReasons: PropTypes.bool,
+  queryOptions: PropTypes.object,
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
@@ -192,7 +194,7 @@ SocialDriveAction.propTypes = {
 SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
-  displayVotingReasons: false,
+  queryOptions: null,
   fullWidth: false,
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',

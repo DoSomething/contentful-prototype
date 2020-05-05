@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { shareLink } from '../config';
+import VotingReasons from './VotingReasons';
 import SocialDriveActionContainer from '../../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const ShareLink = ({ referrerUserId }) => {
@@ -11,7 +12,7 @@ const ShareLink = ({ referrerUserId }) => {
         link={`https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
         fullWidth
         actionId={shareLink.actionId}
-        displayVotingReasons
+        queryOptions={<VotingReasons />}
         hidePageViews
       />
     </div>
