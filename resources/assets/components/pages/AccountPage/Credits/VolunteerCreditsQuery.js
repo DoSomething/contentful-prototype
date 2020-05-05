@@ -105,8 +105,7 @@ const VolunteerCreditsQuery = () => {
 
       const acceptedPosts = posts.filter(post => post.status === 'ACCEPTED');
 
-      // Calculate total quantity of accepted posts.
-      // @TODO: How do we handle 'null' quantity on a post? Or generally, actions not collecting quantity?
+      // Calculate total quantity from all accepted posts.
       const quantity = acceptedPosts.reduce(
         (totalQuantity, post) => totalQuantity + post.quantity,
         0,
