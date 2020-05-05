@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { faq, shareLink } from './config';
-import ReferralsList from './ReferralsList/ReferralsList';
+import VoterRegistrationReferrals from './VoterRegistrationReferrals/VoterRegistrationReferrals';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
@@ -11,7 +11,7 @@ const AlphaPage = ({ userId }) => (
     className="base-12-grid clear-both py-3 md:py-6"
     data-test="alpha-voter-registration-drive-page"
   >
-    <ReferralsList referrerUserId={userId} />
+    <VoterRegistrationReferrals referrerUserId={userId} />
     <ContentfulEntryLoader
       id={shareLink.contentBlockId}
       className="grid-wide clearfix wrapper pb-3"
