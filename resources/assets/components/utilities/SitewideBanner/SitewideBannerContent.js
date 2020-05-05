@@ -26,7 +26,7 @@ const SitewideBannerContent = ({
     });
   };
   return (
-    <div className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 sm:px-10 z-50">
+    <div className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50">
       <CloseButton
         callback={handleClose}
         className="block absolute right-0 top-0 p-4"
