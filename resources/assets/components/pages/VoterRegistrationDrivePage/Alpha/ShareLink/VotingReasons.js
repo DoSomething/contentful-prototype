@@ -10,12 +10,11 @@ const VotingReasons = ({ onSelect }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
   return (
-    <div>
+    <>
       {Object.keys(votingReasons).map(votingReason => (
-        <div>
+        <div key={votingReason}>
           <input
             type="checkbox"
-            key={votingReason}
             id={votingReason}
             name={votingReason}
             value={votingReason}
@@ -26,13 +25,13 @@ const VotingReasons = ({ onSelect }) => {
                   ? concat(selectedVotingReasons, value)
                   : pull(selectedVotingReasons, value),
               );
-              onSelect(selectedVotingReasons.join(','));
+              onSelect(`voting-reasons=${selectedVotingReasons.join(',')}`);
             }}
           />
           <label htmlFor={votingReason}>{votingReasons[votingReason]}</label>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

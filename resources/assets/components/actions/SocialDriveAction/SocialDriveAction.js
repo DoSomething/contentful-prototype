@@ -121,11 +121,9 @@ class SocialDriveAction extends React.Component {
 
             {displayVotingReasons ? (
               <VotingReasons
-                onSelect={selectedVotingReasons => {
+                onSelect={query => {
                   this.setState({
-                    expandedLink: this.getDynamicUrl(
-                      `voting-reasons=${selectedVotingReasons}`,
-                    ),
+                    expandedLink: this.getDynamicUrl(query),
                   });
                 }}
               />
