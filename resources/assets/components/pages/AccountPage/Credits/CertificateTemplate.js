@@ -171,7 +171,7 @@ const CertificateTemplate = ({ certificatePost }) => {
           >
             <Image
               style={{
-                width: '24%',
+                width: '25%',
                 borderRight: `2 solid ${colors.lightBlue}`,
               }}
               src={certificatePost.photo}
