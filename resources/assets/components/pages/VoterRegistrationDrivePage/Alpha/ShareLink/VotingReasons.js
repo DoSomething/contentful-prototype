@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 
 import { votingReasons } from '../config';
 
-console.log(votingReasons);
-
 const VotingReasons = ({ onSelect }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
