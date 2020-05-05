@@ -62,7 +62,7 @@ const ReferralsList = ({ referrerUserId }) => (
               {numberOfReferrals > 3 ? (
                 <div
                   data-test="additional-referrals-count"
-                  className="text-center md:text-left md:pt-16"
+                  className="text-center md:text-left md:pt-16 font-bold uppercase text-gray-600"
                 >
                   {`+ ${numberOfReferrals - 3} more`}
                 </div>
