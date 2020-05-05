@@ -65,6 +65,7 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       actionId,
+      children,
       link,
       fullWidth,
       shareCardDescription,
@@ -91,6 +92,8 @@ class SocialDriveAction extends React.Component {
                 <p>{shareCardDescription}</p>
               </div>
             ) : null}
+
+            {children}
 
             <div className="p-3">
               <Embed url={link} />
@@ -142,6 +145,7 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
+  children: PropTypes.object,
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
@@ -154,6 +158,7 @@ SocialDriveAction.propTypes = {
 SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
+  children: null,
   fullWidth: false,
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',

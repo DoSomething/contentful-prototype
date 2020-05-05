@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { gqlVariables } from './config';
 import { isDevEnvironment } from '../../../../helpers';
+import ShareLink from './ShareLink/ShareLink';
 import VoterRegistrationReferrals from './VoterRegistrationReferrals/VoterRegistrationReferrals';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
-import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const AlphaPage = ({ userId }) => {
   const config = isDevEnvironment()
@@ -22,13 +22,7 @@ const AlphaPage = ({ userId }) => {
         id={config.shareLink.contentBlockId}
         className="grid-wide clearfix wrapper pb-3"
       />
-      <div className="grid-wide">
-        <SocialDriveActionContainer
-          link={`https://vote.dosomething.org/member-drive?userId=${userId}&r=user:${userId},source:web,source_details:onlinedrivereferral,referral=true`}
-          actionId={config.shareLink.actionId}
-          hidePageViews
-        />
-      </div>
+      <ShareLink referrerUserId={userId} actionId={config.shareLink.actionId} />
     </div>
   );
 };
