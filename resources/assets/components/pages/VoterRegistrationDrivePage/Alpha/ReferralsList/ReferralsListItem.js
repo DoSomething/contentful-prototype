@@ -19,7 +19,7 @@ const ReferralsListItem = props => {
   return (
     <div data-test={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}>
       <BaseFigure media={media} size="medium">
-        <p>{label}</p>
+        <p className={isEmpty ? 'text-gray-500' : null}>{label}</p>
       </BaseFigure>
     </div>
   );
