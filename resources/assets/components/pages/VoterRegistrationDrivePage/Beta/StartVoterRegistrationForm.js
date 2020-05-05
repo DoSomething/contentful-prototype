@@ -9,7 +9,6 @@ import Card from '../../../utilities/Card/Card';
 import {
   buildVoterRegUrl,
   isValidEmailSyntax,
-  isValidPostalCode,
 } from '../../../../helpers/index';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 
@@ -48,7 +47,7 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
     }
 
     if (event.target.name === 'zipcode') {
-      isValidPostalCode(event.target.value)
+      zipCodeLength === 5
         ? () => {
             setZipcodeValue(event.target.value);
           }
