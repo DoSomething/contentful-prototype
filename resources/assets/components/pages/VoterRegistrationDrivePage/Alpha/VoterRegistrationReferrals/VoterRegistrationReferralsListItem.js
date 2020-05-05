@@ -5,7 +5,7 @@ import EmptyRegistrationImage from './empty-registration.svg';
 import { BaseFigure } from '../../../../utilities/Figure/Figure';
 import CompletedRegistrationImage from './completed-registration.svg';
 
-const ReferralsListItem = props => {
+const VoterRegistrationReferralsListItem = props => {
   const { label } = props;
   const isEmpty = label === '???';
 
@@ -19,18 +19,18 @@ const ReferralsListItem = props => {
   return (
     <div data-test={`referral-list-item-${!isEmpty ? 'completed' : 'empty'}`}>
       <BaseFigure media={media} size="medium">
-        <p>{label}</p>
+        <p className={isEmpty ? 'text-gray-500' : null}>{label}</p>
       </BaseFigure>
     </div>
   );
 };
 
-ReferralsListItem.propTypes = {
+VoterRegistrationReferralsListItem.propTypes = {
   label: PropTypes.string,
 };
 
-ReferralsListItem.defaultProps = {
+VoterRegistrationReferralsListItem.defaultProps = {
   label: '???',
 };
 
-export default ReferralsListItem;
+export default VoterRegistrationReferralsListItem;
