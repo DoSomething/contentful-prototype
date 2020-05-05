@@ -6,10 +6,7 @@ import {
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import Card from '../../../utilities/Card/Card';
-import {
-  buildVoterRegUrl,
-  isValidEmailSyntax,
-} from '../../../../helpers/index';
+import { buildVoterRegUrl } from '../../../../helpers/index';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 
 const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
@@ -38,20 +35,16 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
 
   const handleChange = event => {
     if (event.target.name === 'email') {
-      isValidEmailSyntax(event.target.value)
-        ? () => {
-            setEmailValue(event.target.value);
-            setEmailLabel(event.target.name);
-          }
-        : setEmailLabel('Please include a valid email address');
+      () => {
+        setEmailValue(event.target.value);
+        setEmailLabel(event.target.name);
+      };
     }
 
     if (event.target.name === 'zipcode') {
-      zipCodeLength === 5
-        ? () => {
-            setZipcodeValue(event.target.value);
-          }
-        : setZipCodeLabel('Please provide a valid zip code');
+      () => {
+        setZipcodeValue(event.target.value);
+      };
     }
   };
 
