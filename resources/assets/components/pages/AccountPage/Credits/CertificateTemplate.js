@@ -117,10 +117,9 @@ const CertificateTemplate = ({ certificatePost }) => {
 
             {sponsorLogo ? (
               <View style={styles.flex}>
-                <View style={{ alignSelf: 'center' }}>
+                <View style={{ alignSelf: 'center', marginLeft: 20 }}>
                   <Text
                     style={{
-                      paddingLeft: 20,
                       fontWeight: 'bold',
                       fontSize: 24,
                     }}
@@ -128,11 +127,10 @@ const CertificateTemplate = ({ certificatePost }) => {
                     &#43;
                   </Text>
                 </View>
-                <View>
+                <View style={{ alignSelf: 'center', marginLeft: 20 }}>
                   <Image
                     src={sponsorLogo}
                     style={{
-                      marginLeft: 20,
                       height: 55,
                       width: 65,
                     }}
