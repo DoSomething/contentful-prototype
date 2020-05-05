@@ -131,7 +131,6 @@ const CertificateTemplate = ({ certificatePost }) => {
                   <Image
                     src={sponsorLogo}
                     style={{
-                      height: 55,
                       width: 65,
                     }}
                   />
