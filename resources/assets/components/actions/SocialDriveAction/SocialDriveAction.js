@@ -12,6 +12,7 @@ import { postRequest } from '../../../helpers/api';
 import TotalAcceptedQuantity from './TotalAcceptedQuantity';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
+import VotingReasons from '../../pages/VoterRegistrationDrivePage/Alpha/ShareLink/VotingReasons';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -30,6 +31,7 @@ class SocialDriveAction extends React.Component {
     super(props);
 
     this.state = {
+      expandedLink: this.getDynamicUrl(),
       shortenedLink: null,
     };
 
@@ -37,12 +39,24 @@ class SocialDriveAction extends React.Component {
   }
 
   componentDidMount() {
-    const { userId, token } = this.props;
+    this.shortenLink();
+  }
 
-    const href = dynamicString(this.props.link, { userId });
-    postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
-      .then(({ url }) => this.setState({ shortenedLink: url }))
-      .catch(() => this.setState({ shortenedLink: href }));
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.expandedLink !== prevState.expandedLink) {
+      this.shortenLink();
+    }
+  }
+
+  getDynamicUrl(query) {
+    let link = dynamicString(this.props.link, { userId: this.props.userId });
+
+    if (query) {
+      // For now, assuming we already have query vars (which we do, for OVRD)
+      link = `${link}&${query}`;
+    }
+
+    return link;
   }
 
   handleCopyLinkClick = () => {
@@ -62,10 +76,22 @@ class SocialDriveAction extends React.Component {
     });
   };
 
+  shortenLink() {
+    postRequest(
+      '/api/v2/links',
+      { url: withoutTokens(this.state.expandedLink) },
+      this.props.token,
+    )
+      .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
+      .catch(() =>
+        this.setState({ shortenedLink: this.getDynamicUrl(), count: 'N/A' }),
+      );
+  }
+
   render() {
     const {
       actionId,
-      children,
+      displayVotingReasons,
       link,
       fullWidth,
       shareCardDescription,
@@ -93,7 +119,17 @@ class SocialDriveAction extends React.Component {
               </div>
             ) : null}
 
-            {children}
+            {displayVotingReasons ? (
+              <VotingReasons
+                onSelect={selectedVotingReasons => {
+                  this.setState({
+                    expandedLink: this.getDynamicUrl(
+                      `voting-reasons=${selectedVotingReasons}`,
+                    ),
+                  });
+                }}
+              />
+            ) : null}
 
             <div className="p-3">
               <Embed url={link} />
@@ -145,7 +181,7 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
-  children: PropTypes.object,
+  displayVotingReasons: PropTypes.bool,
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
@@ -158,7 +194,7 @@ SocialDriveAction.propTypes = {
 SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
-  children: null,
+  displayVotingReasons: false,
   fullWidth: false,
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',

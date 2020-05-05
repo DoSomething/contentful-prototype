@@ -26,7 +26,7 @@ const VotingReasons = ({ onSelect }) => {
                   ? concat(selectedVotingReasons, value)
                   : pull(selectedVotingReasons, value),
               );
-              onSelect(selectedVotingReasons.join(','));
+              onSelect(selectedVotingReasons);
             }}
           />
           <label htmlFor={votingReason}>{votingReasons[votingReason]}</label>
