@@ -92,7 +92,7 @@ const VolunteerCreditsQuery = () => {
       const lastPost = last(posts);
 
       // We use the ID as the unique 'key' when we map over the formatted post data.
-      const { createdAt } = lastPost;
+      const { actionDetails, createdAt } = lastPost;
 
       const {
         id,
@@ -100,7 +100,7 @@ const VolunteerCreditsQuery = () => {
         actionLabel,
         noun,
         verb,
-      } = lastPost.actionDetails;
+      } = actionDetails;
 
       const campaignWebsite = lastPost.campaign.campaignWebsite;
 
