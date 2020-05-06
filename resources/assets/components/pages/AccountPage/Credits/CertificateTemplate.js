@@ -211,10 +211,12 @@ const CertificateTemplate = ({ certificatePost }) => {
                   </View>
                 </View>
 
-                <View style={{ marginTop: 10 }}>
-                  <Text style={styles.postDetailsTitle}>Impact</Text>
-                  <Text>{certificatePost.impactLabel}</Text>
-                </View>
+                {certificatePost.impactLabel ? (
+                  <View style={{ marginTop: 10 }}>
+                    <Text style={styles.postDetailsTitle}>Impact</Text>
+                    <Text>{certificatePost.impactLabel}</Text>
+                  </View>
+                ) : null}
               </View>
             </View>
           </View>
