@@ -124,4 +124,19 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
       `250,000+ young people have registered to vote via DoSomething (it takes less than 2 minutes!). After you register, share with your friends to enter to win a $1,500 scholarship!`,
     );
   });
+
+  it('Beta OVRD Step One Register to Vote Section Displays as Expected', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('.beta-page-registration-form > header > h1').contains(
+      `Register online to vote`,
+    );
+  });
 });
