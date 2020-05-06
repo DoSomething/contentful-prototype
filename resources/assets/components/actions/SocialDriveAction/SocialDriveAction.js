@@ -10,7 +10,6 @@ import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import TotalAcceptedQuantity from './TotalAcceptedQuantity';
-import VoterRegistrationDriveInfo from './VoterRegistrationDriveInfo';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
@@ -42,8 +41,8 @@ class SocialDriveAction extends React.Component {
 
     const href = dynamicString(this.props.link, { userId });
     postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
-      .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
-      .catch(() => this.setState({ shortenedLink: href, count: 'N/A' }));
+      .then(({ url }) => this.setState({ shortenedLink: url }))
+      .catch(() => this.setState({ shortenedLink: href }));
   }
 
   handleCopyLinkClick = () => {
@@ -78,7 +77,7 @@ class SocialDriveAction extends React.Component {
     return (
       <div
         className={classNames('clearfix pb-6', {
-          'lg:flex': actionId ? true : false,
+          'lg:flex': actionId != null,
         })}
       >
         <div
