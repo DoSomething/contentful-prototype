@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
 import { dynamicString } from '../../../../helpers';
-import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
@@ -90,14 +89,6 @@ const DefaultTemplate = props => {
             onClick={() => analyzeClick(href, context)}
             text={buttonText}
           />
-
-          <ButtonLink
-            attached
-            link={href}
-            onClick={() => analyzeClick(href, context)}
-          >
-            {buttonText}
-          </ButtonLink>
         </div>
       </Card>
     </div>
