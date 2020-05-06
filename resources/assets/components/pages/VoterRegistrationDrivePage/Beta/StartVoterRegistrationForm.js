@@ -1,51 +1,27 @@
 import PropTypes from 'prop-types';
-import React, { useState, useRef } from 'react';
+import React, { useReducer } from 'react';
 
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../../helpers/analytics';
 import Card from '../../../utilities/Card/Card';
-import { buildVoterRegUrl } from '../../../../helpers/index';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 
-const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
-  const [emailValue, setEmailValue] = useState('');
-  const [zipcodeValue, setZipcodeValue] = useState('');
-  const [emailLabel, setEmailLabel] = useState('email');
-  const [zipCodeLabel, setZipCodeLabel] = useState('zipcode');
-  const zipCodeLength = useRef(0);
-  const url = buildVoterRegUrl(
-    'web',
-    'onlinedrivereferral,referral=true',
-    'https://register.rockthevote.com/registrants/new?partner=37187&',
-    { email_address: emailValue, home_zip_code: zipcodeValue },
+const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
+  const [userInput, setUserInput] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      email: '',
+      zipcode: '',
+    },
   );
-  /**
-   * should we be passing the userID or referrerId ?
-   * */
 
-  // `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
-
-  const isDisabled = !zipcodeValue || !emailValue;
-
-  const redirectToRockTheVote = () => {
-    window.location = url;
-  };
+  const isDisabled = !userInput.zipcode || !userInput.email;
 
   const handleChange = event => {
-    if (event.target.name === 'email') {
-      () => {
-        setEmailValue(event.target.value);
-        setEmailLabel(event.target.name);
-      };
-    }
-
-    if (event.target.name === 'zipcode') {
-      () => {
-        setZipcodeValue(event.target.value);
-      };
-    }
+    const { name, value } = event.target;
+    setUserInput({ [name]: value });
   };
 
   const handleClick = () => {
@@ -55,62 +31,59 @@ const StartVoterRegistrationForm = ({ blockId, campaignId }) => {
         category: EVENT_CATEGORIES.campaignAction,
         label: 'voter_registration',
         context: {
-          blockId,
           campaignId,
-          url,
         },
       });
-
-      redirectToRockTheVote();
+      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true,email_address:${userInput.email},home_zip_code:${userInput.zipcode}`;
+      console.log('Window:', window.location);
     }
   };
 
   return (
     <>
-      <Card className="bordered rounded" title="Register Online to vote">
-        <form className="form pb-2">
-          <div>
-            <label htmlFor="zipcode">
-              {zipCodeLabel}
-              <input
-                ref={zipCodeLength}
-                className="text-field"
-                type="text"
-                name="zipcode"
-                value={zipcodeValue}
-                onChange={handleChange}
-                required
-              />
-            </label>
-          </div>
-
-          <div>
+      <Card className="bordered rounded" title="Register online to vote">
+        <form className="form p-3">
+          <div className="form-item stretched">
             <label htmlFor="email">
-              {emailLabel}
+              email
               <input
                 className="text-field"
                 required
                 type="text"
                 name="email"
+                value={userInput.email}
                 onChange={handleChange}
-                value={emailValue}
               />
             </label>
           </div>
+
+          <div className="form-item stretched">
+            <label htmlFor="zipcode">
+              zip code
+              <input
+                className="text-field"
+                type="text"
+                name="zipcode"
+                value={userInput.zipcode}
+                onChange={handleChange}
+                required
+              />
+            </label>
+          </div>
+          <PrimaryButton
+            onClick={handleClick}
+            isDisabled={isDisabled}
+            text="Register To Vote"
+          />
         </form>
-        <PrimaryButton
-          onClick={handleClick}
-          isDisabled={isDisabled}
-          text="Register To Vote"
-        />
       </Card>
     </>
   );
 };
 
 StartVoterRegistrationForm.propTypes = {
-  blockId: PropTypes.string.isRequired,
   campaignId: PropTypes.number.isRequired,
+  referrerUserId: PropTypes.string.isRequired,
 };
 
 export default StartVoterRegistrationForm;

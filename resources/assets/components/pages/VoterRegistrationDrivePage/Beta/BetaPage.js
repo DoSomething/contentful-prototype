@@ -106,7 +106,6 @@ const BetaVoterRegistrationDrivePage = () => {
             <div className="pb-6">
               <StartVoterRegistrationForm
                 referrerUserId={referrerUserId}
-                blockId={registerToVote.contentBlockId}
                 campaignId={campaignId}
               />
             </div>
