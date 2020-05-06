@@ -31,6 +31,7 @@ class SocialDriveAction extends React.Component {
 
     this.state = {
       expandedLink: this.getDynamicUrl(),
+      loading: true,
       shortenedLink: null,
     };
 
@@ -47,6 +48,10 @@ class SocialDriveAction extends React.Component {
     }
   }
 
+  /**
+   * @param String query
+   * @return String
+   */
   getDynamicUrl(query) {
     let link = dynamicString(this.props.link, { userId: this.props.userId });
 
@@ -75,15 +80,26 @@ class SocialDriveAction extends React.Component {
     });
   };
 
+  /**
+   * Executes API request to shorten our expanded link.
+   */
   shortenLink() {
+    this.setState({ loading: true });
+
     postRequest(
       '/api/v2/links',
       { url: withoutTokens(this.state.expandedLink) },
       this.props.token,
     )
-      .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
+      .then(({ url, count }) =>
+        this.setState({ loading: false, shortenedLink: url, count }),
+      )
       .catch(() =>
-        this.setState({ shortenedLink: this.getDynamicUrl(), count: 'N/A' }),
+        this.setState({
+          loading: false,
+          shortenedLink: this.getDynamicUrl(),
+          count: 'N/A',
+        }),
       );
   }
 
@@ -146,14 +162,14 @@ class SocialDriveAction extends React.Component {
                   type="text"
                   ref={this.linkInput}
                   className="text-field link"
-                  value={shortenedLink || 'Loading...'}
-                  disabled={!shortenedLink}
+                  value={this.state.loading ? 'Loading...' : shortenedLink}
+                  disabled={this.state.loading}
                 />
                 <button
                   type="button"
                   className="text-field link-copy-button"
                   onClick={this.handleCopyLinkClick}
-                  disabled={!shortenedLink}
+                  disabled={this.state.loading}
                 >
                   <img src={linkIcon} alt="link" />
                   <p>Copy link</p>
