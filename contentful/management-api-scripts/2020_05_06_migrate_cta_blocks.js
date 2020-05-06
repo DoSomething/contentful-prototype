@@ -27,6 +27,8 @@ contentManagementClient.init(async environment => {
     'fields.template': 'cta',
   });
 
+  logger.info(`Found ${blocks.items.length} Link Actions with CTA template`);
+
   for (let i = 0; i < blocks.items.length; i += 1) {
     const linkAction = blocks.items[i];
 
@@ -42,8 +44,15 @@ contentManagementClient.init(async environment => {
 
     // Archive things that aren't linked
     if (linkedEntries.items.length === 0) {
-      logger.info(`⇢ Archiving '${internalTitle}', not linked anywhere.`);
-      linkAction.archive();
+      logger.info(`⇢ Archiving '${internalTitle}', not linked anywhere...`);
+      if ((await linkAction.isPublished) && (await !linkAction.isArchived)) {
+        await linkAction.unpublish();
+        logger.info(`⇢ Unpublished LinkAction...`);
+      }
+      if (await !linkAction.isArchived) {
+        await linkAction.archive();
+        logger.info(`⇢ Archived successfully`);
+      }
       continue;
     }
 
@@ -52,9 +61,10 @@ contentManagementClient.init(async environment => {
       'callToAction',
       withFields({
         internalTitle,
+        title: getField(linkAction, 'title'),
         content: getField(linkAction, 'content'),
-        linkText: getField(linkAction, 'buttonText'),
-        link: getField(linkAction, 'link'),
+        linkText: getField(linkAction, 'buttonText', 'Get Started'),
+        link: getField(linkAction, 'link').trim(),
         template: 'Purple',
         alignment: 'Center',
       }),
@@ -73,6 +83,11 @@ contentManagementClient.init(async environment => {
       const isPageArchived = await page.isArchived();
       if (isPageArchived) {
         logger.info(`⇢ Skipping '${id}', archived.`);
+        continue;
+      }
+
+      if (!page.fields.blocks) {
+        logger.info(`⇢ Skipping '${id}', rich text field type.`);
         continue;
       }
 
@@ -106,7 +121,14 @@ contentManagementClient.init(async environment => {
       }
     }
 
-    // Archive old LinkActions
-    linkAction.archive();
+    // // Archive old LinkActions
+    if ((await linkAction.isPublished) && (await !linkAction.isArchived)) {
+      await linkAction.unpublish();
+      logger.info(`⇢ Unpublished LinkAction...`);
+    }
+    if (await !linkAction.isArchived) {
+      await linkAction.archive();
+      logger.info(`⇢ Archived successfully`);
+    }
   }
 });
