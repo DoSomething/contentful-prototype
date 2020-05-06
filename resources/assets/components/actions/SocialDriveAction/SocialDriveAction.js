@@ -91,14 +91,11 @@ class SocialDriveAction extends React.Component {
       { url: withoutTokens(this.state.expandedLink) },
       this.props.token,
     )
-      .then(({ url, count }) =>
-        this.setState({ loading: false, shortenedLink: url, count }),
-      )
+      .then(({ url }) => this.setState({ loading: false, shortenedLink: url }))
       .catch(() =>
         this.setState({
           loading: false,
           shortenedLink: this.getDynamicUrl(),
-          count: 'N/A',
         }),
       );
   }
