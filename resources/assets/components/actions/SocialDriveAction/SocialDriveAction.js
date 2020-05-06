@@ -113,17 +113,6 @@ class SocialDriveAction extends React.Component {
 
     const { shortenedLink } = this.state;
 
-    let querySelector = null;
-
-    if (queryOptions) {
-      querySelector = React.cloneElement(queryOptions, {
-        onSelect: query =>
-          this.setState({
-            expandedLink: this.getDynamicUrl(query),
-          }),
-      });
-    }
-
     return (
       <div
         className={classNames('clearfix pb-6', {
@@ -142,7 +131,14 @@ class SocialDriveAction extends React.Component {
               </div>
             ) : null}
 
-            {querySelector}
+            {queryOptions
+              ? React.cloneElement(queryOptions, {
+                  onSelect: query =>
+                    this.setState({
+                      expandedLink: this.getDynamicUrl(query),
+                    }),
+                })
+              : null}
 
             <div className="p-3">
               <Embed url={link} />
@@ -194,12 +190,16 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
-  queryOptions: PropTypes.object,
+  /**
+   * This prop allows us to force the "main" block to fill the width of the container.
+   * @see https://git.io/Jfnqy
+   */
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
-  shareCardTitle: PropTypes.string,
+  queryOptions: PropTypes.object,
   shareCardDescription: PropTypes.string,
+  shareCardTitle: PropTypes.string,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
@@ -207,11 +207,11 @@ SocialDriveAction.propTypes = {
 SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
-  queryOptions: null,
   fullWidth: false,
+  pageId: null,
+  queryOptions: null,
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',
-  pageId: null,
 };
 
 export default SocialDriveAction;
