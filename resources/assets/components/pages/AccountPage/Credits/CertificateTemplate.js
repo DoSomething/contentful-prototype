@@ -109,18 +109,17 @@ const CertificateTemplate = ({ certificatePost }) => {
           }}
         >
           <View
-            style={[styles.flex, { justifyContent: 'center', marginTop: 30 }]}
+            style={[styles.flex, { justifyContent: 'center', marginTop: 20 }]}
           >
-            <View>
-              <Image src={doSomethingLogo} style={{ height: 55, width: 65 }} />
+            <View style={{ alignSelf: 'center' }}>
+              <Image src={doSomethingLogo} style={{ width: 65 }} />
             </View>
 
             {sponsorLogo ? (
               <View style={styles.flex}>
-                <View style={{ alignSelf: 'center' }}>
+                <View style={{ alignSelf: 'center', marginLeft: 20 }}>
                   <Text
                     style={{
-                      paddingLeft: 20,
                       fontWeight: 'bold',
                       fontSize: 24,
                     }}
@@ -128,13 +127,12 @@ const CertificateTemplate = ({ certificatePost }) => {
                     &#43;
                   </Text>
                 </View>
-                <View>
+                <View style={{ alignSelf: 'center', marginLeft: 20 }}>
                   <Image
                     src={sponsorLogo}
                     style={{
-                      marginLeft: 20,
-                      height: 55,
-                      width: 65,
+                      maxWidth: 70,
+                      maxHeight: 65,
                     }}
                   />
                 </View>
@@ -173,7 +171,7 @@ const CertificateTemplate = ({ certificatePost }) => {
           >
             <Image
               style={{
-                width: '24%',
+                width: '25%',
                 borderRight: `2 solid ${colors.lightBlue}`,
               }}
               src={certificatePost.photo}
