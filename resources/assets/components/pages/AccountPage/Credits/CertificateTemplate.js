@@ -111,8 +111,8 @@ const CertificateTemplate = ({ certificatePost }) => {
           <View
             style={[styles.flex, { justifyContent: 'center', marginTop: 30 }]}
           >
-              <Image src={doSomethingLogo} style={{ height: 55, width: 65 }} />
             <View style={{ alignSelf: 'center' }}>
+              <Image src={doSomethingLogo} style={{ width: 65 }} />
             </View>
 
             {sponsorLogo ? (
