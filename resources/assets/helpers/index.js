@@ -1059,11 +1059,10 @@ export function getMillisecondsFromDays(days) {
  *
  * @param {String} source
  * @param {String} sourceDetails
- * @param {String} url
  */
 
-export function buildVoterRegUrl(source = 'web', sourceDetails, url) {
-  const baseUrl = url || 'https://vote.dosomething.org/';
+export function buildVoterRegUrl(source = 'web', sourceDetails) {
+  const baseUrl = 'https://vote.dosomething.org/';
   const userId = window.AUTH.id ? `user:${window.AUTH.id},` : '';
 
   return `${baseUrl}?r=${userId}source:${source},source_details:${sourceDetails}`;
