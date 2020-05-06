@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useReducer } from 'react';
+import React, { useState } from 'react';
 
 import {
   EVENT_CATEGORIES,
@@ -9,18 +9,13 @@ import Card from '../../../utilities/Card/Card';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 
 const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
-  const [userInput, setUserInput] = useReducer(
-    (state, newState) => ({ ...state, ...newState }),
-    {
-      email: '',
-      zip: '',
-    },
-  );
+  const [email, setEmail] = useState('');
+  const [zip, setZip] = useState('');
 
-  const isDisabled = !userInput.zip || !userInput.email;
+  const isDisabled = !zip || !email;
   const handleChange = event => {
     const { name, value } = event.target;
-    setUserInput({ [name]: value });
+    return name === 'email' ? setEmail(value) : setZip(value);
   };
 
   const handleClick = () => {
@@ -33,7 +28,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
           campaignId,
         },
       });
-      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${userInput.email}&home_zip_code=${userInput.zip}`;
+      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
     }
   };
 
@@ -52,7 +47,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 required
                 type="text"
                 name="email"
-                value={userInput.email}
+                value={email}
                 onChange={handleChange}
               />
             </label>
@@ -65,7 +60,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 className="text-field"
                 type="text"
                 name="zip"
-                value={userInput.zip}
+                value={zip}
                 onChange={handleChange}
                 required
               />
