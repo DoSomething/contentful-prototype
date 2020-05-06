@@ -8,7 +8,8 @@ const VotingReasons = ({ onSelect }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
   return (
-    <>
+    <div className="p-3">
+      <p>Urge your friend to vote based on the causes you care about most.</p>
       {Object.keys(votingReasons).map(votingReason => (
         <div key={votingReason}>
           <input
@@ -29,7 +30,7 @@ const VotingReasons = ({ onSelect }) => {
           <label htmlFor={votingReason}>{votingReasons[votingReason]}</label>
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
