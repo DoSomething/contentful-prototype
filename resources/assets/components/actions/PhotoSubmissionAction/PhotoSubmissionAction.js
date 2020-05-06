@@ -478,7 +478,7 @@ class PhotoSubmissionAction extends PostForm {
                 >
                   {this.props.buttonText}
                 </Button>
-                <PrivacyLanguage />
+                <PrivacyLanguage className="pb-4 pt-2 px-3" />
               </form>
             </Card>
             <AnalyticsWaypoint

@@ -153,50 +153,53 @@ class TextSubmissionAction extends PostForm {
             name="text_submission_action-top"
             context={{ blockId: this.props.id }}
           />
+
           <Card className="bordered rounded" title={this.props.title}>
             {formResponse ? <FormValidation response={formResponse} /> : null}
 
-            <form onSubmit={this.handleSubmit}>
-              <div className="p-3">
-                <label
-                  className={classnames('field-label h-auto', {
-                    'has-error': has(errors, 'text'),
-                  })}
-                  htmlFor="text"
-                >
-                  {this.props.textFieldLabel}
-                </label>
-                <textarea
-                  className={classnames('text-field text-submission-texarea', {
+            <form className="p-3" onSubmit={this.handleSubmit}>
+              <label
+                className={classnames('field-label h-auto mb-2', {
+                  'has-error': has(errors, 'text'),
+                })}
+                htmlFor="text"
+              >
+                {this.props.textFieldLabel}
+              </label>
+
+              <textarea
+                className={classnames(
+                  'block mb-2 text-field text-submission-texarea',
+                  {
                     'has-error shake': has(errors, 'text'),
-                  })}
-                  id="text"
-                  name="text"
-                  placeholder={this.props.textFieldPlaceholder}
-                  value={this.state.textValue}
-                  onChange={this.handleChange}
-                  onFocus={this.handleFocus}
-                />
-                <CharacterLimit
-                  limit={CHARACTER_LIMIT}
-                  text={this.state.textValue}
-                />
-              </div>
+                  },
+                )}
+                id="text"
+                name="text"
+                placeholder={this.props.textFieldPlaceholder}
+                value={this.state.textValue}
+                onChange={this.handleChange}
+                onFocus={this.handleFocus}
+              />
 
-              <div className="p-3">
-                <PrimaryButton
-                  className="text-lg w-full"
-                  isDisabled={
-                    !this.state.textValue ||
-                    this.state.textValue.length > CHARACTER_LIMIT
-                  }
-                  isLoading={submissionItem && submissionItem.isPending}
-                  text={this.props.buttonText}
-                  type="submit"
-                />
-              </div>
+              <CharacterLimit
+                className="mb-3"
+                limit={CHARACTER_LIMIT}
+                text={this.state.textValue}
+              />
 
-              <PrivacyLanguage />
+              <PrimaryButton
+                className="block mt-6 text-lg w-full"
+                isDisabled={
+                  !this.state.textValue ||
+                  this.state.textValue.length > CHARACTER_LIMIT
+                }
+                isLoading={submissionItem && submissionItem.isPending}
+                text={this.props.buttonText}
+                type="submit"
+              />
+
+              <PrivacyLanguage className="mb-1 mt-5" />
             </form>
           </Card>
 

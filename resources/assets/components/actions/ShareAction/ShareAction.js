@@ -202,6 +202,7 @@ class ShareAction extends PostForm {
             context={{ blockId: id }}
           />
         </div>
+
         {this.state.showModal ? (
           <>
             {affirmationBlock ? (
