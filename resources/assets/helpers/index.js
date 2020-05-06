@@ -211,7 +211,9 @@ export function isAuthenticated() {
  * @return {Boolean}
  */
 export function isDevEnvironment() {
-  return ['local', 'development'].includes(get(window.ENV, 'APP_ENV', 'local'));
+  return ['local', 'development'].includes(
+    get(window.ENV, 'APP_ENV', 'production'),
+  );
 }
 
 /**
