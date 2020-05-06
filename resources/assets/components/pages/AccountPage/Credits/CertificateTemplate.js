@@ -94,6 +94,17 @@ const CertificateTemplate = ({ certificatePost }) => {
     'logo.url',
   );
 
+  const showcaseDescriptionLength =
+    certificatePost.campaignWebsite.showcaseDescription.length;
+
+  let showcaseDescriptionFontSize = 15;
+
+  if (showcaseDescriptionLength > 200) {
+    showcaseDescriptionFontSize = 11;
+  } else if (showcaseDescriptionLength > 100) {
+    showcaseDescriptionFontSize = 13;
+  }
+
   return (
     <Document>
       <Page
@@ -189,8 +200,13 @@ const CertificateTemplate = ({ certificatePost }) => {
                 {certificatePost.campaignWebsite.showcaseTitle}
               </Text>
 
-              {/* @TODO adjust font size if character count is greater then 100 */}
-              <Text style={{ fontStyle: 'italic' }}>
+              <Text
+                style={{
+                  fontStyle: 'italic',
+                  paddingRight: 5,
+                  fontSize: showcaseDescriptionFontSize,
+                }}
+              >
                 {certificatePost.campaignWebsite.showcaseDescription}
               </Text>
 
