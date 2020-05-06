@@ -1,5 +1,7 @@
 import { isDevEnvironment } from '../../../../helpers';
 
+// Note: We're not using FAQ block yet, exists as a separate campaign page.
+// @see https://dosomething.slack.com/archives/CTVPG6L4R/p1588785224363300?thread_ts=1588722526.354200&cid=CTVPG6L4R
 export const faq = {
   // ContentBlock used for FAQ section.
   contentBlockId: isDevEnvironment()
