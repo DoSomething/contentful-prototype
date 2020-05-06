@@ -77,7 +77,7 @@ const Embed = props => {
           ) : (
             <a
               href={url}
-              className="no-underline hover:no-underline"
+              className="block no-underline hover:no-underline"
               target={isExternal(url) ? '_blank' : '_self'}
               rel="noopener noreferrer"
             >

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Card from '../../../utilities/Card/Card';
 import Embed from '../../../utilities/Embed/Embed';
 import { dynamicString } from '../../../../helpers';
-import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
+import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import AffiliatePromotion from '../../../utilities/AffiliatePromotion/AffiliatePromotion';
 import {
@@ -55,6 +55,7 @@ const DefaultTemplate = props => {
         className="link-wrapper"
       >
         <Embed url={link} badged />
+
         {affiliateLogo ? (
           <AffiliatePromotion
             className="affiliate-logo -padded"
@@ -69,23 +70,26 @@ const DefaultTemplate = props => {
   return (
     <div className="link-action">
       <Card title={title} className="bordered rounded">
-        {content ? <TextContent className="p-3">{content}</TextContent> : null}
+        <div className="p-3">
+          {content ? (
+            <TextContent className="mb-3">{content}</TextContent>
+          ) : null}
 
-        {affiliateLogo ? (
-          <AffiliatePromotion
-            className="text-black p-3"
-            imgUrl={affiliateLogo.url}
-            title={affiliateLogo.description}
+          {affiliateLogo ? (
+            <AffiliatePromotion
+              className="text-black mb-3"
+              imgUrl={affiliateLogo.url}
+              title={affiliateLogo.description}
+            />
+          ) : null}
+
+          <PrimaryButton
+            className="block mt-6 text-lg w-full"
+            href={href}
+            onClick={() => analyzeClick(href, context)}
+            text={buttonText}
           />
-        ) : null}
-
-        <ButtonLink
-          attached
-          link={href}
-          onClick={() => analyzeClick(href, context)}
-        >
-          {buttonText}
-        </ButtonLink>
+        </div>
       </Card>
     </div>
   );

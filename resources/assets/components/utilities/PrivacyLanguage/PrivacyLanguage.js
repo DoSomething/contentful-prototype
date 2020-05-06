@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-const PrivacyLanguage = () => (
-  <p className="text-gray-600 text-sm pb-4 pt-2 px-3">
+const PrivacyLanguage = ({ className }) => (
+  <p className={classnames('text-gray-600 text-sm', className)}>
     The data you submit in this form will be handled in accordance with the
     DoSomething website{' '}
     <a
@@ -15,5 +17,13 @@ const PrivacyLanguage = () => (
     . It will be reviewed by a DoSomething staff member.
   </p>
 );
+
+PrivacyLanguage.propTypes = {
+  className: PropTypes.string,
+};
+
+PrivacyLanguage.defaultProps = {
+  className: null,
+};
 
 export default PrivacyLanguage;

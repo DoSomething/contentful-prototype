@@ -26,6 +26,6 @@ describe('TextSubmissionAction component', () => {
   test('is rendered as a card component with a form and submit button', () => {
     expect(wrapper.find('Card').length).toEqual(1);
     expect(wrapper.find('form').length).toEqual(1);
-    expect(wrapper.find('Button').length).toEqual(1);
+    expect(wrapper.find('PrimaryButton').length).toEqual(1);
   });
 });

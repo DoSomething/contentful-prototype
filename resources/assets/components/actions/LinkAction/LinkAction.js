@@ -33,11 +33,13 @@ const LinkAction = props => {
   const LinkActionTemplate = get(templates, template, DefaultTemplate);
 
   return (
-    <React.Fragment>
+    <>
       <AnalyticsWaypoint name="link_action-top" context={{ blockId: id }} />
+
       <LinkActionTemplate {...props} />
+
       <AnalyticsWaypoint name="link_action-bottom" context={{ blockId: id }} />
-    </React.Fragment>
+    </>
   );
 };
 
