@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { faq, shareLink } from './config';
+import { shareLink } from './config';
 import VoterRegistrationReferrals from './VoterRegistrationReferrals/VoterRegistrationReferrals';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import SocialDriveActionContainer from '../../../actions/SocialDriveAction/SocialDriveActionContainer';
@@ -24,10 +24,6 @@ const AlphaPage = ({ userId }) => (
         hidePageViews
       />
     </div>
-    <ContentfulEntryLoader
-      id={faq.contentBlockId}
-      className="grid-wide clearfix wrapper pb-3"
-    />
   </div>
 );
 

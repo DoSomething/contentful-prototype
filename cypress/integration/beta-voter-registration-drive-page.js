@@ -45,7 +45,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.visit(betaPagePath);
 
     cy.get('[data-test=not-found-page]').should('have.length', 1);
-    cy.get('[data-test=alpha-voter-registration-drive-page]').should(
+    cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       0,
     );
@@ -62,7 +62,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.visit(getBetaPagePathForUser(user));
 
     cy.get('[data-test=not-found-page]').should('have.length', 1);
-    cy.get('[data-test=alpha-voter-registration-drive-page]').should(
+    cy.get('[data-test=beta-voter-registration-drive-page]').should(
       'have.length',
       0,
     );
