@@ -41,7 +41,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
         <form className="form p-3">
           <div className="form-item stretched">
             <label htmlFor="email" className="font-bold">
-              email
+              Email
               <input
                 className="text-field"
                 required
@@ -55,7 +55,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
 
           <div className="form-item stretched">
             <label htmlFor="zip" className="font-bold">
-              zip code
+              Zip Code
               <input
                 className="text-field"
                 type="text"
