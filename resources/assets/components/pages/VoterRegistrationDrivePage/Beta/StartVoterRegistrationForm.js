@@ -70,7 +70,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
             className="w-full"
             onClick={handleClick}
             isDisabled={isDisabled}
-            text="Register To Vote"
+            text="Get Started"
           />
         </form>
       </Card>
