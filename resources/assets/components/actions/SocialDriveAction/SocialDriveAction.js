@@ -77,7 +77,7 @@ class SocialDriveAction extends React.Component {
     return (
       <div
         className={classNames('clearfix pb-6', {
-          'lg:flex': actionId != null,
+          'lg:flex': actionId !== null,
         })}
       >
         <div

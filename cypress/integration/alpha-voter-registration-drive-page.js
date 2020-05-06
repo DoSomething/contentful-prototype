@@ -21,34 +21,10 @@ function fakePost(displayName) {
 describe('Alpha Voter Registration Drive (OVRD) Page', () => {
   beforeEach(() => cy.configureMocks());
 
-  it('Legacy Alpha OVRD action page blocks display when feature flag disabled', () => {
+  it('The blocks field of the Alpha OVRD action page is not displayed', () => {
     const user = userFactory();
-
-    cy.mockGraphqlOp('ContentfulBlockQuery', {
-      block: {
-        id: legacyVoterRegistrationDriveActionPageBlockId,
-        __typename: 'ContentBlock',
-      },
-    });
 
     cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
-
-    cy.get('[data-test=alpha-voter-registration-drive-page]').should(
-      'have.length',
-      0,
-    );
-    cy.get('[data-test=total-accepted-quantity]').should('have.length', 0);
-    cy.get(
-      `[data-contentful-id=${legacyVoterRegistrationDriveActionPageBlockId}]`,
-    ).should('have.length', 1);
-  });
-
-  it('Legacy Alpha OVRD action page blocks do not display when feature flag enabled', () => {
-    const user = userFactory();
-
-    cy.withFeatureFlags({
-      voter_reg_alpha_page: true,
-    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=alpha-voter-registration-drive-page]').should(
       'have.length',
@@ -67,9 +43,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       posts: [],
     });
 
-    cy.withFeatureFlags({
-      voter_reg_alpha_page: true,
-    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=referral-list-item-empty]').should('have.length', 3);
     cy.get('[data-test=referral-list-item-completed]').should('have.length', 0);
@@ -83,9 +57,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       posts: [fakePost('Jesus Q.'), fakePost('Walter S.')],
     });
 
-    cy.withFeatureFlags({
-      voter_reg_alpha_page: true,
-    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=referral-list-item-completed]').should('have.length', 2);
     cy.nth('[data-test=referral-list-item-completed]', 0).within(() => {
@@ -111,9 +83,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       ],
     });
 
-    cy.withFeatureFlags({
-      voter_reg_alpha_page: true,
-    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=referral-list-item-completed]').should('have.length', 3);
     cy.nth('[data-test=referral-list-item-completed]', 0).within(() => {
@@ -137,9 +107,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       posts: [{ quantity: 10 }, { quantity: 20 }, { quantity: 30 }],
     });
 
-    cy.withFeatureFlags({
-      voter_reg_alpha_page: true,
-    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=total-accepted-quantity-value]').contains('60');
   });
@@ -152,9 +120,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       posts: [],
     });
 
-    cy.withFeatureFlags({
-      voter_reg_alpha_page: true,
-    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=total-accepted-quantity-value]').contains('0');
   });

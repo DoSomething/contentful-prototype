@@ -6,7 +6,7 @@ import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { isCampaignClosed, featureFlag } from '../../../helpers';
+import { isCampaignClosed } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import AlphaVoterRegistrationDrivePageContainer from '../VoterRegistrationDrivePage/Alpha/AlphaPageContainer';
 
@@ -27,8 +27,7 @@ const CampaignPageContent = props => {
 
   const isAlphaVoterRegistrationDrivePage =
     props.location.pathname ===
-      '/us/campaigns/online-registration-drive/action' &&
-    featureFlag('voter_reg_alpha_page');
+    '/us/campaigns/online-registration-drive/action';
 
   return (
     <div className="campaign-page__content" id={subPage.id}>
