@@ -13,12 +13,11 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
     (state, newState) => ({ ...state, ...newState }),
     {
       email: '',
-      zipcode: '',
+      zip: '',
     },
   );
 
-  const isDisabled = !userInput.zipcode || !userInput.email;
-
+  const isDisabled = !userInput.zip || !userInput.email;
   const handleChange = event => {
     const { name, value } = event.target;
     setUserInput({ [name]: value });
@@ -34,17 +33,19 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
           campaignId,
         },
       });
-      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true,email_address:${userInput.email},home_zip_code:${userInput.zipcode}`;
-      console.log('Window:', window.location);
+      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${userInput.email}&home_zip_code=${userInput.zip}`;
     }
   };
 
   return (
     <>
-      <Card className="bordered rounded" title="Register online to vote">
+      <Card
+        className="md:w-3/5 bordered rounded"
+        title="Register online to vote"
+      >
         <form className="form p-3">
           <div className="form-item stretched">
-            <label htmlFor="email">
+            <label htmlFor="email" className="font-bold">
               email
               <input
                 className="text-field"
@@ -58,19 +59,20 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
           </div>
 
           <div className="form-item stretched">
-            <label htmlFor="zipcode">
+            <label htmlFor="zip" className="font-bold">
               zip code
               <input
                 className="text-field"
                 type="text"
-                name="zipcode"
-                value={userInput.zipcode}
+                name="zip"
+                value={userInput.zip}
                 onChange={handleChange}
                 required
               />
             </label>
           </div>
           <PrimaryButton
+            className="w-full"
             onClick={handleClick}
             isDisabled={isDisabled}
             text="Register To Vote"
