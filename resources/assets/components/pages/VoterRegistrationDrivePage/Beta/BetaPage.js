@@ -93,7 +93,7 @@ const BetaVoterRegistrationDrivePage = () => {
   return (
     <>
       <SiteNavigationContainer />
-      <main>
+      <main data-test="beta-voter-registration-drive-page">
         <HeroSection
           user={data.user}
           campaignInfo={data.campaignWebsite}
