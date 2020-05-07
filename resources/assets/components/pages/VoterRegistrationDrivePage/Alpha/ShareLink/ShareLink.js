@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import VotingReasons from './VotingReasons';
 import { featureFlag } from '../../../../../helpers';
 import { PHOENIX_URL } from '../../../../../constants';
-import VotingReasons from './VotingReasons';
 import SocialDriveActionContainer from '../../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const ShareLink = ({ actionId, referrerUserId }) => {

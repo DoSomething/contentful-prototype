@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import { without } from 'lodash';
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
 import { votingReasons } from '../config';
