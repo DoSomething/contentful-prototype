@@ -10,7 +10,6 @@ import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import TotalAcceptedQuantity from './TotalAcceptedQuantity';
-import VoterRegistrationDriveInfo from './VoterRegistrationDriveInfo';
 import { dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
@@ -23,7 +22,6 @@ import './social-drive.scss';
 export const SocialDriveBlockFragment = gql`
   fragment SocialDriveBlockFragment on SocialDriveBlock {
     link
-    hidePageViews
   }
 `;
 
@@ -43,8 +41,8 @@ class SocialDriveAction extends React.Component {
 
     const href = dynamicString(this.props.link, { userId });
     postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
-      .then(({ url, count }) => this.setState({ shortenedLink: url, count }))
-      .catch(() => this.setState({ shortenedLink: href, count: 'N/A' }));
+      .then(({ url }) => this.setState({ shortenedLink: url }))
+      .catch(() => this.setState({ shortenedLink: href }));
   }
 
   handleCopyLinkClick = () => {
@@ -71,16 +69,16 @@ class SocialDriveAction extends React.Component {
       fullWidth,
       shareCardDescription,
       shareCardTitle,
-      hidePageViews,
       userId,
     } = this.props;
 
     const { shortenedLink } = this.state;
-    const displaySidebar = hidePageViews === false || actionId;
 
     return (
       <div
-        className={classNames('clearfix pb-6', { 'lg:flex': displaySidebar })}
+        className={classNames('clearfix pb-6', {
+          'lg:flex': actionId !== null,
+        })}
       >
         <div
           className={classNames('social-drive-action', {
@@ -133,14 +131,6 @@ class SocialDriveAction extends React.Component {
           </Card>
         </div>
 
-        {/* This will be deprecated once our alpha voter reg drive feature is enabled */}
-        {!hidePageViews ? (
-          <VoterRegistrationDriveInfo
-            userId={userId}
-            pageViewsCount={this.state.count}
-          />
-        ) : null}
-
         {actionId ? (
           <TotalAcceptedQuantity userId={userId} actionId={actionId} />
         ) : null}
@@ -157,7 +147,6 @@ SocialDriveAction.propTypes = {
   pageId: PropTypes.string,
   shareCardTitle: PropTypes.string,
   shareCardDescription: PropTypes.string,
-  hidePageViews: PropTypes.bool,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
@@ -169,7 +158,6 @@ SocialDriveAction.defaultProps = {
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',
   pageId: null,
-  hidePageViews: false,
 };
 
 export default SocialDriveAction;
