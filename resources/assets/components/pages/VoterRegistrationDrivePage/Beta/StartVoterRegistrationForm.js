@@ -34,7 +34,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   return (
     <>
       <Card
-        className="md:w-3/5 bordered rounded beta-page-registration-form"
+        className="md:w-3/5 bordered rounded"
         title="Register online to vote"
       >
         <form onSubmit={handleSubmit} className="form p-3">

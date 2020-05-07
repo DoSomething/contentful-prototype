@@ -135,8 +135,6 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('.beta-page-registration-form > header > h1').contains(
-      `Register online to vote`,
-    );
+    cy.get('[data-test=card-title]').contains(`Register online to vote`);
   });
 });

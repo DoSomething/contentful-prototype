@@ -4,7 +4,10 @@ import classnames from 'classnames';
 
 const renderHeader = (title, link, onClose) => (
   <header className="text-gray-900 bg-yellow-500 p-3 rounded-t clip-padding-box">
-    <h1 className="inline font-source-sans text-base uppercase">
+    <h1
+      data-test="card-title"
+      className="inline font-source-sans text-base uppercase"
+    >
       {link ? (
         <a
           className="text-gray-900 hover:opacity-75 hover:no-underline"
