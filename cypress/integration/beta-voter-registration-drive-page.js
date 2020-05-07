@@ -103,7 +103,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can affect change on issues we care about most.',
+      'Voting is important for young people because we can effect change on issues we care about most.',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
