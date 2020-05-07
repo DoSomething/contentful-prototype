@@ -9,9 +9,12 @@ const VotingReasons = ({ onSelect }) => {
 
   return (
     <div className="p-3">
-      <p>Urge your friend to vote based on the causes you care about most.</p>
+      <div className="pb-3">
+        Urge your friend to vote based on the causes you care about most.
+      </div>
+      <div className="font-bold pb-3">Select causes (optional):</div>
       {Object.keys(votingReasons).map(votingReason => (
-        <div key={votingReason}>
+        <div key={votingReason} className="pb-1">
           <input
             type="checkbox"
             id={votingReason}
@@ -27,7 +30,9 @@ const VotingReasons = ({ onSelect }) => {
               onSelect(`voting-reasons=${selectedVotingReasons.join(',')}`);
             }}
           />
-          <label htmlFor={votingReason}>{votingReasons[votingReason]}</label>
+          <label className="pl-1" htmlFor={votingReason}>
+            {votingReasons[votingReason]}
+          </label>
         </div>
       ))}
     </div>

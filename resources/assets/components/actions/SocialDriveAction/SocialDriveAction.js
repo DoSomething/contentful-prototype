@@ -86,6 +86,8 @@ class SocialDriveAction extends React.Component {
 
   /**
    * Executes API request to shorten given longUrl, and saves result to state.shortUrl.
+   *
+   * @param String longUrl
    */
   shortenLink(longUrl) {
     this.setState({ loading: true });
