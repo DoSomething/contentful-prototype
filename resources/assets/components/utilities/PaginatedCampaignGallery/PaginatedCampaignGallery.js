@@ -8,8 +8,8 @@ import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-import Button from '../Button/Button';
 import { updateQuery } from '../../../helpers';
+import ElementButton from '../Button/ElementButton';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import ErrorBlock from '../../blocks/ErrorBlock/ErrorBlock';
 import GalleryBlock from '../../blocks/GalleryBlock/GalleryBlock';
@@ -111,12 +111,15 @@ const PaginatedCampaignGallery = ({
         imageAlignment="TOP"
         title={title}
       />
+
       {hasNextPage ? (
         <div className="p-6 text-center">
           {!loading ? (
-            <Button className="-tertiary" onClick={handleViewMore}>
-              view more
-            </Button>
+            <ElementButton
+              className="font-normal text-gray-800 active:text-gray-900 hover:text-gray-800 underline hover:no-underline"
+              onClick={handleViewMore}
+              text="view more"
+            />
           ) : (
             <Spinner className="flex justify-center" />
           )}

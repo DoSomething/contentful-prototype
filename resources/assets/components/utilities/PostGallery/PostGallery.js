@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Gallery from '../Gallery/Gallery';
-import LoadMore from '../LoadMore/LoadMore';
 import PostCard from '../PostCard/PostCard';
+import ElementButton from '../Button/ElementButton';
 import AnalyticsWaypoint from '../AnalyticsWaypoint/AnalyticsWaypoint';
 
 import './post-gallery.scss';
@@ -66,13 +66,14 @@ const PostGallery = props => {
       </Gallery>
 
       {loadMorePosts ? (
-        <LoadMore
-          buttonClassName="-tertiary"
-          className="p-6 text-center"
-          text="view more"
-          onClick={loadMorePosts}
-          isLoading={loading}
-        />
+        <div className="p-6 text-center">
+          <ElementButton
+            className="font-normal text-gray-800 active:text-gray-900 hover:text-gray-800 underline hover:no-underline"
+            isLoading={loading}
+            onClick={loadMorePosts}
+            text="view more"
+          />
+        </div>
       ) : null}
 
       {waypointName ? (
