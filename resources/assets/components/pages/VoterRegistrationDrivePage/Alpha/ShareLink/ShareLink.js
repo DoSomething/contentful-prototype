@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import VotingReasons from './VotingReasons';
 import { featureFlag } from '../../../../../helpers';
 import { PHOENIX_URL } from '../../../../../constants';
+import VotingReasonsQueryOptions from './VotingReasonsQueryOptions';
 import SocialDriveActionContainer from '../../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const ShareLink = ({ actionId, referrerUserId }) => {
@@ -18,7 +18,7 @@ const ShareLink = ({ actionId, referrerUserId }) => {
             ? `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${referrerUserId}`
             : `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
         }
-        queryOptions={betaPageEnabled ? <VotingReasons /> : null}
+        queryOptions={betaPageEnabled ? <VotingReasonsQueryOptions /> : null}
       />
     </div>
   );
