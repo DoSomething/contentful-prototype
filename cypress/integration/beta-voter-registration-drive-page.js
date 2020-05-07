@@ -137,4 +137,36 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.get('[data-test=card-title]').contains(`Register online to vote`);
   });
+
+  it('Beta OVRD Step One Register to Vote Section Button Is Disabled When Form is Empty', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=element-button-component]').should('be.disabled');
+  });
+
+  it('Beta OVRD Step One Register to Vote Section Button Is Enabled When Form is Filled In', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    const email = 'text@test.com';
+    const zip = '12345';
+
+    cy.get('[data-id=voter-registration-email-field]').type(email);
+    cy.get('[data-id=voter-registration-zip-field]').type(zip);
+
+    cy.get('[data-test=element-button-component]').should('be.enabled');
+  });
 });
