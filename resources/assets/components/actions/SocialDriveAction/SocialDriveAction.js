@@ -101,7 +101,7 @@ class SocialDriveAction extends React.Component {
       .catch(() =>
         this.setState({
           loading: false,
-          // Fallback on the long URL if API request fails.
+          // Fallback to the long URL if API request fails.
           shortUrl: longUrl,
         }),
       );
