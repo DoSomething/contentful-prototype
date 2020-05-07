@@ -45,7 +45,7 @@ const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
 
   const config = isDevEnvironment()
-    ? gqlVariables.dev
+    ? gqlVariables.development
     : gqlVariables.production;
   /**
    * The CampaignWebsite ID is the same across all Contentful environments for OVRD.

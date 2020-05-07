@@ -11,7 +11,7 @@ export const gqlVariables = {
       contentBlockId: '30rCn63G1rnpzojCXC9PmF',
     },
   },
-  dev: {
+  development: {
     faq: {
       contentBlockId: '3cXc0RPMVNeE4surEqFujL',
     },

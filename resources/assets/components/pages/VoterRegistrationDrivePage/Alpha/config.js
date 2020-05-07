@@ -9,7 +9,7 @@ export const gqlVariables = {
       contentBlockId: '3fj7mXlyrcJZ3mUKXqco1R',
     },
   },
-  dev: {
+  development: {
     faq: {
       contentBlockId: '6H22Y1wmICy05pM9twIGGR',
     },

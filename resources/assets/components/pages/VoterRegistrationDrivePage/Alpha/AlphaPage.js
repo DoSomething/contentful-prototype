@@ -9,7 +9,7 @@ import SocialDriveActionContainer from '../../../actions/SocialDriveAction/Socia
 
 const AlphaPage = ({ userId }) => {
   const config = isDevEnvironment()
-    ? gqlVariables.dev
+    ? gqlVariables.development
     : gqlVariables.production;
 
   return (
