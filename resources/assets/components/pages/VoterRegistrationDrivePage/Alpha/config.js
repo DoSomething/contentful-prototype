@@ -14,7 +14,7 @@ export const gqlVariables = {
       contentBlockId: '6H22Y1wmICy05pM9twIGGR',
     },
     shareLink: {
-      actionId: 1025,
+      actionId: 27,
       contentBlockId: '1xcG1CTinKwn3Iyxtcc0f4',
     },
   },
