@@ -20,6 +20,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
+
     trackAnalyticsEvent('click_voter_registration_action', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.campaignAction,
@@ -28,6 +29,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
         campaignId,
       },
     });
+
     window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
   };
 
