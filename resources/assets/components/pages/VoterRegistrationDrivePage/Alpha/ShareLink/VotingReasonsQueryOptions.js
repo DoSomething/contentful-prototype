@@ -16,10 +16,7 @@ const VotingReasons = ({ onSelect }) => {
   }, [selectedVotingReasons]);
 
   return (
-    <div className="p-3">
-      <div className="pb-3">
-        Urge your friend to vote based on the causes you care about most.
-      </div>
+    <div className="pl-3 pr-3">
       <div className="font-bold pb-3">Select causes (optional):</div>
       {Object.keys(votingReasons).map(votingReason => (
         <div key={votingReason} className="pb-1">

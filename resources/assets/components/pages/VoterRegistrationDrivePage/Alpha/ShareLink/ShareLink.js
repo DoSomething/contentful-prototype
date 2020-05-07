@@ -19,6 +19,12 @@ const ShareLink = ({ actionId, referrerUserId }) => {
             : `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
         }
         queryOptions={betaPageEnabled ? <VotingReasonsQueryOptions /> : null}
+        shareCardDescription={
+          betaPageEnabled
+            ? 'Urge your friend to vote based on the causes you care about most.'
+            : null
+        }
+        shareCardTitle={betaPageEnabled ? 'Share with your friends' : null}
       />
     </div>
   );
