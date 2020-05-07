@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types';
-import { concat, pull } from 'lodash';
-import React, { useState } from 'react';
+import { without } from 'lodash';
+import React, { useEffect, useState } from 'react';
 
 import { votingReasons } from '../config';
 
 const VotingReasons = ({ onSelect }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
+
+  useEffect(() => {
+    onSelect(
+      selectedVotingReasons.length
+        ? `voting-reasons=${selectedVotingReasons.join(',')}`
+        : null,
+    );
+  }, [selectedVotingReasons]);
 
   return (
     <div className="p-3">
@@ -24,10 +32,9 @@ const VotingReasons = ({ onSelect }) => {
               const value = event.target.name;
               setSelectedVotingReasons(
                 event.target.checked
-                  ? concat(selectedVotingReasons, value)
-                  : pull(selectedVotingReasons, value),
+                  ? [...selectedVotingReasons, value]
+                  : without(selectedVotingReasons, value),
               );
-              onSelect(`voting-reasons=${selectedVotingReasons.join(',')}`);
             }}
           />
           <label className="pl-1" htmlFor={votingReason}>
