@@ -48,6 +48,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 name="email"
                 value={email}
                 onChange={handleChange}
+                placeholder="member@dosomething.org"
               />
             </label>
           </div>
@@ -62,7 +63,8 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 value={zip}
                 onChange={handleChange}
                 required
-                pattern="[0-9]*"
+                pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
+                placeholder="55555"
               />
             </label>
           </div>
