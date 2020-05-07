@@ -32,7 +32,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           <div className="grid-wide-7/10 primary markdown">
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">
-                Voting is important for young people because we can affect
+                Voting is important for young people because we can effect
                 change on issues we care about most.
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
