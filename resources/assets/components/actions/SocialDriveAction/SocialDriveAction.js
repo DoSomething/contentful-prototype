@@ -31,7 +31,7 @@ class SocialDriveAction extends React.Component {
 
     this.state = {
       loading: true,
-      longUrl: this.getDynamicUrl(),
+      longUrl: this.getLongUrl(),
       shortUrl: null,
     };
 
@@ -39,22 +39,22 @@ class SocialDriveAction extends React.Component {
   }
 
   componentDidMount() {
-    this.shortenLink();
+    this.shortenLink(this.state.longUrl);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.longUrl !== prevState.longUrl) {
-      this.shortenLink();
+      this.shortenLink(this.state.longUrl);
     }
   }
 
   /**
-   * Check our url prop for any tokens, and append query string if given.
+   * Replaces any userId tokens, and appends query string if given.
    *
    * @param String queryStr
    * @return String
    */
-  getDynamicUrl(queryStr) {
+  getLongUrl(queryStr) {
     let result = dynamicString(this.props.link, { userId: this.props.userId });
 
     if (queryStr) {
@@ -85,21 +85,22 @@ class SocialDriveAction extends React.Component {
   };
 
   /**
-   * Executes API request to shorten our expanded link.
+   * Executes API request to shorten given longUrl, and saves result to state.shortUrl.
    */
-  shortenLink() {
+  shortenLink(longUrl) {
     this.setState({ loading: true });
 
     postRequest(
       '/api/v2/links',
-      { url: withoutTokens(this.state.longUrl) },
+      { url: withoutTokens(longUrl) },
       this.props.token,
     )
-      .then(({ url }) => this.setState({ loading: false, shortUrl: url }))
+      .then(res => this.setState({ loading: false, shortUrl: res.url }))
       .catch(() =>
         this.setState({
           loading: false,
-          shortUrl: this.getDynamicUrl(),
+          // Fallback on the long URL if API request fails.
+          shortUrl: longUrl,
         }),
       );
   }
@@ -137,9 +138,9 @@ class SocialDriveAction extends React.Component {
 
             {queryOptions
               ? React.cloneElement(queryOptions, {
-                  onSelect: query =>
+                  onSelect: queryStr =>
                     this.setState({
-                      longUrl: this.getDynamicUrl(query),
+                      longUrl: this.getLongUrl(queryStr),
                     }),
                 })
               : null}
