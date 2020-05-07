@@ -30,9 +30,9 @@ class SocialDriveAction extends React.Component {
     super(props);
 
     this.state = {
-      expandedLink: this.getDynamicUrl(),
       loading: true,
-      shortenedLink: null,
+      longUrl: this.getDynamicUrl(),
+      shortUrl: null,
     };
 
     this.linkInput = React.createRef();
@@ -43,24 +43,28 @@ class SocialDriveAction extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.expandedLink !== prevState.expandedLink) {
+    if (this.state.longUrl !== prevState.longUrl) {
       this.shortenLink();
     }
   }
 
   /**
-   * @param String query
+   * Check our url prop for any tokens, and append query string if given.
+   *
+   * @param String queryStr
    * @return String
    */
-  getDynamicUrl(query) {
-    let link = dynamicString(this.props.link, { userId: this.props.userId });
+  getDynamicUrl(queryStr) {
+    let result = dynamicString(this.props.link, { userId: this.props.userId });
 
-    if (query) {
-      // For now, assuming we already have query vars (which we do, for OVRD)
-      link = `${link}&${query}`;
+    if (queryStr) {
+      // Append the queryStr to our current result.
+      result = `${result}${
+        this.props.link.includes('?') ? '&' : '?'
+      }${queryStr}`;
     }
 
-    return link;
+    return result;
   }
 
   handleCopyLinkClick = () => {
@@ -88,14 +92,14 @@ class SocialDriveAction extends React.Component {
 
     postRequest(
       '/api/v2/links',
-      { url: withoutTokens(this.state.expandedLink) },
+      { url: withoutTokens(this.state.longUrl) },
       this.props.token,
     )
-      .then(({ url }) => this.setState({ loading: false, shortenedLink: url }))
+      .then(({ url }) => this.setState({ loading: false, shortUrl: url }))
       .catch(() =>
         this.setState({
           loading: false,
-          shortenedLink: this.getDynamicUrl(),
+          shortUrl: this.getDynamicUrl(),
         }),
       );
   }
@@ -111,7 +115,7 @@ class SocialDriveAction extends React.Component {
       userId,
     } = this.props;
 
-    const { shortenedLink } = this.state;
+    const { shortUrl } = this.state;
 
     return (
       <div
@@ -135,7 +139,7 @@ class SocialDriveAction extends React.Component {
               ? React.cloneElement(queryOptions, {
                   onSelect: query =>
                     this.setState({
-                      expandedLink: this.getDynamicUrl(query),
+                      longUrl: this.getDynamicUrl(query),
                     }),
                 })
               : null}
@@ -155,7 +159,7 @@ class SocialDriveAction extends React.Component {
                   type="text"
                   ref={this.linkInput}
                   className="text-field link"
-                  value={this.state.loading ? 'Loading...' : shortenedLink}
+                  value={this.state.loading ? 'Loading...' : shortUrl}
                   disabled={this.state.loading}
                 />
                 <button
@@ -171,7 +175,7 @@ class SocialDriveAction extends React.Component {
             </div>
 
             <SocialShareTray
-              shareLink={shortenedLink}
+              shareLink={shortUrl}
               trackLink={link}
               title="Share on Social Media"
               responsive
