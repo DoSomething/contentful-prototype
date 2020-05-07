@@ -136,7 +136,10 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=card-title]').contains(`Register online to vote`);
+    cy.get('[data-test=voter-registration-form-card]').should('have.length', 1);
+    cy.get('[data-test=voter-registration-form-card] > header > h1').contains(
+      'Register online to vote',
+    );
   });
 
   it('Beta OVRD Step One Register to Vote Section Button Is Disabled When Form is Empty', () => {

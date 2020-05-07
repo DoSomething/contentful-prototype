@@ -4,10 +4,7 @@ import classnames from 'classnames';
 
 const renderHeader = (title, link, onClose) => (
   <header className="text-gray-900 bg-yellow-500 p-3 rounded-t clip-padding-box">
-    <h1
-      data-test="card-title"
-      className="inline font-source-sans text-base uppercase"
-    >
+    <h1 className="inline font-source-sans text-base uppercase">
       {link ? (
         <a
           className="text-gray-900 hover:opacity-75 hover:no-underline"
@@ -32,6 +29,7 @@ const renderHeader = (title, link, onClose) => (
 );
 
 const Card = ({
+  attributes,
   children,
   className = '',
   link = null,
@@ -40,6 +38,7 @@ const Card = ({
 }) => (
   <article
     className={classnames('card bg-white w-full clip-padding-box', className)}
+    {...attributes}
   >
     {title ? renderHeader(title, link, onClose) : null}
 
@@ -48,6 +47,7 @@ const Card = ({
 );
 
 Card.propTypes = {
+  attributes: PropTypes.object,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -60,6 +60,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  attributes: {},
   className: null,
   link: null,
   onClose: null,

@@ -21,7 +21,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    trackAnalyticsEvent('click_voter_registration_action', {
+    trackAnalyticsEvent('clicked_voter_registration_action', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.campaignAction,
       label: 'voter_registration',
@@ -36,6 +36,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   return (
     <>
       <Card
+        attributes={{ 'data-test': 'voter-registration-form-card' }}
         className="md:w-3/5 bordered rounded"
         title="Register online to vote"
       >
