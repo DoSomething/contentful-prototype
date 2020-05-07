@@ -2,6 +2,7 @@
 
 exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
 <Card
+  attributes={Object {}}
   className="rounded bordered"
   id="1234567890"
   link={null}
@@ -32,6 +33,7 @@ exports[`it generates a campaign update in affiliate mode snapshot 1`] = `
 
 exports[`it generates a campaign update snapshot 1`] = `
 <Card
+  attributes={Object {}}
   className="rounded bordered"
   id="1234567890"
   link={null}

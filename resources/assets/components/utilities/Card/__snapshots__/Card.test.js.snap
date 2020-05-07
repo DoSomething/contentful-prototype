@@ -9,7 +9,6 @@ exports[`it generates a card snapshot 1`] = `
   >
     <h1
       className="inline font-source-sans text-base uppercase"
-      data-test="card-title"
     >
       Awesomest Content Ever
     </h1>
