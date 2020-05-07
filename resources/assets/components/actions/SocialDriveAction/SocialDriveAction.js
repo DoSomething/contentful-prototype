@@ -148,7 +148,7 @@ class SocialDriveAction extends React.Component {
               : null}
 
             <div className="p-3">
-              <Embed url={link} />
+              <Embed url={this.state.longUrl} />
             </div>
 
             <div className="p-3 link-area">
