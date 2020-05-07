@@ -18,18 +18,17 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
     return name === 'email' ? setEmail(value) : setZip(value);
   };
 
-  const handleClick = () => {
-    if (!isDisabled) {
-      trackAnalyticsEvent('click_voter_registration_action', {
-        action: 'button_clicked',
-        category: EVENT_CATEGORIES.campaignAction,
-        label: 'voter_registration',
-        context: {
-          campaignId,
-        },
-      });
-      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
-    }
+  const handleSubmit = event => {
+    event.preventDefault();
+    trackAnalyticsEvent('click_voter_registration_action', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'voter_registration',
+      context: {
+        campaignId,
+      },
+    });
+    window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
   };
 
   return (
@@ -38,14 +37,14 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
         className="md:w-3/5 bordered rounded beta-page-registration-form"
         title="Register online to vote"
       >
-        <form className="form p-3">
+        <form onSubmit={handleSubmit} className="form p-3">
           <div className="form-item stretched">
             <label htmlFor="email" className="font-bold">
               Email
               <input
                 className="text-field"
                 required
-                type="text"
+                type="email"
                 name="email"
                 value={email}
                 onChange={handleChange}
@@ -63,12 +62,13 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 value={zip}
                 onChange={handleChange}
                 required
+                pattern="[0-9]*"
               />
             </label>
           </div>
           <PrimaryButton
+            type="submit"
             className="w-full"
-            onClick={handleClick}
             isDisabled={isDisabled}
             text="Get Started"
           />
