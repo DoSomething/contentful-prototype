@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { gqlVariables } from './config';
-import { isDevEnvironment } from '../../../../helpers';
 import ShareLink from './ShareLink/ShareLink';
+import { isDevEnvironment } from '../../../../helpers';
 import VoterRegistrationReferrals from './VoterRegistrationReferrals/VoterRegistrationReferrals';
 import ContentfulEntryLoader from '../../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
