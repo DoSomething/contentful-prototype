@@ -30,6 +30,7 @@ const VotingReasons = ({ onSelect }) => {
             value={votingReason}
             onChange={event => {
               const value = event.target.name;
+
               setSelectedVotingReasons(
                 event.target.checked
                   ? [...selectedVotingReasons, value]
