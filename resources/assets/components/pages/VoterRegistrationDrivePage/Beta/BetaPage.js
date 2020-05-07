@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo';
 
-import {
-  faq,
-  registerToVote,
-  voterRegistrationDriveCampaignLink,
-} from './config';
+import { gqlVariables } from './config';
 import ErrorPage from '../../ErrorPage';
 import HeroSection from './HeroSection';
-import { query } from '../../../../helpers';
+import { isDevEnvironment, query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
@@ -31,28 +27,33 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
     }
 
     campaignWebsite(id: $voterRegistrationDriveCampaignWebsiteId) {
+      additionalContent
       campaignId
-      title
       coverImage {
-        url
         description
+        url
       }
       scholarshipAmount
       scholarshipDeadline
-      additionalContent
+      title
+      url
     }
   }
 `;
 
 const BetaVoterRegistrationDrivePage = () => {
   const referrerUserId = query('referrer_user_id');
+
+  const config = isDevEnvironment()
+    ? gqlVariables.development
+    : gqlVariables.production;
   /**
    * The CampaignWebsite ID is the same across all Contentful environments for OVRD.
    * @see /docs/development/features/voter-registration
    */
   const voterRegistrationDriveCampaignWebsiteId = '3pwxnRZxociqMaQCMcGOyc';
-  const [showScholarshipModal, setShowScholarshipModal] = useState(false);
 
+  const [showScholarshipModal, setShowScholarshipModal] = useState(false);
   const modalToggle = () => setShowScholarshipModal(true);
 
   if (!referrerUserId) {
@@ -86,6 +87,7 @@ const BetaVoterRegistrationDrivePage = () => {
     campaignId,
     scholarshipAmount,
     scholarshipDeadline,
+    url,
   } = data.campaignWebsite;
 
   return (
@@ -100,7 +102,7 @@ const BetaVoterRegistrationDrivePage = () => {
         <div className="bg-white">
           <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
             <ContentfulEntryLoader
-              id={registerToVote.contentBlockId}
+              id={config.startVoterRegistration.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
             <div className="pb-6">
@@ -110,16 +112,14 @@ const BetaVoterRegistrationDrivePage = () => {
               />
             </div>
             <ContentfulEntryLoader
-              id={faq.contentBlockId}
+              id={config.faq.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
             <ContentfulEntryLoader
-              id={voterRegistrationDriveCampaignLink.contentBlockId}
+              id={config.joinCampaign.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
-            <ButtonLink link="/us/campaigns/online-registration-drive">
-              Get Started
-            </ButtonLink>
+            <ButtonLink link={url}>Get Started</ButtonLink>
           </div>
         </div>
         {showScholarshipModal ? (
