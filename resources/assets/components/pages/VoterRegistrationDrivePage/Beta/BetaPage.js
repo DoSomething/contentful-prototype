@@ -27,15 +27,16 @@ const BETA_VOTER_REGISTRATION_DRIVE_PAGE_QUERY = gql`
     }
 
     campaignWebsite(id: $voterRegistrationDriveCampaignWebsiteId) {
+      additionalContent
       campaignId
-      title
       coverImage {
-        url
         description
+        url
       }
       scholarshipAmount
       scholarshipDeadline
-      additionalContent
+      title
+      url
     }
   }
 `;
@@ -86,6 +87,7 @@ const BetaVoterRegistrationDrivePage = () => {
     campaignId,
     scholarshipAmount,
     scholarshipDeadline,
+    url,
   } = data.campaignWebsite;
 
   return (
@@ -117,9 +119,7 @@ const BetaVoterRegistrationDrivePage = () => {
               id={config.joinCampaign.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
-            <ButtonLink link="/us/campaigns/online-registration-drive">
-              Get Started
-            </ButtonLink>
+            <ButtonLink link={url}>Get Started</ButtonLink>
           </div>
         </div>
         {showScholarshipModal ? (

@@ -1,3 +1,4 @@
+// Values for GraphQL queries.
 export const gqlVariables = {
   production: {
     faq: {
