@@ -46,6 +46,23 @@ a > * {
   @apply cursor-wait;
 }
 
+// @TODO: remove ".button" rules once all buttons in Phoenix have switched to the new button components.
+.button {
+  background: theme('colors.blurple.500');
+}
+
+.button:active {
+  background: theme('colors.blurple.700');
+}
+
+.button:focus {
+  background: theme('colors.blurple.400');
+}
+
+.button:hover {
+  background: theme('colors.blurple.400');
+}
+
 // @TODO:forge-removal Rename this class to "text-field".
 .text-input {
   @apply bg-white p-3 border border-gray-200 border-solid font-source-sans rounded;
