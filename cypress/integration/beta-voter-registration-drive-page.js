@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
 import faker from 'faker';
+
 import { userFactory } from '../fixtures/user';
 
 const betaPagePath = '/us/my-voter-registration-drive';
