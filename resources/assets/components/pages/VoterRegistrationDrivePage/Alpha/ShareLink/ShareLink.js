@@ -1,16 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { featureFlag } from '../../../../../helpers';
+import { PHOENIX_URL } from '../../../../../constants';
 import VotingReasons from './VotingReasons';
 import SocialDriveActionContainer from '../../../../actions/SocialDriveAction/SocialDriveActionContainer';
 
 const ShareLink = ({ actionId, referrerUserId }) => {
+  const betaPageEnabled = featureFlag('voter_reg_beta_page');
+
   return (
     <div className="grid-wide">
       <SocialDriveActionContainer
         actionId={actionId}
-        link={`https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`}
-        queryOptions={<VotingReasons />}
+        link={
+          betaPageEnabled
+            ? `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${referrerUserId}`
+            : `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
+        }
+        queryOptions={betaPageEnabled ? <VotingReasons /> : null}
       />
     </div>
   );

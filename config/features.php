@@ -20,4 +20,5 @@ return [
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
     'sitewide_cta_banner' => env('DS_ENABLE_SITEWIDE_CTA', false),
     'snapchat_button' => env('DS_ENABLE_SNAPCHAT', false),
+    'voter_reg_beta_page' => env('DS_ENABLE_VOTER_REG_BETA_PAGE', false),
 ];
