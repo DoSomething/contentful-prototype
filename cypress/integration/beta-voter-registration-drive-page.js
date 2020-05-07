@@ -152,7 +152,9 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=element-button-component]').should('be.disabled');
+    cy.get('[data-test=voter-registration-submit-button]').should(
+      'be.disabled',
+    );
   });
 
   it('Beta OVRD Step One Register to Vote Section Button Is Enabled When Form is Filled In', () => {
@@ -171,6 +173,6 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get('[data-id=voter-registration-email-field]').type(email);
     cy.get('[data-id=voter-registration-zip-field]').type(zip);
 
-    cy.get('[data-test=element-button-component]').should('be.enabled');
+    cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
   });
 });

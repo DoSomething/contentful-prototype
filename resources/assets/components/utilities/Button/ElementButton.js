@@ -21,7 +21,6 @@ const ElementButton = ({
 }) => {
   return (
     <button
-      data-test="element-button-component"
       className={classnames('btn', className, { 'is-loading': isLoading })}
       disabled={isDisabled}
       onClick={onClick}

@@ -72,10 +72,11 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
             </label>
           </div>
           <PrimaryButton
-            type="submit"
+            attributes={{ 'data-test': 'voter-registration-submit-button' }}
             className="w-full"
             isDisabled={isDisabled}
             text="Get Started"
+            type="submit"
           />
         </form>
       </Card>
