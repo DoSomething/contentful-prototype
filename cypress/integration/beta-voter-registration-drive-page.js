@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
 import faker from 'faker';
+
 import { userFactory } from '../fixtures/user';
 
 const betaPagePath = '/us/my-voter-registration-drive';
@@ -123,5 +124,52 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get('[data-test=beta-voter-registration-drive-page-blurb]').contains(
       `250,000+ young people have registered to vote via DoSomething (it takes less than 2 minutes!). After you register, share with your friends to enter to win a $1,500 scholarship!`,
     );
+  });
+
+  it('Beta OVRD Step One register to vote section displays as expected', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=voter-registration-form-card]').should('have.length', 1);
+    cy.get('[data-test=voter-registration-form-card] > header > h1').contains(
+      'Register online to vote',
+    );
+  });
+
+  it('Beta OVRD Step One register to vote section button is disabled when form is empty', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=voter-registration-submit-button]').should(
+      'be.disabled',
+    );
+  });
+
+  it('Beta OVRD Step One register to vote section button is enabled when form is filled in', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-id=voter-registration-email-field]').type('text@test.com');
+    cy.get('[data-id=voter-registration-zip-field]').type('12345');
+
+    cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
   });
 });
