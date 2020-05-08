@@ -16,8 +16,10 @@ const campaignWebsite = {
   },
   scholarshipAmount: '1500',
   scholarshipDeadline: '2022-04-25T00:00-08:00',
-  additionalContent: null,
   url: mockUrl,
+  additionalContent: {
+    numberOfScholarships: 1,
+  },
 };
 
 /**
@@ -70,6 +72,19 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  it('Beta OVRD HeroSection displays a cover image', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=beta-ovrd-page-cover-image]').should('have.length', 1);
+  });
+
   it('Beta OVRD HeroSection displays referrer first name if referrer user found', () => {
     const user = userFactory();
 
@@ -87,6 +102,53 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
     cy.get('.hero-banner__headline-subtitle').contains(
       `${user.firstName} has invited you to register to vote!`,
+    );
+  });
+
+  it('Beta OVRD HeroSection displays scholarhsip info if it is provided', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=beta-ovrd-campaign-info-block]').should(
+      'have.length',
+      1,
+    );
+    cy.contains('Win A Scholarship');
+    cy.get(
+      '[data-test=beta-ovrd-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
+    ).contains(`$1,500`);
+    cy.contains(`April 25th, 2022`);
+  });
+
+  it('Beta OVRD HeroSection opens the scholarship modal when "View Scholarship Details" is clicked', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=beta-ovrd-campaign-info-block]').should(
+      'have.length',
+      1,
+    );
+    cy.contains('button', 'View Scholarship Details').click();
+    cy.get('[data-test=beta-page-scholarship-details]').should(
+      'have.length',
+      1,
+    );
+    cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
+    cy.get('[data-test=beta-page-scholarship-details]').should(
+      'have.length',
+      0,
     );
   });
 

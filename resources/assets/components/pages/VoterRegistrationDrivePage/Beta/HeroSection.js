@@ -20,7 +20,10 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    */
   return (
     <div className="hero-landing-page">
-      <CoverImage coverImage={coverImage} />
+      <CoverImage
+        attributes={{ 'data-test': 'beta-ovrd-page-cover-image' }}
+        coverImage={coverImage}
+      />
       <div className="clearfix bg-gray-100">
         <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
           <header role="banner" className="hero-banner">
@@ -46,12 +49,15 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
               {`${scholarshipAmount.toLocaleString()}`} scholarship!
             </p>
           </div>
-          <div className="grid-wide-3/10 secondary">
+          <div
+            data-test="beta-ovrd-campaign-info-block"
+            className="grid-wide-3/10 secondary"
+          >
             <CampaignInfoBlock
+              campaignId={campaignId}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
               showModal={modalToggle}
-              campaignId={campaignId}
             />
           </div>
         </div>

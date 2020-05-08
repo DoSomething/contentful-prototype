@@ -137,6 +137,7 @@ const BetaVoterRegistrationDrivePage = () => {
             trackingId="SCHOLARSHIP_MODAL_BETA_VOTER_REGISTRATION"
           >
             <ScholarshipInfoBlock
+              attributes={{ 'data-test': 'beta-page-scholarship-details' }}
               campaignId={campaignId}
               scholarshipAmount={scholarshipAmount}
               scholarshipDeadline={scholarshipDeadline}
