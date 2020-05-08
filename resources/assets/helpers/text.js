@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
 import markdownItAnchor from 'markdown-it-anchor';
+import markdownItCollapsible from 'markdown-it-collapsible';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import markdownItFootnote from 'markdown-it-footnote';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -76,6 +77,9 @@ function getMarkdownItInstance() {
 
   // Add linkable anchors to heading elements:
   markdownIt.use(markdownItAnchor, { slugify });
+
+  // Supports <details> and <summary> HTML elements via syntax: https://git.io/JfcPL
+  markdownIt.use(markdownItCollapsible);
 
   // We use 'markdown-it-for-inline' to make a simple overrides: https://git.io/Jv714
   // This rule transforms Markdown links to open in a new tab if external:

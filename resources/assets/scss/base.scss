@@ -106,6 +106,18 @@ a > * {
   border-radius: 0;
 }
 
+details {
+  @apply pb-3;
+}
+
+summary {
+  @apply font-bold;
+}
+
+details > *:not(summary) {
+  padding-top: 1.25em;
+}
+
 /*
 |-------------------------------------------------------------------------------
 | START: DEPRECATION WARNING!!
