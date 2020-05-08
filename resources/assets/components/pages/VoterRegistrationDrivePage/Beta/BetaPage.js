@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
 import gql from 'graphql-tag';
+import React, { useState } from 'react';
 import { useQuery } from 'react-apollo';
 
 import { gqlVariables } from './config';
 import ErrorPage from '../../ErrorPage';
 import HeroSection from './HeroSection';
-import { isDevEnvironment, query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
+import { isDevEnvironment, query } from '../../../../helpers';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
 import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import StartVoterRegistrationForm from './StartVoterRegistrationForm';

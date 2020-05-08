@@ -30,19 +30,66 @@ class SocialDriveAction extends React.Component {
     super(props);
 
     this.state = {
-      shortenedLink: null,
+      loading: true,
+      longUrl: this.getLongUrl(),
+      shortUrl: null,
     };
 
     this.linkInput = React.createRef();
   }
 
   componentDidMount() {
-    const { userId, token } = this.props;
+    this.getShortUrl(this.state.longUrl);
+  }
 
-    const href = dynamicString(this.props.link, { userId });
-    postRequest('/api/v2/links', { url: withoutTokens(href) }, token)
-      .then(({ url }) => this.setState({ shortenedLink: url }))
-      .catch(() => this.setState({ shortenedLink: href }));
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.longUrl !== prevState.longUrl) {
+      this.getShortUrl(this.state.longUrl);
+    }
+  }
+
+  /**
+   * Replaces any userId tokens, and appends query string if given.
+   *
+   * @param String queryStr
+   * @return String
+   */
+  getLongUrl(queryStr) {
+    let result = dynamicString(this.props.link, { userId: this.props.userId });
+
+    if (queryStr) {
+      // Append the queryStr to our current result.
+      result = `${result}${
+        this.props.link.includes('?') ? '&' : '?'
+      }${queryStr}`;
+    }
+
+    return result;
+  }
+
+  /**
+   * Executes API request to shorten given longUrl, and saves result to state.shortUrl.
+   *
+   * @param String longUrl
+   */
+  getShortUrl(longUrl) {
+    this.setState({ loading: true });
+
+    postRequest(
+      '/api/v2/links',
+      { url: withoutTokens(longUrl) },
+      this.props.token,
+    )
+      .then(apiResponse =>
+        this.setState({ loading: false, shortUrl: apiResponse.url }),
+      )
+      .catch(() =>
+        this.setState({
+          loading: false,
+          // Fallback to the long URL if API request fails.
+          shortUrl: longUrl,
+        }),
+      );
   }
 
   handleCopyLinkClick = () => {
@@ -65,6 +112,7 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       actionId,
+      queryOptions,
       link,
       fullWidth,
       shareCardDescription,
@@ -72,7 +120,7 @@ class SocialDriveAction extends React.Component {
       userId,
     } = this.props;
 
-    const { shortenedLink } = this.state;
+    const { shortUrl } = this.state;
 
     return (
       <div
@@ -92,8 +140,17 @@ class SocialDriveAction extends React.Component {
               </div>
             ) : null}
 
+            {queryOptions
+              ? React.cloneElement(queryOptions, {
+                  onChange: queryStr =>
+                    this.setState({
+                      longUrl: this.getLongUrl(queryStr),
+                    }),
+                })
+              : null}
+
             <div className="p-3">
-              <Embed url={link} />
+              <Embed url={this.state.longUrl} />
             </div>
 
             <div className="p-3 link-area">
@@ -107,14 +164,14 @@ class SocialDriveAction extends React.Component {
                   type="text"
                   ref={this.linkInput}
                   className="text-field link"
-                  value={shortenedLink || 'Loading...'}
-                  disabled={!shortenedLink}
+                  value={this.state.loading ? 'Loading...' : shortUrl}
+                  disabled={this.state.loading}
                 />
                 <button
                   type="button"
                   className="text-field link-copy-button"
                   onClick={this.handleCopyLinkClick}
-                  disabled={!shortenedLink}
+                  disabled={this.state.loading}
                 >
                   <img src={linkIcon} alt="link" />
                   <p>Copy link</p>
@@ -123,7 +180,7 @@ class SocialDriveAction extends React.Component {
             </div>
 
             <SocialShareTray
-              shareLink={shortenedLink}
+              shareLink={shortUrl}
               trackLink={link}
               title="Share on Social Media"
               responsive
@@ -142,11 +199,16 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
+  /**
+   * This prop allows us to force the "main" block to fill the width of the container.
+   * @see https://git.io/Jfnqy
+   */
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
-  shareCardTitle: PropTypes.string,
+  queryOptions: PropTypes.object,
   shareCardDescription: PropTypes.string,
+  shareCardTitle: PropTypes.string,
   token: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired,
 };
@@ -155,9 +217,10 @@ SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
   fullWidth: false,
+  pageId: null,
+  queryOptions: null,
   shareCardDescription: null,
   shareCardTitle: 'Your Online Drive',
-  pageId: null,
 };
 
 export default SocialDriveAction;

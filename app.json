@@ -61,6 +61,6 @@
       "required": true
     },
     "DS_ENABLE_NEW_HOMEPAGE": "true",
-    "DS_ENABLE_VOTER_REG_ALPHA_PAGE": "true"
+    "DS_ENABLE_VOTER_REG_BETA_PAGE": "true"
   }
 }
