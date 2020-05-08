@@ -116,6 +116,7 @@ const PaginatedCampaignGallery = ({
         <div className="p-6 text-center">
           {!loading ? (
             <ElementButton
+              attributes={{ 'data-test': 'view-more-button' }}
               className="font-normal text-gray-800 active:text-gray-900 hover:text-gray-800 underline hover:no-underline"
               onClick={handleViewMore}
               text="view more"

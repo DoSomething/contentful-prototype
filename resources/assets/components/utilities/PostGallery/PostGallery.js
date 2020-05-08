@@ -68,6 +68,7 @@ const PostGallery = props => {
       {loadMorePosts ? (
         <div className="p-6 text-center">
           <ElementButton
+            attributes={{ 'data-test': 'view-more-button' }}
             className="font-normal text-gray-800 active:text-gray-900 hover:text-gray-800 underline hover:no-underline"
             isLoading={loading}
             onClick={loadMorePosts}
