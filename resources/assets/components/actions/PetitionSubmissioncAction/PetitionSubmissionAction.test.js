@@ -51,6 +51,6 @@ describe('PetitionSubmissionAction component', () => {
     expect(wrapper.find('Card').length).toEqual(2);
     expect(wrapper.find('form').length).toEqual(1);
     expect(wrapper.find('textarea').length).toEqual(1);
-    expect(wrapper.find('Button').length).toEqual(1);
+    expect(wrapper.find('PrimaryButton').length).toEqual(1);
   });
 });
