@@ -5,7 +5,7 @@ import faker from 'faker';
 import { userFactory } from '../fixtures/user';
 
 const betaPagePath = '/us/my-voter-registration-drive';
-
+const mockUrl = faker.image.imageUrl();
 // Mock response for the campaignWebsite query within our BetaVoterRegistrationDrivePageQuery.
 const campaignWebsite = {
   campaignId: faker.random.number(),
@@ -17,6 +17,7 @@ const campaignWebsite = {
   scholarshipAmount: '1500',
   scholarshipDeadline: '2022-04-25T00:00-08:00',
   additionalContent: null,
+  url: mockUrl,
 };
 
 /**
@@ -126,7 +127,8 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
-  it('Beta OVRD Step One register to vote section displays as expected', () => {
+  it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
+
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -135,41 +137,11 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     });
 
     cy.visit(getBetaPagePathForUser(user));
+    
+    // Assert button href is present and contains correct url:
+    cy.get('[data-test=visit-voter-registration-campaign-button]')
+      .should('have.length', 1)
+      .should('have.attr', 'href', mockUrl);
 
-    cy.get('[data-test=voter-registration-form-card]').should('have.length', 1);
-    cy.get('[data-test=voter-registration-form-card] > header > h1').contains(
-      'Register online to vote',
-    );
-  });
-
-  it('Beta OVRD Step One register to vote section button is disabled when form is empty', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getBetaPagePathForUser(user));
-
-    cy.get('[data-test=voter-registration-submit-button]').should(
-      'be.disabled',
-    );
-  });
-
-  it('Beta OVRD Step One register to vote section button is enabled when form is filled in', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getBetaPagePathForUser(user));
-
-    cy.get('[data-id=voter-registration-email-field]').type('text@test.com');
-    cy.get('[data-id=voter-registration-zip-field]').type('12345');
-
-    cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
   });
 });

@@ -9,8 +9,8 @@ import { isDevEnvironment, query } from '../../../../helpers';
 import NotFoundPage from '../../NotFoundPage';
 import Modal from '../../../utilities/Modal/Modal';
 import Placeholder from '../../../utilities/Placeholder';
-import ButtonLink from '../../../utilities/ButtonLink/ButtonLink';
 import SiteFooter from '../../../utilities/SiteFooter/SiteFooter';
+import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import StartVoterRegistrationForm from './StartVoterRegistrationForm';
 import SiteNavigationContainer from '../../../SiteNavigation/SiteNavigationContainer';
 import ScholarshipInfoBlock from '../../../blocks/ScholarshipInfoBlock/ScholarshipInfoBlock';
@@ -99,8 +99,8 @@ const BetaVoterRegistrationDrivePage = () => {
           campaignInfo={data.campaignWebsite}
           modalToggle={modalToggle}
         />
-        <div className="bg-white">
-          <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
+        <div className="bg-white base-12-grid py-3 md:py-6">
+          <div className="mx-auto py-6 pitch-landing-page grid-wide">
             <ContentfulEntryLoader
               id={config.startVoterRegistration.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
@@ -119,7 +119,13 @@ const BetaVoterRegistrationDrivePage = () => {
               id={config.joinCampaign.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
-            <ButtonLink link={url}>Get Started</ButtonLink>
+            <PrimaryButton
+              attributes={{
+                'data-test': 'visit-voter-registration-campaign-button',
+              }}
+              href={url}
+              text="Get Started"
+            />
           </div>
         </div>
         {showScholarshipModal ? (
