@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import { votingReasons } from '../config';
 
-const VotingReasons = ({ onChange }) => {
+const VotingReasonsQueryOptions = ({ onChange }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
   useEffect(() => {
@@ -44,8 +44,8 @@ const VotingReasons = ({ onChange }) => {
   );
 };
 
-VotingReasons.propTypes = {
+VotingReasonsQueryOptions.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default VotingReasons;
+export default VotingReasonsQueryOptions;
