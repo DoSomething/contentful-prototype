@@ -17,9 +17,7 @@ const campaignWebsite = {
   scholarshipAmount: '1500',
   scholarshipDeadline: '2022-04-25T00:00-08:00',
   url: mockUrl,
-  additionalContent: {
-    numberOfScholarships: 1,
-  },
+  additionalContent: null,
 };
 
 /**
@@ -108,7 +106,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
-  it('Beta OVRD HeroSection displays scholarhsip info if it is provided', () => {
+  it('Beta OVRD HeroSection displays scholarhship info if it is provided', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -127,29 +125,6 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`$1,500`);
     cy.contains('button', 'View Scholarship Details');
     cy.contains(`April 25th, 2022`);
-  });
-
-  it('Beta OVRD HeroSection opens the scholarship modal when "View Scholarship Details" is clicked', () => {
-    const user = userFactory();
-
-    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
-      user,
-      campaignWebsite,
-    });
-
-    cy.visit(getBetaPagePathForUser(user));
-
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-campaign-info-block]',
-    ).should('have.length', 1);
-    cy.contains('button', 'View Scholarship Details').click();
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-scholarship-details]',
-    ).should('have.length', 1);
-    cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
-    cy.get(
-      '[data-test=beta-voter-registration-drive-page-scholarship-details]',
-    ).should('have.length', 0);
   });
 
   // Eventually the quote will change if a voting-options query parameter exists.
