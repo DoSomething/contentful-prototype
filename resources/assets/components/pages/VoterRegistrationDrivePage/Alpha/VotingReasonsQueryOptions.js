@@ -2,7 +2,7 @@ import { without } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import { votingReasons } from '../config';
+import { votingReasons } from './config';
 
 const VotingReasonsQueryOptions = ({ onChange }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
