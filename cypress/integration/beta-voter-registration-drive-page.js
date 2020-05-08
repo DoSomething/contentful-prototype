@@ -126,7 +126,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
-  it('Beta OVRD Step One Register to Vote Section Displays as Expected', () => {
+  it('Beta OVRD Step One register to vote section displays as expected', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -142,7 +142,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
-  it('Beta OVRD Step One Register to Vote Section Button Is Disabled When Form is Empty', () => {
+  it('Beta OVRD Step One register to vote section button is disabled when form is empty', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -157,7 +157,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
-  it('Beta OVRD Step One Register to Vote Section Button Is Enabled When Form is Filled In', () => {
+  it('Beta OVRD Step One register to vote section button is enabled when form is filled in', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -167,11 +167,8 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    const email = 'text@test.com';
-    const zip = '12345';
-
-    cy.get('[data-id=voter-registration-email-field]').type(email);
-    cy.get('[data-id=voter-registration-zip-field]').type(zip);
+    cy.get('[data-id=voter-registration-email-field]').type('text@test.com');
+    cy.get('[data-id=voter-registration-zip-field]').type('12345');
 
     cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
   });
