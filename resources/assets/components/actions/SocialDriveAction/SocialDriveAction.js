@@ -39,12 +39,12 @@ class SocialDriveAction extends React.Component {
   }
 
   componentDidMount() {
-    this.shortenLink(this.state.longUrl);
+    this.getShortUrl(this.state.longUrl);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.longUrl !== prevState.longUrl) {
-      this.shortenLink(this.state.longUrl);
+      this.getShortUrl(this.state.longUrl);
     }
   }
 
@@ -67,29 +67,12 @@ class SocialDriveAction extends React.Component {
     return result;
   }
 
-  handleCopyLinkClick = () => {
-    this.linkInput.current.select();
-
-    document.execCommand('copy');
-
-    trackAnalyticsEvent('clicked_copy_to_clipboard', {
-      action: 'button_clicked',
-      category: EVENT_CATEGORIES.campaignAction,
-      label: 'copy_to_clipboard',
-      context: {
-        campaignId: this.props.campaignId,
-        pageId: this.props.pageId,
-        url: this.props.link,
-      },
-    });
-  };
-
   /**
    * Executes API request to shorten given longUrl, and saves result to state.shortUrl.
    *
    * @param String longUrl
    */
-  shortenLink(longUrl) {
+  getShortUrl(longUrl) {
     this.setState({ loading: true });
 
     postRequest(
@@ -108,6 +91,23 @@ class SocialDriveAction extends React.Component {
         }),
       );
   }
+
+  handleCopyLinkClick = () => {
+    this.linkInput.current.select();
+
+    document.execCommand('copy');
+
+    trackAnalyticsEvent('clicked_copy_to_clipboard', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'copy_to_clipboard',
+      context: {
+        campaignId: this.props.campaignId,
+        pageId: this.props.pageId,
+        url: this.props.link,
+      },
+    });
+  };
 
   render() {
     const {
