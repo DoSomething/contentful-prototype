@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 
 import faker from 'faker';
+
 import { userFactory } from '../fixtures/user';
 
 const betaPagePath = '/us/my-voter-registration-drive';
@@ -127,6 +128,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
+
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -135,10 +137,11 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     });
 
     cy.visit(getBetaPagePathForUser(user));
-
+    
     // Assert button href is present and contains correct url:
     cy.get('[data-test=visit-voter-registration-campaign-button]')
       .should('have.length', 1)
       .should('have.attr', 'href', mockUrl);
+
   });
 });

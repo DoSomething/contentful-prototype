@@ -28,14 +28,14 @@ test('VoterRegistrationAction is rendered as a card component with a button', ()
   const wrapper = renderVoterRegistration();
 
   expect(wrapper.find('Card').length).toEqual(1);
-  expect(wrapper.find('ButtonLink').length).toEqual(1);
+  expect(wrapper.find('PrimaryButton').length).toEqual(1);
 });
 
 describe('clicking the VoterRegistrationAction button', () => {
   test('calls the event tracker prop function', () => {
     const wrapper = renderVoterRegistration();
 
-    wrapper.find('ButtonLink').simulate('click');
+    wrapper.find('PrimaryButton').simulate('click');
     expect(trackEventMock).toHaveBeenCalled();
   });
 });

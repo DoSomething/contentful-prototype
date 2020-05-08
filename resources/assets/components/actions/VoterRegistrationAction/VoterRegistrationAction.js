@@ -4,15 +4,13 @@ import PropTypes from 'prop-types';
 
 import Card from '../../utilities/Card/Card';
 import { dynamicString } from '../../../helpers';
-import ButtonLink from '../../utilities/ButtonLink/ButtonLink';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import TextContent from '../../utilities/TextContent/TextContent';
 import AnalyticsWaypoint from '../../utilities/AnalyticsWaypoint/AnalyticsWaypoint';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
-
-import './voter-registration-action.scss';
 
 export const VoterRegistrationBlockFragment = gql`
   fragment VoterRegistrationBlockFragment on VoterRegistrationBlock {
@@ -56,13 +54,20 @@ const VoterRegistrationAction = props => {
       title="Register to vote"
     >
       <AnalyticsWaypoint name="voter_registration_action-top" />
-      <div className="p-3 clearfix">
-        <TextContent>{content}</TextContent>
 
-        <ButtonLink link={parsedLink} onClick={handleClick}>
-          Start Registration
-        </ButtonLink>
+      <div className="p-3 clearfix">
+        <TextContent className="xl:float-left xl:pr-6 xl:w-2/3">
+          {content}
+        </TextContent>
+
+        <PrimaryButton
+          className="block xl:float-right mt-6 xl:mt-0 mx-auto text-lg w-full md:max-w-xs xl:w-1/3"
+          href={parsedLink}
+          onClick={handleClick}
+          text="Start Registration"
+        />
       </div>
+
       <AnalyticsWaypoint name="voter_registration_action-bottom" />
     </Card>
   );

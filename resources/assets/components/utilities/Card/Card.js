@@ -29,6 +29,7 @@ const renderHeader = (title, link, onClose) => (
 );
 
 const Card = ({
+  attributes,
   children,
   className = '',
   link = null,
@@ -37,6 +38,7 @@ const Card = ({
 }) => (
   <article
     className={classnames('card bg-white w-full clip-padding-box', className)}
+    {...attributes}
   >
     {title ? renderHeader(title, link, onClose) : null}
 
@@ -45,6 +47,7 @@ const Card = ({
 );
 
 Card.propTypes = {
+  attributes: PropTypes.object,
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
@@ -57,6 +60,7 @@ Card.propTypes = {
 };
 
 Card.defaultProps = {
+  attributes: {},
   className: null,
   link: null,
   onClose: null,

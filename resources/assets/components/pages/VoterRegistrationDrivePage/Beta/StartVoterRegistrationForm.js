@@ -18,44 +18,47 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
     return name === 'email' ? setEmail(value) : setZip(value);
   };
 
-  const handleClick = () => {
-    if (!isDisabled) {
-      trackAnalyticsEvent('click_voter_registration_action', {
-        action: 'button_clicked',
-        category: EVENT_CATEGORIES.campaignAction,
-        label: 'voter_registration',
-        context: {
-          campaignId,
-        },
-      });
-      window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
-    }
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    trackAnalyticsEvent('clicked_voter_registration_action', {
+      action: 'button_clicked',
+      category: EVENT_CATEGORIES.campaignAction,
+      label: 'voter_registration',
+      context: {
+        campaignId,
+      },
+    });
+
+    window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
   };
 
   return (
     <>
       <Card
+        attributes={{ 'data-test': 'voter-registration-form-card' }}
         className="md:w-3/5 bordered rounded"
         title="Register online to vote"
       >
-        <form className="form p-3">
+        <form onSubmit={handleSubmit} className="form p-3">
           <div className="form-item stretched">
             <label htmlFor="email" className="font-bold">
-              email
+              Email
               <input
                 className="text-field"
                 required
-                type="text"
+                type="email"
                 name="email"
                 value={email}
                 onChange={handleChange}
+                data-id="voter-registration-email-field"
               />
             </label>
           </div>
 
           <div className="form-item stretched">
             <label htmlFor="zip" className="font-bold">
-              zip code
+              Zip Code
               <input
                 className="text-field"
                 type="text"
@@ -63,14 +66,17 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 value={zip}
                 onChange={handleChange}
                 required
+                pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
+                data-id="voter-registration-zip-field"
               />
             </label>
           </div>
           <PrimaryButton
+            attributes={{ 'data-test': 'voter-registration-submit-button' }}
             className="w-full"
-            onClick={handleClick}
             isDisabled={isDisabled}
-            text="Register To Vote"
+            text="Get Started"
+            type="submit"
           />
         </form>
       </Card>
