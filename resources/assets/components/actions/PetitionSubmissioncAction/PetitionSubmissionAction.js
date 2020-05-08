@@ -7,10 +7,10 @@ import { Query as ApolloQuery } from 'react-apollo';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
-import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import FormValidation from '../../utilities/Form/FormValidation';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
@@ -150,59 +150,67 @@ class PetitionSubmissionAction extends PostForm {
 
               return (
                 <Card className="bordered rounded" title={title}>
-                  {submitted ? (
-                    <p className="p-3 affirmation-message">
-                      Thanks for signing the petition!
-                    </p>
-                  ) : null}
+                  <div className="p-3">
+                    {submitted ? (
+                      <p className="mb-6 affirmation-message">
+                        Thanks for signing the petition!
+                      </p>
+                    ) : null}
 
-                  {formResponse ? (
-                    <FormValidation response={formResponse} />
-                  ) : null}
-                  <TextContent className="p-3">{content}</TextContent>
+                    {formResponse ? (
+                      <FormValidation response={formResponse} />
+                    ) : null}
 
-                  <form onSubmit={this.handleSubmit}>
-                    <div className="p-3">
+                    <TextContent className="mb-6">{content}</TextContent>
+
+                    <form onSubmit={this.handleSubmit}>
                       <textarea
-                        className={classnames('text-field petition-textarea', {
-                          'has-error shake': has(formErrors, 'text'),
-                        })}
+                        className={classnames(
+                          'block mb-2 text-field petition-textarea',
+                          {
+                            'has-error shake': has(formErrors, 'text'),
+                          },
+                        )}
                         placeholder={textFieldPlaceholder}
                         value={message || this.state.textValue}
                         onChange={this.handleChange}
                         disabled={submitted}
                       />
+
                       <CharacterLimit
+                        className="mb-3"
                         limit={CHARACTER_LIMIT}
                         text={this.state.textValue}
                       />
-                    </div>
 
-                    {userId ? (
-                      <div className="p-3">
-                        <p className="petition-signature-label pb-2">Signed,</p>
-                        <input
-                          className="text-field petition-signature"
-                          type="text"
-                          disabled
-                          value={signature}
-                        />
-                      </div>
-                    ) : null}
+                      {userId ? (
+                        <>
+                          <p className="petition-signature-label mb-2 mt-6">
+                            Signed,
+                          </p>
+                          <input
+                            className="text-field petition-signature"
+                            type="text"
+                            disabled
+                            value={signature}
+                          />
+                        </>
+                      ) : null}
 
-                    <Button
-                      type="submit"
-                      attached
-                      loading={submissionItem && submissionItem.isPending}
-                      disabled={
-                        submitted ||
-                        this.state.textValue.length > CHARACTER_LIMIT
-                      }
-                    >
-                      {buttonText}
-                    </Button>
-                    <PrivacyLanguage className="pb-4 pt-2 px-3" />
-                  </form>
+                      <PrimaryButton
+                        className="block mt-6 text-lg w-full"
+                        isDisabled={
+                          submitted ||
+                          this.state.textValue.length > CHARACTER_LIMIT
+                        }
+                        isLoading={submissionItem && submissionItem.isPending}
+                        text={buttonText}
+                        type="submit"
+                      />
+
+                      <PrivacyLanguage className="mb-1 mt-5" />
+                    </form>
+                  </div>
                 </Card>
               );
             }}
