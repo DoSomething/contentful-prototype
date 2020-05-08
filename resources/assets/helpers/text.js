@@ -1,12 +1,12 @@
 import React from 'react';
-import { get, isArray, isString, kebabCase } from 'lodash';
 import classnames from 'classnames';
 import MarkdownIt from 'markdown-it';
 import iterator from 'markdown-it-for-inline';
 import markdownItAnchor from 'markdown-it-anchor';
+import markdownItFootnote from 'markdown-it-footnote';
+import { get, isArray, isString, kebabCase } from 'lodash';
 import markdownItCollapsible from 'markdown-it-collapsible';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
-import markdownItFootnote from 'markdown-it-footnote';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import { contentfulImageUrl, isExternal } from '.';
