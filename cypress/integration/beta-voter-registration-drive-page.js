@@ -4,7 +4,7 @@ import faker from 'faker';
 import { userFactory } from '../fixtures/user';
 
 const betaPagePath = '/us/my-voter-registration-drive';
-
+const mockUrl = faker.image.imageUrl();
 // Mock response for the campaignWebsite query within our BetaVoterRegistrationDrivePageQuery.
 const campaignWebsite = {
   campaignId: faker.random.number(),
@@ -16,6 +16,7 @@ const campaignWebsite = {
   scholarshipAmount: '1500',
   scholarshipDeadline: '2022-04-25T00:00-08:00',
   additionalContent: null,
+  url: mockUrl,
 };
 
 /**
@@ -124,9 +125,20 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
       `250,000+ young people have registered to vote via DoSomething (it takes less than 2 minutes!). After you register, share with your friends to enter to win a $1,500 scholarship!`,
     );
   });
-});
 
-it(`Search for PrimaryButton on beta page, expected href to match GraphQL URL returned from query`, () => {
-  // Assert button href is present and contains correct url:
-  cy.get('.btn').should('have.attr', 'href');
+  it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    // Assert button href is present and contains correct url:
+    cy.get('[data-test=visit-voter-registration-campaign-button]')
+      .should('have.length', 1)
+      .should('have.attr', 'href', mockUrl);
+  });
 });

@@ -119,7 +119,13 @@ const BetaVoterRegistrationDrivePage = () => {
               id={config.joinCampaign.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
             />
-            <PrimaryButton href={url} text="Get Started" />
+            <PrimaryButton
+              attributes={{
+                'data-test': 'visit-voter-registration-campaign-button',
+              }}
+              href={url}
+              text="Get Started"
+            />
           </div>
         </div>
         {showScholarshipModal ? (
