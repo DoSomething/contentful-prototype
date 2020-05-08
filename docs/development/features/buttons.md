@@ -6,14 +6,14 @@ There are currently two **core** button components and the rest of the more spec
 
 The two core button components are:
 
-- [LinkButton](./linkbutton) \(renders a basic anchor link element `<a>` that looks like a button\)
-- [ElementButton](./elementbutton) \(renders a basic button element `<button>`\)
+- [LinkButton](#linkbutton) \(renders a basic anchor link element `<a>` that looks like a button\)
+- [ElementButton](#elementbutton) \(renders a basic button element `<button>`\)
 
 Some of the specialized buttons that extend from the above core button components are:
 
-- [PrimaryButton](./primarybutton)
-- [SecondaryButton](./secondarybutton)
-- [ToggleButton](./togglebutton)
+- [PrimaryButton](#primarybutton)
+- [SecondaryButton](#secondarybutton)
+- [ToggleButton](#togglebutton)
 
 We'll review what makes each different and how to use them in the following section.
 
@@ -61,15 +61,15 @@ Example HTML output:
 >
 ```
 
-Example Rendered output:
+Example rendered output:
 
-![LinkButton Example]('../../.gitbook/assets/link-button-example.png)
+![LinkButton Example](../../.gitbook/assets/link-button-example.png)
 
 #### Important Notes
 
 Anchor links in the browser do not support the `disabled` attribute. If added to an `<a>` it does absolutely nothing and the link can still be clicked, thus the `LinkButton` does not support the `isDisabled` property.
 
-If you need a button that can be disabled in the interface, please use a button component that outputs a `<button>` element, like the [ElementButton](./elementbutton) component.
+If you need a button that can be disabled in the interface, please use a button component that outputs a `<button>` element, like the [ElementButton](#elementbutton) component.
 
 If the `href` URL passed to the `LinkButton` component is an external URL, the component will automatically add appropriate attributes (`target` and `rel`) and values to allow the link to open in a new browser tab. If you do not want an external link to open in a new browser tab, or alternatively, if you want internal links to open in a new browser tab you can override the default behavior by passing the appropriate attributes and values using the `attributes` property. You can see this in `LinkButton` example above.
 
@@ -113,15 +113,89 @@ Example HTML output:
 </button>
 ```
 
-Example Rendered output:
+Example rendered output:
 
-![ElementButton Example]('../../.gitbook/assets/element-button-example.png)
+![ElementButton Example](../../.gitbook/assets/element-button-example.png)
 
 #### Important Notes
 
 By default, the `ElementButton` will output a `<button type="button">` with a `type` of `button`. However, you can pass a `type` property to the component to output a submit button for use in forms as we do in the `ElementButton` example above.
 
 ### PrimaryButton
+
+The `PrimaryButton` component outputs a pre-configured "primary styled" button. It extends the `LinkButton` or `ElementButton` depending on the properties supplied, and outputs a link or element button respectively, with all the styling to make it visually render as a "primary styled" button with associated visual states.
+
+Primary buttons have a blurple background and border with white text, along with associated pseudo state styles. You can pass additional Tailwind classes to further style the padding, text size, etc of the button, but you should not be overriding colors and other styles that specifically define it as a primary button.
+
+This type of button should be used clicking to submit data, launch a link to a URL or show/hide interface elements, without changing its visual appearance as a "primary styled" button.
+
+#### Usage for PrimaryButton as LinkButton
+
+Example component use:
+
+```js
+import PrimaryButton from '../utilities/Button/PrimaryButton';
+
+// stuff
+
+<PrimaryButton
+  attributes={{ 'data-label': 'some_useful_data' }}
+  className="px-8 py-4 text-lg"
+  href="/"
+  onClick={trackAnalyticsEvent}
+  text="Join The Cause"
+/>;
+```
+
+Example HTML output:
+
+```html
+<a
+  class="btn bg-blurple-500 border-blurple-500 active:bg-blurple-700 focus:bg-blurple-400 hover:bg-blurple-400 border-2 border-solid active:border-blurple-700 focus:border-blurple-400 hover:border-blurple-400 focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base text-white hover:text-white px-8 py-4 text-lg"
+  href="/"
+  data-label="some_useful_data"
+  >Join The Cause</a
+>
+```
+
+Example rendered output:
+
+![PrimayButton As LinkButton Example](../../.gitbook/assets/primary-button-as-link-button-example.png)
+
+#### Usage for PrimaryButton as ElementButton
+
+Example component use:
+
+```js
+import PrimaryButton from '../utilities/Button/PrimaryButton';
+
+// stuff
+
+<PrimaryButton
+  attributes={{ 'data-label': 'some_useful_data' }}
+  className="px-8 py-4 text-lg"
+  isDisabled={isDisabledCheck}
+  isLoading={isLoadingCheck}
+  onClick={handleOnClick}
+  text="Do This Thing"
+/>;
+```
+
+Example HTML output:
+
+```html
+<button
+  class="btn bg-blurple-500 border-blurple-500 active:bg-blurple-700 focus:bg-blurple-400 hover:bg-blurple-400 border-2 border-solid active:border-blurple-700 focus:border-blurple-400 hover:border-blurple-400 focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base text-white hover:text-white px-8 py-4 text-lg"
+  type="button"
+  data-label="some_useful_data"
+>
+  Do This Thing
+</button>
+```
+
+Example rendered output:
+
+![PrimayButton As ElementButton Example](../../.gitbook/assets/primary-button-as-button-element-example.png)
 
 ### SecondaryButton
 
