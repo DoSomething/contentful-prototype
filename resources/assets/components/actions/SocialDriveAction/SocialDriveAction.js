@@ -97,7 +97,9 @@ class SocialDriveAction extends React.Component {
       { url: withoutTokens(longUrl) },
       this.props.token,
     )
-      .then(res => this.setState({ loading: false, shortUrl: res.url }))
+      .then(apiResponse =>
+        this.setState({ loading: false, shortUrl: apiResponse.url }),
+      )
       .catch(() =>
         this.setState({
           loading: false,
@@ -140,7 +142,7 @@ class SocialDriveAction extends React.Component {
 
             {queryOptions
               ? React.cloneElement(queryOptions, {
-                  onSelect: queryStr =>
+                  onChange: queryStr =>
                     this.setState({
                       longUrl: this.getLongUrl(queryStr),
                     }),

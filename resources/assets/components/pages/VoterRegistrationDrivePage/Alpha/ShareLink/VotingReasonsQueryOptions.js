@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 
 import { votingReasons } from '../config';
 
-const VotingReasons = ({ onSelect }) => {
+const VotingReasons = ({ onChange }) => {
   const [selectedVotingReasons, setSelectedVotingReasons] = useState([]);
 
   useEffect(() => {
-    onSelect(
+    onChange(
       selectedVotingReasons.length
         ? `voting-reasons=${selectedVotingReasons.join(',')}`
         : null,
@@ -45,11 +45,7 @@ const VotingReasons = ({ onSelect }) => {
 };
 
 VotingReasons.propTypes = {
-  onSelect: PropTypes.func,
-};
-
-VotingReasons.defaultProps = {
-  onSelect: PropTypes.null,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default VotingReasons;
