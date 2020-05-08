@@ -16,8 +16,8 @@ const campaignWebsite = {
   },
   scholarshipAmount: '1500',
   scholarshipDeadline: '2022-04-25T00:00-08:00',
-  url: mockUrl,
   additionalContent: null,
+  url: mockUrl,
 };
 
 /**
