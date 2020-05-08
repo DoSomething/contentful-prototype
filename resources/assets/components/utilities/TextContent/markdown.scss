@@ -143,3 +143,16 @@
     overflow-wrap: break-word;
   }
 }
+
+details {
+  @apply pb-3;
+}
+
+details > *:not(summary) {
+  @apply pt-5;
+}
+
+summary {
+  @apply font-bold;
+  font-size: 18px;
+}
