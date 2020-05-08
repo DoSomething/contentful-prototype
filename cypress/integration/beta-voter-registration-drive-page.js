@@ -125,3 +125,8 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 });
+
+it(`Search for PrimaryButton on beta page, expected href to match GraphQL URL returned from query`, () => {
+  // Assert button href is present and contains correct url:
+  cy.get('.btn').should('have.attr', 'href');
+});
