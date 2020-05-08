@@ -21,7 +21,9 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   return (
     <div className="hero-landing-page">
       <CoverImage
-        attributes={{ 'data-test': 'beta-ovrd-page-cover-image' }}
+        attributes={{
+          'data-test': 'beta-voter-registration-drive-page-cover-image',
+        }}
         coverImage={coverImage}
       />
       <div className="clearfix bg-gray-100">
@@ -50,7 +52,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
             </p>
           </div>
           <div
-            data-test="beta-ovrd-campaign-info-block"
+            data-test="beta-voter-registration-drive-page-campaign-info-block"
             className="grid-wide-3/10 secondary"
           >
             <CampaignInfoBlock

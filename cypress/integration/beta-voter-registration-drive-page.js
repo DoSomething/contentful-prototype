@@ -82,7 +82,10 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=beta-ovrd-page-cover-image]').should('have.length', 1);
+    cy.get('[data-test=beta-voter-registration-drive-page-cover-image]').should(
+      'have.length',
+      1,
+    );
   });
 
   it('Beta OVRD HeroSection displays referrer first name if referrer user found', () => {
@@ -115,14 +118,14 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=beta-ovrd-campaign-info-block]').should(
-      'have.length',
-      1,
-    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-campaign-info-block]',
+    ).should('have.length', 1);
     cy.contains('Win A Scholarship');
     cy.get(
-      '[data-test=beta-ovrd-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
+      '[data-test=beta-voter-registration-drive-page-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
     ).contains(`$1,500`);
+    cy.contains('button', 'View Scholarship Details');
     cy.contains(`April 25th, 2022`);
   });
 
@@ -136,20 +139,17 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.visit(getBetaPagePathForUser(user));
 
-    cy.get('[data-test=beta-ovrd-campaign-info-block]').should(
-      'have.length',
-      1,
-    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-campaign-info-block]',
+    ).should('have.length', 1);
     cy.contains('button', 'View Scholarship Details').click();
-    cy.get('[data-test=beta-page-scholarship-details]').should(
-      'have.length',
-      1,
-    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-scholarship-details]',
+    ).should('have.length', 1);
     cy.get('.modal-portal > .wrapper.modal-container').click('topRight');
-    cy.get('[data-test=beta-page-scholarship-details]').should(
-      'have.length',
-      0,
-    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-scholarship-details]',
+    ).should('have.length', 0);
   });
 
   // Eventually the quote will change if a voting-options query parameter exists.
@@ -190,7 +190,6 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
-
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -199,11 +198,10 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     });
 
     cy.visit(getBetaPagePathForUser(user));
-    
+
     // Assert button href is present and contains correct url:
     cy.get('[data-test=visit-voter-registration-campaign-button]')
       .should('have.length', 1)
       .should('have.attr', 'href', mockUrl);
-
   });
 });
