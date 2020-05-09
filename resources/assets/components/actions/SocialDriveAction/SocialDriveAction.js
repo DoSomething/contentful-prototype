@@ -112,9 +112,10 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       actionId,
-      queryOptions,
-      link,
+      display,
       fullWidth,
+      link,
+      queryOptions,
       shareCardDescription,
       shareCardTitle,
       userId,
@@ -150,7 +151,18 @@ class SocialDriveAction extends React.Component {
               : null}
 
             <div className="p-3">
-              <Embed url={this.state.longUrl} />
+              {display === 'embed' ? (
+                <Embed url={this.state.longUrl} />
+              ) : (
+                <a
+                  className="font-normal underline"
+                  href={this.state.loading ? null : this.state.longUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  preview your custom page
+                </a>
+              )}
             </div>
 
             <div className="p-3 link-area">
@@ -199,6 +211,7 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
+  display: PropTypes.oneOf(['embed', 'link']),
   /**
    * This prop allows us to force the "main" block to fill the width of the container.
    * @see https://git.io/Jfnqy
@@ -216,6 +229,7 @@ SocialDriveAction.propTypes = {
 SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
+  display: 'embed',
   fullWidth: false,
   pageId: null,
   queryOptions: null,

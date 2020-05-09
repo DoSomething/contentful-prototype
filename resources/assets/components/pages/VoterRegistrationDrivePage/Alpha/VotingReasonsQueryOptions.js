@@ -61,7 +61,7 @@ VotingReasonsQueryOptions.propTypes = {
   onChange: PropTypes.func,
 };
 
-VotingReasonsQueryOptions.propTypes = {
+VotingReasonsQueryOptions.defaultProps = {
   onChange: null,
 };
 

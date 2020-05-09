@@ -28,6 +28,7 @@ const AlphaPage = ({ userId }) => {
       <div className="grid-wide">
         <SocialDriveActionContainer
           actionId={config.shareLink.actionId}
+          display="preview"
           link={
             betaPageEnabled
               ? `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${userId}`
