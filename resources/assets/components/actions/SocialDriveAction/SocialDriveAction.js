@@ -112,7 +112,6 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       actionId,
-      display,
       fullWidth,
       link,
       queryOptions,
@@ -151,24 +150,26 @@ class SocialDriveAction extends React.Component {
               : null}
 
             <div className="p-3">
-              {display === 'embed' ? (
-                <Embed url={this.state.longUrl} />
-              ) : (
+              {queryOptions ? (
                 <a
-                  className="font-normal underline"
-                  href={this.state.loading ? null : this.state.longUrl}
+                  className="font-normal underline text-blurple-500"
+                  href={this.state.longUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   preview your custom page
                 </a>
+              ) : (
+                <Embed url={this.state.longUrl} />
               )}
             </div>
 
             <div className="p-3 link-area">
-              <div className="share-text">
-                <p>Share your link:</p>
-              </div>
+              {!queryOptions ? (
+                <div className="share-text">
+                  <p>Share your link:</p>
+                </div>
+              ) : null}
 
               <div className="link-bar">
                 <input
@@ -211,7 +212,6 @@ class SocialDriveAction extends React.Component {
 SocialDriveAction.propTypes = {
   actionId: PropTypes.number,
   campaignId: PropTypes.string,
-  display: PropTypes.oneOf(['embed', 'link']),
   /**
    * This prop allows us to force the "main" block to fill the width of the container.
    * @see https://git.io/Jfnqy
@@ -219,6 +219,10 @@ SocialDriveAction.propTypes = {
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
+  /**
+   * This prop expects a React component to allow user customization of link prop's query string.
+   * @see /resources/assets/components/pages/VoterRegistrationDrivePage/Alpha/AlphaPage
+   */
   queryOptions: PropTypes.object,
   shareCardDescription: PropTypes.string,
   shareCardTitle: PropTypes.string,
@@ -229,7 +233,6 @@ SocialDriveAction.propTypes = {
 SocialDriveAction.defaultProps = {
   actionId: null,
   campaignId: null,
-  display: 'embed',
   fullWidth: false,
   pageId: null,
   queryOptions: null,
