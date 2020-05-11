@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import QueryString from 'query-string';
+
+import { query } from '../../../../helpers';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
-import votingReasons from '../../../pages/VoterRegistrationDrivePage/Beta/config';
 
 const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   const { firstName } = user;
@@ -20,12 +20,24 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    * @see https://www.pivotaltracker.com/story/show/172087475
    */
 
-  QueryString.parse(location.search);
-  /*
-Query url
-check for votingReasons
-append to p tag
-*/
+  const formatEndofBetaCauseSentence = () => {
+    let userCauses = query('voting-reasons').split(',');
+
+    if (userCauses && userCauses.length) {
+      userCauses
+        .reduce((accumulator, currentCause, idx) => {
+          return (
+            accumulator +
+            currentCause +
+            (idx === userCauses.length - 2 ? 'and' : ', ')
+          );
+        }, '')
+        .slice(0, -2);
+      return `like ${userCauses}`;
+    }
+    return;
+  };
+
   return (
     <div className="hero-landing-page">
       <CoverImage
@@ -46,7 +58,8 @@ append to p tag
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can effect
-                change on issues we care about most.
+                change on issues we care about most{' '}
+                {formatEndofBetaCauseSentence()}.
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}
