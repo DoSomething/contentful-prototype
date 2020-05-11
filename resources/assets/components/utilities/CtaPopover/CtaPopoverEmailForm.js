@@ -85,7 +85,7 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
 
       <form className="form flex pb-2" onSubmit={handleSubmit}>
         <input
-          className="text-field border-0 rounded-bl rounded-br-none rounded-tl rounded-tr-none"
+          className="border-0 p-3 rounded-bl rounded-br-none rounded-tl rounded-tr-none w-full"
           type="text"
           value={emailValue}
           placeholder="Enter your email address"
