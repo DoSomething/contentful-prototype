@@ -25,6 +25,9 @@ const onLinkClick = (link, context) => {
   });
 };
 
+/**
+ * @deprecated This template component is being deprecated in favor of the CallToActionBlock.
+ */
 const CtaTemplate = ({
   buttonText,
   campaignId,
