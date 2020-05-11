@@ -43,10 +43,6 @@ const mapStateToProps = (state, props) => ({
   content: state.campaign.blurb,
   dashboard: state.campaign.dashboard,
   endDate: state.campaign.endDate,
-  featureFlagUseLegacyTemplate: get(
-    state,
-    'campaign.additionalContent.featureFlagUseLegacyTemplate',
-  ),
   isAffiliated: isSignedUp(state),
   scholarshipAmount: state.campaign.scholarshipAmount,
   scholarshipCallToAction: state.campaign.scholarshipCallToAction,
