@@ -36,7 +36,8 @@ const App = ({ store, history }) => {
   return (
     <ReduxProvider store={store}>
       <ErrorBoundary FallbackComponent={ErrorPage}>
-        {featureFlag('sitewide_cta_banner') ? (
+        {featureFlag('sitewide_cta_banner') &&
+        window.location.pathname !== '/us/my-voter-registration-drive' ? (
           <DismissableElement
             name="sitewide_banner_call_to_action"
             daysToReRender={7}
