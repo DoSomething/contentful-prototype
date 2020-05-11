@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { contentfulImageUrl, contentfulImageSrcset } from '../../../helpers';
 
-const CoverImage = ({ coverImage }) => {
+const CoverImage = ({ attributes, coverImage }) => {
   const srcset = contentfulImageSrcset(get(coverImage, 'url'), [
     { height: 360, width: 640 },
     { height: 576, width: 1024 },
@@ -12,7 +12,10 @@ const CoverImage = ({ coverImage }) => {
     { height: 1620, width: 2880 },
   ]);
   return (
-    <div className="base-12-grid bg-gray-100 cover-image py-3 md:py-6">
+    <div
+      className="base-12-grid bg-gray-100 cover-image py-3 md:py-6"
+      {...attributes}
+    >
       <img
         className="grid-wide"
         alt={
@@ -27,7 +30,12 @@ const CoverImage = ({ coverImage }) => {
 };
 
 CoverImage.propTypes = {
+  attributes: PropTypes.object,
   coverImage: PropTypes.object.isRequired,
+};
+
+CoverImage.defaultProps = {
+  attributes: {},
 };
 
 export default CoverImage;

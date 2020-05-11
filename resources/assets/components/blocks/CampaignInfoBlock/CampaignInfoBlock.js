@@ -41,7 +41,10 @@ const CampaignInfoBlock = ({
   showModal,
   actionIdToDisplay,
 }) => (
-  <Card className="bordered p-3 rounded campaign-info">
+  <Card
+    attributes={{ 'data-test': 'campaign-info-block-container' }}
+    className="bordered p-3 rounded campaign-info"
+  >
     <Query query={CAMPAIGN_INFO_QUERY} variables={{ campaignId }}>
       {res => {
         const endDate = res.campaign.endDate;
@@ -99,6 +102,7 @@ const CampaignInfoBlock = ({
                   {!hideScholarshipDetails ? (
                     <div>
                       <button
+                        data-test="campaign-info-block-scholarship-details-link"
                         className="text-blue-500 pb-4"
                         type="button"
                         onClick={handleViewMoreLinkSelect}

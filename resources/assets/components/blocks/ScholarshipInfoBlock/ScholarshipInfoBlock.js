@@ -50,6 +50,7 @@ const SCHOLARSHIP_INFO_QUERY = gql`
 const ScholarshipInfoBlock = ({
   actionIdToDisplay,
   affiliateSponsors,
+  attributes,
   campaignId,
   children,
   scholarshipAmount,
@@ -117,7 +118,7 @@ const ScholarshipInfoBlock = ({
   }
 
   return (
-    <Card className="flex flex-col-reverse md:flex-row">
+    <Card attributes={attributes} className="flex flex-col-reverse md:flex-row">
       <div className="md:w-1/2 p-6 mx-2 md:mx-4">
         <div className="h-16">
           <div className="float-left mr-4">
@@ -287,6 +288,7 @@ const ScholarshipInfoBlock = ({
 ScholarshipInfoBlock.propTypes = {
   actionIdToDisplay: PropTypes.number,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
+  attributes: PropTypes.object,
   campaignId: PropTypes.number,
   children: PropTypes.object,
   scholarshipAmount: PropTypes.number.isRequired,
@@ -300,6 +302,7 @@ ScholarshipInfoBlock.propTypes = {
 ScholarshipInfoBlock.defaultProps = {
   actionIdToDisplay: null,
   affiliateSponsors: [],
+  attributes: {},
   campaignId: null,
   children: null,
   scholarshipCallToAction: 'Win A Scholarship',

@@ -27,6 +27,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
       label: 'voter_registration',
       context: {
         campaignId,
+        contextSource: 'beta-voter-registration-drive-page',
       },
     });
 

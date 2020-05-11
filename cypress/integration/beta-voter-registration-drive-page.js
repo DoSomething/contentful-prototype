@@ -70,6 +70,22 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     );
   });
 
+  it('Beta OVRD HeroSection displays a cover image', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=beta-voter-registration-drive-page-cover-image]').should(
+      'have.length',
+      1,
+    );
+  });
+
   it('Beta OVRD HeroSection displays referrer first name if referrer user found', () => {
     const user = userFactory();
 
@@ -88,6 +104,27 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get('.hero-banner__headline-subtitle').contains(
       `${user.firstName} has invited you to register to vote!`,
     );
+  });
+
+  it('Beta OVRD HeroSection displays scholarhship info if it is provided', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-campaign-info-block]',
+    ).should('have.length', 1);
+    cy.contains('Win A Scholarship');
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-campaign-info-block] > article > dl > dd.campaign-info__scholarship',
+    ).contains(`$1,500`);
+    cy.contains('button', 'View Scholarship Details');
+    cy.contains(`April 25th, 2022`);
   });
 
   // Eventually the quote will change if a voting-options query parameter exists.
@@ -128,7 +165,6 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
   });
 
   it('Beta OVRD displays campaign href, expects href to match GraphQL URL returned from query', () => {
-
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -137,11 +173,10 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     });
 
     cy.visit(getBetaPagePathForUser(user));
-    
+
     // Assert button href is present and contains correct url:
     cy.get('[data-test=visit-voter-registration-campaign-button]')
       .should('have.length', 1)
       .should('have.attr', 'href', mockUrl);
-
   });
 });

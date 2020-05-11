@@ -130,6 +130,9 @@ const HeroTemplate = ({
             <ScholarshipInfoBlock
               actionIdToDisplay={actionIdToDisplay}
               affiliateSponsors={affiliateSponsors}
+              attributes={{
+                'data-test': 'campaign-info-block-scholarship-details',
+              }}
               campaignId={numCampaignId}
               scholarshipAmount={scholarshipAmount}
               scholarshipCallToAction={scholarshipCallToAction || undefined}
