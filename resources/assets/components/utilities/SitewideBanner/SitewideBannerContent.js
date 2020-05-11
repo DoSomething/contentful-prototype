@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PrimaryButton from '../Button/PrimaryButton';
-import CloseButton from '../../artifacts/CloseButton/CloseButton';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
+import PrimaryButton from '../Button/PrimaryButton';
+import CloseButton from '../../artifacts/CloseButton/CloseButton';
 
 const SitewideBannerContent = ({
   attributes,
