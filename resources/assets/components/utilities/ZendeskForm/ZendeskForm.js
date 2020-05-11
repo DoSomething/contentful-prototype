@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import Card from '../Card/Card';
-import Button from '../Button/Button';
 import { report } from '../../../helpers';
 import { postRequest } from '../../../helpers/api';
+import PrimaryButton from '../Button/PrimaryButton';
 import { HELP_LINK, HELP_REQUEST_LINK } from '../../../constants';
 
 const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
@@ -40,14 +40,14 @@ const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
 
   return (
     <Card title={title} className="rounded bordered zendesk-form">
-      {status.success ? (
-        <p className="p-3 pb-6">
-          Thanks for reaching out! We&apos;ve received your submission and will
-          be in touch in 1-2 business days.
-        </p>
-      ) : (
-        <>
-          <div className="p-3">
+      <div className="p-3">
+        {status.success ? (
+          <p className="pb-3">
+            Thanks for reaching out! We&apos;ve received your submission and
+            will be in touch in 1-2 business days.
+          </p>
+        ) : (
+          <>
             <p>
               We&apos;re sorry you&apos;re having a problem! Get your questions
               answered right away by first{' '}
@@ -62,15 +62,17 @@ const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
               which are updated regularly. If you still have questions, please
               complete the form below.
             </p>
-            <p>
+
+            <p className="mt-8">
               If you&apos;re having a technical issue, please be sure to provide
               detailed steps (click by click) on how you encountered the
               problem, what browser you&apos;re using, and if you&apos;re using
               a phone or computer. This will help our team recreate the issue
               and come up with a solution.
             </p>
+
             {status.error ? (
-              <p className="text-red-500">
+              <p className="mt-8 text-red-500">
                 <strong>Something went wrong!</strong> Try refreshing the page
                 or{' '}
                 <a
@@ -83,11 +85,10 @@ const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
                 to us.
               </p>
             ) : null}
-          </div>
-          <form onSubmit={handleSubmit}>
-            <div className="px-3">
+
+            <form className="mt-3" onSubmit={handleSubmit}>
               <textarea
-                className={classNames('text-field h-48', {
+                className={classNames('block mb-2 text-field h-48', {
                   'has-error': status.error,
                 })}
                 id="question"
@@ -96,18 +97,18 @@ const ZendeskForm = ({ campaignId, campaignName, faqsLink, token }) => {
                 value={question}
                 onChange={event => setQuestion(event.target.value)}
               />
-            </div>
-            <Button
-              type="submit"
-              disabled={!question}
-              loading={status.loading}
-              attached
-            >
-              Submit
-            </Button>
-          </form>
-        </>
-      )}
+
+              <PrimaryButton
+                className="block mt-6 text-lg w-full"
+                isDisabled={!question}
+                isLoading={status.loading}
+                text="Submit"
+                type="submit"
+              />
+            </form>
+          </>
+        )}
+      </div>
     </Card>
   );
 };
