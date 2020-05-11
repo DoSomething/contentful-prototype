@@ -39,9 +39,7 @@ const AlphaPage = ({ userId }) => {
               ? 'Urge your friend to vote based on the causes you care about most.'
               : null
           }
-          shareCardTitle={
-            betaPageEnabled ? 'Share with your friends' : 'Your online drive'
-          }
+          shareCardTitle={ betaPageEnabled ? 'Share with your friends' : undefined }
         />
       </div>
     </div>
