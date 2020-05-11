@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import QueryString from 'query-string';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
+import votingReasons from '../../../pages/VoterRegistrationDrivePage/Beta/config';
 
 const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   const { firstName } = user;
@@ -18,6 +19,13 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    * TODO: Check for a voting-reasons query parameter, and render values in quote if present.
    * @see https://www.pivotaltracker.com/story/show/172087475
    */
+
+  QueryString.parse(location.search);
+  /*
+Query url
+check for votingReasons
+append to p tag
+*/
   return (
     <div className="hero-landing-page">
       <CoverImage
