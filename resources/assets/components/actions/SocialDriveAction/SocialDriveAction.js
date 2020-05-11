@@ -59,6 +59,8 @@ class SocialDriveAction extends React.Component {
 
     if (queryStr) {
       // Append the queryStr to our current result.
+      // @TODO: Refactor to use appendToQuery helper.
+      // @see https://github.com/DoSomething/phoenix-next/pull/2114#discussion_r422352265
       result = `${result}${
         this.props.link.includes('?') ? '&' : '?'
       }${queryStr}`;
