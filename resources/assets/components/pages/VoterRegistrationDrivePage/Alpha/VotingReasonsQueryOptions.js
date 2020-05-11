@@ -41,7 +41,7 @@ const VotingReasonsQueryOptions = ({ onChange }) => {
   const numCheckboxes = checkboxes.length;
 
   return (
-    <div className="pl-3 pr-3">
+    <div className="pl-3 pr-3" data-test="voting-reasons-query-options">
       <div className="font-bold pb-3">Select causes (optional):</div>
       <div className="flex items-stretch flex:grow flex-col md:flex-row">
         <div className="flex-1">

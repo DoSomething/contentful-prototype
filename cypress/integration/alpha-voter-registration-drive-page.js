@@ -3,6 +3,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import { PHOENIX_URL } from '../../resources/assets/constants';
 import exampleVoterRegistrationDriveCampaign from '../fixtures/contentful/exampleVoterRegistrationDriveCampaign';
 
 const legacyVoterRegistrationDriveActionPageBlockId =
@@ -148,7 +149,21 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       'contain.value',
       `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );
+    cy.get('[data-test=voting-reasons-query-options]').should('have.length', 0);
   });
 
-  //    cy.withFeatureFlags({
+  it('Alpha OVRD page SocialDriveAction links to internal beta page when beta page feature enabled', () => {
+    const user = userFactory();
+
+    cy.withFeatureFlags({
+      voter_reg_beta_page: true,
+    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('.social-drive-action h1').contains('Share with your friends');
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`,
+    );
+    cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
+  });
 });
