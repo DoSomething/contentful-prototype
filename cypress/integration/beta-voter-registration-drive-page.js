@@ -179,4 +179,51 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
       .should('have.length', 1)
       .should('have.attr', 'href', mockUrl);
   });
+
+  it('Beta OVRD Step One register to vote section displays as expected', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=voter-registration-form-card]').should('have.length', 1);
+    cy.get('[data-test=voter-registration-form-card] > header > h1').contains(
+      'Register online to vote',
+    );
+  });
+
+  it('Beta OVRD Step One register to vote section button is disabled when form is empty', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-test=voter-registration-submit-button]').should(
+      'be.disabled',
+    );
+  });
+
+  it('Beta OVRD Step One register to vote section button is enabled when form is filled in', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(getBetaPagePathForUser(user));
+
+    cy.get('[data-id=voter-registration-email-field]').type('text@test.com');
+    cy.get('[data-id=voter-registration-zip-field]').type('12345');
+
+    cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
+  });
 });
