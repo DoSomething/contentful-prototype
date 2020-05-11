@@ -7,7 +7,6 @@ import { Query } from 'react-apollo';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
-import Button from '../../utilities/Button/Button';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import FormValidation from '../../utilities/Form/FormValidation';
 import PrimaryButton from '../../utilities/Button/PrimaryButton';
