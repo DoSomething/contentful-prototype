@@ -9,6 +9,7 @@ import {
 } from '../../../helpers/analytics';
 
 const SitewideBannerContent = ({
+  attributes,
   cta,
   description,
   handleClose,
@@ -26,7 +27,10 @@ const SitewideBannerContent = ({
     });
   };
   return (
-    <div className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50">
+    <div
+      className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50"
+      {...attributes}
+    >
       <CloseButton
         callback={handleClose}
         className="block absolute right-0 top-0 p-4"
@@ -50,11 +54,16 @@ const SitewideBannerContent = ({
 };
 
 SitewideBannerContent.propTypes = {
+  attributes: PropTypes.object,
   cta: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleComplete: PropTypes.func.isRequired,
   link: PropTypes.string.isRequired,
+};
+
+SitewideBannerContent.defaultProps = {
+  attributes: {},
 };
 
 export default SitewideBannerContent;
