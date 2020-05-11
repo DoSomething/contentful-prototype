@@ -106,33 +106,6 @@ module.exports = function(migration) {
     .linkType('Entry');
 
   campaign
-    .createField('template')
-    .name('Template')
-    .type('Array')
-    .localized(false)
-    .required(false)
-    .validations([
-      {
-        size: {
-          max: 1,
-        },
-
-        message: 'Only choose one template.',
-      },
-    ])
-    .disabled(true)
-    .omitted(false)
-    .items({
-      type: 'Symbol',
-
-      validations: [
-        {
-          in: ['legacy', 'mosaic'],
-        },
-      ],
-    });
-
-  campaign
     .createField('endDate')
     .name('End Date')
     .type('Date')
