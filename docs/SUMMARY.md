@@ -38,6 +38,7 @@
     - [Contentful Tests](development/features/sixpack/sixpack-contentful-tests.md)
     - [Testing Tips](development/features/sixpack/sixpack-testing-tips.md)
   - [Traffic Distribution](development/features/traffic-distribution.md)
+  - [Volunteer Credits](development/features/volunteer-credits.md)
   - [Voter Registration](development/features/voter-registration.md)
   - [Zendesk Form](development/features/zendesk-form.md)
 - [Contentful](development/contentful/README.md)
