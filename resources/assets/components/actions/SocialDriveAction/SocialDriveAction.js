@@ -225,7 +225,7 @@ SocialDriveAction.propTypes = {
    * This prop expects a React component to allow user customization of link prop's query string.
    * @see /resources/assets/components/pages/VoterRegistrationDrivePage/Alpha/AlphaPage
    */
-  queryOptions: PropTypes.object,
+  queryOptions: PropTypes.element,
   shareCardDescription: PropTypes.string,
   shareCardTitle: PropTypes.string,
   token: PropTypes.string.isRequired,
