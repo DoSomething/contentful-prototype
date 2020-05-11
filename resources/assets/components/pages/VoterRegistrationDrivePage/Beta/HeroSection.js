@@ -21,7 +21,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    */
 
   const formatEndofBetaCauseSentence = () => {
-    let userCauses = query('voting-reasons').split(',');
+    const userCauses = query('voting-reasons').split(', ');
 
     if (userCauses && userCauses.length) {
       userCauses
@@ -35,7 +35,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
         .slice(0, -2);
       return `like ${userCauses}`;
     }
-    return;
+    return '';
   };
 
   return (
