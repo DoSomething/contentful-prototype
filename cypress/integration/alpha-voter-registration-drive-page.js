@@ -20,7 +20,19 @@ function fakePost(displayName) {
 }
 
 describe('Alpha Voter Registration Drive (OVRD) Page', () => {
-  beforeEach(() => cy.configureMocks());
+  beforeEach(() => {
+    cy.configureMocks();
+    // Mock the ContentBlock queries used for various sections on the beta OVRD page.
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        __typename: 'ContentBlock',
+        superTitle: faker.lorem.words(),
+        title: faker.company.bsBuzz(),
+        subTitle: faker.lorem.words(),
+        content: faker.lorem.sentence(),
+      },
+    });
+  });
 
   it('The blocks field of the Alpha OVRD action page is not displayed', () => {
     const user = userFactory();
@@ -131,9 +143,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('[data-test=social-action-drive-card]').contains(
-      'Your online drive',
-    );
+    cy.get('.social-drive-action h1').contains('Your online drive');
     cy.get('.link-bar input').should(
       'contain.value',
       `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
