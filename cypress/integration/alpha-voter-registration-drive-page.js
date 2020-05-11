@@ -125,4 +125,20 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
 
     cy.get('[data-test=total-accepted-quantity-value]').contains('0');
   });
+
+  it('Alpha OVRD page SocialDriveAction links to legacy beta page when beta page feature disabled', () => {
+    const user = userFactory();
+
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('[data-test=social-action-drive-card]').contains(
+      'Your online drive',
+    );
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
+    );
+  });
+
+  //    cy.withFeatureFlags({
 });

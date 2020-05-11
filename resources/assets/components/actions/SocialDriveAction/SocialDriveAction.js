@@ -120,7 +120,7 @@ class SocialDriveAction extends React.Component {
       userId,
     } = this.props;
 
-    const { shortUrl } = this.state;
+    const { loading, longUrl, shortUrl } = this.state;
 
     return (
       <div
@@ -133,7 +133,11 @@ class SocialDriveAction extends React.Component {
             'lg:w-2/3 lg:pr-3': !fullWidth,
           })}
         >
-          <Card title={shareCardTitle} className="rounded bordered">
+          <Card
+            attributes={{ 'data-test': 'social-drive-action-card' }}
+            className="rounded bordered"
+            title={shareCardTitle}
+          >
             {shareCardDescription ? (
               <div className="p-3">
                 <p>{shareCardDescription}</p>
@@ -153,14 +157,14 @@ class SocialDriveAction extends React.Component {
               {queryOptions ? (
                 <a
                   className="font-normal underline text-blurple-500"
-                  href={this.state.longUrl}
+                  href={longUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   preview your custom page
                 </a>
               ) : (
-                <Embed url={this.state.longUrl} />
+                <Embed url={longUrl} />
               )}
             </div>
 
@@ -177,14 +181,14 @@ class SocialDriveAction extends React.Component {
                   type="text"
                   ref={this.linkInput}
                   className="text-field link"
-                  value={this.state.loading ? 'Loading...' : shortUrl}
-                  disabled={this.state.loading}
+                  value={loading ? 'Loading...' : shortUrl}
+                  disabled={loading}
                 />
                 <button
                   type="button"
                   className="text-field link-copy-button"
                   onClick={this.handleCopyLinkClick}
-                  disabled={this.state.loading}
+                  disabled={loading}
                 >
                   <img src={linkIcon} alt="link" />
                   <p>Copy link</p>
