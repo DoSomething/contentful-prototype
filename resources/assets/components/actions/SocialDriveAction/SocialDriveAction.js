@@ -135,11 +135,7 @@ class SocialDriveAction extends React.Component {
             'lg:w-2/3 lg:pr-3': !fullWidth,
           })}
         >
-          <Card
-            attributes={{ 'data-test': 'social-drive-action-card' }}
-            className="rounded bordered"
-            title={shareCardTitle}
-          >
+          <Card className="rounded bordered" title={shareCardTitle}>
             {shareCardDescription ? (
               <div className="p-3">
                 <p>{shareCardDescription}</p>

@@ -23,7 +23,7 @@ function fakePost(displayName) {
 describe('Alpha Voter Registration Drive (OVRD) Page', () => {
   beforeEach(() => {
     cy.configureMocks();
-    // Mock the ContentBlock queries used for various sections on the beta OVRD page.
+    // Mock the ContentBlock queries used for various sections on the alpha OVRD page.
     cy.mockGraphqlOp('ContentfulBlockQuery', {
       block: {
         __typename: 'ContentBlock',
