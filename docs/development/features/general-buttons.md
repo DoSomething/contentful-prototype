@@ -1,4 +1,4 @@
-# Buttons
+# General Buttons
 
 ## Overview
 
@@ -57,8 +57,9 @@ Example HTML output:
   href="/"
   target="_blank"
   data-label="some_useful_data"
-  >Click Me!</a
 >
+  Click Me!
+</a>
 ```
 
 Example rendered output:
