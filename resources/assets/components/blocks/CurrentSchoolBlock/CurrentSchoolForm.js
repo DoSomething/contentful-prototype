@@ -3,9 +3,9 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useMutation } from '@apollo/react-hooks';
 
-import Button from '../../utilities/Button/Button';
 import SchoolSelect from './SchoolSelect';
 import SchoolStateSelect from '../../utilities/UsaStateSelect';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 
 const USER_SCHOOL_MUTATION = gql`
   mutation UserSchoolMutation($userId: String!, $schoolId: String) {
@@ -22,32 +22,35 @@ const CurrentSchoolForm = ({ description, userId }) => {
   const [updateUserSchool] = useMutation(USER_SCHOOL_MUTATION);
 
   return (
-    <div className="school-finder-form">
-      {description ? <p className="p-3">{description}</p> : null}
-      <div className="select-state p-3">
+    <div className="p-3" data-test="school-finder-form">
+      {description ? <p>{description}</p> : null}
+
+      <div className="mt-6" data-test="select-state">
         <strong>State</strong>
+
         <SchoolStateSelect onChange={selected => setSchoolState(selected)} />
       </div>
+
       {schoolState ? (
-        <div className="select-school p-3">
+        <div className="mt-6" data-test="select-school">
           <SchoolSelect
             onChange={selected => setSchool(selected)}
             filterByState={schoolState.abbreviation}
           />
         </div>
       ) : null}
-      <Button
+
+      <PrimaryButton
+        className="block mt-6 text-lg w-full"
+        isDisabled={!school}
         onClick={() => {
           updateUserSchool({
             variables: { schoolId: school ? school.id : null, userId },
             refetchQueries: ['UserSchoolQuery'],
           });
         }}
-        disabled={!school}
-        attached
-      >
-        Submit
-      </Button>
+        text="Submit"
+      />
     </div>
   );
 };
