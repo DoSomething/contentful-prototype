@@ -13,10 +13,13 @@ const CtaPopover = ({ content, handleClose, title, children }) => {
       >
         &times;
       </button>
+
       <h3 className="cta-popover__title text-m text-yellow-500 font-bold uppercase">
         {title}
       </h3>
+
       <p className="text-white mt-3">{content}</p>
+
       {children}
     </div>
   );

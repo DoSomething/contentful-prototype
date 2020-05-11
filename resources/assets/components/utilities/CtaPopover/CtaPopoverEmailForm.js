@@ -1,12 +1,11 @@
-import { get, isString, first } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
+import { get, isString, first } from 'lodash';
 import { RestApiClient } from '@dosomething/gateway';
 
-import Button from '../Button/Button';
-import { env, report } from '../../../helpers/index';
 import { tabularLog } from '../../../helpers/api';
-import './cta-popover-email-form.scss';
+import PrimaryButton from '../Button/PrimaryButton';
+import { env, report } from '../../../helpers/index';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
@@ -79,23 +78,28 @@ const CtaPopoverEmailForm = ({ handleComplete }) => {
   };
 
   return !showAffirmation ? (
-    <div className="cta-popover-email-form pt-4">
+    <div className="pt-4" data-test="cta-popover-email-form">
       {errorResponse ? (
         <div className="text-red-500">{errorResponse}</div>
       ) : null}
-      <form className="email-form form pb-2" onSubmit={handleSubmit}>
+
+      <form className="form flex pb-2" onSubmit={handleSubmit}>
         <input
-          className="text-field email-form__input"
+          className="text-field border-0 rounded-bl rounded-br-none rounded-tl rounded-tr-none"
           type="text"
           value={emailValue}
           placeholder="Enter your email address"
           onChange={handleChange}
           onFocus={handleFocus}
         />
-        <Button className="email-form__button" type="submit">
-          Sign Up
-        </Button>
+
+        <PrimaryButton
+          className="rounded-bl-none rounded-tl-none w-32"
+          text="Sign Up"
+          type="submit"
+        />
       </form>
+
       <p className="text-gray-200 italic text-sm">
         You&apos;ll also get a{' '}
         <a
