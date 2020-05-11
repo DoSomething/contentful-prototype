@@ -104,7 +104,6 @@ class Campaign extends Entity implements JsonSerializable
             'id' => $this->entry->getId(),
             'campaignId' => $this->legacyCampaignId,
             'type' => $this->entry->getContentType()->getId(),
-            'template' => 'mosaic',
             'title' => $this->title,
             'slug' => $this->slug,
             'metadata' => $this->metadata ? new Metadata($this->metadata->entry) : null,
