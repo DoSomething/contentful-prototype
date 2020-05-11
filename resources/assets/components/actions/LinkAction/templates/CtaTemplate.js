@@ -1,11 +1,9 @@
-/* global window */
-
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../../utilities/Card/Card';
-import Button from '../../../utilities/Button/Button';
-import { isExternal, dynamicString } from '../../../../helpers';
+import { dynamicString } from '../../../../helpers';
+import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 import TextContent from '../../../utilities/TextContent/TextContent';
 import {
   EVENT_CATEGORIES,
@@ -13,17 +11,6 @@ import {
 } from '../../../../helpers/analytics';
 
 import './cta-template.scss';
-
-const onLinkClick = (link, context) => {
-  window.open(link, isExternal(link) ? '_blank' : '_self');
-
-  trackAnalyticsEvent('clicked_link_action', {
-    action: 'button_clicked',
-    category: EVENT_CATEGORIES.campaignAction,
-    label: 'link_action',
-    context: { ...context, url: link },
-  });
-};
 
 /**
  * @deprecated This template component is being deprecated in favor of the CallToActionBlock.
@@ -50,9 +37,19 @@ const CtaTemplate = ({
 
       <TextContent className="cta-template__content">{content}</TextContent>
 
-      <Button className="my-3" onClick={() => onLinkClick(href, context)}>
-        {buttonText}
-      </Button>
+      <PrimaryButton
+        className="my-3"
+        href={href}
+        onClick={() =>
+          trackAnalyticsEvent('clicked_link_action', {
+            action: 'button_clicked',
+            category: EVENT_CATEGORIES.campaignAction,
+            label: 'link_action',
+            context: { ...context, url: href },
+          })
+        }
+        text={buttonText}
+      />
     </Card>
   );
 };
