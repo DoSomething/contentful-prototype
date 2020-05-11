@@ -25,6 +25,7 @@ contentManagementClient.init(async environment => {
   const blocks = await environment.getEntries({
     content_type: 'linkAction',
     'fields.template': 'cta',
+    limit: 1000,
   });
 
   logger.info(`Found ${blocks.items.length} Link Actions with CTA template`);
@@ -49,10 +50,8 @@ contentManagementClient.init(async environment => {
         await linkAction.unpublish();
         logger.info(`⇢ Unpublished LinkAction...`);
       }
-      if (await !linkAction.isArchived) {
-        await linkAction.archive();
-        logger.info(`⇢ Archived successfully`);
-      }
+      await linkAction.archive();
+      logger.info(`⇢ Archived successfully`);
       continue;
     }
 
@@ -121,14 +120,13 @@ contentManagementClient.init(async environment => {
       }
     }
 
-    // // Archive old LinkActions
-    if ((await linkAction.isPublished) && (await !linkAction.isArchived)) {
+    // Archive old LinkActions
+    logger.info(`⇢ Deleting '${internalTitle}'...`);
+    if (linkAction.isPublished) {
       await linkAction.unpublish();
       logger.info(`⇢ Unpublished LinkAction...`);
     }
-    if (await !linkAction.isArchived) {
-      await linkAction.archive();
-      logger.info(`⇢ Archived successfully`);
-    }
+    await linkAction.archive();
+    logger.info(`✔ Archived successfully`);
   }
 });
