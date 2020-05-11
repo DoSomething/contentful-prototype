@@ -8,7 +8,6 @@ import CampaignPageNavigation from './CampaignPageNavigation';
 const mapStateToProps = state => ({
   isAffiliated: isSignedUp(state),
   isCampaignClosed: isCampaignClosed(state.campaign.endDate),
-  isLegacyTemplate: Boolean(state.campaign.template === 'legacy'),
   pages: state.campaign.pages,
   campaignSlug: state.campaign.slug,
 });
