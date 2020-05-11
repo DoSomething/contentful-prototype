@@ -42,6 +42,13 @@ describe('Social Action Drive', () => {
 
     cy.mockGraphqlOp('ContentfulBlockQuery', contentfulBlockQueryResult);
 
+    cy.route({
+      method: 'POST',
+      url: linksApiUrl,
+      status: 503,
+      response: {},
+    });
+
     cy.authVisitBlockPermalink(user, blockId);
 
     cy.get('.link-bar input').should('contain.value', unshortenedLink);
