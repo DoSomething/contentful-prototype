@@ -7,9 +7,9 @@ import { Query } from 'react-apollo';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
-import Button from '../../utilities/Button/Button';
 import Spinner from '../../artifacts/Spinner/Spinner';
 import FormValidation from '../../utilities/Form/FormValidation';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { formatPostPayload, getFieldErrors } from '../../../helpers/forms';
 
@@ -124,80 +124,82 @@ class SelectionSubmissionAction extends PostForm {
         className="selection-submission-action bordered rounded"
         title={title}
       >
-        {formResponse ? <FormValidation response={formResponse} /> : null}
+        <div className="p-3">
+          {formResponse ? <FormValidation response={formResponse} /> : null}
 
-        <TextContent className="p-3">{richText}</TextContent>
+          <TextContent className="">{richText}</TextContent>
 
-        <Query
-          query={SELECTION_SUBMISSION_BLOCK_QUERY}
-          variables={{ userId, actionIds: [actionId] }}
-        >
-          {({ loading, data }) => {
-            if (loading) {
-              return <Spinner className="flex justify-center p-3 pb-8" />;
-            }
+          <Query
+            query={SELECTION_SUBMISSION_BLOCK_QUERY}
+            variables={{ userId, actionIds: [actionId] }}
+          >
+            {({ loading, data }) => {
+              if (loading) {
+                return <Spinner className="flex justify-center p-3 pb-8" />;
+              }
 
-            const post = get(data, 'posts', [])[0];
-            const selection = get(post, 'text');
+              const post = get(data, 'posts', [])[0];
+              const selection = get(post, 'text');
 
-            // If the user successfuly submitted the form, or a pre-existing submission is found,
-            // display the post-submission state.
-            if (selection || this.state.submitted) {
-              return (
-                <div className="pb-3 px-3">
-                  <p className="font-league-gothic leading-none text-4xl uppercase">
-                    {selection || this.state.selection}
-                  </p>
-                  <p className="uppercase color-gray font-bold mt-0">
-                    {postSubmissionLabel}
-                  </p>
-                </div>
-              );
-            }
-
-            return (
-              <form onSubmit={this.handleSubmit}>
-                <div className="px-3">
-                  <label
-                    className={classNames('field-label', {
-                      'has-error': has(formErrors, 'text'),
-                    })}
-                    htmlFor="selections"
-                  >
-                    {selectionFieldLabel}
-                  </label>
-                  <div className="select">
-                    <select
-                      id="selections"
-                      className={classNames('text-field', {
-                        'color-gray': isSelectionInvalid,
-                        'has-error shake': has(formErrors, 'text'),
-                      })}
-                      value={this.state.selection}
-                      onChange={this.handleChange}
-                    >
-                      <option disabled>{selectionPlaceholderOption}</option>
-                      {selectionOptions.map(selectionOption => (
-                        <option key={selectionOption} value={selectionOption}>
-                          {selectionOption}
-                        </option>
-                      ))}
-                    </select>
+              // If the user successfuly submitted the form, or a pre-existing submission is found,
+              // display the post-submission state.
+              if (selection || this.state.submitted) {
+                return (
+                  <div className="mt-3">
+                    <p className="font-league-gothic leading-none text-4xl uppercase">
+                      {selection || this.state.selection}
+                    </p>
+                    <p className="uppercase color-gray font-bold mt-0">
+                      {postSubmissionLabel}
+                    </p>
                   </div>
-                </div>
+                );
+              }
 
-                <Button
-                  type="submit"
-                  attached
-                  disabled={isSelectionInvalid}
-                  loading={submissionItem && submissionItem.isPending}
-                >
-                  {buttonText}
-                </Button>
-              </form>
-            );
-          }}
-        </Query>
+              return (
+                <form className="mt-3" onSubmit={this.handleSubmit}>
+                  <div>
+                    <label
+                      className={classNames('field-label mb-2', {
+                        'has-error': has(formErrors, 'text'),
+                      })}
+                      htmlFor="selections"
+                    >
+                      {selectionFieldLabel}
+                    </label>
+
+                    <div className="select">
+                      <select
+                        id="selections"
+                        className={classNames('text-field', {
+                          'color-gray': isSelectionInvalid,
+                          'has-error shake': has(formErrors, 'text'),
+                        })}
+                        value={this.state.selection}
+                        onChange={this.handleChange}
+                      >
+                        <option disabled>{selectionPlaceholderOption}</option>
+                        {selectionOptions.map(selectionOption => (
+                          <option key={selectionOption} value={selectionOption}>
+                            {selectionOption}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <PrimaryButton
+                    className="block mt-3 text-lg w-full"
+                    isDisabled={isSelectionInvalid}
+                    isLoading={submissionItem && submissionItem.isPending}
+                    text={buttonText}
+                    type="submit"
+                  />
+                </form>
+              );
+            }}
+          </Query>
+        </div>
       </Card>
     );
   }

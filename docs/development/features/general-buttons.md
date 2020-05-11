@@ -1,4 +1,4 @@
-# Buttons
+# General Buttons
 
 ## Overview
 
@@ -57,8 +57,9 @@ Example HTML output:
   href="/"
   target="_blank"
   data-label="some_useful_data"
-  >Click Me!</a
 >
+  Click Me!
+</a>
 ```
 
 Example rendered output:
@@ -127,7 +128,9 @@ The `PrimaryButton` component outputs a pre-configured "primary styled" button. 
 
 Primary buttons have a blurple background and border with white text, along with associated pseudo state styles. You can pass additional Tailwind classes to further style the padding, text size, etc of the button, but you should not be overriding colors and other styles that specifically define it as a primary button.
 
-This type of button should be used clicking to submit data, launch a link to a URL or show/hide interface elements, without changing its visual appearance as a "primary styled" button.
+This type of button should be used for clicking to submit data, launch a link to a URL or show/hide interface elements, without changing its visual appearance as a "primary styled" button.
+
+When used to show/hide interface elements, the button will alternate between its default visual appearance and its "active" visual appearance.
 
 #### Usage for PrimaryButton as LinkButton
 
@@ -154,8 +157,9 @@ Example HTML output:
   class="btn bg-blurple-500 border-blurple-500 active:bg-blurple-700 focus:bg-blurple-400 hover:bg-blurple-400 border-2 border-solid active:border-blurple-700 focus:border-blurple-400 hover:border-blurple-400 focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base text-white hover:text-white px-8 py-4 text-lg"
   href="/"
   data-label="some_useful_data"
-  >Join The Cause</a
 >
+  Join The Cause
+</a>
 ```
 
 Example rendered output:
@@ -195,9 +199,86 @@ Example HTML output:
 
 Example rendered output:
 
-![PrimayButton As ElementButton Example](../../.gitbook/assets/primary-button-as-button-element-example.png)
+![PrimayButton As ElementButton Example](../../.gitbook/assets/primary-button-as-element-button-example.png)
 
 ### SecondaryButton
+
+The `SecondaryButton` component outputs a pre-configured "secondary styled" button. It extends the `LinkButton` or `ElementButton` depending on the properties supplied, and outputs a link or element button respectively, with all the styling to make it visually render as a "secondary styled" button with associated visual states.
+
+Secondary buttons have a white background with a blurple colored border and text, along with associated pseudo state styles. You can pass additional Tailwind classes to further style the padding, text size, etc of the button, but you should not be overriding colors and other styles that specifically define it as a secondary button.
+
+This type of button should be used for clicking to submit data, launch a link to a URL or show/hide interface elements, without changing its visual appearance as a "secondary styled" button.
+
+When used to show/hide interface elements, the button will alternate between its default visual appearance and its "active" visual appearance.
+
+#### Usage for SecondaryButton as LinkButton
+
+Example component use:
+
+```js
+import SecondaryButton from '../utilities/Button/SecondaryButton';
+
+// stuff
+
+<SecondaryButton
+  attributes={{ 'data-label': 'some_useful_data' }}
+  className="px-8 py-4 text-lg"
+  href="/"
+  onClick={trackAnalyticsEvent}
+  text="Join The Cause"
+/>;
+```
+
+Example HTML output:
+
+```html
+<a
+  class="btn bg-white border-blurple-500 text-blurple-500 active:bg-gray-200 border-2 active:border-blurple-700 hover:border-blurple-300 border-solid focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base active:text-blurple-700 hover:text-blurple-300 px-8 py-4 text-lg"
+  href="/"
+  data-label="some_useful_data"
+>
+  Join The Cause
+</a>
+```
+
+Example rendered output:
+
+![SecondaryButton As LinkButton Example](../../.gitbook/assets/secondary-button-as-link-button-example.png)
+
+#### Usage for SecondaryButton as ElementButton
+
+Example component use:
+
+```js
+import SecondaryButton from '../utilities/Button/SecondaryButton';
+
+// stuff
+
+<SecondaryButton
+  attributes={{ 'data-label': 'some_useful_data' }}
+  className="px-8 py-4 text-lg"
+  isDisabled={isDisabledCheck}
+  isLoading={isLoadingCheck}
+  onClick={handleOnClick}
+  text="Do This Thing"
+/>;
+```
+
+Example HTML output:
+
+```html
+<button
+  class="btn bg-white border-blurple-500 text-blurple-500 active:bg-gray-200 border-2 active:border-blurple-700 hover:border-blurple-300 border-solid focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base active:text-blurple-700 hover:text-blurple-300 px-8 py-4 text-lg"
+  type="button"
+  data-label="some_useful_data"
+>
+  Do This Thing
+</button>
+```
+
+Example rendered output:
+
+![SecondaryButton As LinkButton Example](../../.gitbook/assets/secondary-button-as-element-button-example.png)
 
 ### ToggleButton
 

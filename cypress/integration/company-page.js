@@ -49,8 +49,10 @@ describe('Company Page', () => {
       status: 200,
     });
 
-    cy.get('.email-form__input').type('vmack@dosomething.org');
-    cy.get('.email-form__button').click();
+    cy.get('[data-test="cta-popover-email-form"] input[type="text"]').type(
+      'vmack@dosomething.org',
+    );
+    cy.get('[data-test="cta-popover-email-form"] button').click();
 
     cy.contains('Thank You For Submitting Your Email');
   });
@@ -71,8 +73,10 @@ describe('Company Page', () => {
       status: 422,
     });
 
-    cy.get('.email-form__input').type('hsjadcusdcg');
-    cy.get('.email-form__button').click();
+    cy.get('[data-test="cta-popover-email-form"] input[type="text"]').type(
+      'hsjadcusdcg',
+    );
+    cy.get('[data-test="cta-popover-email-form"] button').click();
 
     cy.contains('The email must be a valid email address.');
   });
