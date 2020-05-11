@@ -62,7 +62,7 @@ VotingReasonsQueryOptions.propTypes = {
 };
 
 VotingReasonsQueryOptions.defaultProps = {
-  onChange: null,
+  onChange: () => {},
 };
 
 export default VotingReasonsQueryOptions;

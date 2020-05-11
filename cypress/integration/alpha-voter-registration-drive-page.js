@@ -144,7 +144,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
 
     cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
-    cy.get('.social-drive-action h1').contains('Your online drive');
+    cy.get('.social-drive-action h1').contains('Your Online Drive');
     cy.get('.link-bar input').should(
       'contain.value',
       `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
