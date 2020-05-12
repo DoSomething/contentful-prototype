@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PrimaryButton from '../Button/PrimaryButton';
-import CloseButton from '../../artifacts/CloseButton/CloseButton';
 import {
   EVENT_CATEGORIES,
   trackAnalyticsEvent,
 } from '../../../helpers/analytics';
+import PrimaryButton from '../Button/PrimaryButton';
+import CloseButton from '../../artifacts/CloseButton/CloseButton';
 
 const SitewideBannerContent = ({
   cta,
@@ -26,7 +26,10 @@ const SitewideBannerContent = ({
     });
   };
   return (
-    <div className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50">
+    <div
+      className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50"
+      data-test="site-wide-banner"
+    >
       <CloseButton
         callback={handleClose}
         className="block absolute right-0 top-0 p-4"

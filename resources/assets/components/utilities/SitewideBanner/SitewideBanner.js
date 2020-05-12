@@ -1,6 +1,7 @@
 import { createPortal } from 'react-dom';
 import React, { useRef, useEffect } from 'react';
 
+import excludedPaths from './config';
 import SitewideBannerContent from './SitewideBannerContent';
 
 const SitewideBanner = props => {
@@ -21,7 +22,9 @@ const SitewideBanner = props => {
 
   const target = usePortal('banner-portal');
 
-  return createPortal(children, target);
+  return !excludedPaths.includes(window.location.pathname)
+    ? createPortal(children, target)
+    : null;
 };
 
 export default SitewideBanner;
