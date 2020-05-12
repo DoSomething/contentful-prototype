@@ -24,22 +24,18 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
 
   const formatQuote = () => {
     const votingReasonsQuery = query('voting-reasons');
+
     if (!votingReasonsQuery) {
       return null;
     }
+
     const votingReasonsValues = votingReasonsQuery.split(',');
 
     if (votingReasonsValues.length === 1) {
       return ` like ${votingReasons[votingReasonsValues[0]]}`;
     }
 
-    if (votingReasonsValues.length === 2) {
-      return ` like ${votingReasons[votingReasonsValues[0]]} and ${
-        votingReasons[votingReasonsValues[1]]
-      }`;
-    }
-
-    if (votingReasonsValues.length > 2) {
+    if (votingReasonsValues.length > 1) {
       let result = '';
 
       votingReasonsValues.forEach((value, index) => {
@@ -49,6 +45,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           result = `${result}, ${votingReasons[value]}`;
         }
       });
+
       return ` like ${result}`;
     }
 
