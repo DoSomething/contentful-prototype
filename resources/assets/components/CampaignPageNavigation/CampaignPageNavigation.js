@@ -10,13 +10,8 @@ const CampaignPageNavigation = ({
   campaignSlug,
   isAffiliated,
   isCampaignClosed,
-  isLegacyTemplate,
   pages,
 }) => {
-  if (isLegacyTemplate) {
-    return null;
-  }
-
   const linkablePages = pages
     .filter(page => page.type === 'page')
     // @TODO: we want to eventually remove the need for hideFromNavigation field
@@ -44,7 +39,6 @@ CampaignPageNavigation.propTypes = {
   campaignSlug: PropTypes.string.isRequired,
   isAffiliated: PropTypes.bool.isRequired,
   isCampaignClosed: PropTypes.bool.isRequired,
-  isLegacyTemplate: PropTypes.bool.isRequired,
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.object,

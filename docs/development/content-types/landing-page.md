@@ -16,4 +16,4 @@ Any heading-1's will be styled as [Section Header titles](https://github.com/DoS
 
 - **Content** : A Rich Text field, which can embed `contentBlock`, `imagesBlock`, and `linkAction` entries.
 
-- **Additional Content** : The legacy campaign template uses this field to display Landing Page content, expecting a `legacyTemplateContent` property.
+- **Additional Content** : No additional content fields are currently formally supported. This can be used for feature flagging and experimental fields.
