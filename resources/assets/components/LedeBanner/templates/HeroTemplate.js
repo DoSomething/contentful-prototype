@@ -90,7 +90,7 @@ const HeroTemplate = ({
               {!isAffiliated ? (
                 <div className="hero-signup-button">
                   <SignupButtonContainer
-                    className="w-full"
+                    className="block md:mb-3 p-6 text-lg w-full"
                     text={
                       isScholarshipAffiliateReferral()
                         ? SCHOLARSHIP_SIGNUP_BUTTON_TEXT
