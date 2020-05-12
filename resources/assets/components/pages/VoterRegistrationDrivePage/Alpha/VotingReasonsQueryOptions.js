@@ -16,36 +16,42 @@ const VotingReasonsQueryOptions = ({ onChange }) => {
   }, [selectedVotingReasons]);
 
   return (
-    <div className="pl-3 pr-3">
+    <div className="pl-3 pr-3" data-test="voting-reasons-query-options">
       <div className="font-bold pb-3">Select causes (optional):</div>
-      {Object.keys(votingReasons).map(votingReason => (
-        <div key={votingReason} className="pb-1">
-          <input
-            type="checkbox"
-            id={votingReason}
-            name={votingReason}
-            value={votingReason}
-            onChange={event => {
-              const value = event.target.name;
+      <div className="md:grid md:grid-cols-2">
+        {Object.keys(votingReasons).map(votingReason => (
+          <div key={votingReason} className="pb-1 voting-reasons-query-option">
+            <input
+              type="checkbox"
+              id={votingReason}
+              name={votingReason}
+              value={votingReason}
+              onChange={event => {
+                const value = event.target.name;
 
-              setSelectedVotingReasons(
-                event.target.checked
-                  ? [...selectedVotingReasons, value]
-                  : without(selectedVotingReasons, value),
-              );
-            }}
-          />
-          <label className="pl-1" htmlFor={votingReason}>
-            {votingReasons[votingReason]}
-          </label>
-        </div>
-      ))}
+                setSelectedVotingReasons(
+                  event.target.checked
+                    ? [...selectedVotingReasons, value]
+                    : without(selectedVotingReasons, value),
+                );
+              }}
+            />
+            <label className="pl-1" htmlFor={votingReason}>
+              {votingReasons[votingReason]}
+            </label>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
 
 VotingReasonsQueryOptions.propTypes = {
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+VotingReasonsQueryOptions.defaultProps = {
+  onChange: () => {},
 };
 
 export default VotingReasonsQueryOptions;

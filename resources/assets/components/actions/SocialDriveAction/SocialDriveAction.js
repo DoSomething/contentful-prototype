@@ -59,6 +59,8 @@ class SocialDriveAction extends React.Component {
 
     if (queryStr) {
       // Append the queryStr to our current result.
+      // @TODO: Refactor to use appendToQuery helper.
+      // @see https://github.com/DoSomething/phoenix-next/pull/2114#discussion_r422352265
       result = `${result}${
         this.props.link.includes('?') ? '&' : '?'
       }${queryStr}`;
@@ -112,15 +114,15 @@ class SocialDriveAction extends React.Component {
   render() {
     const {
       actionId,
-      queryOptions,
-      link,
       fullWidth,
+      link,
+      queryOptions,
       shareCardDescription,
       shareCardTitle,
       userId,
     } = this.props;
 
-    const { shortUrl } = this.state;
+    const { loading, longUrl, shortUrl } = this.state;
 
     return (
       <div
@@ -133,7 +135,7 @@ class SocialDriveAction extends React.Component {
             'lg:w-2/3 lg:pr-3': !fullWidth,
           })}
         >
-          <Card title={shareCardTitle} className="rounded bordered">
+          <Card className="rounded bordered" title={shareCardTitle}>
             {shareCardDescription ? (
               <div className="p-3">
                 <p>{shareCardDescription}</p>
@@ -150,13 +152,26 @@ class SocialDriveAction extends React.Component {
               : null}
 
             <div className="p-3">
-              <Embed url={this.state.longUrl} />
+              {queryOptions ? (
+                <a
+                  className="font-normal underline text-blurple-500"
+                  href={longUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  preview your custom page
+                </a>
+              ) : (
+                <Embed url={longUrl} />
+              )}
             </div>
 
             <div className="p-3 link-area">
-              <div className="share-text">
-                <p>Share your link:</p>
-              </div>
+              {!queryOptions ? (
+                <div className="share-text">
+                  <p>Share your link:</p>
+                </div>
+              ) : null}
 
               <div className="link-bar">
                 <input
@@ -164,14 +179,14 @@ class SocialDriveAction extends React.Component {
                   type="text"
                   ref={this.linkInput}
                   className="text-field link"
-                  value={this.state.loading ? 'Loading...' : shortUrl}
-                  disabled={this.state.loading}
+                  value={loading ? 'Loading...' : shortUrl}
+                  disabled={loading}
                 />
                 <button
                   type="button"
                   className="text-field link-copy-button"
                   onClick={this.handleCopyLinkClick}
-                  disabled={this.state.loading}
+                  disabled={loading}
                 >
                   <img src={linkIcon} alt="link" />
                   <p>Copy link</p>
@@ -206,7 +221,11 @@ SocialDriveAction.propTypes = {
   fullWidth: PropTypes.bool,
   link: PropTypes.string.isRequired,
   pageId: PropTypes.string,
-  queryOptions: PropTypes.object,
+  /**
+   * This prop expects a React component to allow user customization of link prop's query string.
+   * @see /resources/assets/components/pages/VoterRegistrationDrivePage/Alpha/AlphaPage
+   */
+  queryOptions: PropTypes.element,
   shareCardDescription: PropTypes.string,
   shareCardTitle: PropTypes.string,
   token: PropTypes.string.isRequired,

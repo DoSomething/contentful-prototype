@@ -3,6 +3,7 @@
 import faker from 'faker';
 
 import { userFactory } from '../fixtures/user';
+import { PHOENIX_URL } from '../../resources/assets/constants';
 import exampleVoterRegistrationDriveCampaign from '../fixtures/contentful/exampleVoterRegistrationDriveCampaign';
 
 const legacyVoterRegistrationDriveActionPageBlockId =
@@ -20,7 +21,19 @@ function fakePost(displayName) {
 }
 
 describe('Alpha Voter Registration Drive (OVRD) Page', () => {
-  beforeEach(() => cy.configureMocks());
+  beforeEach(() => {
+    cy.configureMocks();
+    // Mock the ContentBlock queries used for various sections on the alpha OVRD page.
+    cy.mockGraphqlOp('ContentfulBlockQuery', {
+      block: {
+        __typename: 'ContentBlock',
+        superTitle: faker.lorem.words(),
+        title: faker.company.bsBuzz(),
+        subTitle: faker.lorem.words(),
+        content: faker.lorem.sentence(),
+      },
+    });
+  });
 
   it('The blocks field of the Alpha OVRD action page is not displayed', () => {
     const user = userFactory();
@@ -124,5 +137,33 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
     cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
 
     cy.get('[data-test=total-accepted-quantity-value]').contains('0');
+  });
+
+  it('Alpha OVRD page SocialDriveAction links to legacy beta page when beta page feature disabled', () => {
+    const user = userFactory();
+
+    cy.authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('.social-drive-action h1').contains('Your Online Drive');
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
+    );
+    cy.get('[data-test=voting-reasons-query-options]').should('have.length', 0);
+  });
+
+  it('Alpha OVRD page SocialDriveAction links to internal beta page when beta page feature enabled', () => {
+    const user = userFactory();
+
+    cy.withFeatureFlags({
+      voter_reg_beta_page: true,
+    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('.social-drive-action h1').contains('Share with your friends');
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`,
+    );
+    cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
   });
 });
