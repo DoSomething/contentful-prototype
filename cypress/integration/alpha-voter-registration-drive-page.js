@@ -170,4 +170,34 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
     cy.get('[data-test=social-share-tray-title]').should('have.length', 0);
   });
+
+  it('Alpha OVRD page appends voting-reasons query parameter to SocialDriveAction link when checking options', () => {
+    const user = userFactory();
+    const longUrl = `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`;
+
+    cy.withFeatureFlags({
+      voter_reg_beta_page: true,
+    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('#mental-health').check();
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${longUrl}&voting-reasons=mental-health`,
+    );
+
+    cy.get('#student-debt').check();
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${longUrl}&voting-reasons=mental-health,student-debt`,
+    );
+
+    cy.get('#student-debt').check();
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${longUrl}&voting-reasons=mental-health`,
+    );
+
+    cy.get('#mental-health').check();
+    cy.get('.link-bar input').should('contain.value', longUrl);
+  });
 });
