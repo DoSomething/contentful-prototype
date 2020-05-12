@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { query } from '../../../../helpers';
+import { votingReasons } from './config';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
@@ -20,20 +21,29 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    * @see https://www.pivotaltracker.com/story/show/172087475
    */
 
-  const formatEndofBetaCauseSentence = () => {
-    const userCauses = query('voting-reasons').split(', ');
+  const formatEndOfBetaCauseSentence = () => {
+    let result = [];
+    let lastCause;
+    const userCauses = query('voting-reasons').split(',');
 
-    if (userCauses && userCauses.length) {
-      userCauses
-        .reduce((accumulator, currentCause, idx) => {
-          return (
-            accumulator +
-            currentCause +
-            (idx === userCauses.length - 2 ? 'and' : ', ')
-          );
-        }, '')
-        .slice(0, -2);
-      return `like ${userCauses}`;
+    if (userCauses.length === 1) {
+      return ` like ${votingReasons[userCauses[0]]}`;
+    }
+
+    if (userCauses.length === 2) {
+      return ` like ${votingReasons[userCauses[0]]} and ${
+        votingReasons[userCauses[1]]
+      }`;
+    }
+
+    if (userCauses.length >= 2) {
+      userCauses.forEach(cause => {
+        result.push(votingReasons[cause]);
+      });
+      lastCause = result[result.length - 1];
+      result = result.slice(0, -1);
+      result.join(', ');
+      return ` like ${result} and ${lastCause}`;
     }
     return '';
   };
@@ -59,7 +69,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
               <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can effect
                 change on issues we care about most
-                {formatEndofBetaCauseSentence()}.
+                {formatEndOfBetaCauseSentence()}.
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}
