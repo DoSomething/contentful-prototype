@@ -29,7 +29,7 @@ const CampaignPageNavigation = ({
   return campaignPages.length ? (
     <PageNavigation pages={campaignPages}>
       {isAffiliated ? null : (
-        <SignupButtonContainer className="-inline nav-button" />
+        <SignupButtonContainer className="inline-block -inline nav-button" />
       )}
     </PageNavigation>
   ) : null;

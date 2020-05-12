@@ -46,7 +46,7 @@ describe('School Finder', () => {
     cy.authVisitCampaignWithSignup(user, exampleCurrentSchoolBlockWithAction);
 
     cy.get('.current-school').should('have.length', 0);
-    cy.get('.school-finder-form').should('have.length', 1);
+    cy.get('[data-test="school-finder-form"]').should('have.length', 1);
     cy.get('.school-finder h1').should('contain', 'Find Your School');
     cy.get('.school-finder').should(
       'contain',
@@ -74,7 +74,7 @@ describe('School Finder', () => {
     cy.authVisitCampaignWithSignup(user, exampleCurrentSchoolBlockWithAction);
 
     cy.get('.current-school').should('have.length', 1);
-    cy.get('.school-finder-form').should('have.length', 0);
+    cy.get('[data-test="school-finder-form"]').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
     cy.get('.school-finder .school-name').should('contain', exampleSchool.name);
@@ -140,7 +140,7 @@ describe('School Finder', () => {
     cy.authVisitCampaignWithSignup(user, exampleCurrentSchoolBlockWithAction);
 
     cy.get('.current-school').should('have.length', 1);
-    cy.get('.school-finder-form').should('have.length', 0);
+    cy.get('[data-test="school-finder-form"]').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
     cy.get('.school-finder').should(
@@ -178,7 +178,7 @@ describe('School Finder', () => {
     );
 
     cy.get('.current-school').should('have.length', 1);
-    cy.get('.school-finder-form').should('have.length', 0);
+    cy.get('[data-test="school-finder-form"]').should('have.length', 0);
     cy.get('.school-finder h1').should('not.contain', 'Find Your School');
     cy.get('.school-finder h1').should('contain', 'Your School');
     cy.get('.school-finder .school-name').should('contain', exampleSchool.name);

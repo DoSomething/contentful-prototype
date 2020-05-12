@@ -128,11 +128,17 @@ The `PrimaryButton` component outputs a pre-configured "primary styled" button. 
 
 Primary buttons have a blurple background and border with white text, along with associated pseudo state styles. You can pass additional Tailwind classes to further style the padding, text size, etc of the button, but you should not be overriding colors and other styles that specifically define it as a primary button.
 
+This component has one required property:
+
+- `text`: a string for the button text
+
 This type of button should be used for clicking to submit data, launch a link to a URL or show/hide interface elements, without changing its visual appearance as a "primary styled" button.
 
 When used to show/hide interface elements, the button will alternate between its default visual appearance and its "active" visual appearance.
 
 #### Usage for PrimaryButton as LinkButton
+
+While only the `text` property is required for the `PrimaryButton`, to generate this button as a `LinkButton` an `href` property is required.
 
 Example component use:
 
@@ -167,6 +173,8 @@ Example rendered output:
 ![PrimayButton As LinkButton Example](../../.gitbook/assets/primary-button-as-link-button-example.png)
 
 #### Usage for PrimaryButton as ElementButton
+
+Only the `text` property is required to generate the `PrimaryButton` as an `ElementButton`.
 
 Example component use:
 
@@ -207,11 +215,17 @@ The `SecondaryButton` component outputs a pre-configured "secondary styled" butt
 
 Secondary buttons have a white background with a blurple colored border and text, along with associated pseudo state styles. You can pass additional Tailwind classes to further style the padding, text size, etc of the button, but you should not be overriding colors and other styles that specifically define it as a secondary button.
 
+This component has one required property:
+
+- `text`: a string for the button text
+
 This type of button should be used for clicking to submit data, launch a link to a URL or show/hide interface elements, without changing its visual appearance as a "secondary styled" button.
 
 When used to show/hide interface elements, the button will alternate between its default visual appearance and its "active" visual appearance.
 
 #### Usage for SecondaryButton as LinkButton
+
+While only the `text` property is required for the `SecondaryButton`, to generate this button as a `LinkButton` an `href` property is required.
 
 Example component use:
 
@@ -246,6 +260,8 @@ Example rendered output:
 ![SecondaryButton As LinkButton Example](../../.gitbook/assets/secondary-button-as-link-button-example.png)
 
 #### Usage for SecondaryButton as ElementButton
+
+Only the `text` property is required to generate the `PrimaryButton` as an `ElementButton`.
 
 Example component use:
 
@@ -282,6 +298,62 @@ Example rendered output:
 
 ### ToggleButton
 
-## Under The Hood
+The `ToggleButton` component outputs a pre-configured button that is capable of being toggled on and off. It extends the `ElementButton` component and outputs an element button, with all the styling to make it visually render as a "primary styled" button with associated visual states when toggled off and as a "secondary styled" button with associated visual states when toggled on.
 
-**more to come...**
+This component has two required properties:
+
+- `activateText`: a string displayed when toggled off; to indicate clicking will activate
+- `deactivateText`: a string displayed when toggled on; to indicate clicking will decactivate
+
+This type of button should be used specifically for toggling data items that distinctly have both an "on" and an "off" state. Examples would include "subscribing" or "unsubscribing" from an email newsletter, or to allow users to "follow" or "unfollow" a cause space.
+
+The use case above, indicating the requirements of an on/off state is what separates the `ToggleButton` from how `PrimaryButton` and `SecondaryButton` can be used to show/hide interface elements.
+
+Example component use:
+
+```js
+import ToggleButton from '../utilities/Button/ToggleButton';
+
+// stuff
+
+<ToggleButton
+  activateText="Toggle On"
+  attributes={{ 'data-label': 'some_useful_data' }}
+  className="px-8 py-4 text-lg"
+  deactivateText="Toggle Off"
+  isDisabled={isDisabledCheck}
+  isLoading={isLoadingCheck}
+  isToggled={isToggledCheck}
+  onClick={handleOnClick}
+/>;
+```
+
+Example HTML output:
+
+```html
+// when toggled off
+
+<button
+  class="btn bg-blurple-500 active:bg-blurple-700 focus:bg-blurple-400 hover:bg-blurple-400 border-2 border-solid border-blurple-500 active:border-blurple-700 focus:border-blurple-400 hover:border-blurple-400 focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base text-white hover:text-white px-8 py-4 text-lg"
+  type="button"
+  data-label="some_useful_data"
+>
+  Toggle On
+</button>
+```
+
+```html
+// when toggled on
+
+<button
+  class="btn bg-white active:bg-gray-200 border-2 border-blurple-500 active:border-blurple-700 hover:border-blurple-300 border-solid focus:rounded-none focus:outline-2 focus:outline-blurple-100 focus:outline-solid text-base text-blurple-500 active:text-blurple-700 hover:text-blurple-300 ml-8 px-8 py-4 text-lg"
+  type="button"
+  data-label="some_useful_data"
+>
+  Toggle Off
+</button>
+```
+
+Example rendered output:
+
+![ToggleButton States As ElementButtons Example](../../.gitbook/assets/toggle-button-states-as-element-button-example.png)

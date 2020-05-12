@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { getUtms } from '../../helpers/utm';
-import Button from '../utilities/Button/Button';
+import PrimaryButton from '../utilities/Button/PrimaryButton';
 import { isCampaignClosed, query, withoutNulls } from '../../helpers';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from '../../helpers/analytics';
 
@@ -66,9 +66,11 @@ const SignupButton = props => {
   const buttonCopy = text || campaignActionText;
 
   return (
-    <Button className={className} onClick={handleSignup}>
-      {isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
-    </Button>
+    <PrimaryButton
+      className={className}
+      onClick={handleSignup}
+      text={isCampaignClosed(endDate) ? 'Notify Me' : buttonCopy}
+    />
   );
 };
 
