@@ -23,30 +23,36 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
    */
 
   const formatQuote = () => {
-    let result = [];
-    let lastCause;
-    const votingReasonValues = query('voting-reasons').split(',');
+    const votingReasonsQuery = query('voting-reasons');
+    if (!votingReasonsQuery) {
+      return null;
+    }
+    const votingReasonsValues = votingReasonsQuery.split(',');
 
-    if (votingReasonValues.length === 1) {
-      return ` like ${votingReasons[votingReasonValues[0]]}`;
+    if (votingReasonsValues.length === 1) {
+      return ` like ${votingReasons[votingReasonsValues[0]]}`;
     }
 
-    if (votingReasonValues.length === 2) {
-      return ` like ${votingReasons[votingReasonValues[0]]} and ${
-        votingReasons[votingReasonValues[1]]
+    if (votingReasonsValues.length === 2) {
+      return ` like ${votingReasons[votingReasonsValues[0]]} and ${
+        votingReasons[votingReasonsValues[1]]
       }`;
     }
 
-    if (votingReasonValues.length >= 2) {
-      votingReasonValues.forEach(cause => {
-        result.push(votingReasons[cause]);
+    if (votingReasonsValues.length > 2) {
+      let result = '';
+
+      votingReasonsValues.forEach((value, index) => {
+        if (index === votingReasonsValues.length - 1) {
+          result = `${result} and ${votingReasons[value]}`;
+        } else {
+          result = `${result}, ${votingReasons[value]}`;
+        }
       });
-      lastCause = result[result.length - 1];
-      result = result.slice(0, -1);
-      result.join(', ');
-      return ` like ${result} and ${lastCause}`;
+      return ` like ${result}`;
     }
-    return;
+
+    return ' ';
   };
 
   return (
