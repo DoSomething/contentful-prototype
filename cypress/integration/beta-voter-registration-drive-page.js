@@ -186,7 +186,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most like , COVID-19 relief and climate change.',
+      'Voting is important for young people because we can effect change on issues we care about most like COVID-19 relief and climate change.',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
@@ -210,7 +210,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most like , COVID-19 relief, student debt, mental health, gun violence and climate change.',
+      'Voting is important for young people because we can effect change on issues we care about most like COVID-19 relief,student debt,mental health,gun violence, and climate change.',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',

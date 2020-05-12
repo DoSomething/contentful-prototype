@@ -35,17 +35,23 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
       return ` like ${votingReasons[votingReasonsValues[0]]}`;
     }
 
-    if (votingReasonsValues.length > 1) {
+    if (votingReasonsValues.length === 2) {
+      return ` like ${votingReasons[votingReasonsValues[0]]} and ${
+        votingReasons[votingReasonsValues[1]]
+      }`;
+    }
+
+    if (votingReasonsValues.length > 2) {
       let result = '';
 
       votingReasonsValues.forEach((value, index) => {
         if (index === votingReasonsValues.length - 1) {
           result = `${result} and ${votingReasons[value]}`;
         } else {
-          result = `${result}, ${votingReasons[value]}`;
+          result = `${result}${votingReasons[value]},`;
         }
       });
-
+      console.log('result:', result);
       return ` like ${result}`;
     }
 
