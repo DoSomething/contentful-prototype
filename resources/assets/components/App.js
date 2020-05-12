@@ -43,7 +43,6 @@ const App = ({ store, history }) => {
             context={{ contextSource: 'voter_registration' }}
             render={(handleClose, handleComplete) => (
               <SitewideBanner
-                attributes={{ 'data-test': 'site-wide-banner' }}
                 cta="Get Started"
                 description="Make your voice heard. Register to vote in less than 2 minutes."
                 handleClose={handleClose}

@@ -9,7 +9,6 @@ import PrimaryButton from '../Button/PrimaryButton';
 import CloseButton from '../../artifacts/CloseButton/CloseButton';
 
 const SitewideBannerContent = ({
-  attributes,
   cta,
   description,
   handleClose,
@@ -29,7 +28,7 @@ const SitewideBannerContent = ({
   return (
     <div
       className="w-full md:flex md:justify-center bg-yellow-500 p-8 pb-4 md:pt-4 sm:px-10 z-50"
-      {...attributes}
+      data-test="site-wide-banner"
     >
       <CloseButton
         callback={handleClose}
@@ -54,16 +53,11 @@ const SitewideBannerContent = ({
 };
 
 SitewideBannerContent.propTypes = {
-  attributes: PropTypes.object,
   cta: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
   handleComplete: PropTypes.func.isRequired,
   link: PropTypes.string.isRequired,
-};
-
-SitewideBannerContent.defaultProps = {
-  attributes: {},
 };
 
 export default SitewideBannerContent;
