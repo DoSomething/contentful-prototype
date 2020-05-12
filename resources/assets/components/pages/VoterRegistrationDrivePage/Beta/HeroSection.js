@@ -51,7 +51,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           result = `${result}${votingReasons[value]},`;
         }
       });
-      console.log('result:', result);
+
       return ` like ${result}`;
     }
 
