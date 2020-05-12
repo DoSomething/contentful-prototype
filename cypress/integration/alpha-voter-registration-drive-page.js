@@ -150,6 +150,9 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 0);
+    cy.get('[data-test=social-share-tray-title]').contains(
+      'Share on Social Media',
+    );
   });
 
   it('Alpha OVRD page SocialDriveAction links to internal beta page when beta page feature enabled', () => {
@@ -165,5 +168,6 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`,
     );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
+    cy.get('[data-test=social-share-tray-title]').should('have.length', 0);
   });
 });
