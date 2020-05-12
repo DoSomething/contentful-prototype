@@ -21,11 +21,7 @@ describe('Site Wide Banner', () => {
   });
 
   it('The Site Wide Banner is displayed on campaign pages', () => {
-    cy.withState(exampleCampaign)
-      .withFeatureFlags({
-        sitewide_cta_banner: true,
-      })
-      .visit('/us/campaigns/test-example-campaign');
+    cy.withState(exampleCampaign).visit('/us/campaigns/test-example-campaign');
 
     cy.get('#banner-portal > .wrapper > [data-test=site-wide-banner]').should(
       'have.length',
