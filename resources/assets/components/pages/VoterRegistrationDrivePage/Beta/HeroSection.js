@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { query } from '../../../../helpers';
 import { votingReasons } from './config';
+import { query } from '../../../../helpers';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
@@ -17,27 +17,28 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   } = campaignInfo;
 
   /**
-   * TODO: Check for a voting-reasons query parameter, and render values in quote if present.
-   * @see https://www.pivotaltracker.com/story/show/172087475
+   * Query url for voting-reasons param.
+   *
+   * @return {String}
    */
 
-  const formatEndOfBetaCauseSentence = () => {
+  const formatQuote = () => {
     let result = [];
     let lastCause;
-    const userCauses = query('voting-reasons').split(',');
+    const votingReasonValues = query('voting-reasons').split(',');
 
-    if (userCauses.length === 1) {
-      return ` like ${votingReasons[userCauses[0]]}`;
+    if (votingReasonValues.length === 1) {
+      return ` like ${votingReasons[votingReasonValues[0]]}`;
     }
 
-    if (userCauses.length === 2) {
-      return ` like ${votingReasons[userCauses[0]]} and ${
-        votingReasons[userCauses[1]]
+    if (votingReasonValues.length === 2) {
+      return ` like ${votingReasons[votingReasonValues[0]]} and ${
+        votingReasons[votingReasonValues[1]]
       }`;
     }
 
-    if (userCauses.length >= 2) {
-      userCauses.forEach(cause => {
+    if (votingReasonValues.length >= 2) {
+      votingReasonValues.forEach(cause => {
         result.push(votingReasons[cause]);
       });
       lastCause = result[result.length - 1];
@@ -45,7 +46,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
       result.join(', ');
       return ` like ${result} and ${lastCause}`;
     }
-    return '';
+    return;
   };
 
   return (
@@ -69,7 +70,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
               <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can effect
                 change on issues we care about most
-                {formatEndOfBetaCauseSentence()}.
+                {formatQuote()}.
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}
