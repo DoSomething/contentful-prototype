@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { votingReasons } from './config';
+import { query } from '../../../../helpers';
 import CoverImage from '../../../utilities/CoverImage/CoverImage';
 import CampaignInfoBlock from '../../../blocks/CampaignInfoBlock/CampaignInfoBlock';
 
@@ -15,9 +17,47 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
   } = campaignInfo;
 
   /**
-   * TODO: Check for a voting-reasons query parameter, and render values in quote if present.
-   * @see https://www.pivotaltracker.com/story/show/172087475
+   * Query url for voting-reasons param.
+   *
+   * @return {String}
    */
+
+  const formatQuote = () => {
+    const votingReasonsQuery = query('voting-reasons');
+
+    if (!votingReasonsQuery) {
+      return null;
+    }
+
+    const votingReasonsValues = votingReasonsQuery.split(',');
+
+    if (votingReasonsValues.length === 1) {
+      return ` like ${votingReasons[votingReasonsValues[0]]}`;
+    }
+
+    if (votingReasonsValues.length === 2) {
+      return ` like ${votingReasons[votingReasonsValues[0]]} and ${
+        votingReasons[votingReasonsValues[1]]
+      }`;
+    }
+
+    if (votingReasonsValues.length > 2) {
+      let result = '';
+
+      votingReasonsValues.forEach((value, index) => {
+        if (index === votingReasonsValues.length - 1) {
+          result = `${result}and ${votingReasons[value]}`;
+        } else {
+          result = `${result}${votingReasons[value]}, `;
+        }
+      });
+
+      return ` like ${result}`;
+    }
+
+    return ' ';
+  };
+
   return (
     <div className="hero-landing-page">
       <CoverImage
@@ -38,7 +78,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can effect
-                change on issues we care about most.
+                change on issues we care about most{formatQuote()}.
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}

@@ -149,6 +149,74 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
+  it('Beta OVRD quote displays one cause query when found in voting-options query', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(`${getBetaPagePathForUser(user)}&voting-reasons=student-debt`);
+
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-text]',
+    ).contains(
+      'Voting is important for young people because we can effect change on issues we care about most like student debt.',
+    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-byline]',
+    ).contains(`- ${user.firstName}`);
+  });
+
+  it('Beta OVRD quote displays two causes when found in voting-options query', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(
+      `${getBetaPagePathForUser(
+        user,
+      )}&voting-reasons=covid-relief,climate-change`,
+    );
+
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-text]',
+    ).contains(
+      'Voting is important for young people because we can effect change on issues we care about most like COVID-19 relief and climate change.',
+    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-byline]',
+    ).contains(`- ${user.firstName}`);
+  });
+
+  it('Beta OVRD quote displays three or more causes when found in voting-options query', () => {
+    const user = userFactory();
+
+    cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
+      user,
+      campaignWebsite,
+    });
+
+    cy.visit(
+      `${getBetaPagePathForUser(
+        user,
+      )}&voting-reasons=mental-health,climate-change,healthcare,covid-relief`,
+    );
+
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-text]',
+    ).contains(
+      'Voting is important for young people because we can effect change on issues we care about most like mental health, climate change, healthcare, and COVID-19 relief',
+    );
+    cy.get(
+      '[data-test=beta-voter-registration-drive-page-quote-byline]',
+    ).contains(`- ${user.firstName}`);
+  });
+
   it('Beta OVRD HeroSection displays scholarship info in blurb', () => {
     const user = userFactory();
 
