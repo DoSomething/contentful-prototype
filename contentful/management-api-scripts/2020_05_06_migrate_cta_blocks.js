@@ -119,14 +119,5 @@ contentManagementClient.init(async environment => {
         );
       }
     }
-
-    // Archive old LinkActions
-    logger.info(`⇢ Deleting '${internalTitle}'...`);
-    if (linkAction.isPublished) {
-      await linkAction.unpublish();
-      logger.info(`⇢ Unpublished LinkAction...`);
-    }
-    await linkAction.archive();
-    logger.info(`✔ Archived successfully`);
   }
 });
