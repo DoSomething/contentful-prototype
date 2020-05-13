@@ -6,6 +6,7 @@ import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
+import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
@@ -54,16 +55,18 @@ const renderBlock = (block, imageAlignment, imageFit) => {
     case 'PersonBlock':
       return <Person key={block.id} {...fields} />;
 
+    // Temporary replace all campaigns with Scholarship Card
     case 'campaign':
     case 'CampaignWebsite':
       return (
-        <CampaignGalleryItem
-          key={block.id}
-          showcaseTitle={fields.title}
-          showcaseDescription={fields.tagline}
-          showcaseImage={fields.coverImage}
-          {...withoutNulls(fields)}
-        />
+        <ScholarshipCard campaign={campaign} />
+        // <CampaignGalleryItem
+        //   key={block.id}
+        //   showcaseTitle={fields.title}
+        //   showcaseDescription={fields.tagline}
+        //   showcaseImage={fields.coverImage}
+        //   {...withoutNulls(fields)}
+        // />
       );
 
     case 'page':
