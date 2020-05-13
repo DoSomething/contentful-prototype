@@ -12,7 +12,6 @@ import BlockPage from '../../pages/BlockPage/BlockPage';
 import ContentfulEntry from '../../ContentfulEntry/ContentfulEntry';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
-import LandingPageContainer from '../../pages/LandingPage/LandingPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 
 const CampaignRoute = props => {

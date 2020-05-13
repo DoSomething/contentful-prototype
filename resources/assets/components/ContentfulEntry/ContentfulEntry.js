@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Loader from '../utilities/Loader';
 import SoftEdgeBlock from '../actions/SoftEdgeBlock';
 import ErrorBlock from '../blocks/ErrorBlock/ErrorBlock';
+import LandingPage from '../pages/LandingPage/LandingPage';
 import ImagesBlock from '../blocks/ImagesBlock/ImagesBlock';
 import ContentBlock from '../blocks/ContentBlock/ContentBlock';
 import GalleryBlock from '../blocks/GalleryBlock/GalleryBlock';
@@ -12,7 +13,6 @@ import AffirmationContainer from '../Affirmation/AffirmationContainer';
 import { parseContentfulType, report, withoutNulls } from '../../helpers';
 import EmbedBlockContainer from '../blocks/EmbedBlock/EmbedBlockContainer';
 import LinkActionContainer from '../actions/LinkAction/LinkActionContainer';
-import LandingPageContainer from '../pages/LandingPage/LandingPageContainer';
 import CallToActionBlock from '../blocks/CallToActionBlock/CallToActionBlock';
 import ShareActionContainer from '../actions/ShareAction/ShareActionContainer';
 import CampaignDashboard from '../utilities/CampaignDashboard/CampaignDashboard';
@@ -129,7 +129,7 @@ class ContentfulEntry extends React.Component {
 
       // Note: This is loaded via legacy PHP Content API.
       case 'landingPage':
-        return <LandingPageContainer {...json.fields} />;
+        return <LandingPage {...json.fields} />;
 
       case 'LinkBlock':
         return (
