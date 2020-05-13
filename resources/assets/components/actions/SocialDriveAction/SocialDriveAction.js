@@ -2,6 +2,7 @@
 
 import React from 'react';
 import gql from 'graphql-tag';
+import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -36,6 +37,12 @@ class SocialDriveAction extends React.Component {
     };
 
     this.linkInput = React.createRef();
+
+    /**
+     * Debounce the API request to shorten our long URL.
+     * @see https://gist.github.com/simonw/c29de00c20fde731243cbac8568a3d7f
+     */
+    this.getShortUrl = debounce(this.getShortUrl, 300);
   }
 
   componentDidMount() {
