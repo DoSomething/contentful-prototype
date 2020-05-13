@@ -48,11 +48,11 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
         if (index === votingReasonsValues.length - 1) {
           result = `${result} and ${votingReasons[value]}`;
         } else {
-          result = `${result}${votingReasons[value]},`;
+          result = `${result}${votingReasons[value]}, `;
         }
       });
 
-      return ` like ${result}`;
+      return ` like  ${result}`;
     }
 
     return ' ';
