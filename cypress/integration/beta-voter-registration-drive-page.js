@@ -204,13 +204,13 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.visit(
       `${getBetaPagePathForUser(
         user,
-      )}&voting-reasons=covid-relief,student-debt,mental-health,gun-violence,climate-change`,
+      )}&voting-reasons=covid-relief,climate-change,healthcare`,
     );
 
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most like COVID-19 relief, student debt, mental health, gun violence, and climate change.',
+      'Voting is important for young people because we can effect change on issues we care about most like COVID-19 relief, climate change, and healthcare.',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
