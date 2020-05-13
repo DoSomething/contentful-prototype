@@ -226,4 +226,17 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
 
     cy.get('[data-test=voter-registration-submit-button]').should('be.enabled');
   });
+
+  it('Beta OVRD <meta> tag has a title and description', () => {
+    cy.get('head meta[property="og:title"]').should(
+      'have.attr',
+      'content',
+      'Register to vote with me!',
+    );
+    cy.get('head meta[property="og:description"]').should(
+      'have.attr',
+      'content',
+      "You can register to vote online... literally right now! It's fast, easy, and requires only basic information like your street address. Let's Do This!",
+    );
+  });
 });
