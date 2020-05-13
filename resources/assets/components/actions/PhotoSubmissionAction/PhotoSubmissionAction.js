@@ -14,6 +14,7 @@ import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
@@ -333,12 +334,12 @@ class PhotoSubmissionAction extends PostForm {
               {formResponse ? <FormValidation response={formResponse} /> : null}
 
               <form
-                className="photo-submission-form"
+                className="photo-submission-form p-3"
                 onSubmit={this.handleSubmit}
               >
                 <div className="wrapper">
-                  <div className="form-section">
-                    <div className="wrapper">
+                  <div className="form-section md:pr-3">
+                    <div className="wrapper pb-3">
                       <MediaUploader
                         label="Add your photo here"
                         media={this.state.mediaValue}
@@ -355,6 +356,7 @@ class PhotoSubmissionAction extends PostForm {
                         >
                           {this.props.captionFieldLabel}
                         </label>
+
                         <input
                           className={classnames('text-field', {
                             'has-error shake': has(errors, 'caption'),
@@ -368,6 +370,7 @@ class PhotoSubmissionAction extends PostForm {
                           required
                           maxLength={CAPTION_CHARACTER_LIMIT}
                         />
+
                         <CharacterLimit
                           className="pt-1"
                           limit={CAPTION_CHARACTER_LIMIT}
@@ -377,8 +380,8 @@ class PhotoSubmissionAction extends PostForm {
                     </div>
                   </div>
 
-                  <div className="form-section">
-                    <div className="wrapper">
+                  <div className="form-section md:pl-3">
+                    <div className="wrapper py-3 md:pt-0">
                       {this.props.showQuantityField ? (
                         <div className="form-item">
                           {quantity ? (
@@ -453,6 +456,7 @@ class PhotoSubmissionAction extends PostForm {
                         >
                           {this.props.whyParticipatedFieldLabel}
                         </label>
+
                         <textarea
                           className={classnames('text-field', {
                             'has-error shake': has(errors, 'whyParticipated'),
@@ -471,16 +475,17 @@ class PhotoSubmissionAction extends PostForm {
                   </div>
                 </div>
 
-                <Button
+                <PrimaryButton
+                  className="block mt-3 text-lg w-full"
+                  isLoading={submissionItem && submissionItem.isPending}
+                  text={this.props.buttonText}
                   type="submit"
-                  loading={submissionItem && submissionItem.isPending}
-                  attached
-                >
-                  {this.props.buttonText}
-                </Button>
-                <PrivacyLanguage className="pb-4 pt-2 px-3" />
+                />
+
+                <PrivacyLanguage className="mb-1 mt-5" />
               </form>
             </Card>
+
             <AnalyticsWaypoint
               name="photo_submission_action-bottom"
               context={{ blockId: this.props.id }}
