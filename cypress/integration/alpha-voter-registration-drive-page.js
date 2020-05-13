@@ -33,6 +33,13 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
         content: faker.lorem.sentence(),
       },
     });
+    // Mock a Bertly API error to ensure the longUrl will appear in the input field.
+    cy.route({
+      method: 'POST',
+      url: '/api/v2/links',
+      status: 503,
+      response: {},
+    });
   });
 
   it('The blocks field of the Alpha OVRD action page is not displayed', () => {
@@ -150,6 +157,9 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       `https://vote.dosomething.org/member-drive?userId=${user.id}&r=user:${user.id},source:web,source_details:onlinedrivereferral,referral=true`,
     );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 0);
+    cy.get('[data-test=social-share-tray-title]').contains(
+      'Share on Social Media',
+    );
   });
 
   it('Alpha OVRD page SocialDriveAction links to internal beta page when beta page feature enabled', () => {
@@ -165,5 +175,36 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
       `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`,
     );
     cy.get('[data-test=voting-reasons-query-options]').should('have.length', 1);
+    cy.get('[data-test=social-share-tray-title]').should('have.length', 0);
+  });
+
+  it('Alpha OVRD page appends voting-reasons query parameter to SocialDriveAction link when checking options', () => {
+    const user = userFactory();
+    const longUrl = `${PHOENIX_URL}/us/my-voter-registration-drive?referrer_user_id=${user.id}`;
+
+    cy.withFeatureFlags({
+      voter_reg_beta_page: true,
+    }).authVisitCampaignWithSignup(user, exampleVoterRegistrationDriveCampaign);
+
+    cy.get('#mental-health').check();
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${longUrl}&voting-reasons=mental-health`,
+    );
+
+    cy.get('#student-debt').check();
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${longUrl}&voting-reasons=mental-health,student-debt`,
+    );
+
+    cy.get('#student-debt').check();
+    cy.get('.link-bar input').should(
+      'contain.value',
+      `${longUrl}&voting-reasons=mental-health`,
+    );
+
+    cy.get('#mental-health').check();
+    cy.get('.link-bar input').should('contain.value', longUrl);
   });
 });

@@ -141,7 +141,14 @@ class SocialShareTray extends React.Component {
     const trackLink = this.props.trackLink || this.props.shareLink;
     return (
       <div className="social-share-tray p-3 text-center">
-        {title ? <p className="title uppercase font-bold">{title}</p> : null}
+        {title ? (
+          <p
+            data-test="social-share-tray-title"
+            className="title uppercase font-bold"
+          >
+            {title}
+          </p>
+        ) : null}
 
         <div className={classNames('share-buttons', { responsive })}>
           {platforms.includes('facebook') ? (
