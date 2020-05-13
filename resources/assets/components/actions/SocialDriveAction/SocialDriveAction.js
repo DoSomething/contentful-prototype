@@ -197,7 +197,7 @@ class SocialDriveAction extends React.Component {
             <SocialShareTray
               shareLink={shortUrl}
               trackLink={link}
-              title={queryOptions ? null : `Share on Social Media`}
+              title={queryOptions ? null : 'Share on Social Media'}
               responsive
             />
           </Card>
