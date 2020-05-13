@@ -195,7 +195,7 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
     cy.get('#student-debt').check();
     cy.get('.link-bar input').should(
       'contain.value',
-      `${longUrl}&voting-reasons=mental-health,student-debt`,
+      `${longUrl}&voting-reasons=mental-health%2Cstudent-debt`,
     );
 
     cy.get('#student-debt').check();
