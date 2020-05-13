@@ -78,6 +78,9 @@ $router->view('us/blocks/{id}', 'app');
 // Voter Registration Drives
 $router->view('us/my-voter-registration-drive', 'app');
 
+// Quiz Results
+$router->view('us/quiz-results/{id}', 'app');
+
 // Pages
 $router->get('us/{slug}', 'PageController@show');
 $router->get('{slug}', function ($slug) {
