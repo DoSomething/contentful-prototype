@@ -46,13 +46,13 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
 
       votingReasonsValues.forEach((value, index) => {
         if (index === votingReasonsValues.length - 1) {
-          result = `${result} and ${votingReasons[value]}`;
+          result = `${result}and ${votingReasons[value]}`;
         } else {
           result = `${result}${votingReasons[value]}, `;
         }
       });
 
-      return ` like  ${result}`;
+      return ` like ${result}`;
     }
 
     return ' ';
@@ -78,8 +78,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">
                 Voting is important for young people because we can effect
-                change on issues we care about most
-                {formatQuote()}.
+                change on issues we care about most{formatQuote()}.
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}
