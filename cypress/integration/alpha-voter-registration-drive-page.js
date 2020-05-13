@@ -33,6 +33,13 @@ describe('Alpha Voter Registration Drive (OVRD) Page', () => {
         content: faker.lorem.sentence(),
       },
     });
+    // Mock a Bertly API error to ensure the longUrl will appear in the input field.
+    cy.route({
+      method: 'POST',
+      url: '/api/v2/links',
+      status: 503,
+      response: {},
+    });
   });
 
   it('The blocks field of the Alpha OVRD action page is not displayed', () => {
