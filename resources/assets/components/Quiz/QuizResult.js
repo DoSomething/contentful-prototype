@@ -1,8 +1,10 @@
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 
+import { featureFlag } from '../../helpers';
 import { isAuthenticated } from '../../helpers/auth';
 import ContentfulEntryLoader from '../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
@@ -27,7 +29,11 @@ const QuizResult = ({ id, campaignId }) => {
     }
   }, [id]);
 
-  return <ContentfulEntryLoader id={id} />;
+  return featureFlag('quiz_result_page') ? (
+    <Redirect to={`/us/quiz-results/${id}`} />
+  ) : (
+    <ContentfulEntryLoader id={id} />
+  );
 };
 
 QuizResult.propTypes = {
