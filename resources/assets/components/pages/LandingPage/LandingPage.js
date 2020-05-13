@@ -11,7 +11,8 @@ import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
 const LandingPage = props => {
-  const { content, isCampaignClosed } = props;
+  const { content } = props;
+
   // @TODO: Implement this as a custom (rich text) renderer per https://git.io/JfGlf.
   const landingPageHeadingOneStyle = css`
     h1 {
@@ -25,7 +26,7 @@ const LandingPage = props => {
 
   return (
     <>
-      <LedeBannerContainer isClosed={isCampaignClosed} />
+      <LedeBannerContainer />
 
       {content ? (
         <div className="bg-white">
@@ -46,12 +47,10 @@ const LandingPage = props => {
 
 LandingPage.propTypes = {
   content: PropTypes.object,
-  isCampaignClosed: PropTypes.bool,
 };
 
 LandingPage.defaultProps = {
   content: null,
-  isCampaignClosed: false,
 };
 
 export default LandingPage;
