@@ -121,7 +121,12 @@ const App = ({ store, history }) => {
 
               <Route path="/us/join" component={BetaReferralPage} />
 
-              <Route path="/us/quiz-results/:id" component={QuizResultPage} />
+              <Route
+                path="/us/quiz-results/:id"
+                render={routeProps => (
+                  <QuizResultPage id={routeProps.match.params.id} />
+                )}
+              />
 
               <Route
                 path="/us/my-voter-registration-drive"

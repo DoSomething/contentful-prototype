@@ -5,7 +5,7 @@ import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
 
-const QuizResultPage = () => {
+const QuizResultPage = ({ id }) => {
   return (
     <>
       <SiteNavigationContainer />
@@ -20,7 +20,7 @@ const QuizResultPage = () => {
               <h2 className="my-3 uppercase color-white text-lg">Subtitle</h2>
 
               <h1 className="my-3 font-normal font-league-gothic color-white uppercase">
-                Title
+                {id}
               </h1>
 
               <TextContent className="text-white">Description</TextContent>
@@ -37,11 +37,7 @@ const QuizResultPage = () => {
 };
 
 QuizResultPage.propTypes = {
-  id: PropTypes.string,
-};
-
-QuizResultPage.propTypes = {
-  id: null,
+  id: PropTypes.string.isRequired,
 };
 
 export default QuizResultPage;
