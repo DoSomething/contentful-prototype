@@ -57,30 +57,6 @@ class Campaign extends Entity implements JsonSerializable
     }
 
     /**
-     * Parse the landing page for the campaign.
-     *
-     * @param  Entry $landingPage
-     * @return array
-     */
-    public function parseLandingPage($landingPage)
-    {
-        if (! $landingPage) {
-            return null;
-        }
-
-        if ($landingPage->getContentType() === 'sixpackExperiment') {
-            return new SixpackExperiment($landingPage->entry);
-        }
-
-        // @TODO: remove once all landing pages use the LandingPage content type.
-        if ($landingPage->getContentType() === 'page') {
-            return new Page($landingPage->entry);
-        }
-
-        return new LandingPage($landingPage->entry);
-    }
-
-    /**
      * Parse and extract data for quizzes.
      *
      * @param  array $quizzes
@@ -124,7 +100,7 @@ class Campaign extends Entity implements JsonSerializable
             'dashboard' => $this->parseCampaignDashboard($this->dashboard),
             'affirmation' => $this->affirmation ? $this->parseBlock($this->affirmation) : null,
             'pages' => $this->parseBlocks($this->pages),
-            'landingPage' => $this->parseLandingPage($this->landingPage),
+            'landingPage' => $this->landingPage ? $this->parseBlock($this->landingPage) : null,
             'socialOverride' => $this->socialOverride ? new SocialOverride($this->socialOverride->entry) : null,
             'additionalContent' => $this->additionalContent,
             'allowExperiments' => $this->campaignSettings ? $this->campaignSettings->allowExperiments : null,

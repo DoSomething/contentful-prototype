@@ -7,17 +7,9 @@ import { isCampaignClosed } from '../../../helpers';
 /**
  * Provide state from the Redux store as props for this component.
  */
-const mapStateToProps = (state, ownProps) => {
-  // @TODO: while we have landing pages as either a page content type
-  // or a landingPage content type, the ownProps is structured a bit
-  // differently. Revise once all landing pages use landingPage type.
-  const landingPage = get(ownProps, 'landingPage.fields', ownProps);
-
-  return {
-    content: landingPage.content,
-    isCampaignClosed: isCampaignClosed(state.campaign.endDate),
-  };
-};
+const mapStateToProps = (state, ownProps) => ({
+  isCampaignClosed: isCampaignClosed(state.campaign.endDate),
+});
 
 /**
  * Export the container component.

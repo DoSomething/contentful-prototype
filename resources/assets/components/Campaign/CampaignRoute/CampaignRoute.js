@@ -89,13 +89,10 @@ const CampaignRoute = props => {
               return <NotFound />;
             }
 
-            // @TODO: temporary function to select component to use based on type.
-            // Will be removed once all landing pages use the LandingPage content type.
-            return props.landingPage.type === 'page' ? (
-              <LandingPageContainer {...props} />
-            ) : (
-              <ContentfulEntry json={props.landingPage} />
-            );
+            // This could be a Landing Page or a Sixpack Experiment.
+            // (Sixpack experiments are actually _not_ supported ATM:
+            // https://www.pivotaltracker.com/n/projects/2401401/stories/170964251).
+            return <ContentfulEntry json={props.landingPage} />;
           }}
         />
 
