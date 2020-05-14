@@ -90,23 +90,43 @@ TODO: Document how the `r` query parameter is used by the Chompy import.
 
 ## Quiz
 
-Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living on all environments at the path:
+### Voter Registration Quiz Campaign
+
+Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living on all environments under a Voter Registration Quiz campaign, at path:
 
 ```
-/us/campaigns/ready-vote/ready
+/us/campaigns/ready-vote
 ```
 
-The 2020 version will redirect users to a `QuizResultPage` after completing the quiz if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
+When users visit the campaign URL, they are prompted to signup from the landing page, and are then redirected to the action page to take the quiz:
+
+```
+/us/campaigns/action
+```
+
+There is also a version of the landing page that allows an anonymous user to take the quiz, and then authenticate in order to see their result:
+
+```
+/us/campaigns/ready-vote/quiz/ready
+```
+
+### Quiz Result Page
+
+We're working on a new release to redirect users to a new `QuizResultPage` component after completing the quiz if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
 
 ```
 /us/quiz-results/:id
 ```
 
-The page expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field. Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+The page expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
+
+The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
 
 **Production**
 
-Quiz results:
+Gallery Block: 78WaGsvDEzAxnreEvNx3Za
+
+Quiz Results:
 
 | id                     | title               | internalTitle      | assetId                |
 | ---------------------- | ------------------- | ------------------ | ---------------------- |
@@ -115,11 +135,11 @@ Quiz results:
 | 21PDBge2bKCTWMe5f9eo1H | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
 | 14KfeAs265httjNMf1jwTw | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
 
-Gallery Block: 78WaGsvDEzAxnreEvNx3Za
-
 **Dev**
 
-Quiz results:
+Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
+
+Quiz Results:
 
 | id                     | title               | internalTitle    | assetId                |
 | ---------------------- | ------------------- | ---------------- | ---------------------- |
@@ -127,4 +147,6 @@ Quiz results:
 | 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
 | 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
 
-Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
+**Notes**
+
+- Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
