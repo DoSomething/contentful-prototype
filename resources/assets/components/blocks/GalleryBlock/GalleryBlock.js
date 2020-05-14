@@ -6,12 +6,10 @@ import { withoutNulls } from '../../../helpers';
 import Person from '../../utilities/Person/Person';
 import Gallery from '../../utilities/Gallery/Gallery';
 import SectionHeader from '../../utilities/SectionHeader/SectionHeader';
+import ScholarshipCard from '../../utilities/ScholarshipCard/ScholarshipCard';
 import PageGalleryItem from '../../utilities/Gallery/templates/PageGalleryItem/PageGalleryItem';
 import ContentBlockGalleryItem from '../../utilities/Gallery/templates/ContentBlockGalleryItem';
 import CampaignGalleryItem from '../../utilities/Gallery/templates/CampaignGalleryItem/CampaignGalleryItem';
-import ScholarshipCard, {
-  scholarshipCardFragment,
-} from '../../utilities/ScholarshipCard/ScholarshipCard';
 
 export const GalleryBlockFragment = gql`
   fragment GalleryBlockFragment on GalleryBlock {
@@ -124,11 +122,10 @@ const GalleryBlock = props => {
     <div className="gallery-block">
       {title ? <SectionHeader underlined title={title} /> : null}
 
-      {/* Should it read the gallery type and render just those blocks?? */}
       <Gallery type={galleryType} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
-            blockType,
+            blockType || block.__typename,
             block,
             imageAlignment.toLowerCase(),
             imageFit.toLowerCase(),
@@ -151,7 +148,7 @@ GalleryBlock.propTypes = {
 GalleryBlock.defaultProps = {
   title: null,
   imageFit: 'FILL',
-  blockType: 'scholarship',
+  blockType: null,
 };
 
 export default GalleryBlock;
