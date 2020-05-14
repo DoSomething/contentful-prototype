@@ -139,4 +139,11 @@ Quiz Results:
 
 **Notes**
 
+- While we're still developing this component, we're displaying placeholder copy for the Link Action content unless a `preview=true` query parameter is present. Examples:
+
+  - Placeholder content = https://qa.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS
+  - Live content - https://qa.dosomething.org/us/quiz-results/p7hqjSP4Y1U6ad0UDz4iS?preview=true
+
+This is because the current content in Contentful for our result entries contains the banner image inline (so they are displayed twice, once within the header and a second time within the copy). When we're ready to go live, we'll have the campaigns team edit the content and remove the requirement to include the `preview` query.
+
 - Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
