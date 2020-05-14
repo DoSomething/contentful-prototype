@@ -102,14 +102,29 @@ The 2020 version will redirect users to a `QuizResultPage` after completing the 
 /us/quiz-results/:id
 ```
 
-The `:id` route parameter corresponds to the Contentful entry containing the quiz result content. Please only edit the quiz entries that link to these entries only if necessary, as they are configured delicately by manually entering JSON.
+The `:id` route parameter corresponds to the Contentful `LinkBlock` entry containing the quiz result content. Please only edit the quiz entries that link to these entries only if necessary, as they are configured delicately by manually entering JSON.
 
-**Dev**:
+**Production**
 
 Quiz results:
 
-| id                     | type      | internalTitle    | title |
-| ---------------------- | --------- | ---------------- | ----- |
-| 347iYsbykgQe6KqeGceMUk | LinkBlock | Super Motivated  |       |
-| 1lvJHhlJqQSgKgwIwUymQ8 | LinkBlock | Social Voter     |       |
-| 2KfkCOTi7u4CqAyyCuGyci | LinkBlock | Election Dabbler |       |
+| id                     | title               | internalTitle      | assetId                |
+| ---------------------- | ------------------- | ------------------ | ---------------------- |
+| p7hqjSP4Y1U6ad0UDz4iS  | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
+| 1giTEF3B2hO2CyccmhlVDm | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
+| 21PDBge2bKCTWMe5f9eo1H | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
+| 14KfeAs265httjNMf1jwTw | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
+
+Gallery Block: 78WaGsvDEzAxnreEvNx3Za
+
+**Dev**
+
+Quiz results:
+
+| id                     | title               | internalTitle    | assetId                |
+| ---------------------- | ------------------- | ---------------- | ---------------------- |
+| 347iYsbykgQe6KqeGceMUk | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
+| 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
+| 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
+
+Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4

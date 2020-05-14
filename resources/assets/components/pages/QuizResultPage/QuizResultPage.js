@@ -1,16 +1,20 @@
 import React from 'react';
+import { get } from 'lodash';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
+import { gqlVariables } from './config';
 import NotFoundPage from '../NotFoundPage';
+import { isDevEnvironment } from '../../../helpers';
 import Placeholder from '../../utilities/Placeholder';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
-import { ShareBlockFragment } from '../../actions/ShareAction/ShareAction';
+import ContentfulAsset from '../../utilities/ContentfulAsset/ContentfulAsset';
 import SiteNavigationContainer from '../../SiteNavigation/SiteNavigationContainer';
+import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 
 const QUIZ_RESULT_PAGE_QUERY = gql`
   query QuizResultPageQuery($id: String!) {
@@ -19,14 +23,10 @@ const QUIZ_RESULT_PAGE_QUERY = gql`
       ... on LinkBlock {
         ...LinkBlockFragment
       }
-      ... on ShareBlock {
-        ...ShareBlockFragment
-      }
     }
   }
 
   ${LinkBlockFragment}
-  ${ShareBlockFragment}
 `;
 
 const QuizResultPage = ({ id }) => {
@@ -46,7 +46,11 @@ const QuizResultPage = ({ id }) => {
     return <NotFoundPage id={id} />;
   }
 
-  const { title, content } = data.block;
+  const config = isDevEnvironment()
+    ? gqlVariables.development
+    : gqlVariables.production;
+  const { linkBlockTitle, content } = data.block;
+  const assetId = get(config, `results.${id}.assetId`, null);
 
   return (
     <>
@@ -60,12 +64,19 @@ const QuizResultPage = ({ id }) => {
           >
             <div className="my-6 grid-full">
               <h1 className="my-3 font-normal font-league-gothic color-white uppercase">
-                {title}
+                {linkBlockTitle}
               </h1>
+              {assetId ? (
+                <ContentfulAsset id={assetId} width={400} height={300} />
+              ) : null}
             </div>
           </header>
           <div className="bg-white base-12-grid py-3 md:py-6">
             <TextContent className="grid-full">{content}</TextContent>
+            <ContentfulEntryLoader
+              id={config.galleryBlockId}
+              className="grid-full"
+            />
           </div>
         </article>
       </main>
