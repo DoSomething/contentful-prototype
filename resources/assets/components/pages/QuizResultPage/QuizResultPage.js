@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { useQuery } from 'react-apollo';
 
 import ErrorPage from '../ErrorPage';
-import { gqlVariables } from './config';
+import { gqlVariables, placeholderContent } from './config';
 import NotFoundPage from '../NotFoundPage';
-import { isDevEnvironment } from '../../../helpers';
 import Placeholder from '../../utilities/Placeholder';
+import { isDevEnvironment, query } from '../../../helpers';
 import SiteFooter from '../../utilities/SiteFooter/SiteFooter';
 import TextContent from '../../utilities/TextContent/TextContent';
 import { LinkBlockFragment } from '../../actions/LinkAction/LinkAction';
@@ -49,8 +49,10 @@ const QuizResultPage = ({ id }) => {
   const config = isDevEnvironment()
     ? gqlVariables.development
     : gqlVariables.production;
-  const { linkBlockTitle, content } = data.block;
+  const { linkBlockTitle } = data.block;
   const assetId = get(config, `results.${id}.assetId`, null);
+  // Use placeholder for development until we're ready to enable Quiz Result Page feature.
+  const content = query('preview') ? data.block.content : placeholderContent;
 
   return (
     <>

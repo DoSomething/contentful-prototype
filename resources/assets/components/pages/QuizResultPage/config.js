@@ -42,4 +42,5 @@ export const gqlVariables = {
   },
 };
 
-export { gqlVariables as default };
+export const placeholderContent =
+  'Saepe cupiditate non. Facere velit vitae corporis. Voluptatum illo inventore quasi earum. Necessitatibus odio nam. Repudiandae commodi fugit. Placeat consequuntur autem dignissimos ducimus excepturi quis neque. Qui maiores voluptas illum et est laborum quia veniam. Dicta quia quas impedit. Laborum id eius molestias eveniet temporibus. Rerum tempora id eos officiis omnis nam. Eveniet quod quam et hic eligendi ab et. Tempora qui consequatur dolor laudantium voluptate magnam soluta. Eaque saepe quisquam similique voluptatum error.';
