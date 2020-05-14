@@ -100,13 +100,9 @@ Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must sig
 
 ### Quiz Result Page
 
-We're working on a new release to redirect users to a new `QuizResultPage` component after completing the quiz if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
+We're working on a new release to redirect users to `/us/quiz-results/:id` to view their quiz result if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
 
-```
-/us/quiz-results/:id
-```
-
-The page expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
+The page displays a new `QuizResultPage` component, and expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
 
 The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
 
