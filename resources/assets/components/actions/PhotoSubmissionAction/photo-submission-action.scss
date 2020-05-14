@@ -91,26 +91,4 @@
   .form-item + .form-item {
     margin-top: theme('spacing.6');
   }
-
-  // Quantity Display
-  .quantity-display {
-    span {
-      display: block;
-    }
-  }
-
-  .quantity-display__units {
-    color: theme('colors.gray.600');
-    font-size: $font-regular;
-    font-weight: $weight-bold;
-    line-height: 1;
-    margin-bottom: theme('spacing.2');
-    text-transform: uppercase;
-  }
-
-  .quantity-display__total {
-    font-family: theme('fontFamily.league-gothic');
-    font-size: $font-hero;
-    line-height: 1;
-  }
 }

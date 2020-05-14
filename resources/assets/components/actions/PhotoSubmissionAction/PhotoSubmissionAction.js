@@ -301,32 +301,36 @@ class PhotoSubmissionAction extends PostForm {
     // If we don't have an authenticated user, then this is a story page
     if (!this.props.userId) {
       return (
-        <React.Fragment>
+        <>
           <div className="clearfix">
             <div className="photo-submission-action" />
+
             <Card
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
             >
-              <div className="text-center p-2">
-                <a className="button w-full" href={this.props.authRegisterUrl}>
-                  Add Photo
-                </a>
+              <div className="text-center p-3">
+                <PrimaryButton
+                  className="block text-lg w-full"
+                  href={this.props.authRegisterUrl}
+                  text="Add Photo"
+                />
               </div>
             </Card>
           </div>
-        </React.Fragment>
+        </>
       );
     }
 
     return (
-      <React.Fragment>
+      <>
         <div className="clearfix">
           <div className="photo-submission-action">
             <AnalyticsWaypoint
               name="photo_submission_action-top"
               context={{ blockId: this.props.id }}
             />
+
             <Card
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
@@ -386,10 +390,11 @@ class PhotoSubmissionAction extends PostForm {
                         <div className="form-item">
                           {quantity ? (
                             <div className="quantity-display py-3">
-                              <span className="quantity-display__units">
+                              <span className="block font-bold leading-none mb-2 text-base text-gray-600 uppercase">
                                 total items
                               </span>
-                              <span className="quantity-display__total">
+
+                              <span className="block font-league-gothic leading-none text-4xl">
                                 {quantity}
                               </span>
                             </div>
@@ -404,6 +409,7 @@ class PhotoSubmissionAction extends PostForm {
                               ? 'You can enter your new total here:'
                               : this.props.quantityFieldLabel}
                           </label>
+
                           <input
                             className={classnames('text-field', {
                               'has-error shake': has(errors, 'quantity'),
@@ -430,6 +436,7 @@ class PhotoSubmissionAction extends PostForm {
                           >
                             {this.props.numberOfParticipantsFieldLabel}
                           </label>
+
                           <input
                             className={classnames('text-field', {
                               'has-error shake': has(
@@ -509,7 +516,7 @@ class PhotoSubmissionAction extends PostForm {
             userId={this.props.userId}
           />
         ) : null}
-      </React.Fragment>
+      </>
     );
   }
 }
