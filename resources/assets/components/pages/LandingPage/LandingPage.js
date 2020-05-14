@@ -10,48 +10,43 @@ import TextContent from '../../utilities/TextContent/TextContent';
 import LedeBannerContainer from '../../LedeBanner/LedeBannerContainer';
 import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarContainer';
 
-const LandingPage = props => {
-  const { content, isCampaignClosed } = props;
-  // @TODO: Implement this as a custom (rich text) renderer per https://git.io/JfGlf.
-  const landingPageHeadingOneStyle = css`
-    h1 {
-      ${tw`mb-6 text-4xl`}
+// @TODO: Implement this as a custom (rich text) renderer per https://git.io/JfGlf.
+const landingPageHeadingOneStyle = css`
+  h1 {
+    ${tw`mb-6 text-4xl`}
 
-      span {
-        border-bottom: 5px solid ${tailwind('colors.yellow.500')};
-      }
+    span {
+      border-bottom: 5px solid ${tailwind('colors.yellow.500')};
     }
-  `;
+  }
+`;
 
-  return (
-    <>
-      <LedeBannerContainer isClosed={isCampaignClosed} />
+const LandingPage = ({ content }) => (
+  <>
+    <LedeBannerContainer />
 
-      {content ? (
-        <div className="bg-white">
-          <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
-            <div className="campaign-page__content clearfix">
-              <div className="primary" css={landingPageHeadingOneStyle}>
-                <TextContent>{content}</TextContent>
-              </div>
+    {content ? (
+      <div className="bg-white">
+        <div className="md:w-3/4 mx-auto py-6 px-3 pitch-landing-page">
+          <div className="campaign-page__content clearfix">
+            <div className="primary" css={landingPageHeadingOneStyle}>
+              <TextContent>{content}</TextContent>
             </div>
           </div>
         </div>
-      ) : null}
+      </div>
+    ) : null}
 
-      <CampaignInfoBarContainer />
-    </>
-  );
-};
+    <CampaignInfoBarContainer />
+  </>
+);
 
 LandingPage.propTypes = {
   content: PropTypes.object,
-  isCampaignClosed: PropTypes.bool,
 };
 
 LandingPage.defaultProps = {
   content: null,
-  isCampaignClosed: false,
 };
 
 export default LandingPage;

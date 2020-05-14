@@ -12,7 +12,6 @@ import BlockPage from '../../pages/BlockPage/BlockPage';
 import ContentfulEntry from '../../ContentfulEntry/ContentfulEntry';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
-import LandingPageContainer from '../../pages/LandingPage/LandingPageContainer';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
 
 const CampaignRoute = props => {
@@ -89,13 +88,10 @@ const CampaignRoute = props => {
               return <NotFound />;
             }
 
-            // @TODO: temporary function to select component to use based on type.
-            // Will be removed once all landing pages use the LandingPage content type.
-            return props.landingPage.type === 'page' ? (
-              <LandingPageContainer {...props} />
-            ) : (
-              <ContentfulEntry json={props.landingPage} />
-            );
+            // This could be a Landing Page or a Sixpack Experiment.
+            // (Sixpack experiments are actually _not_ supported ATM:
+            // https://www.pivotaltracker.com/n/projects/2401401/stories/170964251).
+            return <ContentfulEntry json={props.landingPage} />;
           }}
         />
 
