@@ -18,6 +18,5 @@ return [
     'volunteer_credits' => env('DS_ENABLE_VOLUNTEER_CREDITS', false),
     'cause_preferences' => env('DS_ENABLE_CAUSE_INTERESTS_PAGE', false),
     'sitewide_nps_survey' => env('DS_ENABLE_SITEWIDE_NPS_SURVEY', false),
-    'snapchat_button' => env('DS_ENABLE_SNAPCHAT', false),
     'voter_reg_beta_page' => env('DS_ENABLE_VOTER_REG_BETA_PAGE', false),
 ];

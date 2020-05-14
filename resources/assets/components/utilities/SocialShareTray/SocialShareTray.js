@@ -162,7 +162,7 @@ class SocialShareTray extends React.Component {
               text="Share"
             />
           ) : null}
-          {featureFlag('snapchat_button') && platforms.includes('snapchat') ? (
+          {platforms.includes('snapchat') ? (
             <Media query="(max-width: 759px)">
               <ShareButton
                 className="snapchat-share-button snapchat bg-snapchat-400 hover:bg-yellow-300 text-black"
