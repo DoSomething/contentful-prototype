@@ -34,13 +34,20 @@ const VoterRegistrationReferrals = ({ referrerUserId }) => (
 
         return (
           <>
-            <div className="pb-3 md:pb-6">
-              You have registered{' '}
-              <strong>
-                {numberOfReferrals} {pluralize('person', numberOfReferrals)}
-              </strong>{' '}
-              so far.
-            </div>
+            {numberOfReferrals ? (
+              <div className="pb-3 md:pb-6">
+                You have registered{' '}
+                <strong>
+                  {numberOfReferrals} {pluralize('person', numberOfReferrals)}
+                </strong>{' '}
+                so far.
+              </div>
+            ) : (
+              <div className="pb-3 md:pb-6">
+                You haven’t helped anyone register to vote yet. Scroll down to
+                get started!
+              </div>
+            )}
             <div className="md:flex">
               <VoterRegistrationReferralsList referralPosts={data.posts} />
               {numberOfReferrals > 3 ? (

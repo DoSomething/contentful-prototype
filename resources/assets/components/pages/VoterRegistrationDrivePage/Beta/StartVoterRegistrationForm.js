@@ -76,7 +76,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
             attributes={{ 'data-test': 'voter-registration-submit-button' }}
             className="w-full"
             isDisabled={isDisabled}
-            text="Get Started"
+            text="Start Your Registration"
             type="submit"
           />
         </form>
