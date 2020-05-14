@@ -87,3 +87,56 @@ Content:
 ## Tracking Source
 
 TODO: Document how the `r` query parameter is used by the Chompy import.
+
+## Quiz
+
+### Voting Quiz Campaign
+
+Our Voting Quiz campaign (`/us/campaigns/ready-vote`) uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry. It has two entry points:
+
+- Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
+
+- Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
+
+### Quiz Result Page
+
+We're working on a new release to redirect users to `/us/quiz-results/:id` to view their quiz result if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
+
+The page displays a new `QuizResultPage` component, and expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field.
+
+The `QuizResultPage` displays a static `GalleryBlock` for all of the different result ID's.
+
+**Production**
+
+Gallery Block: 78WaGsvDEzAxnreEvNx3Za
+
+Quiz Results:
+
+| id                     | title               | internalTitle      | assetId                |
+| ---------------------- | ------------------- | ------------------ | ---------------------- |
+| p7hqjSP4Y1U6ad0UDz4iS  | Shell-tered Voter   | Vote By Mail       | 49Y4ucuGbJbgZL7IDDfxG0 |
+| 1giTEF3B2hO2CyccmhlVDm | Hare Who Dares      | In-Person Voting   | 2f2kgaHl9w5VtdswKkaBWT |
+| 21PDBge2bKCTWMe5f9eo1H | Sloth At a Loss     | Unsure of Voting   | 1YomtHAeqXJ3qbjQNgsM0v |
+| 14KfeAs265httjNMf1jwTw | Moral Support Panda | Ineligible to Vote | 3WjT0QGNnJEPPz2yMd3inj |
+
+**Dev**
+
+Gallery Block: 2VGFq3XBcqCfKOA8mC5mP4
+
+Quiz Results:
+
+| id                     | title               | internalTitle    | assetId                |
+| ---------------------- | ------------------- | ---------------- | ---------------------- |
+| 347iYsbykgQe6KqeGceMUk | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
+| 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
+| 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
+
+**Related links**
+
+- [User Flows For Voting Quiz](https://docs.google.com/spreadsheets/d/10uIZNghJTMKWR0lk5_y-q9-NwabDKYyrf8Vxlj17S9c/edit#gid=1453114542)
+
+- [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
+
+**Notes**
+
+- Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).

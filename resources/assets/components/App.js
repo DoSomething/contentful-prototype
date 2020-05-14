@@ -19,6 +19,7 @@ import CampaignContainer from './Campaign/CampaignContainer';
 import { env, featureFlag, buildVoterRegUrl } from '../helpers';
 import BetaReferralPage from './pages/ReferralPage/Beta/BetaPage';
 import CollectionPage from './pages/CollectionPage/CollectionPage';
+import QuizResultPage from './pages/QuizResultPage/QuizResultPage';
 import TypeFormEmbed from './utilities/TypeFormEmbed/TypeFormEmbed';
 import DelayedElement from './utilities/DelayedElement/DelayedElement';
 import SitewideBanner from './utilities/SitewideBanner/SitewideBanner';
@@ -119,6 +120,13 @@ const App = ({ store, history }) => {
               />
 
               <Route path="/us/join" component={BetaReferralPage} />
+
+              <Route
+                path="/us/quiz-results/:id"
+                render={routeProps => (
+                  <QuizResultPage id={routeProps.match.params.id} />
+                )}
+              />
 
               <Route
                 path="/us/my-voter-registration-drive"
