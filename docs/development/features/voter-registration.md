@@ -87,3 +87,29 @@ Content:
 ## Tracking Source
 
 TODO: Document how the `r` query parameter is used by the Chompy import.
+
+## Quiz
+
+Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living at path:
+
+```
+/us/campaigns/ready-vote/ready
+```
+
+The 2020 version will redirect users to a `QuizResultPage` after completing the quiz if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
+
+```
+/us/quiz-results/:id
+```
+
+The `:id` route parameter corresponds to the Contentful entry containing the quiz result content. Please only edit the quiz entries that link to these entries only if necessary, as they are configured delicately by manually entering JSON.
+
+**Dev**:
+
+Quiz results:
+
+| id                     | type      | internalTitle    | title |
+| ---------------------- | --------- | ---------------- | ----- |
+| 347iYsbykgQe6KqeGceMUk | LinkBlock | Super Motivated  |       |
+| 1lvJHhlJqQSgKgwIwUymQ8 | LinkBlock | Social Voter     |       |
+| 2KfkCOTi7u4CqAyyCuGyci | LinkBlock | Election Dabbler |       |
