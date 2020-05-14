@@ -2,6 +2,7 @@
 
 import React from 'react';
 import gql from 'graphql-tag';
+import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
@@ -10,7 +11,7 @@ import Card from '../../utilities/Card/Card';
 import Embed from '../../utilities/Embed/Embed';
 import { postRequest } from '../../../helpers/api';
 import TotalAcceptedQuantity from './TotalAcceptedQuantity';
-import { dynamicString, withoutTokens } from '../../../helpers';
+import { appendToQuery, dynamicString, withoutTokens } from '../../../helpers';
 import SocialShareTray from '../../utilities/SocialShareTray/SocialShareTray';
 import {
   EVENT_CATEGORIES,
@@ -36,6 +37,12 @@ class SocialDriveAction extends React.Component {
     };
 
     this.linkInput = React.createRef();
+
+    /**
+     * Debounce the API request to shorten our long URL.
+     * @see https://gist.github.com/simonw/c29de00c20fde731243cbac8568a3d7f
+     */
+    this.getShortUrl = debounce(this.getShortUrl, 300);
   }
 
   componentDidMount() {
@@ -51,22 +58,15 @@ class SocialDriveAction extends React.Component {
   /**
    * Replaces any userId tokens, and appends query string if given.
    *
-   * @param String queryStr
+   * @param Object query
    * @return String
    */
-  getLongUrl(queryStr) {
-    let result = dynamicString(this.props.link, { userId: this.props.userId });
+  getLongUrl(query) {
+    const result = dynamicString(this.props.link, {
+      userId: this.props.userId,
+    });
 
-    if (queryStr) {
-      // Append the queryStr to our current result.
-      // @TODO: Refactor to use appendToQuery helper.
-      // @see https://github.com/DoSomething/phoenix-next/pull/2114#discussion_r422352265
-      result = `${result}${
-        this.props.link.includes('?') ? '&' : '?'
-      }${queryStr}`;
-    }
-
-    return result;
+    return query ? appendToQuery(query, result).href : result;
   }
 
   /**

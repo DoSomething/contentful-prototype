@@ -10,7 +10,7 @@ const VotingReasonsQueryOptions = ({ onChange }) => {
   useEffect(() => {
     onChange(
       selectedVotingReasons.length
-        ? `voting-reasons=${selectedVotingReasons.join(',')}`
+        ? { 'voting-reasons': selectedVotingReasons.join(',') }
         : null,
     );
   }, [selectedVotingReasons]);

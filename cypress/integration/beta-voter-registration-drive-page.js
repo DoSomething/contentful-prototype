@@ -127,9 +127,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.contains(`April 25th, 2022`);
   });
 
-  // Eventually the quote will change if a voting-options query parameter exists.
-  // @see https://www.pivotaltracker.com/story/show/172087475
-  it('Beta OVRD quote displays default if no voting-options query parameter found', () => {
+  it('Beta OVRD quote displays default if no voting-reasons query parameter found', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -149,7 +147,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
-  it('Beta OVRD quote displays one cause query when found in voting-options query', () => {
+  it('Beta OVRD quote displays one voting reason when found in voting-reasons query', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -169,7 +167,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
-  it('Beta OVRD quote displays two causes when found in voting-options query', () => {
+  it('Beta OVRD quote displays two voting reasons when found in voting-reasons query', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
@@ -193,7 +191,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     ).contains(`- ${user.firstName}`);
   });
 
-  it('Beta OVRD quote displays three or more causes when found in voting-options query', () => {
+  it('Beta OVRD quote displays three or more voting reasons when found in voting-reasons query', () => {
     const user = userFactory();
 
     cy.mockGraphqlOp('BetaVoterRegistrationDrivePageQuery', {
