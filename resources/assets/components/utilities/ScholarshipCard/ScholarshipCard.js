@@ -74,23 +74,17 @@ const ScholarshipCard = ({ campaign }) => {
 
         <p className="flex-grow">{showcaseDescription}</p>
         <div className="pt-4">
-          <div className="lg:float-left lg:pr-8">
+          <div className="float-left pr-8">
             <h4 className="font-bold uppercase text-gray-600">Amount</h4>
             <p className="">{`$${scholarshipAmount.toLocaleString()}`}</p>
           </div>
-        </div>
-        <div className="pt-4">
-          <div className="lg:float-left lg:pr-8">
+          <div className="float-left pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
             <p className="pb-4">{getHumanFriendlyDate(scholarshipDeadline)}</p>
           </div>
         </div>
 
-        <SecondaryButton
-          className="mt-4 w-full"
-          href={url}
-          text="Get Started"
-        />
+        <SecondaryButton className="w-full" href={url} text="Get Started" />
       </div>
     </article>
   );
