@@ -102,7 +102,7 @@ The 2020 version will redirect users to a `QuizResultPage` after completing the 
 /us/quiz-results/:id
 ```
 
-The `:id` route parameter corresponds to the Contentful `LinkBlock` entry containing the quiz result content. Please only edit the quiz entries that link to these entries only if necessary, as they are configured delicately by manually entering JSON.
+The page expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field. Please avoid editing the Quiz entries if possible, as they are delicately configured (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
 
 **Production**
 
