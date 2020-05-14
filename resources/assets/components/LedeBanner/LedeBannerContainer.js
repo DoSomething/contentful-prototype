@@ -13,16 +13,6 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.actionIdToDisplay',
     null,
   ),
-  affiliatedActionText: get(
-    state,
-    'campaign.additionalContent.affiliatedActionText',
-    null,
-  ),
-  affiliatedActionLink: get(
-    state,
-    'campaign.additionalContent.affiliatedActionLink',
-    null,
-  ),
   affiliateCreditText: get(
     state,
     'campaign.additionalContent.affiliateCreditText',
@@ -33,11 +23,8 @@ const mapStateToProps = (state, props) => ({
     'campaign.additionalContent.numberOfScholarships',
     undefined,
   ),
-
   affiliateOptInContent: state.campaign.affiliateOptInContent,
   affiliateSponsors: state.campaign.affiliateSponsors,
-  // @TODO: We won't need this blurb property once MosaicTemplate is retired.
-  blurb: get(props, 'blurb', state.campaign.blurb),
   campaignId: state.campaign.campaignId,
   coverImage: get(props, 'coverImage', state.campaign.coverImage),
   content: state.campaign.blurb,
