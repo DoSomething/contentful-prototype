@@ -92,22 +92,14 @@ TODO: Document how the `r` query parameter is used by the Chompy import.
 
 ### Voter Registration Quiz Campaign
 
-Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living on all environments under a Voter Registration Quiz campaign, at path:
+Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living on all environments under a Voter Registration Quiz campaign, with two entry points:
+
+Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
+
+Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
 
 ```
-/us/campaigns/ready-vote
-```
 
-When users visit the campaign URL, they are prompted to signup from the landing page, and are then redirected to the action page to take the quiz:
-
-```
-/us/campaigns/action
-```
-
-There is also a version of the landing page that allows an anonymous user to take the quiz, and then authenticate in order to see their result:
-
-```
-/us/campaigns/ready-vote/quiz/ready
 ```
 
 ### Quiz Result Page
@@ -146,6 +138,12 @@ Quiz Results:
 | 347iYsbykgQe6KqeGceMUk | Moral Support Panda | Super Motivated  | 6J13jUL4YGGC1fyYMNEfbc |
 | 1lvJHhlJqQSgKgwIwUymQ8 | Shell-tered Voter   | Social Voter     | 3iLKsRlFQ1k9ddQbRb3RN8 |
 | 2KfkCOTi7u4CqAyyCuGyci | Hare Who Dares      | Election Dabbler | 3uB88eZmTNEaoFxV9pZ8hX |
+
+**Related links**
+
+- [User Flows For Voting Quiz](https://docs.google.com/spreadsheets/d/10uIZNghJTMKWR0lk5_y-q9-NwabDKYyrf8Vxlj17S9c/edit#gid=1453114542)
+
+- [Quiz documentation](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md) - This was removed in [#1369](https://github.com/DoSomething/phoenix-next/pull/1369) when we moved editorial guides into the Campaign Playbook.
 
 **Notes**
 
