@@ -90,13 +90,13 @@ TODO: Document how the `r` query parameter is used by the Chompy import.
 
 ## Quiz
 
-### Voter Registration Quiz Campaign
+### Voting Quiz Campaign
 
-Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living on all environments under a Voter Registration Quiz campaign, with two entry points:
+Our Voting Quiz campaign (`/us/campaigns/ready-vote`) uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry. It has two entry points:
 
-Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
+- Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the action page
 
-Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
+- Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
 
 ### Quiz Result Page
 
