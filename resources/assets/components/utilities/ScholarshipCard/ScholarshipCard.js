@@ -3,20 +3,24 @@ import gql from 'graphql-tag';
 import { propType } from 'graphql-anywhere';
 
 import SecondaryButton from '../Button/SecondaryButton';
-import { contentfulImageSrcset, contentfulImageUrl } from '../../../helpers';
+import {
+  contentfulImageSrcset,
+  contentfulImageUrl,
+  getHumanFriendlyDate,
+} from '../../../helpers';
 
 // Write a graphql query to get campaign information for a specific id
 export const scholarshipCardFragment = gql`
   fragment ScholarshipCard on Showcasable {
     showcaseTitle
     showcaseDescription
-    showcaseDeadline
-    showcaseAmount
     showcaseImage {
       url
     }
     ... on CampaignWebsite {
       id
+      scholarshipAmount
+      scholarshipDeadline
       staffPick
       url
     }
@@ -32,8 +36,8 @@ const ScholarshipCard = ({ campaign }) => {
   const {
     showcaseTitle,
     showcaseDescription,
-    showcaseDeadline,
-    showcaseAmount,
+    scholarshipAmount,
+    scholarshipDeadline,
     showcaseImage,
     staffPick,
     url,
@@ -72,17 +76,13 @@ const ScholarshipCard = ({ campaign }) => {
         <div className="pt-4">
           <div className="lg:float-left lg:pr-8">
             <h4 className="font-bold uppercase text-gray-600">Amount</h4>
-            <p className="">{showcaseAmount}</p>
+            <p className="">{`$${scholarshipAmount.toLocaleString()}`}</p>
           </div>
         </div>
         <div className="pt-4">
           <div className="lg:float-left lg:pr-8">
             <h4 className="font-bold uppercase text-gray-600">Deadline</h4>
-            <p className="pb-4">{showcaseDeadline}</p>
-          </div>
-          <div className="lg:float-left">
-            <h4 className="font-bold uppercase text-gray-600">Time</h4>
-            <p className="pb-4">Less than 5 Minutes</p>
+            <p className="pb-4">{getHumanFriendlyDate(scholarshipDeadline)}</p>
           </div>
         </div>
 
