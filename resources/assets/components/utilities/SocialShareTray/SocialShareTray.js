@@ -24,7 +24,6 @@ import {
   facebookMessengerShare,
   getFormattedScreenSize,
   handleSnapchatShareClick,
-  featureFlag,
 } from '../../../helpers';
 
 import './social-share-tray.scss';
