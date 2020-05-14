@@ -32,11 +32,11 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
     const votingReasonsValues = votingReasonsQuery.split(',');
 
     if (votingReasonsValues.length === 1) {
-      return ` like ${votingReasons[votingReasonsValues[0]]}`;
+      return `, like ${votingReasons[votingReasonsValues[0]]}`;
     }
 
     if (votingReasonsValues.length === 2) {
-      return ` like ${votingReasons[votingReasonsValues[0]]} and ${
+      return `, like ${votingReasons[votingReasonsValues[0]]} and ${
         votingReasons[votingReasonsValues[1]]
       }`;
     }
@@ -52,7 +52,7 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
         }
       });
 
-      return ` like ${result}`;
+      return `, like ${result}`;
     }
 
     return ' ';
@@ -71,23 +71,23 @@ const HeroSection = ({ user, campaignInfo, modalToggle }) => {
           <header role="banner" className="hero-banner">
             <h1 className="hero-banner__headline-title">{title}</h1>
             <h2 className="hero-banner__headline-subtitle">
-              {firstName} has invited you to register to vote!
+              {firstName} wants you to register to vote!
             </h2>
           </header>
           <div className="grid-wide-7/10 primary markdown">
             <blockquote>
               <p data-test="beta-voter-registration-drive-page-quote-text">
-                Voting is important for young people because we can effect
-                change on issues we care about most{formatQuote()}.
+                Voting is one of the most impactful ways to make a difference on
+                the causes that matter to us{formatQuote()}. Take 2 minutes and
+                register to vote today!
               </p>
               <p data-test="beta-voter-registration-drive-page-quote-byline">
                 - {firstName}
               </p>
             </blockquote>
             <p data-test="beta-voter-registration-drive-page-blurb">
-              250,000+ young people have registered to vote via DoSomething (it
-              takes less than 2 minutes!). After you register, share with your
-              friends to enter to win a $
+              150,000+ young people have registered to vote via DoSomething.
+              After you register, share with your friends to enter to win a $
               {`${scholarshipAmount.toLocaleString()}`} scholarship!
             </p>
           </div>

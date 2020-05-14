@@ -36,7 +36,7 @@ const AlphaPage = ({ userId }) => {
           queryOptions={betaPageEnabled ? <VotingReasonsQueryOptions /> : null}
           shareCardDescription={
             betaPageEnabled
-              ? 'Urge your friend to vote based on the causes you care about most.'
+              ? 'Urge your friend to vote based on the causes you care about most. The causes you choose will be mentioned on your custom page.'
               : null
           }
           shareCardTitle={
