@@ -11,11 +11,12 @@ import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
+  // const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
 
   const isDisabled = !zip || !email;
   const handleChange = event => {
     const { name, value } = event.target;
-    return name === 'email' ? setEmail(value) : setZip(value);
+    return name === 'email_address' ? setEmail(value) : setZip(value);
   };
 
   const handleSubmit = event => {
@@ -49,7 +50,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 className="text-field"
                 required
                 type="email"
-                name="email"
+                name="email_address"
                 value={email}
                 onChange={handleChange}
                 data-id="voter-registration-email-field"
@@ -63,7 +64,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
               <input
                 className="text-field"
                 type="text"
-                name="zip"
+                name="home_zip_code"
                 value={zip}
                 onChange={handleChange}
                 required
