@@ -76,7 +76,7 @@ $router->view('us/refer-friends', 'app')
 $router->view('us/blocks/{id}', 'app');
 
 // Voter Registration Drives
-$router->view('us/my-voter-registration-drive', 'app');
+$router->get('us/my-voter-registration-drive', 'VoterRegistrationDrivePageController@show');
 
 // Pages
 $router->get('us/{slug}', 'PageController@show');
