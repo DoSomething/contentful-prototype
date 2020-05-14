@@ -113,6 +113,10 @@ export const mocks = {
     id: args.id,
     __typename: args.__typename || blocks[args.id],
   }),
+  LinkBlock: args => ({
+    title: args.title || faker.lorem.title(),
+    content: args.content || faker.lorem.paragraphs(),
+  }),
   // By default, we'll assume most optional block fields aren't set so
   // that they can just use the defaults in the component itself:
   TextSubmissionBlock: () => ({

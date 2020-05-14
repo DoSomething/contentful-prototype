@@ -59,7 +59,7 @@ const QuizResultPage = ({ id }) => {
       <SiteNavigationContainer />
 
       <main>
-        <article className="quiz-result-page">
+        <article data-test="quiz-result-page">
           <header
             role="banner"
             className="base-12-grid py-3 md:py-6 bg-blurple-500"
@@ -73,7 +73,10 @@ const QuizResultPage = ({ id }) => {
               ) : null}
             </div>
           </header>
-          <div className="bg-white base-12-grid py-3 md:py-6">
+          <div
+            data-test="quiz-result-page-content"
+            className="bg-white base-12-grid py-3 md:py-6"
+          >
             <TextContent className="grid-full">{content}</TextContent>
             <ContentfulEntryLoader
               id={config.galleryBlockId}
