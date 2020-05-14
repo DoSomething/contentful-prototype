@@ -98,10 +98,6 @@ Gated: `/us/campaigns/ready-vote` - user must signup to take the quiz from the a
 
 Ungated: `/us/campaigns/ready-vote/quiz/ready` - user can take quiz but must signup to see their result
 
-```
-
-```
-
 ### Quiz Result Page
 
 We're working on a new release to redirect users to a new `QuizResultPage` component after completing the quiz if the `DS_ENABLE_QUIZ_RESULT_PAGE` configuration variable is set to `true`.
