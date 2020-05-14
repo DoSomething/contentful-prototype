@@ -11,7 +11,7 @@ import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
-  // const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
+  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
 
   const isDisabled = !zip || !email;
   const handleChange = event => {
@@ -19,9 +19,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
     return name === 'email_address' ? setEmail(value) : setZip(value);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-
+  const handleSubmit = () => {
     trackAnalyticsEvent('clicked_voter_registration_action', {
       action: 'button_clicked',
       category: EVENT_CATEGORIES.campaignAction,
@@ -31,8 +29,6 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
         contextSource: 'beta-voter-registration-drive-page',
       },
     });
-
-    window.location = `https://register.rockthevote.com/registrants/new?partner=37187&source=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true&email_address=${email}&home_zip_code=${zip}`;
   };
 
   return (
@@ -42,7 +38,14 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
         className="md:w-3/5 bordered rounded"
         title="Register online to vote"
       >
-        <form onSubmit={handleSubmit} className="form p-3">
+        <form
+          action="https://register.rockthevote.com/registrants/new"
+          method="GET"
+          onSubmit={handleSubmit}
+          className="form p-3"
+        >
+          <input type="hidden" name="partner" value="37187" />
+          <input type="hidden" name="source" value={urlSourceDetails} />
           <div className="form-item stretched">
             <label htmlFor="email" className="font-bold">
               Email
