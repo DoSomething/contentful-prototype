@@ -102,7 +102,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
       1,
     );
     cy.get('.hero-banner__headline-subtitle').contains(
-      `${user.firstName} has invited you to register to vote!`,
+      `${user.firstName} wants you to register to vote!`,
     );
   });
 
@@ -140,7 +140,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most.',
+      'Voting is one of the most impactful ways to make a difference on the causes that matter to us. Take 2 minutes and register to vote today!',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
@@ -160,7 +160,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most like student debt.',
+      'Voting is one of the most impactful ways to make a difference on the causes that matter to us, like student debt. Take 2 minutes and register to vote today!',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
@@ -184,7 +184,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most like COVID-19 relief and climate change.',
+      'Voting is one of the most impactful ways to make a difference on the causes that matter to us, like COVID-19 relief and climate change. Take 2 minutes and register to vote today!',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
@@ -208,7 +208,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-text]',
     ).contains(
-      'Voting is important for young people because we can effect change on issues we care about most like mental health, climate change, healthcare, and COVID-19 relief',
+      'Voting is one of the most impactful ways to make a difference on the causes that matter to us, like mental health, climate change, healthcare, and COVID-19 relief. Take 2 minutes and register to vote today!',
     );
     cy.get(
       '[data-test=beta-voter-registration-drive-page-quote-byline]',
@@ -226,7 +226,7 @@ describe('Beta Voter Registration Drive (OVRD) Page', () => {
     cy.visit(getBetaPagePathForUser(user));
 
     cy.get('[data-test=beta-voter-registration-drive-page-blurb]').contains(
-      `250,000+ young people have registered to vote via DoSomething (it takes less than 2 minutes!). After you register, share with your friends to enter to win a $1,500 scholarship!`,
+      `150,000+ young people have registered to vote via DoSomething. After you register, share with your friends to enter to win a $1,500 scholarship!`,
     );
   });
 
