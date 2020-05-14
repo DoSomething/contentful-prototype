@@ -8,7 +8,6 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
-import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
