@@ -90,7 +90,7 @@ TODO: Document how the `r` query parameter is used by the Chompy import.
 
 ## Quiz
 
-Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living at path:
+Our Voter Registration Quiz campaign uses the legacy Quiz content type, which has been deprecated for Typeform except for this one warrior entry, living on all environments at the path:
 
 ```
 /us/campaigns/ready-vote/ready
@@ -102,7 +102,7 @@ The 2020 version will redirect users to a `QuizResultPage` after completing the 
 /us/quiz-results/:id
 ```
 
-The page expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field. Please avoid editing the Quiz entries if possible, as they are delicately configured (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
+The page expects the `:id` route parameter to be the ID of one of the Link Action entries referenced by the Quiz's `resultBlocks` multi-value reference field. Please avoid editing the Quiz entries if possible, as [they are delicately configured](https://github.com/DoSomething/phoenix-next/blob/8b5a97fdd973c8eb925191f78b36c2f676d2707a/docs/content-publishing/quiz.md#adding-available-choices-for-question) (deleting one of the `LinkAction` entries referenced by the `resultBlocks` field would not be pretty).
 
 **Production**
 
