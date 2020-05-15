@@ -61,7 +61,6 @@ CampaignPage.propTypes = {
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
-  shouldShowLandingPage: PropTypes.bool.isRequired,
 };
 
 CampaignPage.defaultProps = {

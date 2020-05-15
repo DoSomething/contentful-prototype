@@ -504,30 +504,6 @@ export function isWithinMinutes(date, minutes = 2) {
 }
 
 /**
- * Check if the Landing Page should be shown for campaign.
- *
- * @param  {Object}  state
- * @param  {Boolean} ignoreLandingPage - optional additional boolean to ignore landing page.
- * @return {Boolean}
- */
-export function shouldShowLandingPage(state, ignoreLandingPage) {
-  const hasLandingPage = state.campaign.landingPage !== null;
-
-  const shouldIgnoreLandingPage =
-    state.admin.shouldShowActionPage || ignoreLandingPage;
-  let shouldShow = false;
-
-  if (state.admin.shouldShowLandingPage) {
-    shouldShow = true;
-  } else if (hasLandingPage && !shouldIgnoreLandingPage) {
-    shouldShow =
-      !isSignedUp(state) && !isCampaignClosed(state.campaign.endDate);
-  }
-
-  return shouldShow;
-}
-
-/**
  * Search an array of objects for the given id.
  *
  * @param  {Array}  array
