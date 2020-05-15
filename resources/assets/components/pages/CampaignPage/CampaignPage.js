@@ -17,26 +17,26 @@ const CampaignPage = props => {
         <LedeBannerContainer />
 
         <div className="clearfix relative">
-          {!isCampaignClosed && !quizEntry ? (
-            <CampaignPageNavigationContainer />
-          ) : null}
-
-          <div className="my-6">
-            {quizEntry ? (
+          {quizEntry ? (
+            <div className="my-6">
               <div className="base-12-grid py-3 md:py-6">
                 <ContentfulEntryLoader
                   className="grid-wide"
                   id={quizEntry.id}
                 />
               </div>
-            ) : (
-              <CampaignPageContent {...props} />
-            )}
-          </div>
+            </div>
+          ) : (
+            <>
+              {!isCampaignClosed ? <CampaignPageNavigationContainer /> : null}
 
-          {!quizEntry ? (
-            <CallToActionContainer className="md:hidden" hideIfSignedUp />
-          ) : null}
+              <div className="my-6">
+                <CampaignPageContent {...props} />
+              </div>
+
+              <CallToActionContainer className="md:hidden" hideIfSignedUp />
+            </>
+          )}
         </div>
       </article>
 
