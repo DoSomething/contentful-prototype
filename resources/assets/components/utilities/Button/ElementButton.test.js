@@ -48,12 +48,13 @@ describe('ElementButton component', () => {
   test('it renders an element button that is disabled', () => {
     // Arrange
     const text = 'You Cannot Click Me';
+    const isDisabled = true;
 
     render(
       <ElementButton
         attributes={{ 'data-testid': 'element-button' }}
         className="bg-purple-500"
-        isDisabled={true}
+        isDisabled={isDisabled}
         onClick={onClickCallback}
         text={text}
       />,

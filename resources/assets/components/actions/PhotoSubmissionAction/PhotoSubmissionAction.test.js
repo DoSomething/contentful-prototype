@@ -29,6 +29,6 @@ describe('PhotoSubmissionAction component', () => {
     expect(wrapper.find('Card').length).toBeGreaterThanOrEqual(1);
     expect(wrapper.find('form').length).toEqual(1);
     expect(wrapper.find('MediaUploader').length).toEqual(1);
-    expect(wrapper.find('Button').length).toEqual(1);
+    expect(wrapper.find('PrimaryButton').length).toEqual(1);
   });
 });

@@ -14,13 +14,14 @@ describe('ToggleButton component', () => {
     // Arrange
     const activateText = 'Toggle On';
     const deactivateText = 'Toggle Off';
+    const isToggled = false;
 
     const { container } = render(
       <ToggleButton
         activateText={activateText}
         attributes={{ 'data-testid': 'toggle-button' }}
         deactivateText={deactivateText}
-        isToggled={false}
+        isToggled={isToggled}
         onClick={onClickCallback}
       />,
     );
@@ -51,13 +52,14 @@ describe('ToggleButton component', () => {
     // Arrange
     const activateText = 'Toggle On';
     const deactivateText = 'Toggle Off';
+    const isToggled = true;
 
     const { container } = render(
       <ToggleButton
         activateText={activateText}
         attributes={{ 'data-testid': 'toggle-button' }}
         deactivateText={deactivateText}
-        isToggled={true}
+        isToggled={isToggled}
         onClick={onClickCallback}
       />,
     );
