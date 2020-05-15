@@ -21,7 +21,7 @@ const CampaignPage = props => {
   return (
     <>
       <article className="campaign-page bg-white">
-        <LedeBannerContainer isClosed={isCampaignClosed} />
+        <LedeBannerContainer />
 
         <div className="clearfix relative">
           {!isCampaignClosed && !quizEntry ? (
@@ -54,11 +54,6 @@ const CampaignPage = props => {
 
 CampaignPage.propTypes = {
   isCampaignClosed: PropTypes.bool,
-  landingPage: PropTypes.shape({
-    id: PropTypes.string,
-    type: PropTypes.string,
-    fields: PropTypes.object,
-  }),
   quizEntry: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }),
@@ -67,7 +62,6 @@ CampaignPage.propTypes = {
 CampaignPage.defaultProps = {
   quizEntry: null,
   isCampaignClosed: false,
-  landingPage: null,
 };
 
 export default CampaignPage;

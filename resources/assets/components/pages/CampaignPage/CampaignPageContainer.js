@@ -17,7 +17,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     campaignEndDate: state.campaign.endDate,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
-    landingPage: get(state.campaign, 'landingPage', null),
     noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
     quizEntry,

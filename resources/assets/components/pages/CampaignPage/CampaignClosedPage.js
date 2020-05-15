@@ -11,7 +11,7 @@ const CampaignClosedPage = props => {
   return (
     <>
       <article className="campaign-closed-page pb-6">
-        <LedeBannerContainer isClosed />
+        <LedeBannerContainer />
 
         <div className="md:w-3/4 mx-auto my-6 px-3">
           <h1>Great work!</h1>
