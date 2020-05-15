@@ -87,7 +87,10 @@ describe('Campaign Post', () => {
     cy.get('.photo-submission-action .card').should('have.length', 1);
     cy.get('.photo-submission-form').should('have.length', 1);
     cy.get('.photo-submission-form .media-uploader').should('have.length', 1);
-    cy.get('.photo-submission-form .button').should('have.length', 1);
+    cy.get('.photo-submission-form button[type="submit"]').should(
+      'have.length',
+      1,
+    );
 
     cy.get('.photo-submission-action').within(() => {
       // Choose an image to upload as a photo post:
