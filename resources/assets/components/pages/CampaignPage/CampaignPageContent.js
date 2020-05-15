@@ -17,7 +17,11 @@ const CampaignPageContent = props => {
   );
 
   if (!subPage) {
-    return <NotFound />;
+    return (
+      <div className="grid grid-cols-12 px-3 py-6 md:px-12">
+        <NotFound className="col-span-12 lg:col-start-2 lg:col-span-8" />
+      </div>
+    );
   }
 
   const { content, sidebar, blocks } = subPage.fields;
