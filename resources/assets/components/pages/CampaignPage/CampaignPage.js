@@ -16,7 +16,7 @@ import './campaign-page.scss';
  * @returns {XML}
  */
 const CampaignPage = props => {
-  const { entryContent, isCampaignClosed } = props;
+  const { quizEntry, isCampaignClosed } = props;
 
   return (
     <>
@@ -24,17 +24,16 @@ const CampaignPage = props => {
         <LedeBannerContainer isClosed={isCampaignClosed} />
 
         <div className="clearfix relative">
-          {!isCampaignClosed && !entryContent ? (
+          {!isCampaignClosed && !quizEntry ? (
             <CampaignPageNavigationContainer />
           ) : null}
 
           <div className="my-6">
-            {/* Render an entry (quiz), if provided. */}
-            {entryContent ? (
+            {quizEntry ? (
               <div className="base-12-grid py-3 md:py-6">
                 <ContentfulEntryLoader
                   className="grid-wide"
-                  id={entryContent.id}
+                  id={quizEntry.id}
                 />
               </div>
             ) : (
@@ -42,7 +41,7 @@ const CampaignPage = props => {
             )}
           </div>
 
-          {!entryContent ? (
+          {!quizEntry ? (
             <CallToActionContainer className="md:hidden" hideIfSignedUp />
           ) : null}
         </div>
@@ -54,17 +53,19 @@ const CampaignPage = props => {
 };
 
 CampaignPage.propTypes = {
-  entryContent: PropTypes.object,
   isCampaignClosed: PropTypes.bool,
   landingPage: PropTypes.shape({
     id: PropTypes.string,
     type: PropTypes.string,
     fields: PropTypes.object,
   }),
+  quizEntry: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }),
 };
 
 CampaignPage.defaultProps = {
-  entryContent: null,
+  quizEntry: null,
   isCampaignClosed: false,
   landingPage: null,
 };
