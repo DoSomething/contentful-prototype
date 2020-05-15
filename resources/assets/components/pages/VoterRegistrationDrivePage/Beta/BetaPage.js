@@ -100,7 +100,7 @@ const BetaVoterRegistrationDrivePage = () => {
           modalToggle={modalToggle}
         />
         <div className="bg-white base-12-grid py-3 md:py-6">
-          <div className="mx-auto py-6 pitch-landing-page grid-wide">
+          <div className="mx-auto py-6 grid-wide">
             <ContentfulEntryLoader
               id={config.startVoterRegistration.contentBlockId}
               className="grid-wide clearfix wrapper pb-3"
