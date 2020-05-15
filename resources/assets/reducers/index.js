@@ -1,4 +1,3 @@
-export admin from './admin';
 export campaign from './campaign';
 export events from './events';
 export notifications from './notifications';
