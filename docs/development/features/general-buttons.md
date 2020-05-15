@@ -364,7 +364,7 @@ Example rendered output:
 
 The core button components, [LinkButton](#linkbutton) and [ElementButton](#elementbutton) both utilize the `btn` composed class which can be found in the base stylesheet (`base.scss`). All the buttons that extend from these core button components will also have this composed class applied. This composed class helps define some very basic styles that all buttons that are links or elements should have applied to them.
 
-Our preference when styling components is to use [Tailwind](https://tailwindcss.com/) classes as much as possible, and when there's more specific styles that cannot be applied via Tailwind, then we should be using [Emotion JS](https://emotion.sh/) within the component itself.
+Our preference when styling components is to use [Tailwind](https://tailwindcss.com/) classes as much as possible, and when there's more specific styles that cannot be applied via Tailwind, then we should be using [Emotion](https://emotion.sh/) within the component itself.
 
 However, in regards to these core buttons, since there is no single, common component that they themselves extend from, it made sense to utilize a composed `btn` class that defines these very basic styles in a single place. Having to specify this series of styles in each core component separately would inevitably lead to discrepancies.
 
