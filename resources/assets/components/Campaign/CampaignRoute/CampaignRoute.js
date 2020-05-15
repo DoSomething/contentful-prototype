@@ -5,12 +5,10 @@ import PropTypes from 'prop-types';
 import ReactRouterPropTypes from 'react-router-prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import NotFound from '../../NotFound';
 import Modal from '../../utilities/Modal/Modal';
 import { isCampaignClosed } from '../../../helpers';
 import BlockPage from '../../pages/BlockPage/BlockPage';
 import LandingPage from '../../pages/LandingPage/LandingPage';
-import ContentfulEntry from '../../ContentfulEntry/ContentfulEntry';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
 import CampaignPageContainer from '../../pages/CampaignPage/CampaignPageContainer';
