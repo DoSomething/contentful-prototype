@@ -33,6 +33,7 @@
   - [General Buttons](development/features/general-buttons.md)
   - [Paginated Campaign Gallery](development/features/paginated-campaign-gallery.md)
   - [Refer A Friend](development/features/referral-pages.md)
+  - [Sitewide Banner](development/features/sitewide-banner.md)
   - [Sixpack A/B Testing](development/features/sixpack/sixpack-a-b-testing.md)
     - [Code Tests](development/features/sixpack/sixpack-code-tests.md)
     - [Contentful Tests](development/features/sixpack/sixpack-contentful-tests.md)
