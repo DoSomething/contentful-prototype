@@ -59,8 +59,6 @@ describe('ElementButton component', () => {
       />,
     );
 
-    screen.debug();
-
     // Act
     fireEvent.click(screen.getByTestId('element-button'));
 
