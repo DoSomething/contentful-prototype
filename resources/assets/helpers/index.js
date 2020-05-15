@@ -20,7 +20,6 @@ import {
 
 import Debug from '../services/Debug';
 import Sixpack from '../services/Sixpack';
-import { isSignedUp } from '../selectors/signup';
 import tailwindVariables from '../../../tailwind.variables';
 import { EVENT_CATEGORIES, trackAnalyticsEvent } from './analytics';
 
