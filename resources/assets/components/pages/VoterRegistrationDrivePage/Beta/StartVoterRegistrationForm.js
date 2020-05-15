@@ -11,9 +11,10 @@ import PrimaryButton from '../../../utilities/Button/PrimaryButton';
 const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
   const [email, setEmail] = useState('');
   const [zip, setZip] = useState('');
-  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
 
+  const urlSourceDetails = `user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`;
   const isDisabled = !zip || !email;
+
   const handleChange = event => {
     const { name, value } = event.target;
     return name === 'email_address' ? setEmail(value) : setZip(value);
@@ -45,7 +46,9 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
           className="form p-3"
         >
           <input type="hidden" name="partner" value="37187" />
+
           <input type="hidden" name="source" value={urlSourceDetails} />
+
           <div className="form-item stretched">
             <label htmlFor="email" className="font-bold">
               Email
@@ -76,6 +79,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
               />
             </label>
           </div>
+
           <PrimaryButton
             attributes={{ 'data-test': 'voter-registration-submit-button' }}
             className="w-full"
