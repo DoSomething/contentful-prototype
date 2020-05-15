@@ -393,7 +393,10 @@ class PhotoSubmissionAction extends PostForm {
                                 total items
                               </span>
 
-                              <span className="block font-league-gothic leading-none text-4xl">
+                              <span
+                                className="block font-league-gothic leading-none text-4xl"
+                                data-testid="quantity-total"
+                              >
                                 {quantity}
                               </span>
                             </div>
