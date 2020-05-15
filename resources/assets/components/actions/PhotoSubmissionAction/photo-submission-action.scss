@@ -58,15 +58,12 @@
 
   // Form Sections
   .form-section {
-    padding: 0 theme('spacing.3');
-
     @include media($medium) {
       flex: 1;
     }
 
     > .wrapper {
       border-bottom: 1px solid theme('colors.gray.200');
-      padding: theme('spacing.3') 0;
 
       @include media($medium) {
         border-bottom: 0 none;
@@ -93,27 +90,5 @@
 
   .form-item + .form-item {
     margin-top: theme('spacing.6');
-  }
-
-  // Quantity Display
-  .quantity-display {
-    span {
-      display: block;
-    }
-  }
-
-  .quantity-display__units {
-    color: theme('colors.gray.600');
-    font-size: $font-regular;
-    font-weight: $weight-bold;
-    line-height: 1;
-    margin-bottom: theme('spacing.2');
-    text-transform: uppercase;
-  }
-
-  .quantity-display__total {
-    font-family: theme('fontFamily.league-gothic');
-    font-size: $font-hero;
-    line-height: 1;
   }
 }

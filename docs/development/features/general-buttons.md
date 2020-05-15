@@ -68,7 +68,9 @@ Example rendered output:
 
 #### Important Notes
 
+{% hint style="info" %}
 Anchor links in the browser do not support the `disabled` attribute. If added to an `<a>` it does absolutely nothing and the link can still be clicked, thus the `LinkButton` does not support the `isDisabled` property.
+{% endhint %}
 
 If you need a button that can be disabled in the interface, please use a button component that outputs a `<button>` element, like the [ElementButton](#elementbutton) component.
 
@@ -357,3 +359,15 @@ Example HTML output:
 Example rendered output:
 
 ![ToggleButton States As ElementButtons Example](../../.gitbook/assets/toggle-button-states-as-element-button-example.png)
+
+## Under The Hood
+
+The core button components, [LinkButton](#linkbutton) and [ElementButton](#elementbutton) both utilize the `btn` composed class which can be found in the base stylesheet (`base.scss`). All the buttons that extend from these core button components will also have this composed class applied. This composed class helps define some very basic styles that all buttons that are links or elements should have applied to them.
+
+Our preference when styling components is to use [Tailwind](https://tailwindcss.com/) classes as much as possible, and when there's more specific styles that cannot be applied via Tailwind, then we should be using [Emotion](https://emotion.sh/) within the component itself.
+
+However, in regards to these core buttons, since there is no single, common component that they themselves extend from, it made sense to utilize a composed `btn` class that defines these very basic styles in a single place. Having to specify this series of styles in each core component separately would inevitably lead to discrepancies.
+
+Additionally, there are still some places in Phoenix where we need to support styles for buttons output in PHP, and having an accessible base `btn` class made sense to allow use outside of just React components. However, even in JavaScript and React components it could also be useful to have this composed class available for any button needs that fall outside of our core button components.
+
+It is possible that this composed `btn` class approach, and the need to have it available changes in the future as the codebase evolves, and we will be sure to note changes in this documentation.

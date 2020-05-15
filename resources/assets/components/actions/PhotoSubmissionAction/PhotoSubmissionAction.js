@@ -8,12 +8,12 @@ import { get, has, invert, mapValues } from 'lodash';
 
 import PostForm from '../PostForm';
 import Card from '../../utilities/Card/Card';
-import Button from '../../utilities/Button/Button';
 import PostCreatedModal from '../PostCreatedModal';
 import ActionInformation from '../ActionInformation';
 import MediaUploader from '../../utilities/MediaUploader';
 import { getUserCampaignSignups } from '../../../helpers/api';
 import FormValidation from '../../utilities/Form/FormValidation';
+import PrimaryButton from '../../utilities/Button/PrimaryButton';
 import { withoutUndefined, withoutNulls } from '../../../helpers';
 import CharacterLimit from '../../utilities/CharacterLimit/CharacterLimit';
 import PrivacyLanguage from '../../utilities/PrivacyLanguage/PrivacyLanguage';
@@ -300,32 +300,36 @@ class PhotoSubmissionAction extends PostForm {
     // If we don't have an authenticated user, then this is a story page
     if (!this.props.userId) {
       return (
-        <React.Fragment>
+        <>
           <div className="clearfix">
             <div className="photo-submission-action" />
+
             <Card
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
             >
-              <div className="text-center p-2">
-                <a className="button w-full" href={this.props.authRegisterUrl}>
-                  Add Photo
-                </a>
+              <div className="text-center p-3">
+                <PrimaryButton
+                  className="block text-lg w-full"
+                  href={this.props.authRegisterUrl}
+                  text="Add Photo"
+                />
               </div>
             </Card>
           </div>
-        </React.Fragment>
+        </>
       );
     }
 
     return (
-      <React.Fragment>
+      <>
         <div className="clearfix">
           <div className="photo-submission-action">
             <AnalyticsWaypoint
               name="photo_submission_action-top"
               context={{ blockId: this.props.id }}
             />
+
             <Card
               className={classnames('bordered rounded', this.props.className)}
               title={this.props.title}
@@ -333,12 +337,12 @@ class PhotoSubmissionAction extends PostForm {
               {formResponse ? <FormValidation response={formResponse} /> : null}
 
               <form
-                className="photo-submission-form"
+                className="photo-submission-form p-3"
                 onSubmit={this.handleSubmit}
               >
                 <div className="wrapper">
-                  <div className="form-section">
-                    <div className="wrapper">
+                  <div className="form-section md:pr-3">
+                    <div className="wrapper pb-3">
                       <MediaUploader
                         label="Add your photo here"
                         media={this.state.mediaValue}
@@ -355,6 +359,7 @@ class PhotoSubmissionAction extends PostForm {
                         >
                           {this.props.captionFieldLabel}
                         </label>
+
                         <input
                           className={classnames('text-field', {
                             'has-error shake': has(errors, 'caption'),
@@ -368,6 +373,7 @@ class PhotoSubmissionAction extends PostForm {
                           required
                           maxLength={CAPTION_CHARACTER_LIMIT}
                         />
+
                         <CharacterLimit
                           className="pt-1"
                           limit={CAPTION_CHARACTER_LIMIT}
@@ -377,16 +383,17 @@ class PhotoSubmissionAction extends PostForm {
                     </div>
                   </div>
 
-                  <div className="form-section">
-                    <div className="wrapper">
+                  <div className="form-section md:pl-3">
+                    <div className="wrapper py-3 md:pt-0">
                       {this.props.showQuantityField ? (
                         <div className="form-item">
                           {quantity ? (
                             <div className="quantity-display py-3">
-                              <span className="quantity-display__units">
+                              <span className="block font-bold leading-none mb-2 text-base text-gray-600 uppercase">
                                 total items
                               </span>
-                              <span className="quantity-display__total">
+
+                              <span className="block font-league-gothic leading-none text-4xl">
                                 {quantity}
                               </span>
                             </div>
@@ -401,6 +408,7 @@ class PhotoSubmissionAction extends PostForm {
                               ? 'You can enter your new total here:'
                               : this.props.quantityFieldLabel}
                           </label>
+
                           <input
                             className={classnames('text-field', {
                               'has-error shake': has(errors, 'quantity'),
@@ -427,6 +435,7 @@ class PhotoSubmissionAction extends PostForm {
                           >
                             {this.props.numberOfParticipantsFieldLabel}
                           </label>
+
                           <input
                             className={classnames('text-field', {
                               'has-error shake': has(
@@ -453,6 +462,7 @@ class PhotoSubmissionAction extends PostForm {
                         >
                           {this.props.whyParticipatedFieldLabel}
                         </label>
+
                         <textarea
                           className={classnames('text-field', {
                             'has-error shake': has(errors, 'whyParticipated'),
@@ -471,16 +481,17 @@ class PhotoSubmissionAction extends PostForm {
                   </div>
                 </div>
 
-                <Button
+                <PrimaryButton
+                  className="block mt-3 text-lg w-full"
+                  isLoading={submissionItem && submissionItem.isPending}
+                  text={this.props.buttonText}
                   type="submit"
-                  loading={submissionItem && submissionItem.isPending}
-                  attached
-                >
-                  {this.props.buttonText}
-                </Button>
-                <PrivacyLanguage className="pb-4 pt-2 px-3" />
+                />
+
+                <PrivacyLanguage className="mb-1 mt-5" />
               </form>
             </Card>
+
             <AnalyticsWaypoint
               name="photo_submission_action-bottom"
               context={{ blockId: this.props.id }}
@@ -504,7 +515,7 @@ class PhotoSubmissionAction extends PostForm {
             userId={this.props.userId}
           />
         ) : null}
-      </React.Fragment>
+      </>
     );
   }
 }
