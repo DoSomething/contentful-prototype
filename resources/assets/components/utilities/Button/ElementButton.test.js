@@ -39,7 +39,7 @@ describe('ElementButton component', () => {
       'button',
     );
 
-    expect(onClickCallback).toHaveBeenCalled();
+    expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
   /**

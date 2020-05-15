@@ -43,7 +43,7 @@ describe('LinkButton component', () => {
       'noopener noreferrer',
     );
 
-    expect(onClickCallback).toHaveBeenCalled();
+    expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
   /**
@@ -82,6 +82,6 @@ describe('LinkButton component', () => {
       'noopener noreferrer',
     );
 
-    expect(onClickCallback).toHaveBeenCalled();
+    expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 });
