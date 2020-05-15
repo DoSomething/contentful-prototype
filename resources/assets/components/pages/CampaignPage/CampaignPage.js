@@ -8,15 +8,8 @@ import CampaignInfoBarContainer from '../../CampaignInfoBar/CampaignInfoBarConta
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import CampaignPageNavigationContainer from '../../CampaignPageNavigation/CampaignPageNavigationContainer';
 
-import './campaign-page.scss';
-
-/**
- * Render the page & chrome.
- *
- * @returns {XML}
- */
 const CampaignPage = props => {
-  const { quizEntry, isCampaignClosed } = props;
+  const { isCampaignClosed, quizEntry } = props;
 
   return (
     <>

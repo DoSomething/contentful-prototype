@@ -27,7 +27,7 @@ const CampaignPageContent = props => {
     '/us/campaigns/online-registration-drive/action';
 
   return (
-    <div className="campaign-page__content" id={subPage.id}>
+    <div className="leading-normal text-base" id={subPage.id}>
       <ScrollConcierge trigger={!shouldShowAffirmation} />
       {content ? (
         <div className="base-12-grid py-3 md:py-6">
