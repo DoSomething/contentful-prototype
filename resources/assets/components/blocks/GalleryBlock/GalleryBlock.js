@@ -52,9 +52,11 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
 
   switch (blockType) {
     case 'person':
+    case 'PersonBlock':
       return <Person key={block.id} {...fields} />;
 
     case 'campaign':
+    case 'CampaignWebsite':
       // @TODO: Replace with Campaign Card
       return (
         <CampaignGalleryItem
@@ -70,6 +72,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
       return <ScholarshipCard key={block.id} campaign={block} />;
 
     case 'page':
+    case 'Page':
       // @TODO: Replace with Page Card
       return (
         <PageGalleryItem
@@ -82,6 +85,7 @@ const renderBlock = (blockType, block, imageAlignment, imageFit) => {
       );
 
     case 'contentBlock':
+    case 'ContentBlock':
       return (
         <ContentBlockGalleryItem
           key={block.id}
@@ -125,6 +129,8 @@ const GalleryBlock = props => {
       <Gallery type={galleryType} className="-mx-3 mt-3">
         {blocks.map(block =>
           renderBlock(
+            // Baby hack to allow scholarship galleries to overwrite the initial blocktype
+            // until a script is run to assign types to all galleries.
             blockType || block.__typename,
             block,
             imageAlignment.toLowerCase(),
