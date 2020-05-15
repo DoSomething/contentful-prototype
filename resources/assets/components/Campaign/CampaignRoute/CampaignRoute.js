@@ -9,6 +9,7 @@ import NotFound from '../../NotFound';
 import Modal from '../../utilities/Modal/Modal';
 import { isCampaignClosed } from '../../../helpers';
 import BlockPage from '../../pages/BlockPage/BlockPage';
+import LandingPage from '../../pages/LandingPage/LandingPage';
 import ContentfulEntry from '../../ContentfulEntry/ContentfulEntry';
 import PostSignupModal from '../../pages/PostSignupModal/PostSignupModal';
 import CampaignClosedPage from '../../pages/CampaignPage/CampaignClosedPage';
@@ -84,14 +85,10 @@ const CampaignRoute = props => {
               );
             }
 
-            if (!props.landingPage) {
-              return <NotFound />;
-            }
-
-            // This could be a Landing Page or a Sixpack Experiment.
-            // (Sixpack experiments are actually _not_ supported ATM:
-            // https://www.pivotaltracker.com/n/projects/2401401/stories/170964251).
-            return <ContentfulEntry json={props.landingPage} />;
+            return (
+              // @TODO: Add support for SixpackExperiment components (https://bit.ly/2T99sUl).
+              <LandingPage content={get(props.landingPage, 'fields.content')} />
+            );
           }}
         />
 
