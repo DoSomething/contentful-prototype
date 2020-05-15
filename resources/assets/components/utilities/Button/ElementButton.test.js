@@ -47,8 +47,8 @@ describe('ElementButton component', () => {
    */
   test('it renders an element button that is disabled', () => {
     // Arrange
-    const text = 'You Cannot Click Me';
     const isDisabled = true;
+    const text = 'You Cannot Click Me';
 
     render(
       <ElementButton
