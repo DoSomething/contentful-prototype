@@ -26,7 +26,10 @@ const LandingPage = ({ content }) => (
     <LedeBannerContainer />
 
     {content ? (
-      <div className="bg-white grid grid-cols-12 py-6 px-3 md:px-12">
+      <div
+        data-test="landing-page-content"
+        className="bg-white grid grid-cols-12 py-6 px-3 md:px-12"
+      >
         <div
           className="col-span-12 md:col-span-10 lg:col-start-2 xl:col-start-2 xl:col-span-7 leading-normal text-base"
           css={landingPageHeadingOneStyle}
