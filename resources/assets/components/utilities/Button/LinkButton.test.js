@@ -1,11 +1,15 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import LinkButton from './LinkButton';
 
-const callback = jest.fn();
+const onClickCallback = jest.fn();
 
 describe('LinkButton component', () => {
+  /**
+   * Test rendering a fleshed out internal link button.
+   */
   test('it renders an anchor link button with internal url', () => {
     // Arrange
     const text = 'View Campaigns';
@@ -14,8 +18,9 @@ describe('LinkButton component', () => {
     render(
       <LinkButton
         attributes={{ 'data-testid': 'link-button' }}
+        className="bg-orange-500"
         href={url}
-        onClick={callback}
+        onClick={onClickCallback}
         text={text}
       />,
     );
@@ -27,7 +32,7 @@ describe('LinkButton component', () => {
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('link-button')).toHaveTextContent(text);
-    expect(screen.getByTestId('link-button')).toHaveClass('btn');
+    expect(screen.getByTestId('link-button')).toHaveClass('btn bg-orange-500');
     expect(screen.getByTestId('link-button')).toHaveAttribute('href', url);
     expect(screen.getByTestId('link-button')).not.toHaveAttribute(
       'target',
@@ -38,9 +43,12 @@ describe('LinkButton component', () => {
       'noopener noreferrer',
     );
 
-    expect(callback).toHaveBeenCalled();
+    expect(onClickCallback).toHaveBeenCalled();
   });
 
+  /**
+   * Test rendering a fleshed out external link button.
+   */
   test('it renders an anchor link button with external url that opens in new tab', () => {
     // Arrange
     const text = 'Click This Link!';
@@ -49,8 +57,9 @@ describe('LinkButton component', () => {
     render(
       <LinkButton
         attributes={{ 'data-testid': 'link-button' }}
+        className="bg-orange-500"
         href={url}
-        onClick={callback}
+        onClick={onClickCallback}
         text={text}
       />,
     );
@@ -62,7 +71,7 @@ describe('LinkButton component', () => {
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('link-button')).toHaveTextContent(text);
-    expect(screen.getByTestId('link-button')).toHaveClass('btn');
+    expect(screen.getByTestId('link-button')).toHaveClass('btn bg-orange-500');
     expect(screen.getByTestId('link-button')).toHaveAttribute('href', url);
     expect(screen.getByTestId('link-button')).toHaveAttribute(
       'target',
@@ -73,6 +82,6 @@ describe('LinkButton component', () => {
       'noopener noreferrer',
     );
 
-    expect(callback).toHaveBeenCalled();
+    expect(onClickCallback).toHaveBeenCalled();
   });
 });
