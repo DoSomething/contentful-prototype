@@ -17,13 +17,9 @@ const mapStateToProps = (state, ownProps) => {
   return {
     campaignEndDate: state.campaign.endDate,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
-    noun: get(state.campaign.additionalContent, 'noun'),
     pages: state.campaign.pages,
     quizEntry,
     shouldShowAffirmation: state.signups.shouldShowAffirmation,
-    tagline: get(state.campaign.additionalContent, 'tagline'),
-    title: state.campaign.title,
-    verb: get(state.campaign.additionalContent, 'verb'),
   };
 };
 
