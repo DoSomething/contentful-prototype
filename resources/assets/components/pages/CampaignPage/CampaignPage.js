@@ -53,7 +53,7 @@ const CampaignPage = props => {
 };
 
 CampaignPage.propTypes = {
-  isCampaignClosed: PropTypes.bool,
+  isCampaignClosed: PropTypes.bool.isRequired,
   quizEntry: PropTypes.shape({
     id: PropTypes.string.isRequired,
   }),
@@ -61,7 +61,6 @@ CampaignPage.propTypes = {
 
 CampaignPage.defaultProps = {
   quizEntry: null,
-  isCampaignClosed: false,
 };
 
 export default CampaignPage;

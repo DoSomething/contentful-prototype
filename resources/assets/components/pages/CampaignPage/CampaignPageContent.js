@@ -6,12 +6,11 @@ import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
 import { CallToActionContainer } from '../../CallToAction';
 import TextContent from '../../utilities/TextContent/TextContent';
-import { isCampaignClosed } from '../../../helpers';
 import ContentfulEntryLoader from '../../utilities/ContentfulEntryLoader/ContentfulEntryLoader';
 import AlphaVoterRegistrationDrivePageContainer from '../VoterRegistrationDrivePage/Alpha/AlphaPageContainer';
 
 const CampaignPageContent = props => {
-  const { campaignEndDate, match, pages, shouldShowAffirmation } = props;
+  const { isCampaignClosed, match, pages, shouldShowAffirmation } = props;
 
   const subPage = find(pages, page =>
     page.type === 'page' ? page.fields.slug.endsWith(match.params.slug) : false,
@@ -20,8 +19,6 @@ const CampaignPageContent = props => {
   if (!subPage) {
     return <NotFound />;
   }
-
-  const isClosed = isCampaignClosed(campaignEndDate);
 
   const { content, sidebar, blocks } = subPage.fields;
 
@@ -74,7 +71,7 @@ const CampaignPageContent = props => {
         </div>
       ) : null}
 
-      {isClosed ? null : (
+      {isCampaignClosed ? null : (
         <CallToActionContainer
           className="text-xl"
           useCampaignTagline
@@ -87,7 +84,7 @@ const CampaignPageContent = props => {
 };
 
 CampaignPageContent.propTypes = {
-  campaignEndDate: PropTypes.string,
+  isCampaignClosed: PropTypes.bool.isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
@@ -110,7 +107,6 @@ CampaignPageContent.propTypes = {
 };
 
 CampaignPageContent.defaultProps = {
-  campaignEndDate: null,
   location: {},
   pages: [],
   match: {

@@ -1,4 +1,3 @@
-import { get } from 'lodash';
 import { connect } from 'react-redux';
 
 import CampaignPage from './CampaignPage';
@@ -15,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
   );
 
   return {
-    campaignEndDate: state.campaign.endDate,
     isCampaignClosed: isCampaignClosed(state.campaign.endDate),
     pages: state.campaign.pages,
     quizEntry,
