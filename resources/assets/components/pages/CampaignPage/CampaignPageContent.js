@@ -33,6 +33,7 @@ const CampaignPageContent = props => {
   return (
     <div className="leading-normal text-base" id={subPage.id}>
       <ScrollConcierge trigger={!shouldShowAffirmation} />
+
       {content ? (
         <div className="base-12-grid py-3 md:py-6">
           <div className="grid-wide-7/10">
