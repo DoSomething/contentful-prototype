@@ -1,6 +1,7 @@
 import React from 'react';
 import { find } from 'lodash';
 import PropTypes from 'prop-types';
+import ReactRouterPropTypes from 'react-router-prop-types';
 
 import NotFound from '../../NotFound';
 import ScrollConcierge from '../../ScrollConcierge';
@@ -90,14 +91,8 @@ const CampaignPageContent = props => {
 
 CampaignPageContent.propTypes = {
   isCampaignClosed: PropTypes.bool.isRequired,
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-  }),
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      slug: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
+  location: ReactRouterPropTypes.location,
+  match: ReactRouterPropTypes.match,
   pages: PropTypes.arrayOf(
     PropTypes.shape({
       fields: PropTypes.shape({
