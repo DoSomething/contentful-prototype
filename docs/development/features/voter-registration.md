@@ -10,33 +10,25 @@ Our importer app, [Chompy](https://www.github.com/dosomething/chompy) downloads 
 
 We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) on Instapage. It prompts user for their email and zip, and redirects them to the Rock The Vote registration URL with our partner ID, pre-populating the email and zip submitted from the form.
 
-TODO: Link to doc about why we host on Instapage / Phoenix limitations
-
 ## Voter Registration Action
 
 The `VoterRegistrationAction` content type can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
 
-## Online Registration Drives
+## Voter Registration Drive Campaign
 
 The call to action in the [Ready, Set, Vote campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a custom URL to their own Online Voter Registration Drive (OVRD) that they can share with their friends (the betas).
 
-### Current version
-
-The campaign action page (aka the alpha page) uses a `SocialDriveAction` to customize the query parameters of the beta page -- which is hosted on our Instapage voting portal at https://vote.dosomething.org/member-drives.
-
-An example complete custom link for an alpha with user ID 58e68d5da0bfad4c3b4cd722 will look like:
-
-```
-https://vote.dosomething.org/member-drive?userId=58e68d5da0bfad4c3b4cd722&r=user:58e68d5da0bfad4c3b4cd722,source:web,source_details:onlinedrivereferral,referral=true
-```
-
-### Upcoming version
-
-In May 2020, we will release updated versions of both the alpha and beta OVRD pages.
-
 ### Alpha page
 
-The OVRD (Ready Set Vote) campaign action page will still be used as the alpha page, except we render a hardcoded template instead of the Contentful blocks field. This is hardcoded because it displays one-off features, such as a list of the beta's that the alpha has gotten to register to vote via their OVRD, that we don't need to make re-usable by other campaigns or pages at this time.
+The OVRD (Ready Set Vote) campaign action page renders a hardcoded component instead of its Contentful blocks field. This is hardcoded because it displays one-off features:
+
+- A list of voter registration referrals (beta's that the alpha has gotten to register to vote via their OVRD)
+
+- A custom [`SocialDriveAction`](<(development/content-types/social-drive-action.md)>):
+
+  - Allows the alpha to customize their voting reasons on their beta page
+
+  - Displays the total accepted post count for the related photo action for sharing your link and submitting a screenshot
 
 We hardcode specific configuration `ContentBlock` ID's and Action ID's:
 
@@ -64,9 +56,9 @@ Total scholarship entries:
 
 ### Beta page
 
-We'll host the beta page internally in Phoenix instead of Instapage, at path `/us/my-voter-registration-drive?referrer_user_id=58e68d5da0bfad4c3b4cd722` (where the `referrer_user_id` is our alpha's user ID).
+The beta page is also a hardcoded component, displayed on path `/us/my-voter-registration-drive?referrer_user_id=58e68d5da0bfad4c3b4cd722` (where the `referrer_user_id` is our alpha's user ID).
 
-This beta page is a hardcoded template, but shares some components with the OVRD campaign template, like its `CoverImage` and scholarship information. The OVRD campaign's contentful ID, `3pwxnRZxociqMaQCMcGOyc`, is the same in all of our `dev`, `qa` and `production` spaces. Usually this isn't the case -- our Contentful ID's don't match between our `dev` and `production` spaces -- but this entry was created before we introduced different Contentful environments to our Phoenix space. Because of this, we're able to hardcode this Contentful ID to use in both `dev` and `production` environments.
+This beta page component shares some components with the OVRD campaign template, like its `CoverImage` and scholarship information. The OVRD campaign's contentful ID, `3pwxnRZxociqMaQCMcGOyc`, is the same in all of our `dev`, `qa` and `production` spaces. Usually this isn't the case -- our Contentful ID's don't match between our `dev` and `production` spaces -- but this entry was created before we introduced different Contentful environments to our Phoenix space. Because of this, we're able to hardcode this Contentful ID to use in both `dev` and `production` environments.
 
 We hardcode specific configuration `ContentBlock` ID's:
 
@@ -83,6 +75,10 @@ Content:
 - [Register To Vote ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/bt0jUBYJaKoi1oab25Wmx) - bt0jUBYJaKoi1oab25Wmx
 - [FAQ ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3cXc0RPMVNeE4surEqFujL) - 3cXc0RPMVNeE4surEqFujL
 - [OVRD Campaign Link ContentBlock](https://app.contentful.com/spaces/81iqaqpfd8fy/environments/dev/entries/3p2qz2JPCvgVitgRVBoMFz) - 3p2qz2JPCvgVitgRVBoMFz
+
+### Notes
+
+- The initial version of beta page was on Instapage - https://vote.dosomething.org/member-drives. Example URL: `https://vote.dosomething.org/member-drive?userId=${referrerUserId}&r=user:${referrerUserId},source:web,source_details:onlinedrivereferral,referral=true`
 
 ## Tracking Source
 
