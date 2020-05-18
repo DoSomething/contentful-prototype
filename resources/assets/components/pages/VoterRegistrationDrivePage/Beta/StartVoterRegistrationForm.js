@@ -64,7 +64,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 name="email_address"
                 value={email}
                 onChange={handleChange}
-                data-id="voter-registration-email-field"
+                data-testid="voter-registration-email-field"
               />
             </label>
           </div>
@@ -80,7 +80,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
                 onChange={handleChange}
                 required
                 pattern="^\s*?\d{5}(?:[-\s]\d{4})?\s*?$"
-                data-id="voter-registration-zip-field"
+                data-testid="voter-registration-zip-field"
               />
             </label>
           </div>
