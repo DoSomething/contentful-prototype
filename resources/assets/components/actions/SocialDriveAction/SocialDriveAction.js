@@ -159,7 +159,7 @@ class SocialDriveAction extends React.Component {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  preview your custom page
+                  Preview your custom page
                 </a>
               ) : (
                 <Embed url={longUrl} />
