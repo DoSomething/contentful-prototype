@@ -1,3 +1,7 @@
+/**
+ * Quiz results with a sourceDetail property should pass that value along to the tracking source
+ * of the StartVoterRegistrationForm displayed on the page.
+ */
 const sourceDetailPrefix = 'VoterRegQuiz_completed_';
 
 export const gqlVariables = {

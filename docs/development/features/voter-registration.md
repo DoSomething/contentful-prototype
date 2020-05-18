@@ -24,7 +24,7 @@ The OVRD (Ready Set Vote) campaign action page renders a hardcoded component ins
 
 - A list of voter registration referrals (beta's that the alpha has gotten to register to vote via their OVRD)
 
-- A custom [`SocialDriveAction`](<(development/content-types/social-drive-action.md)>):
+- A custom [`SocialDriveAction`](development/content-types/social-drive-action.md):
 
   - Allows the alpha to customize their voting reasons on their beta page
 
