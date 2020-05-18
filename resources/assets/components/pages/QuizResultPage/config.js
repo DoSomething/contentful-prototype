@@ -13,7 +13,7 @@ export const gqlVariables = {
         assetId: '49Y4ucuGbJbgZL7IDDfxG0',
         sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
-      // In-person voting / Rabbit inperson
+      // In-person voting / Rabbit
       '1giTEF3B2hO2CyccmhlVDm': {
         assetId: '2f2kgaHl9w5VtdswKkaBWT',
         sourceDetail: `${sourceDetailPrefix}inperson`,
@@ -31,6 +31,11 @@ export const gqlVariables = {
   },
   development: {
     galleryBlockId: '2VGFq3XBcqCfKOA8mC5mP4',
+    /**
+     * The content of these dev entries don't need to match our production assets or entry titles,
+     * we're using an older version of the quiz for convenience (to avoid manually editing the quiz
+     * entry's questions JSON field with result block ID's for sake of having the content match).
+     */
     results: {
       // Super Motivated
       '347iYsbykgQe6KqeGceMUk': {
