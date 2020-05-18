@@ -51,7 +51,7 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
             type="hidden"
             name="source"
             value={urlSourceDetails}
-            data-id="voter-registration-source-details"
+            data-testid="voter-registration-source-details"
           />
 
           <div className="form-item stretched">
