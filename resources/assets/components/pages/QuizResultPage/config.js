@@ -1,3 +1,5 @@
+const sourceDetailPrefix = 'VoterRegQuiz_completed_';
+
 export const gqlVariables = {
   production: {
     galleryBlockId: '78WaGsvDEzAxnreEvNx3Za',
@@ -5,14 +7,17 @@ export const gqlVariables = {
       // Vote by mail / Turtle
       p7hqjSP4Y1U6ad0UDz4iS: {
         assetId: '49Y4ucuGbJbgZL7IDDfxG0',
+        sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
-      // In-person voting / Rabbit
+      // In-person voting / Rabbit inperson
       '1giTEF3B2hO2CyccmhlVDm': {
         assetId: '2f2kgaHl9w5VtdswKkaBWT',
+        sourceDetail: `${sourceDetailPrefix}inperson`,
       },
       // Unsure of voting / Slothie Boi
       '21PDBge2bKCTWMe5f9eo1H': {
         assetId: '1YomtHAeqXJ3qbjQNgsM0v',
+        sourceDetail: `${sourceDetailPrefix}notsure`,
       },
       // Ineligible to vote / Panda
       '14KfeAs265httjNMf1jwTw': {
