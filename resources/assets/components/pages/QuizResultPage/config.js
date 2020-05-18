@@ -1,3 +1,9 @@
+/**
+ * Quiz results with a sourceDetail property should pass that value along to the tracking source
+ * of the StartVoterRegistrationForm displayed on the page.
+ */
+const sourceDetailPrefix = 'VoterRegQuiz_completed_';
+
 export const gqlVariables = {
   production: {
     galleryBlockId: '78WaGsvDEzAxnreEvNx3Za',
@@ -5,14 +11,17 @@ export const gqlVariables = {
       // Vote by mail / Turtle
       p7hqjSP4Y1U6ad0UDz4iS: {
         assetId: '49Y4ucuGbJbgZL7IDDfxG0',
+        sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
       // In-person voting / Rabbit
       '1giTEF3B2hO2CyccmhlVDm': {
         assetId: '2f2kgaHl9w5VtdswKkaBWT',
+        sourceDetail: `${sourceDetailPrefix}inperson`,
       },
       // Unsure of voting / Slothie Boi
       '21PDBge2bKCTWMe5f9eo1H': {
         assetId: '1YomtHAeqXJ3qbjQNgsM0v',
+        sourceDetail: `${sourceDetailPrefix}notsure`,
       },
       // Ineligible to vote / Panda
       '14KfeAs265httjNMf1jwTw': {
@@ -22,21 +31,29 @@ export const gqlVariables = {
   },
   development: {
     galleryBlockId: '2VGFq3XBcqCfKOA8mC5mP4',
+    /**
+     * The content of these dev entries don't need to match our production assets or entry titles,
+     * we're using an older version of the quiz for convenience (to avoid manually editing the quiz
+     * entry's questions JSON field with result block ID's for sake of having the content match).
+     */
     results: {
       // Super Motivated
       '347iYsbykgQe6KqeGceMUk': {
         // Panda
         assetId: '6J13jUL4YGGC1fyYMNEfbc',
+        sourceDetail: `${sourceDetailPrefix}notsure`,
       },
       // Social Voter
       '1lvJHhlJqQSgKgwIwUymQ8': {
         // Turtle:
         assetId: '3iLKsRlFQ1k9ddQbRb3RN8',
+        sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
       // Election Dabbler
       '2KfkCOTi7u4CqAyyCuGyci': {
         // Rabbit:
         assetId: '3uB88eZmTNEaoFxV9pZ8hX',
+        sourceDetail: `${sourceDetailPrefix}inperson`,
       },
     },
   },

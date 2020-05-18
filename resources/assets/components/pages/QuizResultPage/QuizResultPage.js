@@ -71,13 +71,12 @@ const QuizResultPage = ({ id }) => {
               {assetId ? (
                 <ContentfulAsset id={assetId} width={400} height={300} />
               ) : null}
+              <TextContent className="grid-full text-white">
+                {content}
+              </TextContent>
             </div>
           </header>
-          <div
-            data-test="quiz-result-page-content"
-            className="bg-white base-12-grid py-3 md:py-6"
-          >
-            <TextContent className="grid-full">{content}</TextContent>
+          <div className="bg-white base-12-grid py-3 md:py-6">
             <ContentfulEntryLoader
               id={config.galleryBlockId}
               className="grid-full"
