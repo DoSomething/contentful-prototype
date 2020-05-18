@@ -19,8 +19,8 @@ const CampaignPageContent = props => {
 
   if (!subPage) {
     return (
-      <div className="grid grid-cols-12 px-3 py-6 md:px-12">
-        <NotFound className="col-span-12 lg:col-start-2 lg:col-span-8" />
+      <div className="base-12-grid">
+        <NotFound className="col-span-4 md:col-span-8 lg:col-start-2" />
       </div>
     );
   }
