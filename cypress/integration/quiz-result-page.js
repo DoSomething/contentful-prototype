@@ -44,7 +44,7 @@ describe('Quiz Result Page', () => {
 
     cy.get('[data-test=quiz-result-page]').should('have.length', 1);
     cy.get('h1').should('contain', linkBlock.title);
-    cy.get('[data-test=quiz-result-page-content]').contains(
+    cy.get('[data-test=quiz-result-page]').contains(
       'Saepe cupiditate non. Facere velit vitae corporis.',
     );
   });
@@ -57,6 +57,6 @@ describe('Quiz Result Page', () => {
     cy.visit(`${getQuizResultPath(quizResultId)}?preview=true`);
 
     cy.get('h1').should('contain', linkBlock.title);
-    cy.get('[data-test=quiz-result-page-content]').contains(linkBlock.content);
+    cy.get('[data-test=quiz-result-page]').contains(linkBlock.content);
   });
 });
