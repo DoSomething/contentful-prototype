@@ -14,7 +14,6 @@ const mapStateToProps = state => ({
   campaignTitle: state.campaign.title,
   endDate: state.campaign.endDate,
   pageId: state.campaign.id || state.page.id,
-  disableSignup: get(state.campaign, 'additionalContent.disableSignup', false),
 });
 
 /**
