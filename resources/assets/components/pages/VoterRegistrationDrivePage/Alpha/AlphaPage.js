@@ -44,6 +44,10 @@ const AlphaPage = ({ userId }) => {
           }
         />
       </div>
+      <ContentfulEntryLoader
+        id={config.faq.contentBlockId}
+        className="grid-wide clearfix wrapper pb-3"
+      />
     </div>
   );
 };
