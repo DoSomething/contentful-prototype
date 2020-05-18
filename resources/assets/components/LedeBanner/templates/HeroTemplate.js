@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 
 import Modal from '../../utilities/Modal/Modal';
 import ContentfulEntry from '../../ContentfulEntry';
@@ -21,7 +20,6 @@ import './hero-lede-banner.scss';
 
 const HeroTemplate = ({
   actionIdToDisplay,
-  additionalContent,
   affiliateCreditText,
   affiliateSponsors,
   affiliateOptInContent,
@@ -72,13 +70,7 @@ const HeroTemplate = ({
               {affiliateSponsors.length ? (
                 <AffiliatePromotion
                   className="mt-3"
-                  imgUrl={
-                    get(
-                      additionalContent,
-                      'campaignSponsorLogoAlternativeUrl',
-                      null,
-                    ) || affiliateSponsors[0].fields.logo.url
-                  }
+                  imgUrl={affiliateSponsors[0].fields.logo.url}
                   text={affiliateCreditText}
                   textClassName="text-gray-600"
                   title={affiliateSponsors[0].fields.logo.title}
@@ -166,7 +158,6 @@ const HeroTemplate = ({
 
 HeroTemplate.propTypes = {
   actionIdToDisplay: PropTypes.number,
-  additionalContent: PropTypes.object,
   affiliateCreditText: PropTypes.string,
   affiliateSponsors: PropTypes.arrayOf(PropTypes.object),
   affiliateOptInContent: PropTypes.object,
@@ -190,7 +181,6 @@ HeroTemplate.propTypes = {
 
 HeroTemplate.defaultProps = {
   actionIdToDisplay: null,
-  additionalContent: null,
   affiliateCreditText: undefined,
   affiliateSponsors: [],
   affiliateOptInContent: null,
