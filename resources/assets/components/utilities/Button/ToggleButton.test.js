@@ -7,11 +7,8 @@ import ToggleButton from './ToggleButton';
 const onClickCallback = jest.fn();
 
 describe('ToggleButton component', () => {
-  /**
-   * Test rendering a toggle "on" button.
-   */
+  /** @test */
   test('it renders a button element toggle button that can be toggled "on"', () => {
-    // Arrange
     const activateText = 'Toggle On';
     const deactivateText = 'Toggle Off';
     const isToggled = false;
@@ -26,10 +23,8 @@ describe('ToggleButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('toggle-button'));
 
-    // Assert
     expect(container.querySelector('button')).toBeInTheDocument();
 
     expect(screen.getByText(activateText)).toBeInTheDocument();
@@ -45,11 +40,8 @@ describe('ToggleButton component', () => {
     expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
-  /**
-   * Test rendering a toggle "off" button.
-   */
+  /** @test */
   test('it renders a button element toggle button that can be toggled "on"', () => {
-    // Arrange
     const activateText = 'Toggle On';
     const deactivateText = 'Toggle Off';
     const isToggled = true;
@@ -64,10 +56,8 @@ describe('ToggleButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('toggle-button'));
 
-    // Assert
     expect(container.querySelector('button')).toBeInTheDocument();
 
     expect(screen.getByText(deactivateText)).toBeInTheDocument();

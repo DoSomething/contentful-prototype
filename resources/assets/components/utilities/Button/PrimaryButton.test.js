@@ -7,11 +7,8 @@ import PrimaryButton from './PrimaryButton';
 const onClickCallback = jest.fn();
 
 describe('PrimaryButton component', () => {
-  /**
-   * Test rendering a primary button as a link button.
-   */
+  /** @test */
   test('it renders an anchor link primary button', () => {
-    // Arrange
     const text = 'Join Campaign';
     const url = '/us/campaigns/adopt-all-the-cats';
 
@@ -24,10 +21,8 @@ describe('PrimaryButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('primary-button'));
 
-    // Assert
     expect(container.querySelector('a')).toBeInTheDocument();
 
     expect(screen.getByText(text)).toBeInTheDocument();
@@ -40,11 +35,8 @@ describe('PrimaryButton component', () => {
     expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
-  /**
-   * Test rendering a primary button as an element button.
-   */
+  /** @test */
   test('it renders a button element primary button', () => {
-    // Arrange
     const text = 'Submit Photo';
 
     const { container } = render(
@@ -56,10 +48,8 @@ describe('PrimaryButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('primary-button'));
 
-    // Assert
     expect(container.querySelector('button')).toBeInTheDocument();
 
     expect(screen.getByText(text)).toBeInTheDocument();
