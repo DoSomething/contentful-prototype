@@ -1,5 +1,3 @@
-const { omit } = require('lodash');
-
 const { contentManagementClient } = require('./contentManagementClient');
 const {
   constants,
@@ -7,7 +5,6 @@ const {
   getField,
   processEntries,
   sleep,
-  withFields,
 } = require('./helpers');
 
 const { LOCALE } = constants;
