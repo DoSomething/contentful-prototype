@@ -47,7 +47,12 @@ const StartVoterRegistrationForm = ({ campaignId, referrerUserId }) => {
         >
           <input type="hidden" name="partner" value="37187" />
 
-          <input type="hidden" name="source" value={urlSourceDetails} />
+          <input
+            type="hidden"
+            name="source"
+            value={urlSourceDetails}
+            data-id="voter-registration-sourceDetails"
+          />
 
           <div className="form-item stretched">
             <label htmlFor="email" className="font-bold">
