@@ -14,7 +14,7 @@ We host our voting portal, [vote.dosomething.org](https://vote.dosomething.org) 
 
 The `VoterRegistrationAction` content type can be used to display a call to action button that redirects a user to our vote.dosomething.org portal.
 
-## Voter Registration Drive Campaign
+## Online Registration Drives
 
 The call to action in the [Ready, Set, Vote campaign](https://www.dosomething.org/us/campaigns/online-registration-drive/) asks a member (the alpha) to get their friends to register to vote, by providing them with a custom URL to their own Online Voter Registration Drive (OVRD) that they can share with their friends (the betas).
 
