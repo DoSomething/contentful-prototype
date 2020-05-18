@@ -36,16 +36,19 @@ export const gqlVariables = {
       '347iYsbykgQe6KqeGceMUk': {
         // Panda
         assetId: '6J13jUL4YGGC1fyYMNEfbc',
+        sourceDetail: `${sourceDetailPrefix}notsure`,
       },
       // Social Voter
       '1lvJHhlJqQSgKgwIwUymQ8': {
         // Turtle:
         assetId: '3iLKsRlFQ1k9ddQbRb3RN8',
+        sourceDetail: `${sourceDetailPrefix}votebymail`,
       },
       // Election Dabbler
       '2KfkCOTi7u4CqAyyCuGyci': {
         // Rabbit:
         assetId: '3uB88eZmTNEaoFxV9pZ8hX',
+        sourceDetail: `${sourceDetailPrefix}inperson`,
       },
     },
   },
