@@ -7,11 +7,8 @@ import LinkButton from './LinkButton';
 const onClickCallback = jest.fn();
 
 describe('LinkButton component', () => {
-  /**
-   * Test rendering a fleshed out internal link button.
-   */
+  /** @test */
   test('it renders an anchor link button with internal url', () => {
-    // Arrange
     const text = 'View Campaigns';
     const url = '/';
 
@@ -25,10 +22,8 @@ describe('LinkButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('link-button'));
 
-    // Assert
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('link-button')).toHaveTextContent(text);
@@ -46,11 +41,8 @@ describe('LinkButton component', () => {
     expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
-  /**
-   * Test rendering a fleshed out external link button.
-   */
+  /** @test */
   test('it renders an anchor link button with external url that opens in new tab', () => {
-    // Arrange
     const text = 'Click This Link!';
     const url = 'http://example.com/';
 
@@ -64,10 +56,8 @@ describe('LinkButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('link-button'));
 
-    // Assert
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('link-button')).toHaveTextContent(text);

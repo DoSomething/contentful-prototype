@@ -7,11 +7,8 @@ import ElementButton from './ElementButton';
 const onClickCallback = jest.fn();
 
 describe('ElementButton component', () => {
-  /**
-   * Test rendering a fleshed out, enabled element button.
-   */
+  /** @test */
   test('it renders an element button', () => {
-    // Arrange
     const text = 'Click Me';
 
     render(
@@ -23,10 +20,8 @@ describe('ElementButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('element-button'));
 
-    // Assert
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('element-button')).toHaveTextContent(text);
@@ -42,11 +37,8 @@ describe('ElementButton component', () => {
     expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
-  /**
-   * Test rendering a fleshed out, disabled element button.
-   */
+  /** @test */
   test('it renders an element button that is disabled', () => {
-    // Arrange
     const isDisabled = true;
     const text = 'You Cannot Click Me';
 
@@ -60,10 +52,8 @@ describe('ElementButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('element-button'));
 
-    // Assert
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('element-button')).toHaveTextContent(text);
@@ -79,11 +69,8 @@ describe('ElementButton component', () => {
     expect(onClickCallback).not.toHaveBeenCalled();
   });
 
-  /**
-   * Test rendering a submit element button.
-   */
+  /** @test */
   test('it renders an element button that is of type "submit"', () => {
-    // Arrange
     const text = 'Submit';
 
     render(
@@ -94,7 +81,6 @@ describe('ElementButton component', () => {
       />,
     );
 
-    // Assert
     expect(screen.getByText(text)).toBeInTheDocument();
 
     expect(screen.getByTestId('element-button')).toBeEnabled();

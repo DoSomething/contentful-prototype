@@ -7,11 +7,8 @@ import SecondaryButton from './SecondaryButton';
 const onClickCallback = jest.fn();
 
 describe('SecondaryButton component', () => {
-  /**
-   * Test rendering a secondary button as a link button.
-   */
+  /** @test */
   test('it renders an anchor link secondary button', () => {
-    // Arrange
     const text = 'Explore Campaigns';
     const url = '/us/campaigns';
 
@@ -24,10 +21,8 @@ describe('SecondaryButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('secondary-button'));
 
-    // Assert
     expect(container.querySelector('a')).toBeInTheDocument();
 
     expect(screen.getByText(text)).toBeInTheDocument();
@@ -40,11 +35,8 @@ describe('SecondaryButton component', () => {
     expect(onClickCallback).toHaveBeenCalledTimes(1);
   });
 
-  /**
-   * Test rendering a secondary button as an element button.
-   */
+  /** @test */
   test('it renders a button element secondary button', () => {
-    // Arrange
     const text = 'Get Started';
 
     const { container } = render(
@@ -56,10 +48,8 @@ describe('SecondaryButton component', () => {
       />,
     );
 
-    // Act
     fireEvent.click(screen.getByTestId('secondary-button'));
 
-    // Assert
     expect(container.querySelector('button')).toBeInTheDocument();
 
     expect(screen.getByText(text)).toBeInTheDocument();
