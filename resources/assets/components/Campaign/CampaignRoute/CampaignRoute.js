@@ -32,7 +32,10 @@ const CampaignRoute = props => {
   return (
     <>
       {shouldShowAffirmation ? (
-        <Modal onClose={clickedHideAffirmation}>
+        <Modal
+          onClose={clickedHideAffirmation}
+          trackingId="SIGNUP_AFFIRMATION_MODAL"
+        >
           <PostSignupModal
             affirmation={affirmation || undefined}
             onClose={clickedHideAffirmation}
