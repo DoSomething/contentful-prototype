@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { get } from 'lodash';
 
 import SignupButton from './SignupButton';
 import { storeCampaignSignup } from '../../actions/signup';
