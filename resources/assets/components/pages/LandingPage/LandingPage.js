@@ -28,10 +28,10 @@ const LandingPage = ({ content }) => (
     {content ? (
       <div
         data-test="landing-page-content"
-        className="bg-white grid grid-cols-12 py-6 px-3 md:px-12"
+        className="bg-white base-12-grid py-6"
       >
         <div
-          className="col-span-12 md:col-span-10 lg:col-start-2 lg:col-span-8 xl:col-start-2 xl:col-span-7 leading-normal text-base"
+          className="col-span-4 md:col-span-6 lg:col-start-2 lg:col-span-8 xl:col-start-2 xl:col-span-7 leading-normal text-base"
           css={landingPageHeadingOneStyle}
         >
           <TextContent>{content}</TextContent>
